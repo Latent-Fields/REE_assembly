@@ -407,6 +407,24 @@
     "title": "opportunity_cost_no_op_penalty (waiting accumulates forgone-reward cost; passive trajectories pay for time consumed). Architectural commitment: trajectories that consume time without progress are not free in E3 scoring; the score function carries an additive cost on no-op / repeated-stationary candidates that scales with the agent's average expected reward rate. Companion to ARC-066 (capacity-to-vigor) and ARC-067 (idle aversion). Existing dACC switch_value (SD-032b / Kolling 2015 foraging) is the closest current substrate but covers a different framing (when to switch FROM the current option to alternatives), not the always-on cost of choosing the null action.",
     "type": "architectural_commitment"
   },
+  "ARC-069": {
+    "status": "candidate",
+    "subject": "policy.hierarchy_dynamic_regranularisation",
+    "title": "policy_hierarchy_dynamic_regranularisation (parent commitment for dynamic policy-primitive granularity in hippocampal rollout). Architectural commitment: the unit-of-policy that the rule-apprehension layer (ARC-062) and the diversity-generation layer (ARC-065) operate on is itself a dynamic representation, not a fixed primitive. The granularity rescales based on simulation outcomes -- decomposed into finer primitives when a chunk fails to ground at execution / prediction resolution (ARC-070), composed into a single primitive when a sequence has been repeatedly grounded with consistent outcomes (ARC-071). Without this commitment, ARC-007 hippocampal proposals are flat action sequences at fixed grain, and the rule layer must apprehend rules at whatever grain the proposer happens to emit, which may be too fine (combinatorial explosion in rollout) or too coarse (chunks fail to map onto the actual state). Cluster parent for ARC-070 (decomposition) + ARC-071 (composition); registers the architectural commitment that primitives are dynamic before any mechanism work.",
+    "type": "architectural_commitment"
+  },
+  "ARC-070": {
+    "status": "candidate",
+    "subject": "policy.decomposition_on_prediction_failure",
+    "title": "policy_decomposition_on_prediction_failure (zoom-in / re-segment imagined chains when chunks fail to ground at execution resolution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: when an imagined chunk's predicted outcome diverges from what its sub-elements would predict (or when MECH-269 V_s on the chunk's region drops), the chunk is broken into finer primitives in the rollout proposal stream. Trigger: simulation-side prediction failure. Direction: zoom in. Phenomenology anchor: 'I planned go-to-the-kitchen; turns out I need to plan the steps.'",
+    "type": "architectural_commitment"
+  },
+  "ARC-071": {
+    "status": "candidate",
+    "subject": "policy.composition_via_repeated_grounding",
+    "title": "policy_composition_via_repeated_grounding (zoom-out / chunk a sequence of primitives into a single atomic primitive after repeated successful execution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: sequences of policy primitives that have been repeatedly executed together with consistent outcomes are accumulated into a single primitive that the rule-apprehension and diversity-generation layers can treat atomically. Trigger: repetition count + outcome consistency (slow accumulator). Direction: zoom out. Phenomenology anchor: 'making coffee was once seventeen motor acts; after a thousand repetitions it is one unit.' Names the TRANSITION mechanism (planned -> habitual chunk) that MECH-163 dual systems presupposes but does not specify.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",

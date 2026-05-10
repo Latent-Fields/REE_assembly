@@ -28323,3 +28323,582 @@
     behavioural predictions in changing-environment scenarios.
   location: docs/architecture/non_deficit_action_drives.md
 
+- id: ARC-069
+  title: "policy_hierarchy_dynamic_regranularisation (parent commitment for dynamic policy-primitive granularity in hippocampal rollout). Architectural commitment: the unit-of-policy that the rule-apprehension layer (ARC-062) and the diversity-generation layer (ARC-065) operate on is itself a dynamic representation, not a fixed primitive. The granularity rescales based on simulation outcomes -- decomposed into finer primitives when a chunk fails to ground at execution / prediction resolution (ARC-070), composed into a single primitive when a sequence has been repeatedly grounded with consistent outcomes (ARC-071). Without this commitment, ARC-007 hippocampal proposals are flat action sequences at fixed grain, and the rule layer must apprehend rules at whatever grain the proposer happens to emit, which may be too fine (combinatorial explosion in rollout) or too coarse (chunks fail to map onto the actual state). Cluster parent for ARC-070 (decomposition) + ARC-071 (composition); registers the architectural commitment that primitives are dynamic before any mechanism work."
+  claim_type: architectural_commitment
+  subject: policy.hierarchy_dynamic_regranularisation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on: []
+  functional_restatement: >
+    ARC-069 registers the architectural slot for dynamic re-granularisation
+    of policy primitives. REE today has flat-grain trajectory proposals
+    (ARC-007 hippocampal proposals are CEM-sampled action sequences at
+    a fixed timestep grain). The rule-apprehension layer (ARC-062) and
+    the behavioural-diversity-generation layer (ARC-065) both operate
+    on these flat sequences. ARC-069 commits to a different
+    architectural shape: what counts as a PRIMITIVE for both layers is
+    itself a function of the rollout history, with two inverse
+    operations (decomposition and composition) acting on the
+    representation.
+
+    The two child commitments are inverse moves on the same axis:
+      - ARC-070 decomposition_on_prediction_failure: when an imagined
+        chunk's predicted outcome fails to ground (high prediction
+        error during rollout, or low MECH-269 V_s on the chunk's
+        region), the chunk is broken into finer primitives in the
+        rollout proposal stream. Trigger: simulation-side prediction
+        failure. Direction: zoom in.
+      - ARC-071 composition_via_repeated_grounding: sequences of
+        primitives that have been repeatedly executed together with
+        consistent outcomes are accumulated into a single primitive
+        that the apprehension and diversity layers can treat
+        atomically. Trigger: repetition count + outcome consistency.
+        Direction: zoom out.
+
+    Both child operations recruit the same machinery (the policy-
+    primitive representation that ARC-062 reads + ARC-065 perturbs +
+    ARC-007 emits trajectories from). ARC-069 names the joint
+    architectural commitment; ARC-070 and ARC-071 name the inverse
+    rescaling operations. They share the substrate but have asymmetric
+    triggers (decomposition is fast, prediction-driven, simulation-
+    side; composition is slow, repetition-driven, execution-side).
+
+    Biology anchors (preliminary; lit-pulls required before child
+    MECH/SD design, separate pulls for decomposition and composition
+    literatures):
+      - Hippocampal-prefrontal hierarchical control during planning
+        (Badre & D'Esposito 2009 Nat Rev Neurosci rostro-caudal
+        hierarchy; Koechlin & Summerfield 2007 cascaded prefrontal
+        architecture).
+      - Striatal action-sequence chunking (Graybiel 1998 Annu Rev
+        Neurosci; Sakai et al. 2003 Curr Opin Neurobiol; Wymbs et al.
+        2012 Neuron motor sequence chunking).
+      - Event segmentation theory (Zacks et al. 2007 Psychol Bull --
+        observation side; the imagination-side equivalent is what
+        ARC-070 names).
+      - Sutton et al. 1999 (Artificial Intelligence) options framework
+        as the cleanest computational analog of dynamic policy
+        hierarchy.
+      - Botvinick 2009 (Trends Cogn Sci) hierarchical organisation of
+        behaviour, including the chunk-based hierarchy as natural
+        substrate.
+      - McGovern & Barto 2001 (ICML) bottleneck-state subgoal
+        discovery -- one mechanism for ARC-070-style decomposition.
+
+    Architectural relations within REE:
+      - ARC-007 strict (hippocampal proposals): currently flat action
+        sequences. ARC-069 commits to a representation where the
+        sequence units are themselves variable-grain. ARC-007's
+        value-flat property is preserved -- the regranularisation
+        operates on the SHAPE of proposals, not on their value.
+      - ARC-062 rule_apprehension_via_gated_policy_heads: reads
+        primitives. With ARC-069 instantiated, the rules being
+        apprehended are over potentially-chunked primitives; rule
+        identification is invariant to grain re-scaling. (Failure
+        mode: rules apprehended at one grain that don't generalise
+        to another grain. This may surface as a follow-on Q-claim.)
+      - ARC-065 behavioral_diversity_generation: perturbs primitives.
+        Diversity-generation must operate at whatever grain the
+        primitives are at; chunked primitives reduce diversity-
+        space but increase abstraction; finer primitives increase
+        diversity-space but increase combinatorial cost.
+      - MECH-269 V_s (per-stream / per-region verisimilitude): the
+        most plausible TRIGGER signal for ARC-070 decomposition.
+        Low V_s on a chunk's region means the chunk's predicted
+        outcome is unreliable -- decompose to finer primitives that
+        the agent's forward models CAN predict.
+      - MECH-288 event_segmenter: already detects boundary events at
+        fast/slow scales on the OBSERVATION stream. ARC-070 is the
+        IMAGINATION-side analog -- segmentation of hypothetical
+        chains. The two are likely related substrates with
+        biologically-shared machinery (event segmentation theory
+        treats observation and imagination segmentation as
+        co-segmented in episodic memory).
+      - MECH-292 / MECH-293 ghost-goal bank + waking probes: indexes
+        anchors at fast/slow scales (per MECH-288), but anchors are
+        point-keys, not chunks-with-internal-structure. ARC-069 +
+        ARC-071 add structure-bearing primitives that anchors can
+        seed.
+      - MECH-163 dual systems (planned vs habitual): the
+        habit/planned distinction is registered. ARC-071 names the
+        TRANSITION mechanism -- planned chain repeated -> habit
+        chunk -- which is currently un-substrated. The dual systems
+        themselves are not the chunking machinery; they are
+        downstream consumers of grain-appropriate primitives.
+
+    Falsifiable architectural prediction (cluster-level): an REE
+    agent without ARC-069 substrate, run for many episodes on a
+    repeating task, will not develop coarser primitives -- every
+    rollout in episode 1000 will still propose at single-action
+    grain, paying the full combinatorial cost. With ARC-071 active,
+    repeated success on a sub-sequence should compress that
+    sub-sequence into a single primitive; rollout cost on that
+    sub-sequence should drop. With ARC-070 active, prediction
+    failure on a chunked primitive should re-decompose it back to
+    finer grain; rollout cost rises locally, predictive accuracy
+    recovers.
+
+    What ARC-069 is NOT:
+      - Not a representation-learning slot (no commitment to
+        end-to-end gradient on the chunking representation; could
+        be implemented via accumulator + replay-driven consolidation,
+        per Sutton 1999 options + Graybiel 1998 striatal chunking).
+      - Not a hierarchical-RL options framework re-implementation
+        (Sutton 1999 is the analog, not the spec; biology distributes
+        the substrate across hippocampal, prefrontal, and striatal
+        sites in a way that doesn't cleanly map to the options
+        framework's value-side).
+      - Not committing to a specific child mechanism shape; ARC-070
+        and ARC-071 are themselves slots whose mechanism design is
+        deferred to lit-pull-driven phases.
+
+    Companion architecture: ARC-070 (decomposition operation) +
+    ARC-071 (composition operation). The three claims jointly
+    register "policy primitives are dynamic" as architectural
+    commitment.
+  evidence_quality_note: >
+    Registered 2026-05-10 from user observation about hippocampal
+    rollout chaining: "When looking at chaining behaviours together
+    for hippocampal rollout we are working on there being behavioural
+    diversity to chain together but when imagining a chain
+    presumably the imagined chains may need splitting up into more
+    chained behaviours or sometimes a number of chained behaviours
+    together being realised to better be represented by a single
+    behaviour (or rather than behaviour I suppose we should be
+    thinking as policy or apprehended rule)."
+
+    Phenomenology-as-substrate-search is an explicit project
+    methodology (cf. ARC-066/067/068 non_deficit_action_drives
+    family registered 2026-05-10 from felt-drive phenomenology;
+    INV-049 sleep; MECH-302 suffering derivative comparator;
+    MECH-309 logical-necessity argument for rule apprehension).
+
+    Biology anchors above are preliminary -- a targeted lit-pull on
+    each child operation's literature is REQUIRED before child MECH
+    design (per project rule: biology-before-formal-definitions).
+    Two separate pulls anticipated:
+      - targeted_review_arc_070_decomposition: hippocampal-prefrontal
+        hierarchical control during planning, event segmentation
+        theory imagination side, bottleneck-state subgoal discovery.
+      - targeted_review_arc_071_composition: striatal sequence
+        chunking, motor program consolidation, options framework as
+        formal analog, repetition / outcome-consistency triggers.
+
+    Not yet experimentally tested. The substrate currently produces
+    no measurable lift because the cluster is empty. First
+    validation will be substrate-readiness diagnostic on whichever
+    child MECH lands first.
+  notes: >
+    Cross-reference family: ARC-069 + ARC-070 + ARC-071 form the
+    policy_primitive_granularity cluster. Registered together on
+    2026-05-10 from a single observation by the project author
+    (Daniel) that REE's hippocampal-rollout substrate currently
+    treats primitives as flat-grain, with no machinery for
+    re-granularisation either direction.
+
+    Asymmetry note (from user observation + draft preregistration):
+    decomposition (ARC-070) and composition (ARC-071) feel like
+    inverse operations and computationally treat them as a unified
+    options-framework machinery (Sutton 1999), but their TRIGGERS
+    are asymmetric -- decomposition is fast, prediction-driven,
+    simulation-side; composition is slow, repetition-driven,
+    execution-side. Two slots not one. Whether they share substrate
+    or are separate is a child-MECH question; the slot registration
+    keeps both possibilities open.
+
+    HYBRID-naming convention (parallel to ARC-065): the title
+    carries both REE-internal architectural name
+    (policy_hierarchy_dynamic_regranularisation) and literature
+    anchor cluster (Badre 2009 hierarchical control / Sutton 1999
+    options / Graybiel 1998 chunking / Zacks 2007 event segmentation).
+
+    Cross-link: psychiatric_failure_modes.md should later add a
+    section on regranularisation pathology as a model of (a)
+    obsessive-compulsive over-decomposition (chunks never compose;
+    every routine action is re-planned at primitive grain), (b)
+    autistic insistence-on-sameness (chunks form but cannot be
+    re-decomposed when context demands different grain), and (c)
+    skill / motor-learning impairments (chunking machinery itself
+    impaired; sequences never compress).
+
+    Open Q-claim worth registering at child-MECH time: how does
+    the rule-apprehension layer (ARC-062) deal with rules learned
+    at one grain that need to apply at another? Hierarchical
+    rules are likely apprehended at multiple grains in parallel
+    (Botvinick 2009); the child MECH design will need to address
+    grain-invariant rule identification.
+  location: docs/architecture/policy_primitive_granularity.md
+
+- id: ARC-070
+  title: "policy_decomposition_on_prediction_failure (zoom-in / re-segment imagined chains when chunks fail to ground at execution resolution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: when an imagined chunk's predicted outcome diverges from what its sub-elements would predict (or when MECH-269 V_s on the chunk's region drops), the chunk is broken into finer primitives in the rollout proposal stream. Trigger: simulation-side prediction failure. Direction: zoom in. Phenomenology anchor: 'I planned go-to-the-kitchen; turns out I need to plan the steps.'"
+  claim_type: architectural_commitment
+  subject: policy.decomposition_on_prediction_failure
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-069     # parent dynamic-regranularisation commitment
+  functional_restatement: >
+    ARC-070 names the decomposition direction of the dynamic
+    policy-primitive regranularisation cluster. When a chunked
+    primitive in an imagined trajectory fails to ground at the
+    resolution required for execution (its predicted outcome is
+    unreliable, or its sub-elements would diverge), the rollout
+    representation re-segments the chunk into finer primitives.
+    The agent does not commit to executing the chunked plan if it
+    cannot predict the chunk's outcome with adequate confidence;
+    instead the chunk is unpacked and the agent plans at finer
+    grain.
+
+    Trigger candidates (to be selected at child-MECH design time):
+      - MECH-269 V_s drop on the chunk's region: low region V_s
+        means the agent cannot reliably predict outcomes in this
+        region of state space; chunked primitives over this region
+        cannot ground; decompose. This is the cleanest existing-
+        substrate trigger.
+      - E2 forward-model disagreement: the chunked primitive's
+        predicted outcome (computed at chunk-grain) differs from
+        what stepwise E2 forward rollout would predict (computed
+        at primitive-grain). When the disagreement exceeds
+        threshold, decompose.
+      - Hippocampal completion-signal failure (MECH-105 / ARC-028):
+        chunked primitives whose expected completion signal does
+        not arrive on schedule.
+      - Mid-execution prediction error: the chunk fired, the agent
+        is now N steps in, and the next predicted state has
+        diverged. Decompose the REMAINING chunk content.
+    Likely a combination -- the lit-pull will arbitrate.
+
+    Direction (zoom in): the rollout proposal stream emits a
+    sequence whose units now correspond to finer-grain primitives.
+    Downstream consumers (ARC-062 rule apprehension, ARC-007
+    hippocampal selection) operate on the finer-grain stream
+    transparently. Cost: rollout deliberation budget rises locally
+    (more candidates per chunk-step). Benefit: predicted outcomes
+    become reliable; the rule layer can apply rules over primitives
+    it has reliable forward models for.
+
+    Biology anchors (preliminary; lit-pull required before child
+    MECH design):
+      - Badre & D'Esposito 2009 (Nat Rev Neurosci) -- rostro-caudal
+        prefrontal hierarchy; abstract intentions decompose into
+        more concrete actions through a cascaded hierarchy.
+      - Koechlin & Summerfield 2007 (Trends Cogn Sci) -- cascaded
+        cognitive control architecture, formalising the
+        decomposition direction.
+      - Zacks et al. 2007 (Psychol Bull) -- event segmentation
+        theory: same machinery segments observation and imagination
+        streams; prediction error is the canonical trigger.
+      - McGovern & Barto 2001 (ICML) -- bottleneck states as
+        decomposition targets; one specific computational shape.
+      - Pfeiffer & Foster 2013 (Nature) -- hippocampal forward
+        path sweeps that successively elaborate trajectory paths
+        as they encounter prediction-relevant cues.
+      - Schapiro et al. 2017 (Phil Trans Roy Soc B) -- CLS
+        hippocampal/cortical division of labour with pattern
+        separation as the substrate for decomposition.
+
+    Architectural relations within REE:
+      - MECH-269 V_s primitive (Phase 1/2/3 substrate landed): the
+        signal source. ARC-070 is a downstream consumer of V_s at
+        the rollout-proposal layer (parallel to MECH-269b which
+        consumes V_s at the cortical-rollout layer). Cross-link
+        evidence_quality_note: ARC-070 is the SECOND major V_s
+        consumer; MECH-269b's symmetric-V_s-gating commitment may
+        constrain ARC-070's design choices.
+      - MECH-288 event_segmenter (observation side): ARC-070 is the
+        imagination-side equivalent. The two likely share machinery
+        (event segmentation theory predicts this). Whether REE
+        instantiates them as one mechanism or two is a child-MECH
+        question.
+      - ARC-007 hippocampal proposals: ARC-070 modifies the SHAPE
+        of proposals (variable-grain segmentation), preserves the
+        value-flat property.
+      - MECH-094 hypothesis_tag: simulation-side substrate;
+        ARC-070's decomposition fires during simulation; child MECH
+        must respect MECH-094 (decomposition during waking action
+        does not write residue / does not chunk via composition).
+
+    Falsifiable architectural prediction: present an REE agent
+    with a multi-step chunked primitive whose mid-sequence is
+    placed in a region of high MECH-269 V_s drop (artificially
+    induced). Without ARC-070, the agent commits to the chunk and
+    executes it blind, paying the prediction-failure cost at
+    execution. With ARC-070, the agent re-decomposes during
+    rollout, refines the proposal at finer grain over the
+    low-V_s region, and either finds a finer-grain plan that
+    grounds (PASS) or fails-to-plan and aborts the trajectory
+    (also PASS -- the architectural prediction is the
+    decomposition fires, not that the alternative succeeds).
+
+    What ARC-070 is NOT:
+      - Not a re-implementation of MECH-288 event_segmenter; that
+        operates on observation. ARC-070 operates on imagination.
+        They likely share substrate but the substrate has not
+        been registered as bidirectional.
+      - Not a feedback-loop on V_s itself; ARC-070 reads V_s but
+        does not update it (V_s update path remains MECH-269 Phase
+        1/2/3 substrate).
+      - Not a goal hierarchy slot; chunks are over POLICY
+        primitives, not goals. Goal hierarchies are a separate
+        architectural concern (cf. SD-015 z_resource +
+        z_goal_snapshot in MECH-292/293).
+  evidence_quality_note: >
+    Registered 2026-05-10 alongside ARC-069 + ARC-071 from user
+    observation. Lit-pull required before child MECH design;
+    targeted_review_arc_070_decomposition anticipated.
+
+    The cleanest existing-substrate hook is MECH-269 V_s as
+    trigger; this gives ARC-070 a natural integration point
+    without inventing new V3 substrate. But the lit-pull may
+    surface alternative or complementary triggers (E2-disagreement,
+    completion-signal-failure, mid-execution PE) that are equally
+    biologically supported. Mechanism design must arbitrate.
+
+    Not yet experimentally tested. Validation will require an
+    environment that can produce the high-V_s-drop-mid-chunk
+    scenario; SD-054 reef substrate or any environment with
+    region-conditioned predictability heterogeneity will work.
+  notes: >
+    Cross-reference: ARC-070 is the inverse of ARC-071
+    (composition). They share the parent commitment (ARC-069) but
+    have asymmetric triggers -- ARC-070 fires on prediction
+    failure (fast, V_s-driven, simulation-side); ARC-071 fires on
+    repeated success (slow, accumulator-driven, execution-side).
+
+    Whether the two operations share substrate (one mechanism
+    operating in both directions, like Sutton 1999 options) or
+    are mechanistically separate (different triggers, different
+    effector pathways) is open. The slot registration keeps both
+    possibilities; child MECH design picks.
+
+    HYBRID-naming convention: REE-internal name
+    (decomposition_on_prediction_failure) + literature anchors
+    (event segmentation imagination side / Badre & D'Esposito
+    hierarchical control / Pfeiffer-Foster hippocampal forward
+    sweeps).
+  location: docs/architecture/policy_primitive_granularity.md
+
+- id: ARC-071
+  title: "policy_composition_via_repeated_grounding (zoom-out / chunk a sequence of primitives into a single atomic primitive after repeated successful execution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: sequences of policy primitives that have been repeatedly executed together with consistent outcomes are accumulated into a single primitive that the rule-apprehension and diversity-generation layers can treat atomically. Trigger: repetition count + outcome consistency (slow accumulator). Direction: zoom out. Phenomenology anchor: 'making coffee was once seventeen motor acts; after a thousand repetitions it is one unit.' Names the TRANSITION mechanism (planned -> habitual chunk) that MECH-163 dual systems presupposes but does not specify."
+  claim_type: architectural_commitment
+  subject: policy.composition_via_repeated_grounding
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-069     # parent dynamic-regranularisation commitment
+    - MECH-163    # dual systems substrate that ARC-071 names the transition for
+  functional_restatement: >
+    ARC-071 names the composition direction of the dynamic
+    policy-primitive regranularisation cluster. When a sequence
+    of primitives has been repeatedly executed together with
+    consistent outcomes, the sequence is accumulated into a single
+    primitive. The rule-apprehension layer (ARC-062) and the
+    diversity-generation layer (ARC-065) subsequently operate on
+    the chunked primitive atomically. Cost: rollout space loses
+    flexibility within the chunked unit (sub-elements are no longer
+    independently selectable). Benefit: rollout deliberation budget
+    drops massively over chunked sub-sequences (the chunk is
+    selected as one move, not N), and the rule layer can apprehend
+    rules at the chunked grain that would have been combinatorially
+    difficult at primitive grain.
+
+    Trigger candidates (to be selected at child-MECH design time):
+      - Repetition count + outcome consistency: the cleanest
+        canonical pattern (Graybiel 1998 striatal chunking).
+        Requires accumulator over (sequence -> outcome) pairs;
+        chunk forms when (count exceeds threshold) AND (outcome
+        variance is low).
+      - Reward-rate-conditioned chunking: chunks form
+        preferentially over sequences that reliably produce reward
+        (Sakai 2003 motor sequence learning; depends on dorsal
+        striatum DA signaling).
+      - V_s-conditioned chunking: chunks form preferentially over
+        sequences that produce reliable predictions (high MECH-269
+        V_s sustained over the sequence). This is the V_s-positive
+        analog of ARC-070's V_s-negative trigger.
+      - Free-energy-minimisation (Friston): chunks form because
+        they reduce expected free energy / surprise.
+    Likely a combination, with primary trigger being
+    repetition-count + outcome-consistency (Graybiel) augmented by
+    V_s-positive condition.
+
+    Direction (zoom out): the policy-primitive representation
+    accumulates a new unit corresponding to the sequence. This
+    unit is added to the candidate pool that ARC-007 hippocampal
+    rollout proposes from, that ARC-062 rule apprehension reads
+    over, and that ARC-065 diversity generation perturbs. The
+    pre-existing primitive sequence remains available (chunk does
+    not erase its sub-elements), so ARC-070 can decompose the
+    chunk back into its sub-sequence under prediction failure.
+
+    Critical relation to MECH-163 dual systems: MECH-163 names the
+    PRESENCE of a habit system (dorsolateral-striatum-analog) and
+    a planned system (hippocampal-vmPFC-analog) but does not name
+    the TRANSITION mechanism by which planned chains become
+    habitual chunks. ARC-071 is that transition mechanism. The
+    habit system in MECH-163 reads chunks; ARC-071 is the
+    machinery that produces them. Without ARC-071 the dual systems
+    in MECH-163 are static configurations; with ARC-071 the
+    division of labour between them is a continuous learnable
+    distribution that shifts with experience.
+
+    Biology anchors (preliminary; lit-pull required before child
+    MECH design):
+      - Graybiel 1998 (Annu Rev Neurosci) -- striatal chunking of
+        action sequences, foundational reference. Also Graybiel
+        2008 (Annu Rev Neurosci) updated review.
+      - Sakai et al. 2003 (Curr Opin Neurobiol) -- chunking in
+        motor sequence learning; pre-SMA / cerebellar / striatal
+        contributions across phases of learning.
+      - Wymbs et al. 2012 (Neuron) -- motor chunk formation as
+        behavioural and neural signature.
+      - Sutton et al. 1999 (Artificial Intelligence) -- options
+        framework; the cleanest formal analog of policy
+        composition. ARC-071 instantiates the options-discovery
+        side; the options-execution side is partly already in
+        REE via the planned/habitual distinction.
+      - Botvinick 2009 (Trends Cogn Sci) -- hierarchical
+        organisation of behaviour, with chunking as natural
+        substrate.
+      - Yin & Knowlton 2006 (Nat Rev Neurosci) -- dorsolateral
+        striatum (habit / chunked) vs dorsomedial striatum
+        (goal-directed / unchunked) division; the substrate
+        target of ARC-071 composition.
+      - Smith & Graybiel 2013 (Neuron) -- chunk dynamics: chunks
+        form, dissolve, reform across learning timescales. ARC-071
+        composition direction; ARC-070 decomposition direction.
+
+    Architectural relations within REE:
+      - MECH-163 dual_goal_directed_systems: ARC-071 names the
+        transition mechanism between them. Habit chunks are the
+        OUTPUT of ARC-071; planned-system trajectories are the
+        INPUT.
+      - ARC-007 hippocampal proposals: chunks become candidates in
+        the proposal pool. The pool is no longer a flat action
+        sequence but a mixed-grain set.
+      - MECH-292 / MECH-293 ghost-goal bank + waking probes: the
+        goal-payload preservation (SD-039) extends naturally to
+        chunks -- a chunked primitive with a stable goal-payload
+        is a 'recipe' the agent has accumulated. Cross-link.
+      - ARC-065 behavioural_diversity_generation: composition
+        REDUCES diversity locally (chunked sub-elements no longer
+        perturbable independently). The diversity layer must
+        operate at appropriate grain. Open question: should
+        diversity-generation operate on chunked or unchunked
+        representations? Likely both, in parallel, at different
+        timescales -- but this is a follow-on Q-claim.
+      - SD-014 valence vector recording: chunks may carry
+        accumulated valence. Cross-link with VALENCE_LIKING write
+        path -- a successful chunk recipe carries the average
+        liking of its repetitions.
+      - MECH-094 hypothesis_tag: composition is execution-side
+        (chunk forms FROM real executed sequences with
+        hypothesis_tag=False). Replay / DMN / simulation
+        sequences must NOT trigger composition -- a hallucinated
+        chunk would be catastrophic.
+
+    Falsifiable architectural prediction: an REE agent without
+    ARC-071 substrate, run for many episodes on a repeating
+    sub-task, will not develop coarser primitives -- every
+    rollout in episode 1000 will still propose at single-action
+    grain, paying the full combinatorial deliberation cost on
+    sequences it has executed thousands of times. With ARC-071
+    active, repeated successful sub-sequences should compress;
+    rollout deliberation cost on those sub-sequences should drop
+    measurably; behavioural latency on the chunked sub-sequences
+    should drop (faster commit, less deliberation).
+
+    What ARC-071 is NOT:
+      - Not a habit-formation re-implementation of MECH-163.
+        MECH-163 is the PRESENCE of two systems; ARC-071 is the
+        machinery that pumps content from one into the other.
+      - Not a model-free reinforcement learning slot. ARC-071 is
+        chunking of model-based plans, not a model-free policy
+        substitute. The chunked primitive remains a sequence with
+        outcome predictions; it just loses internal flexibility.
+      - Not a representation-compression slot at the encoder
+        layer. Chunks are over POLICY primitives, not over
+        latent observations. Encoder compression is a separate
+        architectural concern (cf. SD-009 z_world contrastive
+        supervision; SD-018 z_world resource proximity).
+  evidence_quality_note: >
+    Registered 2026-05-10 alongside ARC-069 + ARC-070 from user
+    observation. Lit-pull required before child MECH design;
+    targeted_review_arc_071_composition anticipated. Striatal
+    chunking literature (Graybiel / Sakai / Wymbs / Smith &
+    Graybiel) is convergent on substrate; the question is
+    parameterisation: how many repetitions to chunk, how much
+    outcome variance permitted, what stops a chunk from chunking
+    further (chunks-of-chunks problem).
+
+    Sutton 1999 options framework is the cleanest formal analog
+    but is incomplete on the discovery side (the options-
+    framework's bottleneck-state literature is one shape;
+    Graybiel chunking is another; the two are not yet unified
+    in computational neuroscience).
+
+    Not yet experimentally tested. Validation requires an
+    environment with structurally repeating sub-sequences --
+    SD-054 reef + a repeating forage-loop task, or similar.
+    First validation experiment will be substrate-readiness
+    diagnostic measuring whether the chunking accumulator fires
+    at all; behavioural-latency / rollout-cost measurements come
+    later.
+  notes: >
+    Cross-reference: ARC-071 is the inverse of ARC-070
+    (decomposition). Asymmetric triggers (slow / repetition-driven
+    / execution-side vs fast / V_s-driven / simulation-side).
+    Whether one mechanism or two is open per ARC-069 parent.
+
+    Chunks-of-chunks problem: if ARC-071 is recursive (a chunked
+    primitive can itself be a sub-element of a higher-grain
+    chunk), the cluster admits a hierarchy of grains. Biology
+    supports this (Botvinick 2009 hierarchical behavioural
+    organisation goes deep). Open Q-claim at child-MECH design
+    time: depth of recursion permitted, and how the rule-
+    apprehension layer (ARC-062) handles rules at multiple
+    grains simultaneously.
+
+    Cross-link to psychiatric_failure_modes.md (future): ARC-071
+    pathology candidates include
+      - autism / insistence-on-sameness: chunks form normally but
+        cannot be re-decomposed (ARC-070 weakened on chunked
+        primitives), so context demands different grain produce
+        rigidity.
+      - obsessive-compulsive disorder: chunks fail to form (ARC-071
+        weakened); every routine action is re-planned at
+        primitive grain, producing the over-deliberation
+        signature.
+      - skill / motor-learning impairments: chunking machinery
+        itself impaired; sequences never compress; deliberation
+        budget exhausted.
+    These are speculative pre-registration cross-references; not
+    grounded until lit-pulls land.
+
+    HYBRID-naming convention: REE-internal name
+    (composition_via_repeated_grounding) + literature anchors
+    (Graybiel striatal chunking / Sakai motor sequence / Sutton
+    options / Yin & Knowlton DLS-DMS division).
+
+    Open Q-claim worth registering at child-MECH time: what
+    happens when a chunk's outcome consistency drops below
+    threshold? Does the chunk decompose (ARC-070) or simply
+    become un-selectable from the proposal pool? The two have
+    different behavioural signatures and the lit is not
+    decisive.
+  location: docs/architecture/policy_primitive_granularity.md
+
+
