@@ -26501,15 +26501,21 @@
     noise_floor_min_temperature (default 1.0). Wired through
     REEConfig.from_dims().
 
-    Architectural choice (deviation from the original implementation hint
-    above): a separate NoiseFloor module at the e3.select() call site
-    rather than per-head temperature inside GatedPolicy. Reasoning:
-    MECH-313 is state-independent and applies to ALL action selection
-    paths regardless of whether the GatedPolicy is wired in (it must
-    fire on baseline E3 selection too, which the per-head approach
-    would miss). Co-locating the regulator with the softmax call gives
-    a single point of control and matches the PaG / SD-035 / SD-036
-    regulator pattern. Both knobs surface as Q-043 calibration levers.
+    Phase-1 instantiation choice (NOT a settled architectural commitment):
+    a separate NoiseFloor module at the e3.select() call site, rather
+    than per-head temperature inside GatedPolicy as the original notes-
+    field hint suggested. Phase-1 reasoning: MECH-313 is state-
+    independent and currently must fire on baseline E3 selection too
+    (which the per-head approach inside GatedPolicy would miss with
+    GatedPolicy disabled). Whether the policy-layer regulators ultimately
+    consolidate into one module (e.g. with MECH-314 structured-curiosity
+    fitting more naturally inside GatedPolicy and MECH-313 living
+    alongside it) is OPEN pending MECH-314 / MECH-318 / MECH-319
+    implementations -- those substrates may make different placement
+    choices that motivate revisiting MECH-313's. Re-evaluate at the
+    point Q-045's 4-arm ablation is queued. The Phase-1 module surface
+    + config knobs are stable; what could move is the file location
+    and call site.
 
     Validation: V3-EXQ-544 substrate-readiness diagnostic (UC1
     instantiation, UC2 master-OFF backward-compat, UC3 lift-arithmetic

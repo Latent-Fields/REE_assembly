@@ -469,17 +469,25 @@ Substrate:
 - MECH-094 honoured via `compute_effective_temperature(simulation_mode=True)`
   returning baseline unchanged + simulation-skip counter only.
 
-Architectural deviation from the original notes-field implementation hint
-("SAC-style entropy regularisation in the existing GatedPolicy module's
-per-head softmax temperature; one-line config addition; no separate
-substrate component required"): a SEPARATE NoiseFloor module at the
-e3.select() call site rather than per-head temperature inside GatedPolicy.
-Reasoning: MECH-313 is state-independent and applies to ALL action-selection
-paths regardless of whether GatedPolicy is wired in -- it must fire on
-baseline E3 selection too, which the per-head approach would miss. Co-locating
-the regulator with the softmax call gives a single point of control. Both
-knobs surface as Q-043 calibration levers. Hint updated in claims.yaml
-notes field.
+Phase-1 instantiation choice (NOT a settled architectural commitment) --
+deviation from the original notes-field implementation hint ("SAC-style
+entropy regularisation in the existing GatedPolicy module's per-head
+softmax temperature; one-line config addition; no separate substrate
+component required"): a SEPARATE NoiseFloor module at the e3.select()
+call site rather than per-head temperature inside GatedPolicy. Phase-1
+reasoning: MECH-313 is state-independent and currently must fire on
+baseline E3 selection too (which the per-head approach inside GatedPolicy
+would miss with GatedPolicy disabled). Whether the policy-layer regulators
+ultimately consolidate into one module is OPEN pending MECH-314 /
+MECH-318 / MECH-319 implementations -- those substrates may make different
+placement choices that motivate revisiting MECH-313's placement (MECH-314
+structured-curiosity in particular may fit naturally inside GatedPolicy
+as a per-head bonus, in which case MECH-313 may want to co-locate). Re-
+evaluate at the point Q-045's 4-arm ablation is queued (i.e. once MECH-314
+is also landed and the whole ARC-065 surface is visible). The Phase-1
+module surface + config knobs are stable; what could move is the file
+location and call site. Hint updated in claims.yaml notes field with the
+same softening.
 
 Validation:
 - V3-EXQ-544 substrate-readiness diagnostic, 5/5 PASS smoke (UC1
