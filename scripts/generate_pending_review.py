@@ -116,13 +116,13 @@ def _derive_dir_name(output_file: str, queue_id: str) -> str:
     if len(parts) > 1:
         segment = parts[-1].split("/")[0]
         if segment.endswith(".json"):
-            segment = re.sub(r"_\d{8}T\d{6}Z?\.json$", "", segment)
+            segment = re.sub(r"_(?:v\d+_)?\d{8}T\d{6}Z?(?:_v\d+)?\.json$", "", segment)
         if segment:
             return segment
     # bare filename
     basename = path.split("/")[-1]
     if basename.endswith(".json"):
-        basename = re.sub(r"_\d{8}T\d{6}Z?\.json$", "", basename)
+        basename = re.sub(r"_(?:v\d+_)?\d{8}T\d{6}Z?(?:_v\d+)?\.json$", "", basename)
     return basename or queue_id
 
 

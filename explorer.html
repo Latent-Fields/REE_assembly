@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-09.1 -->
+<!-- EXPLORER_VERSION: 2026-05-10.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9308,7 +9308,14 @@ END CONFLICT RESOLUTION`;
         : '';
       let dirName = c.script_name || (c.output_file || '').replace(/\\/g, '/').replace(/^.*experiments\//, '').replace(/\/.*$/, '');
       // Handle bare filenames (no path separator) — strip trailing timestamp + .json
-      if (dirName && dirName.endsWith('.json')) dirName = dirName.replace(/_\d{8}T\d{6}Z?\.json$/, '');
+      // Strip trailing timestamp + optional `_vN` so flat V3/V2 manifests collapse to
+      // the same script-name string used in discussed_experiment_dirs. Two naming orders
+      // exist in the wild: `..._<ts>Z_v3.json` (V3 runner default) and
+      // `..._v3_<ts>Z.json` (substrate-readiness scripts that embed `_v3` in the
+      // experiment_type). The pre-timestamp `_vN_` and post-timestamp `_vN` groups are
+      // both optional. Older V2 subdir manifests like `..._20260227T103302.json` also
+      // collapse correctly since both v-groups are skippable.
+      if (dirName && dirName.endsWith('.json')) dirName = dirName.replace(/_(?:v\d+_)?\d{8}T\d{6}Z?(?:_v\d+)?\.json$/, '');
       // Fallback for ERROR/UNKNOWN with no output_file — use queue_id
       if (!dirName && c.queue_id) dirName = c.queue_id;
       const isDiscussed = dirName && discussedDirs.has(dirName);
