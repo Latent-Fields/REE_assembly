@@ -1,33 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-09T13:14:15.773878+00:00",
-  "last_updated": "2026-05-10T13:15:06.803258+00:00",
-  "idle": true,
+  "runner_pid": 81308,
+  "runner_started_at": "2026-05-10T13:25:51.121062+00:00",
+  "last_updated": "2026-05-10T17:26:05.335648+00:00",
+  "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-543b",
-      "backlog_id": "",
-      "claim_id": "MECH-309",
-      "title": "ARC-062 Phase 3-corrected monomodal-collapse falsifier on SD-054 (gated_policy in optimizer + phased training + divergence probe + hardened C3)",
-      "description": "",
-      "estimated_minutes": 86.4,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-545",
-      "backlog_id": "",
-      "claim_id": "MECH-314",
-      "title": "MECH-314 (ARC-065) structured_curiosity_bonus substrate-readiness diagnostic (parent + 314a striatal novelty + 314b frontopolar uncertainty + 314c learning-progress)",
-      "description": "",
-      "estimated_minutes": 0.1,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-546",
       "backlog_id": "",
@@ -7482,7 +7460,34 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z.json",
       "completed_by": "Mac",
       "actual_secs": 2.8
+    },
+    {
+      "queue_id": "V3-EXQ-543b",
+      "backlog_id": "",
+      "claim_id": "MECH-309",
+      "title": "ARC-062 Phase 3-corrected monomodal-collapse falsifier on SD-054 (gated_policy in optimizer + phased training + divergence probe + hardened C3)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | outcome:            FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-543b -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-543b.json",
+      "started_at": "2026-05-10T13:25:53.268257+00:00",
+      "completed_at": "2026-05-10T17:26:00.318774+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 14407.0
+    },
+    {
+      "queue_id": "V3-EXQ-545",
+      "backlog_id": "",
+      "claim_id": "MECH-314",
+      "title": "MECH-314 (ARC-065) structured_curiosity_bonus substrate-readiness diagnostic (parent + 314a striatal novelty + 314b frontopolar uncertainty + 314c learning-progress)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-545 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-545.json",
+      "started_at": "2026-05-10T17:26:02.381339+00:00",
+      "completed_at": "2026-05-10T17:26:05.332820+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3.0
     }
-  ],
-  "draining": false
+  ]
 }
