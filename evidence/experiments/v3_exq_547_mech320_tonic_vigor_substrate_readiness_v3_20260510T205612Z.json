@@ -1,0 +1,97 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z",
+  "experiment_type": "v3_exq_547_mech320_tonic_vigor_substrate_readiness",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-10T20:56:12.835525Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-320",
+    "ARC-066"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-320": "supports",
+    "ARC-066": "supports"
+  },
+  "metrics": {
+    "UC1_forward_pass_instantiation": {
+      "tonic_vigor_is_module": true,
+      "bias_shape": [
+        4
+      ],
+      "bias_finite": true,
+      "v_raw": 0.75,
+      "last_v_t": 0.75,
+      "n_waking_score_updates": 20,
+      "n_waking_bias_calls": 1,
+      "alpha_derived": 0.06696700846319259,
+      "pass": true
+    },
+    "UC2_master_off_no_op": {
+      "off_tonic_vigor_is_none": true,
+      "on_tonic_vigor_is_module": true,
+      "z_world_off_finite": true,
+      "z_world_on_finite": true,
+      "pass": true
+    },
+    "UC3_ewma_arithmetic": {
+      "cases": [
+        {
+          "case": "steady_state_at_1.0",
+          "v_raw_after_200_ticks": 0.9999990463256836,
+          "expected": 1.0,
+          "ok": true
+        },
+        {
+          "case": "half_life_crossing",
+          "v_raw_after_one_half_life": 0.49999999999999944,
+          "expected": 0.5,
+          "ok": true
+        },
+        {
+          "case": "sign_convention_low_score_high_vigor",
+          "v_raw_rich_history": 1.998046875,
+          "v_raw_poor_history": -0.9970722198486329,
+          "ok": true
+        }
+      ],
+      "n_cases": 3,
+      "pass": true
+    },
+    "UC4_select_action_wiring_contract": {
+      "select_action_error": null,
+      "n_waking_bias_calls": 1,
+      "n_waking_score_updates": 1,
+      "n_simulation_bias_skips": 0,
+      "n_simulation_score_skips": 0,
+      "pass": true
+    },
+    "UC5_mech094_simulation_gate": {
+      "sim_bias_zeros": true,
+      "sim_bias_skip_advanced": true,
+      "sim_score_skip_advanced": true,
+      "ewma_unchanged_after_sim_update": true,
+      "waking_bias_advanced_after_sim": true,
+      "sim_skip_not_re_incremented_on_waking": true,
+      "pass": true
+    },
+    "UC6_r3_form_discriminability": {
+      "bias_additive": [
+        -0.04995117336511612,
+        -0.04995117336511612
+      ],
+      "bias_multiplicative": [
+        -0.004995117429643869,
+        -0.04495605453848839
+      ],
+      "additive_uniform_per_class": true,
+      "multiplicative_varies_with_score_magnitude": true,
+      "forms_distinguishable": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.9492809772491455,
+  "notes": "MECH-320 (ARC-066 child) tonic_vigor_coupling_score_bias substrate-readiness diagnostic. Tests substrate wiring + ARC-066 lit-pull R3 (additive primary, multiplicative falsifiable secondary) + R4 (slow EWMA over realised score-receipt is the primary scalar) verdicts at the API level. Does NOT test the load-bearing claim of MECH-320 itself or the additive-vs-multiplicative empirical resolution of R3 -- both require behavioural validation via the 3-arm discriminative pair (baseline / additive / multiplicative on a well-fed-safe-familiar substrate), queued AFTER substrate landing. ARC-066 lit_conf 0.789 supports; lit-pull synthesis at REE_assembly/evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md."
+}
