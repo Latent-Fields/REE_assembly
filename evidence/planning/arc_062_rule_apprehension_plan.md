@@ -352,7 +352,7 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
 | GAP-F | 5 | deferred V4 | GAP-E outcome | none in V3 | n/a | 2026-05-09 |
 | GAP-G | 5 | deferred V4 | sleep_substrate plan progression | Pull C lit-pull (sleep-vs-waking refinement biology) when ARC-063 V4 work opens | n/a | 2026-05-09 |
-| GAP-H | 2-3 | partial | MECH-314 / MECH-314a/b/c structured-curiosity substrates + Q-045 4-arm ablation queue | ARC-065 diversity-generation cluster registered. **MECH-313 substrate landed 2026-05-10** (`ree_core/policy/noise_floor.py` + `REEConfig.use_noise_floor`/`noise_floor_alpha`/`noise_floor_min_temperature` + `select_action` e3.select call site + 11 contract tests + V3-EXQ-544 substrate-readiness diagnostic 5/5 PASS + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). MECH-314 / MECH-314a/b/c + MECH-318 / MECH-319 substrates + Q-045 4-arm ablation experiment remain to be authored. V3 falsification path = Q-045 successor on V3-EXQ-543b/c after MECH-314 + MECH-260 wiring confirmed independent. | V3-EXQ-544 (done) / Q-045 EXQ TBD | 2026-05-10 |
+| GAP-H | 2-3 | partial | MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation queue | ARC-065 diversity-generation cluster registered. **MECH-313 substrate landed 2026-05-10** (`ree_core/policy/noise_floor.py` + `REEConfig.use_noise_floor`/`noise_floor_alpha`/`noise_floor_min_temperature` + `select_action` e3.select call site + 11 contract tests + V3-EXQ-544 substrate-readiness diagnostic 5/5 PASS + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). **MECH-314 / MECH-314a/b/c substrate landed 2026-05-10** (`ree_core/policy/structured_curiosity.py` + `StructuredCuriosity` + `StructuredCuriosityConfig` + `REEConfig.use_structured_curiosity` master + 3 independently-togglable sub-flavour switches (`use_curiosity_novelty`/`_uncertainty`/`_learning_progress`) + per-sub-flavour weights + `select_action` `dacc_score_bias` composition site between MECH-295 and MECH-313 + 13 contract tests + V3-EXQ-545 substrate-readiness diagnostic 5/5 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed` for parent + 3 children). MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation experiments remain to be authored. V3 falsification paths: Q-044 three-arm ablation (314a-OFF / 314b-OFF / 314c-OFF) on V3-EXQ-543b/c successors AFTER MECH-318/319 absorption checks; Q-045 4-arm ablation (MECH-313 vs MECH-260 collapse) on V3-EXQ-543b/c successors. | V3-EXQ-544 (done) + V3-EXQ-545 (done) / Q-043 / Q-044 / Q-045 EXQs TBD | 2026-05-10 |
 | GAP-I | 2-3 | registered | claims-only registration | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD | 2026-05-10 |
 | GAP-J | 2-3 | registered | claims-only registration | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline is the V3-EXQ-543b/c falsifying alternative. | V3-EXQ-543b/c | 2026-05-10 |
 | GAP-K | 2-3 | registered | claims-only registration | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c. | V3-EXQ-543c | 2026-05-10 |
@@ -448,6 +448,134 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - GAP-H further partial close: MECH-314 structured-curiosity substrate cluster landed
+
+Second of the four ARC-065 child substrates landed (MECH-313 noise-floor
+landed earlier the same day). Resolves the Pull 1 SYNTHESIS R1 BOTH-CHANNELS-
+NEEDED commitment: with MECH-313 + MECH-314 both substrate-landed, ARC-065
+carries the full cluster commitment for behavioural-diversity generation.
+Remaining ARC-065 / ARC-064 children (MECH-318, MECH-319) continue as
+separate spawned tasks.
+
+Substrate:
+- Module: `ree-v3/ree_core/policy/structured_curiosity.py`
+  (StructuredCuriosity + StructuredCuriosityConfig). Pure-arithmetic, no
+  learned parameters, no `nn.Module` inheritance; sibling to MECH-313
+  NoiseFloor in the `ree_core.policy` package.
+- Three sub-flavours implemented as a single module with master + 3
+  independently-togglable sub-flavour switches (per Pull 1 R3 verdict NOT
+  to collapse them prematurely; Q-044 holds the resolution path):
+    - MECH-314a striatal novelty: per-candidate min-distance from candidate's
+      first-step z_world to nearest ACTIVE ResidueField RBF center, normalised
+      by candidate-pool mean norm. Genuinely per-candidate [K].
+    - MECH-314b frontopolar uncertainty: `e3._running_variance` scalar
+      broadcast across [K] (Phase 1; per-candidate refinement deferred to
+      Phase 2 follow-on requiring an E1 forward-variance head).
+    - MECH-314c learning progress: EMA of `|PE_t - PE_{t-K}|` (Schmidhuber
+      first-difference) where PE feed is `e3._running_variance` per tick;
+      broadcast scalar across [K] (Phase 1; per-candidate refinement deferred).
+- Config: `REEConfig.use_structured_curiosity` (default False; bit-identical
+  OFF master) + `use_curiosity_novelty` / `_uncertainty` / `_learning_progress`
+  (defaults True) + per-sub-flavour weights (default 0.05 each) + `bias_scale`
+  clamp (default 0.1, mirrors `lateral_pfc_bias_scale`) + LP EMA alpha (0.1)
+  and window K (5). All wired through `REEConfig.from_dims()`.
+- Algorithm: per waking tick, `compute_score_bias` returns `[K]` non-positive
+  tensor (lower-is-better convention; curiosity makes novel/uncertain/LP-rich
+  candidates more attractive). Composed additively into `dacc_score_bias` in
+  `REEAgent.select_action()` immediately after the MECH-295 liking-bridge
+  block and BEFORE the MECH-313 noise-floor temperature lift (curiosity
+  affects scores; noise floor affects temperature; orthogonal).
+- LP feed: `update_prediction_error(pe_scalar=e3._running_variance,
+  simulation_mode=False)` called after each `e3.select` cycle in
+  `select_action`; advances the 314c LP buffer for next tick.
+- MECH-094: `compute_score_bias(simulation_mode=True)` returns `zeros[K]` and
+  increments only the simulation-skip counter; `update_prediction_error(
+  simulation_mode=True)` no-op on the LP buffer. Match the
+  SD-035 / MECH-279 / `gated_policy` / MECH-313 simulation_mode pattern.
+
+Architectural-placement note: a separate `StructuredCuriosity` module at
+the `e3.select()` call site, in parallel with MECH-313 NoiseFloor and the
+GatedPolicy bias chain. The same Phase-1 placement-vs-consolidation note
+that MECH-313 carries applies here -- whether the policy-layer regulators
+ultimately consolidate into one module is OPEN pending MECH-318 / MECH-319
+substrates and Q-043 / Q-044 calibration. The separate-module choice keeps
+each sub-flavour independently togglable, which is what Q-044 needs.
+Re-evaluate at the point Q-044 / Q-043 are queued.
+
+Phase 1 honest-scoping caveat: 314a is genuinely per-candidate. 314b and
+314c are state-dependent global scalars broadcast across [K] in Phase 1.
+The architectural shape is correct (bonus magnitude varies with global
+uncertainty / LP; substrate exposes the falsification surface), and Q-044's
+three-arm ablation IS a flag-set decision -- the substrate guarantees each
+sub-flavour can be turned on/off independently. What Phase 1 does NOT
+deliver: distinguishable behavioural signatures per sub-flavour at the
+candidate-selection level (broadcast-scalar 314b/c shifts every candidate's
+score by the same amount and does not change selection ordering). Per-
+candidate refinement of 314b (E1 forward-variance head) and 314c (per-
+candidate LP estimate) is a Phase 2 follow-on, deferred until Q-044
+surfaces concrete need.
+
+Lit-pull synthesis decision: Pull 1 (`evidence/literature/
+targeted_review_arc_065_behavioral_diversity_generation/SYNTHESIS.md`,
+9 entries, lit_conf 0.78-0.82) judged sufficient -- it explicitly resolves
+R1 BOTH-CHANNELS-NEEDED (Wilson 2014 + Faisal 2008 + Friston 2015), R3
+PROMOTE-TO-CLUSTER + sub-flavour split with biological anchors per
+sub-flavour (Wittmann 2008 striatal novelty for 314a; Daw 2006 + Friston
+2010/2015 EFE for 314b; Schmidhuber 1991 + Pathak 2017 for 314c, flagged
+"least biologically anchored / potentially-discardable-if-314a+314b-suffice"),
+and R4 continuous-in-computation-triggered-in-dominance. Magnitudes
+intentionally not pinned by the lit-pull (Q-043 calibration sweep is the
+empirical route; Q-044 three-arm ablation is the sub-flavour independence
+falsifier). No additional implementation-detail lit-pull commissioned.
+
+Validation: V3-EXQ-545 substrate-readiness diagnostic (UC1 instantiation;
+UC2 master-OFF backward-compat; UC3 sub-flavour flag-set isolation --
+314a-only / 314b-only / 314c-only / all-off-master-on each behave correctly,
+which is the architectural prerequisite making Q-044 three-arm ablation a
+flag-set decision; UC4 select_action wiring contract; UC5 MECH-094
+simulation gate). 5/5 PASS smoke 2026-05-10 (manifest scrubbed; runner
+will write the canonical PASS manifest from the queued entry).
+
+Contract tests: `tests/contracts/test_mech_314_curiosity.py` 13/13 PASS
+(C1 default-off no-op; C2 each sub-flavour fires independently; C3
+additive composition; C4 MECH-094 simulation gate; C5 backward-compat
+config matrix; reset clears LP buffer + diagnostics; input validation).
+Full contracts suite 273/273 PASS (was 253 + 13 new + 7 preflight
+unchanged) -- regression-clean; bit-identical OFF guarantee holds.
+
+Status: claims.yaml MECH-314 + MECH-314a + MECH-314b + MECH-314c
+all `candidate -> candidate_substrate_landed`; v3_pending: true retained
+on all four pending Q-044 three-arm ablation. `evidence_quality_note`
+on each entry extended with the substrate-landing implementation note +
+Phase-1 honest-scoping caveat for the broadcast-scalar sub-flavours.
+
+Out of scope (separate spawned tasks):
+- MECH-318 (rule-state abstraction substrate -- ARC-064 child).
+- MECH-319 (simulation-mode rule-write gating).
+- Q-043 weight calibration sweep.
+- Q-044 three-arm ablation experiment itself (queued AFTER substrate
+  landing AND MECH-318/319 absorption checks).
+- Q-045 4-arm ablation experiment (MECH-313 vs MECH-260 collapse).
+- V3-EXQ-543c (curiosity + meta-RL recurrent baselines arm class).
+- Phase 2 per-candidate refinement of 314b/c.
+
+Files touched (this session):
+- ree-v3/ree_core/policy/structured_curiosity.py (new, ~330 lines).
+- ree-v3/ree_core/policy/__init__.py (export).
+- ree-v3/ree_core/utils/config.py (REEConfig fields + from_dims kwargs).
+- ree-v3/ree_core/agent.py (import + __init__ instantiation + reset hook
+  + select_action score_bias composition + LP feed after e3.select).
+- ree-v3/tests/contracts/test_mech_314_curiosity.py (new, 13 tests).
+- ree-v3/experiments/v3_exq_545_mech314_structured_curiosity_substrate_readiness.py (new).
+- ree-v3/experiment_queue.json (V3-EXQ-545 appended).
+- REE_assembly/docs/architecture/mech_314_structured_curiosity_bonus.md (new).
+- REE_assembly/docs/claims/claims.yaml (MECH-314 + 314a/b/c status +
+  evidence_quality_note + parent notes update).
+- REE_assembly/docs/assets/data/claims.json (rebuilt by build_claims_json.py).
+- REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
+  (GAP-H row + this decision-log entry).
+- WORKSPACE_STATE.md, TASK_CLAIMS.json.
 
 ### 2026-05-10 - GAP-H partial close: MECH-313 noise-floor substrate landed
 

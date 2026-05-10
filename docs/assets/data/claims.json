@@ -3132,31 +3132,31 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-313": {
-    "status": "candidate",
+    "status": "candidate_substrate_landed",
     "subject": "policy.stochastic_noise_floor_lc_ne_tonic_analog",
     "title": "stochastic_noise_floor (max_entropy_policy_regularisation_LC_NE_tonic_analog). A floor-level stochastic action-selection noise that prevents complete deterministic collapse of the policy. Biological substrate: locus coeruleus tonic firing producing baseline action-selection variability (Aston-Jones & Cohen 2005 adaptive-gain model). Computational analog: max-entropy policy regularisation / SAC entropy bonus (Haarnoja et al. 2018). Distinct from MECH-260 dACC anti-recency: MECH-313 is a state-independent noise floor, while MECH-260 is a state-dependent recency penalty. Both can contribute to anti-monostrategy pressure but operate via different mechanisms; whether they collapse into a single substrate or are mutually load-bearing is open (Q-045).",
     "type": "mechanism_hypothesis"
   },
   "MECH-314": {
-    "status": "candidate",
+    "status": "candidate_substrate_landed",
     "subject": "policy.structured_curiosity_bonus_parent",
     "title": "structured_curiosity_bonus (frontopolar_uncertainty_driven_exploration_expected_free_energy_analog). A reward bonus on action-selection that rewards information-gain or uncertainty-reduction, distinct from a state-independent noise floor (MECH-313). Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature) operating jointly with striatal novelty (Wittmann et al. 2008 Neuron). Three sub-flavours (MECH-314a/b/c) that the lit-pull recommended NOT to collapse prematurely: striatal novelty (Wittmann anchor), frontopolar uncertainty-driven curiosity (Daw anchor), learning-progress / intrinsic-motivation curiosity (Schmidhuber/Pathak tradition). Active-inference (Friston 2010/2015 expected free energy) provides the formal-level unification. Q-044 captures the open question of whether the three sub-flavours are distinct substrates or three readings of one mechanism with different upstream inputs.",
     "type": "mechanism_hypothesis"
   },
   "MECH-314a": {
-    "status": "candidate",
+    "status": "candidate_substrate_landed",
     "subject": "policy.curiosity.novelty_bonus_striatal_analog",
     "title": "novelty_bonus_striatal_analog. A reward bonus that tracks recency-of-encounter; new or rarely-encountered states/actions receive a positive bonus independent of reward prediction error. Biological substrate: ventral striatum response to stimulus novelty (Wittmann et al. 2008 Neuron). Sub-flavour of MECH-314 structured curiosity bonus.",
     "type": "mechanism_hypothesis"
   },
   "MECH-314b": {
-    "status": "candidate",
+    "status": "candidate_substrate_landed",
     "subject": "policy.curiosity.uncertainty_driven_frontopolar_analog",
     "title": "uncertainty_driven_curiosity_frontopolar_analog. A reward bonus that tracks epistemic value -- how much the agent would learn from sampling a state or action. Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature). Sub-flavour of MECH-314 structured curiosity bonus. Active-inference framing: bonus equals epistemic value term in expected free energy decomposition (Friston 2010/2015).",
     "type": "mechanism_hypothesis"
   },
   "MECH-314c": {
-    "status": "candidate",
+    "status": "candidate_substrate_landed",
     "subject": "policy.curiosity.learning_progress_intrinsic_motivation_analog",
     "title": "learning_progress_curiosity_intrinsic_motivation_analog. A reward bonus that tracks the rate-of-improvement of the agent's predictive model (or any internal-state quantity); actions that produce a steepening learning curve receive a positive bonus. Most computationally instantiated in ML literature (Schmidhuber 1991, Pathak et al. 2017); least biologically anchored of the three MECH-314 sub-flavours -- no clean cellular or regional analog. Distinguishes from MECH-314a (recency-based) and MECH-314b (uncertainty-based) by tracking second-order signal (improvement rate) rather than first-order (count or uncertainty).",
     "type": "mechanism_hypothesis"

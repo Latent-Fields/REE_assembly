@@ -26533,7 +26533,7 @@
   claim_type: mechanism_hypothesis
   subject: policy.structured_curiosity_bonus_parent
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -26601,10 +26601,44 @@
     registered as separate sub-claims rather than collapsed because
     independent testability + heterogeneous biological provenance
     justify the split. See Q-044 for the open question.
+
+    Substrate landed 2026-05-10: ree-v3/ree_core/policy/structured_curiosity.py
+    (StructuredCuriosity + StructuredCuriosityConfig). Master flag
+    REEConfig.use_structured_curiosity (default False; bit-identical OFF) +
+    3 independently-togglable sub-flavour switches (use_curiosity_novelty /
+    _uncertainty / _learning_progress) so Q-044's three-arm ablation is
+    a flag-set decision. Composed additively into dacc_score_bias in
+    REEAgent.select_action() between the MECH-295 liking-bridge block
+    and the MECH-313 noise_floor temperature lift. Phase 1 honest
+    scoping documented in design doc + child claim notes: 314a is
+    genuinely per-candidate (RBF distance to ResidueField centers);
+    314b and 314c are state-dependent global scalars broadcast across
+    [K] in Phase 1 (per-candidate refinement deferred to Phase 2
+    follow-on requiring an E1 forward-variance head). 13 contract
+    tests in tests/contracts/test_mech_314_curiosity.py PASS; full
+    contracts suite 273/273 PASS (regression-clean -- bit-identical
+    OFF guarantee holds). V3-EXQ-545 substrate-readiness diagnostic
+    5/5 PASS smoke 2026-05-10 (UC1-UC5 covering instantiation, master-
+    OFF backward-compat, sub-flavour flag-set isolation, select_action
+    wiring contract, MECH-094 simulation gate). Status:
+    candidate -> candidate_substrate_landed; v3_pending: true retained
+    pending Q-044 three-arm ablation (314a-OFF / 314b-OFF / 314c-OFF +
+    all-on baseline) on V3-EXQ-543b/c successors AFTER substrate
+    landing AND MECH-318 / MECH-319 absorption-check sessions complete.
+    Design doc: REE_assembly/docs/architecture/mech_314_structured_curiosity_bonus.md.
   notes: >
     MECH-314 is the parent claim; MECH-314a/b/c are registered immediately
     after as sibling sub-claims. The parent's depends_on does not list the
     children (they depend on it, not vice versa).
+
+    Phase-1 architectural-placement note (mirrors MECH-313): a SEPARATE
+    StructuredCuriosity module at the e3.select() call site, in parallel
+    with MECH-313 NoiseFloor and the GatedPolicy bias chain. Whether
+    the policy-layer regulators ultimately consolidate into one module
+    is OPEN pending MECH-318 / MECH-319 substrates and Q-043 / Q-044
+    calibration. The separate-module choice keeps each substrate
+    independently togglable, which is what Q-044 needs. Re-evaluate
+    placement at the point Q-044 / Q-043 are queued.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-314a
@@ -26612,7 +26646,7 @@
   claim_type: mechanism_hypothesis
   subject: policy.curiosity.novelty_bonus_striatal_analog
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -26650,6 +26684,17 @@
     via state-novelty bonus ablation and has a distinct biological
     substrate (ventral striatum) from MECH-314b (frontopolar) and
     MECH-314c (no clean biological anchor; ML-literature dominant).
+
+    Substrate landed 2026-05-10 as part of MECH-314 cluster (ree-v3/
+    ree_core/policy/structured_curiosity.py + StructuredCuriosityConfig.
+    use_curiosity_novelty + curiosity_novelty_weight). Phase 1 signal
+    source: minimum distance from candidate's first-step z_world to
+    the nearest ACTIVE ResidueField RBF center, normalised by candidate-
+    pool mean norm. Genuinely per-candidate (output [K] tensor varies
+    across candidates). Bonus is non-positive in E3's lower-is-better
+    convention (high novelty -> attractive). Behavioural validation
+    deferred to Q-044 three-arm ablation. See parent MECH-314 entry
+    for the full implementation note.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-314b
@@ -26657,7 +26702,7 @@
   claim_type: mechanism_hypothesis
   subject: policy.curiosity.uncertainty_driven_frontopolar_analog
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -26691,6 +26736,23 @@
         epistemic value
       - Houthooft et al. 2016 (NeurIPS) -- VIME (computational analog)
     See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+
+    Substrate landed 2026-05-10 as part of MECH-314 cluster (ree-v3/
+    ree_core/policy/structured_curiosity.py + StructuredCuriosityConfig.
+    use_curiosity_uncertainty + curiosity_uncertainty_weight). Phase 1
+    signal source: e3._running_variance scalar (waking-tick PE-magnitude
+    accumulator). Phase 1 instantiation: BROADCAST scalar across [K]
+    (per-candidate refinement requires E1 forward-variance head,
+    deferred to Phase 2 follow-on). Bonus is non-positive in E3's
+    lower-is-better convention (high uncertainty -> attractive). Phase
+    1 honest-scoping caveat: broadcast-scalar 314b shifts every
+    candidate's score by the same amount and does not change
+    selection ordering; it can affect commit-threshold dynamics but
+    not which candidate wins under softmax sampling. Per-candidate
+    refinement is the Phase 2 work that makes 314b's distinct
+    failure-signature contract from 314a / 314c testable at the
+    candidate-selection level. See parent MECH-314 entry for the
+    full implementation note.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-314c
@@ -26698,7 +26760,7 @@
   claim_type: mechanism_hypothesis
   subject: policy.curiosity.learning_progress_intrinsic_motivation_analog
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -26742,6 +26804,28 @@
     substrates or three readings of one mechanism. If 314c is
     discardable (i.e. 314a + 314b suffice on V3 substrates), 314c
     can be retired without architectural cost.
+
+    Substrate landed 2026-05-10 as part of MECH-314 cluster (ree-v3/
+    ree_core/policy/structured_curiosity.py + StructuredCuriosityConfig.
+    use_curiosity_learning_progress + curiosity_learning_progress_weight
+    + curiosity_lp_ema_alpha + curiosity_lp_window_k). Phase 1 signal
+    source: EMA of |PE_t - PE_{t-K}| where PE_t is fed in from
+    e3._running_variance each waking tick via
+    StructuredCuriosity.update_prediction_error(). LP buffer + EMA are
+    per-episode (cleared by reset()) -- a fresh task / environment
+    carries a fresh learning curve. Phase 1 instantiation: BROADCAST
+    scalar across [K] (per-candidate refinement requires per-candidate
+    learning-progress estimation, deferred to Phase 2 follow-on).
+    Bonus is non-positive in E3's lower-is-better convention (high
+    LP -> attractive). Same Phase-1 honest-scoping caveat as MECH-314b:
+    broadcast-scalar 314c shifts every candidate's score by the same
+    amount and does not change selection ordering -- candidate-
+    selection-level distinct failure-signature contract requires Phase
+    2 per-candidate refinement. Q-044's three-arm ablation can falsify
+    the substrate-landed flag-set independence at the global-signal
+    level; sub-flavour-distinct failure signatures at candidate
+    selection require Phase 2. See parent MECH-314 entry for the
+    full implementation note.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: Q-043
