@@ -1,0 +1,130 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z",
+  "experiment_type": "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-10T17:26:10.446760Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-319"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-319": "supports"
+  },
+  "metrics": {
+    "UC1_forward_pass_instantiation": {
+      "is_module": true,
+      "state_keys_ok": true,
+      "initial_counters_zero": true,
+      "initial_per_site_dicts_empty": true,
+      "config_master_on": true,
+      "config_admit_writes_off": true,
+      "pass": true
+    },
+    "UC2_master_off_no_op": {
+      "off_gate_is_none": true,
+      "on_gate_is_module": true,
+      "z_world_off_finite": true,
+      "z_world_on_finite": true,
+      "select_action_error_off": null,
+      "select_action_error_on": null,
+      "pass": true
+    },
+    "UC3_truth_table_coverage": {
+      "per_case": [
+        {
+          "master": false,
+          "admit_writes": false,
+          "caller_sim": false,
+          "expected": false,
+          "actual": false,
+          "description": "OFF_waking_passthrough",
+          "ok": true
+        },
+        {
+          "master": false,
+          "admit_writes": false,
+          "caller_sim": true,
+          "expected": true,
+          "actual": true,
+          "description": "OFF_simulation_passthrough",
+          "ok": true
+        },
+        {
+          "master": true,
+          "admit_writes": false,
+          "caller_sim": false,
+          "expected": false,
+          "actual": false,
+          "description": "ON_default_waking_admit",
+          "ok": true
+        },
+        {
+          "master": true,
+          "admit_writes": false,
+          "caller_sim": true,
+          "expected": true,
+          "actual": true,
+          "description": "ON_default_simulation_block",
+          "ok": true
+        },
+        {
+          "master": true,
+          "admit_writes": true,
+          "caller_sim": false,
+          "expected": false,
+          "actual": false,
+          "description": "ON_falsifier_waking_admit",
+          "ok": true
+        },
+        {
+          "master": true,
+          "admit_writes": true,
+          "caller_sim": true,
+          "expected": false,
+          "actual": false,
+          "description": "ON_falsifier_simulation_admit",
+          "ok": true
+        }
+      ],
+      "n_cases": 6,
+      "pass": true
+    },
+    "UC3b_precondition_raises": {
+      "raised_value_error": true,
+      "error_message": "MECH-319: simulation_mode_rule_gate_admit_writes=True requires use_simulation_mode_rule_gate=True (master flag must be on for the falsifier control to have any effect). Mis-configured -- enable the master switch or set admit_writes=False.",
+      "pass": true
+    },
+    "UC4_select_action_wiring_contract": {
+      "select_action_error": null,
+      "n_calls_total": 2,
+      "n_waking_admitted": 2,
+      "n_simulation_blocked": 0,
+      "n_simulation_admitted": 0,
+      "gated_policy_calls": 1,
+      "lateral_pfc_calls": 1,
+      "per_site_calls": {
+        "lateral_pfc": 1,
+        "gated_policy": 1
+      },
+      "pass": true
+    },
+    "UC5_mech094_invariance": {
+      "waking_outputs_invariant_across_modes": true,
+      "out_normal_gp": false,
+      "out_normal_lp": false,
+      "out_falsifier_gp": false,
+      "out_falsifier_lp": false,
+      "out_off_gp": false,
+      "out_off_lp": false,
+      "sim_normal_blocked": true,
+      "sim_falsifier_admitted_as_false": false,
+      "asymmetry_observed_at_simulation_mode_true": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.6843278408050537,
+  "notes": "MECH-319 simulation_mode_rule_write_gate substrate-readiness diagnostic. Tests substrate wiring + truth-table semantics + MECH-094 invariance + falsifier-flag behaviour at the API level. Does NOT test the V3-EXQ-543c falsifier prediction (monomodal-collapse re-emergence under admit_writes=True with a replay-driven invocation path) -- that experiment is downstream of this substrate AND the MECH-313 / MECH-314 / MECH-318 sibling substrates. arc_062_rule_apprehension_plan.md GAP-K. Pull 3 SYNTHESIS R1 GENUINE-NOVELTY-CONFIRMED + Pull 4 R3 KEEP-AS-IS verdicts are architectural commitments, not signals tested here."
+}
