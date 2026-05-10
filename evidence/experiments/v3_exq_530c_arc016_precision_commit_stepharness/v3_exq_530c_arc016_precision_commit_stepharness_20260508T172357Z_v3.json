@@ -7,7 +7,11 @@
   ],
   "experiment_purpose": "evidence",
   "supersedes": "V3-EXQ-530b",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-016": "non_contributory"
+  },
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-10T10:11Z (was weakens FAIL). ARM_0 (use_dacc=False) and ARM_1 (use_dacc=True) produced bit-identical metrics: arm0_mean_precision_commit_ratio = arm1_mean_precision_commit_ratio = 0.9999999900; arm0_mean_commit_rate = arm1_mean_commit_rate = 1.0; arm0_mean_precision = arm1_mean_precision = 211.85; arm0_rv_final_per_seed and arm1_rv_final_per_seed identical at every seed. Both arms saturate commit_rate at 1.0 -- the agent always commits regardless of dACC integration. The ARC-016 precision-to-commit pathway is testable only when commit decisions VARY in the first place; under a monomodal saturated-commit policy the dACC bias on score_bias has no behavioural surface to operate on. Without an upstream behavioral-diversity-generation pathway (ARC-065 cluster registered 2026-05-10: ARC-065 anchor + MECH-313 stochastic_noise_floor + MECH-314 structured curiosity + MECH-312 multi-channel arbitration), commit-vs-no-commit dynamics collapse to always-commit and ARC-016 is non_contributory. Re-queue as V3-EXQ-530d after ARC-065 substrate produces non-degenerate cross-seed commit-rate variation. NOTE: this reclassification supersedes the morning-digest deferral to /diagnose-errors -- the bit-identical-arms signature is the ARC-065-upstream signature, not a measurement bug per se. Q-042 contract test C0 (rv differs from precision_init) was passed; the issue is downstream behavioural saturation, not rv liveness.",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260508T180032Z",
   "outcome": "FAIL",

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_241a_sd011_second_source_validation
 
-Generated: `2026-05-10T09:40:21.072965Z`
+Generated: `2026-05-10T10:15:29.741140Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

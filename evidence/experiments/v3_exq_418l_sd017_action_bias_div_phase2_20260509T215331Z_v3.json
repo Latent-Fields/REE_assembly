@@ -15,10 +15,11 @@
   "outcome": "FAIL",
   "result": "FAIL",
   "timestamp_utc": "20260509T215331Z",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-017": "does_not_support"
+    "SD-017": "non_contributory"
   },
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-10T10:11Z (was does_not_support FAIL). The experiment tests whether sleep produces action-bias diversification (SD-017). All seeds returned with_action_bias_div = without_action_bias_div bit-identical (seed 42: 0.000450 = 0.000450; signed_diff = 0.0; abs_diff = 0.0; slot_diversity 0.152 = 0.152). The action-bias-div metric itself is ~0.0003 across both arms, three orders of magnitude below the 0.05 acceptance threshold. Without an upstream behavioral-diversity-generation pathway (ARC-065 cluster registered 2026-05-10: ARC-065 anchor + MECH-313 stochastic_noise_floor + MECH-314/314a/314b/314c structured curiosity + MECH-312 multi-channel arbitration), the agent's policy has no behavioural diversity to source. Sleep cannot diversify what was never diverse. The discriminative-pair test is non_contributory pending ARC-065 substrate (V3-EXQ-543b/c falsifier path). Re-queue as V3-EXQ-418m after ARC-065 substrate lands and produces non-zero waking action-bias-div.",
   "supersedes": "V3-EXQ-418a",
   "experiment_version": "l",
   "fix_description": "Phase 2 substrate retest of SD-017 action_bias_div discriminative pair. Successor to V3-EXQ-418a (FAIL action_bias_div=0.0003) under the validated 5-flag substrate template (SD-016 div loss + MECH-269 V_s + anchor sets + SD-039 payload + SD-017 sleep loop). Existing 418a substrate (sd016_enabled=True, shy_enabled=False, LAMBDA_TERRAIN=0.1, terrain_loss in E1 training) preserved -- the 5 Phase 2 flags layer on top. ID is 418l rather than 418c because 418c is in runner_status completed list (would be silently skipped); 418{a..k} all used.",

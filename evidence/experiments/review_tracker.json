@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-09T20:14:34Z",
+  "last_review_utc": "2026-05-10T10:11:48Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-445",
     "V3-EXQ-445a",
@@ -2319,7 +2319,11 @@
     "v3_exq_541a_mech204_precision_recalibration_f1_20260509T120116Z_v3",
     "v3_exq_541b_mech204_step_size_sweep_20260509T123704Z_v3",
     "v3_exq_541c_mech204_step_size_sweep_extended_cycles_20260509T131740Z_v3",
-    "v3_exq_265a_sd017_sleep_phase_methods_validation_phase2_20260509T201256Z_v3"
+    "v3_exq_265a_sd017_sleep_phase_methods_validation_phase2_20260509T201256Z_v3",
+    "v3_exq_418l_sd017_action_bias_div_phase2_20260509T215331Z_v3",
+    "v3_exq_436a_sd017_arc045_mech166_context_harm_phase2_20260509T214636Z_v3",
+    "v3_exq_530c_arc016_precision_commit_stepharness_20260508T172357Z_v3",
+    "v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2409,6 +2413,17 @@
         "v3_exq_265a_sd017_sleep_phase_methods_validation_phase2_20260509T201256Z_v3"
       ],
       "subject": "Sleep substrate Phase 2 GAP-2 first owner-EXQ landed. V3-EXQ-265a (SD-017 SWS/REM methods validation under Phase 2 substrate stack: SD-016 div loss + V_s + anchor sets + SD-039 payload + sleep loop) PASSed all four criteria. C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0). C2 with_sleep mean slot diversity 0.257 > 0.10 threshold. C3 rem_rollouts>0 in 3/3 seeds (mean=6.0). C4 (redesigned as signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction informative) PASSed in 2/3 seeds with informative within-cohort heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175, diff 0.090); seed 49 saturated near-tie (0.365 vs 0.358, diff 0.007); seed 56 sleep COLLAPSED diversity (~0 vs 0.194, diff 0.194). Either direction satisfied C4 per the docstring interpretation grid. The cross-seed heterogeneity confirms the substrate is doing real but seed-sensitive work -- worth flagging for the multi-claim 436 and discriminative-pair 503 successors that need to handle this variability. V3-EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that motivated the retest (C4 reversal in 265 was driven by collapsed slots regardless of sleep, not by genuine SWS effect on diversity). sleep_substrate_plan.md GAP-2 owner-EXQ list: 265a done; 418c/436a/500a/503a still outstanding (deferred per session-context discipline; remaining 4 to be queued in fresh session(s) using the 5-flag Phase 2 template recorded in the 2026-05-09T19:49Z decision log)."
+    },
+    {
+      "timestamp_utc": "2026-05-10T10:11:48Z",
+      "session_label": "arc065-non-contributory-reclassification",
+      "reviewed_run_ids": [
+        "v3_exq_418l_sd017_action_bias_div_phase2_20260509T215331Z_v3",
+        "v3_exq_436a_sd017_arc045_mech166_context_harm_phase2_20260509T214636Z_v3",
+        "v3_exq_530c_arc016_precision_commit_stepharness_20260508T172357Z_v3",
+        "v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3"
+      ],
+      "subject": "Reclassification triage following ARC-065 (behavioral-diversity-generation pathway) cluster registration on 2026-05-10. User flagged that experiments depending on behavioural diversity as INPUT can become non_contributory (not weakens) when the agent is in monomodal collapse and the substrate that would generate diversity (ARC-065 + MECH-313 + MECH-314 cluster) is not yet implemented. Reclassified three pending FAILs as non_contributory: V3-EXQ-418l (SD-017 sleep action-bias diversification, with_div=without_div bit-identical at ~0.0003 across all seeds -- nothing to diversify); V3-EXQ-436a (SD-017+ARC-045+MECH-166 sleep refinement of context-conditioned harm threshold, waking and SWS_THEN_REM bit-identical for slot_cosine_sim and harm_rate_dangerous in every seed -- sleep cannot refine bit-identical waking content); V3-EXQ-530c (ARC-016 precision-to-commit pathway, ARM_0 use_dacc=False vs ARM_1 use_dacc=True bit-identical at commit_rate=1.0 and precision=211.85 -- saturated commit policy makes precision-to-commit pathway untestable; supersedes the morning-digest /diagnose-errors deferral with the upstream-substrate explanation). V3-EXQ-141d (MECH-111 novelty drive ablation) NOT reclassified -- this experiment IS the diversity-generator test (per_seed_action_divergence ~56% but cell_gap and entropy_gap ~0); kept evidence_direction=weakens against MECH-111 alone, but added cross-link note tying its FAIL pattern to ARC-065 R1 BOTH-CHANNELS-NEEDED verdict (novelty bonus alone insufficient without LC-NE-tonic noise floor MECH-313). All four manifests now have evidence_direction_note set; cross-references to ARC-065 cluster, V3-EXQ-543b/c falsifier path, and SD-029 retest precedent (EXQ-433/433a/433b/470 same monomodal-collapse non_contributory pattern) recorded. arc_062_rule_apprehension_plan.md decision log updated and sleep_substrate_plan.md GAP-2 marked upstream-blocked-by ARC-065 substrate."
     }
   ]
 }

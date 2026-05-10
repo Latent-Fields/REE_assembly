@@ -14,12 +14,13 @@
   "timestamp_utc": "20260509T214636Z",
   "outcome": "FAIL",
   "result": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-017": "weakens",
-    "ARC-045": "weakens",
-    "MECH-166": "weakens"
+    "SD-017": "non_contributory",
+    "ARC-045": "non_contributory",
+    "MECH-166": "non_contributory"
   },
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-10T10:11Z (was weakens FAIL across SD-017/ARC-045/MECH-166). All three pass criteria registered n_seeds_passed=0/5. Per-seed diagnostics show waking and SWS_THEN_REM produced bit-identical metrics for every seed: seed 42 waking_slot_cosine_sim = sws_then_rem_slot_cosine_sim = 0.000966 (signed_diff = 0.0); waking_harm_rate_dangerous = sws_then_rem_harm_rate_dangerous = 0.003697 (signed_diff = 0.0); waking_harm_rate_safe = sws_then_rem_harm_rate_safe = 0.000638. Sleep refinement of context-conditioned harm threshold cannot register a signal when the waking phase produces no behavioural variation for sleep to refine. Without an upstream behavioral-diversity-generation pathway (ARC-065 cluster registered 2026-05-10: ARC-065 anchor + MECH-313 stochastic_noise_floor + MECH-314/314a/b/c structured curiosity + MECH-312 multi-channel arbitration), the agent's waking policy is monomodal and slot/harm-rate trajectories are deterministic. Sleep applied to bit-identical waking content can only produce bit-identical sleep content. The SD-017 / ARC-045 / MECH-166 cross-frequency / context-conditioned-harm tests are non_contributory pending ARC-065 substrate (V3-EXQ-543b/c falsifier path). Re-queue as V3-EXQ-436b after ARC-065 substrate lands and waking phase exhibits non-degenerate per-seed variation across slot_cosine_sim and harm_rate_dangerous.",
   "pass_criteria_summary": {
     "C1_sd017_slot_cosine_sim_signed_diff": {
       "tolerance": 0.03,

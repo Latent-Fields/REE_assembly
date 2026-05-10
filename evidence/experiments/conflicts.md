@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-10T09:40:21.072965Z`
+Generated: `2026-05-10T10:15:29.741140Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -21,7 +21,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-042` | directional, source_disagreement | 5 | 3 | 0.75 | `v3_exq_211_mech153_arc042_supervised_labeling_1775168828_v3` | 8 |
 | `ARC-045` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_436a_sd017_arc045_mech166_context_harm_phase2_20260509T214636Z_v3` | 4 |
 | `ARC-058` | directional, mixed_evidence | 6 | 2 | 0.5 | `2026-05-04_sd_048_dyshomeostasis_fatigue_stephan2016` | 9 |
-| `ARC-062` | directional, mixed_evidence | 16 | 1 | 0.118 | `2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986` | 21 |
+| `ARC-062` | directional, source_disagreement, mixed_evidence | 16 | 3 | 0.316 | `v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T101419Z_v3` | 23 |
 | `ARC-064` | directional | 18 | 1 | 0.105 | `2026-05-10_vocab_mapping_rl_fast_slow_botvinick2019` | 19 |
 | `INV-010` | directional, source_disagreement | 3 | 1 | 0.5 | `v3_exq_430_inv010_offline_integration_necessity_20260419T123934Z_v3` | 4 |
 | `INV-054` | directional, source_disagreement | 6 | 3 | 0.667 | `2026-05-05_inv_054_sudden_gains_tang1999` | 9 |
@@ -62,6 +62,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-261` | directional | 24 | 1 | 0.08 | `v3_exq_484_sd033a_distractor_resistance_20260427T054449Z_v3` | 25 |
 | `MECH-262` | directional, mixed_evidence | 7 | 1 | 0.25 | `2026-04-28_frontal_goal_grounding_md_thalamus_pfc_rule_schmitt2017` | 12 |
 | `MECH-302` | directional, source_disagreement, mixed_evidence | 4 | 3 | 0.857 | `v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T150341Z_v3` | 9 |
+| `MECH-309` | directional, source_disagreement, mixed_evidence | 11 | 2 | 0.308 | `v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T101419Z_v3` | 16 |
 | `MECH-318` | directional | 3 | 1 | 0.5 | `2026-05-10_vocab_mapping_rl_squared_duan2016` | 4 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 7 |
@@ -114,7 +115,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-016
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=13, weakens=13, conflict_ratio=1, exp_conf=0.691, lit_conf=0.863, overall_confidence_legacy=0.777
+- Evidence breakdown: supports=13, weakens=13, conflict_ratio=1, exp_conf=0.69, lit_conf=0.863, overall_confidence_legacy=0.776
 - Recent entries:
   - `2026-04-20T14:40:17Z` `experimental` `v3_exq_454_arc016_adaptive_commitment_threshold` direction=`weakens` confidence=0.75
   - `2026-05-01T20:11:16.639661Z` `experimental` `v3_exq_060_arc016_beta_gate_fixed_threshold` direction=`supports` confidence=0.75
@@ -363,14 +364,14 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - If disagreement persists, split claim scope into separable subclaims.
 
 ### ARC-062
-- Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=16, weakens=1, conflict_ratio=0.118, exp_conf=0, lit_conf=0.866, overall_confidence_legacy=0.866
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=16, weakens=3, conflict_ratio=0.316, exp_conf=0.375, lit_conf=0.866, overall_confidence_legacy=0.67
 - Recent entries:
-  - `2026-05-10T08:08:31Z` `literature` `targeted_review_rule_apprehension_vocabulary_mapping` direction=`supports` confidence=0.8
-  - `2026-05-10T08:08:31Z` `literature` `targeted_review_rule_apprehension_vocabulary_mapping` direction=`weakens` confidence=0.74
   - `2026-05-10T08:08:31Z` `literature` `targeted_review_rule_apprehension_vocabulary_mapping` direction=`supports` confidence=0.88
   - `2026-05-10T08:08:31Z` `literature` `targeted_review_rule_apprehension_vocabulary_mapping` direction=`supports` confidence=0.74
   - `2026-05-10T08:08:31Z` `literature` `targeted_review_rule_apprehension_vocabulary_mapping` direction=`supports` confidence=0.74
+  - `2026-05-10T10:08:41.017420Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`weakens` confidence=0.75
+  - `2026-05-10T10:14:19.198496Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`weakens` confidence=0.75
 - Recurring failure signatures:
   - `If ARC-062 weak reading at score_bias level (option iii) PASSes the SD-054 falsifier but the discriminator output cannot be sustained without continuous teaching signal, Gurney/Humphries/Redgrave's framework predicts the missing element is dopamine-gated cortico-striatal plasticity at the action-reinforcement interface — points the next investigation at downstream BG-side training rather than upstream architecture.` (1)
   - `If two-head ARC-062 produces stable but maladaptive policy partitions on SD-054 (e.g. always reef, never forage despite resource cues), the framework predicts D1/D2 imbalance as a common signature — diagnostic via the action-suppression vs action-promotion ratio in the gated-policy outputs.` (1)
@@ -503,7 +504,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-073
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.827, lit_conf=0.679, overall_confidence_legacy=0.753
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.826, lit_conf=0.679, overall_confidence_legacy=0.752
 - Recent entries:
   - `2026-04-02T23:58:00Z` `literature` `targeted_review_q_020` direction=`weakens` confidence=0.74
   - `2026-04-02T23:59:00Z` `literature` `targeted_review_connectome_mech_074` direction=`supports` confidence=0.82
@@ -949,7 +950,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-186
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, exp_conf=0.302, lit_conf=0.766, overall_confidence_legacy=0.58
+- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, exp_conf=0.301, lit_conf=0.766, overall_confidence_legacy=0.58
 - Recent entries:
   - `2026-04-06T19:47:55Z` `experimental` `v3_exq_251_mech186_valence_wanting_floor` direction=`weakens` confidence=0.75
   - `2026-04-07T08:06:51Z` `experimental` `v3_exq_251_mech186_valence_wanting_floor` direction=`weakens` confidence=0.75
@@ -1167,6 +1168,26 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
+### MECH-309
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=11, weakens=2, conflict_ratio=0.308, exp_conf=0.375, lit_conf=0.889, overall_confidence_legacy=0.683
+- Recent entries:
+  - `2026-05-09T19:24:23Z` `literature` `targeted_review_arc_062_refuge_forage_ecology` direction=`mixed` confidence=0.71
+  - `2026-05-09T19:24:23Z` `literature` `targeted_review_arc_062_refuge_forage_ecology` direction=`supports` confidence=0.81
+  - `2026-05-09T21:45:17.436275Z` `experimental` `v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier` direction=`non_contributory` confidence=0
+  - `2026-05-10T10:08:41.017420Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`weakens` confidence=0.75
+  - `2026-05-10T10:14:19.198496Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`weakens` confidence=0.75
+- Recurring failure signatures:
+  - `If ARC-062 weak reading at score_bias level (option iii) PASSes the SD-054 falsifier but the discriminator output cannot be sustained without continuous teaching signal, Gurney/Humphries/Redgrave's framework predicts the missing element is dopamine-gated cortico-striatal plasticity at the action-reinforcement interface — points the next investigation at downstream BG-side training rather than upstream architecture.` (1)
+  - `If two-head ARC-062 produces stable but maladaptive policy partitions on SD-054 (e.g. always reef, never forage despite resource cues), the framework predicts D1/D2 imbalance as a common signature — diagnostic via the action-suppression vs action-promotion ratio in the gated-policy outputs.` (1)
+  - `If ARC-062 weak reading concentrates rule-context modulation at a single site (PFC-side score_bias OR BG-side score-aggregation OR hippocampal-side trajectory-proposal), Capkova et al's evidence predicts that single-site instantiation will fail under task-condition perturbation that taxes a different sub-function (e.g. negative-feedback handling, working-memory rule-maintenance) — points the cluster toward distributed multi-site instantiation as Phase 4 / GAP-E becomes load-bearing.` (1)
+  - `If ARC-062 PASSes Phase 2 falsifier but fails on a learning-rate-asymmetry probe (positive-feedback vs negative-feedback rule updating), the lesion data predicts the missing functionality maps to ACC analog — V3 substrate has dACC (SD-032b) but the rule-context coupling is not yet wired.` (1)
+  - `If ARC-062 weak reading at the score_bias level (option iii) FAILs the SD-054 monomodal-collapse falsifier, Pfeiffer & Foster's mechanism is the next-thing-to-try: route the discriminator output to bias hippocampal CEM seed distribution (trajectory-proposal level) rather than to per-candidate score_bias.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
 ### MECH-318
 - Conflict types: directional
 - Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0, lit_conf=0.787, overall_confidence_legacy=0.787
@@ -1188,7 +1209,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-001
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.232, lit_conf=0.799, overall_confidence_legacy=0.657
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.232, lit_conf=0.798, overall_confidence_legacy=0.657
 - Recent entries:
   - `2026-03-29T08:46:02Z` `experimental` `v3_exq_146_q001_entity_binding_pair` direction=`weakens` confidence=0.75
   - `2026-03-29T15:00:00Z` `literature` `targeted_review_q_001` direction=`mixed` confidence=0.62
@@ -1569,11 +1590,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.691, lit_conf=0.859, overall_confidence_legacy=0.775
 - Recent entries:
-  - `2026-05-08T13:56:38.498794Z` `experimental` `v3_exq_537_sd029_single_pass_residual` direction=`non_contributory` confidence=0
-  - `2026-05-08T18:02:53.257324Z` `experimental` `v3_exq_537b_sd029_decoupled_curricula` direction=`non_contributory` confidence=0
   - `2026-05-08T20:59:35.208807Z` `experimental` `v3_exq_537c_sd029_capacity_lift` direction=`non_contributory` confidence=0
   - `2026-05-08T21:48:09.817424Z` `experimental` `v3_exq_537d_sd029_no_interventional` direction=`non_contributory` confidence=0
   - `2026-05-09T21:45:17.436275Z` `experimental` `v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier` direction=`non_contributory` confidence=0
+  - `2026-05-10T10:08:41.017420Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`non_contributory` confidence=0
+  - `2026-05-10T10:14:19.198496Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `The paradigm is somatosensory (tactile pressure), not nociceptive. The mapping from tactile attenuation to harm-stream attenuation still requires the assumption that the forward model is modality-general across the somatosensory-nociceptive boundary.` (1)
   - `The experiments measure perceptual intensity judgments, not explicit agency attributions. Attenuation of felt intensity is necessary for MECH-256's residual mechanism but is not the same measurement as 'did I cause this'.` (1)

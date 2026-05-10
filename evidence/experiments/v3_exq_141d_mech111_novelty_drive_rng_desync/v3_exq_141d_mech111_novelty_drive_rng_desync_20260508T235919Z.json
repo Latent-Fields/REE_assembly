@@ -34,7 +34,7 @@
     "MECH-111"
   ],
   "evidence_direction": "weakens",
-  "evidence_direction_note": "",
+  "evidence_direction_note": "Cross-link added 2026-05-10T10:11Z. Per_seed_action_divergence = [0.565, 0.559, 0.564] (~56%) shows the novelty bonus IS perturbing actions, but mean_entropy_gap = 7.4e-15 and mean_cell_gap = -0.67 show the action perturbation is NOT translating into expanded state-coverage. This is consistent with the ARC-065 cluster Pull 1 R1 verdict (BOTH-CHANNELS-NEEDED, conf 0.85, registered 2026-05-10): a structured-curiosity bonus alone (MECH-111 / MECH-314 family) is insufficient for behavioural diversity without an LC-NE-tonic stochastic noise floor (MECH-313). MECH-111 in its current form is one input to MECH-314 (structured curiosity); the perturbation it produces gets re-absorbed into a cyclic policy because there is no orthogonal noise floor to break the cycle. The weakens classification is retained against MECH-111 specifically (it falsifies the strong reading: novelty_bonus_alone_produces_diversity), but read alongside the ARC-065 cluster registration this run is informative evidence FOR the multi-channel cluster shape, not a generic substrate failure. Successor V3-EXQ-141e (or first V3-EXQ-543b/c arm exercising MECH-313 + MECH-314 jointly) will test the conjunction. Distinct from V3-EXQ-418l / V3-EXQ-436a / V3-EXQ-530c reclassified non_contributory same session: those experiments DEPEND on diversity as input; 141d IS a diversity-generator test.",
   "experiment_purpose": "evidence",
   "experiment_type": "v3_exq_141d_mech111_novelty_drive_rng_desync",
   "fatal_error_count": 0,

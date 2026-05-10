@@ -15,16 +15,19 @@ closure_plan:
       depends_on: []
       last_updated: 2026-05-09
     - id: "sleep_substrate:GAP-2"
-      title: "SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; 4 remaining Tier-1 EXQs outstanding)"
+      title: "SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending ARC-065 substrate; 500a / 503a in pending review)"
       phase: 2
-      status: in-progress
+      status: upstream-blocked
       severity: high
       owner_exq: V3-EXQ-265a
       owner_exq_status: passed
-      pending_owner_exqs: [V3-EXQ-418c, V3-EXQ-436a, V3-EXQ-500a, V3-EXQ-503a]
+      pending_owner_exqs: [V3-EXQ-500a, V3-EXQ-503a]
+      reclassified_non_contributory: [V3-EXQ-418l, V3-EXQ-436a]
       unblocks_claims: [SD-017, ARC-045, MECH-166]
-      depends_on: []
-      last_updated: 2026-05-09
+      depends_on: ["arc_062_rule_apprehension:ARC-065-substrate"]
+      upstream_block_reason: "ARC-065 (behavioral-diversity-generation pathway) registered 2026-05-10. V3-EXQ-418l + 436a returned bit-identical sleep-vs-waking metrics across all seeds because the agent's waking phase produces no behavioural variation for sleep to refine. Sleep refinement experiments cannot register signal until the agent has waking diversity to refine. See arc_062_rule_apprehension_plan.md decision log 2026-05-10 entry."
+      resume_condition: "V3-EXQ-543b/c PASS demonstrating non-degenerate cross-seed behavioural diversity in waking phase under ARC-065 substrate, then re-queue 418m + 436b under the diversity-substrate stack."
+      last_updated: 2026-05-10
     - id: "sleep_substrate:GAP-3"
       title: "Phase B-E master flags default-False (cluster silent)"
       phase: 3
@@ -408,7 +411,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
-| GAP-2 | 2 | in-progress | first owner-EXQ V3-EXQ-265a PASSED 2026-05-09T20:12Z; 4 remaining Tier-1 EXQs still outstanding | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
+| GAP-2 | 2 | upstream-blocked | ARC-065 (behavioral-diversity-generation pathway) substrate not landed -- V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 (bit-identical sleep-vs-waking metrics; agent in monomodal collapse). 500a + 503a are surviving Tier-1 successors in pending review and are NOT diversity-dependent the same way. Resume after V3-EXQ-543b/c PASS under ARC-065 substrate, then re-queue 418m + 436b. See decision log 2026-05-10 entry + arc_062_rule_apprehension_plan.md for cross-cluster reflection. Original entry: | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
@@ -487,6 +490,52 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - GAP-2 status `in-progress` -> `upstream-blocked` by ARC-065 substrate
+
+Triggered by user observation following ARC-065 cluster registration on
+2026-05-10. Two of the four Tier-1 GAP-2 successors (V3-EXQ-418l SD-017
+action_bias_div, V3-EXQ-436a SD-017+ARC-045+MECH-166 context-conditioned
+harm) returned bit-identical sleep-vs-waking metrics across all seeds:
+
+- 418l: with_action_bias_div = without_action_bias_div = 0.000450 every
+  seed; signed_diff = 0.0; abs_diff = 0.0.
+- 436a: waking_slot_cosine_sim = sws_then_rem_slot_cosine_sim and
+  waking_harm_rate_dangerous = sws_then_rem_harm_rate_dangerous
+  bit-identical for every seed (n_seeds_passed = 0 / 5 on every
+  pre-registered criterion).
+
+Sleep refinement of bit-identical waking content can only produce
+bit-identical sleep content. Without the upstream behavioural-diversity-
+generation pathway (ARC-065 cluster registered same day:
+ARC-065 anchor + MECH-313 stochastic_noise_floor + MECH-314 / 314a / b / c
+structured curiosity + MECH-312 multi-channel arbitration), the agent's
+waking phase is monomodal and the discriminative-pair tests are
+non_contributory. Both manifests reclassified `evidence_direction:
+weakens -> non_contributory`; review_tracker.json updated; arc_062
+plan-doc decision log carries the cross-cluster reflection.
+
+GAP-2 status row: `in-progress -> upstream-blocked`. Pending owner-EXQs
+trimmed from [418l, 436a, 500a, 503a] to [500a, 503a] (the surviving
+two Tier-1 successors that PASSed and are awaiting routine review;
+they are NOT diversity-dependent in the same way -- 500a is sleep
+phase readiness check, 503a is SWS-vs-REM discriminative pair).
+Reclassified-non-contributory list [418l, 436a] preserved as a
+distinct field so the resume-condition workflow can re-queue 418m / 436b
+once ARC-065 substrate lands.
+
+Resume condition: V3-EXQ-543b/c PASS demonstrating non-degenerate
+cross-seed behavioural diversity in waking phase under ARC-065
+substrate. Then re-queue 418m + 436b with the same 5-flag Phase 2
+template plus the new diversity-substrate flags.
+
+Provenance: full triage entry in arc_062_rule_apprehension_plan.md
+decision log under same-date heading "Pending FAIL triage: ARC-065
+dependents reclassified non_contributory" (parent reflection on root
+cause + what-is-now-blocked table also recorded there). The arc_062
+plan is the parent for the rule-apprehension cluster including
+ARC-065; the dependency direction is ARC-065 (foundational) -> ARC-062
+(top-down rule selection) and ARC-064 (bottom-up rule extraction).
 
 ### 2026-05-08 - Plan registered
 
