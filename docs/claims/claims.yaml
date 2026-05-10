@@ -26423,7 +26423,7 @@
   claim_type: mechanism_hypothesis
   subject: policy.stochastic_noise_floor_lc_ne_tonic_analog
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -26487,12 +26487,40 @@
     max_entropy_policy_regularisation are co-equally informative; the
     LC-NE tonic analog adds the biology-side anchor.
 
-    Implementation hint: SAC-style entropy regularisation in the existing
-    GatedPolicy module's per-head softmax temperature is a one-line
-    config addition; no separate substrate component required. Default
-    weight should be small (~1e-3 of policy loss scale) so it does not
-    swamp the score-aggregation gradient.
-  location: docs/architecture/rule_apprehension_layer.md
+    Substrate landed 2026-05-10 (status candidate -> candidate_substrate_landed;
+    v3_pending retained pending Q-045 behavioural validation):
+    ree-v3/ree_core/policy/noise_floor.py (NoiseFloor + NoiseFloorConfig).
+    Pure-arithmetic regulator (no learned parameters; no nn.Module
+    inheritance). Algorithm at the e3.select() call site in
+    REEAgent.select_action():
+      effective_T = max(baseline_T + alpha, min_temperature)
+    where alpha is the SAC-entropy-bonus analog (additive lift) and
+    min_temperature is a hard floor preventing argmax collapse under
+    annealing schedules. Config: REEConfig.use_noise_floor (default
+    False; bit-identical OFF) + noise_floor_alpha (default 0.1) +
+    noise_floor_min_temperature (default 1.0). Wired through
+    REEConfig.from_dims().
+
+    Architectural choice (deviation from the original implementation hint
+    above): a separate NoiseFloor module at the e3.select() call site
+    rather than per-head temperature inside GatedPolicy. Reasoning:
+    MECH-313 is state-independent and applies to ALL action selection
+    paths regardless of whether the GatedPolicy is wired in (it must
+    fire on baseline E3 selection too, which the per-head approach
+    would miss). Co-locating the regulator with the softmax call gives
+    a single point of control and matches the PaG / SD-035 / SD-036
+    regulator pattern. Both knobs surface as Q-043 calibration levers.
+
+    Validation: V3-EXQ-544 substrate-readiness diagnostic (UC1
+    instantiation, UC2 master-OFF backward-compat, UC3 lift-arithmetic
+    sweep, UC4 select_action wiring contract via act_with_split_obs,
+    UC5 MECH-094 simulation gate). Smoke-PASS 5/5 2026-05-10. Contract
+    tests in tests/contracts/test_mech_313_noise_floor.py 11/11 PASS;
+    full contracts suite 253/253 PASS (regression-clean). Behavioural
+    validation deferred to Q-045 4-arm ablation (MECH-313 OFF / 313
+    only / 260 only / both ON) on V3-EXQ-543b/c successors AFTER this
+    substrate is in.
+  location: docs/architecture/mech_313_stochastic_noise_floor.md
 
 - id: MECH-314
   title: "structured_curiosity_bonus (frontopolar_uncertainty_driven_exploration_expected_free_energy_analog). A reward bonus on action-selection that rewards information-gain or uncertainty-reduction, distinct from a state-independent noise floor (MECH-313). Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature) operating jointly with striatal novelty (Wittmann et al. 2008 Neuron). Three sub-flavours (MECH-314a/b/c) that the lit-pull recommended NOT to collapse prematurely: striatal novelty (Wittmann anchor), frontopolar uncertainty-driven curiosity (Daw anchor), learning-progress / intrinsic-motivation curiosity (Schmidhuber/Pathak tradition). Active-inference (Friston 2010/2015 expected free energy) provides the formal-level unification. Q-044 captures the open question of whether the three sub-flavours are distinct substrates or three readings of one mechanism with different upstream inputs."

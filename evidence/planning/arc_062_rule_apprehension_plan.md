@@ -352,7 +352,7 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
 | GAP-F | 5 | deferred V4 | GAP-E outcome | none in V3 | n/a | 2026-05-09 |
 | GAP-G | 5 | deferred V4 | sleep_substrate plan progression | Pull C lit-pull (sleep-vs-waking refinement biology) when ARC-063 V4 work opens | n/a | 2026-05-09 |
-| GAP-H | 2-3 | registered | claims-only registration | ARC-065 diversity-generation cluster registered (ARC-065 anchor + MECH-313 noise-floor + MECH-314 structured-curiosity + MECH-314a/b/c sub-flavours + Q-043 weight calibration + Q-044 sub-flavour independence + Q-045 313-vs-260 collapse). V3 falsification path = V3-EXQ-543b/c (script-write deferred to next session). | V3-EXQ-543b/c | 2026-05-10 |
+| GAP-H | 2-3 | partial | MECH-314 / MECH-314a/b/c structured-curiosity substrates + Q-045 4-arm ablation queue | ARC-065 diversity-generation cluster registered. **MECH-313 substrate landed 2026-05-10** (`ree_core/policy/noise_floor.py` + `REEConfig.use_noise_floor`/`noise_floor_alpha`/`noise_floor_min_temperature` + `select_action` e3.select call site + 11 contract tests + V3-EXQ-544 substrate-readiness diagnostic 5/5 PASS + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). MECH-314 / MECH-314a/b/c + MECH-318 / MECH-319 substrates + Q-045 4-arm ablation experiment remain to be authored. V3 falsification path = Q-045 successor on V3-EXQ-543b/c after MECH-314 + MECH-260 wiring confirmed independent. | V3-EXQ-544 (done) / Q-045 EXQ TBD | 2026-05-10 |
 | GAP-I | 2-3 | registered | claims-only registration | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD | 2026-05-10 |
 | GAP-J | 2-3 | registered | claims-only registration | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline is the V3-EXQ-543b/c falsifying alternative. | V3-EXQ-543b/c | 2026-05-10 |
 | GAP-K | 2-3 | registered | claims-only registration | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c. | V3-EXQ-543c | 2026-05-10 |
@@ -448,6 +448,84 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - GAP-H partial close: MECH-313 noise-floor substrate landed
+
+First of the four ARC-065 child substrates (MECH-313 noise-floor / MECH-314
+structured-curiosity / MECH-318 / MECH-319) landed. Resolves the Pull 1
+SYNTHESIS R2 LOAD-BEARING tag for the LC-NE-tonic analog channel; remaining
+ARC-065 children continue as separate spawned tasks.
+
+Substrate:
+- Module: `ree-v3/ree_core/policy/noise_floor.py` (NoiseFloor + NoiseFloorConfig).
+  Pure-arithmetic regulator (no learned parameters; no nn.Module inheritance);
+  matches the SD-035 / SD-036 / SD-037 regulator pattern.
+- Algorithm at the e3.select() call site in REEAgent.select_action():
+  `effective_T = max(baseline_T + noise_floor_alpha, noise_floor_min_temperature)`.
+- Config: `REEConfig.use_noise_floor` (default False; bit-identical OFF) +
+  `noise_floor_alpha` (default 0.1; SAC-entropy-bonus analog) +
+  `noise_floor_min_temperature` (default 1.0; matches existing E3 baseline).
+  Wired through `REEConfig.from_dims()`.
+- MECH-094 honoured via `compute_effective_temperature(simulation_mode=True)`
+  returning baseline unchanged + simulation-skip counter only.
+
+Architectural deviation from the original notes-field implementation hint
+("SAC-style entropy regularisation in the existing GatedPolicy module's
+per-head softmax temperature; one-line config addition; no separate
+substrate component required"): a SEPARATE NoiseFloor module at the
+e3.select() call site rather than per-head temperature inside GatedPolicy.
+Reasoning: MECH-313 is state-independent and applies to ALL action-selection
+paths regardless of whether GatedPolicy is wired in -- it must fire on
+baseline E3 selection too, which the per-head approach would miss. Co-locating
+the regulator with the softmax call gives a single point of control. Both
+knobs surface as Q-043 calibration levers. Hint updated in claims.yaml
+notes field.
+
+Validation:
+- V3-EXQ-544 substrate-readiness diagnostic, 5/5 PASS smoke (UC1
+  instantiation; UC2 master-OFF backward-compat; UC3 lift-arithmetic
+  sweep across alpha/min_temperature; UC4 select_action wiring contract
+  via act_with_split_obs; UC5 MECH-094 simulation gate). Manifests
+  scrubbed; runner will write the canonical PASS manifest from the
+  queued entry.
+- 11 contract tests in `tests/contracts/test_mech_313_noise_floor.py`
+  PASS; full contracts suite 253/253 PASS (regression-clean -- bit-
+  identical OFF guarantee holds).
+
+Status: claims.yaml MECH-313 `status: candidate -> candidate_substrate_landed`
+with `v3_pending: true` retained until Q-045 behavioural validation runs.
+Design doc `REE_assembly/docs/architecture/mech_313_stochastic_noise_floor.md`
+landed.
+
+What this enables:
+- Q-045 4-arm ablation (both-OFF / 313 only / 260 only / both ON) on
+  V3-EXQ-543b/c successors -- the falsifier of whether MECH-313 and
+  MECH-260 collapse into a single anti-monostrategy substrate.
+- Q-043 parametric sweep on `noise_floor_alpha` and
+  `noise_floor_min_temperature` (downstream of Q-045 if MECH-313 is
+  shown load-bearing).
+- The 2026-05-10 sleep-substrate reclassification cohort (V3-EXQ-418m /
+  436b / 500b / 503b) gains one of the two upstream channels needed
+  for non-degenerate waking diversity.
+
+Out of scope (separate spawned tasks):
+- MECH-314 / MECH-314a/b/c structured-curiosity substrates.
+- MECH-318 / MECH-319 substrates.
+- The Q-045 4-arm ablation experiment itself (queued AFTER MECH-314
+  also lands so the 4-arm matrix can be exercised meaningfully).
+
+Files touched: `ree-v3/ree_core/policy/noise_floor.py` (new),
+`ree-v3/ree_core/policy/__init__.py` (export), `ree-v3/ree_core/utils/config.py`
+(REEConfig fields + from_dims kwargs), `ree-v3/ree_core/agent.py` (import +
+__init__ instantiation + reset hook + select_action e3.select effective-T
+override), `ree-v3/tests/contracts/test_mech_313_noise_floor.py` (new, 11
+tests), `ree-v3/experiments/v3_exq_544_mech313_noise_floor_substrate_readiness.py`
+(new), `ree-v3/experiment_queue.json` (V3-EXQ-544 appended),
+`REE_assembly/docs/architecture/mech_313_stochastic_noise_floor.md` (new),
+`REE_assembly/docs/claims/claims.yaml` (MECH-313 status + notes update),
+`REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md` (GAP-H
+status row + this entry), `REE_assembly/WORKSPACE_STATE.md`,
+`REE_Working/TASK_CLAIMS.json`.
 
 ### 2026-05-10 - Pending FAIL triage: ARC-065 dependents reclassified non_contributory
 
