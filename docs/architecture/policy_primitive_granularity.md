@@ -188,18 +188,21 @@ Two independent lit-pulls anticipated:
 
 The two children share the parent commitment but no execution path — they're decoupled within the cluster, similar to how ARC-066 / ARC-067 / ARC-068 are decoupled within the non-deficit-action-drives family.
 
-### Child-MECH design ready to proceed (ARC-070 side)
+### Child-MECH design — ARC-070 side (REGISTERED 2026-05-10)
 
-With R2 settled, ARC-070's first child MECH has a much clearer shape than at slot registration:
+With R2 settled, ARC-070's first child mechanism is registered as **MECH-321 `policy.decomposition_via_event_segmenter`** (`candidate / v3_pending`):
 
-- **Subject:** `policy.decomposition_via_event_segmenter` (or similar). The mechanism is a policy-side consumer of MECH-288 boundary pulses on the rollout / imagination input stream.
-- **Trigger:** V_s drop on chunk's region (read out of MECH-288 + MECH-269 substrate). MECH-288 produces the boundary; ARC-070's child MECH consumes the boundary at the policy-primitive layer and triggers re-segmentation.
+- **Subject:** `policy.decomposition_via_event_segmenter`. Policy-side consumer of MECH-288 boundary pulses on the rollout / imagination input stream.
+- **depends_on:** ARC-070 (parent), MECH-288 (substrate), MECH-269 (V_s primitive trigger source), MECH-094 (hypothesis_tag gating).
+- **Trigger (R1):** V_s drop on chunk's region (read out of MECH-288 + MECH-269). MECH-288 produces the boundary; MECH-321 consumes the boundary at the policy-primitive layer and triggers re-segmentation.
 - **Output:** re-segmented rollout proposal stream at finer grain.
-- **Depth control:** recursion cap 3-4 levels (R3).
-- **Phase handling:** pre-commitment fires during simulation (no residue write); mid-execution decomposition fires under hypothesis_tag=False with residue write enabled (R4 + MECH-094).
-- **Optional secondary:** bottleneck-aware consolidation-phase analysis (R5; may integrate with ARC-071 chunk-formation pipeline once R6 lands).
+- **Depth control (R3):** recursive multi-level decomposition with depth cap 3-4.
+- **Phase handling (R4):** pre-commitment fires during simulation under hypothesis_tag=True with no residue write; mid-execution decomposition fires under hypothesis_tag=False with residue write enabled and observation-side consumer chain operating normally.
+- **Optional secondary (R5):** bottleneck-aware consolidation-phase analysis; may integrate with ARC-071 chunk-formation pipeline once the ARC-071 R6 governance decision lands.
 
-The child-MECH design depends on MECH-288 substrate landing (it is `candidate / v3_pending`; substrate implementation at `ree_core/hippocampal/event_segmenter.py` is on the Phase 2 V_s substrate plan). ARC-070's child MECH cannot land before MECH-288's substrate; the design can be registered first as `candidate / pending_design / depends_on: MECH-288`.
+Substrate-readiness prerequisite: MECH-288 substrate (`event_segmenter.py`) must land first WITH the input_stream label extension (per MECH-288 2026-05-10 ARC-070 bidirectional-consumer commitment in its notes). MECH-321 cannot be substrate-implemented before MECH-288. Phase-1 placement is a thin policy-side module subscribing to a MECH-288 BoundaryEvent queue filtered to `input_stream=rollout`, wired at the hippocampal-rollout candidate-generation layer prior to E3 trajectory selection.
+
+Discriminative-pair validation experiment specified in MECH-321 functional_restatement (ARM_0 baseline / ARM_1 V_s-drop primary / ARM_2 bottleneck-state primary); deferred until substrate lands.
 
 ARC-071's child MECH is gated separately on the R6 governance decision (hypothesis_tag write-path safety question).
 

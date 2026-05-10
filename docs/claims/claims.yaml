@@ -28958,6 +28958,16 @@
     the bottleneck arm decomposes only on repeated structures.
     See evidence/literature/targeted_review_arc_070_decomposition/
     synthesis.md for full reasoning and falsifiable predictions.
+
+    [2026-05-10 first child mechanism registered]: MECH-321
+    policy.decomposition_via_event_segmenter encodes the R1-R5
+    verdicts as the rollout-side consumer of MECH-288 boundary
+    pulses. status: candidate / v3_pending. Substrate-readiness
+    prerequisite: MECH-288 substrate (event_segmenter.py with
+    input_stream label per the bidirectional-consumer extension)
+    must land first. Discriminative-pair validation experiment
+    specified in MECH-321 functional_restatement; deferred until
+    substrate lands.
   notes: >
     Cross-reference: ARC-070 is the inverse of ARC-071
     (composition). They share the parent commitment (ARC-069) but
@@ -29443,4 +29453,287 @@
         instantaneously.
   location: docs/architecture/non_deficit_action_drives.md
 
+- id: MECH-321
+  title: "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition with depth cap 3-4 (Badre & D'Esposito 2009; Koechlin & Summerfield 2007). Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged)."
+  claim_type: mechanism_hypothesis
+  subject: policy.decomposition_via_event_segmenter
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-070     # parent architectural commitment (decomposition on prediction failure)
+    - MECH-288    # substrate: bidirectional event_segmenter (R2 verdict; MECH-288 depends_on includes ARC-070 as the rollout-side downstream consumer)
+    - MECH-269    # V_s primitive: the region-conditioned predictability scalar that produces the trigger signal on the chunk's region
+    - MECH-094    # hypothesis_tag gate: pre-commit fires under tag=True write nothing; post-commit fires under tag=False enable residue / observation-side effects
+  functional_restatement: >
+    MECH-321 names the primary child mechanism for ARC-070. It is the
+    policy-side consumer of MECH-288 boundary pulses on the rollout /
+    imagination input stream. The mechanism's job is to re-segment the
+    rollout proposal stream at finer grain when the predictive engine
+    reports a chunk's region as unreliable.
+
+    -- Per-rollout-step mechanism --
+
+    For each chunked primitive p in the current rollout proposal
+    trajectory T:
+      stream  := rollout (imagination-side input to MECH-288)
+      v_s     := V_s on p.region (via MECH-269 substrate read-out)
+      boundary := MECH-288.boundary_on(stream=rollout,
+                                       latent=p.latent_signature,
+                                       pe=p.pe_signature)
+      if v_s < v_s_decompose_threshold OR boundary.fired:
+        if p.depth < depth_cap:
+          decompose(p) -- replace p with p.sub_elements
+                          in the proposal stream
+        else:
+          mark p as unreliable; downstream selection may abort
+          the trajectory rather than execute it blind
+
+    The decomposition is recursive: each newly produced sub-element
+    is itself eligible for decomposition on the same trigger, up to
+    depth_cap (R3 verdict; default 3-4 levels).
+
+    -- Trigger primary (R1 verdict, conf 0.78) --
+
+    PRIMARY: V_s drop on chunk's region (PE-driven). This reads the
+    MECH-269 V_s scalar at the chunk's segment_id; a low value means
+    the predictive engine cannot reliably forward-simulate this
+    region, so chunked primitives over the region cannot ground.
+    Biologically anchored: Zacks 2007 EST establishes PE as the
+    canonical boundary trigger; Schapiro 2017 establishes hippocampal
+    trisynaptic pattern-separation as a candidate biological substrate
+    for V_s.
+
+    SECONDARY (convergent, may co-fire with V_s drop but should not
+    be primary):
+      - E2 forward-model disagreement at chunk-grain vs primitive-
+        grain. Requires running both grains in parallel; expensive;
+        not the biology default.
+      - Hippocampal completion-signal failure (MECH-105 / ARC-028).
+        Only fires for chunks with explicit completion signals; not
+        universal.
+      - Mid-execution prediction error. A SEPARATE PHASE handled by
+        R4 (same mechanism, different input phase), not a separate
+        trigger class.
+
+    -- Phase handling (R4 verdict, conf 0.66) --
+
+    BOTH pre-commitment and mid-execution decomposition supported via
+    the same mechanism:
+
+      PRE-COMMITMENT (hypothesis_tag=True; rollout / simulation
+      phase): MECH-321 fires on the rollout proposal stream BEFORE
+      the agent commits to executing the trajectory. Downstream
+      effects: rollout proposal stream re-segmented at finer grain.
+      No residue write. No update to MECH-269 anchor sets or
+      MECH-287 broadcast (those are observation-side consumers of
+      MECH-288 and must not fire on imagined inputs).
+
+      POST-COMMITMENT / MID-EXECUTION (hypothesis_tag=False;
+      execution phase): the agent has executed N of M chunk steps
+      and the next predicted state has diverged from observation.
+      MECH-321 reads V_s on the REMAINING chunk content. If low,
+      decompose the remainder. Downstream effects: residue write
+      enabled; observation-side consumer chain operates normally.
+      May serve double duty as reactive-replanning substrate
+      (candidate child-Q-claim).
+
+    The phase distinction is enforced by MECH-094 hypothesis_tag at
+    MECH-288's input_stream label, not by code internal to MECH-321
+    (this preserves the bidirectional-substrate commitment from R2).
+
+    -- Bottleneck-aware secondary (R5 verdict, conf 0.74) --
+
+    OPTIONAL. R5 confirms PE-driven and bottleneck-state framings
+    are DISTINCT mechanisms with overlapping outputs. McGovern &
+    Barto 2001 bottleneck-state subgoal discovery is a candidate
+    OFFLINE / CONSOLIDATION-PHASE mechanism that could examine
+    chunked primitives for bottleneck-state topology and pre-
+    decompose them at bottleneck boundaries. This integrates more
+    naturally with ARC-071 chunk formation (chunks accumulated in
+    DLS / habit substrate could be analysed offline) than with
+    MECH-321's online rollout-side primary trigger. Defer until
+    ARC-071 child-MECH design lands (which is itself gated on the
+    ARC-071 R6 governance decision).
+
+    -- Composition with sibling substrates --
+
+    With MECH-269b symmetric V_s gating: MECH-321 is the SECOND
+    major V_s consumer (after MECH-269b at the cortical-rollout
+    layer). Both read MECH-269 V_s primitive; both may have
+    INDEPENDENT thresholds (the substrate is shared; the readers
+    are not). Cross-link evidence_quality_note will track whether
+    MECH-269b's symmetric-V_s-gating commitment constrains MECH-321's
+    threshold choices at substrate-landing time.
+
+    With MECH-288 substrate: MECH-321 is the policy-side consumer
+    on the rollout input stream. event_segmenter.py implementation
+    must accept the input_stream label so the dispatch is clean
+    (per MECH-288 notes 2026-05-10 bidirectional-consumer
+    extension).
+
+    With MECH-094 hypothesis_tag: tag-conditional downstream effects
+    enforce the pre/post-commit separation (per R4 verdict). MECH-321
+    itself reads only the boundary signal; the tag gates the
+    DOWNSTREAM effects, not MECH-321's firing.
+
+    With ARC-062 (rule apprehension over primitives): MECH-321 emits
+    decomposed sub-element sequences; ARC-062 reads whichever grain
+    is most predictive. Grain-invariant rule apprehension is an open
+    child-Q-claim from the family doc.
+
+    -- Falsifiable prediction (discriminative validation) --
+
+    Discriminative-pair experiment (V3-EXQ-TBD per /queue-experiment
+    skill, deferred until MECH-288 substrate lands):
+
+      ARM_0  ARC-070 OFF baseline (MECH-288 ON for observation-side
+             consumers only; MECH-321 OFF). Chunks blindly fire and
+             execute, paying prediction-failure cost at execution.
+             Predicted: rollout deliberation cost flat across V_s
+             heterogeneity in the environment; execution-time
+             prediction failures correlate with low-V_s regions
+             traversed.
+
+      ARM_1  MECH-321 ON with V_s-drop primary trigger. Chunks
+             decompose pre-commitment when V_s indicates unreliability
+             on the chunk's region. Predicted: rollout deliberation
+             cost rises locally in low-V_s regions (more candidates
+             per chunk-step); execution-time prediction failures
+             drop because the agent has finer-grain plans where the
+             substrate was unreliable.
+
+      ARM_2  MECH-321 ON with bottleneck-state primary trigger
+             (R5 alternative). Chunks decompose only at bottleneck
+             states regardless of V_s. Predicted: decomposition is
+             rare on one-shot tasks but appears on repeated
+             structures; on the SD-054 reef substrate or similar
+             one-shot environments, behaviour is closer to ARM_0
+             than to ARM_1.
+
+    R1 verdict predicts ARM_1 > ARM_2 on one-shot V_s-heterogeneous
+    environments. R5 verdict (distinct mechanisms with overlapping
+    outputs) predicts ARM_1 and ARM_2 converge on repeated-structure
+    environments. Either ARM_1 vs ARM_2 dissociation outcome is
+    informative; ARM_1 = ARM_0 falsifies the primary V_s-drop trigger
+    and forces a substrate revisit.
+
+    Substrate-readiness prerequisite: MECH-288 substrate
+    (event_segmenter.py) must land first WITH the input_stream
+    label extension (per MECH-288 2026-05-10 notes). MECH-321
+    cannot be substrate-implemented before MECH-288. Phase-1
+    placement: policy.decomposition_via_event_segmenter module
+    consuming a MECH-288 BoundaryEvent queue filtered to
+    input_stream=rollout, wired at the hippocampal-rollout
+    candidate-generation layer prior to E3 trajectory selection.
+  notes: >
+    First child mechanism for ARC-070. Companion-claim cross-references:
+
+      - MECH-288 (substrate parent): event_segmenter.py is the
+        bidirectional detector. MECH-321 is its rollout-side
+        consumer; MECH-269 / MECH-284 / MECH-287 are its
+        observation-side consumers. See MECH-288 notes
+        2026-05-10 ARC-070 bidirectional-consumer commitment.
+
+      - MECH-269 (V_s primitive substrate): supplies the
+        region-conditioned predictability scalar that MECH-321
+        reads at the chunk's region.
+
+      - MECH-269b (symmetric V_s gating, sibling V_s consumer):
+        MECH-321 is the second major V_s consumer. Independent
+        thresholds; shared substrate.
+
+      - MECH-094 (hypothesis_tag): gates downstream effects of
+        boundary pulses by phase. MECH-321 reads the boundary;
+        MECH-094 decides whether the boundary writes residue
+        / updates anchor sets / triggers broadcast.
+
+      - ARC-062 (rule apprehension over primitives): reads the
+        decomposed sub-element stream MECH-321 emits. Grain-
+        invariant rule apprehension is an open child-Q-claim.
+
+      - ARC-071 (composition; sibling architectural commitment):
+        opposite direction (zoom out). ARC-071's child MECH is
+        gated on the R6 governance decision (hypothesis_tag
+        write-path safety). The R5 bottleneck-aware secondary
+        option of MECH-321 may integrate with ARC-071's chunk
+        accumulation pipeline at design refinement time.
+
+    HYBRID-naming convention (parallel to MECH-320): the title
+    carries both the REE-internal architectural name
+    (decomposition_via_event_segmenter) and the literature anchors
+    (event segmentation imagination side / Badre & D'Esposito
+    rostro-caudal hierarchical decomposition / Pfeiffer-Foster
+    hippocampal forward sweeps / Schacter constructive episodic
+    simulation core network). Grep-able under both REE-native
+    search and biology-search.
+
+    Implementation-phase placement: phase-1 substrate cannot land
+    before MECH-288 substrate (event_segmenter.py with input_stream
+    label) lands. Once MECH-288 substrate is in place, MECH-321
+    substrate is a thin policy-side module that subscribes to a
+    MECH-288 BoundaryEvent queue filtered to input_stream=rollout
+    and emits a re-segmented rollout proposal stream.
+
+    Open Q-claims worth registering at substrate-landing time:
+
+      - Q-XXX: mid-execution decomposition vs reactive-replanning --
+        R4 verdict flagged this as a candidate child-Q-claim.
+        Whether mid-execution decomposition is the same mechanism
+        as reactive-replanning (sensorimotor feedback divergence
+        from prediction) or distinct mechanisms is open. The
+        substrate question is whether one mechanism reads both
+        signals (PE on chunk's remainder + sensorimotor-feedback-
+        divergence) or whether the two are separate substrates that
+        happen to produce overlapping outputs on the execution
+        phase.
+
+      - Q-XXX: depth-cap policy -- 3-4 levels suggested by R3
+        verdict, but the cap is an engineering choice. Whether
+        the cap should be hard (architectural commitment) or soft
+        (adaptive based on rollout budget) is open.
+
+      - Q-XXX: MECH-321 vs MECH-269b threshold coupling -- both
+        read V_s; both may use thresholds. Whether the thresholds
+        should be independent (per-consumer parameterisation) or
+        coupled (single substrate threshold with per-consumer
+        scale factors) is an integration question at substrate-
+        landing time.
+  evidence_quality_note: >
+    Registered 2026-05-10 from ARC-070 lit-pull synthesis
+    (evidence/literature/targeted_review_arc_070_decomposition/).
+    All five lit-pull verdicts (R1-R5) folded into the
+    functional_restatement; lit_conf 0.88 (indexer-computed) on
+    parent ARC-070 carries to MECH-321 as the first child
+    mechanism instantiating those verdicts.
+
+    Not yet experimentally tested. Discriminative-pair validation
+    experiment specified in functional_restatement; deferred until
+    MECH-288 substrate lands (event_segmenter.py with input_stream
+    label extension).
+
+    Phase-1 substrate placement: subscribes to MECH-288
+    BoundaryEvent queue filtered to input_stream=rollout. Pure-
+    arithmetic policy-side regulator (no learned parameters at
+    phase-1; threshold v_s_decompose_threshold and depth_cap are
+    config knobs).
+
+    Falsifiable on three conditions:
+      (a) ARM_0 vs ARM_1 contrast in the discriminative-pair
+          experiment shows the V_s-drop trigger fires and
+          decomposes;
+      (b) ARM_1 vs ARM_2 dissociation on one-shot vs repeated-
+          structure environments confirms PE-driven primary;
+      (c) lesioning MECH-288 substrate impairs both observation-
+          side anchor partition AND imagination-side decomposition
+          (the R2 bidirectional-substrate commitment).
+
+    Failure on any of the three triggers a substrate revisit; the
+    revisit candidates are (a) E2 forward-model disagreement as
+    primary trigger instead of V_s, (b) parallel-but-coupled
+    architecture replacing the bidirectional-substrate commitment.
+  location: docs/architecture/policy_primitive_granularity.md
 
