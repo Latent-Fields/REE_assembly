@@ -22,6 +22,15 @@ SECTIONS GENERATED:
           for experimental design decisions, regardless of PASS/FAIL status
      Smoke runs are identified by queue_id containing "onboard" or "smoke" (case-insensitive)
      or script path containing "onboard_smoke".
+  4. Unclaimed manifests        -- manifest files on disk with PASS/FAIL whose run_id is
+     absent from claim_evidence (e.g., substrate-readiness or environment-probe diagnostics
+     that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN). These
+     fall through every other section because they're not in claim_evidence (so sections 1/2
+     don't catch them) and the runner_status entry, if present, may already be queue_id-marked
+     discussed (so section 3 short-circuits). Marking discussed for these runs MUST be done
+     by manifest stem (run_id with timestamp suffix) -- queue_id-level marking is unsafe
+     because the same queue_id can have both an ERROR runner_status entry and a separate
+     PASS manifest produced by the same run.
 """
 import json
 import re
@@ -241,12 +250,86 @@ def load_indexed_run_ids() -> set:
     return {e["run_id"] for e in data.get("entries", []) if "run_id" in e}
 
 
+# Top-level JSON files in EVIDENCE_DIR that are tracker/index artifacts, not manifests.
+_NON_MANIFEST_FILES = {
+    "claim_evidence.v1.json",
+    "review_tracker.json",
+    "runner_status.json",
+    "substrate_status_snapshot.json",
+}
+
+
+def load_unclaimed_manifests(reviewed: set, discussed: set,
+                             indexed_run_ids: set) -> list[dict]:
+    """Return PASS/FAIL manifests on disk whose run_id is NOT in claim_evidence.
+
+    Walks EVIDENCE_DIR for top-level *.json files that look like result manifests
+    (have a run_id and a result field), and reports any that:
+      - have result PASS or FAIL,
+      - are not in indexed_run_ids (i.e. claim_evidence has no entry for the run_id),
+      - are not in reviewed (run_id), and
+      - have neither the manifest stem nor the run_id in discussed_dirs.
+
+    Marking discussed for these runs must be done by manifest stem (filename without
+    .json) -- queue_id-level marking is unsafe because the runner's ERROR/UNKNOWN
+    record for a queue_id can be marked discussed even when a separate PASS manifest
+    for the same run exists on disk.
+    """
+    if not EVIDENCE_DIR.is_dir():
+        return []
+
+    out = []
+    for f in sorted(EVIDENCE_DIR.glob("*.json")):
+        if f.name in _NON_MANIFEST_FILES:
+            continue
+        try:
+            d = json.loads(f.read_text())
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        run_id = d.get("run_id")
+        if not run_id:
+            continue
+        # Resolve the manifest's pass/fail label. Some scripts write result/verdict
+        # directly; substrate-readiness diagnostics often only set metrics.overall_pass.
+        result = d.get("result") or d.get("verdict")
+        if result not in ("PASS", "FAIL"):
+            metrics = d.get("metrics")
+            overall_pass = metrics.get("overall_pass") if isinstance(metrics, dict) else None
+            if overall_pass is True:
+                result = "PASS"
+            elif overall_pass is False:
+                result = "FAIL"
+            else:
+                continue
+        if run_id in indexed_run_ids:
+            continue
+        if run_id in reviewed:
+            continue
+        stem = f.stem
+        if stem in discussed or run_id in discussed:
+            continue
+        out.append({
+            "manifest_stem": stem,
+            "run_id": run_id,
+            "result": result,
+            "experiment_type": d.get("experiment_type", ""),
+            "evidence_direction": d.get("evidence_direction", ""),
+            "timestamp_utc": d.get("timestamp_utc", "") or "",
+            "queue_id": d.get("queue_id", "") or "",
+        })
+
+    return sorted(out, key=lambda r: (r["timestamp_utc"], r["run_id"]))
+
+
 def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
+                         unclaimed: list[dict],
                          last_review_utc: str) -> None:
     passes = [r for r in runs if r["status"] == "PASS"]
     fails  = [r for r in runs if r["status"] != "PASS"]
 
-    total_pending = len(runs) + len(runner_undiscussed)
+    total_pending = len(runs) + len(runner_undiscussed) + len(unclaimed)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     lines = [
@@ -256,7 +339,8 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         f"Last review: `{last_review_utc}`  ",
         f"Pending: **{total_pending}** item(s)"
         f" -- {len(passes)} PASS, {len(fails)} FAIL,"
-        f" {len(runner_undiscussed)} runner-only (ERROR/UNKNOWN/smoke)",
+        f" {len(runner_undiscussed)} runner-only (ERROR/UNKNOWN/smoke),"
+        f" {len(unclaimed)} unclaimed manifest(s)",
         "",
     ]
 
@@ -282,6 +366,28 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                 claims = ", ".join(sorted(set(r["claims"])))
                 ts = r["timestamp_utc"][:16] if r["timestamp_utc"] else "?"
                 lines.append(f"| `{r['run_id']}` | {ts} | {claims} |")
+            lines.append("")
+
+        if unclaimed:
+            lines += ["## Unclaimed manifests (PASS/FAIL with no claim tags)", ""]
+            lines += [
+                "These manifests are on disk with PASS/FAIL but their run_id is absent "
+                "from `claim_evidence.v1.json`. Common causes: substrate-readiness or "
+                "environment-probe diagnostics that intentionally tag no claims, or runs "
+                "the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. "
+                "Mark discussed by adding the **manifest stem** (filename minus `.json`) "
+                "to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, "
+                "see header docstring.",
+                "",
+                "| Result | Manifest stem | Experiment type | Queue ID | Direction |",
+                "|--------|---------------|-----------------|----------|-----------|",
+            ]
+            for r in unclaimed:
+                lines.append(
+                    f"| {r['result']} | `{r['manifest_stem']}` | "
+                    f"{r['experiment_type'] or '?'} | {r['queue_id'] or '?'} | "
+                    f"{r['evidence_direction'] or '?'} |"
+                )
             lines.append("")
 
         if runner_undiscussed:
@@ -312,8 +418,9 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         "",
         "## How to mark runs as reviewed",
         "",
-        "- PASS/FAIL runs: add run IDs to `reviewed_run_ids` in review_tracker.json",
+        "- PASS/FAIL runs (claim-tagged): add run IDs to `reviewed_run_ids` in review_tracker.json",
         "- ERROR/UNKNOWN/smoke: add queue_id or dir_name to `discussed_experiment_dirs` in review_tracker.json",
+        "- Unclaimed manifests (PASS/FAIL, no claim tags): add the manifest stem (filename minus `.json`) to `discussed_experiment_dirs`",
         "- Update `last_review_utc`, then re-run this script to confirm the list clears.",
         "",
         "```bash",
@@ -324,7 +431,8 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     OUTPUT.write_text("\n".join(lines) + "\n")
     print(
         f"Written {OUTPUT.relative_to(ROOT)}"
-        f" -- {len(runs)} indexed pending, {len(runner_undiscussed)} runner-only pending"
+        f" -- {len(runs)} indexed pending, {len(runner_undiscussed)} runner-only pending,"
+        f" {len(unclaimed)} unclaimed manifest(s)"
     )
 
 
@@ -525,7 +633,8 @@ def main():
     indexed_run_ids = load_indexed_run_ids()
     runs = load_pending_entries(reviewed)
     runner_undiscussed = load_runner_status_undiscussed(reviewed, discussed, indexed_run_ids)
-    write_pending_review(runs, runner_undiscussed, last_review_utc)
+    unclaimed = load_unclaimed_manifests(reviewed, discussed, indexed_run_ids)
+    write_pending_review(runs, runner_undiscussed, unclaimed, last_review_utc)
     append_substrate_change_section()
 
 

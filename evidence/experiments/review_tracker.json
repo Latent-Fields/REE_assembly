@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-10T12:24:30Z",
+  "last_review_utc": "2026-05-10T12:51:30Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-449c",
     "V3-EXQ-455a",
@@ -291,7 +291,11 @@
     "V3-EXQ-537",
     "V3-EXQ-537a",
     "V3-EXQ-538",
-    "V3-EXQ-433f"
+    "V3-EXQ-433f",
+    "v3_exq_521_reef_enrichment_20260504T223858Z_v3",
+    "v3_exq_522_reef_monostrategy_break_20260505T064610Z_v3",
+    "v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z",
+    "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2463,6 +2467,23 @@
         "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3"
       ],
       "subject": "Governance cycle reviewing 3 PASS pending experiments. (1) V3-EXQ-500a SD-017 sleep-phase readiness probe (Phase 2 successor to V3-EXQ-500): 3/3 seeds PASS C1+C2+C3 under the validated 5-flag substrate template; classified as evidence supporting SD-017 (already stable). Predecessor V3-EXQ-500 manifest marked evidence_direction=superseded. (2) V3-EXQ-543 ARC-062 Phase 2a monomodal-collapse falsifier: already reclassified non_contributory in the manifest (session exq543-reclassify 2026-05-10T04:23Z) due to three issues (C3 divide-by-near-zero artifact, ARM_1c seed 2 byte-identical to baseline from inert untrained gating, C2 state-dependence FAILED). Successor V3-EXQ-543b is in Phase 3 with gated_policy in optimizer + phased training. No claim weighting. (3) V3-EXQ-503a SD-017 sleep-vs-no-sleep discriminative pair (Phase 2 successor to V3-EXQ-503): 3/3 seeds PASS C1+C2+C3+C4; clean cross-arm dissociation (ARM_A 24 SWS writes / 18 REM rollouts / ctxmem_state_change 5.0 vs ARM_B all zero); per-seed M2 |diff| = [5.03, 4.70, 4.50] >> 0.20 tolerance; classified as evidence supporting SD-017 (already stable). Predecessor V3-EXQ-503 manifest marked evidence_direction=superseded. Decision queue: 13 pending_user recommendations applied (10 hold_pending_v3_substrate on ARC-062/064/065, MECH-309/312/313/316/317/318, SD-054 newly registered v3_pending claims; 3 hold_candidate_resolve_conflict on ARC-045, MECH-166, MECH-204 above conflict-ratio threshold). No claims.yaml status edits required -- all recommendations are holds, not status changes."
+    },
+    {
+      "session_utc": "2026-05-10T12:51:30Z",
+      "context": "Marked 4 unclaimed-manifest PASS runs discussed. These were invisible to pending_review until generate_pending_review.py was patched to surface PASS/FAIL manifests on disk whose run_id is absent from claim_evidence (substrate-readiness probes that tag no claims, or runs mis-logged ERROR/UNKNOWN by the runner while the manifest landed cleanly). Discussed at manifest-stem level because queue_id-level discussion is unsafe when runner_status disagrees with the manifest.",
+      "marked_discussed_stems": [
+        "v3_exq_521_reef_enrichment_20260504T223858Z_v3",
+        "v3_exq_522_reef_monostrategy_break_20260505T064610Z_v3",
+        "v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z",
+        "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z"
+      ],
+      "patch": "scripts/generate_pending_review.py: added load_unclaimed_manifests() + new section 4 'Unclaimed manifests (PASS/FAIL with no claim tags)'. Result detection accepts top-level result/verdict OR metrics.overall_pass.",
+      "results_summary": {
+        "v3_exq_521_reef_enrichment_substrate_readiness": "4-arm reef substrate validation: C0-C6 all pass; obs_dim 250->275 with reef present; 0 reef violations across arms; reef_visits ~2000 in reef arms.",
+        "v3_exq_522_reef_monostrategy_break": "3-arm: C1-C6 all pass; position-entropy 3.66 (baseline) -> 1.96/2.66 (reef); zone-transitions/ep 49 vs 36; reef-visit fraction ~0.50.",
+        "v3_exq_542_arc062_gated_policy_substrate_readiness": "ARC-062 Phase 1 substrate wiring: 5 UCs pass (instantiation, master OFF no-op, discriminator input sensitivity, head differentiation under training ratio 7.78, MECH-094 sim gate). Does NOT test ARC-062 weak-reading or MECH-309 logical-necessity -- those need Phase 2 monomodal-collapse falsifier on SD-054.",
+        "v3_exq_544_mech313_noise_floor_substrate_readiness": "MECH-313 stochastic noise floor wiring + Pull 1 SYNTHESIS R4 verdict: 5 UCs pass (forward-pass instantiation, master OFF no-op, effective-temperature lift correctness across alpha/min_T/baseline sweep, MECH-094 sim gate). Does NOT test MECH-313 vs MECH-260 distinction -- needs Q-045 4-arm ablation on the new substrate."
+      }
     }
   ]
 }
