@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_536a_goal_seeding_instrumentation
 
-Generated: `2026-05-10T16:33:16.438698Z`
+Generated: `2026-05-10T17:02:59.769039Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

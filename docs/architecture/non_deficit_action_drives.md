@@ -29,18 +29,29 @@ The three claims register the architectural slots needed to close this gap. Each
 
 ### ARC-066 — tonic vigor coupling (positive-side, score-additive)
 
-Capacity-keyed action bias. When the agent has high energy AND low recent prediction error AND low drive, a tonic vigor scalar rises and biases E3 score selection toward action over no-op trajectories. **Independent of any specific target.**
+Capacity-keyed action bias. The vigor scalar is a slow EWMA over the realised E3-score-receipt stream (long-run average reward rate, per Niv 2007 formalism), gated downward when internal-state proxies (energy reserve, drive integrator, recent prediction error) are unfavourable. The scalar biases E3 score selection toward action over no-op trajectories. **Independent of any specific target.**
 
-Biology anchor cluster:
-- **Niv et al. 2007 (PNAS)** — vigor-of-action set by tonic dopamine tracking average reward rate. The same paper grounds the opportunity-cost framing of ARC-068, but the vigor-as-bias-on-action mechanism is a separate construct.
-- **Aston-Jones & Cohen 2005 (Annu Rev Neurosci)** — LC-NE tonic mode biases toward exploitation/action. NOTE: existing MECH-313 instantiates the LC-NE *noise floor* (entropy on choice). ARC-066 is a different LC-NE function — directional action bias, not noise.
-- **Salamone & Correa 2012 (Neuron)** — mesolimbic DA effort-vigor activation, dissociable from hedonic value.
-- **Walton et al. 2006 (J Neurosci)** — ACC effort/vigor.
-- **Depue & Collins 1999** — BAS as an independent personality dimension; low BAS = anhedonic inertia, high BAS = drive-to-act.
+Biology anchor cluster (post lit-pull 2026-05-10, R1+R3+R4 verdicts; see [synthesis](../../evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md)):
+- **Niv et al. 2007 (Psychopharmacology)** — vigor-of-action set by tonic dopamine tracking average reward rate. Formalism anchor for R3 (additive opportunity-cost form) and R4 (slow EWMA scalar).
+- **Salamone & Correa 2012 (Neuron)** — mesolimbic DA encodes the activational dimension of motivation, dissociable from hedonic / consummatory aspects. Substrate identity for the DA-vigor account.
+- **Beierholm et al. 2013 (Neuropsychopharmacology)** — human pharmacological causal test: L-DOPA strengthens the avg-reward-rate-vigor coupling vs placebo; citalopram does not. Specificity-to-DA evidence.
+- **Walton et al. 2003 (J Neurosci)** — ACC effort-cost lesion in rats; BOUNDARY anchor for the ACC effort-cost machinery (which is closer to SD-032b dACC adaptive control / ARC-068 territory than to ARC-066).
+- **Depue & Collins 1999 (Behav Brain Sci)** — BAS as an independent personality dimension; low BAS = anhedonic inertia, high BAS = drive-to-act. Abstract-level commitment that the function is real and target-free.
+
+#### What ARC-066 is NOT (lit-pull R2 verdict)
+
+The slot was originally registered with Aston-Jones & Cohen 2005 (LC-NE adaptive gain) as a primary anchor, with the gloss "LC-NE tonic mode biases toward exploitation/action -- directional action bias, not noise on choice". The lit-pull R2 verdict **rejects** this attribution:
+
+- **Aston-Jones & Cohen 2005 (Annu Rev Neurosci)** — theoretical anchor for the dual-mode LC-NE framework. Consistent with EITHER a noise-mediated reading or a direction-mediated reading at the conceptual level.
+- **Kane et al. 2017 (Cogn Affect Behav Neurosci)** — the disambiguation. DREADD-mediated chemogenetic stimulation of LC tonic activity in rats, by the original Aston-Jones / Cohen authorship group, with formal model comparison: the resulting earlier patch-leaving was best explained by an INCREASE IN DECISION NOISE rather than a SYSTEMATIC BIAS. The LC-NE tonic effect is one mechanism (noise), not two.
+
+The implication: LC-NE tonic mode is **fully covered by MECH-313** (stochastic noise floor / softmax temperature lift). There is no remaining LC-NE function for ARC-066 to claim. The ARC-066 substrate attribution is therefore **mesolimbic DA-vigor (Niv / Salamone / Beierholm) + BAS abstract level (Depue & Collins)**, NOT LC-NE.
+
+This is a substrate-attribution reframe; the architectural function ARC-066 names is unchanged.
 
 Distinct from existing slots:
 - SD-012 drive: rises *as energy falls*. ARC-066 is the inverse — rises *as capacity rises*.
-- MECH-313 noise floor: orthogonal axis (entropy on choice, not direction toward action).
+- MECH-313 noise floor: orthogonal axis (entropy on choice, not direction toward action). Lit-pull R2 verdict establishes that LC-NE tonic mode is fully covered by MECH-313.
 - MECH-216 predictive wanting: target-conditioned. ARC-066 is target-free.
 
 ### ARC-067 — idle aversion / boredom (negative-side, valence accumulator)
@@ -134,12 +145,17 @@ After each lit-pull, child MECH design can proceed independently. The three slot
 
 ---
 
+## Child mechanisms registered to date
+
+- **MECH-320** (registered 2026-05-10) — `tonic_vigor_coupling_score_bias`. First child mechanism for ARC-066. Adds an additive vigor bias on E3 action-trajectory scoring (or equivalently an additive cost on no-op), where the vigor scalar v_t is a slow EWMA over the realised E3-score-receipt stream gated by secondary internal-state modulators (energy / drive / PE). Companions for ARC-067 and ARC-068 deferred to their respective lit-pulls. R3 falsifiable secondary alternative (multiplicative gain) discriminable from primary via parametric sweep on a pre-existing action preference; substrate-readiness diagnostic experiment will be the first validation step. See `claims.yaml` MECH-320 entry for the full functional restatement, falsifiable predictions, and distinct-from contracts.
+
 ## See also
 
-- `claims.yaml` — ARC-066 / ARC-067 / ARC-068 entries (full functional_restatement and notes per claim)
-- `MECH-313` — LC-NE tonic noise floor (orthogonal axis; lands as ARC-065 child)
-- `MECH-216` — predictive wanting (target-conditioned; ARC-066 is target-free)
-- `SD-012` — homeostatic drive (deficit-keyed; ARC-066 is capacity-keyed inverse)
-- `SD-032b` — dACC adaptive control / foraging_value (closest existing relative to ARC-068)
-- `SD-037` — broadcast override / orexin (deficit-recruited; ARC-066 is surplus-recruited; opposite corners of state space)
-- `SD-011` — affective harm stream (likely z_harm_a-side routing for ARC-067 aversive)
+- `claims.yaml` — ARC-066 / ARC-067 / ARC-068 entries (full functional_restatement and notes per claim) and MECH-320 (first child mechanism for ARC-066).
+- `evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md` — ARC-066 lit-pull synthesis (R1-R4 verdicts, lit_conf 0.789).
+- `MECH-313` — LC-NE tonic noise floor (ARC-065 child). Per ARC-066 R2 verdict, MECH-313 fully covers the LC-NE substrate; ARC-066 / MECH-320 is mesolimbic-DA-attributed, NOT LC-NE.
+- `MECH-216` — predictive wanting (target-conditioned; ARC-066 is target-free).
+- `SD-012` — homeostatic drive (deficit-keyed; ARC-066 is capacity-keyed inverse).
+- `SD-032b` — dACC adaptive control / foraging_value (closest existing relative to ARC-068; Walton 2003 ACC effort-cost machinery lives here, not in ARC-066).
+- `SD-037` — broadcast override / orexin (deficit-recruited; ARC-066 is surplus-recruited; opposite corners of state space).
+- `SD-011` — affective harm stream (likely z_harm_a-side routing for ARC-067 aversive).

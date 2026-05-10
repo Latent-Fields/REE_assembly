@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_225_mech112_goal_lift_redesign
 
-Generated: `2026-05-10T16:33:16.438698Z`
+Generated: `2026-05-10T17:02:59.769039Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

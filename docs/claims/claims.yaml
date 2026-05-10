@@ -27998,6 +27998,28 @@
     penalty -- E3 cost on passive trajectories). Together the three
     cover the "behaviour from surplus, not just deficit" architectural
     commitment.
+
+    Capacity scalar refinement (post lit-pull, R4 verdict 2026-05-10):
+    the PRIMARY scalar is a SLOW EWMA over the realised E3-score-
+    receipt stream (per Niv 2007 average-reward-rate formalism +
+    Beierholm 2013 human empirical confirmation), NOT the internal-
+    capacity composite the slot was first registered with. Internal-
+    state proxies (energy reserve, drive integrator, recent prediction
+    error) enter the child mechanism as SECONDARY MODULATORS that gate
+    the primary scalar down when capacity is unfavourable. The two
+    formulations are correlated in normal conditions but mathematically
+    distinct -- the literature attribution is to environmental reward
+    history, not internal physiological state. First child MECH
+    (MECH-320) instantiates this composition.
+
+    First child mechanism: MECH-320 (tonic_vigor_coupling_score_bias)
+    registered 2026-05-10 -- adds an additive vigor bias to E3 action-
+    trajectory scoring with the EWMA scalar gated by secondary internal-
+    state modulators. Substrate attribution: mesolimbic DA-vigor.
+    Explicitly NOT LC-NE-direction (per R2 verdict; LC-NE tonic mode
+    is one mechanism = noise = MECH-313, not two). See
+    docs/architecture/non_deficit_action_drives.md for the family-doc
+    anchor cluster reframe.
   evidence_quality_note: >
     Registered 2026-05-10 from user-provided phenomenology (Daniel,
     consultant psychiatrist + REE author): "I observe a drive in me to
@@ -28929,5 +28951,196 @@
     different behavioural signatures and the lit is not
     decisive.
   location: docs/architecture/policy_primitive_granularity.md
+
+- id: MECH-320
+  title: "tonic_vigor_coupling_score_bias (capacity-keyed E3 score-side action drive / mesolimbic-DA-vigor-analog / average-reward-rate opportunity-cost regulator). First child mechanism for ARC-066. Adds a tonic vigor scalar v_t to E3 trajectory scoring as an additive bias toward action-trajectories (or equivalently an additive cost on no-op trajectories), where v_t is a slow EWMA over the realised E3-score-receipt stream. Target-free: bias applies regardless of whether any z_goal is currently active. Distinct from MECH-313 (LC-NE noise floor -- noise on choice, orthogonal axis), MECH-216 (target-conditioned wanting), SD-012 (deficit-keyed drive, opposite coupling), and ARC-068 (opportunity-cost no-op penalty -- mathematical complement that may collapse with MECH-320 into one signed scalar at design refinement)."
+  claim_type: mechanism_hypothesis
+  subject: action.tonic_vigor_coupling_score_bias
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-066     # parent architectural commitment (capacity-keyed action drive)
+    - MECH-313    # LC-NE noise floor; orthogonal axis; lit-pull R2 verdict establishes non-redundancy
+  functional_restatement: >
+    MECH-320 names the primary child mechanism for ARC-066. It adds a
+    tonic vigor scalar v_t to E3 trajectory scoring such that action-
+    trajectories receive an additive bias of magnitude v_t * w_action
+    and no-op / passive trajectories receive an additive cost of
+    magnitude v_t * w_passive (with w_action + w_passive normalised so
+    that the formalism is equivalent to a single signed scalar applied
+    to the action-vs-no-op contrast).
+
+    The biology grounding (per ARC-066 lit-pull synthesis 2026-05-10):
+      - Niv et al. 2007 (Psychopharmacology) gives the formalism --
+        long-run average reward rate enters the cost-benefit equation
+        as an additive opportunity cost on time-spent-passive,
+        equivalently an additive bonus on time-spent-acting.
+      - Salamone & Correa 2012 (Neuron) gives the substrate identity --
+        mesolimbic / accumbens DA encodes the activational dimension
+        of motivation (behavioural activation, exertion of effort,
+        sustained task engagement), dissociable from hedonic / liking.
+      - Beierholm et al. 2013 (Neuropsychopharmacology) gives the
+        human pharmacological causal test -- L-DOPA strengthens the
+        avg-reward-rate-vigor coupling.
+      - Depue & Collins 1999 (BBS) gives the abstract-level commitment
+        that this is a tonic personality dimension keyed to the same
+        DA substrate.
+
+    The capacity scalar v_t is computed as:
+      v_t = ewma_window(realised_E3_score_receipt, half_life=H)
+            * gate_energy(energy_t)
+            * gate_drive(drive_t)
+            * gate_pe(recent_pe_t)
+    where the EWMA is the PRIMARY signal (per Niv 2007 / lit-pull R4
+    verdict) and the gate_* functions are SECONDARY MODULATORS that
+    suppress vigor when capacity proxies are unfavourable. Default
+    gates: gate_energy = 1 if energy >= e_min else energy / e_min;
+    gate_drive = 1 if drive < d_max else (max -- linearly reduces
+    when in z_goal-pursuit corner); gate_pe = 1 if pe < pe_max else
+    suppresses (high PE = attend / consolidate, not act). H, e_min,
+    d_max, pe_max are config knobs with phase-1 defaults TBD at
+    substrate-landing time.
+
+    The implementation lands at the e3.select() call site in
+    REEAgent.select_action(), parallel to where MECH-313 NoiseFloor
+    is wired. Pure-arithmetic regulator (no learned parameters).
+    Composes orthogonally with MECH-313: MECH-313 lifts softmax
+    temperature uniformly (entropy on choice); MECH-320 adds a
+    directional bias on the score axis (action over no-op). The two
+    can hold simultaneously. Composes with ARC-068 (opportunity-cost
+    no-op penalty) at the architectural level: if ARC-068 lands as a
+    separate child MECH with its own scalar, the two scalars may be
+    distinct; if ARC-068 collapses with MECH-320 into a single signed
+    scalar, MECH-320's w_passive term becomes ARC-068's substrate.
+    The collapse decision is deferred to the ARC-068 lit-pull.
+
+    Falsifiable prediction (substrate-readiness): with MECH-320 OFF
+    in the well-fed-safe-familiar regime (full energy, no z_goal
+    active, familiar environment, no harm signal) the agent is
+    behaviourally inert -- action density at the MECH-313 noise
+    floor only. With MECH-320 ON, action density rises monotonically
+    with v_t even in the same conditions. The discriminative-pair
+    validation experiment (V3-EXQ-TBD per /queue-experiment skill):
+      ARM_0  baseline (MECH-313 ON, MECH-320 OFF) -- predicted inert.
+      ARM_1  ADDITIVE primary (MECH-320 ON, additive form).
+      ARM_2  MULTIPLICATIVE secondary (MECH-320 ON, gain form).
+    R3 falsifiable secondary alternative (multiplicative gain) is
+    distinguishable from primary via parametric sweep on a pre-existing
+    action preference: under additive, the action-vs-no-op gap scales
+    linearly with v_t regardless of pre-existing preference; under
+    multiplicative, the gap scales differentially when the pre-
+    existing preference is strong. Both implementations differ by ~3
+    lines of arithmetic at the call site; the experiment chooses
+    which one lands as primary.
+  evidence_quality_note: >
+    Registered 2026-05-10 from ARC-066 lit-pull synthesis (R3 +
+    R4 verdicts).
+
+    R3 implementation shape (additive primary, multiplicative
+    falsifiable secondary): grounded in Niv 2007's opportunity-cost
+    derivation. Beierholm 2013 RT data is consistent with both;
+    parametric-sweep validation experiment will discriminate.
+
+    R4 capacity scalar composition (slow EWMA over realised E3-score-
+    receipt as primary; internal-state gates as secondary): grounded
+    in Niv 2007 average-reward-rate formalism + Beierholm 2013 human
+    empirical confirmation that the empirically tested scalar is
+    across-trial reward history, not internal physiological capacity.
+    Lit anchors:
+      - Niv et al. 2007 (Psychopharmacology) -- formalism (R3 + R4
+        primary)
+      - Salamone & Correa 2012 (Neuron) -- mesolimbic DA substrate
+        identity (R1)
+      - Beierholm et al. 2013 (Neuropsychopharmacology) -- human L-DOPA
+        causal test (R1, R3, R4)
+      - Depue & Collins 1999 (BBS) -- BAS abstract-level commitment
+        (R1 abstract level)
+    See: evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md
+    Aggregate ARC-066 lit_conf 0.789 supports.
+
+    Distinct-from contracts (verified at design time):
+      - MECH-313 (stochastic_noise_floor): orthogonal axis. MECH-313
+        lifts softmax temperature uniformly; MECH-320 adds directional
+        bias on score axis. Lit-pull R2 verdict (Kane et al. 2017
+        DREADD test) establishes that LC-NE tonic mode is one
+        mechanism (noise = MECH-313), not two -- MECH-320 must therefore
+        NOT be wired through an LC-NE-direction analog; its substrate
+        is mesolimbic DA-vigor.
+      - MECH-216 (e1_predictive_wanting / schema readout):
+        target-conditioned. MECH-320 is target-free; the two compose
+        cleanly when both fire (a specific predicted target +
+        general-action-bias vigor) but neither subsumes the other.
+      - SD-012 (homeostatic_drive_modulation): drive RISES as energy
+        FALLS. MECH-320 vigor scales with capacity (rises when
+        energy is high). Both can hold simultaneously: depletion
+        recruits z_goal pursuit AND surplus recruits target-free
+        action. The gate_drive secondary modulator handles the
+        deficit-corner attribution.
+      - ARC-068 (opportunity_cost_no_op_penalty): mathematical
+        complement. MECH-320 = additive bonus on action; ARC-068 =
+        additive cost on no-op. Both are formally equivalent under
+        the same scalar; whether they collapse to one child MECH
+        or stay as two separable mechanisms is open until the
+        ARC-068 lit-pull lands.
+
+    Not yet experimentally tested. Substrate-landing experiment is
+    V3-EXQ-TBD substrate-readiness diagnostic (UC1 instantiation, UC2
+    master-OFF backward-compat, UC3 lift-arithmetic sweep, UC4
+    select_action wiring contract, UC5 simulation-gate harmless).
+    Behavioural validation experiment is the 3-arm discriminative
+    pair (baseline / additive / multiplicative) on a well-fed-safe-
+    familiar environment substrate.
+  notes: >
+    Companion-claim cross-reference: MECH-320 is the first child
+    mechanism for ARC-066. Companion ARC-066-family child mechanisms
+    deferred to their respective lit-pulls:
+      - ARC-067 (idle_aversion_boredom) child MECH -- pending pull.
+        Likely a z_harm_a-side accumulator on engagement-rate, NOT a
+        score-side mechanism (ARC-067 routes via affective valence).
+      - ARC-068 (opportunity_cost_no_op_penalty) child MECH --
+        pending pull. May collapse with MECH-320 into one signed
+        scalar (per ARC-066 lit-pull R3 verdict), or land as a
+        separable mechanism on the no-op-trajectory cost side.
+
+    Implementation-phase placement (parallel to MECH-313 phase-1
+    instantiation choice, see MECH-313 notes): a separate
+    TonicVigor module at the e3.select() call site is the cleanest
+    phase-1 placement, sitting alongside NoiseFloor in
+    REEAgent.select_action(). Whether the policy-layer regulators
+    eventually consolidate into one module (capturing MECH-313 noise
+    + MECH-314 curiosity + MECH-320 vigor as a unified policy-side
+    regulator stack) is open and depends on how the GatedPolicy
+    territory evolves. Re-evaluate at substrate-landing time.
+
+    HYBRID-naming convention (parallel to MECH-313): the title carries
+    both the REE-internal architectural name
+    (tonic_vigor_coupling_score_bias) and the literature anchors
+    (mesolimbic-DA-vigor-analog / average-reward-rate /
+    opportunity-cost). Grep-able under both REE-native search and
+    biology-search.
+
+    Open Q-claims worth registering at substrate-landing time:
+      - Q-XXX: ARC-066 vs ARC-068 collapse -- does MECH-320 with a
+        signed v_t (positive on action, negative on passive) cleanly
+        cover ARC-068, or does ARC-068 need its own scalar that
+        differs in dynamics? Discriminative experiment: parametrise
+        an environment where opportunity cost (avg reward rate) is
+        DECOUPLED from current capacity (energy / drive / PE) -- if
+        the two scalars must differ, ARC-068 is mechanistically
+        separate.
+      - Q-XXX: tonic-DA isolation -- ARC-066 lit-pull noted that L-DOPA
+        elevates both tonic and phasic DA, leaving the tonic-vs-phasic
+        dissociation in Beierholm 2013 imperfect. Is the MECH-320
+        scalar best modelled as a slow EWMA (tonic analog) or as a
+        slow EWMA of phasic events (which shows the same surface
+        behaviour but a different mechanism)? Discriminative experiment
+        would manipulate the time-scale of reward delivery and
+        observe whether v_t lags reward changes or tracks them
+        instantaneously.
+  location: docs/architecture/non_deficit_action_drives.md
 
 

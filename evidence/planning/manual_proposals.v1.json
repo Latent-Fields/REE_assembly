@@ -1093,11 +1093,11 @@
         "MECH-287 broadcast invalidation trigger wired (pending; online arm implementation landed with attribution_weight integration but trigger emission module is separate)"
       ],
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "claims_tested": [
         "MECH-285"
       ],
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null
@@ -1179,6 +1179,29 @@
       ],
       "notes": "Companion to V3-EXQ-541a. Plan-of-record sleep_substrate_plan.md Phase 1 Q1 named the step as tunable with 0.1 placeholder default; this proposal turns the placeholder into evidence. Lightweight: zero new substrate code -- the step is already a config knob. Same script structure as V3-EXQ-541a with a 5-arm parametric loop. Originally added 2026-05-08T22:49Z under proposal_id EXP-0171; renamed to EXP-MECH204-STEP-SWEEP 2026-05-09T12:34Z to resolve collision with the pre-existing EXP-0171 (SD-017 substrate-readiness probe, executed by V3-EXQ-500). Tracking by claim_id + executed_by going forward.",
       "executed_note": "Queued as V3-EXQ-541b 2026-05-09T12:30Z; auto-claimed by DLAPTOP-4.local at 12:33:58Z within seconds. PASS / FAIL pending. If PASS, F1+step-tuning is the validated MECH-204 closure; if FAIL on C4 across all defensible steps, Phase 7 / Option B becomes load-bearing per the F2-discarded decision recorded in sleep_substrate_plan.md."
+    },
+    {
+      "proposal_id": "EXP-MECH320-SUBSTRATE-READINESS",
+      "claim_id": "MECH-320",
+      "proposal_type": "substrate_readiness_diagnostic",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "smoke",
+      "status": "open",
+      "added_utc": "2026-05-10",
+      "machine_affinity": "any",
+      "estimated_minutes": 10,
+      "prerequisites": [
+        "MECH-320 substrate landed in ree-v3/ree_core/policy/ (TonicVigor module + REEConfig knobs + select_action wiring)",
+        "MECH-320 default OFF (master switch); bit-identical to current behaviour when disabled"
+      ],
+      "objective": "MECH-320 substrate-readiness diagnostic: verify the additive vigor-bias regulator instantiates correctly, master-OFF preserves baseline behaviour bit-identically, lift-arithmetic sweep produces monotone shift in action-vs-no-op score gap, and the EWMA scalar updates correctly in response to an injected reward stream. UC1 instantiation, UC2 master-OFF backward-compat, UC3 lift-arithmetic sweep, UC4 select_action wiring contract via act_with_split_obs, UC5 simulation-gate harmless (vigor scalar should not write through MECH-094 hypothesis-tag gate during E2 rollouts).",
+      "design": "5-UC substrate-readiness pattern parallel to V3-EXQ-544 MECH-313 readiness. UC1 instantiate TonicVigor with default config; assert module surface (compute_v_t, score_bias). UC2 master-OFF: full select_action call equals baseline call bit-identically (rng-stable). UC3 lift-arithmetic sweep: with synthetic reward stream of constant rate r, v_t -> r in steady state; with reward step from r1 to r2, v_t crosses (r1+r2)/2 at t = half_life. UC4 wiring contract: in act_with_split_obs (full pipeline), score_bias is added to E3 trajectory scores at the action-vs-no-op contrast as expected; non-action trajectories unchanged. UC5 simulation gate: during E2 rollout (simulation mode), TonicVigor.compute_v_t can update internal state but score_bias is NOT applied to E2-internal trajectory selection. Smoke threshold: 5/5 PASS, full contracts suite regression-clean.",
+      "claims_tested": [
+        "MECH-320"
+      ],
+      "notes": "First validation step for MECH-320 (ARC-066 child). Behavioural validation (3-arm discriminative pair: baseline / additive / multiplicative) is a separate downstream proposal once substrate-readiness lands. The discriminative pair runs on a well-fed-safe-familiar environment substrate (suitable candidate: SD-054 reef in well-fed-safe regime) -- predicted: ARM_0 baseline = inert at MECH-313 noise floor; ARM_1 additive = action density rises monotonically with v_t; ARM_2 multiplicative = action-vs-no-op gap scales differentially with pre-existing action preference. R3 verdict (lit-pull synthesis) recommends additive as primary; this experiment chooses which lands.",
+      "lit_anchor": "evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md (R3 + R4 verdicts)"
     }
   ]
 }
