@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_acc_volatility_behrens_2007",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-269", "MECH-284", "MECH-287", "MECH-312"],
+  "source": {
+    "title": "Learning the value of information in an uncertain world",
+    "authors": ["Timothy E.J. Behrens", "Mark W. Woolrich", "Mark E. Walton", "Matthew F.S. Rushworth"],
+    "year": 2007,
+    "venue": "Nature Neuroscience 10:1214-1221",
+    "doi": "10.1038/nn1954",
+    "url": "https://www.nature.com/articles/nn1954"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Foundational empirical demonstration that humans optimally track environmental volatility and use it to modulate learning rates, with ACC encoding the volatility estimate. Source quality high (Nature Neuroscience, Rushworth lab). Mapping fidelity is moderate -- Behrens 2007 is the cleanest existing-literature analog for REE's V_s machinery (a substrate-level signal that tracks how trustworthy the world model currently is and modulates downstream learning weights), BUT the resolution is wrong. Behrens 2007 tracks GLOBAL volatility (one volatility estimate per task), whereas REE's V_s is per-region: each region carries its own freshness signal that propagates to rules indexed in that region. This is the key place where REE genuinely diverges from the literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Behrens 2007 estimates volatility at task scope, not at per-region or per-context scope. The closest behavioural extension (Bouton-style contextual renewal) treats context as a categorical retrieval cue, not as a continuous freshness scalar.",
+    "The ACC volatility signal in Behrens modulates LEARNING RATE on the global value estimate. REE's V_s modulates RULE TRUST -- whether the rule should be applied at all in this region. These are related but functionally distinct."
+  ],
+  "tags": ["mech_269", "mech_284", "mech_287", "mech_312", "v_s", "volatility", "acc", "model_freshness", "region_staleness"],
+  "mapping": {
+    "source_claim_statement": "Human subjects performing a probabilistic decision task track the volatility (rate of change) of the reward contingencies and use this estimate to modulate their learning rate -- higher learning rate when volatility is high, lower when stable. The volatility estimate is reflected in fMRI BOLD signal in anterior cingulate cortex (ACC), and across-subject variability in this signal predicts across-subject variability in learning-rate adjustment. The model that best fits behaviour is Bayesian and treats volatility as a hierarchical hidden state.",
+    "ree_translation": "REE's MECH-269/284/287 verisimilitude scalar V_s posits that each region of the world model carries a freshness signal indicating how trustworthy the agent's current model of that region is, and that rule-arbitration weights are modulated by V_s for the current region. Behrens 2007 is the cleanest existing-literature analog: a substrate-level signal that tracks model-trustworthiness and modulates downstream weight updates. ACC is the documented neural substrate for the volatility signal. The genuine REE divergence is the scope: Behrens tracks task-global volatility; REE tracks per-region freshness. The functional consequence is also different: Behrens modulates learning rate on a single value estimate; REE modulates rule-application trust per channel.",
+    "mapping_caveat": "Three transfer risks. (1) Scope -- task-global vs per-region. The literature has not yet demonstrated per-region freshness signals; the Bouton-style contextual-renewal evidence comes closest but treats context categorically rather than as a continuous freshness scalar. (2) Function -- learning-rate modulation on a value estimate vs trust-modulation on a rule. (3) The Behrens framework assumes a Bayesian normative model; REE's V_s is more pragmatic and does not yet commit to a specific Bayesian formulation.",
+    "source_context": "Human fMRI study, n=15. Probabilistic two-armed bandit task with switching reward contingencies. Bayesian model fit to behaviour, regressed against BOLD signal."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "Mixed direction: the closest existing-literature analog REE could point to, but the per-region scope REE proposes goes meaningfully beyond what Behrens 2007 documents. This entry both supports REE's structural premise (such freshness signals exist and modulate downstream weights) and weakens the strong-claim version (that per-region freshness propagation is already in the literature)."
+  }
+}

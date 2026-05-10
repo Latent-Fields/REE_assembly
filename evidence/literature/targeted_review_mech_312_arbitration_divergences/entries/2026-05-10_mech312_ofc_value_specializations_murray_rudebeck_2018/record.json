@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_ofc_value_specializations_murray_rudebeck_2018",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-312", "SD-010", "SD-011"],
+  "source": {
+    "title": "Specializations for reward-guided decision-making in the primate ventral prefrontal cortex",
+    "authors": ["Elisabeth A. Murray", "Peter H. Rudebeck"],
+    "year": 2018,
+    "venue": "Nature Reviews Neuroscience 19:404-417",
+    "doi": "10.1038/s41583-018-0013-4",
+    "url": "https://www.nature.com/articles/s41583-018-0013-4"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Authoritative primate review documenting the OFC subdivision into distinct value-coding pathways, with the amygdala-OFC interaction supplying affective valence and lateral OFC + IT cortex supplying outcome-identity (sensory-discriminative) information. Source quality high (NRN, both authors are canonical primate-decision-making researchers). Mapping fidelity strong: REE's SD-010 (sensory-discriminative harm) / SD-011 (affective harm) split lines up almost directly with the literature's OFC-medial-vs-lateral / amygdala-vs-IT-cortex pathway distinction. The literature does NOT explicitly frame these as 'arbitration weight inputs' (the closest framing is 'value-component contributions to choice'), so REE's MECH-312-d affective-stream-modulation framing is a closely related but slightly extended interpretation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Murray-Rudebeck framework is descriptive (which OFC subregion does what) rather than algorithmic (how the affective and discriminative streams combine into a choice).",
+    "Cross-species transfer caveats: most primate OFC literature is macaque; rodent OFC is partially homologous but the medial-vs-lateral functional dissociation is less crisp.",
+    "The review treats lesion-driven dissociations (after-amygdala-lesion behaviour vs after-OFC-lesion behaviour) as the primary evidence; the algorithmic combination rule is inferred rather than directly measured."
+  ],
+  "tags": ["mech_312", "sd_010", "sd_011", "ofc", "amygdala", "affective_stream", "discriminative_stream", "dual_stream"],
+  "mapping": {
+    "source_claim_statement": "The primate ventral prefrontal cortex contains specialised subregions for distinct components of reward-guided decision-making. Medial OFC (areas 14, 11, 13) integrates value-comparison signals; central OFC encodes specific outcome identity; lateral OFC + ventrolateral PFC (areas 47/12, 12o) handle credit-assignment and stimulus-reward associations. The amygdala provides affective/hedonic value signals into this system; lesions of the amygdala specifically disrupt affective responses to previously-rewarded stimuli without abolishing identity-driven choice. The OFC + amygdala constitute parallel but interacting streams that supply DISTINCT components of value (sensory-identity, hedonic-affect, comparison) to downstream choice machinery.",
+    "ree_translation": "REE's SD-010 (sensory-discriminative harm stream, z_harm_s) and SD-011 (affective harm stream, z_harm_a) propose that nociceptive content reaches downstream arbitration via two structurally distinct channels carrying different feature content. MECH-312 then proposes that these streams are weighted distinctly into rule-arbitration. Murray & Rudebeck's framework provides the closest biological precedent: the macaque amygdala-OFC system has exactly two such streams (affective via amygdala, discriminative via lateral OFC/IT cortex), and they combine into choice via medial OFC. The literature does not name these as 'arbitration weights' but the structural separation REE proposes maps cleanly onto the documented anatomy.",
+    "mapping_caveat": "Two transfer risks. (1) The Murray-Rudebeck literature concerns value-guided choice between rewarding options; REE's SD-010/011 concern harm-avoidance specifically. The biological streams may map cleanly to harm (amygdala unequivocally codes aversive valence) but the OFC subdivision evidence is reward-side. (2) The combination rule -- how the affective and discriminative streams are combined into a choice -- is not specified in the review. REE's MECH-312 must commit to a combination rule (additive logit, multiplicative gate, winner-take-all) that the literature does not directly support or refute.",
+    "source_context": "Review of macaque OFC + amygdala + IT cortex lesion / fMRI / single-unit literature, ~50-paper coverage. Primary species macaque; some human fMRI cross-references."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "The structural distinction REE needs (two parallel streams carrying affect vs identity) is well-documented. The functional combination into arbitration weights is REE's extension; the review does not foreclose it but does not directly confirm it either."
+  }
+}

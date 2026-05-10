@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_reverse_replay_offline_foster_wilson_2006",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-094"],
+  "source": {
+    "title": "Reverse replay of behavioural sequences in hippocampal place cells during the awake state",
+    "authors": ["David J. Foster", "Matthew A. Wilson"],
+    "year": 2006,
+    "venue": "Nature 440(7084):680-683",
+    "doi": "10.1038/nature04587",
+    "url": "https://www.nature.com/articles/nature04587"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Foundational empirical demonstration that awake-quiescent hippocampal replay carries content in a temporally-reversed order relative to waking experience. This is the single cleanest piece of evidence that the substrate has a structural property (reverse temporal order) which downstream regions could in principle use as a discriminative signal to distinguish replay-driven inputs from waking inputs -- exactly the substrate-level marker MECH-094's hypothesis-tag would need. Source quality very high (Nature, Wilson lab). Mapping fidelity moderate-to-high (the discriminative-signature exists; whether downstream regions actually USE it as a write-gate is not demonstrated here).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Foster & Wilson demonstrate the discriminable signature exists but do not test whether any downstream region gates writes on the basis of replay vs waking temporal direction.",
+    "The reverse-replay phenomenon is observed during awake quiescent rest immediately after experience, not during arbitrary simulation -- the timing constraint may be too tight for REE's general simulation-mode tag."
+  ],
+  "tags": ["mech_094", "mech_319_candidate", "reverse_replay", "swr", "simulation_mode", "discriminable_signature"],
+  "mapping": {
+    "source_claim_statement": "During pauses in active behaviour on a linear track, hippocampal place-cell sequences replay the just-experienced trajectory in temporally REVERSED order (last-visited place fires first). Replay events are repeated, are not random, and are temporally compressed relative to waking experience. The reverse-temporal-order signature is structurally distinct from any sequence that would have been emitted during waking active running.",
+    "ree_translation": "REE's MECH-094 hypothesis-tag posits that simulation/replay-driven trajectories carry a discriminable marker that downstream rule-write machinery can read to suppress the post-commit write channel. Foster & Wilson demonstrate that one such marker exists at the substrate level: the temporal direction of place-cell firing during awake quiescent replay is structurally inverted relative to waking experience, and is therefore in-principle available as a discriminable signal. This is the most concrete biological precondition for MECH-319's proposed mechanism. The 2006 paper does not show that downstream regions actually exploit this signal as a write-gate, but it establishes that the signal is there to be exploited.",
+    "mapping_caveat": "Two limits. (1) Reverse-replay specifically is one of several SWR-time signatures (forward replay, preplay, mixed orderings); the FULL set of replay-time signatures and whether they cluster cleanly into a 'simulation mode vs not' binary is unsettled. REE's categorical-tag framing may be cleaner than the empirical phenomenology supports. (2) The reverse-replay phenomenon was characterised on a behaviourally-driven 1D track; whether the same temporal-direction signature obtains for non-spatial REE-relevant tasks (object choice, harm avoidance) is an extrapolation.",
+    "source_context": "Single-unit recording in 4 rats running on linear tracks for food reward. Awake-quiescent replay events detected in the seconds-to-minutes after each lap. Sequences decoded by population firing reconstruction."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "High-quality empirical paper. The structural marker REE needs (a discriminable replay-vs-waking signature) is demonstrated; the functional use of that marker (gating write rules) is REE's contribution to test."
+  }
+}

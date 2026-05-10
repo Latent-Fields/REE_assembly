@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_pavlovian_instrumental_arbitration_dorfman_2021",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-312"],
+  "source": {
+    "title": "Neural signatures of arbitration between Pavlovian and instrumental action selection",
+    "authors": ["Samuel J. Gershman", "Marc Guitart-Masip", "James F. Cavanagh"],
+    "year": 2021,
+    "venue": "PLOS Computational Biology 17(2):e1008553",
+    "doi": "10.1371/journal.pcbi.1008553",
+    "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008553"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Computational + EEG/fMRI demonstration that arbitration between Pavlovian and instrumental control is dynamically modulated within a single session, and that the modulation is governed by an inferred controllability variable that is itself a separate computation from per-channel reliability. This is the closest existing-literature evidence that >2-channel arbitration with multiple modulating variables (controllability + reliability + Pavlovian bias) is the norm rather than the exception in biological arbitration. Source quality high (Gershman lab, PLOS Comp Bio). Mapping fidelity moderate -- supports REE's MECH-312 multi-variable claim but the specific channel set (Pavlovian + instrumental) is different from REE's (uncertainty + practice + diversity).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Pavlovian-vs-instrumental arbitration framework treats Pavlovian responses as bias terms that competes with instrumental control, not as a co-equal arbitration channel. REE's MECH-312 with 3+ channels of equal status is structurally different.",
+    "Controllability inference is itself a Bayesian latent-state estimate; REE has not committed to a normative Bayesian framework for V_s or for arbitration weights more generally."
+  ],
+  "tags": ["mech_312", "arbitration", "pavlovian_instrumental", "controllability", "multi_variable", "dynamic_arbitration"],
+  "mapping": {
+    "source_claim_statement": "The balance between Pavlovian and instrumental influences on action selection is dynamically arbitrated within a single experimental session. The arbitration is driven by an inferred controllability variable -- the agent's estimate of how much its actions actually influence outcomes. When controllability is inferred to be low, Pavlovian biases dominate; when high, instrumental control dominates. EEG and fMRI signatures of the controllability inference are distinct from per-channel reliability signals, indicating that arbitration is governed by multiple computations operating in parallel.",
+    "ree_translation": "REE's MECH-312 needs an arbitration mechanism that can handle multiple channels (3+) modulated by multiple variables (uncertainty + practice maturity + V_s freshness + diversity pressure + simulation-mode tag). Gershman et al 2021 demonstrate the existence of biological arbitration that already does this in the Pavlovian-vs-instrumental case: the controllability variable is an additional modulating signal beyond per-channel reliability, and the arbitration is dynamically updated within a session. This supports the structural premise that multi-variable arbitration is biologically plausible and points to controllability/agency as a candidate ADDITIONAL modulating variable REE has not yet considered explicitly.",
+    "mapping_caveat": "Two transfer risks. (1) Pavlovian-vs-instrumental is a special case of arbitration where one channel (Pavlovian) is hard-wired and the other (instrumental) is learned; REE's MECH-312 has multiple learned channels. The arbitration mechanism may differ. (2) Controllability is a specific modulating variable that REE has not yet operationalised; whether it should be added to MECH-312's modulating-variable set is a substrate-design call.",
+    "source_context": "Computational model fit to two prior datasets: one EEG, one fMRI, both go/no-go tasks. Re-analysis approach; not new behavioural data."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Computational re-analysis paper. Strong on the principle (multi-variable arbitration with dynamic within-session updating is biologically real); moderate on direct REE applicability because the channel set differs."
+  }
+}

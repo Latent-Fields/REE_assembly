@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_swr_consolidation_review_joo_frank_2018",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-094", "MECH-312"],
+  "source": {
+    "title": "The hippocampal sharp wave-ripple in memory retrieval for immediate use and consolidation",
+    "authors": ["Hannah R. Joo", "Loren M. Frank"],
+    "year": 2018,
+    "venue": "Nature Reviews Neuroscience 19:744-757",
+    "doi": "10.1038/s41583-018-0077-1",
+    "url": "https://www.nature.com/articles/s41583-018-0077-1"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Authoritative review of the canonical SWR substrate and its dual role (retrieval-for-immediate-use vs consolidation). Strong source quality (Nature Reviews Neuroscience, Frank lab). Mapping fidelity is moderate -- the review describes that SWRs route hippocampal content to downstream cortical targets, but does NOT describe a categorical write-gate that distinguishes 'rule applied during simulation/replay' from 'rule applied during waking action' in the specific REE sense (a per-rule tag carried by the simulated trajectory that suppresses the post-commit write channel). The biological substrate has the timing and the routing machinery REE needs, but the literature treats SWR-content downstream effects as continuous strength modulation, not as a discrete simulation-mode tag. Evidence direction MIXED because the substrate exists but the specific REE mechanism (categorical gate) is not what the literature reports.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Joo & Frank treat SWR-mediated hippocampal-to-cortical communication as a continuous-strength routing event, not as a categorical simulation-vs-action distinction in the receiving cortex's write rules.",
+    "The review does not describe any biological substrate that suppresses arbitration-weight updates specifically during replay relative to waking action."
+  ],
+  "tags": ["mech_094", "mech_312", "mech_319_candidate", "swr", "replay", "write_gating", "simulation_mode", "consolidation"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal sharp wave-ripples (SWRs) are events of highly synchronous neural firing during which sequences of place-cell activity replay past or potential future spatial trajectories. SWRs serve a dual role: they route hippocampal content to downstream regions for immediate use (decision-making, planning, recollection) and they initiate memory consolidation. Disrupting SWRs impairs spatial working memory and consolidation; biased SWR content alters subsequent behaviour.",
+    "ree_translation": "REE's MECH-094 hypothesis-tag and the candidate MECH-319 simulation-mode write-gate posit that rule-application during simulation/replay carries a categorical tag that suppresses arbitration-weight updates which would otherwise be triggered if the same rule were applied during waking action. Joo & Frank's review confirms that the SWR substrate exists, that it operates in both awake-quiescent and sleep states, and that its content can be intervened upon -- this is the biological substrate REE would need. But the review's framing of downstream effects is continuous (strength modulation, association formation) rather than the categorical-tag form REE proposes.",
+    "mapping_caveat": "The review describes a dual-purpose substrate (immediate use + consolidation) but does not test or report whether downstream regions categorically distinguish replay-driven inputs from waking-driven inputs at the level of write-rule eligibility. Closest the literature comes is the observation that SWR-coordinated cortical responses are temporally compressed relative to waking experience -- this MIGHT serve as an implicit tag but the review does not frame it that way. Transfer risk is therefore moderate-to-high: REE may be proposing a function the substrate does not actually serve, OR REE may be naming a function that exists but has not yet been characterised at the cell/synaptic level.",
+    "source_context": "Review paper covering rodent (primarily) and primate hippocampal SWR literature, single-unit recording + closed-loop disruption + content-decoding. No direct REE-relevant computational model."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Source quality is high (canonical review). Mapping fidelity is moderate -- the substrate is right but the specific REE mechanism (categorical write-gate based on simulation-mode tag) is not described in the form REE needs. Transfer risk is real because REE's claim is more specific than what the literature has tested."
+  }
+}

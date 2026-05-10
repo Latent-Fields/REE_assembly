@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_amygdala_many_roads_pessoa_adolphs_2010",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-312", "SD-011"],
+  "source": {
+    "title": "Emotion processing and the amygdala: from a 'low road' to 'many roads' of evaluating biological significance",
+    "authors": ["Luiz Pessoa", "Ralph Adolphs"],
+    "year": 2010,
+    "venue": "Nature Reviews Neuroscience 11:773-782",
+    "doi": "10.1038/nrn2920",
+    "url": "https://www.nature.com/articles/nrn2920"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Influential review that reframes amygdala function from a single 'fast affective alarm' channel into a coordinator of multiple cortical-subcortical evaluation pathways for biological significance. Source quality high (NRN, two leading affective-neuroscience theorists). Mapping fidelity moderate -- the 'many roads' framing supports REE's premise that affective evaluation is a SEPARATE channel from sensory-discriminative classification, but the review does NOT specifically address how this affective channel is wired into downstream choice arbitration the way REE's MECH-312-d would require. This entry mainly cross-supports the Murray-Rudebeck stream-separation argument from a different angle (cortical-coordination-of-significance-evaluation rather than primate-OFC-anatomy).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 'many roads' framework is most directly an argument against the older subcortical 'low road' model of fast affective processing; it is not directly an argument for REE's specific dual-stream-into-arbitration claim.",
+    "The review treats the amygdala as a coordinator of cortical evaluation, which complicates a clean 'amygdala = affective stream / cortex = discriminative stream' parcellation."
+  ],
+  "tags": ["mech_312", "sd_011", "amygdala", "affective_evaluation", "many_roads", "biological_significance"],
+  "mapping": {
+    "source_claim_statement": "Affective processing of visual stimuli is not mediated by a single fast subcortical pathway through superior colliculus and pulvinar to amygdala (the 'low road'). Instead, the amygdala coordinates multiple cortical and subcortical pathways that evaluate biological significance along multiple dimensions (salience, valence, ambiguity, unpredictability, reward/threat probability). Cortical contributions to affective processing are larger than the older framework allowed. The amygdala is best characterised as a hub that integrates broadly-distributed evaluations rather than as a single affective output channel.",
+    "ree_translation": "The Pessoa-Adolphs framework is consistent with REE's premise that affective evaluation is structurally separate from sensory-discriminative classification (the 'many roads' include affect-specific routes that are distinct from the IT-cortex-style identification stream). It supports MECH-312-d's structural premise (separate affective evaluation pathway) but is somewhat in tension with the cleaner interpretation that the amygdala IS the affective stream. Under Pessoa-Adolphs, the amygdala is the COORDINATOR of an evaluation network that includes cortical contributions, not the sole-source of affective valence. REE's MECH-312-d still has biological support but the granularity is messier than a clean two-stream picture would imply.",
+    "mapping_caveat": "The biggest mapping gap: Pessoa-Adolphs shifts the amygdala from a feedforward affective-output node to a coordinator-of-distributed-evaluation node. REE substrate would have to take a position on whether z_harm_a is 'the affective stream' (cleaner / more lossy) or 'the readout of an amygdala-coordinated affective evaluation network' (more biologically faithful / more complex). The latter is closer to Pessoa-Adolphs but harder to operationalise in V3.",
+    "source_context": "Review of human + primate fMRI, lesion, and tract-tracing literature on amygdala function in affective evaluation. Substantial coverage of cortical contributions."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Confidence reduced by the mapping gap: Pessoa-Adolphs supports the REE premise that affect is a separate evaluation channel but complicates the simple two-stream picture by distributing affective evaluation across a network."
+  }
+}

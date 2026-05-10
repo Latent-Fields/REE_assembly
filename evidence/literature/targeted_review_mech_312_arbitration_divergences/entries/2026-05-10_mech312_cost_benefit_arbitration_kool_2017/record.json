@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_cost_benefit_arbitration_kool_2017",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-312"],
+  "source": {
+    "title": "Cost-benefit arbitration between multiple reinforcement-learning systems",
+    "authors": ["Wouter Kool", "Samuel J. Gershman", "Fiery A. Cushman"],
+    "year": 2017,
+    "venue": "Psychological Science 28(9):1321-1333",
+    "doi": "10.1177/0956797617708288",
+    "url": "https://gershmanlab.com/pubs/KoolGershmanCushman17.pdf"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct empirical demonstration that human arbitration between model-based and model-free systems is governed by a cost-benefit calculation (additional accuracy gained vs cognitive cost paid), not by uncertainty alone. This is the cleanest existing-literature evidence that the multi-variable arbitration combination rule REE needs is multiplicative-cost-style rather than uncertainty-only additive. Source quality high (Gershman lab, Psychological Science). Mapping fidelity strong: REE's MECH-312 needs to combine uncertainty + practice/maturity + diversity-pressure + V_s into arbitration weights, and Kool/Gershman/Cushman demonstrate that the human substrate already does combine multiple variables (uncertainty + cost + reward) in a non-trivially-non-additive way.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Kool/Gershman/Cushman 2017 paper is two-controller (model-based vs model-free), not three-or-more-controller. The combination rule it documents may not generalise cleanly to REE's 3-channel (uncertainty + practice + diversity) arbitration.",
+    "The cost-benefit framing privileges metabolic/cognitive cost as the modulating variable; REE's modulating variables (V_s, practice maturity, diversity pressure) do not map cleanly to cost. The combination rule may need REE-specific adaptation."
+  ],
+  "tags": ["mech_312", "arbitration", "multi_variable", "cost_benefit", "combination_rule", "model_based_model_free"],
+  "mapping": {
+    "source_claim_statement": "Two experiments demonstrated that human deployment of model-based vs model-free reinforcement learning is governed by a cost-benefit calculation: subjects increase model-based control when it confers greater accuracy AND when the rewards of accurate performance are amplified. This goes beyond uncertainty-based arbitration (Daw 2005, Lee 2014) by adding a cost dimension: the brain trades off model-based accuracy against the cognitive cost of running the model-based computation. The combination is non-trivially-non-additive -- under low-stakes conditions even high-uncertainty model-free is preferred over costly model-based, and vice versa.",
+    "ree_translation": "REE's MECH-312 needs to specify how multiple modulating variables (uncertainty, practice/maturity, diversity pressure, V_s freshness) combine into arbitration weights across multiple channels (3+ given Pull 1 R4 + Pull 2 R4 + this pull's D2/D3 outputs). Kool/Gershman/Cushman 2017 is the most direct existing-literature evidence that the relevant combination rule is multiplicative-cost-style: arbitration weights are determined not by adding modulating-variable contributions but by trading off accuracy gains against costs at multiple levels. This recommends a multiplicative-gate combination rule for MECH-312 rather than additive logit. The biological substrate (Kool/Gershman/Cushman implicate dlPFC + ACC for the cost-benefit calculation) is consistent with the standard arbitration-substrate literature.",
+    "mapping_caveat": "Two transfer risks. (1) The 2017 paper concerns two controllers (MB vs MF); REE's MECH-312 has 3+ channels. The cost-benefit combination rule may need to extend to a larger competitor set, which the literature has begun to address (Kool 2018, Boorman 2009) but has not fully resolved. (2) The 'cost' dimension in Kool/Gershman/Cushman is metabolic/cognitive cost; REE's modulating variables (V_s, practice maturity, diversity pressure) do not all map cleanly to cost. Some adaptation is required.",
+    "source_context": "Two human behavioural experiments (n=85, n=205). Two-step task variants with parametric stakes manipulation. Computational model fitting + behavioural analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "High-quality empirical paper that directly addresses the multi-variable combination rule question. Mapping fidelity strong on the principle (multi-variable arbitration is multiplicative-cost-style, not additive); transfer risk is real because REE has more than two controllers and a different set of modulating variables."
+  }
+}

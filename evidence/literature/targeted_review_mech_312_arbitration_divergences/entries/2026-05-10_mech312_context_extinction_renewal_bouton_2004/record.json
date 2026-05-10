@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_312_arbitration_divergences",
+  "entry_id": "2026-05-10_mech312_context_extinction_renewal_bouton_2004",
+  "timestamp_utc": "2026-05-10T08:56:17Z",
+  "claim_ids_tested": ["MECH-269", "MECH-287"],
+  "source": {
+    "title": "Context and behavioral processes in extinction",
+    "authors": ["Mark E. Bouton"],
+    "year": 2004,
+    "venue": "Learning & Memory 11:485-494",
+    "doi": "10.1101/lm.78804",
+    "url": "https://learnmem.cshlp.org/content/11/5/485.full"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Canonical review of context-dependent extinction and renewal effects. Source quality high (Bouton is the foundational researcher in this area; Learning & Memory is the canonical venue). Mapping fidelity moderate -- Bouton's contextual-renewal evidence is the closest behavioural analog to a per-region trust signal (the agent treats the same CS-US association as currently-trusted in one context and currently-untrusted in another), but the framework treats context as a categorical retrieval cue rather than as a continuous freshness scalar. Supports REE's premise that per-region/per-context model trust is a real biological phenomenon; weakens the strong-claim version that the literature already has the continuous-scalar machinery REE proposes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bouton's contextual-renewal framework is categorical (context A vs context B retrieves different memories), not continuous (V_s scalar modulates trust on a graded scale).",
+    "The framework concerns acquisition/extinction of CS-US associations, not the broader REE notion of rule-arbitration weight modulation."
+  ],
+  "tags": ["mech_269", "mech_287", "context_dependent", "renewal", "extinction", "v_s", "region_freshness"],
+  "mapping": {
+    "source_claim_statement": "Extinction does not destroy the original CS-US association; it generates a new context-dependent association that inhibits the original. When the CS is tested in a context different from the extinction context (ABA renewal: trained in A, extinguished in B, tested in A; or ABC renewal: trained in A, extinguished in B, tested in novel context C), the original association reappears -- the extinguished response is 'renewed'. Context functions as a retrieval cue that selects which of multiple associations is currently in force. Extinction memories are particularly context-specific while acquisition memories generalise more broadly.",
+    "ree_translation": "REE's V_s machinery (MECH-269/287) posits that the agent carries a per-region freshness signal that modulates trust in rules indexed in that region. Bouton's contextual-renewal framework demonstrates that biological agents do exhibit per-context memory selection: which CS-US association is in force depends on the current context, and switching contexts can effectively 'restore' a previously-suppressed association. This is the closest behavioural cousin to REE's per-region trust modulation. The fundamental phenomenon (context-dependent memory selection) is well-established. The structural difference is that Bouton's machinery is categorical and retrieval-based whereas REE's V_s is continuous and trust-modulation-based.",
+    "mapping_caveat": "Two transfer risks. (1) Granularity -- categorical context cues vs continuous freshness scalars. REE's V_s could be interpreted as a continuous version of context, which has support in the model-of-context literature (Gershman/Niv state-uncertainty work) but goes beyond Bouton 2004. (2) Function -- Bouton's framework is about which memory is retrieved when responding to a CS; REE's V_s is about how much trust to place in a rule when arbitrating. These are not interchangeable.",
+    "source_context": "Review paper synthesising Pavlovian and instrumental extinction studies in rats. Behavioural focus; some neural-substrate cross-references but not the primary content."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "Strong source quality. Mapping fidelity moderate: per-context memory-selection is well-established but the continuous-scalar form REE proposes goes beyond what this review documents."
+  }
+}
