@@ -1,0 +1,77 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z",
+  "experiment_type": "v3_exq_545_mech314_structured_curiosity_substrate_readiness",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-10T16:45:50.308999Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-314",
+    "MECH-314a",
+    "MECH-314b",
+    "MECH-314c",
+    "ARC-065"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-314": "supports",
+    "MECH-314a": "supports",
+    "MECH-314b": "supports",
+    "MECH-314c": "supports",
+    "ARC-065": "supports"
+  },
+  "metrics": {
+    "UC1_forward_pass_instantiation": {
+      "curiosity_is_module": true,
+      "bias_shape": [
+        5
+      ],
+      "bias_dtype": "torch.float32",
+      "finite": true,
+      "n_waking_calls_after_one_call": 1,
+      "subflavours_fired": 0,
+      "pass": true
+    },
+    "UC2_master_off_no_op": {
+      "off_curiosity_is_none": true,
+      "on_curiosity_is_module": true,
+      "z_world_off_finite": true,
+      "z_world_on_finite": true,
+      "no_select_action_error_off": true,
+      "no_select_action_error_on": true,
+      "pass": true
+    },
+    "UC3_subflavour_flag_set_isolation": {
+      "arm_a_n_fired": 1,
+      "arm_a_nonzero_bias": true,
+      "arm_b_n_fired": 1,
+      "arm_b_nonzero_bias": true,
+      "arm_c_n_fired": 1,
+      "arm_c_nonzero_bias": true,
+      "arm_off_n_fired": 0,
+      "arm_off_zero_bias": true,
+      "pass": true
+    },
+    "UC4_select_action_wiring_contract": {
+      "select_action_error": null,
+      "n_waking_calls": 1,
+      "n_subflavours_fired_at_first_tick": 1,
+      "bias_max_abs": 0.02500000037252903,
+      "uncertainty_signal_nonzero": true,
+      "pass": true
+    },
+    "UC5_mech094_simulation_gate": {
+      "sim_returned_zeros": true,
+      "sim_skip_advanced": true,
+      "waking_counter_unchanged_in_sim": true,
+      "lp_unchanged_in_sim": true,
+      "waking_counter_advanced": true,
+      "skip_counter_not_re_incremented": true,
+      "waking_bias_nonzero": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.9364376068115234,
+  "notes": "MECH-314 (ARC-065) structured_curiosity_bonus substrate-readiness diagnostic. Tests substrate wiring + master + 3 sub-flavour switches at the API level. UC3 is the Q-044 three-arm-ablation flag-set-decision contract. Does NOT test the load-bearing claim of MECH-314 / its sub-flavours or distinct failure signatures -- both require behavioural validation via Q-044 three-arm ablation on V3-EXQ-543b/c successors AFTER substrate landing AND the MECH-318 / MECH-319 absorption-check sessions complete. Pull 1 SYNTHESIS verdicts (R1 BOTH-CHANNELS-NEEDED, R3 sub-flavour split, R4 continuous in computation) are architectural commitments, not signals tested here. 314b and 314c are broadcast scalars in Phase 1; per-candidate refinement is a Phase 2 follow-on."
+}
