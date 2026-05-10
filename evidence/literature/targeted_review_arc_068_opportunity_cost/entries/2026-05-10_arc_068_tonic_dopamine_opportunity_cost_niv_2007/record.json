@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_068_opportunity_cost",
+  "entry_id": "2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007",
+  "timestamp_utc": "2026-05-10T19:50:07Z",
+  "claim_ids_tested": ["ARC-068"],
+  "source": {
+    "title": "Tonic dopamine: opportunity costs and the control of response vigor",
+    "authors": ["Yael Niv", "Nathaniel D. Daw", "Daphna Joel", "Peter Dayan"],
+    "year": 2007,
+    "venue": "Psychopharmacology (Berl)",
+    "doi": "10.1007/s00213-006-0502-4",
+    "pmid": "17031711"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Foundational theoretical anchor for the entire ARC-068 framing. Niv et al. derive an average-reward reinforcement-learning model in which the long-run average rate of reward acts as an opportunity cost on time; this IS the architectural shape ARC-068 commits to, expressed in REE language as `score(no_op) -= avg_reward_rate * time_consumed`. The same paper grounds the ARC-066 vigor side and the ARC-068 opportunity-cost side as TWO FACES of the same scalar — load-bearing for R3 collapse arbitration. Confidence higher than the 0.83 weighting in the parallel ARC-066 entry because for ARC-068 the readout (cost-on-rest) IS what the paper formalises (whereas for ARC-066 the readout was a vigor-on-action by-product). Weighted on heavy mapping fidelity for an architectural claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that omits a long-window average-reward-rate scalar will fail to reproduce the Niv prediction that response latencies / no-op-trajectory selection track reward history independent of any specific currently-pursued target. Without ARC-068, REE has no signal that produces this scaling.",
+    "If the ARC-068 child mechanism uses a fast (single-episode) reward integrator rather than a slow (across-episode) one, it will collapse onto z_goal-local computations and the agent will not exhibit the well-fed-safe-familiar action gradient the family registers.",
+    "If ARC-068 is implemented WITHOUT a corresponding ARC-066 vigor-on-action term (or unified signed scalar), the score-function asymmetry implied by Niv's derivation is broken: the same average-reward scalar should both penalise rest AND inflate action-vigor; an asymmetric implementation will not match the pharmacology data Niv reviews."
+  ],
+  "tags": ["arc_068", "opportunity_cost", "tonic_dopamine", "average_reward_rate", "non_deficit_action_drives", "r1_substrate", "r2_kernel", "r3_collapse_with_arc066", "r4_effort_vs_opportunity"],
+  "mapping": {
+    "source_claim_statement": "In an average-reward reinforcement-learning formulation, the long-run average rate of reward acts as an opportunity cost on time; tonic dopamine in nucleus accumbens reports this scalar. Optimal control balances the cost of acting fast against the benefit of receiving reward earlier, with the opportunity cost of delay rising as the average reward rate rises. Vigor and rest-cost are mathematically the same scalar viewed from opposite signs: positive bias on action latency = negative bias on time-spent-passive.",
+    "ree_translation": "ARC-068 names the architectural slot for exactly the OPPORTUNITY-COST side of the Niv scalar. The candidate child-MECH shape: (a) a long-window EWMA over realised E3-score-receipts (the average reward rate proxy), feeding (b) an additive cost on no-op / repeated-stationary trajectory candidates at E3.score_trajectory, scaling linearly with the scalar. The Niv derivation also licenses (c) collapsing ARC-066 + ARC-068 into a SINGLE signed scalar at the score-aggregation layer, since adding +(rate * time_action) on action candidates is mathematically equivalent (up to a baseline shift) to subtracting (rate * time_passive) on passive candidates. R3 verdict draws on this directly.",
+    "mapping_caveat": "Niv 2007 formalises the timing axis (response latency given that responding occurs); ARC-068 names the WHETHER-rest-or-act selection axis. The mathematical structure transfers cleanly (same scalar, same additive form, opposite sign), but the empirical readout in Niv's reviewed pharmacology is response rate / latency, not act-vs-no-op selection per se. The user-registered ARC-068 functional_restatement explicitly anchors on the latter; treat Niv 2007 as evidence for the SCALAR (long-run avg reward rate) and the FORM (additive opportunity cost on time-consumed) rather than for the specific behavioural readout REE will use.",
+    "source_context": "Theoretical paper, Psychopharmacology (Berl) 2007 (online 2006). Computational derivation in average-cost RL framework, with extensive references to free-operant rodent pharmacology (DA depletion + pharmacological manipulation effects on lever-press rate, latency, willingness to expend effort). According to PubMed, DOI 10.1007/s00213-006-0502-4. NOTE: project briefing cited PNAS as venue -- corrected to Psychopharmacology (Berl)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.86,
+    "transfer_risk": 0.28,
+    "notes": "Source quality very high (foundational paper, >2200 citations, principled derivation, integrates broad pharmacology data). Mapping fidelity strong on substrate (avg reward rate) and form (additive opportunity cost on time); slight scope mismatch on readout (timing vs act-vs-rest). Transfer risk moderate: theoretical formalism transfers cleanly to REE's E3 scoring chain; rodent free-operant grounding has simpler action-space topology than REE's episodic environments, but the architectural commitment is at the algorithmic level rather than the task level."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_068_opportunity_cost",
+  "entry_id": "2026-05-10_arc_068_da_depletion_effort_salamone_correa_2003",
+  "timestamp_utc": "2026-05-10T19:50:07Z",
+  "claim_ids_tested": ["ARC-068"],
+  "source": {
+    "title": "Motivational views of reinforcement: implications for understanding the behavioral functions of nucleus accumbens dopamine",
+    "authors": ["John D. Salamone", "Mercè Correa"],
+    "year": 2003,
+    "venue": "Behav Brain Res",
+    "doi": "10.1016/s0166-4328(02)00282-6",
+    "pmid": "12445713"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical Salamone-Correa review establishing that accumbens dopamine mediates the ACTIVATIONAL aspect of motivation -- the willingness to expend effort against work-related response costs -- separable from primary reinforcement / hedonic reward. This is the load-bearing anchor for R4 (effort-cost vs opportunity-cost separation): Salamone's cost is a movement-energy / response-cost term, NOT an opportunity-cost-on-time term. The two are dissociable. The paper supports ARC-068 indirectly by showing that the activational scalar Niv 2007 attributes to opportunity-cost-on-time has a parallel but DISTINCT effort-cost-on-action substrate (also DA-mediated). For REE this licenses keeping ARC-068 architecturally separate from MECH-258 (cingulate.precision_weighted_pain_PE) effort-cost machinery while acknowledging both terms ride on the same DA system.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses ARC-068 (opportunity-cost-on-time) into the existing effort-cost machinery (MECH-258 et al), Salamone's framework predicts the resulting agent will fail to dissociate the two: DA-depleted Salamone animals reallocate FROM high-effort high-reward TO low-effort low-reward, but they retain primary appetite for food. An REE substrate that conflates effort-cost and opportunity-cost will not reproduce this dissociation under simulated DA depletion (e.g. parametric reduction of the relevant scalar).",
+    "If ARC-068 is instantiated as a movement-energy cost (Salamone's term) rather than a time-foregone-reward cost (Niv's term), it will fail to fire in the well-fed-safe-familiar regime where no movement is being attempted -- Salamone's term scales with movement; ARC-068's must scale with elapsed time independent of motor activity.",
+    "If the implementation lumps opportunity-cost and effort-cost into a single signed scalar, the agent's response to environmental changes will be non-physiological: Salamone's effort-cost responds to action requirements (ratio schedule), Niv's opportunity-cost responds to reward history (rate of reward). They have different temporal kernels; collapsing them produces a kernel that is neither."
+  ],
+  "tags": ["arc_068", "salamone", "dopamine", "effort_cost", "activational_motivation", "non_deficit_action_drives", "r1_substrate", "r4_effort_vs_opportunity"],
+  "mapping": {
+    "source_claim_statement": "Nucleus accumbens dopamine mediates the ACTIVATIONAL aspect of motivation -- the willingness to expend effort and overcome work-related response costs -- separately from primary appetitive / hedonic processes. Low/moderate doses of DA antagonists and accumbens DA depletions suppress instrumental responding for food (especially under high ratio requirements) while leaving primary motivation, appetite, and unconditioned reward intact. In concurrent-choice tasks, DA-depleted animals reallocate AWAY FROM high-effort high-reward options TOWARD low-effort low-reward options -- they prefer the cheaper option even at lower-reward outcome. The framework is incompatible with simple 'DA mediates reward' accounts; DA mediates the COST side of an effort-benefit cost computation.",
+    "ree_translation": "Salamone & Correa 2003 anchor R4 (effort-cost vs opportunity-cost separation). Their effort cost is mechanically distinct from Niv's opportunity cost: Salamone's term scales with action-energy / response-rate requirements (the cost of expensive ACTION); Niv's term scales with elapsed time against avg reward history (the cost of INACTION). REE has the effort-cost term implicitly in MECH-258 (cingulate.precision_weighted_pain_PE) and explicitly in the SD-032b dacc_effort_cost bundle component (default 0.1, see SD-032b implementation_note in claims.yaml). The R4 verdict is: ARC-068 is architecturally distinct from the existing effort-cost machinery and should not be absorbed into it. Both compute on a similar DA system biologically (so they may share modulators), but they are TWO different cost terms with different temporal kernels and different sign-on-different-candidates (effort cost makes hard ACTION less attractive; opportunity cost makes INACTION less attractive). The R3 verdict (ARC-066 + ARC-068 collapse into a single signed scalar) is licit; the R4 collapse (ARC-068 + effort cost) is NOT licit per Salamone.",
+    "mapping_caveat": "The paper is a 2003 review (Behav Brain Res 137:3-25). Salamone has since refined the framework substantially (Salamone & Correa 2012 Neuron, the canonical effort-vigor paper, was already cited in the parallel ARC-066 entry). The 2003 paper is an early synthesis that establishes the activational-vs-primary-reinforcement dissociation; subsequent work made the effort-cost computation more precise. For ARC-068 the load-bearing claim is the activational-vs-appetitive dissociation, which is uncontested in the subsequent literature. Note: project briefing cited 'Salamone et al. 2003' but the most-cited matching paper is Salamone & Correa 2003 (two authors, not 'et al.'). Salamone, Correa, Mingote, Weber 2003 (J Pharmacol Exp Ther) is a related four-author paper from the same year but a different publication; the briefing's citation matches the Behav Brain Res paper most closely.",
+    "source_context": "Behav Brain Res review, 2003 (online 2002). Synthesises rodent operant behaviour, lever-pressing schedule, concurrent-choice, and DA-depletion / DA-antagonist literature. According to PubMed, DOI 10.1016/s0166-4328(02)00282-6."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high (canonical Salamone-Correa review, heavily cited, integrates broad rodent operant pharmacology). Mapping fidelity strong on the effort-vs-opportunity dissociation (R4) and adequate on substrate (DA system as activational); ARC-068's specific opportunity-cost-on-time formulation is more directly from Niv 2007, with Salamone providing the CONTRAST that licenses architectural separation from effort-cost machinery. Transfer risk moderate: rodent operant behaviour, but the architectural commitment is at the algorithmic level."
+  }
+}

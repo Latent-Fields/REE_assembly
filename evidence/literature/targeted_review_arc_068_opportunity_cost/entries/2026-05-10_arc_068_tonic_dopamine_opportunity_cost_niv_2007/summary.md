@@ -1,0 +1,25 @@
+# Niv, Daw, Joel & Dayan 2007 -- Tonic dopamine and opportunity costs (ARC-068 framing)
+
+**Citation:** Niv Y, Daw ND, Joel D, Dayan P. Tonic dopamine: opportunity costs and the control of response vigor. *Psychopharmacology (Berl)*. 2007;191(3):507-520. PMID: 17031711. [DOI](https://doi.org/10.1007/s00213-006-0502-4).
+
+## What the paper does
+
+Niv et al. begin from the observation that the dominant computational story about dopamine -- phasic burst as a TD prediction error driving discrete action selection -- leaves the role of TONIC dopamine underspecified. They derive an account in which the long-run average rate of reward functions as an opportunity cost on time spent passive, and is reported by tonic levels of DA (putatively in nucleus accumbens). The mathematical claim is clean: in an average-cost RL formulation, the optimal response latency varies inversely with the reward rate history. Higher average reward rate implies higher cost-of-delay implies faster responding -- and equivalently, higher cost on remaining passive -- regardless of the specific reward currently being pursued. The paper marshals the free-operant pharmacology evidence (DA depletion / pharmacological manipulation effects on lever-press rate, latency, willingness to expend effort) and shows that the data fit the opportunity-cost framework better than the phasic-PE-only account does.
+
+## Why this matters for ARC-068
+
+The architectural commitment ARC-068 registers is precisely the architectural slot Niv et al. mathematically motivate, but viewed from the opportunity-cost (rest-side) sign rather than the vigor-on-action sign. The ARC-068 mechanism asserts that a passive trajectory pays an additive cost proportional to a tonic average-reward-rate scalar; Niv 2007 derives that scalar from an average-cost RL principle and identifies the substrate as tonic mesolimbic DA. The R1 verdict on ARC-068 vs SD-032b leans heavily on this paper: the Niv opportunity-cost computation is task-INDEPENDENT and reward-history-driven, whereas the SD-032b dACC foraging_value (Kolling 2015 framing) is task-conditioned and current-option-vs-environment-comparator. They share a literature lineage but compute different things at different timescales.
+
+The R3 verdict (ARC-066 vs ARC-068 collapse) is also the cleanest place to lean on this paper. The Niv derivation is symmetric: the same average-reward-rate scalar produces a positive bias on action-vigor AND a negative bias on time-spent-passive. At the score-aggregation layer of E3, this is a single signed scalar viewed from opposite ends. The slot-level registration kept ARC-066 and ARC-068 separate to preserve the design space, but Niv 2007 is the theoretical reason to expect collapse at implementation time.
+
+## Caveats
+
+The biggest scope mismatch is WHETHER-vs-HOW-FAST, identical to the caveat noted in the parallel ARC-066 lit-pull entry. Niv et al. formalise the timing axis (response latency given that responding is happening), not the act-vs-not-act selection axis. ARC-068 is explicitly about the latter. The mathematical transfer is clean -- the same scalar that biases response rate also biases the score gap between action and no-op trajectories -- but the empirical evidence in Niv 2007 directly tests timing readouts in rodent free-operant tasks, not act-vs-not-act selection in episodic environments.
+
+A second scope-related caveat: Niv attributes the scalar to environmental reward history (a slow EMA over realised reward); the user-registered ARC-068 functional_restatement implies a tonic-capacity-keyed scalar that composes with internal capacity state (high energy / low PE / low drive). The two are correlated in normal conditions but mathematically distinct, and the R2 verdict on which kernel to use must explicitly engage this. Niv's derivation is the cleanest theoretical anchor for an environment-history kernel; capacity-state modulation would be a layered modulator on top.
+
+## Confidence reasoning
+
+Source quality very high (foundational paper, heavily cited, principled mathematical derivation, integrates broad rodent pharmacology data). Mapping fidelity strong on the substrate (avg reward rate) and the form (additive opportunity cost on time-consumed); slightly weakened by the WHETHER-vs-HOW-FAST scope mismatch. Transfer risk moderate: the theoretical framework transfers cleanly to REE's E3 scoring chain, but the empirical anchoring is rodent free-operant tasks with simpler action-space topology than REE's open-ended episodic environments. Aggregate 0.86 -- highest of the six-paper ARC-068 cohort, reflecting Niv 2007's load-bearing role across R1, R2, R3, and R4.
+
+According to PubMed, this paper appears under the cited PMID with the DOI as listed; the project briefing's PNAS attribution is corrected to Psychopharmacology (Berl). The same paper was cited in the parallel ARC-066 lit-pull with confidence 0.83 and a different mapping; this entry maps to ARC-068 specifically and assigns 0.86 because the cost-on-rest side IS the readout Niv formalises.

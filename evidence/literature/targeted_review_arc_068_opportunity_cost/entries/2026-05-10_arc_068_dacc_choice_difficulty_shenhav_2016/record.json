@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_068_opportunity_cost",
+  "entry_id": "2026-05-10_arc_068_dacc_choice_difficulty_shenhav_2016",
+  "timestamp_utc": "2026-05-10T19:50:07Z",
+  "claim_ids_tested": ["ARC-068"],
+  "source": {
+    "title": "Dorsal anterior cingulate and ventromedial prefrontal cortex have inverse roles in both foraging and economic choice",
+    "authors": ["Amitai Shenhav", "Mark A. Straccia", "Matthew M. Botvinick", "Jonathan D. Cohen"],
+    "year": 2016,
+    "venue": "Cogn Affect Behav Neurosci",
+    "doi": "10.3758/s13415-016-0458-8",
+    "pmid": "27580609"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "The Shenhav lab's empirical reinterpretation of the dACC-foraging-value signal as choice-difficulty tracking. Direction `weakens` for ARC-068's reliance on the dACC-foraging-value substrate as a clean biological anchor for opportunity-cost-on-rest. If Shenhav is right, the dACC signal Kolling identified is generic choice-difficulty rather than a dedicated foraging-value computation, and ARC-068's biological grounding becomes the Niv 2007 mesolimbic-DA tonic-scalar substrate (not a cingulate signal at all). Confidence moderate because the question is genuinely contested -- this is one side of an active debate, not a settled finding. R1 verdict critically depends on this paper's interpretation prevailing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Shenhav's choice-difficulty interpretation is correct, the SD-032b dACC foraging_value computation does not have the substrate-grounding the implementation_note attributes to it. Both SD-032b and ARC-068 lose their dACC-as-foraging-substrate anchor; ARC-068 falls back to Niv's mesolimbic-DA substrate, SD-032b loses its principal anchor.",
+    "If Shenhav is partially correct (dACC carries both signals but choice-difficulty dominates), the multi-signal framing of Kolling 2016 holds with a different signal weighting -- ARC-068 and SD-032b can still be architecturally separate but the dACC connection for either is weaker than literature commonly assumes.",
+    "If Kolling is correct and Shenhav's reinterpretation is wrong (choice-difficulty signals are confounds, not the primary dACC computation), then SD-032b's foraging-value anchor holds -- but ARC-068's separation from SD-032b still has to lean on the timescale / kernel argument (Niv long-run vs Kolling current-environmental), not on substrate."
+  ],
+  "tags": ["arc_068", "dacc", "choice_difficulty", "foraging_value_dispute", "non_deficit_action_drives", "r1_substrate_boundary"],
+  "mapping": {
+    "source_claim_statement": "What Kolling et al. 2012 / 2016 interpret as a dACC signal tracking foraging value is better described, after methodological corrections, as a signal tracking choice difficulty. Shenhav's group replicate the original Kolling task with a larger sample, address methodological gaps (choice biases, sufficiently broad foraging-value range), and show that dACC activity is best explained by choice-difficulty alone rather than foraging-value-plus-difficulty. They further extend the finding to economic-choice tasks (where the difficulty-vs-foraging-value distinction also collapses in their analysis) and argue that vmPFC plays the inverse role with similar generality. The implication: dACC and vmPFC are both engaged generically across choice types, not dissociated into a foraging-vs-economic-choice division of labour.",
+    "ree_translation": "Shenhav 2016 is the COUNTER-EVIDENCE entry for R1 substrate-boundary verdict. If the dACC signal that Kolling labels 'foraging value' is actually generic choice-difficulty, then the SD-032b foraging_value bundle component (and by extension the ARC-068-vs-SD-032b architectural distinction) loses some of its biological grounding. The synthesis must NOT lean on dACC-as-foraging-substrate alone for either claim. The cleanest architectural escape is to anchor ARC-068 on the Niv 2007 mesolimbic-DA tonic substrate (not contested by Shenhav) and treat the dACC engagement as a CONSEQUENCE rather than a SOURCE of the opportunity-cost computation. SD-032b retains its dACC anchor but must acknowledge the contested status. The R1 verdict is therefore: separate ARC-068 and SD-032b at the architectural level (different timescales, different kernels), but do not over-commit to dACC-as-source for either.",
+    "mapping_caveat": "The paper is the Shenhav-lab side of an ongoing debate; Kolling 2016 review (separate entry) is the Kolling-lab response. The empirical evidence (larger sample, methodological corrections) is non-trivial but not decisive -- the debate is active and the synthesis has to engage both sides. The transfer to ARC-068 is one step removed: Shenhav 2016 weakens the dACC-as-foraging-substrate claim, which by inference weakens any architectural commitment that leans heavily on dACC-as-source. ARC-068's primary substrate anchor is Niv 2007 mesolimbic DA, which is not what Shenhav contests, so the weakening is partial.",
+    "source_context": "fMRI study replicating and extending Kolling 2012 with explicit methodological corrections. Cogn Affect Behav Neurosci 2016. According to PubMed, DOI 10.3758/s13415-016-0458-8."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (large-sample fMRI with explicit replication / extension / methodological corrections, peer-reviewed). Mapping fidelity moderate: the paper is one step removed from ARC-068 (it weakens the substrate anchor of an adjacent claim, SD-032b, which then propagates to ARC-068's architectural argument). Transfer risk moderate-to-high: contested interpretation, fMRI inference, and the implication chain to ARC-068 is multi-step."
+  }
+}

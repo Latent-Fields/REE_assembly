@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_068_opportunity_cost",
+  "entry_id": "2026-05-10_arc_068_patch_foraging_learning_constantino_daw_2015",
+  "timestamp_utc": "2026-05-10T19:50:07Z",
+  "claim_ids_tested": ["ARC-068"],
+  "source": {
+    "title": "Learning the opportunity cost of time in a patch-foraging task",
+    "authors": ["Sara M. Constantino", "Nathaniel D. Daw"],
+    "year": 2015,
+    "venue": "Cogn Affect Behav Neurosci",
+    "doi": "10.3758/s13415-015-0350-y",
+    "pmid": "25917000"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Critical empirical paper for R2 (reward-rate kernel verdict). Constantino & Daw directly test the marginal-value-theorem opportunity-cost-as-learned-threshold model against temporal-difference learning, in a human patch-foraging task with parametric variation of opportunity cost across blocks. The MVT threshold-learning rule (long-window historical avg-reward over previous rewards) wins decisively over TD. This is the load-bearing empirical evidence that the kernel for opportunity-cost computation IS a long-window historical average, not a fast TD-style estimator. Confidence high because the empirical question (which kernel?) is precisely R2, the design is parametric, the human-behavioural readout is direct, and the result is decisive. Slight discount because the task is a foraging task -- there is task-conditioning that ARC-068's always-on framing does not have, so the kernel-form transfers but the always-on regime is one step removed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE implements ARC-068 with a fast TD-style kernel (single-trial / single-episode integrator), Constantino & Daw's data predict the agent will fail to track block-wise opportunity-cost changes the way humans do -- humans behave according to a slow MVT threshold-learning rule, not a fast TD update.",
+    "If the EMA window for ARC-068 is set at the wrong timescale (too short -- collapses onto z_goal-local; too long -- becomes essentially constant across the agent's lifetime), the ARC-068 child mechanism will not match Constantino & Daw's per-block adjustment behaviour. The empirical recommendation: a window covering tens of episodes / minutes of agent-time, scaling with the block-length of the environment.",
+    "If REE attempts to layer multiple kernels (current + historical, per the user's R2 question) without principled aggregation, the resulting estimator may not match either single-kernel prediction. Constantino & Daw test single-kernel models; the multi-kernel architectural question is not addressed."
+  ],
+  "tags": ["arc_068", "opportunity_cost", "patch_foraging", "marginal_value_theorem", "reward_rate_kernel", "non_deficit_action_drives", "r2_kernel"],
+  "mapping": {
+    "source_claim_statement": "In a human patch-foraging task where subjects must decide whether to harvest a depleting tree or move to a replenished one, trial-by-trial decisions are explained better by a marginal-value-theorem (MVT) threshold-learning rule -- where the opportunity cost threshold is estimated as a long-window average over previous rewards -- than by temporal-difference learning. Subjects adjust their behaviour to blockwise changes in environmental opportunity cost, with a kernel consistent with a slow EMA over reward history rather than a fast TD-style update. The MVT framework treats opportunity cost as the long-run average reward, exactly Niv 2007's substrate.",
+    "ree_translation": "Constantino & Daw 2015 is the load-bearing empirical anchor for R2 (reward-rate kernel verdict). PRIMARY recommendation: the ARC-068 child-MECH should use a long-window historical-average kernel (slow EMA over realised E3-score-receipts), with window covering tens of episodes / minutes of agent-time. SECONDARY fallback (only if the long-window kernel produces poor adaptation in non-stationary environments): a hybrid current + historical estimator with the long-window kernel as the dominant term. The Niv 2007 theoretical derivation predicts the long-run kernel; Constantino & Daw 2015 empirically confirms it in humans. The Kolling 2016 search-value scalar is closer to the secondary current-environmental kernel and is what SD-032b uses; ARC-068 should use the primary historical kernel and that is what distinguishes it from SD-032b at the kernel level.",
+    "mapping_caveat": "The task is patch foraging -- subjects are task-engaged, with explicit harvest-or-move decisions. ARC-068's always-on framing fires when no specific task is in scope (well-fed-safe-familiar regime). The kernel-form transfer is principled (the same MVT threshold rule applies whether or not a specific task is foreground), but the empirical evidence is from a task-engaged regime. Treat the paper as evidence for the KERNEL FORM (long-window EMA over reward history), not for the always-on REGIME.",
+    "source_context": "Human behavioural foraging study, Cogn Affect Behav Neurosci 2015. Two experiments with parametric variation of opportunity cost across blocks. Model comparison between MVT threshold-learning and TD-learning. According to PubMed, DOI 10.3758/s13415-015-0350-y."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (parametric human behavioural design, principled model comparison, peer-reviewed). Mapping fidelity strong: the empirical question (which kernel?) is precisely R2; the design directly tests MVT vs TD; the result is decisive. Transfer risk moderate: human task-engaged regime, ARC-068's no-target regime is one step removed but the kernel form transfers."
+  }
+}

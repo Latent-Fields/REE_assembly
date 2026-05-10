@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_068_opportunity_cost",
+  "entry_id": "2026-05-10_arc_068_acc_search_value_kolling_2016",
+  "timestamp_utc": "2026-05-10T19:50:07Z",
+  "claim_ids_tested": ["ARC-068"],
+  "source": {
+    "title": "Multiple signals in anterior cingulate cortex",
+    "authors": ["Nils Kolling", "Tej Behrens", "M. K. Wittmann", "Matthew F. S. Rushworth"],
+    "year": 2016,
+    "venue": "Curr Opin Neurobiol",
+    "doi": "10.1016/j.conb.2015.12.007",
+    "pmid": "26774693"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "This is the canonical Kolling-lab review that the ARC-068 briefing cites as 'Kolling 2015' (it appeared online December 2015, in print 2016 as Curr Opin Neurobiol 37:36-43). Critical to R1 substrate-boundary disambiguation: Kolling explicitly argues that dACC carries MULTIPLE signals including a 'search value' / average-environmental-value signal that is the architectural ancestor of both SD-032b's foraging_value and ARC-068's opportunity-cost-on-rest. Direction is `mixed` rather than `supports` because the paper documents that the same brain region (dACC) carries the foraging-comparator signal AND the trajectory-difficulty signal AND a model-updating signal -- which weakens the case for a clean trajectory-score-level vs mode-switch-level architectural separation. The Shenhav 2016 commentary (PMID 27580609, separate entry) directly disputes Kolling's interpretation. Confidence moderated for that interpretive contestation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE implements ARC-068 as a clean architectural separation from SD-032b (different substrate, different signals, different timescale), Kolling 2016's 'multiple signals in same cortical area' framing weakens that separation -- biology has the dACC computing several related signals at once, not separating them onto different substrates. The architectural separation may be a design choice rather than a biological commitment.",
+    "Kolling 2016's 'search value' is computed from the AVERAGE environmental value (the value of alternatives currently available), not from the long-run REWARD HISTORY (Niv 2007). If REE picks the Niv kernel for ARC-068 and the Kolling kernel for SD-032b, the synthesis must explicitly separate the two -- Kolling's review does not separate them.",
+    "If the dACC search-value signal IS what biology uses for both functions, then ARC-068 may be a re-implementation of SD-032b under a different name. The synthesis must arbitrate carefully on R1; this paper alone cannot license either separation or absorption."
+  ],
+  "tags": ["arc_068", "dacc", "search_value", "foraging_value", "anterior_cingulate", "non_deficit_action_drives", "r1_substrate_boundary", "r2_kernel"],
+  "mapping": {
+    "source_claim_statement": "Anterior cingulate cortex carries MULTIPLE signals related to choice, including (a) commitment to a course of action despite costs, (b) search-or-explore signals indexing alternatives, (c) updating of internal-model and belief-updating signals, and (d) signals tracking the average value of choices afforded by the environment ('search value'). The review argues that the apparent paradox of dACC tracking both 'commitment to action' and 'exploring alternatives' resolves once one recognises that multiple computationally distinct signals coexist in the region. The search-value signal -- an average-value-of-current-environment scalar -- biases toward switching from the current option when its value falls below the environmental average.",
+    "ree_translation": "Kolling 2016 is the literature anchor for SD-032b's existing foraging_value (the dacc_foraging_weight bundle component, see SD-032b implementation_note in claims.yaml). For ARC-068, the relevant translation is that the 'search value' signal lies on a SPECTRUM with the long-run avg-reward-rate scalar Niv 2007 derives. Kolling's search value is a current-context environmental average; Niv's avg reward rate is a long-window history average; both are opportunity-cost-like. ARC-068 (as registered) is closer to the Niv side of the spectrum (always-on, reward-history-keyed); SD-032b is closer to the Kolling side (task-conditioned, current-environmental-value-keyed). The paper's load-bearing contribution to R1 is its multi-signal claim: even within dACC, the foraging-value computation is separable from the choice-difficulty signal AND from the model-updating signal -- which licenses a clean architectural separation between ARC-068 (always-on cost-on-rest at trajectory-score level) and SD-032b (task-conditioned switch-when-current-bad at mode-switch level), even though they may share neural substrate at the macro level.",
+    "mapping_caveat": "The paper is a REVIEW, not a primary mechanistic study. Its central claim (multiple signals in dACC) is itself contested -- Shenhav et al. 2014 / 2016 (separate entries / PMID 27580609) argue that what looks like foraging-value tracking is choice-difficulty tracking. The R1 verdict cannot lean on Kolling alone; it must engage the Shenhav counter-claim. The original Kolling 2012 Science paper (PMID 22517861, Kolling, Behrens, Mars & Rushworth) is the primary empirical source; this 2016 review is the synthesis Kolling et al. wrote to defend the multi-signal interpretation against Shenhav's challenge.",
+    "source_context": "Curr Opin Neurobiol review 2016 (online late 2015), defending the foraging-value interpretation of dACC against the choice-difficulty alternative. According to PubMed, DOI 10.1016/j.conb.2015.12.007. Briefing cited as 'Kolling 2015'; the paper was published as 2016 in print but online 2015 -- both citations are common."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high for a review (Curr Opin Neurobiol; principal authors are the Kolling lab who originated the foraging-value interpretation). Mapping fidelity moderate-to-strong: the search-value scalar maps onto the ARC-068 architectural commitment but covers a different point on the kernel spectrum (current environmental vs long-run history). Transfer risk moderate-to-high: human fMRI data, contested interpretation, and architectural separation between ARC-068 and SD-032b is partly a design choice rather than a biological commitment."
+  }
+}

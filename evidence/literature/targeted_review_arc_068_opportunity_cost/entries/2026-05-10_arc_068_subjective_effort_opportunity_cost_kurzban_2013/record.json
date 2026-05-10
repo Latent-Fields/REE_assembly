@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_068_opportunity_cost",
+  "entry_id": "2026-05-10_arc_068_subjective_effort_opportunity_cost_kurzban_2013",
+  "timestamp_utc": "2026-05-10T19:50:07Z",
+  "claim_ids_tested": ["ARC-068"],
+  "source": {
+    "title": "An opportunity cost model of subjective effort and task performance",
+    "authors": ["Robert Kurzban", "Angela Duckworth", "Joseph W. Kable", "Justus Myers"],
+    "year": 2013,
+    "venue": "Behav Brain Sci",
+    "doi": "10.1017/S0140525X12003196",
+    "pmid": "24304775"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Theoretical anchor for the felt phenomenology side of opportunity cost: the experience of effort / disengagement / 'wasting time' is reframed as the output of a cost-benefit computation in which the next-best alternative use of the relevant computational mechanism enters as opportunity cost. This is the closest existing-literature analogue to the user-observed phenomenology that triggered ARC-068 registration ('felt pull of I am wasting time'). Confidence moderated because the paper is explicitly THEORETICAL (BBS target article with peer commentary; Westbrook & Braver commentary published alongside) and the empirical predictions are partial -- the framework licences ARC-068 but does not isolate it from effort-cost (Salamone) or boredom (ARC-067) at mechanism level. Lit-conf weight is reduced rather than higher because R4 (effort vs opportunity cost separation) is precisely the question this paper deliberately collapses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE implements ARC-068 as a pure opportunity-cost-on-time scalar with no effort-cost-on-action term in parallel, the Kurzban framework predicts the agent will fail to display the asymmetric performance-degradation-with-time-on-task signature that motivates the felt-effort literature. The two terms compose; an opportunity-cost-only architecture is incomplete.",
+    "If ARC-068 is implemented at the trajectory-score layer but the upstream subjective-effort signal is missing, the agent will not produce the disengagement-when-better-alternative-becomes-available behaviour Kurzban models -- ARC-068 alone does not generate the disengagement signal, only the bias against passive trajectories.",
+    "Kurzban's framework is silent on the temporal kernel (long-window vs short-window vs current-task); R2 cannot lean on this paper without supplementing with Niv 2007 or Constantino & Daw 2015."
+  ],
+  "tags": ["arc_068", "opportunity_cost", "subjective_effort", "felt_phenomenology", "non_deficit_action_drives", "r1_substrate", "r4_effort_vs_opportunity"],
+  "mapping": {
+    "source_claim_statement": "The subjective phenomenology of effort -- the felt aversiveness of cognitive labour, fatigue-like deterioration over time on task -- is the output of a cost-benefit computation in which the opportunity cost of the relevant cognitive mechanism (its next-best alternative deployment) is an additive term. Performance reductions over time-on-task are not resource depletion but motivated reallocation: as opportunity costs rise, the felt-effort signal motivates disengagement and reduced deployment. The theoretical framework deliberately UNIFIES effort cost and opportunity cost as facets of the same cost-benefit computation, rather than treating them as two distinct cost types.",
+    "ree_translation": "Kurzban et al. provide the felt-phenomenology anchor for ARC-068. The user-observed phenomenology that triggered slot registration -- 'felt pull of I am wasting time' -- maps onto Kurzban's claim that subjective effort REPORTS opportunity cost. For the ARC-068 child mechanism, this licenses a coupling between the score-side opportunity-cost cost (E3.score_trajectory) and an introspective / valence-side signal that could route through z_harm_a (the affective channel ARC-067 also uses). The paper's UNIFIED-account claim is the basis of the synthesis R4 verdict that effort-cost and opportunity-cost are not architecturally separate at the felt-output layer, even though they may be separable at the substrate-input layer (Salamone's effort cost is a movement-energy term; Niv's opportunity cost is a time-foregone-reward term; they sum into a single felt-cost output).",
+    "mapping_caveat": "BBS target article -- the paper is a theoretical proposal, not an empirical demonstration. It synthesises the existing literature into a unified framework but does not provide direct mechanistic evidence for ARC-068's specific score-side instantiation. The peer commentary (notably Westbrook & Braver, same BBS issue, PMID 24304803) explicitly raises measurement concerns. Treat this paper as the FELT-OUTPUT-LAYER anchor and the unified-account argument; do not treat it as a substrate identification. The paper is also silent on the WHEN-WANTING-IS-ABSENT regime that ARC-068 most cares about; Kurzban's examples involve task-engaged subjects with explicit task goals.",
+    "source_context": "Behav Brain Sci target article 2013, with extensive peer commentary in the same issue. Theoretical paper synthesising effort psychology, behavioural economics, executive function, and dopaminergic vigor literatures. According to PubMed, DOI 10.1017/S0140525X12003196."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high for a theoretical paper (BBS target article is the gold standard for unified theoretical proposals in psychology/neuroscience). Mapping fidelity moderate-to-strong: the felt-phenomenology layer maps cleanly onto ARC-068's user-observed registration trigger, but the mechanism-level mapping is weaker because the paper does not commit to a substrate. Transfer risk moderate-to-high: Kurzban's examples are task-engaged subjects with explicit goals; ARC-068 most cares about the no-target / no-deficit regime where current task is undefined."
+  }
+}

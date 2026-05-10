@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_257_sd018_resource_prox_validation
 
-Generated: `2026-05-10T17:34:44.089782Z`
+Generated: `2026-05-10T20:01:02.621126Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

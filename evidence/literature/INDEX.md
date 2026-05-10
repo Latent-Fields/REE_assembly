@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-10T17:34:44.089782Z`
+Generated: `2026-05-10T20:01:02.621126Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -28,6 +28,7 @@ Generated: `2026-05-10T17:34:44.089782Z`
 | `targeted_review_arc_065_behavioral_diversity_generation` | [`2026-05-10_arc_065_striatal_novelty_wittmann_2008`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/record.json) | 9 | [`summary`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/summary.md) |
 | `targeted_review_arc_066_tonic_vigor` | [`2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007`](targeted_review_arc_066_tonic_vigor/entries/2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007/record.json) | 7 | [`summary`](targeted_review_arc_066_tonic_vigor/entries/2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007/summary.md) |
 | `targeted_review_arc_067_boredom` | [`2026-05-10_arc_067_unengaged_mind_eastwood2012`](targeted_review_arc_067_boredom/entries/2026-05-10_arc_067_unengaged_mind_eastwood2012/record.json) | 8 | [`summary`](targeted_review_arc_067_boredom/entries/2026-05-10_arc_067_unengaged_mind_eastwood2012/summary.md) |
+| `targeted_review_arc_068_opportunity_cost` | [`2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/record.json) | 6 | [`summary`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/summary.md) |
 | `targeted_review_arc_070_decomposition` | [`2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/record.json) | 7 | [`summary`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/summary.md) |
 | `targeted_review_arc_071_composition` | [`2026-05-10_arc_071_visuomotor_chunk_size_sakai2003`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/record.json) | 9 | [`summary`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
