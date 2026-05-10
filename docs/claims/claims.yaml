@@ -27914,3 +27914,412 @@
     waking. Together they instantiate two complementary axes of
     write-gating at the rule-arbitration layer.
   location: docs/architecture/mech_319_simulation_mode_rule_gate.md
+
+- id: ARC-066
+  title: "tonic_vigor_coupling (capacity-to-action-bias, average-reward-rate / LC-NE tonic / DA effort-vigor analog). Architectural commitment: behaviour-bias toward action scales with capacity (high energy AND low recent prediction error AND low drive -- 'things are going well, deploy'), independent of any specific target. Distinct from existing behavioural-source slots (z_harm threats, z_goal deficit-seeded wants, novelty curiosity) which all fall to zero when the agent is well-fed, safe, and the world is familiar. Without ARC-066 a healthy REE agent has no gradient to act; biology has a positive gradient (felt phenomenology: drive to deploy energy when one has it). First of three slots in the non_deficit_action_drives family; companion ARC-067 (idle aversion / boredom) and ARC-068 (opportunity cost) cover the aversive-of-rest and cost-of-passivity halves of the same architectural commitment. Family principle: behaviour comes from surplus capacity AND from deficits, not deficits alone."
+  claim_type: architectural_commitment
+  subject: action.tonic_vigor_coupling
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on: []
+  functional_restatement: >
+    ARC-066 registers the architectural slot for a behaviour-bias-toward-
+    action term that scales with the agent's CAPACITY rather than its
+    deficits. REE today drives behaviour from threats (z_harm), specific
+    wants (z_goal seeded from depletion), and novelty (curiosity). All
+    three fall to zero in the well-fed-safe-familiar regime. ARC-066 says
+    the architecture is missing a positive gradient out of that regime --
+    a tonic vigor scalar that rises when capacity is high and biases E3
+    score selection toward action over no-op trajectories.
+
+    Biology anchors (preliminary; lit-pull required before child MECH
+    design):
+      - Niv et al. 2007 (PNAS) -- vigor of action is set by tonic dopamine
+        tracking the average reward rate. Period of high reward expectation
+        produces high tonic DA produces high vigor, INDEPENDENT of any
+        specific target.
+      - Aston-Jones & Cohen 2005 (Annu Rev Neurosci) -- LC-NE tonic mode:
+        high tonic NE biases toward exploitation/action over deliberation.
+        (Note: existing MECH-313 instantiates the LC-NE tonic NOISE FLOOR --
+        adds entropy to action distribution. ARC-066 is a different LC-NE
+        function: directional bias TOWARD action, not noise on choice.)
+      - Salamone & Correa 2012 (Neuron) -- mesolimbic DA encodes effort-
+        vigor activation, dissociable from hedonic value of reward.
+      - Walton et al. 2006 (J Neurosci) -- ACC effort-cost / vigor
+        computation.
+      - Depue & Collins 1999 (Behav Brain Sci) -- BAS (behavioural
+        approach system) tonic level as an independent personality
+        dimension, low BAS = anhedonic inertia, high BAS = drive-to-act.
+
+    Architectural relations within REE:
+      - SD-012 (homeostatic_drive_modulation): drive RISES as energy
+        FALLS. ARC-066 is the inverse coupling (action-bias rises as
+        capacity rises). Both can hold simultaneously: depletion drives
+        you toward specific consummatory goals AND surplus drives you
+        toward general action.
+      - MECH-313 (stochastic_noise_floor): orthogonal. MECH-313 lifts
+        softmax temperature uniformly. ARC-066 adds a directional bias
+        on the score axis toward action over passivity. The two compose:
+        MECH-313 says "explore among candidates"; ARC-066 says "favour
+        action candidates over no-op candidates". Same downstream
+        (E3.select), different scoring direction.
+      - MECH-216 (e1_predictive_wanting / schema readout): only fires
+        when a specific predicted target is in scope. ARC-066 fires
+        regardless of target presence -- it is a target-free action bias.
+      - SD-037 (broadcast_override / orexin): recruited by sustained
+        drive + harm. ARC-066 is recruited by the OPPOSITE state
+        (sustained capacity + low recent PE). The two regulators sit at
+        different corners of the agent state space.
+
+    Falsifiable architectural prediction (substrate-level): an REE agent
+    parameterised with all current drives + curiosity + override + sleep
+    OFF, in a familiar safe environment with full energy, will be
+    behaviourally inert (action_density << biological baseline). With
+    ARC-066 instantiated, action_density rises monotonically with the
+    capacity scalar even with all deficit-side drives set to zero.
+
+    What ARC-066 is NOT:
+      - Not a re-implementation of MECH-313 LC-NE noise floor.
+      - Not a vigor-of-execution timing parameter (Niv 2007 also covers
+        execution speed; this slot is about WHETHER to act, not how
+        fast). A future MECH/Q-claim may extend the slot to execution-
+        timing.
+      - Not committing to a specific child mechanism or tonic-DA-vs-LC-NE
+        attribution. The literature distinguishes these substrates
+        (Niv DA-vigor; Aston-Jones LC-NE tonic; both contribute). Pull
+        will sequence which child mechanisms land.
+
+    Companion slots: ARC-067 (idle aversion / boredom -- aversive valence
+    of sustained low-engagement) and ARC-068 (opportunity cost no-op
+    penalty -- E3 cost on passive trajectories). Together the three
+    cover the "behaviour from surplus, not just deficit" architectural
+    commitment.
+  evidence_quality_note: >
+    Registered 2026-05-10 from user-provided phenomenology (Daniel,
+    consultant psychiatrist + REE author): "I observe a drive in me to
+    do something while I have energy rather than nothing / imagination
+    and other non-behavioural work. In REE it seems that the agent is
+    happy doing nothing." Phenomenology-as-substrate-search is an
+    explicit project methodology (cf. INV-049 sleep, MECH-302 suffering
+    derivative comparator, MECH-309 logical-necessity argument for
+    rule apprehension).
+
+    Biology anchors are preliminary -- a targeted lit-pull on the tonic
+    vigor / average-reward-rate / LC-NE-tonic-direction literatures is
+    REQUIRED before any child MECH/SD design (per project rule:
+    biology-before-formal-definitions). Anchors above are sufficient to
+    motivate slot registration but not to fix mechanism shape.
+
+    Not yet experimentally tested. The substrate currently produces no
+    measurable behavioural lift in healthy-state regime because the
+    slot is empty. First validation experiment will be a substrate-
+    readiness diagnostic on a child MECH (TBD post lit-pull).
+  notes: >
+    Cross-reference family: ARC-066 + ARC-067 + ARC-068 form the
+    non_deficit_action_drives cluster. All three were registered
+    together on 2026-05-10 from a single phenomenological observation
+    that REE's behavioural-source slots are all deficit-keyed.
+
+    HYBRID-naming convention (parallel to ARC-065): the title carries
+    both the REE-internal architectural name (tonic_vigor_coupling)
+    and the literature anchors (average-reward-rate / LC-NE tonic /
+    DA effort-vigor). This makes the slot grep-able under both
+    REE-native search and biology-search.
+
+    Cross-link: ARC-066 is conceptually adjacent to but mechanistically
+    distinct from existing claims. Future child MECH design must
+    explicitly disambiguate from MECH-313 (LC-NE tonic noise -- noise
+    on choice, not direction toward action), MECH-260 (dACC anti-
+    recency -- state-dependent recency penalty, different timescale),
+    MECH-216 (predictive wanting -- target-conditioned, not target-
+    free), and SD-012 (homeostatic drive -- deficit-keyed, opposite
+    coupling).
+  location: docs/architecture/non_deficit_action_drives.md
+
+- id: ARC-067
+  title: "idle_aversion_boredom (sustained-low-engagement aversive valence accumulator). Architectural commitment: prolonged low-engagement is itself negatively valenced; the agent acts to escape boredom, even in the absence of specific targets, threats, or novelty pressure. Distinct from the policy-side ARC-066 vigor coupling: ARC-067 instantiates an aversive-side accumulator that recruits the same downstream as actual harm (z_harm-like channel), so engagement-poverty competes for action-selection priority on the same axis as discomfort. Companion to ARC-066 (vigor / capacity-deploy) and ARC-068 (opportunity cost) in the non_deficit_action_drives family."
+  claim_type: architectural_commitment
+  subject: action.idle_aversion_boredom
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on: []
+  functional_restatement: >
+    ARC-067 registers the architectural slot for boredom as a structural
+    aversive state. The user-observed phenomenology: doing-nothing is not
+    neutral. After enough sustained low-engagement, an aversive pressure
+    accumulates that biases the agent toward action regardless of whether
+    any specific action is currently appealing. Clinically this is the
+    opposite face of anhedonia (where the aversive pressure fails to
+    accumulate or fails to translate into action).
+
+    Biology anchors (preliminary; lit-pull required before child MECH
+    design):
+      - Eastwood et al. 2012 (Perspect Psychol Sci) "The Unengaged Mind"
+        -- definitional / functional account of boredom as failed
+        engagement, not just absence of stimulation.
+      - van Tilburg & Igou 2017 -- boredom as functional emotion that
+        prompts pursuit of meaningful activity.
+      - Westgate & Wilson 2018 (Psychol Rev) -- meaning-and-attentional-
+        component (MAC) model: boredom arises from misalignment between
+        engagement capacity and engagement opportunity.
+      - Bench & Lench 2013 -- boredom proneness as a predictor of risk-
+        taking and stimulation-seeking behaviour.
+      - Csikszentmihalyi 1990 (flow state) -- engagement as match
+        between skill and challenge; boredom as one corner of the
+        skill/challenge mismatch space (high skill, low challenge).
+      - Ulrich-Lai & Herman 2009 (Nat Rev Neurosci) -- HPA-axis stress
+        of chronic low-control / understimulation regimes.
+      - Cabanac 1971 / Sherrington 1906 lineage -- aversive-valence
+        framing of homeostatic deviations; ARC-067 extends this to a
+        non-homeostatic deviation (engagement-rate fallen below set point).
+
+    Architectural shape (to be fleshed at child MECH level):
+    Likely a slow accumulator over an engagement-rate scalar. Engagement
+    candidates include: number of commit transitions per episode (rare
+    commits -> low engagement); novel-observation count (familiar
+    surroundings -> low engagement); E3 deliberation depth (shallow
+    selection -> low engagement); residue-write rate (no learning
+    happening -> low engagement). When the integrated engagement-rate
+    falls below a threshold, accumulates as an aversive on a z_harm-like
+    channel that recruits the same E3 score-bias path as actual harm.
+    Two timescales likely: acute restlessness (~minutes / tens of episodes)
+    and chronic anhedonic flatness (~episodes / sessions); these may need
+    to be separate child claims.
+
+    Architectural relations within REE:
+      - z_harm streams (SD-010 sensory-discriminative, SD-011 affective):
+        ARC-067's aversive output is most parsimoniously routed through
+        an extension of z_harm_a (affective stream), not z_harm_s
+        (sensory stream). Boredom does not have a sensory localisation;
+        the aversive is global / state-level.
+      - MECH-216 (predictive wanting): does NOT cover boredom. Wanting
+        only fires when a target is predicted; boredom's defining
+        feature is the absence of any specific predicted target.
+      - MECH-314a striatal novelty: novelty is the ABSENCE of which
+        boredom is one consequence, but boredom is not just inverted
+        novelty. You can be in genuinely novel territory and still
+        bored if there is no engagement opportunity (you are watching
+        novel content but cannot interact). Conversely you can be in
+        familiar territory and not bored if engagement is rich (a
+        skilled task in your home environment).
+      - SD-012 / SD-037: boredom is a NON-deficit aversive. Deficit-
+        side aversives recruit broadcast_override / drive escalation;
+        the boredom aversive recruits action-pressure through the
+        valence channel without going through homeostatic-deficit
+        signaling.
+
+    Falsifiable architectural prediction: ablate ARC-067; place an REE
+    agent with full energy, low harm, full familiarity, and no specific
+    z_goal in a long episode. Without ARC-067 the agent should be inert
+    (action_density at MECH-313 noise floor only). With ARC-067 the
+    boredom accumulator should fire after some critical low-engagement
+    duration and produce action-pressure; the agent should explore /
+    act / disengage even when no specific reward predicts it.
+
+    What ARC-067 is NOT:
+      - Not a curiosity bonus (MECH-314 covers novelty / uncertainty /
+        learning-progress positive bonuses; boredom is the aversive of
+        their absence, not their negation).
+      - Not a homeostatic drive (no regulated body variable / setpoint
+        in the SD-012 sense; engagement-rate is a behavioural rate
+        statistic, not an internal physiological variable).
+      - Not a depression / anhedonia model. Boredom is the healthy
+        aversive that motivates re-engagement; clinical anhedonia is
+        precisely the failure of this loop. Future psychiatric_failure_modes
+        cross-reference appropriate.
+
+    Companion slots: ARC-066 (capacity-to-vigor positive bias) and
+    ARC-068 (opportunity cost on no-op trajectories). The three
+    register "behaviour from surplus" as an architectural commitment
+    coequal with "behaviour from deficit".
+  evidence_quality_note: >
+    Registered 2026-05-10 alongside ARC-066 + ARC-068 from user
+    phenomenology. Lit-pull required before child MECH design. The
+    boredom literature is broader and less convergent than the vigor
+    literature; child MECH design will need to disambiguate at least
+    three competing accounts: (a) functional-emotion (Eastwood, van
+    Tilburg) -- boredom prompts engagement-search; (b) attentional-
+    failure (Westgate & Wilson MAC) -- boredom is failed attention
+    capture; (c) opportunity-cost-felt (overlaps with ARC-068, may
+    require boundary clarification) -- boredom is the felt pull of
+    forgone alternatives. Likely all three contribute; the child MECH
+    will need to pick implementation shape and lit will arbitrate.
+
+    Not yet experimentally tested. First validation experiment will be
+    substrate-readiness diagnostic on a child MECH (TBD post lit-pull),
+    likely on SD-054 reef substrate where engagement opportunities are
+    structurally rich.
+  notes: >
+    Cross-reference family: ARC-067 is the aversive-side companion of
+    ARC-066 (positive-side vigor). The two are conceptually distinct
+    -- ARC-066 says "capacity creates a push to act"; ARC-067 says
+    "low engagement creates a pull away from passivity" -- but they
+    co-locate at the same downstream (action-bias on E3 score). Future
+    Q-claim: are ARC-066 and ARC-067 a single mechanism with two faces
+    (one signed scalar) or genuinely separate (asymmetric responses to
+    capacity-rise vs engagement-fall)? Phenomenology suggests
+    asymmetric -- restlessness when bored feels different from
+    energised when surplus -- but this is open.
+
+    Cross-reference: psychiatric_failure_modes.md should later add a
+    section on ARC-067 ablation as a model of clinical anhedonia /
+    abulia / catatonic flatness. Cross-link with MECH-302 suffering
+    derivative comparator (negative valence drop produces relief);
+    ARC-067 is the inverse architectural shape (positive aversive
+    accumulation produces action pressure).
+  location: docs/architecture/non_deficit_action_drives.md
+
+- id: ARC-068
+  title: "opportunity_cost_no_op_penalty (waiting accumulates forgone-reward cost; passive trajectories pay for time consumed). Architectural commitment: trajectories that consume time without progress are not free in E3 scoring; the score function carries an additive cost on no-op / repeated-stationary candidates that scales with the agent's average expected reward rate. Companion to ARC-066 (capacity-to-vigor) and ARC-067 (idle aversion). Existing dACC switch_value (SD-032b / Kolling 2015 foraging) is the closest current substrate but covers a different framing (when to switch FROM the current option to alternatives), not the always-on cost of choosing the null action."
+  claim_type: architectural_commitment
+  subject: action.opportunity_cost_no_op_penalty
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on: []
+  functional_restatement: >
+    ARC-068 registers the architectural slot for an opportunity-cost
+    penalty on passive / no-op trajectories at the E3 selection layer.
+    The user-observed phenomenology: the felt pull of "I am wasting
+    time" when capacity is high and nothing specific is being pursued.
+    REE's E3 currently scores trajectories on expected harm and benefit;
+    a trajectory that simply stands still pays no cost for the time it
+    consumes, so when no benefit is predicted and no harm is present,
+    standing still is a valid local minimum. Biology has a real cost on
+    that local minimum (forgone reward accumulates while you wait).
+
+    Biology anchors (preliminary; lit-pull required before child MECH
+    design):
+      - Niv et al. 2007 (PNAS) -- vigor as a function of average reward
+        rate; the average reward rate ALSO acts as a discount on
+        rest / waiting. Resting trades guaranteed-zero now for
+        continued-zero later, against a positive expected baseline.
+      - Kurzban et al. 2013 (Behav Brain Sci) -- effort and opportunity
+        cost as the felt motivation to disengage from current activity
+        when better alternatives become available.
+      - Kolling et al. 2015 (Curr Opin Neurobiol) -- dACC foraging-
+        value computation: switch FROM current option when its value
+        falls below environmental average. ARC-068 generalises this
+        to: cost is paid by the null action / no-op trajectory
+        regardless of what the alternatives are.
+      - Salamone et al. 2003 (Behav Brain Res) -- DA-depleted animals
+        accept low-effort low-reward over high-effort high-reward;
+        cost of effort is computed against an opportunity baseline.
+      - Constantino & Daw 2015 -- foraging behaviour modelled with
+        opportunity-cost discounting predicts patch-leaving better
+        than fixed-discount RL.
+
+    Architectural shape (to be fleshed at child MECH level):
+    Likely a small additive cost on no-op / repeated-stationary
+    trajectories at E3.score_trajectory, proportional to a tonic
+    expected-reward-rate scalar. Composes naturally with ARC-066
+    (which provides exactly that capacity scalar). When capacity is
+    high (ARC-066 vigor scalar high), opportunity cost (ARC-068) is
+    high, and passive trajectories are penalised more strongly. When
+    capacity is low (depleted, harmed, mid-deliberation), opportunity
+    cost is low and resting / waiting carries lighter penalty. This
+    coupling is the falsifiable architectural prediction: opportunity
+    cost should not be a constant.
+
+    Architectural relations within REE:
+      - SD-032b dACC adaptive control (SD-032b foraging_value via
+        Kolling 2015): closest existing substrate. dACC foraging_value
+        biases mode-switch when the current option falls below
+        environmental average; ARC-068 biases the SCORE of any
+        passive trajectory regardless of mode. Both contribute to
+        anti-passivity pressure but at different architectural levels
+        (mode-switch vs trajectory-score). They compose; not redundant.
+      - ARC-066 tonic_vigor_coupling: ARC-068 pays out the cost that
+        ARC-066 produces the gain on. The two are mathematical
+        complements: ARC-066 adds to action scores; ARC-068 subtracts
+        from passive scores. Some implementations may collapse them
+        into a single signed scalar; the slot registers the
+        commitment, child MECH chooses the parameterisation.
+      - MECH-313 noise floor / MECH-260 anti-recency: orthogonal.
+        Neither penalises no-op specifically; MECH-313 is uniform
+        entropy and MECH-260 is action-recency.
+      - MECH-216 predictive wanting: when wanting is present, no-op
+        is already discouraged via the wanting score-bias toward the
+        wanted candidate. ARC-068 fires when wanting is ABSENT and
+        provides the cost-of-passivity that wanting otherwise would.
+        Architecturally this means ARC-068 is most behaviourally
+        load-bearing in the no-target / no-deficit regime where REE
+        is currently inert.
+
+    Falsifiable architectural prediction: same setup as ARC-066/067 --
+    well-fed safe agent in familiar environment. With ARC-068 ablated,
+    no-op and repeated-stationary trajectories accumulate equal score
+    to active trajectories at long episode horizons; with ARC-068 ON,
+    no-op trajectories accumulate cost monotonically with the tonic
+    capacity scalar, and active trajectories win on score even when
+    they predict equal or slightly worse benefit than no-op.
+
+    What ARC-068 is NOT:
+      - Not effort cost (Walton 2006, Salamone 2012: effort is the
+        cost of expensive action, not the cost of inaction). Effort
+        cost makes hard actions less attractive; opportunity cost
+        makes inaction less attractive. Different sign on different
+        candidates.
+      - Not boredom (ARC-067): boredom is an aversive accumulator on
+        the engagement-rate axis, recruited via the harm valence
+        channel. Opportunity cost is a score-side cost on individual
+        trajectories. They feel similar phenomenologically (both
+        manifest as restlessness) but operate at different
+        architectural levels.
+      - Not a re-implementation of dACC foraging (SD-032b is the
+        switch-when-current-option-bad framing; ARC-068 is the
+        always-on cost-of-rest framing). SD-032b is task-conditioned;
+        ARC-068 is task-independent.
+
+    Companion slots: ARC-066 (positive-side vigor coupling) and
+    ARC-067 (boredom aversive accumulator). The three jointly cover
+    the non_deficit_action_drives architectural commitment.
+  evidence_quality_note: >
+    Registered 2026-05-10 alongside ARC-066 + ARC-067 from user
+    phenomenology. Lit-pull required before child MECH design;
+    boundary with SD-032b dACC foraging requires careful
+    disambiguation at lit-pull time -- the literature treats them as
+    closely related but not identical, and REE will need to pick a
+    cleanly-discriminative implementation.
+
+    Not yet experimentally tested. First validation experiment will
+    be substrate-readiness diagnostic on a child MECH (TBD post lit-
+    pull). Likely cleanly testable in any environment by adding a
+    no-op action and measuring its frequency vs active actions
+    across capacity regimes -- but a clean test requires SD-054 reef
+    substrate or similar where engagement options are structurally
+    rich.
+  notes: >
+    Cross-reference family: ARC-066 + ARC-067 + ARC-068 form the
+    non_deficit_action_drives cluster. ARC-068 is the score-side
+    cost that lets ARC-066 produce a behavioural lift even in the
+    no-target regime: ARC-066 alone biases action over no-op only if
+    the score function ALREADY treats them as comparable, but a
+    target-free trajectory has near-zero benefit by construction, so
+    its score is the effort cost only. ARC-068 makes no-op cost more
+    than zero, breaking the tie in favour of action.
+
+    HYBRID-naming convention: title carries both REE-internal name
+    (opportunity_cost_no_op_penalty) and biology anchor (forgone-
+    reward cost / Niv average-reward-rate / Kurzban 2013).
+
+    Open Q-claim worth registering at child-MECH time: is
+    opportunity cost a function of CURRENT predicted reward rate,
+    or of the agent's HISTORICAL average reward rate (slow EMA),
+    or both? Niv 2007 uses average reward rate as a slow integrator;
+    Constantino & Daw 2015 use it as a learned environmental
+    statistic. Different implementations make different
+    behavioural predictions in changing-environment scenarios.
+  location: docs/architecture/non_deficit_action_drives.md
+

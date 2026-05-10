@@ -389,6 +389,24 @@
     "title": "behavioral_diversity_generation_pathway (multi-substrate distributed: LC-NE tonic + frontopolar curiosity + striatal novelty + hippocampal trajectory sampling). Architectural commitment: a non-trivial behavioural diversity generation pathway is upstream-of and logically prior to both rule pathways (ARC-062 top-down rule-apprehension and ARC-064 bottom-up rule-discovery). Without it, neither pathway has anything to weight or cluster -- gradient descent on a parametric policy without diversity pressure collapses to the smoothest single regime, the predicted equilibrium MECH-309 identifies. The biology distributes diversity generation across at least four substrates: LC-NE tonic noise floor, frontopolar uncertainty-driven curiosity, striatal novelty bonus, and hippocampal trajectory sampling. REE registers this as a foundational architectural slot whose specific child mechanisms (MECH-313 noise-floor, MECH-314 structured-curiosity with three sub-flavours, and the MECH-315-absorbed proposal-diversity channel) are independently testable but jointly load-bearing.",
     "type": "architectural_commitment"
   },
+  "ARC-066": {
+    "status": "candidate",
+    "subject": "action.tonic_vigor_coupling",
+    "title": "tonic_vigor_coupling (capacity-to-action-bias, average-reward-rate / LC-NE tonic / DA effort-vigor analog). Architectural commitment: behaviour-bias toward action scales with capacity (high energy AND low recent prediction error AND low drive -- 'things are going well, deploy'), independent of any specific target. Distinct from existing behavioural-source slots (z_harm threats, z_goal deficit-seeded wants, novelty curiosity) which all fall to zero when the agent is well-fed, safe, and the world is familiar. Without ARC-066 a healthy REE agent has no gradient to act; biology has a positive gradient (felt phenomenology: drive to deploy energy when one has it). First of three slots in the non_deficit_action_drives family; companion ARC-067 (idle aversion / boredom) and ARC-068 (opportunity cost) cover the aversive-of-rest and cost-of-passivity halves of the same architectural commitment. Family principle: behaviour comes from surplus capacity AND from deficits, not deficits alone.",
+    "type": "architectural_commitment"
+  },
+  "ARC-067": {
+    "status": "candidate",
+    "subject": "action.idle_aversion_boredom",
+    "title": "idle_aversion_boredom (sustained-low-engagement aversive valence accumulator). Architectural commitment: prolonged low-engagement is itself negatively valenced; the agent acts to escape boredom, even in the absence of specific targets, threats, or novelty pressure. Distinct from the policy-side ARC-066 vigor coupling: ARC-067 instantiates an aversive-side accumulator that recruits the same downstream as actual harm (z_harm-like channel), so engagement-poverty competes for action-selection priority on the same axis as discomfort. Companion to ARC-066 (vigor / capacity-deploy) and ARC-068 (opportunity cost) in the non_deficit_action_drives family.",
+    "type": "architectural_commitment"
+  },
+  "ARC-068": {
+    "status": "candidate",
+    "subject": "action.opportunity_cost_no_op_penalty",
+    "title": "opportunity_cost_no_op_penalty (waiting accumulates forgone-reward cost; passive trajectories pay for time consumed). Architectural commitment: trajectories that consume time without progress are not free in E3 scoring; the score function carries an additive cost on no-op / repeated-stationary candidates that scales with the agent's average expected reward rate. Companion to ARC-066 (capacity-to-vigor) and ARC-067 (idle aversion). Existing dACC switch_value (SD-032b / Kolling 2015 foraging) is the closest current substrate but covers a different framing (when to switch FROM the current option to alternatives), not the always-on cost of choosing the null action.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
