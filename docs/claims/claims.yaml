@@ -26862,6 +26862,22 @@
     insight: no Pareto frontier exists, indicating an
     architectural defect in how the two mechanisms compose
     additively in the policy gradient.
+
+    Placement dependency (flagged 2026-05-10 at V3-EXQ-544
+    substrate-readiness review): MECH-313 currently lives as a
+    separate NoiseFloor module at the e3.select() call site;
+    MECH-314 lives as a separate StructuredCuriosity module at the
+    same seam. Whether the policy-layer regulators consolidate
+    (e.g. MECH-314 migrates inside GatedPolicy as a per-head bonus,
+    motivating MECH-313 to co-locate) is OPEN pending MECH-318 /
+    MECH-319 substrates. Co-located substrates compose differently
+    from parallel ones at the e3.select() seam, so when this
+    parametric sweep is queued, re-confirm the placement is still
+    the Phase-1 separate-module instantiation; if either substrate
+    has migrated, the meaning of "relative weight" changes and the
+    sweep design may need to be revisited. See MECH-313 notes
+    field "Phase-1 instantiation choice (NOT a settled
+    architectural commitment)".
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS verdict 4 (relative-
     weight-calibration question) + Pull 4 R4 (HYBRID-naming).
@@ -26903,6 +26919,19 @@
         a + b.
       - All three collapse (one signature): collapse to a single
         MECH-314 with notes documenting the collapse.
+
+    Placement dependency (flagged 2026-05-10 at V3-EXQ-544
+    substrate-readiness review): MECH-314 currently lives as a
+    separate StructuredCuriosity module at the e3.select() call
+    site, with all three sub-flavours independently togglable. If
+    MECH-314 migrates into GatedPolicy as a per-head bonus (the
+    open Phase-1 placement question), the flag-set ablation surface
+    moves with it, and Phase-2 per-candidate refinements for 314b
+    and 314c (currently broadcast scalars across [K]) may land at
+    the same time. Re-confirm placement is still Phase-1 separate-
+    module before queuing this three-arm ablation; if 314 has
+    migrated, the per-head ablation design supersedes the per-
+    module one. See MECH-313 / MECH-314 notes fields.
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3 (recommendation
     NOT to lock prematurely). Lit support: same anchors as
@@ -26947,6 +26976,23 @@
         retiring MECH-260 in V3 substrate.
       - 260 dominates: 313 contributory-not-necessary; consider
         not implementing MECH-313 in V3.
+
+    Placement dependency (flagged 2026-05-10 at V3-EXQ-544
+    substrate-readiness review): MECH-313 currently lives as a
+    separate NoiseFloor module at the e3.select() call site rather
+    than as per-head temperature inside GatedPolicy. This Phase-1
+    instantiation choice is NOT a settled architectural commitment;
+    placement may consolidate based on outcomes of MECH-314 /
+    MECH-318 / MECH-319 implementations (see MECH-313 notes). The
+    placement question and the Q-045 collapse question are
+    coupled: if 313 and 260 collapse here, a single combined
+    regulator probably should not be split across two locations;
+    if they remain distinct, that is also evidence for keeping
+    313 separately placed. When this 4-arm ablation is queued,
+    confirm current MECH-313 placement and re-evaluate whether
+    consolidation should happen before or after the falsifier
+    runs. The Q-045 outcome should feed back into the placement
+    decision regardless of which way it falls.
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3 (the
     relationship between LC-NE noise and dACC anti-recency is
