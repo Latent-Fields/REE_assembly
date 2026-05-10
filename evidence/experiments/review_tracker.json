@@ -1,7 +1,9 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-10T10:11:48Z",
+  "last_review_utc": "2026-05-10T12:13:00Z",
   "discussed_experiment_dirs": [
+    "V3-EXQ-542",
+    "V3-EXQ-544",
     "V3-EXQ-445",
     "V3-EXQ-445a",
     "V3-EXQ-445b",
@@ -2424,6 +2426,15 @@
         "v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3"
       ],
       "subject": "Reclassification triage following ARC-065 (behavioral-diversity-generation pathway) cluster registration on 2026-05-10. User flagged that experiments depending on behavioural diversity as INPUT can become non_contributory (not weakens) when the agent is in monomodal collapse and the substrate that would generate diversity (ARC-065 + MECH-313 + MECH-314 cluster) is not yet implemented. Reclassified three pending FAILs as non_contributory: V3-EXQ-418l (SD-017 sleep action-bias diversification, with_div=without_div bit-identical at ~0.0003 across all seeds -- nothing to diversify); V3-EXQ-436a (SD-017+ARC-045+MECH-166 sleep refinement of context-conditioned harm threshold, waking and SWS_THEN_REM bit-identical for slot_cosine_sim and harm_rate_dangerous in every seed -- sleep cannot refine bit-identical waking content); V3-EXQ-530c (ARC-016 precision-to-commit pathway, ARM_0 use_dacc=False vs ARM_1 use_dacc=True bit-identical at commit_rate=1.0 and precision=211.85 -- saturated commit policy makes precision-to-commit pathway untestable; supersedes the morning-digest /diagnose-errors deferral with the upstream-substrate explanation). V3-EXQ-141d (MECH-111 novelty drive ablation) NOT reclassified -- this experiment IS the diversity-generator test (per_seed_action_divergence ~56% but cell_gap and entropy_gap ~0); kept evidence_direction=weakens against MECH-111 alone, but added cross-link note tying its FAIL pattern to ARC-065 R1 BOTH-CHANNELS-NEEDED verdict (novelty bonus alone insufficient without LC-NE-tonic noise floor MECH-313). All four manifests now have evidence_direction_note set; cross-references to ARC-065 cluster, V3-EXQ-543b/c falsifier path, and SD-029 retest precedent (EXQ-433/433a/433b/470 same monomodal-collapse non_contributory pattern) recorded. arc_062_rule_apprehension_plan.md decision log updated and sleep_substrate_plan.md GAP-2 marked upstream-blocked-by ARC-065 substrate."
+    },
+    {
+      "timestamp_utc": "2026-05-10T12:13:00Z",
+      "session_label": "diagnose-errors-substrate-readiness-stdout",
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-542",
+        "V3-EXQ-544"
+      ],
+      "subject": "False-ERROR triage of two ARC-062 / ARC-065 substrate-readiness diagnostics. Both V3-EXQ-542 (ARC-062 Phase 1 gated-policy substrate-readiness, 5/5 PASS) and V3-EXQ-544 (MECH-313/ARC-065 stochastic_noise_floor substrate-readiness, 5/5 PASS) wrote PASS manifests to evidence/experiments/ but were classified ERROR by the runner with 'No runner sentinel emitted and no PASS/FAIL on stdout (exit=0)'. Root cause: scripts ended with print(f'result: {manifest[result]}') -- lowercase 'result:' which the runner stdout regex set (experiment_runner.py:69-79) does NOT match. Recognised tokens are 'verdict:', 'Status:', 'Done. Outcome:', '=== EXQ-... PASS ==='. Fix applied: replaced 'result:' -> 'verdict:' in v3_exq_542 / v3_exq_544 / v3_exq_545 (cascade prevention; v3_exq_545 was queued and would have produced the same false-ERROR on next runner pickup). v3_exq_546 carries the same bug but is owned by the implement-substrate-mech319 active claim and was left for that session to fix in-place to avoid concurrent edit conflict (flagged via WORKSPACE_STATE). NOT re-queueing 542 / 544: their PASS manifests are already in evidence/experiments/ with all 5 UCs PASS, so re-running would produce duplicate manifests for the same substrate-readiness scientific question. Marking them discussed here clears the pending_review.md backlog without polluting the evidence record. Smoke test on 544 confirmed the new 'verdict: PASS' line matches the runner regex; duplicate manifest from smoke removed. Other unaddressed ERRORs in runner_status.json (V3-EXQ-538 SD-049 Phase 2 reef sleep-on, V3-EXQ-495 MECH-163 V3 full-completion gate, V3-EXQ-449c MECH-074b BLA retrieval bias V_s-gated, V3-EXQ-455a SD-032a salience coordinator V_s-enabled) are deliberately held -- 538 has explicit DO-NOT-REQUEUE block in script docstring (already discussed 2026-05-08), 495 has DO-NOT-QUEUE block pending MECH-292/293 (substrate landed 2026-04-27 but full-completion-gate behavioural validation is still queued separately), 449c/455a are V_s-cascade-gated and deferred until MECH-269 V_s circuit lands. None of those four require a fix in this session; flagging here for the user to decide whether to mark them discussed in a future session."
     }
   ]
 }
