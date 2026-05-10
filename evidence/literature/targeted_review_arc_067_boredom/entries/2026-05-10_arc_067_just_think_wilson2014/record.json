@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_just_think_wilson2014",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "Just think: The challenges of the disengaged mind",
+    "authors": ["Timothy D Wilson", "David A Reinhard", "Erin C Westgate", "Daniel T Gilbert", "Nicole Ellerbeck", "Cheryl Hahn", "Casey L Brown", "Adi Shaked"],
+    "year": 2014,
+    "venue": "Science",
+    "doi": "10.1126/science.1250830",
+    "pmid": "24994650"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Eleven-study Science paper showing that participants find spending 6-15 minutes alone with their thoughts so aversive that many self-administer electric shocks rather than continue. Directly demonstrates the architectural commitment ARC-067 names: doing-nothing is not neutral, it is actively aversive enough to recruit costly action. Behavioural-aversive evidence is the strongest possible support short of direct neuroimaging. Source quality very high (Science, multiple replications across 11 studies); transfer risk modest because the demonstration is on enforced disengagement rather than lifelong-low-engagement steady state.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that treats no-op as zero-cost (no aversive accumulation under enforced disengagement) directly fails to reproduce the Wilson 2014 finding. The agent should prefer a costly action (analog: a small-but-nonzero z_harm cost or resource cost) to continued no-op when no other action is available.",
+    "If the boredom aversive accumulates only over very long timescales (chronic / sessions only), the substrate will fail Wilson's 6-to-15-minute experimental window -- the acute timescale must produce measurable aversive within tens of episodes, not just over hundreds. This supports R2's acute/chronic timescale split."
+  ],
+  "tags": ["arc_067", "boredom", "disengagement", "self_punishment", "behavioral_aversive", "acute_timescale"],
+  "mapping": {
+    "source_claim_statement": "Across 11 studies, participants asked to spend 6-15 minutes in a room alone with no external activity but their thoughts (a) reported finding the experience unpleasant, (b) preferred to engage in mundane external activities to stay occupied, and (c) when given the choice, many self-administered painful electric shocks rather than continue with nothing to do. The finding holds across age, gender, and various task-instruction variations.",
+    "ree_translation": "ARC-067's architectural commitment is that doing-nothing is not neutral but actively aversive. Wilson 2014 is the cleanest available behavioural demonstration that this commitment is empirically correct in humans: enforced low-engagement is aversive enough to recruit costly action. For the R3 routing-channel verdict, the self-shock finding is the load-bearing evidence that boredom-aversive routes through the SAME consumer as physical aversive -- the agent treats them as exchangeable enough to trade one for the other. This supports routing through z_harm_a (affective harm stream) rather than through a parallel non-aversive engagement-rate scalar that converges only at action selection. For the R2 timescale verdict, the 6-15 minute experimental window establishes that ACUTE boredom (tens of episodes scale) is measurable within a single session -- the substrate must produce aversive accumulation on this timescale, not only over chronic horizons.",
+    "mapping_caveat": "The experimental paradigm is enforced disengagement -- participants cannot leave the room and have no available task. ARC-067's natural setting is open-ended foraging where the agent could in principle act but the engagement-rate-by-current-actions is low. The mapping is direct (Wilson's experiment is essentially the human version of the well-fed-safe-familiar regime ARC-067 targets), but the population, instruction, and time-horizon details mean the quantitative thresholds are not directly transferable.",
+    "source_context": "Science paper from the Wilson lab (UVA) and Gilbert lab (Harvard). Eleven studies with replications; one of the most-cited boredom papers in the literature; the headline self-shock finding is widely known and has been replicated in subsequent work. Citation count >1000 by 2026."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Science venue + 11-study design with replications puts source quality near ceiling for behavioural empirical work. Mapping fidelity strong for the architectural commitment (doing-nothing is aversive) and the routing-channel verdict (boredom-aversive is exchangeable with physical aversive); modest reservation because the experimental paradigm is enforced disengagement, not the open-ended-foraging case ARC-067 directly targets."
+  }
+}

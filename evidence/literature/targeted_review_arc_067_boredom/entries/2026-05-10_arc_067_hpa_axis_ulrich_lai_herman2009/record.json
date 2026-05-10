@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_hpa_axis_ulrich_lai_herman2009",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "Neural regulation of endocrine and autonomic stress responses",
+    "authors": ["Yvonne M Ulrich-Lai", "James P Herman"],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2647",
+    "pmid": "19469025"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Foundational Nature Reviews piece on HPA-axis stress regulation. High source quality, but mapping to ARC-067 is INDIRECT -- the paper does not address boredom specifically; it addresses physical and psychological stress more generally. Relevance is for the R2 chronic-timescale verdict and as substrate context for the R5 anhedonia/abulia anchor: chronic understimulation regimes produce HPA-axis dysregulation, which is one candidate substrate-mapping for the chronic-anhedonic-flatness pole of the timescale split. Direction is 'mixed' because the paper neither directly supports nor weakens ARC-067; it provides substrate context but the specific mapping to chronic boredom is inferential.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-067's chronic timescale is implemented as a simple slow-extension of the acute mechanism (single-substrate, two-rate-constant model) and the chronic substrate maps onto HPA-axis-like dysregulation, the predicted ablation signature should resemble HPA-related anhedonic phenotypes (cortisol-flat-affect signatures). An ARC-067 substrate without a chronic-axis component will fail to reproduce these phenotypes if R2 splits the timescales.",
+    "If chronic understimulation does NOT engage HPA-axis substrates in REE-analogous ways, the chronic-pole of the R2 split needs a different substrate framing (purely-cortical accumulator, dopaminergic mesolimbic, etc.) -- this paper bounds but does not settle the substrate."
+  ],
+  "tags": ["arc_067", "boredom", "hpa_axis", "chronic_stress", "anhedonia_substrate_context", "chronic_timescale"],
+  "mapping": {
+    "source_claim_statement": "The HPA axis (hypothalamic-pituitary-adrenal) coordinates neuroendocrine and autonomic responses to physical and psychological stress. Re-establishment and maintenance of homeostasis entails coordinated activation and control of neuroendocrine and autonomic stress systems through limbic, hypothalamic, and brainstem circuitry. Chronic stressors of varied origin (physical, psychological, including under-stimulation and loss-of-control regimes) produce sustained HPA dysregulation with characteristic flattening of normal diurnal cortisol rhythms and downstream affective consequences.",
+    "ree_translation": "ARC-067's pre-registered architectural shape includes a chronic timescale candidate (sessions / multi-session anhedonic flatness). Ulrich-Lai & Herman is the substrate-context anchor for that pole: the chronic stress literature establishes that prolonged under-stimulation / low-control regimes produce a real biological signature distinct from acute stress, with HPA-axis involvement as a load-bearing component. For REE this matters in two ways. First, R2: it supports the existence of a separate chronic timescale in real biology, even if the substrate is not yet REE-instantiated -- this is a 'biology supports the split' verdict, not a 'biology requires this specific implementation' verdict. Second, R5: chronic-anhedonic-flatness as the inverse of healthy ARC-067 working has clinical correlates (depression, burnout, learned helplessness) that map onto the HPA-dysregulation pattern; for the future psychiatric_failure_modes.md cross-reference, this paper is the appropriate substrate-context citation when discussing the chronic pole.",
+    "mapping_caveat": "The paper does not address boredom specifically -- the citation is for the chronic-stress-substrate context, not for the boredom-specific mechanism. Inferring HPA-axis involvement in chronic-boredom-as-distinct-from-acute-boredom requires an additional bridging argument that the paper itself does not make. Multiple subsequent papers (e.g., Ulrich-Lai's own later work on stress-buffering; the burnout/learned-helplessness literature) extend the substrate to under-stimulation specifically, but the 2009 review is the canonical neural-circuitry overview and should be supplemented in any future deep dive.",
+    "source_context": "Nature Reviews Neuroscience flagship review. Cited >5000 times. The canonical reference for HPA-axis neural regulation; foundational across neuroendocrinology, stress research, and clinical psychiatry."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Source quality near-ceiling (Nature Reviews Neuroscience, foundational). Mapping fidelity intentionally low because the paper is substrate-context, not boredom-specific -- this is honest about the indirect mapping. Transfer risk elevated for the same reason. The reduced confidence aggregate (0.55) reflects this honesty: the paper anchors the chronic-timescale verdict and the R5 substrate context but does not provide direct boredom evidence."
+  }
+}

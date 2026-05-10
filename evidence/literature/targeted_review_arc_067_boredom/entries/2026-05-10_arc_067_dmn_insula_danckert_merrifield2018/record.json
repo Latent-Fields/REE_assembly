@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_dmn_insula_danckert_merrifield2018",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "Boredom, sustained attention and the default mode network",
+    "authors": ["James Danckert", "Colleen Merrifield"],
+    "year": 2018,
+    "venue": "Experimental Brain Research",
+    "doi": "10.1007/s00221-016-4617-5",
+    "pmid": "26979438"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct fMRI study of induced boredom against sustained-attention and resting-state controls. Key finding for R3: boredom and sustained-attention conditions both show anticorrelated anterior insula activity relative to DMN posterior regions, distinguishable from rest. The anterior insula deactivation in boredom is the load-bearing anatomical anchor for routing-channel verdict. Source quality moderate-high (peer-reviewed neuroscience venue, video-based mood induction methodology); mapping fidelity strong for R3 routing; transfer risk moderate because fMRI BOLD signatures translate indirectly to REE substrate routing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An ARC-067 substrate that does not anatomically locate the boredom-aversive in an AIC-analog component (i.e., routes the engagement-rate aversive through the same substrate as homeostatic deficit signals like SD-012, rather than through the affective harm stream SD-011) will produce a different network-level signature than Danckert & Merrifield observe -- predicting that an REE-fMRI analog (residue-write distribution, channel utilisation patterns) should not match the boredom signature.",
+    "If boredom is implemented through MECH-216 predictive-wanting variants (target-conditioned), the network signature should look more like striatal/vmPFC reward-circuit activity than the AIC-deactivation Danckert observes -- the distinction matters for disambiguation against MECH-216."
+  ],
+  "tags": ["arc_067", "boredom", "anterior_insula", "default_mode_network", "fmri", "executive_control", "routing_channel"],
+  "mapping": {
+    "source_claim_statement": "fMRI scanning of healthy participants under four conditions (rest, sustained attention task, video-induced boredom, video-induced engagement) revealed that posterior DMN regions showed common correlated activation across all conditions. The boredom-induction and sustained-attention conditions were distinguished from rest by ANTICORRELATED activity in the anterior insula -- when DMN was active, AIC was deactivated. The authors interpret boredom as a failure to engage executive control networks during a monotonous task.",
+    "ree_translation": "This is the load-bearing R3 paper for the routing-channel verdict. The AIC-deactivation finding under boredom is consistent with the AIC's role as a salience-and-affective integrator (Critchley lineage): when AIC is deactivated, the agent is not assigning affective salience to the current task, which is exactly the engagement-failure signature ARC-067 names. For ARC-067 routing, this supports an architecture where the boredom aversive routes through the affective harm stream (SD-011 / z_harm_a) -- which is the AIC analog in REE -- and where the LACK of engagement-driven AIC activity is what allows the slow accumulator to fire. The DMN-AIC anticorrelation pattern also suggests that boredom is not just absence of engagement but absence-of-executive-engagement specifically; this favours the Westgate & Wilson 2018 attentional reading on the R1 verdict and constrains the engagement-rate estimator to attentional/executive proxies (E3 deliberation depth being the cleanest REE analog).",
+    "mapping_caveat": "fMRI BOLD signals are slow, indirect, and group-averaged -- the AIC-deactivation effect is a population-level signature rather than a mechanistic localisation. The boredom induction was video-based (passive viewing of a boring vs interesting video), which differs from Wilson 2014's enforced-disengagement paradigm and from the open-ended foraging case ARC-067 targets. Translation from BOLD signature to REE substrate routing requires bridging assumptions: that AIC activity in humans corresponds to the affective harm stream in REE (SD-011) and that DMN regions correspond to default-state / no-op-trajectory processing.",
+    "source_context": "Danckert is a leading boredom-neuroscience researcher (University of Waterloo) whose lab has produced multiple boredom-fMRI studies. The 2018 paper is the most directly cited fMRI-boredom-DMN-AIC paper in the recent literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Source quality solid for fMRI work (Experimental Brain Research is peer-reviewed neuroscience; methodology is video-induced boredom against multiple controls). Mapping fidelity good: AIC-deactivation gives a clean anatomical anchor for the R3 routing-channel verdict. Transfer risk moderately elevated because BOLD-to-REE-substrate mapping requires bridging assumptions about which REE substrates correspond to AIC and DMN."
+  }
+}

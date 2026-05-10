@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_mac_model_westgate_wilson2018",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "Boring Thoughts and Bored Minds: The MAC Model of Boredom and Cognitive Engagement",
+    "authors": ["Erin C Westgate", "Timothy D Wilson"],
+    "year": 2018,
+    "venue": "Psychological Review",
+    "doi": "10.1037/rev0000097",
+    "pmid": "29963873"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Top-tier theoretical paper in Psychological Review proposing the Meaning-and-Attentional-Component (MAC) model. Decomposes boredom into two semi-independent profiles: (a) attentional misfit (cognitive demands vs available resources, both under- and over-stimulation), and (b) meaning misfit (activities vs valued goals, or absence of valued goals). The two-component decomposition is the load-bearing R1 finding -- it forces the verdict away from a single-cause functional account toward a compositional one. Source quality very high; mapping fidelity high for the architectural shape; transfer risk modest.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that implements only a single-component boredom (engagement-rate aversive, no meaning component) will fail to discriminate between MAC-attentional and MAC-meaning profiles -- e.g., it will collapse over- and under-stimulated boredom into one signal when MAC predicts they should arise from different substrates with different downstream signatures.",
+    "If the MAC two-component decomposition is correct, a discriminative test pair should hold: under-stimulation arms (low cognitive demand, low novelty) and meaning-violation arms (high engagement but goal-incongruent task) should both produce boredom-like behaviour, but with separable internal signatures. An ARC-067 substrate that implements only the engagement-rate channel will fail the meaning-violation arm."
+  ],
+  "tags": ["arc_067", "boredom", "mac_model", "attention", "meaning", "cognitive_engagement", "two_component"],
+  "mapping": {
+    "source_claim_statement": "Boredom is the result of (a) an attentional component -- mismatches between cognitive demands and available mental resources, with both under- and over-stimulation producing the boredom signature; and (b) a meaning component -- mismatches between activities and valued goals, including the case of absent valued goals. Different profiles of boredom result from specific deficits in these two semi-independent components.",
+    "ree_translation": "ARC-067's pre-registered architectural shape is single-component (one engagement-rate accumulator). MAC argues this is under-specified: the same boredom-aversive output can arise from at least two distinct upstream conditions, one attentional (engagement-rate proxy) and one teleological (z_goal absence or z_goal-task mismatch). The R1 verdict is therefore that ARC-067's primary mechanism is the attentional / engagement-rate channel (closest to the user's pre-registered formulation), but a meaning-component contribution should be reserved for child-MECH design as a candidate parallel pathway. Concretely: the engagement-rate channel converges with a z_goal-absence or z_goal-misalignment channel at the ARC-067 valence accumulator, and the two-component sum produces the aversive output. This is mechanically clean -- the meaning channel reuses the existing z_goal substrate (SD-012, MECH-308) and does not require a new estimator.",
+    "mapping_caveat": "MAC was developed primarily on human task-engagement experiments (laboratory boring tasks vs engaging tasks under varying meaning manipulations). The cross-domain transfer to embodied open-ended REE foraging is not direct; the meaning-component literature is methodologically narrower than the attentional-component literature. The two-component decomposition may also be coarser than the actual underlying mechanism -- alternatives have been proposed in the post-2018 literature (e.g., a learning-progress-failure account that absorbs both components into a single FEP-style information-gain signal).",
+    "source_context": "Psychological Review is APA's flagship theoretical-review journal -- highest peer-review bar in psychology. Westgate is at University of Florida; Wilson at University of Virginia. The paper is the dominant citation for the attentional account of boredom and is the most-cited modern boredom-mechanism paper. Cited >300 times by 2026."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Source quality near-ceiling for a theoretical paper (Psychological Review venue, dominant citation, foundational). Mapping fidelity moderately high but with the two-component reservation: ARC-067's pre-registered single-component shape would need to be reconciled with MAC's two components either by absorbing meaning into engagement or by adding a parallel meaning channel. Transfer risk somewhat elevated because MAC's experimental basis is laboratory human task-engagement, not embodied foraging."
+  }
+}

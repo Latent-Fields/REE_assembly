@@ -28208,6 +28208,62 @@
     substrate-readiness diagnostic on a child MECH (TBD post lit-pull),
     likely on SD-054 reef substrate where engagement opportunities are
     structurally rich.
+
+    LIT-PULL COMPLETE 2026-05-10. Targeted review under
+    evidence/literature/targeted_review_arc_067_boredom/ -- 8 entries
+    spanning definitional theory (Eastwood 2012), attentional theory
+    (Westgate & Wilson 2018 Psychol Rev), functional emotion empirical
+    (van Tilburg & Igou 2017 Emotion; Bench & Lench 2013), behavioural
+    aversive (Wilson 2014 Science 11-study self-shock), fMRI neural
+    correlates (Danckert & Merrifield 2018 AIC deactivation under
+    boredom), HPA chronic stress substrate (Ulrich-Lai & Herman 2009
+    Nat Rev Neurosci), transdiagnostic apathy/anhedonia (Husain &
+    Roiser 2018 Nat Rev Neurosci). 7 supports + 1 mixed (Ulrich-Lai is
+    substrate-context only). Aggregate lit_conf expected 0.72-0.76.
+
+    Five verdicts (full reasoning in
+    targeted_review_arc_067_boredom/synthesis.md):
+      - R1 PRIMARY MECHANISM = engagement-rate aversive accumulator
+        (functional-emotion lineage). MAC meaning-component as
+        secondary parallel channel reusing existing z_goal substrate
+        (SD-012 / MECH-308). ARC-068 opportunity-cost overlap is real
+        but on different layer (E3 score vs z_harm_a valence).
+      - R2 BIOLOGY SUPPORTS THE TIMESCALE SPLIT (acute restlessness
+        ~minutes / tens of episodes vs chronic anhedonic flatness
+        ~episodes / sessions). FLAGGED to governance for slot-split
+        decision; child-MECH design proposal should default to
+        two-child split (MECH-Xa acute / MECH-Xb chronic) with
+        explicit cross-talk specification, with single-child unified
+        as cost-controlled fallback. Decision deferred until after
+        ARC-068 lit-pull (Pull 3 of 3) lands.
+      - R3 ROUTE THROUGH z_harm_a (SD-011 affective stream / AIC
+        analog), driven by Danckert 2018 AIC-deactivation finding and
+        Wilson 2014 self-shock exchangeability. Architecturally
+        cleanest option of the two pre-registered; preserves low-
+        arousal-but-action-recruiting signature without coupling to
+        SD-037 broadcast override.
+      - R4 ENGAGEMENT-RATE ESTIMATOR INPUTS narrowed to three
+        executive-engagement proxies (commit transitions per episode,
+        E3 deliberation depth, residue-write rate). DROP novel-
+        observation count as primary input -- van Tilburg 2017
+        meaning-seeking-not-stimulation-seeking signature rules it
+        out and conflation with MECH-314a striatal novelty must be
+        avoided. Novelty may contribute as secondary positive
+        engagement signal but not as primary boredom estimator.
+      - R5 ARC-067 ABLATION MAPS ONTO APATHY (Husain-Roiser
+        frontostriatal effort-allocation failure), specifically NOT
+        anhedonia (which maps onto MECH-295 liking-channel). Anchor
+        only -- pathology mapping deferred to future
+        psychiatric_failure_modes.md governance pass.
+
+    What this pull does NOT settle: acute/chronic split execution
+    (governance call), engagement-rate estimator quantitative
+    calibration, MAC meaning-component channel integration shape,
+    boredom-impulsivity failure-mode literature (deferred), ARC-068
+    composition specification (Pull 3), alternative single-component
+    FEP-flavoured information-gain-failure accounts (worth flagging
+    if subsequent validation experiments resist two-component
+    reading).
   notes: >
     Cross-reference family: ARC-067 is the aversive-side companion of
     ARC-066 (positive-side vigor). The two are conceptually distinct

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_apathy_anhedonia_husain_roiser2018",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "Neuroscience of apathy and anhedonia: a transdiagnostic approach",
+    "authors": ["Masud Husain", "Jonathan P Roiser"],
+    "year": 2018,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-018-0029-9",
+    "pmid": "29946157"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Nature Reviews Neuroscience transdiagnostic synthesis of apathy and anhedonia using effort-based decision-making framework. Highest-relevance R5 paper -- it provides the substrate framing (frontostriatal circuits: VTA -> ventral striatum / NAcc / ventral pallidum -> mPFC / dACC) for what an ARC-067 ablation phenotype maps onto clinically. Critically: distinguishes apathy (motivation/effort failure) from anhedonia (reward-experience failure) at substrate level, which constrains the R5 cross-reference. Source quality very high; mapping fidelity strong for R5 anchor; transfer risk moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-067 ablation produces a phenotype that LOOKS like anhedonia (reward-experience flattening, MECH-295 liking-channel collapse) rather than apathy (effort-allocation failure, action-pressure absence), then ARC-067 is being mistakenly mapped onto a reward-experience substrate rather than an action-recruitment substrate. The R5 verdict is that ARC-067 ablation should produce APATHY-like signatures specifically -- effort-allocation failure under preserved reward-experience -- not generic anhedonia.",
+    "If the substrate underlying clinical apathy is not located in the frontostriatal circuit Husain & Roiser identify, the R5 cross-reference will need to anchor on a different substrate class, but the apathy-vs-anhedonia distinction itself remains valid at the phenotype level and constrains the cross-reference."
+  ],
+  "tags": ["arc_067", "apathy", "anhedonia", "abulia", "frontostriatal", "transdiagnostic", "psychiatric_failure_modes_anchor"],
+  "mapping": {
+    "source_claim_statement": "Apathy and anhedonia are common motivational syndromes across brain disorders (Parkinson's disease, depression, schizophrenia, post-stroke, neurodegenerative disease). Effort-based decision making provides a transdiagnostic framework: apathy reflects an altered cost-benefit computation favouring reduced effort allocation; anhedonia reflects altered reward processing. The neurobiological substrates are frontostriatal: VTA dopaminergic projection to ventral striatum (nucleus accumbens, ventral pallidum), with downstream involvement of mPFC, dACC, and OFC. Apathy and anhedonia are dissociable but commonly co-occur.",
+    "ree_translation": "This is the load-bearing R5 paper. ARC-067 ablation maps onto APATHY (effort-allocation failure / action-pressure absence) rather than ANHEDONIA (reward-experience failure / liking-channel collapse) -- the user's pre-registration framing already anticipates this through the abulia / catatonic-flatness terminology. The Husain-Roiser distinction matters because anhedonia maps onto MECH-295 (liking channel) and the dopaminergic reward-prediction-error substrate, NOT onto ARC-067's engagement-rate aversive accumulator. Conflating them in a future psychiatric_failure_modes.md entry would muddy the substrate-to-pathology mapping. The proper R5 anchor is therefore: ARC-067-OFF in healthy substrate produces an APATHY-like phenotype (capacity preserved, reward processing preserved, no aversive-pressure to mobilise capacity), and the frontostriatal circuit Husain-Roiser identify is the closest biological-substrate correlate of ARC-067's hypothesised computational role. For child-MECH design this also constrains the engagement-rate estimator: it should NOT be reward-keyed (that's the anhedonia/MECH-295 substrate); it should be effort-allocation-keyed (commit transitions per episode, deliberation depth, residue-write rate -- markers of the agent actually deploying capacity).",
+    "mapping_caveat": "The paper synthesises across disorders with heterogeneous etiologies; the frontostriatal circuit attribution is robust at the population level but specific patient subtypes show variable patterns (e.g., post-stroke apathy with primarily-cortical lesions, schizophrenic apathy with primarily-subcortical disruption). The R5 cross-reference will need to be careful not to claim ARC-067 maps onto a single specific clinical syndrome -- it maps onto an architectural ARCHETYPE (apathy / abulia / amotivation cluster) of which multiple specific clinical pictures are manifestations. The transdiagnostic frame is the right level for the cross-reference, not any single diagnosis.",
+    "source_context": "Nature Reviews Neuroscience review by Husain (Oxford Cognitive Neurology) and Roiser (UCL Institute of Cognitive Neuroscience). Husain's lab is the leading apathy-effort-decision-making research group; Roiser's is the leading anhedonia-computational-psychiatry group. The 2018 review is the dominant transdiagnostic synthesis in the literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality near-ceiling (Nature Reviews Neuroscience, transdiagnostic synthesis from leading research groups). Mapping fidelity strong for the apathy-vs-anhedonia distinction that R5 needs to make precisely. Transfer risk moderate: the substrate-level mapping (frontostriatal circuit) translates to REE only at the architectural level, not at the specific neurotransmitter level."
+  }
+}

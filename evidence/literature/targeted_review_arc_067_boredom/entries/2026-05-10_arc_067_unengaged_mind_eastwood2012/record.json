@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_unengaged_mind_eastwood2012",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "The Unengaged Mind: Defining Boredom in Terms of Attention",
+    "authors": ["John D Eastwood", "Alexandra Frischen", "Mark J Fenske", "Daniel Smilek"],
+    "year": 2012,
+    "venue": "Perspectives on Psychological Science",
+    "doi": "10.1177/1745691612456044",
+    "pmid": "26168505"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational definitional paper that synthesises psychodynamic, existential, arousal, and cognitive theories of boredom into a single attention-anchored construct: 'the aversive experience of wanting, but being unable, to engage in satisfying activity.' Highest-relevance R1 paper for the functional-emotion-engagement-search account. Mapping to ARC-067 is direct: the architectural commitment that prolonged low-engagement is itself aversive maps onto Eastwood's 'wanting-to-engage-but-unable' definition. Source quality strong (peer-reviewed integrative review in Perspectives on Psychological Science); transfer risk modest because the construct is human-introspective and the REE substrate is computational, but the functional shape transfers cleanly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does not produce action-pressure under sustained low-engagement (well-fed, safe, familiar, no z_goal) will fail to reproduce the Eastwood 'wanting-to-engage-but-unable' phenomenology and thus will not exhibit the boredom-driven exploratory behaviour Eastwood treats as definitional.",
+    "If the ARC-067 mechanism is implemented as inverted novelty (novelty-bonus going negative when novelty rate is low), the substrate will incorrectly mark genuinely novel-but-non-interactive territory as engaging, which Eastwood's definition rules out -- the agent is bored if it wants engagement but cannot achieve it, regardless of stimulus novelty."
+  ],
+  "tags": ["arc_067", "boredom", "engagement", "attention", "functional_emotion", "definitional"],
+  "mapping": {
+    "source_claim_statement": "Boredom is the aversive experience of wanting, but being unable, to engage in satisfying activity. It is fundamentally a state of unsuccessful attention engagement -- the bored individual experiences attention as un-occupiable by available stimuli, perceives time as slowed, and feels the situation as the cause of their unpleasant state.",
+    "ree_translation": "ARC-067 instantiates the 'wanting-to-engage-but-unable' state as a slow valence accumulator over an engagement-rate scalar. Eastwood's three-part construct (subjective time slowing + attribution-to-environment + want-engagement-fail) maps onto: (1) slow integrator over an engagement-rate proxy (commit transitions / residue-write rate / E3 deliberation depth) provides the time-slowing signal; (2) the aversive valence routes through z_harm_a (affective stream) so the agent treats the state as 'about something wrong' rather than internal-only; (3) the want-engage-fail loop is what closes when the engagement-rate-driven aversive recruits action-pressure on the same E3 score axis as harm. Eastwood's definitional anchor supports the R1 functional-emotion-engagement-search verdict.",
+    "mapping_caveat": "Eastwood et al. is a theoretical synthesis, not a direct empirical paper -- the construct is built from introspective and behavioural literature. The 'wanting-but-unable' phrasing has computational ambiguity: 'wanting' could be agentive (predictive wanting in the MECH-216 sense, target-conditioned) or non-agentive (a pre-target activation pressure). ARC-067 takes the non-agentive reading; Eastwood does not arbitrate this directly. Cross-check with van Tilburg & Igou 2017 and Westgate & Wilson 2018 for finer-grained mechanism.",
+    "source_context": "Theoretical synthesis paper in Perspectives on Psychological Science. Authors are York University and University of Guelph attention-and-mind-wandering researchers. The paper is the canonical citation for the modern functional definition of boredom and is cited in essentially every subsequent neuroscience and clinical paper on boredom."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high for a theoretical synthesis (peer-reviewed, top-tier psych venue, foundational status). Mapping fidelity high: the 'wanting-to-engage-but-unable' construct is the cleanest existing literature anchor for ARC-067's architectural shape. Transfer risk moderate because the construct is human-introspective and ARC-067 is computational; the functional shape transfers but the qualia framing does not."
+  }
+}

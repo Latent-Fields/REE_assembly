@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_boredom_differentiation_vantilburg_igou2017",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "Boredom Begs to Differ: Differentiation From Other Negative Emotions",
+    "authors": ["Wijnand A P van Tilburg", "Eric R Igou"],
+    "year": 2017,
+    "venue": "Emotion",
+    "doi": "10.1037/emo0000233",
+    "pmid": "27709976"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Empirical paper differentiating boredom from neighbouring negative emotions (sadness, anger, frustration, disappointment, regret) on appraisal, action-tendency, and feeling dimensions. Key R5 anchor: boredom is mild in negative valence, low in arousal, low in perceived challenge AND low in perceived meaningfulness; the meaning-deficit and attention-deficit signatures are jointly distinctive. Critically for ARC-067: boredom motivates re-establishment of meaningfulness, NOT generic stimulation -- this constrains the engagement-rate estimator. Source quality moderate (peer-reviewed, top-tier emotion journal, multi-experiment empirical), mapping fidelity strong for the differentiation question, transfer risk modest.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An ARC-067 substrate that produces a HIGH-arousal aversive (rather than the low-arousal aversive van Tilburg & Igou observe empirically) will fail the differentiation test against frustration and anger -- those are also engagement-failure signals but with high-arousal signatures. The boredom aversive must be specifically low-arousal-but-action-recruiting, which is unusual and requires explicit substrate.",
+    "If the boredom-driven action-pressure recruits any-stimulation rather than meaningful-stimulation, the substrate will reproduce stimulation-seeking but not the meaning-seeking signature van Tilburg & Igou identify as distinctive. This boundary distinguishes ARC-067 from MECH-314a striatal novelty bonus -- novelty alone is not enough to discharge boredom under van Tilburg's account."
+  ],
+  "tags": ["arc_067", "boredom", "emotion_differentiation", "meaning", "low_arousal", "functional_emotion"],
+  "mapping": {
+    "source_claim_statement": "Boredom is empirically distinguishable from sadness, anger, frustration, disappointment, and regret along appraisal, action-tendency, and feeling dimensions. It is mild in negative valence, low in arousal, low in perceived challenge, and low in perceived meaningfulness. Boredom motivates the re-establishment of a sense of meaningfulness. The meaning-seeking action tendency is the distinctive functional signature.",
+    "ree_translation": "ARC-067's aversive output must be low-arousal but action-recruiting -- a counterintuitive combination that is the empirical signature of boredom in van Tilburg & Igou. Architecturally this means the engagement-rate aversive should not couple to the SD-037 broadcast override / orexin-analog substrate (high-arousal), and should not feed the same E3 score path as physical harm (which produces high-arousal evasive action). The meaning-seeking action tendency further constrains the discharge condition: discharging the boredom aversive requires not just any action but action that re-engages meaningful pursuit. This converges with the Westgate & Wilson 2018 meaning-component reading and supports a two-channel architecture (engagement-rate + meaning-misfit). Disambiguation against MECH-314a striatal novelty: novel territory without engagement opportunity does not discharge boredom on van Tilburg's account, so MECH-314a's inverse-frequency novelty bonus alone is insufficient.",
+    "mapping_caveat": "The empirical methodology is self-report on hypothetical and recalled emotional episodes -- it tests construct differentiation in the human concept-space, not the underlying substrate directly. The action-tendency claim is based on participants' reported behavioural intentions, not measured behaviour. Transfer to embodied REE foraging carries the usual self-report-to-mechanism caveat.",
+    "source_context": "Multi-study empirical paper in Emotion (APA flagship emotion journal). van Tilburg (now King's College London) and Igou (University of Limerick) are leading boredom-functional-emotion researchers. The paper is the dominant empirical citation for the meaning-seeking functional account of boredom and is directly cited as anchor in the ARC-067 registration."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality solid (Emotion is APA flagship; multi-study empirical with appraisal/action-tendency methodology). Mapping fidelity strong: the meaning-seeking action tendency is exactly the kind of signature ARC-067 should reproduce. Transfer risk moderate -- the empirical base is human self-report on recalled episodes, but the construct is defined precisely enough to translate to a computational signature."
+  }
+}

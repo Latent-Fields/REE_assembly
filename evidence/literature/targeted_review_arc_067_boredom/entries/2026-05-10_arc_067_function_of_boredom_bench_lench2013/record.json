@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_067_boredom",
+  "entry_id": "2026-05-10_arc_067_function_of_boredom_bench_lench2013",
+  "timestamp_utc": "2026-05-10T16:54:41Z",
+  "claim_ids_tested": ["ARC-067"],
+  "source": {
+    "title": "On the Function of Boredom",
+    "authors": ["Shane W Bench", "Heather C Lench"],
+    "year": 2013,
+    "venue": "Behavioral Sciences",
+    "doi": "10.3390/bs3030459",
+    "pmid": "25379249"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Functional review arguing that boredom serves an adaptive role: motivating pursuit of new goals when the current goal is no longer beneficial. The functional-role argument is convergent with van Tilburg & Igou 2017 but framed at a coarser level (goal-pursuit-shift rather than meaning-seeking-action). Source quality moderate (open-access journal, peer-reviewed but lower-tier than Psych Review or Emotion); high relevance to R1 functional account but the mechanism specification is less detailed than van Tilburg or Westgate. Mapping fidelity strong for the goal-shift framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An ARC-067 substrate that produces aversive pressure but no goal-shift behaviour (the agent merely sits and feels the aversive without changing direction) fails Bench & Lench's functional account -- boredom is supposed to drive the agent off its current trajectory toward an alternative, not merely to register dissatisfaction.",
+    "If the boredom-driven goal-shift is indiscriminate (any new goal, regardless of expected value), the substrate produces erratic switching rather than the value-sensitive shift Bench & Lench describe. This boundary distinguishes ARC-067 from a pure stimulation-seeking mechanism."
+  ],
+  "tags": ["arc_067", "boredom", "functional_emotion", "goal_pursuit", "boredom_proneness"],
+  "mapping": {
+    "source_claim_statement": "Boredom is a functional emotion that motivates the pursuit of new goals when the current goal is no longer beneficial. Boredom proneness is associated with risk-taking, sensation-seeking, and stimulation-seeking behaviour, but the function is properly understood as goal-pursuit-shift rather than mere stimulation-seeking.",
+    "ree_translation": "ARC-067's discharge condition operationalises Bench & Lench's goal-shift function: the aversive accumulator pushes the agent off the current low-engagement trajectory toward an alternative. Architecturally this means ARC-067's downstream is not just E3 score-bias on action vs no-op (which would be ARC-068 opportunity-cost territory) but specifically a bias toward TRAJECTORY DIVERSITY -- new candidate trajectories should be elevated relative to continuation of the current trajectory. This is mechanically distinct from ARC-068: opportunity cost penalises passive trajectories generally; boredom-driven shift penalises THIS trajectory specifically because the agent has been on it long enough for the engagement-rate to fall. The boredom-proneness-and-risk-taking literature (cited within Bench & Lench) provides the failure-mode anchor: pathological ARC-067 over-firing maps onto risk-taking and impulsivity, mirroring the clinical literature.",
+    "mapping_caveat": "Bench & Lench is review-level rather than mechanism-level, and Behavioral Sciences (MDPI) is a lower-tier venue than Psychological Review or Emotion. The goal-shift function is inferred from a heterogeneous body of empirical work (boredom proneness scales, sensation-seeking studies, school/work disengagement studies) -- the inference is reasonable but not iron-clad. The cross-domain transfer risk is similar to the other functional-emotion papers.",
+    "source_context": "Open-access review in MDPI's Behavioral Sciences. The paper is widely cited as the canonical statement of the goal-pursuit-shift functional account. Its main contribution is the integration of disparate empirical literatures (boredom proneness, sensation-seeking, school-disengagement) under one functional umbrella."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality moderate -- open-access MDPI venue is solid but not first-tier; the paper is review-level, not original empirical work. Mapping fidelity strong for the goal-shift framing; this is the paper that articulates ARC-067's discharge condition most directly. Transfer risk moderate as for other functional-emotion papers."
+  }
+}
