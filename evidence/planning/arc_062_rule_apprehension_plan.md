@@ -1,9 +1,9 @@
 ---
 closure_plan:
   id: arc_062_rule_apprehension
-  title: "Rule Apprehension (ARC-062 / MECH-309 / ARC-063)"
+  title: "Rule Apprehension (ARC-062 / MECH-309 / ARC-063 / ARC-064 / ARC-065 / MECH-312-cluster / MECH-319)"
   registered: 2026-05-09
-  scope_claims: [MECH-309, ARC-062, ARC-063, SD-054, SD-029, MECH-269]
+  scope_claims: [MECH-309, ARC-062, ARC-063, ARC-064, ARC-065, MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-316, MECH-317, MECH-318, MECH-319, Q-043, Q-044, Q-045, SD-054, SD-029, MECH-269]
   sibling_plans: [commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution]
   nodes:
     - id: "arc_062_rule_apprehension:GAP-A"
@@ -352,10 +352,15 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
 | GAP-F | 5 | deferred V4 | GAP-E outcome | none in V3 | n/a | 2026-05-09 |
 | GAP-G | 5 | deferred V4 | sleep_substrate plan progression | Pull C lit-pull (sleep-vs-waking refinement biology) when ARC-063 V4 work opens | n/a | 2026-05-09 |
+| GAP-H | 2-3 | registered | claims-only registration | ARC-065 diversity-generation cluster registered (ARC-065 anchor + MECH-313 noise-floor + MECH-314 structured-curiosity + MECH-314a/b/c sub-flavours + Q-043 weight calibration + Q-044 sub-flavour independence + Q-045 313-vs-260 collapse). V3 falsification path = V3-EXQ-543b/c (script-write deferred to next session). | V3-EXQ-543b/c | 2026-05-10 |
+| GAP-I | 2-3 | registered | claims-only registration | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD | 2026-05-10 |
+| GAP-J | 2-3 | registered | claims-only registration | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline is the V3-EXQ-543b/c falsifying alternative. | V3-EXQ-543b/c | 2026-05-10 |
+| GAP-K | 2-3 | registered | claims-only registration | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c. | V3-EXQ-543c | 2026-05-10 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `partial`,
-`done`, `deferred`. A `paused` row carries a resume condition in the
-[Decision log](#decision-log).
+`done`, `deferred`, `registered`. `registered` = claims registered in
+claims.yaml; substrate / experiments not yet built. A `paused` row
+carries a resume condition in the [Decision log](#decision-log).
 
 ---
 
@@ -443,6 +448,172 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - Cluster registration session: ARC-064 + ARC-065 + MECH-312 sub-MECH split + MECH-319 registered
+
+Major architectural commitment session. Eighteen new claim entries
+landed in `docs/claims/claims.yaml` (claims.json count 591 -> 609);
+governance pipeline ran clean (1017 runs / 1278 lit entries / 282
+proposals; 7 indexed pending review). No experiment scripts written
+this session per scope-discipline (V3-EXQ-543b/c authoring is the next
+session).
+
+**New cluster anchors (architectural commitments, both v3_pending):**
+
+- **ARC-065** — `behavioral_diversity_generation_pathway`
+  (multi-substrate distributed: LC-NE tonic + frontopolar curiosity
+  + striatal novelty + hippocampal trajectory sampling). Per Pull 1
+  PROMOTE-TO-CLUSTER (conf 0.82) + Pull 4 R4 HYBRID-naming. Logically
+  upstream of both ARC-062 top-down and ARC-064 bottom-up rule
+  pathways: trainers do not invent diversity any more than they
+  invent rules.
+- **ARC-064** — `bottom_up_behavioral_pattern_extraction_pathway`
+  (hippocampal_CLS_bi_pathway + dorsolateral_striatum_chunking +
+  OFC_cognitive_map analog). Per Pull 2 PROMOTE-AS-SEPARATE-CLUSTER
+  (conf 0.84) + Pull 4 R4 HYBRID-naming. Architectural counterpart
+  to ARC-062: where ARC-062 receives a context cue and selects a
+  policy mode, ARC-064 receives observed-behaviour and extracts
+  cross-episode regularities. Both presuppose ARC-065 upstream.
+
+**New mechanism claims (all candidate, v3_pending):**
+
+ARC-065 children:
+- **MECH-313** — `stochastic_noise_floor` (max_entropy_policy_
+  regularisation_LC_NE_tonic_analog). Distinct from MECH-260 dACC
+  anti-recency; Q-045 falsifies the collapse question.
+- **MECH-314** — `structured_curiosity_bonus`
+  (frontopolar_uncertainty_driven_exploration_expected_free_energy_
+  analog). Parent of three sub-flavours that Pull 1 R3 explicitly
+  recommended NOT to collapse prematurely:
+  - **MECH-314a** novelty_bonus_striatal_analog (Wittmann 2008)
+  - **MECH-314b** uncertainty_driven_curiosity_frontopolar_analog
+    (Daw 2006 + Friston EFE)
+  - **MECH-314c** learning_progress_curiosity_intrinsic_motivation_
+    analog (Schmidhuber/Pathak; least biologically anchored —
+    flagged as potentially-discardable if 314a + 314b suffice)
+
+ARC-064 children:
+- **MECH-316** — `cross_episode_regularity_extraction`
+  (episodic_RL_successor_representation_CLS_monosynaptic_analog;
+  Schapiro 2017 + Stachenfeld 2017)
+- **MECH-317** — `behavioural_pattern_compression`
+  (option_formation_striatal_chunking_analog; Smith & Graybiel +
+  Bacon/Harb/Precup option-critic)
+- **MECH-318** — `rule_state_abstraction_substrate`
+  (meta_RL_recurrent_task_state_representation; Wang 2018 + Duan
+  2016 RL^2). Flagged registration_provisional_pending_meta_rl_
+  absorption_check — may be absorbed into existing latent stack
+  if V3-EXQ-543c absorption check shows the recurrent state
+  already supports rule-state abstraction.
+
+MECH-312 sub-MECH split (Pull 3 R5, conf 0.78):
+- **MECH-312** (parent, reworded as
+  `rule_arbitration_multi_variable_multi_channel_dynamic_within_
+  session`) — registered as fresh parent claim with multiplicative-
+  gate as architectural-default-pending-empirical-validation per
+  Pull 3 R4 (conf 0.74); additive-logit baseline is the
+  falsifying alternative in V3-EXQ-543b/c.
+- **MECH-312a** uncertainty_reliability_weighting (Daw 2005 / Lee
+  2014; LOW divergence)
+- **MECH-312b** practice_maturity_weighting (Smith & Graybiel +
+  Stachenfeld 2017 SR maturation; LOW-MEDIUM divergence)
+- **MECH-312c** affective_stream_modulation_of_arbitration_REE_
+  novel (SD-010/011 anchored structurally; functional consequence
+  is REE-novel; MEDIUM-HIGH divergence)
+- **MECH-312d** V_s_freshness_modulation_per_region_REE_novel
+  (Behrens 2007 + Bouton 2004 nearest cousins; per-region scope
+  + rule-trust function REE-novel; HIGH divergence)
+- **MECH-312e** controllability/agency modulation (Gershman 2021
+  anchor) — DEFERRED per Pull 3 R5 pending V3 substrate
+  availability; flagged in MECH-312 evidence_quality_note.
+
+REE-novel arbitration substrate:
+- **MECH-319** — `simulation_mode_rule_write_gating_categorical_
+  replay_tag` (SWR_machinery_substrate_REE_novel_function).
+  Per Pull 3 R1 GENUINE-NOVELTY-CONFIRMED (conf 0.72) + Pull 4 R3
+  KEEP-AS-IS. Substrate-availability premise is well-anchored
+  (Joo & Frank 2018 SWR review + Foster & Wilson 2006 reverse
+  replay); the specific REE function (categorical write-gate at
+  the arbitration layer keyed to a simulation-mode tag) is the
+  REE-novel claim. **MECH-094 NOT MODIFIED** per Pull 3 R1 + Pull 4
+  R3 KEEP-AS-IS — MECH-094 names the architectural principle;
+  MECH-319 is its substrate-level instantiation at the arbitration
+  layer.
+
+**New open questions:**
+- **Q-043** — relative-weight calibration of MECH-313 vs MECH-314
+  (parametric sweep on V3-EXQ-543b)
+- **Q-044** — independence of MECH-314a/b/c sub-flavours (three-arm
+  ablation; defer empirical resolution)
+- **Q-045** — MECH-313 vs MECH-260 collapse question (4-arm
+  ablation: both-OFF / 313-only / 260-only / both-ON on V3-EXQ-543b)
+
+**MECH-315 absorption (no new claim):** Per Pull 2 R5 verdict (conf
+0.74), MECH-315 candidate (proposal-diversity-channel via
+hippocampal trajectory sampling, Pfeiffer & Foster 2013) is
+ABSORBED into existing MECH-292 ranked ghost-goal bank + MECH-293
+awake ghost-goal probes substrate. NOT registered as a separate
+claim. Cross-reference notes added to MECH-292 + MECH-293
+evidence_quality_note.
+
+**HYBRID-naming convention rationale (Pull 4 R4):** Cluster claims
+carry titles that name BOTH the REE-internal architectural-function
+name AND the literature anchors, making the cluster machine-grep-
+able under both REE-native search ("behavioral diversity",
+"bottom-up rule discovery") and literature-search ("MaxEnt RL",
+"frontopolar curiosity", "successor representation", "option-
+critic", "OFC cognitive map", "contention-scheduling-arbitration").
+Pull 4 R4 distributed claim names across KEEP-AS-IS (4 genuine REE
+divergences), RENAME-TO-EXISTING (none applied this session — all
+literature-anchored claims went HYBRID), and HYBRID (the bulk of
+new registrations).
+
+**DEFERRED candidates flagged for follow-up lit-pulls (NOT
+registered as claims this session):**
+
+- **Candidate MECH-320** — `interrupted_task_resumption_substrate`
+  + V_s context-saving extension + reconciliation-rule Q-claim.
+  Per memory entry `project_interrupted_task_resumption_gap.md`:
+  REE has world-staleness invalidation but no Zeigarnik-style
+  "agent was working on X, got interrupted, resume when capacity
+  allows" mechanism. Anchors: Zeigarnik 1927 + Altmann & Trafton
+  2002 + Cai 2009 + Mason & Macrae 2007 + Christoff 2009.
+  Deferred from this registration session pending dedicated
+  lit-pull commission.
+- **Candidate ARC-XXX** — `imagination_learning_constraint_
+  principle`. Per memory entry `project_imagination_learning_
+  constraints.md`: explicit ARC-level commitment articulating
+  LICIT (consistency, plan-optimisation, schema integration) vs
+  FORBIDDEN (world-model updates, prediction validation, novel-
+  fact generation) classes of learning from imagination.
+  Currently implicit in MECH-094 / MECH-272 / MECH-273 substrate
+  gating; needs explicit articulation as architectural commitment.
+  Anchors: Stickgold 2013 + Cai 2009 + Schapiro 2017 CLS +
+  confabulation literature + FEP epistemic value. Deferred
+  pending dedicated lit-pull commission.
+
+**Forward link.** V3-EXQ-543b and V3-EXQ-543c are the next-session
+authoring targets via `/queue-experiment` skill. V3-EXQ-543b is
+the noise-floor + gating arm class (Q-043 weight sweep + Q-045
+4-arm ablation + multiplicative-gate vs additive-logit baseline);
+V3-EXQ-543c is the curiosity + meta-RL recurrent baselines arm
+class (MECH-314a/b/c absorption check + MECH-318 latent-stack
+absorption check). Per Pull 4 R5 sequencing recommendation, the
+two scripts split the original V3-EXQ-543b 5-arm protocol so
+each script remains reviewable and falsifiable in isolation.
+
+**Status table updates.** Five new gap rows registered (GAP-H
+ARC-065 cluster + GAP-I ARC-064 cluster + GAP-J MECH-312-cluster +
+GAP-K MECH-319 + status-value `registered` introduced for
+claims-registered-but-experiments-not-yet-queued items).
+
+**Cross-references.** ARC-063 V4 strong-reading evidence_quality_
+note still references MECH-310/311/312/313 sub-claims-to-register
+placeholder list; that placeholder list is now stale (MECH-312/313
+are registered with different functional content per Pull 1-4
+verdicts). Out of scope for this session per the prompt's "DO NOT
+MODIFY MECH-094" rule (which extended in spirit to ARC-063 stale
+cross-references); flag for separate cleanup session.
 
 ### 2026-05-10 - GAP-B reclassified non_contributory; jump to Phase 3 design (V3-EXQ-543b)
 

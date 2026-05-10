@@ -23286,6 +23286,15 @@
     Registered candidate with direct literature anchor from
     `targeted_review_ghost_goal_search/` and indirect support from
     `targeted_review_mech285_sleep_replay_seed/`.
+
+    [2026-05-10 absorption note] MECH-315 candidate (proposal-diversity-
+    channel via hippocampal trajectory sampling, Pfeiffer & Foster 2013)
+    is absorbed into the MECH-292 ranked ghost-goal bank + MECH-293
+    awake ghost-goal probes substrate per Pull 2 R5 verdict 2026-05-10
+    (conf 0.74). MECH-315 is NOT registered as a separate top-level
+    claim; the proposal-diversity function it would have provided to
+    ARC-064 / ARC-065 is already substantively covered by this
+    substrate.
   implementation_note: >
     SUBSTRATE IMPLEMENTED 2026-04-27 in ree-v3/ree_core/hippocampal/ghost_goal_bank.py
     (GhostGoalBank, GhostGoalBankConfig, GhostGoalBankEntry). Pure-arithmetic
@@ -23359,6 +23368,15 @@
     `targeted_review_ghost_goal_search/`. The main remaining uncertainty is not
     whether ghost-biased probing is biologically plausible, but how large the waking
     probe fraction should be before recovery gains turn into rumination.
+
+    [2026-05-10 absorption note] MECH-315 candidate (proposal-diversity-
+    channel via hippocampal trajectory sampling, Pfeiffer & Foster 2013)
+    is absorbed into the MECH-292 ranked ghost-goal bank + MECH-293
+    awake ghost-goal probes substrate per Pull 2 R5 verdict 2026-05-10
+    (conf 0.74). MECH-315 is NOT registered as a separate top-level
+    claim; the proposal-diversity function it would have provided to
+    ARC-064 / ARC-065 is already substantively covered by this
+    substrate.
   implementation_note: "SUBSTRATE LANDED 2026-04-27. Module: ree-v3/ree_core/hippocampal/module.py (HippocampalModule.propose_trajectories() extended with optional current_z_goal kwarg + minority ghost-seeded branch consuming MECH-292 GhostGoalBank.rank(); new private methods _propose_ghost_seeded + _mix_value_flat_with_ghost; diagnostic accessor get_last_propose_diagnostics surfacing mech293_n_ghost_proposed / n_ghost_admitted / max_ghost_priority / mean_goal_match_at_seed / reason). ree-v3/ree_core/predictors/e2_fast.py: Trajectory dataclass extended with hypothesis_tag (bool, default False) and metadata (Optional[Dict[str, Any]], default None) fields. ree-v3/ree_core/agent.py: REEAgent._e3_tick threads goal_state.z_goal (when goal_state is active) into propose_trajectories; record_committed_trajectory explicitly sets hypothesis_tag=False / metadata=None on the executed committed trajectory so the executed path drops any ghost provenance from the source proposal (the executed trajectory IS real, regardless of origin -- spec requirement). Algorithm: n_ghost = clamp(round(n*mech293_ghost_fraction), [min_ghost, max_ghost]) bounded by bank size; each ghost seeds the action-object distribution from anchor.z_world (NOT current z_world), single noise draw (no inner CEM refit so probe cost <= one value-flat sample), e2.rollout_with_world rolls forward, traj.hypothesis_tag=True + traj.metadata={source: 'mech293_ghost_probe', anchor_key, ghost_priority, goal_match}; mix per mech293_replace_lowest_ranked (default True drops highest-cost value-flat candidates and appends ghosts at tail; False appends raising total). Config: REEConfig.use_mech293_ghost_probes (default False) + 4 sub-knobs (mech293_ghost_fraction=0.2, mech293_min_ghost_candidates=1, mech293_max_ghost_candidates=8, mech293_replace_lowest_ranked=True) all wired through REEConfig.from_dims. Precondition (HippocampalModule.__init__): use_mech293_ghost_probes=True requires use_mech292_ghost_bank=True; the MECH-292 block transitively guarantees use_anchor_sets=True and AnchorSetConfig.use_sd039_anchor_payload=True so only the bank flag is asserted explicitly here (loud-not-silent). Backward compat verified: 12/12 MECH-293 contracts + 183/183 full preflight + contracts PASS with master OFF (bit-identical to pre-MECH-293 HEAD). MECH-094: ghost trajectories carry hypothesis_tag=True for provenance routing; CEM rollout does not write residue/anchors during proposal; record_committed_trajectory strips the tag at commit; SD-039 build_goal_payload(simulation_mode=True) handles the population-side gate already. ARC-007 strict preserved: no value head added; goal-match enters via MECH-292's external ranking, ghost seeding is by LOCATION (anchor's z_world) not by internal value computation. Validation: V3-EXQ-497 5/5 PASS 2026-04-27 in 34s on Mac (UC1 module surface; UC2 master-OFF no-op n_ghost=0 / diagnostics={} / candidates default-clean; UC3 ghost branch fires n_ghost_admitted=4 max_priority=1.61 mean_goal_match_at_seed=0.998; UC4 hypothesis_tag preserved on every ghost + metadata complete + 28 value-flat candidates default-clean; UC5 budget arithmetic round(0.25*8)=2 in [1,4] arm A + bank-size cap to 1 in arm B + min-floor wins over fraction=0.0 in arm C). v3_pending KEPT TRUE -- behavioural validation (faster recovery from blocked-goal conditions vs random-probe baseline; lower revisitation of fully incoherent stale regions) lives in V3-EXQ-495 (V3 full-completion gate, MECH-163 dual systems test) and is not yet run. Design doc: REE_assembly/docs/architecture/mech_293_ghost_goal_probe_search.md (Status flipped DESIGNED -> IMPLEMENTED)."
   location: docs/architecture/ghost_goal_search.md
 
@@ -26269,4 +26287,1373 @@
          doc-level anchor that any future designer working on rule-
          apprehension, sleep-vs-waking refinement, moral-residue
          attribution, or schema-failure-mode pathology will surface.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: ARC-065
+  title: "behavioral_diversity_generation_pathway (multi-substrate distributed: LC-NE tonic + frontopolar curiosity + striatal novelty + hippocampal trajectory sampling). Architectural commitment: a non-trivial behavioural diversity generation pathway is upstream-of and logically prior to both rule pathways (ARC-062 top-down rule-apprehension and ARC-064 bottom-up rule-discovery). Without it, neither pathway has anything to weight or cluster -- gradient descent on a parametric policy without diversity pressure collapses to the smoothest single regime, the predicted equilibrium MECH-309 identifies. The biology distributes diversity generation across at least four substrates: LC-NE tonic noise floor, frontopolar uncertainty-driven curiosity, striatal novelty bonus, and hippocampal trajectory sampling. REE registers this as a foundational architectural slot whose specific child mechanisms (MECH-313 noise-floor, MECH-314 structured-curiosity with three sub-flavours, and the MECH-315-absorbed proposal-diversity channel) are independently testable but jointly load-bearing."
+  claim_type: architectural_commitment
+  subject: rule_apprehension.behavioral_diversity_generation_pathway
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on: []
+  functional_restatement: >
+    ARC-065 registers the architectural slot for the behavioural diversity
+    generation pathway that both rule pathways (ARC-062 top-down rule-
+    apprehension, ARC-064 bottom-up rule-discovery) presuppose. The claim
+    is that diversity generation is a substantive architectural function,
+    not an emergent property of softmax sampling or training noise; without
+    a diversity-generation pathway, the rule machinery has nothing to
+    weight or cluster.
+
+    Multi-substrate distributed instantiation, biology-anchored. Pull 1
+    SYNTHESIS verdict 2 identified at least four converging substrates,
+    none of which is alone sufficient:
+      (a) LC-NE tonic noise floor: locus coeruleus tonic firing produces
+          baseline action-selection variability (Aston-Jones & Cohen 2005
+          adaptive-gain model). Computational analog: max-entropy policy
+          regularisation, SAC entropy bonus (Haarnoja et al. 2018).
+          REE child claim: MECH-313 stochastic_noise_floor.
+      (b) Frontopolar uncertainty-driven curiosity: rostrolateral
+          prefrontal exploration bonus (Daw et al. 2006 Nature; Wilson
+          et al. 2014; Kidd & Hayden 2015). Three sub-flavours that the
+          lit recommends NOT collapsing prematurely:
+            - Striatal novelty bonus (Wittmann et al. 2008 Neuron) ->
+              MECH-314a
+            - Frontopolar uncertainty-driven curiosity (Daw 2006) ->
+              MECH-314b
+            - Learning-progress / intrinsic-motivation curiosity
+              (Schmidhuber tradition; Pathak et al. 2017) -> MECH-314c
+          REE parent: MECH-314 structured_curiosity_bonus.
+      (c) Hippocampal trajectory sampling: Pfeiffer & Foster 2013 forward
+          path sweeps generate diverse rollouts independent of policy
+          variability. REE absorption: per Pull 2 R5 verdict, the
+          MECH-315 candidate (proposal-diversity channel via hippocampal
+          trajectory sampling) is ABSORBED into the existing MECH-292 +
+          MECH-293 ghost-goal substrate, NOT registered as a separate
+          child claim of ARC-065.
+      (d) Active-inference epistemic value (Friston 2010, 2015):
+          information-gain reward as a structural source of behavioural
+          diversity. Cross-references MECH-314b but operates at a
+          different formal level (free-energy decomposition vs ML
+          intrinsic-motivation reward shaping).
+
+    Architectural commitment claim. Both ARC-062 and ARC-064 require
+    diversity in the policy-output stream (ARC-062 needs it for the
+    context discriminator to find a discriminative cut; ARC-064 needs
+    it so cross-episode regularity extraction has heterogeneous
+    behaviour to cluster across). MECH-309's logical-necessity argument
+    cuts both ways: trainers do not invent rules, and trainers do not
+    invent diversity either. The diversity-generation pathway is a
+    second logically-necessary architectural slot; ARC-065 names it.
+
+    Falsifiable architectural prediction: complete ablation of the
+    diversity-generation pathway (LC-tonic + curiosity + striatal-
+    novelty all OFF) should produce monomodal collapse on SD-054 even
+    with ARC-062 gated-policy heads + learned context discriminator
+    enabled, because the discriminator has no diverse behavioural
+    stream to find a cut in. Partial PASS (any single substrate ON)
+    distinguishes load-bearing from contributory among the four.
+
+    What ARC-065 is NOT. ARC-065 does not assert that all four
+    substrates are necessary -- only that diversity generation as a
+    function is necessary, and that biology distributes it. The
+    relative-weight-calibration question (Q-043) and the substrate-
+    collapse question (Q-044, Q-045) are open and falsifiable in V3-
+    EXQ-543b/c.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 lit-pull SYNTHESIS verdict 3
+    (PROMOTE-TO-CLUSTER, conf 0.82) and Pull 4 R4 HYBRID-naming
+    convention. Lit-pull anchors:
+      - Wilson et al. 2014 (Cereb Cortex) -- frontopolar exploration
+        bonus framework
+      - Aston-Jones & Cohen 2005 (Annu Rev Neurosci) -- LC-NE adaptive
+        gain
+      - Daw et al. 2006 (Nature) -- frontopolar uncertainty-driven
+        exploration
+      - Wittmann et al. 2008 (Neuron) -- striatal novelty bonus
+      - Haarnoja et al. 2018 (ICML) -- SAC max-entropy policy
+        regularisation as the computational analog of LC-NE noise
+      - Friston 2010 / 2015 -- active inference expected free energy
+      - Schmidhuber 1991 / Pathak et al. 2017 -- intrinsic motivation
+        / curiosity-driven learning
+      - Kidd & Hayden 2015 (Neuron) -- review of curiosity neural
+        substrates
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+
+    Pull 4 R4 verdict assigned ARC-065 to HYBRID-naming convention
+    because the REE-internal name (behavioral_diversity_generation_pathway)
+    captures the architectural-function level while the literature anchors
+    (MaxEnt + intrinsic-motivation + LC-NE adaptive gain) capture the
+    substrate-mechanism level; neither alone is sufficient.
+
+    Not yet experimentally tested. Falsifying experiment is V3-EXQ-543b
+    (5-arm protocol with ARC-062 gated policy ON across all arms; arms
+    differ in which diversity-generation substrate is enabled) or split
+    into V3-EXQ-543b (noise-floor + gating) + V3-EXQ-543c (curiosity +
+    meta-RL recurrent baselines) per Pull 4 R5 sequencing recommendation.
+
+    No standalone biology lit-pull on diversity generation as a unified
+    pathway; the four sub-mechanisms have independent literatures and
+    Pull 1 surveys their convergence onto the architectural-commitment
+    claim. A standalone pull on the diversity-generation function as
+    such (rather than its sub-substrates) would deepen the registration
+    but is not a precondition for V3-EXQ-543b/c.
+  notes: >
+    HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
+    internal architectural name (behavioral_diversity_generation_pathway)
+    and the literature anchors (LC-NE tonic + frontopolar curiosity +
+    striatal novelty + hippocampal trajectory sampling). This makes the
+    cluster machine-grep-able under both REE-native search ("behavioral
+    diversity") and literature-search ("frontopolar curiosity",
+    "MaxEnt RL", "LC-NE adaptive gain").
+
+    Cross-reference: ARC-065 is a precondition for ARC-062 in the same
+    way that MECH-269 V_s representational discriminability is a
+    precondition for ARC-062. The chain is: behavioural diversity
+    generation -> representational discriminability -> rule apprehension.
+    All three are upstream of SD-029 monomodal-collapse measurement.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-313
+  title: "stochastic_noise_floor (max_entropy_policy_regularisation_LC_NE_tonic_analog). A floor-level stochastic action-selection noise that prevents complete deterministic collapse of the policy. Biological substrate: locus coeruleus tonic firing producing baseline action-selection variability (Aston-Jones & Cohen 2005 adaptive-gain model). Computational analog: max-entropy policy regularisation / SAC entropy bonus (Haarnoja et al. 2018). Distinct from MECH-260 dACC anti-recency: MECH-313 is a state-independent noise floor, while MECH-260 is a state-dependent recency penalty. Both can contribute to anti-monostrategy pressure but operate via different mechanisms; whether they collapse into a single substrate or are mutually load-bearing is open (Q-045)."
+  claim_type: mechanism_hypothesis
+  subject: policy.stochastic_noise_floor_lc_ne_tonic_analog
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-065     # parent architectural commitment (behavioural diversity generation)
+    - MECH-260    # dACC anti-recency penalty (related but distinct mechanism; Q-045 falsifies whether they collapse)
+  functional_restatement: >
+    MECH-313 names a floor-level stochastic action-selection noise as
+    the substrate for the LC-NE tonic component of ARC-065's behavioural
+    diversity generation pathway. The biology: tonic locus coeruleus
+    firing gates a baseline norepinephrine-driven action variability
+    that does not depend on uncertainty estimation or curiosity reward
+    (Aston-Jones & Cohen 2005). The computational analog is max-entropy
+    policy regularisation -- SAC's entropy bonus (Haarnoja et al. 2018)
+    is the cleanest implementation pattern.
+
+    Distinct from MECH-260 dACC anti-recency. MECH-260 penalises
+    recently-selected actions as a function of recency state; MECH-313
+    is a state-independent stochasticity floor. MECH-260 alone can
+    produce anti-monostrategy pressure on short timescales by penalising
+    the just-selected action; MECH-313 produces persistent low-amplitude
+    variability across all timescales and all action choices. The two
+    mechanisms are mathematically distinct (MECH-260 is a Boltzmann-
+    style temperature on the recency-penalised action; MECH-313 is a
+    target entropy in the policy distribution).
+
+    Falsifiable: in V3-EXQ-543b 4-arm sub-design,
+      - both-OFF: MECH-260 OFF + MECH-313 OFF
+      - 313-only: MECH-313 ON, MECH-260 OFF
+      - 260-only: MECH-260 ON, MECH-313 OFF
+      - both-ON: MECH-260 ON + MECH-313 ON
+    On SD-054 reef substrate with ARC-062 gated-policy enabled, behaviour
+    diversity (action-distribution entropy at probe states; reef/forage
+    occupancy CoV across seeds) should rank both-ON > {313-only, 260-only}
+    > both-OFF if the two mechanisms are mutually load-bearing. If
+    313-only matches both-ON, MECH-260 is contributory-not-necessary; if
+    260-only matches both-ON, MECH-313 is contributory-not-necessary.
+    Both-OFF should produce monomodal collapse irrespective of ARC-062.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS R3 + Pull 4 R4 HYBRID-naming.
+    Lit anchors:
+      - Aston-Jones & Cohen 2005 (Annu Rev Neurosci) -- LC-NE adaptive
+        gain (tonic vs phasic firing modes)
+      - Haarnoja et al. 2018 (ICML) -- SAC; entropy-regularised RL
+      - Faisal et al. 2008 (Nat Rev Neurosci) -- noise in the nervous
+        system as a substrate-level constraint
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+
+    Existing MECH-260 dACC anti-recency in claims.yaml is the nearest
+    pre-registered REE substrate. Q-045 captures the empirical question
+    of whether MECH-313 and MECH-260 are independently load-bearing or
+    collapse into one anti-monostrategy substrate.
+
+    Not yet experimentally tested. Falsifying experiment is V3-EXQ-543b
+    4-arm sub-design or its split V3-EXQ-543b (noise floor / gating)
+    arm-class.
+  notes: >
+    Pull 4 R4 verdict assigned MECH-313 to HYBRID-naming because the
+    REE-internal stochastic_noise_floor name and the literature anchor
+    max_entropy_policy_regularisation are co-equally informative; the
+    LC-NE tonic analog adds the biology-side anchor.
+
+    Implementation hint: SAC-style entropy regularisation in the existing
+    GatedPolicy module's per-head softmax temperature is a one-line
+    config addition; no separate substrate component required. Default
+    weight should be small (~1e-3 of policy loss scale) so it does not
+    swamp the score-aggregation gradient.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-314
+  title: "structured_curiosity_bonus (frontopolar_uncertainty_driven_exploration_expected_free_energy_analog). A reward bonus on action-selection that rewards information-gain or uncertainty-reduction, distinct from a state-independent noise floor (MECH-313). Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature) operating jointly with striatal novelty (Wittmann et al. 2008 Neuron). Three sub-flavours (MECH-314a/b/c) that the lit-pull recommended NOT to collapse prematurely: striatal novelty (Wittmann anchor), frontopolar uncertainty-driven curiosity (Daw anchor), learning-progress / intrinsic-motivation curiosity (Schmidhuber/Pathak tradition). Active-inference (Friston 2010/2015 expected free energy) provides the formal-level unification. Q-044 captures the open question of whether the three sub-flavours are distinct substrates or three readings of one mechanism with different upstream inputs."
+  claim_type: mechanism_hypothesis
+  subject: policy.structured_curiosity_bonus_parent
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-065     # parent architectural commitment
+    - MECH-313    # sibling noise-floor mechanism (differentially weighted, not redundant)
+  functional_restatement: >
+    MECH-314 names the structured-curiosity-bonus substrate as the second
+    major child of ARC-065 (alongside MECH-313 stochastic noise floor).
+    The bonus is uncertainty-driven or information-gain-driven, NOT
+    state-independent: actions whose outcomes the agent cannot predict
+    well, or that would resolve large uncertainty, receive an additive
+    reward bonus.
+
+    Three sub-flavours, registered as MECH-314a/b/c. Pull 1 SYNTHESIS
+    R3 + Pull 4 R4 explicitly recommended NOT collapsing them prematurely:
+      - MECH-314a striatal novelty bonus (Wittmann et al. 2008 Neuron;
+        ventral striatum responds to stimulus novelty independent of
+        reward prediction error). Sub-flavour where the bonus tracks
+        recency-of-encounter.
+      - MECH-314b frontopolar uncertainty-driven curiosity (Daw et al.
+        2006 Nature; rostrolateral PFC exploration bonus; Wilson et al.
+        2014; Kidd & Hayden 2015). Sub-flavour where the bonus tracks
+        epistemic value (how much would I learn).
+      - MECH-314c learning-progress / intrinsic-motivation curiosity
+        (Schmidhuber 1991; Pathak et al. 2017). Sub-flavour where the
+        bonus tracks the rate-of-improvement of the agent's predictive
+        model. Most computationally instantiated in ML literature; least
+        biologically anchored.
+
+    Active-inference unification (Friston 2010/2015 expected free
+    energy) decomposes both 314a and 314b into a single epistemic-value
+    plus pragmatic-value formal framework. MECH-314c sits a level apart
+    -- it is a meta-level signal (rate of learning) not directly
+    derivable from EFE.
+
+    Falsifiable: in V3-EXQ-543b/c, parametric sweep of MECH-314 weight
+    against MECH-313 weight should produce a Pareto frontier on
+    behavioural-diversity-vs-task-reward (Q-043). If MECH-314a/b/c are
+    independently load-bearing (Q-044), three-arm ablation should
+    surface distinct failure signatures: 314a-OFF reduces novelty-driven
+    return-to-explore; 314b-OFF reduces uncertainty-resolution rollouts;
+    314c-OFF reduces learning-curve curvature.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchors:
+      - Daw et al. 2006 (Nature) -- frontopolar uncertainty-driven
+        exploration
+      - Wittmann et al. 2008 (Neuron) -- striatal novelty bonus
+      - Wilson et al. 2014 (Cereb Cortex) -- frontopolar exploration
+        bonus expansion
+      - Kidd & Hayden 2015 (Neuron) -- review
+      - Friston 2010 / 2015 -- expected free energy / epistemic value
+      - Schmidhuber 1991 -- intrinsic motivation framework
+      - Pathak et al. 2017 (ICML) -- curiosity-driven exploration via
+        prediction-error
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+
+    Pull 4 R4 verdict assigned MECH-314 to HYBRID-naming with parent
+    title carrying both the REE-internal structured_curiosity_bonus
+    name and the frontopolar_uncertainty_driven_exploration +
+    expected_free_energy literature anchors.
+
+    Sub-flavour split is itself a Pull 1 verdict: MECH-314a/b/c are
+    registered as separate sub-claims rather than collapsed because
+    independent testability + heterogeneous biological provenance
+    justify the split. See Q-044 for the open question.
+  notes: >
+    MECH-314 is the parent claim; MECH-314a/b/c are registered immediately
+    after as sibling sub-claims. The parent's depends_on does not list the
+    children (they depend on it, not vice versa).
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-314a
+  title: "novelty_bonus_striatal_analog. A reward bonus that tracks recency-of-encounter; new or rarely-encountered states/actions receive a positive bonus independent of reward prediction error. Biological substrate: ventral striatum response to stimulus novelty (Wittmann et al. 2008 Neuron). Sub-flavour of MECH-314 structured curiosity bonus."
+  claim_type: mechanism_hypothesis
+  subject: policy.curiosity.novelty_bonus_striatal_analog
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-314    # parent structured-curiosity-bonus claim
+    - ARC-065     # grandparent architectural commitment
+  functional_restatement: >
+    MECH-314a names the recency-of-encounter sub-flavour of
+    structured curiosity. The biology: ventral striatum produces a
+    novelty signal independent of dopamine reward-prediction-error
+    (Wittmann et al. 2008). The computational analog is a count-based
+    or pseudo-count exploration bonus (Bellemare et al. 2016
+    NeurIPS-style; Burda et al. 2018 RND).
+
+    Falsifiable independently of MECH-314b/c: state-novelty ablation
+    should produce different failure signature from uncertainty-driven
+    curiosity ablation (314b) and learning-progress ablation (314c).
+    Specific signature: 314a-OFF agents show reduced return-rate to
+    rarely-visited states; 314b-OFF agents show reduced uncertainty-
+    resolution rollouts at familiar-but-uncertain states; 314c-OFF
+    agents show reduced learning-curve curvature on tasks where model
+    improvement rate varies with policy.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchor:
+      - Wittmann et al. 2008 (Neuron) -- ventral striatum novelty
+        response
+      - Bellemare et al. 2016 (NeurIPS) -- pseudo-count exploration
+        bonus (computational analog)
+      - Burda et al. 2018 (ICLR) -- random network distillation
+        (computational analog)
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+
+    Sub-flavour split rationale: MECH-314a is independently testable
+    via state-novelty bonus ablation and has a distinct biological
+    substrate (ventral striatum) from MECH-314b (frontopolar) and
+    MECH-314c (no clean biological anchor; ML-literature dominant).
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-314b
+  title: "uncertainty_driven_curiosity_frontopolar_analog. A reward bonus that tracks epistemic value -- how much the agent would learn from sampling a state or action. Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature). Sub-flavour of MECH-314 structured curiosity bonus. Active-inference framing: bonus equals epistemic value term in expected free energy decomposition (Friston 2010/2015)."
+  claim_type: mechanism_hypothesis
+  subject: policy.curiosity.uncertainty_driven_frontopolar_analog
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-314    # parent
+    - ARC-065
+  functional_restatement: >
+    MECH-314b names the epistemic-value sub-flavour of structured
+    curiosity. The biology: rostrolateral PFC exploration bonus
+    (Daw et al. 2006); high-level goal-directed exploration that
+    tracks "how much would I learn" rather than "how recently
+    visited."
+
+    The active-inference framework (Friston 2010/2015) provides
+    the formal unification: epistemic value is the expected
+    information gain term in expected-free-energy decomposition.
+    Computational implementations include Bayes-optimal
+    exploration (Bellemare 2014, Houthooft 2016 VIME), and
+    Thompson sampling.
+
+    Falsifiable per MECH-314 functional_restatement: 314b-OFF
+    agents show reduced uncertainty-resolution rollouts at
+    familiar-but-uncertain states.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchors:
+      - Daw et al. 2006 (Nature) -- frontopolar exploration bonus
+      - Wilson et al. 2014 (Cereb Cortex) -- expansion
+      - Friston 2010 (Nat Rev Neurosci) -- free-energy framework
+      - Friston et al. 2015 (Cogn Neurosci) -- active inference and
+        epistemic value
+      - Houthooft et al. 2016 (NeurIPS) -- VIME (computational analog)
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-314c
+  title: "learning_progress_curiosity_intrinsic_motivation_analog. A reward bonus that tracks the rate-of-improvement of the agent's predictive model (or any internal-state quantity); actions that produce a steepening learning curve receive a positive bonus. Most computationally instantiated in ML literature (Schmidhuber 1991, Pathak et al. 2017); least biologically anchored of the three MECH-314 sub-flavours -- no clean cellular or regional analog. Distinguishes from MECH-314a (recency-based) and MECH-314b (uncertainty-based) by tracking second-order signal (improvement rate) rather than first-order (count or uncertainty)."
+  claim_type: mechanism_hypothesis
+  subject: policy.curiosity.learning_progress_intrinsic_motivation_analog
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-314    # parent
+    - ARC-065
+  functional_restatement: >
+    MECH-314c names the learning-progress sub-flavour of structured
+    curiosity. The bonus is meta-level: it tracks the derivative-of-
+    improvement of the agent's internal predictive model (or any
+    internal scalar that progresses under learning). The Schmidhuber
+    1991 framework of "intrinsic motivation as compression progress"
+    is the original formulation; Pathak et al. 2017 (curiosity by
+    prediction error against a forward model) is the most-cited
+    modern instantiation.
+
+    No clean biological anchor. Unlike MECH-314a (ventral striatum)
+    and MECH-314b (frontopolar PFC), MECH-314c does not map cleanly
+    to a known regional substrate. Pull 1 SYNTHESIS R3 noted this
+    explicitly: 314c is the most ML-native sub-flavour and may
+    ultimately be REE-discardable if 314a + 314b suffice.
+
+    Falsifiable: 314c-OFF agents on tasks where model improvement
+    rate varies with policy should show reduced learning-curve
+    curvature compared to 314c-ON agents holding 314a + 314b
+    constant.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS R3 + Pull 4 R4.
+    Pull 1 explicitly flagged 314c as least biologically-anchored;
+    registration as a candidate keeps the option open without
+    committing REE to it as load-bearing. Lit anchors:
+      - Schmidhuber 1991 -- "compression progress" framework
+      - Pathak et al. 2017 (ICML) -- curiosity-driven exploration by
+        forward-model prediction error
+      - Oudeyer et al. 2007 -- intrinsic motivation systems / learning-
+        progress framework in robotics
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+
+    Q-044 captures the question of whether 314a/b/c are distinct
+    substrates or three readings of one mechanism. If 314c is
+    discardable (i.e. 314a + 314b suffice on V3 substrates), 314c
+    can be retired without architectural cost.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: Q-043
+  title: "How should the relative weights of MECH-313 (stochastic noise floor / LC-NE tonic analog) and MECH-314 (structured curiosity bonus / frontopolar curiosity) be calibrated for V3 substrates? Falsifiable with parametric sweep on SD-054 reef substrate plus ARC-062 gated-policy."
+  claim_type: open_question
+  subject: policy.diversity_generation.relative_weight_calibration
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-065     # parent architectural commitment
+    - MECH-313    # noise floor
+    - MECH-314    # structured curiosity
+  notes: >
+    Both MECH-313 (state-independent stochasticity) and MECH-314
+    (state-dependent uncertainty-driven bonus) contribute to
+    behavioural diversity, but the optimal mixing ratio for V3
+    substrate is unknown. Too much MECH-313 produces noise that
+    swamps any rule-discriminative signal ARC-062 might learn; too
+    much MECH-314 produces overcommitment to information-gain at
+    the expense of task reward.
+
+    Resolution path: parametric sweep of (w_313, w_314) on SD-054
+    reef substrate with ARC-062 gated-policy enabled, measuring
+    behavioural-diversity (action-distribution entropy at probe
+    states; CoV reef-vs-forage occupancy) and task-reward jointly.
+    Pareto frontier identifies the calibration zone where both
+    objectives are simultaneously high.
+
+    PASS-as-question-resolution: Pareto frontier exists with a
+    consistent (w_313, w_314) regime across seeds. FAIL-with-
+    insight: no Pareto frontier exists, indicating an
+    architectural defect in how the two mechanisms compose
+    additively in the policy gradient.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS verdict 4 (relative-
+    weight-calibration question) + Pull 4 R4 (HYBRID-naming).
+    Falsifying experiment scope: V3-EXQ-543b parametric weight
+    sweep arm class. Not yet run.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: Q-044
+  title: "Are MECH-314a (striatal novelty), MECH-314b (frontopolar uncertainty-driven curiosity), and MECH-314c (learning-progress curiosity) three distinct substrates with independent contributions, or three different readings of one mechanism with different upstream inputs (e.g., novelty as a special case of uncertainty as a special case of learning progress)?"
+  claim_type: open_question
+  subject: policy.curiosity.subflavour_independence
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-314
+    - MECH-314a
+    - MECH-314b
+    - MECH-314c
+  notes: >
+    Pull 1 SYNTHESIS R3 explicitly recommended NOT collapsing the
+    three sub-flavours prematurely; Q-044 holds the open question
+    open while the registration captures all three.
+
+    Resolution path: three-arm ablation (314a-OFF, 314b-OFF, 314c-OFF)
+    on a substrate that produces distinguishable signatures across
+    novelty / uncertainty / learning-progress dimensions. SD-054
+    alone may be insufficient; substrate enrichment may be needed.
+    Defer empirical resolution to ARC-064-Pull-2-follow-on (the
+    bottom-up rule-discovery cluster surfaces the same independence
+    questions for MECH-316/317/318).
+
+    Resolution outcomes:
+      - All three independent (each ablation produces a distinct
+        failure signature): retain three sub-claims as load-bearing.
+      - 314c discardable (314a + 314b suffice): retire 314c, keep
+        a + b.
+      - All three collapse (one signature): collapse to a single
+        MECH-314 with notes documenting the collapse.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS R3 (recommendation
+    NOT to lock prematurely). Lit support: same anchors as
+    MECH-314a/b/c.
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: Q-045
+  title: "Is MECH-313 (LC-NE tonic noise floor) a separate parameter from MECH-260 (dACC anti-recency penalty), or do they collapse into one anti-monostrategy substrate? Falsifiable with the four-arm ablation: both-OFF / 313-only / 260-only / both-ON, on SD-054 reef substrate with ARC-062 gated-policy enabled."
+  claim_type: open_question
+  subject: policy.anti_monostrategy.substrate_independence_lc_vs_dacc
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-313    # candidate noise-floor mechanism
+    - MECH-260    # existing dACC anti-recency mechanism
+    - ARC-065
+  notes: >
+    Both MECH-313 and MECH-260 produce anti-monostrategy pressure
+    but via different mechanisms: state-independent vs state-
+    dependent recency. Whether both are needed, or one suffices
+    in V3, is empirically open.
+
+    Resolution path: 4-arm ablation on SD-054 with ARC-062 enabled:
+      - both-OFF: monomodal collapse expected (control)
+      - 313-only: anti-monostrategy via persistent variability
+      - 260-only: anti-monostrategy via recency penalty
+      - both-ON: maximally diverse
+    Behavioural-diversity ranking determines whether the two
+    mechanisms are mutually load-bearing (both-ON > {313-only,
+    260-only} > both-OFF) or one dominates ({313-only, 260-only}
+    indistinguishable from both-ON, the other contributes
+    contributory-not-necessary).
+
+    Resolution outcomes:
+      - Mutually load-bearing: keep both as candidate, both
+        promote to provisional on PASS.
+      - 313 dominates: 260 contributory-not-necessary; consider
+        retiring MECH-260 in V3 substrate.
+      - 260 dominates: 313 contributory-not-necessary; consider
+        not implementing MECH-313 in V3.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 1 SYNTHESIS R3 (the
+    relationship between LC-NE noise and dACC anti-recency is
+    architecturally distinct but functionally overlapping; needs
+    empirical resolution).
+    See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: ARC-064
+  title: "bottom_up_behavioral_pattern_extraction_pathway (hippocampal_CLS_bi_pathway + dorsolateral_striatum_chunking + OFC_cognitive_map analog). Architectural commitment: rule discovery from observed-behaviour clustering is logically and architecturally distinct from rule application from instructed/external context (ARC-062 top-down rule-apprehension). Where ARC-062 receives a context cue and selects a discriminative policy mode, ARC-064 receives an observed-behaviour stream and extracts cross-episode regularities, compressed behavioural patterns, and rule-state abstractions. Both pathways presuppose ARC-065 behavioural diversity generation upstream. Multi-substrate distributed instantiation: hippocampal Complementary Learning Systems bi-pathway (Schapiro et al. 2017), dorsolateral striatum action chunking (Smith & Graybiel 2013/2016), OFC cognitive-map state abstraction (Wilson et al. 2014; Schuck et al. 2016)."
+  claim_type: architectural_commitment
+  subject: rule_discovery.bottom_up_behavioral_pattern_extraction_pathway
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-065     # behavioural diversity generation -- precondition; clustering needs heterogeneous behaviour to cluster across
+    - MECH-309    # diagnostic claim (rule-apprehension as logical necessity); ARC-064 is its bottom-up counterpart to ARC-062's top-down
+  functional_restatement: >
+    ARC-064 names the architectural slot for bottom-up rule discovery:
+    extracting cross-episode regularities, compressed behavioural
+    patterns, and rule-state abstractions FROM the observed-behaviour
+    stream itself, rather than receiving an external context cue.
+    Where ARC-062 starts with a context label and selects a
+    discriminative policy mode, ARC-064 starts with raw behavioural
+    data and clusters / chunks / abstracts toward a rule-state
+    representation.
+
+    The two pathways are logically and architecturally distinct:
+      - ARC-062 top-down: cue -> context discriminator -> policy mode
+      - ARC-064 bottom-up: observed behaviour -> regularity extraction
+        -> compressed patterns -> rule-state abstraction
+    Both can coexist; both presuppose ARC-065 behavioural diversity
+    generation upstream (top-down has nothing to discriminate without
+    diverse behaviour to choose between; bottom-up has nothing to
+    cluster without diverse behaviour to cluster).
+
+    Multi-substrate distributed instantiation, biology-anchored. Pull
+    2 SYNTHESIS verdicts identified three converging substrates:
+      (a) Hippocampal Complementary Learning Systems bi-pathway
+          (Schapiro et al. 2017): monosynaptic CA1 path supports
+          fast statistical learning and pattern separation;
+          trisynaptic path supports slow consolidation. The
+          monosynaptic side is the cross-episode regularity
+          extractor. REE child claim: MECH-316
+          cross_episode_regularity_extraction.
+      (b) Dorsolateral striatum action chunking (Smith & Graybiel
+          2013/2016 sequence-of-actions consolidation;
+          Bacon/Harb/Precup 2017 option-critic computational
+          analog; Martiros & Graybiel 2018 already in REE index).
+          Compresses repeated behavioural patterns into options.
+          REE child claim: MECH-317 behavioural_pattern_compression.
+      (c) OFC cognitive-map state abstraction (Wilson, Takahashi,
+          Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes
+          task state). Abstracts the rule-state itself as a latent
+          variable in the agent's representation. REE child claim:
+          MECH-318 rule_state_abstraction_substrate.
+
+    Architectural commitment: discovery-from-clustering is a
+    distinct architectural function from application-from-instruction.
+    Both ARC-062 and ARC-064 may be needed; it is empirically open
+    which is more load-bearing on V3 substrates and which surfaces
+    as primary in V4 clinical / failure-mode tests (cf. ARC-063
+    falsifiable predictions b).
+
+    Falsifiable architectural prediction: on substrates where the
+    rule must be discovered (no external cue, only observed
+    behaviour), ARC-064 children should produce learning curves
+    that ARC-062 alone cannot match. On substrates where the rule
+    is cued externally, ARC-062 alone should suffice and ARC-064
+    contribution should be minimal (additive without much benefit).
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 2 lit-pull SYNTHESIS verdict 1
+    (PROMOTE-AS-SEPARATE-CLUSTER, conf 0.84) + Pull 4 R4 HYBRID-
+    naming + Pull 3 R5 absorption verdicts (MECH-315 absorbed into
+    MECH-292/293 ghost-goal substrate; not registered as a separate
+    ARC-064 child).
+    Lit anchors:
+      - Schapiro et al. 2017 (Phil Trans R Soc B) -- CLS bi-pathway
+        (monosynaptic statistical learning vs trisynaptic
+        consolidation)
+      - Smith & Graybiel 2013, 2016 (Curr Opin Neurobiol; Neuron) --
+        habit consolidation in dorsolateral striatum / action
+        chunking
+      - Wilson, Takahashi, Schoenbaum & Niv 2014 (Neuron) -- OFC
+        cognitive map
+      - Schuck et al. 2016 (Neuron) -- OFC state abstraction
+      - Bacon, Harb & Precup 2017 (AAAI) -- option-critic
+        (computational analog of MECH-317)
+      - Stachenfeld, Botvinick & Gershman 2017 (Nat Neurosci) --
+        successor representation in hippocampus (computational
+        analog of MECH-316)
+      - Wang et al. 2018 (Nat Neurosci) -- prefrontal as meta-RL
+        (computational analog of MECH-318)
+      - Davachi 2015 (J Neurosci) -- statistical learning in
+        hippocampus
+    See: evidence/literature/targeted_review_arc_064_bottom_up_rule_discovery/synthesis.md
+
+    Pull 4 R4 verdict assigned ARC-064 to HYBRID-naming convention
+    because the REE-internal architectural-function name
+    (bottom_up_behavioral_pattern_extraction_pathway) is co-equally
+    informative with the literature anchors (CLS bi-pathway +
+    dorsolateral striatum chunking + OFC cognitive map). The
+    hybrid title makes the cluster discoverable under both REE-
+    native and literature-search.
+
+    Not yet experimentally tested. Falsifying experiments require
+    a substrate where the rule must be discovered (no external
+    cue) -- candidates: a temporal-statistical-regularity task in
+    SD-054 extended with hidden context structure; a
+    serial-reaction-time-task analog. V3-EXQ design deferred to
+    a separate session.
+  notes: >
+    HYBRID-naming convention (Pull 4 R4): the title carries both
+    the REE-internal architectural name and the literature
+    anchors, making the cluster machine-grep-able under both
+    REE-native search ("bottom-up rule discovery") and
+    literature-search ("CLS bi-pathway", "successor
+    representation", "option-critic", "OFC cognitive map").
+
+    Cross-reference to ARC-062: ARC-062 top-down + ARC-064
+    bottom-up are complementary, both presupposing ARC-065
+    diversity generation upstream. The full chain is:
+      ARC-065 (diversity) -> {ARC-062, ARC-064} (rule machinery)
+                          -> SD-029 (monomodal-collapse measurement)
+    Whether ARC-062 alone suffices on V3 substrates is the V3-
+    EXQ-543b/c question; whether ARC-064 alone could suffice (and
+    if so, on which substrates) is a separate downstream question.
+
+    Pull 3 R5 absorption: MECH-315 candidate (proposal-diversity
+    channel via hippocampal trajectory sampling, Pfeiffer & Foster
+    2013) is ABSORBED into MECH-292 ranked ghost-goal bank +
+    MECH-293 awake ghost-goal probes substrate per Pull 2 R5
+    verdict 2026-05-10 (conf 0.74). Not registered as an ARC-064
+    child; the proposal-diversity function it would have provided
+    is already substantively covered by the existing ghost-goal
+    substrate.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-316
+  title: "cross_episode_regularity_extraction (episodic_RL_successor_representation_CLS_monosynaptic_analog). A mechanism for extracting cross-episode statistical regularities from observed behaviour streams, producing a representation that supports prediction of future state-occupancy distributions. Biological substrate: hippocampal monosynaptic CA1 path (Schapiro et al. 2017 CLS bi-pathway); statistical learning in hippocampus (Davachi 2015). Computational analog: successor representation (Stachenfeld et al. 2017 Nat Neurosci). Sub-claim of ARC-064 bottom-up rule discovery."
+  claim_type: mechanism_hypothesis
+  subject: rule_discovery.cross_episode_regularity_extraction
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-064     # parent architectural commitment
+    - ARC-065     # grandparent (diversity generation upstream)
+    - MECH-269    # V_s monostrategy: representational discriminability is precondition for cross-episode clustering
+  functional_restatement: >
+    MECH-316 names the cross-episode regularity-extraction substrate
+    of ARC-064 bottom-up rule discovery. The biology: hippocampal
+    monosynaptic CA1 path (Schapiro et al. 2017) supports fast
+    statistical learning -- pattern co-occurrence statistics across
+    multiple episodes are encoded into a representation that
+    supports prediction of future state-occupancy distributions.
+
+    Computational analog: successor representation
+    (Stachenfeld et al. 2017). The SR encodes for each state s the
+    discounted future-occupancy distribution under the current
+    policy; learning the SR gives the agent a substrate where
+    cross-episode regularities are explicit features.
+
+    Distinct from MECH-317 (compression into options) and MECH-318
+    (rule-state abstraction): MECH-316 produces the raw statistical
+    regularity; MECH-317 chunks repeated patterns into reusable
+    options; MECH-318 abstracts the rule-state itself as a latent
+    variable.
+
+    Falsifiable: on a substrate with hidden cross-episode statistical
+    structure (e.g., a transition matrix that varies between two
+    rule regimes), MECH-316-ON agents should learn a representation
+    whose state-occupancy predictions diverge between the two
+    regimes; MECH-316-OFF agents (or successor-representation-
+    ablated) should fail to capture the divergence and behave
+    monomodally across both regimes.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 2 SYNTHESIS verdicts. Lit
+    anchors:
+      - Schapiro et al. 2017 (Phil Trans R Soc B) -- CLS bi-pathway,
+        monosynaptic side as statistical-learning substrate
+      - Davachi 2015 (J Neurosci) -- hippocampal statistical
+        learning review
+      - Stachenfeld, Botvinick & Gershman 2017 (Nat Neurosci) --
+        successor representation as hippocampal substrate
+      - Momennejad et al. 2017 -- successor-representation human
+        evidence
+    See: evidence/literature/targeted_review_arc_064_bottom_up_rule_discovery/synthesis.md
+
+    Pull 4 R4 verdict: HYBRID-naming (MECH-316 cross_episode_
+    regularity_extraction is the REE-internal architectural-
+    function name; episodic_RL_successor_representation_CLS_
+    monosynaptic_analog is the literature anchor list).
+
+    Not yet experimentally tested. Falsifying experiment requires
+    a hidden-structure substrate; not currently in V3 substrate
+    set. Substrate-design EXQ deferred.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-317
+  title: "behavioural_pattern_compression (option_formation_striatal_chunking_analog). A mechanism for compressing repeated behavioural patterns into reusable options / action-chunks, producing a representation that supports temporally-extended action selection. Biological substrate: dorsolateral striatum sequence consolidation (Smith & Graybiel 2013/2016; Martiros & Graybiel 2018). Computational analog: options framework / option-critic (Bacon, Harb & Precup 2017). Sub-claim of ARC-064 bottom-up rule discovery."
+  claim_type: mechanism_hypothesis
+  subject: rule_discovery.behavioural_pattern_compression
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-064     # parent architectural commitment
+    - ARC-065     # grandparent
+  functional_restatement: >
+    MECH-317 names the behavioural-pattern-compression substrate
+    of ARC-064. The biology: dorsolateral striatum (DLS)
+    consolidates repeated sequences-of-actions into chunks
+    (Smith & Graybiel 2013/2016) -- start-stop-bracketed action
+    sequences become a single reusable unit at the level of
+    striatal representation.
+
+    Computational analog: options framework (Sutton et al. 1999
+    HRL) and option-critic (Bacon, Harb & Precup 2017). An option
+    is a temporally-extended action with an initiation set, a
+    policy, and a termination condition. Option discovery is
+    the process by which repeated behavioural patterns are
+    compressed into options; option-critic provides a gradient-
+    based discovery method.
+
+    Distinct from MECH-316 (cross-episode regularities) and
+    MECH-318 (rule-state abstraction): MECH-316 produces the raw
+    statistics; MECH-317 detects which behavioural patterns are
+    compressible (repeated across many instances) and creates
+    reusable options; MECH-318 abstracts the higher-level rule
+    state under which those options are deployed.
+
+    Falsifiable: on a substrate with repeated behavioural sequences
+    (e.g. SD-054 reef-foraging requires a stereotyped approach-
+    feed-retreat sequence at each reef patch), MECH-317-ON agents
+    should produce stereotyped action chunks at reef patches with
+    chunk boundaries detectable in action-distribution entropy
+    troughs; MECH-317-OFF agents should produce unchunked action
+    streams without boundaries.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 2 SYNTHESIS verdicts. Lit
+    anchors:
+      - Smith & Graybiel 2013 (Curr Opin Neurobiol); 2016 (Neuron) --
+        habit consolidation / action chunking in DLS
+      - Martiros & Graybiel 2018 (already in REE index) -- direct
+        empirical
+      - Sutton, Precup & Singh 1999 (Artif Intell) -- options
+        framework
+      - Bacon, Harb & Precup 2017 (AAAI) -- option-critic gradient
+        method
+      - Eysenbach et al. 2018 (ICLR) -- diversity-is-all-you-need
+        skill discovery (related)
+      - Solway et al. 2014 (PLOS Comput Biol) -- optimal behavioural
+        hierarchies
+    See: evidence/literature/targeted_review_arc_064_bottom_up_rule_discovery/synthesis.md
+
+    Pull 4 R4 verdict: HYBRID-naming (option_formation +
+    striatal_chunking is the literature-anchor list paired with
+    REE-internal name).
+
+    Not yet experimentally tested. Falsifying experiments are
+    SD-054-tractable but require new instrumentation (action-
+    chunk boundary detection); EXQ design deferred.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-318
+  title: "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. NOTE: this claim may be absorbed into the latent stack itself when the meta-RL collapse is operationalised in V3 -- flagged as registration_provisional_pending_meta_rl_absorption_check."
+  claim_type: mechanism_hypothesis
+  subject: rule_discovery.rule_state_abstraction_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-064     # parent architectural commitment
+    - ARC-065     # grandparent
+    - MECH-316    # cross-episode regularities feed the rule-state abstraction
+    - MECH-317    # compressed patterns may be inputs to the rule-state abstraction
+  functional_restatement: >
+    MECH-318 names the rule-state-abstraction substrate of ARC-064.
+    The biology: orbitofrontal cortex encodes task state (Wilson,
+    Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016) -- OFC
+    units track abstract task-context variables that are not
+    directly observable in the sensory stream but that condition
+    the appropriate policy.
+
+    Computational analog: meta-RL recurrent task-state representation
+    (Wang et al. 2018; Duan et al. 2016 RL^2). A recurrent network
+    trained across many task instances learns to encode the task
+    identity in its hidden state, allowing policy adaptation
+    within an episode.
+
+    Distinct from MECH-316 (cross-episode statistics) and MECH-317
+    (option compression): MECH-318 abstracts the rule-state itself,
+    not the regularities it produces or the action-chunks it
+    licenses. The rule-state abstraction is what allows the agent
+    to ask "what rule-context am I in?" rather than "what is the
+    current observation?"
+
+    Provisional registration. NOTE in the title and per Pull 2 R3:
+    MECH-318 may be absorbed into the latent stack itself when the
+    meta-RL collapse is operationalised. The candidate
+    z_world / z_self / z_harm latent stack already supports a
+    rule-context variable in principle (the recurrent state of
+    the agent encodes task identity across episodes); whether a
+    separate substrate is needed depends on V3-EXQ-543c follow-on
+    measurement. Flag: registration_provisional_pending_meta_rl_
+    absorption_check.
+
+    Falsifiable: on a multi-rule-context substrate (e.g. SD-054
+    extended with two reef configurations that require different
+    foraging strategies), MECH-318-ON agents should show within-
+    episode adaptation timing at rule-switch points (faster
+    adjustment to new rule-context); MECH-318-OFF (or recurrent-
+    state-ablated) agents should adapt only at the slow-learning
+    timescale (across episodes, not within).
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 2 SYNTHESIS verdicts.
+    Lit anchors:
+      - Wilson, Takahashi, Schoenbaum & Niv 2014 (Neuron) -- OFC
+        cognitive map
+      - Schuck et al. 2016 (Neuron) -- OFC encodes task state
+      - Wang et al. 2018 (Nat Neurosci) -- prefrontal as meta-RL
+      - Duan et al. 2016 (NeurIPS) -- RL^2 recurrent meta-RL
+      - Botvinick et al. 2019 (Trends Cogn Sci) -- review of
+        prefrontal meta-RL
+    See: evidence/literature/targeted_review_arc_064_bottom_up_rule_discovery/synthesis.md
+
+    Pull 4 R4 verdict: HYBRID-naming
+    (rule_state_abstraction_substrate + meta_RL_recurrent_task_state_
+    representation).
+
+    Provisional registration flag: registration_provisional_pending_
+    meta_rl_absorption_check. If V3-EXQ-543c (or a follow-on)
+    demonstrates that the existing z_self / z_world latent recurrent
+    state already supports the rule-state abstraction MECH-318
+    names, this claim should be retired (its function is absorbed
+    into the existing latent stack). If V3-EXQ-543c shows that the
+    latent stack is insufficient and a dedicated substrate is
+    needed, MECH-318 promotes to active.
+
+    Not yet experimentally tested. Falsifying experiments are
+    multi-rule-context substrate; SD-054 single-context insufficient.
+  notes: >
+    The provisional-registration mechanism follows the pattern set
+    by other "may-be-absorbed" substrate claims: register, run a
+    targeted absorption-check experiment, retire if absorbed and
+    promote if not. V3-EXQ-543c is the most likely first
+    absorption-check vehicle.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-312
+  title: "rule_arbitration_multi_variable_multi_channel_dynamic_within_session. Parent claim for the multi-variable, multi-channel, dynamic-within-session arbitration that selects between competing rules / policy modes / action sources at the policy layer. Arbitration is governed by at least four distinct sub-mechanisms (MECH-312a/b/c/d), each falsifiable independently, with a candidate fifth (controllability/agency) deferred pending V3 substrate availability. Recommended combination rule: multiplicative gate (per-channel softmax of reliability * cost * agency * V_s * practice_maturity products) per Pull 3 R4 verdict; falsified against additive-logit baseline in V3-EXQ-543b/c. Reframed 2026-05-10 from earlier dual-channel-arbitration sketch following Pull 3 SYNTHESIS R5 SUB-MECH SPLIT recommendation (conf 0.78)."
+  claim_type: mechanism_hypothesis
+  subject: policy.rule_arbitration_multi_variable_multi_channel_dynamic_within_session
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - ARC-062     # top-down rule-apprehension; one source of arbitration input
+    - ARC-064     # bottom-up rule-discovery; another source of arbitration input
+    - ARC-065     # diversity generation; precondition for arbitrable behavioural variation
+    - MECH-309    # the diagnostic claim that motivates the rule machinery cluster
+  functional_restatement: >
+    MECH-312 is the parent claim for the rule-arbitration layer that
+    selects between competing rules, policy modes, or action sources
+    at the policy layer. The Pull 3 SYNTHESIS R5 verdict recommended
+    a SUB-MECH SPLIT (conf 0.78) over a single-claim formulation,
+    based on three convergent considerations:
+      (i) independent testability -- each sub-MECH is independently
+          falsifiable with a distinct ablation;
+      (ii) heterogeneous biological provenance -- the four sub-
+           mechanisms have distinct neural substrates and distinct
+           literature lineages;
+      (iii) 2D quadrant placement -- the sub-mechanisms differ in
+           lit-conf vs exp-conf, motivating per-claim governance.
+
+    Four registered sub-mechanisms:
+      - MECH-312a uncertainty/reliability weighting (Daw 2005, Lee
+        2014 dual-systems arbitration analog) -- LOW divergence
+        from existing literature; direct mapping.
+      - MECH-312b practice/maturity weighting (Smith & Graybiel
+        habit-takeover analog) -- LOW-MEDIUM divergence; partial
+        mapping.
+      - MECH-312c affective-stream modulation of arbitration weight
+        -- REE-novel functional consequence on a biologically-
+        anchored dual-stream architecture; MEDIUM-HIGH divergence.
+      - MECH-312d V_s freshness modulation per region -- HIGH
+        divergence; per-region scope and rule-trust function are
+        REE-novel.
+
+    Candidate fifth (NOT REGISTERED YET):
+      - MECH-312e controllability/agency modulation (Gershman 2021
+        anchor) -- deferred pending V3 substrate availability.
+
+    Recommended combination rule (Pull 3 R4, conf 0.74):
+    MULTIPLICATIVE GATE as architectural default. Per-channel
+    softmax of (reliability * cost * agency * V_s * practice_maturity)
+    products, where each factor is supplied by one sub-mechanism:
+      reliability      <- MECH-312a
+      practice_maturity <- MECH-312b
+      affective_modulator <- MECH-312c
+      V_s_freshness    <- MECH-312d
+      agency           <- MECH-312e (when registered)
+    The multiplicative gate corresponds to a logical-AND across
+    factors at the high-confidence regime and to a soft trade-off
+    at intermediate values; an additive-logit baseline corresponds
+    to logical-OR (any single factor can dominate). Pull 3 R4
+    recommended multiplicative as default and additive as the
+    falsified-against baseline.
+
+    Falsification of the combination rule (architectural-default
+    test): V3-EXQ-543b/c arms compare multiplicative-gate vs
+    additive-logit on a substrate where the two combination rules
+    produce divergent action-selection signatures (e.g. when one
+    factor is at a low-confidence level: multiplicative suppresses
+    arbitration trust; additive allows another factor to dominate).
+  evidence_quality_note: >
+    Reframed 2026-05-10 from earlier dual-channel-arbitration sketch
+    via Pull 3 SYNTHESIS R5 SUB-MECH SPLIT verdict (conf 0.78).
+    Reference cluster: targeted_review_mech_312_arbitration_divergences
+    8 entries. Sub-MECHs MECH-312a/b/c/d registered immediately
+    after this parent; MECH-312e deferred per Pull 3 R5 (V3
+    substrate not yet available to carry agency-confidence per
+    channel; defer until SD-054-extended or Q-041-resolved
+    substrate work clears the way).
+
+    Pull 4 R4 verdict: HYBRID-naming. The REE-internal name
+    (rule_arbitration_multi_variable_multi_channel_dynamic_within_
+    session) carries the architectural-function level; the
+    contention-scheduling-arbitration analog
+    (Norman-Shallice 1986; Cooper-Shallice 2000) carries the
+    cognitive-architecture-anchor level.
+
+    Recommended combination rule (multiplicative gate, Pull 3 R4
+    conf 0.74) is registered as architectural-default-pending-
+    empirical-validation; the additive-logit baseline is the
+    falsifying alternative. V3-EXQ-543b/c are the validation
+    vehicles.
+
+    Not yet experimentally tested. lit_conf 0.866 post-Pull-3
+    indexer rebuild.
+
+    DEFERRED: MECH-312e controllability/agency modulation
+    (Gershman 2021 anchor) is a candidate fifth sub-MECH;
+    deferred pending V3 substrate availability that would carry
+    agency-confidence per channel. Re-poseable when SD-054 is
+    extended or when Q-041 unified-threshold-supervisor work
+    surfaces a per-channel agency signal.
+  notes: >
+    Earlier-conversation dual-channel-arbitration sketch is
+    superseded by this parent + sub-MECH structure. The four
+    registered sub-mechanisms cover the empirically-motivated
+    arbitration variables identified by Pull 3:
+    uncertainty/reliability, practice/maturity, affective
+    modulation, V_s freshness. The candidate fifth is deferred.
+
+    Pull 3 R4 multiplicative-gate recommendation is registered as
+    notes-level architectural default; the falsification path is
+    explicit (V3-EXQ-543b/c additive-logit baseline arm).
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-312a
+  title: "uncertainty_reliability_weighting (Daw_2005_Lee_2014_dual_systems_arbitration_analog). Arbitration weight tracks the inverse-uncertainty / reliability of each candidate rule or policy mode; high-reliability sources receive higher arbitration weight. Biological substrate: model-based / model-free dual-systems arbitration (Daw et al. 2005 Nat Neurosci; Lee et al. 2014 Neuron). LOW divergence from existing literature; direct mapping. Sub-claim of MECH-312."
+  claim_type: mechanism_hypothesis
+  subject: policy.arbitration.uncertainty_reliability_weighting
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-312    # parent
+  functional_restatement: >
+    MECH-312a names the uncertainty / reliability weighting sub-
+    mechanism of the rule-arbitration layer. Each candidate rule
+    or policy mode carries an internal uncertainty estimate
+    (e.g., Bayesian posterior variance, ensemble-disagreement
+    measure, or precision parameter); arbitration weight is
+    inverse-uncertainty / reliability.
+
+    Direct mapping to dual-systems arbitration (Daw et al. 2005;
+    Lee et al. 2014): model-based and model-free systems each
+    carry an uncertainty estimate; the agent weights their
+    contributions to action-selection by relative reliability,
+    so that the more-certain system dominates and the less-
+    certain system is suppressed.
+
+    Falsifiable: on a substrate where one rule has high reliability
+    and another low (e.g. one rule has been observed fail recently;
+    another has consistently succeeded), arbitration weight should
+    track reliability monotonically. MECH-312a-ON agents show
+    arbitration-weight ratio matching reliability ratio;
+    MECH-312a-OFF (or uniform weighting) agents show flat
+    arbitration regardless of reliability.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 3 SYNTHESIS R5. Lit anchors:
+      - Daw, Niv & Dayan 2005 (Nat Neurosci) -- model-based vs
+        model-free arbitration
+      - Lee, Shimojo & O'Doherty 2014 (Neuron) -- arbitration via
+        uncertainty
+    See: evidence/literature/targeted_review_mech_312_arbitration_divergences/synthesis.md
+
+    LOW divergence from existing literature; direct mapping.
+    Pull 4 R4 (HYBRID-naming) but the literature mapping is so
+    direct that the literature-anchor name dominates.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-312b
+  title: "practice_maturity_weighting (Smith_Graybiel_habit_takeover_analog). Arbitration weight tracks practice-maturity / habit-strength of each candidate rule or policy mode; well-practiced behaviour receives higher arbitration weight via a habit-takeover dynamic. Biological substrate: dorsolateral striatum habit consolidation (Smith & Graybiel 2013/2016); successor-representation maturation (Stachenfeld et al. 2017). LOW-MEDIUM divergence; partial mapping (the maturity dimension is well-anchored; the integration into a multi-channel arbitration layer is more REE-specific). Sub-claim of MECH-312."
+  claim_type: mechanism_hypothesis
+  subject: policy.arbitration.practice_maturity_weighting
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-312    # parent
+    - MECH-317    # behavioural pattern compression -- maturity is the consolidation product
+  functional_restatement: >
+    MECH-312b names the practice / maturity weighting sub-mechanism.
+    Each candidate rule or policy mode accumulates a practice-
+    maturity scalar (running count or EMA of successful
+    deployments); arbitration weight increases with maturity
+    via a habit-takeover dynamic.
+
+    Biological substrate: Smith & Graybiel 2013/2016 demonstrate
+    that with practice, action sequences chunk and DLS-mediated
+    habit takes over from goal-directed (associative-striatum)
+    control. Stachenfeld et al. 2017 successor-representation
+    matures with experience. Both anchor the maturity dimension.
+
+    Distinct from MECH-312a (uncertainty / reliability): a rule
+    can be high-maturity (well-practiced) but currently low-
+    reliability (recently failing); arbitration weight under
+    multiplicative gate would be downweighted by 312a despite
+    high 312b.
+
+    Falsifiable: on a substrate where one rule has high practice
+    (many prior deployments) and another low (recently introduced),
+    arbitration weight under MECH-312b should track practice-
+    count monotonically. Deviations indicate other factors
+    (uncertainty, affect, V_s) dominating.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 3 SYNTHESIS R5. Lit anchors:
+      - Smith & Graybiel 2013 (Curr Opin Neurobiol); 2016 (Neuron)
+        -- habit consolidation / DLS takeover
+      - Stachenfeld, Botvinick & Gershman 2017 (Nat Neurosci) --
+        successor representation maturation
+      - Yin & Knowlton 2006 (Nat Rev Neurosci) -- habit vs goal-
+        directed dorsal-striatum dichotomy
+    See: evidence/literature/targeted_review_mech_312_arbitration_divergences/synthesis.md
+
+    LOW-MEDIUM divergence; partial mapping. Pull 4 R4 HYBRID-naming.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-312c
+  title: "affective_stream_modulation_of_arbitration_REE_novel. Arbitration weight is modulated by affective stream load: when the SD-010 / SD-011 affective stream produces high load (high salience harm or affect), the arbitration layer routes more weight to rules associated with affect-laden context, suppressing arbitration weight on neutral-context rules. The REE-novel claim is the FUNCTIONAL CONSEQUENCE: dual-stream architecture (SD-010/SD-011) is well-anchored in Murray-Rudebeck 2018 and Pessoa-Adolphs 2010, but the modulation of rule-arbitration weights by affective-stream load is REE-specific (MEDIUM-HIGH divergence). Sub-claim of MECH-312."
+  claim_type: mechanism_hypothesis
+  subject: policy.arbitration.affective_stream_modulation_ree_novel
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-312    # parent
+    - SD-010      # harm-stream substrate (affective stream A)
+    - SD-011      # dual-nociceptive-stream / affective-discriminative split
+  functional_restatement: >
+    MECH-312c names the affective-stream modulation sub-mechanism
+    of rule arbitration. The structural premise is well-anchored:
+    SD-010 + SD-011 implement a dual-stream architecture where
+    affective and discriminative streams are dissociable
+    (anatomically supported by Murray & Rudebeck 2018 OFC review;
+    Pessoa & Adolphs 2010 amygdala-cortical interactions). The
+    REE-NOVEL claim is the functional consequence: affective
+    stream load modulates arbitration weight on rules.
+
+    Functional behaviour: when the affective stream (SD-010 harm
+    stream + downstream affect-coding) carries high load, the
+    arbitration layer routes more weight to rules previously
+    deployed in similar high-affect contexts, and downweights
+    rules previously deployed in neutral contexts. This produces
+    affect-congruent rule selection -- a substrate-level
+    instantiation of mood-congruent cognition.
+
+    Distinct from MECH-312a (reliability) and MECH-312b (practice):
+    affective modulation can override both (e.g., a low-practice,
+    high-uncertainty rule deployed in a high-affect context may
+    win arbitration via MECH-312c despite low MECH-312a + MECH-312b
+    weight).
+
+    Falsifiable: on a substrate where affective load varies (SD-054
+    extended with affect-cue conditions), arbitration weight should
+    show interaction effects with affect load: rules previously
+    deployed under high-affect conditions should receive higher
+    weight when affect re-elevates. MECH-312c-OFF agents should
+    show flat arbitration across affect conditions.
+
+    Clinical corollary: this mechanism predicts mood-congruent
+    decision biases -- depressed agents should over-deploy rules
+    associated with prior depressive contexts; anxious agents
+    should over-deploy rules associated with prior threat. This
+    is a falsifying-clinical prediction not currently testable in
+    V3 but flagged for V4 / clinical-substrate work.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 3 SYNTHESIS R2 verdict
+    (SUBSTANTIAL-OVERLAP for structural premise + GENUINE-NOVELTY
+    for functional consequence; conf 0.78).
+    Lit anchors:
+      - Murray & Rudebeck 2018 (Annu Rev Neurosci) -- OFC review;
+        anchors structural premise
+      - Pessoa & Adolphs 2010 (Nat Rev Neurosci) -- amygdala-
+        cortical interactions; anchors structural premise
+      - SD-010, SD-011 entries in claims.yaml -- REE-internal
+        substrate the functional claim sits on
+    See: evidence/literature/targeted_review_mech_312_arbitration_divergences/synthesis.md
+
+    MEDIUM-HIGH divergence (REE-novel functional consequence on
+    biologically-anchored dual-stream architecture). Pull 4 R3
+    KEEP-AS-IS recommendation: the REE-novel functional claim is
+    the load-bearing innovation; the dual-stream anchor is a
+    pre-existing REE substrate (SD-010/011) not separately
+    re-anchored here.
+
+    Not yet experimentally tested. Falsifying experiment requires
+    affect-variable substrate; SD-054 currently single-affect-
+    condition. EXQ design deferred.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-312d
+  title: "V_s_freshness_modulation_per_region_REE_novel. Arbitration weight is modulated per-region by V_s freshness (the per-region staleness scalar from MECH-269 / MECH-284 / MECH-287); rules associated with stale regions receive lower arbitration trust, regardless of their reliability or practice. HIGH divergence (REE-novel per-region scope + rule-trust function): Behrens 2007 ACC volatility and Bouton 2004 contextual renewal are nearest cousins, but per-region continuous scalar + arbitration-trust routing are REE-specific. Sub-claim of MECH-312."
+  claim_type: mechanism_hypothesis
+  subject: policy.arbitration.v_s_freshness_modulation_per_region_ree_novel
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-312    # parent
+    - MECH-269    # V_s monostrategy / per-region scalar substrate
+    - MECH-284    # region-staleness accumulator
+    - MECH-287    # V_s downstream consumer
+  functional_restatement: >
+    MECH-312d names the V_s-freshness modulation sub-mechanism of
+    rule arbitration. The per-region V_s scalar from MECH-269 (and
+    its accumulator MECH-284 + downstream consumer MECH-287)
+    carries a freshness signal: regions whose V_s has aged
+    indicate the underlying world-model is stale and any rule
+    derived from that region's history should be downweighted.
+
+    Functional behaviour: arbitration weight on a rule is gated
+    by the V_s freshness of the regions whose data the rule
+    derives from. Rules from fresh regions receive normal
+    arbitration weight; rules from stale regions receive
+    reduced weight (multiplicative downweighting by V_s
+    freshness). This is the rule-trust face of V_s monostrategy:
+    not just "this region's representation is stale" but
+    "rules derived from this stale region should not be trusted
+    as-is."
+
+    Distinct from MECH-312a (uncertainty), MECH-312b (practice),
+    MECH-312c (affective): a rule can be high-reliability, high-
+    practice, neutral-affect, but derived from a region whose
+    underlying world-state has changed (the region is stale).
+    MECH-312d downweights such rules; the other sub-mechanisms
+    do not.
+
+    HIGH divergence from existing literature. Behrens et al. 2007
+    ACC volatility tracking is the closest cousin (volatility
+    scalar modulates learning rate); Bouton 2004 contextual
+    renewal is conceptually related (context shifts can
+    re-introduce extinguished responses). But per-region
+    continuous scalar + arbitration-trust routing of rules
+    derived from stale regions is REE-specific.
+
+    Falsifiable: on a substrate with region-specific staleness
+    induction (e.g. SD-054 extended with reef-config rotation
+    that ages V_s on previously-active reef regions),
+    arbitration weight on rules previously deployed in those
+    regions should drop monotonically with V_s freshness.
+    MECH-312d-OFF agents should show invariant arbitration
+    weight despite V_s drift.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 3 SYNTHESIS R3 verdict
+    (PARTIAL-OVERLAP for substrate + GENUINE-NOVELTY for per-
+    region scope and rule-trust function; conf 0.65).
+    Lit anchors:
+      - Behrens, Woolrich, Walton & Rushworth 2007 (Nat Neurosci)
+        -- ACC volatility tracking; closest cousin
+      - Bouton 2004 (Annu Rev Psychol) -- contextual renewal of
+        extinguished responses; conceptually related
+      - MECH-269 / MECH-284 / MECH-287 entries in claims.yaml --
+        REE-internal V_s substrate this claim sits on
+    See: evidence/literature/targeted_review_mech_312_arbitration_divergences/synthesis.md
+
+    HIGH divergence; this is among the most REE-novel sub-
+    mechanisms registered in this session. Pull 4 R3 KEEP-AS-IS
+    (V_s-arbitration-trust is genuine REE-divergence).
+
+    Not yet experimentally tested. Falsifying experiment requires
+    region-staleness-induction substrate; not currently in V3
+    substrate set. EXQ design deferred.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-319
+  title: "simulation_mode_rule_write_gating_categorical_replay_tag (SWR_machinery_substrate_REE_novel_function). The substrate-level instantiation of MECH-094's hypothesis-tag write gate at the rule-arbitration layer: a categorical write-gate keyed to a simulation-mode tag that suppresses arbitration-weight updates during ghost / replay / DMN passes, allowing rule-arbitration to be exercised without overwriting the active rule weights from non-realized data. Substrate-availability premise is well-anchored: SWR machinery (Joo & Frank 2018 review) + reverse-replay discriminable signature (Foster & Wilson 2006). The specific REE function (categorical write-gate keyed to a simulation tag suppressing arbitration-weight updates) is plausible biologically but unverified at cellular / synaptic level."
+  claim_type: mechanism_hypothesis
+  subject: policy.arbitration.simulation_mode_write_gating_substrate_ree_novel_function
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-10"
+  depends_on:
+    - MECH-094    # the existing hypothesis-tag claim that motivates this; MECH-319 is its substrate-level instantiation at the arbitration layer
+    - MECH-312    # the arbitration layer whose write-gate this implements
+  functional_restatement: >
+    MECH-319 names the substrate-level instantiation of MECH-094's
+    hypothesis-tag write gate at the rule-arbitration layer.
+    MECH-094 names the architectural principle (categorical
+    phi(z) write gate; simulation-mode-suppressed write channel);
+    MECH-319 names the specific substrate instantiation: a
+    categorical write gate keyed to a simulation-mode tag that
+    suppresses arbitration-weight updates in MECH-312 sub-
+    mechanisms during ghost / replay / DMN passes.
+
+    Substrate availability is well-anchored:
+      - Sharp-wave ripple (SWR) machinery (Joo & Frank 2018
+        Nat Rev Neurosci review) provides a discriminable
+        biological substrate for replay events.
+      - Reverse-replay discriminable signature (Foster & Wilson
+        2006 Nature) demonstrates that replay events carry
+        substrate-level identifiability (forward vs reverse).
+    The substrate is therefore in place biologically; the
+    architectural commitment that the substrate carries a
+    write-gate function for arbitration weights is plausible
+    but unverified at cellular / synaptic level.
+
+    Why this is REE-novel even given MECH-094. MECH-094 names
+    the principle (write-gate keyed to a hypothesis tag);
+    MECH-319 names where in the substrate the gate operates
+    (the rule-arbitration layer's MECH-312 sub-mechanisms) and
+    what carries the categorical signal (SWR machinery as the
+    substrate-level analog of the simulation tag). The
+    biological literature does NOT, as of 2026-05-09, confirm
+    that SWR events suppress rule-arbitration-weight updates
+    in cortical-striatal arbitration loops -- this is the
+    REE-specific functional commitment.
+
+    Falsifiable (V4-bound): pharmacological or optogenetic SWR
+    suppression during a rule-arbitration training task should
+    NOT change steady-state rule-arbitration weights (because
+    SWR suppression removes a function that does not write to
+    the weights anyway in MECH-319's framing); whereas
+    suppression during ACTIVE-policy-deployment phases should
+    produce different effects. The dissociation between
+    SWR-during-training and SWR-during-deployment is the
+    diagnostic. V3 falsification path: a config flag that
+    artificially routes simulation-mode passes through the
+    write channel anyway should produce overcommitment to
+    ghost-derived arbitration weights and observable rule-
+    arbitration drift; with MECH-319 enabled, no drift.
+  evidence_quality_note: >
+    Registered 2026-05-10 from Pull 3 SYNTHESIS R1 verdict
+    (GENUINE-NOVELTY-CONFIRMED, conf 0.72) + Pull 4 R3
+    KEEP-AS-IS recommendation.
+    Lit anchors:
+      - Joo & Frank 2018 (Nat Rev Neurosci) -- SWR review;
+        substrate-availability anchor
+      - Foster & Wilson 2006 (Nature) -- reverse replay
+        discriminable signature; substrate-level identifiability
+        anchor
+      - MECH-094 entry in claims.yaml -- the architectural
+        principle MECH-319 instantiates at the substrate level
+    See: evidence/literature/targeted_review_mech_312_arbitration_divergences/synthesis.md
+
+    Substrate-availability premise is well-supported (SWR
+    machinery + reverse-replay discriminable signature); the
+    specific REE function (categorical write-gate keyed to a
+    simulation tag suppressing arbitration-weight updates) is
+    plausible but biologically unverified at cellular /
+    synaptic level. Treat as REE-novel candidate; future biology
+    lit-pull on SWR-and-cortical-arbitration-weight-update
+    coupling would deepen confidence (or disconfirm).
+
+    Not yet experimentally tested. V3 falsification path
+    (artificial-write-channel-routing config flag) is V3-
+    EXQ-543c-tractable; cellular-level falsification is V4-
+    bound and pharmacology-dependent.
+  notes: >
+    Pull 4 R3 KEEP-AS-IS verdict: MECH-094 stays as-is (the
+    architectural principle); MECH-319 is registered as the
+    substrate-level instantiation at the arbitration layer.
+    The two claims are NOT redundant -- MECH-094 names the
+    principle without committing to which substrate carries
+    it; MECH-319 names a specific substrate (SWR machinery)
+    and a specific function-site (MECH-312 arbitration weights).
+
+    Future architectural work may name additional MECH-319-
+    siblings for other function-sites where MECH-094's
+    write-gate principle should apply (e.g. MECH-094 at the
+    rule-state abstraction layer of MECH-318). These are
+    deferred until the substrate sites are themselves wired.
   location: docs/architecture/rule_apprehension_layer.md

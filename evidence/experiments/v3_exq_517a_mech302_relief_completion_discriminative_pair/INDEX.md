@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_517a_mech302_relief_completion_discriminative_pair
 
-Generated: `2026-05-10T07:57:49.517900Z`
+Generated: `2026-05-10T09:40:21.072965Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

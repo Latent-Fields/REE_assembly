@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_098_mech099_three_stream
 
-Generated: `2026-05-10T07:57:49.517900Z`
+Generated: `2026-05-10T09:40:21.072965Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
