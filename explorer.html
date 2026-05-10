@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-10.1 -->
+<!-- EXPLORER_VERSION: 2026-05-10.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9368,6 +9368,15 @@ END CONFLICT RESOLUTION`;
         if (er.ok) evidenceRuns = await er.json();
       } catch (_) {}
 
+      // Multi-machine view: per-machine heartbeats give us live progress for
+      // remote runners (ree-cloud-1/2, Daniel-PC, EWIN-PC). Each running
+      // machine renders its own "Now Running" card alongside the local one.
+      let machinesPayload = null;
+      try {
+        const mr = await fetch('/api/machines?t=' + Date.now());
+        if (mr.ok) machinesPayload = await mr.json();
+      } catch (_) {}
+
       let discussedDirs = new Set();
       try {
         const dr = await fetch('/api/review/tracker?t=' + Date.now());
@@ -9459,11 +9468,64 @@ END CONFLICT RESOLUTION`;
         </div>`;
 
       // ── Now Running ──
-      if (cur) {
-        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div>${expCurrentHtml(cur)}</div>`;
-      } else if (isRunning) {
-        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div>
-          <div class="exp-card"><div class="exp-desc">Runner active &mdash; starting next experiment&hellip;</div></div></div>`;
+      // Local card sourced from runner_status.json (always fresh, full
+      // progress payload). Remote machines sourced from /api/machines
+      // heartbeats (~5s local write, ~60s git push, so up to ~1 min stale
+      // on the explorer relative to the cloud runner's actual state).
+      const machineEntries = (machinesPayload && machinesPayload.machines) || [];
+      const localCurExq = cur && cur.queue_id;
+      const remoteRunning = machineEntries.filter(m => {
+        if (!m.fresh) return false;
+        if (m.state !== 'running') return false;
+        if (!m.current_exq) return false;
+        // Suppress the entry whose current_exq matches the local runner's
+        // current experiment -- that machine IS the local one and the
+        // local card already covers it (full progress payload).
+        if (localCurExq && m.current_exq === localCurExq) return false;
+        return true;
+      });
+
+      function machineToCurShape(m) {
+        // Map heartbeat fields onto the shape expCurrentHtml() expects.
+        return {
+          queue_id: m.current_exq,
+          claim_id: m.current_claim_id || '',
+          title: m.current_title || '',
+          description: m.current_description || '',
+          progress: m.progress || {},
+          seconds_elapsed: m.seconds_elapsed || 0,
+          seconds_remaining: m.seconds_remaining || 0,
+          recent_lines: m.recent_lines || [],
+        };
+      }
+
+      function machineLabelHtml(m, ageSec) {
+        const stale = ageSec != null && ageSec > 75
+          ? ` <span style="color:var(--muted);font-weight:normal">(heartbeat ${ageSec}s old)</span>`
+          : '';
+        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${stale}</div>`;
+      }
+
+      if (cur || remoteRunning.length > 0 || isRunning) {
+        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div>`;
+        if (cur) {
+          // Local card -- prepend a label only when there are remote cards
+          // to disambiguate. Solo local view stays unchanged.
+          if (remoteRunning.length > 0) {
+            const localName = (machinesPayload && machinesPayload.machines || [])
+              .find(m => m.current_exq && m.current_exq === localCurExq);
+            const localLabel = localName ? localName.machine : 'this machine';
+            html += `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(localLabel)} <span style="font-weight:normal">(local)</span></div>`;
+          }
+          html += expCurrentHtml(cur);
+        } else if (isRunning) {
+          html += `<div class="exp-card"><div class="exp-desc">Runner active &mdash; starting next experiment&hellip;</div></div>`;
+        }
+        remoteRunning.forEach(m => {
+          html += machineLabelHtml(m, m.age_seconds);
+          html += expCurrentHtml(machineToCurShape(m));
+        });
+        html += `</div>`;
       }
 
       // ── Queue (always shown) ──
