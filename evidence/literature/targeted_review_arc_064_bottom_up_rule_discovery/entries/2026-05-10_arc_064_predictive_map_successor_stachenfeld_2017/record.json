@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_predictive_map_successor_stachenfeld_2017",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064"
+  ],
+  "source": {
+    "title": "The hippocampus as a predictive map",
+    "authors": [
+      "Kimberly L Stachenfeld",
+      "Matthew M Botvinick",
+      "Samuel J Gershman"
+    ],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4650",
+    "pmid": "28967910"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Influential computational paper proposing that hippocampal place-cell representations encode a successor representation -- a predictive summary of future state-occupancy. This is one candidate implementation of bottom-up rule discovery: rules-as-summary-statistics over the trajectory record. Strong on the architectural hypothesis but the empirical evidence is post-hoc reinterpretation of existing place-cell data, not a forward prediction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does not compute predictive (successor-style) summaries of trajectory statistics will fail to reproduce the place-cell-tuning-asymmetry signatures Stachenfeld 2017 reports -- specifically, asymmetric tuning toward upcoming locations in the agent's typical path.",
+    "If REE's ARC-064 implementation does not converge on something successor-representation-shaped from the trajectory record, the rule-discovery is not capturing predictive statistics, only descriptive ones; the bottom-up pathway would then be a clustering rather than a planning substrate."
+  ],
+  "tags": [
+    "arc_064",
+    "successor_representation",
+    "hippocampus",
+    "predictive_map",
+    "place_cells",
+    "summary_statistics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place cells encode not a geometric map of space but a predictive map: each location's representation summarises future occupancy probabilities under the current policy. This account explains place-cell asymmetries (tuning shifted toward upcoming locations along the typical path), policy dependence (place fields shift when the policy changes), and grid-cell properties (entorhinal grid cells encode a low-dimensional basis for the predictive representation, useful for noise suppression and multi-scale planning).",
+    "ree_translation": "ARC-064 (bottom-up rule discovery) could be implemented as a successor-representation-style summary over the trajectory record: each visited state gets a prediction of which states typically follow under the agent's current policy, and rule-equivalents emerge as patterns in this predictive structure. This would be one specific implementation choice among the candidates Niv 2019 lists; the Stachenfeld paper makes the case that the brain has already converged on this implementation. Cross-reference: existing REE substrates MECH-269 (anchor sets) and MECH-292 (ranked ghost-goal bank) are episode-anchored rather than predictive-summary; an SR-style ARC-064 substrate would be architecturally distinct.",
+    "mapping_caveat": "Stachenfeld et al. is primarily a theoretical reinterpretation of existing place-cell data, not a primary forward-tested empirical paper. The mapping is post-hoc -- they show that an SR account can reproduce known place-cell phenomena. The mapping to ARC-064's behavioural-pattern-extraction is conceptually clean but requires choosing the right granularity for the predictive statistics (over states? over actions? over trajectory chunks?). Transfer risk moderate -- the framework is computationally tractable and biologically plausible, but the implementation parameter choices are not pinned down by the paper.",
+    "source_context": "Nat Neurosci computational paper from DeepMind + Princeton + Harvard. Stachenfeld is the first author; Gershman has been the primary advocate of the SR framework in cognitive neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Nat Neurosci venue and influential framework. Mapping fidelity moderate -- the SR is one specific implementation candidate, not 'the' answer. Transfer risk slightly elevated because the empirical evidence is post-hoc reinterpretation rather than primary data, and the implementation granularity choices are open."
+  }
+}

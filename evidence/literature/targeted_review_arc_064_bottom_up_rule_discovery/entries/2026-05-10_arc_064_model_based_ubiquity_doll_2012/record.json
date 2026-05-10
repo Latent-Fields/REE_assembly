@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_model_based_ubiquity_doll_2012",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "MECH-312"
+  ],
+  "source": {
+    "title": "The ubiquity of model-based reinforcement learning",
+    "authors": [
+      "Bradley B Doll",
+      "Dylan A Simon",
+      "Nathaniel D Daw"
+    ],
+    "year": 2012,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2012.08.003",
+    "pmid": "22959354"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Review-level synthesis arguing that signatures of model-based learning are pervasive in the very same brain regions historically considered model-free territory (striatum, dopamine system). Cuts BOTH ways for MECH-312: it argues that the binary MB-vs-MF decomposition is too clean (which weakens the simple two-channel framing) but it also reaffirms that there ARE distinct computations being arbitrated (which supports the multi-channel framing). Mixed direction reflects this.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE arbitration substrate that strictly partitions channels into anatomically separated regions will fail Doll 2012's empirical observation: the same regions show both MB and MF signatures depending on context. MECH-312 may need to be implemented as a soft mixing weight rather than hard channel selection.",
+    "If REE's ARC-062 and ARC-064 are designed to produce categorically distinct neural signatures, but biological evidence is that the same substrates host both, then the substrate-level distinguishability of REE's two pathways may be artificially crisp."
+  ],
+  "tags": [
+    "mech_312",
+    "model_based_model_free",
+    "arbitration_review",
+    "shared_substrate",
+    "dopamine"
+  ],
+  "mapping": {
+    "source_claim_statement": "Signatures of model-based reinforcement-learning computations (e.g., outcome-based action evaluation that uses internal world models) are pervasive in brain regions historically considered the substrate of model-free learning, including the striatum and the dopamine system. The dichotomy between MB and MF systems may be more graded than originally proposed; the same neural substrates may host both computations under different operating regimes. The review attempts to reconcile this empirical 'cohabitation' with the dual-systems framework.",
+    "ree_translation": "For MECH-312, this review supplies a cautionary tale about strict-partition substrate designs. If the biological dual-systems literature is moving away from anatomically-separated MB/MF channels toward shared-substrate-with-soft-arbitration, REE's MECH-312 should consider implementing arbitration as a soft mixing weight on shared substrates rather than as a hard switch between separated channels. This is also the reason for the mixed evidence direction -- the review weakens strict two-channel framings (good for justifying expansion to 3+ channels) but also reaffirms multi-computation arbitration is necessary (good for justifying MECH-312 at all).",
+    "mapping_caveat": "Doll et al. is a Current Opinion review, not a primary empirical paper. Its claims summarise an emerging consensus rather than test it; subsequent empirical work has nuanced but not overturned the picture. The mapping to MECH-312's design is conceptual rather than direct: it cautions against over-engineering channel separation, but does not prescribe an implementation. Transfer risk moderate.",
+    "source_context": "Curr Opin Neurobiol review by Doll, Simon and Daw. Cited >700 times. Functions as a state-of-the-field-2012 synthesis on the dual-systems framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Curr Opin Neurobiol review venue (high quality, secondary literature). Mapping fidelity moderate -- the warning about strict-partition substrates is conceptually relevant but does not directly anchor a substrate-design choice for REE. The mixed evidence-direction reflects that the paper both supports and complicates the dual-systems framework."
+  }
+}

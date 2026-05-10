@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_ofc_task_state_decoding_schuck_2016",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064"
+  ],
+  "source": {
+    "title": "Human Orbitofrontal Cortex Represents a Cognitive Map of State Space",
+    "authors": [
+      "Nicolas W Schuck",
+      "Ming Bo Cai",
+      "Robert C Wilson",
+      "Yael Niv"
+    ],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.019",
+    "pmid": "27657452"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Empirical confirmation of the Wilson 2014 theoretical proposal: human fMRI multivariate pattern analysis decodes unobservable task states from OFC activity, with decoding accuracy correlating with both behavioural performance and individual error trials. Strong methodologically but limited by the task being 16-state schedule of experimenter-defined states (top-down imposed, not bottom-up extracted) -- so it speaks to OFC hosting state labels but not to bottom-up extraction itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE bottom-up rule discovery substrate that does not produce decodable rule-state representations from its written codes will fail Schuck 2016's basic decoding test -- specifically, that the current 'rule-state' should be recoverable from substrate activity even when the sensory input alone is insufficient to identify the rule.",
+    "If state-decoding accuracy in REE's ARC-064 substrate does not correlate with behavioural-error rates the way Schuck 2016 finds for human OFC, the substrate is hosting labels but not deploying them for action selection -- the ARC-064 -> policy connection would be broken."
+  ],
+  "tags": [
+    "arc_064",
+    "orbitofrontal_cortex",
+    "task_state_decoding",
+    "fmri_mvpa",
+    "human_cognitive_map"
+  ],
+  "mapping": {
+    "source_claim_statement": "Multivariate pattern analysis of human fMRI data during a 16-state decision-making task can decode the unobservable current task state from OFC activity. Decoding accuracy correlates with overall task performance and predicts individual error trials. The similarity between neural representations of consecutive states correlates with behavioural accuracy on transitions between those states.",
+    "ree_translation": "ARC-064's extracted-rule substrate, if it exists and operates as proposed, should produce activity patterns from which the current 'rule-state' can be decoded -- analogous to Schuck 2016's OFC state-decoding signature. This is also a load-bearing test for whether the substrate is doing real work: a bottom-up-extracted rule that does not produce decodable state-specific neural patterns is just a label without computational consequence.",
+    "mapping_caveat": "Schuck et al. used a 16-state task with experimenter-defined states. The decoding succeeded because the participants had been trained on the state structure (top-down). REE's bottom-up rule discovery does not have the luxury of pre-trained state structure; the agent has to discover state equivalents on the fly. Whether OFC supports that bottom-up direction at all is not directly tested here. Transfer risk: the empirical finding is solid but its application to bottom-up-extracted states is an extrapolation beyond what the data show.",
+    "source_context": "Human fMRI multivariate pattern analysis study. Princeton-University-of-Arizona collaboration (Niv, Wilson). Companion paper to Wilson 2014 theoretical proposal in this entry set."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Neuron venue + clean MVPA methodology. Mapping fidelity moderate -- the result is empirical confirmation of the OFC-state-decoding signature, but the mapping to ARC-064's bottom-up-extraction is an extrapolation. Transfer risk slightly higher because the task uses experimenter-defined (top-down) state structure, not agent-discovered (bottom-up) state structure."
+  }
+}

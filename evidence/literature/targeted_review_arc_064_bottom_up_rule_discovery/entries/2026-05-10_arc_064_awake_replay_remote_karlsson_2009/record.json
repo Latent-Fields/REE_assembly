@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_awake_replay_remote_karlsson_2009",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064"
+  ],
+  "source": {
+    "title": "Awake replay of remote experiences in the hippocampus",
+    "authors": [
+      "Mattias P Karlsson",
+      "Loren M Frank"
+    ],
+    "year": 2009,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2344",
+    "pmid": "19525943"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong primary electrophysiology paper. Demonstrates that hippocampal place-cell sequences during awake quiet periods replay not just current-environment trajectories but remote-environment trajectories from past experiences. This means the brain has an online mechanism (during awake quiet periods, not just sleep) for re-processing trajectory data from earlier episodes. Direct R3 anchor for the online-extraction-arm of bottom-up rule discovery.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does NOT have an online during-awake-pause replay mechanism for the trajectory record will fail to reproduce Karlsson 2009's signature: spontaneous reactivation of remote-environment trajectories during quiet periods, available for downstream learning.",
+    "If ARC-064's bottom-up extraction is sleep-replay-only (R3 verdict offline-only), it cannot accommodate the Karlsson 2009 awake-replay finding -- some bottom-up processing must happen online during awake behaviour."
+  ],
+  "tags": [
+    "arc_064",
+    "hippocampal_replay",
+    "awake_replay",
+    "place_cells",
+    "remote_experience",
+    "memory_consolidation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place-cell sequences are reactivated during brief pauses in waking behaviour, including reactivation of stored representations from REMOTE environments (past experiences not currently present in sensory input). Awake replay is as common as local replay during quiet periods after motion, suggesting it is a normal and frequent cognitive operation rather than an artefact of sleep-state physiology.",
+    "ree_translation": "ARC-064's online-arm has a direct biological anchor in awake hippocampal replay: the trajectory record is re-processed during awake quiet periods in addition to sleep, allowing online bottom-up extraction of regularities. R3 verdict implication: the online channel is real, both-channels-needed (online during awake quiet + offline during sleep). Cross-reference: REE's MECH-293 (awake ghost-goal probes) is the existing substrate analog; ARC-064 may extend that substrate's role from goal-probing to rule-extraction, or may need a separate write path.",
+    "mapping_caveat": "Karlsson and Frank's recordings are in rat hippocampus during a maze task. Awake replay events are brief (~100ms) and happen during quiet pauses. Mapping to ARC-064 requires assuming that REE's substrate has analogous quiet-period reactivation events. This is plausible but not guaranteed in REE's continuous-task setting where there may be no clear quiet-period analog. Transfer risk moderate.",
+    "source_context": "Nat Neurosci primary electrophysiology paper. Frank lab (UCSF). Cited >700 times. Foundational for the awake-replay-as-distinct-from-sleep-replay literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Nat Neurosci venue + clean primary electrophysiology. Mapping fidelity moderate-high for the online-replay-arm claim. Transfer risk moderate -- whether REE has a clean quiet-period analog is task-dependent."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_uncertainty_arbitration_daw_2005",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "MECH-312",
+    "ARC-064"
+  ],
+  "source": {
+    "title": "Uncertainty-based competition between prefrontal and dorsolateral striatal systems for behavioral control",
+    "authors": [
+      "Nathaniel D Daw",
+      "Yael Niv",
+      "Peter Dayan"
+    ],
+    "year": 2005,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1560",
+    "pmid": "16286932"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational computational paper proposing uncertainty-based arbitration between two behavioural-control systems (prefrontal model-based vs dorsolateral-striatal model-free / habit). The Bayesian arbitration principle has structured the dual-systems literature for two decades. Direct R4 anchor for MECH-312 dual-channel arbitration mechanism, with implications for which arbitration variable dominates: Daw 2005's answer is uncertainty about each system's predictions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE arbitration mechanism that does NOT use prediction-uncertainty as the arbitration signal will fail to reproduce Daw 2005's normative argument: each controller should be deployed when it should be most accurate, which means uncertainty-weighted control allocation. Alternatives (committed-time-on-task arbitration, instructed-context arbitration) are biologically attested but not normatively justified.",
+    "If REE's MECH-312 collapses uncertainty-based arbitration into a single global parameter, it loses the per-channel dynamics Daw 2005 argues are essential. Uncertainty is computed PER CHANNEL, not globally."
+  ],
+  "tags": [
+    "mech_312",
+    "arc_064",
+    "uncertainty",
+    "arbitration",
+    "model_based_model_free",
+    "prefrontal",
+    "dorsolateral_striatum"
+  ],
+  "mapping": {
+    "source_claim_statement": "The brain has multiple systems for behavioural choice (here, prefrontal model-based vs dorsolateral-striatal model-free / habit), and arbitration between them follows a Bayesian uncertainty-weighted principle: each controller's recommended action gets weighted by the inverse uncertainty in that controller's prediction. The system that is most confident at the moment dominates control. This explains classical findings about which system controls behaviour under varying training amounts, contingency reliability, and cognitive load.",
+    "ree_translation": "MECH-312's dual-channel arbitration mechanism (top-down rule via ARC-062 vs bottom-up rule via ARC-064) should follow the same uncertainty-weighted principle Daw 2005 articulates. Each rule channel computes its own prediction uncertainty (or its rule-applicability confidence); the arbitration mechanism deploys whichever channel is currently most confident. Pull 1's R4 verdict expanded the arbitration to 3-way (with ARC-065 always-on diversity as third competitor); Pull 2's R4 verdict (this paper) supplies the arbitration variable: per-channel uncertainty.",
+    "mapping_caveat": "Daw et al. 2005 frames the arbitration normatively (Bayesian-optimal) but the empirical implementation -- whether the brain actually computes per-channel uncertainty and uses it for arbitration -- was tested only later (Lee 2014 is the empirical companion in this entry set). The mapping holds if the brain does follow the normative principle; if not, the arbitration variable is something else (committed-time-on-task, instructed-context-strength). Transfer risk moderate because REE's rule channels (ARC-062 / ARC-064) are not strict analogs of MB and MF; they are different along a different axis (top-down-instructed vs bottom-up-extracted).",
+    "source_context": "Nat Neurosci computational paper. Daw, Niv, and Dayan -- canonical authorship for the dual-systems-RL literature. Cited >3000 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.3,
+    "notes": "Nat Neurosci venue + foundational status. Mapping fidelity moderate-high -- the uncertainty-arbitration principle generalises to MECH-312 cleanly, but ARC-062 / ARC-064 are not strict MB/MF analogs. Transfer risk moderate."
+  }
+}

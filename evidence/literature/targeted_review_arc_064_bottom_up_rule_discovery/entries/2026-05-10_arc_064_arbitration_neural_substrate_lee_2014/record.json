@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_arbitration_neural_substrate_lee_2014",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "MECH-312"
+  ],
+  "source": {
+    "title": "Neural computations underlying arbitration between model-based and model-free learning",
+    "authors": [
+      "Sang Wan Lee",
+      "Shinsuke Shimojo",
+      "John P O'Doherty"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.028",
+    "pmid": "24507199"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Empirical confirmation of the Daw 2005 normative arbitration framework. Human fMRI shows inferior lateral PFC and frontopolar cortex track per-channel reliability signals AND the comparison between them, with effective connectivity to model-free valuation regions modulated by the arbitrator's verdict. Direct R4 anchor for MECH-312's neural substrate, distinct from but complementary to Daw 2005.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-312 arbitration substrate does not produce reliability signals for each channel (or does not compare them), the Lee 2014 dissociation pattern (lateral PFC tracks reliability comparison; effective connectivity to MF valuation modulated accordingly) is unrecoverable.",
+    "If the arbitration mechanism is implemented as a single hardcoded threshold or schedule rather than as a per-channel reliability comparison, the Lee 2014 PFC-modulation signature will be absent and the substrate will not behave like the human arbitrator."
+  ],
+  "tags": [
+    "mech_312",
+    "arbitration",
+    "lateral_prefrontal",
+    "frontopolar",
+    "reliability_signals",
+    "model_based_model_free"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human fMRI during a Markov-decision task shows that inferior lateral prefrontal cortex and frontopolar cortex encode (i) reliability signals for each of the model-based and model-free systems and (ii) the output of a comparison between those reliability signals. Effective connectivity from these prefrontal regions to model-free valuation areas is negatively modulated by the degree of model-based control, suggesting arbitration may operate via prefrontal modulation of the model-free system rather than via a separate downstream gating circuit.",
+    "ree_translation": "MECH-312's arbitration substrate should track per-channel reliability and a comparison signal -- analogous to the lateral PFC / frontopolar role Lee 2014 identifies. The implementation mechanism (modulating the dominant channel's downstream output rather than competing-output selection) is also informative: REE's MECH-312 design should consider implementing arbitration as a modulation on an always-running channel rather than as a switch between channels.",
+    "mapping_caveat": "Lee 2014 specifically tests MB-vs-MF arbitration in a two-step Markov decision task. ARC-062 / ARC-064 / ARC-065 are not strict MB/MF analogs (different axis). The neural substrate (lateral PFC reliability comparison) is plausibly general but the specific contrast Lee tests (MB-MF) may map onto only a subset of MECH-312's arbitration scope. Transfer risk moderate.",
+    "source_context": "Neuron empirical fMRI paper. Caltech (Lee, Shimojo, O'Doherty). Tested 22 healthy adults on a sequential decision task. Cited >800 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Neuron venue + clean fMRI methodology. Mapping fidelity moderate-high for the lateral-PFC-as-arbitrator claim. Transfer risk slightly elevated because the MB-vs-MF axis is not a strict analog of REE's top-down-vs-bottom-up rule axis."
+  }
+}

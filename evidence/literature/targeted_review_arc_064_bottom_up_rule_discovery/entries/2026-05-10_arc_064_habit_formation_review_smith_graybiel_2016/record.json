@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_habit_formation_review_smith_graybiel_2016",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064",
+    "MECH-312"
+  ],
+  "source": {
+    "title": "Habit formation",
+    "authors": [
+      "Kyle S Smith",
+      "Ann M Graybiel"
+    ],
+    "year": 2016,
+    "venue": "Dialogues in Clinical Neuroscience",
+    "doi": "10.31887/DCNS.2016.18.1/ksmith",
+    "pmid": "27069378"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Authors' own review of the action-chunking + habit-formation field they helped build. Synthesises the dual-operator framework (Smith & Graybiel 2013, also in this entry set) with broader literature, articulating habit formation as not-a-single-process but a confluence of dissociable substrate-level changes. Useful R2 + R4 review-level support but secondary literature (lower source quality than primary papers in entry set).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that treats habit formation as a monolithic process will fail Smith & Graybiel's dissociability test: distinct neural-activity changes occur at distinct timepoints in distinct substrates during habit formation. ARC-064 and MECH-312 (and ARC-062 / ARC-065) need to be implemented as separable processes.",
+    "If REE's bottom-up rule discovery is implemented as a one-shot extraction operation rather than a multi-stage progression (rapid chunking in extraction substrate -> slow stabilisation in consolidation substrate), it will fail to reproduce the multi-timepoint signature Smith & Graybiel describe."
+  ],
+  "tags": [
+    "arc_064",
+    "mech_312",
+    "habit_formation",
+    "action_chunking",
+    "dual_operator",
+    "review",
+    "addiction",
+    "ocd"
+  ],
+  "mapping": {
+    "source_claim_statement": "Habit formation is not a single process but a confluence of dissociable changes in neural activity occurring across multiple brain regions and even within single regions. The basal-ganglia-cortical circuit hosts the central machinery; addictions and OCD reflect dysfunctions in different components of this network. Habits are sculpted from multiple separable substrate-level changes during overtraining.",
+    "ree_translation": "ARC-064 (bottom-up rule discovery) and MECH-312 (arbitration) need to be designed as multi-component substrates rather than monolithic mechanisms. The Smith & Graybiel review supplies the conceptual frame: habit formation as multi-stage, multi-substrate, multi-timepoint progression. R3 verdict supplement: the consolidation arm of bottom-up rule discovery is implicit here -- chunked action sequences stabilise into habits over training, with the stabilisation likely involving sleep-replay or otherwise-offline consolidation. Cross-reference Wilson & McNaughton 1994 / Karlsson 2009 / Stickgold 2013 (sleep-replay-consolidation literature) for the offline arm.",
+    "mapping_caveat": "Dialogues in Clinical Neuroscience review-format paper, lower source quality than peer-reviewed primary papers. The review summarises an emerging picture rather than testing it; the specific substrate-design implications for REE require extrapolation. The clinical applications (addiction, OCD) are mentioned but not central; transfer to REE's open-ended-foraging context requires care.",
+    "source_context": "Dialogues in Clinical Neuroscience review. Smith and Graybiel's own synthesis of the action-chunking-and-habit-formation field they pioneered. Overlaps significantly with their primary papers in the entry set."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Dialogues in Clin Neurosci venue (high-quality clinical review journal but not the highest-tier neuroscience venue). Mapping fidelity moderate -- the multi-stage habit-formation framework is conceptually relevant for ARC-064 + MECH-312 design. Transfer risk moderate."
+  }
+}

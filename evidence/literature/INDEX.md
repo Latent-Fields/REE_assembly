@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-10T07:30:55.587420Z`
+Generated: `2026-05-10T07:54:56.856877Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -24,6 +24,7 @@ Generated: `2026-05-10T07:30:55.587420Z`
 | `targeted_review_arc_058` | [`2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/record.json) | 7 | [`summary`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/summary.md) |
 | `targeted_review_arc_062_refuge_forage_ecology` | [`2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/record.json) | 6 | [`summary`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/summary.md) |
 | `targeted_review_arc_062_rule_apprehension` | [`2026-05-09_arc_062_pfc_rule_cells_bongard2010`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/record.json) | 8 | [`summary`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/summary.md) |
+| `targeted_review_arc_064_bottom_up_rule_discovery` | [`2026-05-10_arc_064_uncertainty_arbitration_daw_2005`](targeted_review_arc_064_bottom_up_rule_discovery/entries/2026-05-10_arc_064_uncertainty_arbitration_daw_2005/record.json) | 13 | [`summary`](targeted_review_arc_064_bottom_up_rule_discovery/entries/2026-05-10_arc_064_uncertainty_arbitration_daw_2005/summary.md) |
 | `targeted_review_arc_065_behavioral_diversity_generation` | [`2026-05-10_arc_065_striatal_novelty_wittmann_2008`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/record.json) | 9 | [`summary`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
 | `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |

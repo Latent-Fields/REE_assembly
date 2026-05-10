@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_successor_representation_human_momennejad_2017",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064",
+    "MECH-312"
+  ],
+  "source": {
+    "title": "The successor representation in human reinforcement learning",
+    "authors": [
+      "Ida Momennejad",
+      "Evan M Russek",
+      "Jin H Cheong",
+      "Matthew M Botvinick",
+      "Nathaniel D Daw",
+      "Samuel J Gershman"
+    ],
+    "year": 2017,
+    "venue": "Nature Human Behaviour",
+    "doi": "10.1038/s41562-017-0180-8",
+    "pmid": "31024137"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Empirical demonstration that human reinforcement learning behaviour is best explained by a successor-representation-style algorithm intermediate between model-free and model-based RL. The diagnostic prediction is the SR's signature insensitivity to transition-structure changes but flexibility to reward changes -- and the data confirm this dissociation. Direct empirical anchor for SR-as-implementation-of-bottom-up-rule-discovery and a close anchor for MECH-312 dual-channel arbitration scope (SR sits between MF and MB in the arbitration space).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's ARC-064 substrate is supposed to behave as an SR-analog, it must reproduce Momennejad 2017's signature dissociation: insensitivity to transition-structure changes (because the predictive summary is precomputed) but flexibility to reward changes (because the policy applies fresh value-estimates over the SR).",
+    "If MECH-312's arbitration mechanism does not have a place for an SR-analog channel between top-down (MB-equivalent) and habit (MF-equivalent), the dual-channel framing collapses to a binary that the Momennejad data already shows is too coarse."
+  ],
+  "tags": [
+    "arc_064",
+    "mech_312",
+    "successor_representation",
+    "human_rl",
+    "model_based_model_free",
+    "transition_structure_change"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human reinforcement learning behaviour is best explained by a successor-representation algorithm that sits between model-free and model-based RL on a flexibility-vs-efficiency continuum. The SR stores partially-computed action values (predictions about future states) and applies fresh value estimates over them. Two behavioural studies in humans show the SR-signature dissociation: insensitivity to changes in the task's transition structure (the predictions are stale until re-learned) but rapid adaptation to changes in reward structure (the value estimate updates immediately).",
+    "ree_translation": "ARC-064's bottom-up rule discovery could be implemented as an SR-style summary over the trajectory record, in which case the substrate would have specific empirical signatures: the agent should be insensitive to transition-structure changes but flexible to reward changes. This is also direct R4 (MECH-312 arbitration scope) input -- the human evidence shows MF / MB / SR are three computational channels not two, and arbitration mechanisms must allocate control across all three. Pull 1's R4 verdict (ARC-065 always-on diversity as third arbitration competitor) and this paper's R4 verdict (SR as intermediate channel) point in the same direction: arbitration is at least three-way and possibly more.",
+    "mapping_caveat": "Momennejad's two behavioural studies are well-designed but operate in a small task space (sequential-decision tasks with explicit transition and reward structure). Mapping to REE's open-ended-foraging environment requires extrapolation. The diagnostic dissociation (transition-structure insensitivity vs reward flexibility) is what the substrate-validation experiment for an SR-style ARC-064 should target -- but designing that experiment in REE's domain is non-trivial. Transfer risk moderate.",
+    "source_context": "Nat Hum Behav empirical paper. Authorship spans Princeton (Momennejad, Russek, Daw), DeepMind/UCL (Botvinick), and Harvard (Gershman) -- the central node of the SR-research community."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Nat Hum Behav venue + canonical authorship. Mapping fidelity high for the SR-as-empirical-pattern claim. Transfer risk moderate because the human-decision-task setting is a step removed from REE's embodied-foraging environment; the diagnostic signature (transition-insensitivity / reward-flexibility) generalises but the precise behavioural implementation does not."
+  }
+}

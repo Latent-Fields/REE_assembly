@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_ofc_cognitive_map_wilson_2014",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064"
+  ],
+  "source": {
+    "title": "Orbitofrontal cortex as a cognitive map of task space",
+    "authors": [
+      "Robert C Wilson",
+      "Yuji K Takahashi",
+      "Geoffrey Schoenbaum",
+      "Yael Niv"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.005",
+    "pmid": "24462094"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational theoretical paper proposing OFC as the substrate that abstracts task-state structure -- exactly the kind of substrate ARC-064 needs to host extracted behavioural rules. Synthesises rodent + primate + human OFC literature into a unified cognitive-map theory. Heavily cited and tested by subsequent empirical work (Schuck 2016 in this entry set, Niv 2019 review).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate without an OFC-analog state-space abstraction will fail Wilson 2014's tests of state inference under partial observability (e.g., reversal learning where current state is not directly observable from the sensory input).",
+    "If the bottom-up rule extracted from behaviour is tagged onto the existing E1/E3 representation rather than a separate OFC-analog substrate, the agent should fail at situations requiring rule-driven action under unobservable-state conditions; if it succeeds, OFC-analog substrate may be redundant."
+  ],
+  "tags": [
+    "arc_064",
+    "orbitofrontal_cortex",
+    "cognitive_map",
+    "task_state",
+    "state_abstraction",
+    "rule_substrate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Orbitofrontal cortex provides an abstraction of currently available information in the form of a labelling of the current task state, which is then used by RL machinery elsewhere in the brain. This function is especially critical when task states include unobservable information (e.g., from working memory). The theory unifies classic OFC findings -- reversal learning, delayed alternation, extinction, devaluation, OFC-lesion effects on dopaminergic VTA firing -- under a single computational interpretation.",
+    "ree_translation": "ARC-064 requires a substrate to host the extracted behavioural rule labels and apply them to action selection. Wilson 2014's OFC-as-cognitive-map proposal is the most direct biological anchor for that substrate role: an abstraction layer that labels which 'mode' or 'state' the agent is currently operating in, where the labels are derived from latent (not directly observable) features of recent behaviour and outcome. Cross-reference: Niv 2019 task-state representations review (this entry set) reads the same substrate role through the post-2014 empirical literature; Schuck 2016 supplies the human-fMRI confirmation.",
+    "mapping_caveat": "Wilson et al. is a theoretical synthesis paper, not a primary empirical study. Its strength is unifying disparate findings under a single hypothesis; its weakness for ARC-064 mapping is that the predicted state-labels are top-down task-defined, not bottom-up extracted from behavioural clustering. The 'task state' in their framework is defined by the experimenter's task structure (e.g., reversal learning has two states defined by the contingency); REE's bottom-up rule discovery has to infer state-equivalents from clustering behaviour. The mapping holds if the OFC substrate can host BOTH externally-instructed and internally-extracted state labels; if those are computed by anatomically distinct subregions, ARC-064 may need a more specific substrate identification.",
+    "source_context": "Theoretical paper unifying OFC findings under a Markov-decision-process framing. Authors span Princeton (Niv, Wilson) and NIDA/IRP (Schoenbaum, Takahashi). Cited >2000 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.3,
+    "notes": "Neuron venue + foundational paper for the cognitive-map-of-task-space framework. Mapping fidelity strong for hosting state labels; weaker for the specific bottom-up-extraction-of-labels question that ARC-064 requires. Transfer risk moderate -- the framework is computationally clean but the bottom-up vs top-down provenance question is not fully addressed in the original paper."
+  }
+}

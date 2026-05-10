@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_hippocampal_cls_bipathway_schapiro_2017",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": ["ARC-064"],
+  "source": {
+    "title": "Complementary learning systems within the hippocampus: a neural network modelling approach to reconciling episodic memory with statistical learning",
+    "authors": ["Anna C Schapiro", "Nicholas B Turk-Browne", "Matthew M Botvinick", "Kenneth A Norman"],
+    "year": 2017,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2016.0049",
+    "pmid": "27872368"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Load-bearing R2 paper. Computational model directly grounded in known hippocampal anatomy (entorhinal -> CA1 monosynaptic; entorhinal -> DG/CA3 -> CA1 trisynaptic) demonstrating that a single anatomical structure can run two distinct learning regimes simultaneously: episode-specific pattern separation (trisynaptic) and across-episode statistical regularity extraction (monosynaptic). This is the most direct mechanistic anchor in the literature for the claim that bottom-up rule discovery has its own substrate distinct from top-down rule application. Phil Trans B venue + extensive subsequent empirical replication (Schapiro 2016 Neuropsychologia, Davachi-lab fMRI work) make it a near-canonical reference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that maps all hippocampal-style memory onto a single pattern-separation pathway will fail to reproduce the dissociation between episode memory and statistical regularity learning that Schapiro 2017 demonstrates -- specifically, fast acquisition of regularities under conditions where individual episode separability degrades.",
+    "If ARC-064 is collapsed into a single mechanism on top of the existing E1 prior pathway, the model should still recover the across-episode regularity extraction signature; if not, ARC-064 needs a separate write-pathway analog of the monosynaptic CA1 route.",
+    "If the bottom-up regularity-extraction pathway is REDUNDANT with sleep-replay consolidation (MECH-272/MECH-285), then disabling sleep replay while leaving online regularity extraction intact should preserve regularity-learning behaviour; if sleep is necessary and the online pathway insufficient, R3 verdict shifts toward offline-dominant."
+  ],
+  "tags": ["arc_064", "hippocampus", "complementary_learning_systems", "statistical_learning", "monosynaptic_pathway", "trisynaptic_pathway", "regularity_extraction"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus instantiates both episodic memorisation and statistical regularity extraction through anatomically distinct projections within the same structure: the trisynaptic pathway (EC -> DG -> CA3 -> CA1) supports rapid pattern-separated episodic encoding, while the monosynaptic pathway (EC -> CA1) supports across-episode regularity learning. The two are not functionally interchangeable; CLS theory's classical hippocampus-vs-neocortex tradeoff is partially recapitulated within the hippocampus itself.",
+    "ree_translation": "ARC-064 (bottom-up rule discovery via behavioural pattern extraction) requires a regularity-extraction pathway that operates on the trajectory record as it is laid down -- analogous to the monosynaptic CA1 route in Schapiro's model. This is architecturally distinct from the existing REE E1 (sensory prediction) and hippocampal episode-encoding (anchor sets, MECH-269) pathways, which are pattern-separated rather than regularity-pooled. The Schapiro mapping suggests ARC-064 should land as a separate write path that pools across episodes by design, not a downstream readout of the existing episode-encoding substrate.",
+    "mapping_caveat": "Schapiro et al.'s model is implemented in a connectionist neural-network simulation calibrated to human statistical-learning experiments (visual sequence/community-structure tasks). The mapping to REE's behavioural-trajectory-clustering claim assumes that trajectories are the analog of the temporal-regularity sequences in their stimuli. This analogy is reasonable but not airtight: behavioural patterns in REE involve action selection + state transitions, while their stimuli are passively-observed sensory sequences. Transfer risk: moderate -- the regularity-extraction-vs-episode-separation principle is general, but the specific anatomical division of labour they propose may or may not have a direct analog in REE's substrate.",
+    "source_context": "Phil Trans B themed issue on statistical learning. Connectionist neural-network simulation of hippocampal subfield architecture, calibrated against human behavioural and fMRI data on statistical learning (Schapiro lab Princeton, with Norman, Turk-Browne, and Botvinick at DeepMind)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Phil Trans B is high-quality with peer review; Schapiro is the established lead author for the hippocampal-statistical-learning field. Mapping fidelity is high for the architectural claim (two pathways, one anatomical substrate) but lower for whether the specific monosynaptic-vs-trisynaptic division maps cleanly onto REE substrates. Transfer risk moderate because passive-sequence regularity learning -> active-trajectory regularity extraction is a non-trivial domain shift."
+  }
+}

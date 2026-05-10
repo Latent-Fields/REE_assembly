@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_sleep_memory_consolidation_stickgold_2013",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064"
+  ],
+  "source": {
+    "title": "Parsing the role of sleep in memory processing",
+    "authors": [
+      "Robert Stickgold"
+    ],
+    "year": 2013,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2013.04.002",
+    "pmid": "23618558"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Authoritative review of sleep's role in memory consolidation, by a central voice in the field. Argues that sleep-stages-per-se don't process memory; the neuromodulatory and electrophysiological events characterising sleep stages do. Direct R3 anchor for the offline-consolidation arm of bottom-up rule discovery, with cross-reference to existing REE substrate (MECH-272/MECH-285 sleep-related substrates). Review-level rather than primary, hence lower confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate without sleep-replay-style consolidation will fail to reproduce sleep-dependent memory consolidation signatures Stickgold reviews -- specifically, performance gains on procedural / categorical / regularity tasks following sleep that exceed waking-rest controls.",
+    "If ARC-064's offline-arm is implemented as a generic batch-update during sleep without modulator-state-specific timing, it will not capture the sleep-stage-specificity Stickgold emphasises (e.g., procedural learning -> REM, declarative -> SWS)."
+  ],
+  "tags": [
+    "arc_064",
+    "sleep",
+    "memory_consolidation",
+    "neuromodulation",
+    "rem",
+    "sws",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep's role in memory consolidation is real but heterogeneous. Sleep-stages per se do not process memory; the neuromodulatory and electrophysiological events characterising those stages mediate sleep-dependent processing. Different memory types (procedural, declarative, emotional) have different sleep-dependent profiles, and the consolidation operations are stage-specific (e.g., REM for procedural skill consolidation, slow-wave-sleep for declarative consolidation).",
+    "ree_translation": "ARC-064's offline-arm is supported by an extensive sleep-consolidation literature; this review supplies the conceptual frame. Bottom-up rule discovery's offline component should be implemented with sleep-state-specific timing (analogous to REM-vs-SWS-specific operations in the brain) rather than as a generic batch-update. Cross-reference: REE substrates MECH-272, MECH-273, MECH-274 (sleep-related extensions) and MECH-285 (sleep replay sampler) are the existing partial-analogs; ARC-064's offline-arm may slot into those substrates or need additions.",
+    "mapping_caveat": "Stickgold's review is high-level and does not commit to a specific substrate-implementation prescription. The sleep-stage-specificity argument is empirically strong but its application to REE is conceptual rather than direct -- REE's substrate may not have direct REM/SWS analogs. Transfer risk: moderate-to-high because the specific mechanisms (neuromodulator-mediated stage-specific processing) require REE substrate decisions not pinned down by the review.",
+    "source_context": "Curr Opin Neurobiol review by Robert Stickgold (Harvard / BIDMC), one of the field's central voices on sleep-memory interactions. Cited >400 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Curr Opin Neurobiol review venue (high-quality secondary literature). Mapping fidelity moderate -- the offline-consolidation principle generalises; the specific stage-specific mechanisms require REE substrate commitments. Transfer risk slightly elevated."
+  }
+}

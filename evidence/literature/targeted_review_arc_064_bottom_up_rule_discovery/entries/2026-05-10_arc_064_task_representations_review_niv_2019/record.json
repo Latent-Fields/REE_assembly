@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_task_representations_review_niv_2019",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064"
+  ],
+  "source": {
+    "title": "Learning task-state representations",
+    "authors": [
+      "Yael Niv"
+    ],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-019-0470-8",
+    "pmid": "31551597"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Authoritative perspective on representation-learning -- the bottom-up extraction problem ARC-064 names as its core mechanism. Niv synthesises post-2014 work showing that the brain solves the 'what to learn about' problem via latent-cause inference and selective attention, with OFC implicated in deploying the resulting state labels. Most direct R2 review for the bottom-up extraction question that Wilson 2014 and Schuck 2016 leave partially open.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that performs no representation-learning -- where the state taxonomy is fixed at design time and the agent only learns values within that taxonomy -- will fail to generalise across task variations the way Niv 2019's framework requires. ARC-064 is exactly the missing representation-learning component.",
+    "If REE's ARC-064 candidate substrate cannot solve simple representation-learning tasks (e.g., learning to ignore irrelevant features, learning to infer latent task states), the substrate is not implementing what Niv 2019 identifies as the core function and is misnamed."
+  ],
+  "tags": [
+    "arc_064",
+    "representation_learning",
+    "task_states",
+    "latent_cause_inference",
+    "selective_attention",
+    "orbitofrontal_cortex"
+  ],
+  "mapping": {
+    "source_claim_statement": "The hardest part of learning is deciding what to learn about. The brain solves this via two complementary processes: (i) learning what to ignore (selective attention, generalisation across irrelevant features) and (ii) augmenting perceptual input with inferred latent causes that capture unobservable but task-relevant information. OFC is implicated in deploying the resulting task-state representations for downstream learning and decision-making. Representation-learning is positioned as the central computational problem the brain solves on top of value-learning.",
+    "ree_translation": "ARC-064 (bottom-up rule discovery) is REE's representation-learning component -- the substrate that decides what features of the trajectory record to extract as rule-states and which to ignore. Niv 2019's framing explicitly distinguishes this from the value-learning and policy-learning components, which is the architectural separation ARC-064 needs. The cluster shape: representation-learning (ARC-064) feeds state labels into the policy-learning machinery (existing E3) which handles value-driven action selection.",
+    "mapping_caveat": "Niv 2019 is a Perspective-format review rather than a primary empirical paper; its claims are theoretical syntheses backed by an extensive citation network rather than a single new finding. The transfer to REE is conceptually clean but requires choosing which neural-network analog implements the 'latent cause inference' machinery. Niv discusses several candidates (Bayesian latent-cause models, attention-modulated RL, structure-learning) without committing to one; ARC-064's specific implementation choice is left open.",
+    "source_context": "Nature Neuroscience Perspective by Yael Niv, summarising the post-2014 wave of representation-learning research. Builds on Wilson 2014 and Schuck 2016 (Niv-coauthored) and integrates the structure-learning literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Nat Neurosci Perspective venue + Niv as the field's central voice on representation learning. Mapping fidelity high -- this paper names exactly the function ARC-064 is proposing. Transfer risk moderate because the implementation choice is left open; ARC-064's substrate design needs to commit to one of the candidate mechanisms Niv discusses."
+  }
+}

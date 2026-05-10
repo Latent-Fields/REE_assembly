@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_064_bottom_up_rule_discovery",
+  "entry_id": "2026-05-10_arc_064_dual_operator_chunking_smith_graybiel_2013",
+  "timestamp_utc": "2026-05-10T07:41:50Z",
+  "claim_ids_tested": [
+    "ARC-064",
+    "MECH-312"
+  ],
+  "source": {
+    "title": "A dual operator view of habitual behavior reflecting cortical and striatal dynamics",
+    "authors": [
+      "Kyle S Smith",
+      "Ann M Graybiel"
+    ],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.05.038",
+    "pmid": "23810540"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Strong primary electrophysiology paper. Recordings during overtraining show striatum acquires action-bracketing chunking patterns rapidly while infralimbic cortex develops habit-tracking patterns slowly; optogenetic disruption of infralimbic activity during overtraining prevents habit crystallisation. Direct R2 anchor for striatum-as-behavioural-pattern-extraction substrate (the bottom-up rule discovery analog) plus R4 input on which arbitration variable matters (practice-length, not uncertainty alone).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate without a striatum-analog action-chunking mechanism will fail Smith & Graybiel 2013's signature: rapid acquisition of action-bracketing patterns during overtraining, with sensitivity to running automaticity but insensitivity to reward devaluation.",
+    "If ARC-064's bottom-up rule extraction does not develop a stable substrate-level signature over training (in REE: stable rule-cluster representations after extended episodes in similar contexts), the substrate is not 'crystallising' rules the way the dorsolateral striatum does in Smith & Graybiel.",
+    "If MECH-312's arbitration variable is purely uncertainty-based (Daw 2005), it will fail to capture the practice-length-driven habit takeover Smith & Graybiel demonstrate; arbitration may need to track time-on-task / repetition-count as well."
+  ],
+  "tags": [
+    "arc_064",
+    "mech_312",
+    "dorsolateral_striatum",
+    "infralimbic_cortex",
+    "action_chunking",
+    "habit_formation",
+    "overtraining"
+  ],
+  "mapping": {
+    "source_claim_statement": "Simultaneous recordings in dorsolateral striatum and infralimbic cortex during rat overtraining show that striatum acquires an action-bracketing chunking pattern (signalling start and end of habituated action sequences) rapidly during early training, while infralimbic cortex develops habit-tracking patterns slowly during late overtraining. Optogenetic disruption of infralimbic activity during overtraining prevents habit crystallisation. The two structures act as 'dual operators': striatum compresses behavioural patterns into chunked sequences, infralimbic cortex stabilises the chunks into habits.",
+    "ree_translation": "ARC-064's bottom-up rule discovery has a direct biological analog in the dorsolateral striatum's action-chunking pattern: extracting behavioural patterns from the trajectory record and compressing them into reusable chunks. The infralimbic-cortex role (slow stabilisation of the chunks into habit-rules) maps onto the rule-application substrate in REE -- analogous to ARC-062's gated-policy heads. The two-stage architecture (fast extraction in striatum-analog -> slow consolidation in cortex-analog) is a strong R2 verdict on the cluster shape: ARC-064 substrate (extraction) feeds ARC-062 substrate (application) over training time.",
+    "mapping_caveat": "Smith & Graybiel's recordings are in rat dorsolateral striatum and infralimbic cortex during a maze task. The chunking signature is action-sequence-level (bracketing the start and end of a stereotyped sequence) rather than rule-level. Mapping to REE's bottom-up rule discovery requires extending the principle from 'stereotyped action chunks' to 'extracted behavioural rules' -- a conceptual scaling-up that is plausible but not directly tested. Transfer risk moderate.",
+    "source_context": "Neuron paper. Smith and Graybiel labs (MIT). Foundational primary paper for the action-chunking-in-striatum literature; cited >500 times."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.3,
+    "notes": "Neuron venue + landmark primary electrophysiology + optogenetic causal manipulation. Mapping fidelity moderate-high; the chunking concept extends naturally to bottom-up rule discovery but is one level smaller than rules in the abstract. Transfer risk moderate."
+  }
+}
