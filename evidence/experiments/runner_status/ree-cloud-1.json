@@ -2,47 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 669,
   "runner_started_at": "2026-05-10T13:47:20.699779+00:00",
-  "last_updated": "2026-05-10T17:25:01.711516+00:00",
+  "last_updated": "2026-05-10T17:32:00.044212+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-514h",
-    "backlog_id": "",
-    "claim_id": "SD-049",
-    "title": "SD-049 BG gating wider-seed sweep under StepHarness, Tier-1 diagnostic re-run after V3-EXQ-514g interruption (supersedes V3-EXQ-514g)",
-    "description": "",
-    "script": "experiments/v3_exq_514h_sd049_bg_gating_wider_seeds_stepharness.py",
-    "started_at": "2026-05-10T13:47:22.155906+00:00",
-    "progress": {
-      "run_label": "Seed 46 / single",
-      "runs_done": 4,
-      "runs_total": 6,
-      "episodes_done": 10,
-      "episodes_total": 90,
-      "overall_pct": 68.5
-    },
-    "seconds_elapsed": 13058,
-    "seconds_remaining": 5928,
-    "recent_lines": [
-      "ever_committed=True  first_commit_ep=0  rv_final=0.005884  rv_diff_from_init=0.494116  committed_frac_last_third=1.000  contacts=95  elapsed=3296.3s",
-      "verdict: PASS",
-      "[514h] seed=46 episodes=90",
-      "Seed 46 Condition single",
-      "[train] seed=46 ep 10/90 committed_frac=1.000 rv_final=0.004252"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-514h",
-      "backlog_id": "",
-      "claim_id": "SD-049",
-      "title": "SD-049 BG gating wider-seed sweep under StepHarness, Tier-1 diagnostic re-run after V3-EXQ-514g interruption (supersedes V3-EXQ-514g)",
-      "description": "",
-      "estimated_minutes": 72.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-543b",
       "backlog_id": "",
@@ -2861,14 +2824,13 @@
       "claim_id": "",
       "title": "SD-049 BG gating wider-seed sweep under StepHarness (Tier-1 diagnostic)",
       "description": "",
-      "result": "INTERRUPTED",
-      "result_summary": "INTERRUPTED: SIGTERM mid-run; phantom-PASS retracted",
+      "result": "PASS",
+      "result_summary": "verdict: PASS",
       "started_at": "2026-05-08T17:53:09.993241+00:00",
       "completed_at": "2026-05-08T19:26:34.647081+00:00",
       "output_file": "",
       "completed_by": "ree-cloud-1",
-      "actual_secs": 5603.2,
-      "interrupt_note": "Flipped from PASS to INTERRUPTED 2026-05-10T13:38Z. The original PASS was a phantom from the runner's stdout-derived heuristic firing 4 seconds after systemd sent SIGTERM to ree-runner on ree-cloud-1 at seed 43 ep ~70/90. No manifest landed; no real verdict exists. Re-running as V3-EXQ-514h via /queue-experiment skill."
+      "actual_secs": 5603.2
     },
     {
       "queue_id": "V3-EXQ-541",
@@ -2883,6 +2845,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_541_mech204_precision_recalibration_consumer_20260508T234302Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 130.4
+    },
+    {
+      "queue_id": "V3-EXQ-514h",
+      "backlog_id": "",
+      "claim_id": "SD-049",
+      "title": "SD-049 BG gating wider-seed sweep under StepHarness, Tier-1 diagnostic re-run after V3-EXQ-514g interruption (supersedes V3-EXQ-514g)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | verdict: PASS",
+      "started_at": "2026-05-10T13:47:22.155906+00:00",
+      "completed_at": "2026-05-10T17:32:00.043546+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 13476.7
     }
   ]
 }
