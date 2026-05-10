@@ -2802,13 +2802,14 @@
       "claim_id": "",
       "title": "SD-049 BG gating wider-seed sweep under StepHarness (Tier-1 diagnostic)",
       "description": "",
-      "result": "PASS",
-      "result_summary": "verdict: PASS",
+      "result": "INTERRUPTED",
+      "result_summary": "INTERRUPTED: SIGTERM mid-run; phantom-PASS retracted",
       "started_at": "2026-05-08T17:53:09.993241+00:00",
       "completed_at": "2026-05-08T19:26:34.647081+00:00",
       "output_file": "",
       "completed_by": "ree-cloud-1",
-      "actual_secs": 5603.2
+      "actual_secs": 5603.2,
+      "interrupt_note": "Flipped from PASS to INTERRUPTED 2026-05-10T13:38Z. The original PASS was a phantom from the runner's stdout-derived heuristic firing 4 seconds after systemd sent SIGTERM to ree-runner on ree-cloud-1 at seed 43 ep ~70/90. No manifest landed; no real verdict exists. Re-running as V3-EXQ-514h via /queue-experiment skill."
     },
     {
       "queue_id": "V3-EXQ-541",
