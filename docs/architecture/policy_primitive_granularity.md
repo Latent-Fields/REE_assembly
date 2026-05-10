@@ -43,13 +43,15 @@ When an imagined chunk fails to ground at the resolution required for execution,
 
 Likely a combination — lit-pull will arbitrate.
 
-Biology anchors:
-- **Badre & D'Esposito 2009 (Nat Rev Neurosci)** — rostro-caudal prefrontal hierarchy.
-- **Koechlin & Summerfield 2007 (Trends Cogn Sci)** — cascaded cognitive control architecture.
-- **Zacks et al. 2007 (Psychol Bull)** — event segmentation theory; same machinery on observation and imagination streams; prediction error is the canonical trigger.
-- **McGovern & Barto 2001 (ICML)** — bottleneck-state subgoal discovery.
-- **Pfeiffer & Foster 2013 (Nature)** — hippocampal forward path sweeps successively elaborate trajectories.
-- **Schapiro et al. 2017 (Phil Trans Roy Soc B)** — CLS hippocampal pattern separation as substrate.
+Biology anchors (post-2026-05-10 lit-pull verdicts integrated; see `evidence/literature/targeted_review_arc_070_decomposition/synthesis.md`):
+
+- **Zacks et al. 2007 (Psychol Bull)** — event segmentation theory; PE is the canonical boundary trigger; framework is substrate-agnostic about whether the predictive stream is observed or imagined. R1 + R2 (theoretical) + R5 anchor. lit_conf 0.84.
+- **Schacter, Addis & Buckner 2008 (Ann NY Acad Sci)** — constructive episodic simulation; the same core network (medial PFC, hippocampus, retrosplenial / posterior cingulate, inferior parietal lobule) supports both remembering past and imagining future events. R2 LOAD-BEARING empirical anchor — added to the primary cluster from the lit-pull. lit_conf 0.82.
+- **Badre & D'Esposito 2009 (Nat Rev Neurosci)** — rostro-caudal prefrontal hierarchy; multi-level action abstraction. R3 empirical anchor. lit_conf 0.78.
+- **Pfeiffer & Foster 2013 (Nature)** — hippocampal forward path sweeps elaborate trajectories with cue-dependent dynamics; the imagination-side rollout substrate exists and is online during navigation. R1 substrate + R3 + R4 substrate anchor. lit_conf 0.78.
+- **Koechlin & Summerfield 2007 (Trends Cogn Sci)** — cascaded cognitive control; theoretical scaffold for multi-level decomposition. R3 theoretical + R5 hybrid anchor. lit_conf 0.74.
+- **Schapiro et al. 2017 (Phil Trans Roy Soc B)** — CLS within hippocampus; trisynaptic pattern-separation as candidate V_s substrate; dual pathways support multi-grain representation. R1 substrate + R2 pathway grounding + R3 multi-grain anchor. lit_conf 0.74.
+- **McGovern & Barto 2001 (ICML)** — bottleneck-state subgoal discovery; **foil**, not primary. R5 verdict distinguishes bottleneck-state framing (statistical) from PE-driven framing (biological); ARC-070 commits to PE-driven primary. lit_conf 0.62 (mixed direction).
 
 ### ARC-071 — composition via repeated grounding (zoom out)
 
@@ -84,7 +86,7 @@ Biology anchors:
 
 **MECH-269 V_s** (per-stream / per-region verisimilitude): the most plausible trigger signal for ARC-070 decomposition, and a candidate condition (V_s-positive) for ARC-071 composition. ARC-070 becomes the **second major V_s consumer** after MECH-269b symmetric-V_s-gating.
 
-**MECH-288 event segmenter** (observation side, fast/slow scales): ARC-070 is the imagination-side analog. Event segmentation theory predicts shared machinery; whether REE instantiates them as one mechanism or two is a child-MECH question.
+**MECH-288 event segmenter** (substrate-side two-level hierarchical detector reading latent + PE streams): **ARC-070 is a bidirectional consumer of the same substrate, not a parallel module** (lit-pull R2 verdict 2026-05-10, LOAD-BEARING, conf 0.74). MECH-288's API consumes `latent_dict` + `pe_dict` — substrate-agnostic about whether those latents originate in observation or in simulation. ARC-070 adds the policy-side consumer that reads MECH-288 boundary pulses on the rollout / imagination stream and re-segments the proposal trajectory at finer grain. Same detector, two input streams (observation, rollout), two downstream effects (MECH-269 anchor-set update on observation; decomposition pulse on rollout). The "imagination-side analog" framing from the original registration is superseded by the bidirectional-substrate framing. Falsifiable: lesioning MECH-288 should impair BOTH observation-side anchor partition AND imagination-side decomposition; the bidirectional hypothesis predicts no dissociation. See `evidence/literature/targeted_review_arc_070_decomposition/synthesis.md` for the constructive-episodic-simulation grounding (Schacter 2008 core network).
 
 **MECH-292 / MECH-293 ghost-goal bank + waking probes**: anchors are point-keys. ARC-069 + ARC-071 add structure-bearing primitives that anchors can seed. The SD-039 goal_payload extends naturally to chunks — a chunked primitive with a stable goal-payload is an accumulated "recipe" the agent has formed.
 
@@ -181,10 +183,25 @@ These are pre-registration cross-references — speculative until biology lit-pu
 
 Two independent lit-pulls anticipated:
 
-1. **`targeted_review_arc_070_decomposition/`** — hippocampal-prefrontal hierarchical control during planning, event segmentation theory imagination side, bottleneck-state subgoal discovery, mid-execution prediction-error machinery. Disambiguate Badre 2009 rostro-caudal hierarchy from Koechlin 2007 cascaded control from Zacks 2007 event segmentation; pick mechanism shape.
-2. **`targeted_review_arc_071_composition/`** — Graybiel striatal chunking, Sakai motor sequence learning, Sutton options framework, Yin & Knowlton DLS/DMS division. Pick parameterisation: chunking accumulator threshold, outcome variance tolerance, recursion depth.
+1. **`targeted_review_arc_070_decomposition/`** — **LANDED 2026-05-10.** 7 entries; aggregate lit_conf 0.88 (indexer-computed); 6 supports + 1 mixed. Five verdicts settled: R1 V_s-drop on chunk's region as primary trigger (PE-driven); **R2 LOAD-BEARING — SHARED SUBSTRATE: ARC-070 is a bidirectional consumer of MECH-288, not a parallel module**; R3 multi-level recursive decomposition with depth cap 3-4; R4 both pre-commit and mid-execution phases via same mechanism with MECH-094 hypothesis_tag-conditional downstream effects; R5 PE-driven primary, McGovern-Barto bottleneck-state framing as optional consolidation-phase secondary. See `evidence/literature/targeted_review_arc_070_decomposition/synthesis.md`.
+2. **`targeted_review_arc_071_composition/`** — **LANDED 2026-05-10** (sibling parallel pull). 9 entries; aggregate lit_conf 0.848. R3 confirmed ARC-071 IS the missing transition mechanism MECH-163 dual_goal_directed_systems presupposes (MECH-163 depends_on +ARC-071 committed 2026-05-10). R6 SAFETY-CRITICAL: biology does NOT cleanly gate chunking write path against replay/imagined sequences — escalated to governance decision before child-MECH design.
 
-After each lit-pull, child MECH design can proceed independently. The two children share the parent commitment but no execution path — they're decoupled within the cluster, similar to how ARC-066 / ARC-067 / ARC-068 are decoupled within the non-deficit-action-drives family.
+The two children share the parent commitment but no execution path — they're decoupled within the cluster, similar to how ARC-066 / ARC-067 / ARC-068 are decoupled within the non-deficit-action-drives family.
+
+### Child-MECH design ready to proceed (ARC-070 side)
+
+With R2 settled, ARC-070's first child MECH has a much clearer shape than at slot registration:
+
+- **Subject:** `policy.decomposition_via_event_segmenter` (or similar). The mechanism is a policy-side consumer of MECH-288 boundary pulses on the rollout / imagination input stream.
+- **Trigger:** V_s drop on chunk's region (read out of MECH-288 + MECH-269 substrate). MECH-288 produces the boundary; ARC-070's child MECH consumes the boundary at the policy-primitive layer and triggers re-segmentation.
+- **Output:** re-segmented rollout proposal stream at finer grain.
+- **Depth control:** recursion cap 3-4 levels (R3).
+- **Phase handling:** pre-commitment fires during simulation (no residue write); mid-execution decomposition fires under hypothesis_tag=False with residue write enabled (R4 + MECH-094).
+- **Optional secondary:** bottleneck-aware consolidation-phase analysis (R5; may integrate with ARC-071 chunk-formation pipeline once R6 lands).
+
+The child-MECH design depends on MECH-288 substrate landing (it is `candidate / v3_pending`; substrate implementation at `ree_core/hippocampal/event_segmenter.py` is on the Phase 2 V_s substrate plan). ARC-070's child MECH cannot land before MECH-288's substrate; the design can be registered first as `candidate / pending_design / depends_on: MECH-288`.
+
+ARC-071's child MECH is gated separately on the R6 governance decision (hypothesis_tag write-path safety question).
 
 ---
 

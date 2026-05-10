@@ -22827,6 +22827,7 @@
     - MECH-269  # downstream consumer: anchor set keyed on segment_id (per scale)
     - MECH-284  # downstream consumer: staleness accumulator indexed on segment_id
     - MECH-287  # downstream broadcast: MECH-287 trigger reads MECH-288 BoundaryEvents (Clewett 2025; verdict 3 = option c)
+    - ARC-070   # downstream consumer (bidirectional, rollout-side): ARC-070 lit-pull R2 verdict 2026-05-10 -- ARC-070 is the imagination-side consumer of MECH-288 boundary pulses on the rollout proposal stream, not a parallel module (shared substrate, two input streams)
   functional_restatement: >
     Mechanism hypothesis (verdicts integrated 2026-04-22 from
     targeted_review_event_segmentation/ SYNTHESIS, agg lit_conf 0.85;
@@ -23042,6 +23043,52 @@
     (iv) trigger code, because the trigger will read MECH-288
     BoundaryEvents. This reverses earlier "MECH-287 (iv) and MECH-288
     can land in parallel" sequencing.
+
+    [2026-05-10 ARC-070 bidirectional-consumer commitment]:
+    The ARC-070 lit-pull
+    (evidence/literature/targeted_review_arc_070_decomposition/)
+    R2 verdict (LOAD-BEARING, conf 0.74) commits ARC-070 to be
+    implemented as a bidirectional CONSUMER of MECH-288, not a
+    parallel imagination-side module. MECH-288's existing API is
+    already substrate-agnostic about whether the latent + PE
+    streams come from observation or from simulation; the
+    bidirectional commitment makes this explicit. MECH-288 thus
+    has two classes of downstream consumer:
+
+      OBSERVATION-side consumers (latent stream sourced from
+      ongoing percept / experience):
+        - MECH-269 anchor sets (region partition)
+        - MECH-284 staleness accumulator
+        - MECH-287 broadcast trigger (Clewett 2025)
+
+      ROLLOUT / IMAGINATION-side consumer (latent stream sourced
+      from hippocampal forward sweep / E2 rollout):
+        - ARC-070 child MECH (policy-side decomposition pulse
+          consumer; re-segments the rollout proposal stream at
+          finer grain when boundary fires on chunk's region)
+
+    Implementation implication for event_segmenter.py: the
+    substrate should accept an explicit input_stream label
+    (observation | rollout) so that MECH-094 hypothesis_tag-
+    conditional downstream effects can be enforced per consumer.
+    Pre-commitment / simulation-side fires (input_stream=rollout)
+    must NOT update MECH-269 anchor sets or MECH-287 broadcast
+    (those are observation-only). Post-commitment / execution-side
+    fires (input_stream=observation) drive the existing
+    observation-side consumer chain unchanged.
+
+    Anchored on Schacter / Addis / Buckner 2008 (constructive
+    episodic simulation core network: same medial PFC + hippocampus
+    + retrosplenial + parietal substrate processes observation and
+    imagination) and Zacks 2007 (event-segmentation theory is
+    substrate-agnostic about input stream source). See ARC-070
+    evidence_quality_note for the R2 architectural reasoning.
+
+    Falsifiable consequence: lesioning MECH-288 should impair
+    BOTH observation-side anchor partition AND imagination-side
+    decomposition. A dissociation falsifies the bidirectional-
+    substrate commitment and forces a parallel-but-coupled
+    architecture.
   evidence_quality_note: >
     Registered candidate with v3_pending:true. Literature support
     complete: targeted_review_event_segmentation/ 11 papers /
@@ -23054,6 +23101,15 @@
     downstream substrate plus falsifiable predictions above.
 
     [2026-05-08 governance]: EXQ-476c diagnostic inconclusive (same reading as MECH-269 sibling).
+
+    [2026-05-10 bidirectional-consumer extension]: ARC-070 lit-pull
+    R2 verdict adds ARC-070 as a rollout / imagination-side
+    consumer of MECH-288 boundary pulses. See notes section above
+    and evidence/literature/targeted_review_arc_070_decomposition/
+    synthesis.md. Implementation of event_segmenter.py should
+    accept input_stream label so observation-side and rollout-side
+    consumers can be dispatched correctly under MECH-094
+    hypothesis_tag gating.
   location: docs/architecture/event_segmenter.md
 
 - id: MECH-289
@@ -28423,6 +28479,38 @@
     across capacity regimes -- but a clean test requires SD-054 reef
     substrate or similar where engagement options are structurally
     rich.
+
+    LIT-PULL UPDATE 2026-05-10:
+    targeted_review_arc_068_opportunity_cost completed; six-paper
+    cohort across theoretical RL derivation (Niv 2007), unified
+    phenomenology (Kurzban 2013), dACC review (Kolling 2016), dACC-
+    reinterpretation fMRI (Shenhav 2016), DA-pharmacology dissociation
+    (Salamone & Correa 2003), human patch-foraging behaviour
+    (Constantino & Daw 2015). Four R-verdicts:
+    R1 ARC-068 vs SD-032b boundary -- SEPARATE-AT-ARCHITECTURE-VIA-
+    KERNEL (long-window historical EMA for ARC-068; current-
+    environmental scalar for SD-032b); architectural separation does
+    not require clean substrate dissociation, which biology likely
+    does not provide; the Shenhav-Kolling dACC dispute is engaged
+    explicitly.
+    R2 reward-rate kernel -- PRIMARY long-window historical EMA
+    (Constantino & Daw 2015 decisive against TD; Niv 2007 theoretical
+    anchor); SECONDARY hybrid current+historical fallback for non-
+    stationary environments only if motivated by early validation.
+    R3 ARC-066 + ARC-068 collapse -- COLLAPSE-AT-IMPLEMENTATION-LAYER
+    LICENSED (Niv 2007 mathematical symmetry); slot-level registration
+    kept separate to preserve design space for future psychiatric
+    failure-mode dissociations (anhedonia, mania).
+    R4 effort-cost vs opportunity-cost separation -- SEPARATE
+    (Salamone & Correa 2003 dissociation: effort cost scales with
+    action requirements, opportunity cost scales with elapsed time
+    times reward history; both DA-mediated but compute different
+    things). ARC-068 should NOT be absorbed into existing MECH-258 /
+    SD-032b dacc_effort_cost machinery.
+    Synthesis lives at evidence/literature/
+    targeted_review_arc_068_opportunity_cost/synthesis.md; expected
+    lit_conf 0.78-0.82 supports-direction-dominant (4 supports + 1
+    mixed + 1 weakens).
   notes: >
     Cross-reference family: ARC-066 + ARC-067 + ARC-068 form the
     non_deficit_action_drives cluster. ARC-068 is the score-side
