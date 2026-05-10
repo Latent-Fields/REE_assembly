@@ -10831,6 +10831,7 @@
     - MECH-112
     - SD-012
     - INV-029
+    - ARC-071     # transition mechanism (planned -> habitual chunk); added 2026-05-10 per ARC-071 lit-pull R3 verdict
   notes: >
     Registered 2026-04-02 from architectural discussion about V3/V4 boundary.
     Matches the SNc/VTA dopaminergic dual split and the model-free/model-based
@@ -10873,6 +10874,21 @@
     9 supports from lit entries, 0 genuine exp entries. No V3 experimental evidence on
     file for the dual-system distinction. Standard V3-pending gate: hold until V3
     experiments demonstrate dual-system discrimination.
+
+    2026-05-10: depends_on extended to include ARC-071 per R3 verdict of
+    targeted_review_arc_071_composition synthesis (lit_conf 0.848). The lit-pull
+    confirmed ARC-071 (policy.composition_via_repeated_grounding) IS the missing
+    transition mechanism that MECH-163 dual systems presupposes but does not
+    specify. MECH-163 names the PRESENCE of two systems (planned + habitual);
+    ARC-071 is the machinery that pumps content from planned-into-habitual.
+    Without ARC-071, the dual systems in MECH-163 are static configurations;
+    with ARC-071, the division of labour shifts continuously with experience.
+    Causal evidence: Smith & Graybiel 2013 -- selective optogenetic disruption
+    of infralimbic cortex during overtraining PREVENTS habit formation, i.e.
+    breaks the planned -> habitual transition. System-level evidence: Yin &
+    Knowlton 2006 -- DMS-to-DLS transfer over training is the system-level
+    signature of the transition. The depends_on update closes a gap that has
+    been hiding in plain sight since MECH-163 was registered 2026-04-02.
 
     HISTORICAL GOVERNANCE NOTES:
     - 2026-04-06 (illusory conflict resolution risk + needs task redesign): EXQ-237a
