@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_soft_actor_critic_haarnoja2018",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["MECH-313", "ARC-065"],
+  "source": {
+    "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+    "authors": ["Tuomas Haarnoja", "Aurick Zhou", "Pieter Abbeel", "Sergey Levine"],
+    "year": 2018,
+    "venue": "Proceedings of the 35th International Conference on Machine Learning (ICML 2018), PMLR 80:1861-1870",
+    "doi": "10.48550/arXiv.1801.01290",
+    "url": "https://arxiv.org/abs/1801.01290"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "SAC is the canonical maximum-entropy RL algorithm and the natural ML home of REE's MECH-313 stochastic-noise-floor claim. The MaxEnt-RL framework explicitly maximises a sum of expected reward AND policy entropy, with the entropy term acting as a structured exploration / robustness bonus. This is *exactly* what MECH-313 is supposed to do at the substrate level. Confidence is solid because the framework is well-tested empirically and has formal optimality results. Not higher because (a) SAC's entropy term is a parameter chosen by the engineer rather than an emergent biological substrate, and (b) the empirical demonstrations are simulated robotics, not biological agents.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-313 stochastic-noise-floor cannot be implemented as MaxEnt-RL-style policy-entropy regularisation, the inheritance pathway from SAC weakens. This is unlikely -- MaxEnt regularisation is a standard substrate-implementation technique.",
+    "SAC has known temperature-parameter sensitivity: too low, and the policy collapses to deterministic; too high, and the policy ignores the reward signal. REE's MECH-313 inherits this sensitivity. The temperature parameter is a hyperparameter to be calibrated, not derivable from first principles."
+  ],
+  "tags": ["mech_313", "arc_065", "soft_actor_critic", "maximum_entropy_rl", "stochastic_policy", "vocabulary_mapping"],
+  "mapping": {
+    "source_claim_statement": "Soft Actor-Critic optimises a maximum-entropy reinforcement-learning objective that maximises a sum of expected reward AND policy entropy. The entropy term acts as a structured exploration bonus and a robustness-promoting regulariser. SAC achieves state-of-the-art sample efficiency and stability on continuous-control benchmarks; the MaxEnt framework has formal soft-Q-learning convergence guarantees.",
+    "ree_translation": "SAC and the MaxEnt-RL framework provide the canonical ML implementation of REE's MECH-313 stochastic-noise-floor. The entropy term IS the noise-floor; the temperature parameter alpha controls the noise magnitude. ARC-065's behavioural-diversity-generation pathway can be re-stated as 'MaxEnt-RL with non-zero entropy temperature'. This is a direct vocabulary mapping with full algorithmic inheritance: REE gets convergence guarantees, hyperparameter-tuning literature, and benchmark comparisons for free.",
+    "mapping_caveat": "SAC's entropy term is a hyperparameter chosen by the engineer; in REE's biological reading, the noise floor is supposed to be substrate-emergent (LC-NE tonic firing, per Pull 1 Aston-Jones 2005 entry). Adopting MaxEnt-RL vocabulary at the algorithm level commits REE to engineer-chosen alpha; whether this matches the biological dynamics needs verification. Also: SAC's empirical demonstrations are simulated robotics, not biological agents.",
+    "source_context": "ICML 2018 conference paper. Empirical demonstrations on continuous-control benchmarks (Hopper, Walker2d, HalfCheetah, Ant, Humanoid). No biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "ICML 2018, very well-cited (10000+ citations), code released and replicated extensively. Mapping fidelity high because MaxEnt-RL is the canonical home for stochastic-noise-floor claims. Transfer risk low-moderate; the algorithm transfers cleanly, the biological-substrate claim is where translation work is needed."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_contention_scheduling_cooper2000",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-062", "MECH-312"],
+  "source": {
+    "title": "Contention Scheduling and the Control of Routine Activities",
+    "authors": ["Richard P. Cooper", "Tim Shallice"],
+    "year": 2000,
+    "venue": "Cognitive Neuropsychology, vol 17(4), pp 297-338",
+    "doi": "10.1080/026432900380427",
+    "pmid": "20945185"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The Cooper-Shallice contention scheduling model is the cognitive-neuroscience tradition's canonical formal account of *schemas* competing for execution -- a parallel ancestor lineage to the AI options framework, with the same essential structure (action-schemas as competing units, with activation, gating, and termination), but anchored in patient data (action-disorganisation syndrome). Mapping fidelity to ARC-062 and MECH-312 is HIGH but the inheritance is mixed because the model is largely descriptive rather than mechanistic-quantitative. Confidence not higher because the model has not had the same algorithmic continuation as the options/HRL line; it remains close to its 2000 form.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Action-disorganisation-syndrome lesion patterns are reproduced in the Cooper-Shallice model by selective lesioning of activation pathways. If REE's MECH-312 arbitration cannot reproduce analogous failure modes (sequence errors, perseveration, capture errors) under selective ablation, the schema/contention-scheduling reading of MECH-312 is weakened.",
+    "The schema tradition predicts a Supervisory Attentional System (SAS) that overrides contention scheduling for novel/non-routine situations -- this is a candidate framing for ARC-062's gated_policy. If REE has no SAS-like override and the gated_policy is fully integrated into the same arbitration substrate, that is a divergence."
+  ],
+  "tags": ["arc_062", "mech_312", "contention_scheduling", "schemas", "supervisory_attentional_system", "vocabulary_mapping", "norman_shallice_tradition"],
+  "mapping": {
+    "source_claim_statement": "Routine action selection is governed by competitive activation within a hierarchically organised network of action schemas. Each schema has an activation level, an initiation condition (objects in the environment that excite it), and a termination condition (goal completion). Schemas compete via lateral inhibition; the winner gates motor output. Action-disorganisation syndrome is reproduced in the model by selective lesioning, with characteristic sequencing errors emerging from the lesioned dynamics.",
+    "ree_translation": "The contention-scheduling tradition is a parallel ancestor of the AI options framework, with the same core primitives in different vocabulary: schema = option, schema activation = option-policy-value, lateral inhibition between schemas = soft policy-over-options, schema termination = option termination function. ARC-062's gated_policy + discriminator can be re-stated as contention-scheduling between schemas. MECH-312's arbitration is the contention-scheduling competition itself. Importantly, the schema tradition has a distinct primitive that the options tradition does not: the Supervisory Attentional System (SAS, Norman-Shallice 1986), an explicit override mechanism for novel / non-routine situations -- which has a possible mapping to ARC-062's discriminator distinguishing rule-applies vs rule-does-not-apply contexts.",
+    "mapping_caveat": "The Cooper-Shallice model is largely descriptive: it reproduces patient lesion patterns in simulation but does not have the algorithmic / convergence-theorem framework of options/HRL. So inheriting from this line gives REE *concepts* (schema, lateral inhibition, SAS) but does not give REE off-the-shelf *algorithms* in the way Bacon 2017 or Eysenbach 2018 do. The two traditions are best read in parallel: vocabulary inheritance from the schema tradition, algorithmic inheritance from the options/HRL tradition.",
+    "source_context": "Cognitive neuropsychology paper combining computational simulation (PDP-style schema network) with patient data (action-disorganisation-syndrome from frontal-lobe lesions). Tasks are everyday activities (preparing coffee, lunch-box packing) decomposed into schemas."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Top-tier cognitive-neuropsychology venue, well-cited, but the field has fragmented since 2000 and the model has not had the same algorithmic continuation as the options/HRL line. Mapping fidelity is high for the *concept-level* translation (schema = option). Transfer risk is moderate due to descriptive rather than mechanistic-quantitative nature."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_hierarchical_rl_botvinick2009",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-062", "ARC-064", "MECH-317", "MECH-318"],
+  "source": {
+    "title": "Hierarchically organized behavior and its neural foundations: A reinforcement learning perspective",
+    "authors": ["Matthew M. Botvinick", "Yael Niv", "Andrew C. Barto"],
+    "year": 2009,
+    "venue": "Cognition, vol 113(3), pp 262-280",
+    "doi": "10.1016/j.cognition.2008.08.011",
+    "pmid": "18926527"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the canonical bridge paper between options/HRL formalism and biological-substrate mapping. It maps options-framework primitives (option, sub-policy, termination, policy-over-options) to dorsolateral PFC, OFC, basal-ganglia, and dopamine signals. For Pull 4's vocabulary-mapping question this is the load-bearing paper showing that the AI options vocabulary already has a worked-out neural mapping -- exactly what REE's rule-apprehension cluster has been independently sketching. Confidence not higher because the neural mapping is suggestive rather than mechanistic in the EXQ-substrate-validation sense, and several of the predictions remain debated (especially the OFC role).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-318 (rule-state-abstraction) cannot be plausibly identified with the OFC role Botvinick 2009 proposes, the inheritance pathway from this paper to MECH-318 is weak.",
+    "If REE's ARC-062 cannot be mapped to the dorsolateral-PFC policy-over-options role this paper anchors, the gated_policy interpretation as option-selection machinery is in tension with the canonical neural reading."
+  ],
+  "tags": ["arc_062", "arc_064", "mech_317", "mech_318", "hierarchical_rl", "options_neural_mapping", "vocabulary_mapping"],
+  "mapping": {
+    "source_claim_statement": "Hierarchical reinforcement learning (HRL), built on the options framework, maps onto biological-substrate components: options/sub-policies are encoded in dorsolateral PFC, the policy-over-options sits in dorsolateral or anterior PFC, OFC encodes the option-conditioned state abstraction needed to evaluate option-level value, and the basal ganglia + dopamine implement the gating and learning signals. Hierarchical structure in human and animal behaviour can be parsimoniously accounted for by this option-augmented RL architecture.",
+    "ree_translation": "Botvinick, Niv & Barto's neural mapping IS the mapping REE has independently sketched for ARC-062 + ARC-064 + MECH-317 + MECH-318. ARC-062's gated_policy + discriminator is the dorsolateral-PFC policy-over-options. ARC-064's bottom-up rule discovery is the option-discovery problem in HRL. MECH-317's action-chunking is the option-formation pathway in dorsolateral striatum. MECH-318's rule-state-abstraction is the OFC-cognitive-map role this paper anchors. The vocabulary equivalence is essentially complete for the *cluster level*. Where REE diverges is in the specific sub-mechanisms (especially MECH-094 simulation-mode write-gating, dual nociceptive streams, and V_s invalidation) -- those are not in HRL canon.",
+    "mapping_caveat": "The Botvinick 2009 mapping is a theoretical proposal more than an experimentally-cemented mechanism. Specifically: the OFC-cognitive-map role is now better-anchored by Wilson 2014, Schuck 2016, Niv 2019 (already in Pull 2's set); the dorsolateral-PFC policy-over-options claim is still under empirical refinement; and the basal-ganglia gating-signal role is well-established but the specific HRL reading (vs other gating accounts) is not uniquely supported. So adopting HRL vocabulary commits REE to a *family* of compatible neural mappings rather than a single locked-down assignment.",
+    "source_context": "Theoretical review article in Cognition (Cell Press), with no direct experimental data, that synthesizes the AI options/HRL literature with the cognitive-neuroscience PFC-action-hierarchy literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Top-tier interdisciplinary venue (Cognition), highly cited (1500+), Princeton-Amherst lineage. Mapping fidelity is high because this paper does the cluster-level translation REE has been independently constructing. Transfer risk is moderate because the neural assignments are theoretical rather than mechanistically locked-down and have evolved since 2009."
+  }
+}

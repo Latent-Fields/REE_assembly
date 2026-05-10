@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_option_critic_bacon2017",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-064", "MECH-317", "MECH-316"],
+  "source": {
+    "title": "The Option-Critic Architecture",
+    "authors": ["Pierre-Luc Bacon", "Jean Harb", "Doina Precup"],
+    "year": 2017,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence (AAAI-17)",
+    "doi": "10.1609/aaai.v31i1.10916",
+    "url": "https://arxiv.org/abs/1609.05140"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The option-critic architecture closes the gap between Sutton-Precup-Singh 1999 (formalism) and ARC-064 (we need an option-discovery algorithm). It derives policy-gradient theorems for both the intra-option policy and the termination condition, and shows that the agent can simultaneously learn options end-to-end from environment reward without subgoals or pseudo-rewards. This is directly the substrate algorithm that ARC-064 + MECH-317 need. Confidence not 1.0 because (a) it needs reward signal so it does not handle the reward-agnostic chunking case, (b) the empirical demonstrations are on Atari/four-rooms, not biological agents, and (c) the discovered options often collapse to short-horizon (the so-called option-collapse problem) which is exactly the kind of failure mode REE's monomodal-collapse motif touches.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-317 cannot be implemented as a learned termination condition + intra-option policy + gating layer, the option-critic transfer fails and we need a different inheritance path.",
+    "Option-collapse (Bacon 2017's known failure mode: discovered options become trivially short or trivially identical) is the exact REE-side failure pattern observed in V3-EXQ-543 (ARM_1c seed-2 byte-identical to baseline). The diagnostic signatures match across paradigms; the inherited diagnostic tool here is the option-collapse literature."
+  ],
+  "tags": ["arc_064", "mech_317", "mech_316", "option_critic", "option_discovery", "policy_gradient", "vocabulary_mapping", "option_collapse"],
+  "mapping": {
+    "source_claim_statement": "The option-critic architecture learns the internal policies and termination conditions of options, in tandem with the policy over options, end-to-end from a primary reward signal. Policy gradient theorems are derived for both the intra-option policy and the termination function. The agent does not need pseudo-rewards or pre-specified subgoals.",
+    "ree_translation": "Option-critic is what ARC-064's bottom-up rule discovery / MECH-317 behavioural-pattern-compression looks like as a learning algorithm. The option policy = the rule's behavioural content; the termination function = MECH-317's chunk boundary; the policy-over-options = ARC-062's gated policy + discriminator. The whole REE rule-apprehension cluster, viewed through option-critic eyes, is one well-known architecture that has 8+ years of follow-up work (option-collapse mitigations, hierarchical option-critic, regularised termination, etc).",
+    "mapping_caveat": "Option-critic requires a reward signal to drive option discovery. REE's ARC-064 includes a reward-agnostic regularity-extraction arm (MECH-316 hippocampal-monosynaptic-CLS-analog) which option-critic does not directly cover -- that is closer to Eysenbach 2018 DIAYN territory. Also: option-critic is empirically demonstrated on Atari and grid-worlds; its transfer to continuous-state biologically-realistic substrates is plausible but not zero-shot. Option-collapse is a well-documented failure mode and is the same diagnostic pattern V3-EXQ-543 hit -- this is a *useful* inherited failure mode, not just a caveat.",
+    "source_context": "Computer-science conference paper (AAAI 2017). Empirical demonstrations on Four-Rooms, Pinball, Atari games (Asterix, Ms.Pacman, Seaquest, Zaxxon)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.40,
+    "notes": "Top-tier ML conference, well-cited, code published. Mapping fidelity high because option-critic is the dominant framework for end-to-end option discovery with reward. Transfer risk moderate-high because the algorithm assumes reward-driven gradients and Atari-style action spaces; biological-substrate translation needs additional work."
+  }
+}

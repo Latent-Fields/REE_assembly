@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_no_schema_hierarchy_botvinick_plaut2004",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-062", "ARC-064", "MECH-318"],
+  "source": {
+    "title": "Doing Without Schema Hierarchies: A Recurrent Connectionist Approach to Normal and Impaired Routine Sequential Action",
+    "authors": ["Matthew M. Botvinick", "David C. Plaut"],
+    "year": 2004,
+    "venue": "Psychological Review, vol 111(2), pp 395-429",
+    "doi": "10.1037/0033-295X.111.2.395",
+    "pmid": "15065915"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the deliberate counter-current paper. Botvinick and Plaut show that a single recurrent connectionist network can reproduce all the routine-sequential-action behaviour the Cooper-Shallice schema-hierarchy model produces -- including the action-disorganisation-syndrome lesion patterns -- *without any explicit schema hierarchy*. Context is encoded in distributed, recurrent state. This directly weakens the architectural commitment that REE's ARC-062/064/MECH-318 cluster needs an explicit rule-state-abstraction substrate at all. Confidence is calibrated to weakens-direction: this paper is a serious challenge to the explicit-rule-abstraction view, but it has not won the field -- subsequent options/HRL literature continues to assume explicit hierarchical decomposition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's existing latent-stack representations (z_world, z_self) when given recurrent dynamics are sufficient to support routine sequential action without an explicit MECH-318 substrate, then MECH-318 is a redundant claim and the relevant Pull 2 R2 verdict is wrong.",
+    "Botvinick-Plaut 2004 predicts that recurrent connectionist networks lesioned in their representational substrate will produce ADS-like patterns indistinguishable from schema-hierarchy lesions. If REE's V3 substrate cannot reproduce ADS-like patterns under representational lesion, the connectionist account is the more parsimonious one and MECH-318 should be questioned."
+  ],
+  "tags": ["arc_062", "arc_064", "mech_318", "connectionist", "no_explicit_schema", "vocabulary_mapping", "counter_current"],
+  "mapping": {
+    "source_claim_statement": "A single recurrent connectionist network mapping environmental inputs to actions, trained on routine sequential tasks, learns to encode context in distributed recurrent state and reproduces behaviour qualitatively equivalent to schema-hierarchy models, including the characteristic lesion patterns of action-disorganisation syndrome. No explicit schema hierarchy, no explicit rule-state-abstraction substrate, and no separate option-machinery is required.",
+    "ree_translation": "The Botvinick-Plaut 2004 result is a *deliberate weakener* for REE's architectural commitment to ARC-062/064 + MECH-318 as explicit substrates. The contrarian reading: recurrent dynamics over distributed state representations may suffice; the appearance of rule-application is an emergent property of recurrent processing rather than a property requiring an explicit gating-policy + discriminator + state-label substrate. This is the closest thing in the literature to a direct test of Pull 4's architectural-falsification framing -- the framing the user explicitly *rejected* but which still bears on what counts as load-bearing in REE's cluster.",
+    "mapping_caveat": "The Botvinick-Plaut model is empirically demonstrated on relatively short routine-action tasks (coffee preparation, lunch packing) -- not the long-horizon planning + bottom-up rule discovery + cross-context generalisation REE is designing for. The recurrent-distributed-state account is much harder to scale to long horizons and to cases where rules must transfer to genuinely novel contexts. The 2004 result limits to the *routine-sequential-action* regime, which is exactly the regime where schema-hierarchy and recurrent-connectionist accounts are observationally equivalent. For the regimes REE actually cares about (cross-task generalisation, novel-context rule application, long-horizon planning), the equivalence may not hold.",
+    "source_context": "Top-tier psychology journal (Psych Review). Computational simulation with no human or animal data; the human-equivalence claim is via reproduction of ADS-patient signatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "Psych Review is top-tier and the paper is well-cited. Mapping fidelity moderate-high because the architectural challenge is real but limited to the routine-action regime. Transfer risk moderate-high because the model has not been replicated for the long-horizon / cross-task / novel-context regimes REE cares about. The weakens-direction is calibrated."
+  }
+}

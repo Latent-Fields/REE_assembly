@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_rl_fast_slow_botvinick2019",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-064", "MECH-316"],
+  "source": {
+    "title": "Reinforcement Learning, Fast and Slow",
+    "authors": ["Matthew Botvinick", "Sam Ritter", "Jane X. Wang", "Zeb Kurth-Nelson", "Charles Blundell", "Demis Hassabis"],
+    "year": 2019,
+    "venue": "Trends in Cognitive Sciences, vol 23(5), pp 408-422",
+    "doi": "10.1016/j.tics.2019.02.006",
+    "pmid": "31003893"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This review paper synthesises two complementary mechanisms for fast learning that directly map to REE's architecture: episodic memory (cross-episode regularity extraction = MECH-316) and meta-RL (within-episode adaptation = Wang 2018 entry). It explicitly frames both as solutions to the slow-RL sample-complexity problem, which is what REE's bottom-up rule discovery is also trying to solve. Confidence not higher because the paper is a review rather than original empirical work, and because the clean fast/slow dichotomy may oversimplify the more complex multi-timescale picture Pull 2 R3 surfaced (online + offline + sleep-mediated consolidation).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-316 cross-episode-regularity-extraction does not produce the same kind of episodic-memory-mediated fast-learning signature (rapid generalisation to novel tasks based on stored episode memories) the Botvinick 2019 episodic-RL framing predicts, the inheritance pathway weakens.",
+    "The fast/slow dichotomy may collapse REE's three-timescale structure (online + within-episode + sleep-mediated consolidation) into two; if so, REE has a finer-grained timing structure than the literature, which would be a candidate KEEP-AS-IS for R3."
+  ],
+  "tags": ["arc_064", "mech_316", "episodic_rl", "meta_rl", "fast_slow_learning", "vocabulary_mapping"],
+  "mapping": {
+    "source_claim_statement": "Deep RL is sample-inefficient because gradient-based weight updates are slow. Two complementary mechanisms allow fast learning despite slow gradients: (i) episodic memory, where stored episodes are retrieved and used to bootstrap rapid generalisation, and (ii) meta-learning, where slow training over a task distribution shapes a network into one capable of fast within-episode adaptation. Both mechanisms have neural counterparts: hippocampal episodic memory and prefrontal meta-RL respectively. Together they account for human-like sample-efficient learning.",
+    "ree_translation": "The Botvinick 2019 fast/slow framing maps cleanly to REE's planned cluster: MECH-316 (cross-episode-regularity-extraction, hippocampal-monosynaptic-CLS-analog) is the *episodic-memory fast-learning* mechanism; ARC-062 + MECH-318 (per Wang 2018 / RL^2 collapse) is the *meta-RL fast-learning* mechanism. The two mechanisms are complementary, not competing -- exactly what Pull 2 R3 (online + offline both needed) said. The vocabulary inheritance: 'episodic RL' for MECH-316, 'meta RL' for ARC-062 + MECH-318.",
+    "mapping_caveat": "The fast/slow dichotomy is a useful organising structure but may oversimplify REE's three-timescale picture. Pull 2 R3 identified online (within-episode), online-quiet-period (awake replay), and offline (sleep consolidation) as three distinct timescales. Botvinick 2019 collapses the latter two. Whether the third timescale is genuinely architecturally distinct (KEEP-AS-IS) or a refinement of the existing two (RENAME) is left open by this paper.",
+    "source_context": "Top-tier review venue (Trends Cog Sci). Synthesises ML and neuroscience literature; no original empirical work."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Top-tier review, well-cited. Mapping fidelity is high for the cluster-level fast/slow split. Transfer risk low-moderate because review papers transfer well as vocabulary-source documents."
+  }
+}

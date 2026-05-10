@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_options_framework_sutton1999",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-062", "ARC-064", "MECH-317"],
+  "source": {
+    "title": "Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning",
+    "authors": ["Richard S. Sutton", "Doina Precup", "Satinder Singh"],
+    "year": 1999,
+    "venue": "Artificial Intelligence (Elsevier), vol 112, pp 181-211",
+    "doi": "10.1016/S0004-3702(99)00052-1",
+    "url": "https://people.cs.umass.edu/~barto/courses/cs687/Sutton-Precup-Singh-AIJ99.pdf"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This is the foundational options framework paper -- the canonical citation for any work on temporally abstract policies. It defines the option triple (initiation set I, intra-option policy pi, termination condition beta), proves SMDP value-learning convergence under standard conditions, and gives Bellman equations for option-level planning. Mapping fidelity to REE rule-apprehension vocabulary is HIGH for the bottom-up rule discovery cluster (ARC-064) and MECH-317 behavioural-pattern-compression (an option IS a chunked behavioural pattern with start, body, and stop). Confidence not 1.0 because options-as-formalism does not yet specify how options are *discovered* -- that is left to follow-on work (Stolle 2002, Bacon 2017, Eysenbach 2018).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-317 (action-chunking) does not have a clean option-triple representation (no initiation set, no termination condition, no intra-option policy), the inheritance pathway from this paper fails -- we either have to add those primitives or accept that MECH-317 is not really option-machinery.",
+    "If REE's ARC-064 bottom-up rule discovery produces representations that cannot be translated into options, the claim that 'rule apprehension is policy machinery in different vocabulary' is falsified."
+  ],
+  "tags": ["arc_062", "arc_064", "mech_317", "options_framework", "temporal_abstraction", "smdp", "vocabulary_mapping"],
+  "mapping": {
+    "source_claim_statement": "An option is a triple (I, pi, beta) consisting of an initiation set I (states where the option can start), an intra-option policy pi (mapping states to action probabilities while the option is executing), and a termination condition beta (probability of terminating in each state). MDPs with options become semi-Markov decision processes; standard value-iteration and Q-learning extend to options with convergence guarantees, and the framework supports both planning over options and intra-option learning that exploits sub-MDP structure during execution.",
+    "ree_translation": "REE's working terms 'top-down rule application' (ARC-062), 'bottom-up rule discovery' (ARC-064), and 'behavioural-pattern-compression' (MECH-317) all map onto the options framework. ARC-062's gated_policy + discriminator is a learned option-selection mechanism over a set of context-conditioned options. ARC-064's behavioural-pattern-extraction is option discovery. MECH-317's action-chunking is the formation of an intra-option policy + termination condition over a repeated action sequence. The options framework provides the formal scaffolding (SMDP Bellman equations, convergence proofs, intra-option learning) that REE would otherwise have to re-derive.",
+    "mapping_caveat": "Options are defined over MDPs with discrete actions and state-conditioned termination. REE's substrate is continuous-state and the termination condition for behavioural patterns may be implicit (driven by competition or salience) rather than an explicit beta function. The mapping is faithful at the *concept* level (option as start-body-stop temporal-abstraction unit) but the implementation in REE may need a softer/competition-based termination rather than a hard beta. Also: options are typically defined in the context of a *given* reward signal; ARC-064 bottom-up rule discovery is partially reward-agnostic, which is closer to Eysenbach 2018 DIAYN territory than vanilla options.",
+    "source_context": "Theoretical/computational AI paper. No empirical data; defines the formalism and proves convergence theorems. Foundational citation for ~all subsequent options/HRL work."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is near-ceiling: peer-reviewed AI journal, 6000+ citations, foundational. Mapping fidelity is high for the option-triple concept; transfer risk is moderate because the formal MDP setting and discrete-state assumption don't transfer literally to REE's continuous-state substrate, and option-discovery (the part of ARC-064 most relevant) is left to follow-up work."
+  }
+}

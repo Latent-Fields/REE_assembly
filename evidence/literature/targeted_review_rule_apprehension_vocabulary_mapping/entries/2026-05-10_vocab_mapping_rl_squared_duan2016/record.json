@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_rl_squared_duan2016",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-062", "MECH-318"],
+  "source": {
+    "title": "RL^2: Fast Reinforcement Learning via Slow Reinforcement Learning",
+    "authors": ["Yan Duan", "John Schulman", "Xi Chen", "Peter L. Bartlett", "Ilya Sutskever", "Pieter Abbeel"],
+    "year": 2016,
+    "venue": "arXiv:1611.02779 (preprint, OpenReview ICLR 2017 submission)",
+    "doi": "10.48550/arXiv.1611.02779",
+    "url": "https://arxiv.org/abs/1611.02779"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "RL^2 is the foundational ML implementation of meta-RL. It demonstrates that a recurrent network trained on a distribution of MDPs learns, in its hidden state, a fast inner-loop RL algorithm that adapts to new MDPs without weight updates. For Pull 4 it grounds the Wang 2018 biological-mapping paper in a concrete, well-tested ML framework that REE could adopt directly. Confidence not higher because RL^2 is a preprint that did not get accepted at ICLR (in the published form) and because the empirical demonstrations are simulated bandit/maze tasks rather than the long-horizon continuous-state regimes REE cares about.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's recurrent latent stack, trained on a distribution of tasks/contexts, does not learn to encode within-episode adaptation policy in its hidden state, the meta-RL transfer fails.",
+    "RL^2 known failure mode: the hidden state has limited capacity and meta-learns a *task-distribution-specific* algorithm rather than a general one. If REE adopts RL^2 vocabulary, it inherits this limitation."
+  ],
+  "tags": ["arc_062", "mech_318", "meta_rl", "rl_squared", "recurrent_policy", "vocabulary_mapping"],
+  "mapping": {
+    "source_claim_statement": "A recurrent neural network trained with reinforcement learning across a distribution of MDPs learns, in the activations of its recurrent units, a fast 'inner-loop' RL algorithm that adapts to new MDPs from the distribution without further weight updates. The slow outer-loop training (over MDPs) shapes the recurrent network into one that can act as a fast learner. The framework requires no special architecture beyond a standard recurrent network plus the multi-task training schedule.",
+    "ree_translation": "RL^2 is the concrete ML implementation of the Wang 2018 meta-RL biological-mapping paper. It gives REE a directly transferable algorithm: train the latent stack with multi-context RL, and the recurrent state will host the rule-application machinery. ARC-062 (gated_policy + discriminator) and MECH-318 (rule-state abstraction) collapse into 'recurrent state of a meta-RL-trained network'. The training schedule (distribution of contexts, slow outer-loop) is the design lever rather than the substrate architecture.",
+    "mapping_caveat": "RL^2's empirical demonstrations are on simulated bandit and small-maze tasks. Transfer to REE's continuous-state long-horizon substrate is plausible but not zero-shot. Also: RL^2 hidden-state capacity is finite; the meta-learned algorithm specialises to the training distribution and does not generalise outside it. For REE this means the meta-RL framing only works if the V3 substrate trains across enough varied contexts -- a substantial training-schedule design constraint.",
+    "source_context": "ML preprint (arXiv 2016). Empirical demonstrations on bandit tasks, simple gridworld navigation, and a visual visited-in-the-past task. No biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.45,
+    "notes": "Preprint, well-cited (1500+) but not formally peer-reviewed in the original form. Mapping fidelity is high for the algorithmic transfer to ARC-062 + MECH-318 unification. Transfer risk moderate-high due to bandit-style empirical regime and limited-capacity hidden state."
+  }
+}

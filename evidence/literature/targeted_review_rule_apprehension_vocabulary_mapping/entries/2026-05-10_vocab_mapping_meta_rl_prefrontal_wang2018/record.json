@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_meta_rl_prefrontal_wang2018",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-062", "ARC-064", "MECH-318"],
+  "source": {
+    "title": "Prefrontal cortex as a meta-reinforcement learning system",
+    "authors": ["Jane X. Wang", "Zeb Kurth-Nelson", "Dharshan Kumaran", "Dhruva Tirumala", "Hubert Soyer", "Joel Z. Leibo", "Demis Hassabis", "Matthew Botvinick"],
+    "year": 2018,
+    "venue": "Nature Neuroscience, vol 21, pp 860-868",
+    "doi": "10.1038/s41593-018-0147-8",
+    "pmid": "29760527"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "The Wang 2018 meta-RL framing reads context-conditioned policy as a *learned learning algorithm* hosted in PFC recurrent dynamics, with dopamine acting as a slower training signal that shapes the recurrent network into one that can rapidly adapt to new tasks. This gives REE a unified vocabulary for ARC-062 (top-down rule application = meta-learned context-conditioned policy) and the OFC-cognitive-map of MECH-318 (= the recurrent latent state that implements the inner-loop algorithm). Confidence not higher because the meta-RL framing is one of several competing accounts (Wang and Botvinick's Nat Neurosci paper has been challenged on specific dopamine claims) and because it does not naturally model online-vs-offline timing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Meta-RL predicts that PFC recurrent dynamics carry sufficient task-state information to support context-appropriate behaviour without a separate explicit rule-state-abstraction substrate. If REE's V3 substrate cannot be made to support context-conditioned behaviour using only recurrent latent dynamics (no MECH-318), the meta-RL account is the more parsimonious one and MECH-318 is potentially redundant.",
+    "Meta-RL learning relies on a slow outer-loop training signal (dopamine in the biological reading); if REE's training schedule does not generate analogous slow shaping signals, the inner-loop adaptation that the framework requires will not emerge."
+  ],
+  "tags": ["arc_062", "arc_064", "mech_318", "meta_rl", "prefrontal_cortex", "context_conditioned_policy", "vocabulary_mapping"],
+  "mapping": {
+    "source_claim_statement": "Dopamine-mediated reinforcement learning in the basal ganglia trains the prefrontal cortex to operate as its own free-standing learning system. The PFC, as a recurrent network, learns to implement a faster inner-loop algorithm that can adapt rapidly to new tasks within an episode, while dopamine provides the slower outer-loop training signal that shapes the recurrent network's adaptation policy. This explains a wide range of phenomena including model-based behaviour, context-dependent learning rates, and rapid task-set switching, in a single unified framework.",
+    "ree_translation": "Meta-RL is a candidate unification for ARC-062 + MECH-318. ARC-062's gated_policy + discriminator is a *meta-learned* context-conditioned policy; MECH-318's rule-state-abstraction substrate is the recurrent latent state that hosts the inner-loop algorithm. The framework predicts that REE's training schedule should produce the right kind of slow shaping signals for the recurrent latent stack to spontaneously develop context-conditioned adaptation. If true, ARC-062 and MECH-318 collapse into one mechanism: 'meta-learned recurrent context-conditioning'. This is a strong parsimony argument for the cluster shape.",
+    "mapping_caveat": "Meta-RL is one of several competing accounts of PFC function. The Wang-Botvinick paper has been challenged on specific dopamine claims (specifically, whether the dopamine signal really plays the slow outer-loop role the model requires; alternative accounts: pure model-based PFC, working-memory PFC, mixed selectivity PFC). Adopting meta-RL vocabulary commits REE to a specific theoretical lineage. Also: meta-RL does not naturally model online-vs-offline timing distinctions or the simulation-mode write-gating REE has independently developed. Those remain genuine REE divergences (R3 territory).",
+    "source_context": "Top-tier neuroscience venue (Nature Neuroscience). Combines theoretical synthesis with simulations on Harlow learning, two-step decision tasks, and abstract reasoning tasks. Demonstrations are simulated; biological evidence cited from prior literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Top-tier venue, well-cited, DeepMind+UCL collaboration. Mapping fidelity is high for the cross-walk between ARC-062 and MECH-318. Transfer risk moderate because meta-RL is one of competing PFC accounts and biological dopamine-RL claims have been challenged."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-062", "MECH-312"],
+  "source": {
+    "title": "Attention to Action: Willed and Automatic Control of Behaviour",
+    "authors": ["Donald A. Norman", "Tim Shallice"],
+    "year": 1986,
+    "venue": "In Davidson R, Schwartz G, Shapiro D (eds), Consciousness and Self-Regulation, Plenum Press, pp 1-18",
+    "doi": "10.1007/978-1-4757-0629-1_1",
+    "url": "http://wexler.free.fr/library/files/norman%20()%20attention%20to%20action.%20willed%20and%20automatic%20control%20of%20behavior.pdf"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the foundational schema-tradition paper that introduced the dual-mechanism architecture (contention scheduling + supervisory attentional system) underpinning four decades of executive-function neuroscience. For Pull 4 it is the canonical citation for the SAS = top-down rule-application override, and for the dual-mechanism architecture that closely parallels REE's ARC-062 + MECH-312 split. Confidence not higher because it is conceptual/theoretical without empirical anchoring of its own (later work like Shallice 1988, Cooper-Shallice 2000, and the meta-analysis literature provides that), and because the SAS-as-single-system framing has been refined into multiple-component executive systems in modern accounts (Stuss 2011, Diamond 2013).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's ARC-062 gated_policy + discriminator cannot be functionally separated from MECH-312 arbitration in the way SAS is separated from contention scheduling, the dual-mechanism claim is weakened.",
+    "The SAS framework predicts dissociable patient lesion patterns: frontal SAS-lesion produces utilisation-behaviour / capture-error syndrome; basal-ganglia / contention-scheduling lesion produces apraxia / sequencing-error syndrome. If REE's ARC-062 and MECH-312 cannot be selectively ablated to produce dissociable failure modes, the architectural separation is not load-bearing."
+  ],
+  "tags": ["arc_062", "mech_312", "supervisory_attentional_system", "contention_scheduling", "executive_function", "vocabulary_mapping", "schema_tradition_foundational"],
+  "mapping": {
+    "source_claim_statement": "Action selection involves two complementary control mechanisms. Contention scheduling is a lower-level competitive activation process among action schemas, governing routine and overlearned behaviour. The Supervisory Attentional System (SAS) is a higher-level mechanism that overrides contention scheduling for novel, dangerous, or non-routine situations, selecting and biasing schemas based on willed/conscious goals. The two mechanisms are dissociable: frontal-lobe damage selectively impairs the SAS while leaving contention scheduling intact, producing utilisation behaviour and capture errors.",
+    "ree_translation": "The Norman-Shallice 1986 dual-mechanism architecture is a near-direct functional analog of REE's ARC-062 + MECH-312 split. MECH-312's arbitration mechanism is the contention-scheduling layer; ARC-062's gated_policy + discriminator overriding routine policy in non-routine contexts is the SAS layer. This gives REE a 40-year cognitive-neuroscience tradition's vocabulary for the same architectural slot, with empirical anchoring from frontal-lobe-patient dissociations. The SAS framing makes ARC-062's role much sharper: it is the mechanism that *overrides* automatic policy when the discriminator detects a non-routine context.",
+    "mapping_caveat": "The SAS as originally proposed is a single unified system; modern executive-function accounts (Stuss 2011, Diamond 2013) decompose it into multiple components (working-memory maintenance, inhibition, set-shifting, error-monitoring). Adopting SAS vocabulary commits REE to a coarse-grained executive-function reading. Also: the original Norman-Shallice paper is theoretical / book-chapter rather than empirical; the empirical anchoring comes from later work on frontal-lobe patients. Inheritance is concept-level, not algorithm-level.",
+    "source_context": "Foundational theoretical chapter in a 1986 edited volume. No direct empirical data in the chapter itself; the empirical foundation is the broader Shallice frontal-lobe-patient programme."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Foundational reference, 5000+ citations across the schema/executive-function tradition. Mapping fidelity high for the dual-mechanism architecture. Transfer risk moderate due to the modern decomposition of SAS into multiple components and the absence of direct algorithmic specification."
+  }
+}

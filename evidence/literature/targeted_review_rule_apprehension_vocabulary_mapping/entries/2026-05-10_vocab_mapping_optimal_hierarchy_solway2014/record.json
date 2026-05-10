@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_apprehension_vocabulary_mapping",
+  "entry_id": "2026-05-10_vocab_mapping_optimal_hierarchy_solway2014",
+  "timestamp_utc": "2026-05-10T08:08:31Z",
+  "claim_ids_tested": ["ARC-064", "MECH-316", "MECH-317"],
+  "source": {
+    "title": "Optimal Behavioral Hierarchy",
+    "authors": ["Alec Solway", "Carlos Diuk", "Natalia Cordova", "Debbie Yee", "Andrew G. Barto", "Yael Niv", "Matthew M. Botvinick"],
+    "year": 2014,
+    "venue": "PLOS Computational Biology, 10(8), e1003779",
+    "doi": "10.1371/journal.pcbi.1003779",
+    "pmid": "25122479"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Solway et al. give a normative theory for what makes a behavioural hierarchy optimal -- one that balances task-decomposition entropy with sub-policy reusability -- and provide four behavioural experiments showing humans spontaneously discover hierarchies close to the optimum. This is directly relevant to ARC-064: it tells us bottom-up rule discovery in humans is approximately optimisation of a specific objective, and gives us a candidate objective. Confidence not higher because the empirical experiments are simple maze tasks and the optimum is sensitive to task-distribution assumptions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-316 (cross-episode-regularity-extraction) cannot be expressed as approximate optimisation of the Solway hierarchical-cost objective, the inheritance pathway from this paper to MECH-316 weakens.",
+    "If REE's discovered behavioural hierarchies in long V3 runs do not match the bottleneck-state pattern Solway predicts, the bottom-up rule discovery substrate is implementing something other than optimal decomposition."
+  ],
+  "tags": ["arc_064", "mech_316", "mech_317", "optimal_hierarchy", "human_behaviour", "bottleneck_states", "vocabulary_mapping"],
+  "mapping": {
+    "source_claim_statement": "An optimal behavioural hierarchy minimises a cost combining task-decomposition entropy and reusability of subroutines across tasks. The optimal hierarchy is determined by bottleneck states in the state-transition graph -- states that lie on many task trajectories. Human learners spontaneously discover hierarchies close to this optimum across four behavioural experiments.",
+    "ree_translation": "ARC-064 (bottom-up rule discovery) and MECH-316 (cross-episode-regularity-extraction) have a normative target: the substrate should approximate Solway-optimal hierarchies. MECH-317 (behavioural-pattern-compression / action-chunking) implements the chunks; MECH-316 should chunk *at bottleneck states* -- the points where many trajectories cross. This gives REE a falsifiable prediction for substrate-validation experiments: in environments with identifiable bottlenecks, the discovered chunks should align with bottleneck states. The Solway objective is also a candidate explicit loss for option-discovery training.",
+    "mapping_caveat": "The optimal-hierarchy result is derived under a fixed task-distribution prior; in REE's open-ended online setting the task distribution is implicit and changes over time. The bottleneck-state characterisation also assumes a relatively well-defined state-transition graph; in REE's continuous-state substrate, bottleneck identification is less crisp and may need a soft / density-based version. The 4 behavioural experiments are simple grid mazes, far from REE's substrate complexity.",
+    "source_context": "PLOS Computational Biology open-access paper. Combines computational theory (mathematical derivation of optimal hierarchy) with 4 human behavioural experiments (simple maze tasks)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "PLOS Comp Biol, peer-reviewed, open-access, code available. Mapping fidelity high because this is the most explicit normative-target paper for bottom-up hierarchy discovery. Transfer risk moderate-high due to fixed-task-distribution assumption and discrete-graph bottleneck definition."
+  }
+}
