@@ -29267,7 +29267,7 @@
   claim_type: mechanism_hypothesis
   subject: action.tonic_vigor_coupling_score_bias
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -29397,13 +29397,59 @@
         or stay as two separable mechanisms is open until the
         ARC-068 lit-pull lands.
 
-    Not yet experimentally tested. Substrate-landing experiment is
-    V3-EXQ-TBD substrate-readiness diagnostic (UC1 instantiation, UC2
-    master-OFF backward-compat, UC3 lift-arithmetic sweep, UC4
-    select_action wiring contract, UC5 simulation-gate harmless).
-    Behavioural validation experiment is the 3-arm discriminative
-    pair (baseline / additive / multiplicative) on a well-fed-safe-
-    familiar environment substrate.
+    Substrate landed 2026-05-10 (status candidate -> candidate_substrate_landed;
+    v3_pending retained pending behavioural validation):
+    ree-v3/ree_core/policy/tonic_vigor.py (TonicVigor + TonicVigorConfig +
+    TonicVigorOutput). Pure-arithmetic regulator (no learned parameters;
+    no nn.Module inheritance); sister to MECH-313 NoiseFloor and MECH-314
+    StructuredCuriosity in the ree_core.policy package. Composed in
+    REEAgent.select_action() AFTER MECH-314 curiosity block (orthogonal
+    axes: curiosity at the candidate-feature level, vigor on the
+    action-vs-no-op axis) and BEFORE MECH-313 noise_floor temperature
+    lift (which targets temperature, not scores). Algorithm at the
+    e3.select() call site:
+      v_raw <- (1-alpha)*v_raw + alpha*(-realised_score)  [REE convention
+        internally negated so v_raw climbs in reward-rich regimes]
+      v_t = max(0, v_raw) * gate_energy * gate_drive * gate_pe
+      bias[i] = -w_action * v_t   if action_classes[i] != noop_class
+                +w_passive * v_t  if action_classes[i] == noop_class
+      bias = clamp(bias, [-bias_scale, +bias_scale])
+    Multiplicative form (R3 falsifiable secondary): bias[i] also
+    multiplies by |scores[i]| -- distinguishable from additive on a
+    held-out batch with non-uniform |scores| (the empirical resolution
+    path for R3's open question). Defaults: half_life=100.0 ticks (~700-
+    tick window to steady state -- long-window per R4), w_action=0.1,
+    w_passive=0.1, bias_scale=0.1, gate_energy_min=0.2, gate_drive_max=0.7,
+    gate_pe_max=1.0, form="additive", noop_class=0 (matches MECH-279 PAG
+    convention).
+
+    Wiring: REEAgent.__init__ instantiates TonicVigor when
+    use_tonic_vigor=True (parallel to noise_floor / curiosity).
+    select_action reads compute_score_bias(per_candidate_scores,
+    action_classes, energy, drive, recent_pe) BEFORE e3.select(...) to
+    compose with dacc_score_bias; AFTER e3.select() returns, feeds
+    result.scores[result.selected_index] back into update_score_receipt
+    to advance the EWMA for the next tick. Energy proxy = 1 -
+    effective_drive_level (post-pACC); drive = effective_drive_level
+    (matches AIC / PCC / SalienceCoordinator reads); recent_pe =
+    e3._running_variance (same signal MECH-314c LP consumes).
+    reset() clears EWMA + diagnostic counters per episode.
+
+    MECH-094 simulation_mode argument on both methods returns zeros /
+    skips state advance and increments only the simulation-skip counter
+    -- match SD-035 / MECH-279 / gated_policy / MECH-313 / MECH-314
+    pattern. Validation: 309/309 contracts (281 prior + 28 new in
+    tests/contracts/test_mech_320_tonic_vigor.py) + 7/7 preflight PASS
+    with master OFF (regression-clean). Smoke 6/6 PASS via V3-EXQ-547
+    dry-run 2026-05-10 (manifest scrubbed; runner will write the
+    canonical PASS manifest from the queued entry).
+
+    Behavioural validation experiment (the 3-arm discriminative pair --
+    baseline / additive / multiplicative on a well-fed-safe-familiar
+    environment substrate) is queued separately AFTER V3-EXQ-547
+    PASSes via the runner. Per the lit-pull R3 verdict, the
+    parametric-sweep on a pre-existing-action-preference batch is the
+    test that arbitrates additive-as-primary vs multiplicative.
   notes: >
     Companion-claim cross-reference: MECH-320 is the first child
     mechanism for ARC-066. Companion ARC-066-family child mechanisms

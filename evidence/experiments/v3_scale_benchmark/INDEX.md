@@ -1,6 +1,6 @@
 # Experiment Index: v3_scale_benchmark
 
-Generated: `2026-05-10T17:34:44.089782Z`
+Generated: `2026-05-10T20:30:56.188691Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
