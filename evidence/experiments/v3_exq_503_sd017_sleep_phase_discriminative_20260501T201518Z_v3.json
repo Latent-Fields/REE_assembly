@@ -9,10 +9,11 @@
     "SD-017"
   ],
   "result": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-017": "supports"
+    "SD-017": "superseded"
   },
+  "evidence_direction_note": "Superseded by V3-EXQ-503a 2026-05-10 governance cycle. V3-EXQ-503a re-runs the same SD-017 sleep-vs-no-sleep discriminative pair under the validated Phase-2 5-flag substrate template (sd016_writepath_mode='off', sd016_diversification_weight=0.5, use_per_stream_vs=True, use_anchor_sets=True, use_sd039_anchor_payload=True) plus a calibrated cross-arm M2 |diff| > 0.20 tolerance (C4) added to C1/C2/C3. The successor's substrate + acceptance criteria are canonical; this predecessor's run reflects the pre-template configuration and is excluded from claim scoring per the EXQ versioning + supersession policy.",
   "criteria": {
     "n_seeds": 3,
     "min_seeds_required": 2,

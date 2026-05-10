@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-10T12:18:36Z",
+  "last_review_utc": "2026-05-10T12:24:30Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-449c",
     "V3-EXQ-455a",
@@ -2329,7 +2329,10 @@
     "v3_exq_418l_sd017_action_bias_div_phase2_20260509T215331Z_v3",
     "v3_exq_436a_sd017_arc045_mech166_context_harm_phase2_20260509T214636Z_v3",
     "v3_exq_530c_arc016_precision_commit_stepharness_20260508T172357Z_v3",
-    "v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3"
+    "v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3",
+    "v3_exq_500a_sd017_sleep_phase_readiness_phase2_20260509T204158Z_v3",
+    "v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier_20260509T214517Z_v3",
+    "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2450,6 +2453,16 @@
         "V3-EXQ-455a"
       ],
       "subject": "Followup to the 12:13Z diagnose-errors session: the four deliberately-held ERRORs flagged for user review have now been marked discussed per user instruction. None are getting re-queued. Per-entry rationale: V3-EXQ-538 (SD-049 Phase 2 reef behavioural validation, sleep-on ablation paired to 514f) -- script docstring carries an explicit HOLD STATUS block 'DO NOT REQUEUE WITHOUT CHECKING THIS LIST' citing four prerequisites (Tier-1 V3-EXQ-530b under StepHarness, Tier-1 V3-EXQ-514g StepHarness wider seed sweep, MECH-307 substrate validation, sleep-substrate audit), and was already noted as marked discussed 2026-05-08T17:30Z under session diagnose-errors-244a-538-433f -- this entry merely makes the discussed status explicit in discussed_experiment_dirs. V3-EXQ-495 (MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm) -- script docstring carries an explicit DO-NOT-QUEUE block 'gated on MECH-292 + MECH-293 landing'. Note: MECH-292 ranked ghost-goal bank and MECH-293 waking ghost-goal probe search both landed 2026-04-27 with V3-EXQ-496 5/5 PASS and V3-EXQ-497 5/5 PASS respectively, so the DO-NOT-QUEUE rationale is now substrate-stale; behavioural validation of the V3 full-completion gate is still gated on a separate session that runs 3 conditions x 2 paradigms x 7 seeds (several hours). The held SIGTERM ERROR from 2026-04-28 reflected the pre-MECH-292/293 substrate state and is correctly held. V3-EXQ-449c (MECH-074b BLA retrieval bias on action selection, V_s-gated) and V3-EXQ-455a (SD-032a salience coordinator behavioural re-run with V_s runtime flags enabled) -- both are V_s-cascade-gated rerun successors of EXQ-449/455 awaiting MECH-269 V_s invalidation runtime as the upstream gate. MECH-269 Phase 1/2/3 substrates have all landed (per WORKSPACE_STATE history) but the cascade-validation EXQ V3-EXQ-476 has not yet PASSed. 449c and 455a remain held until that V_s end-to-end validation lands. All four held-ERROR entries are now visible in discussed_experiment_dirs so they will not re-appear in pending_review.md."
+    },
+    {
+      "timestamp_utc": "2026-05-10T12:24:30Z",
+      "session_label": "governance-cycle-2026-05-10T1224Z",
+      "reviewed_run_ids": [
+        "v3_exq_500a_sd017_sleep_phase_readiness_phase2_20260509T204158Z_v3",
+        "v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier_20260509T214517Z_v3",
+        "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3"
+      ],
+      "subject": "Governance cycle reviewing 3 PASS pending experiments. (1) V3-EXQ-500a SD-017 sleep-phase readiness probe (Phase 2 successor to V3-EXQ-500): 3/3 seeds PASS C1+C2+C3 under the validated 5-flag substrate template; classified as evidence supporting SD-017 (already stable). Predecessor V3-EXQ-500 manifest marked evidence_direction=superseded. (2) V3-EXQ-543 ARC-062 Phase 2a monomodal-collapse falsifier: already reclassified non_contributory in the manifest (session exq543-reclassify 2026-05-10T04:23Z) due to three issues (C3 divide-by-near-zero artifact, ARM_1c seed 2 byte-identical to baseline from inert untrained gating, C2 state-dependence FAILED). Successor V3-EXQ-543b is in Phase 3 with gated_policy in optimizer + phased training. No claim weighting. (3) V3-EXQ-503a SD-017 sleep-vs-no-sleep discriminative pair (Phase 2 successor to V3-EXQ-503): 3/3 seeds PASS C1+C2+C3+C4; clean cross-arm dissociation (ARM_A 24 SWS writes / 18 REM rollouts / ctxmem_state_change 5.0 vs ARM_B all zero); per-seed M2 |diff| = [5.03, 4.70, 4.50] >> 0.20 tolerance; classified as evidence supporting SD-017 (already stable). Predecessor V3-EXQ-503 manifest marked evidence_direction=superseded. Decision queue: 13 pending_user recommendations applied (10 hold_pending_v3_substrate on ARC-062/064/065, MECH-309/312/313/316/317/318, SD-054 newly registered v3_pending claims; 3 hold_candidate_resolve_conflict on ARC-045, MECH-166, MECH-204 above conflict-ratio threshold). No claims.yaml status edits required -- all recommendations are holds, not status changes."
     }
   ]
 }

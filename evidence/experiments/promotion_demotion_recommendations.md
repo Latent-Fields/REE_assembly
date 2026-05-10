@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-10T12:14:06.685174Z`
+Generated: `2026-05-10T12:32:34.621278Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -15,13 +15,13 @@ Use this as the human-in-the-loop review queue.
 | `ARC-038` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-041` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-042` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `ARC-045` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `ARC-045` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `ARC-051` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-058` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-060` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `ARC-062` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `ARC-064` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `ARC-065` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `ARC-062` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `ARC-064` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `ARC-065` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `INV-054` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-057b` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -40,10 +40,10 @@ Use this as the human-in-the-loop review queue.
 | `MECH-150` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-153` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-165` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-166` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `MECH-166` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-186` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-188` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
-| `MECH-204` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `MECH-204` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-220` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-256` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-257` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -75,12 +75,12 @@ Use this as the human-in-the-loop review queue.
 | `MECH-303` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-304` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-307` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-309` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-312` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-313` | `candidate_substrate_landed` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-316` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-317` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
-| `MECH-318` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-309` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-312` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-313` | `candidate_substrate_landed` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-316` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-317` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-318` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-021` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-023` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -104,7 +104,7 @@ Use this as the human-in-the-loop review queue.
 | `SD-039` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-048` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `SD-049` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `SD-054` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `SD-054` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 
 ## Decision Details
 
@@ -216,11 +216,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-04-05T11:48:38.245Z`
-- Last selected option: Wait for V3 substrate implementation (correct path).
-- Last rationale: Hold at candidate. SD-017 minimal sleep infrastructure not yet implemented in V3. EXQ-242/243 queued but not run. No promotion or demotion until V3 experiments complete.
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Hold candidate; resolve conflict via upstream substrate landing
+- Last rationale: Conflict ratio above promotion threshold; pre-existing v3_pending bookkeeping. Hold candidate; resolution gated on sleep-substrate GAP-2 Phase 2 successors (V3-EXQ-436a reclassified non_contributory by ARC-065 dependency 2026-05-10) and V3-EXQ-543b PASS.
 
 ### ARC-051
 - Current status: `candidate`
@@ -289,7 +288,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Rule-apprehension architectural slot, weak reading. Registered 2026-05-08; v3_pending=true. Phase 1 substrate (gated_policy + 3-stream context discriminator) landed 2026-05-09 V3-EXQ-542 5/5 PASS. Phase 2a falsifier V3-EXQ-543 reclassified non_contributory; Phase 3-corrected successor V3-EXQ-543b in flight. Hold until 543b PASS or falsification chain executes.
 
 ### ARC-064
 - Current status: `candidate`
@@ -304,7 +306,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Bottom-up rule-extraction architectural slot. Registered 2026-05-08; v3_pending=true. Substrate cluster (MECH-316/317/318) under absorption-check audit; MECH-318 verdict B partial 2026-05-10. Hold until empirical verdict from V3-EXQ-543c-successor on multi-rule-context substrate.
 
 ### ARC-065
 - Current status: `candidate`
@@ -319,7 +324,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Behavioral-diversity-generation architectural slot. Registered 2026-05-10. Foundational upstream of ARC-062 / ARC-064. Substrate cluster (MECH-313 noise floor + MECH-314 structured curiosity) substrate-landed 2026-05-10. Hold until Q-045 4-arm ablation + Q-044 three-arm ablation PASS.
 
 ### INV-054
 - Current status: `candidate`
@@ -672,11 +680,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-04-05T11:48:38.245Z`
-- Last selected option: Wait for V3 substrate implementation (correct path).
-- Last rationale: Hold at candidate. SD-017 slot-formation/filling substrate depends on bidirectional replay not yet implemented. EXQ-242 queued but not run. Hold until sleep phase experiments complete.
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Hold candidate; resolve conflict via upstream substrate landing
+- Last rationale: Conflict ratio above promotion threshold. Hold candidate; same upstream gate as ARC-045 (sleep-substrate GAP-2 + ARC-065 substrate landing).
 
 ### MECH-186
 - Current status: `candidate`
@@ -729,7 +736,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Hold candidate; resolve conflict via upstream substrate landing
+- Last rationale: Conflict ratio above promotion threshold. Step-size sweep cohort V3-EXQ-541a/b/c PASSed 2026-05-09 under StepHarness; broader StepHarness-cohort retest plan in flight. Hold candidate pending retest cohort completion.
 
 ### MECH-220
 - Current status: `candidate`
@@ -1303,7 +1313,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Monomodal policy collapse equilibrium without rule-apprehension layer. Registered 2026-05-08; v3_pending=true. V3-EXQ-543 reclassified non_contributory (three issues: C3 divide-by-near-zero, ARM_1c seed 2 byte-identical to baseline from inert untrained gating, C2 state-dependence FAIL). Hold pending V3-EXQ-543b Phase 3-corrected falsifier with gated_policy in optimizer + phased training.
 
 ### MECH-312
 - Current status: `candidate`
@@ -1318,7 +1331,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Arbitration-divergence cluster parent. Registered 2026-05-08; v3_pending=true. Children MECH-313/314/318/319 substrates landed 2026-05-10. Hold until Q-043/Q-044/Q-045 ablation cohorts PASS.
 
 ### MECH-313
 - Current status: `candidate_substrate_landed`
@@ -1333,7 +1349,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Stochastic noise-floor (LC-NE tonic / SAC max-entropy analog). Substrate landed 2026-05-10 V3-EXQ-544 5/5 PASS; status candidate_substrate_landed; v3_pending retained. Hold until Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) PASS on V3-EXQ-543b/c successors.
 
 ### MECH-316
 - Current status: `candidate`
@@ -1348,7 +1367,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: ARC-064 child claim, registered_provisional pending absorption check against meta-RL recurrent baselines. Hold pending absorption-check verdict (sibling to MECH-318 which received verdict B partial 2026-05-10).
 
 ### MECH-317
 - Current status: `candidate`
@@ -1363,7 +1385,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: ARC-064 child claim, registered_provisional pending absorption check against meta-RL recurrent baselines. Hold pending absorption-check verdict (sibling to MECH-318).
 
 ### MECH-318
 - Current status: `candidate`
@@ -1378,7 +1403,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Rule-state abstraction substrate (Wang 2018 + Duan 2016 RL^2). Absorption check completed 2026-05-10 verdict B partial (W1+W3+W4 borne by SD-033a + ARC-062 Phase 1; W2+W5 not absorbed). No new V3 substrate commissioned; empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate.
 
 ### Q-021
 - Current status: `open`
@@ -1816,7 +1844,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Reef substrate for SD-029 / monomodal-collapse falsifier work. Registered v3_pending. Hold pending V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.
 
 ## Substrate changes with dependent invariants
 

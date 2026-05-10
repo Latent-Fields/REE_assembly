@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-08T22:37:33Z",
+  "last_updated_utc": "2026-05-10T12:24:30Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2505,7 +2505,7 @@
     {
       "sd_id": "ARC-062",
       "title": "Rule-apprehension architectural slot, weak reading: gated-policy heads + learned context discriminator. V3 instantiation of the rule-creating substrate MECH-309 identifies as logically necessary.",
-      "status": "candidate_v3_pending",
+      "status": "phase_1_implemented",
       "ready": true,
       "ready_blocked_by": null,
       "design_doc": "evidence/planning/arc_062_rule_apprehension_plan.md",
@@ -2517,11 +2517,208 @@
         "MECH-262",
         "SD-029"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier_20260509T214517Z_v3",
+          "experiment_type": "v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier",
+          "metric": "C2 state-dependence: ARM_1c mean_abs_rho=0.111 vs ARM_0=0.291 (gated arm shows LESS state-dependent reef behavior). Reclassified non_contributory: gated_policy params not in optimizer + disc_init_scale=0.1 produces inert gating; ARM_1c seed 2 byte-identical to ARM_0 seed 2",
+          "target": "Phase 3 (V3-EXQ-543b): gated_policy in optimizer + phased training (P0 encoder warmup + P1 frozen-encoder scaffolding + P2 eval) must produce state-dependent reef behavior with ARM_1c rho > ARM_0 rho"
+        }
+      ],
       "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4).",
       "priority": 2,
       "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
-      "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "ARC-064",
+      "title": "Bottom-up rule-extraction architectural slot. Inferred from absorption-check questions for MECH-316/317/318 against meta-RL recurrent baselines.",
+      "ready": false,
+      "ready_blocked_by": "Empirical verdict from V3-EXQ-543c-successor on multi-rule-context substrate; SD-054 single-context insufficient.",
+      "status": "candidate_v3_pending",
+      "design_doc": "evidence/planning/arc_062_rule_apprehension_plan.md",
+      "depends_on_unresolved": [
+        "ARC-062 Phase 3 wiring",
+        "multi-rule-context substrate"
+      ],
+      "unblocks_claims": [
+        "ARC-064",
+        "MECH-316",
+        "MECH-317",
+        "MECH-318"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Cluster of provisional registrations under absorption-check audit. MECH-318 (Wang 2018 + Duan 2016 RL^2) verdict B partial 2026-05-10. MECH-316/317 absorption checks pending. No new V3 substrate commissioned; empirical retire-vs-promote deferred to V3-EXQ-543c-successor.",
+      "priority": 3,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "ARC-065",
+      "title": "Behavioral-diversity-generation architectural slot. Foundational upstream cluster of ARC-062 (top-down rule selection presupposes diversity to choose between) and ARC-064 (bottom-up rule extraction presupposes diversity to extract patterns from).",
+      "ready": false,
+      "ready_blocked_by": "Q-044 three-arm ablation + Q-045 4-arm ablation pending substrate-landing of all four child substrates (MECH-313/314/318/319).",
+      "status": "phase_1_implemented",
+      "design_doc": "evidence/planning/arc_062_rule_apprehension_plan.md",
+      "depends_on_unresolved": [
+        "Q-043 weight calibration",
+        "Q-044 three-arm ablation",
+        "Q-045 4-arm ablation"
+      ],
+      "unblocks_claims": [
+        "ARC-065",
+        "MECH-313",
+        "MECH-314",
+        "MECH-314a",
+        "MECH-314b",
+        "MECH-314c"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor).",
+      "priority": 1,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "MECH-313",
+      "title": "Stochastic noise-floor regulator (LC-NE tonic / SAC max-entropy analog). ARC-065 child.",
+      "ready": false,
+      "ready_blocked_by": "Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) on V3-EXQ-543b/c successors; gated on MECH-314 substrate also being landed (done 2026-05-10).",
+      "status": "candidate_substrate_landed",
+      "design_doc": "docs/architecture/mech_313_stochastic_noise_floor.md",
+      "depends_on_unresolved": [
+        "Q-045 4-arm ablation"
+      ],
+      "unblocks_claims": [
+        "MECH-313"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-544 5/5 PASS. Pure-arithmetic regulator at e3.select() call site. Phase-1 placement choice (separate NoiseFloor module rather than per-head temperature inside GatedPolicy) is provisional pending cross-substrate placement review with MECH-314.",
+      "priority": 1,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "MECH-314",
+      "title": "Structured curiosity bonus cluster (frontopolar exploration / EFE analog) with MECH-314a/b/c sub-flavours. ARC-065 child.",
+      "ready": false,
+      "ready_blocked_by": "Q-044 three-arm ablation (314a striatal novelty / 314b frontopolar uncertainty / 314c learning progress) gated on MECH-318/319 absorption checks (now done 2026-05-10).",
+      "status": "candidate_substrate_landed",
+      "design_doc": "docs/architecture/mech_314_structured_curiosity_bonus.md",
+      "depends_on_unresolved": [
+        "Q-044 three-arm ablation"
+      ],
+      "unblocks_claims": [
+        "MECH-314",
+        "MECH-314a",
+        "MECH-314b",
+        "MECH-314c"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-545 5/5 PASS. Single module + 3 independently-togglable sub-switches per Pull 1 R3 verdict. 314a is genuinely per-candidate; 314b/c are state-dependent global scalars broadcast across [K] in Phase 1 (per-candidate refinement deferred to Phase 2).",
+      "priority": 1,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "MECH-316",
+      "title": "ARC-064 child claim, registered_provisional pending absorption check against meta-RL recurrent baselines.",
+      "ready": false,
+      "ready_blocked_by": "Absorption-check verdict pending (sibling to MECH-318 verdict B partial 2026-05-10).",
+      "status": "candidate_v3_pending",
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "absorption-check memo",
+        "multi-rule-context substrate"
+      ],
+      "unblocks_claims": [
+        "MECH-316"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Sibling to MECH-318 under ARC-064 with the same provisional-registration question. Absorption-check audit follows MECH-318 template (compare candidate substrates against published meta-RL/RL^2 properties).",
+      "priority": 3,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "MECH-317",
+      "title": "ARC-064 child claim, registered_provisional pending absorption check against meta-RL recurrent baselines.",
+      "ready": false,
+      "ready_blocked_by": "Absorption-check verdict pending.",
+      "status": "candidate_v3_pending",
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "absorption-check memo",
+        "multi-rule-context substrate"
+      ],
+      "unblocks_claims": [
+        "MECH-317"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Sibling to MECH-316/MECH-318 under ARC-064. Same audit template.",
+      "priority": 3,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "MECH-318",
+      "title": "Rule-state abstraction substrate (Wang 2018 + Duan 2016 RL^2). ARC-064 child.",
+      "ready": false,
+      "ready_blocked_by": "Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate after ARC-062 Phase 3 GAP-C wiring closure.",
+      "status": "absorption_check_done_no_new_substrate",
+      "design_doc": "docs/architecture/mech_318_absorption_check.md",
+      "depends_on_unresolved": [
+        "multi-rule-context substrate",
+        "ARC-062 Phase 3"
+      ],
+      "unblocks_claims": [
+        "MECH-318"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Absorption check 2026-05-10 verdict B PARTIALLY ABSORBED. W1+W3+W4 borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy multi-stream context discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) NOT ABSORBED -- blocked on multi-rule-context substrate. W5 (cross-episode hidden-state continuity) NOT ABSORBED -- likely V4-scope. NO NEW V3 SUBSTRATE COMMISSIONED.",
+      "priority": 3,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "MECH-319",
+      "title": "Simulation-mode rule-write gating (categorical replay tag). Substrate-level instantiation of MECH-094 at the rule-arbitration layer.",
+      "ready": false,
+      "ready_blocked_by": "V3-EXQ-543c-successor falsifier (admit_writes=True with replay-driven invocation predicting monomodal-collapse re-emergence). Behavioural validation deferred AFTER MECH-313/314/318 sibling substrates land (now done 2026-05-10).",
+      "status": "candidate_substrate_landed",
+      "design_doc": "docs/architecture/mech_319_simulation_mode_rule_gate.md",
+      "depends_on_unresolved": [
+        "V3-EXQ-543c-successor falsifier"
+      ],
+      "unblocks_claims": [
+        "MECH-319"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-546 6/6 smoke PASS; runner pickup pending. Pure-arithmetic regulator with effective_simulation_mode(simulation_mode, site) primitive. Per Pull 3 R1 GENUINE-NOVELTY-CONFIRMED + Pull 4 R3 KEEP-AS-IS verdict; MECH-094 NOT modified.",
+      "priority": 2,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+    },
+    {
+      "sd_id": "SD-054",
+      "title": "Reef substrate for SD-029 / monomodal-collapse falsifier work; provides hazard density + chronic-need + reef-vs-forage allocation environment.",
+      "ready": false,
+      "ready_blocked_by": "V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.",
+      "status": "candidate_v3_pending",
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "ARC-062 Phase 3 wiring closure"
+      ],
+      "unblocks_claims": [
+        "SD-054",
+        "MECH-309",
+        "ARC-062"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Reef env knob + hazard_food_attraction parameter exercised in V3-EXQ-522 (substrate-ceiling PASS under heuristic policy with ~50/50 reef/forage split when discriminative policy is externally injected). Trained-policy results (V3-EXQ-433e/f, 523/523a/523b) all non_contributory under monomodal V_s monostrategy substrate-ceiling.",
+      "priority": 2,
+      "added_session": "governance-cycle-2026-05-10T1224Z",
+      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
     }
   ],
   "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"

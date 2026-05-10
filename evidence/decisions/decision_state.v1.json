@@ -146,12 +146,12 @@
     },
     "ARC-045": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Hold at candidate. SD-017 minimal sleep infrastructure not yet implemented in V3. EXQ-242/243 queued but not run. No promotion or demotion until V3 experiments complete.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path).",
-      "timestamp_utc": "2026-04-05T11:48:38.245Z"
+      "rationale": "Conflict ratio above promotion threshold; pre-existing v3_pending bookkeeping. Hold candidate; resolution gated on sleep-substrate GAP-2 Phase 2 successors (V3-EXQ-436a reclassified non_contributory by ARC-065 dependency 2026-05-10) and V3-EXQ-543b PASS.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold candidate; resolve conflict via upstream substrate landing",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
     },
     "ARC-051": {
       "actor": "user",
@@ -179,6 +179,33 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation",
       "timestamp_utc": "2026-04-26T16:17:25Z"
+    },
+    "ARC-062": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Rule-apprehension architectural slot, weak reading. Registered 2026-05-08; v3_pending=true. Phase 1 substrate (gated_policy + 3-stream context discriminator) landed 2026-05-09 V3-EXQ-542 5/5 PASS. Phase 2a falsifier V3-EXQ-543 reclassified non_contributory; Phase 3-corrected successor V3-EXQ-543b in flight. Hold until 543b PASS or falsification chain executes.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
+    "ARC-064": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Bottom-up rule-extraction architectural slot. Registered 2026-05-08; v3_pending=true. Substrate cluster (MECH-316/317/318) under absorption-check audit; MECH-318 verdict B partial 2026-05-10. Hold until empirical verdict from V3-EXQ-543c-successor on multi-rule-context substrate.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
+    "ARC-065": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Behavioral-diversity-generation architectural slot. Registered 2026-05-10. Foundational upstream of ARC-062 / ARC-064. Substrate cluster (MECH-313 noise floor + MECH-314 structured curiosity) substrate-landed 2026-05-10. Hold until Q-045 4-arm ablation + Q-044 three-arm ablation PASS.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
     },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
@@ -659,12 +686,12 @@
     },
     "MECH-166": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Hold at candidate. SD-017 slot-formation/filling substrate depends on bidirectional replay not yet implemented. EXQ-242 queued but not run. Hold until sleep phase experiments complete.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path).",
-      "timestamp_utc": "2026-04-05T11:48:38.245Z"
+      "rationale": "Conflict ratio above promotion threshold. Hold candidate; same upstream gate as ARC-045 (sleep-substrate GAP-2 + ARC-065 substrate landing).",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold candidate; resolve conflict via upstream substrate landing",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
     },
     "MECH-186": {
       "actor": "user",
@@ -683,6 +710,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-04-10T18:06:06.862742Z"
+    },
+    "MECH-204": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Conflict ratio above promotion threshold. Step-size sweep cohort V3-EXQ-541a/b/c PASSed 2026-05-09 under StepHarness; broader StepHarness-cohort retest plan in flight. Hold candidate pending retest cohort completion.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold candidate; resolve conflict via upstream substrate landing",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
     },
     "MECH-216": {
       "actor": "user",
@@ -998,6 +1034,60 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-05-08T22:34:09Z"
+    },
+    "MECH-309": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Monomodal policy collapse equilibrium without rule-apprehension layer. Registered 2026-05-08; v3_pending=true. V3-EXQ-543 reclassified non_contributory (three issues: C3 divide-by-near-zero, ARM_1c seed 2 byte-identical to baseline from inert untrained gating, C2 state-dependence FAIL). Hold pending V3-EXQ-543b Phase 3-corrected falsifier with gated_policy in optimizer + phased training.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
+    "MECH-312": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Arbitration-divergence cluster parent. Registered 2026-05-08; v3_pending=true. Children MECH-313/314/318/319 substrates landed 2026-05-10. Hold until Q-043/Q-044/Q-045 ablation cohorts PASS.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
+    "MECH-313": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Stochastic noise-floor (LC-NE tonic / SAC max-entropy analog). Substrate landed 2026-05-10 V3-EXQ-544 5/5 PASS; status candidate_substrate_landed; v3_pending retained. Hold until Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) PASS on V3-EXQ-543b/c successors.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
+    "MECH-316": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "ARC-064 child claim, registered_provisional pending absorption check against meta-RL recurrent baselines. Hold pending absorption-check verdict (sibling to MECH-318 which received verdict B partial 2026-05-10).",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
+    "MECH-317": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "ARC-064 child claim, registered_provisional pending absorption check against meta-RL recurrent baselines. Hold pending absorption-check verdict (sibling to MECH-318).",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
+    "MECH-318": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Rule-state abstraction substrate (Wang 2018 + Duan 2016 RL^2). Absorption check completed 2026-05-10 verdict B partial (W1+W3+W4 borne by SD-033a + ARC-062 Phase 1; W2+W5 not absorbed). No new V3 substrate commissioned; empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
     },
     "Q-006": {
       "actor": "user",
@@ -1386,6 +1476,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-05-07T04:14:02Z"
     },
+    "SD-054": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required",
+      "decision_status": "applied",
+      "rationale": "Reef substrate for SD-029 / monomodal-collapse falsifier work. Registered v3_pending. Hold pending V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-10T12:24:30Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -1396,7 +1495,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-10T12:14:06.685174Z",
+  "generated_at_utc": "2026-05-10T12:32:34.621278Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
