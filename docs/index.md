@@ -10,6 +10,12 @@ REE is a research programme with a single organising question:
 **What architecture does an agent need in order to act ethically — and can that
 architecture be derived from first principles rather than designed by hand?**
 
+The shortest alignment-facing summary is this: **REE relocates alignment from
+post-hoc judgement into the generative machinery of agency.** Harm modelling,
+agency attribution, goal persistence, uncertainty, and care should shape the
+state from which candidate futures are generated, not merely score or filter
+those futures after generation.
+
 Most attempts to build ethical AI work by specifying desired behaviour and
 training toward it. REE takes a different approach: starting from the minimum
 commitments an agent must make if it is to act in a world at all — that it
@@ -68,12 +74,20 @@ instantiations of the same necessary architecture — or its absence.
 ## The alignment implication
 
 Current AI systems are trained to pursue proxies for what ethical agency
-requires. The proxies are often good. But the architecture that genuine
-ethical agency requires — structures that cannot be gamed by a sufficiently
-capable optimiser, because they are what doing the thing consists in, not
-approximations of it — is absent. Scaling capability over an architecture
-that lacks the necessary comparators does not introduce those comparators.
-The failure modes that emerge at scale are predictable from the absences.
+requires. The proxies are often good. But much of the alignment work sits
+outside or downstream of the machinery that generates action: output scoring,
+critique, filtering, preference optimisation, or post-hoc explanation.
+
+REE treats that as the wrong location for the work. The architecture that
+ethical agency requires must make constraint-relevant content active during
+state construction, trajectory generation, commitment gating, and consequence
+memory. A sufficiently capable optimiser can learn to satisfy or explain a
+proxy while leaving the generator unchanged; it cannot bypass a comparator that
+is constitutive of how futures become available for action.
+
+Scaling capability over an architecture that lacks the necessary comparators
+does not introduce those comparators. The failure modes that emerge at scale
+are predictable from the absences.
 
 This is a different claim from "we need better specifications." It is a
 claim about what kind of problem alignment is.
@@ -85,6 +99,11 @@ claim about what kind of problem alignment is.
 **If you are new to REE:**
 [Why This Architecture?](architecture/ethical_agency_derivation.md) —
 the derivation in full; the cognifold motif; why the brain result matters
+
+**If you want the alignment framing first:**
+[Post-Hoc Filter Insufficiency](architecture/post_hoc_filter_insufficiency.md) —
+why REE argues that safety and ethical content must be active inside trajectory
+generation, not only available to a judge after generation
 
 **If you want the foundational argument:**
 [Foundations](architecture/five_axioms_foundations.md) —

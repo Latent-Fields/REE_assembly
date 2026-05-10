@@ -28,6 +28,14 @@ They are constructed, conditionally, through commitment under uncertainty.**
 
 REE makes this construction explicit.
 
+Alignment note: REE is not an attempt to add an ethics module to an otherwise
+standard agent. It is an attempt to put the work usually done by post-hoc
+alignment machinery -- harm modelling, responsibility attribution, goal
+persistence, uncertainty handling, and care -- into the state construction and
+trajectory-generation machinery itself. The point is not only to judge candidate
+actions better, but to change which candidate futures become available for
+commitment.
+
 ---
 
 ## 1. The core idea

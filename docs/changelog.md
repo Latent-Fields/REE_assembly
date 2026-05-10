@@ -11,6 +11,18 @@ nav_exclude: true
 **Claim ID:** IMPL-014
 <a id="impl-014"></a>
 
+## 2026-05-10: Public alignment-in-generation framing pass
+
+Public entry points were updated to state the project's alignment-facing claim more directly: REE relocates alignment work from post-hoc scoring and filtering into state construction, trajectory generation, commitment, and residue.
+
+- `README.md`: revised the problem statement around rules, penalties, reward models, critics, constitutions, and alignment objectives arriving too late if the candidate futures were generated without live harm, responsibility, uncertainty, care, and consequence memory.
+- `docs/index.md` and `docs/_config.yml`: moved the shorter public summary to the top of the GitHub Pages experience.
+- `docs/architecture/overview.md`: added an alignment note clarifying that REE is not an ethics module attached to a capable model, but an attempt to put constraint-relevant content inside the machinery that generates behaviour.
+- `docs/architecture/post_hoc_filter_insufficiency.md`: added a dedicated architecture page for the post-hoc filter insufficiency argument, linked to the vmPFC architecture page and INV-038.
+- `ree-v3/README.md`: clarified V3 as the substrate proving prerequisites for later ethical-agency work: self/world separation, agency attribution, harm modelling, motivational persistence, commitment gating, residue, and offline integration.
+
+No new claim was registered in this pass; the change surfaces existing REE architecture framing for public readers.
+
 ## 2026-04-03: EXQ-223 PASS — Minimal Mind Hypothesis Confirmed
 
 ### The milestone
