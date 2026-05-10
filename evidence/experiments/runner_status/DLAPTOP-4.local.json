@@ -1,11 +1,60 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
+  "runner_pid": 35423,
   "runner_started_at": "2026-05-05T22:20:34.477508+00:00",
-  "last_updated": "2026-05-09T13:01:26.910916+00:00",
-  "idle": true,
-  "current": null,
-  "queue": [],
+  "last_updated": "2026-05-08T19:07:11.418152+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-141c",
+    "backlog_id": "EVB-0061",
+    "claim_id": "MECH-111",
+    "title": "MECH-111 novelty drive: measurement-validity fix (raised novelty_bonus_weight, fixed nav_bias one-hot, C0 divergence sanity check)",
+    "description": "",
+    "script": "experiments/v3_exq_141c_mech111_novelty_drive_measurement_fix.py",
+    "started_at": "2026-05-08T19:05:51.156029+00:00",
+    "progress": {
+      "run_label": "Seed 42 / NOVELTY_ON",
+      "runs_done": 0,
+      "runs_total": 6,
+      "episodes_done": 0,
+      "episodes_total": 200,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 80,
+    "seconds_remaining": 9600,
+    "recent_lines": [
+      "[V3-EXQ-141] TRAIN NOVELTY_ON(w=100.0) seed=42 warmup=200 eval=50 nav_bias=0.5",
+      "/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_141c_mech111_novelty_drive_measurement_fix.py:322: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).",
+      "obs_body = torch.tensor(obs_dict[\"body_state\"], dtype=torch.float32)",
+      "/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_141c_mech111_novelty_drive_measurement_fix.py:323: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).",
+      "obs_world = torch.tensor(obs_dict[\"world_state\"], dtype=torch.float32)"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-514g",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-049 BG gating wider-seed sweep under StepHarness (Tier-1 diagnostic)",
+      "description": "",
+      "estimated_minutes": 72.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-141c",
+      "backlog_id": "EVB-0061",
+      "claim_id": "MECH-111",
+      "title": "MECH-111 novelty drive: measurement-validity fix (raised novelty_bonus_weight, fixed nav_bias one-hot, C0 divergence sanity check)",
+      "description": "",
+      "estimated_minutes": 160.0,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -7322,105 +7371,6 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_539_mech307_commit_gating_check/v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 3066.5
-    },
-    {
-      "queue_id": "V3-EXQ-141c",
-      "backlog_id": "EVB-0061",
-      "claim_id": "MECH-111",
-      "title": "MECH-111 novelty drive: measurement-validity fix (raised novelty_bonus_weight, fixed nav_bias one-hot, C0 divergence sanity check)",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "per_seed_harm_delta_max: 0.0 | n_harm_min: 0.0 | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260508T205723Z.json",
-      "started_at": "2026-05-08T19:05:51.156029+00:00",
-      "completed_at": "2026-05-08T20:57:24.221389+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_141c_mech111_novelty_drive_measurement_fix/v3_exq_141c_mech111_novelty_drive_measurement_fix_20260508T205723Z.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 6693.0
-    },
-    {
-      "queue_id": "V3-EXQ-537c",
-      "backlog_id": "",
-      "claim_id": "SD-029",
-      "title": "SD-029/MECH-256 single-pass comparator: forward-model capacity lift (hidden_dim 128->256) + emit_outcome conformance",
-      "description": "",
-      "result": "UNKNOWN",
-      "result_summary": "Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260508T205935Z.json",
-      "started_at": "2026-05-08T20:58:32.228893+00:00",
-      "completed_at": "2026-05-08T20:59:35.760867+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_537c_sd029_capacity_lift/v3_exq_537c_sd029_capacity_lift_20260508T205935Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 63.5
-    },
-    {
-      "queue_id": "V3-EXQ-537d",
-      "backlog_id": "",
-      "claim_id": "SD-029",
-      "title": "SD-029/MECH-256 single-pass: drop interventional margin loss + add stdout fallback",
-      "description": "",
-      "result": "UNKNOWN",
-      "result_summary": "Outcome: FAIL | [v3_exq_537d_sd029_no_interventional] outcome=FAIL elapsed=73.6s | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260508T214809Z.json",
-      "started_at": "2026-05-08T21:46:54.514391+00:00",
-      "completed_at": "2026-05-08T21:48:10.903317+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_537d_sd029_no_interventional/v3_exq_537d_sd029_no_interventional_20260508T214809Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 76.4
-    },
-    {
-      "queue_id": "V3-EXQ-141d",
-      "backlog_id": "EVB-0061",
-      "claim_id": "MECH-111",
-      "title": "MECH-111 novelty drive: RNG desync between arms (supersedes 141c)",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "per_seed_harm_delta_max: 0.0 | n_harm_min: 0.0 | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260508T235919Z.json",
-      "started_at": "2026-05-08T21:48:16.185365+00:00",
-      "completed_at": "2026-05-08T23:59:21.119819+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_141d_mech111_novelty_drive_rng_desync/v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 7864.9
-    },
-    {
-      "queue_id": "V3-EXQ-540",
-      "backlog_id": "",
-      "claim_id": "MECH-307",
-      "title": "MECH-307 3-arm gap decomposition + Path B consumer conjunction read",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "[v3_exq_540_mech307_3arm_conjunction_decomposition] outcome=FAIL elapsed=4528.9s | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260509T011559Z.json",
-      "started_at": "2026-05-09T00:00:29.263691+00:00",
-      "completed_at": "2026-05-09T01:16:00.897926+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_540_mech307_3arm_conjunction_decomposition/v3_exq_540_mech307_3arm_conjunction_decomposition_20260509T011559Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 4531.6
-    },
-    {
-      "queue_id": "V3-EXQ-541a",
-      "backlog_id": "",
-      "claim_id": "MECH-204",
-      "title": "MECH-204 precision recalibration consumer (F1 cross-cycle reference; supersedes 541)",
-      "description": "",
-      "result": "PASS",
-      "result_summary": "verdict: PASS | V3-EXQ-541a MECH-204 recalibration consumer F1 -- FAIL in 95.7s | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260509T120116Z.json",
-      "started_at": "2026-05-09T11:59:38.159445+00:00",
-      "completed_at": "2026-05-09T12:01:17.270579+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_541a_mech204_precision_recalibration_f1_20260509T120116Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 99.1
-    },
-    {
-      "queue_id": "V3-EXQ-541b",
-      "backlog_id": "EXP-0171",
-      "claim_id": "MECH-204",
-      "title": "MECH-204 precision recalibration step-size sweep (EXP-0171)",
-      "description": "",
-      "result": "PASS",
-      "result_summary": "verdict: PASS | V3-EXQ-541b MECH-204 step-size sweep -- FAIL in 180.2s | [experiment_protocol] sentinel written: outcome=FAIL queue_id=<manual> -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/_manual/20260509T123704Z.json",
-      "started_at": "2026-05-09T12:34:00.055928+00:00",
-      "completed_at": "2026-05-09T12:37:05.030463+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_541b_mech204_step_size_sweep_20260509T123704Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 185.0
     }
-  ],
-  "draining": false
+  ]
 }
