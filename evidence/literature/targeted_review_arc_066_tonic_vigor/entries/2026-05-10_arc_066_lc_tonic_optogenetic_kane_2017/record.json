@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_066_tonic_vigor",
+  "entry_id": "2026-05-10_arc_066_lc_tonic_optogenetic_kane_2017",
+  "timestamp_utc": "2026-05-10T16:21:56Z",
+  "claim_ids_tested": ["ARC-066"],
+  "source": {
+    "title": "Increased locus coeruleus tonic activity causes disengagement from a patch-foraging task",
+    "authors": ["Gary A. Kane", "Elena M. Vazey", "Robert C. Wilson", "Amitai Shenhav", "Nathaniel D. Daw", "Gary Aston-Jones", "Jonathan D. Cohen"],
+    "year": 2017,
+    "venue": "Cognitive, Affective, and Behavioral Neuroscience",
+    "doi": "10.3758/s13415-017-0531-y",
+    "pmid": "28900892"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the load-bearing R2 paper. Kane et al. ran a direct causal test of the Aston-Jones LC-NE-tonic-mode prediction in rats using DREADDs to selectively elevate LC tonic activity, and explicitly modelled whether the resulting earlier patch-leaving was best explained by (a) increased decision noise or (b) a directional bias on the leave threshold. The published finding is unambiguous: noise-best-explanation, no detectable directional shift. This is the strongest available empirical evidence on whether LC-NE tonic mode provides a SEPARATE directional-action-bias function distinct from MECH-313's noise floor. The verdict is that LC-NE tonic mode is one mechanism (noise), not two -- pushing ARC-066's substrate attribution AWAY from LC-NE and TOWARD mesolimbic DA / BAS.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE attributes ARC-066 to an LC-NE-direction substrate analog, it will fail to reproduce Kane 2017's empirical pattern. The published evidence is that LC-NE tonic effect on patch-leaving is noise-mediated, not direction-mediated -- a directional-bias-only LC-NE mechanism would produce a different pattern (consistent leave-threshold shift, reduced variance) than what Kane observed.",
+    "If a future REE child mechanism for ARC-066 is wired with LC-NE-mediated gain modulation, it should be expected to compose redundantly with MECH-313 (which already covers LC-NE noise), and the Kane 2017 caveat means the directional-bias function would have no clear biological substrate to anchor it."
+  ],
+  "tags": ["arc_066", "mech_313", "locus_coeruleus", "norepinephrine", "tonic", "decision_noise", "patch_foraging", "dreadds", "r2_disambiguation", "lc_ne_one_or_two_functions"],
+  "mapping": {
+    "source_claim_statement": "DREADD-mediated elevation of LC tonic activity in rats performing a patch-foraging task caused them to leave depleting patches earlier. Mechanistic model comparison showed this earlier-leaving effect was best explained by an INCREASE IN DECISION NOISE rather than a SYSTEMATIC BIAS to leave at higher patch-value thresholds. Quote: 'This effect is best explained by an increase in decision noise rather than a systematic bias to leave earlier (i.e., at higher values).'",
+    "ree_translation": "The user-pre-registered ARC-066 anchors include Aston-Jones & Cohen 2005 with the explicit gloss that LC-NE tonic mode provides a 'directional bias TOWARD action, not noise on choice', distinct from MECH-313's LC-NE noise floor. Kane et al. 2017 directly disconfirms this disambiguation: when LC tonic activity is causally elevated, the behavioural effect IS noise, not direction. ARC-066 should therefore not be attributed to LC-NE; the substrate attribution must lean on mesolimbic DA-vigor (Niv 2007 / Beierholm 2013 / Salamone & Correa 2012) and BAS abstract level (Depue & Collins 1999). This is the load-bearing R2 verdict for the synthesis: LC-NE tonic mode is ONE mechanism (noise), not TWO -- it is fully covered by MECH-313 with no remaining function for ARC-066 to claim.",
+    "mapping_caveat": "Kane et al. ran a single task (patch foraging) on rats with DREADDs activation that is non-physiologically uniform compared to natural LC firing patterns. A directional-bias contribution that is small relative to the noise contribution might not be detectable in this design (the abstract says noise BETTER explains the data, not that direction is RULED OUT). However, the burden is now on a hypothetical LC-NE-direction account to produce its own causal evidence; the default attribution under current evidence should be noise-only. A second caveat: the patch-leaving readout is about WHEN to disengage, which is closer to ARC-068 (opportunity cost) than to ARC-066 (capacity-keyed positive bias toward action). The relevance to ARC-066 is via the more general claim that LC-NE tonic effects are noise-mediated.",
+    "source_context": "Cognitive, Affective, and Behavioral Neuroscience 2017. DREADDs (designer receptors exclusively activated by designer drugs) chemogenetic stimulation of LC in Long-Evans rats; patch-foraging task with depleting reward and time-cost travel between patches. Authors include Aston-Jones (originator of the LC-NE adaptive gain theory) and Cohen (theory co-author), making this a particularly informative test -- the people most motivated to find a directional component reported noise as the better explanation."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (causal optogenetic-equivalent manipulation + formal model comparison + authorship by the original LC-NE-theory team). Mapping fidelity moderate-high: the patch-leaving readout is not exactly ARC-066's act-vs-not-act selection, but the noise-vs-direction disambiguation is the same one ARC-066 needs settled. Transfer risk moderate -- rat patch foraging maps onto REE foraging-style environments reasonably well, and the mechanistic claim is at the substrate level (LC-NE tonic effect is noise-mediated) which is task-independent."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_066_tonic_vigor",
+  "entry_id": "2026-05-10_arc_066_bas_extraversion_depue_collins_1999",
+  "timestamp_utc": "2026-05-10T16:21:56Z",
+  "claim_ids_tested": ["ARC-066"],
+  "source": {
+    "title": "Neurobiology of the structure of personality: dopamine, facilitation of incentive motivation, and extraversion",
+    "authors": ["Richard A. Depue", "Paul F. Collins"],
+    "year": 1999,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/S0140525X99002046",
+    "pmid": "11301519"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "The Behavioral and Brain Sciences target article that grounds the BAS (behavioural approach / activation system) as a tonic personality dimension keyed to dopaminergic VTA-NAcc-PFC circuitry. Depue & Collins propose that individual differences in extraversion / agency reflect a tonic-baseline difference in this system, with low BAS = anhedonic inertia and high BAS = generalised drive-to-act. This is the strongest support for the ABSTRACT-LEVEL architectural commitment ARC-066 makes (capacity-keyed target-free action drive as a substrate-level function), but the paper is conceptual and trait-level rather than mechanistic. Confidence reflects: strong abstract-level support, weak mechanistic detail, no direct empirical test of the target-free claim. Together with Niv 2007 / Salamone & Correa / Beierholm 2013, this paper closes the substrate identity (DA-keyed) + abstract-level commitment (target-free) cluster.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does not implement a target-free behavioural-approach scalar will fail to reproduce the inter-individual variation Depue & Collins describe: low-BAS-equivalent agents should show generalised behavioural inertia even in the presence of preserved harm avoidance and target-specific wanting. This is the clinical phenotype of anhedonic / abulic depression that Depue & Collins anchor to.",
+    "If ARC-066 is wired such that its scalar collapses onto target-specific wanting (MECH-216) under all conditions, the model will fail to reproduce the Depue & Collins distinction between BAS reactivity (response to specific incentives) and BAS tonic baseline (general drive)."
+  ],
+  "tags": ["arc_066", "bas", "behavioural_approach_system", "dopamine", "extraversion", "personality", "incentive_motivation", "target_free", "r1_substrate", "abstract_level_commitment"],
+  "mapping": {
+    "source_claim_statement": "The behavioural approach / activation system (BAS) is a neurobehavioural system rooted in dopaminergic VTA-NAcc-PFC circuitry that mediates individual differences in sensitivity / reactivity to appetitive stimuli. The system has a TONIC BASELINE dimension (general motivational disposition, target-free) distinct from REACTIVE-TO-INCENTIVE responses. Variation in tonic BAS produces personality-level differences: low BAS = generalised behavioural inertia / anhedonic disposition; high BAS = generalised drive-to-act / agency. The dopaminergic substrate is shared with reward-prediction-error mechanisms but the BAS function is specifically the tonic activational dimension.",
+    "ree_translation": "Depue & Collins's BAS tonic baseline IS the abstract-level construct ARC-066 operationalises. The user-observed phenomenology (drive to deploy energy when one has it) is the BAS tonic baseline expressed in introspective terms. Together with Niv 2007 (formalism for the tonic DA scalar) and Salamone & Correa 2012 (substrate identity for DA-vigor) and Beierholm 2013 (human pharmacological causal test), Depue & Collins close the abstract-level commitment: there exists a target-free DA-keyed activational scalar that biases behaviour toward action, varying both within-individual (the ARC-066 scalar) and between-individuals (BAS personality dimension). ARC-066's child mechanism implements the within-individual within-time variation; the between-individual variation is a model parameter.",
+    "mapping_caveat": "BBS target articles are conceptual / synthetic rather than mechanistic. Depue & Collins do not run experiments; they synthesise existing literature into a personality-neuroscience framework. The mechanistic detail must be supplied by other papers (Niv 2007 formalism, Salamone & Correa substrate identity, Beierholm 2013 causal test). A second caveat: the BAS construct has been refined over the past 25 years (e.g. Smillie et al. on BAS subdimensions, Depue's later work on agentic-extraversion) -- the 1999 paper is the foundational reference but not the most current statement. For ARC-066's purposes the foundational target-free / tonic-baseline distinction is what matters and is unchanged in subsequent literature.",
+    "source_context": "Behavioral and Brain Sciences target article 1999 (the highest-prestige BBS slot, with subsequent open peer commentary). Synthesises personality-neuroscience, psychopharmacology, and dopamine-RL literatures into the BAS framework. Cited >2000 times. Foundational for the personality-as-tonic-baseline reading of dopaminergic incentive systems."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Source quality good (BBS target article, foundational reference, heavily cited), but the conceptual / synthetic nature reduces it relative to mechanistic empirical anchors. Mapping fidelity moderate-high: the abstract-level commitment is exactly right for ARC-066, but the paper does not provide direct mechanistic evidence. Transfer risk moderate-elevated because the personality-level evidence transfers to within-individual scalar variation only by analogy."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_066_tonic_vigor",
+  "entry_id": "2026-05-10_arc_066_l_dopa_human_vigor_beierholm_2013",
+  "timestamp_utc": "2026-05-10T16:21:56Z",
+  "claim_ids_tested": ["ARC-066"],
+  "source": {
+    "title": "Dopamine modulates reward-related vigor",
+    "authors": ["Ulrik Beierholm", "Marc Guitart-Masip", "Marcos Economides", "Rumana Chowdhury", "Emrah Duzel", "Ray Dolan", "Peter Dayan"],
+    "year": 2013,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/npp.2013.48",
+    "pmid": "23419875"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Direct human-pharmacological causal test of Niv 2007's prediction that the average reward rate drives vigor via dopamine. Double-blind, three-arm design (placebo / L-DOPA / citalopram) in 90 healthy subjects on an odd-ball discrimination task with experimentally varied reward. Result: the relationship between average reward rate and response vigor (faster RTs at higher reward history) was significantly stronger under L-DOPA than placebo. This is the load-bearing human empirical anchor for the R1 DA-vigor substrate attribution and converges with Niv 2007's theoretical formalism. Confidence weighted down from a higher value by two caveats: (1) L-DOPA elevates both tonic and phasic DA, so the dissociation Niv 2007 specifically claims (TONIC DA encodes avg reward rate) is not cleanly tested; (2) the readout is RT-on-discrimination, which is closer to vigor-of-execution than to act-vs-not-act selection.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does not implement an avg-reward-rate-modulated action-vigor scalar will fail to reproduce the Beierholm pattern: under simulated L-DOPA-equivalent gain on the scalar, the coupling between reward history and action density should strengthen.",
+    "If the ARC-066 child mechanism is wired to a single-episode reward integrator (fast window), it will fail Beierholm's design implicitly: the L-DOPA effect emerged on within-session integration of reward history across many trials, indicating a long-window scalar."
+  ],
+  "tags": ["arc_066", "dopamine", "average_reward_rate", "vigor", "l_dopa", "human_pharmacology", "r1_substrate", "r3_implementation_shape", "r4_capacity_scalar", "non_deficit_action_drives"],
+  "mapping": {
+    "source_claim_statement": "In a double-blind three-arm pharmacological human design (placebo, L-DOPA, citalopram) with 90 healthy subjects performing an odd-ball discrimination task with varying reward, the relationship between average reward rate and response vigor (faster RT at higher cumulative reward) was significantly stronger under L-DOPA than under placebo. The beta coefficient for avg-reward-rate predicting RT was larger under DA elevation. Citalopram (serotonin) did not produce the same effect, supporting specificity to dopamine.",
+    "ree_translation": "ARC-066's R1 substrate attribution to mesolimbic DA-vigor is supported empirically in humans by this study. The Niv 2007 theoretical claim (avg reward rate scalar drives vigor via tonic DA) gains causal-pharmacological grounding. For R3 implementation shape, the empirical RT readout is consistent with the additive-bias formalism (the avg-reward-rate scalar enters as an additive shift on the response-side decision dynamics), though it cannot rule out a multiplicative gain alternative; this is the secondary-hypothesis scope. For R4 capacity scalar composition, the empirically tested scalar is the across-trial reward history (an environmental signal), not internal physiological capacity; this corroborates the R4 verdict that ARC-066's primary scalar should be a slow EWMA over realised E3-score-receipt, not a composite of internal-capacity proxies.",
+    "mapping_caveat": "L-DOPA elevates both tonic and phasic DA. Niv 2007's specific theoretical claim is that TONIC DA encodes the avg reward rate, distinct from phasic prediction-error DA. Beierholm 2013 cannot cleanly isolate the tonic component -- the result is consistent with Niv's account but does not selectively support it over alternatives where phasic DA also contributes. A second caveat: the behavioural readout is RT-on-discrimination (correctly responding faster), which is closer to vigor-of-execution than to act-vs-not-act selection that ARC-066 names. As with Niv 2007, the mathematical transfer is clean but the empirical readout maps imperfectly to the ARC-066 architectural function.",
+    "source_context": "Neuropsychopharmacology 2013, double-blind placebo-controlled three-arm design in healthy human subjects. N=90, three pharmacological arms. The strongest available human-empirical test of the tonic-DA-as-vigor-scalar account."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (double-blind RCT, top author group including Dayan who co-authored Niv 2007, Neuropsychopharmacology venue). Mapping fidelity moderate-high: directly tests the avg-reward-rate-vigor coupling but does not isolate tonic vs phasic DA. Transfer risk moderate -- human empirical anchor reduces the cross-species transfer concern but the readout-scope concern (vigor-of-execution vs act-vs-not-act selection) remains."
+  }
+}

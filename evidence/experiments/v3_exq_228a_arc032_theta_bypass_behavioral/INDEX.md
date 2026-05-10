@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_228a_arc032_theta_bypass_behavioral
 
-Generated: `2026-05-10T12:32:34.621278Z`
+Generated: `2026-05-10T16:33:16.438698Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

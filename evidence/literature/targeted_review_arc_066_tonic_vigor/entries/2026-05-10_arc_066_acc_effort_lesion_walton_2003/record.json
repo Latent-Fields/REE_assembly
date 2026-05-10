@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_066_tonic_vigor",
+  "entry_id": "2026-05-10_arc_066_acc_effort_lesion_walton_2003",
+  "timestamp_utc": "2026-05-10T16:21:56Z",
+  "claim_ids_tested": ["ARC-066"],
+  "source": {
+    "title": "Functional specialization within medial frontal cortex of the anterior cingulate for evaluating effort-related decisions",
+    "authors": ["Mark E. Walton", "David M. Bannerman", "Karin Alterescu", "Matthew F. S. Rushworth"],
+    "year": 2003,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.23-16-06475.2003",
+    "pmid": "12878688"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Canonical ACC lesion study showing that excitotoxic anterior cingulate lesions in rats reverse high-effort/high-reward preference toward low-effort/low-reward on a T-maze cost-benefit task. This is foundational evidence that ACC carries effort-cost computation, but the readout is about WILLINGNESS-TO-EXPEND-EFFORT-FOR-A-SPECIFIC-REWARD (i.e. cost-benefit weighing in the presence of an active goal), not about general capacity-keyed action drive that ARC-066 names. The user briefing cites the canonical Walton 2003 J Neurosci paper as an ACC effort/vigor anchor; on close reading, the paper supports ACC's role in effort-cost computation more cleanly than it supports ARC-066's specific function. Mapped as mixed: the ACC effort-cost machinery is plausibly recruited in service of any vigor scalar, but the paper's direct evidence is for goal-directed effort allocation, which is closer to existing SD-032b dACC adaptive-control / ARC-068 opportunity-cost territory than to ARC-066. Confidence reflects this scope mismatch.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does not represent effort-cost as a substrate-level computation will fail to reproduce Walton's lesion pattern: differential preference for high-effort options should disappear under simulated ACC ablation. ARC-066 is not the right substrate for this -- SD-032b (dACC adaptive control) is the closer existing relative.",
+    "If ARC-066's child mechanism is wired to depend on ACC integrity, the model should simulate the Walton 2003 lesion-reversal pattern; if the ARC-066 substrate is correctly attributed to mesolimbic DA, the lesion-reversal should still occur (DA-mediated activational state recruits ACC for cost-benefit computation), but ARC-066's primary signal should survive ACC ablation."
+  ],
+  "tags": ["arc_066", "anterior_cingulate", "acc", "effort_cost", "cost_benefit_decision", "lesion_study", "rodent", "r1_substrate", "boundary_anchor"],
+  "mapping": {
+    "source_claim_statement": "Excitotoxic lesions of the rat anterior cingulate cortex on a T-maze cost-benefit task (climb a 30 cm barrier for a large reward, vs walk a level path for a smaller reward) reversed normal preference: lesioned rats nearly always chose the low-effort low-reward option, while sham-lesioned controls reliably chose the high-effort high-reward option. This was not a motor / climbing impairment (rats could still climb when only the high-effort option was available); it was a cost-benefit decision impairment specifically. The interpretation is that ACC integrates effort cost into the value computation that drives action selection.",
+    "ree_translation": "ARC-066 is the architectural slot for capacity-keyed action drive that biases action over no-op INDEPENDENT OF SPECIFIC TARGETS. Walton 2003's evidence is for ACC's role in cost-benefit weighing GIVEN a specific target (high-reward arm vs low-reward arm). The paper does not directly evidence the target-free function ARC-066 names; its closer existing relative in REE is SD-032b (dACC adaptive control / foraging value) for the cost-benefit-given-goal function and ARC-068 (opportunity cost no-op penalty) for the cost-of-passive function. The mapping to ARC-066 is therefore indirect: ACC is plausibly recruited to compute the effort cost that the ARC-066 vigor scalar is then balanced against, but ARC-066's primary substrate is mesolimbic DA-vigor (per R1 verdict), not ACC.",
+    "mapping_caveat": "The most important caveat: this paper is being pulled in part because the user briefing pre-registered Walton 2006 J Neurosci as an anchor, and the closest canonical citation is actually Walton et al. 2003 J Neurosci (the 2006 J Neurosci paper from this group is on different topics; the 2006 paper that fits the brief is Walton et al. 2006 Neural Networks, a follow-up review). Either way, the substantive issue stands: the ACC effort-cost literature evidences cost-benefit-given-goal, not capacity-keyed-target-free action drive. The paper is included as a boundary anchor (clarifying which existing REE substrate handles ACC effort-cost work) rather than as a positive substrate anchor for ARC-066.",
+    "source_context": "Journal of Neuroscience 2003 (the canonical citation; Walton 2006 J Neurosci does not match the topic per search). Excitotoxic lesion design in Long-Evans rats, T-maze cost-benefit task with quantitative reward and barrier-effort manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (J Neurosci 2003, well-controlled lesion design, foundational citation in effort-based decision making). Mapping fidelity moderate -- the substrate identity (ACC = effort cost computation) is solid, but the function ARC-066 names (target-free capacity-keyed action drive) is not what the paper directly tests. Transfer risk moderate-elevated because the role this paper plays in the synthesis is boundary-clarification, not positive-substrate evidence."
+  }
+}

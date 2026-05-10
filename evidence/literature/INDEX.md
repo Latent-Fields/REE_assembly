@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-10T12:32:34.621278Z`
+Generated: `2026-05-10T16:33:16.438698Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -26,6 +26,7 @@ Generated: `2026-05-10T12:32:34.621278Z`
 | `targeted_review_arc_062_rule_apprehension` | [`2026-05-09_arc_062_pfc_rule_cells_bongard2010`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/record.json) | 8 | [`summary`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/summary.md) |
 | `targeted_review_arc_064_bottom_up_rule_discovery` | [`2026-05-10_arc_064_uncertainty_arbitration_daw_2005`](targeted_review_arc_064_bottom_up_rule_discovery/entries/2026-05-10_arc_064_uncertainty_arbitration_daw_2005/record.json) | 13 | [`summary`](targeted_review_arc_064_bottom_up_rule_discovery/entries/2026-05-10_arc_064_uncertainty_arbitration_daw_2005/summary.md) |
 | `targeted_review_arc_065_behavioral_diversity_generation` | [`2026-05-10_arc_065_striatal_novelty_wittmann_2008`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/record.json) | 9 | [`summary`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/summary.md) |
+| `targeted_review_arc_066_tonic_vigor` | [`2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007`](targeted_review_arc_066_tonic_vigor/entries/2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007/record.json) | 7 | [`summary`](targeted_review_arc_066_tonic_vigor/entries/2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
 | `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |
 | `targeted_review_connectome_arc_007` | [`2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/record.json) | 5 | [`summary`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/summary.md) |

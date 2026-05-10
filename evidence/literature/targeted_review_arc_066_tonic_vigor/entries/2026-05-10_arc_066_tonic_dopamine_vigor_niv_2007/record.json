@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_066_tonic_vigor",
+  "entry_id": "2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007",
+  "timestamp_utc": "2026-05-10T16:21:56Z",
+  "claim_ids_tested": ["ARC-066"],
+  "source": {
+    "title": "Tonic dopamine: opportunity costs and the control of response vigor",
+    "authors": ["Yael Niv", "Nathaniel D. Daw", "Daphna Joel", "Peter Dayan"],
+    "year": 2007,
+    "venue": "Psychopharmacology (Berl)",
+    "doi": "10.1007/s00213-006-0502-4",
+    "pmid": "17031711"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Theoretical-formal anchor for the average-reward-rate / tonic-DA / vigor account. The opportunity-cost derivation makes the architectural commitment of ARC-066 mathematically explicit (a long-run average reward rate enters the cost-benefit equation as an additive cost on time-spent-passive, equivalently an additive bonus on time-spent-acting). Companion empirical paper Beierholm 2013 provides the human-pharmacological causal test, which is the reason this is not the highest-confidence entry on its own. Cited >2200 times; load-bearing for R1 substrate-attribution and R3 implementation-shape verdicts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does not maintain a long-window average-reward-rate integrator will fail to reproduce Niv's vigor-as-opportunity-cost predictions: response latencies should shorten as the average reward history rises, even when the local reward expectation is unchanged. Without ARC-066, REE has no signal that produces this scaling -- z_goal targets are local, not history-integrated.",
+    "If the ARC-066 child mechanism uses a fast (single-episode) reward-rate integrator instead of a slow (across-episode) one, the vigor signal will collapse onto z_goal and fail Niv's distinguishing prediction that vigor is set by long-run reward history independent of any specific currently-pursued target."
+  ],
+  "tags": ["arc_066", "tonic_dopamine", "average_reward_rate", "vigor", "opportunity_cost", "non_deficit_action_drives", "r1_substrate", "r3_implementation_shape", "r4_capacity_scalar"],
+  "mapping": {
+    "source_claim_statement": "The long-run average rate of reward functions as an opportunity cost on time, and is reported by tonic dopamine in the nucleus accumbens. Higher tonic DA (corresponding to higher average reward rates) produces faster, more vigorous responding -- not because of any specific phasic prediction, but because the cost of delay rises as average reward rises. Vigor is therefore set by reward history integrated over a long window, independent of any specific currently-pursued target.",
+    "ree_translation": "ARC-066 names the architectural slot for exactly this opportunity-cost scalar in REE. The candidate child-MECH shape is: (a) a long-window EWMA over the realised E3-score-receipt stream (operationalising 'average reward rate'), feeding (b) an additive E3 score bias toward action-trajectories or equivalently an additive cost on no-op trajectories. Critically: this is target-FREE -- the bias applies regardless of whether any z_goal is currently active, which closes the 'well-fed-safe-familiar agent has no gradient to act' gap the family registered. Niv 2007 is the load-bearing R1 anchor for DA-vigor as the substrate, and the load-bearing R3 anchor for the additive-on-score implementation shape (since the opportunity-cost form is additive in their derivation).",
+    "mapping_caveat": "Niv 2007 derives the vigor-as-opportunity-cost result on free-operant lever-pressing tasks where 'vigor' = response rate / latency-to-respond. The HOW-FAST axis is what they formalise, not the WHETHER-to-act axis ARC-066 names. The mathematical structure (slow average reward rate as additive bias) transfers cleanly, but the empirical readout in Niv's task does not directly test the action-vs-no-op selection ARC-066 is primarily about. The user-registered ARC-066 functional_restatement explicitly excludes vigor-of-execution timing -- a future MECH/Q-claim may extend the slot to the timing axis. Niv's paper is therefore evidence for the SCALAR (long-run avg reward rate) and the FORM (additive opportunity cost), not for the specific behavioural readout REE will use.",
+    "source_context": "Theoretical paper, Psychopharmacology (Berl) 2007. Computational derivation grounded in the average-cost RL framework, with extensive references to free-operant pharmacology data (e.g. DA depletion / pharmacological manipulation effects on response rate and latency). NOTE: project briefing cited venue as PNAS -- corrected to Psychopharmacology (Berl)."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (foundational theoretical paper, heavily cited, principled derivation). Mapping fidelity strong for the substrate (avg reward rate) and form (additive opportunity cost); slightly weakened by the WHETHER-vs-HOW-FAST scope mismatch noted in the caveat. Transfer risk moderate: the theoretical formalism transfers cleanly to REE's E3 scoring chain, but the rodent free-operant grounding has a different action-space topology than REE's open-ended episodic environments."
+  }
+}

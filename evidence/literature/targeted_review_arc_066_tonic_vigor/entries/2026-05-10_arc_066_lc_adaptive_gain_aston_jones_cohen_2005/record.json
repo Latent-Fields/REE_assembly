@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_066_tonic_vigor",
+  "entry_id": "2026-05-10_arc_066_lc_adaptive_gain_aston_jones_cohen_2005",
+  "timestamp_utc": "2026-05-10T16:21:56Z",
+  "claim_ids_tested": ["ARC-066"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": ["Gary Aston-Jones", "Jonathan D. Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "pmid": "16022602"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Pre-registered as a primary anchor for ARC-066 with the explicit gloss that LC-NE tonic mode provides a directional bias TOWARD action (distinct from MECH-313's noise function). The 2005 theoretical framework is consistent with that reading at the conceptual level (tonic mode = disengagement + search for alternatives = directional shift toward exploration / action). However, the same authors' subsequent direct empirical test (Kane et al. 2017, separate entry) found LC-NE tonic effects are noise-mediated, not directional. This entry is therefore mixed: the 2005 theoretical paper is the original architectural anchor for the LC-NE-direction reading of ARC-066, but the 2017 follow-up by the same group weakens that reading. The lower confidence (0.62 vs the 0.84 it received as the LC-NE-substrate anchor in ARC-065) reflects the R2-verdict downgrade: this paper is now evidence for what ARC-066 is NOT (i.e., not an LC-NE-direction function distinct from MECH-313).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE attempts to instantiate ARC-066 as an LC-NE-direction analog based on the Aston-Jones & Cohen 2005 framework, it will fail to compose with MECH-313 (already substrate-landed as the LC-NE noise floor). The original theoretical disambiguation between phasic-mode-as-exploitation and tonic-mode-as-exploration was shown by Kane 2017 to collapse the 'tonic-mode-as-exploration' channel into a noise effect, which is what MECH-313 already implements.",
+    "If a future child mechanism for ARC-066 cites Aston-Jones 2005 as primary substrate evidence without citing Kane 2017 as the disambiguating empirical test, governance review should flag the omission. Current evidence supports MESOLIMBIC DA (Salamone, Niv) as the ARC-066 substrate, not LC-NE."
+  ],
+  "tags": ["arc_066", "mech_313", "locus_coeruleus", "norepinephrine", "tonic_mode", "phasic_mode", "adaptive_gain", "exploration_exploitation", "r2_disambiguation", "substrate_attribution_downgrade"],
+  "mapping": {
+    "source_claim_statement": "LC-NE neurons exhibit two modes of activity. Phasic mode: bursting locked to decision outcomes, facilitates exploitation of the current task. Tonic mode: sustained elevated activity associated with task disengagement and a search for alternative behaviours / exploration. Adaptive gain through ACC + OFC inputs gates the tonic-phasic mode switch as task utility waxes and wanes. The tonic mode is therefore proposed to bias the system toward exploratory action, which can be read as a directional pressure toward action / disengagement.",
+    "ree_translation": "The pre-registered ARC-066 reading: LC-NE tonic mode supplies a directional action-bias function distinct from MECH-313's noise floor, giving REE a substrate-level anchor for capacity-keyed action drive. Under the R2 verdict (informed by Kane 2017 follow-up): this reading is not supported by the empirical data. The Aston-Jones 2005 framework is consistent with EITHER a noise-mediated disengagement (high tonic = high noise = exploration via random patch-leaving) OR a direction-mediated disengagement (high tonic = lower threshold for leaving = systematic shift toward exploration), and the 2017 paper resolves it in favour of the noise reading. ARC-066's substrate attribution should therefore not include LC-NE-direction; the 2005 paper remains a useful boundary anchor (clarifying what ARC-066 is NOT) but is no longer a load-bearing positive-direction anchor.",
+    "mapping_caveat": "The 2005 paper itself is a theoretical-integrative review and does not run a noise-vs-direction model comparison. It is consistent with both readings; the empirical disambiguation is Kane 2017. A separate concern is that adaptive gain theory has also been refined by more recent multi-modular LC literature (Schwarz 2015, Totah 2018, Chandler 2019, Poe 2020) showing LC has spatial-modular structure that the 2005 dual-mode framework does not capture. For ARC-066 governance, the mapping is: 2005 motivated the slot, 2017 rejected the LC-NE substrate attribution, the slot now needs a DA-vigor substrate (Niv 2007, Salamone & Correa 2012, Beierholm 2013).",
+    "source_context": "Annual Reviews integrative theory paper, 2005. Synthesises Aston-Jones lab single-unit monkey LC recordings + Cohen group computational modelling. Foundational for explore-exploit neural circuitry, cited >5000 times. Already entered against ARC-065 (LC-tonic-noise reading) -- this entry tags the same paper to ARC-066 (LC-tonic-direction reading) which is the disambiguation under test. Different claim attribution is allowed because the paper supports both readings at the conceptual level; the disambiguation is empirical, not theoretical."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is unchanged from the ARC-065 entry (foundational review, top venue). Mapping fidelity is materially lower for the ARC-066 reading because Kane 2017 disconfirms the directional-bias attribution that the ARC-066 anchoring depends on. Transfer risk is elevated because the 2005 theoretical framework is consistent with multiple empirical resolutions, and the resolution that matters for ARC-066 (direction over noise) is the one the empirical follow-up rejected."
+  }
+}

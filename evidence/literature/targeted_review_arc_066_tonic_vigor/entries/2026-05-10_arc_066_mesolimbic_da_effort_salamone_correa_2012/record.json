@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_066_tonic_vigor",
+  "entry_id": "2026-05-10_arc_066_mesolimbic_da_effort_salamone_correa_2012",
+  "timestamp_utc": "2026-05-10T16:21:56Z",
+  "claim_ids_tested": ["ARC-066"],
+  "source": {
+    "title": "The mysterious motivational functions of mesolimbic dopamine",
+    "authors": ["John D. Salamone", "Merce Correa"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.10.021",
+    "pmid": "23141060"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Salamone & Correa make the cleanest published case for dissociating mesolimbic DA's role in BEHAVIOURAL ACTIVATION / EXERTION OF EFFORT / SUSTAINED TASK ENGAGEMENT (the activational dimension) from its role in HEDONIC value or consummatory liking. The dissociation is grounded in decades of pharmacology data (DA antagonist / accumbens DA depletion experiments) showing instrumental / preparatory / approach behaviour is selectively impaired while consumption is preserved. This is load-bearing for R1: it gives ARC-066 a mesolimbic DA substrate that is target-INDEPENDENT (about behavioural activation generally) rather than tied to specific reward delivery. Slightly weakened by the paper's exclusively rodent/primate pharmacology grounding -- the human version of this dissociation is in companion papers (Treadway, Beierholm, Chong) not in Salamone & Correa directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that wires ARC-066 to the same mechanism as z_goal-driven wanting (specific-target seeking) will fail to reproduce the Salamone & Correa dissociation: DA depletion should selectively impair effortful instrumental responding while leaving consummatory choice intact. If REE collapses these into one substrate, the dissociation cannot be reproduced.",
+    "An REE substrate that ties ARC-066 to hedonic 'liking' (MECH-295) will fail: the literature is explicit that DA effort-vigor activation is dissociable from hedonic value. ARC-066 should compose with but not be substituted for liking."
+  ],
+  "tags": ["arc_066", "mesolimbic_dopamine", "nucleus_accumbens", "effort", "vigor", "behavioral_activation", "wanting_vs_liking", "r1_substrate", "non_deficit_action_drives"],
+  "mapping": {
+    "source_claim_statement": "Mesolimbic / accumbens dopamine encodes the activational dimension of motivation -- behavioural activation, exertion of effort, approach behaviour, sustained task engagement -- and is dissociable from hedonic / consummatory aspects of reward. DA antagonism and accumbens DA depletion impair instrumental / preparatory / 'wanting' behaviours much more than consummatory / 'liking' behaviours. Quote: 'DA antagonism and accumbens DA depletions have a greater effect on appetitive, instrumental, preparatory or seeking behavior, as well as behavioral activation and wanting, while having less effect on consummatory behavior, directional aspects of motivation, and liking.'",
+    "ree_translation": "ARC-066's child mechanism, attributed to mesolimbic DA per the R1 verdict, instantiates exactly the activational-dimension function Salamone & Correa describe. The substrate-level prediction: an REE agent ablated on the ARC-066 child mechanism (DA-vigor analog) should show preserved consummatory behaviour (z_goal-target selection when wired with deficit-driven wanting via MECH-216) but reduced general-action-density when no specific z_goal is active and no harm is present. This matches the clinical phenomenology of DA-deficit states (Parkinson's hypoactivation, anhedonic-abulic depression) which Salamone & Correa cite as the human-clinical anchor for the substrate-level claim.",
+    "mapping_caveat": "Salamone & Correa's substrate is mesolimbic DA in nucleus accumbens, with extensive rodent pharmacology evidence. The transfer to REE assumes the architectural function (target-free behavioural-activation gradient) is what matters, not the specific neuromodulator. The paper says less than one would like about whether DA-vigor effects are *separable* from average-reward-rate effects (Niv 2007's account) -- the two accounts overlap but are not identical. A future child-MECH design must commit to one mathematical formalisation; the synthesis recommends Niv 2007's average-reward-rate scalar with Salamone & Correa providing the substrate-attribution rather than the formalism.",
+    "source_context": "Neuron 2012 review. Synthesises decades of rodent and primate pharmacology, accumbens lesion / DA-depletion / DA-antagonist data, with discussion of clinical implications for depression and motivation deficits. Highly cited (>2500 times). The most-cited modern statement of the wanting-vs-liking dissociation in motivational neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (top-tier review in Neuron, definitive statement of the activational-vs-hedonic dissociation, decades of supporting pharmacology). Mapping fidelity moderate-high: the activational-dimension function transfers cleanly to ARC-066, but the paper does not formalise the scalar (Niv 2007 does). Transfer risk moderate -- rodent / primate substrate but the abstract architectural function (target-free behavioural-activation gradient) is the level ARC-066 commits to."
+  }
+}
