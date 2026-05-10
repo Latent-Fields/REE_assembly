@@ -1,0 +1,122 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
+  "experiment_type": "v3_exq_544_mech313_noise_floor_substrate_readiness",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-10T10:44:58.768531Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-313",
+    "ARC-065"
+  ],
+  "result": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-313": "supports",
+    "ARC-065": "supports"
+  },
+  "metrics": {
+    "UC1_forward_pass_instantiation": {
+      "noise_floor_is_module": true,
+      "effective_temperature": 1.1,
+      "lifted_above_baseline": true,
+      "finite": true,
+      "state_keys": [
+        "last_baseline_temperature",
+        "last_effective_temperature",
+        "last_n_simulation_skips",
+        "n_waking_calls"
+      ],
+      "n_waking_calls_after_one_call": 1,
+      "pass": true
+    },
+    "UC2_master_off_no_op": {
+      "off_noise_floor_is_none": true,
+      "on_noise_floor_is_module": true,
+      "z_world_off_finite": true,
+      "z_world_on_finite": true,
+      "pass": true
+    },
+    "UC3_effective_temperature_lift_correctness": {
+      "per_case": [
+        {
+          "alpha": 0.1,
+          "min_T": 1.0,
+          "baseline": 1.0,
+          "expected": 1.1,
+          "actual": 1.1,
+          "ok": true
+        },
+        {
+          "alpha": 0.1,
+          "min_T": 1.0,
+          "baseline": 0.5,
+          "expected": 1.0,
+          "actual": 1.0,
+          "ok": true
+        },
+        {
+          "alpha": 0.5,
+          "min_T": 2.0,
+          "baseline": 1.0,
+          "expected": 2.0,
+          "actual": 2.0,
+          "ok": true
+        },
+        {
+          "alpha": 0.5,
+          "min_T": 2.0,
+          "baseline": 3.0,
+          "expected": 3.5,
+          "actual": 3.5,
+          "ok": true
+        },
+        {
+          "alpha": 0.0,
+          "min_T": 1.5,
+          "baseline": 1.0,
+          "expected": 1.5,
+          "actual": 1.5,
+          "ok": true
+        },
+        {
+          "alpha": 0.0,
+          "min_T": 0.5,
+          "baseline": 1.0,
+          "expected": 1.0,
+          "actual": 1.0,
+          "ok": true
+        },
+        {
+          "alpha": 1.0,
+          "min_T": 1.0,
+          "baseline": 0.001,
+          "expected": 1.001,
+          "actual": 1.001,
+          "ok": true
+        }
+      ],
+      "n_cases": 7,
+      "pass": true
+    },
+    "UC4_select_action_wiring_contract": {
+      "select_action_error": null,
+      "n_waking_calls": 1,
+      "last_baseline_temperature": 1.0,
+      "last_effective_temperature": 1.1,
+      "expected_lift": 1.1,
+      "pass": true
+    },
+    "UC5_mech094_simulation_gate": {
+      "sim_returned_baseline": true,
+      "sim_skip_advanced": true,
+      "waking_counter_unchanged_in_sim": true,
+      "waking_T_lifted": true,
+      "waking_counter_advanced": true,
+      "skip_counter_not_re_incremented": true,
+      "pass": true
+    }
+  },
+  "elapsed_seconds": 0.8678200244903564,
+  "notes": "MECH-313 (ARC-065) stochastic_noise_floor substrate-readiness diagnostic. Tests substrate wiring + Pull 1 SYNTHESIS R4 verdict (continuous, every tick) at the API level. Does NOT test the load-bearing claim of MECH-313 itself or its distinction from MECH-260 -- both require behavioural validation via Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON), queued AFTER substrate landing. Pull 1 SYNTHESIS verdicts (R1 BOTH-CHANNELS-NEEDED, R2 LC-NE tonic load-bearing, R4 continuous) are architectural commitments, not signals tested here."
+}
