@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_065_behavioral_diversity_generation",
+  "entry_id": "2026-05-10_arc_065_frontopolar_exploration_daw_2006",
+  "timestamp_utc": "2026-05-10T07:16:40Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Cortical substrates for exploratory decisions in humans",
+    "authors": ["Nathaniel D Daw", "John P O'Doherty", "Peter Dayan", "Ben Seymour", "Raymond J Dolan"],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature04766",
+    "pmid": "16778890"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "fMRI dissociation in healthy humans: frontopolar cortex + intraparietal sulcus selectively active during exploratory decisions; striatum + vmPFC during exploitative. The paper introduces the standard computational characterisation of the explore-exploit dilemma that the rest of the field uses. Key R2 evidence: there is a distinct cortical substrate for exploration (not just the dopaminergic exploitation circuit). Confidence high but not maximal because fMRI cannot dissociate the curiosity-bias channel from the noise channel within the frontopolar BOLD signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE has only an exploitation circuit (E3 score-aggregation + GoalState seeding) without a separate diversity-generation pathway, the model should fail to produce frontopolar-equivalent activation patterns during the explore phases of behaviour.",
+    "If diversity generation in REE is not separable from exploitation but emerges from noise alone (R1 noise-only verdict), then no substrate should map onto the frontopolar/vmPFC double dissociation Daw 2006 reports."
+  ],
+  "tags": ["arc_065", "exploration", "exploitation", "frontopolar", "fmri", "explore_exploit"],
+  "mapping": {
+    "source_claim_statement": "Frontopolar cortex and intraparietal sulcus are preferentially active during exploratory decisions; striatum and ventromedial prefrontal cortex are preferentially active during exploitative decisions. The two are dissociable substrates.",
+    "ree_translation": "ARC-065 should be architecturally distinct from the exploitation pathway already substrate-landed in REE (E3 score selection + SD-033a/b PFC bias channels + dACC adaptive control). Daw 2006 provides the dissociation evidence: separate brain substrates for exploration vs exploitation argue for a separate ARC-065 cluster, not an extension of an existing wanting/value-bias claim. R3 verdict: PROMOTE-TO-CLUSTER (separate slot warranted).",
+    "mapping_caveat": "fMRI cannot resolve the within-frontopolar circuit dynamics (cell types, projection targets); the 'exploration substrate' is a regional functional dissociation, not a circuit-level mechanism. The paper does not directly test the structured-vs-noise question (R1) -- it identifies WHERE exploratory decisions are processed, not WHAT generates the decision noise itself.",
+    "source_context": "fMRI four-armed bandit task in healthy adult humans; reinforcement-learning model (Kalman filter) used to classify each trial as exploratory or exploitative; Gatsby + UCL FIL groups."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Nature venue, foundational paper for the explore-exploit fMRI literature. Mapping fidelity moderate-high: it cleanly demonstrates separate substrates for exploration vs exploitation, but does not directly tell us whether the exploration substrate operates continuously or triggered, or which sub-mechanism (curiosity / noise / both) it implements."
+  }
+}

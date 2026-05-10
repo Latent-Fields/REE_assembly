@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_065_behavioral_diversity_generation",
+  "entry_id": "2026-05-10_arc_065_active_inference_epistemic_value_friston_2015",
+  "timestamp_utc": "2026-05-10T07:16:40Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Active inference and epistemic value",
+    "authors": ["Karl Friston", "Francesco Rigoli", "Dimitri Ognibene", "Christoph Mathys", "Thomas Fitzgerald", "Giovanni Pezzulo"],
+    "year": 2015,
+    "venue": "Cognitive Neuroscience",
+    "doi": "10.1080/17588928.2015.1020053",
+    "pmid": "25689102"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Operational instantiation of FEP for the explore-exploit dilemma: agents minimise expected free energy, which decomposes cleanly into extrinsic value (utility) and epistemic value (information gain). The paper provides simulations showing this framing reproduces both directed exploration and softmax-style noise as Bayes-optimal precision parameters. Direct support for R1 both-channels-needed verdict from a computational theoretical anchor.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If active inference's epistemic-value formulation is wrong, any MECH-314 instantiation that uses information-gain as the curiosity signal (vs novelty-bonus a la Wittmann 2008 or learning-progress a la Schmidhuber) loses its theoretical grounding.",
+    "If the precision-as-confidence framing is wrong, REE's existing precision-modulation substrates (MECH-269b, SD-032b) would also be affected since they share the same theoretical commitment."
+  ],
+  "tags": ["arc_065", "active_inference", "epistemic_value", "free_energy", "exploration_exploitation"],
+  "mapping": {
+    "source_claim_statement": "Choice behaviour is modelled as minimisation of expected free energy of policies. Expected free energy decomposes into extrinsic value (expected utility / reward) and epistemic value (information gain about the causes of valuable outcomes). The explore-exploit dilemma is resolved by maximising epistemic value first, then maximising extrinsic value once information gain is exhausted. Softmax temperature parameters in standard RL emerge as Bayes-optimal precision of policy beliefs.",
+    "ree_translation": "ARC-065 R1 verdict: active inference provides a unified framework where structured exploration (epistemic value, MECH-314) and stochastic exploration (precision of policy beliefs, MECH-313) are not competing channels but complementary terms in a single objective. This supports the both-channels-needed reading from a computational angle. R4 verdict: epistemic value is continuous (computed every tick from current model uncertainty), but its dominance over extrinsic value is triggered (active when uncertainty is high; recedes as uncertainty falls). Hybrid continuous+triggered.",
+    "mapping_caveat": "Active inference is a specific theoretical framework that REE has not formally committed to. The paper's simulations are toy environments (T-mazes); transfer to embodied open-ended grid-world REE is a non-trivial step. Mapping fidelity moderate.",
+    "source_context": "Computational simulations + theoretical synthesis; UCL Wellcome Centre + Italian National Research Council collaboration; the operational active-inference paper that goes beyond the unified-theory framing of Friston 2010."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Cognitive Neuroscience (lower-impact venue than NRN); operational paper with toy-environment simulations; mapping requires REE to commit (or not) to the active-inference framing for MECH-314 vs alternative pragmatic instantiations."
+  }
+}

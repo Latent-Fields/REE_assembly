@@ -2,33 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 78911,
   "runner_started_at": "2026-05-09T13:14:15.773878+00:00",
-  "last_updated": "2026-05-09T21:46:28.876198+00:00",
-  "idle": false,
+  "last_updated": "2026-05-10T07:32:48.812490+00:00",
+  "idle": true,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-436a",
-      "backlog_id": "",
-      "claim_id": "SD-017",
-      "title": "SD-017 + ARC-045 + MECH-166 context-cond harm threshold, Phase 2 retest (3-cond x 5-seed multi-claim, per-seed diagnostics)",
-      "description": "",
-      "estimated_minutes": 400.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-418l",
-      "backlog_id": "",
-      "claim_id": "SD-017",
-      "title": "SD-017 action_bias_div discriminative pair, Phase 2 substrate retest (supersedes V3-EXQ-418a)",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -1689,6 +1666,34 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3.json",
       "completed_by": "Mac",
       "actual_secs": 1.9
+    },
+    {
+      "queue_id": "V3-EXQ-436a",
+      "backlog_id": "",
+      "claim_id": "SD-017",
+      "title": "SD-017 + ARC-045 + MECH-166 context-cond harm threshold, Phase 2 retest (3-cond x 5-seed multi-claim, per-seed diagnostics)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C3_baseline_preservation_harm_safe: {'threshold': 0.05, 'n_runs_required': 9, 'n_runs_passed': 15, 'pass': True, 'desc': 'Baseline preservation: harm_rate_safe < 0.05 in >= 60% of all 15 runs. Magnitude check; secondary.'} | Output written to: /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_436a_sd017_arc045_mech166_context_harm_phase2_20260509T214636Z_v3.json | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-436a -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-436a.json",
+      "started_at": "2026-05-09T21:46:35.186140+00:00",
+      "completed_at": "2026-05-09T21:52:20.375529+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_436a_sd017_arc045_mech166_context_harm_phase2_20260509T214636Z_v3.json",
+      "completed_by": "Mac",
+      "actual_secs": 345.2
+    },
+    {
+      "queue_id": "V3-EXQ-418l",
+      "backlog_id": "",
+      "claim_id": "SD-017",
+      "title": "SD-017 action_bias_div discriminative pair, Phase 2 substrate retest (supersedes V3-EXQ-418a)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: C1_bias_threshold=False (0/3), C2_bias_improvement=False (0/3), C3_slot_div=False (0/3), C4_signed_diff=False (0/3) => FAIL | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-418l -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-418l.json",
+      "started_at": "2026-05-09T21:52:23.589429+00:00",
+      "completed_at": "2026-05-09T21:53:32.277068+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_418l_sd017_action_bias_div_phase2_20260509T215331Z_v3.json",
+      "completed_by": "Mac",
+      "actual_secs": 68.7
     }
   ]
 }

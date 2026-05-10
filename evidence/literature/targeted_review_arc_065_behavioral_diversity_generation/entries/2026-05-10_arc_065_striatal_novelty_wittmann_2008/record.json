@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_065_behavioral_diversity_generation",
+  "entry_id": "2026-05-10_arc_065_striatal_novelty_wittmann_2008",
+  "timestamp_utc": "2026-05-10T07:16:40Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Striatal activity underlies novelty-based choice in humans",
+    "authors": ["Bianca C Wittmann", "Nathaniel D Daw", "Ben Seymour", "Raymond J Dolan"],
+    "year": 2008,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2008.04.027",
+    "pmid": "18579085"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "fMRI evidence in healthy humans that striatal activity underlies novelty-based choice even when novelty is unrelated to outcome value. Demonstrates that perceptual novelty drives choice via a striatal substrate, providing direct R2 anchor for one curiosity sub-flavour (novelty-driven). Key: the paper shows novelty-driven choice produces measurable individual differences -- a falsifiable signature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that lacks novelty-driven choice bias should fail to reproduce striatal-equivalent activation during novel-option choice and should fail to show individual-difference variation in novelty susceptibility.",
+    "If novelty-driven choice is REDUNDANT with general curiosity (MECH-216 schema-readout-wanting), this paper would predict that lesioning the schema-readout pathway eliminates the novelty signature -- a testable cross-mechanism prediction."
+  ],
+  "tags": ["arc_065", "striatum", "novelty", "exploration", "individual_differences"],
+  "mapping": {
+    "source_claim_statement": "Even when perceptual familiarity of an option is unrelated to choice outcome, novelty drives choice behaviour. Striatal activity underlies novelty-based choice in a manner consistent with computational accounts of decision making under uncertainty. The brain uses perceptual novelty to approximate choice uncertainty.",
+    "ree_translation": "ARC-065 MECH-314 candidate (curiosity bonus) needs at least one sub-mechanism for novelty-driven exploration with a striatal-equivalent substrate. REE's existing MECH-216 (E1 schema-readout-wanting) is the closest current candidate but is recognition-driven (schema MATCH triggers wanting), not novelty-driven (schema NOVEL triggers exploration). MECH-314a candidate: novelty-bonus-on-action-value via SD-014 VALENCE_WANTING write at unfamiliar z_world locations. Wittmann 2008 supports the architectural commitment that novelty deserves its own substrate channel within MECH-314.",
+    "mapping_caveat": "The paper uses perceptual familiarity in a discrete-stimulus choice task. REE's continuous-state grid environment requires a continuous-novelty signal -- e.g., distance from frequently-visited z_world cells. The mapping is plausible but the operationalisation differs.",
+    "source_context": "fMRI four-armed-bandit-with-novel-stimuli task in healthy adult humans; Wellcome Trust Centre for Neuroimaging UCL."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Neuron venue, well-cited. Mapping fidelity moderate because perceptual-stimulus novelty differs from continuous-state-space novelty in REE's grid env."
+  }
+}

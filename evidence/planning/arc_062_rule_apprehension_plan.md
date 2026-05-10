@@ -346,9 +346,9 @@ The resume primitive. Updated every session that touches this cluster.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-A | 1 | done | nothing | Substrate landed (ree_core/policy/gated_policy.py + use_gated_policy flag + REEAgent wiring + 5 contract tests + V3-EXQ-542 substrate-readiness diagnostic 5/5 PASS) | V3-EXQ-542 | 2026-05-09 |
-| GAP-B | 2 | queued | runner pickup | V3-EXQ-543 queued (single-arm core 2-arm contrast at ARM_1_med density per "single-arm Phase 2 first" guidance; C2/C3/C4 measured with C1 non_contributory; F1/F2 falsifier signatures pre-registered). Density-gradient sub-arms ARM_1_low/med/high and R1 input-ablation ARM_1a/b/c held for Phase 2b on PASS | V3-EXQ-543 | 2026-05-09 |
-| GAP-C | 3 | open | GAP-B PASS | Wire discriminator output into LateralPFCAnalog.update() source vector | TBD | 2026-05-09 |
-| GAP-D | 3 | open | GAP-C | Add bias head params to E3 optimiser; default-flag flip; queue GAP-1 validation EXQ | TBD | 2026-05-09 |
+| GAP-B | 2 | ran_inconclusive | V3-EXQ-543b pickup | V3-EXQ-543 ran (script declared PASS; reclassified non_contributory 2026-05-10 -- C3 divide-by-near-zero artifact, ARM_1c seed-2 byte-identical to ARM_0 seed-2 (untrained gating inert), C2 state-dependence FAILED). Phase 2a-at-init test design has a known interpretive hole: untrained gating + sigmoid-near-0.5 init produces either inert clones of baseline or random-init disruption, neither of which falsifies MECH-309 cleanly. Skip Phase 2b density-gradient and Phase 2b R1 input-ablation -- both inherit the same defect. Successor V3-EXQ-543b promoted to GAP-B owner: jumps to Phase 3 design (gated_policy params in optimizer + phased training + behavioral-divergence probe per session feedback "if rule apprehension is rough-and-ready, we need a rough-and-ready means of ensuring the rule apprehended is behaviourally different"). | V3-EXQ-543b | 2026-05-10 |
+| GAP-C | 3 | open | GAP-B (via V3-EXQ-543b) PASS | Wire discriminator output into LateralPFCAnalog.update() source vector. NOTE 2026-05-10: GAP-C scope partially absorbed into V3-EXQ-543b (gated_policy params in optimizer is a Phase-3 deliverable). Remaining GAP-C work: explicit LateralPFCAnalog wiring after 543b PASS confirms training-time gating produces behavioral divergence. | TBD | 2026-05-10 |
+| GAP-D | 3 | open | GAP-C | Add bias head params to E3 optimiser; default-flag flip; queue GAP-1 validation EXQ. NOTE 2026-05-10: bias-head-in-optimizer also partially absorbed into 543b. | TBD | 2026-05-10 |
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
 | GAP-F | 5 | deferred V4 | GAP-E outcome | none in V3 | n/a | 2026-05-09 |
 | GAP-G | 5 | deferred V4 | sleep_substrate plan progression | Pull C lit-pull (sleep-vs-waking refinement biology) when ARC-063 V4 work opens | n/a | 2026-05-09 |
@@ -443,6 +443,94 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - GAP-B reclassified non_contributory; jump to Phase 3 design (V3-EXQ-543b)
+
+V3-EXQ-543 ran (3062s elapsed, manifest
+`v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier_20260509T214517Z_v3.json`).
+Script declared `outcome=PASS, pass_rule_met=true (n_criteria_passed=2: C3+C4)`.
+On review the PASS was reclassified `non_contributory` for all three tagged
+claims (MECH-309, ARC-062, SD-029). Three independent issues, each sufficient
+on its own to disqualify the result as a falsifier of MECH-309:
+
+1. **C3 (risk-type dissociation) is a divide-by-near-zero artifact.** ARM_1c
+   seed 0 had `transit_hazard_rate=0.0` (zero transit-regime hazards), so
+   `risk_type_ratio = forage_rate / ~0 = 74883`. The arm-mean (24961) is
+   dominated by that single seed. Per-seed ratios for ARM_1c are
+   `[74883, 0.022, 0.024]` -- two of three seeds are *below* ARM_0's mean of
+   0.082. C3 measured degenerate-trajectory geometry, not a behavioral
+   dissociation between forage and transit risk weighting.
+2. **ARM_1c seed 2 is byte-identical to ARM_0 seed 2.** Every reported metric
+   matches exactly: mean_reef_fraction (0.26598), rho_drive_vs_reef (-0.0283),
+   hazard rates, n_steps, per_episode_reef_fractions, warmup rewards. With
+   gated_policy params intentionally NOT in the optimizer (Phase 2a tested
+   structural-sufficiency-at-init) and `disc_init_scale=0.1` producing
+   sigmoid-near-0.5 gating, the gating layer was inert for this seed -- the
+   same RNG stream produced identical trajectories. The "random init breaks
+   symmetry" assumption was too weak.
+3. **C2 (state dependence) -- the criterion most directly tied to MECH-309's
+   rule-apprehension prediction -- FAILED.** ARM_1c mean_abs_rho=0.111 vs
+   ARM_0=0.291; the gated arm shows *less* state-dependent reef behavior, not
+   more. ARM_1c per-seed reef-fractions `[0.0, 0.0006, 0.266]` indicate seeds
+   0/1 abandoned reef-foraging entirely while seed 2 was the inert-gating
+   clone of baseline.
+
+**Design defect.** Phase 2a-at-init tested whether a randomly-initialised
+gating layer could produce structural sufficiency without training. That is
+not what MECH-309 predicts -- MECH-309 says trainers / agents *weight rules
+they do not invent*, which means rule apprehension is a learning-time
+acquisition under selection pressure, not an at-init property. With untrained
+gating + sigmoid-near-0.5 init, the only two outcomes available were
+(i) inert gating clones baseline (seed 2) or (ii) random-init noise disrupts
+baseline without producing context-conditional behavior (seeds 0/1). Neither
+falsifies MECH-309. Phase 2b density-gradient and Phase 2b R1 input-ablation
+sub-arms inherit the same defect and are skipped.
+
+**Skip-to-Phase-3 decision.** Successor V3-EXQ-543b becomes GAP-B owner and
+moves directly to Phase 3 design: gated_policy params *in* the optimizer,
+phased training schedule, with the additional instrumentation from session
+feedback below. GAP-C and GAP-D scopes partially absorb into 543b
+(specifically: gated_policy + bias-head added to E3 optimiser is a
+prerequisite of any meaningful training-time test of MECH-309). Remaining
+GAP-C work after 543b PASS is the explicit `LateralPFCAnalog.update()`
+wiring of the discriminator output.
+
+**Session feedback -- "rough-and-ready behavioral divergence check."** The
+session insight: if rule apprehension is itself a *quick rough-and-ready
+rule* (the MECH-309 framing), then we are missing a *quick rough-and-ready
+means of ensuring the rule apprehended is behaviourally different.* The
+EXQ-543 result demonstrates the gap: end-of-run reef-fraction / rho /
+risk-ratio statistics are too far downstream to detect inert gating until
+~50 minutes of compute have been spent. Worse, when they do detect it, the
+signal is contaminated by random-init disruption.
+
+V3-EXQ-543b will add a **behavioral-divergence probe**: every N training
+episodes (default N=5), sample policy action distributions at a fixed set of
+probe states under (a) `use_gated_policy=True` and (b) the baseline policy,
+then report mean action-mismatch rate (or KL divergence). The probe states
+should span the SD-054 reef context (high-density reef, transit corridor,
+mixed) so that any context-conditional gating shows up as divergence on the
+context-discriminative subset and convergence elsewhere. Pre-registered
+inert-gating threshold: if mean mismatch rate stays below 0.05 by mid-
+training, flag the run as inert-gating and short-circuit (mark
+`non_contributory: inert_gating_detected_during_training`). This is the
+"rough-and-ready" instrumentation -- it does not assert MECH-309 itself, but
+it ensures the substrate is actually generating differentiable behavior
+before the downstream falsifier metrics are even read.
+
+Acceptance for V3-EXQ-543b: same C2/C3/C4 + F1/F2 grid as 543, *plus* the
+divergence-probe gate. Run is `non_contributory` if probe gate fails
+(inert gating, no behavioral signal to interpret). Run is a clean falsifier
+attempt if probe gate passes (mean mismatch >= 0.05 by mid-training across
+seeds), in which case C2/C3/C4/F1/F2 are interpreted on their original
+acceptance grid. C3 dissociation calculation will be hardened against the
+divide-by-near-zero artifact (require `transit_hazard_rate > 0.05` for the
+per-seed ratio to enter the arm-mean; otherwise the seed contributes
+`np.nan` and the arm-mean uses `np.nanmean`, with seed-count reported).
+
+Status table updated: GAP-B `queued -> ran_inconclusive`, owner-EXQ shifted
+to V3-EXQ-543b (to be queued same session). GAP-C/GAP-D last-updated
+forwarded to 2026-05-10 with the partial-absorption note.
 
 ### 2026-05-09 - GAP-A done (Phase 1 substrate landed; V3-EXQ-542 5/5 PASS)
 

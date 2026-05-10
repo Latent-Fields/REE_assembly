@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_065_behavioral_diversity_generation",
+  "entry_id": "2026-05-10_arc_065_directed_random_exploration_wilson_2014",
+  "timestamp_utc": "2026-05-10T07:16:40Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Humans use directed and random exploration to solve the explore-exploit dilemma",
+    "authors": ["Robert C Wilson", "Andra Geana", "John M White", "Elliot A Ludvig", "Jonathan D Cohen"],
+    "year": 2014,
+    "venue": "Journal of Experimental Psychology: General",
+    "doi": "10.1037/a0038199",
+    "pmid": "25347535"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Direct behavioural-modeling demonstration in humans (Princeton lab) that BOTH directed information-seeking AND random decision noise contribute to exploration; horizon manipulation dissociates the two. Highest-relevance single paper for R1 (structured-vs-noise verdict) -- the data force the both-channels-needed reading. Confidence not 1.0 because it is a single behavioural paradigm (Horizon task), and primate / lesion replication is more limited than the human modelling.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Either-or arguments for behavioural diversity (curiosity-only or noise-only) are predicted to fail to explain horizon-dependent shifts in both information-seeking AND decision noise that this study quantifies.",
+    "An REE substrate that implements only structured curiosity (no stochastic floor) should fail to reproduce the random-exploration component of the longer-horizon condition; one that implements only noise should fail to reproduce the directed information-seeking component."
+  ],
+  "tags": ["arc_065", "exploration", "explore_exploit", "behavioral_diversity", "directed_exploration", "random_exploration"],
+  "mapping": {
+    "source_claim_statement": "Humans solve the explore-exploit dilemma using two strategies in parallel: directed exploration (choices explicitly biased toward information-seeking) and random exploration (decision noise produces exploration by chance). Both contributions scale with horizon length.",
+    "ree_translation": "ARC-065 behavioral_diversity_generation_pathway must include BOTH a structured channel (curiosity / information-gain bias on E3 score_bias; candidate MECH-314) AND a stochastic channel (action-policy noise floor; candidate MECH-313). Wilson 2014 falsifies any single-channel reading of the substrate. R1 verdict: (c) both-channels-needed.",
+    "mapping_caveat": "The Horizon task measures choice in a discrete N-armed bandit with explicit horizon information; REE agents face a continuous-state grid environment without explicit horizon awareness. The qualitative dual-channel finding is robust across many task variants in the Wilson lab and others, but the magnitudes of the two channels' contributions in REE will need to be empirically calibrated; Wilson's parameter values do not transfer directly.",
+    "source_context": "Horizon task with N-armed bandit, healthy adult human participants, Princeton Neuroscience Institute (Wilson, Geana, White, Ludvig, Cohen)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "JEP General is a top-tier behavioural-psychology venue; methods are clean and the model-fitting is rigorous. Mapping fidelity is high for the qualitative both-channels claim; transfer risk is moderate because the bandit-with-known-horizon paradigm differs from REE's open-ended grid environment, and the relative weight of directed vs random channels is task-dependent."
+  }
+}

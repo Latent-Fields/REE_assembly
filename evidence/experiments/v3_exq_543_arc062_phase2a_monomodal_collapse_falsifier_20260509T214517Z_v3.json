@@ -12,12 +12,13 @@
     "SD-029"
   ],
   "outcome": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-309": "supports",
-    "ARC-062": "supports",
-    "SD-029": "supports"
+    "MECH-309": "non_contributory",
+    "ARC-062": "non_contributory",
+    "SD-029": "non_contributory"
   },
+  "evidence_direction_note": "Reclassified 2026-05-10T04:23Z (session exq543-reclassify) from supports->non_contributory. Script's pass_rule_met=true is an artifact, not a behavioral falsifier of MECH-309. Three independent issues: (1) C3 risk_type_dissociation 'pass' is a divide-by-near-zero artifact -- ARM_1c seed 0 has transit_hazard_rate=0.0 (zero transit-regime hazards), making risk_type_ratio=forage_rate/~0=74883; the per-arm mean (24961) is dominated by that single seed. Per-seed ratios for ARM_1c are [74883, 0.022, 0.024] -- two of three seeds are below ARM_0's mean of 0.082. C3 measures degenerate-trajectory geometry, not behavioral dissociation. (2) ARM_1c seed 2 has byte-identical metrics to ARM_0 seed 2 (mean_reef_fraction, rho_drive_vs_reef, hazard rates, n_steps, per_episode_reef_fractions, warmup rewards all match exactly). With gated_policy params intentionally NOT in the optimizer (Phase 2a structural-sufficiency-at-init test) and disc_init_scale=0.1 producing sigmoid-near-0.5 gating, the gating layer was inert for this seed -- the same RNG stream produced identical trajectories. (3) C2_state_dependence -- the criterion most directly tied to MECH-309's rule-apprehension prediction -- FAILED: ARM_1c mean_abs_rho=0.111 vs ARM_0=0.291 (gated arm shows LESS state-dependent reef behavior, not more). ARM_1c per-seed reef-fractions [0.0, 0.0006, 0.266] indicate seeds 0/1 abandoned reef-foraging entirely, while seed 2 was the inert-gating clone of baseline. Phase 2a-at-init was not a clean test of structural sufficiency -- random-init noise dominates the behavioral signal in either direction. Successor V3-EXQ-543b will execute Phase 3 (gated_policy in optimizer + phased training + behavioral-divergence probe to detect inert gating during training rather than post-hoc).",
   "metrics": {
     "arm_summaries": {
       "ARM_0_baseline": {

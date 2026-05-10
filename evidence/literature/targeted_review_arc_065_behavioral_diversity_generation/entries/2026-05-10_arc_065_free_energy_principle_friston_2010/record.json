@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_065_behavioral_diversity_generation",
+  "entry_id": "2026-05-10_arc_065_free_energy_principle_friston_2010",
+  "timestamp_utc": "2026-05-10T07:16:40Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "The free-energy principle: a unified brain theory?",
+    "authors": ["Karl Friston"],
+    "year": 2010,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2787",
+    "pmid": "20068583"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational FEP review establishing the unified-action-perception-learning framework that grounds the structured-exploration arm. Loaded venue (NRN) and high-impact theoretical contribution. Confidence not higher because FEP-as-empirical-substrate is contested in the literature -- the paper makes a unified-theory claim that is not itself directly testable; downstream empirical predictions are testable but mostly via active-inference instantiations (cf. Friston 2015 PMID 25689102).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If FEP is fundamentally wrong about the substrate of exploration (epistemic-value-as-free-energy is not a real biological computation), the structured-exploration arm of ARC-065 loses its primary theoretical grounding; only the noise arm (Faisal 2008) and pragmatic curiosity instantiations (Schmidhuber/Pathak) remain.",
+    "REE substrates that make precision-minimisation a load-bearing computation (MECH-269b V_s rollout gating, SD-032b dACC adaptive control with PE-precision modulation) implicitly endorse the FEP framework; if FEP is wrong they are at risk too."
+  ],
+  "tags": ["arc_065", "free_energy_principle", "active_inference", "exploration", "epistemic_value"],
+  "mapping": {
+    "source_claim_statement": "The free-energy principle proposes that biological systems minimise the surprise (or equivalently, the variational free energy) of their sensory states. This unifies action, perception, and learning under a single optimisation framework. Exploration is reinterpreted as minimisation of expected free energy, which has both extrinsic-value (reward-seeking) and epistemic-value (uncertainty-reducing) components.",
+    "ree_translation": "ARC-065 MECH-314 curiosity-bonus channel has a principled grounding in expected-free-energy minimisation: agents explore to reduce uncertainty about model parameters, not just to maximise reward. The structured-exploration arm of R1 has FEP as its theoretical anchor. REE's existing precision-modulation substrates (MECH-269b V_s rollout gating, SD-032b dACC adaptive control PE-precision) are FEP-aligned, so wiring MECH-314 in this framework is internally coherent.",
+    "mapping_caveat": "The FEP is a unified theory whose status as an empirical claim is contested. Friston's theoretical commitment is that all brain function reduces to free-energy minimisation; many neuroscientists treat this as too strong. REE's commitment is more local: precision-weighted prediction error is a real computation with substrate consequences (substrate-landed via MECH-269b et al.). The exploration-as-epistemic-value reading is well-defined in FEP and has computational instantiations (see Friston 2015 PMID 25689102) but is not yet directly tested in REE.",
+    "source_context": "Nature Reviews Neuroscience review by Friston (UCL Wellcome Centre for Neuroimaging); cited >5000 times; foundational FEP synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Foundational venue. Mapping fidelity moderate because FEP is a unified theoretical framework whose empirical substrate-level commitments require additional papers to instantiate (Friston 2015 active inference + epistemic value provides the operational instantiation -- see paired entry)."
+  }
+}

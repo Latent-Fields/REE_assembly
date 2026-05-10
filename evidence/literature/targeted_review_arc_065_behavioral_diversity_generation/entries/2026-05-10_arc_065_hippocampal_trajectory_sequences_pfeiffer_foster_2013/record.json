@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_065_behavioral_diversity_generation",
+  "entry_id": "2026-05-10_arc_065_hippocampal_trajectory_sequences_pfeiffer_foster_2013",
+  "timestamp_utc": "2026-05-10T07:16:40Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": ["Brad E Pfeiffer", "David J Foster"],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "pmid": "23594744"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct hippocampal place-cell recording in freely-moving rats showing forward-trajectory sequences predicting future goal-directed paths. Provides one of the substrate candidates for behavioural diversity generation -- hippocampal forward sequences as the option-proposal mechanism. Already cross-referenced by REE substrates MECH-292 ranked ghost-goal bank, MECH-293 awake ghost-goal probes; this paper grounds the relevance to ARC-065 specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that generates behavioural diversity only through downstream stochastic / curiosity channels (no proposal-side mechanism) will fail to reproduce the goal-biased trajectory-proposal pattern Pfeiffer & Foster document.",
+    "If hippocampal-replay-driven proposal is REDUNDANT in REE (covered by existing CEM trajectory generation + MECH-293 ghost-goal probes), this paper would predict no additional diversity-generation capacity from a separate proposal-side mechanism."
+  ],
+  "tags": ["arc_065", "hippocampus", "place_cells", "trajectory_sequences", "goal_directed", "option_proposal"],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation, the rat hippocampus generates brief place-cell sequences encoding spatial trajectories that progress from current location to known goals. The sequences predict immediate future behaviour and encode novel start-goal combinations.",
+    "ree_translation": "ARC-065 may include a proposal-side diversity channel via hippocampal-style trajectory-sampling. REE already partially instantiates this through MECH-293 awake ghost-goal probes and the CEM trajectory generator in HippocampalModule. Pfeiffer & Foster supports the architectural commitment that proposal diversity (sampling many candidate trajectories) is a substrate component of behavioural diversity, complementary to action-selection-side stochasticity (MECH-313) and curiosity (MECH-314). Candidate sub-MECH: MECH-315 proposal-diversity-channel.",
+    "mapping_caveat": "The paper documents the existence of forward-trajectory sequences in rats; it does not directly establish that these sequences are the *substrate of behavioural diversity* in the explore-exploit sense. The mapping is plausible and well-rehearsed in the hippocampal-MCTS literature (Mattar & Daw 2018, Pfeiffer 2020 review), but the diversity-generation claim is one inferential step beyond what Pfeiffer & Foster directly demonstrate.",
+    "source_context": "Place-cell electrophysiology in freely-moving rats during open-arena goal-directed navigation; Foster lab Johns Hopkins."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Nature venue, foundational. Mapping fidelity moderate because the diversity-generation interpretation is one inferential step beyond the paper's direct claim about goal-biased trajectory sequences."
+  }
+}

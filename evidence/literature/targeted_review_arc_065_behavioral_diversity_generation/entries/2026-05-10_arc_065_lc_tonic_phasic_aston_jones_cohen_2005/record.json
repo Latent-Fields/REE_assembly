@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_065_behavioral_diversity_generation",
+  "entry_id": "2026-05-10_arc_065_lc_tonic_phasic_aston_jones_cohen_2005",
+  "timestamp_utc": "2026-05-10T07:16:40Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": ["Gary Aston-Jones", "Jonathan D Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "pmid": "16022602"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Foundational integrative theory grounded in monkey neurophysiology + computational modelling. Establishes the LC-NE tonic/phasic dual-mode framework that has anchored the explore-exploit-circuit literature for two decades. Highest-relevance R2 paper (which biological circuit generates diversity) and the load-bearing R4 paper (continuous vs triggered: LC-NE provides BOTH tonic background and phasic triggered modes -- not a clean either/or).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that does not implement an arousal-mode-switch analog (continuous tonic baseline gain + phasic triggered transitions) will fail to reproduce LC-NE-style mode-shift signatures: gradual increase in decision noise as task utility wanes, then phasic sharpening on task-relevant stimuli.",
+    "If LC-NE-equivalent functionality is REDUNDANT in REE (collapsible into existing dACC / SD-037 substrates), the model should still recover Aston-Jones-style behavioural signatures from those existing substrates; if not, ARC-065 needs a separate arousal-mode-switch claim."
+  ],
+  "tags": ["arc_065", "locus_coeruleus", "norepinephrine", "tonic_phasic", "exploration", "arousal", "mode_switching"],
+  "mapping": {
+    "source_claim_statement": "LC-NE neurons have two modes: phasic (decision-outcome-driven, facilitates task exploitation) and tonic (sustained elevated activity associated with disengagement and exploration). Anterior cingulate and orbitofrontal inputs gate these modes. The tonic-phasic switch is the substrate for the explore-exploit transition.",
+    "ree_translation": "ARC-065 needs both a continuous background diversity-generation channel (analog of LC tonic mode -- e.g., a softmax-temperature floor or persistent noise injection) and a triggered transitional channel (analog of LC phasic-to-tonic mode shift on declining utility -- e.g., a volatility-detection trigger that elevates the diversity gain). R4 verdict: behavioral diversity is BOTH continuous AND triggered (not either/or). Existing REE candidates: MECH-104 LC-NE volatility surprise spike (already registered) is the triggered-arm anchor; no continuous-background equivalent is yet substrate-landed -- this is the gap ARC-065 fills.",
+    "mapping_caveat": "Aston-Jones & Cohen's framework was developed primarily from monkey LC single-unit recordings on simple decision tasks; its application to embodied open-ended foraging environments like REE is well-established theoretically (e.g., FEP-active-inference framings) but less directly tested empirically. The tonic-phasic mode partition may be coarser than the actual circuit dynamics; cf. more recent multi-modular LC literature (Schwarz 2015, Totah 2018).",
+    "source_context": "Annual Reviews integrative theory paper synthesising monkey LC electrophysiology (Aston-Jones lab) + computational modelling (Cohen group, Princeton). Cited >5000 times; foundational for explore-exploit neural circuitry."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Annual Reviews venue + foundational status; high source quality. Mapping fidelity strong for the dual-mode pattern; transfer risk moderate because mapping LC-NE onto REE requires choosing which existing substrate plays the LC role (MECH-104 already labelled the volatility-spike role; the tonic-baseline role is unfilled)."
+  }
+}
