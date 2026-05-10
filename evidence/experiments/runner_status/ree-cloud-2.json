@@ -1,29 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 1123,
-  "runner_started_at": "2026-05-10T13:52:19.204362+00:00",
-  "last_updated": "2026-05-10T16:45:57.894784+00:00",
+  "runner_pid": 664,
+  "runner_started_at": "2026-05-10T20:56:09.526370+00:00",
+  "last_updated": "2026-05-10T20:56:13.090131+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-514h",
+      "queue_id": "V3-EXQ-514i",
       "backlog_id": "",
-      "claim_id": "SD-049",
-      "title": "SD-049 BG gating wider-seed sweep under StepHarness, Tier-1 diagnostic re-run after V3-EXQ-514g interruption (supersedes V3-EXQ-514g)",
+      "claim_id": "",
+      "title": "SD-049 BG gating wider-seed sweep under StepHarness, Tier-1 diagnostic re-run after 514h manifest lost to mid-completion SIGTERM (supersedes V3-EXQ-514h)",
       "description": "",
       "estimated_minutes": 72.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-543b",
-      "backlog_id": "",
-      "claim_id": "MECH-309",
-      "title": "ARC-062 Phase 3-corrected monomodal-collapse falsifier on SD-054 (gated_policy in optimizer + phased training + divergence probe + hardened C3)",
-      "description": "",
-      "estimated_minutes": 86.4,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2011,6 +2000,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 2.2
+    },
+    {
+      "queue_id": "V3-EXQ-547",
+      "backlog_id": "",
+      "claim_id": "MECH-320",
+      "title": "MECH-320 (ARC-066 child) tonic_vigor_coupling_score_bias substrate-readiness diagnostic (6 sub-tests UC1-UC6)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-547 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-547.json",
+      "started_at": "2026-05-10T20:56:10.988037+00:00",
+      "completed_at": "2026-05-10T20:56:13.089935+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2.1
     }
   ]
 }
