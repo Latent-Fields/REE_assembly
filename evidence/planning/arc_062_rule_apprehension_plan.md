@@ -346,7 +346,7 @@ The resume primitive. Updated every session that touches this cluster.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-A | 1 | done | nothing | Substrate landed (ree_core/policy/gated_policy.py + use_gated_policy flag + REEAgent wiring + 5 contract tests + V3-EXQ-542 substrate-readiness diagnostic 5/5 PASS) | V3-EXQ-542 | 2026-05-09 |
-| GAP-B | 2 | ran_inconclusive | V3-EXQ-543b pickup | V3-EXQ-543 ran (script declared PASS; reclassified non_contributory 2026-05-10 -- C3 divide-by-near-zero artifact, ARM_1c seed-2 byte-identical to ARM_0 seed-2 (untrained gating inert), C2 state-dependence FAILED). Phase 2a-at-init test design has a known interpretive hole: untrained gating + sigmoid-near-0.5 init produces either inert clones of baseline or random-init disruption, neither of which falsifies MECH-309 cleanly. Skip Phase 2b density-gradient and Phase 2b R1 input-ablation -- both inherit the same defect. Successor V3-EXQ-543b promoted to GAP-B owner: jumps to Phase 3 design (gated_policy params in optimizer + phased training + behavioral-divergence probe per session feedback "if rule apprehension is rough-and-ready, we need a rough-and-ready means of ensuring the rule apprehended is behaviourally different"). | V3-EXQ-543b | 2026-05-10 |
+| GAP-B | 2 | queued | V3-EXQ-543b run | V3-EXQ-543 ran (script declared PASS; reclassified non_contributory 2026-05-10 -- see decision-log "GAP-B reclassified non_contributory; jump to Phase 3 design"). Successor V3-EXQ-543b authored 2026-05-10 same day, smoke-PASS, queued (Mac, 120 min). Four corrections: (A) gated_policy.parameters() in dedicated Adam during P1 (LR_GATED_POLICY=5e-4); (B) phased training P0=40 encoder warmup -> P1=60 frozen-encoder + scaffolding diversification loss (head-pair output L2 + discriminator output variance) -> P2=8 eval; (C) behavioral-divergence probe at PROBE_INTERVAL_P1_EPS=5, mid-P1 inert-gating short-circuit at MID_TRAINING_EP=30 with INERT_GATING_THRESHOLD=0.05 TV-distance; (D) hardened C3 with C3_TRANSIT_RATE_FLOOR=0.05 + np.nanmean + min 2 valid seeds per arm. P1 training is scaffolding pressure (NOT REINFORCE on env reward); full REINFORCE deferred to Phase 3 GAP-C/D. Awaiting runner pickup. | V3-EXQ-543b | 2026-05-10 |
 | GAP-C | 3 | open | GAP-B (via V3-EXQ-543b) PASS | Wire discriminator output into LateralPFCAnalog.update() source vector. NOTE 2026-05-10: GAP-C scope partially absorbed into V3-EXQ-543b (gated_policy params in optimizer is a Phase-3 deliverable). Remaining GAP-C work: explicit LateralPFCAnalog wiring after 543b PASS confirms training-time gating produces behavioral divergence. | TBD | 2026-05-10 |
 | GAP-D | 3 | open | GAP-C | Add bias head params to E3 optimiser; default-flag flip; queue GAP-1 validation EXQ. NOTE 2026-05-10: bias-head-in-optimizer also partially absorbed into 543b. | TBD | 2026-05-10 |
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
@@ -448,6 +448,108 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - Pending FAIL triage: ARC-065 dependents reclassified non_contributory
+
+Triggered by user observation: with ARC-065 (behavioral-diversity-generation
+pathway) registered as a foundational upstream cluster on 2026-05-10, a number
+of completed experiments that appeared to have FAILed are actually
+non_contributory because they require behavioural diversity AS INPUT (not as
+output) and the agent is presently in monomodal collapse without ARC-065
+substrate landed.
+
+Reclassifications (all in REE_assembly/evidence/experiments/):
+
+- **V3-EXQ-418l** (SD-017 sleep action_bias_div discriminative pair):
+  with_action_bias_div = without_action_bias_div = 0.000450 bit-identical
+  every seed; signed_diff = 0.0; abs_diff = 0.0; slot_diversity also
+  bit-identical. Sleep cannot diversify what was never diverse.
+  Reclassified `evidence_direction: weakens -> non_contributory`.
+- **V3-EXQ-436a** (SD-017 + ARC-045 + MECH-166 sleep refinement of
+  context-conditioned harm threshold): waking and SWS_THEN_REM produced
+  bit-identical slot_cosine_sim and harm_rate_dangerous in every seed
+  (seed 42: waking 0.000966 = SWS_THEN_REM 0.000966 for slot; waking
+  0.003697 = SWS_THEN_REM 0.003697 for harm_dang). Sleep refinement of
+  bit-identical waking content can only produce bit-identical sleep
+  content. Reclassified `evidence_direction: weakens -> non_contributory`
+  for all three claims.
+- **V3-EXQ-530c** (ARC-016 dynamic-precision precision-to-commit pathway):
+  ARM_0 (use_dacc=False) and ARM_1 (use_dacc=True) bit-identical at
+  commit_rate=1.0 and precision=211.85. Precision-to-commit pathway
+  cannot register signal under saturated commit policy. Reclassified
+  `evidence_direction: weakens -> non_contributory`. Supersedes the
+  morning-digest /diagnose-errors deferral with the upstream-substrate
+  explanation; Q-042 contract test C0 (rv differs from precision_init)
+  was passed -- the issue is downstream behavioural saturation, not
+  rv liveness.
+
+NOT reclassified -- one pending FAIL:
+
+- **V3-EXQ-141d** (MECH-111 novelty drive ablation): per_seed_action_
+  divergence ~56% (actions DO diverge), but mean_entropy_gap = 7.4e-15
+  and mean_cell_gap = -0.67. This experiment IS the diversity-generator
+  test, not a diversity consumer. Kept `evidence_direction: weakens`
+  against MECH-111 specifically (falsifies the strong reading: novelty-
+  bonus-alone-produces-diversity), but added cross-link note tying its
+  FAIL pattern to ARC-065 R1 BOTH-CHANNELS-NEEDED verdict (novelty
+  bonus alone insufficient without LC-NE-tonic noise floor MECH-313).
+  Read together with the cluster registration, this run is informative
+  evidence FOR the multi-channel cluster shape.
+
+Precedent for the pattern: SD-029 retest cohort (V3-EXQ-433 / 433a /
+433b / 470 reclassified non_contributory 2026-04-25 .. 2026-05-08
+because monomodal policy could not generate balanced agent-vs-env
+event distributions for C2 / C3 measurement; substrate -- scheduled_
+external_hazard env knob -- was in place). Today's reclassification
+generalises that precedent from "substrate-not-generating-balanced-
+events" to "substrate-not-generating-behavioural-diversity-period",
+which is the ARC-065 cluster's whole reason to exist.
+
+How this came about (root-cause reflection): ARC-065 was registered
+2026-05-10 (today) but the experiments above were authored across
+2026-05-08 .. 2026-05-09, before the cluster existed. The sleep_
+substrate_plan.md GAP-2 owner-EXQ list (265a + 418l + 436a + 500a +
+503a) was framed against an implicit assumption that the agent would
+have natural waking diversity for sleep to refine. The 543/543b
+sequence and the cluster registration revealed that the assumption
+was load-bearing and not yet substantiated. There is no question of
+"work that should have been blocked" in a strict sense -- the gating
+claim (ARC-065) did not exist when the experiments were authored.
+What was missing was a registered upstream behavioural-diversity
+precondition. Now that ARC-065 is registered, we have the gate.
+
+What is now blocked given ARC-065:
+
+| Plan / cohort | Blocking | Resume condition |
+|---|---|---|
+| sleep_substrate_plan.md GAP-2 (Phase 2 owner-EXQ list 418l + 436a + 500a + 503a) | upstream-blocked by ARC-065 substrate | V3-EXQ-543b/c PASS demonstrating non-degenerate behavioural diversity in waking phase, then re-queue 418m / 436b / 500b / 503b under the diversity-substrate stack |
+| arc_062 GAP-B (already ran_inconclusive) | already in V3-EXQ-543b pickup | unchanged -- 543b is the falsifier path |
+| arc_062 GAP-C / GAP-D (Phase 3 wiring) | downstream of GAP-B / V3-EXQ-543b PASS | unchanged |
+| Future ARC-016 / dACC precision-to-commit retests | upstream-blocked by ARC-065 substrate | ARC-065 substrate produces non-degenerate cross-seed commit-rate variation, then re-queue V3-EXQ-530d |
+| Future SD-029 retests | upstream-blocked by ARC-065 (and MECH-269 V_s -- pre-existing) | ARC-065 + MECH-269 V_s both landed |
+
+Sub-plan note for rule apprehension: ARC-065 cluster is a SIBLING
+plan to arc_062 rather than a sub-plan. The dependency direction is
+ARC-065 (foundational, depends_on []) -> ARC-062 (top-down rule
+selection, presupposes diversity to choose between) and ARC-064
+(bottom-up rule extraction, presupposes diversity to extract patterns
+from). The arc_062 plan-doc currently contains the cluster
+registration in its decision log (2026-05-10 entry above this one);
+if ARC-065 / ARC-064 substrate work grows beyond what the arc_062
+status table can absorb, the appropriate move is to spin up
+`arc_065_behavioral_diversity_plan.md` and `arc_064_bottom_up_rule_
+extraction_plan.md` as siblings to this plan, with cross-plan-link
+fields wiring them into the gap inventories. Defer until V3-EXQ-543b
+PASS clarifies which substrate ARC-065 actually needs.
+
+Files touched: REE_assembly/evidence/experiments/v3_exq_418l_*,
+v3_exq_436a_*, v3_exq_530c_*, v3_exq_141d_* manifests
+(evidence_direction + evidence_direction_per_claim +
+evidence_direction_note); REE_assembly/evidence/experiments/review_
+tracker.json (4 reviewed_run_ids appended; last_review_utc forwarded;
+discussion_notes session-block appended); arc_062_rule_apprehension_
+plan.md (this entry); sleep_substrate_plan.md (GAP-2
+upstream-block note); WORKSPACE_STATE.md; TASK_CLAIMS.json.
 
 ### 2026-05-10 - Cluster registration session: ARC-064 + ARC-065 + MECH-312 sub-MECH split + MECH-319 registered
 
@@ -614,6 +716,60 @@ are registered with different functional content per Pull 1-4
 verdicts). Out of scope for this session per the prompt's "DO NOT
 MODIFY MECH-094" rule (which extended in spirit to ARC-063 stale
 cross-references); flag for separate cleanup session.
+
+### 2026-05-10 - V3-EXQ-543b authored + queued (Phase 3-corrected falsifier)
+
+V3-EXQ-543b authored same session as the reclassify decision. Script
+`ree-v3/experiments/v3_exq_543b_arc062_phase3_optimized_falsifier.py`
+implements the four corrections from the reclassify entry (CORRECTION A
+gated_policy params in optimizer; CORRECTION B phased training P0=40 / P1=60 /
+P2=8; CORRECTION C behavioral-divergence probe with mid-training inert-gating
+short-circuit; CORRECTION D hardened C3 with transit-rate floor and nanmean).
+
+P1 training-pressure honest scope. Per the design-trade discussion in this
+session: rigorous REINFORCE on environmental reward would require accessing
+E3 raw candidate scores at decision time and re-running gated_policy forward
+with grad on cached features at episode end -- doable but adds significant
+agent.py modification surface for one experiment. The 543b script instead
+uses a SCAFFOLDING DIVERSIFICATION LOSS in P1 (negative head-pair output L2
++ negative discriminator output variance, sampled over a static probe buffer
+collected during P0). This guarantees gated_policy parameters MOVE under any
+non-trivial gradient pressure, satisfying the "in optimizer" requirement
+from the reclassify spec. The behavioral-divergence probe (CORRECTION C) is
+the architectural test: does the parameter movement translate to
+context-conditional behavioral divergence on SD-054? If yes, the C2/C3/C4
+acceptance grid applies. If no (probe TV-distance below 0.05 at mid-P1),
+the seed/arm is marked non_contributory_inert_gating. Full REINFORCE-on-
+environmental-reward is deferred to Phase 3 GAP-C/D when the discriminator
+is wired into SD-033a LateralPFCAnalog.update() and the bias head joins the
+composite E3 optimizer (commitment_closure GAP-1).
+
+Smoke verification (`--dry-run`, p0_eps=3 / p1_eps=4 / p2_eps=2,
+steps_per_episode=30, 3 seeds x 2 arms): script runs end-to-end in 175s,
+manifest writes correctly, sentinel emitted, ARM_1c probe collects 32 states
+with applicable=True. Probe mean_tv=0.0 in dry-run is expected (only 4 SGD
+steps total; contract test C4 needed 200 SGD steps to see >5x head
+divergence). Full run has P1=60 episodes x 4 SGD steps/ep = 240 steps,
+above the 200 demonstrated to produce divergence.
+
+Substrate readiness: ARC-062 GatedPolicy (landed 2026-05-09 GAP-A done) is
+the only V3 substrate this experiment depends on. No additional substrate
+work required. The MECH-313 / MECH-314 / MECH-318 / MECH-319 substrate gap
+identified in the cluster-registration session is NOT in this experiment's
+scope -- per the reclassify spec, V3-EXQ-543b is the corrected Phase 2
+falsifier on the existing GatedPolicy substrate alone. The cluster-
+registration session's expanded V3-EXQ-543b/c definitions (Q-043 noise-
+floor sweep, Q-045 4-arm ablation, MECH-314a/b/c absorption check, MECH-318
+absorption check) are deferred to follow-on experiments after the
+underlying substrate lands via /lit-pull + /implement-substrate sessions
+for MECH-313, MECH-314 (a/b/c), MECH-318, MECH-319.
+
+Queue entry: Mac (DLAPTOP-4.local), priority=2, estimated_minutes=120,
+episodes_per_run=108, seeds=3, conditions=2, supersedes=V3-EXQ-543. Smoke
+PASS; validate_queue OK.
+
+Status table updated: GAP-B `ran_inconclusive -> queued`; owner-EXQ
+V3-EXQ-543b retained.
 
 ### 2026-05-10 - GAP-B reclassified non_contributory; jump to Phase 3 design (V3-EXQ-543b)
 
