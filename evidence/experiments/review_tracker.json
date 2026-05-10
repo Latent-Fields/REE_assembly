@@ -1,7 +1,11 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-10T12:13:00Z",
+  "last_review_utc": "2026-05-10T12:18:36Z",
   "discussed_experiment_dirs": [
+    "V3-EXQ-449c",
+    "V3-EXQ-455a",
+    "V3-EXQ-495",
+    "V3-EXQ-538",
     "V3-EXQ-542",
     "V3-EXQ-544",
     "V3-EXQ-445",
@@ -2435,6 +2439,17 @@
         "V3-EXQ-544"
       ],
       "subject": "False-ERROR triage of two ARC-062 / ARC-065 substrate-readiness diagnostics. Both V3-EXQ-542 (ARC-062 Phase 1 gated-policy substrate-readiness, 5/5 PASS) and V3-EXQ-544 (MECH-313/ARC-065 stochastic_noise_floor substrate-readiness, 5/5 PASS) wrote PASS manifests to evidence/experiments/ but were classified ERROR by the runner with 'No runner sentinel emitted and no PASS/FAIL on stdout (exit=0)'. Root cause: scripts ended with print(f'result: {manifest[result]}') -- lowercase 'result:' which the runner stdout regex set (experiment_runner.py:69-79) does NOT match. Recognised tokens are 'verdict:', 'Status:', 'Done. Outcome:', '=== EXQ-... PASS ==='. Fix applied: replaced 'result:' -> 'verdict:' in v3_exq_542 / v3_exq_544 / v3_exq_545 (cascade prevention; v3_exq_545 was queued and would have produced the same false-ERROR on next runner pickup). v3_exq_546 carries the same bug but is owned by the implement-substrate-mech319 active claim and was left for that session to fix in-place to avoid concurrent edit conflict (flagged via WORKSPACE_STATE). NOT re-queueing 542 / 544: their PASS manifests are already in evidence/experiments/ with all 5 UCs PASS, so re-running would produce duplicate manifests for the same substrate-readiness scientific question. Marking them discussed here clears the pending_review.md backlog without polluting the evidence record. Smoke test on 544 confirmed the new 'verdict: PASS' line matches the runner regex; duplicate manifest from smoke removed. Other unaddressed ERRORs in runner_status.json (V3-EXQ-538 SD-049 Phase 2 reef sleep-on, V3-EXQ-495 MECH-163 V3 full-completion gate, V3-EXQ-449c MECH-074b BLA retrieval bias V_s-gated, V3-EXQ-455a SD-032a salience coordinator V_s-enabled) are deliberately held -- 538 has explicit DO-NOT-REQUEUE block in script docstring (already discussed 2026-05-08), 495 has DO-NOT-QUEUE block pending MECH-292/293 (substrate landed 2026-04-27 but full-completion-gate behavioural validation is still queued separately), 449c/455a are V_s-cascade-gated and deferred until MECH-269 V_s circuit lands. None of those four require a fix in this session; flagging here for the user to decide whether to mark them discussed in a future session."
+    },
+    {
+      "timestamp_utc": "2026-05-10T12:18:36Z",
+      "session_label": "diagnose-errors-mark-held-errors-discussed",
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-538",
+        "V3-EXQ-495",
+        "V3-EXQ-449c",
+        "V3-EXQ-455a"
+      ],
+      "subject": "Followup to the 12:13Z diagnose-errors session: the four deliberately-held ERRORs flagged for user review have now been marked discussed per user instruction. None are getting re-queued. Per-entry rationale: V3-EXQ-538 (SD-049 Phase 2 reef behavioural validation, sleep-on ablation paired to 514f) -- script docstring carries an explicit HOLD STATUS block 'DO NOT REQUEUE WITHOUT CHECKING THIS LIST' citing four prerequisites (Tier-1 V3-EXQ-530b under StepHarness, Tier-1 V3-EXQ-514g StepHarness wider seed sweep, MECH-307 substrate validation, sleep-substrate audit), and was already noted as marked discussed 2026-05-08T17:30Z under session diagnose-errors-244a-538-433f -- this entry merely makes the discussed status explicit in discussed_experiment_dirs. V3-EXQ-495 (MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm) -- script docstring carries an explicit DO-NOT-QUEUE block 'gated on MECH-292 + MECH-293 landing'. Note: MECH-292 ranked ghost-goal bank and MECH-293 waking ghost-goal probe search both landed 2026-04-27 with V3-EXQ-496 5/5 PASS and V3-EXQ-497 5/5 PASS respectively, so the DO-NOT-QUEUE rationale is now substrate-stale; behavioural validation of the V3 full-completion gate is still gated on a separate session that runs 3 conditions x 2 paradigms x 7 seeds (several hours). The held SIGTERM ERROR from 2026-04-28 reflected the pre-MECH-292/293 substrate state and is correctly held. V3-EXQ-449c (MECH-074b BLA retrieval bias on action selection, V_s-gated) and V3-EXQ-455a (SD-032a salience coordinator behavioural re-run with V_s runtime flags enabled) -- both are V_s-cascade-gated rerun successors of EXQ-449/455 awaiting MECH-269 V_s invalidation runtime as the upstream gate. MECH-269 Phase 1/2/3 substrates have all landed (per WORKSPACE_STATE history) but the cascade-validation EXQ V3-EXQ-476 has not yet PASSed. 449c and 455a remain held until that V_s end-to-end validation lands. All four held-ERROR entries are now visible in discussed_experiment_dirs so they will not re-appear in pending_review.md."
     }
   ]
 }
