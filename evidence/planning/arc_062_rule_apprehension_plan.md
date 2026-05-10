@@ -355,7 +355,7 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-H | 2-3 | partial | MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation queue | ARC-065 diversity-generation cluster registered. **MECH-313 substrate landed 2026-05-10** (`ree_core/policy/noise_floor.py` + `REEConfig.use_noise_floor`/`noise_floor_alpha`/`noise_floor_min_temperature` + `select_action` e3.select call site + 11 contract tests + V3-EXQ-544 substrate-readiness diagnostic 5/5 PASS + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). **MECH-314 / MECH-314a/b/c substrate landed 2026-05-10** (`ree_core/policy/structured_curiosity.py` + `StructuredCuriosity` + `StructuredCuriosityConfig` + `REEConfig.use_structured_curiosity` master + 3 independently-togglable sub-flavour switches (`use_curiosity_novelty`/`_uncertainty`/`_learning_progress`) + per-sub-flavour weights + `select_action` `dacc_score_bias` composition site between MECH-295 and MECH-313 + 13 contract tests + V3-EXQ-545 substrate-readiness diagnostic 5/5 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed` for parent + 3 children). MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation experiments remain to be authored. V3 falsification paths: Q-044 three-arm ablation (314a-OFF / 314b-OFF / 314c-OFF) on V3-EXQ-543b/c successors AFTER MECH-318/319 absorption checks; Q-045 4-arm ablation (MECH-313 vs MECH-260 collapse) on V3-EXQ-543b/c successors. | V3-EXQ-544 (done) + V3-EXQ-545 (done) / Q-043 / Q-044 / Q-045 EXQs TBD | 2026-05-10 |
 | GAP-I | 2-3 | absorption_check_done (MECH-318); registered (MECH-316 / MECH-317) | empirical retire-vs-promote on multi-rule-context substrate (V3-EXQ-543c-successor; downstream of GAP-B + GAP-C closure) | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. **MECH-318 absorption check done 2026-05-10**: VERDICT (B) PARTIALLY ABSORBED (`REE_assembly/docs/architecture/mech_318_absorption_check.md`). Within-V3 functional weight borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) + W5 (cross-episode continuity) gaps remain; W2 blocked on multi-rule-context substrate, W5 likely V4-scope. NO new V3 substrate commissioned. claims.yaml MECH-318 evidence_quality_note + notes updated; status retained `candidate` pending V3-EXQ-543c-successor empirical gate. MECH-316 / MECH-317 absorption checks separately scoped. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C) | 2026-05-10 |
 | GAP-J | 2-3 | registered | claims-only registration | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline is the V3-EXQ-543b/c falsifying alternative. | V3-EXQ-543b/c | 2026-05-10 |
-| GAP-K | 2-3 | registered | claims-only registration | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c. | V3-EXQ-543c | 2026-05-10 |
+| GAP-K | 2-3 | substrate_landed | V3-EXQ-543c-successor (admit_writes=True falsifier with replay-driven invocation) AFTER MECH-313 / MECH-314 / MECH-318 sibling substrates land | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. **MECH-319 substrate landed 2026-05-10** (`ree_core/regulators/simulation_mode_rule_gate.py` + `SimulationModeRuleGate` + `SimulationModeRuleGateConfig` + `REEConfig.use_simulation_mode_rule_gate` master + `simulation_mode_rule_gate_admit_writes` V3-EXQ-543c falsifier inverse-debug flag + `select_action` GatedPolicy + LateralPFCAnalog call-site wiring + 15 contract tests + V3-EXQ-546 substrate-readiness diagnostic 6/6 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). MECH-094 NOT modified per Pull 3 R1 + Pull 4 R3 KEEP-AS-IS verdicts. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c-successor (paired arm: `admit_writes=False` MECH-319 normal vs `admit_writes=True` falsifier with replay-driven invocation; predicted monomodal-collapse re-emergence under the falsifier arm). | V3-EXQ-546 (done) / V3-EXQ-543c-successor TBD | 2026-05-10 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `partial`,
 `done`, `deferred`, `registered`. `registered` = claims registered in
@@ -448,6 +448,128 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - GAP-K close: MECH-319 simulation-mode rule-write-gate substrate landed
+
+Third of four ARC-064/ARC-065 child substrates landed today (after
+MECH-313 noise-floor + MECH-314 structured-curiosity earlier the same
+day; MECH-318 absorption-check is the fourth, completed mid-day with
+VERDICT (B) PARTIALLY ABSORBED). MECH-319 substrate is a unified
+arbitration-layer simulation-mode write gate that consolidates the
+categorical replay-tag gating logic across the existing arbitration-
+write call sites (GatedPolicy.forward, LateralPFCAnalog.update) and
+exposes a single seam for V3-EXQ-543c-successor falsifier control via
+the `admit_writes` inverse-debug flag.
+
+**Module landed.** `ree-v3/ree_core/regulators/simulation_mode_rule_gate.py`
+(`SimulationModeRuleGate` + `SimulationModeRuleGateConfig` +
+`SimulationModeRuleGateDiagnostics`). Pure-arithmetic regulator (no
+`nn.Module` inheritance, no learned parameters); sibling to
+`GABAergicDecayRegulator` (SD-036) and `BroadcastOverrideRegulator`
+(SD-037). Single primitive `effective_simulation_mode(simulation_mode,
+site) -> bool` translating `(master_on, admit_writes, caller_sim)`
+into the final admit/block decision per the truth table:
+
+| master | admit_writes | caller_sim | output |
+|--------|--------------|------------|--------|
+| OFF    | (any)        | (any)      | identity (caller_sim) |
+| ON     | False        | False      | False (admit waking) |
+| ON     | False        | True       | True  (block sim, MECH-319 normal) |
+| ON     | True         | False      | False (admit waking; flag inert) |
+| ON     | True         | True       | False (admit sim, V3-EXQ-543c falsifier) |
+
+Idempotent for waking calls regardless of `admit_writes` -- the
+falsifier-control asymmetry surfaces only at `caller_sim=True` (replay
+paths, ghost-goal probes, DMN passes). Per-site diagnostic counters
+(`gated_policy`, `lateral_pfc`, `default`) on `n_calls_total`,
+`n_waking_admitted`, `n_simulation_blocked`, `n_simulation_admitted`.
+
+**Config wired through REEConfig + REEConfig.from_dims.**
+`use_simulation_mode_rule_gate: bool = False` (master, bit-identical
+OFF). `simulation_mode_rule_gate_admit_writes: bool = False`
+(V3-EXQ-543c falsifier inverse-debug flag). Construction raises
+`ValueError` on `admit_writes=True` without master ON (loud-not-silent
+guard against mis-configuration -- the falsifier flag is meaningless
+without the substrate to gate).
+
+**Agent wiring at two existing arbitration-write call sites in
+`REEAgent.select_action`:** (1) GatedPolicy block: literal
+`simulation_mode=False` replaced by
+`gate.effective_simulation_mode(False, site=SITE_GATED_POLICY)` and
+passed to `gated_policy.forward(...)`. (2) LateralPFCAnalog block:
+consult gate via `eff_sim = gate.effective_simulation_mode(False,
+site=SITE_LATERAL_PFC)`; skip `lateral_pfc.update(...)` when
+`eff_sim=True`, else proceed with existing MECH-261 mode-conditioned
+EMA. `compute_bias` still runs (arbitration RECEIVES the bias even
+during simulation; only the write-back into `rule_state` is gated).
+Per-episode `reset()` clears diagnostic counters.
+
+**MECH-094 NOT modified per Pull 3 R1 + Pull 4 R3 KEEP-AS-IS verdicts.**
+The gate is a pre-call coordinator that wraps the `simulation_mode`
+argument that callers ALREADY pass. With MECH-319 disabled, every
+arbitration-write call site behaves bit-identically to its pre-MECH-319
+form. This is the load-bearing architectural invariant -- MECH-094
+names the principle (categorical phi(z) write gate keyed to a
+hypothesis tag), MECH-319 names the substrate-level instantiation at
+the rule-arbitration layer (SWR machinery as the categorical signal,
+arbitration-weight updates as the function-site).
+
+**Backward compatibility verified.** 288/288 contract + preflight
+tests PASS with master OFF (regression-clean; suite was 273
+pre-MECH-319, plus 15 new MECH-319 contracts in
+`tests/contracts/test_mech_319_simulation_mode_rule_gate.py`).
+
+**Validation experiment.** V3-EXQ-546 substrate-readiness diagnostic
+queued. Six sub-tests UC1-UC5 + UC3b precondition (instantiation +
+diagnostic keys; master-OFF backward-compat; truth-table coverage
+across the 6 valid `(master, admit_writes, caller_sim)` combinations;
+precondition raises `ValueError`; select_action wiring contract --
+gate sees waking calls from both `gated_policy` and `lateral_pfc`
+sites after one `act_with_split_obs` tick, `n_simulation_*` counters
+remain zero on the waking path; MECH-094 invariance -- master-OFF and
+master-ON-with-waking-caller produce bit-identical wiring outputs).
+Smoke 6/6 PASS 2026-05-10 (manifest scrubbed; runner will write the
+canonical PASS manifest from the queued entry).
+
+**Phase 1 vs Phase 2.** Substrate landing only. The behavioural test
+that flips `admit_writes=True` and routes a replay-driven invocation
+through the rule-arbitration layer is V3-EXQ-543c-successor, deferred
+until the MECH-313 / MECH-314 / MECH-318 sibling substrates have
+landed AND a replay/DMN call site emerges that exercises
+`caller_sim=True` against the wired arbitration sites. Today's commit
+exposes the seam and counters; the falsifier validation is downstream.
+
+**Lit-pull synthesis decision.** Existing Pull 3 SYNTHESIS
+(`evidence/literature/targeted_review_mech_312_arbitration_divergences/`,
+8 entries, lit_conf 0.866 on MECH-094) was judged sufficient -- it
+explicitly resolves R1 GENUINE-NOVELTY-CONFIRMED (conf 0.72) with the
+substrate-availability anchors (Joo & Frank 2018 SWR review + Foster
+& Wilson 2006 reverse replay discriminable signature), and Pull 4 R3
+gives the KEEP-AS-IS recommendation that MECH-094 stays as the
+architectural principle while MECH-319 instantiates it at the
+substrate level. No additional implementation-detail lit-pull
+commissioned for this substrate landing.
+
+**Out of scope (separate spawned tasks):** MECH-313 / MECH-314 /
+MECH-318 (separately scoped per spawn -- all complete same day);
+V3-EXQ-543c-successor falsifier authoring (downstream of this
+substrate AND the MECH-313/314/318 sessions).
+
+**Files touched:** `ree-v3/ree_core/regulators/simulation_mode_rule_gate.py`
+(NEW); `ree-v3/ree_core/regulators/__init__.py` (export);
+`ree-v3/ree_core/utils/config.py` (`REEConfig` fields + `from_dims`
+kwargs); `ree-v3/ree_core/agent.py` (import + `__init__`
+instantiation + `select_action` GatedPolicy + LateralPFC call-site
+wiring + `reset` hook); `ree-v3/tests/contracts/test_mech_319_simulation_mode_rule_gate.py`
+(NEW, 15 tests); `ree-v3/experiments/v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness.py`
+(NEW); `ree-v3/experiment_queue.json` (V3-EXQ-546 appended);
+`ree-v3/CLAUDE.md` (MECH-319 SD entry appended); `REE_assembly/docs/architecture/mech_319_simulation_mode_rule_gate.md`
+(NEW); `REE_assembly/docs/claims/claims.yaml` (MECH-319 status
+`candidate -> candidate_substrate_landed` + evidence_quality_note +
+notes update); `REE_assembly/docs/assets/data/claims.json` (rebuilt
+by `build_claims_json.py`); `REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md`
+(GAP-K row + this decision-log entry); `WORKSPACE_STATE.md`;
+`TASK_CLAIMS.json`.
 
 ### 2026-05-10 - GAP-I MECH-318 absorption check done: VERDICT (B) PARTIALLY ABSORBED into SD-033a + ARC-062 cluster
 

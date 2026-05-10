@@ -20397,7 +20397,7 @@
       "first_seen_date": "2026-05-08",
       "first_seen_subject": "Register MECH-309 + ARC-062/063 rule-apprehension cluster; correct SD-054 doc",
       "first_seen_week": "2026-05-04",
-      "genuine_exp_count": 2,
+      "genuine_exp_count": 0,
       "id": "ARC-062",
       "incoming_dependency_count": 3,
       "lifecycle": "governance_evidence_bearing",
@@ -20562,7 +20562,7 @@
       "first_seen_date": "2026-05-08",
       "first_seen_subject": "Register MECH-309 + ARC-062/063 rule-apprehension cluster; correct SD-054 doc",
       "first_seen_week": "2026-05-04",
-      "genuine_exp_count": 2,
+      "genuine_exp_count": 0,
       "id": "MECH-309",
       "incoming_dependency_count": 4,
       "lifecycle": "governance_evidence_bearing",
@@ -20967,7 +20967,7 @@
       "incoming_dependency_count": 3,
       "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
-      "status": "candidate",
+      "status": "candidate_substrate_landed",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
@@ -20990,7 +20990,7 @@
       "depends_on_count": 2,
       "evidence_bearing": false,
       "evidence_quadrant": null,
-      "experiment_planned": false,
+      "experiment_planned": true,
       "first_seen_commit": "d8ec3f6c9619",
       "first_seen_date": "2026-05-10",
       "first_seen_subject": "Register ARC-064 + ARC-065 + MECH-312 sub-MECH split + MECH-319 cluster",
@@ -21000,7 +21000,7 @@
       "incoming_dependency_count": 5,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
-      "status": "candidate",
+      "status": "candidate_substrate_landed",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
@@ -21033,7 +21033,7 @@
       "incoming_dependency_count": 1,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
-      "status": "candidate",
+      "status": "candidate_substrate_landed",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
@@ -21066,7 +21066,7 @@
       "incoming_dependency_count": 1,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
-      "status": "candidate",
+      "status": "candidate_substrate_landed",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
@@ -21099,7 +21099,7 @@
       "incoming_dependency_count": 1,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
-      "status": "candidate",
+      "status": "candidate_substrate_landed",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
@@ -21208,7 +21208,7 @@
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
-      "title": "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. NOTE: this claim may be absorbed into the latent stack itself when the meta-RL collapse is operationalised in V3 -- flagged as registration_provisional_pending_meta_rl_absorption_check.",
+      "title": "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. ABSORPTION CHECK 2026-05-10: VERDICT (B) PARTIALLY ABSORBED. Within-V3 functional weight is borne by SD-033a LateralPFCAnalog rule_state buffer (W1 EMA recurrence + W3 substrate-readiness + W4 downstream bias) plus ARC-062 Phase 1 gated_policy multi-stream context discriminator (W3 per-tick rule-context discrimination + W4 score-aggregation training pressure), with ARC-062 Phase 3 GAP-C planned wiring closing the loop between the two. Two residual gaps remain: W2 (multi-task training distribution -- blocked on multi-rule-context substrate, SD-054 single-context insufficient) and W5 (cross-episode hidden-state continuity -- likely V4-scope; SD-033a per-episode reset is architecturally load-bearing for the rest of the agent state machine). Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate. See REE_assembly/docs/architecture/mech_318_absorption_check.md.",
       "type": "mechanism_hypothesis"
     },
     {
@@ -21227,7 +21227,7 @@
       "depends_on_count": 2,
       "evidence_bearing": false,
       "evidence_quadrant": null,
-      "experiment_planned": false,
+      "experiment_planned": true,
       "first_seen_commit": "d8ec3f6c9619",
       "first_seen_date": "2026-05-10",
       "first_seen_subject": "Register ARC-064 + ARC-065 + MECH-312 sub-MECH split + MECH-319 cluster",
@@ -21237,7 +21237,7 @@
       "incoming_dependency_count": 0,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
-      "status": "candidate",
+      "status": "candidate_substrate_landed",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
@@ -27714,9 +27714,9 @@
       },
       "cyclic": true,
       "dominant_class": "active_v3_closure",
-      "evidenced_claims": 2,
+      "evidenced_claims": 0,
       "first_week": "2026-05-04",
-      "genuine_exp_count": 4,
+      "genuine_exp_count": 0,
       "latest_week": "2026-05-04",
       "phase_counts": {
         "v3": 2,
@@ -39684,7 +39684,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate": 1
+        "candidate_substrate_landed": 1
       },
       "type_counts": {
         "mechanism_hypothesis": 1
@@ -39713,7 +39713,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate": 1
+        "candidate_substrate_landed": 1
       },
       "type_counts": {
         "mechanism_hypothesis": 1
@@ -39742,7 +39742,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate": 1
+        "candidate_substrate_landed": 1
       },
       "type_counts": {
         "mechanism_hypothesis": 1
@@ -39771,7 +39771,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate": 1
+        "candidate_substrate_landed": 1
       },
       "type_counts": {
         "mechanism_hypothesis": 1
@@ -39800,7 +39800,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate": 1
+        "candidate_substrate_landed": 1
       },
       "type_counts": {
         "mechanism_hypothesis": 1
@@ -39916,7 +39916,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate": 1
+        "candidate_substrate_landed": 1
       },
       "type_counts": {
         "mechanism_hypothesis": 1
@@ -42388,7 +42388,7 @@
       }
     }
   ],
-  "generated_at_utc": "2026-05-10T10:15:47Z",
+  "generated_at_utc": "2026-05-10T12:11:25Z",
   "recent": {
     "churn_health": {
       "avg_outdeps": 3.712,
@@ -42903,7 +42903,7 @@
             "phase": "v3",
             "recent_dependency_count": 3,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -42941,14 +42941,14 @@
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 5,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
             "recent_dependency_count": 5,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -42971,7 +42971,7 @@
             "phase": "v3",
             "recent_dependency_count": 1,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -42994,7 +42994,7 @@
             "phase": "v3",
             "recent_dependency_count": 1,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -43017,7 +43017,7 @@
             "phase": "v3",
             "recent_dependency_count": 1,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -43078,14 +43078,14 @@
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 5,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
             "recent_dependency_count": 5,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -43108,7 +43108,7 @@
             "phase": "v3",
             "recent_dependency_count": 3,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -43477,7 +43477,7 @@
         "component_id": "C395",
         "depends_on_count": 2,
         "evidence_bearing": false,
-        "experiment_planned": false,
+        "experiment_planned": true,
         "first_seen_date": "2026-05-10",
         "first_seen_week": "2026-05-04",
         "hub_targets": [
@@ -43531,7 +43531,7 @@
         "incoming_dependency_count": 0,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
-        "status": "candidate",
+        "status": "candidate_substrate_landed",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
@@ -43649,7 +43649,7 @@
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
-        "title": "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. NOTE: this claim may be absorbed into the latent stack itself when the meta-RL collapse is operationalised in V3 -- flagged as registration_provisional_pending_meta_rl_absorption_check.",
+        "title": "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. ABSORPTION CHECK 2026-05-10: VERDICT (B) PARTIALLY ABSORBED. Within-V3 functional weight is borne by SD-033a LateralPFCAnalog rule_state buffer (W1 EMA recurrence + W3 substrate-readiness + W4 downstream bias) plus ARC-062 Phase 1 gated_policy multi-stream context discriminator (W3 per-tick rule-context discrimination + W4 score-aggregation training pressure), with ARC-062 Phase 3 GAP-C planned wiring closing the loop between the two. Two residual gaps remain: W2 (multi-task training distribution -- blocked on multi-rule-context substrate, SD-054 single-context insufficient) and W5 (cross-episode hidden-state continuity -- likely V4-scope; SD-033a per-episode reset is architecturally load-bearing for the rest of the agent state machine). Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate. See REE_assembly/docs/architecture/mech_318_absorption_check.md.",
         "type": "mechanism_hypothesis"
       },
       {
@@ -43853,14 +43853,14 @@
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 5,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
             "recent_dependency_count": 5,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -43872,7 +43872,7 @@
         "incoming_dependency_count": 1,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
-        "status": "candidate",
+        "status": "candidate_substrate_landed",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
@@ -43921,14 +43921,14 @@
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 5,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
             "recent_dependency_count": 5,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -43940,7 +43940,7 @@
         "incoming_dependency_count": 1,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
-        "status": "candidate",
+        "status": "candidate_substrate_landed",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
@@ -43989,14 +43989,14 @@
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 5,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
             "recent_dependency_count": 5,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -44008,7 +44008,7 @@
         "incoming_dependency_count": 1,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
-        "status": "candidate",
+        "status": "candidate_substrate_landed",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
@@ -44022,7 +44022,7 @@
         "component_id": "C388",
         "depends_on_count": 2,
         "evidence_bearing": false,
-        "experiment_planned": false,
+        "experiment_planned": true,
         "first_seen_date": "2026-05-10",
         "first_seen_week": "2026-05-04",
         "hub_targets": [
@@ -44064,7 +44064,7 @@
             "phase": "v3",
             "recent_dependency_count": 3,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": false,
@@ -44076,7 +44076,7 @@
         "incoming_dependency_count": 5,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
-        "status": "candidate",
+        "status": "candidate_substrate_landed",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
@@ -44144,7 +44144,7 @@
         "incoming_dependency_count": 3,
         "lifecycle": "governance_evidence_bearing",
         "phase": "v3",
-        "status": "candidate",
+        "status": "candidate_substrate_landed",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
@@ -44512,7 +44512,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 2,
+            "genuine_exp_count": 0,
             "incoming_dependency_count": 4,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -44558,7 +44558,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 2,
+            "genuine_exp_count": 0,
             "incoming_dependency_count": 3,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -44672,7 +44672,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 2,
+            "genuine_exp_count": 0,
             "incoming_dependency_count": 3,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -45424,7 +45424,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 2,
+            "genuine_exp_count": 0,
             "incoming_dependency_count": 4,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -45561,7 +45561,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 2,
+            "genuine_exp_count": 0,
             "incoming_dependency_count": 4,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -45584,7 +45584,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 2,
+            "genuine_exp_count": 0,
             "incoming_dependency_count": 3,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -45675,7 +45675,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 2,
+            "genuine_exp_count": 0,
             "incoming_dependency_count": 4,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -88126,7 +88126,7 @@
             "first_seen_week": "2026-05-04",
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "title": "simulation_mode_rule_write_gating_categorical_replay_tag (SWR_machinery_substrate_REE_novel_function). The substrate-level instantiation of MECH-094's hypothesis-tag write gate at the rule-arbitration layer: a categorical write-gate keyed to a simulation-mode tag that suppresses arbitration-weight updates during ghost / replay / DMN passes, allowing rule-arbitration to be exercised without overwriting the active rule weights from non-realized data. Substrate-availability premise is well-anchored: SWR machinery (Joo & Frank 2018 review) + reverse-replay discriminable signature (Foster & Wilson 2006). The specific REE function (categorical write-gate keyed to a simulation tag suppressing arbitration-weight updates) is plausible biologically but unverified at cellular / synaptic level."
           },
           {
@@ -92248,7 +92248,7 @@
             "first_seen_week": "2026-05-04",
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "title": "simulation_mode_rule_write_gating_categorical_replay_tag (SWR_machinery_substrate_REE_novel_function). The substrate-level instantiation of MECH-094's hypothesis-tag write gate at the rule-arbitration layer: a categorical write-gate keyed to a simulation-mode tag that suppresses arbitration-weight updates during ghost / replay / DMN passes, allowing rule-arbitration to be exercised without overwriting the active rule weights from non-realized data. Substrate-availability premise is well-anchored: SWR machinery (Joo & Frank 2018 review) + reverse-replay discriminable signature (Foster & Wilson 2006). The specific REE function (categorical write-gate keyed to a simulation tag suppressing arbitration-weight updates) is plausible biologically but unverified at cellular / synaptic level."
           },
           {
@@ -94008,7 +94008,7 @@
             "first_seen_week": "2026-05-04",
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "title": "stochastic_noise_floor (max_entropy_policy_regularisation_LC_NE_tonic_analog). A floor-level stochastic action-selection noise that prevents complete deterministic collapse of the policy. Biological substrate: locus coeruleus tonic firing producing baseline action-selection variability (Aston-Jones & Cohen 2005 adaptive-gain model). Computational analog: max-entropy policy regularisation / SAC entropy bonus (Haarnoja et al. 2018). Distinct from MECH-260 dACC anti-recency: MECH-313 is a state-independent noise floor, while MECH-260 is a state-dependent recency penalty. Both can contribute to anti-monostrategy pressure but operate via different mechanisms; whether they collapse into a single substrate or are mutually load-bearing is open (Q-045)."
           },
           {
@@ -95710,7 +95710,7 @@
             "first_seen_week": "2026-05-04",
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "status": "candidate",
+            "status": "candidate_substrate_landed",
             "title": "simulation_mode_rule_write_gating_categorical_replay_tag (SWR_machinery_substrate_REE_novel_function). The substrate-level instantiation of MECH-094's hypothesis-tag write gate at the rule-arbitration layer: a categorical write-gate keyed to a simulation-mode tag that suppresses arbitration-weight updates during ghost / replay / DMN passes, allowing rule-arbitration to be exercised without overwriting the active rule weights from non-realized data. Substrate-availability premise is well-anchored: SWR machinery (Joo & Frank 2018 review) + reverse-replay discriminable signature (Foster & Wilson 2006). The specific REE function (categorical write-gate keyed to a simulation tag suppressing arbitration-weight updates) is plausible biologically but unverified at cellular / synaptic level."
           },
           {
@@ -99411,7 +99411,7 @@
     "claims_path": "docs/claims/claims.yaml",
     "component_edges": 1352,
     "dependency_edges": 2142,
-    "git_head": "a302ce28e3"
+    "git_head": "402cbb4801"
   },
   "summary": {
     "claims_total": 609,
@@ -101607,8 +101607,9 @@
         "v4": 2
       },
       "status_counts": {
-        "candidate": 27,
+        "candidate": 21,
         "candidate_resolved": 1,
+        "candidate_substrate_landed": 6,
         "open": 4
       },
       "top_dependency_components": [
@@ -101705,7 +101706,7 @@
           "component_id": "C388",
           "count": 5,
           "phase": "v3",
-          "status": "candidate",
+          "status": "candidate_substrate_landed",
           "title": "structured_curiosity_bonus (frontopolar_uncertainty_driven_exploration_expected_free_energy_analog). A reward bonus on action-selection that rewards information-gain or uncertainty-reduction, distinct from a state-independent noise floor (MECH-313). Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature) operating jointly with striatal novelty (Wittmann et al. 2008 Neuron). Three sub-flavours (MECH-314a/b/c) that the lit-pull recommended NOT to collapse prematurely: striatal novelty (Wittmann anchor), frontopolar uncertainty-driven curiosity (Daw anchor), learning-progress / intrinsic-motivation curiosity (Schmidhuber/Pathak tradition). Active-inference (Friston 2010/2015 expected free energy) provides the formal-level unification. Q-044 captures the open question of whether the three sub-flavours are distinct substrates or three readings of one mechanism with different upstream inputs."
         },
         {

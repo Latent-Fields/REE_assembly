@@ -27720,7 +27720,7 @@
   claim_type: mechanism_hypothesis
   subject: policy.arbitration.simulation_mode_write_gating_substrate_ree_novel_function
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -27801,6 +27801,43 @@
     (artificial-write-channel-routing config flag) is V3-
     EXQ-543c-tractable; cellular-level falsification is V4-
     bound and pharmacology-dependent.
+
+    SUBSTRATE LANDED 2026-05-10. status candidate -> candidate_
+    substrate_landed. Module: ree_core/regulators/simulation_mode_
+    rule_gate.py (SimulationModeRuleGate + SimulationModeRule
+    GateConfig + SimulationModeRuleGateDiagnostics). Pure-arithmetic
+    regulator, sibling to GABAergicDecayRegulator (SD-036) and
+    BroadcastOverrideRegulator (SD-037). Single primitive
+    effective_simulation_mode(simulation_mode, site) -> bool with
+    truth-table semantics: master OFF identity passthrough; master
+    ON + admit_writes False blocks simulation writes (MECH-319
+    normal); master ON + admit_writes True (V3-EXQ-543c falsifier)
+    admits simulation writes. Idempotent for waking calls
+    regardless of admit_writes (the asymmetry surfaces only at
+    caller_sim=True). Per-site diagnostic counters on
+    {gated_policy, lateral_pfc, default}. Construction raises
+    ValueError on admit_writes=True without master ON (loud-not-
+    silent guard). Config: REEConfig.use_simulation_mode_rule_gate
+    + REEConfig.simulation_mode_rule_gate_admit_writes (both
+    default False, bit-identical OFF; wired through REEConfig.from_
+    dims). Agent wiring: REEAgent.select_action consults the gate
+    at the GatedPolicy.forward call site (replaces the literal
+    simulation_mode=False) and at the LateralPFCAnalog.update call
+    site (skip update when gate returns True; compute_bias still
+    runs from current rule_state). Per-episode reset() clears
+    diagnostic counters. MECH-094 NOT modified per Pull 3 R1 +
+    Pull 4 R3 KEEP-AS-IS verdicts -- this substrate wraps the
+    simulation_mode argument that callers ALREADY pass; with
+    MECH-319 disabled, every arbitration-write call site behaves
+    bit-identically to its pre-MECH-319 form. Backward compatible:
+    288/288 contract + preflight tests PASS with master OFF
+    (regression-clean; was 273 + 15 new MECH-319 contracts).
+    Validation: V3-EXQ-546 substrate-readiness diagnostic queued;
+    smoke 6/6 PASS 2026-05-10. Behavioural V3-EXQ-543c-successor
+    falsifier (admit_writes=True with replay-driven invocation)
+    deferred AFTER MECH-313 / MECH-314 / MECH-318 sibling
+    substrates land. Design doc: docs/architecture/mech_319_
+    simulation_mode_rule_gate.md.
   notes: >
     Pull 4 R3 KEEP-AS-IS verdict: MECH-094 stays as-is (the
     architectural principle); MECH-319 is registered as the
@@ -27815,4 +27852,19 @@
     write-gate principle should apply (e.g. MECH-094 at the
     rule-state abstraction layer of MECH-318). These are
     deferred until the substrate sites are themselves wired.
-  location: docs/architecture/rule_apprehension_layer.md
+
+    RELATION TO MECH-261: MECH-261 (mode-conditioned write-gate
+    registry on SD-032a SalienceCoordinator) is a complementary,
+    continuous gate. MECH-261 returns a per-mode weight in [0, 1]
+    that scales the magnitude of the EMA update on
+    LateralPFCAnalog.rule_state. MECH-319 is a categorical
+    (binary admit/block) pre-gate keyed to the simulation tag of
+    the CALLER, not the operating mode of the agent. The two gates
+    compose: caller waking + MECH-319 admits -> MECH-261 modulates
+    EMA strength based on operating mode. Caller simulation +
+    MECH-319 normal -> MECH-319 blocks the entire update() call,
+    MECH-261 never consulted. Caller simulation + MECH-319
+    falsifier -> MECH-319 admits -> MECH-261 modulates as if
+    waking. Together they instantiate two complementary axes of
+    write-gating at the rule-arbitration layer.
+  location: docs/architecture/mech_319_simulation_mode_rule_gate.md
