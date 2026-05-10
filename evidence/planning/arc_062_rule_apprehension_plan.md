@@ -353,7 +353,7 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-F | 5 | deferred V4 | GAP-E outcome | none in V3 | n/a | 2026-05-09 |
 | GAP-G | 5 | deferred V4 | sleep_substrate plan progression | Pull C lit-pull (sleep-vs-waking refinement biology) when ARC-063 V4 work opens | n/a | 2026-05-09 |
 | GAP-H | 2-3 | partial | MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation queue | ARC-065 diversity-generation cluster registered. **MECH-313 substrate landed 2026-05-10** (`ree_core/policy/noise_floor.py` + `REEConfig.use_noise_floor`/`noise_floor_alpha`/`noise_floor_min_temperature` + `select_action` e3.select call site + 11 contract tests + V3-EXQ-544 substrate-readiness diagnostic 5/5 PASS + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). **MECH-314 / MECH-314a/b/c substrate landed 2026-05-10** (`ree_core/policy/structured_curiosity.py` + `StructuredCuriosity` + `StructuredCuriosityConfig` + `REEConfig.use_structured_curiosity` master + 3 independently-togglable sub-flavour switches (`use_curiosity_novelty`/`_uncertainty`/`_learning_progress`) + per-sub-flavour weights + `select_action` `dacc_score_bias` composition site between MECH-295 and MECH-313 + 13 contract tests + V3-EXQ-545 substrate-readiness diagnostic 5/5 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed` for parent + 3 children). MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation experiments remain to be authored. V3 falsification paths: Q-044 three-arm ablation (314a-OFF / 314b-OFF / 314c-OFF) on V3-EXQ-543b/c successors AFTER MECH-318/319 absorption checks; Q-045 4-arm ablation (MECH-313 vs MECH-260 collapse) on V3-EXQ-543b/c successors. | V3-EXQ-544 (done) + V3-EXQ-545 (done) / Q-043 / Q-044 / Q-045 EXQs TBD | 2026-05-10 |
-| GAP-I | 2-3 | registered | claims-only registration | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD | 2026-05-10 |
+| GAP-I | 2-3 | absorption_check_done (MECH-318); registered (MECH-316 / MECH-317) | empirical retire-vs-promote on multi-rule-context substrate (V3-EXQ-543c-successor; downstream of GAP-B + GAP-C closure) | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. **MECH-318 absorption check done 2026-05-10**: VERDICT (B) PARTIALLY ABSORBED (`REE_assembly/docs/architecture/mech_318_absorption_check.md`). Within-V3 functional weight borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) + W5 (cross-episode continuity) gaps remain; W2 blocked on multi-rule-context substrate, W5 likely V4-scope. NO new V3 substrate commissioned. claims.yaml MECH-318 evidence_quality_note + notes updated; status retained `candidate` pending V3-EXQ-543c-successor empirical gate. MECH-316 / MECH-317 absorption checks separately scoped. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C) | 2026-05-10 |
 | GAP-J | 2-3 | registered | claims-only registration | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline is the V3-EXQ-543b/c falsifying alternative. | V3-EXQ-543b/c | 2026-05-10 |
 | GAP-K | 2-3 | registered | claims-only registration | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c. | V3-EXQ-543c | 2026-05-10 |
 
@@ -448,6 +448,111 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-10 - GAP-I MECH-318 absorption check done: VERDICT (B) PARTIALLY ABSORBED into SD-033a + ARC-062 cluster
+
+MECH-318 (`rule_state_abstraction_substrate` / meta-RL recurrent task-state
+representation, Wang 2018 + Duan 2016 RL^2) was registered 2026-05-10 with the
+provisional flag `registration_provisional_pending_meta_rl_absorption_check`.
+This session ran the architectural absorption check that flag commissioned --
+auditing the existing `ree-v3` substrate against the five Wang 2018 / Duan 2016
+load-bearing properties before committing to a new substrate landing.
+
+Memo: `REE_assembly/docs/architecture/mech_318_absorption_check.md`.
+
+Three candidate substrates audited:
+
+1. **E1 LSTM** (`ree-v3/ree_core/predictors/e1_deep.py` E1DeepPredictor +
+   ContextMemory). Recurrent topology yes; trained-on-rule-discrimination NO;
+   per-episode `reset_hidden_state()` so cross-episode continuity NO; bias on
+   action selection only indirect (associative prior into HippocampalModule;
+   SD-016 cue_terrain_proj into E3). Subtotal: topology-only absorption,
+   functional role no.
+2. **SD-033a LateralPFCAnalog rule_state buffer** (`ree-v3/ree_core/pfc/
+   lateral_pfc_analog.py`). Closest match to "rule-state representation that
+   biases action selection". Recurrence-as-EMA per Choice A3 (gate-modulated
+   EMA, not LSTM/GRU). Bias head currently frozen-random with last Linear
+   zeroed (Choice A2; phased training deferred). rule_state buffer reset per
+   episode (V4 extension if cross-episode required). MECH-261 mode-conditioned
+   write-gate registry generalises MECH-094 hypothesis tag at the rule-state
+   slot.
+3. **MECH-269 anchor sets + per-region V_s** (`ree-v3/ree_core/hippocampal/
+   anchor_set.py`). Discrete-symbolic state-label encoding via
+   `(scale, segment_id, stream_mixture)` keying with dual-trace preservation
+   (Bouton 2004). Closer to Schuck 2016 / Wilson 2014 OFC-cognitive-map biology
+   than to Wang 2018 RL^2. Architecturally adjacent rather than competing with
+   the SD-033a + ARC-062 arm.
+
+Mapping the five Wang 2018 properties onto existing substrate:
+
+- W1 recurrent topology: absorbed (E1 LSTM topology + SD-033a EMA recurrence).
+- W2 trained across many tasks: NOT ABSORBED. No multi-task training distribution
+  exists in V3 (SD-054 is single-context). This is a *training methodology +
+  environment* gap, not a substrate gap.
+- W3 hidden state encodes task identity: absorbed by ARC-062 Phase 1
+  gated_policy multi-stream (z_world, z_self, z_harm_a) context discriminator
+  (per-tick rule-context discrimination, trained on score-aggregation gradient)
+  + SD-033a rule_state buffer (substrate-ready, content-empty until Phase 3
+  GAP-C wires the discriminator output into the rule_state update path).
+- W4 biases action selection: absorbed by SD-033a `compute_bias()` and ARC-062
+  gated_policy heads; both compose additively into `dacc_score_bias` before
+  E3.select().
+- W5 cross-episode hidden-state continuity (the defining RL^2 property): NOT
+  ABSORBED. All three candidate substrates reset per episode. SD-033a's notes
+  field already records "Cross-episode carry-over is NOT implemented (V3
+  simplification; V4 extension if required)". This is likely V4-scope.
+
+**Verdict: (B) PARTIALLY ABSORBED.** The within-V3 portion of MECH-318
+(W1 + W3 + W4) is borne by the SD-033a + ARC-062 + ARC-062-Phase-3 cluster.
+The within-episode part of Wang 2018 instantiates cleanly on the existing
+substrate once Phase 3 GAP-C wires the discriminator into the rule_state
+update path. The cross-episode RL^2 part (W5) and the multi-task training
+property (W2) remain as MECH-318's legitimate residual scope IF the empirical
+verdict turns out to require a dedicated substrate.
+
+NO NEW V3 SUBSTRATE COMMISSIONED. The empirical retire-vs-promote verdict
+is deferred to a V3-EXQ-543c-successor on multi-rule-context substrate,
+sequenced after:
+- ARC-062 Phase 2 GAP-B PASS (V3-EXQ-543b)
+- ARC-062 Phase 3 GAP-C wiring closure (discriminator -> SD-033a rule_state)
+- A multi-rule-context substrate (SD-054 extension to >=2 reef configurations,
+  or equivalent) so the falsifier can exercise the within-episode adaptation
+  signature MECH-318 names.
+
+If post-Phase-3 the SD-033a + ARC-062 cluster produces the within-episode
+rule-state-adaptation behavioural signature on multi-rule-context substrate,
+MECH-318 retires as `superseded` with `superseded_by: SD-033a + ARC-062
+(cluster)`. If the cluster fails the signature, MECH-318 promotes to
+`candidate -> active` and motivates a dedicated substrate landing (likely
+V4-scope given the W5 gap).
+
+Files touched:
+- `REE_assembly/docs/architecture/mech_318_absorption_check.md` (new memo)
+- `REE_assembly/docs/claims/claims.yaml` (MECH-318 title + evidence_quality_note
+  + notes update; status retained `candidate` pending empirical verdict)
+- `REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md` (GAP-I
+  status row + this entry)
+- `REE_Working/TASK_CLAIMS.json` (session claim)
+- `WORKSPACE_STATE.md`
+
+Out of scope (separate spawned tasks):
+- MECH-313 / MECH-314 / MECH-319 substrates (separately scoped per spawn).
+- MECH-316 (`cross_episode_regularity_extraction`, Schapiro 2017 CLS +
+  Stachenfeld 2017 SR) absorption check.
+- MECH-317 (`behavioural_pattern_compression`, Smith & Graybiel + option-critic)
+  absorption check.
+- The V3-EXQ-543c-successor experiment authoring (downstream of this verdict
+  AND ARC-062 Phase 2 + Phase 3 closure AND multi-rule-context substrate).
+
+Forward-link from the absorption-check memo: until the V3-EXQ-543c-successor
+verdict lands, MECH-318's within-episode functional weight is borne by
+- SD-033a LateralPFCAnalog rule_state buffer (`ree-v3/ree_core/pfc/
+  lateral_pfc_analog.py`; design doc `REE_assembly/docs/architecture/
+  sd_033a_lateral_pfc_analog.md`)
+- ARC-062 Phase 1 GatedPolicy + context discriminator (`ree-v3/ree_core/
+  policy/gated_policy.py`; V3-EXQ-542 5/5 PASS 2026-05-09)
+- ARC-062 Phase 3 GAP-C wiring (this plan-of-record's Phase 3 / GAP-C row;
+  blocked on Phase 2 GAP-B PASS via V3-EXQ-543b).
 
 ### 2026-05-10 - GAP-H further partial close: MECH-314 structured-curiosity substrate cluster landed
 

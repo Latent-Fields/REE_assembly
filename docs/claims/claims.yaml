@@ -27223,7 +27223,7 @@
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-318
-  title: "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. NOTE: this claim may be absorbed into the latent stack itself when the meta-RL collapse is operationalised in V3 -- flagged as registration_provisional_pending_meta_rl_absorption_check."
+  title: "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. ABSORPTION CHECK 2026-05-10: VERDICT (B) PARTIALLY ABSORBED. Within-V3 functional weight is borne by SD-033a LateralPFCAnalog rule_state buffer (W1 EMA recurrence + W3 substrate-readiness + W4 downstream bias) plus ARC-062 Phase 1 gated_policy multi-stream context discriminator (W3 per-tick rule-context discrimination + W4 score-aggregation training pressure), with ARC-062 Phase 3 GAP-C planned wiring closing the loop between the two. Two residual gaps remain: W2 (multi-task training distribution -- blocked on multi-rule-context substrate, SD-054 single-context insufficient) and W5 (cross-episode hidden-state continuity -- likely V4-scope; SD-033a per-episode reset is architecturally load-bearing for the rest of the agent state machine). Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate. See REE_assembly/docs/architecture/mech_318_absorption_check.md."
   claim_type: mechanism_hypothesis
   subject: rule_discovery.rule_state_abstraction_substrate
   polarity: asserts
@@ -27291,23 +27291,64 @@
     (rule_state_abstraction_substrate + meta_RL_recurrent_task_state_
     representation).
 
-    Provisional registration flag: registration_provisional_pending_
-    meta_rl_absorption_check. If V3-EXQ-543c (or a follow-on)
-    demonstrates that the existing z_self / z_world latent recurrent
-    state already supports the rule-state abstraction MECH-318
-    names, this claim should be retired (its function is absorbed
-    into the existing latent stack). If V3-EXQ-543c shows that the
-    latent stack is insufficient and a dedicated substrate is
-    needed, MECH-318 promotes to active.
+    Absorption-check 2026-05-10 (VERDICT B partial): the architectural
+    absorption check in REE_assembly/docs/architecture/mech_318_
+    absorption_check.md audited three candidate substrates -- E1 LSTM
+    (E1DeepPredictor + ContextMemory), SD-033a LateralPFCAnalog
+    rule_state buffer with MECH-261 mode-conditioned EMA / MECH-262
+    rule-selective persistence, MECH-269 anchor sets + per-region V_s
+    -- against the five Wang 2018 / Duan 2016 RL^2 properties (W1
+    recurrent topology, W2 trained across many tasks, W3 hidden state
+    encodes task identity, W4 biases action selection, W5 cross-episode
+    hidden-state continuity).
+
+    Mapping outcome:
+      W1 absorbed by E1 LSTM (topology only; functionally dedicated
+         to world-prediction) and SD-033a EMA (recurrence-as-EMA per
+         A3 design choice).
+      W2 NOT ABSORBED -- no multi-task training distribution exists in
+         V3 (SD-054 is single-context). This is the multi-rule-context
+         substrate gap the falsifier section already names.
+      W3 absorbed by ARC-062 Phase 1 gated_policy multi-stream
+         (z_world, z_self, z_harm_a) context discriminator (per-tick,
+         trained) + SD-033a rule_state buffer (substrate-ready,
+         content-empty until Phase 3 GAP-C wires the discriminator
+         output into the rule_state update path).
+      W4 absorbed by SD-033a compute_bias() and ARC-062 gated_policy
+         heads; both compose additively into dacc_score_bias before
+         E3.select().
+      W5 NOT ABSORBED -- all three candidate substrates reset per
+         episode. V4 scope; SD-033a's "Cross-episode carry-over is
+         NOT implemented (V3 simplification; V4 extension if required)"
+         note already records this.
+
+    Empirical retire-vs-promote verdict therefore DEFERRED to
+    V3-EXQ-543c-successor on multi-rule-context substrate, sequenced
+    after ARC-062 Phase 2 GAP-B PASS (V3-EXQ-543b) and ARC-062 Phase 3
+    GAP-C wiring closure. If post-Phase-3 the SD-033a + ARC-062
+    cluster produces the within-episode rule-state-adaptation
+    behavioural signature on multi-rule-context substrate, MECH-318
+    retires as superseded with superseded_by: SD-033a + ARC-062
+    (cluster). If the cluster fails the signature, MECH-318 promotes
+    to candidate -> active and motivates a dedicated substrate
+    landing (likely V4-scope given the W5 gap).
 
     Not yet experimentally tested. Falsifying experiments are
     multi-rule-context substrate; SD-054 single-context insufficient.
   notes: >
-    The provisional-registration mechanism follows the pattern set
-    by other "may-be-absorbed" substrate claims: register, run a
-    targeted absorption-check experiment, retire if absorbed and
-    promote if not. V3-EXQ-543c is the most likely first
-    absorption-check vehicle.
+    Absorption-check verdict B (2026-05-10): the within-V3 portion of
+    MECH-318 (W1 + W3 + W4) is partially absorbed into the SD-033a
+    LateralPFCAnalog rule_state buffer + ARC-062 Phase 1 gated_policy
+    discriminator + ARC-062 Phase 3 GAP-C planned wiring cluster. The
+    multi-task-training (W2) and cross-episode-continuity (W5)
+    properties are NOT absorbed and remain MECH-318's legitimate
+    residual scope if the empirical verdict turns out to require a
+    dedicated substrate. NO new V3 substrate is commissioned by this
+    absorption check. V3-EXQ-543c-successor on multi-rule-context
+    substrate is the empirical verdict gate; sequenced after Phase 2
+    + Phase 3 closure. See arc_062_rule_apprehension_plan.md GAP-I
+    decision-log entry for the sibling-cluster framing
+    (MECH-316/MECH-317 absorption checks remain separately scoped).
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-312
