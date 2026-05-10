@@ -445,7 +445,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | blocked | arc_062_rule_apprehension Phase 1 + Phase 2 (GAP-A + GAP-B) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; resume when ARC-062 PASSes monomodal-collapse falsifier | TBD | 2026-05-09 |
+| GAP-1 | 1 | blocked (upstream in-progress) | arc_062_rule_apprehension Phase 1 + Phase 2 (GAP-A done; GAP-B in-progress, V3-EXQ-543b queued Mac 120 min, awaiting runner pickup) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; resume when ARC-062 PASSes monomodal-collapse falsifier (V3-EXQ-543b is the live owner) | TBD | 2026-05-10 |
 | GAP-2 | 2 | open | nothing internal | Author v3_exq_461 via /queue-experiment; reserve V3-EXQ-461 | V3-EXQ-461 | 2026-05-08 |
 | GAP-3 | 3 | open | env scoping decision (Q2) | Pick tolerance-window default, scope counter-evidence injection API, dual-cue trigger primitive | env infra (no EXQ) | 2026-05-08 |
 | GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
