@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-11T08:51:32.558036Z`
+Generated: `2026-05-11T11:32:30.586883Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -223,6 +223,7 @@ Generated: `2026-05-11T08:51:32.558036Z`
 | `targeted_review_q_042` | [`2026-05-08_q042_schwartenbeck_2014`](targeted_review_q_042/entries/2026-05-08_q042_schwartenbeck_2014/record.json) | 5 | [`summary`](targeted_review_q_042/entries/2026-05-08_q042_schwartenbeck_2014/summary.md) |
 | `targeted_review_q_043` | [`2026-05-11_q_043_hybrid_uncertainty_sampling_gershman2018`](targeted_review_q_043/entries/2026-05-11_q_043_hybrid_uncertainty_sampling_gershman2018/record.json) | 6 | [`summary`](targeted_review_q_043/entries/2026-05-11_q_043_hybrid_uncertainty_sampling_gershman2018/summary.md) |
 | `targeted_review_q_044` | [`2026-05-11_q_044_sn_vta_novelty_anticipation_wittmann2007`](targeted_review_q_044/entries/2026-05-11_q_044_sn_vta_novelty_anticipation_wittmann2007/record.json) | 5 | [`summary`](targeted_review_q_044/entries/2026-05-11_q_044_sn_vta_novelty_anticipation_wittmann2007/summary.md) |
+| `targeted_review_q_045` | [`2026-05-11_q_045_ne_unexpected_uncertainty_yu_dayan2005`](targeted_review_q_045/entries/2026-05-11_q_045_ne_unexpected_uncertainty_yu_dayan2005/record.json) | 5 | [`summary`](targeted_review_q_045/entries/2026-05-11_q_045_ne_unexpected_uncertainty_yu_dayan2005/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_relief_completion_mechanism` | [`2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/record.json) | 8 | [`summary`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/summary.md) |
 | `targeted_review_rem_precision_recalibration_timing` | [`2026-05-09_mech204_walker_stickgold_2006`](targeted_review_rem_precision_recalibration_timing/entries/2026-05-09_mech204_walker_stickgold_2006/record.json) | 5 | [`summary`](targeted_review_rem_precision_recalibration_timing/entries/2026-05-09_mech204_walker_stickgold_2006/summary.md) |

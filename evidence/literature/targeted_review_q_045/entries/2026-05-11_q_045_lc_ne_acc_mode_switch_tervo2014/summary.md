@@ -1,0 +1,25 @@
+# Tervo et al. 2014 — Behavioral variability through stochastic choice and its gating by anterior cingulate cortex
+
+According to PubMed, [DOI 10.1016/j.cell.2014.08.037](https://doi.org/10.1016/j.cell.2014.08.037), PMID 25259917.
+
+## What the paper did
+
+Rats played a virtual competitor that adapted to their choices. The competitor came in two flavours: STRATEGIC (beatable by counter-prediction — the rat could infer the opponent's policy and counter it) and STOCHASTIC (unbeatable by any strategy — the opponent's choices were genuinely random with respect to the rat's history). The behavioural readout was choice-history entropy and win-stay / lose-shift balance. The circuit-level intervention used transgenic LC-cre rats with viral targeting of the LC → ACC projection, allowing the authors to suppress or stimulate that specific pathway and observe behaviour.
+
+## Key findings relevant to Q-045
+
+Three findings matter for the Q-045 collapse question. First, rats spontaneously switch between two behavioural regimes — a history- and model-based STRATEGIC mode against a beatable opponent, and an action-history-IGNORING STOCHASTIC mode against an unbeatable one. The stochastic mode is not a noise floor that is always present at low amplitude and rises smoothly: it is engaged discretely when the agent infers that no strategy can win. Second, in the stochastic mode, normal ACC engagement is SUPPRESSED — the history-tracking signal that ACC normally provides is taken offline. Third, the mode switch is gated by LC → ACC noradrenergic input: perturbing this pathway changes when the switch occurs. The authors interpret NE as a signal that prevents erroneous beliefs from guiding decisions when those beliefs cannot help.
+
+## How this translates to REE
+
+For Q-045 this is the directly load-bearing empirical paper. The Q-045 question is whether MECH-313 (LC-NE tonic noise floor) and MECH-260 (dACC anti-recency penalty) are independent parallel substrates or whether they collapse into one anti-monostrategy mechanism. Tervo gives a third answer: they are SUBSTRATE-DISTINCT BUT CIRCUIT-COUPLED. LC-NE sits upstream and ACC sits downstream; the LC signal gates ACC's history-tracking output. They are not the same substrate (Tervo can perturb LC selectively without lesioning ACC, and the behavioural consequences are predictable), and they are not independent (the LC perturbation works precisely BECAUSE it changes ACC output). The architectural translation: keep MECH-313 and MECH-260 as separate sub-mechanisms in the cluster, but acknowledge directional coupling — MECH-313 (LC-tonic-amplitude) should be wired to gate MECH-260's contribution, not run beside it on a parallel pathway.
+
+This reframing matters for the 4-arm ablation experiment registered under Q-045. The current experimental design treats both-OFF / 313-only / 260-only / both-ON as a factorial in which 313-only and 260-only are predicted to each show partial anti-monostrategy efficacy and both-ON to be maximal. Tervo predicts an ASYMMETRY: when both are ON, the LC dominance should suppress the dACC contribution, so both-ON should behave more like 313-only than like a sum of the two singletons. The 4-arm ablation will dissociate the substrates but should NOT be interpreted via a linear-superposition model.
+
+## Limitations and caveats
+
+The paper is rat behaviour on a virtual-competitor task; REE's reef-foraging substrate (SD-054) is different in surface form. The mapping is at the level of neuromodulatory architecture (LC → ACC directional coupling is conserved across mammals per Aston-Jones & Cohen 2005, already in the arc_065 file), not at the level of task structure. Tervo's stochastic mode is also a discrete state-switch, while MECH-313 is conceived as a continuous always-on baseline noise — the mapping bridges these via architectural analogy rather than dynamic-level fidelity. If REE wanted the strongest validation, it would need a state-switch analogue: an inferred-unbeatability signal that modulates MECH-313 amplitude. Q-045 as written does not include this dimension; this lit-pull surfaces it as a follow-on architectural question, not a current substrate gap.
+
+## Confidence reasoning
+
+Confidence 0.84. Source quality is very high — peer-reviewed in Cell, transgenic causal perturbation, multi-method (behavioural + optogenetic circuit-level). Mapping fidelity is strong on the substrate-coupling question that Q-045 actually asks, and moderate on the state-switch-vs-continuous question that Q-045 does not ask. Transfer risk is low because the LC → ACC directional coupling architecture is a well-established mammalian conservation. The 'mixed' evidence_direction reflects that Q-045 framed the two mechanisms as parallel substrates with a clean orthogonal factorial; Tervo says they are coupled at the circuit level. This is not a clean SUPPORTS for either pole of Q-045 (independent or collapsed) — it is a third architectural answer that the Q-045 notes should be extended to capture.

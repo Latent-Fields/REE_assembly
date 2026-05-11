@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_045",
+  "entry_id": "2026-05-11_q_045_dacc_anti_recency_suppression_scholl2015",
+  "timestamp_utc": "2026-05-11T11:26:08Z",
+  "claim_ids_tested": ["Q-045"],
+  "source": {
+    "title": "The Good, the Bad, and the Irrelevant: Neural Mechanisms of Learning Real and Hypothetical Rewards and Effort",
+    "authors": ["Jacqueline Scholl", "Nils Kolling", "Natalie Nelissen", "Marco K. Wittmann", "Catherine J. Harmer", "Matthew F. S. Rushworth"],
+    "year": 2015,
+    "venue": "J Neurosci",
+    "doi": "10.1523/JNEUROSCI.0396-15.2015",
+    "pmid": "26269633"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the missing MECH-260 anchor paper flagged in the arc_065 synthesis (2026-05-10 entry: 'Citation lookup was ambiguous and the specific dACC-anti-recency-suppression Scholl paper was not retrieved in this pull'). It directly identifies dorsal anterior cingulate cortex, frontal operculum/anterior insula, and lateral anterior prefrontal cortex as the substrate suppressing irrelevant recent-reward bias on choice -- the substrate-level evidence for MECH-260. Supports Q-045 on the SUBSTRATE-DISTINCT side: dACC is doing something computationally specific (gating which reward signals influence value) that is not just noise. Confidence high (0.82): high-quality human fMRI with explicit computational decomposition of bias vs anti-bias contributions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-260 implementation is a generic recency-discount on the value buffer (exponential forgetting), it will not reproduce Scholl's pattern: in Scholl, dACC does not REMOVE recent reward information, it SUPPRESSES the inappropriate influence of one class of recent reward (hypothetical/irrelevant) on choice while preserving learning from another class (real/informative). The mapping is to a SELECTIVE-suppression substrate, not a forgetting kernel.",
+    "If MECH-260 fires unconditionally on every recent choice, it will produce excessive anti-recency that prevents any reward-history-based learning at all -- the opposite failure mode from monomodal collapse. Scholl's data require that dACC anti-recency be GATED by some signal of irrelevance (in their task, the real/hypothetical label; in REE, presumably a signal of perseveration or stuck-policy). Without that gate, MECH-260 is mis-calibrated.",
+    "If REE collapses MECH-260 with MECH-313 (the Q-045 collapse outcome), the four-arm ablation should predict that 313-only produces the same behavioural profile as 260-only because they are 'the same mechanism viewed two ways'. Scholl's data weakens this prediction: dACC's suppression signal is content-specific (which trial-feature is irrelevant) in a way that a noise-floor cannot reproduce -- noise affects all features uniformly. If the 4-arm ablation in REE shows 313-only and 260-only producing INDISTINGUISHABLE diversity-with-discrimination patterns, that is evidence that REE's MECH-260 has lost the content-specificity Scholl observed and is operating as noise."
+  ],
+  "tags": ["q_045", "mech_260", "scholl", "rushworth", "dacc", "anti_recency", "irrelevant_reward_suppression", "lateral_aPFC", "ree_anchor_recovery"],
+  "mapping": {
+    "source_claim_statement": "Human participants learned the reward and effort magnitudes of two options. On each trial the reward outcome was randomly labelled real or hypothetical: this labelling was IRRELEVANT for the longer-term value of each option (which depended on the magnitude, not the label) but participants showed an irrational bias to repeat choices that had just produced a real reward. Amygdala and ventromedial prefrontal cortex activity tracked this irrational bias (representing the influence of irrelevant recent reward features). In contrast, activity in dorsal anterior cingulate cortex, frontal operculum / anterior insula, and especially lateral anterior prefrontal cortex tracked the degree to which participants RESISTED this bias and chose effectively based on aspects of outcomes that had sustained relationships with choice -- 'suppressing irrelevant reward information for more optimal learning and decision making'. The dACC and lateral aPFC effect is the substrate-level evidence for content-selective anti-recency suppression.",
+    "ree_translation": "Scholl 2015 is the anchor paper for MECH-260 (dacc.anti_recency_suppression) -- the architectural commitment in REE that the dACC layer can SUPPRESS the influence of recently rewarded but informationally-irrelevant choices on future value updates. Critically, the paper supports the SUBSTRATE-DISTINCTNESS side of Q-045: dACC is doing computationally specific work (gating which reward signals propagate to choice), not just adding noise. This is not what an LC-NE-tonic-noise-floor would produce -- noise would affect both real and hypothetical reward biases uniformly, whereas dACC's effect is content-selective. For Q-045 the verdict is: MECH-260 and MECH-313 are substrate-distinct (they instantiate different computational primitives, NOT the same primitive with different temporal kernels). Combined with the Tervo 2014 LC -> ACC coupling finding, the architectural reading is COUPLED-NOT-COLLAPSED: distinct substrates, directionally gated by LC-NE.",
+    "mapping_caveat": "Scholl's anti-recency is gated by an explicit task label (real vs hypothetical reward); REE's MECH-260 is currently conceived as gated by an internal recency-detection signal without a content label. The mapping is to the computational PRIMITIVE (dACC can suppress reward-signal influence on choice in a content-selective way), not to the specific gating condition. Whether REE's recency-detection signal will play the gating role Scholl's task-label plays is an architectural follow-on, surfaced by this lit-pull as a refinement to MECH-260's implementation notes. Note: Scholl is fMRI BOLD; the inferred dACC role is correlational, not causal. The companion Kennerley 2006 lesion paper (in this same pull) supplies the causal link. According to PubMed, DOI 10.1523/JNEUROSCI.0396-15.2015; PMID 26269633.",
+    "source_context": "Human fMRI, J Neurosci 2015. Task: probabilistic reward + effort learning over many trials, with trial-by-trial randomisation of the real/hypothetical label on the reward outcome. Model-based fMRI with explicit decomposition of biased-by-irrelevant vs anti-biased contributions to value-driven choice."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.20,
+    "notes": "Source quality high: J Neurosci, well-powered human fMRI, model-based with explicit anti-bias contrast. Mapping fidelity strong for MECH-260's primitive (content-selective anti-recency suppression by dACC). Transfer risk low (human-to-REE for cingulate computation is a standard architectural analogy and the substrate identification is direct). This entry RECOVERS the missing MECH-260 anchor flagged in the arc_065 Pull 1 synthesis -- a governance hygiene win independent of Q-045."
+  }
+}

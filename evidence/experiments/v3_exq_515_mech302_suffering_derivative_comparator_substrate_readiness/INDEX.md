@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_515_mech302_suffering_derivative_comparator_substrate_readiness
 
-Generated: `2026-05-11T08:51:32.558036Z`
+Generated: `2026-05-11T11:32:30.586883Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

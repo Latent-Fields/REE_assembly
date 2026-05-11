@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_045",
+  "entry_id": "2026-05-11_q_045_acc_lesion_action_outcome_kennerley2006",
+  "timestamp_utc": "2026-05-11T11:26:08Z",
+  "claim_ids_tested": ["Q-045"],
+  "source": {
+    "title": "Optimal decision making and the anterior cingulate cortex",
+    "authors": ["Steven W. Kennerley", "Mark E. Walton", "Timothy E. J. Behrens", "Mark J. Buckley", "Matthew F. S. Rushworth"],
+    "year": 2006,
+    "venue": "Nat Neurosci",
+    "doi": "10.1038/nn1724",
+    "pmid": "16783368"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Causal lesion evidence in macaques: ACC-lesioned monkeys fail to sustain rewarded responses or integrate risk and payoff in dynamic foraging, while remaining able to detect and correct individual errors. This dissociates ACC's role in INTEGRATING ACTION-OUTCOME HISTORY from error-detection. Direct empirical support for the substrate-distinct side of Q-045: ACC computes something specific (history-integration on the action-outcome relation) that is qualitatively different from a noise floor. Confidence high (0.81): causal lesion in primates, peer-reviewed in Nature Neuroscience, mechanistically explicit. Direction tagged 'supports' on Q-045 substrate-distinctness.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's MECH-260 is implemented as a generic recency-discount on the value buffer (exponential forgetting), the 4-arm ablation should show 260-OFF reproducing Kennerley's ACC-lesion phenotype: failure to sustain rewarded responses (because there is no history-integration substrate to lean on). If 260-OFF instead shows preserved value-history learning, MECH-260's implementation is too narrow -- it is doing only anti-recency, not the broader ACC-role of action-outcome history integration that Kennerley identifies.",
+    "If the Q-045 collapse outcome is adopted (MECH-313 and MECH-260 collapsed into one substrate), the combined regulator must reproduce Kennerley's dissociation: ACC-lesioned monkeys CAN detect immediate errors but CANNOT sustain history-based responses. This is a within-substrate dissociation that a uniform noise-floor primitive cannot reproduce -- noise affects all decisions uniformly. Supports substrate-distinct.",
+    "If REE has no analogue of action-outcome history integration at all (i.e. MECH-260 is purely anti-recency without an underlying history-integration substrate), the 4-arm ablation will fail to reproduce Kennerley's pattern in 260-OFF arms -- the absence will be invisible because there was no history-integration to remove."
+  ],
+  "tags": ["q_045", "mech_260", "kennerley", "rushworth", "acc_lesion", "macaque", "action_outcome_history", "dynamic_foraging", "causal_evidence"],
+  "mapping": {
+    "source_claim_statement": "Macaques with anterior cingulate cortex lesions were tested on reinforcement-guided choice tasks and on a dynamic foraging task. ACC lesions did NOT impair immediate error-detection or post-error correction: lesioned monkeys could detect that a choice had been wrong and respond to that information on the next trial. ACC lesions DID impair the ability to sustain rewarded responses across trials and to integrate risk and payoff in the dynamic foraging task: lesioned monkeys failed to use action-outcome history to guide future choice. The authors conclude that ACC's critical role is not error-detection or error-correction per se, but the integration of action-outcome history into ongoing voluntary choice. ACC is essential for learning the value of ACTIONS specifically (as opposed to stimuli).",
+    "ree_translation": "Kennerley 2006 supplies the CAUSAL leg of the dACC substrate-distinctness argument for Q-045. The Scholl 2015 paper (also in this pull) is correlational fMRI; Kennerley is lesion-causal. ACC lesion -> selective impairment in action-outcome history integration. For REE this anchors that MECH-260's substrate (dACC) is doing something computationally specific (integrate action-outcome history; selectively suppress irrelevant influences on that integration per Scholl) that a noise-floor primitive cannot do. The 4-arm ablation registered against Q-045 should predict that 260-OFF arms reproduce Kennerley's pattern: preserved within-trial sensitivity but impaired across-trial value-history learning. If they do, MECH-260's implementation is correctly capturing dACC's role; if they don't, MECH-260 is under-specified. This is testable in the V3 substrate.",
+    "mapping_caveat": "Macaque lesion to REE substrate: two-hop transfer (species + abstraction level). The mapping to MECH-260 specifically is partial -- Kennerley shows ACC is necessary for action-outcome history integration in general, which is broader than 'anti-recency suppression of irrelevant rewards'. Scholl 2015 supplies the content-selectivity narrowing. Kennerley's task did not include an irrelevant-reward condition; it used dynamic foraging and probabilistic reinforcement. The mapping is to the ACC's role as the substrate that does history-integration -- MECH-260 as anti-recency sits inside this broader substrate. According to PubMed, DOI 10.1038/nn1724; PMID 16783368.",
+    "source_context": "Macaque lesion + behaviour, Nature Neuroscience 2006. ACC lesion vs sham controls on two tasks: reinforcement-guided two-choice task with probabilistic outcomes; dynamic foraging task with shifting reward rates."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Source quality high (Nat Neurosci, causal lesion, multi-task). Mapping fidelity strong on the substrate-distinctness argument (ACC does specific history-integration work, not noise) and moderate on the specific MECH-260 primitive (anti-recency is one face of ACC history-integration, not the whole role). Transfer risk moderate (macaque-to-REE, lesion-to-substrate-ablation). Provides the CAUSAL leg complementing Scholl 2015 correlational fMRI."
+  }
+}

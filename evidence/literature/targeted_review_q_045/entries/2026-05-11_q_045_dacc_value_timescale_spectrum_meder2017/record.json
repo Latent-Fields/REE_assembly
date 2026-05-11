@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_045",
+  "entry_id": "2026-05-11_q_045_dacc_value_timescale_spectrum_meder2017",
+  "timestamp_utc": "2026-05-11T11:26:08Z",
+  "claim_ids_tested": ["Q-045"],
+  "source": {
+    "title": "Simultaneous representation of a spectrum of dynamically changing value estimates during decision making",
+    "authors": ["David Meder", "Nils Kolling", "Lennart Verhagen", "Marco K. Wittmann", "Jacqueline Scholl", "Kristoffer H. Madsen", "Oliver J. Hulme", "Timothy E. J. Behrens", "Matthew F. S. Rushworth"],
+    "year": 2017,
+    "venue": "Nat Commun",
+    "doi": "10.1038/s41467-017-02169-w",
+    "pmid": "29208968"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Direct evidence that dACC (and three other regions) hold multiple value representations on different timescales of recency, organised as systematic gradients across the cortex. This is computationally INCOMPATIBLE with the 'dACC anti-recency is just a noise floor' hypothesis -- noise has no temporal structure. The dACC substrate is doing something far more elaborate than what MECH-313 (LC-NE noise) does. Supports the SUBSTRATE-DISTINCT side of Q-045. Confidence moderate-high (0.79): high-quality human fMRI in Nature Communications, but the link to anti-recency specifically (rather than multi-timescale value in general) is by inference rather than direct demonstration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE implements MECH-260 as a single anti-recency timescale (e.g. exponential discount with one decay constant), it will fail to reproduce Meder's spectrum: the dACC substrate holds value estimates at MULTIPLE temporal scales simultaneously, organised as a cortical gradient. A single-timescale anti-recency cannot generate the dynamic switching Meder observes when the environment changes. MECH-260's implementation note should consider whether the V3 substrate needs to instantiate a multi-timescale spectrum or whether a single timescale captures enough.",
+    "If MECH-313 and MECH-260 are collapsed into a single regulator (the Q-045 collapse outcome), the combined substrate would have to instantiate multi-timescale temporal structure -- which a noise-floor primitive cannot do. The fact that dACC holds a temporal spectrum is constructive evidence against collapse: the LC-NE noise substrate and the dACC value-timescale substrate are doing different things at different temporal granularities."
+  ],
+  "tags": ["q_045", "mech_260", "meder", "rushworth", "dacc", "multi_timescale_value", "recency_weighted_value", "cortical_gradient", "substrate_distinctness"],
+  "mapping": {
+    "source_claim_statement": "Dorsal anterior cingulate cortex and three other brain regions (vmPFC, posterior cingulate, parietal cortex) hold multiple representations of choice value based on different timescales of experience, organised as systematic gradients across the cortex. Some parts of each area represent value estimates based on recent reward experience while others represent value estimates based on experience over the longer term. The value estimates within these areas interact according to their temporal scaling. Some aspects of the representations change dynamically as the environment changes -- the same brain region rebalances which timescale-of-evidence drives current choice. The authors propose this spectrum acts as a flexible selection mechanism for combining experience-derived value information with other aspects of value for adaptive decision making in changing environments.",
+    "ree_translation": "Meder 2017 supports Q-045's SUBSTRATE-DISTINCTNESS verdict by showing that dACC's contribution to choice is computationally elaborate -- a multi-timescale value spectrum, not a uniform noise floor. The MECH-260 anti-recency primitive sits inside this elaborated dACC substrate as one face of the multi-timescale value architecture: the shorter-timescale value representations are exactly the ones that need suppression when recency-bias is detected (Scholl 2015 mechanism in this same pull). The LC-NE tonic noise substrate (MECH-313) has no analogue of multi-timescale temporal structure -- it is a state-independent always-on noise floor. The two substrates cannot collapse because they instantiate different computational primitives at different temporal grains. For REE the implementation implication is: MECH-260 may benefit from a multi-timescale representation (not just one anti-recency timescale) -- this is a Phase-2 refinement, not a Phase-1 substrate gap.",
+    "mapping_caveat": "Meder's finding is about multi-timescale value representation generally, not anti-recency specifically. The mapping to MECH-260 is by inference (anti-recency is one face of multi-timescale value computation -- shorter-timescale estimates can be down-weighted when recency-bias is suspected). The direct anti-recency anchor remains Scholl 2015. Meder's role in this pull is to support the architectural argument that dACC is computationally elaborate in ways that MECH-313's noise-floor primitive is not -- supporting substrate-distinctness against the Q-045 collapse hypothesis. Note: fMRI BOLD, no causal manipulation. According to PubMed, DOI 10.1038/s41467-017-02169-w; PMID 29208968.",
+    "source_context": "Human fMRI, Nature Communications 2017. Probabilistic reversal-learning task. Model-based fMRI with explicit temporal-scaling decomposition of value estimates."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.22,
+    "notes": "Source quality high (Nature Communications, well-powered human fMRI, model-based with explicit timescale decomposition). Mapping fidelity moderate-strong on the substrate-distinctness argument (dACC is elaborate, not noise-like). Transfer risk low (human-to-REE for cingulate computation is standard). Direct relevance to MECH-260 specifically is by inference rather than direct demonstration, hence mapping_fidelity not higher."
+  }
+}

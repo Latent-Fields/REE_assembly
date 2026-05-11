@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_261_sd021_descending_pain_mod
 
-Generated: `2026-05-11T08:51:32.558036Z`
+Generated: `2026-05-11T11:32:30.586883Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
