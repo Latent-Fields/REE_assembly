@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-10T12:24:30Z",
+  "last_updated_utc": "2026-05-11T17:13:06Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2528,7 +2528,7 @@
       "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4).",
       "priority": 2,
       "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
-      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+      "last_seen_session": "governance-2026-05-11T1713Z"
     },
     {
       "sd_id": "ARC-064",
@@ -2577,7 +2577,7 @@
       "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+      "last_seen_session": "governance-2026-05-11T1713Z"
     },
     {
       "sd_id": "MECH-313",
@@ -2596,7 +2596,7 @@
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-544 5/5 PASS. Pure-arithmetic regulator at e3.select() call site. Phase-1 placement choice (separate NoiseFloor module rather than per-head temperature inside GatedPolicy) is provisional pending cross-substrate placement review with MECH-314.",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+      "last_seen_session": "governance-2026-05-11T1713Z"
     },
     {
       "sd_id": "MECH-314",
@@ -2618,7 +2618,7 @@
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-545 5/5 PASS. Single module + 3 independently-togglable sub-switches per Pull 1 R3 verdict. 314a is genuinely per-candidate; 314b/c are state-dependent global scalars broadcast across [K] in Phase 1 (per-candidate refinement deferred to Phase 2).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+      "last_seen_session": "governance-2026-05-11T1713Z"
     },
     {
       "sd_id": "MECH-316",
@@ -2697,7 +2697,7 @@
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-546 6/6 smoke PASS; runner pickup pending. Pure-arithmetic regulator with effective_simulation_mode(simulation_mode, site) primitive. Per Pull 3 R1 GENUINE-NOVELTY-CONFIRMED + Pull 4 R3 KEEP-AS-IS verdict; MECH-094 NOT modified.",
       "priority": 2,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+      "last_seen_session": "governance-2026-05-11T1713Z"
     },
     {
       "sd_id": "SD-054",
@@ -2718,7 +2718,41 @@
       "implementation_hint": "Reef env knob + hazard_food_attraction parameter exercised in V3-EXQ-522 (substrate-ceiling PASS under heuristic policy with ~50/50 reef/forage split when discriminative policy is externally injected). Trained-policy results (V3-EXQ-433e/f, 523/523a/523b) all non_contributory under monomodal V_s monostrategy substrate-ceiling.",
       "priority": 2,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+      "last_seen_session": "governance-2026-05-11T1713Z"
+    },
+    {
+      "sd_id": "MECH-320",
+      "title": "tonic_vigor_coupling_score_bias (ARC-066 first child)",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-066"
+      ],
+      "failure_record": [],
+      "implementation_hint": "MECH-320 substrate landed 2026-05-10 (commit ecccf2f). V3-EXQ-547 substrate-readiness PASS 2026-05-10T20:56Z (UC1-UC6: instantiation, master OFF no-op, EWMA arithmetic, select_action wiring, MECH-094 sim gate, additive-vs-multiplicative R3 discriminability). Behavioural validation (3-arm discriminative pair baseline / additive / multiplicative on well-fed-safe-familiar substrate) queued AFTER substrate landing.",
+      "priority": 2,
+      "added_session": "governance-2026-05-11T1713Z",
+      "last_seen_session": "governance-2026-05-11T1713Z",
+      "implementation_status": "substrate_landed_pending_behavioural_validation",
+      "validation_experiment": "V3-EXQ-547 (substrate-readiness, PASS); behavioural 3-arm discriminative pair pending"
+    },
+    {
+      "sd_id": "ARC-066",
+      "title": "tonic_vigor_coupling (capacity-to-action-bias, average-reward-rate / LC-NE tonic / DA effort-vigor analog)",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-320"
+      ],
+      "failure_record": [],
+      "implementation_hint": "ARC-066 is the architectural-commitment parent of MECH-320 (first non-deficit action drive; companions ARC-067 idle aversion + ARC-068 opportunity cost). Substrate landed via MECH-320 implementation 2026-05-10; V3-EXQ-547 substrate-readiness PASS. Behavioural validation requires multi-mechanism pipeline (MECH-320 additive vs multiplicative + ARC-067 + ARC-068).",
+      "priority": 3,
+      "added_session": "governance-2026-05-11T1713Z",
+      "last_seen_session": "governance-2026-05-11T1713Z",
+      "implementation_status": "substrate_landed_pending_behavioural_validation",
+      "validation_experiment": "V3-EXQ-547 (MECH-320 child substrate-readiness PASS)"
     }
   ],
   "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"

@@ -13,14 +13,15 @@
     "ARC-065"
   ],
   "result": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-314": "supports",
-    "MECH-314a": "supports",
-    "MECH-314b": "supports",
-    "MECH-314c": "supports",
-    "ARC-065": "supports"
+    "MECH-314": "non_contributory",
+    "MECH-314a": "non_contributory",
+    "MECH-314b": "non_contributory",
+    "MECH-314c": "non_contributory",
+    "ARC-065": "non_contributory"
   },
+  "evidence_direction_note": "Reclassified non_contributory during 2026-05-11 governance walk. Diagnostic substrate-readiness test only -- UC1-UC5 confirm API wiring (instantiation, master OFF no-op, sub-flavour isolation, select_action contract, MECH-094 simulation gate) but do NOT test the load-bearing claim of MECH-314 or its sub-flavours. Behavioural validation requires Q-044 three-arm ablation on V3-EXQ-543c-successor after MECH-318/319 absorption checks. Should NOT weight against MECH-314 family or ARC-065 as hypothesis-evidence.",
   "metrics": {
     "UC1_forward_pass_instantiation": {
       "curiosity_is_module": true,

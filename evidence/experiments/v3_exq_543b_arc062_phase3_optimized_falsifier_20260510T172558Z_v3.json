@@ -13,12 +13,13 @@
     "SD-029"
   ],
   "outcome": "FAIL",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "MECH-309": "non_contributory",
-    "ARC-062": "non_contributory",
-    "SD-029": "non_contributory"
+    "MECH-309": "superseded",
+    "ARC-062": "superseded",
+    "SD-029": "superseded"
   },
+  "evidence_direction_note": "Marked superseded by V3-EXQ-543c during 2026-05-11 governance walk. Root causes diagnosed in /diagnose-errors session (see WORKSPACE_STATE 2026-05-11T06:47Z): (1) script-level bug -- candidate_features built from world_states[0] = initial_z_world (identical across K by E2FastPredictor convention), giving uniform softmax over candidates and TV=0 by arithmetic; (2) substrate-level finding -- CEM proposer at init produces near-indistinguishable continuous-action candidates on legacy reef, so even with the script fix the ARC-062 head sees structurally near-identical inputs. V3-EXQ-543c addresses both: (a) world_states[1] (post-action) for probe features, (b) bipartite SD-054 reef layout (V3-EXQ-548 PASS 2026-05-11 confirmed 1.27x structural divergence uplift). The original non_contributory flag (inert_gating_detected on all 3 seeds, behavioral-divergence probe TV=0) remains accurate; supersession is the cleaner governance status given a corrected successor is queued. SD-029 dropped from 543c's tightened claim_ids per claim_ids accuracy rule (SD-054, not SD-029, is the measurement substrate).",
   "metrics": {
     "arm_summaries": {
       "ARM_0_baseline": {

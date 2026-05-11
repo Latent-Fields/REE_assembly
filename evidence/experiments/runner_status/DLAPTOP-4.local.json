@@ -2,10 +2,48 @@
   "schema_version": "v1",
   "runner_pid": 10441,
   "runner_started_at": "2026-05-11T16:22:28.147371+00:00",
-  "last_updated": "2026-05-11T16:22:33.249249+00:00",
+  "last_updated": "2026-05-11T17:23:30.565638+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-543c",
+    "backlog_id": "",
+    "claim_id": "ARC-062",
+    "title": "ARC-062 Phase 3 monomodal-collapse falsifier on bipartite SD-054 (world_states[1] fix + bipartite layout)",
+    "description": "",
+    "script": "experiments/v3_exq_543c_arc062_phase3_bipartite_falsifier.py",
+    "started_at": "2026-05-11T17:09:52.689764+00:00",
+    "progress": {
+      "run_label": "Seed 0 / ARM_1c_full_3stream",
+      "runs_done": 1,
+      "runs_total": 6,
+      "episodes_done": 10,
+      "episodes_total": 108,
+      "overall_pct": 18.2
+    },
+    "seconds_elapsed": 818,
+    "seconds_remaining": 3137,
+    "recent_lines": [
+      "verdict: FAIL",
+      "Seed 0 Condition ARM_1c_full_3stream",
+      "use_gated_policy=True  P0=40  P1=60  P2=8  steps/ep=200",
+      "world_obs_dim=275  agent.gated_policy=on",
+      "[train] ARM_1c_full_3stream ep 10/108  phase=P0  rv=0.0001  ep_reward=0.0000"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-543c",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 Phase 3 monomodal-collapse falsifier on bipartite SD-054 (world_states[1] fix + bipartite layout)",
+      "description": "",
+      "estimated_minutes": 86.4,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-000",

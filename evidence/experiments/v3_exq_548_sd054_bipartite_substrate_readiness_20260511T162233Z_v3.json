@@ -9,7 +9,11 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "2026-05-11T16:22:33.126785Z",
   "experiment_purpose": "diagnostic",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-054": "non_contributory"
+  },
+  "evidence_direction_note": "Reclassified non_contributory during 2026-05-11 governance walk. Diagnostic substrate-readiness test for the SD-054 bipartite-layout extension landed earlier today; confirms structural action-axis divergence uplift (ARM_1 bipartite 0.807 vs ARM_0 legacy 0.633; 1.27x) but does NOT test SD-054's load-bearing claim that the reef substrate breaks monomodal policy collapse. Behavioural validation is the downstream V3-EXQ-543c falsifier (claimed by DLAPTOP-4.local 2026-05-11). Should NOT weight against SD-054 as hypothesis-evidence.",
   "outcome": "PASS",
   "dry_run": false,
   "metrics": {

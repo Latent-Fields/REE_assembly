@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_265a_sd017_sleep_phase_methods_validation_phase2
 
-Generated: `2026-05-11T11:32:30.586883Z`
+Generated: `2026-05-11T17:19:46.031967Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

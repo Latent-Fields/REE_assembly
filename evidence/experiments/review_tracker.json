@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-10T12:51:30Z",
+  "last_review_utc": "2026-05-11T17:13:06Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-449c",
     "V3-EXQ-455a",
@@ -296,7 +296,14 @@
     "v3_exq_522_reef_monostrategy_break_20260505T064610Z_v3",
     "v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z",
     "v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z",
-    "v3_exq_544_mech313_noise_floor_substrate_readiness"
+    "v3_exq_544_mech313_noise_floor_substrate_readiness",
+    "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z",
+    "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z",
+    "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z",
+    "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z",
+    "v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z",
+    "V3-EXQ-545",
+    "V3-EXQ-546"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2337,7 +2344,10 @@
     "v3_exq_141d_mech111_novelty_drive_rng_desync_20260508T235919Z_v3",
     "v3_exq_500a_sd017_sleep_phase_readiness_phase2_20260509T204158Z_v3",
     "v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier_20260509T214517Z_v3",
-    "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3"
+    "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3",
+    "v3_exq_141c_mech111_novelty_drive_measurement_fix_20260510T164545Z_v3",
+    "v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3",
+    "v3_exq_548_sd054_bipartite_substrate_readiness_20260511T162233Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2468,6 +2478,20 @@
         "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3"
       ],
       "subject": "Governance cycle reviewing 3 PASS pending experiments. (1) V3-EXQ-500a SD-017 sleep-phase readiness probe (Phase 2 successor to V3-EXQ-500): 3/3 seeds PASS C1+C2+C3 under the validated 5-flag substrate template; classified as evidence supporting SD-017 (already stable). Predecessor V3-EXQ-500 manifest marked evidence_direction=superseded. (2) V3-EXQ-543 ARC-062 Phase 2a monomodal-collapse falsifier: already reclassified non_contributory in the manifest (session exq543-reclassify 2026-05-10T04:23Z) due to three issues (C3 divide-by-near-zero artifact, ARM_1c seed 2 byte-identical to baseline from inert untrained gating, C2 state-dependence FAILED). Successor V3-EXQ-543b is in Phase 3 with gated_policy in optimizer + phased training. No claim weighting. (3) V3-EXQ-503a SD-017 sleep-vs-no-sleep discriminative pair (Phase 2 successor to V3-EXQ-503): 3/3 seeds PASS C1+C2+C3+C4; clean cross-arm dissociation (ARM_A 24 SWS writes / 18 REM rollouts / ctxmem_state_change 5.0 vs ARM_B all zero); per-seed M2 |diff| = [5.03, 4.70, 4.50] >> 0.20 tolerance; classified as evidence supporting SD-017 (already stable). Predecessor V3-EXQ-503 manifest marked evidence_direction=superseded. Decision queue: 13 pending_user recommendations applied (10 hold_pending_v3_substrate on ARC-062/064/065, MECH-309/312/313/316/317/318, SD-054 newly registered v3_pending claims; 3 hold_candidate_resolve_conflict on ARC-045, MECH-166, MECH-204 above conflict-ratio threshold). No claims.yaml status edits required -- all recommendations are holds, not status changes."
+    },
+    {
+      "session_utc": "2026-05-11T17:13:06Z",
+      "context": "Governance walk reviewing 3 indexed pending + 5 unclaimed-manifest pending + 2 runner-only PASS items. (1) V3-EXQ-141c FAIL MECH-111: manifest already self-flagged non_contributory (measurement_invalid=true, bit-identical arms, per-seed action_divergence=[0.0,0.0,0.0]). No claim weighting; MECH-111 stays candidate with existing evidence_quality_note pointing at update-path investigation. (2) V3-EXQ-543b FAIL ARC-062/MECH-309/SD-029: reclassified from non_contributory to evidence_direction=superseded; predecessor of V3-EXQ-543c (queued + claimed by DLAPTOP-4.local 2026-05-11; bipartite SD-054 substrate + world_states[1] script fix). SD-029 dropped from 543c claim_ids per claim_ids accuracy rule. (3) V3-EXQ-548 PASS SD-054 bipartite substrate-readiness: reclassified evidence_direction=non_contributory (diagnostic substrate-readiness only, does not test SD-054's load-bearing monomodal-break claim). (4-8) V3-EXQ-545/546/547 substrate-readiness PASS for MECH-314 family + ARC-065 + MECH-319 + MECH-320 + ARC-066: all 5 manifests reclassified evidence_direction=non_contributory (API wiring tests, not behavioural). Existing evidence_quality_notes on the affected claims already explicitly document substrate-readiness vs behavioural-test distinction so no claims.yaml edits required. Decision queue: 16 pending_user hold_pending_v3_substrate recommendations applied (5 ARC: 066/067/068/070/071; 3 Q: 043/044/045; remaining 8 are section-level duplicates of the same 8 IDs). No claim status edits required -- all are holds.",
+      "reclassified_manifests": [
+        "v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3 (non_contributory -> superseded by V3-EXQ-543c)",
+        "v3_exq_548_sd054_bipartite_substrate_readiness_20260511T162233Z_v3 (supports -> non_contributory, substrate-readiness diagnostic)",
+        "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T172604Z (supports -> non_contributory)",
+        "v3_exq_545_mech314_structured_curiosity_substrate_readiness_v3_20260510T164550Z (supports -> non_contributory; duplicate emission)",
+        "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z (supports -> non_contributory)",
+        "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T164557Z (supports -> non_contributory; duplicate emission)",
+        "v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z (supports -> non_contributory)"
+      ],
+      "decisions_applied": "16 hold_pending_v3_substrate pending_user -> applied (ARC-066/067/068/070/071, Q-043/044/045, plus 8 section-level duplicates)"
     },
     {
       "session_utc": "2026-05-10T12:51:30Z",
