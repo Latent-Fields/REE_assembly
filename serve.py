@@ -800,6 +800,13 @@ def read_closure() -> dict:
                 "cross_plan_link": list(n.get("cross_plan_link") or []),
                 "blocking_external": list(n.get("blocking_external") or []),
                 "last_updated": n.get("last_updated"),
+                # resume_condition / blocking_on: free-text + structured fields
+                # for distinguishing a node's CURRENT active blocker from its
+                # static depends_on lineage. depends_on records phase order
+                # (e.g. Phase 2 follows Phase 1) and does not flip back to
+                # incomplete once a downstream node hits a new blocker.
+                "resume_condition": n.get("resume_condition"),
+                "blocking_on": n.get("blocking_on"),
             }
             # If a node id appears in multiple plans, keep first and record alias.
             if nid in nodes_by_id:

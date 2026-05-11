@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-05-09.3 -->
+<!-- CLOSURE_VERSION: 2026-05-11.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -174,6 +174,11 @@
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
   .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; stroke-width: 1.7; }
   .edge.cross-plan:hover { stroke: rgba(163,113,247,1.0); stroke-width: 3; stroke-dasharray: 4 3; }
+  /* resolved-lineage: predecessor is done/deferred so this edge is phase-order
+     history, not an active blocker. Faded + dotted + thinner. Severity classes
+     below still apply so a load-bearing dependent stays visible. */
+  .edge.resolved-lineage { stroke: rgba(139,148,158,0.22); stroke-dasharray: 2 4; stroke-width: 1.1; }
+  .edge.resolved-lineage:hover { stroke: rgba(139,148,158,0.55); stroke-width: 1.6; }
   /* #4 severity-modulated edge weight: edges TO load-bearing or high nodes are thicker / more saturated */
   .edge.sev-load-bearing { stroke-width: 2.4; opacity: 1.0; }
   .edge.sev-load-bearing:hover { stroke-width: 3.4; }
@@ -349,7 +354,7 @@
   <span class="lg"><span class="dot" style="background:var(--st-deferred)"></span>deferred (excluded from %)</span>
   <span class="lg" style="margin-left:auto">
     <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing or high severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
-    solid edges = within-plan deps; dashed purple = cross-plan
+    solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan
   </span>
 </div>
 
@@ -713,7 +718,16 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode) {
   // #4 severity class: edges TO load-bearing or high nodes get thicker stroke
   // (the user mostly cares about which dependencies block important downstream work)
   const sev = (toNode && toNode.severity) ? ' sev-' + toNode.severity : '';
-  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : '') + sev);
+  // resolved-lineage: within-plan depends_on edge whose predecessor is already
+  // done or deferred. The dependent's current status (open / blocked / etc.) is
+  // not driven by this edge any more -- the edge is phase-order history.
+  // depends_on conflates lineage with "active blocker"; this class lets the UI
+  // show that distinction without a schema change.
+  const lineageStatuses = new Set(['done', 'deferred', 'deferred_v4']);
+  const isResolvedLineage =
+    !isCross && fromNode && lineageStatuses.has(fromNode.status);
+  const lineageCls = isResolvedLineage ? ' resolved-lineage' : '';
+  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : '') + sev + lineageCls);
   path.setAttribute('d', d);
   path.setAttribute('marker-end', isCross ? 'url(#arrow-cross)' : 'url(#arrow)');
   // #3 expose endpoints for click-to-highlight reachability styling
@@ -736,6 +750,19 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode) {
         fromNode.id + fromStatus + '\n  "' + fromTitle + '"\n' +
         '  -> ' + toNode.id + toStatus + '\n' +
         '     "' + toTitle + '"';
+    } else if (isResolvedLineage) {
+      // Predecessor is done/deferred -- this edge records phase order, not a
+      // live blocker. If the dependent is currently blocked, the actual
+      // blocker lives in resume_condition / blocking_on, not here.
+      const blockerHint = (toNode.status === 'blocked')
+        ? '\n(active blocker for ' + toNode.id + ' is recorded in resume_condition, not this edge)'
+        : '';
+      titleEl.textContent =
+        'lineage (' + fromNode.id + ' precedes ' + toNode.id + ')\n' +
+        toNode.id + toStatus + '\n  "' + toTitle + '"\n' +
+        '  follows ' + fromNode.id + fromStatus + '\n' +
+        '          "' + fromTitle + '"' +
+        blockerHint;
     } else {
       titleEl.textContent =
         'depends-on (' + fromNode.id + ' blocks ' + toNode.id + ')\n' +
@@ -756,13 +783,31 @@ function showTip(ev, n) {
   let html = '<h4>' + escapeHtml(n.id) + '</h4><dl>';
   html += '<dt>title</dt><dd>' + escapeHtml(n.title) + '</dd>';
   html += '<dt>status</dt><dd>' + escapeHtml(n.status) + '</dd>';
+  // When the node is blocked, the active blocker often lives in
+  // resume_condition (free text) or blocking_on (structured ref), NOT in
+  // depends_on -- which records static phase-order lineage. Surface those
+  // first so the user sees the live blocker before scanning a lineage list
+  // whose targets may already be done.
+  if (n.status === 'blocked') {
+    if (n.blocking_on) html += '<dt>blocked on</dt><dd>' + escapeHtml(String(n.blocking_on)) + '</dd>';
+    if (n.resume_condition) html += '<dt>resume when</dt><dd>' + escapeHtml(String(n.resume_condition)) + '</dd>';
+  }
   html += '<dt>phase</dt><dd>' + escapeHtml(String(n.phase==null?'?':n.phase)) + '</dd>';
   html += '<dt>severity</dt><dd>' + escapeHtml(n.severity || '') + '</dd>';
   if (n.owner_exq) html += '<dt>owner_exq</dt><dd>' + escapeHtml(n.owner_exq) + '</dd>';
   if (n.unblocks_claims && n.unblocks_claims.length) html += '<dt>unblocks</dt><dd>' + n.unblocks_claims.map(escapeHtml).join(', ') + '</dd>';
-  if (n.depends_on && n.depends_on.length) html += '<dt>depends_on</dt><dd>' + n.depends_on.map(escapeHtml).join(', ') + '</dd>';
+  if (n.depends_on && n.depends_on.length) {
+    // Annotate each lineage target with its status so done predecessors are
+    // visually distinct from open ones in the tooltip too.
+    const deps = n.depends_on.map(id => {
+      const dep = NODES_BY_ID[id];
+      const st = dep && dep.status ? ' [' + dep.status + ']' : '';
+      return escapeHtml(id + st);
+    });
+    html += '<dt>lineage</dt><dd>' + deps.join(', ') + '</dd>';
+  }
   if (n.cross_plan_link && n.cross_plan_link.length) html += '<dt>x-plan</dt><dd>' + n.cross_plan_link.map(escapeHtml).join(', ') + '</dd>';
-  if (n.blocking_external && n.blocking_external.length) html += '<dt>blocked by</dt><dd>' + n.blocking_external.map(escapeHtml).join('; ') + '</dd>';
+  if (n.blocking_external && n.blocking_external.length) html += '<dt>ext blocker</dt><dd>' + n.blocking_external.map(escapeHtml).join('; ') + '</dd>';
   if (n.last_updated) html += '<dt>updated</dt><dd>' + escapeHtml(String(n.last_updated)) + '</dd>';
   html += '</dl>';
   tip.innerHTML = html;
