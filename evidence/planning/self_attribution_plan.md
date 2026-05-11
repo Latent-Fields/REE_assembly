@@ -8,12 +8,14 @@ closure_plan:
     - id: "self_attribution:GAP-1"
       title: "ARC-033 vs ARC-058 path arbitration (forensic 445h read)"
       phase: 1
-      status: open
+      status: blocked
       severity: high
       owner_exq: V3-EXQ-445h
       unblocks_claims: [ARC-033, ARC-058, MECH-258, MECH-260]
       depends_on: []
-      last_updated: 2026-05-08
+      blocking_external: ["sleep_substrate:GAP-1 Phase 1 PASS", "MECH-269 V_s monostrategy landing", "MECH-307 conjunction architecture"]
+      resume_condition: "Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that (a) EXQ-445h dropped the ON_SHARED arm (CONDITIONS=[OFF, ON_INDEPENDENT] only); (b) the earlier three-arm EXQ-445 and EXQ-445b runs that did include ON_SHARED produced bit-identical metrics between ON_INDEPENDENT and ON_SHARED (harm_a_forward_r2 and mean_score_bias_abs floating-point-identical per seed across both arms) under action_class_entropy=0.0 monostrategy. The architectural arbitration is unmeasurable for the same V_s monostrategy reason as GAP-2 -- both forward models converge to predicting a near-degenerate z_harm_a signal. GAP-1 is not a separate gap from GAP-2."
+      last_updated: 2026-05-11
     - id: "self_attribution:GAP-2"
       title: "SD-029 / MECH-256 retest under full substrate stack"
       phase: 2
@@ -177,50 +179,92 @@ inline and tracked as the upstream gate in the
 
 ### Phase 1: V3-EXQ-445 three-arm ablation result interpretation (GAP-1)
 
-**Smallest scope, highest leverage.** ARC-033 and ARC-058 are registered
-as competing architectural commitments. V3-EXQ-445 was designed as the
-three-arm ablation that arbitrates them: dACC-OFF (baseline) vs
-dACC-ON-independent (ARC-033 path) vs dACC-ON-shared-trunk (ARC-058
-path). EXQ-445h (the latest in the series) returned MECH-258 supports
-(C1 wins 2/3 seeds, harm_a forward R2=0.94-0.99) and MECH-260 supports
-(C3 wins 3/3 seeds), but SD-032b does_not_support (4th consecutive null
-after 445/445a/b/c).
+**Status (2026-05-11): blocked on same substrate gates as Phase 2.**
+Forensic read of EXQ-445h surfaced that the arbitration data does not
+exist in any 445-iteration, and the bit-identical pattern in the
+iterations that did include ON_SHARED is the same V_s monostrategy
+substrate ceiling that has been reclassifying the SD-029 cohort
+non_contributory. See [Decision log -- 2026-05-11](#2026-05-11-gap-1-monostrategy-inversion)
+below.
 
-The 445 result interpretation is the falsifiable branch of MECH-258 +
-ARC-058: shared-trunk substrate produces comparable per-stream
-accuracy AND a usable shared aversive-PE signal -> ARC-058 wins;
-otherwise ARC-033 wins and ARC-058 is retired.
+ARC-033 and ARC-058 are registered as competing architectural
+commitments. V3-EXQ-445 was designed as the three-arm ablation that
+arbitrates them: dACC-OFF (baseline) vs dACC-ON-independent (ARC-033
+path) vs dACC-ON-shared-trunk (ARC-058 path).
 
-Deliverables:
+**Two findings invert the original Phase 1 plan:**
 
-1. **445h forensic read.** Compare per-stream forward_r2 between the
-   ARC-033 path (`shared_trunk=None`, `use_e2_harm_a=True` with
-   `use_shared_harm_trunk=False`) and the ARC-058 path
-   (`shared_trunk=HarmForwardTrunk()`, `use_shared_harm_trunk=True`).
-   Both paths use the same `E2HarmAForward` / `E2HarmSForward`
-   constructors; only the trunk wiring differs. Read whether shared-
-   trunk degrades z_harm_s accuracy or matches it.
-2. **Architectural verdict.** If shared-trunk path matches per-stream
-   accuracy AND the dACC bundle PE channel produces usable downstream
-   discrimination -> ARC-058 supports / ARC-033 weakens. If shared-
-   trunk degrades z_harm_s accuracy -> ARC-058 weakens / ARC-033
-   stable. Record verdict in claims.yaml ARC-033 + ARC-058
-   `evidence_quality_note`.
-3. **Caveat.** SD-032b does_not_support 4x running may stem from
-   substrate gaps not yet inventoried (previous-valence-on-unexpected,
-   MECH-307 conjunction architecture, sleep substrate). Per the
-   2026-05-08 governance note in MECH-260 evidence_quality_note: do
-   NOT advance toward demote until the candidate-gap inventory broadens.
+1. EXQ-445h is two-arm only -- `CONDITIONS = ["OFF", "ON_INDEPENDENT"]`
+   ([v3_exq_445h_sd032b_dacc_reef.py:83](../../../ree-v3/experiments/v3_exq_445h_sd032b_dacc_reef.py)).
+   The ARC-058 arm was silently dropped after EXQ-445b. EXQ-445a/c/d/f/g/h
+   all run `use_shared_harm_trunk=False` hard-coded. The "latest in the
+   series" that the plan keyed on has no shared-trunk data.
+2. The earlier three-arm runs (EXQ-445 + EXQ-445b two timestamps) show
+   floating-point-identical metrics between ON_INDEPENDENT and ON_SHARED
+   per seed:
+   - seed=42: harm_a_forward_r2=0.9371525719237495,
+     mean_score_bias_abs=3374526.2593920277 (both arms)
+   - seed=7:  harm_a_forward_r2=0.918056702809114,
+     mean_score_bias_abs=954306.9917550903 (both arms)
+   - seed=13: harm_a_forward_r2=0.8406720867479271,
+     mean_score_bias_abs=86130.61802364363 (both arms)
 
-Phase 1 is **not gated** on Phase 2 / Phase 3 substrate work -- it
-reads a result that has already been collected. The arbitration verdict
-should land before any further architectural elaboration on the dACC
-bundle, because ARC-033 vs ARC-058 changes whether E2_harm_s and
-E2_harm_a count as one substrate or two.
+   The two architectures (ARC-033 path uses `ResidualHarmForward`;
+   ARC-058 path uses `HarmForwardTrunk + HarmForwardHead`) are genuinely
+   different module trees with different parameter counts. The only way
+   to produce floating-point-identical training metrics is for the
+   architectural distinction to not actually exercise -- which under
+   `action_class_entropy=0.0` across every seed in every condition is
+   exactly what monostrategy predicts: trajectories are deterministic
+   given seed alone, both forward models consume the same near-degenerate
+   z_harm_a stream, and both trivially fit it. The original EXQ-445
+   pass-criteria `c4_arc033_vs_arc058_diagnostic` actually recorded
+   `mean_r2_independent == mean_r2_shared == 0.8986271204935968` exactly;
+   the "winner_suggested_by_forward_r2: ARC-058_shared" tag was
+   meaningless because the test was non-discriminative.
 
-Acceptance: ARC-033 + ARC-058 entries in claims.yaml + substrate_queue
-record an explicit verdict (one supports, one weakens / retired); the
-register gives a clear architectural decision for Phase 2 retests.
+GAP-1 is therefore not a separate gap from GAP-2. The architectural
+arbitration requires balanced agent-vs-env event distributions for the
+two architectures to produce different forward_r2 readouts. Under V_s
+monostrategy that distribution does not exist, and the bit-identicality
+is the substrate-ceiling signature.
+
+**Revised Phase 1 deliverables (post-2026-05-11):**
+
+1. **Reclassify EXQ-445 + EXQ-445b ARC-033/ARC-058 entries**:
+   evidence_direction_per_claim for ARC-033 and ARC-058 -> non_contributory
+   with evidence_quality_note pointing at action_class_entropy=0.0 +
+   bit-identical-across-arms signature. MECH-258 / MECH-260 / SD-032b
+   reads are kept as recorded (those criteria are about within-arm
+   behaviour, not cross-arm arbitration) but inherit the same
+   substrate-ceiling caveat -- they reflect what an untrained-policy
+   monostrategy run can fit, not what the dACC bundle does when the
+   policy actually exercises both event classes.
+2. **Resume condition (same as GAP-2)**: when sleep_substrate_plan Phase 1
+   PASSes AND MECH-269 V_s lands AND MECH-307 conjunction architecture
+   lands, queue a fresh three-arm ablation (NOT a 445-letter iteration --
+   the 445h template is two-arm) on the full substrate stack. Acceptance
+   criteria identical to Phase 2 (balanced events; C2 partial attenuation;
+   C3 SNR) PLUS the cross-arm comparator: shared-trunk forward_r2 must
+   differ from independent-per-stream forward_r2 by more than the
+   per-seed run-to-run noise floor to be discriminative.
+3. **Caveat (preserved from original plan)**: SD-032b does_not_support
+   running may stem from substrate gaps not yet inventoried
+   (previous-valence-on-unexpected, MECH-307 conjunction architecture,
+   sleep substrate). Per the 2026-05-08 governance note in MECH-260
+   evidence_quality_note: do NOT advance toward demote until the
+   candidate-gap inventory broadens.
+
+Phase 1 originally claimed to be **not gated** on Phase 2 / Phase 3
+substrate work because it read a result that had already been collected.
+The 2026-05-11 finding inverts that: the result that was collected does
+not actually contain arbitration data, and the substrate gaps that block
+Phase 2 also block Phase 1.
+
+Acceptance (updated): ARC-033 + ARC-058 entries in claims.yaml +
+substrate_queue retain their candidate status with evidence_quality_note
+recording the substrate-ceiling finding. The architectural verdict is
+deferred to the same resume window as Phase 2.
 
 ### Phase 2: MECH-256 single-pass comparator validation under balanced events (GAP-2)
 
@@ -371,7 +415,7 @@ attribution work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | open | nothing internal; needs author session for forensic 445h read | Compare ARC-033 vs ARC-058 path forward_r2 in EXQ-445h; record verdict | V3-EXQ-445h (already collected) | 2026-05-08 |
+| GAP-1 | 1 | blocked | sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture (same gates as GAP-2) | After upstream gates close, queue a fresh three-arm ablation (NOT 445h -- that script is two-arm) that exercises ARC-033 vs ARC-058 under balanced events. Forensic read 2026-05-11 surfaced substrate-ceiling, not arbitration data -- see Decision log | TBD (post-substrate-gates) | 2026-05-11 |
 | GAP-2 | 2 | blocked | sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture | After all three upstream gates close, re-queue SD-029 / MECH-256 retest with full substrate stack | TBD (post-substrate-gates) | 2026-05-08 |
 | GAP-3 | 3 | blocked | Phase 2 PASS + Phase 1 verdict | After Phase 2 PASS, re-queue MECH-257 dual-function 3-arm ablation | re-queue of EXQ-452 (TBD) | 2026-05-08 |
 | GAP-4 | 4 | open | nothing | Schedule nociceptive-comparator lit-pull (PAG/RVM descending modulation, ACC pain attribution) | n/a (lit-pull) | 2026-05-08 |
@@ -424,6 +468,60 @@ unblocks_claims -- this is reflected explicitly in the
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-11 - GAP-1 monostrategy inversion {#2026-05-11-gap-1-monostrategy-inversion}
+
+Phase 1 forensic read of V3-EXQ-445h, performed today, surfaced that the
+arbitration data the plan keyed on does not exist. Two findings:
+
+1. **EXQ-445h is two-arm only.** Script line 83 of
+   [v3_exq_445h_sd032b_dacc_reef.py](../../../ree-v3/experiments/v3_exq_445h_sd032b_dacc_reef.py)
+   sets `CONDITIONS = ["OFF", "ON_INDEPENDENT"]`. The ON_SHARED arm was
+   silently dropped after the EXQ-445b iteration; EXQ-445a/c/d/f/g/h all
+   run `use_shared_harm_trunk=False` hard-coded. The 2026-05-08 plan-
+   registration step referred to "EXQ-445h forensic read" because the
+   manifest's c1_mech258 / c2_sd032b / c3_mech260 grid reads as if it had
+   the data; the underlying script does not.
+2. **EXQ-445 and EXQ-445b (which retained the three-arm shape) show
+   floating-point-identical metrics across ON_INDEPENDENT and ON_SHARED**
+   per seed (harm_a_forward_r2 and mean_score_bias_abs both bit-identical
+   across the two architectural arms, varying only across seeds). Under
+   `action_class_entropy=0.0` in every condition for every seed, the
+   policy is monomodal -- the trajectory through the env is deterministic
+   given seed alone, so both forward-model architectures consume the same
+   z_harm_a stream and trivially fit a near-degenerate target. The
+   architectural distinction between `ResidualHarmForward` (ARC-033) and
+   `HarmForwardTrunk + HarmForwardHead` (ARC-058) is unmeasurable because
+   the input distribution does not exercise it. The EXQ-445
+   `c4_arc033_vs_arc058_diagnostic` field even records this:
+   `mean_r2_independent == mean_r2_shared == 0.8986271204935968` exactly;
+   the "winner_suggested_by_forward_r2: ARC-058_shared" tag is
+   meaningless because the test is non-discriminative.
+
+Conclusion: **GAP-1 is the same V_s monostrategy substrate ceiling that
+blocks GAP-2.** The 9 non_contributory reclassifications already logged
+for SD-029 (EXQ-433 / 433a / 433b / 470 / 433d / 433f / 537 / 537a /
+523b) are the same blocker -- EXQ-445 and EXQ-445b just didn't get
+reclassified the same way at original-review time because c1_mech258
+PASSed at the same trivial-fit signature.
+
+Actions taken this session:
+- GAP-1 status `open` -> `blocked` with same upstream gates as GAP-2
+  (sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307
+  conjunction architecture).
+- EXQ-445 and EXQ-445b (two timestamped runs) manifests updated:
+  evidence_direction_per_claim for ARC-033 and ARC-058 -> non_contributory
+  with evidence_quality_note pointing at the bit-identicality +
+  action_class_entropy=0.0 signature. MECH-258 / MECH-260 / SD-032b reads
+  preserved (within-arm criteria) but inherit the substrate-ceiling
+  caveat.
+- Phase 1 narrative section updated to record the inversion. The "not
+  gated on Phase 2/3" claim is removed; the revised acceptance is to
+  queue a fresh three-arm ablation (NOT a 445-letter iteration) post-
+  substrate-gates with both balanced-events acceptance AND a cross-arm
+  discriminability floor.
+- No new EXQ queued. Queueing EXQ-445i would burn a runner session on
+  the same blocker.
 
 ### 2026-05-08 - Plan registered
 

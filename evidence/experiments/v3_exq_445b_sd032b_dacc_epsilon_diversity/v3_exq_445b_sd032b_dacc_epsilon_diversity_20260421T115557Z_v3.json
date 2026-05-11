@@ -16,6 +16,7 @@
     "MECH-260": "non_contributory",
     "SD-032b": "non_contributory"
   },
+  "evidence_direction_note": "2026-05-11 reclassification anchor: per-seed action_class_entropy=0.0 in every condition; per-seed harm_a_forward_r2 + mean_score_bias_abs floating-point-identical between ON_INDEPENDENT and ON_SHARED (seed=42 -> 0.9529851240964637 / 1523.10257748074; seed=7 -> 0.9378946369285482 / 421.68562426249184; seed=13 -> 0.9390959380345042 / 38.13321096314324). Same V_s monostrategy substrate ceiling as the sibling 20260421T025042Z run -- both architectures consume the same deterministic-given-seed trajectory and trivially fit a near-degenerate z_harm_a target. ARC-033 / ARC-058 not tagged in claim_ids (correctly per claim_ids accuracy rule). MECH-258 / MECH-260 / SD-032b within-arm reads preserved but inherit substrate-ceiling caveat. self_attribution_plan.md GAP-1 records the finding; resume condition is the same upstream substrate gates as GAP-2.",
   "pass_criteria_summary": {
     "c1_mech258": {
       "indep_wins": 3,

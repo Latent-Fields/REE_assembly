@@ -16,6 +16,7 @@
     "MECH-260": "non_contributory",
     "SD-032b": "non_contributory"
   },
+  "evidence_direction_note": "2026-05-11 reclassification anchor: per-seed action_class_entropy=0.0 in every condition; per-seed harm_a_forward_r2 + mean_score_bias_abs floating-point-identical between ON_INDEPENDENT and ON_SHARED (seed=42 -> 0.9394131702960827 / 1523.1103575642903; seed=7 -> 0.9334850054284988 / 421.68686498006184; seed=13 -> 0.9372929059037282 / 38.133611341052585). Under V_s monostrategy the trajectory is deterministic given seed alone -- both forward-model architectures consume the same z_harm_a stream and trivially fit a near-degenerate target. claim_ids does not include ARC-033 / ARC-058 (correctly per the claim_ids accuracy rule: the test was non-discriminative for those claims), so no per-claim direction entries are added here. The within-arm MECH-258 / MECH-260 / SD-032b reads reflect what an untrained-policy monostrategy run fits trivially, not what the dACC bundle does when the policy actually exercises both event classes -- self_attribution_plan.md GAP-1 records the substrate-ceiling finding; resume condition is the same upstream substrate gates as GAP-2 (sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture).",
   "pass_criteria_summary": {
     "c1_mech258": {
       "indep_wins": 3,
