@@ -2,7 +2,9 @@
 
 **Created:** 2026-05-08
 **Type:** architecture proposal + comparative analysis
-**Status:** MECH-307 registered as candidate / v3_pending; SD-014 amendment proposed but not yet applied to registry pending MECH-307 experimental outcome.
+**Status:** MECH-307 SUBSTRATE LANDED 2026-05-11 (Option-b for Gap 1 per user override; Gaps 2/3/4 landed 2026-05-08). Claim status candidate -> candidate_substrate_landed; v3_pending still True pending behavioural validation. SD-014 6-channel amendment retained as registered fallback if the conjunction reading fails the 4-arm discriminative validation.
+
+**2026-05-11 Option-b note (Gap 1):** the design-doc proposed Option (a) signed single channel as default; the user-override directed Option (b) split into VALENCE_POSITIVE_SURPRISE / VALENCE_NEGATIVE_SURPRISE as separate channels. Implementation extends VALENCE_DIM 4 -> 6 in ree_core/residue/field.py with indices 4 (positive) and 5 (negative). MECH-205 write site at the PE-generating tick routes by harm-signal sign and ALSO writes magnitude to the legacy VALENCE_SURPRISE channel for backward-compat with existing consumers (MECH-205 replay-priority, SD-014 evaluate_valence readers). Master convenience flag `use_mech307_conjunction` propagates to the three substrate-side sub-flags via REEConfig.__post_init__. 309/309 contracts + 7/7 preflight PASS with master OFF (bit-identical OFF guarantee). Plan-of-record goal_pipeline_plan.md GAP-1 status open -> done 2026-05-11. Behavioural validation (4-arm discriminative pair) queued in a separate /queue-experiment session per the user "substrate only first" directive.
 **Anchors:** `evidence/literature/targeted_review_excitement_5th_valence_channel/` (9 entries, lit_conf 0.77); `evidence/literature/wanting_liking_sleep_consolidation_synthesis.md`; `mech188_vs_mech295_dual_path.md`.
 
 ## The architectural question

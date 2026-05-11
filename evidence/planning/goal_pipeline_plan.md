@@ -8,12 +8,13 @@ closure_plan:
     - id: "goal_pipeline:GAP-1"
       title: "MECH-307 anticipatory-affect conjunction architecture"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
-      owner_exq: TBD
+      owner_exq: TBD (4-arm discriminative pair pending)
       unblocks_claims: [MECH-307, SD-014]
       depends_on: []
-      last_updated: 2026-05-08
+      last_updated: 2026-05-11
+      completion_note: "Substrate landed 2026-05-11. Gap 1 implemented as Option-b (split channels VALENCE_POSITIVE_SURPRISE + VALENCE_NEGATIVE_SURPRISE) per user override; Gaps 2/3/4 substrate-landed 2026-05-08. Master flag use_mech307_conjunction propagates to three sub-flags. 309/309 contracts + 7/7 preflight PASS with master OFF. 4-arm discriminative validation deferred to a /queue-experiment session per the 'substrate only first' directive."
     - id: "goal_pipeline:GAP-2"
       title: "SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)"
       phase: 2
@@ -362,7 +363,7 @@ See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | open | nothing internal; needs author session | Land MECH-307 four-gap conjunction fix (~40 lines) per anticipatory_affect_conjunction_vs_dual_channel.md; queue 4-arm validation | TBD (MECH-307 substrate validation) | 2026-05-08 |
+| GAP-1 | 1 | done | (substrate landed 2026-05-11; 4-arm validation pending separate session) | Queue 4-arm discriminative pair via /queue-experiment under master flag use_mech307_conjunction=True | TBD (4-arm discriminative pair) | 2026-05-11 |
 | GAP-2 | 2 | blocked | Phase 1 PASS | Re-queue V3-EXQ-514 successor with phased training under MECH-307-fixed substrate | V3-EXQ-514g (TBD) | 2026-05-08 |
 | GAP-3 | 3 | open | nothing internal | Land sustained-drive EMA (Option 1) per sustained_drive_anticipatory_wanting.md; queue discriminative drive_ema_alpha sweep | TBD (SD-012 amendment) | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 1 + Phase 3 PASS | Re-queue Tier-1 cohort under StepHarness with Phase 1 + Phase 3 landed | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-08 |
@@ -476,6 +477,65 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-11 - GAP-1 substrate landed (Option-b for Gap 1 per user override)
+
+Phase 1 substrate (MECH-307 four-gap conjunction architecture) landed end-to-end
+in ree-v3. Gap 1 implemented as Option-b (split into VALENCE_POSITIVE_SURPRISE +
+VALENCE_NEGATIVE_SURPRISE as separate channels in the residue valence buffer)
+per user override 2026-05-11 of the design-doc default Option-a (signed single
+channel). Gaps 2, 3, 4 substrate-landed 2026-05-08 unchanged (no rewrite this
+session). New REEConfig field `use_mech307_conjunction` is a master convenience
+flag whose `__post_init__` resolver propagates to the three substrate-side
+sub-flags (`use_mech307_split_surprise`, `use_mech307_schema_multichannel`,
+`use_mech307_predicted_location_write`). Path B / consumer-side
+`use_mech307_consumer_conjunction_read` NOT auto-set (out of session scope per
+"substrate only first" directive).
+
+Modules touched:
+- ree-v3/ree_core/residue/field.py (VALENCE_DIM 4 -> 6; new constants
+  VALENCE_POSITIVE_SURPRISE=4 and VALENCE_NEGATIVE_SURPRISE=5;
+  evaluate_valence return shape [batch, 6]).
+- ree-v3/ree_core/utils/config.py (two new REEConfig fields +
+  `__post_init__` resolver).
+- ree-v3/ree_core/agent.py (MECH-205 PE write site dispatches three paths:
+  split / signed / true-legacy; new VALENCE_POSITIVE_SURPRISE /
+  VALENCE_NEGATIVE_SURPRISE imports).
+- ree-v3/CLAUDE.md ("MECH-307 Anticipatory Affect Conjunction Architecture
+  (2026-05-11)" SD-Implemented entry appended).
+- REE_assembly/docs/claims/claims.yaml (MECH-307 status candidate ->
+  candidate_substrate_landed; evidence_quality_note extended with 2026-05-11
+  implementation_note paragraph; v3_pending remains True pending behavioural
+  validation).
+- REE_assembly/docs/architecture/anticipatory_affect_conjunction_vs_dual_channel.md
+  (Status block flipped PENDING -> SUBSTRATE LANDED 2026-05-11; Option-b
+  paragraph added).
+
+Regression: 309/309 contracts + 7/7 preflight PASS with master OFF
+(bit-identical OFF guarantee). The existing
+tests/contracts/test_mech307_conjunction_contract.py (12 contracts covering
+Gaps 1-4 under their individual flags) PASSed unmodified -- the Option-a
+Gap-1 path is preserved behind `use_mech307_signed_pe`.
+
+Direct field-level smoke (2026-05-11):
+- VALENCE_DIM=6 buffer allocation verified.
+- Split-channel write routing verified: harm_signal < 0 -> NEGATIVE channel;
+  harm_signal >= 0 -> POSITIVE channel; magnitude preserved on legacy
+  VALENCE_SURPRISE for backward-compat consumers.
+- MECH-094 hypothesis_tag=True gate respected (write skipped).
+
+GAP-2 (SD-049 Phase 2 V3-EXQ-514 behavioural validation under MECH-307-fixed
+substrate) now unblocked. Phase 2 trigger condition (Phase 1 PASS on the 4-arm
+discriminative validation) is the next gate; the 4-arm validation EXQ is the
+canonical Phase 1 PASS / fallback adjudicator between MECH-307 conjunction
+architecture (first-line) and the SD-014 6-channel amendment (registered
+fallback).
+
+Reason for Option-b override: user-directed; rationale not recorded by the
+user beyond preference for the architecturally cleaner channel-separation
+form. The Option-a path is preserved behind `use_mech307_signed_pe`, so
+the 4-arm validation can include an Option-a arm if discriminative testing
+between Option-a and Option-b becomes load-bearing for governance.
 
 ### 2026-05-08 - Plan registered
 

@@ -25570,7 +25570,7 @@
   claim_type: mechanism_hypothesis
   subject: affect.anticipatory_conjunction_architecture
   polarity: asserts
-  status: candidate
+  status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -25715,6 +25715,28 @@
     use_mech307_consumer_conjunction_read flag), and EXQ-540 (3-arm gap decomposition
     ARM_0_off / ARM_1_signed_pe / ARM_2_full with the consumer ON in all arms) is queued as
     the discriminative validation. Hold remains in force until EXQ-540 runs.
+
+    [2026-05-11 implementation_note]: status candidate -> candidate_substrate_landed.
+    Gap 1 Option-b (split channels) landed per user override 2026-05-11 over the design-doc
+    default Option-a (signed single channel). residue/field.py: VALENCE_DIM 4 -> 6 with new
+    constants VALENCE_POSITIVE_SURPRISE=4 and VALENCE_NEGATIVE_SURPRISE=5. agent.py MECH-205
+    PE write site dispatches three paths (split / signed / true-legacy). config.py:
+    use_mech307_split_surprise (Option-b flag) + use_mech307_conjunction (convenience master
+    flag whose __post_init__ resolver propagates to the three substrate-side sub-flags
+    use_mech307_split_surprise / use_mech307_schema_multichannel /
+    use_mech307_predicted_location_write). Gaps 2, 3, 4 substrate-landed 2026-05-08 unchanged.
+    309/309 contracts + 7/7 preflight PASS with master OFF (bit-identical OFF guarantee
+    verified). Direct field-level smoke verified VALENCE_DIM=6 buffer allocation, split-channel
+    write routing (POSITIVE on harm_signal >= 0, NEGATIVE on harm_signal < 0, magnitude
+    preserved on legacy VALENCE_SURPRISE for backward-compat MECH-205 / SD-014 consumers),
+    MECH-094 hypothesis_tag gate respected. Plan-of-record goal_pipeline_plan.md GAP-1 status
+    open -> done; Phase 2 (GAP-2 SD-049 Phase 2 behavioural validation under MECH-307-fixed
+    substrate) unblocked. v3_pending remains True; behavioural validation (4-arm discriminative
+    pair) deferred to a /queue-experiment session per the 2026-05-11 user "substrate only first"
+    directive. SD-014 6-channel amendment retained as registered fallback if the conjunction
+    reading fails behavioural validation. See REE_Working/ree-v3/CLAUDE.md "MECH-307
+    Anticipatory Affect Conjunction Architecture (2026-05-11)" for the full SD-Implemented
+    entry.
   experimental_test: >
     4-arm discriminative pair on a CausalGridWorldV2 task with reward cues at predictable
     locations: ARM_0_off (current substrate, all 4 wiring gaps unfixed); ARM_1_signed_PE_only
