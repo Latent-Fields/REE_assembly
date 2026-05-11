@@ -1,23 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-10T13:25:51.121062+00:00",
-  "last_updated": "2026-05-10T17:38:35.625187+00:00",
-  "idle": true,
+  "runner_pid": 10441,
+  "runner_started_at": "2026-05-11T16:22:28.147371+00:00",
+  "last_updated": "2026-05-11T16:22:33.249249+00:00",
+  "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-514h",
-      "backlog_id": "",
-      "claim_id": "SD-049",
-      "title": "SD-049 BG gating wider-seed sweep under StepHarness, Tier-1 diagnostic re-run after V3-EXQ-514g interruption (supersedes V3-EXQ-514g)",
-      "description": "",
-      "estimated_minutes": 72.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -7502,7 +7490,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 1.8
+    },
+    {
+      "queue_id": "V3-EXQ-548",
+      "backlog_id": "",
+      "claim_id": "SD-054",
+      "title": "SD-054 bipartite layout substrate-readiness diagnostic",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-548 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-548.json",
+      "started_at": "2026-05-11T16:22:30.281500+00:00",
+      "completed_at": "2026-05-11T16:22:33.247288+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_548_sd054_bipartite_substrate_readiness_20260511T162233Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3.0
     }
-  ],
-  "draining": false
+  ]
 }
