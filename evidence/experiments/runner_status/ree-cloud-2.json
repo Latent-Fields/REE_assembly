@@ -2,28 +2,17 @@
   "schema_version": "v1",
   "runner_pid": 664,
   "runner_started_at": "2026-05-11T19:01:30.305022+00:00",
-  "last_updated": "2026-05-11T20:16:59.178376+00:00",
+  "last_updated": "2026-05-11T20:36:56.241853+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-549",
-      "backlog_id": "EVB-0232",
-      "claim_id": "ARC-066",
-      "title": "ARC-066 / MECH-320 tonic_vigor behavioural discriminative pair (EXP-0083 / EVB-0232)",
-      "description": "",
-      "estimated_minutes": 122.7,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-540a",
+      "queue_id": "V3-EXQ-552",
       "backlog_id": "",
-      "claim_id": "MECH-307",
-      "title": "MECH-307 Option-b 3-arm conjunction decomposition (goal_pipeline:GAP-1 Phase 1 acceptance)",
+      "claim_id": null,
+      "title": "Forced uniform-random action warmup vs monostrategy collapse (training-loop diagnostic on V3-EXQ-550 entropy=0 finding)",
       "description": "",
-      "estimated_minutes": 84.0,
+      "estimated_minutes": 80.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2064,6 +2053,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_551_pipeline_entropy_diagnostic/v3_exq_551_pipeline_entropy_diagnostic_20260511T201534Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 85.3
+    },
+    {
+      "queue_id": "V3-EXQ-551a",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "Pipeline entropy diagnostic fix: per-tick sentinels + multi-cliff classifier (supersedes V3-EXQ-551)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-551a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-551a.json",
+      "started_at": "2026-05-11T20:35:28.691404+00:00",
+      "completed_at": "2026-05-11T20:36:56.241368+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_551a_pipeline_entropy_diagnostic_fix/v3_exq_551a_pipeline_entropy_diagnostic_fix_20260511T203529Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 87.5
     }
   ]
 }
