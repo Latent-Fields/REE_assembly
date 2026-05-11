@@ -1,0 +1,162 @@
+{
+  "run_id": "v3_exq_553_orthogonal_cem_seeding_20260511T204242Z_v3",
+  "experiment_type": "v3_exq_553_orthogonal_cem_seeding",
+  "claim_ids": [],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260511T204242Z",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_note": "Proposer-fix probe (arm A: orthogonal-basis CEM seeding) for the action-class-entropy=0.0 monostrategy cliff confirmed by V3-EXQ-550 / 551 / 551a / 552. Substrate flag HippocampalConfig.use_orthogonal_cem_seeding replaces iid Gaussian per-candidate noise with QR-decomposed orthogonal basis over (horizon x action_object_dim). Five-row interpretation grid: R1 PASS (ARM_ORTHO stage1>1e-2 + entropy>0.3 in 2/3 + lift>0.10 over ARM_IID in 2/3) -> proposer seed-structure IS the cliff variable; arm B (discrete partition) optional. R2 PARTIAL_PASS (stage1 lifts but entropy ~= 0) -> downstream cliffs (V3-EXQ-551a stages 2/3) are independent blockers; review evaluator / E2 fix prioritisation. R3 stage1<1e-2 -> decoder collapse or CEM elite-refit collapses the orthogonal structure downstream of the noise; diagnose action-object decoder or elite-refit step. R4 ARM_IID matches ARM_ORTHO -> bit-identical-OFF broken; investigate substrate wiring. R5 mixed -> rerun at higher episode depth before architectural conclusions. experiment_purpose=evidence with claim_ids=[] intentional: this is a proposer-fix probe; claim assignment downstream of PARTIAL/FAIL routing.",
+  "pass_criteria_summary": {
+    "gate_rule": "PASS = ARM_ORTHO stage1_pairwise_l2_mean > 1e-2 AND action_class_entropy > 0.30 in >=2/3 seeds AND entropy > ARM_IID entropy + 0.10 in >=2/3 seeds.",
+    "pairwise_l2_lift_threshold": 0.01,
+    "entropy_high_threshold": 0.3,
+    "entropy_gap_threshold": 0.1,
+    "interpretation_label": "R3_stage1_did_not_lift_decoder_or_elite_refit_collapse",
+    "n_seeds": 3
+  },
+  "per_arm_results": {
+    "ARM_IID": [
+      {
+        "seed": 42,
+        "arm": "ARM_IID",
+        "use_orthogonal_cem_seeding": false,
+        "n_ticks": 600,
+        "n_ticks_with_new_candidates": 80,
+        "n_nans": 0,
+        "error_note": null,
+        "stage1_pairwise_l2_mean": 0.0002847739284334239,
+        "stage1_pairwise_l2_median": 0.0002773674495983869,
+        "stage1_min_pairwise_l2_mean": 6.196747052626961e-05,
+        "action_class_entropy": 0.0,
+        "action_class_counts": {
+          "1": 600
+        },
+        "n_actions": 600,
+        "ortho_diag_last": {}
+      },
+      {
+        "seed": 7,
+        "arm": "ARM_IID",
+        "use_orthogonal_cem_seeding": false,
+        "n_ticks": 600,
+        "n_ticks_with_new_candidates": 80,
+        "n_nans": 0,
+        "error_note": null,
+        "stage1_pairwise_l2_mean": 0.00018472504889359697,
+        "stage1_pairwise_l2_median": 0.0001710075157461688,
+        "stage1_min_pairwise_l2_mean": 3.3270085680214834e-05,
+        "action_class_entropy": 0.0,
+        "action_class_counts": {
+          "2": 600
+        },
+        "n_actions": 600,
+        "ortho_diag_last": {}
+      },
+      {
+        "seed": 17,
+        "arm": "ARM_IID",
+        "use_orthogonal_cem_seeding": false,
+        "n_ticks": 600,
+        "n_ticks_with_new_candidates": 80,
+        "n_nans": 0,
+        "error_note": null,
+        "stage1_pairwise_l2_mean": 0.0002227854089142056,
+        "stage1_pairwise_l2_median": 0.000219910558371339,
+        "stage1_min_pairwise_l2_mean": 4.549346747353411e-05,
+        "action_class_entropy": 0.0,
+        "action_class_counts": {
+          "2": 600
+        },
+        "n_actions": 600,
+        "ortho_diag_last": {}
+      }
+    ],
+    "ARM_ORTHO": [
+      {
+        "seed": 42,
+        "arm": "ARM_ORTHO",
+        "use_orthogonal_cem_seeding": true,
+        "n_ticks": 600,
+        "n_ticks_with_new_candidates": 80,
+        "n_nans": 0,
+        "error_note": null,
+        "stage1_pairwise_l2_mean": 0.0002996375653310679,
+        "stage1_pairwise_l2_median": 0.00030105351470410824,
+        "stage1_min_pairwise_l2_mean": 6.277680922721629e-05,
+        "action_class_entropy": 0.0,
+        "action_class_counts": {
+          "1": 600
+        },
+        "n_actions": 600,
+        "ortho_diag_last": {
+          "use_orthogonal_cem_seeding": true,
+          "n_orthogonal_iters": 3,
+          "n_iid_fallback_candidates": 0
+        }
+      },
+      {
+        "seed": 7,
+        "arm": "ARM_ORTHO",
+        "use_orthogonal_cem_seeding": true,
+        "n_ticks": 600,
+        "n_ticks_with_new_candidates": 80,
+        "n_nans": 0,
+        "error_note": null,
+        "stage1_pairwise_l2_mean": 0.00018523756925787894,
+        "stage1_pairwise_l2_median": 0.0001718886851449497,
+        "stage1_min_pairwise_l2_mean": 3.524088966742056e-05,
+        "action_class_entropy": 0.0,
+        "action_class_counts": {
+          "2": 600
+        },
+        "n_actions": 600,
+        "ortho_diag_last": {
+          "use_orthogonal_cem_seeding": true,
+          "n_orthogonal_iters": 3,
+          "n_iid_fallback_candidates": 0
+        }
+      },
+      {
+        "seed": 17,
+        "arm": "ARM_ORTHO",
+        "use_orthogonal_cem_seeding": true,
+        "n_ticks": 600,
+        "n_ticks_with_new_candidates": 80,
+        "n_nans": 0,
+        "error_note": null,
+        "stage1_pairwise_l2_mean": 0.0002189117045418243,
+        "stage1_pairwise_l2_median": 0.00021220402413746342,
+        "stage1_min_pairwise_l2_mean": 4.4038135320079165e-05,
+        "action_class_entropy": 0.0,
+        "action_class_counts": {
+          "2": 600
+        },
+        "n_actions": 600,
+        "ortho_diag_last": {
+          "use_orthogonal_cem_seeding": true,
+          "n_orthogonal_iters": 3,
+          "n_iid_fallback_candidates": 0
+        }
+      }
+    ]
+  },
+  "config": {
+    "seeds": [
+      42,
+      7,
+      17
+    ],
+    "arms": [
+      "ARM_IID",
+      "ARM_ORTHO"
+    ],
+    "p0_episodes": 20,
+    "episode_steps": 30,
+    "manipulated_variable": "use_orthogonal_cem_seeding",
+    "env_kwargs_match": "V3-EXQ-551",
+    "no_training": true,
+    "supersedes": null
+  }
+}
