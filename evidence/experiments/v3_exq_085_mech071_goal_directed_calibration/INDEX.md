@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_085_mech071_goal_directed_calibration
 
-Generated: `2026-05-11T18:13:27.681658Z`
+Generated: `2026-05-11T20:02:49.710488Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

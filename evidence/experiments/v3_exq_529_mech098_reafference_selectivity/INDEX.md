@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_529_mech098_reafference_selectivity
 
-Generated: `2026-05-11T18:13:27.681658Z`
+Generated: `2026-05-11T20:02:49.710488Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

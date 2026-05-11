@@ -2,44 +2,66 @@
   "schema_version": "v1",
   "runner_pid": 10441,
   "runner_started_at": "2026-05-11T16:22:28.147371+00:00",
-  "last_updated": "2026-05-11T18:15:18.991845+00:00",
+  "last_updated": "2026-05-11T20:05:27.434918+00:00",
   "idle": false,
   "current": {
-    "queue_id": "V3-EXQ-543c",
+    "queue_id": "V3-EXQ-540a",
     "backlog_id": "",
-    "claim_id": "ARC-062",
-    "title": "ARC-062 Phase 3 monomodal-collapse falsifier on bipartite SD-054 (world_states[1] fix + bipartite layout)",
+    "claim_id": "MECH-307",
+    "title": "MECH-307 Option-b 3-arm conjunction decomposition (goal_pipeline:GAP-1 Phase 1 acceptance)",
     "description": "",
-    "script": "experiments/v3_exq_543c_arc062_phase3_bipartite_falsifier.py",
-    "started_at": "2026-05-11T17:09:52.689764+00:00",
+    "script": "experiments/v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition.py",
+    "started_at": "2026-05-11T19:03:56.072336+00:00",
     "progress": {
-      "run_label": "Seed 1 / ARM_1c_full_3stream",
-      "runs_done": 3,
-      "runs_total": 6,
-      "episodes_done": 108,
-      "episodes_total": 108,
-      "overall_pct": 66.7
+      "run_label": "Seed 43 / ARM_2_full",
+      "runs_done": 5,
+      "runs_total": 9,
+      "episodes_done": 30,
+      "episodes_total": 70,
+      "overall_pct": 60.3
     },
-    "seconds_elapsed": 3926,
-    "seconds_remaining": 1919,
+    "seconds_elapsed": 3691,
+    "seconds_remaining": 2420,
     "recent_lines": [
-      "[probe] ARM_1c_full_3stream P1 ep 55/60  applicable=True  mean_tv=0.0000  max_tv=0.0000",
-      "[probe] ARM_1c_full_3stream P1 ep 60/60  applicable=True  mean_tv=0.0000  max_tv=0.0000",
-      "[train] ARM_1c_full_3stream ep 100/108  phase=P1  rv=0.0000  ep_reward=-0.2157  inert_gating=True",
-      "[train] ARM_1c_full_3stream ep 104/108  phase=P2  reef_frac=1.000  steps=200",
-      "[train] ARM_1c_full_3stream ep 108/108  phase=P2  reef_frac=1.000  steps=200"
+      "verdict: PASS",
+      "Seed 43 Condition ARM_2_full",
+      "[train] ARM_2_full seed=43 ep 10/70 (warmup)",
+      "[train] ARM_2_full seed=43 ep 20/70 (warmup)",
+      "[train] ARM_2_full seed=43 ep 30/70 (warmup)"
     ],
     "ree_version": "v3"
   },
   "queue": [
     {
-      "queue_id": "V3-EXQ-543c",
-      "backlog_id": "",
-      "claim_id": "ARC-062",
-      "title": "ARC-062 Phase 3 monomodal-collapse falsifier on bipartite SD-054 (world_states[1] fix + bipartite layout)",
+      "queue_id": "V3-EXQ-549",
+      "backlog_id": "EVB-0232",
+      "claim_id": "ARC-066",
+      "title": "ARC-066 / MECH-320 tonic_vigor behavioural discriminative pair (EXP-0083 / EVB-0232)",
       "description": "",
-      "estimated_minutes": 86.4,
+      "estimated_minutes": 122.7,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-540a",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 Option-b 3-arm conjunction decomposition (goal_pipeline:GAP-1 Phase 1 acceptance)",
+      "description": "",
+      "estimated_minutes": 84.0,
       "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-550",
+      "backlog_id": "",
+      "claim_id": "MECH-269",
+      "title": "MECH-269 z_goal-enabled monostrategy falsifier (config-default vs substrate diagnosis)",
+      "description": "",
+      "estimated_minutes": 4.8,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -7542,6 +7564,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_548_sd054_bipartite_substrate_readiness_20260511T162233Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 3.0
+    },
+    {
+      "queue_id": "V3-EXQ-543c",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 Phase 3 monomodal-collapse falsifier on bipartite SD-054 (world_states[1] fix + bipartite layout)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | outcome:            FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-543c -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-543c.json",
+      "started_at": "2026-05-11T17:09:52.689764+00:00",
+      "completed_at": "2026-05-11T19:02:46.834722+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543c_arc062_phase3_bipartite_falsifier_20260511T190246Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 6774.1
     }
   ]
 }
