@@ -17,15 +17,16 @@ closure_plan:
       cross_plan_link: ["commitment_closure:GAP-1"]
       last_updated: 2026-05-09
     - id: "arc_062_rule_apprehension:GAP-B"
-      title: "MECH-309 monomodal-collapse falsifier unrun (ARM_0 single-head vs ARM_1 gated-heads on SD-054)"
+      title: "MECH-309 monomodal-collapse falsifier blocked on CEM-candidate-distinguishability substrate-readiness diagnostic"
       phase: 2
-      status: queued
+      status: blocked
       severity: load-bearing
-      owner_exq: V3-EXQ-543
-      unblocks_claims: [MECH-309, ARC-062, SD-029]
+      owner_exq: TBD (substrate-readiness diagnostic via /queue-experiment)
+      unblocks_claims: [MECH-309, ARC-062]
       depends_on: ["arc_062_rule_apprehension:GAP-A"]
       cross_plan_link: ["commitment_closure:GAP-1"]
-      last_updated: 2026-05-09
+      last_updated: 2026-05-11
+      resume_condition: "CEM-candidate-distinguishability substrate-readiness diagnostic PASS confirming candidate-feature variance is sufficient for ARC-062 head discrimination, OR alternative architectural decision among the three options surfaced in the 2026-05-11 decision-log entry (augment head input with first-action; env-side diversification; substrate redesign)"
     - id: "arc_062_rule_apprehension:GAP-C"
       title: "ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector"
       phase: 3
@@ -346,7 +347,7 @@ The resume primitive. Updated every session that touches this cluster.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-A | 1 | done | nothing | Substrate landed (ree_core/policy/gated_policy.py + use_gated_policy flag + REEAgent wiring + 5 contract tests + V3-EXQ-542 substrate-readiness diagnostic 5/5 PASS) | V3-EXQ-542 | 2026-05-09 |
-| GAP-B | 2 | in-progress | V3-EXQ-543b run | V3-EXQ-543 ran (script declared PASS; reclassified non_contributory 2026-05-10 -- see decision-log "GAP-B reclassified non_contributory; jump to Phase 3 design"). Successor V3-EXQ-543b authored 2026-05-10 same day, smoke-PASS, queued (Mac, 120 min). Four corrections: (A) gated_policy.parameters() in dedicated Adam during P1 (LR_GATED_POLICY=5e-4); (B) phased training P0=40 encoder warmup -> P1=60 frozen-encoder + scaffolding diversification loss (head-pair output L2 + discriminator output variance) -> P2=8 eval; (C) behavioral-divergence probe at PROBE_INTERVAL_P1_EPS=5, mid-P1 inert-gating short-circuit at MID_TRAINING_EP=30 with INERT_GATING_THRESHOLD=0.05 TV-distance; (D) hardened C3 with C3_TRANSIT_RATE_FLOOR=0.05 + np.nanmean + min 2 valid seeds per arm. P1 training is scaffolding pressure (NOT REINFORCE on env reward); full REINFORCE deferred to Phase 3 GAP-C/D. Status `queued -> in-progress` 2026-05-10T12:35Z: script authored + smoke-PASS + queue-claimable matches the formal `in-progress` semantics in the status enum below; the prior informal `queued` label was not in the enum and read as inert in the closure-map dependency view. Awaiting runner pickup. | V3-EXQ-543b | 2026-05-10 |
+| GAP-B | 2 | blocked | CEM-candidate-distinguishability substrate-readiness diagnostic (TBD via /queue-experiment) | **STATUS 2026-05-11**: V3-EXQ-543b ran 2026-05-10 and registered `non_contributory` with `inert_gating_detected` on all 3 seeds; mean_tv_distance = max = min = 0.0 exact across 3 seeds x 12 windows x 32 probe states. Diagnose-errors session 2026-05-11T06:35Z--06:44Z surfaced two distinct causes: (1) script-level bug -- candidate_features = world_states[0] = initial_z_world (identical across K candidates by E2FastPredictor convention); (2) substrate-level finding -- even with the bug fixed (world_states[0] -> world_states[1]), CEM proposer at init produces 8 candidates with shared argmax-first-action, continuous-action vectors differing only ~1e-4, post-action world_states diverging only ~1e-5; ARC-062 head consumes z_world-only inputs that are structurally near-indistinguishable. Status `in-progress -> blocked` pending CEM-candidate-distinguishability substrate-readiness diagnostic that characterises first-action entropy, continuous-action L2 spread, and world_states-1 pairwise distance at init and during P0/P1 training. Three architectural options surfaced for downstream resolution (see decision-log 2026-05-11 for the full rationale): (1) land Cause-1 microscopic fix and rerun; (2) augment GatedPolicy head input with first-action (substrate change to ARC-062 contract; belongs under /implement-substrate); (3) **env-side diversification** -- design SD-054 (or successor) so the signals ARC-062 needs are structurally guaranteed-present per candidate by construction (user-direction, 2026-05-11). unblocks_claims tightened to [MECH-309, ARC-062]; SD-029 dropped per claim_ids accuracy rule (SD-054 is not SD-029's measurement substrate). | TBD (substrate-readiness diagnostic, then one of options 1/2/3) | 2026-05-11 |
 | GAP-C | 3 | open | GAP-B (via V3-EXQ-543b) PASS | Wire discriminator output into LateralPFCAnalog.update() source vector. NOTE 2026-05-10: GAP-C scope partially absorbed into V3-EXQ-543b (gated_policy params in optimizer is a Phase-3 deliverable). Remaining GAP-C work: explicit LateralPFCAnalog wiring after 543b PASS confirms training-time gating produces behavioral divergence. | TBD | 2026-05-10 |
 | GAP-D | 3 | open | GAP-C | Add bias head params to E3 optimiser; default-flag flip; queue GAP-1 validation EXQ. NOTE 2026-05-10: bias-head-in-optimizer also partially absorbed into 543b. | TBD | 2026-05-10 |
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
@@ -448,6 +449,117 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-11 - GAP-B status `in-progress -> blocked`: V3-EXQ-543b diagnose-errors surfaced CEM-candidate-distinguishability as upstream bottleneck
+
+V3-EXQ-543b ran on Mac 2026-05-10T13:25Z--17:26Z (240 min) and registered
+`non_contributory` for ARC-062 / MECH-309 / SD-029 with the
+`inert_gating_detected` short-circuit firing on every one of 3 seeds at
+MID_TRAINING_EP=30. The behavioural-divergence probe recorded
+`mean_tv_distance = max_tv_distance = min_tv_distance = 0.0` (exact float
+zero) across **all** 3 seeds x 12 probe windows x 32 probe states.
+Exact zero across that variation is not numerical noise -- it is
+structural. A diagnose-errors session 2026-05-11T06:35Z--06:44Z (TASK_CLAIMS
+session_id `diagnose-v3-exq-543c-2026-05-11T0635Z`) traced the failure to
+two distinct causes:
+
+**Cause 1 (script-level bug):** `candidate_features` was built by stacking
+`candidates[i].world_states[0]` across the first N_PROBE_CANDIDATES
+candidates. By E2FastPredictor convention (`ree_core/predictors/e2_fast.py:316`),
+`world_states[0] = initial_z_world` -- the pre-action z_world, IDENTICAL
+across all K candidates from a single CEM proposal step. So
+`candidate_features` was a [K, world_dim] tensor with K copies of the
+same row. Consequence chain: `head_0(features)` and `head_1(features)`
+each emit the same scalar across every K row -> `gated_score_bias =
+w*h0 + (1-w)*h1` is constant in K -> `softmax(-constant_vector / T)`
+is uniform -> TV distance vs the bypass-uniform softmax is exactly
+0 for every probe state, every seed, every probe window. The
+diversification loss `(head_0_bias - head_1_bias)^2.mean()` was
+non-zero only because of the symmetry-broken bias init at
+`gated_policy.py:217` (head_0.bias = +0.05, head_1.bias = -0.05);
+gradients flowed only into those scalar bias terms (clamped at +/-0.1
+by `bias_scale`), never into feature-conditional weights, so the heads
+could never learn per-state specialisation regardless of episode count.
+
+**Cause 2 (substrate-level finding, surfaced by direct numerical probe
+after the Cause-1 fix was written):** with `world_states[0]` replaced by
+`world_states[1]` (first POST-action predicted z_world per candidate),
+the pairwise max-diff across 8 candidates becomes **1.2e-5** at t=1,
+growing to 2.8e-3 by t=30 -- distinguishable in principle but
+microscopic. Resulting `gated_score_bias` varies by ~4e-7 across K;
+TV-distance vs bypass ~8.6e-8, still well below `INERT_GATING_THRESHOLD=
+0.05`. The deeper finding: at init the CEM proposer produces 8
+candidates that all share argmax-first-action=3 with continuous-action
+vectors differing only ~1e-4. E2 world_forward is a small-residual
+model so post-action z_world diverges by only ~1e-5 at t=1. The ARC-062
+substrate is being asked to discriminate between candidates that are
+**structurally near-indistinguishable** at the input it consumes
+(z_world-only). 543b's "inert gating" signal was over-attributed to
+the script bug; even with the bug fixed, the substrate-readiness
+premise of the falsifier is in doubt.
+
+**Three architectural options surfaced for resolution:**
+
+  1. **Land Cause-1 fix only (microscopic) and rerun.** Cheap probe; high
+     probability of another inert-gating result. Use the result to
+     formally retire the "world_states-only head input is sufficient"
+     assumption and route to a substrate redesign. Risk: another 4-hour
+     non-informative runner slot; result will be hard to disentangle
+     from the substrate-design question (substrate intrinsically inert
+     vs features-not-distinguishable-enough).
+
+  2. **Augment GatedPolicy head input with first-action.** Concatenate
+     the candidate's first-action one-hot to the head input
+     (head input dim grows from `world_dim` to `world_dim + action_dim`).
+     This is no longer a one-line script fix -- it changes the GatedPolicy
+     contract registered in CLAUDE.md and modifies the ARC-062 Phase-1
+     substrate. Belongs under `/implement-substrate`, not
+     `/diagnose-errors`.
+
+  3. **Env-side diversification: design the world to definitely have the
+     signals.** (User direction, 2026-05-11.) Build the substrate so that
+     the ARC-062 head consumes inputs that are guaranteed-distinguishable
+     across the candidate pool by construction. Concrete instantiations
+     to evaluate: (a) extend SD-054 reef partition so reef-vs-forage
+     contrast forces actively-different first-action argmaxes per
+     candidate; (b) inject env-side stochasticity at episode start so the
+     initial z_world carries policy-relevant variance the proposer must
+     pass through; (c) curriculum-level perturbation ensuring multiple
+     candidate trajectories are individually-distinguishable at t=1.
+     This option turns the question "can the substrate produce divergence
+     under free parameters" into "given a world where divergence is
+     structurally necessary for survival, does the substrate produce
+     it" -- a sharper falsifier than the current SD-054 single-density
+     setup.
+
+**Decision:** GAP-B status moves from `in-progress` to `blocked`. The
+next step is **not** to re-queue the falsifier. A substrate-readiness
+diagnostic must characterise CEM-proposer candidate-distinguishability
+at init and during training (first-action entropy, continuous-action
+L2 spread, world_states-1 pairwise distance, scaled across P0 / P1
+training) before any one of the three options is chosen. The
+substrate-readiness diagnostic will be authored via
+`/queue-experiment` in a separate session (user direction). The plan-
+of-record GAP-B `unblocks_claims` field is tightened to
+`[MECH-309, ARC-062]`; SD-029 dropped because the SD-054 substrate is
+not SD-029's measurement substrate (claim_ids accuracy rule applies
+to plan-doc dependency edges too).
+
+Files touched in this session: `arc_062_rule_apprehension_plan.md`
+(this entry + GAP-B YAML node status / title / owner_exq /
+unblocks_claims / resume_condition + closure-map row); REE_assembly
+commit + push pending below. No claims.yaml edits; no claim status
+changes (ARC-062 / MECH-309 / SD-029 statuses unchanged). No
+substrate-side code touched. Removed in cleanup: scratch
+`v3_exq_543c_arc062_phase3_optimized_falsifier_features_fix.py`
+script + its dry-run manifest + dry-run signal file (diagnose-errors
+session never queued).
+
+Cross-plan links: `commitment_closure:GAP-1` (SD-033a bias head
+training) remains blocked transitively via GAP-C (which is itself
+blocked on GAP-B). `arc_062:GAP-I` (MECH-318 empirical retire-vs-
+promote) remains gated on V3-EXQ-543c-successor; the substrate-
+readiness diagnostic does NOT count as that successor.
 
 ### 2026-05-10 - GAP-K close: MECH-319 simulation-mode rule-write-gate substrate landed
 
