@@ -204,7 +204,7 @@ Substrate-readiness prerequisite: MECH-288 substrate (`event_segmenter.py`) must
 
 Discriminative-pair validation experiment specified in MECH-321 functional_restatement (ARM_0 baseline / ARM_1 V_s-drop primary / ARM_2 bottleneck-state primary); deferred until substrate lands.
 
-### Child-MECH design — ARC-071 side (FORMATION OPERATOR REGISTERED 2026-05-11; maintenance operator pending)
+### Child-MECH design — ARC-071 side (BOTH OPERATORS REGISTERED 2026-05-11)
 
 With R6 resolved via MECH-322 (sleep-replay carve-out), ARC-071's child-MECH design is unblocked. The lit-pull's R2 verdict (phase-dependent multi-substrate with formation in striatum/DLS and maintenance in IL/vmPFC) maps onto **two child-MECHs**, mirroring Smith & Graybiel 2013's "dual operator view":
 
@@ -219,7 +219,19 @@ With R6 resolved via MECH-322 (sleep-replay carve-out), ARC-071's child-MECH des
 - **What MECH-323 preserves:** ARC-007 strict value-flat proposals (value_tag is metadata, not a value head); MECH-094 strict on the default path; SD-039 anchor payload semantics; MECH-269 substrate.
 - **First validation experiment:** substrate-readiness diagnostic measuring whether the accumulator fires at all on a structurally repeating sub-sequence task with default parameters. Behavioural-latency / rollout-cost measurements follow once the accumulator-only diagnostic passes.
 
-**MECH-324 `policy.composition.chunk_maintenance` (PENDING — separate registration pass)** — the IL/vmPFC-analog maintenance operator. Causally required for chunk crystallisation per Smith & Graybiel 2013 optogenetic disruption. Will define: chunk persistence under continued real-execution corroboration; chunk dissolution when variance rises above F_high (slower timescale than formation, per R5); accelerated dissolution for MECH-322 replay-origin chunks not corroborated within N episodes; cross-link to MECH-163 habit-maintenance side and INV-037 / INV-038 (vmPFC-analog substrate hooks).
+**MECH-324 `policy.composition.chunk_maintenance` (REGISTERED 2026-05-11)** — the IL/vmPFC-analog maintenance operator. Causally required for chunk crystallisation per Smith & Graybiel 2013 selective IL optogenetic disruption (lit_conf 0.86).
+
+- **Subject:** `policy.composition.chunk_maintenance_dissolution`. Operates on MECH-323-formed chunks; gates whether they crystallise into selectable proposals and how long they persist.
+- **depends_on:** ARC-071 (parent), MECH-323 (the formation operator MECH-324 maintains), MECH-322 (sleep-replay carve-out; accelerated-dissolution rule lives here), MECH-163 (dual-systems substrate; MECH-324 is habit-maintenance side), INV-037 (vmPFC stored/active distinction), INV-038 (vmPFC EVR pattern).
+- **Four-state lifecycle:** FORMING (chunk just created by MECH-323, weak selection_weight, crystallisation_counter accumulates on successful real executions) → CRYSTALLISED (counter ≥ C_min; full selection_weight; persists until F_high variance or MECH-322 deadline) → DISSOLVING (variance > F_high; selection_weight decays linearly over T_dissolve trials; recovery possible if variance drops back) → DISSOLVED (removed from proposal pool; retained in audit-trail register). MECH-322 replay-origin uncorroborated chunks transition DIRECTLY from CRYSTALLISED to DISSOLVED on deadline, bypassing the slower DISSOLVING window.
+- **Three sub-mechanisms (component decomposition, not separate child-MECHs):** (A) crystallisation counter — real-execution-only; replay/hypothesis_tag=True do not increment; (B) outcome-variance dissolution gate — sliding-window variance over W_maint trials, threshold F_high, slow T_dissolve timescale per R5; (C) replay-origin accelerated-dissolution gate — implements the MECH-322 corroboration-deadline rule.
+- **Suggested parameter defaults (child-MECH validation refines):** C_min = 5 corroborating executions; W_maint = 100 trials; F_high = 0.45 (hysteresis gap with MECH-323's F_low = 0.15); T_dissolve = 50 trials; N = 75 waking episodes (replay-origin corroboration window).
+- **Substrate hooks:** crystallisation_state via INV-037 stored/active distinction (stored = state field on chunk object; active = selection_weight at current step); maintenance decisions via INV-038 EVR pattern (running outcome valence over post-formation executions feeds F_high gate).
+- **What MECH-324 preserves:** ARC-007 strict value-flat proposals (selection_weight is a candidate-machinery property, not a value head); MECH-094 strict default; MECH-322 carve-out semantics; MECH-323 formation semantics.
+- **Falsifiable architectural prediction:** an REE agent with MECH-323 active but MECH-324 disabled should produce chunks that form correctly but never crystallise (accumulator fires, behavioural latency does NOT drop). MECH-324's contribution is operationally the latency drop / rollout-cost reduction signature, mirroring Smith & Graybiel 2013's IL-disruption-vs-intact contrast.
+- **First validation experiment design:** three-arm discriminative test — ARM_0 baseline (no chunking), ARM_1 MECH-323 only (formation without maintenance), ARM_2 MECH-323 + MECH-324 (full machinery). The ARM_1 vs ARM_2 contrast isolates MECH-324's contribution.
+
+**ARC-071 substrate is now fully specified.** Formation (MECH-323) + maintenance (MECH-324) + sleep-replay carve-out (MECH-322) form the complete chunking machinery. Next architectural pass: substrate-level implementation in `ree_core` via the `/implement-substrate` skill, followed by the three-arm validation experiment.
 
 **Frontoparietal early-phase parsing (Wymbs 2012 R2 partial-mapping):** not a separate ARC-071 child-MECH. It bleeds into ARC-070 / MECH-321 territory (segmentation, not concatenation); cross-linked to MECH-321 rather than registered here.
 

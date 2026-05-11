@@ -3245,6 +3245,12 @@
     "title": "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution; chunk-size budget 2-5 elements per level). Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-324": {
+    "status": "candidate",
+    "subject": "policy.composition.chunk_maintenance_dissolution",
+    "title": "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",

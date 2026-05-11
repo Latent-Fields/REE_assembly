@@ -30381,3 +30381,360 @@
     rather than separate ARC-071 child mechanism.
   location: docs/architecture/policy_primitive_granularity.md
 
+- id: MECH-324
+  title: "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes)."
+  claim_type: mechanism_hypothesis
+  subject: policy.composition.chunk_maintenance_dissolution
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-05-11"
+  depends_on:
+    - ARC-071     # parent architectural commitment (composition direction)
+    - MECH-323    # the formation operator MECH-324 maintains
+    - MECH-322    # sleep-replay carve-out (accelerated dissolution rule applies)
+    - MECH-163    # dual-systems substrate; MECH-324 is the habit-maintenance side
+    - INV-037     # vmPFC stored/active distinction (maintenance substrate hook)
+    - INV-038     # vmPFC EVR pattern (maintenance substrate hook)
+  functional_restatement: >
+    MECH-324 is the maintenance operator in the ARC-071 chunking
+    cluster -- the IL/vmPFC-analog mechanism that gates whether
+    chunks formed by MECH-323 actually crystallise into the
+    proposal pool and how long they persist. MECH-323 produces
+    chunks; MECH-324 supplies the maintenance + dissolution
+    machinery that biology shows is causally separate.
+
+    The Smith & Graybiel 2013 optogenetic finding is the
+    load-bearing causal evidence: selective disruption of
+    infralimbic cortex during overtraining prevents habit
+    formation even when the striatal accumulator's
+    task-bracketing activity pattern develops normally. This
+    means the IL-analog substrate is not just correlated with
+    chunking but causally required for it. Pure-striatal
+    MECH-323 without MECH-324 produces accumulator candidates
+    that never solidify into usable chunks.
+
+    Substrate role: MECH-324 operates on the chunks MECH-323
+    produces. Inputs: a MECH-323-formed chunk (with all seven
+    fields: sequence, initiation_set, termination_condition,
+    value_tag, replay_origin, formation_timestamp, depth) plus
+    the realised outcome stream from subsequent executions of
+    that chunk's sequence. Outputs: a per-chunk
+    crystallisation_state in {forming, crystallised, dissolving,
+    dissolved} that gates whether the chunk is selectable from
+    the proposal pool.
+
+    Lifecycle states (state machine):
+
+    (1) FORMING. The chunk has just been created by MECH-323's
+        formation trigger. MECH-324 places it in the proposal
+        pool with a low selection-weight prior. Each subsequent
+        real execution that meets the initiation_set conditions
+        and terminates successfully via termination_condition
+        increments a crystallisation_counter. When the counter
+        exceeds C_min (suggested default 5; child-MECH
+        calibration range 3-10), state transitions to
+        CRYSTALLISED.
+
+    (2) CRYSTALLISED. The chunk is fully selectable from the
+        proposal pool with full selection-weight. The
+        crystallisation_counter is frozen. The chunk persists
+        in this state until either:
+          (a) outcome variance (computed over a sliding window
+              of W_maint trials, suggested default 100;
+              child-MECH calibration range 50-200) rises above
+              F_high (suggested default 0.45; child-MECH
+              calibration range 0.35-0.55) -- state transitions
+              to DISSOLVING; or
+          (b) MECH-322 replay-origin dissolution-deadline fires
+              (replay_origin=True chunk has not been
+              corroborated by real waking execution meeting
+              initiation_set conditions within N waking
+              episodes since formation_timestamp; suggested
+              default N=75; child-MECH calibration range
+              50-100) -- state transitions directly to
+              DISSOLVED, bypassing DISSOLVING.
+
+    (3) DISSOLVING. The chunk's selection-weight decays
+        linearly over T_dissolve trials (suggested default 50;
+        child-MECH calibration range 25-100). During this
+        window, two outcomes are possible:
+          (a) outcome variance drops back below F_high
+              (recovery) -- state transitions back to
+              CRYSTALLISED; or
+          (b) T_dissolve elapses -- state transitions to
+              DISSOLVED.
+        The slow DISSOLVING timescale relative to the fast
+        FORMING-to-CRYSTALLISED timescale encodes the lit-pull
+        R5 verdict that dissolution is slower than formation
+        (Smith & Graybiel 2013 chunk-dynamics finding).
+
+    (4) DISSOLVED. The chunk is removed from the proposal pool.
+        Its representational object is retained in an
+        audit-trail register (for diagnostic purposes,
+        especially around replay-origin pathology detection)
+        but cannot be selected. Re-formation of an
+        equivalent-sequence chunk goes through the standard
+        MECH-323 trigger from scratch; it does not resurrect
+        the dissolved chunk.
+
+    Substrate hooks. MECH-324 reads from / writes to the
+    vmPFC-analog substrate via two existing invariants:
+
+    INV-037 (stored / active distinction). The chunk's
+    crystallisation_state is a stored property of the chunk
+    object; the chunk's current selection-availability is its
+    active property at any given step. MECH-324 mediates the
+    stored-to-active transition: only CRYSTALLISED chunks
+    have active selection-availability; FORMING chunks have
+    partial active availability proportional to
+    crystallisation_counter/C_min; DISSOLVING chunks have
+    partial active availability proportional to remaining
+    T_dissolve.
+
+    INV-038 (EVR pattern -- evaluation, value, retention).
+    The MECH-324 maintenance decisions read the realised
+    outcome stream and update the chunk's accumulated
+    valence (SD-014 vector) as a running average of the
+    chunk's post-formation executions. This running average
+    is what feeds the F_high dissolution threshold:
+    dissolution fires when the recent-window outcome variance
+    exceeds F_high, not when single bad executions occur.
+
+    Cross-link to MECH-163 dual-systems. MECH-324 is the
+    habit-maintenance side of the dual-system architecture.
+    The MECH-163 habit system depends on chunks being
+    available (CRYSTALLISED) for selection; MECH-324 is what
+    keeps them there. The MECH-163 planned system can still
+    propose value-flat trajectories without MECH-324 (it does
+    not require chunks); but the habit system without MECH-324
+    fails to maintain its repertoire and degenerates back to
+    the planned system's mode.
+
+    Three sub-mechanisms within MECH-324 (component
+    decomposition for clarity, not separate child-MECHs):
+
+    A. CRYSTALLISATION COUNTER. Increments on each successful
+       real execution of a FORMING chunk's sequence;
+       transitions chunk to CRYSTALLISED when counter exceeds
+       C_min. Real-execution-only: replay-origin or
+       hypothesis_tag=True executions do NOT increment.
+
+    B. OUTCOME-VARIANCE DISSOLUTION GATE. Sliding-window
+       variance computation over W_maint trials of a
+       CRYSTALLISED chunk's executions; triggers
+       DISSOLVING-state transition when variance > F_high.
+       The slow dissolution timescale (T_dissolve) is what
+       distinguishes MECH-324 from MECH-323's faster
+       formation. Recovery from DISSOLVING is possible if
+       variance drops back below F_high during the dissolution
+       window.
+
+    C. REPLAY-ORIGIN ACCELERATED-DISSOLUTION GATE. For chunks
+       with replay_origin=True (MECH-322-formed), MECH-324
+       enforces the corroboration-deadline rule: if no real
+       waking execution corroborates the chunk within N
+       waking episodes since formation_timestamp, the chunk
+       transitions directly to DISSOLVED (bypassing
+       DISSOLVING). This is the self-correcting deadline
+       MECH-322 introduced -- MECH-324 is where it is
+       implemented.
+
+    Falsifiable architectural prediction (paired with MECH-323
+    formation prediction): an REE agent with MECH-323 active
+    but MECH-324 disabled should produce chunks that form
+    correctly (the accumulator works) but fail to crystallise
+    into usable proposals (selection_weight stays near zero
+    and the chunks are never selected from the proposal pool).
+    Behavioural-latency drops on repeating sub-sequences
+    therefore DO NOT occur in the MECH-323-only condition;
+    rollout deliberation cost stays high. The MECH-324
+    contribution is operationally measurable: the difference
+    between the MECH-323-only condition and the
+    MECH-323+MECH-324 condition is the behavioural-latency
+    drop / rollout-cost reduction signature. This mirrors the
+    Smith & Graybiel 2013 IL-optogenetic-disruption finding
+    structurally.
+
+    Replay-origin-specific prediction: an REE agent with
+    MECH-323 + MECH-322 active and MECH-324 strict
+    accelerated-dissolution should show overnight chunk-
+    formation (MECH-322 path) followed by accelerated
+    dissolution of unvalidated chunks within N=75 waking
+    episodes. The audit trail (DISSOLVED chunks retained in
+    register) should record the replay-origin-without-
+    corroboration pattern as a diagnostic signature.
+
+    What MECH-324 PRESERVES:
+      - ARC-007 strict value-flat hippocampal proposals. The
+        crystallisation_state and selection_weight are
+        properties of the proposal CANDIDATE machinery, not a
+        value head on the proposal. Downstream E3 evaluation
+        still supplies the value at selection time.
+      - MECH-094 strict gating. MECH-324 does not modify the
+        write path that MECH-094 governs; it operates on
+        already-formed chunks.
+      - MECH-322 carve-out semantics. MECH-324 is where the
+        MECH-322 accelerated-dissolution rule is implemented;
+        the conditions MECH-322 specified are inherited
+        verbatim.
+      - MECH-323 formation semantics. MECH-324 receives
+        MECH-323 outputs unchanged; the chunk object's seven
+        fields are read but not modified by MECH-324.
+
+    What MECH-324 INTRODUCES:
+      - The crystallisation_state field on every chunked
+        primitive in {forming, crystallised, dissolving,
+        dissolved}.
+      - The crystallisation_counter (per-chunk, FORMING-state
+        only).
+      - The selection_weight (per-chunk, derived from state +
+        counter / remaining-T_dissolve).
+      - The sliding-window outcome-variance computation per
+        CRYSTALLISED chunk (window W_maint, threshold F_high).
+      - The dissolution-window timer (T_dissolve, recoverable).
+      - The replay-origin corroboration counter (N waking
+        episodes since formation_timestamp; resets on each
+        corroborating real execution).
+      - The DISSOLVED-chunk audit-trail register.
+
+    Open Q-claims for the child-MECH validation pass:
+      - C_min / W_maint / F_high / T_dissolve / N parameter
+        calibration via parametric sweep on the first
+        validation experiment.
+      - Recovery semantics from DISSOLVING: is recovery
+        path-dependent (variance must drop monotonically) or
+        threshold-only? Suggested default: threshold-only,
+        with re-entry to DISSOLVING if variance climbs again.
+      - Selection_weight curve shape: linear, sigmoidal, or
+        step? Affects whether FORMING chunks are weakly-
+        selectable (linear / sigmoidal) or strictly-not-
+        selectable (step) until crystallised. Suggested
+        default: linear ramp, with weak selectability during
+        FORMING enabling the chunk to demonstrate its utility
+        during crystallisation.
+      - Interaction between MECH-324 dissolution and MECH-321
+        decomposition: does a CRYSTALLISED chunk under
+        ARC-070 decomposition pressure (V_s drop) transition
+        to DISSOLVING, or only have its current execution
+        decomposed while the chunk itself stays CRYSTALLISED?
+        Conservative default: decomposition is single-
+        execution-only (chunk stays CRYSTALLISED), but
+        repeated decomposition incidents over a window may
+        elevate F_high variance enough to trigger
+        DISSOLVING via the standard gate.
+  evidence: []
+  evidence_quality_note: >
+    Registered 2026-05-11 as the second ARC-071 child mechanism
+    (maintenance operator). Lit grounding inherited from the
+    targeted_review_arc_071_composition synthesis (2026-05-10,
+    aggregate lit_conf 0.848): R2 multi-substrate verdict
+    (Smith & Graybiel 2013 IL optogenetic causal evidence is
+    the load-bearing source for the maintenance substrate);
+    R5 hysteresis verdict (F_high > F_low formation, slower
+    dissolution timescale); MECH-322 carve-out specifies the
+    accelerated-dissolution rule for replay-origin chunks.
+
+    The Smith & Graybiel 2013 causal evidence is unusually
+    strong for an architectural commitment of this scope:
+    selective optogenetic disruption is the gold-standard
+    causal manipulation in rodent systems neuroscience, and
+    the result (IL disruption prevents habit formation) is
+    directly the prediction MECH-324 makes about its own
+    necessity. The lit-pull entry
+    `targeted_review_arc_071_composition/entries/
+    2026-05-10_arc_071_dual_operator_chunk_dynamics_
+    smithgraybiel2013/record.json` confidence 0.86.
+
+    With MECH-324 registered, ARC-071 substrate is now
+    fully specified (formation operator MECH-323 + maintenance
+    operator MECH-324 + sleep-replay carve-out MECH-322).
+    First validation experiment can now be a three-arm
+    discriminative test: ARM_0 baseline (no MECH-323),
+    ARM_1 MECH-323 only (formation without maintenance --
+    should show accumulator firing but no behavioural-latency
+    drop), ARM_2 MECH-323 + MECH-324 (full chunking machinery
+    -- should show behavioural-latency drop + within-chunk
+    timing tightening). The contrast ARM_1 vs ARM_2 isolates
+    MECH-324's contribution, mirroring the Smith & Graybiel
+    2013 IL-disruption-vs-intact contrast structurally.
+
+    Not yet experimentally tested. The three-arm validation
+    experiment requires both MECH-323 and MECH-324 to have
+    substrate-level implementations in ree_core; substrate
+    work is queued separately.
+  notes: >
+    MECH-324 is the MAINTENANCE half of ARC-071's two-operator
+    machinery. MECH-323 (registered 2026-05-11 earlier today)
+    is the FORMATION half. Together they fulfil ARC-071's
+    architectural commitment per the lit-pull R2 verdict's
+    dual-operator framing.
+
+    The four-state lifecycle (FORMING, CRYSTALLISED,
+    DISSOLVING, DISSOLVED) is a substantive architectural
+    detail beyond what the lit-pull surfaced. Biology is
+    silent on the discrete-vs-continuous question -- Smith &
+    Graybiel 2013 shows chunks form, dissolve, and reform but
+    does not pin a state-machine framing. The four-state
+    machine is a REE-side design choice for tractable
+    implementation and diagnostic instrumentation; alternative
+    framings (continuous selection_weight without discrete
+    states) are open at validation time.
+
+    Cross-link to MECH-321 decomposition: open Q-claim about
+    how MECH-324 dissolution interacts with MECH-321
+    decomposition on the same chunk. The conservative default
+    (decomposition is single-execution-only, chunk stays
+    CRYSTALLISED) keeps the two operators decoupled at the
+    chunk-state level; aggressive alternatives (every
+    decomposition incident triggers DISSOLVING) couple them
+    more tightly. Child-MECH validation should design the
+    discriminative test.
+
+    Cross-link to MECH-322 sleep-replay: MECH-324 is where the
+    MECH-322 accelerated-dissolution rule is implemented (sub-
+    mechanism C in the functional_restatement). MECH-322
+    specifies the rule; MECH-324 owns the implementation. The
+    replay-origin field on each chunk (set by MECH-323 at
+    formation time, MECH-322-conditioned) is what MECH-324
+    reads to decide which dissolution rule applies.
+
+    Pathology cross-references (speculative, pre-validation):
+      - Habit-formation deficits in motor-learning impairments
+        (pre-registered ARC-071 pathology candidate): if
+        MECH-324 maintenance substrate is impaired, chunks
+        form but never crystallise. Behavioural signature:
+        accumulator activity present (proposable via
+        MECH-323) but no behavioural-latency drop on
+        repeating sub-sequences. This is the
+        MECH-323-only-ARM_1 prediction.
+      - Compulsive / addiction-related chunk perseveration
+        (pre-registered ARC-071 pathology candidate via
+        Graybiel 2008 framing): if MECH-324 dissolution
+        thresholds drift too high (F_high too lenient) or
+        T_dissolve too long, CRYSTALLISED chunks persist
+        even under outcome variance that should have
+        dissolved them. Cross-link to MECH-322 replay-origin
+        pathology: drift in N (corroboration window too long)
+        produces analogous chunk perseveration on replay-
+        formed chunks.
+      - PTSD-related rigid chunk pathology (cross-link to
+        MECH-322 notes): if MECH-324 dissolution is impaired
+        AND MECH-322 carve-out fires on traumatic replay,
+        rigid chunks form from replay and persist despite
+        ongoing outcome inconsistency. Audit-trail register
+        enables diagnostic detection of this pattern.
+
+    Open follow-on after MECH-324 registration:
+      - First MECH-323 + MECH-324 substrate-readiness
+        validation experiment (three-arm discriminative test
+        on a structurally repeating sub-sequence task).
+      - Substrate-level implementation of both MECH-323 and
+        MECH-324 in ree_core (separate substrate-implementation
+        session via /implement-substrate skill).
+      - Parametric calibration of C_min, W_maint, F_high,
+        T_dissolve, N defaults via parametric sweep on the
+        first validation experiment.
+  location: docs/architecture/policy_primitive_granularity.md
+
