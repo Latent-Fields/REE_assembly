@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 10441,
   "runner_started_at": "2026-05-11T16:22:28.147371+00:00",
-  "last_updated": "2026-05-11T17:23:30.565638+00:00",
+  "last_updated": "2026-05-11T18:15:18.991845+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-543c",
@@ -13,21 +13,21 @@
     "script": "experiments/v3_exq_543c_arc062_phase3_bipartite_falsifier.py",
     "started_at": "2026-05-11T17:09:52.689764+00:00",
     "progress": {
-      "run_label": "Seed 0 / ARM_1c_full_3stream",
-      "runs_done": 1,
+      "run_label": "Seed 1 / ARM_1c_full_3stream",
+      "runs_done": 3,
       "runs_total": 6,
-      "episodes_done": 10,
+      "episodes_done": 108,
       "episodes_total": 108,
-      "overall_pct": 18.2
+      "overall_pct": 66.7
     },
-    "seconds_elapsed": 818,
-    "seconds_remaining": 3137,
+    "seconds_elapsed": 3926,
+    "seconds_remaining": 1919,
     "recent_lines": [
-      "verdict: FAIL",
-      "Seed 0 Condition ARM_1c_full_3stream",
-      "use_gated_policy=True  P0=40  P1=60  P2=8  steps/ep=200",
-      "world_obs_dim=275  agent.gated_policy=on",
-      "[train] ARM_1c_full_3stream ep 10/108  phase=P0  rv=0.0001  ep_reward=0.0000"
+      "[probe] ARM_1c_full_3stream P1 ep 55/60  applicable=True  mean_tv=0.0000  max_tv=0.0000",
+      "[probe] ARM_1c_full_3stream P1 ep 60/60  applicable=True  mean_tv=0.0000  max_tv=0.0000",
+      "[train] ARM_1c_full_3stream ep 100/108  phase=P1  rv=0.0000  ep_reward=-0.2157  inert_gating=True",
+      "[train] ARM_1c_full_3stream ep 104/108  phase=P2  reef_frac=1.000  steps=200",
+      "[train] ARM_1c_full_3stream ep 108/108  phase=P2  reef_frac=1.000  steps=200"
     ],
     "ree_version": "v3"
   },

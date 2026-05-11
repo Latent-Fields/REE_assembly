@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_316_cross_episode_regularity",
+  "entry_id": "2026-05-11_mech_316_context_causal_structure_gershman_2017",
+  "timestamp_utc": "2026-05-11T17:56:31Z",
+  "claim_ids_tested": ["MECH-316"],
+  "source": {
+    "title": "Context-dependent learning and causal structure",
+    "authors": ["Samuel J Gershman"],
+    "year": 2017,
+    "venue": "Psychonomic Bulletin & Review",
+    "doi": "10.3758/s13423-016-1110-x",
+    "pmid": "27418259"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Targeted 2017 Gershman review extending the 2010 Curr Opin Neurobiol framework with a specifically context-as-causal-inference treatment. The paper organises five distinct functions of context (occasion-setting, configural, modulator, hierarchical, generative) under a single Bayesian umbrella in which different causal-structure interpretations of the training history give rise to different downstream behaviours. Direct relevance for MECH-316 is the operationalisation step: instead of stopping at 'latent-cause inference is the framework', Gershman 2017 commits to specific structural alternatives that the inference is selecting among, which is what a substrate-design pass actually needs. Mapping fidelity is high; confidence held below 0.80 because the paper covers extinction / renewal / partial reinforcement specifically and the transfer to REE's behavioural-trajectory regularity-extraction is a step removed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that hard-codes a single context-function (e.g. always treats context as an occasion-setter) will fail behavioural tests that require switching between context-functions when the underlying causal structure changes -- exactly the dissociation Gershman 2017 anchors as evidence the Bayesian framework explains data that single-function models cannot.",
+    "If MECH-316 cannot adjudicate between competing causal-structure interpretations of the trajectory record, it will display brittle behaviour at regime transitions: either over-generalising across regimes or over-segmenting within them.",
+    "If V3-EXQ-543c-successor multi-rule-context substrate testing shows that the agent fails to discover the appropriate context-function for a given regime even when the substrate is in place, the candidate substrate is likely an SR-only flavour rather than a latent-cause-inference flavour."
+  ],
+  "tags": ["mech_316", "latent_cause_inference", "context_function", "causal_structure", "bayesian"],
+  "mapping": {
+    "source_claim_statement": "Different cognitive functions of context (occasion-setting, configural, modulator, hierarchical, generative) are not separate mechanisms but different inferences over the same causal-structure space. A single Bayesian inference machinery, applied to different aspects of the animal's training history, generates each of the five canonical context-functions as the appropriate computation when the corresponding causal structure obtains. The empirical signatures of each context-function (extinction renewal, summation patterns, hierarchical context-cue dependencies, configural learning) become predictable from the inferred causal structure.",
+    "ree_translation": "MECH-316 under the Bayesian latent-cause inference flavour is not just 'do latent-cause inference' -- it is 'maintain a posterior over candidate causal structures of the trajectory record, where each candidate structure prescribes a different way of generalising across episodes'. The architectural implication for REE is that MECH-316 needs to support multiple distinct read-rules at different regimes, not just a single readout that smoothly interpolates. This is a stronger commitment than Gershman & Niv 2010 alone makes.",
+    "mapping_caveat": "Gershman 2017 anchors specifically in classical conditioning paradigms (Pavlovian renewal, summation, configural learning) where context-cues are presented externally and the agent's job is to infer how those cues constrain reward expectation. REE's behavioural-trajectory regularity extraction works on a different input substrate -- the agent's own action sequences and the latent-state record those traverse -- and the context-cues are partly endogenous (anchor-set boundaries) rather than experimentally imposed. The transfer is from 'context-cue inference over a conditioning training history' to 'rule-context inference over a behavioural trajectory record', which is a non-trivial step.",
+    "source_context": "Psychon Bull Rev 2017 brief report. Single-author Gershman paper extending the 2010 latent-cause framework with a specific commitment to multiple distinguishable context-functions. Builds on Gershman & Niv 2010 + Gershman, Norman & Niv 2015 RL extension."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.38,
+    "notes": "Psychon Bull Rev is a respected mid-tier venue; Gershman is the field lead but this paper is a brief report rather than a definitive treatment. Mapping fidelity is high for the framework-extension claim. Transfer risk is somewhat elevated because the paper is rooted in Pavlovian conditioning paradigms whose transfer to RL-style behavioural-trajectory inference is one step further than the 2010 review."
+  }
+}

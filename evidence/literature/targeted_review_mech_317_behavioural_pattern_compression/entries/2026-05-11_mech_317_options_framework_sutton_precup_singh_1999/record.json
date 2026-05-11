@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_317_behavioural_pattern_compression",
+  "entry_id": "2026-05-11_mech_317_options_framework_sutton_precup_singh_1999",
+  "timestamp_utc": "2026-05-11T18:03:08Z",
+  "claim_ids_tested": ["MECH-317"],
+  "source": {
+    "title": "Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning",
+    "authors": ["Richard S Sutton", "Doina Precup", "Satinder Singh"],
+    "year": 1999,
+    "venue": "Artificial Intelligence",
+    "doi": "10.1016/S0004-3702(99)00052-1",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0004370299000521"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational anchor for the options framework -- the canonical computational treatment of temporal abstraction in RL. Sutton, Precup & Singh define an option as a triple <initiation-set, intra-option policy, termination-condition>; the framework establishes that option-based hierarchical RL is mathematically tractable under the semi-MDP extension. Direct relevance for MECH-317: this is the field-standard formalisation of what 'behavioural pattern compression' could mean computationally. The three-field option structure aligns with the two-population striatal biology Martiros et al. anchor (initiation/termination = SPN bracket signal; intra-option policy = interneuron continuation signal). Confidence 0.82 reflects foundational status, with the only caveat being that the framework is normative rather than substrate-prescriptive -- many substrate implementations could realise the same option structure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-317 without explicit initiation-set / termination-condition fields will fail to support the semi-MDP-style temporal-abstraction tractability the framework guarantees -- specifically, planning over chunked units becomes ill-defined without explicit termination conditions.",
+    "If MECH-317 is implemented as a flat-action sequence-detector (no option triple), the agent should fail at tasks where chunked behaviour must be terminated based on a state-condition rather than after a fixed number of steps.",
+    "If the options-framework formalisation is the correct computational target, the agent's chunks should be detectable as semi-MDP transitions in the behavioural record (rather than fixed-length action-blocks or pure state-transition clusters)."
+  ],
+  "tags": ["mech_317", "options_framework", "temporal_abstraction", "semi_mdp", "initiation_set", "termination_condition"],
+  "mapping": {
+    "source_claim_statement": "Temporal abstraction in reinforcement learning is mathematically tractable when actions are generalised to options, where an option is a triple consisting of (a) an initiation-set (the states from which the option can be invoked), (b) an intra-option policy (a closed-loop policy followed during option execution), and (c) a termination-condition (a probability distribution over states defining when the option ends). The MDP framework extends to semi-MDP under this generalisation, allowing value iteration, policy iteration, and Q-learning to be applied unchanged at the option level. Hierarchical agents can plan over options rather than primitive actions, and option-based representations support transfer learning across tasks sharing common substructure.",
+    "ree_translation": "MECH-317 (behavioural pattern compression) should produce options in this exact sense: each chunk is represented as <initiation-set, intra-chunk policy, termination-condition>. The initiation-set defines what state-conditions activate the chunk; the intra-chunk policy is the stereotyped behaviour during chunk execution; the termination-condition defines what state-conditions end the chunk. This formalisation is the field-standard computational treatment of what a chunk IS, and any V3 instantiation of MECH-317 should produce options in this form. The chunk-representation fields registered in MECH-323 (the ARC-071 first child mechanism, registered today in a parallel session) explicitly mirror this structure.",
+    "mapping_caveat": "Sutton, Precup & Singh 1999 is a foundational computational-theory paper -- it establishes that the options framework IS mathematically well-defined and what guarantees it provides, but it does not prescribe which substrate should implement the option-discovery process. Many implementations are possible: hand-engineered options (the framework's original target), option-critic gradient discovery (Bacon, Harb & Precup 2017, also in this pull), DIAYN diversity-driven skill discovery (Eysenbach et al. 2018, also in this pull), hierarchical-Bayesian option-bracket inference, etc. The framework anchors the COMPUTATIONAL TARGET for MECH-317; choosing among substrate implementations of the target is a separate decision.",
+    "source_context": "Artificial Intelligence 112(1-2):181-211 (1999). The canonical citation for the options framework. Sutton at the University of Massachusetts at the time; Precup and Singh as collaborators. Foundational reference for two decades of hierarchical-RL research."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.22,
+    "notes": "Artif Intell is high-quality; Sutton-Precup-Singh is the foundational team. Mapping fidelity strong for the computational target -- the option triple IS the canonical formalisation of what MECH-317 produces. Transfer risk low because the framework is computationally general; the only caveat is that the framework is substrate-agnostic."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_317_behavioural_pattern_compression",
+  "entry_id": "2026-05-11_mech_317_diayn_diversity_skill_discovery_eysenbach_2018",
+  "timestamp_utc": "2026-05-11T18:05:43Z",
+  "claim_ids_tested": ["MECH-317"],
+  "source": {
+    "title": "Diversity is All You Need: Learning Skills without a Reward Function",
+    "authors": ["Benjamin Eysenbach", "Abhishek Gupta", "Julian Ibarz", "Sergey Levine"],
+    "year": 2018,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1802.06070"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "DIAYN (Diversity is All You Need) is one of the strongest examples of diversity-driven skill discovery -- the third candidate implementation flavour for MECH-317 alongside option-critic gradient discovery and substrate-driven repetition triggers. The method learns a family of distinguishable skills by maximising the mutual information between a skill-index and the resulting trajectory distribution, without any reward signal. Direction is MIXED because the framework is influential and useful for unsupervised pre-training, but the discovered skills are NOT the same thing as MECH-317's behavioural chunks: DIAYN skills are diverse-by-design (the optimisation objective explicitly rewards behavioural distinguishability), whereas MECH-317 chunks should be useful-by-context (compressing repeated behavioural patterns into reusable units). The architectural commitments are different and may even be opposed. Confidence 0.62 reflects this dual position.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that implements MECH-317 via DIAYN-style diversity-driven skill discovery will produce maximally-distinguishable skills, NOT the repeated-behavioural-pattern compression MECH-317 actually names. The two objectives are not aligned and may even be opposed.",
+    "If MECH-317 is implemented with DIAYN-style mutual-information objectives, the agent should produce skills that are mutually-exclusive in behaviour space -- but the resulting skills are not chunks of repeated patterns; they are diversity-engineered pre-training primitives.",
+    "If DIAYN-style discovery is used as a PRETRAINING phase (to establish a diverse skill base) followed by repetition-driven chunk-formation (MECH-323) selecting which skills become chunks, the combined architecture could work -- but neither paper provides this combined design and substrate-design risk is elevated."
+  ],
+  "tags": ["mech_317", "diayn", "diversity_skill_discovery", "mutual_information", "unsupervised_pretraining"],
+  "mapping": {
+    "source_claim_statement": "Skills can be learned without a reward function by maximising the mutual information between a learned skill-index variable and the resulting trajectory distribution. The DIAYN objective explicitly rewards skills that are: (a) behaviourally distinguishable from each other in the state space they reach, (b) determined by the skill-index variable (so a discriminator can recover the skill-index from observed trajectories), and (c) maximally entropic within each skill (so the within-skill policy explores rather than collapsing to a single point). The discovered skills can serve as a useful pre-training initialisation for downstream task-specific learning.",
+    "ree_translation": "MECH-317 under the DIAYN-style implementation flavour reads as: learn a family of behaviourally-distinguishable skills via an unsupervised mutual-information objective; treat each skill as a candidate chunk that downstream machinery can invoke. This is the third candidate implementation flavour for MECH-317 alongside option-critic gradient discovery (Bacon-Harb-Precup 2017) and substrate-driven repetition triggers (the MECH-323 / ARC-071 approach). The architectural commitment under this flavour is unsupervised skill discovery as a pre-training phase, with chunk-utility decided downstream.",
+    "mapping_caveat": "DIAYN was designed for unsupervised pre-training in deep-RL with the assumption that downstream task-specific tuning will identify which skills are useful. REE's MECH-317 has a different goal: compress REPEATED behavioural patterns (the canonical Smith & Graybiel chunking criterion) into reusable units. DIAYN's diversity objective explicitly rewards skills that are NOT repetitive -- they are designed to cover different parts of the state space. The two objectives are not aligned. The DIAYN framework may be appropriate as a PRE-TRAINING phase that establishes a diverse skill base, with repetition-driven MECH-323-style chunk-formation selecting which skills become persistent chunks; but this combined architecture is not what DIAYN itself prescribes and represents a substantial substrate-design commitment beyond the paper.",
+    "source_context": "ICLR 2018 (also arXiv:1802.06070). Eysenbach-Gupta-Ibarz-Levine from UC Berkeley / Google. Foundational paper for unsupervised skill discovery via mutual-information objectives; 1000+ citations and many follow-on papers (DADS, EDL, others)."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "ICLR is a strong AI venue; the paper is foundational for the unsupervised-skill-discovery research programme. Mapping fidelity is moderate -- the framework is relevant to the implementation-flavour question but its objective is genuinely different from MECH-317's compression objective. Transfer risk elevated because the architecture is designed for deep-RL pre-training in simulated control / Atari, and the mapping to REE's substrate-driven chunk-formation is non-obvious."
+  }
+}

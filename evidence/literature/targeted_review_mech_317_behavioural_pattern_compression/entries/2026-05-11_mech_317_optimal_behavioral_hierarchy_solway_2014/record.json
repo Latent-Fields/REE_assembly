@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_317_behavioural_pattern_compression",
+  "entry_id": "2026-05-11_mech_317_optimal_behavioral_hierarchy_solway_2014",
+  "timestamp_utc": "2026-05-11T18:04:50Z",
+  "claim_ids_tested": ["MECH-317"],
+  "source": {
+    "title": "Optimal Behavioral Hierarchy",
+    "authors": ["Alec Solway", "Carlos Diuk", "Natalia Córdova", "Debbie Yee", "Andrew G Barto", "Yael Niv", "Matthew M Botvinick"],
+    "year": 2014,
+    "venue": "PLOS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1003779",
+    "pmid": "25122479"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Foundational normative anchor for what makes a behavioural hierarchy optimal -- the criterion against which option-discovery substrates should be evaluated. Solway et al. provide a mathematical account (drawing on information-bottleneck arguments) of which decompositions of a task into chunked sub-units are optimal, and behaviourally confirm in four experiments that human learners spontaneously discover those optimal hierarchies. Direct relevance for MECH-317: this is the normative target against which the various implementation flavours (option-critic, DIAYN, hand-engineered options, substrate-driven repetition triggers) should be compared. Confidence 0.80 reflects strong source quality (PLOS Comput Biol, Barto-Niv-Botvinick team) and direct relevance to the cluster question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that produces options which fail to match the Solway-et-al optimal hierarchy criterion will be inefficient -- the chunks won't decompose the task in the information-theoretically-correct way.",
+    "If MECH-317 produces chunks but the chunks do NOT correspond to bottleneck states or transition-rich segments of the trajectory record, the option-decomposition is unlikely to support transfer learning across related tasks.",
+    "If the substrate is producing options that match the normative-optimal criterion, behavioural validation should show humanlike spontaneous-discovery signatures (the four experiments anchored in Solway 2014 produced testable predictions about which decompositions human subjects converge on)."
+  ],
+  "tags": ["mech_317", "optimal_hierarchy", "information_bottleneck", "subgoal_discovery", "bottleneck_states", "spontaneous_chunking"],
+  "mapping": {
+    "source_claim_statement": "A behavioural hierarchy (a decomposition of a task into chunked sub-units) is optimal if it minimises the joint description-length of the task's transition structure under the hierarchical decomposition. The optimality criterion is expressible as an information-theoretic objective: the optimal hierarchy minimises the conditional entropy of the next state given the current sub-task assignment, weighted by the prior probability over sub-tasks. Behavioural experiments confirm that human learners spontaneously discover hierarchies matching this criterion on classical-conditioning and navigation paradigms, supporting the claim that optimal-hierarchy discovery is what brains actually do (not just what they could in principle do).",
+    "ree_translation": "MECH-317's option-discovery substrate should produce options that approximate Solway-et-al optimal hierarchies. The information-theoretic criterion specifies which decompositions are 'good' for a given task structure -- specifically, chunks should align with bottleneck states (low-entropy transitions in the trajectory record) and with persistent sub-tasks (transition clusters that maintain internal coherence). For REE's substrate-design pass, this anchors a normative target: the implementation flavour chosen (option-critic gradient, DIAYN diversity, substrate-driven repetition) should be compared against the Solway criterion to determine whether the produced chunks are optimal-in-the-right-sense.",
+    "mapping_caveat": "Solway et al.'s analysis is normative -- it shows that optimal hierarchies are well-defined and that humans can find them in specific paradigms. The substrate-level implementation that produces optimal hierarchies is not directly prescribed; the four experiments tested behaviour rather than substrate. The paper is best read as defining the NORMATIVE TARGET for option-discovery, against which different implementation flavours can be compared. Whether REE's specific behavioural substrate (SD-054 reef foraging) has well-defined optimal hierarchies in the Solway sense is a substrate-readiness question; the answer depends on the bottleneck-state structure of the trajectory record. SD-054's reef-approach-feed-retreat sequence may have clearly-defined bottleneck states; SD-054-extended-with-multi-rule-context environments definitely will.",
+    "source_context": "PLOS Comput Biol 10(8):e1003779 (2014). Princeton/UMass team (Solway, Diuk, Cordova, Yee, Barto, Niv, Botvinick) -- broad authorship spanning the Niv-Botvinick research programme. Normative analysis + four behavioural experiments confirming human spontaneous discovery of optimal hierarchies."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.26,
+    "notes": "PLOS Comput Biol is high-quality; Barto-Niv-Botvinick team is foundational. Mapping fidelity strong for the normative criterion. Transfer risk low for the criterion itself; somewhat elevated for whether REE's specific trajectory-record substrate has well-defined optimal hierarchies, which is substrate-dependent."
+  }
+}

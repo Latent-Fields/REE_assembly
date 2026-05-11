@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_318_rule_state_abstraction",
+  "entry_id": "2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019",
+  "timestamp_utc": "2026-05-11T18:10:54Z",
+  "claim_ids_tested": ["MECH-318"],
+  "source": {
+    "title": "Hierarchical reasoning by neural circuits in the frontal cortex",
+    "authors": ["Morteza Sarafyazd", "Mehrdad Jazayeri"],
+    "year": 2019,
+    "venue": "Science",
+    "doi": "10.1126/science.aav8911",
+    "pmid": "31097640"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Direct primate-empirical anchor for rule-state inference in frontal cortex. Sarafyazd & Jazayeri record from dorsomedial frontal cortex (DMFC) and anterior cingulate cortex (ACC) in monkeys performing a task where negative outcomes arise either from stimulus-judgement errors or from covert switches in the stimulus-response contingency rule. Both regions encode evidence supporting a rule-switch, and the ACC functions downstream of DMFC -- specifically encoding the inference that a covert rule-switch has occurred (as distinct from a within-rule judgement error). This is the most-direct primate single-unit empirical evidence to date for rule-state inference as a function of frontal cortex, which is exactly the role MECH-318 names. Confidence 0.84 reflects the high source quality (Science, primate single-unit) and direct mechanistic relevance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-318 without an inference step that distinguishes 'rule-switch occurred' from 'within-rule error occurred' will fail to reproduce the DMFC-ACC dissociation Sarafyazd & Jazayeri anchor -- specifically, the substrate should be able to attribute negative outcomes to the right causal source.",
+    "If MECH-318 is implemented but the substrate treats every negative outcome as a rule-switch signal, the agent should display the over-switching failure mode (constantly re-inferring rules; never settling). Conversely, if the substrate cannot detect genuine rule-switches at all, it should display the under-switching mode.",
+    "If the Sarafyazd-Jazayeri DMFC-then-ACC sequential architecture is the right framing for rule-inference, then ablating the DMFC-analog component should prevent rule-switch detection, while ablating the ACC-analog component should preserve detection but prevent action on it."
+  ],
+  "tags": ["mech_318", "dmfc", "acc", "rule_switch_inference", "primate_electrophysiology", "hierarchical_reasoning"],
+  "mapping": {
+    "source_claim_statement": "Monkeys performing a task where negative outcomes can arise from either (a) misjudging an ambiguous stimulus or (b) a covert switch in the stimulus-response contingency rule must perform hierarchical inference: distinguish which cause produced the negative outcome and respond accordingly. Sarafyazd & Jazayeri record from DMFC and ACC and find both regions encode evidence supporting a rule-switch interpretation, but ACC is downstream of DMFC and specifically encodes the rule-switch inference (distinct from the judgement-error interpretation). The architecture is hierarchical: lower-level evidence accumulation in DMFC, higher-level causal-source attribution in ACC.",
+    "ree_translation": "MECH-318 (rule-state abstraction substrate) needs to support the kind of hierarchical inference Sarafyazd & Jazayeri document: distinguish 'the rule has changed' from 'I made an error within the current rule' as causal attributions of a negative outcome. This requires the substrate to maintain a rule-context posterior that can be updated by evidence of negative outcomes, but with the update reflecting both the prior over rule-stability and the within-rule error probability. The DMFC-then-ACC sequential architecture suggests two functional components: evidence-accumulation (DMFC-analog) and causal-source attribution (ACC-analog). For REE this maps onto the existing ARC-062 GatedPolicy discriminator (per-tick rule-context discrimination, evidence-accumulation analog) feeding into the SD-033a rule_state buffer (rule-state representation, causal-source-attribution analog).",
+    "mapping_caveat": "Sarafyazd & Jazayeri's evidence is in vivo single-unit recording in macaque during a specific behavioural paradigm (two-alternative stimulus judgement with covert contingency switches). REE's MECH-318 has to be measured behaviourally on a multi-rule-context substrate that does not yet exist in V3 (SD-054 single-context is insufficient). The substrate-identification claim (DMFC + ACC as the relevant frontal regions) maps to REE's existing SD-033a + ARC-062 cluster relatively cleanly, but the empirical signatures the monkey paradigm produces (specific firing patterns, lesion-effects, etc.) may or may not transfer to REE's substrate-level analog measurements.",
+    "source_context": "Science 364(6441):eaav8911 (May 2019). Sarafyazd + Jazayeri at MIT McGovern Institute. Highly-cited primate single-unit recording paper anchoring rule-switch inference as a function of frontal cortex. Cited in subsequent meta-RL-neuroscience reviews including the Wang 2020 review of meta-learning in natural and artificial intelligence."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.28,
+    "notes": "Science is top-tier; primate single-unit is the strongest empirical evidence class for rule-state inference. Mapping fidelity strong for the substrate-identification claim. Transfer risk moderate because the behavioural-signature measurement on REE has to be at the behavioural-action-distribution level rather than the single-unit level."
+  }
+}

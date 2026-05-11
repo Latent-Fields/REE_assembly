@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_317_behavioural_pattern_compression",
+  "entry_id": "2026-05-11_mech_317_inversely_active_striatal_bracketing_martiros_2018",
+  "timestamp_utc": "2026-05-11T18:01:56Z",
+  "claim_ids_tested": ["MECH-317"],
+  "source": {
+    "title": "Inversely Active Striatal Projection Neurons and Interneurons Selectively Delimit Useful Behavioral Sequences",
+    "authors": ["Nuné Martiros", "Alexandra A Burgess", "Ann M Graybiel"],
+    "year": 2018,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2018.01.031",
+    "pmid": "29452904"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Load-bearing direct empirical anchor for the dorsolateral-striatum action-chunking substrate of MECH-317. Martiros et al. provide the most-direct primary evidence for the start-stop bracketing signature that Smith & Graybiel 2013/2016 (already in Pull 1) anchor at the review level. The novel finding here is the inverse activity pattern of SPNs vs interneurons -- both classes are coordinated to mark the beginning and end of chunked sequences but with opposite firing dynamics. The substrate-implementation implication is that MECH-317 needs to support not just bracket detection but a two-population coordination structure that anchors the bracket. Source quality is high (Curr Biol, Graybiel-lab primary empirical, in vivo single-unit recording). Mapping fidelity strong for the substrate-identification claim; transfer risk moderate because the chunking signature in REE has to be measured on action-distribution entropy troughs rather than direct neuronal recording.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-317 as a single chunk-detection signal will fail to reproduce the inverse-activity-pattern signature Martiros et al. anchor -- the substrate needs at least two coordinated populations / signals that bracket the chunk asymmetrically.",
+    "If MECH-317 is implemented without explicit start-stop bracket signatures (action-entropy troughs at chunk boundaries with mid-chunk entropy elevation), the agent should fail to show learnable temporal structure on a repeating-sequence task like SD-054 reef forage-approach-retreat.",
+    "If the bracketing signature is the correct biological anchor for chunking, then ablating the bracket-detection step should specifically impair sequence-acquisition rather than producing a generic action-selection deficit."
+  ],
+  "tags": ["mech_317", "dorsolateral_striatum", "chunking", "action_bracketing", "spn_interneuron_dissociation", "graybiel"],
+  "mapping": {
+    "source_claim_statement": "Dorsolateral striatum encodes learned behavioural sequences not by activity uniformly across the sequence but by start-stop bracketing patterns: principal projection neurons (SPNs) fire at the beginning and end of chunked sequences while interneurons fire in the inverse pattern (mid-sequence elevation). This dual-population coordination structure delimits useful behavioural units -- chunks become identifiable as activity transitions at boundaries rather than as continuous neural representations.",
+    "ree_translation": "MECH-317 (behavioural pattern compression) needs a substrate that can support a chunk-boundary detection signal. Martiros et al. anchor the specific signature: action-entropy or activity-pattern troughs at chunk boundaries (start and end), with mid-chunk activity elevated. The two-population coordination is mechanistically informative for REE -- the substrate may need TWO learned signals (a boundary detector and a within-chunk continuation signal) rather than one. This corresponds to the options-framework distinction between initiation-set / termination-condition (chunk-boundary marks) and intra-option policy (within-chunk continuation).",
+    "mapping_caveat": "Martiros et al.'s evidence is in vivo single-unit recording from rat dorsolateral striatum during a maze-running task with overtrained spatial sequences. REE's MECH-317 has to be measured on behavioural action-distribution signatures rather than direct neural recording. The mapping is from 'neural bracketing pattern' to 'behavioural-entropy bracketing pattern' -- a plausible transfer because the behavioural manifestation of the neural pattern is what is observable. The two-population coordination structure may or may not have a direct REE implementation analog; the architectural insight (chunks are bracket-defined, not continuous-representation-defined) transfers more reliably than the substrate-mechanism (SPN-interneuron dissociation).",
+    "source_context": "Current Biology 28(4):560-573.e5, February 2018. Martiros + Burgess from Graybiel lab at MIT/McGovern; the lab is the dominant anchor for striatal-chunking neuroscience. In vivo single-unit recording on a T-maze overtraining paradigm with simultaneous SPN + interneuron isolation."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Curr Biol is high-quality; Graybiel-lab primary empirical recording. Mapping fidelity strong for the substrate-identification (DLS chunks; bracket-defined). Transfer risk moderate because the behavioural-entropy bracketing signature has to be measured indirectly on REE (no neural recording substrate)."
+  }
+}

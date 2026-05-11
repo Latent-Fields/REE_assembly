@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_318_rule_state_abstraction",
+  "entry_id": "2026-05-11_mech_318_prefrontal_meta_rl_wang_2018",
+  "timestamp_utc": "2026-05-11T18:07:59Z",
+  "claim_ids_tested": ["MECH-318"],
+  "source": {
+    "title": "Prefrontal cortex as a meta-reinforcement learning system",
+    "authors": ["Jane X Wang", "Zeb Kurth-Nelson", "Dharshan Kumaran", "Dhruva Tirumala", "Hubert Soyer", "Joel Z Leibo", "Demis Hassabis", "Matthew Botvinick"],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0147-8",
+    "pmid": "29760527"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Load-bearing primary anchor for the meta-reinforcement-learning interpretation of MECH-318's rule-state abstraction substrate. Wang et al. propose that prefrontal cortex operates as a free-standing learning system trained by the dopamine system to perform meta-RL within an episode -- the recurrent network's hidden state functions as the rule-state abstraction the task identity gets encoded into. The paper directly addresses the W1-W5 properties the MECH-318 absorption check audited against the existing ree-v3 substrates. Source quality is high (Nat Neurosci, top-tier venue, DeepMind + Botvinick lab). Mapping fidelity strong for the rule-state-encoding role. Transfer risk moderate because the deep-RL substrate the paper uses is one step removed from REE's PFC-analog architecture.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-318 with topology-only recurrence (E1 LSTM treated as a possible host) but without a multi-task training distribution and without rule-context-shaping training signal will fail to encode rule-state in the hidden state -- which is what the MECH-318 absorption check (2026-05-10) already identified as the W2 gap.",
+    "If MECH-318 is implemented but the agent fails to display within-episode adaptation at rule-switch points on a multi-rule-context substrate, the substrate is probably topology-correct but training-signal-deficient.",
+    "If Wang et al.'s reading is the right framing for MECH-318, then training the substrate across a multi-rule-context distribution should produce a recurrent state that decodes rule-context -- not a generic latent-stack representation that has rule-context as one component among many."
+  ],
+  "tags": ["mech_318", "meta_reinforcement_learning", "prefrontal_cortex", "recurrent_hidden_state", "task_identity_encoding", "wang_2018"],
+  "mapping": {
+    "source_claim_statement": "Prefrontal cortex operates as a free-standing learning system: a recurrent neural network whose weights are slowly shaped by dopaminergic prediction-error training, but whose hidden state at any moment encodes the agent's current operating-task identity. Within a single task instance the agent learns through hidden-state dynamics rather than weight updates -- the slow dopamine-driven weight learning installs a meta-learning algorithm in the network, and the meta-learning algorithm runs in the hidden state. The framework accommodates findings that motivated the standard dopamine-as-TD-error theory while dealing with phenomena (rapid task adaptation, model-based vs model-free dissociations, exploration-exploitation tradeoffs) that the standard theory could not explain.",
+    "ree_translation": "MECH-318 (rule-state abstraction substrate) under the meta-RL reading IS the recurrent hidden state of a network whose weights have been shaped by training across many task instances. The five Wang 2018 properties (W1 recurrent topology, W2 trained across tasks, W3 hidden state encodes task identity, W4 biases action selection, W5 cross-episode hidden-state continuity) define what the substrate has to look like. The 2026-05-10 absorption check audited the existing ree-v3 candidate substrates against these properties and found partial absorption: W1+W3+W4 covered (within-V3) by SD-033a LateralPFCAnalog + ARC-062 Phase 1 + planned Phase 3 wiring; W2 NOT ABSORBED (no multi-task training distribution exists in V3); W5 NOT ABSORBED (all candidate substrates reset per episode). The legitimate residual scope of MECH-318 is therefore the W2 + W5 gaps, with empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate.",
+    "mapping_caveat": "Wang et al. operationalise their account on deep-RL benchmark tasks (Harlow task, two-step task, bandits with stationary/non-stationary structures) with a recurrent LSTM whose weights are trained by REINFORCE / A2C / similar. REE's MECH-318 has to operate within a substrate where the recurrent component (SD-033a LateralPFCAnalog) is currently a gate-modulated EMA rather than an LSTM, where the training signal for the bias head is currently frozen, and where the multi-task training distribution does not yet exist. The transfer from Wang 2018 architecture to MECH-318 implementation is plausible but requires committing to substrate enrichments that V3 does not currently have. The absorption check already names these gaps; this lit-pull confirms them via the literature.",
+    "source_context": "Nat Neurosci 21:860-868 (2018). Wang and Kurth-Nelson from DeepMind, Botvinick as senior author (then at DeepMind + UCL). The defining paper for the meta-RL-as-PFC research programme; subsequent influential follow-ons include Wang et al. 2020 'Meta-learning in natural and artificial intelligence' (arXiv:2011.13464). Highly-cited reference for both AI and cognitive-neuroscience communities."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Nat Neurosci is top-tier; the DeepMind + Botvinick lab is the defining team for the research programme. Mapping fidelity strong for the rule-state-encoding role. Transfer risk moderate because the deep-RL benchmark paradigm is one step removed from REE's PFC-analog architecture, and the substrate-enrichments required (multi-task training distribution, cross-episode hidden-state continuity) are not yet in V3."
+  }
+}

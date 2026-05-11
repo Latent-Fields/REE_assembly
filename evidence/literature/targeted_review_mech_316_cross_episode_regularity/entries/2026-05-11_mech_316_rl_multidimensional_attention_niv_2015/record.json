@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_316_cross_episode_regularity",
+  "entry_id": "2026-05-11_mech_316_rl_multidimensional_attention_niv_2015",
+  "timestamp_utc": "2026-05-11T17:58:27Z",
+  "claim_ids_tested": ["MECH-316"],
+  "source": {
+    "title": "Reinforcement Learning in Multidimensional Environments Relies on Attention Mechanisms",
+    "authors": ["Yael Niv", "Reka Daniel", "Andra Geana", "Samuel J Gershman", "Yuan Chang Leong", "Angela Radulescu", "Robert C Wilson"],
+    "year": 2015,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2978-14.2015",
+    "pmid": "26019331"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational empirical anchor for the attention-modulated RL candidate flavour of MECH-316. The third of the three implementation flavours Pull 1 surfaced (alongside latent-cause inference and successor-representation). The paper combines a multidimensional-bandit behavioural paradigm with simultaneous fMRI to show that a bilateral attentional control network (IPS, precuneus, dlPFC) selects which dimensions of a complex stimulus are relevant for predicting reward; this representation-learning operation effectively reduces the input dimensionality so that downstream RL machinery can converge on the optimal policy. Direct relevance for MECH-316: the attention-modulated flavour reads MECH-316 as 'selectively attend to the relevant dimensions of the trajectory record' rather than 'extract a full posterior over latent causes' or 'build a full state-occupancy SR table'. The empirical anchor is strong (J Neurosci, fMRI + behaviour, definitive author team). Confidence kept at 0.82 (high) because the paper directly establishes the substrate role; the only mapping caveat is the human-laboratory bandit-paradigm vs REE's trajectory-record substrate transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-316 as full-dimensional successor-representation will fail to scale to multidimensional environments -- exactly the failure mode Niv et al. anchor: undimensionality-reduced RL is exponentially slow.",
+    "If MECH-316 is implemented without an attention/dimensionality-reduction mechanism, the agent should show specifically the slow-convergence signature on multidimensional behavioural tasks that Niv et al. anchor in their behavioural data.",
+    "If the attention-modulated-RL flavour is the correct implementation for MECH-316, then ablating the attention selection step should produce a generic slowdown across all multidimensional tasks rather than the specific causal-inference failure mode the Bayesian flavour predicts."
+  ],
+  "tags": ["mech_316", "attention_modulated_rl", "representation_learning", "dimensionality_reduction", "ipl", "dlpfc"],
+  "mapping": {
+    "source_claim_statement": "Reinforcement-learning algorithms scale exponentially with the dimensionality of the state space. Humans solve this curse of dimensionality by attentionally selecting which dimensions of a multidimensional environment are predictive of reward, effectively learning a dimensionality-reduced state representation before applying standard RL machinery. A bilateral attention-control network (intraparietal sulcus, precuneus, dorsolateral prefrontal cortex) implements the selection. The learned attention weights are dynamic -- they update as the agent learns which dimensions matter -- and the resulting representation is consumed by downstream value-learning regions.",
+    "ree_translation": "MECH-316 under the attention-modulated RL flavour reads as: the substrate selectively attends to predictive dimensions of the trajectory record (which state-variables, which action-classes, which reward-windows matter for the current regime), effectively building a low-dimensional regularity representation that downstream policy machinery can consume. This is one of three candidate implementation flavours surfaced in Pull 1. The architectural commitment under this flavour is dimensionality-reduction-then-RL rather than full-dimensional structure-learning or latent-cause inference.",
+    "mapping_caveat": "Niv et al.'s paradigm is human laboratory multidimensional-bandit learning where the dimensions are perceptual features (colour, shape, etc) of presented stimuli. REE's MECH-316 has to operate on the agent's behavioural-trajectory record, where the 'dimensions' are something like 'which latent-state component matters for predicting the next reward' -- a step further from sensory-feature attention. The attentional-control-network identification (IPS / precuneus / dlPFC) is a substrate-identification claim about the human brain; the corresponding REE substrate is not obviously identified, though the latent-stack's existing components (z_world / z_self / z_alpha) are candidate attention-allocation targets. The transfer is plausible but non-trivial.",
+    "source_context": "Journal of Neuroscience 35(21):8145-8157, May 2015. The seven-author Princeton-led paper (Niv-Gershman-Wilson team) that established the attention-modulated-RL framework in cognitive neuroscience. fMRI + behaviour combined design."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.34,
+    "notes": "J Neurosci is high-quality; Niv-Gershman-Wilson is the field's anchor team; combined fMRI + behaviour design is strong. Mapping fidelity is high for the flavour-level claim (which inference family) but slightly reduced because the substrate-identification (attentional control network) does not obviously have an REE analog. Transfer risk moderate because the paradigm (laboratory multidimensional bandits with perceptual dimensions) is one step removed from behavioural-trajectory regularity extraction."
+  }
+}

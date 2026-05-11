@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_316_cross_episode_regularity",
+  "entry_id": "2026-05-11_mech_316_latent_structure_learning_gershman_niv_2010",
+  "timestamp_utc": "2026-05-11T17:55:38Z",
+  "claim_ids_tested": ["MECH-316"],
+  "source": {
+    "title": "Learning latent structure: carving nature at its joints",
+    "authors": ["Samuel J Gershman", "Yael Niv"],
+    "year": 2010,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2010.02.008",
+    "pmid": "20227271"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Foundational theoretical anchor for the Bayesian latent-cause inference candidate flavour of MECH-316. The latent-cause framework -- task-state inferred as a hidden variable that explains the joint statistics of observations and rewards -- is one of the three implementation candidates Pull 1 surfaced (alongside successor-representation and structure-learning). Source quality is high (Curr Opin Neurobiol, Gershman + Niv are the field leads), and the mapping to MECH-316's cross-episode regularity extraction role is direct: the same machinery that extracts latent causes across episodes is what MECH-316 names. Mapping fidelity is high for the architectural-function claim; transfer risk moderate because the paper covers a broader theoretical landscape than MECH-316 narrowly needs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-316 as raw successor-representation tabular updates (no inference over hidden task-state) will fail to reproduce the rapid context-switching behaviour Gershman & Niv anchor to latent-cause inference -- specifically the ability to revert to a previous policy when an old context cue re-appears.",
+    "If MECH-316 is implemented without an inference-over-hidden-causes step, the agent should fail at tasks where the optimal policy depends on a non-stationary hidden variable that has only an indirect observable correlate.",
+    "If the Bayesian latent-cause framing is the correct implementation flavour for MECH-316, then ablating the inference machinery should produce specifically the behavioural signatures of confused-context responding (renewal, summation failures) that the framework anchors -- not a generic regularity-extraction deficit."
+  ],
+  "tags": ["mech_316", "latent_cause_inference", "bayesian_structure_learning", "context_inference", "carving_at_joints"],
+  "mapping": {
+    "source_claim_statement": "The brain solves the reinforcement-learning problem in non-stationary, structured environments by inferring a hidden latent-cause variable that explains the joint statistics of observation, action, and reward. Learning is reframed as inference over a structured generative model whose hidden variables index different operating regimes. The same machinery operates across perception, classical conditioning, and operant tasks.",
+    "ree_translation": "MECH-316 (cross-episode regularity extraction) under the Bayesian latent-cause inference flavour reads as: the agent maintains a posterior over hidden task-state labels, updates that posterior as new evidence arrives, and uses the posterior to bias downstream decision-making. This is one of three candidate implementation flavours surfaced in Pull 1 (the other two being successor-representation and attention-modulated RL). The architectural commitment under this flavour is that MECH-316 includes an explicit inference step over hidden variables -- not just statistical-regularity readout.",
+    "mapping_caveat": "Gershman & Niv 2010 is a review across cognitive tasks (categorisation, classical conditioning, structure learning) rather than a substrate-level proposal specifying HOW the inference is neurally implemented. The transfer to MECH-316 is at the algorithmic-flavour level -- which inference family the substrate should belong to -- not at the substrate-implementation level. Multiple substrates could in principle realise the same inference: hippocampal pattern separation + cortical readout, frontopolar uncertainty-bonus, OFC discrete state-labels, etc. The Bayesian framing is a normative claim about the computation, not a mechanistic claim about the substrate.",
+    "source_context": "Curr Opin Neurobiol review article (2010) written when Bayesian latent-cause inference was crystallising as a unifying framework across perception, conditioning, and RL. Authors based at Princeton; this is the foundational citation for the framework as applied to RL."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "High source quality (Curr Opin Neurobiol, field leads). Mapping fidelity strong at the framework-level claim but loses some bite because the paper anchors the framework rather than a specific substrate proposal. Transfer risk moderate because the substrate-level translation requires a downstream choice (which of three flavours is the right one for MECH-316) that this paper does not by itself decide."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_318_rule_state_abstraction",
+  "entry_id": "2026-05-11_mech_318_rl_squared_recurrent_meta_rl_duan_2016",
+  "timestamp_utc": "2026-05-11T18:09:02Z",
+  "claim_ids_tested": ["MECH-318"],
+  "source": {
+    "title": "RL^2: Fast Reinforcement Learning via Slow Reinforcement Learning",
+    "authors": ["Yan Duan", "John Schulman", "Xi Chen", "Peter L Bartlett", "Ilya Sutskever", "Pieter Abbeel"],
+    "year": 2016,
+    "venue": "arXiv preprint",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1611.02779"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational AI-tradition anchor for recurrent meta-RL. Duan et al. propose that rather than designing a fast RL algorithm, one should represent the algorithm as an RNN whose weights are learned slowly by a general-purpose RL algorithm. The RNN's hidden state encodes the state of the 'fast' algorithm on the current MDP; the RNN's recurrent dynamics are the algorithm's update rule. The architecture maintains hidden-state continuity across episodes within a task instance -- the W5 property that the MECH-318 absorption check identifies as not absorbed by any current REE substrate. Confidence 0.78 reflects the foundational status balanced against the deep-RL paradigm gap; the paper anchors the W5 property specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-318 as a recurrent network but resets the hidden state every episode (which all current REE candidates -- E1 LSTM, SD-033a, MECH-269 -- do) will fail to reproduce the cross-episode evidence-accumulation signature that Duan et al. anchor as the defining property of RL^2.",
+    "If MECH-318 is implemented with per-episode hidden-state reset, the agent should adapt within an episode but not across episodes -- a behavioural signature that distinguishes the within-V3 portion of MECH-318 (which IS absorbed into SD-033a + ARC-062) from the cross-episode portion (which is NOT absorbed and may be V4-scope).",
+    "If RL^2-style hidden-state continuity is the correct biological framing for MECH-318, then cross-episode hidden-state preservation should produce specifically faster adaptation to a recurring task instance across episodes -- and ablating the cross-episode connection should produce same-task slow re-learning every episode."
+  ],
+  "tags": ["mech_318", "rl_squared", "meta_reinforcement_learning", "cross_episode_continuity", "recurrent_meta_rl"],
+  "mapping": {
+    "source_claim_statement": "A 'fast' reinforcement learning algorithm need not be designed by hand. Instead, represent it as a recurrent neural network whose weights are learned slowly by a 'general-purpose' RL algorithm trained across a distribution of MDPs. The RNN receives observations, actions, rewards, and termination flags; its activations encode the state of the fast algorithm on the current (previously unseen) MDP; importantly, hidden state is preserved across episodes within a task instance, allowing the agent to accumulate evidence about the MDP over multiple episodes. This is the RL^2 architecture: a learnt RL algorithm running inside a learnt RNN.",
+    "ree_translation": "MECH-318 under the strong RL^2 reading IS a recurrent network whose hidden state is preserved across episodes within a task instance, with the recurrent dynamics implementing the rule-state inference. The W5 property of the MECH-318 absorption check (cross-episode hidden-state continuity) is the defining feature of RL^2. The 2026-05-10 absorption check identified W5 as NOT ABSORBED by any current REE substrate: E1 LSTM resets per episode, SD-033a rule_state buffer resets per episode, MECH-269 anchor sets reset per episode. Adding cross-episode continuity to any of these substrates is architecturally significant and conflicts with the existing per-episode state-machine commitments that anchor the rest of the agent's per-episode reset semantics. The straightforward reading is therefore that the RL^2-flavour cross-episode-continuity portion of MECH-318 is V4-scope.",
+    "mapping_caveat": "RL^2 was designed for AI tasks where 'task instance' is a well-defined construct (a specific MDP within a family) and cross-episode is meaningful (multiple episodes within the same MDP instance, separated by environment resets). REE's behavioural substrate has different semantics: each episode is a fresh start in the environment, and the analog of 'task instance' would require a substrate-level commitment to multi-episode coherent task structure that V3 does not currently have. The transfer from RL^2's MDP-family paradigm to REE's behavioural-substrate paradigm requires substrate-design work that this lit-pull does not by itself resolve.",
+    "source_context": "arXiv:1611.02779 (November 2016). Duan + Schulman + Abbeel from UC Berkeley + OpenAI. Foundational paper for recurrent meta-RL in deep-learning context; Wang 2018 explicitly builds on the RL^2 architecture for the neuroscience-tradition account."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.36,
+    "notes": "arXiv preprint without journal publication, but highly-cited and foundational. Mapping fidelity good for the W5 property specifically. Transfer risk elevated because the cross-episode-continuity property may simply be V4-scope for REE given the existing per-episode reset architecture."
+  }
+}

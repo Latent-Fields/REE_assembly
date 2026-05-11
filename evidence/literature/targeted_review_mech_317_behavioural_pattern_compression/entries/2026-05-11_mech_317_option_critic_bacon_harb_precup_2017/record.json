@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_317_behavioural_pattern_compression",
+  "entry_id": "2026-05-11_mech_317_option_critic_bacon_harb_precup_2017",
+  "timestamp_utc": "2026-05-11T18:03:58Z",
+  "claim_ids_tested": ["MECH-317"],
+  "source": {
+    "title": "The Option-Critic Architecture",
+    "authors": ["Pierre-Luc Bacon", "Jean Harb", "Doina Precup"],
+    "year": 2017,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "doi": "10.1609/aaai.v31i1.10916",
+    "url": "https://arxiv.org/abs/1609.05140"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational anchor for gradient-based option discovery -- the canonical learnable-options computational treatment. Bacon, Harb & Precup derive policy gradient theorems for the options framework, enabling end-to-end learning of intra-option policies, termination functions, AND the policy-over-options from a single scalar reward signal. Direct relevance for MECH-317: this is the algorithmic candidate for option-discovery as an implementation flavour. Confidence 0.78 reflects that the framework solves a real problem (autonomous option discovery without hand-engineering or sub-goal specification) but the empirical record of option-critic in practice is mixed -- option-collapse and option-degeneracy are documented failure modes that the original paper anticipates but does not fully resolve.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that implements MECH-317 via option-critic-style gradient discovery is vulnerable to option-collapse (all chunks become identical) or option-degeneracy (chunks become arbitrarily short or arbitrarily long). The original paper anticipates these failure modes but does not fully resolve them.",
+    "If MECH-317 is implemented with option-critic-style termination-function gradients but without an explicit deliberation cost (Harb et al. 2017 follow-on), the termination probabilities tend to converge to terminating-everywhere (zero-length options) -- a known mode collapse in the option-critic literature.",
+    "If the gradient-discovery substrate produces options that successfully reproduce hierarchical behaviour on a benchmark but fail to transfer to a related task with shared substructure, the option-discovery has captured task-specific patterns rather than generalisable behavioural primitives."
+  ],
+  "tags": ["mech_317", "option_critic", "gradient_option_discovery", "policy_gradient", "temporal_abstraction"],
+  "mapping": {
+    "source_claim_statement": "Options can be learned end-to-end via policy gradient methods. The option-critic architecture learns three sets of parameters simultaneously: (a) the intra-option policies, (b) the termination functions, and (c) the policy-over-options. All three are learned from environment reward via the derived option-policy-gradient theorems, without requiring sub-goals, auxiliary rewards, or manual specification of option boundaries. The architecture provides the first general-purpose method for autonomous option discovery in deep RL.",
+    "ree_translation": "MECH-317 under the option-critic implementation flavour reads as: learn the option triple (initiation-set, intra-option policy, termination-condition) end-to-end from the same scalar reward signal that drives standard policy learning, using gradient updates rather than explicit segmentation heuristics. The architectural commitment is to a fully-differentiable substrate where each chunk's structure is a learned function of network parameters rather than a derived statistical property of the trajectory record. This is one of three candidate implementation flavours for MECH-317 (alongside diversity-driven skill discovery and explicit segmentation heuristics).",
+    "mapping_caveat": "Option-critic was designed for deep-RL benchmark tasks (Atari, four-rooms, simulated control) where the reward signal is dense and directly informative. REE's MECH-317 has to operate on a substrate where chunk-formation is partly substrate-driven (V_s drops, MECH-269 anchor boundaries, repetition+outcome-consistency triggers per the ARC-071 lit-pull R1 verdict) rather than only reward-gradient driven. The gradient-discovery flavour may be appropriate as an inner loop but probably needs to be wrapped in the substrate-driven trigger machinery rather than replacing it. The known option-collapse failure modes also need substrate-level safeguards (which Bacon-Harb-Precup's follow-on work addresses but does not fully resolve).",
+    "source_context": "AAAI 2017 conference paper (also arXiv:1609.05140). Bacon and Harb from McGill / Precup lab; Precup was co-author of the foundational 1999 options framework, so this represents the same theoretical lineage extending into deep-RL territory."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "AAAI is a strong but not top-tier venue; the paper is the foundational reference for gradient option discovery. Mapping fidelity is good for the implementation-flavour question. Transfer risk moderate because option-collapse failure modes are documented and the deep-RL benchmark paradigm is one step from REE's behavioural-trajectory substrate."
+  }
+}

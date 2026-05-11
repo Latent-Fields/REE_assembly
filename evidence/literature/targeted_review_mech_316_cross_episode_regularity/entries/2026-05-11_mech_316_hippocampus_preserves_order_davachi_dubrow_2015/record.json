@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_316_cross_episode_regularity",
+  "entry_id": "2026-05-11_mech_316_hippocampus_preserves_order_davachi_dubrow_2015",
+  "timestamp_utc": "2026-05-11T17:57:32Z",
+  "claim_ids_tested": ["MECH-316"],
+  "source": {
+    "title": "How the hippocampus preserves order: the role of prediction and context",
+    "authors": ["Lila Davachi", "Sarah DuBrow"],
+    "year": 2015,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2014.12.004",
+    "pmid": "25600586"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Davachi-tradition 2015 review of hippocampal temporal-order and statistical-learning operations -- the empirical-substrate anchor for the cross-episode regularity-extraction role MECH-316 names. The paper synthesises Davachi-lab and adjacent fMRI work showing that hippocampus (specifically the trisynaptic-pathway-side and the CA1 region) supports order preservation through prediction-error-modulated and context-dependent encoding. Direct mechanistic relevance: the operations the review describes (prediction-based binding, context-driven segmentation, statistical-learning of co-occurring items) are the same operations MECH-316 needs the substrate to perform. Venue note: the user's brief named J Neurosci as the venue; the closest existing Davachi 2015 hippocampal-statistical-learning review is in Trends in Cognitive Sciences instead. Substantive content matches what the brief intended; venue is documented in mapping_caveat. Confidence moderate (0.74) because the paper is a review and the direct experimental anchors are spread across the Davachi lab's primary papers.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that supports cross-episode regularity extraction but does NOT modulate encoding by prediction error will fail the Davachi-style behavioural signatures: temporal-order memory should be specifically impaired at prediction-error boundaries and preserved within prediction-coherent runs.",
+    "If MECH-316 is implemented without a context-driven segmentation step, the agent should fail to recover order memory across context-boundaries that humans handle robustly.",
+    "If the hippocampal-statistical-learning substrate is the correct biological anchor, then ablating prediction-error signals (analogous to lesioning the dopaminergic input to hippocampus) should produce a specific Davachi-style impairment in order memory, not a generic memory deficit."
+  ],
+  "tags": ["mech_316", "hippocampus", "statistical_learning", "temporal_order", "prediction_error", "context_segmentation", "davachi"],
+  "mapping": {
+    "source_claim_statement": "Hippocampus does not just store individual episodes; it performs prediction-based order-preserving operations on the input stream. Specifically: (1) prediction errors during encoding trigger event-boundary signatures and disrupt temporal-order memory across the boundary; (2) context-dependence modulates which items get bound together into the same hippocampal trace; (3) co-occurring items acquire shared representations through statistical learning that depends on the hippocampus. The substrate operates on the trajectory of experience to extract its statistical structure, not just to memorise it.",
+    "ree_translation": "MECH-316 needs a substrate that does what Davachi & DuBrow's hippocampus does: prediction-error-modulated, context-segmented, statistical-regularity-extracting operations on the trajectory record. The biological anchor is the same one Schapiro 2017 (already in Pull 1) identified -- the CLS-monosynaptic side of hippocampus, the trisynaptic-pathway-prediction side, or both working together. Davachi 2015 adds the empirical-substrate dimension to Schapiro 2017's modelling-substrate one: the experimental signatures (prediction-error event-boundary effects on order memory, context-dependent binding, statistical-learning of co-occurrence) are exactly the falsifiable behavioural signatures MECH-316 should be able to reproduce on a trajectory-record substrate.",
+    "mapping_caveat": "Davachi & DuBrow 2015 was published in Trends in Cognitive Sciences (DOI 10.1016/j.tics.2014.12.004), not in Journal of Neuroscience as the user's brief mentioned. The closest J Neurosci 2015 paper on hippocampal statistical learning by an adjacent author (Schapiro et al. hippocampal-statistical-learning fMRI work) is in different venues (Hippocampus 2016, J Cogn Neurosci 2014). I have used the Davachi & DuBrow 2015 TICS review as the closest Davachi-tradition 2015 anchor on hippocampal statistical-order learning; the substantive content matches the brief's intent (hippocampal statistical-learning empirical anchor circa 2015). Additional caveat: human-fMRI / behavioural-paradigm anchoring vs REE behavioural-trajectory-record substrate is a non-trivial transfer; the principle that hippocampus is the substrate for cross-episode regularity extraction is robust, but the specific operational signatures may differ on trajectory-record input.",
+    "source_context": "Trends in Cognitive Sciences review (2015) synthesising Davachi-lab fMRI work on hippocampal contributions to temporal-order memory, statistical learning, and event segmentation. Mid-career mid-review by the Davachi lab and a then-postdoc (DuBrow)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.34,
+    "notes": "TICS review venue is high-quality; Davachi is the established lead author for hippocampal-statistical-learning. Mapping fidelity good for the substrate-level claim about hippocampal operations. Transfer risk moderate because the experimental paradigms (human-fMRI on temporal-order memory tasks) are one step removed from REE's behavioural-trajectory regularity extraction. Confidence kept below 0.80 because of the venue mismatch with the brief (TICS not J Neurosci) and because the paper is a review, not a primary empirical anchor."
+  }
+}

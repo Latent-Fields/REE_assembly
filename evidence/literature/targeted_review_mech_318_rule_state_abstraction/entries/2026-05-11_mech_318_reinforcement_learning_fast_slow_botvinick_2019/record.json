@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_318_rule_state_abstraction",
+  "entry_id": "2026-05-11_mech_318_reinforcement_learning_fast_slow_botvinick_2019",
+  "timestamp_utc": "2026-05-11T18:09:57Z",
+  "claim_ids_tested": ["MECH-318"],
+  "source": {
+    "title": "Reinforcement Learning, Fast and Slow",
+    "authors": ["Matthew Botvinick", "Sam Ritter", "Jane X Wang", "Zeb Kurth-Nelson", "Charles Blundell", "Demis Hassabis"],
+    "year": 2019,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.02.006",
+    "pmid": "31003893"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Authoritative TCS review of the fast-vs-slow meta-RL framework, by the team that produced both Wang 2018 and (Botvinick was supervisor for) the broader meta-RL-as-PFC research programme. The paper synthesises four years of post-2015 work on what makes deep RL more sample-efficient (episodic-memory augmentation, meta-learning, model-based RL); for MECH-318 the relevance is the explicit discussion of how recurrent hidden-state can serve as a fast-learning substrate that the slow weight-learning shapes. Confidence 0.78 reflects the secondary-review status (synthesis rather than primary anchor) balanced against authoritative source and direct on-topic content.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE substrate that builds MECH-318 without coupling to episodic-memory retrieval (the fast-recall complement to slow weight-learning) will produce a less sample-efficient agent than Botvinick et al.'s framework predicts.",
+    "If MECH-318 is implemented as a pure-recurrent-meta-RL substrate without episodic-memory augmentation, the agent should show the deep-RL sample-inefficiency that Botvinick et al. anchor as the motivating problem.",
+    "If the broader fast-and-slow framework is the right reading for MECH-318, then the substrate should integrate with the existing REE episodic-memory substrates (MECH-269 anchor sets, MECH-292/293 ghost-goal bank) rather than displacing them."
+  ],
+  "tags": ["mech_318", "meta_reinforcement_learning", "episodic_memory_rl", "fast_and_slow_learning", "deep_rl_efficiency"],
+  "mapping": {
+    "source_claim_statement": "Deep reinforcement learning, despite its impressive achievements, is famously slow to learn -- requiring far more experience than animals or humans need. Two complementary research directions address this. The episodic-memory direction (fast lookup) augments the agent with explicit memory retrieval, allowing rapid behaviour on recurring situations. The meta-learning direction (slow algorithmic shaping) trains the weights of a recurrent network across a task family so that the network's hidden-state dynamics implement an efficient learning algorithm. The two directions are complementary and the strongest deep-RL agents combine them.",
+    "ree_translation": "MECH-318 (rule-state abstraction substrate) is best positioned within a fast-and-slow architecture rather than as a pure meta-RL substrate. The 'slow' shaping is the dopaminergic / outer-loop training that installs the rule-state encoding in the recurrent dynamics (the Wang 2018 reading). The 'fast' retrieval is the episodic-memory mechanism that allows rapid response to recurring situations (in REE: the existing MECH-269 anchor sets, MECH-292/293 ghost-goal substrates). The architectural reading is that MECH-318 should COUPLE TO the existing episodic substrates rather than displace them, with the meta-RL recurrent-state and the episodic-memory retrieval playing complementary roles.",
+    "mapping_caveat": "Botvinick et al. 2019 is a review of deep-RL research directions, not a substrate-prescriptive paper. The fast-and-slow framework is normative -- it says the best agents combine episodic memory with meta-RL -- but does not specify how the coupling should work at the substrate level. For REE the implication is that MECH-318 should be designed to compose cleanly with the existing episodic substrates rather than as a standalone module. Whether the composition is at the trigger layer (episodic retrieval signals when the meta-RL substrate should be active), at the readout layer (both substrates feed into action selection), or at the training layer (episodic substrates supply training data for the meta-RL substrate) is a substrate-design call that this review does not by itself resolve.",
+    "source_context": "Trends in Cognitive Sciences 23(5):408-422 (2019). Botvinick + Ritter + Wang + Kurth-Nelson + Blundell + Hassabis -- all DeepMind. Synthesis review of post-2015 deep-RL advances written by the team most responsible for them. Authoritative cognitive-neuroscience-tradition treatment of meta-RL."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "TCS is high-quality; the DeepMind team is the dominant anchor for the research programme. Mapping fidelity good for the fast-and-slow architectural reading. Transfer risk moderate because the synthesis is at the framework level rather than the substrate level, leaving substrate-design choices to be made downstream."
+  }
+}

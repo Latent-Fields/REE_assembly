@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_316_cross_episode_regularity",
+  "entry_id": "2026-05-11_mech_316_discovery_structural_form_kemp_tenenbaum_2008",
+  "timestamp_utc": "2026-05-11T17:59:23Z",
+  "claim_ids_tested": ["MECH-316"],
+  "source": {
+    "title": "The discovery of structural form",
+    "authors": ["Charles Kemp", "Joshua B Tenenbaum"],
+    "year": 2008,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0802631105",
+    "pmid": "18669663"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Foundational anchor for the structure-learning candidate flavour of MECH-316 -- the fourth implementation flavour Pull 1 surfaced (alongside latent-cause inference, successor-representation, and attention-modulated RL). Kemp & Tenenbaum's hierarchical-Bayesian framework for discovering which structural form (tree, ring, chain, partition, dominance hierarchy) best describes a given dataset is the ambitious version of the cross-episode regularity-extraction claim: not just 'extract the regularities' but 'extract the discrete structural form that organises the regularities'. Direction is MIXED because the framework is computationally well-defined and influential, but the structure-learning flavour is the most demanding (and least biologically-anchored) of the four candidate implementation flavours. The empirical evidence that REE -- or biological brains generally -- perform structure-learning at this level of explicitness is thin. Confidence 0.62 reflects this: the paper is foundational for the algorithmic candidate, but the biological-plausibility of the strong reading is genuinely contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-316 is implemented under the strong structure-learning flavour but the underlying biology does NOT in fact maintain an explicit hypothesis space over discrete structural forms, the substrate will fail to reproduce the qualitative form-discovery signatures Kemp & Tenenbaum's framework predicts -- specifically the discrete switching between hypothesised forms as evidence accumulates.",
+    "If structure-learning is what MECH-316 names, then the agent should display Kemp-Tenenbaum-style form-discovery: starting with the simplest structural form and switching to richer forms as evidence accumulates against the simpler ones. Failure to display this signature falsifies the strong reading.",
+    "If the simpler attention-modulated or latent-cause flavours suffice, then the additional commitment to a structural-form hypothesis space is unnecessary -- and the structure-learning reading of MECH-316 should be rejected as overdetermined."
+  ],
+  "tags": ["mech_316", "structure_learning", "bayesian_hypothesis_space", "form_discovery", "tenenbaum"],
+  "mapping": {
+    "source_claim_statement": "The agent maintains a hypothesis space over discrete structural forms (tree, ring, chain, partition, dominance hierarchy, etc.) and infers which form best describes the dataset via hierarchical Bayesian inference. The framework recovers known scientific discoveries (Linnaean taxonomy as tree, Mendeleev periodic table as 2D grid, etc.) when applied to the underlying co-occurrence data. The implication is that human cognitive development is structurally analogous -- children discover which form organises a given conceptual domain through accumulating evidence against simpler forms.",
+    "ree_translation": "MECH-316 under the strong structure-learning flavour reads as: the agent maintains a hypothesis space over discrete structural forms that the trajectory-record could be organised by (sequential chain, branching tree of rule-contexts, partitioned categories of episode-types, dominance ordering of strategies, etc.) and infers which form best describes the accumulated record. This is a stronger commitment than latent-cause inference (which assumes the latent-variable space is fixed) or attention-modulated RL (which selects dimensions but does not select structural form). The architectural cost is high: it requires defining the hypothesis space of forms in advance.",
+    "mapping_caveat": "Kemp & Tenenbaum's framework is normative -- it shows that structure-learning IS doable computationally given enough data and an appropriately specified hypothesis space. The empirical evidence that biological brains (or REE specifically) actually maintain an explicit hypothesis space over discrete structural forms is much thinner. The natural reading for REE is the WEAK version -- structure-learning machinery exists in REE only implicitly, in the form of priors over which latent-cause or attention-allocation patterns are admissible. The STRONG version (explicit hypothesis space over forms) is probably overdetermined for the cross-episode regularity-extraction role MECH-316 needs to play. The Kemp-Tenenbaum framework should inform the substrate-design pass as the boundary case of what 'structure-learning' could maximally mean, not as the target implementation.",
+    "source_context": "PNAS 105(31):10687-10692 (2008). Canonical Tenenbaum-tradition paper introducing the hierarchical-Bayesian framework for discovering discrete structural forms. Continues into the 2011 Tenenbaum Science paper 'How to grow a mind' and subsequent probabilistic-cognition literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "PNAS source quality is high; Tenenbaum is the foundational figure for the structure-learning research programme. Mapping fidelity to MECH-316 is moderate -- the algorithmic framework is clearly relevant but the strong reading is probably overdetermined for what MECH-316 needs to do. Transfer risk is elevated because the paradigm (recovering scientific discoveries from co-occurrence data) is far from REE's behavioural-trajectory-record substrate. Confidence held at 0.62 reflects the dual position: foundational for the algorithmic flavour, but biologically over-strong for the substrate-design call."
+  }
+}

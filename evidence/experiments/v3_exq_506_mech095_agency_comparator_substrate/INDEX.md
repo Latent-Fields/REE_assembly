@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_506_mech095_agency_comparator_substrate
 
-Generated: `2026-05-11T17:19:46.031967Z`
+Generated: `2026-05-11T18:13:27.681658Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
