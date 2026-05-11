@@ -363,7 +363,7 @@ See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | done | (substrate landed 2026-05-11; 4-arm validation pending separate session) | Queue 4-arm discriminative pair via /queue-experiment under master flag use_mech307_conjunction=True | TBD (4-arm discriminative pair) | 2026-05-11 |
+| GAP-1 | 1 | done | (substrate landed 2026-05-11; 4-arm validation pending separate session) | Queue 4-arm discriminative pair via /queue-experiment under master flag use_mech307_conjunction=True. **NOTE 2026-05-11 (EXQ-550 review):** V3-EXQ-550 FAIL sustains MECH-269 V_s monostrategy substrate-level reading at no-training depth; same run surfaced wired-but-inert z_goal pipeline (1200/1200 update_z_goal calls, z_goal_norm_peak=0.0) -- see decision-log 2026-05-11 entry. V3-EXQ-551 (pipeline-entropy diagnostic) + V3-EXQ-552 (forced-exploration warmup) queued by parallel sessions to narrow mechanism before trained-z_goal follow-up. | TBD (4-arm discriminative pair) | 2026-05-11 |
 | GAP-2 | 2 | blocked | Phase 1 PASS | Re-queue V3-EXQ-514 successor with phased training under MECH-307-fixed substrate | V3-EXQ-514g (TBD) | 2026-05-08 |
 | GAP-3 | 3 | open | nothing internal | Land sustained-drive EMA (Option 1) per sustained_drive_anticipatory_wanting.md; queue discriminative drive_ema_alpha sweep | TBD (SD-012 amendment) | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 1 + Phase 3 PASS | Re-queue Tier-1 cohort under StepHarness with Phase 1 + Phase 3 landed | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-08 |
@@ -477,6 +477,99 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-11 - V3-EXQ-550 FAIL: MECH-269 V_s monostrategy substrate-level reading sustained at no-training depth; new "wired-but-inert z_goal" gap surfaced
+
+V3-EXQ-550 ran 2026-05-11T19:01Z (DLAPTOP-4.local) and registered FAIL on the
+pre-registered pass rule `action_class_entropy(ON) - action_class_entropy(OFF)
+>= 0.10 in >= 2/3 seeds`. All 3 seeds returned `action_class_entropy = 0.0` in
+BOTH arms and per-seed action distributions bit-identical between ARM_OFF and
+ARM_ON (seed 42 class "1" 1200/1200 both arms; seed 7 class "2" 1200/1200 both
+arms; seed 17 class "2" 1200/1200 both arms). Per the pre-registered
+interpretation grid in the manifest's `evidence_direction_note`:
+**FAIL supports the substrate-level reading of MECH-269 V_s monostrategy at
+no-training depth.** Does NOT rule out that a trained z_goal pipeline would
+change the picture; the test was a no-training random-init probe by design.
+MECH-269's hold on SD-029 stands at this depth.
+
+**Additional finding NOT in the pre-registered grid (separate substrate gap):**
+the diagnostic incidentally surfaced a wired-but-inert pattern in the z_goal
+activation path. ARM_ON recorded `z_goal_update_calls = 1200` (every tick of
+every seed; the per-step `update_z_goal(info['benefit_exposure'])` plumbed in
+the experiment script fired correctly) but `z_goal_norm_peak = 0.0` on every
+seed. The goal pipeline is wired and called but functionally inert: GoalState
+mutates without ever producing a non-zero `z_goal` norm under this probe's
+benefit-exposure feed. Mechanism is unconfirmed (candidates: GoalState
+internal threshold gating, benefit_exposure scale mismatch, drive-weight
+multiplier zeroing through, missing seeding step). This is distinct from the
+action-class-collapse signature MECH-269 captures -- the agent's downstream
+selection is still single-action-deterministic, but EVEN IF V_s monostrategy
+were broken upstream, the goal pipeline at this no-training depth would not
+seed a non-zero z_goal to bias action selection. This is a recurrence of the
+wired-but-inert pattern named in the One-line framing section (and previously
+seen on EXQ-471 / EXQ-483 / EXQ-490 / EXQ-514 / EXQ-536 / EXQ-538).
+
+**Recommended next moves:**
+
+1. **Trained-z_goal follow-up** (the natural successor to V3-EXQ-550). Same
+   ARM_OFF / ARM_ON structure but with P0 + P1 training prior to the action-
+   class entropy measurement, so the z_goal pipeline has had a chance to
+   accumulate state and the goal-modulated policy has gradient pressure.
+   PASS at training depth = z_goal pipeline biases action selection materially
+   once trained -> weakens MECH-269 substrate-level reading. FAIL at training
+   depth = substrate-level reading survives the strongest available probe
+   short of architectural redesign. Deferred to a separate `/queue-experiment`
+   session; not authored here.
+
+2. **Diagnostic-first ordering** (concurrent sessions, parallel to this one):
+   - **V3-EXQ-551 pipeline-entropy diagnostic** -- characterise what the
+     `update_z_goal` -> GoalState -> z_goal-bias-into-action_selection chain
+     actually does at no-training-depth: log z_goal norm trajectory, GoalState
+     drive trajectory, per-step contribution to action logits, identify where
+     in the chain the signal collapses to zero. Owned by a parallel session
+     in `ree-v3/`.
+   - **V3-EXQ-552 forced-exploration warmup** -- inject epsilon-greedy
+     exploration during a warmup phase to escape the random-init action-class
+     collapse, then re-measure z_goal ON/OFF entropy delta. Test whether the
+     no-training monostrategy is the bottleneck for the z_goal diagnostic
+     (orthogonal to whether trained z_goal helps). Owned by a parallel
+     session in `ree-v3/`.
+
+   These two diagnostics are queued by parallel sessions concurrent with
+   this review (no resource overlap with REE_assembly/ planning docs); their
+   outputs route back into this plan via separate decision-log entries.
+
+**Status table impact:** This plan does NOT carry a GAP explicitly named
+"z_goal wired-but-inert at no-training depth" -- the pattern was implicit in
+GAP-2 / GAP-3 / GAP-4 prerequisites. EXQ-550's incidental finding tightens
+the substrate description: any Phase 2/3/4 EXQ that does NOT actively warm
+up the goal pipeline (e.g. through training or forced exploration) will
+inherit the inert-z_goal signature regardless of substrate quality. Recorded
+here rather than as a new GAP row because (a) the candidates EXQ-551 / EXQ-552
+will narrow what the actual mechanism is, and (b) the fix path (trained
+follow-up + diagnostic-driven mechanism identification) is already covered
+by Phase 2 + Phase 3 + Phase 4 cohort triggers. If EXQ-551 / EXQ-552 surface
+a distinct architectural gap (e.g. a missing GoalState seeding hook), a new
+GAP row will be added in the resolving session.
+
+**Substrate-readiness implications for in-flight work:**
+- MECH-269 V_s monostrategy hold on SD-029 is sustained at no-training depth.
+  Previous reclassifications of EXQ-433* / EXQ-470 / EXQ-476* / EXQ-537 as
+  non_contributory under V_s monostrategy remain correct.
+- Other plans' interpretations of "wired but inert" recur (most recently in
+  the 2026-05-11 self_attribution_plan GAP-1 inversion: floating-point-
+  identical metrics between ARM_INDEPENDENT and ARM_SHARED under
+  action_class_entropy=0.0) read the SAME substrate-ceiling signal from a
+  different observable.
+
+**Files touched in this session:** `goal_pipeline_plan.md` (this decision-log
+entry; status-table GAP-1 row "Next action" notes EXQ-550 finding); review
+tracker; WORKSPACE_STATE.md. No claims.yaml edits; no MECH-269 status
+change (already candidate / v3_pending under MECH-269b followup). No
+`evidence_direction_per_claim` overrides needed -- the manifest's flat
+`MECH-269: supports` correctly carries the substrate-level reading. No
+script written; concurrent sessions B + C own the diagnostic queue-ups
+(V3-EXQ-551 + V3-EXQ-552).
 
 ### 2026-05-11 - GAP-1 substrate landed (Option-b for Gap 1 per user override)
 

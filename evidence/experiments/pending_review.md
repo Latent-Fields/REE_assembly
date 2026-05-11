@@ -1,15 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-05-11T20:02:50Z`  
-Last review: `2026-05-11T17:13:06Z`  
-Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-11T20:14:22Z`  
+Last review: `2026-05-11T20:10:15Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_550_zgoal_monostrategy_falsifier_20260511T190132Z_v3` | 2026-05-11T19:01 | MECH-269 | — |
-| `v3_exq_543c_arc062_phase3_bipartite_falsifier_20260511T190246Z_v3` | 2026-05-11T19:02 | ARC-062, MECH-309 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 
