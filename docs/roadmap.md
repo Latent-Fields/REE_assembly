@@ -14,6 +14,26 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-05-11T11:35Z -- scheduled PM /lit-pull + /update-docs; Q-045 lit-pull adds 5 entries / lit_conf 0.9 / evidence_quadrant plausible_unproven; R1 verdict COUPLED-NOT-COLLAPSED extends Q-045 resolution categories; MECH-260 anchor flagged missing in arc_065 Pull 1 RECOVERED via Scholl 2015; no SD / MECH status changes)
+
+- **Literature additions since the 2026-05-11T01:10Z nightly snapshot:**
+  - **Q-045 dedicated lit-pull** -- 5 entries landed in `evidence/literature/targeted_review_q_045/` covering the LC-NE tonic noise (MECH-313) vs dACC anti-recency (MECH-260) substrate-independence question. Tervo et al. 2014 (Cell, [DOI 10.1016/j.cell.2014.08.037](https://doi.org/10.1016/j.cell.2014.08.037)) R1 LOAD-BEARING: LC-NE input drives ACC stochastic-mode switching with ACC engagement SUPPRESSED during stochastic mode -- the two substrates are coupled at the circuit level, neither fully independent nor fully collapsed. Scholl et al. 2015 (J Neurosci, [DOI 10.1523/JNEUROSCI.0396-15.2015](https://doi.org/10.1523/JNEUROSCI.0396-15.2015)) R2 substrate-distinctness CONFIRMED + recovers MECH-260 anchor flagged missing in arc_065 Pull 1 synthesis 2026-05-10. Kennerley et al. 2006 (Nat Neurosci, [DOI 10.1038/nn1724](https://doi.org/10.1038/nn1724)) causal lesion complement. Meder et al. 2017 (Nat Commun, [DOI 10.1038/s41467-017-02169-w](https://doi.org/10.1038/s41467-017-02169-w)) multi-timescale value spectrum reinforces substrate-distinctness from a third angle. Yu & Dayan 2005 (Neuron, [DOI 10.1016/j.neuron.2005.04.026](https://doi.org/10.1016/j.neuron.2005.04.026)) theoretical anchor.
+- **Verdicts and design refinements:**
+  - **R1 COUPLED-NOT-COLLAPSED** (mixed-direction evidence from Tervo 2014) -- MECH-313 and MECH-260 substrate-distinct AND circuit-coupled; resolution categories EXTENDED to include "DIRECTIONALLY COUPLED" as a fourth category alongside the three originally registered (mutually load-bearing / 313-dominant / 260-dominant).
+  - **R4 LOAD-BEARING design refinement** -- current Q-045 4-arm ablation is INSUFFICIENT to expose the Tervo asymmetry; needs extension to 8-cell (4-arm x 2-LC-amplitude) OR addition of LC -> ACC coupling ablation. both-ON should NOT be linear superposition of singletons.
+  - **R5 substrate-readiness precondition** -- SD-054 reef substrate temporal-horizon must be verified BEFORE 4-arm authorisation; Kennerley-style across-trial integration only emerges with sufficient temporal horizon and a single-tick outcome substrate cannot dissociate MECH-260 from MECH-313 in the Kennerley sense.
+- **Indexer delta:** literature entries 1326 -> **1331** (+5); claim_evidence.v1.json Q-045 entry: literature_confidence 0.0 -> **0.9**, overall_confidence 0.0 -> 0.9, evidence_quadrant `plausible_unproven`, direction_counts 4 supports + 1 mixed.
+- **Hygiene win:** recovers the MECH-260 Scholl 2015 anchor that the ARC-065 Pull 1 synthesis flagged as un-retrievable 2026-05-10 (citation-lookup ambiguity resolved by author + journal + year combination via PubMed author-field search).
+- **Governance impact:** Q-045 evidence_quality_note extended in claims.yaml with R1-R5 verdicts + reference to `targeted_review_q_045/synthesis.md`. NO claim status changes (Q-045 remains `open`; MECH-313 remains `candidate_substrate_landed`; MECH-260 remains `substrate_landed`). validate_claims --strict OK 68 invariants; build_claims_json wrote 618 claims.
+- **Bottleneck note (unchanged from 2026-05-11T01:10Z):** ARC-062 Phase 3 wiring pass + ARC-064/ARC-065/ARC-066 child-MECH cluster behavioural validation remain the immediate gate. Q-045 4-arm ablation is now better-scaffolded but still gated on the Phase 3 redesign + the SD-054 substrate-readiness precondition R5 surfaces.
+
+### Immediate Work Queue (This Cycle, 2026-05-11 -- PM addendum to nightly)
+
+1. **Carry-forward from nightly:** all 6 items unchanged (ARC-062 Phase 3 wiring redesign + Q-043/044/045 behavioural ablation cohort design + ARC-070/071 R6 SAFETY-CRITICAL governance + MECH-321 substrate + ARC-067/068 child-MECH design + V3-EXQ-141c diagnose-errors).
+2. **Q-045 design extension follow-on** -- before queueing the Q-045 4-arm ablation, decide whether to extend it to the 8-cell (4-arm x 2-LC-amplitude) form per R4 verdict OR add a dedicated LC -> ACC coupling ablation arm. Sequence the SD-054 multi-trial-outcome-dependency substrate-readiness diagnostic (R5 precondition) BEFORE the 4-arm authorisation.
+
+---
+
 ## Status Snapshot (2026-05-11T01:10Z -- nightly docs sync; four ARC-064/ARC-065/ARC-066 child substrates land (MECH-313 noise floor + MECH-314 structured curiosity + MECH-319 simulation-mode rule-write gate + MECH-320 tonic vigor coupling); two new architectural cluster registrations (ARC-066/067/068 non_deficit_action_drives + ARC-069/070/071 policy_primitive_granularity); MECH-163 depends_on +ARC-071 per ARC-071 lit-pull R3 verdict; ARC-062 Phase 3 falsifier V3-EXQ-543b FAIL on Mac; pending_review 2 -> 0; runner_status.json single-file deprecated -- per-machine aggregate now reported)
 
 - **SDs / MECHs moved to Implemented since the 2026-05-10T01:10Z nightly snapshot:**
