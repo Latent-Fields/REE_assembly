@@ -1,19 +1,41 @@
 {
   "schema_version": "v1",
   "runner_pid": 664,
-  "runner_started_at": "2026-05-10T20:56:09.526370+00:00",
-  "last_updated": "2026-05-10T20:56:13.090131+00:00",
+  "runner_started_at": "2026-05-11T19:01:30.305022+00:00",
+  "last_updated": "2026-05-11T20:16:59.178376+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-514i",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-049 BG gating wider-seed sweep under StepHarness, Tier-1 diagnostic re-run after 514h manifest lost to mid-completion SIGTERM (supersedes V3-EXQ-514h)",
+      "queue_id": "V3-EXQ-549",
+      "backlog_id": "EVB-0232",
+      "claim_id": "ARC-066",
+      "title": "ARC-066 / MECH-320 tonic_vigor behavioural discriminative pair (EXP-0083 / EVB-0232)",
       "description": "",
-      "estimated_minutes": 72.0,
+      "estimated_minutes": 122.7,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-540a",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 Option-b 3-arm conjunction decomposition (goal_pipeline:GAP-1 Phase 1 acceptance)",
+      "description": "",
+      "estimated_minutes": 84.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-543d",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 x MECH-260 2x2 factorial monomodal-collapse falsifier on bipartite SD-054",
+      "description": "",
+      "estimated_minutes": 172.8,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2014,6 +2036,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 2.1
+    },
+    {
+      "queue_id": "V3-EXQ-550",
+      "backlog_id": "",
+      "claim_id": "MECH-269",
+      "title": "MECH-269 z_goal-enabled monostrategy falsifier (config-default vs substrate diagnosis)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-550 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-550.json",
+      "started_at": "2026-05-11T19:01:32.054914+00:00",
+      "completed_at": "2026-05-11T19:10:12.405106+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_550_zgoal_monostrategy_falsifier/v3_exq_550_zgoal_monostrategy_falsifier_20260511T190132Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 519.2
+    },
+    {
+      "queue_id": "V3-EXQ-551",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "Pipeline entropy diagnostic: localize the action-class entropy=0.0 cliff (CEM proposer / E2 rollout / E3 evaluator / action class)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-551 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-551.json",
+      "started_at": "2026-05-11T20:15:33.919118+00:00",
+      "completed_at": "2026-05-11T20:16:59.177702+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_551_pipeline_entropy_diagnostic/v3_exq_551_pipeline_entropy_diagnostic_20260511T201534Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 85.3
     }
   ]
 }
