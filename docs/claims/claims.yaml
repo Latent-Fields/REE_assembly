@@ -25973,6 +25973,35 @@
     will move to v3_pending=false when a rule-apprehension layer is in place
     and a trained-agent SD-029 retest on this substrate produces the C2 / C3
     contrastive event distribution.
+
+    Bipartite layout extension landed 2026-05-11 in response to the V3-EXQ-543b
+    diagnose-errors finding (TASK_CLAIMS session_id
+    diagnose-v3-exq-543c-2026-05-11T0635Z) that the legacy SD-054 corner-placement
+    geometry does not exert sufficient structural pressure to force the CEM
+    proposer to emit candidates with diverse first-action argmaxes. Three new
+    env-only kwargs added to CausalGridWorldV2: reef_bipartite_layout (bool,
+    default False bit-identical OFF), reef_bipartite_axis (str, default
+    "horizontal"), reef_bipartite_agent_band_radius (int, default 1). When
+    enabled, reef cells cluster in the bottom half (axis=horizontal) or right
+    half (axis=vertical) of the grid; hazards / resources / waypoints spawn
+    exclusively in the opposite half; the agent spawns in a band of
+    2*radius + 1 rows/cols centred on the midline. Reef-approach and
+    forage-approach trajectories therefore have categorically opposite
+    first-action argmaxes by construction (action 1 down vs action 0 up on
+    horizontal axis). All defaults preserve legacy SD-054 behaviour; the
+    semantics, dependencies, and v3_pending status of the parent claim are
+    unchanged -- this is a substrate-refinement, not a new architectural
+    claim. Validation: V3-EXQ-548 substrate-readiness diagnostic to be queued
+    immediately after this implementation. Smoke 2026-05-11 PASS:
+    backward-compat reproduces V3-EXQ-521 baseline (reef_cells=33,
+    world_obs_dim=275, band_widen=0); activation across 3 seeds confirms
+    structural partition (agent in midline-band rows [5,6,7]; reef rows
+    [8,9,10] -- 28 cells with edge-clip; hazards / resources in rows
+    [1,2,3,4]). Design doc updated at
+    REE_assembly/docs/architecture/sd_054_reef_enrichment_substrate.md (new
+    "Bipartite layout extension (2026-05-11)" section). Cross-plan: resolves
+    arc_062_rule_apprehension_plan.md GAP-B resume condition (option 3a from
+    the 2026-05-11 decision-log) pending V3-EXQ-548 PASS.
   notes: >
     Originally documented as SD-050 in ree-v3/CLAUDE.md (entry dated 2026-05-04)
     in error. Renamed to SD-054 on 2026-05-08 after the registry-ID collision

@@ -326,3 +326,199 @@ on 2026-05-08:
   same date
 - SD-053 was left informally reserved for a sustained-drive claim per
   `docs/architecture/sustained_drive_anticipatory_wanting.md`
+
+---
+
+## Bipartite layout extension (2026-05-11)
+
+**Status: IMPLEMENTED 2026-05-11**
+
+The legacy SD-054 corner-placement is a weak geometric expression of the
+behavioural-diversity claim: reef patches sit in fixed corners, but the
+agent, hazards, and food spawn at uniformly-random positions in the
+remaining cells. Per-episode reef-vs-food geometry is randomised, and the
+mean optimal policy across episodes converges to a single direction-following
+template ("head toward nearest food") that works regardless of the specific
+reef-vs-food layout. The claim that "two competing attractors create a
+two-mode strategy space" is true under a discriminative policy (V3-EXQ-522
+heuristic, PASS) but the legacy geometry does not create the structural
+pressure that a trained REE policy would need to discover the discrimination
+on its own.
+
+The bipartite-layout extension is the sharper geometric expression of the
+same claim. It does not change SD-054's semantics, dependencies, or
+v3_pending status. It is a substrate-refinement that creates the
+structural condition under which a well-trained ARC-062 substrate would
+produce per-candidate first-action argmax diversity at typical training
+probe states.
+
+### Motivation
+
+The 2026-05-11 diagnose-errors session on V3-EXQ-543b (TASK_CLAIMS
+`diagnose-v3-exq-543c-2026-05-11T0635Z`) ran a direct numerical probe
+against the legacy SD-054 substrate and recorded:
+
+- 8 CEM candidates from `agent.generate_trajectories(latent, e1_prior, ticks)`
+  at init all share `argmax(first_action)` = 3
+- Continuous first-action vectors differ by ~1e-4 max across candidates
+- `world_states[1]` (first POST-action predicted z_world per candidate)
+  differs by ~1.2e-5 max across candidates; grows to ~2.8e-3 by t=30
+- The ARC-062 head's input (per-candidate z_world summary) is therefore
+  near-constant in K, gated_score_bias varies by ~4e-7 across K, TV
+  distance vs bypass-uniform is ~9e-8 -- below the V3-EXQ-543b inert-gating
+  threshold of 0.05
+
+The diagnosis: the substrate-readiness premise of V3-EXQ-543b was violated
+upstream of the ARC-062 head, by the CEM proposer producing near-degenerate
+candidate batches. The legacy SD-054 substrate does not exert geometric
+pressure that would force a trained CEM proposer to emit diverse
+first-action argmaxes. See
+`evidence/planning/arc_062_rule_apprehension_plan.md` decision-log entry
+2026-05-11 for the three architectural options surfaced; this extension
+implements option 3a (env-side diversification).
+
+### Design
+
+Three new `CausalGridWorldV2.__init__` kwargs (env-only, NOT surfaced
+through `REEConfig.from_dims` -- matches SD-022 / SD-023 / SD-029 / SD-047 /
+SD-048 / SD-054 precedent for env-only SDs). All defaults preserve
+bit-identical legacy SD-054 behaviour:
+
+```python
+reef_bipartite_layout: bool = False,        # master switch
+reef_bipartite_axis: str = "horizontal",    # or "vertical"
+reef_bipartite_agent_band_radius: int = 1,  # 0 = midline-only; 1 = midline +/- 1
+```
+
+When `reef_bipartite_layout=True`:
+
+| Region | Cells (axis="horizontal", radius=r) | Cells (axis="vertical", radius=r) |
+|---|---|---|
+| Reef half | rows in `(midline + r, sz - 2]` | cols in `(midline + r, sz - 2]` |
+| Agent band | rows in `[midline - r, midline + r]` | cols in `[midline - r, midline + r]` |
+| Forage half | rows in `[1, midline - r)` | cols in `[1, midline - r)` |
+
+Reef patches are placed along the reef-half edge (`row = sz - 3` for
+horizontal, `col = sz - 3` for vertical) with the remaining axis centres
+evenly distributed across the interior. Patches that would intersect the
+agent band or forage half are clipped by the `_is_in_reef_half(i, j)`
+predicate before being added to `self._reef_cells`. The reef scent field is
+computed identically to the legacy helper.
+
+The agent always spawns in the agent band; hazards, resources, and
+waypoints always spawn in the forage half. Cells in the reef half that are
+not reef cells are intentionally unused (the reef half is reef-exclusive).
+On a 12x12 grid with `n_reef_patches=3`, `reef_patch_radius=2`,
+`agent_band_radius=1`, the typical layout has ~28 reef cells (rows 8-10),
+4 agent-band rows used out of 3 (rows 5-7 minus any walls), and ~32
+forage-half cells (rows 1-4 minus reefs and walls).
+
+### Action-axis correspondence
+
+For axis="horizontal" with `CausalGridWorldV2.ACTIONS = {0: (-1, 0), 1: (1, 0),
+2: (0, -1), 3: (0, 1), 4: (0, 0)}`:
+
+- Reef approach (toward bottom): `action 1` ("down", row +1)
+- Forage approach (toward top): `action 0` ("up", row -1)
+
+These are categorically opposite action argmaxes. A candidate pool that
+includes both reef-mode and forage-mode trajectories MUST have at least
+two distinct first-action argmaxes -- there is no policy that gets both
+modes via the same first action under this geometry.
+
+### Reset partitioning
+
+`reset()` branches at the reef-placement step:
+
+```python
+if self.reef_enabled:
+    if self.reef_bipartite_layout:
+        self._place_reef_patches_bipartite()       # does NOT consume `available`
+        agent_pool, forage_pool = self._build_bipartite_pools(available)
+    else:
+        self._place_reef_patches(available)        # legacy: removes reef cells
+        agent_pool = forage_pool = available       # aliased single list
+else:
+    self._reef_cells = set()
+    agent_pool = forage_pool = available
+
+ax, ay = agent_pool.pop()                          # agent spawn
+# hazards, resources, waypoints pop from forage_pool
+```
+
+Legacy mode aliases the two pools to the same `available` list so
+`pop()`-from-shared-pool semantics are preserved bit-identically. Bipartite
+mode uses two disjoint pools that are independently shuffled by `self._rng`
+inside `_build_bipartite_pools`.
+
+### Fallback under degenerate configs
+
+If `agent_pool` would be empty after partitioning (e.g., `agent_band_radius=0`
+on a grid where the midline is mostly walls or already reef cells), the
+band is widened iteratively by +1 radius until a valid cell exists. The
+widen count is recorded in `self._sd054_bipartite_band_widen_count` (0 in
+legacy mode and in successful bipartite resets) for diagnostic surfacing.
+If `forage_pool` is empty, it falls back to `agent_pool` so `hazards.pop()`
+does not crash; the substrate-readiness diagnostic will catch this via low
+forage-pool cell counts.
+
+### What does NOT change
+
+`world_obs_dim` is unchanged (still 275 with `reef_enabled=True`, +25 from
+the static reef scent field view). No new observation channels. No new
+encoder. No new training target. `harm_obs` is unaffected. The `step()`
+movement, hazard, and resource-consumption logic is unchanged. The legacy
+`hazard_food_attraction` knob continues to work in both modes -- with the
+bipartite layout, hazards in the forage half drift toward food (also in
+the forage half), so the forage path becomes actively dangerous over time
+in exactly the way it does under the legacy layout.
+
+### Backward compatibility
+
+`reef_bipartite_layout=False` (default) preserves bit-identical legacy
+SD-054 behaviour: `_place_reef_patches` (corner pattern) is called,
+`available` is partitioned to remove reef cells but is otherwise a single
+shared pool, and all entities pop from it. RNG draws are unchanged because
+`_build_bipartite_pools` is not invoked. Bit-identical-OFF verified at
+smoke-test time 2026-05-11 (reef_cells count 33, world_obs_dim 275,
+band_widen_count 0 across seeds 0/1/2/42).
+
+### Validation
+
+V3-EXQ-548 substrate-readiness diagnostic to be queued via `/queue-experiment`
+immediately following this implementation. Acceptance criteria (proposed):
+
+- C0 backward-compat: `reef_bipartite_layout=False` reproduces V3-EXQ-521
+  baseline (reef_cells=33, world_obs_dim=275, band_widen=0)
+- C1 structural partition: with bipartite ON across 3 seeds, all reef cells
+  are in rows > midline + radius; all hazards / resources / waypoints in
+  rows < midline - radius; agent_pos always in midline +/- radius
+- C2 first-action argmax entropy: at probe states sampled from a 40-episode
+  P0 warmup, mean per-state argmax entropy across K=8 CEM candidates is
+  >= 1.5x the ARM_0 (legacy) baseline value. ARM_0 baseline expected ~0
+  (smoke-test value 0); ARM_1 expected >= 0.3 (i.e., at least one probe
+  state of 32 produces 2+ distinct argmaxes)
+- C3 reef-vs-forage signal: at agent-midline probe states with hazard
+  pressure present, the per-candidate first-action argmax distribution
+  contains both `0` (forage / up) and `1` (reef / down) in at least 30%
+  of probe states (the structural-readiness threshold)
+
+Acceptance is structural-only in this pass (`experiment_purpose=diagnostic`).
+A full-pipeline rerun of V3-EXQ-543b/c (with bipartite ON in 543b's env
+kwargs) is deferred until V3-EXQ-548 PASS confirms the env-side fix
+sufficient.
+
+### Related claims
+
+- SD-054 (this SD; substrate-readiness PASS, purpose-claim v3_pending still
+  applies until the rule-apprehension layer lands and is re-tested on the
+  enriched substrate)
+- MECH-309 (logical-necessity monomodal-collapse claim; the substrate
+  enables a sharper falsifier but the architectural claim is unchanged)
+- ARC-062 (Phase 2 GAP-B downstream consumer; this extension creates the
+  structural conditions under which the GAP-B falsifier becomes testable)
+- arc_062_rule_apprehension_plan.md GAP-B (status `blocked`; resume
+  condition is V3-EXQ-548 PASS)
+- SD-023 / SD-047 / SD-048 / SD-049 (parallel env-only substrate-enrichment
+  pattern -- env-only kwargs, no REEConfig.from_dims surfacing)
+- MECH-094 (not applicable -- env observation stream, not replay content)
