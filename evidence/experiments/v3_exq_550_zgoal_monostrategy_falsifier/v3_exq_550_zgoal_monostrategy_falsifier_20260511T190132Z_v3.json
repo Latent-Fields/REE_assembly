@@ -1,0 +1,167 @@
+{
+  "run_id": "v3_exq_550_zgoal_monostrategy_falsifier_20260511T190132Z_v3",
+  "experiment_type": "v3_exq_550_zgoal_monostrategy_falsifier",
+  "claim_ids": [
+    "MECH-269"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260511T190132Z",
+  "outcome": "FAIL",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-269": "supports"
+  },
+  "evidence_direction_note": "Diagnostic falsifier for the MECH-269 V_s monostrategy diagnosis. PASS means z_goal-being-wired alone shifts action-class entropy materially -- supports the config-default explanation and WEAKENS the substrate-level reading of MECH-269's hold on SD-029. FAIL means the wired-but-untrained goal pipeline does NOT break monostrategy at this probe depth -- the substrate-level reading SURVIVES at this depth (does NOT rule out that a trained z_goal pipeline would change the picture). ERROR-branch (non-finite action) reveals a separate substrate bug in the goal pipeline activation path and is reported via error_note + any_error_seed in pass_criteria_summary.",
+  "pass_criteria_summary": {
+    "gate_rule": "action_class_entropy(ON) - action_class_entropy(OFF) >= 0.1 in >= 2/3 seeds",
+    "per_seed_delta": [
+      {
+        "seed": 42,
+        "off_entropy": 0.0,
+        "on_entropy": 0.0,
+        "delta": 0.0,
+        "cleared": false
+      },
+      {
+        "seed": 7,
+        "off_entropy": 0.0,
+        "on_entropy": 0.0,
+        "delta": 0.0,
+        "cleared": false
+      },
+      {
+        "seed": 17,
+        "off_entropy": 0.0,
+        "on_entropy": 0.0,
+        "delta": 0.0,
+        "cleared": false
+      }
+    ],
+    "seeds_passing": 0,
+    "seeds_required": 2,
+    "pass": false,
+    "any_error_seed": false
+  },
+  "per_seed_results": [
+    {
+      "condition": "OFF",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_nans": 0,
+      "error_note": null,
+      "boundary_event_count": 6,
+      "broadcast_event_count": 6,
+      "anchor_active_peak": 1,
+      "z_goal_update_calls": 0,
+      "z_goal_norm_peak": 0.0
+    },
+    {
+      "condition": "ON",
+      "seed": 42,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "1": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_nans": 0,
+      "error_note": null,
+      "boundary_event_count": 6,
+      "broadcast_event_count": 6,
+      "anchor_active_peak": 1,
+      "z_goal_update_calls": 1200,
+      "z_goal_norm_peak": 0.0
+    },
+    {
+      "condition": "OFF",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_nans": 0,
+      "error_note": null,
+      "boundary_event_count": 6,
+      "broadcast_event_count": 6,
+      "anchor_active_peak": 1,
+      "z_goal_update_calls": 0,
+      "z_goal_norm_peak": 0.0
+    },
+    {
+      "condition": "ON",
+      "seed": 7,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_nans": 0,
+      "error_note": null,
+      "boundary_event_count": 6,
+      "broadcast_event_count": 6,
+      "anchor_active_peak": 1,
+      "z_goal_update_calls": 1200,
+      "z_goal_norm_peak": 0.0
+    },
+    {
+      "condition": "OFF",
+      "seed": 17,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_nans": 0,
+      "error_note": null,
+      "boundary_event_count": 5,
+      "broadcast_event_count": 5,
+      "anchor_active_peak": 1,
+      "z_goal_update_calls": 0,
+      "z_goal_norm_peak": 0.0
+    },
+    {
+      "condition": "ON",
+      "seed": 17,
+      "action_class_entropy": 0.0,
+      "action_class_counts": {
+        "2": 1200
+      },
+      "n_actions": 1200,
+      "n_ticks": 1200,
+      "n_nans": 0,
+      "error_note": null,
+      "boundary_event_count": 5,
+      "broadcast_event_count": 5,
+      "anchor_active_peak": 1,
+      "z_goal_update_calls": 1200,
+      "z_goal_norm_peak": 0.0
+    }
+  ],
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "seeds": [
+      42,
+      7,
+      17
+    ],
+    "episodes": 6,
+    "steps_per_ep": 200,
+    "entropy_delta_threshold": 0.1,
+    "seeds_required_to_pass": 2,
+    "sd029_scheduled_hazards": true,
+    "v_s_circuit_in_both_arms": true
+  }
+}
