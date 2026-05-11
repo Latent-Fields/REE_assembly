@@ -1,101 +1,190 @@
 {
   "schema_version": "diagnose_staging/v1",
-  "session_date": "2026-05-06",
-  "generated_utc": "2026-05-06T14:17:00Z",
+  "session_date": "2026-05-11",
+  "generated_utc": "2026-05-11T14:21:02Z",
+  "session_id": "diagnose-errors-staging-2026-05-11T1421Z",
   "session_label": "ree-diagnose-queue (afternoon scheduled, staging mode)",
-  "runner_status_sync_gap": 0,
-  "total_errors_scanned": 72,
-  "errors_unaddressed_no_successor": 6,
-  "errors_requiring_diagnosis": 6,
+  "mode": "staging",
+  "runner_status_sync_gap_before_merge": 2,
+  "runner_status_sync_gap_merged": ["V3-EXQ-514i", "V3-EXQ-547"],
+  "total_errors_scanned": 75,
+  "errors_unaddressed_no_successor": 7,
+  "errors_requiring_diagnosis": 7,
   "errors_requiring_fix_script": 0,
-  "summary": "0 ERRORs require a code-fix script. 6 unaddressed ERRORs split into three categories: (1) intentional NotImplementedError placeholders awaiting upstream prerequisites (V3-EXQ-455a, V3-EXQ-449c) -- these are not bugs and were already flagged in the 2026-04-29 staging report; (2) coincident SIGTERM (exit -15) on both cloud workers at 2026-05-06T09:28Z (V3-EXQ-530 on ree-cloud-1, V3-EXQ-244a on ree-cloud-2) plus a prior SIGTERM (V3-EXQ-495 on ree-cloud-1, 2026-04-28T21:13Z) -- infrastructure failures, no code fix; (3) one stale March-2026 SD-003 attempt (V3-EXQ-008) functionally superseded by the 27-experiment SD-003 program (anchor V3-EXQ-525 PASSed today). Note: V3-EXQ-449c, V3-EXQ-455a, V3-EXQ-008 also appeared in the 2026-04-29 staging report's errors_already_discussed_no_action list -- carryover for review_tracker handoff.",
+  "summary": "0 ERRORs require a code-fix script. 7 unaddressed ERRORs split into three buckets: (1) deliberate NotImplementedError stubs awaiting upstream substrate / cascade-gate landings -- V3-EXQ-449c, V3-EXQ-455a (carryover from earlier staging reports; no fix possible until V3-EXQ-476 cascade-gate retest passes); (2) false ERRORs where a valid PASS manifest exists on disk but runner mis-classified -- V3-EXQ-244a (SIGTERM mid-run on cloud-2 but a follow-on production run completed with elapsed_seconds=19395s ~5.4h and PASS, manifest committed 2026-05-07), V3-EXQ-542 (ARC-062 Phase 1 substrate-readiness diagnostic, runner saw no sentinel print but manifest is PASS on disk; CLAUDE.md confirms 5/5 PASS), V3-EXQ-544 (MECH-313 noise-floor substrate-readiness, same sentinel-parse gap; CLAUDE.md confirms 5/5 PASS); (3) infrastructure failures (cloud SIGTERM, no manifest) -- V3-EXQ-495 (MECH-163 V3 full-completion gate, ~4h on cloud-1 then -15), V3-EXQ-538 (SD-049 Phase 2 reef behavioural, ~24min on cloud-1 then -15, same cluster as V3-EXQ-433f / V3-EXQ-537 silent-fail). Two queue entries proposed for human confirmation: V3-EXQ-495a and V3-EXQ-538a (Mac-pinned reruns, no code change). One governance handoff: rebuild_indexes + mark_discussed for 244a/542/544.",
   "diagnoses": [
     {
-      "failed_queue_id": "V3-EXQ-008",
+      "failed_queue_id": "V3-EXQ-449c",
       "proposed_fix_id": null,
-      "category": "stale_abandoned",
-      "root_cause": "March 17 2026 SD-003 larger-world / smaller-observation probe exited code 1 in 0.9s. Pre-runner.log retention period; traceback unrecoverable from local logs. SD-003 has had 27 follow-on experiments since then; V3-EXQ-525 PASSed as the SD-003 anchor 2026-05-06T06:51Z.",
-      "fix_applied": "None. Scientific question functionally absorbed into the SD-003 program via different EXQ numbers; no longer load-bearing under this ID. Already listed in the 2026-04-29 staging report's errors_already_discussed_no_action -- carryover for review_tracker handoff.",
+      "disposition": "no_fix_needed_deliberate_stub",
+      "category": "intentional_placeholder",
+      "root_cause": "Script raises NotImplementedError on purpose: 'V3-EXQ-449c gated. MECH-284 Phase 3 substrate landed 2026-04-24 but cascade gate V3-EXQ-476a/476b ran FAIL (V_s wired-but-inert -- catatonic-lock at policy layer). Remaining blockers: (a) SD-037 (broadcast override regulator, orexin-analog) -- next /implement-substrate target per substrate_queue.json -- to break the monostrategy lock; (b) MECH-074b hippocampal consumer wiring landed on SD-035.' Exit code 1, ~0.1s -- the stub correctly refused to run.",
+      "fix_applied": "None. Not a code bug. SD-037 substrate DID land 2026-04-25 (CLAUDE.md confirms). What remains: (i) the V_s cascade-gate retest after SD-037 (and the subsequent staleness-into-gate wiring of 2026-04-29) -- V3-EXQ-476 itself; (ii) MECH-074b retrieval-bias-aware replay path on SD-035. Both are outside the diagnose-errors workflow.",
       "draft_script_path": null,
       "proposed_claim_ids": [],
-      "claim_ids_rationale": "No fix written.",
+      "claim_ids_rationale": "No experiment to re-tag. When the upstream blockers clear, this should be re-queued as a NEW EXQ via /queue-experiment with re-evaluated claim_ids -- not a letter suffix on 449c.",
       "draft_queue_entry": null,
-      "status": "no_fix_needed_recommend_mark_discussed"
+      "status": "blocked_on_upstream_prerequisites",
+      "predecessor_manifest_exists": false,
+      "next_step_for_user": "Add V3-EXQ-449c to review_tracker.discussed_experiment_dirs (already flagged in prior staging reports; carryover). When V3-EXQ-476 cascade gate PASSes, /queue-experiment a fresh ID for MECH-074b validation."
     },
     {
       "failed_queue_id": "V3-EXQ-455a",
       "proposed_fix_id": null,
+      "disposition": "no_fix_needed_deliberate_stub",
       "category": "intentional_placeholder",
-      "root_cause": "Script raises NotImplementedError at top of run with self-documenting message: 'V3-EXQ-455a full implementation pending: awaiting V3-EXQ-476 cascade gate PASS and MECH-284 Phase 3 consumer landing.' Exit 1 in 0.05s. Intentional precondition gate, not a bug.",
-      "fix_applied": "None. V3-EXQ-476 is itself a NotImplementedError placeholder; successors V3-EXQ-476a and V3-EXQ-476b both UNKNOWN. Until MECH-284 Phase 3 consumer + V_s flag plumbing in REEConfig.from_dims() are complete, no work is appropriate on V3-EXQ-455a. Already listed in the 2026-04-29 staging report -- carryover for review_tracker handoff.",
+      "root_cause": "Script raises NotImplementedError on purpose: 'V3-EXQ-455a gated. MECH-284 Phase 3 substrate landed 2026-04-24, but cascade gate V3-EXQ-476a/476b ran FAIL (V_s wired-but-inert: anchor resets fire but action selection unchanged -- catatonic-lock at policy layer). Remaining blocker is SD-037 (broadcast override regulator, orexin-analog).' Exit code 1, ~0.05s -- stub correctly refused to run.",
+      "fix_applied": "None. SD-037 substrate DID land 2026-04-25 (CLAUDE.md confirms). The remaining blocker is the V_s cascade-gate retest (V3-EXQ-476-equivalent successor) confirming V_s flags break baseline monostrategy lock. Outside diagnose-errors scope.",
       "draft_script_path": null,
       "proposed_claim_ids": [],
-      "claim_ids_rationale": "No fix to claim against; gate experiment will determine claim_ids when prerequisites land.",
+      "claim_ids_rationale": "No experiment to re-tag. Re-queue as NEW EXQ when the V_s cascade-gate retest PASSes.",
       "draft_queue_entry": null,
-      "status": "blocked_on_upstream_prerequisites"
-    },
-    {
-      "failed_queue_id": "V3-EXQ-449c",
-      "proposed_fix_id": null,
-      "category": "intentional_placeholder",
-      "root_cause": "Script raises NotImplementedError at top of run with self-documenting message: 'V3-EXQ-449c full implementation pending: awaiting (a) V3-EXQ-476 PASS, (b) V3-EXQ-445d PASS, and (c) MECH-074b hippocampal consumer wiring landed on SD-035.' Exit 1 in 0.1s. Intentional gate.",
-      "fix_applied": "None. All three prerequisites unmet: V3-EXQ-476 ERROR (placeholder), V3-EXQ-445d ERROR (also a placeholder awaiting V3-EXQ-476), MECH-074b retrieval-bias-aware replay path not yet present in SD-035. Pure dependency chain. Already listed in the 2026-04-29 staging report -- carryover for review_tracker handoff.",
-      "draft_script_path": null,
-      "proposed_claim_ids": [],
-      "claim_ids_rationale": "No fix to claim against.",
-      "draft_queue_entry": null,
-      "status": "blocked_on_upstream_prerequisites"
-    },
-    {
-      "failed_queue_id": "V3-EXQ-495",
-      "proposed_fix_id": null,
-      "category": "infrastructure_sigterm",
-      "root_cause": "MECH-163 V3 full-completion gate (VTA / hippocampally-planned arm) ran 4.0 hours on ree-cloud-1 starting 2026-04-28T17:14Z, then exit -15 (SIGTERM) at 21:13Z. SIGTERM is an external signal -- cloud worker process killed by parent (timeout, restart, or remote shutdown). No Python traceback.",
-      "fix_applied": "None. Not a code bug. The estimate budget for MECH-163 (heavyweight full-completion gate) likely exceeded the cloud worker's runtime ceiling, or the worker was restarted mid-run. Recommend: (a) confirm whether still scientifically wanted, (b) if yes, re-queue with force_rerun=true OR fresh letter (V3-EXQ-495a) and pin machine_affinity to a host with sufficient runtime headroom (DLAPTOP-4.local typically OK for long runs).",
-      "draft_script_path": null,
-      "proposed_claim_ids": ["MECH-163"],
-      "claim_ids_rationale": "Inherited from predecessor since the script never produced measurement -- SIGTERM tells us nothing about scope. If a human re-runs, claim_ids should be re-evaluated against the actual script body.",
-      "draft_queue_entry": null,
-      "status": "infrastructure_failure_no_code_fix_user_decides_rerun"
-    },
-    {
-      "failed_queue_id": "V3-EXQ-530",
-      "proposed_fix_id": null,
-      "category": "infrastructure_sigterm",
-      "root_cause": "ARC-016 precision-to-commitment circuit ran 10.0 minutes on ree-cloud-1 starting 2026-05-06T09:18:48Z, then SIGTERM at 09:28:51Z. ree-cloud-1 last heartbeat 09:16:44Z (idle). Coincident with V3-EXQ-244a SIGTERM on ree-cloud-2 at 09:28:53Z (within 2 seconds) -- simultaneous shutdown of both cloud workers around 09:28-29Z today.",
-      "fix_applied": "None. This experiment was smoke-tested PASS earlier today (~70s smoke run, all code paths exercised; per WORKSPACE_STATE 'write-exq530-arc016-precision-commit 2026-05-06T09:18Z'). The 10-minute SIGTERM is purely an infrastructure event, not a script regression. Recommend: re-queue under same ID with force_rerun=true, OR assign V3-EXQ-530a; consider machine_affinity adjustment if cloud restart pattern repeats.",
-      "draft_script_path": null,
-      "proposed_claim_ids": ["ARC-016"],
-      "claim_ids_rationale": "Inherited from queued predecessor -- SIGTERM produced no measurement, so claim_ids unchanged from original design (ARC-016 dACC precision_commit_ratio). Re-evaluate at re-queue time only if script is modified.",
-      "draft_queue_entry": null,
-      "status": "infrastructure_failure_no_code_fix_user_decides_rerun"
+      "status": "blocked_on_upstream_prerequisites",
+      "predecessor_manifest_exists": false,
+      "next_step_for_user": "Add V3-EXQ-455a to review_tracker.discussed_experiment_dirs (carryover from prior reports). Re-queue as a fresh EXQ once V_s cascade-gate retest passes."
     },
     {
       "failed_queue_id": "V3-EXQ-244a",
       "proposed_fix_id": null,
-      "category": "infrastructure_sigterm",
-      "root_cause": "MECH-165 reverse replay diversity validation ran 1.34 hours on ree-cloud-2 starting 2026-05-06T08:08:44Z, then SIGTERM at 09:28:53Z. ree-cloud-2 last heartbeat 08:06:40Z (idle). Coincident with V3-EXQ-530 SIGTERM on ree-cloud-1 at 09:28:51Z. Same cloud-shutdown event.",
-      "fix_applied": "None. There is a flat-JSON evidence file at REE_assembly/evidence/experiments/v3_exq_244a_mech165_replay_diversity_validation_v3.json with outcome=PASS, but its run_id has no timestamp suffix and the file is untracked in git -- this is a smoke-test artifact from local dry-run, NOT a real production run. condition_stats show NO_REPLAY/FORWARD_REPLAY retentions of -9.3e-11 (zero noise) and BALANCED_REPLAY at 0.013 driven by a single seed -- implausibly clean for a real run, consistent with a smoke-test artifact. Recommend: (a) delete the smoke-test JSON before re-running so it cannot be mistaken for evidence, (b) re-queue under same ID with force_rerun=true, OR assign V3-EXQ-244b.",
+      "disposition": "false_error_manifest_exists",
+      "category": "runner_state_drift",
+      "root_cause": "runner_status.json reports ERROR (exit -15 on ree-cloud-2 at 2026-05-06T09:28:53Z after 80min) but a real PASS manifest exists on disk at REE_assembly/evidence/experiments/v3_exq_244a_mech165_replay_diversity_validation_v3.json with elapsed_seconds=19395 (~5.4h) and outcome=PASS, evidence_direction=supports, claim_ids=['MECH-165']. Manifest committed 2026-05-07T05:27Z (the day after the runner-reported SIGTERM). A follow-on production run completed normally after the SIGTERM but runner_status was never updated. NOTE: the 2026-05-06 staging report initially flagged this manifest as a smoke-test artifact -- that was correct at the time of writing (elapsed was implausibly small), but the file was subsequently overwritten by a real production run.",
+      "fix_applied": "None. Manifest is on disk; governance can pick it up.",
       "draft_script_path": null,
       "proposed_claim_ids": ["MECH-165"],
-      "claim_ids_rationale": "Inherited from predecessor -- SIGTERM produced no real measurement. Re-evaluate only if script body is modified.",
+      "claim_ids_rationale": "Tags inherit from the manifest already on disk. No re-tag required.",
       "draft_queue_entry": null,
-      "status": "infrastructure_failure_no_code_fix_user_decides_rerun_delete_smoke_artifact_first"
+      "status": "needs_governance_action_not_diagnose_errors",
+      "predecessor_manifest_exists": true,
+      "predecessor_manifest_path": "REE_assembly/evidence/experiments/v3_exq_244a_mech165_replay_diversity_validation_v3.json",
+      "next_step_for_user": "Run /governance to ingest the on-disk manifest into claim_evidence.v1.json and mark V3-EXQ-244a discussed in review_tracker.json. No rerun needed."
+    },
+    {
+      "failed_queue_id": "V3-EXQ-495",
+      "proposed_fix_id": "V3-EXQ-495a",
+      "disposition": "infrastructure_failure_cloud_sigterm",
+      "category": "infrastructure_sigterm",
+      "root_cause": "MECH-163 V3 full-completion gate (VTA / hippocampally-planned arm) ran for 14383s (~4h) on ree-cloud-1 starting 2026-04-28T17:14Z, then exit -15 (SIGTERM) at 21:13Z. estimated_minutes was 1500 (~25h) -- ran a quarter of expected duration before the worker killed the process. Hetzner CX22 (cloud-1) is undersized per memory reference reference_cloud_workers.md; cloud-1 throughput is ~0.23 min/ep at 200 steps/ep vs ~0.10 min/ep on Mac, so this experiment's full duration was estimated at ~40h on cloud-1 vs ~17h on Mac. The 4h SIGTERM is most consistent with a Hetzner platform-side restart/limit rather than a code path. No manifest on disk.",
+      "fix_applied": "No code change required. Successor V3-EXQ-495a re-queues the same script with machine_affinity pinned away from ree-cloud-1. Mac-pinned (DLAPTOP-4.local) per the calibration table in ree-v3/CLAUDE.md (Mac ~0.10 min/ep -> ~17h single-machine; defensive budget 1500min = 25h).",
+      "draft_script_path": "experiments/v3_exq_495_mech163_planned_system_gate.py",
+      "proposed_claim_ids": ["MECH-163"],
+      "claim_ids_rationale": "Inherited from predecessor and re-evaluated. The script is unchanged in design (MECH-163 V3 full-completion gate, dual goal-directed systems test). Only the machine affinity changes; claim_ids remain MECH-163 unchanged.",
+      "draft_queue_entry": {
+        "queue_id": "V3-EXQ-495a",
+        "title": "MECH-163 V3 full-completion gate -- VTA / hippocampally-planned arm (Mac-pinned rerun)",
+        "experiment_type": "v3_exq_495_mech163_planned_system_gate",
+        "script": "experiments/v3_exq_495_mech163_planned_system_gate.py",
+        "priority": 5,
+        "machine_affinity": "DLAPTOP-4.local",
+        "status": "pending",
+        "estimated_minutes": 1500,
+        "supersedes": "V3-EXQ-495",
+        "claim_id": "MECH-163",
+        "claim_ids": ["MECH-163"],
+        "note": "Successor to V3-EXQ-495 which SIGTERMed on ree-cloud-1 after ~4h of an expected ~40h (cloud-1 calibrated at ~0.23 min/ep). No code change. Mac-pinned per Mac calibration ~17h single-machine. Same script, same design."
+      },
+      "status": "awaiting_human_confirmation",
+      "predecessor_manifest_exists": false,
+      "next_step_for_user": "Confirm Mac-pinned rerun is the right call (vs. shrinking scope, splitting into smaller arms, or moving to Daniel-PC). Then append draft_queue_entry to ree-v3/experiment_queue.json and validate. NOTE: 17h on Mac is a substantial commitment -- worth confirming science value before queueing."
+    },
+    {
+      "failed_queue_id": "V3-EXQ-538",
+      "proposed_fix_id": "V3-EXQ-538a",
+      "disposition": "infrastructure_failure_cloud_silent_drop",
+      "category": "infrastructure_sigterm",
+      "root_cause": "SD-049 Phase 2 reef behavioural validation, sleep-on ablation, ran 1470s (~24min) on ree-cloud-1 starting 2026-05-08T12:29Z then SIGTERM at 12:54Z. estimated_minutes was 220. This is the same 2026-05-08 cloud-1 silent-fail cluster as V3-EXQ-433f and V3-EXQ-537, all of which produced no manifest and were silently dropped (see V3-EXQ-537a note in experiment_queue.json git history flagging the pattern explicitly). The 2026-05-09 manifest-leak fix in experiment_runner._git_push_with_retry addresses the conflict-recovery path that was destroying manifests, but did not necessarily resolve the underlying cloud-1 instability.",
+      "fix_applied": "No code change. Successor V3-EXQ-538a re-queues with machine_affinity pinned to DLAPTOP-4.local, matching the V3-EXQ-537a precedent and the queue-note flag for that experiment.",
+      "draft_script_path": "experiments/v3_exq_538_sd049_phase2_with_sleep.py",
+      "proposed_claim_ids": ["SD-049"],
+      "claim_ids_rationale": "Re-evaluated: still the correct tag. The script tests SD-049 Phase 2 behavioural validation with sleep ablation paired to V3-EXQ-514f. Same design, same claim under test.",
+      "draft_queue_entry": {
+        "queue_id": "V3-EXQ-538a",
+        "title": "SD-049 Phase 2 reef behavioural validation, sleep-on ablation (Mac-pinned rerun, paired to 514f)",
+        "experiment_type": "v3_exq_538_sd049_phase2_with_sleep",
+        "script": "experiments/v3_exq_538_sd049_phase2_with_sleep.py",
+        "priority": 8,
+        "machine_affinity": "DLAPTOP-4.local",
+        "status": "pending",
+        "estimated_minutes": 220,
+        "supersedes": "V3-EXQ-538",
+        "claim_id": "SD-049",
+        "claim_ids": ["SD-049"],
+        "note": "Successor to V3-EXQ-538 which silent-failed on ree-cloud-1 (same 2026-05-08 cluster as V3-EXQ-433f, V3-EXQ-537). Mac-pinned per V3-EXQ-537a precedent. No code change. The 2026-05-09 manifest-leak fix may have addressed the conflict-recovery destruction path, but pin to Mac to be safe."
+      },
+      "status": "awaiting_human_confirmation",
+      "predecessor_manifest_exists": false,
+      "next_step_for_user": "Confirm Mac-pinned rerun. Append draft_queue_entry to ree-v3/experiment_queue.json and validate."
+    },
+    {
+      "failed_queue_id": "V3-EXQ-542",
+      "proposed_fix_id": null,
+      "disposition": "false_error_manifest_exists_runner_sentinel_parse_bug",
+      "category": "runner_sentinel_parse_gap",
+      "root_cause": "Runner reported ERROR ('No runner sentinel emitted and no PASS/FAIL on stdout; exit=0; secs=2.2') on 2026-05-09T20:22:11Z on Mac. But a real PASS manifest exists on disk: REE_assembly/evidence/experiments/v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z.json with result=PASS, evidence_direction=supports, claim_ids including ARC-062. The script ran cleanly and wrote PASS to the canonical manifest, but did not print the runner-expected 'verdict:' / 'PASS' sentinel line to stdout. CLAUDE.md ARC-062 Phase 1 entry explicitly confirms 'V3-EXQ-542 5/5 PASS 2026-05-09T20:22:11Z'.",
+      "fix_applied": "None at the experiment level. Script could be patched to add a sentinel print so future smoke runs are correctly classified by the runner, but no rerun is needed (manifest is on disk).",
+      "draft_script_path": null,
+      "proposed_claim_ids": ["ARC-062"],
+      "claim_ids_rationale": "Inherited from the manifest already on disk. No re-tag required.",
+      "draft_queue_entry": null,
+      "status": "needs_governance_action_not_diagnose_errors",
+      "predecessor_manifest_exists": true,
+      "predecessor_manifest_path": "REE_assembly/evidence/experiments/v3_exq_542_arc062_gated_policy_substrate_readiness_v3_20260509T202211Z.json",
+      "next_step_for_user": "(a) Run /governance to ingest the manifest into claim_evidence.v1.json (already in pending_review.md unclaimed-manifests table). (b) Mark V3-EXQ-542 discussed in review_tracker.json. (c) Optional follow-on: patch the substrate-readiness-diagnostic script template to emit a sentinel line so the runner correctly classifies future smoke runs."
+    },
+    {
+      "failed_queue_id": "V3-EXQ-544",
+      "proposed_fix_id": null,
+      "disposition": "false_error_manifest_exists_runner_sentinel_parse_bug",
+      "category": "runner_sentinel_parse_gap",
+      "root_cause": "Runner reported ERROR ('No runner sentinel emitted and no PASS/FAIL on stdout; exit=0; secs=2.8') on 2026-05-10T10:44:58Z on Mac. A real PASS manifest exists on disk: REE_assembly/evidence/experiments/v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z.json with result=PASS, evidence_direction=supports, claim_ids including MECH-313. Same root cause as V3-EXQ-542: the substrate-readiness diagnostic ran cleanly and wrote PASS to the canonical manifest but did not emit the runner-expected sentinel line. CLAUDE.md MECH-313 entry confirms 'V3-EXQ-544 substrate-readiness diagnostic ... Smoke 5/5 PASS 2026-05-10'.",
+      "fix_applied": "None at the experiment level. Script could be patched to add a sentinel print, but no rerun needed (manifest is on disk).",
+      "draft_script_path": null,
+      "proposed_claim_ids": ["MECH-313"],
+      "claim_ids_rationale": "Inherited from the manifest already on disk. No re-tag required.",
+      "draft_queue_entry": null,
+      "status": "needs_governance_action_not_diagnose_errors",
+      "predecessor_manifest_exists": true,
+      "predecessor_manifest_path": "REE_assembly/evidence/experiments/v3_exq_544_mech313_noise_floor_substrate_readiness_v3_20260510T104458Z.json",
+      "next_step_for_user": "Same as 542: (a) /governance ingest; (b) mark discussed; (c) optional template patch to emit sentinel for substrate-readiness diagnostics. Pending_review.md already lists this in the unclaimed-manifests table."
+    }
+  ],
+  "summary_buckets": {
+    "n_unaddressed_errors": 7,
+    "n_deliberate_stubs_blocked_on_upstream": 2,
+    "n_false_errors_manifest_on_disk_need_governance": 3,
+    "n_infrastructure_failures_need_user_rerun_decision": 2,
+    "n_real_code_bugs_need_fix": 0,
+    "deliberate_stubs": ["V3-EXQ-449c", "V3-EXQ-455a"],
+    "false_errors_manifest_on_disk": ["V3-EXQ-244a", "V3-EXQ-542", "V3-EXQ-544"],
+    "infrastructure_failures": ["V3-EXQ-495", "V3-EXQ-538"]
+  },
+  "queue_actions_proposed": [
+    {
+      "queue_id": "V3-EXQ-495a",
+      "action": "append_after_human_confirmation",
+      "reason": "Mac-pinned rerun of V3-EXQ-495 after ~4h SIGTERM on ree-cloud-1 (CX22 undersized for this run's ~40h cloud-1 / ~17h Mac estimate)"
+    },
+    {
+      "queue_id": "V3-EXQ-538a",
+      "action": "append_after_human_confirmation",
+      "reason": "Mac-pinned rerun of V3-EXQ-538 after silent-fail on ree-cloud-1 (same 2026-05-08 cluster as V3-EXQ-433f, V3-EXQ-537)"
+    }
+  ],
+  "governance_actions_proposed": [
+    {
+      "action": "rebuild_indexes",
+      "reason": "Three on-disk manifests (V3-EXQ-244a, V3-EXQ-542, V3-EXQ-544) need claim_evidence.v1.json sync; pending_review.md already lists 542 and 544 in unclaimed-manifests"
+    },
+    {
+      "action": "mark_discussed",
+      "queue_ids": ["V3-EXQ-244a", "V3-EXQ-542", "V3-EXQ-544", "V3-EXQ-449c", "V3-EXQ-455a"],
+      "reason": "Stop these from re-appearing as undiagnosed ERRORs in future diagnose-errors runs"
     }
   ],
   "infrastructure_observation": {
-    "incident_utc": "2026-05-06T09:28:51Z",
-    "affected_machines": ["ree-cloud-1", "ree-cloud-2"],
-    "affected_runs": ["V3-EXQ-530", "V3-EXQ-244a"],
-    "signature": "Both cloud workers issued SIGTERM to active runs within 2 seconds of each other. Heartbeats from both machines are stale (last ticks 08:06Z and 09:16Z respectively).",
-    "recommendation": "Investigate whether ree-cloud workers were intentionally stopped or hit a shared host-side limit. If unintentional, restart the runners with --auto-sync --loop --remote-control. The same incident also explains why no later runs by either cloud worker appear in runner_status. The 2026-04-28T21:13Z V3-EXQ-495 SIGTERM on ree-cloud-1 is the same pattern from earlier (cloud worker kills mid-run); recurring infra problem worth flagging.",
-    "carryover_observation": "The 2026-04-29 staging report flagged duplicate-machine artifacts (V3-EXQ-125a / V3-EXQ-247 / V3-EXQ-249b / V3-EXQ-498) for governance handoff to review_tracker.discussed_experiment_dirs. None of those have been absorbed into review_tracker yet (the 2026-04-29 next_actions remain open). Today's run identifies three more candidates (V3-EXQ-008, V3-EXQ-455a, V3-EXQ-449c) already noted in that prior report as errors_already_discussed_no_action."
+    "recurring_pattern": "Hetzner CX22 cloud workers (ree-cloud-1, ree-cloud-2) periodically SIGTERM long-running experiments or silently drop manifests. Confirmed incidents: 2026-04-28 V3-EXQ-495 (4h cloud-1 SIGTERM); 2026-05-06 V3-EXQ-244a / V3-EXQ-530 (coincident cloud-1+cloud-2 SIGTERM); 2026-05-08 V3-EXQ-433f / V3-EXQ-537 / V3-EXQ-538 silent-fail cluster on cloud-1.",
+    "partial_mitigation_2026-05-09": "experiment_runner._git_push_with_retry manifest-leak in conflict-recovery FIXED 2026-05-09 (captures pre-reset HEAD SHA; restores result_files via git checkout from pre-reset SHA after reset+stash-pop; contract test C1/C2/C3 in tests/contracts/test_runner_manifest_survives_conflict_recovery.py). This addresses the specific path that destroyed manifests during conflict-recovery push retries; does not necessarily address all cloud-1 capacity / push-instability issues.",
+    "recommendation": "For high-priority or long-duration experiments, prefer Mac-pinning over cloud-1 until the platform-side cause is understood. The cloud workers remain useful for short / lower-priority runs where a SIGTERM or manifest drop is recoverable. Consider whether a watchdog / re-queue mechanism in the runner could auto-retry SIGTERM runs (currently they are silently dropped from the queue per queue completion behaviour rules)."
   },
-  "next_actions": [
-    "Governance handoff: add V3-EXQ-008, V3-EXQ-455a, V3-EXQ-449c, V3-EXQ-495, V3-EXQ-530, V3-EXQ-244a to review_tracker.discussed_experiment_dirs in the next /governance walk so they stop appearing as undiagnosed ERRORs.",
-    "User decision: confirm whether V3-EXQ-495 / V3-EXQ-530 / V3-EXQ-244a should be re-queued. For V3-EXQ-244a, delete the smoke-test JSON at evidence/experiments/v3_exq_244a_mech165_replay_diversity_validation_v3.json BEFORE re-queuing so it is not mistaken for evidence.",
-    "Infra: investigate the 2026-05-06T09:28Z coincident SIGTERM on ree-cloud-1 and ree-cloud-2 (heartbeats stale; restart runners with --auto-sync --loop --remote-control if workers are still down). Same pattern as 2026-04-28 V3-EXQ-495 SIGTERM and 2026-04-07 V3-EXQ-249b SIGTERM -- recurring cloud worker kill behaviour.",
-    "Upstream blockers: V3-EXQ-455a and V3-EXQ-449c will keep ERRORing until V3-EXQ-476 lands (which itself awaits MECH-284 Phase 3 + V_s flag plumbing in REEConfig.from_dims())."
-  ],
-  "status": "no_action_required_governance_handoff_plus_user_decisions"
+  "status": "staging_complete_awaiting_human_review"
 }
