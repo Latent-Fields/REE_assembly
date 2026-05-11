@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_043",
+  "entry_id": "2026-05-11_q_043_algorithmic_architecture_review_schulz2019",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-043"],
+  "source": {
+    "title": "The algorithmic architecture of exploration in the human brain",
+    "authors": ["Eric Schulz", "Samuel J Gershman"],
+    "year": 2019,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2018.11.003",
+    "url": "https://doi.org/10.1016/j.conb.2018.11.003"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Authoritative review synthesising the random-vs-directed-exploration literature. Explicitly states the dual-system conclusion: humans use a COMBINATION of random and uncertainty-directed exploration strategies that rely on different brain systems, have different developmental trajectories, and are sensitive to different task manipulations. The synthesis claim is the load-bearing one for Q-043 — the question of how to weight the two mechanisms presupposes that both are real, and Schulz & Gershman 2019 collect the cumulative evidence for that premise across behaviour, neuroimaging, pharmacology, and TMS.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "As a review, Schulz & Gershman 2019 does not add primary evidence; it synthesises Daw 2006 + Wilson 2014 + Zajkowski 2017 + Warren 2017 + Gershman 2018, all of which are sibling entries in this lit-pull. The independent evidence weight should be the primary papers, not this review — to avoid double-counting I keep the confidence moderate.",
+    "The review does not commit to a calibration verdict — it endorses the dual-system architecture but leaves the relative-weight question open. For Q-043 this is informative-but-non-resolving."
+  ],
+  "tags": ["q_043", "mech_313", "mech_314", "exploration_review", "developmental"],
+  "mapping": {
+    "source_claim_statement": "Humans use a combination of random and uncertainty-directed exploration strategies. The two strategies rely on different neural systems (LC-NE for random, frontopolar for directed), have different developmental trajectories (adolescent peak in random; adult-stable in directed), and are dissociably impaired by different perturbations.",
+    "ree_translation": "The dual-system architecture Schulz & Gershman 2019 endorses is the same dual-system architecture REE implements as MECH-313/MECH-314. This review provides the synthesis-level argument that R1 of any future Q-043 falsifier should not be 'do both mechanisms exist?' — that question is already settled in the human literature. R1 should be 'what is the optimal calibration for THIS substrate (SD-054) and THIS task (rule discrimination)?'",
+    "mapping_caveat": "Reviews aggregate primary evidence and inherit its caveats. The developmental angle (adolescent peak in random exploration) is interesting context but does not transfer cleanly to a substrate that does not have life-stages. The neural-system mappings (LC-NE for random, frontopolar for directed) are the most useful translation for REE.",
+    "source_context": "Theoretical review, Curr Opin Neurobiol, synthesises primary literature on human exploration algorithms 2006-2018."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Curr Opin Neurobiol is a respected review venue; Schulz & Gershman are leading authors in this area. Mapping fidelity high at the synthesis level. The 0.76 aggregate reflects deliberate down-weighting to avoid double-counting the primary evidence that the review aggregates — the independent contribution of a review entry is the framing and the cross-paper synthesis, not new data."
+  }
+}

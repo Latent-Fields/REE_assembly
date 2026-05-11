@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_044",
+  "entry_id": "2026-05-11_q_044_frontopolar_uncertainty_curiosity_daw2006",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-044"],
+  "source": {
+    "title": "Cortical substrates for exploratory decisions in humans",
+    "authors": ["Nathaniel D Daw", "John P O'Doherty", "Peter Dayan", "Ben Seymour", "Raymond J Dolan"],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature04766",
+    "url": "https://doi.org/10.1038/nature04766"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Anchor for MECH-314b (frontopolar uncertainty-driven curiosity) as a substrate distinct from MECH-314a (striatal novelty, Wittmann 2007) and MECH-314c (learning progress, Kaplan & Oudeyer 2007). Daw 2006 isolates frontopolar cortex as the locus of exploratory decisions in a four-armed bandit — a decision driven by Kalman-filter uncertainty over each arm's payoff. The substrate is anatomically distinct from the SN/VTA novelty locus and from the cortical microcircuit that Kaplan & Oudeyer propose for learning-progress signalling.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Daw 2006 collapses all exploration into a single binary classification (exploratory vs exploitative) on each trial. Within-exploration sub-types (novelty-driven, uncertainty-driven, learning-progress-driven) are not separately measured. The fact that frontopolar BOLD tracks exploration in a Kalman-uncertainty paradigm does not establish that frontopolar is exclusively the substrate for uncertainty-driven exploration as opposed to other curiosity flavours.",
+    "The paper uses a stationary-bandit task; novelty is not manipulated independently of uncertainty (every arm is uncertain in proportion to how few times it has been sampled, so novelty and uncertainty are confounded by design)."
+  ],
+  "tags": ["q_044", "mech_314b", "frontopolar", "uncertainty", "directed_exploration"],
+  "mapping": {
+    "source_claim_statement": "Human exploratory decisions in a four-armed bandit are preferentially associated with BOLD activity in frontopolar cortex and intraparietal sulcus, dissociable from striatum/vmPFC activity during exploitative decisions. Exploration is computationally driven by a softmax policy with Kalman-filter uncertainty over arm payoffs.",
+    "ree_translation": "Daw 2006 anchors MECH-314b's substrate identity: the frontopolar locus of uncertainty-driven curiosity. Combined with Wittmann 2007 (MECH-314a = SN/VTA-striatal novelty) and Kaplan & Oudeyer 2007 (MECH-314c = cortical microcircuit learning-progress signal via tonic DA), this gives Q-044 three distinct substrate loci to test. For Q-044 the three-arm ablation prediction is that knocking out MECH-314b should produce a frontopolar-loss signature (worse uncertainty-driven choice) distinct from the striatal-loss signature of MECH-314a-OFF and the slower learning-progress decay signature of MECH-314c-OFF.",
+    "mapping_caveat": "Daw 2006's task confounds novelty with uncertainty by design (a less-sampled arm is both newer and more uncertain). The frontopolar BOLD effect could be partly driven by novelty rather than purely by uncertainty, leaving room for ambiguity in the 314a-vs-314b distinction. The Wittmann 2007 SN/VTA novelty paradigm pulls these apart (cued familiar vs novel) and is the cleaner anchor for novelty specifically; Daw 2006 is the cleaner anchor for the frontopolar locus.",
+    "source_context": "Human fMRI, n=14, four-armed bandit with drifting payoffs; healthy young adults. (Reused from Q-043 lit-pull — same primary evidence, different theoretical role.)"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Same source quality as the Q-043 entry. Mapping fidelity is lower here (0.65 vs 0.55) because the within-curiosity distinction Q-044 asks about is partly conflated by Daw's task design. The substrate locus identification (frontopolar) is strong; the substrate-content identification (uncertainty vs novelty) is weaker. The 0.78 aggregate keeps the contribution to lit_conf modest given the confound."
+  }
+}

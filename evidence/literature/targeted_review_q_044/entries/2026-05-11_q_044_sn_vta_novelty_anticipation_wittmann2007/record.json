@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_044",
+  "entry_id": "2026-05-11_q_044_sn_vta_novelty_anticipation_wittmann2007",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-044"],
+  "source": {
+    "title": "Anticipation of novelty recruits reward system and hippocampus while promoting recollection",
+    "authors": ["Bianca C Wittmann", "Nico Bunzeck", "Raymond J Dolan", "Emrah Düzel"],
+    "year": 2007,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2007.06.038",
+    "url": "https://doi.org/10.1016/j.neuroimage.2007.06.038"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct fMRI evidence that the SN/VTA dopaminergic midbrain is activated by novelty anticipation, in the same circuit that codes reward anticipation. The hippocampus also shows anticipatory and encoding responses to novel stimuli. This provides the anchor for MECH-314a (striatal novelty) as a distinct substrate from frontopolar uncertainty-driven curiosity (MECH-314b, Daw 2006). The fact that the SN/VTA novelty signal sits in the dopamine system — rather than in frontopolar cortex — supports the architectural premise that novelty is a separate flavour with its own substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Wittmann 2007 shows SN/VTA responds to novelty anticipation and to reward anticipation but the paper itself does not establish that the novelty signal is computationally distinguishable from the reward signal at the population level. If they share circuitry, an account in which both are the same prediction-error variable just over different content (Kakade & Dayan 2002) cannot be ruled out from this paper alone.",
+    "fMRI BOLD has low temporal resolution; phasic vs tonic dopaminergic patterns that may carry distinct content cannot be separated."
+  ],
+  "tags": ["q_044", "mech_314a", "novelty", "dopamine", "vta", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "Cues predicting novel stimuli, and unexpected novel stimuli themselves, activate the substantia nigra/ventral tegmental area in the dopaminergic midbrain — the same region that codes reward anticipation. The hippocampus shows complementary novelty-related anticipatory and encoding responses, and behaviourally subsequent recollection memory is enhanced for anticipated novel events.",
+    "ree_translation": "MECH-314a (striatal novelty) maps onto the SN/VTA -> striatum dopaminergic signal Wittmann 2007 isolates. The hippocampal anticipatory response also connects to REE's hippocampus-analog write-path (MECH-094 hypothesis tag, SD-014 hippocampal-residue circuitry) — novelty-anticipation primes encoding. For Q-044, this anchors the striatal-novelty flavour of curiosity as a substrate distinct from the frontopolar-uncertainty flavour (Daw 2006) and the learning-progress flavour (Kaplan & Oudeyer 2007).",
+    "mapping_caveat": "The Wittmann signal is for ABSOLUTE novelty (stimuli the subject has never seen before) and ANTICIPATED novelty (cues that predict a novel stimulus is coming). REE's MECH-314a, as currently designed, computes a state-novelty signal over the encoder's z-space. Mapping is at the algorithmic-family level (a substrate-level signal driving exploration toward less-seen states) rather than at the implementation level. Also, dopaminergic novelty signalling has been extensively studied in animals and the human fMRI signal in Wittmann 2007 should be triangulated against rodent electrophysiology before being treated as fully load-bearing.",
+    "source_context": "Human fMRI study, n=16, novelty-anticipation paradigm with valid/invalid novelty-predicting cues. Healthy young adults. Behavioural recognition-memory follow-up on a subset."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "NeuroImage publication, methodologically clean within fMRI norms. Mapping fidelity is moderate-high because the dopaminergic-midbrain locus aligns with the ARC-065 family-doc commitment that MECH-314a corresponds to a striatal-novelty signal. Transfer risk modest because the human fMRI setting maps onto REE's structural commitments at the relevant level of abstraction. The 0.80 is a deliberate balance between strong primary evidence and the algorithmic-vs-implementation translation gap."
+  }
+}

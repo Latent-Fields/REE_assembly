@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_044",
+  "entry_id": "2026-05-11_q_044_learning_progress_intrinsic_motivation_kaplan_oudeyer2007",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-044"],
+  "source": {
+    "title": "In search of the neural circuits of intrinsic motivation",
+    "authors": ["Frederic Kaplan", "Pierre-Yves Oudeyer"],
+    "year": 2007,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/neuro.01.1.1.017.2007",
+    "url": "https://doi.org/10.3389/neuro.01.1.1.017.2007"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Foundational paper for the learning-progress (MECH-314c) flavour. Kaplan & Oudeyer propose that intrinsic motivation tracks expected DECREASE in prediction error — not raw uncertainty, not raw novelty, but the rate at which learning is happening. They hypothesise tonic dopamine as the learning-progress signal and a cortical microcircuit hierarchy as the computational substrate. The 'support' direction is for the existence of learning-progress as a distinct curiosity flavour with its own algorithmic content; confidence is moderate (0.62) because the proposal is theoretical/computational, with no direct human empirical test of the tonic-dopamine ↔ learning-progress mapping. The Schmidhuber/Pathak tradition the ARC-065 family doc cites runs in parallel without empirical neural anchoring.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Kaplan & Oudeyer 2007 is theoretical/computational; the predictions about tonic dopamine and microcortical circuits have not been directly validated in human or primate experiments. Empirical tests of learning-progress signalling in dopamine systems are sparse.",
+    "Learning progress and uncertainty are correlated in many tasks (uncertainty decreases as learning progresses; the rate of decrease IS learning progress). Distinguishing them experimentally requires tasks where uncertainty plateau (e.g., irreducible noise regions) and learning-progress regions are dissociated — this is not standard practice in the human curiosity literature."
+  ],
+  "tags": ["q_044", "mech_314c", "learning_progress", "intrinsic_motivation", "tonic_dopamine"],
+  "mapping": {
+    "source_claim_statement": "Intrinsically motivating activities correspond to expected decrease in prediction error. The motivation system pushes the agent toward situations expected to maximise learning progress, avoiding both predictable (no progress possible) and unpredictable (no progress achievable) situations. The proposed neural substrate is tonic dopamine as a learning-progress signal, computed by a hierarchy of microcortical prediction/metaprediction circuits.",
+    "ree_translation": "MECH-314c (learning-progress curiosity) is REE's instantiation of the Kaplan-Oudeyer / Schmidhuber framework: a bonus that rewards the agent for choosing states where prediction error is expected to decrease. The algorithmic distinction from MECH-314a (novelty: raw mismatch with prior expectations) and MECH-314b (uncertainty: variance in current beliefs) is that learning-progress is a DERIVATIVE quantity — the rate of change of error, not the error itself. For Q-044's three-arm ablation, MECH-314c-OFF should produce a distinctive signature: the agent fails to abandon irreducibly-noisy regions (no longer 'bored' of them) and fails to abandon mastered regions (no longer 'satiated' on them) — i.e., MECH-314c keeps the agent in the learnable middle band.",
+    "mapping_caveat": "Kaplan & Oudeyer 2007 is a theoretical paper with robotic-simulation support, not a direct empirical neural test. The hypothesised tonic-dopamine substrate is in tension with Wittmann 2007's evidence that phasic SN/VTA tracks novelty — the two papers cite the same dopamine system but in different roles (tonic for learning progress, phasic for novelty/reward). The empirical literature on tonic-dopamine specifically as a learning-progress signal is thin; this is the weakest-anchored of the three MECH-314 sub-flavours.",
+    "source_context": "Computational/theoretical paper with robotic simulation results. Hypotheses about neural substrate are explicitly framed as predictions, not as established findings."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.50,
+    "notes": "Frontiers in Neuroscience venue is decent but not top-tier; the paper's primary contribution is theoretical. Mapping fidelity is high (0.80) because the algorithmic claim (learning progress as a distinct intrinsic-motivation flavour) is exactly what MECH-314c instantiates. Transfer risk is the highest of the Q-044 set (0.50) because the tonic-dopamine ↔ learning-progress mapping is hypothesised rather than empirically demonstrated. The aggregate 0.62 reflects strong algorithmic anchoring but weak direct neural validation."
+  }
+}

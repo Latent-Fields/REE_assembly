@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_044",
+  "entry_id": "2026-05-11_q_044_active_inference_epistemic_value_friston2015",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-044"],
+  "source": {
+    "title": "Active inference and epistemic value",
+    "authors": ["Karl Friston", "Francesco Rigoli", "Dimitri Ognibene", "Christoph Mathys", "Thomas Fitzgerald", "Giovanni Pezzulo"],
+    "year": 2015,
+    "venue": "Cognitive Neuroscience",
+    "doi": "10.1080/17588928.2015.1020053",
+    "url": "https://doi.org/10.1080/17588928.2015.1020053"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "The unification candidate. Friston et al. propose expected free energy as a single quantity from which both pragmatic (extrinsic) value and epistemic (intrinsic/curiosity) value derive as components. Under this framework, novelty bonuses, uncertainty bonuses, and learning-progress bonuses are all task-conditional readings of the same epistemic-value computation with different priors over which states are 'informative'. This is direct evidence for the COLLAPSE-ALL outcome of Q-044 — three flavours = one mechanism. The 'mixed' direction reflects that the framework is formal and unifying at the theoretical level but the empirical evidence that the brain implements expected-free-energy minimisation as a single unified computation (rather than as three parallel substrates) is much thinner.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Active inference is a normative framework that explains why an optimal agent should compute a unified epistemic value. It does not establish that the brain actually implements this normative computation as a single substrate rather than as three parallel approximations. Empirical neural evidence for a unified epistemic-value signal is sparse; the more abundant evidence (Wittmann 2007, Daw 2006) supports SUBSTRATE-LEVEL distinctions across novelty and uncertainty even if the underlying normative quantity is unified.",
+    "The formal correspondence between expected free energy and Schmidhuber-style learning progress is loose; active-inference epistemic value is typically formulated as information gain (KL divergence between prior and posterior beliefs), not as expected decrease in prediction error per se. So even at the theoretical level, the collapse Friston 2015 proposes is between novelty-as-information and uncertainty-as-information, not necessarily collapsing learning-progress in."
+  ],
+  "tags": ["q_044", "active_inference", "epistemic_value", "free_energy", "unification"],
+  "mapping": {
+    "source_claim_statement": "An agent that minimises expected free energy is mathematically equivalent to one that maximises both extrinsic value (utility, reward) AND intrinsic / epistemic value (information gain about the causes of outcomes). The exploration-exploitation dilemma is dissolved by treating these as components of a single objective. Softmax temperature parameters become the precision of beliefs about policies. Phasic dopaminergic discharges may correspond to precision updates rather than raw prediction error.",
+    "ree_translation": "If Friston 2015 is correct, MECH-314a, MECH-314b, and MECH-314c are three task-conditional readings of one underlying epistemic-value computation (information gain) with different priors over which features count as informative. The Q-044 three-arm ablation under this framework would predict that the three sub-flavours collapse: a single mechanism with sufficient flexibility in its prior should be able to act as any of the three depending on input weighting. The COLLAPSE-ALL outcome in Q-044's resolution table is the active-inference-consistent prediction.",
+    "mapping_caveat": "Active inference is a normative-mathematical framework. Whether the brain implements expected-free-energy minimisation as a single substrate or as multiple specialised approximations is a separate empirical question that active inference does not resolve. Wittmann 2007 and Daw 2006 supply substrate-level evidence for AT LEAST partial separation (SN/VTA vs frontopolar cortex), which is compatible with the brain implementing the unified normative computation via multiple anatomical substrates. The Q-044 resolution outcomes do not perfectly correspond to active-inference vs anti-active-inference; a 'three independent substrates implementing one normative quantity' outcome is also possible.",
+    "source_context": "Theoretical paper, no empirical study. Active-inference formal framework with illustrative simulations. Authors include the lead theorist for the framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Cognitive Neuroscience venue, theoretical paper with no empirical claims. Mapping fidelity moderate because the unification thesis maps onto one of Q-044's resolution outcomes (the COLLAPSE-ALL option) but only loosely — active-inference epistemic value covers information gain over a posterior, not learning progress as a derivative. Transfer risk moderate-high because a normative-correctness claim does not automatically translate into a substrate-architectural prediction. The 0.60 confidence reflects the load-bearing role for the 'collapse' resolution outcome while preserving skepticism about over-extending normative correctness into substrate prediction."
+  }
+}

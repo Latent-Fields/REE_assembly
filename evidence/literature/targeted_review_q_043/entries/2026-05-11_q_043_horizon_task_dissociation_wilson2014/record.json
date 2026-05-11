@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_043",
+  "entry_id": "2026-05-11_q_043_horizon_task_dissociation_wilson2014",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-043"],
+  "source": {
+    "title": "Humans use directed and random exploration to solve the explore-exploit dilemma",
+    "authors": ["Robert C Wilson", "Andra Geana", "John M White", "Elliot A Ludvig", "Jonathan D Cohen"],
+    "year": 2014,
+    "venue": "Journal of Experimental Psychology: General",
+    "doi": "10.1037/a0038199",
+    "url": "https://doi.org/10.1037/a0038199"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Behavioural foundation for the directed/random exploration distinction. The Horizon task manipulates how many future choices a subject will make (horizon=1 vs horizon=6); a planning horizon longer than one trial should increase BOTH information-seeking (because future trials can exploit what was learned) AND decision noise (if randomness is a separate exploration strategy). Wilson et al. find both effects: under horizon=6 subjects show higher information-bias AND higher decision-noise relative to horizon=1. The two strategies are independently controllable — a defining behavioural signature that they are mechanistically separable, which is exactly the premise Q-043 needs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The Horizon task uses small (n<200) cohorts and two-armed bandits with fixed reward distributions per game; the directed-vs-random dissociation has been replicated but the effect size for the noise component is smaller than for the directed component, leaving room for interpretation that random exploration is partly a residual measurement artifact rather than a genuinely separate strategy.",
+    "Wilson 2014 does not pin down the biological substrate of either strategy; it only establishes that BOTH are present in human behaviour as independently tunable knobs. The substrate-attribution work (directed -> frontopolar, random -> LC-NE) is done by Zajkowski 2017 and Warren 2017."
+  ],
+  "tags": ["q_043", "mech_313", "mech_314", "exploration", "horizon_task", "behavioral_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Humans solve the explore-exploit dilemma using at least two distinct strategies: a directed strategy in which choices are explicitly biased toward information seeking, and a random strategy in which decision noise leads to exploration by chance. The two strategies are independently modulated by task horizon, demonstrating that they are separately tunable.",
+    "ree_translation": "REE's MECH-314 (structured curiosity bonus, state-dependent) corresponds to Wilson's directed strategy; REE's MECH-313 (stochastic noise floor, state-independent) corresponds to Wilson's random strategy. The independent-tunability finding directly supports Q-043's premise that the two mechanisms can be calibrated separately rather than collapsing into a single parameter. Wilson 2014 provides the behavioural baseline against which REE's parametric sweep on SD-054 should be interpreted.",
+    "mapping_caveat": "Wilson's two-armed bandit with fixed within-game distributions does not match SD-054 reef substrate's structure (reef-vs-forage, dynamic hazard). The behavioural signature 'increased noise under longer horizon' may not translate cleanly to a substrate where the diversity demand is rule-discriminative rather than horizon-extensive. Also, Wilson's 'random exploration' is operationalised as choice-stochasticity at decision time, which matches MECH-313's compute-graph location but not necessarily its underlying mechanism (the paper is agnostic between softmax-temperature, LC-NE tonic, or other sources of noise).",
+    "source_context": "Behavioural study, n=31 (Experiment 1) + n=29 (Experiment 2), Princeton undergraduates, Horizon task with two-armed bandits and unequal initial information sampling. Model-fit via probit-link to choice probabilities; parameter recovery validated."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Strong methodology with replication across two experiments and parameter-recovery validation; published in J Exp Psych Gen (top general-psych venue). High mapping fidelity because Wilson's directed/random dissociation maps cleanly onto MECH-314/MECH-313 at the algorithmic level. Modest transfer risk because the task structure differs from REE's reef substrate, but the algorithmic distinction is substrate-general."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_043",
+  "entry_id": "2026-05-11_q_043_directed_random_exploration_daw2006",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-043"],
+  "source": {
+    "title": "Cortical substrates for exploratory decisions in humans",
+    "authors": ["Nathaniel D Daw", "John P O'Doherty", "Peter Dayan", "Ben Seymour", "Raymond J Dolan"],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature04766",
+    "url": "https://doi.org/10.1038/nature04766"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational fMRI dissociation: frontopolar cortex (and intraparietal sulcus) preferentially active during exploratory choices in a four-armed bandit; striatum and vmPFC active during exploitative choices. Establishes the neural substrate distinction that Q-043 presupposes — a directed/uncertainty-driven system separate from a value/exploit system. Source quality high (Nature, large-cohort fMRI with computational model fit); mapping fidelity moderate because the paper does not directly contrast a state-independent noise mechanism (MECH-313) against a state-dependent uncertainty-bonus mechanism (MECH-314) — it dissociates exploration from exploitation, leaving the within-exploration sub-decomposition to later work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Daw 2006's computational model used a softmax (exp-of-value) policy with no explicit uncertainty bonus on choice — instead, exploration was driven by the temperature parameter and Kalman-filter variance feeding indirectly into value updates. This means the paper alone cannot adjudicate whether the frontopolar-cortex effect they observed was driven by a state-independent noise floor (MECH-313 analog) or by a state-dependent uncertainty bonus (MECH-314 analog). Later work (Zajkowski 2017, Warren 2017, Gershman 2018) was needed to make that within-exploration distinction."
+  ],
+  "tags": ["q_043", "mech_313", "mech_314", "exploration", "frontopolar", "directed_exploration"],
+  "mapping": {
+    "source_claim_statement": "Human exploratory and exploitative decisions are dissociable neurally: frontopolar cortex and intraparietal sulcus are preferentially active during exploration, striatum and vmPFC during exploitation, in a gambling task formalised by a softmax-RL model.",
+    "ree_translation": "REE substrate has an exploration locus (MECH-314 structured curiosity ≈ frontopolar uncertainty-driven bonus, per ARC-065 family doc) and an exploitation locus (E3 score path through striatum-analog and vmPFC-analog). Daw 2006 establishes the foundational neural-substrate dissociation Q-043 presupposes — the question of relative weighting only makes sense if the two mechanisms are independently real, and Daw is the canonical evidence that they are.",
+    "mapping_caveat": "Daw 2006 dissociates exploration from exploitation, not state-independent noise from state-dependent uncertainty bonus. The within-exploration decomposition that Q-043 actually asks about (relative weights of MECH-313 vs MECH-314) is not directly addressed; this paper is anchor evidence for the existence of the directed/uncertainty system, not for its calibration vs noise. Treat as load-bearing for the EXISTENCE premise of Q-043; non-load-bearing for the CALIBRATION verdict.",
+    "source_context": "Human fMRI study (n=14), four-armed bandit gambling task with drifting reward distributions, computational reinforcement-learning model fit per-subject. Healthy young adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.25,
+    "notes": "Nature publication with large impact and replicated structure; small sample by modern standards but methodologically clean. Mapping fidelity is moderate because the paper's exploration/exploitation dichotomy does not subdivide into the state-independent vs state-dependent axis Q-043 needs. Transfer risk low: human RL task; REE substrate is also human-like RL agent at the relevant level of abstraction."
+  }
+}

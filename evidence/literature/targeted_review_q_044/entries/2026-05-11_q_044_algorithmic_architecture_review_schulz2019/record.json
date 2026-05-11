@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_044",
+  "entry_id": "2026-05-11_q_044_algorithmic_architecture_review_schulz2019",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-044"],
+  "source": {
+    "title": "The algorithmic architecture of exploration in the human brain",
+    "authors": ["Eric Schulz", "Samuel J Gershman"],
+    "year": 2019,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2018.11.003",
+    "url": "https://doi.org/10.1016/j.conb.2018.11.003"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Review synthesising the human-exploration literature with explicit attention to algorithmic-architectural distinctions: random vs directed exploration; structure-aware exploration that exploits correlations between options. The review also touches on the developmental dissociation between random exploration (adolescent peak) and directed exploration (adult-stable), which is the kind of empirical signature that would be expected if 314a/b/c are independent substrates. For Q-044 the review weakly supports the three-substrates outcome at the algorithmic-class level, while leaving the implementation-level dissociation open.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Schulz & Gershman 2019 do not directly address the three-way distinction between novelty / uncertainty-driven curiosity / learning-progress curiosity. Their primary dichotomy is random vs directed exploration, with structure-aware exploration as a third axis. The fit to Q-044's MECH-314a/b/c carving is approximate, not exact.",
+    "As a review it inherits the caveats of its primary sources and should not be weighted too heavily to avoid double-counting evidence already captured by Daw 2006 (Q-044 sibling entry) and Wittmann 2007."
+  ],
+  "tags": ["q_044", "exploration_review", "developmental_dissociation", "structure_aware"],
+  "mapping": {
+    "source_claim_statement": "Humans use a combination of random and uncertainty-directed exploration strategies that rely on different neural systems, have different developmental trajectories, and are sensitive to different task manipulations. Recent work also identifies structure-aware exploration as a third axis: people exploit correlations and similarities between options to guide exploration.",
+    "ree_translation": "The review reinforces the algorithmic-architectural framing Q-044 presupposes: exploration mechanisms are not interchangeable and should not be collapsed to a single decision-noise parameter. The structure-aware-exploration axis Schulz & Gershman identify is closely related to MECH-314b (uncertainty-driven curiosity) but with additional content about generalising across correlated states. The developmental dissociation (adolescent peak in random exploration) supports the substrate-independence outcome for AT LEAST the random/directed split.",
+    "mapping_caveat": "The review's primary dichotomy (random vs directed) maps onto Q-043's MECH-313/MECH-314 split, not onto Q-044's MECH-314a/b/c sub-split. For Q-044, this review provides indirect support at the algorithmic level (independent mechanisms exist) but does not directly speak to the three-way MECH-314 decomposition. Treat as supporting the GENERAL ARCHITECTURE Q-044 inherits from ARC-065 rather than as direct evidence for or against any specific Q-044 resolution outcome.",
+    "source_context": "Curr Opin Neurobiol review article, synthesises 2006-2018 human exploration literature. (Reused from Q-043 lit-pull with appropriate re-framing.)"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Same source quality as the Q-043 entry. Mapping fidelity is lower here (0.65 vs 0.80 in Q-043) because the review's primary dichotomy maps onto Q-043's question, not Q-044's. Indirect support only. The 0.70 aggregate is appropriately weighted lower than the Q-043 sibling entry."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_043",
+  "entry_id": "2026-05-11_q_043_frontopolar_tms_dissociation_zajkowski2017",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-043"],
+  "source": {
+    "title": "A causal role for right frontopolar cortex in directed, but not random, exploration",
+    "authors": ["Wojciech K Zajkowski", "Malgorzata Kossut", "Robert C Wilson"],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.27430",
+    "url": "https://doi.org/10.7554/eLife.27430"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Causal evidence for the substrate split. Inhibitory rTMS over right frontopolar cortex selectively reduces directed exploration in Wilson's Horizon task while leaving random exploration intact. The selectivity is what makes this the cleanest available evidence that the two exploration strategies in human behaviour are not just statistical artifacts of one underlying mechanism — they are mechanistically dissociable at the level of cortical lesions. This is the load-bearing causal anchor for the existence of MECH-314 as a frontopolar uncertainty-bonus mechanism distinct from MECH-313 noise floor.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The TMS dissociation is between directed exploration and random exploration as operationalised in the Horizon task. It does not directly identify the random-exploration substrate (e.g., LC-NE) — it just shows that whatever drives random exploration is not the right frontopolar cortex. Warren 2017's atomoxetine study is needed to pin down the NE side.",
+    "n=24 healthy adults; TMS effects are modest in absolute magnitude and the random-exploration null is a null result, which is logically weaker than a positive double-dissociation. The paper acknowledges this and frames the conclusion as 'at least partially dissociable' rather than fully independent."
+  ],
+  "tags": ["q_043", "mech_314", "frontopolar", "tms", "causal_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Inhibitory transcranial magnetic stimulation over right frontopolar cortex selectively reduced directed (information-seeking) exploration in the Horizon task while leaving random (noise-driven) exploration unchanged, providing causal evidence that the two strategies rely on at least partially dissociable neural systems.",
+    "ree_translation": "MECH-314 (structured curiosity bonus) maps onto the right-frontopolar directed-exploration system. The causal-lesion-style dissociation supports the architectural premise that MECH-313 and MECH-314 should be implemented as separate substrates rather than collapsing into one. For Q-043, this means a calibration sweep where one mechanism is fully zeroed should produce behaviourally distinguishable signatures — the 'both-OFF' arm of an ablation should not look like either 'MECH-313-only' or 'MECH-314-only'.",
+    "mapping_caveat": "The TMS protocol inhibits cortex broadly under the coil; the inferred selectivity to directed exploration depends on the assumption that random exploration's substrate lies outside the stimulated region. The paper supports this by analogy to Warren 2017's atomoxetine work but does not test other stimulation sites for a positive double dissociation. Also, TMS is an acute manipulation; chronic differences (such as those in clinical populations or in REE's lifespan-trained substrate) may behave differently.",
+    "source_context": "Human TMS study, n=24, between-subject design with sham control and inhibitory cTBS over right frontopolar cortex. Horizon task as in Wilson 2014. Healthy young adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "eLife publication, methodologically clean with sham control. Mapping fidelity high because the dissociation is at exactly the level Q-043 needs — separating the two exploration mechanisms causally rather than correlationally. Transfer risk modest because acute TMS is a different perturbation than the chronic OFF/ON flags REE's substrate would expose, but the underlying mechanism question is the same."
+  }
+}

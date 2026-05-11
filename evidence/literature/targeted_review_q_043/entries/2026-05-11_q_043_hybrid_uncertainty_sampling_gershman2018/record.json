@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_043",
+  "entry_id": "2026-05-11_q_043_hybrid_uncertainty_sampling_gershman2018",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-043"],
+  "source": {
+    "title": "Deconstructing the human algorithms for exploration",
+    "authors": ["Samuel J Gershman"],
+    "year": 2018,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2017.12.014",
+    "url": "https://doi.org/10.1016/j.cognition.2017.12.014"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Most directly on-topic for Q-043. Gershman shows that uncertainty-bonus algorithms (state-dependent shift, MECH-314 analog) and sampling/Thompson-style randomisation algorithms (state-independent shift, MECH-313 analog) make distinguishable predictions: uncertainty bonuses shift response BIAS as a function of uncertainty, whereas sampling shifts response SLOPE (decision noise). Two behavioural experiments find evidence for BOTH bias and slope changes, and a hybrid model is the best quantitative account. Direct positive evidence that the calibration zone Q-043 hypothesises exists — both mechanisms are needed for human-level behavioural fit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Gershman's experiments use simple two-armed bandits with explicit reward/info trade-offs, not anything like SD-054 reef substrate. The hybrid-best-fit finding is at the algorithmic level; it does not pin down which (w_313, w_314) combination is optimal — it shows only that neither extreme (uncertainty-bonus-only, sampling-only) suffices.",
+    "The model comparison uses BIC/AIC, which is sensitive to parameter count; a more flexible single-mechanism model could in principle approximate the hybrid fit. Replication in further task structures would strengthen the inference."
+  ],
+  "tags": ["q_043", "mech_313", "mech_314", "hybrid_model", "computational"],
+  "mapping": {
+    "source_claim_statement": "Algorithms based on uncertainty bonuses (e.g. UCB) and algorithms based on sampling (e.g. Thompson sampling, softmax with decision noise) make distinguishable predictions for human choice: uncertainty bonuses produce a response-BIAS shift with uncertainty, whereas sampling produces a response-SLOPE shift. Empirically humans show BOTH shifts, and a hybrid model combining both mechanisms fits best.",
+    "ree_translation": "Gershman 2018 is the most direct empirical support for Q-043's PASS-as-question-resolution outcome: a Pareto frontier with non-zero contribution from BOTH mechanisms. The bias-vs-slope signature gives a clean behavioural diagnostic that the V3 sweep could use to verify whether MECH-313 and MECH-314 are operating as expected — if MECH-314-OFF produces a slope change without bias change (or vice versa), the substrate would be implementing one mechanism in the role of the other. The hybrid-best-fit finding tells us that REE should not expect calibration to converge on either extreme (w_313=0 or w_314=0).",
+    "mapping_caveat": "Gershman's experiments are short-horizon two-armed-bandit tasks; the bias/slope diagnostic may not have the same signature in the long-horizon, multi-rule SD-054 reef substrate. The hybrid-best-fit claim is algorithmic-level: REE's MECH-313 noise floor is not algorithmically identical to Thompson sampling (it acts at the action-selection layer, not at the value estimation), and MECH-314's frontopolar curiosity is not algorithmically identical to UCB (it draws on the StructuredCuriosity module's per-state computation). The translation is approximate at the implementation level even though the algorithmic-class match is strong.",
+    "source_context": "Computational/behavioural human studies, two experiments with n=20 and n=40 healthy adults. Two-armed bandit tasks with manipulated uncertainty about each arm's payoff. Model fits via maximum likelihood with parameter recovery."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.90,
+    "transfer_risk": 0.25,
+    "notes": "Cognition publication, top general-cognition venue, methodologically rigorous with parameter recovery and a clean hybrid-vs-single-mechanism model comparison. Mapping fidelity is the highest of the Q-043 set because Gershman explicitly compares the two algorithmic families that map onto MECH-313/MECH-314 and finds the hybrid wins. Transfer risk modest: human behavioural data on a simple bandit task transfers reasonably to REE's diversity-generation question."
+  }
+}

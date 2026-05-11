@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_043",
+  "entry_id": "2026-05-11_q_043_atomoxetine_random_exploration_warren2017",
+  "timestamp_utc": "2026-05-11T08:41:19Z",
+  "claim_ids_tested": ["Q-043"],
+  "source": {
+    "title": "The effect of atomoxetine on random and directed exploration in humans",
+    "authors": ["Christopher M Warren", "Robert C Wilson", "Nic J van der Wee", "Eric J Giltay", "Martijn S van Noorden", "Jonathan D Cohen", "Sander Nieuwenhuis"],
+    "year": 2017,
+    "venue": "PLoS One",
+    "doi": "10.1371/journal.pone.0176034",
+    "url": "https://doi.org/10.1371/journal.pone.0176034"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Pharmacological dissociation: atomoxetine (a norepinephrine reuptake blocker) selectively modulates random but not directed exploration. This is exactly the dissociation Q-043 needs to ground MECH-313 in LC-NE. The 'mixed' direction (not pure 'supports') reflects that the SIGN of the effect was opposite to what an adaptive-gain model would naively predict — atomoxetine REDUCED random exploration instead of increasing it. The paper offers three plausible explanations (non-linear tonic-NE/performance relationship, interaction with other neuromodulators, phasic-vs-tonic mismatch) but cannot adjudicate among them. The substrate-level selectivity is solid; the directional prediction needs more work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Atomoxetine REDUCED random exploration; an Aston-Jones-Cohen-style adaptive-gain model predicts the opposite (tonic NE elevation increases task disengagement and exploratory behaviour). The directional mismatch means the MECH-313 ≈ LC-NE-tonic mapping in REE is more nuanced than a simple monotone relationship between NE level and noise floor weight.",
+    "n=22 healthy adults, within-subject crossover; the effect is significant on random exploration only and the effect size on directed exploration was near zero. As with Zajkowski 2017, the selectivity rests partly on a null result for directed exploration.",
+    "Atomoxetine acts on NE reuptake throughout cortex, not specifically on LC tonic firing; its effect could conceivably reflect cortical NE rather than LC dynamics specifically."
+  ],
+  "tags": ["q_043", "mech_313", "atomoxetine", "norepinephrine", "locus_coeruleus", "random_exploration"],
+  "mapping": {
+    "source_claim_statement": "Atomoxetine, a norepinephrine reuptake inhibitor, selectively modulates random (decision-noise-driven) exploration in the Horizon task while leaving directed (information-seeking) exploration intact. The direction of the effect is a reduction in random exploration, not the increase predicted by simple adaptive-gain models.",
+    "ree_translation": "MECH-313's biological substrate is best mapped to the LC-NE system, in line with the ARC-066/ARC-067 family doc anchor and the Aston-Jones & Cohen 2005 review. The selectivity result supports the MECH-313/MECH-314 substrate-split architecture: a pharmacological probe of NE affects one mechanism but not the other. For Q-043's calibration question, this anchors MECH-313 as a parameter that maps onto a real neuromodulatory dimension rather than as a free-floating hyperparameter.",
+    "mapping_caveat": "The directional mismatch (atomoxetine reduces rather than increases random exploration) is a serious caveat for any naive 'higher MECH-313 weight = higher LC-NE tone = more diversity' mapping. REE should not assume monotonicity of MECH-313 weight with respect to behavioural diversity; the V3 parametric sweep on SD-054 may reveal non-monotone Pareto frontiers similar to the inverted-U seen in Yerkes-Dodson-style arousal-performance curves. The substrate distinction is well-supported; the direction of the calibration is not.",
+    "source_context": "Human pharmacology study, n=22, double-blind crossover, 40mg atomoxetine vs placebo. Horizon task as in Wilson 2014. Healthy young adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.45,
+    "notes": "PLoS One publication, methodologically clean crossover but small sample (n=22). Mapping fidelity moderate-high because the dissociation directly addresses Q-043's substrate-split question. Transfer risk is the highest among the Q-043 anchors because (a) atomoxetine acts on cortex broadly, not just LC, and (b) the directional mismatch raises questions about whether the linear MECH-313 ↔ LC-NE-tonic mapping in the REE design holds at all weight ranges."
+  }
+}
