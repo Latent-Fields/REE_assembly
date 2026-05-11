@@ -3239,6 +3239,12 @@
     "title": "policy_composition.sleep_replay_value_conditioned_chunking_consolidation -- narrow exception path that permits ARC-071 chunk formation from replayed (hypothesis_tag=True) sequences during designated sleep phase, IF the replayed sequence carries a value-tag from prior real-executed episodes AND the formed chunk carries a replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution within N episodes. Resolves ARC-071 lit-pull R6 governance escalation (Option B carve-out, picked 2026-05-11).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-323": {
+    "status": "candidate",
+    "subject": "policy.composition.chunk_accumulator_formation",
+    "title": "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution; chunk-size budget 2-5 elements per level). Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",

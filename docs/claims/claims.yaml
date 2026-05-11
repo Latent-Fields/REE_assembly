@@ -30087,3 +30087,297 @@
         sequences. Audit flag enables detection.
   location: docs/architecture/policy_primitive_granularity.md
 
+- id: MECH-323
+  title: "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution; chunk-size budget 2-5 elements per level). Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution)."
+  claim_type: mechanism_hypothesis
+  subject: policy.composition.chunk_accumulator_formation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-05-11"
+  depends_on:
+    - ARC-071     # parent architectural commitment (composition direction)
+    - MECH-094    # default strict gate on the formation write path
+    - MECH-322    # sleep-replay carve-out path
+    - SD-014      # valence vector recording (value-tag substrate)
+    - SD-039      # anchor goal-payload (value-tag transport)
+    - MECH-269    # V_s primitive (V_s-positive secondary condition)
+  functional_restatement: >
+    MECH-323 is the formation operator in the ARC-071 chunking
+    cluster -- the striatum/DLS-analog accumulator that builds
+    chunk candidates from sequences of policy primitives
+    repeatedly executed together with consistent outcomes.
+    MECH-323 produces chunks; MECH-324 (registered separately)
+    will supply the IL/vmPFC-analog maintenance operator that
+    Smith & Graybiel 2013's optogenetic disruption shows is
+    causally required for chunk crystallisation.
+
+    Substrate role: MECH-323 runs in the striatum-analog write
+    path that MECH-163 names as the habit-system substrate
+    (dorsolateral-striatum equivalent in REE). Inputs are
+    sequences of executed policy primitives plus their realised
+    outcomes; outputs are chunk candidates that enter the
+    proposal pool (ARC-007 strict value-flat) for downstream
+    selection. The accumulator is asymmetric with ARC-070's
+    decomposition operator (MECH-321): MECH-323 is slow,
+    execution-side; MECH-321 is fast, simulation-side.
+
+    Trigger conditions (joint AND -- all three must hold for
+    chunk formation):
+
+    (1) REPETITION COUNT. The candidate sub-sequence must have
+        been executed together at least R_min times within a
+        sliding window of W trials. Suggested defaults
+        (calibrated at child-MECH validation):
+          R_min = 20 repetitions (child-MECH calibration range
+            10-50; Sakai 2003 chunk-emergence onset is around
+            5-20 reps for finger sequences; REE primitives are
+            coarser-grain so larger R_min is plausible).
+          W = 100 trials (sliding window; child-MECH calibration
+            range 50-200; Graybiel 2008 reports rodent
+            chunking emerges over hundreds of trials).
+
+    (2) OUTCOME-VARIANCE THRESHOLD (formation hysteresis low).
+        The outcome distribution over the R_min repetitions
+        must have variance below F_low on a 0-1 normalised
+        scale. Suggested default F_low = 0.15 (child-MECH
+        calibration range 0.10-0.25). The outcome dimension
+        is the realised E3-score-receipt over the sub-sequence
+        (SD-014 valence + accumulated benefit/harm). Variance
+        is computed across the R_min executions, not across
+        steps within an execution.
+
+    (3) EVALUATIVE GATE. The accumulated outcome mean must be
+        positive (sub-sequence's outcomes are evaluated-as-good
+        in aggregate; Graybiel 2008 evaluative-circuit upstream
+        gating). Threshold can be the agent's running
+        E3-score-receipt baseline plus a small margin
+        (suggested default: mean > baseline + 0.05). This
+        prevents chunk formation over consistently-bad
+        sub-sequences (chunks of failure are not what biology
+        forms; evaluation gates upstream of chunking).
+
+    Secondary precondition (NOT a hard gate, but a preferential
+    bias):
+
+    (S1) V_s-POSITIVE PREFERENCE. Sub-sequences over regions of
+         high MECH-269 V_s are preferred candidates for chunk
+         formation (the V_s-positive inverse of ARC-070's
+         V_s-negative decomposition trigger). This is encoded
+         as a candidate-ranking bias when multiple sub-sequences
+         meet the joint trigger, not as a hard gate.
+
+    Chunk representation. When the trigger fires, MECH-323
+    creates a chunked primitive object with the following
+    fields:
+
+      sequence: list[policy_primitive]   -- the constituent sub-sequence
+      initiation_set: dict[context_field, value_predicate]
+                                          -- contexts where this chunk may fire
+                                          -- (Sutton 1999 options requirement;
+                                          --  inferred from the contexts in which
+                                          --  the accumulator's R_min executions
+                                          --  occurred)
+      termination_condition: callable     -- when the chunk completes
+                                          -- (Sutton 1999 options requirement;
+                                          --  default: sequence-end + success-
+                                          --  signal from realised outcome)
+      value_tag: float                    -- mean realised E3-score-receipt
+                                          --  over the R_min executions
+                                          -- (SD-014 / SD-039 derived; consumed
+                                          --  by MECH-322 sleep-replay path)
+      replay_origin: bool                 -- False by default (real-execution
+                                          --  formation); True if formed via
+                                          --  MECH-322 sleep-replay carve-out
+      formation_timestamp: int            -- step / episode when chunk first
+                                          --  formed (for dissolution-deadline
+                                          --  accounting in MECH-324 and
+                                          --  MECH-322 corroboration windows)
+      depth: int                          -- recursion level (1 for chunks of
+                                          --  raw primitives; 2-3 for chunks
+                                          --  of chunks per R4 verdict)
+
+    Write paths.
+
+    DEFAULT (MECH-094-strict path): the trigger fires from
+    real-executed sequences only (hypothesis_tag=False on each
+    constituent execution). The formed chunk has
+    replay_origin=False. This is the path Graybiel 1998 / 2008
+    / Yin & Knowlton 2006 substrate-anchor cluster directly
+    supports.
+
+    SLEEP-REPLAY (MECH-322 carve-out path): the trigger fires
+    from replayed (hypothesis_tag=True) sequences during
+    designated SD-017 sleep phase IF (a) the replayed
+    sub-sequence carries a value-tag from prior real-executed
+    episodes meeting the high-positive threshold defined by
+    MECH-322; (b) the replay is in sleep mode, not waking
+    DMN. The formed chunk has replay_origin=True and inherits
+    the MECH-322 dissolution deadline (N episodes
+    corroboration window). MECH-292 / MECH-293 ghost-goal
+    probes during waking DMN do NOT engage this path.
+
+    Chunk-of-chunks recursion (R4 verdict). MECH-323 may form
+    a chunk whose `sequence` field contains other chunked
+    primitives (not just raw policy primitives). Recursion
+    depth cap: 3 levels by default (per Botvinick 2009 /
+    biological-rarity-of-deeper-hierarchy; child-MECH
+    calibration may relax to 4 if validation supports).
+    Replay-origin propagation: conservative default (ANY
+    replay-origin sub-chunk taints the parent chunk to
+    replay-origin); the open Q-claim from MECH-322 applies.
+
+    Behavioural signature for validation. When MECH-323 forms
+    a chunk over a structurally repeating sub-sequence,
+    within-chunk inter-element timing should tighten relative
+    to between-chunk transitions (Sakai 2003 signature); rollout
+    deliberation cost on the chunked sub-sequence should drop
+    (the chunk selects as one move at the planning layer, not N
+    separate selections); behavioural latency should fall.
+    These three signatures together form the falsifiable
+    prediction the first validation experiment should test.
+
+    Falsifiable architectural prediction (paired with the
+    MECH-322 sleep-replay prediction and the MECH-324
+    maintenance prediction once registered): an REE agent with
+    MECH-323 active should produce chunked primitives over
+    structurally repeating sub-sequences in episode 1000+ of
+    a task that supports them (e.g. SD-054 reef + a repeating
+    forage-loop). The chunked primitives should be detectable
+    in the proposal pool via the replay_origin field and the
+    depth field, even before behavioural latency drops.
+
+    What MECH-323 PRESERVES:
+      - ARC-007 strict value-flat hippocampal proposals. The
+        chunked primitive enters the proposal pool as a
+        value-flat candidate; downstream E3 evaluation supplies
+        the value at selection time, as for any other proposal.
+        The value_tag field is METADATA carried forward for
+        MECH-322 corroboration accounting, NOT a value head on
+        the proposal itself.
+      - MECH-094 strict gating on the default write path. The
+        sleep-replay carve-out is via MECH-322's conditions; no
+        direct relaxation of MECH-094 by MECH-323.
+      - SD-039 anchor payload semantics. The value_tag field is
+        derived from SD-039 goal-payload + SD-014 valence vector
+        without modifying either substrate.
+      - MECH-269 V_s as primary substrate for the V_s-positive
+        secondary preference. No new V_s consumer-side machinery
+        introduced beyond the candidate-ranking bias.
+
+    What MECH-323 INTRODUCES:
+      - The chunk-accumulator substrate itself (sliding-window
+        repetition counter + outcome-variance EWMA per
+        sub-sequence candidate).
+      - The chunked-primitive object with the seven fields
+        above.
+      - The R_min, W, F_low, evaluative-mean-threshold
+        parameter set (suggested defaults; child-MECH
+        validation refines).
+      - The initiation_set inference rule (collect the
+        contexts in which the accumulator's R_min executions
+        occurred; predicate over discriminating context
+        features).
+      - Chunk-of-chunks recursion up to depth cap 3.
+      - The depth and formation_timestamp fields on chunks.
+
+    Open Q-claims for the child-MECH validation pass:
+      - Initiation-set inference precision: how discriminative
+        should the context predicates be? Too narrow and chunks
+        fail to generalise; too broad and chunks mis-fire.
+        Child-MECH design should pin a starting policy
+        (suggested: contexts that account for >=80% of the
+        variance across R_min execution contexts).
+      - Recursion depth cap: 3 by default; child-MECH
+        validation may relax to 4 if biology supports.
+      - V_s-positive preference weighting: how strong should
+        the candidate-ranking bias be? Soft preference vs.
+        near-hard filter changes which chunks form first.
+      - Sliding window W vs cumulative count: child-MECH
+        design should pin sliding-vs-cumulative semantics
+        (sliding window is biology-faithful per Smith &
+        Graybiel 2013 chunk-dissolution dynamics).
+  evidence: []
+  evidence_quality_note: >
+    Registered 2026-05-11 as the first ARC-071 child mechanism
+    (formation operator). Lit grounding inherited from the
+    targeted_review_arc_071_composition synthesis (2026-05-10,
+    aggregate lit_conf 0.848): R1 trigger primary (Graybiel
+    1998 + 2008 canonical pattern), R2 substrate partial
+    (Yin & Knowlton 2006 DLS as formation locus; vmPFC/IL
+    maintenance handled by MECH-324), R4 chunk-representation
+    fields (Sutton 1999 options structure), R5 hysteresis +
+    chunk-size budget (Sakai 2003 + Smith & Graybiel 2013).
+
+    Maintenance-side substrate (Smith & Graybiel 2013 IL
+    optogenetic causal evidence) is deferred to MECH-324
+    (separate registration). Without MECH-324, MECH-323-formed
+    chunks will form but will not persist correctly; the two
+    together fulfil ARC-071's architectural commitment.
+
+    Not yet experimentally tested. First validation experiment:
+    substrate-readiness diagnostic measuring whether the
+    accumulator fires at all on a structurally repeating
+    sub-sequence task with R_min=20, W=100, F_low=0.15
+    defaults. Behavioural-latency / rollout-cost / within-chunk-
+    timing measurements come in a follow-on validation
+    experiment after the accumulator-only diagnostic passes.
+  notes: >
+    MECH-323 is the FORMATION half of ARC-071's two-operator
+    machinery. MECH-324 (registered separately) is the
+    MAINTENANCE half. The two-operator framing matches Smith &
+    Graybiel 2013's "dual operator view" finding; both are
+    causally required for chunk crystallisation in biology.
+
+    Cross-link to MECH-163 dual_goal_directed_systems:
+    MECH-323 is the formation machinery on the habit-system
+    side of MECH-163. The planned-system trajectories are the
+    INPUT to MECH-323; the habit-system's chunked primitives
+    are the OUTPUT. MECH-323 implements the planned->habitual
+    transition that the ARC-071 lit-pull R3 verdict named.
+
+    Cross-link to ARC-070 / MECH-321 decomposition:
+    MECH-323's formation operator and MECH-321's decomposition
+    operator share representational substrate (the chunked
+    primitive object) but operate at different stages /
+    timescales (slow execution-side formation vs fast
+    simulation-side decomposition). The chunk created by
+    MECH-323 is decomposable by MECH-321 under prediction
+    failure; the same chunked-primitive object lives in both
+    paths.
+
+    Cross-link to MECH-322 sleep-replay carve-out:
+    MECH-323 has two write paths -- the default MECH-094-
+    strict path and the MECH-322 sleep-replay path. The
+    replay_origin field on every formed chunk identifies which
+    path produced it; the dissolution-deadline accounting on
+    replay-origin chunks lives in MECH-322 (corroboration
+    window) and will live in MECH-324 (accelerated dissolution
+    when uncorroborated).
+
+    Pathology cross-references (speculative, pre-validation):
+      - OCD-like over-deliberation signature: if MECH-323
+        formation thresholds (R_min, F_low) drift too high,
+        chunks fail to form and every routine action is
+        re-planned at primitive grain. Graybiel 2008 framing
+        suggests this is more about evaluative-gate failure
+        than pure accumulator failure; child-MECH validation
+        should design the discriminative test.
+      - Autism / insistence-on-sameness (pre-registered
+        ARC-071 pathology candidate): chunks form normally but
+        cannot be re-decomposed under context change. This is
+        MECH-321 (decomposition) pathology, not MECH-323
+        (formation). MECH-323 is healthy in this hypothesis.
+      - Motor-learning impairments: MECH-323 accumulator
+        substrate-level deficits. Sequences never compress.
+        Specifically targetable by lesion / disruption
+        experiments on the striatum-analog substrate.
+
+    Frontoparietal early-phase parsing (Wymbs 2012 R2 verdict
+    partial-mapping): not registered as a separate child-MECH
+    here because it bleeds into ARC-070 / MECH-321 territory
+    (segmentation, not concatenation). Cross-link to MECH-321
+    rather than separate ARC-071 child mechanism.
+  location: docs/architecture/policy_primitive_granularity.md
+

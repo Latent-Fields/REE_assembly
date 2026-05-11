@@ -184,7 +184,7 @@ These are pre-registration cross-references — speculative until biology lit-pu
 Two independent lit-pulls anticipated:
 
 1. **`targeted_review_arc_070_decomposition/`** — **LANDED 2026-05-10.** 7 entries; aggregate lit_conf 0.88 (indexer-computed); 6 supports + 1 mixed. Five verdicts settled: R1 V_s-drop on chunk's region as primary trigger (PE-driven); **R2 LOAD-BEARING — SHARED SUBSTRATE: ARC-070 is a bidirectional consumer of MECH-288, not a parallel module**; R3 multi-level recursive decomposition with depth cap 3-4; R4 both pre-commit and mid-execution phases via same mechanism with MECH-094 hypothesis_tag-conditional downstream effects; R5 PE-driven primary, McGovern-Barto bottleneck-state framing as optional consolidation-phase secondary. See `evidence/literature/targeted_review_arc_070_decomposition/synthesis.md`.
-2. **`targeted_review_arc_071_composition/`** — **LANDED 2026-05-10** (sibling parallel pull). 9 entries; aggregate lit_conf 0.848. R3 confirmed ARC-071 IS the missing transition mechanism MECH-163 dual_goal_directed_systems presupposes (MECH-163 depends_on +ARC-071 committed 2026-05-10). R6 SAFETY-CRITICAL: biology does NOT cleanly gate chunking write path against replay/imagined sequences — escalated to governance decision before child-MECH design.
+2. **`targeted_review_arc_071_composition/`** — **LANDED 2026-05-10** (sibling parallel pull). 9 entries; aggregate lit_conf 0.848. R3 confirmed ARC-071 IS the missing transition mechanism MECH-163 dual_goal_directed_systems presupposes (MECH-163 depends_on +ARC-071 committed 2026-05-10). R6 SAFETY-CRITICAL: biology does NOT cleanly gate chunking write path against replay/imagined sequences — **RESOLVED 2026-05-11 via MECH-322** sleep-replay value-conditioned carve-out (narrow exception path, audit trail, accelerated dissolution on uncorroborated replay-origin chunks). Child-MECH design unblocked.
 
 The two children share the parent commitment but no execution path — they're decoupled within the cluster, similar to how ARC-066 / ARC-067 / ARC-068 are decoupled within the non-deficit-action-drives family.
 
@@ -204,7 +204,24 @@ Substrate-readiness prerequisite: MECH-288 substrate (`event_segmenter.py`) must
 
 Discriminative-pair validation experiment specified in MECH-321 functional_restatement (ARM_0 baseline / ARM_1 V_s-drop primary / ARM_2 bottleneck-state primary); deferred until substrate lands.
 
-ARC-071's child MECH is gated separately on the R6 governance decision (hypothesis_tag write-path safety question).
+### Child-MECH design — ARC-071 side (FORMATION OPERATOR REGISTERED 2026-05-11; maintenance operator pending)
+
+With R6 resolved via MECH-322 (sleep-replay carve-out), ARC-071's child-MECH design is unblocked. The lit-pull's R2 verdict (phase-dependent multi-substrate with formation in striatum/DLS and maintenance in IL/vmPFC) maps onto **two child-MECHs**, mirroring Smith & Graybiel 2013's "dual operator view":
+
+**MECH-323 `policy.composition.chunk_accumulator_formation` (REGISTERED 2026-05-11)** — the striatum/DLS-analog formation operator.
+
+- **Subject:** `policy.composition.chunk_accumulator_formation`. Builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes.
+- **depends_on:** ARC-071 (parent), MECH-094 (default strict gate), MECH-322 (sleep-replay carve-out path), SD-014 (valence vector), SD-039 (anchor goal-payload), MECH-269 (V_s positive secondary).
+- **Trigger conditions (joint AND):** (1) repetition count ≥ R_min over sliding window W; (2) outcome-variance below F_low formation threshold (hysteresis with MECH-324's F_high dissolution threshold); (3) evaluative gate — accumulated outcome mean must be positive (Graybiel 2008 framing). Secondary preference: V_s-positive (the symmetric inverse of MECH-321's V_s-negative trigger).
+- **Chunked-primitive object fields:** `sequence`, `initiation_set`, `termination_condition`, `value_tag`, `replay_origin`, `formation_timestamp`, `depth`. The initiation_set + termination_condition fields satisfy the Sutton 1999 options-structure requirement that R4 surfaced.
+- **Suggested parameter defaults (child-MECH validation refines):** R_min = 20 reps; W = 100 trials; F_low = 0.15 (on 0–1 normalised outcome-variance); evaluative threshold = baseline + 0.05; recursion depth cap = 3.
+- **Two write paths:** default MECH-094-strict (real-executed sequences, replay_origin=False); MECH-322 sleep-replay carve-out (high-value-tagged sleep replays, replay_origin=True, dissolution-deadline accounting).
+- **What MECH-323 preserves:** ARC-007 strict value-flat proposals (value_tag is metadata, not a value head); MECH-094 strict on the default path; SD-039 anchor payload semantics; MECH-269 substrate.
+- **First validation experiment:** substrate-readiness diagnostic measuring whether the accumulator fires at all on a structurally repeating sub-sequence task with default parameters. Behavioural-latency / rollout-cost measurements follow once the accumulator-only diagnostic passes.
+
+**MECH-324 `policy.composition.chunk_maintenance` (PENDING — separate registration pass)** — the IL/vmPFC-analog maintenance operator. Causally required for chunk crystallisation per Smith & Graybiel 2013 optogenetic disruption. Will define: chunk persistence under continued real-execution corroboration; chunk dissolution when variance rises above F_high (slower timescale than formation, per R5); accelerated dissolution for MECH-322 replay-origin chunks not corroborated within N episodes; cross-link to MECH-163 habit-maintenance side and INV-037 / INV-038 (vmPFC-analog substrate hooks).
+
+**Frontoparietal early-phase parsing (Wymbs 2012 R2 partial-mapping):** not a separate ARC-071 child-MECH. It bleeds into ARC-070 / MECH-321 territory (segmentation, not concatenation); cross-linked to MECH-321 rather than registered here.
 
 ---
 
