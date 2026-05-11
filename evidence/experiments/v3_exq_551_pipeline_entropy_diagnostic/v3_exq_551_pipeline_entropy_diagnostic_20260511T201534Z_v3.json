@@ -1,0 +1,108 @@
+{
+  "run_id": "v3_exq_551_pipeline_entropy_diagnostic_20260511T201534Z_v3",
+  "experiment_type": "v3_exq_551_pipeline_entropy_diagnostic",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260511T201534Z",
+  "outcome": "PASS",
+  "evidence_direction": "unknown",
+  "evidence_direction_note": "Diagnostic localization of WHERE the action-class-entropy=0.0 monostrategy cliff (observed in V3-EXQ-550 ARM_OFF and ARM_ON) originates in the action-selection pipeline. Pre-registered interpretation grid: (a) Stage 1 pairwise-L2 < 1e-6 -> proposer collapse; next move = structural CEM seeding (V3-EXQ-553+). (b) Stage 1 OK + Stage 2 world_var < 1e-6 -> E2 rollout collapse; next move = E2 conditioning diagnostic. (c) Stages 1+2 OK + Stage 3 score_var < 1e-6 -> evaluator flatness; next move = forced-exploration warmup (V3-EXQ-552, queued in parallel session). (d) Stages 1+2+3 OK + Stage 4 entropy < 1e-6 -> selection-temperature / policy-head bug; next move = z_beta -> CEM temperature wiring. (e) All four stages diverse -> baseline diagnostic OK; the EXQ-550 monostrategy signature is training-induced rather than a no-training pipeline property. experiment_purpose=diagnostic: PASS gates only that all metrics are finite; the cliff label drives the next experiment, not a claim-direction call.",
+  "pass_criteria_summary": {
+    "gate_rule": "Diagnostic PASS = all per-stage metrics finite across all seeds with no agent ERROR. Interpretation drives the next experiment, not the verdict.",
+    "cliff_distribution": {
+      "e2_rollout_collapse": 3
+    },
+    "n_seeds": 3,
+    "zero_variance_flag_threshold": 1e-06,
+    "any_error_seed": false,
+    "all_metrics_finite": true
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "n_ticks": 400,
+      "n_ticks_with_new_candidates": 46,
+      "n_ticks_with_world_states": 46,
+      "n_ticks_with_scores": 46,
+      "n_nans": 0,
+      "error_note": null,
+      "stage1_pairwise_l2_mean": 0.000309603892041512,
+      "stage1_pairwise_l2_median": 0.00030820182291790843,
+      "stage1_elem_var_mean": 1.094696908966319e-08,
+      "stage2_world_var_mean": 9.904945001005177e-07,
+      "stage2_world_var_median": 9.234723279405443e-07,
+      "stage3_score_var_mean": 0.0009070472467852676,
+      "stage3_score_var_median": 0.0008458839729428291,
+      "stage3_score_range_mean": 0.12265943444293478,
+      "stage4_action_class_entropy": 0.0,
+      "stage4_action_class_counts": {
+        "1": 400
+      },
+      "stage4_n_actions": 400,
+      "interpretation": "e2_rollout_collapse"
+    },
+    {
+      "seed": 7,
+      "n_ticks": 400,
+      "n_ticks_with_new_candidates": 46,
+      "n_ticks_with_world_states": 46,
+      "n_ticks_with_scores": 46,
+      "n_nans": 0,
+      "error_note": null,
+      "stage1_pairwise_l2_mean": 0.0001872932869288058,
+      "stage1_pairwise_l2_median": 0.00018528473447076976,
+      "stage1_elem_var_mean": 4.326957975494973e-09,
+      "stage2_world_var_mean": 8.664506456467358e-07,
+      "stage2_world_var_median": 8.071494335126772e-07,
+      "stage3_score_var_mean": 0.00021903177358857963,
+      "stage3_score_var_median": 0.0001972258323803544,
+      "stage3_score_range_mean": 0.06124081818953804,
+      "stage4_action_class_entropy": 0.0,
+      "stage4_action_class_counts": {
+        "2": 400
+      },
+      "stage4_n_actions": 400,
+      "interpretation": "e2_rollout_collapse"
+    },
+    {
+      "seed": 17,
+      "n_ticks": 400,
+      "n_ticks_with_new_candidates": 46,
+      "n_ticks_with_world_states": 46,
+      "n_ticks_with_scores": 46,
+      "n_nans": 0,
+      "error_note": null,
+      "stage1_pairwise_l2_mean": 0.00022113460505826643,
+      "stage1_pairwise_l2_median": 0.00021463351004058495,
+      "stage1_elem_var_mean": 5.8277267021784205e-09,
+      "stage2_world_var_mean": 3.0677641559429464e-07,
+      "stage2_world_var_median": 2.9754397701253765e-07,
+      "stage3_score_var_mean": 0.000155547218721198,
+      "stage3_score_var_median": 0.00014216150157153606,
+      "stage3_score_range_mean": 0.052774180536684784,
+      "stage4_action_class_entropy": 0.0,
+      "stage4_action_class_counts": {
+        "2": 400
+      },
+      "stage4_n_actions": 400,
+      "interpretation": "e2_rollout_collapse"
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      7,
+      17
+    ],
+    "ticks_per_seed": 400,
+    "episode_steps": 200,
+    "zero_variance_flag_threshold": 1e-06,
+    "single_arm": true,
+    "z_goal_enabled": false,
+    "v_s_circuit_on": true,
+    "sd029_scheduled_hazards": true,
+    "no_training": true,
+    "supersedes": null
+  }
+}
