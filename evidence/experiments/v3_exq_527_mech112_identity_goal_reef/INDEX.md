@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_527_mech112_identity_goal_reef
 
-Generated: `2026-05-10T20:30:56.188691Z`
+Generated: `2026-05-11T04:18:08.571319Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

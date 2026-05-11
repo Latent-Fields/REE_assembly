@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_511_sd048_interoceptive_noise_substrate_readiness
 
-Generated: `2026-05-10T20:30:56.188691Z`
+Generated: `2026-05-11T04:18:08.571319Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

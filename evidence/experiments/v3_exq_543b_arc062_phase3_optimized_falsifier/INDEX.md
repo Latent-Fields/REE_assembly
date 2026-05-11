@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_543b_arc062_phase3_optimized_falsifier
+
+Generated: `2026-05-11T04:18:08.571319Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3` | `2026-05-10T17:25:58.458500Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3/summary.md) / [`manifest`](runs/v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3/manifest.json) / [`metrics`](runs/v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3/metrics.json) |
