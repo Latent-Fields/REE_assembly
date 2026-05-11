@@ -3233,6 +3233,12 @@
     "title": "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition with depth cap 3-4 (Badre & D'Esposito 2009; Koechlin & Summerfield 2007). Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-322": {
+    "status": "candidate",
+    "subject": "policy.composition.sleep_replay_value_conditioned_consolidation",
+    "title": "policy_composition.sleep_replay_value_conditioned_chunking_consolidation -- narrow exception path that permits ARC-071 chunk formation from replayed (hypothesis_tag=True) sequences during designated sleep phase, IF the replayed sequence carries a value-tag from prior real-executed episodes AND the formed chunk carries a replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution within N episodes. Resolves ARC-071 lit-pull R6 governance escalation (Option B carve-out, picked 2026-05-11).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",

@@ -4604,6 +4604,18 @@
     autonomic) PASS confirmed first concrete wiring via hypothesis_tag skip (50 skipped,
     drive_bias held at 0). Promoted provisional -> stable 2026-04-24 (governance):
     13 supporting lit entries, 0 opposing, conf 0.868.
+
+    2026-05-11 carve-out registration (MECH-322): MECH-094 strict gating REMAINS
+    DEFAULT for all write paths. MECH-322 registers a single narrow exception path
+    that permits ARC-071 chunking from replayed sequences in designated SD-017
+    sleep mode IF (a) value-tag from prior real-executed episodes meets a high-
+    positive threshold, (b) sleep phase only (waking DMN remains MECH-094-strict),
+    (c) replay_origin=True audit flag with accelerated dissolution if not
+    corroborated by real waking execution within N episodes. Resolves R6 governance
+    escalation from ARC-071 lit-pull (targeted_review_arc_071_composition synthesis,
+    2026-05-10). MECH-094 itself is not relaxed; MECH-322 is a parallel write-path
+    with its own conditions. MECH-292/293 ghost-goal probes (waking DMN) remain
+    MECH-094-strict; the carve-out is sleep-only.
   depends_on:
     - ARC-014
     - INV-011
@@ -29206,14 +29218,18 @@
         consolidation literature). ARC-071's pre-registered
         MECH-094 hypothesis_tag=False strict-gating is MORE
         CONSERVATIVE than biology, with substantive safety-vs-
-        realism tradeoff. ESCALATED to governance decision: keep
-        MECH-094 strict (sacrifice realism for safety) vs. carve
-        out sleep-mode value-conditioned exception (more biology-
-        faithful but introduces residue-write through the
-        simulation channel MECH-094 prevents). Decision touches
-        MECH-094, ARC-071, MECH-292/293, sleep_substrate cluster,
-        SD-039. Defer ARC-071 child-MECH design until R6 lands.
-        Conf 0.74.
+        realism tradeoff. RESOLVED 2026-05-11 via MECH-322
+        (Option B carve-out): a NEW write-path that permits
+        ARC-071 chunking from replayed sequences in sleep mode
+        IF (a) value-tag from prior real-executed episodes
+        meets high-positive threshold, (b) replay occurs in
+        designated SD-017 sleep phase (not waking DMN), (c)
+        formed chunk carries replay_origin=True audit flag with
+        accelerated dissolution if not corroborated by real
+        waking execution within N episodes. MECH-094 strict
+        gating PRESERVED for all other write paths; MECH-322
+        is a narrow additional path with audit trail. ARC-071
+        child-MECH design now unblocked. Conf 0.74.
     Aggregate ARC-071 lit_conf ~ 0.78. R3 confirmation and R6
     escalation are both architecturally consequential beyond
     standard parameterisation; family doc + governance follow-on
@@ -29781,5 +29797,238 @@
     revisit candidates are (a) E2 forward-model disagreement as
     primary trigger instead of V_s, (b) parallel-but-coupled
     architecture replacing the bidirectional-substrate commitment.
+  location: docs/architecture/policy_primitive_granularity.md
+
+- id: MECH-322
+  title: "policy_composition.sleep_replay_value_conditioned_chunking_consolidation -- narrow exception path that permits ARC-071 chunk formation from replayed (hypothesis_tag=True) sequences during designated sleep phase, IF the replayed sequence carries a value-tag from prior real-executed episodes AND the formed chunk carries a replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution within N episodes. Resolves ARC-071 lit-pull R6 governance escalation (Option B carve-out, picked 2026-05-11)."
+  claim_type: mechanism_hypothesis
+  subject: policy.composition.sleep_replay_value_conditioned_consolidation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-05-11"
+  depends_on:
+    - ARC-071     # the chunking machinery this carve-out applies to
+    - MECH-094    # the strict gate this is a narrow exception to
+    - SD-017      # sleep substrate (designated sleep phase requirement)
+    - SD-039      # anchor goal-payload (value-tag transport)
+    - SD-014      # valence vector recording (value-tag substrate)
+  functional_restatement: >
+    MECH-322 is the explicit Option-B carve-out resolving the R6
+    safety-vs-realism gap surfaced by the ARC-071 lit-pull
+    (targeted_review_arc_071_composition synthesis, 2026-05-10).
+
+    Background: ARC-071 (policy.composition_via_repeated_grounding)
+    pre-registered with strict MECH-094 hypothesis_tag=False
+    gating -- chunks form ONLY from real executed sequences. The
+    lit-pull (Albouy 2013 + broader sleep-motor-consolidation
+    literature) found that biology does NOT cleanly gate the
+    chunking write path: hippocampal-striatal sleep replay drives
+    chunking-circuit consolidation, with hippocampal activity
+    leading ventral striatal replays during sleep-dependent motor
+    sequence consolidation. ARC-071's strict pre-registration is
+    therefore MORE CONSERVATIVE than biology, sacrificing realism
+    for safety. The R6 governance decision (2026-05-11): carve out
+    a narrow, audit-trail-bearing exception path rather than
+    relax MECH-094 globally.
+
+    The mechanism: during designated sleep phase, ARC-071 may
+    write a chunk from replayed (hypothesis_tag=True) sequences
+    IF AND ONLY IF three conditions hold jointly:
+
+    (a) VALUE-TAG REQUIREMENT. The replayed sequence must carry
+        a value-tag from prior real-executed episodes. The
+        value-tag is the SD-014 valence vector + accumulated
+        E3-score-receipt over the sequence's prior real
+        executions. The required threshold is high-positive
+        (suggested default: top-quartile of the agent's
+        cumulative E3-score-receipt distribution; calibrated at
+        child-MECH design time). This mirrors the Albouy 2013
+        reward-prediction-biased coupling -- biology selectively
+        consolidates replays of high-reward sequences.
+
+    (b) SLEEP-PHASE REQUIREMENT. The replay must occur during
+        designated sleep mode (SD-017 substrate), NOT during
+        waking DMN. Waking DMN replay (which is when MECH-292/
+        MECH-293 ghost-goal probes operate) remains gated by
+        MECH-094 strict. The carve-out is sleep-only.
+
+    (c) AUDIT-FLAG + DISSOLUTION DEADLINE. The chunk formed via
+        this path carries a replay_origin=True flag (distinct
+        from the real-execution-formed default of
+        replay_origin=False). Replay-origin chunks face
+        ACCELERATED DISSOLUTION: if not corroborated by real
+        waking execution within N episodes (suggested default:
+        50-100 episodes; child-MECH calibration), the chunk
+        dissolves automatically without requiring the standard
+        outcome-variance-rises-above-F_high trigger. This is the
+        self-correcting deadline: chunks formed from replay must
+        prove themselves through real execution, or they are
+        retired.
+
+    What MECH-322 PRESERVES:
+      - MECH-094 strict gating in all other write paths. MECH-322
+        is a NEW write-path with its own narrow conditions, NOT
+        a relaxation of MECH-094 itself. MECH-094 still gates
+        the default ARC-071 write path, residue writes,
+        z_world updates, etc.
+      - MECH-292 / MECH-293 ghost-goal bank waking-probe
+        semantics. Waking DMN remains MECH-094-gated; the
+        ghost-goal probes do not produce chunks via MECH-322.
+      - SD-039 anchor payload semantics. Chunks formed via
+        MECH-322 carry SD-039 goal payloads inherited from the
+        prior-real-executed sequence's payload (not synthesised
+        de novo from replay).
+      - ARC-007 strict value-flat hippocampal proposals. The
+        MECH-322-formed chunk goes into the proposal pool as a
+        value-flat candidate; downstream E3 evaluation supplies
+        the value at selection time, as for any other proposal.
+
+    What MECH-322 INTRODUCES:
+      - A second chunk-write-path with explicit conditions and
+        an audit trail.
+      - The replay_origin field on every chunked primitive in
+        the proposal pool (default False; True only for
+        MECH-322-formed chunks).
+      - A dissolution-deadline counter on replay-origin chunks
+        (resets to zero on each corroborating real-execution).
+      - A sleep-mode gate on the chunking write-path (currently
+        ARC-071 has no sleep/wake distinction in its
+        pre-registration; MECH-322 introduces one).
+
+    Falsifiable prediction: an REE agent with MECH-322 active
+    should show OVERNIGHT IMPROVEMENT on a chunked-task signature
+    -- behavioural latency on a structurally repeating
+    sub-sequence should drop more after a sleep-phase-included
+    episode block than after a no-sleep block of equivalent
+    waking exposure. This mirrors the Albouy 2013 finding
+    structurally. The discriminative pair: (ARM_0) MECH-322 OFF
+    baseline, sleep replays do not write chunks; (ARM_1)
+    MECH-322 ON, sleep replays meeting all three conditions
+    write chunks. ARM_1 should show measurably faster chunk
+    formation on repeating sub-sequences AND comparable safety
+    metrics (no spurious-chunk pathology under structured-noise
+    perturbation).
+
+    Risk model + safety bounds:
+      - Hallucinated-chunk risk: a replayed sequence the value
+        system mis-evaluates as high-reward could be promoted
+        into the chunking pool. Mitigated by (i) value-tag
+        threshold being high-positive (top-quartile, not just
+        positive); (ii) accelerated-dissolution deadline forcing
+        unvalidated replay-chunks out within N episodes;
+        (iii) audit flag enabling diagnostic detection of
+        replay-origin chunks contributing to behavioural
+        pathology.
+      - Sleep-phase mis-gating risk: if SD-017 sleep-mode flag
+        is set inappropriately during waking, MECH-322 could
+        fire when it should not. Mitigated by SD-017 substrate
+        invariants enforcing sleep-mode entry conditions.
+      - Replay-origin metadata propagation: chunks-of-chunks
+        recursion (R4 verdict) raises the question of whether a
+        higher-grain chunk built from a mix of real-origin and
+        replay-origin sub-chunks inherits replay-origin status.
+        Conservative default: ANY replay-origin sub-chunk taints
+        the parent chunk to replay-origin. Open Q-claim for
+        child-MECH design.
+
+    What MECH-322 is NOT:
+      - Not a global relaxation of MECH-094. MECH-094 remains
+        strict in all other write paths.
+      - Not a goal-directed-system carve-out. The mechanism
+        applies only to ARC-071 chunking writes; goal seeding,
+        residue writes, z_world updates remain MECH-094-strict.
+      - Not waking DMN. The carve-out is sleep-only.
+      - Not unconditional value-replay-driven plasticity.
+        Three conditions must hold jointly; the audit trail
+        and dissolution deadline are non-negotiable.
+  evidence: []
+  evidence_quality_note: >
+    Registered 2026-05-11 to resolve the R6 governance escalation
+    from the targeted_review_arc_071_composition synthesis
+    (2026-05-10). Lit grounding inherited from ARC-071 lit-pull
+    R6 verdict (Albouy 2013 hippocampal-striatal sleep replay
+    drives chunking-circuit consolidation; broader sleep-motor-
+    consolidation literature including Lansink 2009 and van der
+    Meer 2016 striatal-replay work). The biology supports the
+    carve-out direction: sleep-replay-driven chunk consolidation
+    happens, is reward-prediction-biased, and is part of normal
+    motor-skill acquisition.
+
+    No primary lit-pull commissioned for MECH-322 specifically;
+    the R6 verdict in targeted_review_arc_071_composition
+    supplies the grounding. A follow-on lit-pull may be
+    warranted if the child-MECH design pass needs sharper
+    parameterisation of the dissolution-deadline N or the
+    value-tag threshold. Candidate further sources for the
+    follow-on: Lansink 2009 (hippocampal-VTA-ventral striatal
+    coupling); van der Meer 2016 (striatal replay during sleep);
+    Wilhelm 2011 sleep-dependent motor sequence learning;
+    selective replay-disruption studies (Girardeau 2009 ripple
+    disruption impairs spatial memory consolidation -- analog
+    for chunking).
+
+    Not yet experimentally tested. First validation experiment:
+    discriminative pair (MECH-322 OFF baseline vs MECH-322 ON)
+    on a structurally repeating sub-sequence task with sleep-
+    phase included episodes vs no-sleep episodes; metric is
+    behavioural latency drop on within-chunk transitions.
+  notes: >
+    The carve-out is the smallest possible relaxation of
+    MECH-094 strict gating that closes the R6 realism gap. The
+    cleanest framing is that MECH-322 is a NEW write-path with
+    its own conditions, NOT a relaxation of MECH-094 itself.
+    MECH-094 strict gating remains the default; MECH-322 is the
+    exception with audit trail.
+
+    Cross-link to sleep_substrate_plan.md: MECH-322 fires only
+    during designated sleep mode (SD-017). The sleep substrate
+    must expose a sleep-mode flag that MECH-322 reads. SD-017
+    substrate landed 2026-05-09 (V3-EXQ-503a PASS); the
+    sleep-mode flag plumbing is in place.
+
+    Cross-link to MECH-292 / MECH-293 ghost-goal bank: waking
+    DMN remains MECH-094-strict. The ghost-goal probes during
+    waking do NOT produce chunks via MECH-322. This is the
+    sharp boundary between the two replay-related machineries
+    -- sleep replay can chunk (under MECH-322 conditions);
+    waking DMN replay cannot.
+
+    Open Q-claims for child-MECH design pass:
+      - Replay-origin propagation under chunks-of-chunks
+        recursion (R4 verdict from ARC-071 lit-pull): does a
+        parent chunk inherit replay-origin status from any
+        replay-origin sub-chunk, or only when ALL sub-chunks
+        are replay-origin? Conservative default: any taint.
+      - Dissolution-deadline N parameter: child-MECH design
+        should pin a starting value (50-100 episodes suggested;
+        validation experiment will refine).
+      - Value-tag threshold: top-quartile suggested as starting
+        heuristic; child-MECH design should specify the
+        underlying distribution (per-task or global E3-score
+        receipt).
+      - Diagnostic instrumentation: replay_origin field needs
+        to be queryable from manifest output for safety
+        auditing.
+
+    Pathology cross-references (speculative, pre-validation):
+      - Sleep-deprivation-induced motor-skill-learning
+        impairment: candidate behavioural signature for
+        MECH-322 OFF or sleep-substrate failure. Biology
+        supports: sleep-deprived subjects show impaired motor
+        sequence consolidation.
+      - PTSD-like rigid-chunk pathology: candidate signature
+        for MECH-322 firing on traumatic replay with
+        inappropriate value-tag (high-affect-mistaken-for-
+        positive). Cross-link to MECH-094 hypothesis tag loss
+        framing in the sleep_substrate_plan.md and PTSD
+        literature; the carve-out introduces a NEW failure
+        mode the strict pre-registration did not have.
+      - Hallucinated-chunk pathology under high-imagination
+        psychiatric conditions (mania, psychosis): if
+        sleep-mode gate fails or value-tag threshold drifts
+        downward, agent could chunk imagined-as-positive
+        sequences. Audit flag enables detection.
   location: docs/architecture/policy_primitive_granularity.md
 
