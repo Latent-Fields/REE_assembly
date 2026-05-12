@@ -1,0 +1,97 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
+  "experiment_type": "v3_exq_461_mech090_sd033a_delayed_reward_persistence",
+  "queue_id": "V3-EXQ-461",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-12T18:04:25Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-090",
+    "SD-033a",
+    "SD-034"
+  ],
+  "result": "PASS",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-090": "supports",
+    "SD-033a": "supports",
+    "SD-034": "supports"
+  },
+  "metrics": {
+    "UC1_baseline_hold_window": {
+      "delay_ticks": 12,
+      "none_count": 12,
+      "hold_count": 12,
+      "propagation_count": 1,
+      "low_completion_released": false,
+      "beta_after_low_completion": true,
+      "high_completion_released": true,
+      "beta_after_high_completion": false,
+      "post_release_propagated": true,
+      "pass": true
+    },
+    "UC2_weakened_hold_passthrough": {
+      "delay_ticks": 12,
+      "passthrough_count": 12,
+      "hold_count": 0,
+      "propagation_count": 12,
+      "beta_elevated": false,
+      "pass": true
+    },
+    "UC3_sd033a_replay_gate_preserves_rule_state": {
+      "installed_norm": 1.9106380939483643,
+      "low_gate": 0.05,
+      "low_gate_effective_eta": 0.0025000000000000005,
+      "low_gate_post_norm": 1.4792827367782593,
+      "low_gate_cosine_to_installed": 0.9948323965072632,
+      "full_gate": 1.0,
+      "full_gate_effective_eta": 0.05,
+      "full_gate_post_norm": 2.513545274734497,
+      "full_gate_cosine_to_installed": -0.8374202251434326,
+      "distractor_ticks": 40,
+      "pass": true
+    },
+    "UC4_strengthened_hold_resists_premature_release": {
+      "completion_release_threshold": 0.95,
+      "moderate_completion": 0.8,
+      "moderate_released": false,
+      "beta_after_moderate": true,
+      "high_completion": 0.99,
+      "high_released": true,
+      "beta_after_high": false,
+      "pass": true
+    },
+    "UC5_mech261_mode_gate_table": {
+      "external_task_gate": 1.0,
+      "internal_replay_gate": 0.05,
+      "offline_consolidation_gate": 0.3,
+      "pass": true
+    },
+    "UC6_terminal_closure_signal": {
+      "rule_norm_pre": 0.13662639260292053,
+      "event_fired": true,
+      "event_reason": "explicit",
+      "beta_released": true,
+      "beta_post_elevated": false,
+      "nogo_pushed": 3,
+      "pre_history_len": 0,
+      "post_history_len": 3,
+      "salience_signal_written": true,
+      "closure_signal_value": 1.0,
+      "pe_ema_reset": true,
+      "dacc_pe_ema_post": null,
+      "pass": true
+    }
+  },
+  "thresholds": {
+    "delay_ticks": 12,
+    "rule_install_ticks": 30,
+    "distractor_ticks": 40,
+    "uc3_low_gate_cosine_floor": 0.95,
+    "uc3_full_gate_cosine_ceiling": 0.0
+  },
+  "elapsed_seconds": 0.04337501525878906,
+  "notes": "V3-EXQ-461 closes commitment_closure GAP-2 at substrate-readiness level for EXP-0157 delayed-reward persistence. It validates the Hold-axis ingredients without claiming the full behavioural delay-to-reward environment exists yet. Baseline Hold uses MECH-090 beta elevation to suppress policy propagation across a synthetic delay window; weakened Hold passes through immediately; SD-033a rule_state persists under the MECH-261 replay gate and is overwritten under full distractor writes; strengthened Hold resists premature completion; SD-034 terminal closure releases beta and installs No-Go. Full delayed-reward behavioural validation remains blocked on commitment_closure GAP-3 CausalGridWorldV2 env extensions."
+}
