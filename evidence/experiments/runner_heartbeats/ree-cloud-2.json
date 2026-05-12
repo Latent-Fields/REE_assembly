@@ -1,46 +1,29 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-12T06:35:40Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-554a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-550",
-      "result": "FAIL",
-      "completed_at": "2026-05-11T19:10:12.405106+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-551",
-      "result": "PASS",
-      "completed_at": "2026-05-11T20:16:59.177702+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-551a",
-      "result": "PASS",
-      "completed_at": "2026-05-11T20:36:56.241368+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-540c",
-      "result": "ERROR",
-      "completed_at": "2026-05-12T06:10:13.242473+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-540d",
-      "result": "PASS",
-      "completed_at": "2026-05-12T06:29:28.517588+00:00"
-    }
+  "last_tick_utc": "2026-05-12T06:37:50Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-556",
+  "current_exq_started_utc": "2026-05-12T06:37:45.103326+00:00",
+  "current_title": "Module-init swap diagnostic (localises which submodule's seed-7 init enables V3-EXQ-555 C0/C2 escape from monostrategy)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "starting...",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 0,
+    "episodes_total": 130,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 1040,
+  "recent_lines": [
+    "Arm ARM_BASELINE_42: overrides={}"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 2019,
   "runner_version": null,
   "gpu": {
