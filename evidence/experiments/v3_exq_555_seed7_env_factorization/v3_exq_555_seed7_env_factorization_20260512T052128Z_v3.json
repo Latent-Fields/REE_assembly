@@ -1,0 +1,344 @@
+{
+  "run_id": "v3_exq_555_seed7_env_factorization_20260512T052128Z_v3",
+  "experiment_type": "v3_exq_555_seed7_env_factorization",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260512T052128Z",
+  "outcome": "PASS",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Monostrategy-investigation diagnostic decomposing the V3-EXQ-552 seed-7 anomaly: action_class_entropy ~ 0.68 in seed=7 vs entropy=0 in seeds 42/17 under identical script + env + agent code. Factors seed = (env_seed, agent_seed) and runs the 2x2 cell sweep. Pre-registered 5-row interpretation grid: (R1) env_side_only -- C1 entropy >> 0.30 AND C2 ~ 0; the env-side seed-7 condition enables diversity; route to env-config diagnostic. (R2) agent_side_only -- C1 ~ 0 AND C2 >> 0.30; the agent-side seed-7 condition enables diversity; route to agent-init diagnostic. (R3) conjunctive -- C1 ~ 0 AND C2 ~ 0 AND C0 ~ 0.68; diversity requires both simultaneously (interaction, not main effect); route to careful 2x2 with replication. (R4) either_sufficient -- BOTH C1 and C2 >> 0.30; either side alone breaks monostrategy; substrate has capacity but typical seed combinations land in a collapsing basin. (R5) replication_failure -- C0 NOT within [0.58, 0.78] of EXQ-552's 0.6787; the seed-7 finding does not replicate; route to stochasticity audit. experiment_purpose=diagnostic; evidence_direction set to non_contributory so governance does not weight any claim from this run.",
+  "pass_criteria_summary": {
+    "c0_baseline_entropy": 0.6787050813930642,
+    "c1_env_only_entropy": 0.0,
+    "c2_agent_only_entropy": 0.6902286376762798,
+    "c3_baseline_control_entropy": 0.0,
+    "interpretation_row": "R2_agent_side_only",
+    "interpretation_description": "C1_env_only entropy 0.0000 ~ 0 AND C2_agent_only entropy 0.6902 >> 0.30. The agent-side seed-7 condition (weight init) is what enables diversity. Routes to agent-init diagnostic (which module's init differs critically?)."
+  },
+  "per_cell_results": [
+    {
+      "cell": "C0_baseline",
+      "env_seed": 7,
+      "agent_seed": 7,
+      "p1_action_class_counts": {
+        "0": 576,
+        "1": 409
+      },
+      "p1_action_class_entropy": 0.6787050813930642,
+      "p1_n_actions": 985,
+      "p0_n_total_actions": 727,
+      "p1_n_total_actions": 985,
+      "init_agent_signature": [
+        0.11857499182224274,
+        0.04387364536523819,
+        0.06439819186925888,
+        0.17009416222572327,
+        -0.0035546652507036924,
+        -0.16063065826892853,
+        0.021256214007735252,
+        0.1182803213596344
+      ],
+      "init_env_signature": {
+        "hazards": [
+          [
+            2,
+            7
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "resources": [
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "agent_pos": [
+          7,
+          4
+        ]
+      }
+    },
+    {
+      "cell": "C1_env_only",
+      "env_seed": 7,
+      "agent_seed": 42,
+      "p1_action_class_counts": {
+        "0": 11222
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11222,
+      "p0_n_total_actions": 7079,
+      "p1_n_total_actions": 11222,
+      "init_agent_signature": [
+        -0.10479879379272461,
+        0.032922253012657166,
+        -0.13521909713745117,
+        0.0506797730922699,
+        -0.00633197370916605,
+        0.05590846762061119,
+        -0.15537691116333008,
+        -0.14056150615215302
+      ],
+      "init_env_signature": {
+        "hazards": [
+          [
+            2,
+            7
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "resources": [
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "agent_pos": [
+          7,
+          4
+        ]
+      }
+    },
+    {
+      "cell": "C2_agent_only",
+      "env_seed": 42,
+      "agent_seed": 7,
+      "p1_action_class_counts": {
+        "1": 444,
+        "0": 381
+      },
+      "p1_action_class_entropy": 0.6902286376762798,
+      "p1_n_actions": 825,
+      "p0_n_total_actions": 770,
+      "p1_n_total_actions": 825,
+      "init_agent_signature": [
+        0.11857499182224274,
+        0.04387364536523819,
+        0.06439819186925888,
+        0.17009416222572327,
+        -0.0035546652507036924,
+        -0.16063065826892853,
+        0.021256214007735252,
+        0.1182803213596344
+      ],
+      "init_env_signature": {
+        "hazards": [
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            1,
+            8
+          ]
+        ],
+        "resources": [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            9
+          ]
+        ],
+        "agent_pos": [
+          7,
+          4
+        ]
+      }
+    },
+    {
+      "cell": "C3_baseline_control",
+      "env_seed": 42,
+      "agent_seed": 42,
+      "p1_action_class_counts": {
+        "0": 11806
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11806,
+      "p0_n_total_actions": 7622,
+      "p1_n_total_actions": 11806,
+      "init_agent_signature": [
+        -0.10479879379272461,
+        0.032922253012657166,
+        -0.13521909713745117,
+        0.0506797730922699,
+        -0.00633197370916605,
+        0.05590846762061119,
+        -0.15537691116333008,
+        -0.14056150615215302
+      ],
+      "init_env_signature": {
+        "hazards": [
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            1,
+            8
+          ]
+        ],
+        "resources": [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            9
+          ]
+        ],
+        "agent_pos": [
+          7,
+          4
+        ]
+      }
+    }
+  ],
+  "config": {
+    "cells": [
+      {
+        "label": "C0_baseline",
+        "env_seed": 7,
+        "agent_seed": 7
+      },
+      {
+        "label": "C1_env_only",
+        "env_seed": 7,
+        "agent_seed": 42
+      },
+      {
+        "label": "C2_agent_only",
+        "env_seed": 42,
+        "agent_seed": 7
+      },
+      {
+        "label": "C3_baseline_control",
+        "env_seed": 42,
+        "agent_seed": 42
+      }
+    ],
+    "p0_train_episodes": 40,
+    "p1_eval_episodes": 60,
+    "steps_per_episode": 200,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    }
+  }
+}
