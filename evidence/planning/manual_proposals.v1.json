@@ -794,7 +794,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "queued",
+      "status": "executed",
       "prerequisites": [
         "MECH-090 bistable BetaGate (implemented)",
         "SD-033a lateral-PFC-analog (implemented)",
@@ -809,7 +809,14 @@
         "SD-033a",
         "SD-034"
       ],
-      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-461 -- ocd4 row 'delayed-reward persistence', targets Hold gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Proposal-only at registration time: SD-034 / MECH-266 / MECH-267 / MECH-268 are candidate / v3_pending and the substrate extensions listed under prerequisites are not yet implemented. Do not queue in ree-v3/experiment_queue.json until the substrates exist."
+      "notes": "SD-033 governance test battery item for queue slot V3-EXQ-461 -- ocd4 row 'delayed-reward persistence', targets Hold gating. Anchor plan: REE_assembly/evidence/planning/sd033_governance_plan.md. Source thoughts: docs/thoughts/2026-04-20_ocd4.md. Substrate-readiness script authored, queued, executed, and reviewed 2026-05-12: validates MECH-090 delay-window hold, weakened/strengthened Hold contrasts, SD-033a/MECH-261 rule-state persistence under replay gate, and SD-034 terminal closure release. Full behavioural delayed-reward variant remains blocked on commitment_closure GAP-3 CausalGridWorldV2 env extensions.",
+      "script_path": "ree-v3/experiments/v3_exq_461_mech090_sd033a_delayed_reward_persistence.py",
+      "reserved_queue_id": "V3-EXQ-461",
+      "queued_utc": "2026-05-12",
+      "executed_by": "V3-EXQ-461",
+      "executed_queue_id": "V3-EXQ-461",
+      "executed_utc": "2026-05-12",
+      "executed_note": "PASS on DLAPTOP-4.local in 2.1s. Manifest: REE_assembly/evidence/experiments/v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3.json. Six substrate-readiness sub-tests passed: MECH-090 delay-window Hold, weakened passthrough contrast, SD-033a/MECH-261 replay-gated persistence, strengthened Hold threshold, sd_033a mode-gate table, and SD-034 terminal closure release. Supports MECH-090, SD-033a, and SD-034 at substrate-readiness level; full behavioural delayed-reward variant remains blocked on commitment_closure GAP-3 env extensions."
     },
     {
       "proposal_id": "EXP-0158",

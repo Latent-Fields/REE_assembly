@@ -22,14 +22,15 @@ closure_plan:
       blocking_external: []
       last_updated: 2026-05-09
     - id: "commitment_closure:GAP-2"
-      title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence unauthored"
+      title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence PASS"
       phase: 2
-      status: open
+      status: done
       severity: high
       owner_exq: V3-EXQ-461
       unblocks_claims: [SD-033a, MECH-090, SD-034]
       depends_on: []
-      last_updated: 2026-05-08
+      completion_note: "V3-EXQ-461 substrate-readiness runner PASS reviewed 2026-05-12; full behavioural delayed-reward arm remains blocked on GAP-3 env extensions."
+      last_updated: 2026-05-12
     - id: "commitment_closure:GAP-3"
       title: "CausalGridWorldV2 env extensions (tolerance/counter-evidence/dual-cue)"
       phase: 3
@@ -208,7 +209,7 @@ Ten gaps, ordered by leverage. Each is the basis for one row of the
 | Gap | Subject | Severity | Unblocks |
 |---|---|---|---|
 | **GAP-1** | SD-033a bias head untrained: frozen-random with last Linear zeroed -> initial bias = 0; Go-side pathway is mechanically silent until a training protocol lands | load-bearing | MECH-262 rule-selective persistence; SD-034 mode-conditioning gate firing from a real rule_state; full-loop OCD-battery interpretability |
-| **GAP-2** | V3-EXQ-461 (EXP-0157 delayed-reward persistence / Hold-axis falsifier) unauthored, no reserved queue ID | high | OCD battery completeness; SD-033a + MECH-090 + SD-034 Hold-axis evidence |
+| **GAP-2** | V3-EXQ-461 (EXP-0157 delayed-reward persistence / Hold-axis falsifier) substrate-readiness PASS reviewed; full behavioural successor remains GAP-3 env-infra work | high | OCD battery completeness; SD-033a + MECH-090 + SD-034 Hold-axis evidence |
 | **GAP-3** | CausalGridWorldV2 env extensions not built: tolerance-band completion, counter-evidence injection, dual simultaneously-active resource cue, phased rule_state training curriculum | high | SD-034 + MECH-266 + MECH-268 behavioural arms (currently smoke / sub-test only); EXP-0156/0157/0160/0162/0163/0164 full-loop runs |
 | **GAP-4** | OCD battery mostly script_authored but unqueued: 460/463/464/466/467/468 authored not queued; 462/465 already executed; 461 unauthored | high | First end-to-end battery run on substrate-as-landed; baseline before behavioural arms land |
 | **GAP-5** | MECH-090 V_s -> commit-release pathway substrate-readiness FAIL: V3-EXQ-481 vs_commit_release_count=0 in BOTH ON and OFF arms; release predicate never matches; anchor resets fire (63/31 per seed) but release threshold never met | medium | MECH-090 release-via-V_s pathway empirical validation; tighter coupling between hippocampal anchor invalidation (MECH-269 / MECH-284) and BG beta release |
@@ -283,13 +284,25 @@ The Hold-axis falsifier. Ten-line scope: copy V3-EXQ-462 structure
 Reserve queue slot V3-EXQ-461 (already in the sd033_governance_plan
 reservation table). Author script via `/queue-experiment` skill.
 
+2026-05-12 update: substrate-readiness script authored, queued, executed,
+and reviewed as `v3_exq_461_mech090_sd033a_delayed_reward_persistence.py`.
+Runner PASSed at 2026-05-12T18:04:25Z with six deterministic sub-tests:
+baseline Hold, weakened passthrough, SD-033a/MECH-261 replay-gated
+persistence, strengthened Hold, mode-gate table values, and SD-034 terminal
+closure. GAP-2 is closed at substrate-readiness level. The full behavioural
+delayed-reward task remains Phase 3 env-infra work.
+
 Deliverables:
 
-1. Reserve V3-EXQ-461 in `ree-v3/experiment_queue.json`.
+1. Reserve V3-EXQ-461 in `ree-v3/experiment_queue.json`. **Done 2026-05-12;
+   runner PASS reviewed.**
 2. Author `v3_exq_461_mech090_sd033a_delayed_reward_persistence.py`
-   with the OCD ocd4 row's acceptance criteria.
-3. Update `experiment_proposals.v1.json`: EXP-0157 status `queued` ->
-   `script_authored`; reserved_queue_id `null` -> `V3-EXQ-461`.
+   with the OCD ocd4 row's substrate-readiness acceptance criteria.
+   **Done 2026-05-12; dry-run and runner PASS.**
+3. Update `manual_proposals.v1.json`: EXP-0157 status `queued` ->
+   `executed`; reserved_queue_id `null` -> `V3-EXQ-461`.
+   `experiment_proposals.v1.json` is regenerated from the manual source by
+   the governance/index pipeline.
 
 Acceptance: substrate-readiness sub-tests PASS (no env extension required
 for sub-test version; full behavioural arm depends on Phase 3).
@@ -446,7 +459,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | blocked (upstream in-progress) | arc_062_rule_apprehension Phase 1 + Phase 2 (GAP-A done; GAP-B in-progress, V3-EXQ-543b queued Mac 120 min, awaiting runner pickup) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; resume when ARC-062 PASSes monomodal-collapse falsifier (V3-EXQ-543b is the live owner) | TBD | 2026-05-10 |
-| GAP-2 | 2 | open | nothing internal | Author v3_exq_461 via /queue-experiment; reserve V3-EXQ-461 | V3-EXQ-461 | 2026-05-08 |
+| GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
 | GAP-3 | 3 | open | env scoping decision (Q2) | Pick tolerance-window default, scope counter-evidence injection API, dual-cue trigger primitive | env infra (no EXQ) | 2026-05-08 |
 | GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
 | GAP-5 | 6 | open | nothing internal; coupled to anchor-reset substrate | Audit `_committed_anchor_keys` capture; widen / relax release predicate; queue 481b | V3-EXQ-481b | 2026-05-08 |
@@ -470,12 +483,12 @@ primary falsification cohort for this plan. Sub-plan: that document
 remains the canonical OCD-axis breakdown. This plan tracks battery
 completeness as a status concern.
 
-### Battery state (2026-05-08)
+### Battery state (2026-05-12)
 
 | Reserved EXQ | Proposal | Subject | Status (proposal) | Status (script) |
 |---|---|---|---|---|
 | V3-EXQ-460 | EXP-0156 | SD-034 verified-but-not-released | script_authored | substrate-readiness PASS x2 (sub-tests) |
-| V3-EXQ-461 | EXP-0157 | MECH-090 + SD-033a + SD-034 delayed-reward persistence | queued (no reserved_queue_id) | unauthored |
+| V3-EXQ-461 | EXP-0157 | MECH-090 + SD-033a + SD-034 delayed-reward persistence | executed; reserved_queue_id=V3-EXQ-461 | substrate-readiness PASS reviewed |
 | V3-EXQ-462 | EXP-0158 | MECH-267 rule binding | executed | substrate-readiness PASS (sub-tests) |
 | V3-EXQ-463 | EXP-0159 | MECH-268 dACC conflict saturation | script_authored | substrate-readiness PASS (sub-tests) |
 | V3-EXQ-464 | EXP-0160 | MECH-266 competing goals | script_authored | substrate-readiness PASS (sub-tests) |
@@ -554,6 +567,28 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-12 - GAP-2 V3-EXQ-461 substrate-readiness PASS reviewed
+
+GAP-2 moved `open -> done` at substrate-readiness level. New script:
+`ree-v3/experiments/v3_exq_461_mech090_sd033a_delayed_reward_persistence.py`.
+Queue entry: `V3-EXQ-461` (priority 2, machine_affinity any, 5 min) was
+auto-picked by DLAPTOP-4.local and PASSed in 2.1s. Manual proposal EXP-0157
+updated to `executed` with `reserved_queue_id=V3-EXQ-461`.
+
+Scope decision: this is deliberately the substrate-readiness version of the
+ocd4 delayed-reward-persistence row, not the full behavioural delayed-reward
+task. It validates the contract that the behavioural successor will need:
+MECH-090 delay-window Hold, a weakened/no-Hold passthrough contrast,
+SD-033a rule_state persistence under the MECH-261 replay gate, a strengthened
+Hold threshold contrast, the sd_033a mode-gate table, and SD-034 terminal
+closure release. Dry-run and runner execution both PASSed all six sub-tests
+on 2026-05-12. Full delay-to-reward behaviour remains blocked on GAP-3
+CausalGridWorldV2 env extensions (delay-to-benefit, tolerance-band
+completion, counter-evidence, dual-cue primitives).
+
+Resume condition: none for GAP-2 substrate-readiness. Next work is GAP-3 if
+the goal is the full behavioural delayed-reward arm.
 
 ### 2026-05-09 - GAP-1 reframed as ARC-062-dependent
 

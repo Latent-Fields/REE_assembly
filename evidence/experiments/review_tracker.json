@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-11T20:10:15Z",
+  "last_review_utc": "2026-05-12T18:08:09Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-449c",
     "V3-EXQ-455a",
@@ -306,6 +306,7 @@
     "V3-EXQ-546"
   ],
   "reviewed_run_ids": [
+    "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
     "2026-02-13T060000Z_dummy-pass",
     "2026-02-13T070000Z_dummy-fail",
     "2026-02-13T224000Z_commit-dual-error-channels_seed11_pre_post_split_streams",
@@ -2511,6 +2512,14 @@
         "v3_exq_542_arc062_gated_policy_substrate_readiness": "ARC-062 Phase 1 substrate wiring: 5 UCs pass (instantiation, master OFF no-op, discriminator input sensitivity, head differentiation under training ratio 7.78, MECH-094 sim gate). Does NOT test ARC-062 weak-reading or MECH-309 logical-necessity -- those need Phase 2 monomodal-collapse falsifier on SD-054.",
         "v3_exq_544_mech313_noise_floor_substrate_readiness": "MECH-313 stochastic noise floor wiring + Pull 1 SYNTHESIS R4 verdict: 5 UCs pass (forward-pass instantiation, master OFF no-op, effective-temperature lift correctness across alpha/min_T/baseline sweep, MECH-094 sim gate). Does NOT test MECH-313 vs MECH-260 distinction -- needs Q-045 4-arm ablation on the new substrate."
       }
+    },
+    {
+      "timestamp_utc": "2026-05-12T18:08:09Z",
+      "session_label": "commitment-gap2-v3-exq-461",
+      "reviewed_run_ids": [
+        "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3"
+      ],
+      "subject": "V3-EXQ-461 EXP-0157 delayed-reward persistence substrate-readiness PASS reviewed. All six deterministic sub-tests passed: MECH-090 baseline Hold suppresses propagation for 12/12 synthetic delay ticks and releases only on high terminal completion; weakened/no-Hold contrast passes through 12/12 ticks; SD-033a rule_state persists under MECH-261 replay gate with cosine 0.995 to installed state while full distractor writes overwrite it (cosine -0.837); strengthened Hold resists moderate completion at threshold 0.95 and releases at 0.99; sd_033a gate table matches external_task=1.0, internal_replay=0.05, offline_consolidation=0.3; SD-034 terminal closure releases beta, injects 3 No-Go entries, writes closure_event, and resets dACC PE. Evidence_direction=supports for MECH-090, SD-033a, SD-034 at substrate-readiness level. commitment_closure_plan.md GAP-2 can be marked done for V3 substrate-readiness; full delayed-reward behavioural arm remains blocked on GAP-3 CausalGridWorldV2 env extensions."
     }
   ]
 }

@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-05-12T04:18:07Z`  
-Last review: `2026-05-11T20:10:15Z`  
-Pending: **6** item(s) -- 0 PASS, 5 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-12T18:15:43Z`  
+Last review: `2026-05-12T18:08:09Z`  
+Pending: **11** item(s) -- 1 PASS, 6 FAIL, 4 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
 ## FAIL (action required)
 
@@ -13,6 +13,13 @@ Pending: **6** item(s) -- 0 PASS, 5 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke), 0
 | `v3_exq_543d_arc062_mech260_factorial_falsifier_20260512T010638Z_v3` | 2026-05-12T01:06 | ARC-062, MECH-309 | — |
 | `v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition_20260511T201750Z_v3` | 2026-05-12T04:18 | MECH-093, MECH-205, MECH-216, MECH-295, MECH-307, SD-014 | — |
 | `v3_exq_540b_mech307_conjunction_threshold_sweep_20260512T025041Z_v3` | 2026-05-12T04:18 | MECH-295, MECH-307 | — |
+| `v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3` | 2026-05-12T18:15 | MECH-093, MECH-205, MECH-216, MECH-295, MECH-307, SD-014 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_540c_mech307_readsite_probe_20260512T062928Z_v3` | 2026-05-12T18:15 | MECH-295, MECH-307 |
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -21,6 +28,9 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
 | `V3-EXQ-552` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-555` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-557` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-540c` | ERROR | `?` | ERROR |
 
 ---
 
