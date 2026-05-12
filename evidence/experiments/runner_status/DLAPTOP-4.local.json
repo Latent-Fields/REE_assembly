@@ -1,71 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 10441,
-  "runner_started_at": "2026-05-11T16:22:28.147371+00:00",
-  "last_updated": "2026-05-11T20:05:27.434918+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-540a",
-    "backlog_id": "",
-    "claim_id": "MECH-307",
-    "title": "MECH-307 Option-b 3-arm conjunction decomposition (goal_pipeline:GAP-1 Phase 1 acceptance)",
-    "description": "",
-    "script": "experiments/v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition.py",
-    "started_at": "2026-05-11T19:03:56.072336+00:00",
-    "progress": {
-      "run_label": "Seed 43 / ARM_2_full",
-      "runs_done": 5,
-      "runs_total": 9,
-      "episodes_done": 30,
-      "episodes_total": 70,
-      "overall_pct": 60.3
-    },
-    "seconds_elapsed": 3691,
-    "seconds_remaining": 2420,
-    "recent_lines": [
-      "verdict: PASS",
-      "Seed 43 Condition ARM_2_full",
-      "[train] ARM_2_full seed=43 ep 10/70 (warmup)",
-      "[train] ARM_2_full seed=43 ep 20/70 (warmup)",
-      "[train] ARM_2_full seed=43 ep 30/70 (warmup)"
-    ],
-    "ree_version": "v3"
-  },
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-549",
-      "backlog_id": "EVB-0232",
-      "claim_id": "ARC-066",
-      "title": "ARC-066 / MECH-320 tonic_vigor behavioural discriminative pair (EXP-0083 / EVB-0232)",
-      "description": "",
-      "estimated_minutes": 122.7,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-540a",
-      "backlog_id": "",
-      "claim_id": "MECH-307",
-      "title": "MECH-307 Option-b 3-arm conjunction decomposition (goal_pipeline:GAP-1 Phase 1 acceptance)",
-      "description": "",
-      "estimated_minutes": 84.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-550",
-      "backlog_id": "",
-      "claim_id": "MECH-269",
-      "title": "MECH-269 z_goal-enabled monostrategy falsifier (config-default vs substrate diagnosis)",
-      "description": "",
-      "estimated_minutes": 4.8,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "runner_pid": 56394,
+  "runner_started_at": "2026-05-11T20:22:43.435739+00:00",
+  "last_updated": "2026-05-12T04:24:12.399534+00:00",
+  "idle": true,
+  "current": null,
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -7578,6 +7518,62 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543c_arc062_phase3_bipartite_falsifier_20260511T190246Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 6774.1
+    },
+    {
+      "queue_id": "V3-EXQ-540a",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 Option-b 3-arm conjunction decomposition (goal_pipeline:GAP-1 Phase 1 acceptance)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition] outcome=FAIL elapsed=4432.6s | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-540a -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-540a.json",
+      "started_at": "2026-05-11T19:03:56.072336+00:00",
+      "completed_at": "2026-05-11T20:17:50.774445+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition/v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition_20260511T201750Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4434.7
+    },
+    {
+      "queue_id": "V3-EXQ-552",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "Forced uniform-random action warmup vs monostrategy collapse (training-loop diagnostic on V3-EXQ-550 entropy=0 finding)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-552 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-552.json",
+      "started_at": "2026-05-11T20:22:45.466071+00:00",
+      "completed_at": "2026-05-11T21:36:35.410949+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_552_forced_exploration_warmup/v3_exq_552_forced_exploration_warmup_20260511T202246Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4429.9
+    },
+    {
+      "queue_id": "V3-EXQ-543d",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 x MECH-260 2x2 factorial monomodal-collapse falsifier on bipartite SD-054",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[legacy ARM_3-vs-ARM_0 grid; NON-PASS-GATING] C2=False C3=False C4=True F1=False F2=False legacy_pass=False | outcome:            FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-543d -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-543d.json",
+      "started_at": "2026-05-11T21:36:38.967425+00:00",
+      "completed_at": "2026-05-12T01:06:39.567087+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543d_arc062_mech260_factorial_falsifier_20260512T010638Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 12600.5
+    },
+    {
+      "queue_id": "V3-EXQ-540b",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 consumer-conjunction threshold sweep (calibration diagnostic; supersedes V3-EXQ-540a FAIL)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_540b_mech307_conjunction_threshold_sweep] outcome=FAIL elapsed=6171.7s | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-540b -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-540b.json",
+      "started_at": "2026-05-12T01:07:48.536908+00:00",
+      "completed_at": "2026-05-12T02:50:42.614129+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_540b_mech307_conjunction_threshold_sweep/v3_exq_540b_mech307_conjunction_threshold_sweep_20260512T025041Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 6174.0
     }
   ]
 }
