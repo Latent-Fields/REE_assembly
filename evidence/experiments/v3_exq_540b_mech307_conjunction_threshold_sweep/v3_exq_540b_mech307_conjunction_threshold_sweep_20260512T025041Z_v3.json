@@ -1,0 +1,612 @@
+{
+  "run_id": "v3_exq_540b_mech307_conjunction_threshold_sweep_20260512T025041Z_v3",
+  "experiment_type": "v3_exq_540b_mech307_conjunction_threshold_sweep",
+  "queue_id": "V3-EXQ-540b",
+  "supersedes": "V3-EXQ-540a",
+  "claim_ids": [
+    "MECH-307",
+    "MECH-295"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "started_utc": "2026-05-12T02:50:41.779035Z",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-307": "mixed",
+    "MECH-295": "weakens"
+  },
+  "elapsed_seconds": 6171.685535907745,
+  "n_seeds": 3,
+  "p0_episodes": 50,
+  "eval_episodes": 20,
+  "steps_per_episode": 200,
+  "arms": [
+    {
+      "arm": "ARM_default",
+      "n_seeds": 3,
+      "liking_writes_mean": 2711.3333333333335,
+      "schema_wanting_writes_mean": 2711.3333333333335,
+      "gap4_e1_prior_writes_mean": 2711.3333333333335,
+      "z_beta_excursion_mean": 0.15063451219177734,
+      "harm_paired_surprise_writes_total": 232,
+      "nonharm_surprise_writes_total": 3114,
+      "n_positive_surprise_centers_total": 59,
+      "n_negative_surprise_centers_total": 82,
+      "n_split_surprise_centers_total": 82,
+      "approach_commit_rate_mean": 1.0,
+      "contact_events_total": 19,
+      "n_conjunction_fire_ticks_total": 0,
+      "n_conjunction_read_opportunities_total": 8000,
+      "conjunction_fire_rate_mean": 0.0,
+      "per_seed_approach": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_split_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_neg_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_conjunction_fire_rate": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "arm": "ARM_half",
+      "n_seeds": 3,
+      "liking_writes_mean": 2711.3333333333335,
+      "schema_wanting_writes_mean": 2711.3333333333335,
+      "gap4_e1_prior_writes_mean": 2711.3333333333335,
+      "z_beta_excursion_mean": 0.15063451219177734,
+      "harm_paired_surprise_writes_total": 232,
+      "nonharm_surprise_writes_total": 3114,
+      "n_positive_surprise_centers_total": 59,
+      "n_negative_surprise_centers_total": 82,
+      "n_split_surprise_centers_total": 82,
+      "approach_commit_rate_mean": 1.0,
+      "contact_events_total": 19,
+      "n_conjunction_fire_ticks_total": 0,
+      "n_conjunction_read_opportunities_total": 8000,
+      "conjunction_fire_rate_mean": 0.0,
+      "per_seed_approach": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_split_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_neg_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_conjunction_fire_rate": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "arm": "ARM_low",
+      "n_seeds": 3,
+      "liking_writes_mean": 2711.3333333333335,
+      "schema_wanting_writes_mean": 2711.3333333333335,
+      "gap4_e1_prior_writes_mean": 2711.3333333333335,
+      "z_beta_excursion_mean": 0.15063451219177734,
+      "harm_paired_surprise_writes_total": 232,
+      "nonharm_surprise_writes_total": 3114,
+      "n_positive_surprise_centers_total": 59,
+      "n_negative_surprise_centers_total": 82,
+      "n_split_surprise_centers_total": 82,
+      "approach_commit_rate_mean": 1.0,
+      "contact_events_total": 19,
+      "n_conjunction_fire_ticks_total": 0,
+      "n_conjunction_read_opportunities_total": 8000,
+      "conjunction_fire_rate_mean": 0.0,
+      "per_seed_approach": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_split_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_neg_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_conjunction_fire_rate": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "arm": "ARM_floor",
+      "n_seeds": 3,
+      "liking_writes_mean": 2711.3333333333335,
+      "schema_wanting_writes_mean": 2711.3333333333335,
+      "gap4_e1_prior_writes_mean": 2711.3333333333335,
+      "z_beta_excursion_mean": 0.15063451219177734,
+      "harm_paired_surprise_writes_total": 232,
+      "nonharm_surprise_writes_total": 3114,
+      "n_positive_surprise_centers_total": 59,
+      "n_negative_surprise_centers_total": 82,
+      "n_split_surprise_centers_total": 82,
+      "approach_commit_rate_mean": 1.0,
+      "contact_events_total": 19,
+      "n_conjunction_fire_ticks_total": 0,
+      "n_conjunction_read_opportunities_total": 8000,
+      "conjunction_fire_rate_mean": 0.0,
+      "per_seed_approach": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_seed_split_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_neg_surprise_centers": [
+        32,
+        32,
+        18
+      ],
+      "per_seed_conjunction_fire_rate": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "per_seed_per_arm": [
+    {
+      "seed": 42,
+      "arm": "ARM_default",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.6,
+        "mech307_conjunction_liking_threshold": 0.3,
+        "mech307_conjunction_z_beta_threshold": 0.6
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.1567736207190901,
+      "harm_paired_surprise_writes": 52,
+      "nonharm_surprise_writes": 1166,
+      "n_positive_surprise_centers": 29,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 14,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 42,
+      "arm": "ARM_half",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.3,
+        "mech307_conjunction_liking_threshold": 0.15,
+        "mech307_conjunction_z_beta_threshold": 0.3
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.1567736207190901,
+      "harm_paired_surprise_writes": 52,
+      "nonharm_surprise_writes": 1166,
+      "n_positive_surprise_centers": 29,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 14,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 42,
+      "arm": "ARM_low",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.1,
+        "mech307_conjunction_liking_threshold": 0.05,
+        "mech307_conjunction_z_beta_threshold": 0.1
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.1567736207190901,
+      "harm_paired_surprise_writes": 52,
+      "nonharm_surprise_writes": 1166,
+      "n_positive_surprise_centers": 29,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 14,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 42,
+      "arm": "ARM_floor",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.01,
+        "mech307_conjunction_liking_threshold": 0.005,
+        "mech307_conjunction_z_beta_threshold": 0.01
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.1567736207190901,
+      "harm_paired_surprise_writes": 52,
+      "nonharm_surprise_writes": 1166,
+      "n_positive_surprise_centers": 29,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 14,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_default",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.6,
+        "mech307_conjunction_liking_threshold": 0.3,
+        "mech307_conjunction_z_beta_threshold": 0.6
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.14592312835901974,
+      "harm_paired_surprise_writes": 46,
+      "nonharm_surprise_writes": 1948,
+      "n_positive_surprise_centers": 30,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 5,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_half",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.3,
+        "mech307_conjunction_liking_threshold": 0.15,
+        "mech307_conjunction_z_beta_threshold": 0.3
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.14592312835901974,
+      "harm_paired_surprise_writes": 46,
+      "nonharm_surprise_writes": 1948,
+      "n_positive_surprise_centers": 30,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 5,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_low",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.1,
+        "mech307_conjunction_liking_threshold": 0.05,
+        "mech307_conjunction_z_beta_threshold": 0.1
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.14592312835901974,
+      "harm_paired_surprise_writes": 46,
+      "nonharm_surprise_writes": 1948,
+      "n_positive_surprise_centers": 30,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 5,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 43,
+      "arm": "ARM_floor",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.01,
+        "mech307_conjunction_liking_threshold": 0.005,
+        "mech307_conjunction_z_beta_threshold": 0.01
+      },
+      "liking_writes": 4000,
+      "schema_wanting_writes": 4000,
+      "gap4_e1_prior_writes": 4000,
+      "z_beta_excursion_mean": 0.14592312835901974,
+      "harm_paired_surprise_writes": 46,
+      "nonharm_surprise_writes": 1948,
+      "n_positive_surprise_centers": 30,
+      "n_negative_surprise_centers": 32,
+      "n_split_surprise_centers": 32,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 4000,
+      "total_eval_steps": 4000,
+      "contact_events": 5,
+      "n_conjunction_read_opportunities": 4000,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_default",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.6,
+        "mech307_conjunction_liking_threshold": 0.3,
+        "mech307_conjunction_z_beta_threshold": 0.6
+      },
+      "liking_writes": 134,
+      "schema_wanting_writes": 134,
+      "gap4_e1_prior_writes": 134,
+      "z_beta_excursion_mean": 0.1492067874972222,
+      "harm_paired_surprise_writes": 134,
+      "nonharm_surprise_writes": 0,
+      "n_positive_surprise_centers": 0,
+      "n_negative_surprise_centers": 18,
+      "n_split_surprise_centers": 18,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 134,
+      "total_eval_steps": 134,
+      "contact_events": 0,
+      "n_conjunction_read_opportunities": 0,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_half",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.3,
+        "mech307_conjunction_liking_threshold": 0.15,
+        "mech307_conjunction_z_beta_threshold": 0.3
+      },
+      "liking_writes": 134,
+      "schema_wanting_writes": 134,
+      "gap4_e1_prior_writes": 134,
+      "z_beta_excursion_mean": 0.1492067874972222,
+      "harm_paired_surprise_writes": 134,
+      "nonharm_surprise_writes": 0,
+      "n_positive_surprise_centers": 0,
+      "n_negative_surprise_centers": 18,
+      "n_split_surprise_centers": 18,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 134,
+      "total_eval_steps": 134,
+      "contact_events": 0,
+      "n_conjunction_read_opportunities": 0,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_low",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.1,
+        "mech307_conjunction_liking_threshold": 0.05,
+        "mech307_conjunction_z_beta_threshold": 0.1
+      },
+      "liking_writes": 134,
+      "schema_wanting_writes": 134,
+      "gap4_e1_prior_writes": 134,
+      "z_beta_excursion_mean": 0.1492067874972222,
+      "harm_paired_surprise_writes": 134,
+      "nonharm_surprise_writes": 0,
+      "n_positive_surprise_centers": 0,
+      "n_negative_surprise_centers": 18,
+      "n_split_surprise_centers": 18,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 134,
+      "total_eval_steps": 134,
+      "contact_events": 0,
+      "n_conjunction_read_opportunities": 0,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    },
+    {
+      "seed": 44,
+      "arm": "ARM_floor",
+      "mech307_flags": {
+        "use_mech307_split_surprise": true,
+        "use_mech307_schema_multichannel": true,
+        "use_mech307_predicted_location_write": true,
+        "mech307_conjunction_wanting_threshold": 0.01,
+        "mech307_conjunction_liking_threshold": 0.005,
+        "mech307_conjunction_z_beta_threshold": 0.01
+      },
+      "liking_writes": 134,
+      "schema_wanting_writes": 134,
+      "gap4_e1_prior_writes": 134,
+      "z_beta_excursion_mean": 0.1492067874972222,
+      "harm_paired_surprise_writes": 134,
+      "nonharm_surprise_writes": 0,
+      "n_positive_surprise_centers": 0,
+      "n_negative_surprise_centers": 18,
+      "n_split_surprise_centers": 18,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 134,
+      "total_eval_steps": 134,
+      "contact_events": 0,
+      "n_conjunction_read_opportunities": 0,
+      "n_conjunction_fire_ticks": 0,
+      "bridge_n_conjunction_fires": 0,
+      "bridge_n_conjunction_reads": 0,
+      "conjunction_fire_rate": 0.0
+    }
+  ],
+  "acceptance": {
+    "C1_monotone_in_threshold": true,
+    "C1_monotone_pairs": [
+      {
+        "lower_threshold_arm": "ARM_half",
+        "higher_threshold_arm": "ARM_default",
+        "fire_rate_lower": 0.0,
+        "fire_rate_higher": 0.0,
+        "pair_ok": true
+      },
+      {
+        "lower_threshold_arm": "ARM_low",
+        "higher_threshold_arm": "ARM_half",
+        "fire_rate_lower": 0.0,
+        "fire_rate_higher": 0.0,
+        "pair_ok": true
+      },
+      {
+        "lower_threshold_arm": "ARM_floor",
+        "higher_threshold_arm": "ARM_low",
+        "fire_rate_lower": 0.0,
+        "fire_rate_higher": 0.0,
+        "pair_ok": true
+      }
+    ],
+    "C2_at_least_one_arm_fires": false,
+    "C2_per_arm_firing": [
+      {
+        "arm": "ARM_half",
+        "n_seeds_firing": 0,
+        "per_seed_fire_rates": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fires_at_floor": false
+      },
+      {
+        "arm": "ARM_low",
+        "n_seeds_firing": 0,
+        "per_seed_fire_rates": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fires_at_floor": false
+      },
+      {
+        "arm": "ARM_floor",
+        "n_seeds_firing": 0,
+        "per_seed_fire_rates": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fires_at_floor": false
+      }
+    ],
+    "fire_rates_by_arm": {
+      "ARM_default": 0.0,
+      "ARM_half": 0.0,
+      "ARM_low": 0.0,
+      "ARM_floor": 0.0
+    },
+    "all_pass": false
+  },
+  "thresholds": {
+    "C1_monotone_tolerance": 0.0001,
+    "C2_fire_rate_floor": 0.1,
+    "C2_min_seeds_firing": 2
+  },
+  "note": "V3-EXQ-540b -- MECH-307 consumer-conjunction threshold sweep. Supersedes V3-EXQ-540a (2026-05-11T20:17:50Z FAIL). 540a confirmed C1 substrate dissociation PASS across all three arms (ARM_2_full produced liking=2711, gap4=2711, z_beta=0.15, split_centers=82) but FAILed C2 (conj_fire_rate=0 in ALL arms including ARM_2_full). The MECH-295 bridge's compute_conjunction_score_bias predicate (v_wanting > 0.6 AND v_liking > 0.3 AND v_positive_surprise > 0 AND z_beta_arousal > 0.6) never fires even when all four substrate counters are populated. 540b varies only the three consumer-side thresholds across 4 arms (ARM_default 0.6/0.3/0.6, ARM_half 0.3/0.15/0.3, ARM_low 0.1/0.05/0.1, ARM_floor 0.01/0.005/0.01) with substrate fully ON in every arm via use_mech307_conjunction=True. Acceptance: C1 monotone fire-rate decrease across descending-threshold ordering; C2 at least one non-default arm fires conjunction in >= 2/3 seeds at floor rate 0.10. PASS -> calibration issue confirmed; queue 540c behavioural retest with lowest-firing threshold arm. PARTIAL (monotone, no fires) -> structural read-side audit. PARTIAL (non-monotone, fires) -> unexpected noise; investigate. FAIL on both -> deeper substrate bug suspected. C3 (approach_commit_rate lift) is OUT OF SCOPE here: 540a observed approach=1.0 saturation across all arms (the _approach_commit_at_step predicate triggers trivially); separate metric-redesign session required and is independent of the threshold question."
+}
