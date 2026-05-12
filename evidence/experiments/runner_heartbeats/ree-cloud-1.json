@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-12T08:55:16Z",
+  "last_tick_utc": "2026-05-12T08:56:18Z",
   "state": "running",
   "current_exq": "V3-EXQ-540e",
   "current_exq_started_utc": "2026-05-12T06:58:22.060485+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-307",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_1_split_only",
-    "runs_done": 7,
+    "run_label": "Seed 44 / ARM_2_full",
+    "runs_done": 8,
     "runs_total": 9,
-    "episodes_done": 55,
+    "episodes_done": 0,
     "episodes_total": 70,
-    "overall_pct": 86.5
+    "overall_pct": 88.9
   },
-  "seconds_elapsed": 7014,
-  "seconds_remaining": 1183,
+  "seconds_elapsed": 7076,
+  "seconds_remaining": 880,
   "recent_lines": [
-    "[train] ARM_1_split_only seed=44 ep 20/70 (warmup)",
-    "[train] ARM_1_split_only seed=44 ep 30/70 (warmup)",
-    "[train] ARM_1_split_only seed=44 ep 40/70 (warmup)",
-    "[train] ARM_1_split_only seed=44 ep 50/70 (warmup)",
-    "[train] ARM_1_split_only seed=44 ep 55/70 (eval)"
+    "[train] ARM_1_split_only seed=44 ep 65/70 (eval)",
+    "[train] ARM_1_split_only seed=44 ep 70/70 (eval)",
+    "seed=44 arm=ARM_1_split_only   liking=  0 sched_wanting=134 gap4=  0 z_beta_exc=0.0000 split_surp_centers=18 pos=0 neg=18 conj_fire_ticks=0 conj_fire_rate=0.000 approach=1.000 contacts=0 elapsed=221.5s",
+    "verdict: PASS",
+    "Seed 44 Condition ARM_2_full"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
