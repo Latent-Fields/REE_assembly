@@ -1,46 +1,31 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-12T06:16:29Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-555",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-547",
-      "result": "PASS",
-      "completed_at": "2026-05-10T20:56:13.089935+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-550",
-      "result": "FAIL",
-      "completed_at": "2026-05-11T19:10:12.405106+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-551",
-      "result": "PASS",
-      "completed_at": "2026-05-11T20:16:59.177702+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-551a",
-      "result": "PASS",
-      "completed_at": "2026-05-11T20:36:56.241368+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-540c",
-      "result": "ERROR",
-      "completed_at": "2026-05-12T06:10:13.242473+00:00"
-    }
+  "last_tick_utc": "2026-05-12T06:18:38Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-540d",
+  "current_exq_started_utc": "2026-05-12T06:18:33.490395+00:00",
+  "current_title": "MECH-307 read-site introspection probe (diagnoses V3-EXQ-540b structural conj_fire_rate=0) [re-queue of V3-EXQ-540c killed by 06:10 UTC systemctl restart]",
+  "current_claim_id": "MECH-307",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / probe_only",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 0,
+    "episodes_total": 35,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 280,
+  "recent_lines": [
+    "[v3_exq_540c_mech307_readsite_probe] starting (dry_run=False)",
+    "[v3_exq_540c_mech307_readsite_probe] Seed 42 Condition probe_only",
+    "[v3_exq_540c_mech307_readsite_probe] warmup=30 eval=5 steps=200 dry_run=False"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 2019,
   "runner_version": null,
   "gpu": {
