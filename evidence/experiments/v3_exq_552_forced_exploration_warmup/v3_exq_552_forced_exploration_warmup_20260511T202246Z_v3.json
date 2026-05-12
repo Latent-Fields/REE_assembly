@@ -1,0 +1,176 @@
+{
+  "run_id": "v3_exq_552_forced_exploration_warmup_20260511T202246Z_v3",
+  "experiment_type": "v3_exq_552_forced_exploration_warmup",
+  "claim_ids": [],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260511T202246Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_note": "Training-loop diagnostic: forced uniform-random action warmup over the first 50% of P0 vs no override. PASS = ARM_WARMUP P1 entropy clears ARM_NORMAL P1 entropy by >= 0.10 AND clears 0.30 absolute floor in >= 2/3 seeds. Three-row interpretation grid: (i) PASS supports the bootstrap-loop / data-narrowness reading -- substrate has the capacity for diverse policy; monostrategy is a training-data pathology. Route to exploration-scheduling follow-up. (ii) FAIL with both arms near zero supports the substrate-collapsing-regardless reading -- forced-explore data does not keep the policy diverse. Elevates urgency of V3-EXQ-551 proposer/evaluator diagnostic and the ARC-062 / MECH-309 rule-apprehension cluster. (iii) Mixed outcomes (one seed lifts, others collapse) -> inconclusive; substrate is marginal, sensitive to init noise; surface for routing.",
+  "pass_criteria_summary": {
+    "gate_rule": "warmup_p1_entropy - normal_p1_entropy >= 0.1 AND warmup_p1_entropy > 0.3 in >= 2/3 seeds",
+    "per_seed_summary": [
+      {
+        "seed": 42,
+        "normal_p1_entropy": 0.0,
+        "warmup_p1_entropy": 0.0,
+        "delta": 0.0,
+        "cleared_delta": false,
+        "cleared_floor": false,
+        "cleared_both": false
+      },
+      {
+        "seed": 7,
+        "normal_p1_entropy": 0.6787050813930642,
+        "warmup_p1_entropy": 0.6927367307390078,
+        "delta": 0.014031649345943586,
+        "cleared_delta": false,
+        "cleared_floor": true,
+        "cleared_both": false
+      },
+      {
+        "seed": 17,
+        "normal_p1_entropy": 0.0,
+        "warmup_p1_entropy": 0.0,
+        "delta": 0.0,
+        "cleared_delta": false,
+        "cleared_floor": false,
+        "cleared_both": false
+      }
+    ],
+    "seeds_clearing_delta": 0,
+    "seeds_clearing_floor": 1,
+    "seeds_passing_both": 0,
+    "seeds_required": 2,
+    "pass": false
+  },
+  "per_seed_results": [
+    {
+      "condition": "NORMAL",
+      "seed": 42,
+      "p1_action_class_counts": {
+        "0": 11806
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11806,
+      "p0_n_forced_actions": 0,
+      "p0_n_total_actions": 7622,
+      "p1_n_total_actions": 11806,
+      "warmup_fraction_applied": 0.0,
+      "forced_random_episodes": 0
+    },
+    {
+      "condition": "WARMUP",
+      "seed": 42,
+      "p1_action_class_counts": {
+        "0": 11806
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11806,
+      "p0_n_forced_actions": 237,
+      "p0_n_total_actions": 4237,
+      "p1_n_total_actions": 11806,
+      "warmup_fraction_applied": 0.5,
+      "forced_random_episodes": 20
+    },
+    {
+      "condition": "NORMAL",
+      "seed": 7,
+      "p1_action_class_counts": {
+        "0": 576,
+        "1": 409
+      },
+      "p1_action_class_entropy": 0.6787050813930642,
+      "p1_n_actions": 985,
+      "p0_n_forced_actions": 0,
+      "p0_n_total_actions": 727,
+      "p1_n_total_actions": 985,
+      "warmup_fraction_applied": 0.0,
+      "forced_random_episodes": 0
+    },
+    {
+      "condition": "WARMUP",
+      "seed": 7,
+      "p1_action_class_counts": {
+        "0": 377,
+        "1": 356
+      },
+      "p1_action_class_entropy": 0.6927367307390078,
+      "p1_n_actions": 733,
+      "p0_n_forced_actions": 216,
+      "p0_n_total_actions": 740,
+      "p1_n_total_actions": 733,
+      "warmup_fraction_applied": 0.5,
+      "forced_random_episodes": 20
+    },
+    {
+      "condition": "NORMAL",
+      "seed": 17,
+      "p1_action_class_counts": {
+        "2": 11426
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11426,
+      "p0_n_forced_actions": 0,
+      "p0_n_total_actions": 7645,
+      "p1_n_total_actions": 11426,
+      "warmup_fraction_applied": 0.0,
+      "forced_random_episodes": 0
+    },
+    {
+      "condition": "WARMUP",
+      "seed": 17,
+      "p1_action_class_counts": {
+        "2": 11044
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11044,
+      "p0_n_forced_actions": 233,
+      "p0_n_total_actions": 4233,
+      "p1_n_total_actions": 11044,
+      "warmup_fraction_applied": 0.5,
+      "forced_random_episodes": 20
+    }
+  ],
+  "config": {
+    "conditions": [
+      "NORMAL",
+      "WARMUP"
+    ],
+    "seeds": [
+      42,
+      7,
+      17
+    ],
+    "p0_warmup_episodes": 40,
+    "p1_eval_episodes": 60,
+    "steps_per_episode": 200,
+    "warmup_fraction": 0.5,
+    "entropy_delta_threshold": 0.1,
+    "entropy_abs_floor": 0.3,
+    "seeds_required_to_pass": 2,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    }
+  }
+}
