@@ -1,47 +1,34 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-11T22:09:56Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-540b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-514h",
-      "result": "PASS",
-      "completed_at": "2026-05-10T17:32:00.043546+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514i",
-      "result": "PASS",
-      "completed_at": "2026-05-10T21:54:50.780038+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-549",
-      "result": "FAIL",
-      "completed_at": "2026-05-11T20:18:56.708985+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-550",
-      "result": "FAIL",
-      "completed_at": "2026-05-11T20:28:18.127678+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-553",
-      "result": "FAIL",
-      "completed_at": "2026-05-11T20:47:58.772897+00:00"
-    }
+  "last_tick_utc": "2026-05-12T06:21:17Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-554a",
+  "current_exq_started_utc": "2026-05-12T06:18:12.064848+00:00",
+  "current_title": "Decoder + elite-refit collapse localization diagnostic (M0-M4) [re-queue of V3-EXQ-554 killed by 06:10 UTC systemctl restart]",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 7 / ARM_ORTHO",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 0,
+    "episodes_total": 130,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 185,
+  "seconds_remaining": 1040,
+  "recent_lines": [
+    "[train] seed=7 arm=ARM_IID M2 pw_mean=3.4349e+00 min_pw=2.7785e+00 ew_var=3.8276e-02 K=32 n=80",
+    "[train] seed=7 arm=ARM_IID M3 pw_mean=1.1794e+01 min_pw=1.5004e+00 ew_var=2.7723e+00 K=32 n=80",
+    "[train] seed=7 arm=ARM_IID M4 pw_mean=2.2482e+00 min_pw=1.6576e+00 ew_var=5.5317e-03 K=32 n=80",
+    "[train] seed=7 arm=ARM_IID stage1_pw=1.8473e-04 entropy=0.0000 actions={2: 600}",
+    "Seed 7 Condition ARM_ORTHO"
   ],
-  "runner_pid": 668,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 1586,
   "runner_version": null,
   "gpu": {
     "available": false
