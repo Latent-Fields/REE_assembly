@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-12T06:23:21Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-554a",
-  "current_exq_started_utc": "2026-05-12T06:18:12.064848+00:00",
-  "current_title": "Decoder + elite-refit collapse localization diagnostic (M0-M4) [re-queue of V3-EXQ-554 killed by 06:10 UTC systemctl restart]",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 17 / ARM_ORTHO",
-    "runs_done": 0,
-    "runs_total": 1,
-    "episodes_done": 0,
-    "episodes_total": 130,
-    "overall_pct": 0.0
-  },
-  "seconds_elapsed": 309,
-  "seconds_remaining": 1040,
-  "recent_lines": [
-    "[train] seed=17 arm=ARM_IID M2 pw_mean=3.5749e+00 min_pw=2.9085e+00 ew_var=4.1454e-02 K=32 n=80",
-    "[train] seed=17 arm=ARM_IID M3 pw_mean=8.5151e+00 min_pw=1.2126e+00 ew_var=1.5298e+00 K=32 n=80",
-    "[train] seed=17 arm=ARM_IID M4 pw_mean=2.5020e+00 min_pw=1.8601e+00 ew_var=6.8002e-03 K=32 n=80",
-    "[train] seed=17 arm=ARM_IID stage1_pw=2.2279e-04 entropy=0.0000 actions={2: 600}",
-    "Seed 17 Condition ARM_ORTHO"
+  "last_tick_utc": "2026-05-12T06:23:33Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-555",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-549",
+      "result": "FAIL",
+      "completed_at": "2026-05-11T20:18:56.708985+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-550",
+      "result": "FAIL",
+      "completed_at": "2026-05-11T20:28:18.127678+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-553",
+      "result": "FAIL",
+      "completed_at": "2026-05-11T20:47:58.772897+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-554",
+      "result": "ERROR",
+      "completed_at": "2026-05-12T06:09:57.868492+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-554a",
+      "result": "FAIL",
+      "completed_at": "2026-05-12T06:23:30.381648+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 1586,
   "runner_version": null,
   "gpu": {
