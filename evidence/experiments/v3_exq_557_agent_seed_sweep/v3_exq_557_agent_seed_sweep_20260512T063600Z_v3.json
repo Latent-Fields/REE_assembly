@@ -1,0 +1,431 @@
+{
+  "run_id": "v3_exq_557_agent_seed_sweep_20260512T063600Z_v3",
+  "experiment_type": "v3_exq_557_agent_seed_sweep",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260512T063600Z",
+  "outcome": "PASS",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Monostrategy-investigation diagnostic. Samples 30 agent_seeds at fixed env_seed=42 to characterise the monostrategy basin in agent-init space. Replicates V3-EXQ-555 ARM_NORMAL config verbatim (P0=40, P1=60, 200 steps/ep, same ENV_KWARGS) and reuses the V3-EXQ-555 _make_agent_and_env factored-seed helper unchanged. Pre-registered 4-row interpretation grid: (R1) deep_collapse_basin -- >= 80% of seeds at entropy < 0.10; monostrategy basin dominates agent-init space; substrate-side init fix needed rather than lucky-seed reliance. (R2) bimodal_split -- collapsed cluster 50%-80% with a second cluster >= 0.50 and sparse transition band; basin is large but escapable; routes to V3-EXQ-556-style module-init swap on a member of each cluster. (R3) mostly_diverse -- >= 50% of seeds at entropy >= 0.30; monostrategy is the minority outcome; V3-EXQ-555 seed=42 was unlucky, not seed=7 lucky. (R4) continuous_spread -- no bimodality, smooth distribution; basin metaphor wrong; routes to different framing. experiment_purpose=diagnostic; evidence_direction set to non_contributory on PASS so governance does not weight any claim from this run.",
+  "pass_criteria_summary": {
+    "n_cells": 30,
+    "n_collapse_lt_0p10": 24,
+    "n_mid_0p10_to_0p30": 2,
+    "n_diverse_ge_0p30": 4,
+    "n_bimodal_high_ge_0p50": 3,
+    "mean_entropy": 0.08924307079732882,
+    "std_entropy": 0.1969026988675056,
+    "min_entropy": 0.0,
+    "max_entropy": 0.6902286376762798,
+    "interpretation_row": "R1_deep_collapse_basin",
+    "interpretation_description": "24/30 (80%) of agent_seeds at entropy < 0.10. Monostrategy basin dominates agent-init space; seed-7-style escapes are rare. Reinforces the need for a substrate-side init fix rather than relying on lucky seeds.",
+    "anchor_entropies": {
+      "seed_7_entropy": 0.6902286376762798,
+      "seed_17_entropy": 0.030270089345330292,
+      "seed_42_entropy": 0.0
+    }
+  },
+  "per_cell_results": [
+    {
+      "agent_seed": 0,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11618
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11618,
+      "p0_n_total_actions": 4013,
+      "p1_n_total_actions": 11618
+    },
+    {
+      "agent_seed": 1,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "1": 12000
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 12000,
+      "p0_n_total_actions": 8000,
+      "p1_n_total_actions": 12000
+    },
+    {
+      "agent_seed": 2,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11233
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11233,
+      "p0_n_total_actions": 7423,
+      "p1_n_total_actions": 11233
+    },
+    {
+      "agent_seed": 3,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11425
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11425,
+      "p0_n_total_actions": 7435,
+      "p1_n_total_actions": 11425
+    },
+    {
+      "agent_seed": 4,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11233
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11233,
+      "p0_n_total_actions": 7423,
+      "p1_n_total_actions": 11233
+    },
+    {
+      "agent_seed": 5,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 11618
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11618,
+      "p0_n_total_actions": 7543,
+      "p1_n_total_actions": 11618
+    },
+    {
+      "agent_seed": 6,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "0": 11612
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11612,
+      "p0_n_total_actions": 5641,
+      "p1_n_total_actions": 11612
+    },
+    {
+      "agent_seed": 7,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "1": 444,
+        "0": 381
+      },
+      "p1_action_class_entropy": 0.6902286376762798,
+      "p1_n_actions": 825,
+      "p0_n_total_actions": 770,
+      "p1_n_total_actions": 825
+    },
+    {
+      "agent_seed": 8,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "0": 11806
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11806,
+      "p0_n_total_actions": 7805,
+      "p1_n_total_actions": 11806
+    },
+    {
+      "agent_seed": 9,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 728,
+        "3": 276
+      },
+      "p1_action_class_entropy": 0.5880721986330283,
+      "p1_n_actions": 1004,
+      "p0_n_total_actions": 6660,
+      "p1_n_total_actions": 1004
+    },
+    {
+      "agent_seed": 11,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 11618
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11618,
+      "p0_n_total_actions": 5935,
+      "p1_n_total_actions": 11618
+    },
+    {
+      "agent_seed": 13,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11234
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11234,
+      "p0_n_total_actions": 7366,
+      "p1_n_total_actions": 11234
+    },
+    {
+      "agent_seed": 17,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 10635,
+        "3": 51
+      },
+      "p1_action_class_entropy": 0.030270089345330292,
+      "p1_n_actions": 10686,
+      "p0_n_total_actions": 6145,
+      "p1_n_total_actions": 10686
+    },
+    {
+      "agent_seed": 19,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "0": 12000
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 12000,
+      "p0_n_total_actions": 7451,
+      "p1_n_total_actions": 12000
+    },
+    {
+      "agent_seed": 23,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 11023,
+        "3": 28
+      },
+      "p1_action_class_entropy": 0.017677179027427374,
+      "p1_n_actions": 11051,
+      "p0_n_total_actions": 7304,
+      "p1_n_total_actions": 11051
+    },
+    {
+      "agent_seed": 29,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "0": 11806
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11806,
+      "p0_n_total_actions": 7611,
+      "p1_n_total_actions": 11806
+    },
+    {
+      "agent_seed": 31,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "1": 12000
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 12000,
+      "p0_n_total_actions": 7815,
+      "p1_n_total_actions": 12000
+    },
+    {
+      "agent_seed": 37,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11233
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11233,
+      "p0_n_total_actions": 7423,
+      "p1_n_total_actions": 11233
+    },
+    {
+      "agent_seed": 41,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 1734,
+        "3": 658
+      },
+      "p1_action_class_entropy": 0.5882498133813654,
+      "p1_n_actions": 2392,
+      "p0_n_total_actions": 5090,
+      "p1_n_total_actions": 2392
+    },
+    {
+      "agent_seed": 42,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "0": 11806
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11806,
+      "p0_n_total_actions": 7622,
+      "p1_n_total_actions": 11806
+    },
+    {
+      "agent_seed": 43,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "4": 357
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 357,
+      "p0_n_total_actions": 240,
+      "p1_n_total_actions": 357
+    },
+    {
+      "agent_seed": 47,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11234
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11234,
+      "p0_n_total_actions": 7638,
+      "p1_n_total_actions": 11234
+    },
+    {
+      "agent_seed": 53,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "1": 12000
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 12000,
+      "p0_n_total_actions": 8000,
+      "p1_n_total_actions": 12000
+    },
+    {
+      "agent_seed": 100,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 11233
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11233,
+      "p0_n_total_actions": 7423,
+      "p1_n_total_actions": 11233
+    },
+    {
+      "agent_seed": 101,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "4": 357
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 357,
+      "p0_n_total_actions": 240,
+      "p1_n_total_actions": 357
+    },
+    {
+      "agent_seed": 200,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "3": 10848
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 10848,
+      "p0_n_total_actions": 6756,
+      "p1_n_total_actions": 10848
+    },
+    {
+      "agent_seed": 300,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "0": 6963,
+        "2": 203
+      },
+      "p1_action_class_entropy": 0.12888197299322235,
+      "p1_n_actions": 7166,
+      "p0_n_total_actions": 5418,
+      "p1_n_total_actions": 7166
+    },
+    {
+      "agent_seed": 500,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 530,
+        "1": 8126
+      },
+      "p1_action_class_entropy": 0.23033641380624287,
+      "p1_n_actions": 8656,
+      "p0_n_total_actions": 7822,
+      "p1_n_total_actions": 8656
+    },
+    {
+      "agent_seed": 1000,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 489,
+        "3": 3023
+      },
+      "p1_action_class_entropy": 0.40357581905696793,
+      "p1_n_actions": 3512,
+      "p0_n_total_actions": 6943,
+      "p1_n_total_actions": 3512
+    },
+    {
+      "agent_seed": 12345,
+      "env_seed": 42,
+      "p1_action_class_counts": {
+        "2": 11236
+      },
+      "p1_action_class_entropy": 0.0,
+      "p1_n_actions": 11236,
+      "p0_n_total_actions": 8000,
+      "p1_n_total_actions": 11236
+    }
+  ],
+  "config": {
+    "env_seed_fixed": 42,
+    "agent_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31,
+      37,
+      41,
+      42,
+      43,
+      47,
+      53,
+      100,
+      101,
+      200,
+      300,
+      500,
+      1000,
+      12345
+    ],
+    "p0_train_episodes": 40,
+    "p1_eval_episodes": 60,
+    "steps_per_episode": 200,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "ran_at_full_555_length": true,
+    "factored_seed_helper_source": "experiments.v3_exq_555_seed7_env_factorization._make_agent_and_env"
+  }
+}
