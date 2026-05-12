@@ -1,9 +1,9 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-12T06:05:23.795546+00:00",
-  "last_updated": "2026-05-12T06:10:14.519458+00:00",
-  "idle": true,
+  "runner_pid": 2019,
+  "runner_started_at": "2026-05-12T06:10:22.079202+00:00",
+  "last_updated": "2026-05-12T06:29:28.518063+00:00",
+  "idle": false,
   "current": null,
   "queue": [
     {
@@ -18,13 +18,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-554",
+      "queue_id": "V3-EXQ-554a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Decoder + elite-refit collapse localization diagnostic (M0-M4)",
+      "title": "Decoder + elite-refit collapse localization diagnostic (M0-M4) [re-queue of V3-EXQ-554 killed by 06:10 UTC systemctl restart]",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2081,7 +2081,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-2",
       "actual_secs": 285.1
+    },
+    {
+      "queue_id": "V3-EXQ-540d",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 read-site introspection probe (diagnoses V3-EXQ-540b structural conj_fire_rate=0) [re-queue of V3-EXQ-540c killed by 06:10 UTC systemctl restart]",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_540c_mech307_readsite_probe] outcome=PASS elapsed=653.8s | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-540d -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-540d.json",
+      "started_at": "2026-05-12T06:18:33.490395+00:00",
+      "completed_at": "2026-05-12T06:29:28.517588+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_540c_mech307_readsite_probe/v3_exq_540c_mech307_readsite_probe_20260512T062928Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 655.0
     }
-  ],
-  "draining": false
+  ]
 }
