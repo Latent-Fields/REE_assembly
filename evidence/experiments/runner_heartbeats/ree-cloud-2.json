@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-12T08:03:52Z",
+  "last_tick_utc": "2026-05-12T08:04:54Z",
   "state": "running",
   "current_exq": "V3-EXQ-556",
   "current_exq_started_utc": "2026-05-12T06:37:45.103326+00:00",
@@ -10,20 +10,20 @@
   "current_description": "",
   "progress": {
     "run_label": "starting...",
-    "runs_done": 2,
+    "runs_done": 3,
     "runs_total": 1,
     "episodes_done": 130,
     "episodes_total": 130,
-    "overall_pct": 300.0
+    "overall_pct": 400.0
   },
-  "seconds_elapsed": 5167,
+  "seconds_elapsed": 5230,
   "seconds_remaining": 0,
   "recent_lines": [
-    "[train] arm=ARM_BASELINE_7 P0 40/40 n_total=6438",
-    "[eval]  arm=ARM_BASELINE_7 P1 60/60 entropy=0.0328 n_actions=10678",
-    "verdict: PASS",
     "Arm ARM_SWAP_LATENT: overrides={'latent_stack': 7}",
-    "[train] arm=ARM_SWAP_LATENT P0 40/40 n_total=7811"
+    "[train] arm=ARM_SWAP_LATENT P0 40/40 n_total=7811",
+    "[eval]  arm=ARM_SWAP_LATENT P1 60/60 entropy=0.0000 n_actions=11043",
+    "verdict: PASS",
+    "Arm ARM_SWAP_E1: overrides={'e1': 7}"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
