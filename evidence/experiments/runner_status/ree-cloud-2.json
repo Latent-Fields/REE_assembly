@@ -1,29 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 664,
-  "runner_started_at": "2026-05-11T19:01:30.305022+00:00",
-  "last_updated": "2026-05-11T20:36:56.241853+00:00",
-  "idle": false,
+  "runner_pid": null,
+  "runner_started_at": "2026-05-12T06:05:23.795546+00:00",
+  "last_updated": "2026-05-12T06:10:14.519458+00:00",
+  "idle": true,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-552",
+      "queue_id": "V3-EXQ-555",
       "backlog_id": "",
-      "claim_id": null,
-      "title": "Forced uniform-random action warmup vs monostrategy collapse (training-loop diagnostic on V3-EXQ-550 entropy=0 finding)",
+      "claim_id": "",
+      "title": "Seed-7 env vs agent factorization diagnostic",
       "description": "",
-      "estimated_minutes": 80.0,
+      "estimated_minutes": 17.3,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-543d",
+      "queue_id": "V3-EXQ-554",
       "backlog_id": "",
-      "claim_id": "ARC-062",
-      "title": "ARC-062 x MECH-260 2x2 factorial monomodal-collapse falsifier on bipartite SD-054",
+      "claim_id": "",
+      "title": "Decoder + elite-refit collapse localization diagnostic (M0-M4)",
       "description": "",
-      "estimated_minutes": 172.8,
+      "estimated_minutes": 17.3,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2067,6 +2067,21 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_551a_pipeline_entropy_diagnostic_fix/v3_exq_551a_pipeline_entropy_diagnostic_fix_20260511T203529Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 87.5
+    },
+    {
+      "queue_id": "V3-EXQ-540c",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 read-site introspection probe (diagnoses V3-EXQ-540b structural conj_fire_rate=0)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15; no runner sentinel and no stdout verdict",
+      "started_at": "2026-05-12T06:05:27.315077+00:00",
+      "completed_at": "2026-05-12T06:10:13.242473+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 285.1
     }
-  ]
+  ],
+  "draining": false
 }
