@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-12T08:59:24Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-540e",
-  "current_exq_started_utc": "2026-05-12T06:58:22.060485+00:00",
-  "current_title": "MECH-307 default-fix behavioural validation (3-arm under new defaults; supersedes V3-EXQ-540d)",
-  "current_claim_id": "MECH-307",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_2_full",
-    "runs_done": 8,
-    "runs_total": 9,
-    "episodes_done": 65,
-    "episodes_total": 70,
-    "overall_pct": 99.2
-  },
-  "seconds_elapsed": 7262,
-  "seconds_remaining": 63,
-  "recent_lines": [
-    "[train] ARM_2_full seed=44 ep 40/70 (warmup)",
-    "[train] ARM_2_full seed=44 ep 50/70 (warmup)",
-    "[train] ARM_2_full seed=44 ep 55/70 (eval)",
-    "[train] ARM_2_full seed=44 ep 60/70 (eval)",
-    "[train] ARM_2_full seed=44 ep 65/70 (eval)"
+  "last_tick_utc": "2026-05-12T08:59:30Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-557",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-550",
+      "result": "FAIL",
+      "completed_at": "2026-05-11T20:28:18.127678+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-553",
+      "result": "FAIL",
+      "completed_at": "2026-05-11T20:47:58.772897+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-554",
+      "result": "ERROR",
+      "completed_at": "2026-05-12T06:09:57.868492+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-554a",
+      "result": "FAIL",
+      "completed_at": "2026-05-12T06:23:30.381648+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-540e",
+      "result": "FAIL",
+      "completed_at": "2026-05-12T08:59:27.479228+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 1586,
   "runner_version": null,
   "gpu": {
