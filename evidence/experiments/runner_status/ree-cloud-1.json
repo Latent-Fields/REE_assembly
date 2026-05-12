@@ -1,18 +1,29 @@
 {
   "schema_version": "v1",
   "runner_pid": null,
-  "runner_started_at": "2026-05-10T20:56:02.432813+00:00",
-  "last_updated": "2026-05-10T21:54:53.196873+00:00",
+  "runner_started_at": "2026-05-12T06:05:23.171879+00:00",
+  "last_updated": "2026-05-12T06:09:59.518857+00:00",
   "idle": true,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-547",
+      "queue_id": "V3-EXQ-555",
       "backlog_id": "",
-      "claim_id": "MECH-320",
-      "title": "MECH-320 (ARC-066 child) tonic_vigor_coupling_score_bias substrate-readiness diagnostic (6 sub-tests UC1-UC6)",
+      "claim_id": "",
+      "title": "Seed-7 env vs agent factorization diagnostic",
       "description": "",
-      "estimated_minutes": 0.0,
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-540c",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 read-site introspection probe (diagnoses V3-EXQ-540b structural conj_fire_rate=0)",
+      "description": "",
+      "estimated_minutes": 4.7,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2840,6 +2851,62 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 3526.0
+    },
+    {
+      "queue_id": "V3-EXQ-549",
+      "backlog_id": "EVB-0232",
+      "claim_id": "ARC-066",
+      "title": "ARC-066 / MECH-320 tonic_vigor behavioural discriminative pair (EXP-0083 / EVB-0232)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-549 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-549.json",
+      "started_at": "2026-05-11T19:01:23.926093+00:00",
+      "completed_at": "2026-05-11T20:18:56.708985+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_549_arc066_tonic_vigor_discriminative_pair_20260511T190124Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 4651.5
+    },
+    {
+      "queue_id": "V3-EXQ-550",
+      "backlog_id": "",
+      "claim_id": "MECH-269",
+      "title": "MECH-269 z_goal-enabled monostrategy falsifier (config-default vs substrate diagnosis)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-550 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-550.json",
+      "started_at": "2026-05-11T20:18:58.583461+00:00",
+      "completed_at": "2026-05-11T20:28:18.127678+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_550_zgoal_monostrategy_falsifier/v3_exq_550_zgoal_monostrategy_falsifier_20260511T201859Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 559.5
+    },
+    {
+      "queue_id": "V3-EXQ-553",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "Orthogonal CEM-candidate seeding proposer-fix (arm A; substrate-side flag use_orthogonal_cem_seeding)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-553 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-553.json",
+      "started_at": "2026-05-11T20:42:41.650634+00:00",
+      "completed_at": "2026-05-11T20:47:58.772897+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_553_orthogonal_cem_seeding/v3_exq_553_orthogonal_cem_seeding_20260511T204242Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 317.1
+    },
+    {
+      "queue_id": "V3-EXQ-554",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Decoder + elite-refit collapse localization diagnostic (M0-M4)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code -15; no runner sentinel and no stdout verdict",
+      "started_at": "2026-05-12T06:05:24.867129+00:00",
+      "completed_at": "2026-05-12T06:09:57.868492+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 271.7
     }
   ],
   "draining": false
