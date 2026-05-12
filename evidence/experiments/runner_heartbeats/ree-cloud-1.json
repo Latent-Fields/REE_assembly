@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-12T07:19:06Z",
+  "last_tick_utc": "2026-05-12T07:20:08Z",
   "state": "running",
   "current_exq": "V3-EXQ-540e",
   "current_exq_started_utc": "2026-05-12T06:58:22.060485+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 42 / ARM_1_split_only",
     "runs_done": 1,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 70,
-    "overall_pct": 11.1
+    "overall_pct": 12.7
   },
-  "seconds_elapsed": 1245,
-  "seconds_remaining": 8920,
+  "seconds_elapsed": 1307,
+  "seconds_remaining": 8760,
   "recent_lines": [
-    "[train] ARM_0_off seed=42 ep 65/70 (eval)",
     "[train] ARM_0_off seed=42 ep 70/70 (eval)",
     "seed=42 arm=ARM_0_off          liking=  0 sched_wanting=4000 gap4=  0 z_beta_exc=0.0000 split_surp_centers=0 pos=0 neg=0 conj_fire_ticks=0 conj_fire_rate=0.000 approach=1.000 contacts=14 elapsed=1113.9s",
     "verdict: PASS",
-    "Seed 42 Condition ARM_1_split_only"
+    "Seed 42 Condition ARM_1_split_only",
+    "[train] ARM_1_split_only seed=42 ep 10/70 (warmup)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
