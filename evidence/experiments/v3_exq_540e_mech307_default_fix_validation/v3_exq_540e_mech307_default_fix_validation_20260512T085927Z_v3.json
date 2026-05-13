@@ -16,6 +16,7 @@
   "started_utc": "2026-05-12T08:59:27.199418Z",
   "outcome": "FAIL",
   "evidence_direction": "mixed",
+  "evidence_direction_note": "The formal FAIL is caused by seed44 early termination (only 134 eval ticks instead of 4000), not by the default fix failing. Seeds 42 and 43 both showed conjunction_fire_rate > 0.1 in ARM_2_full (0.101 and 0.115 respectively), clearing the C2 floor. The aggregate fire rate (0.072) fell below 0.1 because seed44 contributed 0.0. The seed44 truncation recurs across EXQ-540a/b/e -- it is a persistent experimental bug in this seed, not a substrate property. The default fix (min_drive_to_fire 0.1->0.01, conjunction_z_beta_threshold 0.6->0.3) is validated at 2/3 seeds. MECH-307 classification as mixed reflects this partial evidence. The approach_commit_rate=1.0 saturation across all arms is an independent measurement problem (the predicate triggers trivially under standard env config); MECH-295 weakens classification reflects this saturation, not a genuine finding that the bridge is non-functional.",
   "evidence_direction_per_claim": {
     "MECH-307": "mixed",
     "MECH-216": "supports",

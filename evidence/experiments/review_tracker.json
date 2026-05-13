@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-12T18:08:09Z",
+  "last_review_utc": "2026-05-13T18:18:25Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-449c",
     "V3-EXQ-455a",
@@ -303,7 +303,11 @@
     "v3_exq_546_mech319_simulation_mode_rule_gate_substrate_readiness_v3_20260510T172610Z",
     "v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z",
     "V3-EXQ-545",
-    "V3-EXQ-546"
+    "V3-EXQ-546",
+    "V3-EXQ-540c",
+    "V3-EXQ-559",
+    "V3-EXQ-559a",
+    "V3-EXQ-560"
   ],
   "reviewed_run_ids": [
     "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
@@ -2350,7 +2354,18 @@
     "v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3",
     "v3_exq_548_sd054_bipartite_substrate_readiness_20260511T162233Z_v3",
     "v3_exq_550_zgoal_monostrategy_falsifier_20260511T190132Z_v3",
-    "v3_exq_543c_arc062_phase3_bipartite_falsifier_20260511T190246Z_v3"
+    "v3_exq_543c_arc062_phase3_bipartite_falsifier_20260511T190246Z_v3",
+    "v3_exq_549_arc066_tonic_vigor_discriminative_pair_20260511T190124Z_v3",
+    "v3_exq_550_zgoal_monostrategy_falsifier_20260511T201859Z_v3",
+    "v3_exq_543d_arc062_mech260_factorial_falsifier_20260512T010638Z_v3",
+    "v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition_20260511T201750Z_v3",
+    "v3_exq_540b_mech307_conjunction_threshold_sweep_20260512T025041Z_v3",
+    "v3_exq_540c_mech307_readsite_probe_20260512T062928Z_v3",
+    "v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3",
+    "v3_exq_552_forced_exploration_warmup_20260511T202246Z_v3",
+    "v3_exq_555_seed7_env_factorization_20260512T052128Z_v3",
+    "v3_exq_557_agent_seed_sweep_20260512T063600Z_v3",
+    "v3_exq_558_agent_seed_readout_rank_diagnostic_20260512T185123Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2520,6 +2535,31 @@
         "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3"
       ],
       "subject": "V3-EXQ-461 EXP-0157 delayed-reward persistence substrate-readiness PASS reviewed. All six deterministic sub-tests passed: MECH-090 baseline Hold suppresses propagation for 12/12 synthetic delay ticks and releases only on high terminal completion; weakened/no-Hold contrast passes through 12/12 ticks; SD-033a rule_state persists under MECH-261 replay gate with cosine 0.995 to installed state while full distractor writes overwrite it (cosine -0.837); strengthened Hold resists moderate completion at threshold 0.95 and releases at 0.99; sd_033a gate table matches external_task=1.0, internal_replay=0.05, offline_consolidation=0.3; SD-034 terminal closure releases beta, injects 3 No-Go entries, writes closure_event, and resets dACC PE. Evidence_direction=supports for MECH-090, SD-033a, SD-034 at substrate-readiness level. commitment_closure_plan.md GAP-2 can be marked done for V3 substrate-readiness; full delayed-reward behavioural arm remains blocked on GAP-3 CausalGridWorldV2 env extensions."
+    },
+    {
+      "timestamp_utc": "2026-05-13T18:18:25Z",
+      "session_label": "calibration-debt-experiment-review",
+      "reviewed_run_ids": [
+        "v3_exq_549_arc066_tonic_vigor_discriminative_pair_20260511T190124Z_v3",
+        "v3_exq_550_zgoal_monostrategy_falsifier_20260511T201859Z_v3",
+        "v3_exq_543d_arc062_mech260_factorial_falsifier_20260512T010638Z_v3",
+        "v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition_20260511T201750Z_v3",
+        "v3_exq_540b_mech307_conjunction_threshold_sweep_20260512T025041Z_v3",
+        "v3_exq_540c_mech307_readsite_probe_20260512T062928Z_v3",
+        "v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3",
+        "v3_exq_552_forced_exploration_warmup_20260511T202246Z_v3",
+        "v3_exq_555_seed7_env_factorization_20260512T052128Z_v3",
+        "v3_exq_557_agent_seed_sweep_20260512T063600Z_v3",
+        "v3_exq_558_agent_seed_readout_rank_diagnostic_20260512T185123Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-540c"
+      ],
+      "manifest_reclassifications": [
+        "v3_exq_549_arc066_tonic_vigor_discriminative_pair_20260511T190124Z_v3: weakens -> non_contributory (ARC-066 + MECH-320). v_t stayed 0.0 in ARM_ON (score-receipt never activated); seed42 action_density saturated at 1.0, seed43 at 0.0 with only 210 ticks. No discriminative surface. Rung-2 calibration failure, not a substrate failure. C3 gate_product=1.0 confirms gating architecture correct.",
+        "v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3: evidence_direction_note added. Formal FAIL caused by seed44 early termination (134 ticks), not by the default fix failing. Seeds 42 and 43 both cleared C2 conjunction_fire_rate >= 0.1 (0.101 and 0.115). Default fix validated at 2/3 seeds. MECH-295 weakens reflects approach_commit_rate=1.0 saturation (measurement problem, not substrate failure)."
+      ],
+      "subject": "Review of 12 pending experiments as part of calibration-debt intake session. Monostrategy cluster (552/555/557/558): 80% of agent seeds collapse; agent-init (not env) is the driver; even escaping seed7 has near-identical candidates (pairwise L2 ~1.8e-4), so behavioral diversity must come from something downstream of the proposer. EXQ-549 (MECH-320 tonic vigor): reclassified non_contributory -- v_t=0.0 throughout is a Rung-2 calibration failure (score-receipt path never activated), not evidence the mechanism is wrong. EXQ-550 (MECH-269): FAIL=supports -- z_goal wired but inactive, monostrategy survives, supports the substrate-ceiling reading. EXQ-543d (ARC-062): all-D-null factorial -- dACC made zero difference (ARM_1 identical to baseline), gating became inert (n_inert_gating_seeds=3 in ARM_2/3); routes to head-input augmentation before behavioural testing is fair. EXQ-540 cluster: 540a/b substrate dissociation PASS but conjunction never fires (drive gate root cause); 540c read-site probe confirmed the diagnosis; 540e default fix worked in 2/3 seeds (seed44 truncation blocked formal C2). Context: calibration_debt_index.md and Work Packages A-E to be created in follow-on session."
     }
   ]
 }

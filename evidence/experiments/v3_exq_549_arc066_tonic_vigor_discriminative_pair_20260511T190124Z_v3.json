@@ -12,10 +12,11 @@
   "backlog_id": "EVB-0232",
   "proposal_id": "EXP-0083",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Reclassified 2026-05-13 from weakens to non_contributory. Gates were open (gate_product=1.0) but v_t stayed exactly 0.0 across all 120 windows -- the score-receipt / v_raw generation path never produced a positive update. Seed 42 had action_density=1.0 in both arms (agent never chose noop regardless of vigor setting); seed 43 had action_density=0.0 with only 210 ticks (early env termination). Both measurement dimensions were saturated in opposite directions, leaving no discriminative surface between arms. This is a Rung-2 calibration failure (gate open, signal zero), not a substrate failure. C3 gate_product PASS confirms the gating architecture is correct. Next step: forced-vigor probe (set tonic_vigor_floor > 0 or force v_raw=1.0) to confirm the downstream score-bias -> action-selection path before re-running the discriminative pair.",
   "evidence_direction_per_claim": {
-    "ARC-066": "weakens",
-    "MECH-320": "weakens"
+    "ARC-066": "non_contributory",
+    "MECH-320": "non_contributory"
   },
   "evidence_class": "discriminative_pair",
   "claim_ids_tested": [
