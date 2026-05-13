@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-05-12T18:15:43Z`  
+Generated: `2026-05-13T04:18:18Z`  
 Last review: `2026-05-12T18:08:09Z`  
-Pending: **11** item(s) -- 1 PASS, 6 FAIL, 4 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Pending: **12** item(s) -- 1 PASS, 6 FAIL, 5 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
 ## FAIL (action required)
 
@@ -30,6 +30,7 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 | `V3-EXQ-552` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
 | `V3-EXQ-555` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
 | `V3-EXQ-557` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
+| `V3-EXQ-558` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
 | `V3-EXQ-540c` | ERROR | `?` | ERROR |
 
 ---

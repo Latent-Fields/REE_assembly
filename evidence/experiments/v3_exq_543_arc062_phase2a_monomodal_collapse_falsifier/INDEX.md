@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier
 
-Generated: `2026-05-12T18:15:42.145507Z`
+Generated: `2026-05-13T04:18:17.474244Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
