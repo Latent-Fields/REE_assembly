@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_support_preserving_cem",
+  "entry_id": "2026-05-14_arc_065_cem_variants_moss2020",
+  "timestamp_utc": "2026-05-14T20:05:35Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Cross-Entropy Method Variants for Optimization",
+    "authors": ["Robert J. Moss"],
+    "year": 2020,
+    "venue": "arXiv",
+    "doi": "10.48550/arXiv.2009.09043",
+    "url": "https://arxiv.org/abs/2009.09043"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.54,
+  "confidence_rationale": "This preprint is useful because it names local-minima convergence as a CEM concern and uses Gaussian mixture models to encourage exploration of the design space. The source is less established than the CEM tutorial or iCEM paper, and it is not an MPC or categorical-action paper. It weakly supports considering mixture proposal distributions as a later option, not as the first V3 repair.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A unimodal CEM proposal can become trapped around one basin even when other basins remain relevant.",
+    "A mixture proposal may be overkill if the immediate failure is only missing first-action categorical support in a small action space."
+  ],
+  "tags": ["arc_065", "cem", "gaussian_mixture", "local_minima", "mixture_proposal", "exploration"],
+  "mapping": {
+    "source_claim_statement": "CEM can get stuck in local minima; Gaussian mixture models can be used in CE variants to encourage exploration of the design space.",
+    "ree_translation": "Mixture proposals are a plausible later architectural repair if one-hot support preservation is insufficient. For V3-EXQ-563b, the better first step is weaker: inspect first-action support and inject or preserve minimal candidates only when support collapses.",
+    "mapping_caveat": "The source is an arXiv preprint and not specific to MPC, hippocampal rollout, or categorical action classes. It should not carry governance weight for a permanent architecture decision.",
+    "source_context": "Optimization-methods preprint testing CE variants on parameterized objective functions with local minima."
+  },
+  "confidence_components": {
+    "source_quality": 0.50,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.48,
+    "notes": "Good pointer for mixture-proposal follow-up; too indirect for the first repair."
+  }
+}

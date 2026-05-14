@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_support_preserving_cem",
+  "entry_id": "2026-05-14_arc_065_icem_realtime_planning_pinneri2021",
+  "timestamp_utc": "2026-05-14T20:05:35Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Sample-efficient Cross-Entropy Method for Real-time Planning",
+    "authors": ["Cristina Pinneri", "Shambhuraj Sawant", "Sebastian Blaes", "Jan Achterhold", "Joerg Stueckler", "Michal Rolinek", "Georg Martius"],
+    "year": 2021,
+    "venue": "Proceedings of the 2020 Conference on Robot Learning",
+    "url": "https://proceedings.mlr.press/v155/pinneri21a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "iCEM is directly about CEM as an MPC trajectory optimizer. Its repairs are conservative and proposal-side: temporally correlated action sequences, memory, momentum/refit variants, and executing evaluated best actions. It does not solve categorical first-action support, but it supports the design stance that CEM repairs should preserve proposal quality and instrumentation rather than adding a new motivational term.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Independent per-timestep CEM samples can generate incoherent proposal surfaces that do not explore useful trajectory alternatives.",
+    "MPC variants that execute an unevaluated mean action can obscure which evaluated candidate actually carried the selected action support."
+  ],
+  "tags": ["arc_065", "icem", "cem", "mpc", "trajectory_optimization", "proposal_memory", "colored_noise"],
+  "mapping": {
+    "source_claim_statement": "CEM can be improved for real-time model-predictive control by adding temporally correlated actions, memory, and related sample-efficiency modifications.",
+    "ree_translation": "V3 support repair should stay at the proposal-distribution level. A conservative REE option is therefore support-preserving CEM instrumentation and minimal first-action support preservation, not a new drive or reward source. The paper also supports recording whether selected actions came from evaluated candidates rather than from an unevaluated mean.",
+    "mapping_caveat": "iCEM targets continuous-control robotics and sample efficiency. It does not provide a direct categorical support floor across discrete first-action classes. REE's support-preserving flag remains an experimental local repair, not an iCEM implementation.",
+    "source_context": "Model-based RL and MPC trajectory optimization, evaluated on MuJoCo and manipulation tasks with CEM-style planners."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Strong fit to CEM/MPC proposal mechanics; moderate transfer risk because REE has discrete action-object decoding layered over continuous action-object proposals."
+  }
+}

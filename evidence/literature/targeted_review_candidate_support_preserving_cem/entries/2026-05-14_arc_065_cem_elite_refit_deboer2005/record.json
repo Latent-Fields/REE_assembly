@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_support_preserving_cem",
+  "entry_id": "2026-05-14_arc_065_cem_elite_refit_deboer2005",
+  "timestamp_utc": "2026-05-14T20:05:35Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "A Tutorial on the Cross-Entropy Method",
+    "authors": ["Pieter-Tjerk de Boer", "Dirk P. Kroese", "Shie Mannor", "Reuven Y. Rubinstein"],
+    "year": 2005,
+    "venue": "Annals of Operations Research",
+    "doi": "10.1007/s10479-005-5724-z",
+    "url": "https://research.utwente.nl/en/publications/a-tutorial-on-the-cross-entropy-method/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "The tutorial is the standard peer-reviewed account of CE/CEM as elite-set refitting of a sampling distribution. It directly explains why final CEM candidates can lose support: the method is designed to concentrate probability mass around high-performing elites. The mapping to REE is algorithmic rather than biological, so it supports the diagnosis and instrumentation need more strongly than any particular repair.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the elite set contains only one first-action class, ordinary CEM refit can concentrate the next proposal distribution on that class and erase downstream choice support.",
+    "A support-preserving repair that changes the score function rather than the proposal distribution would not address the collapse mode implied by elite-set refitting."
+  ],
+  "tags": ["arc_065", "cem", "cross_entropy_method", "elite_refit", "proposal_support", "candidate_support"],
+  "mapping": {
+    "source_claim_statement": "The CE method uses randomized samples, selects elite samples by objective value, and updates the sampling distribution toward those elites.",
+    "ree_translation": "V3's CEM collapse after V3-EXQ-563 is not surprising: if the elite set is one first-action class, the next hippocampal proposal distribution is mathematically pushed toward that class. ARC-065 therefore needs candidate-support diagnostics and, experimentally, a proposal-side support-preservation option before E3 score biases can be interpreted.",
+    "mapping_caveat": "The paper does not discuss REE, hippocampal rollout, discrete first-action classes, or action-object decoding. The translation is from generic CEM mechanics to REE's CEM-style trajectory proposer.",
+    "source_context": "Peer-reviewed operations-research tutorial covering CE/CEM for combinatorial optimization, multi-extremal optimization, rare-event simulation, and machine learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "High-quality source for CEM mechanics. Mapping is local and algorithmic: it grounds why elite-refit can collapse support, not what biological hippocampus does."
+  }
+}

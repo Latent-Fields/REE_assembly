@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_support_preserving_cem",
+  "entry_id": "2026-05-14_arc_065_categorical_sampling_jang2017",
+  "timestamp_utc": "2026-05-14T20:05:35Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Categorical Reparameterization with Gumbel-Softmax",
+    "authors": ["Eric Jang", "Shixiang Gu", "Ben Poole"],
+    "year": 2017,
+    "venue": "International Conference on Learning Representations",
+    "url": "https://research.google/pubs/categorical-reparameterization-with-gumbel-softmax/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Gumbel-Softmax directly addresses differentiable sampling of categorical variables, which is relevant to REE's first-action-class boundary. It is a later-option paper, not a reason to replace the current CEM path during the 563b repair. The immediate repair can be non-differentiable support instrumentation and minimal one-hot support preservation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If first-action class is treated only as an emergent argmax of a continuous decoder, CEM may never sample behaviourally meaningful categorical alternatives.",
+    "A differentiable categorical sampler would be premature if the live failure can be measured and repaired with default-off support guards."
+  ],
+  "tags": ["arc_065", "gumbel_softmax", "categorical_sampling", "first_action", "action_support", "later_option"],
+  "mapping": {
+    "source_claim_statement": "Gumbel-Softmax provides a differentiable relaxation for categorical samples that can be annealed toward discrete categorical variables.",
+    "ree_translation": "If REE later needs a trained categorical-first-action proposal stage, Gumbel-Softmax is a plausible implementation family. For V3-EXQ-563b, it should remain a design analogy: first measure whether the existing proposer can be made support-preserving without adding a new differentiable categorical path.",
+    "mapping_caveat": "The paper is about stochastic computation graphs and discrete latent-variable learning, not CEM or MPC. It is relevant to categorical action sampling only as a later implementation pattern.",
+    "source_context": "ICLR 2017 machine-learning paper on continuous relaxations for categorical variables and gradient-based training."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.54,
+    "transfer_risk": 0.50,
+    "notes": "Good anchor for future categorical-first proposal work; too indirect for the immediate support-preserving CEM patch."
+  }
+}

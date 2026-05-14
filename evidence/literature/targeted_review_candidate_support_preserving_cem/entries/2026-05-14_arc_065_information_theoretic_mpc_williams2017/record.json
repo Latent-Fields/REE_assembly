@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_support_preserving_cem",
+  "entry_id": "2026-05-14_arc_065_information_theoretic_mpc_williams2017",
+  "timestamp_utc": "2026-05-14T20:05:35Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Information theoretic MPC for model-based reinforcement learning",
+    "authors": ["Grady Williams", "Nolan Wagener", "Brian Goldfain", "Paul Drews", "James M. Rehg", "Byron Boots", "Evangelos A. Theodorou"],
+    "year": 2017,
+    "venue": "2017 IEEE International Conference on Robotics and Automation",
+    "doi": "10.1109/ICRA.2017.7989202",
+    "url": "https://doi.org/10.1109/ICRA.2017.7989202"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Information-theoretic MPC provides a close sampling-based control analogue in which trajectory weights and entropy/control-cost structure matter, rather than only hard elite survival. This supports using entropy/support diagnostics and weak bias dose-response measurements. It is not direct evidence for changing REE's CEM implementation to MPPI.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A hard elite-only planner can erase lower-ranked alternatives before downstream biases have a chance to act.",
+    "If the score range dwarfs the bias range, a support surface may exist but remain behaviourally immovable under naturalistic bias magnitudes."
+  ],
+  "tags": ["arc_065", "information_theoretic_mpc", "mppi", "entropy", "trajectory_sampling", "bias_scale"],
+  "mapping": {
+    "source_claim_statement": "Information-theoretic MPC derives sampling-based model-predictive control schemes for stochastic optimal control and compares them with CEM-style MPC.",
+    "ree_translation": "For REE, the paper supports the diagnostic stance that proposal support and score/bias scale have to be measured together. V3-EXQ-563b should therefore record candidate entropy, E3 score range, score_bias range, and selected-rank changes before and after bias.",
+    "mapping_caveat": "The paper is an MPC/control paper, not a hippocampal or CEM-support-preservation paper. It motivates entropy-weighted thinking and dose-response diagnostics; it does not justify replacing REE CEM with MPPI in this work package.",
+    "source_context": "Robotics/control paper using sampling-based MPC for model-based RL with neural-network dynamics and nonlinear costs."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Useful as an entropy/control-cost analogue. The direct repair remains CEM-local rather than a planner swap."
+  }
+}

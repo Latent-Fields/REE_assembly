@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-14T06:31:56.342509Z`
+Generated: `2026-05-14T20:08:01.737952Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -31,6 +31,7 @@ Generated: `2026-05-14T06:31:56.342509Z`
 | `targeted_review_arc_068_opportunity_cost` | [`2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/record.json) | 6 | [`summary`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/summary.md) |
 | `targeted_review_arc_070_decomposition` | [`2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/record.json) | 7 | [`summary`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/summary.md) |
 | `targeted_review_arc_071_composition` | [`2026-05-10_arc_071_visuomotor_chunk_size_sakai2003`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/record.json) | 9 | [`summary`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/summary.md) |
+| `targeted_review_candidate_support_preserving_cem` | [`2026-05-14_arc_065_information_theoretic_mpc_williams2017`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/record.json) | 5 | [`summary`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
 | `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |
 | `targeted_review_connectome_arc_007` | [`2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/record.json) | 5 | [`summary`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/summary.md) |
