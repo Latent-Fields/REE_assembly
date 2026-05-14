@@ -1,0 +1,232 @@
+{
+  "acceptance": {
+    "P1_arm2_score_std_gt_2x_arm0": false,
+    "P2_arm3_goal_rng_gt_arm2": true,
+    "P3_z_goal_norm_above_01_in_forced_arms": true,
+    "all_pass": false,
+    "arm0_score_std": 0.008175235523112816,
+    "arm2_goal_component_range": 3.7656952007650745e-05,
+    "arm2_score_std": 0.008179933614000427,
+    "arm2_z_goal_norm_mean": 0.9999999864005494,
+    "arm3_goal_component_range": 7.531390401530149e-05,
+    "arm3_z_goal_norm_mean": 0.9999999864005494,
+    "finite_metrics": true
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "arms": [
+    {
+      "action_class_entropy_mean": 0.0,
+      "arm": "ARM_0_baseline",
+      "candidate_goal_component_range_mean": 0.0,
+      "candidate_score_range_mean": 0.035086351466687836,
+      "candidate_score_std_mean": 0.008175235523112816,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": false,
+      "goal_weight": 0.0,
+      "n_score_records_mean": 168.5,
+      "n_seeds": 2,
+      "z_goal_norm_mean": 0.05602025103570636
+    },
+    {
+      "action_class_entropy_mean": 0.0,
+      "arm": "ARM_1_natural",
+      "candidate_goal_component_range_mean": 2.301869721248232e-05,
+      "candidate_score_range_mean": 0.035101610255750336,
+      "candidate_score_std_mean": 0.008178799913386388,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": false,
+      "goal_weight": 1.0,
+      "n_score_records_mean": 168.5,
+      "n_seeds": 2,
+      "z_goal_norm_mean": 0.05602025103570636
+    },
+    {
+      "action_class_entropy_mean": 0.0,
+      "arm": "ARM_2_forced",
+      "candidate_goal_component_range_mean": 3.7656952007650745e-05,
+      "candidate_score_range_mean": 0.03510761480221803,
+      "candidate_score_std_mean": 0.008179933614000427,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": true,
+      "goal_weight": 1.0,
+      "n_score_records_mean": 168.5,
+      "n_seeds": 2,
+      "z_goal_norm_mean": 0.9999999864005494
+    },
+    {
+      "action_class_entropy_mean": 0.0,
+      "arm": "ARM_3_forced_high",
+      "candidate_goal_component_range_mean": 7.531390401530149e-05,
+      "candidate_score_range_mean": 0.03512992295138354,
+      "candidate_score_std_mean": 0.00818544238322523,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": true,
+      "goal_weight": 2.0,
+      "n_score_records_mean": 168.5,
+      "n_seeds": 2,
+      "z_goal_norm_mean": 0.9999999864005494
+    }
+  ],
+  "claim_ids": [],
+  "elapsed_seconds": 1323.7704129219055,
+  "eval_episodes": 15,
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "WPC Rung 1: forced z_goal score-margin diagnostic. Non-contributory by design. Interpretation grid: PASS-all -> E3 goal-scoring seam live; monostrategy is primary blocker; proceed to WPC Rung 2 (break monostrategy). P1-fail -> goal component too small to move scores even with forced z_goal; goal_weight or z_goal injection strength inadequate. P2-fail -> goal_weight doubling has no differential effect; suspect score swamping by base/harm costs. P3-fail -> forced injection did not produce z_goal.norm > 0.1; check is_active() gate and _z_goal assignment. All-fail -> deeper instrumentation needed.",
+  "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_562_wpc1_goal_score_margin",
+  "outcome": "FAIL",
+  "per_seed_per_arm": [
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "4": 105
+      },
+      "arm": "ARM_0_baseline",
+      "candidate_goal_component_range_mean": 0.0,
+      "candidate_score_range_mean": 0.009025210425967262,
+      "candidate_score_std_mean": 0.002137978168736611,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": false,
+      "goal_norm_final": 0.0,
+      "goal_weight": 0.0,
+      "n_score_records": 105,
+      "seed": 42,
+      "z_goal_norm_mean": 0.0
+    },
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "4": 105
+      },
+      "arm": "ARM_1_natural",
+      "candidate_goal_component_range_mean": 0.0,
+      "candidate_score_range_mean": 0.009025210425967262,
+      "candidate_score_std_mean": 0.002137978168736611,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": false,
+      "goal_norm_final": 0.0,
+      "goal_weight": 1.0,
+      "n_score_records": 105,
+      "seed": 42,
+      "z_goal_norm_mean": 0.0
+    },
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "4": 105
+      },
+      "arm": "ARM_2_forced",
+      "candidate_goal_component_range_mean": 2.2826875959123885e-05,
+      "candidate_score_range_mean": 0.009031168619791667,
+      "candidate_score_std_mean": 0.002139507581125058,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": true,
+      "goal_norm_final": 1.0,
+      "goal_weight": 1.0,
+      "n_score_records": 105,
+      "seed": 42,
+      "z_goal_norm_mean": 0.999999984105428
+    },
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "4": 105
+      },
+      "arm": "ARM_3_forced_high",
+      "candidate_goal_component_range_mean": 4.565375191824777e-05,
+      "candidate_score_range_mean": 0.009039742606026786,
+      "candidate_score_std_mean": 0.002141375352983319,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": true,
+      "goal_norm_final": 1.0,
+      "goal_weight": 2.0,
+      "n_score_records": 105,
+      "seed": 42,
+      "z_goal_norm_mean": 0.999999984105428
+    },
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "3": 1800
+      },
+      "arm": "ARM_0_baseline",
+      "candidate_goal_component_range_mean": 0.0,
+      "candidate_score_range_mean": 0.061147492507408405,
+      "candidate_score_std_mean": 0.01421249287748902,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": false,
+      "goal_norm_final": 0.014239763841032982,
+      "goal_weight": 0.0,
+      "n_score_records": 232,
+      "seed": 7,
+      "z_goal_norm_mean": 0.11204050207141272
+    },
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "3": 1800
+      },
+      "arm": "ARM_1_natural",
+      "candidate_goal_component_range_mean": 4.603739442496464e-05,
+      "candidate_score_range_mean": 0.061178010085533405,
+      "candidate_score_std_mean": 0.014219621658036164,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": false,
+      "goal_norm_final": 0.014239763841032982,
+      "goal_weight": 1.0,
+      "n_score_records": 232,
+      "seed": 7,
+      "z_goal_norm_mean": 0.11204050207141272
+    },
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "3": 1800
+      },
+      "arm": "ARM_2_forced",
+      "candidate_goal_component_range_mean": 5.24870280561776e-05,
+      "candidate_score_range_mean": 0.0611840609846444,
+      "candidate_score_std_mean": 0.014220359646875796,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": true,
+      "goal_norm_final": 1.0,
+      "goal_weight": 1.0,
+      "n_score_records": 232,
+      "seed": 7,
+      "z_goal_norm_mean": 0.9999999886956709
+    },
+    {
+      "action_class_entropy": 0.0,
+      "action_counts": {
+        "3": 1800
+      },
+      "arm": "ARM_3_forced_high",
+      "candidate_goal_component_range_mean": 0.0001049740561123552,
+      "candidate_score_range_mean": 0.061220103296740304,
+      "candidate_score_std_mean": 0.014229509413467142,
+      "candidate_unique_action_classes_mean": 1.0,
+      "force_z_goal": true,
+      "goal_norm_final": 1.0,
+      "goal_weight": 2.0,
+      "n_score_records": 232,
+      "seed": 7,
+      "z_goal_norm_mean": 0.9999999886956709
+    }
+  ],
+  "queue_id": "V3-EXQ-562",
+  "run_id": "v3_exq_562_wpc1_goal_score_margin_20260514T050338Z_v3",
+  "seeds": [
+    42,
+    7
+  ],
+  "started_utc": "2026-05-14T05:03:38.634882+00:00",
+  "steps_per_episode": 120,
+  "train_episodes": 40,
+  "wpc_context": {
+    "design": "Force z_goal = normalize(z_world) at every eval step to bypass organic seeding and test E3 scoring seam directly.",
+    "prior_exq_559a": "goal stream signals live",
+    "prior_exq_560": "score rank-constant due to monostrategy",
+    "prior_exq_561": "diversity modules cannot break monostrategy",
+    "wpc_rung": 1
+  }
+}
