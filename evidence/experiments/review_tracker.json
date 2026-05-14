@@ -1,7 +1,8 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-13T18:18:25Z",
+  "last_review_utc": "2026-05-14T06:32:00Z",
   "discussed_experiment_dirs": [
+    "V3-EXQ-562",
     "V3-EXQ-449c",
     "V3-EXQ-455a",
     "V3-EXQ-495",
@@ -2560,6 +2561,12 @@
         "v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3: evidence_direction_note added. Formal FAIL caused by seed44 early termination (134 ticks), not by the default fix failing. Seeds 42 and 43 both cleared C2 conjunction_fire_rate >= 0.1 (0.101 and 0.115). Default fix validated at 2/3 seeds. MECH-295 weakens reflects approach_commit_rate=1.0 saturation (measurement problem, not substrate failure)."
       ],
       "subject": "Review of 12 pending experiments as part of calibration-debt intake session. Monostrategy cluster (552/555/557/558): 80% of agent seeds collapse; agent-init (not env) is the driver; even escaping seed7 has near-identical candidates (pairwise L2 ~1.8e-4), so behavioral diversity must come from something downstream of the proposer. EXQ-549 (MECH-320 tonic vigor): reclassified non_contributory -- v_t=0.0 throughout is a Rung-2 calibration failure (score-receipt path never activated), not evidence the mechanism is wrong. EXQ-550 (MECH-269): FAIL=supports -- z_goal wired but inactive, monostrategy survives, supports the substrate-ceiling reading. EXQ-543d (ARC-062): all-D-null factorial -- dACC made zero difference (ARM_1 identical to baseline), gating became inert (n_inert_gating_seeds=3 in ARM_2/3); routes to head-input augmentation before behavioural testing is fair. EXQ-540 cluster: 540a/b substrate dissociation PASS but conjunction never fires (drive gate root cause); 540c read-site probe confirmed the diagnosis; 540e default fix worked in 2/3 seeds (seed44 truncation blocked formal C2). Context: calibration_debt_index.md and Work Packages A-E to be created in follow-on session."
+    },
+    {
+      "reviewed_at_utc": "2026-05-14T06:32:00Z",
+      "reviewed_run_ids": [],
+      "discussed_experiment_dirs_added": ["V3-EXQ-562"],
+      "subject": "WPC Rung 1 diagnostic (EXQ-562) reviewed. P1 FAIL: goal component range ~3.8e-5 vs score range ~0.035 (~0.1% contribution). z_goal injection working (P3 PASS, norm=1.0 in forced arms). Goal weight doubling produces monotone range increase (P2 PASS). But monostrategy persists (action_class_entropy=0.0 across all 4 arms and both seeds). P1 FAIL interpretation: goal scoring seam is live but negligibly weak -- E3's harm/world costs overwhelm the goal component structurally. WPC Rung 2 will investigate WHY goal component is so small (e.g. dramatically higher goal_weight arms, or E3 score decomposition)."
     }
   ]
 }
