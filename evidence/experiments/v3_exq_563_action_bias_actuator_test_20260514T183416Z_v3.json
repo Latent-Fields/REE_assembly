@@ -1,0 +1,305 @@
+{
+  "run_id": "v3_exq_563_action_bias_actuator_test_20260514T183416Z_v3",
+  "queue_id": "V3-EXQ-563",
+  "experiment_type": "v3_exq_563_action_bias_actuator_test",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260514T183416Z",
+  "outcome": "PASS",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "ARC-065",
+    "MECH-320"
+  ],
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-065": "non_contributory",
+    "MECH-320": "non_contributory"
+  },
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43
+    ],
+    "eval_episodes": 30,
+    "steps_per_episode": 200,
+    "n_arms": 6,
+    "p1_action0_margin_threshold": 0.1
+  },
+  "acceptance_criteria": {
+    "P1_forced_bias_changes_action_dist": false,
+    "P2_tonic_vigor_natural_v_t_zero": true,
+    "P3_tonic_vigor_floor_v_t_nonzero": true
+  },
+  "summary": {
+    "arm_entropy_means": {
+      "ARM_0_baseline": 0.0,
+      "ARM_1_tonic_vigor_natural": 0.0,
+      "ARM_2_tonic_vigor_floor": 0.0,
+      "ARM_3_forced_zero": 0.0,
+      "ARM_4_forced_nonzero": 0.0,
+      "ARM_5_combined": 0.0
+    },
+    "arm_action_0_fraction_means": {
+      "ARM_0_baseline": 0.0,
+      "ARM_1_tonic_vigor_natural": 0.0,
+      "ARM_2_tonic_vigor_floor": 0.0,
+      "ARM_3_forced_zero": 0.0,
+      "ARM_4_forced_nonzero": 0.0,
+      "ARM_5_combined": 0.0
+    },
+    "arm_candidate_first_action_entropy_means": {
+      "ARM_0_baseline": 0.0,
+      "ARM_1_tonic_vigor_natural": 0.0,
+      "ARM_2_tonic_vigor_floor": 0.0,
+      "ARM_3_forced_zero": 0.0,
+      "ARM_4_forced_nonzero": 0.0,
+      "ARM_5_combined": 0.0
+    },
+    "p1_forced_bias_changes_action_dist": false,
+    "p1_arm0_action_0_fraction": 0.0,
+    "p1_arm4_action_0_fraction": 0.0,
+    "p1_margin": 0.0,
+    "p2_tonic_vigor_natural_v_t_zero": true,
+    "p3_tonic_vigor_floor_v_t_nonzero": true,
+    "cem_data_collected": true,
+    "cem_collapse_confirmed": true,
+    "arm0_candidate_first_action_entropy": 0.0,
+    "ARM_1_tonic_vigor_natural_v_t_mean": 0.0,
+    "ARM_1_tonic_vigor_natural_v_raw_mean": -29.121876,
+    "ARM_2_tonic_vigor_floor_v_t_mean": 1.0,
+    "ARM_2_tonic_vigor_floor_v_raw_mean": -29.112139,
+    "ARM_5_combined_v_t_mean": 1.0,
+    "ARM_5_combined_v_raw_mean": -29.112139
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 42,
+      "total_steps": 210,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "4": 6720
+      },
+      "candidate_samples_collected": 6720,
+      "forced_bias_abs_mean": null
+    },
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 6000
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "1": 192000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null
+    },
+    {
+      "arm": "ARM_1_tonic_vigor_natural",
+      "seed": 42,
+      "total_steps": 210,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "4": 6720
+      },
+      "candidate_samples_collected": 6720,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -8.904368,
+      "mech320_last_v_t": 0.0,
+      "mech320_n_score_updates": 7,
+      "mech320_n_bias_calls": 7
+    },
+    {
+      "arm": "ARM_1_tonic_vigor_natural",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 6000
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "1": 192000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -49.339385,
+      "mech320_last_v_t": 0.0,
+      "mech320_n_score_updates": 23,
+      "mech320_n_bias_calls": 23
+    },
+    {
+      "arm": "ARM_2_tonic_vigor_floor",
+      "seed": 42,
+      "total_steps": 210,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "4": 6720
+      },
+      "candidate_samples_collected": 6720,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -8.899631,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 7,
+      "mech320_n_bias_calls": 7
+    },
+    {
+      "arm": "ARM_2_tonic_vigor_floor",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 6000
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "1": 192000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -49.324647,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 23,
+      "mech320_n_bias_calls": 23
+    },
+    {
+      "arm": "ARM_3_forced_zero",
+      "seed": 42,
+      "total_steps": 210,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "4": 6720
+      },
+      "candidate_samples_collected": 6720,
+      "forced_bias_abs_mean": 0.0
+    },
+    {
+      "arm": "ARM_3_forced_zero",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 6000
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "1": 192000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 0.0
+    },
+    {
+      "arm": "ARM_4_forced_nonzero",
+      "seed": 42,
+      "total_steps": 210,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "4": 6720
+      },
+      "candidate_samples_collected": 6720,
+      "forced_bias_abs_mean": 0.0
+    },
+    {
+      "arm": "ARM_4_forced_nonzero",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 6000
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "1": 192000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 0.0
+    },
+    {
+      "arm": "ARM_5_combined",
+      "seed": 42,
+      "total_steps": 210,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "4": 6720
+      },
+      "candidate_samples_collected": 6720,
+      "forced_bias_abs_mean": 0.0,
+      "mech320_v_raw_final": -8.899631,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 7,
+      "mech320_n_bias_calls": 7
+    },
+    {
+      "arm": "ARM_5_combined",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 6000
+      },
+      "candidate_first_action_entropy": 0.0,
+      "candidate_first_action_counts": {
+        "1": 192000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 0.0,
+      "mech320_v_raw_final": -49.324647,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 23,
+      "mech320_n_bias_calls": 23
+    }
+  ]
+}
