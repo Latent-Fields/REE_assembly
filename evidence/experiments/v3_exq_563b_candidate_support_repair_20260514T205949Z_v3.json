@@ -1,0 +1,1360 @@
+{
+  "run_id": "v3_exq_563b_candidate_support_repair_20260514T205949Z_v3",
+  "queue_id": "V3-EXQ-563b",
+  "experiment_type": "v3_exq_563b_candidate_support_repair",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260514T205949Z",
+  "outcome": "PASS",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "ARC-065",
+    "MECH-320"
+  ],
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Diagnostic calibration run; do not promote behavioural agency claims from this result alone.",
+  "evidence_direction_per_claim": {
+    "ARC-065": "non_contributory",
+    "MECH-320": "non_contributory"
+  },
+  "supersedes": "v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3",
+  "supersedes_queue_id": "V3-EXQ-563a",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43
+    ],
+    "eval_episodes": 30,
+    "steps_per_episode": 200,
+    "dose_episodes": 10,
+    "weak_forced_bias_vector": [
+      -10.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "dose_biases_to_action_0": [
+      -100.0,
+      -30.0,
+      -10.0,
+      -3.0,
+      -1.0,
+      -0.3,
+      -0.1,
+      0.0
+    ],
+    "support_entropy_floor": 1e-06,
+    "action0_margin": 0.1
+  },
+  "acceptance_criteria": {
+    "P1_scaffold_support_and_forced_bias_action_movement": false,
+    "P2_support_preserving_cem_increases_support": true,
+    "P3_weak_forced_bias_changes_support_preserving_selection": true,
+    "P4_support_present_but_bias_not_sufficient": false,
+    "P5_support_preserving_failed_live_path": false
+  },
+  "summary": {
+    "arm_means": {
+      "ARM_0_normal_cem": {
+        "action_0_fraction": 0.0,
+        "selected_action_class_entropy": 0.0,
+        "candidate_unique_first_action_classes_mean": 1.0,
+        "candidate_unique_first_action_classes_min": 1.0,
+        "candidate_first_action_entropy_mean": 0.0,
+        "forced_bias_abs_mean": null,
+        "support_preserving_active_steps": 0
+      },
+      "ARM_1_scaffold_candidates": {
+        "action_0_fraction": 0.0,
+        "selected_action_class_entropy": 0.0,
+        "candidate_unique_first_action_classes_mean": 5.0,
+        "candidate_unique_first_action_classes_min": 5.0,
+        "candidate_first_action_entropy_mean": 0.550057,
+        "forced_bias_abs_mean": null,
+        "support_preserving_active_steps": 0
+      },
+      "ARM_2_support_preserving_cem": {
+        "action_0_fraction": 0.5,
+        "selected_action_class_entropy": 0.0,
+        "candidate_unique_first_action_classes_mean": 2.0,
+        "candidate_unique_first_action_classes_min": 2.0,
+        "candidate_first_action_entropy_mean": 0.139061,
+        "forced_bias_abs_mean": null,
+        "support_preserving_active_steps": 6210
+      },
+      "ARM_3_support_preserving_cem_plus_weak_forced_bias": {
+        "action_0_fraction": 1.0,
+        "selected_action_class_entropy": 0.0,
+        "candidate_unique_first_action_classes_mean": 2.0,
+        "candidate_unique_first_action_classes_min": 2.0,
+        "candidate_first_action_entropy_mean": 0.139061,
+        "forced_bias_abs_mean": 0.3125,
+        "support_preserving_active_steps": 12000
+      },
+      "ARM_4_scaffold_plus_weak_forced_bias": {
+        "action_0_fraction": 0.00325,
+        "selected_action_class_entropy": 0.019606,
+        "candidate_unique_first_action_classes_mean": 5.0,
+        "candidate_unique_first_action_classes_min": 5.0,
+        "candidate_first_action_entropy_mean": 0.550057,
+        "forced_bias_abs_mean": 0.3125,
+        "support_preserving_active_steps": 0
+      }
+    },
+    "dose_response": [
+      {
+        "action0_bias": -100.0,
+        "action_0_fraction": 1.0,
+        "selected_index_distribution": {
+          "0": 4000
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 29.565651,
+        "score_bias_abs_mean": 3.125
+      },
+      {
+        "action0_bias": -30.0,
+        "action_0_fraction": 1.0,
+        "selected_index_distribution": {
+          "0": 4000
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 29.565651,
+        "score_bias_abs_mean": 0.9375
+      },
+      {
+        "action0_bias": -10.0,
+        "action_0_fraction": 0.00525,
+        "selected_index_distribution": {
+          "0": 21,
+          "3": 3979
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 28.532754,
+        "score_bias_abs_mean": 0.3125
+      },
+      {
+        "action0_bias": -3.0,
+        "action_0_fraction": 0.0,
+        "selected_index_distribution": {
+          "3": 4000
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 28.451571,
+        "score_bias_abs_mean": 0.09375
+      },
+      {
+        "action0_bias": -1.0,
+        "action_0_fraction": 0.0,
+        "selected_index_distribution": {
+          "3": 4000
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 28.451571,
+        "score_bias_abs_mean": 0.03125
+      },
+      {
+        "action0_bias": -0.3,
+        "action_0_fraction": 0.0,
+        "selected_index_distribution": {
+          "3": 4000
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 28.451571,
+        "score_bias_abs_mean": 0.009375
+      },
+      {
+        "action0_bias": -0.1,
+        "action_0_fraction": 0.0,
+        "selected_index_distribution": {
+          "3": 4000
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 28.451571,
+        "score_bias_abs_mean": 0.003125
+      },
+      {
+        "action0_bias": 0.0,
+        "action_0_fraction": 0.0,
+        "selected_index_distribution": {
+          "3": 4000
+        },
+        "candidate_first_action_entropy_mean": 0.550057,
+        "e3_raw_score_range_mean": 28.451571,
+        "score_bias_abs_mean": 0.0
+      }
+    ],
+    "dose_zero_action_0_fraction": 0.0,
+    "dose_first_bias_moving_action0_by_margin": -100.0,
+    "p1_scaffold_support_and_forced_bias_action_movement": false,
+    "p2_support_preserving_cem_increases_support": true,
+    "p3_weak_forced_bias_changes_support_preserving_selection": true,
+    "p4_support_present_but_bias_not_sufficient": false,
+    "p5_support_preserving_failed_live_path": false,
+    "support_preserving_live_path_status": "support_and_weak_bias_move_selection",
+    "interpretation_note": "E3 score-bias seam remains confirmed by 563a; this diagnostic tests proposal support and forced-bias magnitude only."
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_normal_cem",
+      "seed": 42,
+      "total_steps": 210,
+      "interpretation": "NOT_RUN: candidate_support_collapse",
+      "candidate_support_ok": false,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy_mean": 0.0,
+      "candidate_first_action_entropy_min": 0.0,
+      "candidate_unique_first_action_classes_mean": 1.0,
+      "candidate_unique_first_action_classes_min": 1.0,
+      "candidate_first_action_counts": {
+        "4": 6720
+      },
+      "candidate_samples_collected": 6720,
+      "selected_index_distribution": {
+        "0": 5,
+        "1": 7,
+        "2": 3,
+        "3": 1,
+        "4": 10,
+        "5": 13,
+        "6": 12,
+        "7": 6,
+        "8": 10,
+        "9": 8,
+        "10": 7,
+        "11": 6,
+        "12": 7,
+        "13": 6,
+        "14": 8,
+        "15": 3,
+        "16": 3,
+        "17": 4,
+        "18": 9,
+        "19": 2,
+        "20": 6,
+        "21": 10,
+        "22": 5,
+        "23": 8,
+        "24": 5,
+        "25": 11,
+        "26": 5,
+        "27": 5,
+        "28": 4,
+        "29": 6,
+        "30": 6,
+        "31": 9
+      },
+      "forced_bias_abs_mean": null,
+      "e3_raw_score_range_mean": 0.009056,
+      "e3_biased_score_range_mean": 0.009056,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.319048,
+      "selected_candidate_rank_after_bias_mean": 0.319048,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 0,
+      "preflight_status_counts": {
+        "NOT_RUN": 210
+      }
+    },
+    {
+      "arm": "ARM_0_normal_cem",
+      "seed": 43,
+      "total_steps": 6000,
+      "interpretation": "NOT_RUN: candidate_support_collapse",
+      "candidate_support_ok": false,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 6000
+      },
+      "candidate_first_action_entropy_mean": 0.0,
+      "candidate_first_action_entropy_min": 0.0,
+      "candidate_unique_first_action_classes_mean": 1.0,
+      "candidate_unique_first_action_classes_min": 1.0,
+      "candidate_first_action_counts": {
+        "1": 192000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "0": 129,
+        "1": 158,
+        "2": 191,
+        "3": 183,
+        "4": 216,
+        "5": 264,
+        "6": 209,
+        "7": 256,
+        "8": 196,
+        "9": 125,
+        "10": 155,
+        "11": 138,
+        "12": 172,
+        "13": 207,
+        "14": 216,
+        "15": 132,
+        "16": 200,
+        "17": 220,
+        "18": 201,
+        "19": 180,
+        "20": 190,
+        "21": 203,
+        "22": 183,
+        "23": 237,
+        "24": 210,
+        "25": 166,
+        "26": 189,
+        "27": 199,
+        "28": 189,
+        "29": 123,
+        "30": 165,
+        "31": 198
+      },
+      "forced_bias_abs_mean": null,
+      "e3_raw_score_range_mean": 0.03065,
+      "e3_biased_score_range_mean": 0.03065,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.040333,
+      "selected_candidate_rank_after_bias_mean": 0.040333,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 0,
+      "preflight_status_counts": {
+        "NOT_RUN": 6000
+      }
+    },
+    {
+      "arm": "ARM_1_scaffold_candidates",
+      "seed": 42,
+      "total_steps": 6000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "3": 6000
+      },
+      "forced_bias_abs_mean": null,
+      "e3_raw_score_range_mean": 20.506747,
+      "e3_biased_score_range_mean": 20.506747,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 30000,
+      "preflight_status_counts": {
+        "RUN": 6000
+      }
+    },
+    {
+      "arm": "ARM_1_scaffold_candidates",
+      "seed": 43,
+      "total_steps": 6000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "3": 6000
+      },
+      "forced_bias_abs_mean": null,
+      "e3_raw_score_range_mean": 36.565163,
+      "e3_biased_score_range_mean": 36.565163,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 30000,
+      "preflight_status_counts": {
+        "RUN": 6000
+      }
+    },
+    {
+      "arm": "ARM_2_support_preserving_cem",
+      "seed": 42,
+      "total_steps": 210,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 210
+      },
+      "candidate_first_action_entropy_mean": 0.139061,
+      "candidate_first_action_entropy_min": 0.139061,
+      "candidate_unique_first_action_classes_mean": 2.0,
+      "candidate_unique_first_action_classes_min": 2.0,
+      "candidate_first_action_counts": {
+        "0": 210,
+        "4": 6510
+      },
+      "candidate_samples_collected": 6720,
+      "selected_index_distribution": {
+        "0": 4,
+        "1": 6,
+        "2": 2,
+        "3": 2,
+        "4": 11,
+        "5": 14,
+        "6": 9,
+        "7": 7,
+        "8": 9,
+        "9": 8,
+        "10": 11,
+        "11": 4,
+        "12": 6,
+        "13": 6,
+        "14": 6,
+        "15": 3,
+        "16": 5,
+        "17": 6,
+        "18": 5,
+        "19": 3,
+        "20": 10,
+        "21": 9,
+        "22": 11,
+        "23": 4,
+        "24": 10,
+        "25": 5,
+        "26": 4,
+        "27": 7,
+        "28": 7,
+        "29": 7,
+        "30": 9
+      },
+      "forced_bias_abs_mean": null,
+      "e3_raw_score_range_mean": 3.493103,
+      "e3_biased_score_range_mean": 3.493103,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.304762,
+      "selected_candidate_rank_after_bias_mean": 0.304762,
+      "support_preserving_active_steps": 210,
+      "scaffold_candidates_added_total": 0,
+      "preflight_status_counts": {
+        "RUN": 210
+      }
+    },
+    {
+      "arm": "ARM_2_support_preserving_cem",
+      "seed": 43,
+      "total_steps": 6000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 6000
+      },
+      "candidate_first_action_entropy_mean": 0.139061,
+      "candidate_first_action_entropy_min": 0.139061,
+      "candidate_unique_first_action_classes_mean": 2.0,
+      "candidate_unique_first_action_classes_min": 2.0,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 186000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "31": 6000
+      },
+      "forced_bias_abs_mean": null,
+      "e3_raw_score_range_mean": 19.962622,
+      "e3_biased_score_range_mean": 19.962622,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 6000,
+      "scaffold_candidates_added_total": 0,
+      "preflight_status_counts": {
+        "RUN": 6000
+      }
+    },
+    {
+      "arm": "ARM_3_support_preserving_cem_plus_weak_forced_bias",
+      "seed": 42,
+      "total_steps": 6000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 6000
+      },
+      "candidate_first_action_entropy_mean": 0.139061,
+      "candidate_first_action_entropy_min": 0.139061,
+      "candidate_unique_first_action_classes_mean": 2.0,
+      "candidate_unique_first_action_classes_min": 2.0,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "4": 186000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "31": 6000
+      },
+      "forced_bias_abs_mean": 0.3125,
+      "e3_raw_score_range_mean": 3.434128,
+      "e3_biased_score_range_mean": 6.575049,
+      "score_bias_range_mean": 10.0,
+      "score_bias_abs_mean": 0.3125,
+      "selected_candidate_rank_before_bias_mean": 31.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 6000,
+      "scaffold_candidates_added_total": 0,
+      "preflight_status_counts": {
+        "RUN": 6000
+      }
+    },
+    {
+      "arm": "ARM_3_support_preserving_cem_plus_weak_forced_bias",
+      "seed": 43,
+      "total_steps": 6000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 6000
+      },
+      "candidate_first_action_entropy_mean": 0.139061,
+      "candidate_first_action_entropy_min": 0.139061,
+      "candidate_unique_first_action_classes_mean": 2.0,
+      "candidate_unique_first_action_classes_min": 2.0,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 186000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "31": 6000
+      },
+      "forced_bias_abs_mean": 0.3125,
+      "e3_raw_score_range_mean": 19.962622,
+      "e3_biased_score_range_mean": 29.962622,
+      "score_bias_range_mean": 10.0,
+      "score_bias_abs_mean": 0.3125,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 6000,
+      "scaffold_candidates_added_total": 0,
+      "preflight_status_counts": {
+        "RUN": 6000
+      }
+    },
+    {
+      "arm": "ARM_4_scaffold_plus_weak_forced_bias",
+      "seed": 42,
+      "total_steps": 6000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.039213,
+      "action_0_fraction": 0.0065,
+      "unique_actions_taken": 2,
+      "action_counts": {
+        "0": 39,
+        "3": 5961
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "0": 39,
+        "3": 5961
+      },
+      "forced_bias_abs_mean": 0.3125,
+      "e3_raw_score_range_mean": 20.759945,
+      "e3_biased_score_range_mean": 20.761634,
+      "score_bias_range_mean": 10.0,
+      "score_bias_abs_mean": 0.3125,
+      "selected_candidate_rank_before_bias_mean": 0.1885,
+      "selected_candidate_rank_after_bias_mean": 0.000333,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 30000,
+      "preflight_status_counts": {
+        "RUN": 6000
+      }
+    },
+    {
+      "arm": "ARM_4_scaffold_plus_weak_forced_bias",
+      "seed": 43,
+      "total_steps": 6000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "selected_index_distribution": {
+        "3": 6000
+      },
+      "forced_bias_abs_mean": 0.3125,
+      "e3_raw_score_range_mean": 36.565163,
+      "e3_biased_score_range_mean": 36.565163,
+      "score_bias_range_mean": 10.0,
+      "score_bias_abs_mean": 0.3125,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 30000,
+      "preflight_status_counts": {
+        "RUN": 6000
+      }
+    }
+  ],
+  "dose_response_results": [
+    {
+      "arm": "DOSE_scaffold_action0_bias_-100",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "0": 2000
+      },
+      "forced_bias_abs_mean": 3.125,
+      "e3_raw_score_range_mean": 21.279174,
+      "e3_biased_score_range_mean": 110.091465,
+      "score_bias_range_mean": 100.0,
+      "score_bias_abs_mean": 3.125,
+      "selected_candidate_rank_before_bias_mean": 29.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -100.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-100",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "0": 2000
+      },
+      "forced_bias_abs_mean": 3.125,
+      "e3_raw_score_range_mean": 37.852128,
+      "e3_biased_score_range_mean": 119.844492,
+      "score_bias_range_mean": 100.0,
+      "score_bias_abs_mean": 3.125,
+      "selected_candidate_rank_before_bias_mean": 2.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -100.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-30",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "0": 2000
+      },
+      "forced_bias_abs_mean": 0.9375,
+      "e3_raw_score_range_mean": 21.279174,
+      "e3_biased_score_range_mean": 40.091465,
+      "score_bias_range_mean": 30.0,
+      "score_bias_abs_mean": 0.9375,
+      "selected_candidate_rank_before_bias_mean": 29.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -30.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-30",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "0": 2000
+      },
+      "forced_bias_abs_mean": 0.9375,
+      "e3_raw_score_range_mean": 37.852128,
+      "e3_biased_score_range_mean": 49.844492,
+      "score_bias_range_mean": 30.0,
+      "score_bias_abs_mean": 0.9375,
+      "selected_candidate_rank_before_bias_mean": 2.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -30.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-10",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.058287,
+      "action_0_fraction": 0.0105,
+      "unique_actions_taken": 2,
+      "action_counts": {
+        "0": 21,
+        "3": 1979
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "0": 21,
+        "3": 1979
+      },
+      "forced_bias_abs_mean": 0.3125,
+      "e3_raw_score_range_mean": 20.670386,
+      "e3_biased_score_range_mean": 20.673621,
+      "score_bias_range_mean": 10.0,
+      "score_bias_abs_mean": 0.3125,
+      "selected_candidate_rank_before_bias_mean": 0.3045,
+      "selected_candidate_rank_after_bias_mean": 0.001,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -10.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-10",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.3125,
+      "e3_raw_score_range_mean": 36.395123,
+      "e3_biased_score_range_mean": 36.395123,
+      "score_bias_range_mean": 10.0,
+      "score_bias_abs_mean": 0.3125,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -10.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-3",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.09375,
+      "e3_raw_score_range_mean": 20.508019,
+      "e3_biased_score_range_mean": 20.508019,
+      "score_bias_range_mean": 3.0,
+      "score_bias_abs_mean": 0.09375,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -3.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-3",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.09375,
+      "e3_raw_score_range_mean": 36.395123,
+      "e3_biased_score_range_mean": 36.395123,
+      "score_bias_range_mean": 3.0,
+      "score_bias_abs_mean": 0.09375,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -3.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-1",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.03125,
+      "e3_raw_score_range_mean": 20.508019,
+      "e3_biased_score_range_mean": 20.508019,
+      "score_bias_range_mean": 1.0,
+      "score_bias_abs_mean": 0.03125,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -1.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-1",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.03125,
+      "e3_raw_score_range_mean": 36.395123,
+      "e3_biased_score_range_mean": 36.395123,
+      "score_bias_range_mean": 1.0,
+      "score_bias_abs_mean": 0.03125,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -1.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-0.3",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.009375,
+      "e3_raw_score_range_mean": 20.508019,
+      "e3_biased_score_range_mean": 20.508019,
+      "score_bias_range_mean": 0.3,
+      "score_bias_abs_mean": 0.009375,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -0.3
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-0.3",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.009375,
+      "e3_raw_score_range_mean": 36.395123,
+      "e3_biased_score_range_mean": 36.395123,
+      "score_bias_range_mean": 0.3,
+      "score_bias_abs_mean": 0.009375,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -0.3
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-0.1",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.003125,
+      "e3_raw_score_range_mean": 20.508019,
+      "e3_biased_score_range_mean": 20.508019,
+      "score_bias_range_mean": 0.1,
+      "score_bias_abs_mean": 0.003125,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -0.1
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_-0.1",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.003125,
+      "e3_raw_score_range_mean": 36.395123,
+      "e3_biased_score_range_mean": 36.395123,
+      "score_bias_range_mean": 0.1,
+      "score_bias_abs_mean": 0.003125,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": -0.1
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_0",
+      "seed": 42,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 2000,
+        "2": 2000,
+        "3": 2000,
+        "4": 56000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.0,
+      "e3_raw_score_range_mean": 20.508019,
+      "e3_biased_score_range_mean": 20.508019,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": 0.0
+    },
+    {
+      "arm": "DOSE_scaffold_action0_bias_0",
+      "seed": 43,
+      "total_steps": 2000,
+      "interpretation": "contributory_diagnostic",
+      "candidate_support_ok": true,
+      "forced_bias_ok": true,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 2000
+      },
+      "candidate_first_action_entropy_mean": 0.550057,
+      "candidate_first_action_entropy_min": 0.550057,
+      "candidate_unique_first_action_classes_mean": 5.0,
+      "candidate_unique_first_action_classes_min": 5.0,
+      "candidate_first_action_counts": {
+        "0": 2000,
+        "1": 56000,
+        "2": 2000,
+        "3": 2000,
+        "4": 2000
+      },
+      "candidate_samples_collected": 64000,
+      "selected_index_distribution": {
+        "3": 2000
+      },
+      "forced_bias_abs_mean": 0.0,
+      "e3_raw_score_range_mean": 36.395123,
+      "e3_biased_score_range_mean": 36.395123,
+      "score_bias_range_mean": 0.0,
+      "score_bias_abs_mean": 0.0,
+      "selected_candidate_rank_before_bias_mean": 0.0,
+      "selected_candidate_rank_after_bias_mean": 0.0,
+      "support_preserving_active_steps": 0,
+      "scaffold_candidates_added_total": 10000,
+      "preflight_status_counts": {
+        "RUN": 2000
+      },
+      "dose_action0_bias": 0.0
+    }
+  ]
+}
