@@ -1,0 +1,383 @@
+{
+  "run_id": "v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3",
+  "queue_id": "V3-EXQ-563a",
+  "experiment_type": "v3_exq_563a_action_bias_scaffold_actuator_test",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260514T194658Z",
+  "outcome": "PASS",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "ARC-065",
+    "MECH-320"
+  ],
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-065": "non_contributory",
+    "MECH-320": "non_contributory"
+  },
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43
+    ],
+    "eval_episodes": 30,
+    "steps_per_episode": 200,
+    "n_arms": 6,
+    "p1_action0_margin_threshold": 0.1
+  },
+  "acceptance_criteria": {
+    "P1_forced_bias_changes_action_dist": true,
+    "P2_tonic_vigor_natural_v_t_zero": true,
+    "P3_tonic_vigor_floor_v_t_nonzero": true,
+    "P4_candidate_support_surface_present": true,
+    "P5_forced_nonzero_bias_applied": true
+  },
+  "summary": {
+    "arm_entropy_means": {
+      "ARM_0_baseline": 0.0,
+      "ARM_1_tonic_vigor_natural": 0.0,
+      "ARM_2_tonic_vigor_floor": 0.0,
+      "ARM_3_forced_zero": 0.0,
+      "ARM_4_forced_nonzero": 0.0,
+      "ARM_5_combined": 0.0
+    },
+    "arm_action_0_fraction_means": {
+      "ARM_0_baseline": 0.0,
+      "ARM_1_tonic_vigor_natural": 0.0,
+      "ARM_2_tonic_vigor_floor": 0.0,
+      "ARM_3_forced_zero": 0.0,
+      "ARM_4_forced_nonzero": 1.0,
+      "ARM_5_combined": 1.0
+    },
+    "arm_candidate_first_action_entropy_means": {
+      "ARM_0_baseline": 0.550057,
+      "ARM_1_tonic_vigor_natural": 0.550057,
+      "ARM_2_tonic_vigor_floor": 0.550057,
+      "ARM_3_forced_zero": 0.550057,
+      "ARM_4_forced_nonzero": 0.550057,
+      "ARM_5_combined": 0.550057
+    },
+    "p1_forced_bias_changes_action_dist": true,
+    "p1_arm0_action_0_fraction": 0.0,
+    "p1_arm4_action_0_fraction": 1.0,
+    "p1_margin": 1.0,
+    "p2_tonic_vigor_natural_v_t_zero": true,
+    "p3_tonic_vigor_floor_v_t_nonzero": true,
+    "cem_data_collected": true,
+    "cem_collapse_confirmed": false,
+    "arm0_candidate_first_action_entropy": 0.550057,
+    "ARM_1_tonic_vigor_natural_v_t_mean": 0.0,
+    "ARM_1_tonic_vigor_natural_v_raw_mean": -34.678885,
+    "ARM_2_tonic_vigor_floor_v_t_mean": 1.0,
+    "ARM_2_tonic_vigor_floor_v_raw_mean": -34.66241,
+    "ARM_5_combined_v_t_mean": 1.0,
+    "ARM_5_combined_v_raw_mean": -21.243243,
+    "scaffold_enabled_all_arms": true,
+    "forced_nonzero_bias_per_class": [
+      -100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "p4_candidate_support_surface_present": true,
+    "p5_forced_nonzero_bias_applied": true,
+    "arm4_forced_bias_abs_mean": 100.0
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 42,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null
+    },
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null
+    },
+    {
+      "arm": "ARM_1_tonic_vigor_natural",
+      "seed": 42,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -24.542916,
+      "mech320_last_v_t": 0.0,
+      "mech320_n_score_updates": 29,
+      "mech320_n_bias_calls": 29
+    },
+    {
+      "arm": "ARM_1_tonic_vigor_natural",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -44.814853,
+      "mech320_last_v_t": 0.0,
+      "mech320_n_score_updates": 23,
+      "mech320_n_bias_calls": 23
+    },
+    {
+      "arm": "ARM_2_tonic_vigor_floor",
+      "seed": 42,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -24.524705,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 29,
+      "mech320_n_bias_calls": 29
+    },
+    {
+      "arm": "ARM_2_tonic_vigor_floor",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": null,
+      "mech320_v_raw_final": -44.800115,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 23,
+      "mech320_n_bias_calls": 23
+    },
+    {
+      "arm": "ARM_3_forced_zero",
+      "seed": 42,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 0.0
+    },
+    {
+      "arm": "ARM_3_forced_zero",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 0.0
+    },
+    {
+      "arm": "ARM_4_forced_nonzero",
+      "seed": 42,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 100.0
+    },
+    {
+      "arm": "ARM_4_forced_nonzero",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 100.0
+    },
+    {
+      "arm": "ARM_5_combined",
+      "seed": 42,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 6000,
+        "2": 6000,
+        "3": 6000,
+        "4": 168000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 100.0,
+      "mech320_v_raw_final": -7.817041,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 25,
+      "mech320_n_bias_calls": 25
+    },
+    {
+      "arm": "ARM_5_combined",
+      "seed": 43,
+      "total_steps": 6000,
+      "action_class_entropy": 0.0,
+      "action_0_fraction": 1.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "0": 6000
+      },
+      "candidate_first_action_entropy": 0.550057,
+      "candidate_first_action_counts": {
+        "0": 6000,
+        "1": 168000,
+        "2": 6000,
+        "3": 6000,
+        "4": 6000
+      },
+      "candidate_samples_collected": 192000,
+      "forced_bias_abs_mean": 100.0,
+      "mech320_v_raw_final": -34.669445,
+      "mech320_last_v_t": 1.0,
+      "mech320_n_score_updates": 23,
+      "mech320_n_bias_calls": 23
+    }
+  ],
+  "manifest_path": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3.json",
+  "supersedes": "v3_exq_563_action_bias_actuator_test_20260514T183416Z_v3",
+  "supersedes_queue_id": "V3-EXQ-563",
+  "diagnostic_scaffold": {
+    "use_action_class_scaffold_candidates": true,
+    "forced_nonzero_bias_per_class": [
+      -100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "p4_candidate_support_surface_present": true,
+    "p5_forced_nonzero_bias_applied": true,
+    "arm4_forced_bias_abs_mean": 100.0,
+    "min_candidate_unique_first_action_classes": 5
+  }
+}
