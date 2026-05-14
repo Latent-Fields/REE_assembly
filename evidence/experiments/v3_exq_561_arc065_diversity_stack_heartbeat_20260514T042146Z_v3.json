@@ -1,0 +1,185 @@
+{
+  "run_id": "v3_exq_561_arc065_diversity_stack_heartbeat_20260514T042146Z_v3",
+  "queue_id": "V3-EXQ-561",
+  "experiment_type": "v3_exq_561_arc065_diversity_stack_heartbeat",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260514T042146Z",
+  "outcome": "PASS",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "ARC-065",
+    "MECH-313",
+    "MECH-314",
+    "MECH-320"
+  ],
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-065": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-314": "non_contributory",
+    "MECH-320": "non_contributory"
+  },
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      7,
+      42
+    ],
+    "eval_episodes": 8,
+    "steps_per_episode": 150,
+    "n_arms": 6
+  },
+  "summary": {
+    "arm_entropy_means": {
+      "ARM_0_baseline": 0.0,
+      "ARM_1_mech313_only": 0.0,
+      "ARM_2_mech314_only": 0.0,
+      "ARM_3_entropy_ceiling": 0.0,
+      "ARM_4_mech313_mech314": 0.0,
+      "ARM_5_full_stack": 0.0
+    },
+    "baseline_entropy": 0.0,
+    "ceiling_entropy": 0.0,
+    "mech313_entropy_delta": 0.0,
+    "mech314_entropy_delta": 0.0,
+    "combined_entropy_delta": 0.0,
+    "full_stack_entropy_delta": 0.0,
+    "curiosity_beats_noise": false,
+    "combined_beats_ceiling": false,
+    "mech320_rung2_pass_any_seed": false,
+    "mech320_n_score_updates_total": 27,
+    "mech320_v_raw_final_mean": -69.570611
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 7,
+      "total_steps": 1200,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 1200
+      }
+    },
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 42,
+      "total_steps": 56,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 56
+      }
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 7,
+      "total_steps": 1200,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 1200
+      }
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 42,
+      "total_steps": 56,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 56
+      }
+    },
+    {
+      "arm": "ARM_2_mech314_only",
+      "seed": 7,
+      "total_steps": 1200,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 1200
+      }
+    },
+    {
+      "arm": "ARM_2_mech314_only",
+      "seed": 42,
+      "total_steps": 56,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 56
+      }
+    },
+    {
+      "arm": "ARM_3_entropy_ceiling",
+      "seed": 7,
+      "total_steps": 1200,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 1200
+      }
+    },
+    {
+      "arm": "ARM_3_entropy_ceiling",
+      "seed": 42,
+      "total_steps": 56,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 56
+      }
+    },
+    {
+      "arm": "ARM_4_mech313_mech314",
+      "seed": 7,
+      "total_steps": 1200,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 1200
+      }
+    },
+    {
+      "arm": "ARM_4_mech313_mech314",
+      "seed": 42,
+      "total_steps": 56,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 56
+      }
+    },
+    {
+      "arm": "ARM_5_full_stack",
+      "seed": 7,
+      "total_steps": 1200,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "3": 1200
+      },
+      "mech320_v_raw_final": -132.380033,
+      "mech320_last_v_t": 0.0,
+      "mech320_n_score_updates": 20,
+      "mech320_n_bias_calls": 20,
+      "mech320_rung2_pass": false
+    },
+    {
+      "arm": "ARM_5_full_stack",
+      "seed": 42,
+      "total_steps": 56,
+      "action_class_entropy": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 56
+      },
+      "mech320_v_raw_final": -6.76119,
+      "mech320_last_v_t": 0.0,
+      "mech320_n_score_updates": 7,
+      "mech320_n_bias_calls": 7,
+      "mech320_rung2_pass": false
+    }
+  ]
+}
