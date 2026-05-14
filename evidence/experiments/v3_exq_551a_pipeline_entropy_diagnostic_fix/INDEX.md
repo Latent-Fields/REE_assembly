@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_551a_pipeline_entropy_diagnostic_fix
 
-Generated: `2026-05-13T04:18:17.474244Z`
+Generated: `2026-05-14T06:31:56.342509Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
