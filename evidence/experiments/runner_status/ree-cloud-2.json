@@ -1,16 +1,16 @@
 {
   "schema_version": "v1",
-  "runner_pid": 2019,
-  "runner_started_at": "2026-05-12T06:10:22.079202+00:00",
-  "last_updated": "2026-05-12T06:29:28.518063+00:00",
+  "runner_pid": 665,
+  "runner_started_at": "2026-05-15T19:17:09.412775+00:00",
+  "last_updated": "2026-05-15T19:59:34.525656+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-555",
+      "queue_id": "V3-EXQ-563c",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Seed-7 env vs agent factorization diagnostic",
+      "title": "Stratified CEM and E3 score-bias calibration diagnostic (7 arms)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
@@ -18,10 +18,21 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-554a",
+      "queue_id": "V3-EXQ-567",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Decoder + elite-refit collapse localization diagnostic (M0-M4) [re-queue of V3-EXQ-554 killed by 06:10 UTC systemctl restart]",
+      "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
+      "description": "",
+      "estimated_minutes": 32.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-540f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-307 default-fix clean 3-seed rerun (seeds 42, 43, 45)",
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
@@ -2095,6 +2106,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_540c_mech307_readsite_probe/v3_exq_540c_mech307_readsite_probe_20260512T062928Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 655.0
+    },
+    {
+      "queue_id": "V3-EXQ-556",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Module-init swap diagnostic (localises which submodule's seed-7 init enables V3-EXQ-555 C0/C2 escape from monostrategy)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-556 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-556.json",
+      "started_at": "2026-05-12T06:37:45.103326+00:00",
+      "completed_at": "2026-05-12T10:45:29.925039+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_556_module_init_swap/v3_exq_556_module_init_swap_20260512T063746Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 14864.8
+    },
+    {
+      "queue_id": "V3-EXQ-566",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "WPC Rung 3: forced schema_salience injection diagnostic (MECH-216 write seam)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "P3 (ARM_3 > ARM_2 + 0.05): PASS (1008.5575 vs 870.7958) | Overall outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-566 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-566.json",
+      "started_at": "2026-05-15T19:17:10.928200+00:00",
+      "completed_at": "2026-05-15T19:59:34.525196+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_566_wpc3_schema_salience_injection/v3_exq_566_wpc3_schema_salience_injection_20260515T195934Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2542.5
     }
   ]
 }
