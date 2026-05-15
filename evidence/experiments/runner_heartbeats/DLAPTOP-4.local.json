@@ -1,34 +1,47 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-15T06:46:51Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-564",
-  "current_exq_started_utc": "2026-05-15T06:24:51.794198+00:00",
-  "current_title": "WPC Rung 2: forced VALENCE_WANTING write diagnostic (write->read seam)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 7 / ARM_3_forced_high",
-    "runs_done": 7,
-    "runs_total": 8,
-    "episodes_done": 20,
-    "episodes_total": 30,
-    "overall_pct": 95.8
-  },
-  "seconds_elapsed": 1320,
-  "seconds_remaining": 57,
-  "recent_lines": [
-    "result seed=7 arm=ARM_2_forced_low mean_wanting=35.4035 n_centers=32.0 inj_cov=1.00",
-    "verdict: PASS",
-    "Seed 7 Condition ARM_3_forced_high",
-    "[train] seed=7 arm=ARM_3_forced_high ep 10/30",
-    "[train] seed=7 arm=ARM_3_forced_high ep 20/30"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-05-15T06:47:11Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
-  "runner_pid": 29534,
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-562",
+      "result": "FAIL",
+      "completed_at": "2026-05-14T05:03:39.005886+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-563",
+      "result": "PASS",
+      "completed_at": "2026-05-14T18:34:17.193290+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-563a",
+      "result": "PASS",
+      "completed_at": "2026-05-14T19:46:58.966781+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-563b",
+      "result": "PASS",
+      "completed_at": "2026-05-14T20:59:49.718303+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-564",
+      "result": "PASS",
+      "completed_at": "2026-05-15T06:46:04.119382+00:00"
+    }
+  ],
+  "runner_pid": 29535,
   "runner_version": null,
   "gpu": {
     "available": false
