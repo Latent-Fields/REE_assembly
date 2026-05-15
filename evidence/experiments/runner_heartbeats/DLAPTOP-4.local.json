@@ -1,46 +1,30 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-15T21:16:05Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-563b",
-      "result": "PASS",
-      "completed_at": "2026-05-14T20:59:49.718303+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-564",
-      "result": "PASS",
-      "completed_at": "2026-05-15T06:47:34.732638+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-565",
-      "result": "PASS",
-      "completed_at": "2026-05-15T18:03:11.839532+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-540f",
-      "result": "FAIL",
-      "completed_at": "2026-05-15T20:18:26.637689+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-568",
-      "result": "PASS",
-      "completed_at": "2026-05-15T20:49:31.771880+00:00"
-    }
+  "last_tick_utc": "2026-05-15T21:17:15Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-540g",
+  "current_exq_started_utc": "2026-05-15T21:17:10.782741+00:00",
+  "current_title": "MECH-307 corrected C1 criterion (liking_writes baseline fix)",
+  "current_claim_id": "MECH-307",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_off",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 0,
+    "episodes_total": 130,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 1040,
+  "recent_lines": [
+    "[v3_exq_540g_mech307_criterion_fix] starting (dry_run=False)",
+    "Seed 42 Condition ARM_0_off"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 29534,
   "runner_version": null,
   "gpu": {
