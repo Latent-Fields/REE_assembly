@@ -1,47 +1,31 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-12T12:17:18Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-557",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-551",
-      "result": "PASS",
-      "completed_at": "2026-05-11T20:16:59.177702+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-551a",
-      "result": "PASS",
-      "completed_at": "2026-05-11T20:36:56.241368+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-540c",
-      "result": "ERROR",
-      "completed_at": "2026-05-12T06:10:13.242473+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-540d",
-      "result": "PASS",
-      "completed_at": "2026-05-12T06:29:28.517588+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-556",
-      "result": "FAIL",
-      "completed_at": "2026-05-12T10:45:29.925039+00:00"
-    }
+  "last_tick_utc": "2026-05-15T19:17:57Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-566",
+  "current_exq_started_utc": "2026-05-15T19:17:10.928200+00:00",
+  "current_title": "WPC Rung 3: forced schema_salience injection diagnostic (MECH-216 write seam)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_baseline",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 10,
+    "episodes_total": 30,
+    "overall_pct": 33.3
+  },
+  "seconds_elapsed": 45,
+  "seconds_remaining": 90,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_baseline",
+    "[train] seed=42 arm=ARM_0_baseline ep 10/30"
   ],
-  "runner_pid": 2019,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 665,
   "runner_version": null,
   "gpu": {
     "available": false
