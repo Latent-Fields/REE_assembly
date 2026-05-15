@@ -31129,3 +31129,63 @@
     goal it is currently pursuing. This is the situation diagnosed
     by EXP-0155 and the EXQ-561 cluster.
   location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
+
+- id: SD-055
+  title: "Differentiable CEM selection approximation -- replaces the non-differentiable argmax / argsort elite-selection step in HippocampalModule.propose_trajectories() with a softmax-weighted candidate mean so that gradient flows from task reward back through candidate selection to SD-016 cue_action_proj. Opt-in via use_differentiable_cem flag (default False; legacy argmax path bit-identical when off). Preserves ARC-007 STRICT value-flat constraint: scoring uses existing residue-terrain evaluation, not a new value head."
+  claim_type: design_decision
+  subject: hippocampal.differentiable_cem_selection
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-15"
+  depends_on:
+    - SD-016     # cue_action_proj -- the projection whose gradient is being restored
+    - ARC-007    # value-flat constraint -- preserved by scoring only over residue terrain
+    - ARC-072    # architectural gap cluster naming Gap 2 (cue_action_proj zero-gradient)
+    - MECH-326   # PFC-hippocampal routing mechanism that V4 will complete; SD-055 is the V3 staging path
+  functional_restatement: >
+    SD-055 addresses the gradient severance identified in EXP-0155 and the
+    EXQ-540f FAIL cluster: the CEM elite-selection step in
+    HippocampalModule.propose_trajectories() uses torch.argsort() to rank
+    candidates by score, then indexes elite candidates by rank -- an operation
+    with zero gradient w.r.t. scores. Because action_bias from cue_action_proj
+    enters candidate generation via E2 rollouts and scores derive from those
+    rollouts, the argsort barrier prevents any gradient from reaching
+    cue_action_proj.weight.
+
+    The differentiable approximation replaces argsort + indexed mean with a
+    softmax-weighted candidate mean over all candidates:
+
+      weights = softmax(-scores / T, dim=0)          # [n_candidates]
+      ao_mean = sum_i weights[i] * ao_candidate[i]   # [batch, H, ao_dim]
+
+    where T = differentiable_cem_temperature (default 1.0). This makes ao_mean
+    differentiable w.r.t. scores, and scores are partially differentiable
+    w.r.t. action_bias via E2 rollouts. Low T concentrates weight on the best
+    candidates (approaching argmax behavior); high T averages more broadly.
+
+    Value-flat constraint (ARC-007): scoring continues to use the existing
+    residue-terrain evaluation in _score_trajectory() -- no new value head is
+    introduced. The approximation changes only the mathematical form of the
+    selection aggregate.
+
+    Opt-in safety: use_differentiable_cem (default False) leaves the legacy
+    argmax path bit-identical when off. All existing experiments and queue
+    entries are unaffected.
+
+    Expected downstream effect: when gradient flows to cue_action_proj,
+    different z_goal states should steer different candidate action-object
+    distributions, making cue-conditioned trajectory generation measurably
+    distinct across goal contexts. This is the V3 staging path for MECH-326
+    prior to the full MECH-325 trajectory library in V4.
+  evidence_quality_note: >
+    Registered 2026-05-15 alongside implementation in
+    ree-v3/ree_core/hippocampal/module.py (softmax-weighted refit when
+    use_differentiable_cem=True) and ree-v3/ree_core/utils/config.py
+    (use_differentiable_cem: bool = False,
+    differentiable_cem_temperature: float = 1.0 in HippocampalConfig).
+    Smoke test: gradient flows to cue_action_proj.weight when flag=True;
+    flag=False is bit-identical to legacy CEM behavior.
+  location: docs/architecture/sd_055_differentiable_cem_selection.md

@@ -1,0 +1,58 @@
+{
+  "run_id": "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204821Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "queue_id": "V3-EXQ-568",
+  "claim_ids": [
+    "SD-055"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "non_contributory",
+  "outcome": "PASS",
+  "timestamp_utc": "20260515T204821Z",
+  "n_pass": 5,
+  "n_fail": 0,
+  "n_total_ucs": 5,
+  "uc_results": {
+    "UC1": {
+      "default_flag_is_false": true,
+      "default_temp_is_1_0": true,
+      "override_flag_is_true": true,
+      "override_temp_is_0_5": true,
+      "pass": true
+    },
+    "UC2": {
+      "n_trajectories": 8,
+      "n_with_ao": 8,
+      "ao_dim_ok": true,
+      "n_gt_0": true,
+      "pass": true
+    },
+    "UC3": {
+      "n_with_ao": 8,
+      "n_with_grad_fn": 8,
+      "all_have_grad_fn": true,
+      "pass": true
+    },
+    "UC4": {
+      "grad_is_not_none": true,
+      "grad_max": 372.0641784667969,
+      "grad_nonzero": true,
+      "pass": true
+    },
+    "UC5": {
+      "both_non_none": true,
+      "same_shape": true,
+      "mean_abs_diff": 0.0007020834018476307,
+      "paths_numerically_differ": true,
+      "pass": true
+    }
+  },
+  "uc1_pass": true,
+  "uc2_pass": true,
+  "uc3_pass": true,
+  "uc4_pass": true,
+  "uc5_pass": true,
+  "uc4_grad_max": 372.0641784667969,
+  "uc5_mean_abs_diff": 0.0007020834018476307,
+  "notes": "Substrate-readiness diagnostic for SD-055 differentiable CEM. Does not test behavioural claim -- that requires a trained-policy cue-conditioned divergence experiment on a goal-rich env."
+}
