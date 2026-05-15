@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-15T20:28:31Z",
+  "last_tick_utc": "2026-05-15T20:29:32Z",
   "state": "running",
   "current_exq": "V3-EXQ-566",
   "current_exq_started_utc": "2026-05-15T20:16:03.987737+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_1_canonical",
-    "runs_done": 1,
+    "run_label": "Seed 42 / ARM_2_forced_mid",
+    "runs_done": 2,
     "runs_total": 1,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 30,
     "overall_pct": 200.0
   },
-  "seconds_elapsed": 747,
+  "seconds_elapsed": 809,
   "seconds_remaining": 0,
   "recent_lines": [
-    "verdict: PASS",
-    "Seed 42 Condition ARM_1_canonical",
-    "[train] seed=42 arm=ARM_1_canonical ep 10/30",
     "[train] seed=42 arm=ARM_1_canonical ep 20/30",
-    "[train] seed=42 arm=ARM_1_canonical ep 30/30"
+    "[train] seed=42 arm=ARM_1_canonical ep 30/30",
+    "result seed=42 arm=ARM_1_canonical mean_wanting=753.4108 n_centers=32.0 inj_cov=0.00",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_2_forced_mid"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
