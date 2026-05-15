@@ -1,0 +1,127 @@
+{
+  "run_id": "v3_exq_564_wpc2_valence_wanting_write_20260515T064734Z_v3",
+  "queue_id": "V3-EXQ-564",
+  "experiment_type": "v3_exq_564_wpc2_valence_wanting_write",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "timestamp_utc": "20260515T064734Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      7
+    ],
+    "train_episodes": 30,
+    "eval_episodes": 10,
+    "steps_per_episode": 120
+  },
+  "acceptance_criteria": {
+    "P1_arm2_wanting_min": 0.1,
+    "P2_margin_eps": 0.01,
+    "P3_scale_eps": 0.05
+  },
+  "criteria_results": {
+    "P1_pass": true,
+    "P2_pass": true,
+    "P3_pass": true
+  },
+  "arm_stats": {
+    "ARM_0_baseline": {
+      "mean_valence_wanting": 0.0,
+      "mean_n_active_centers": 32.0,
+      "mean_injection_coverage": 0.0
+    },
+    "ARM_1_canonical": {
+      "mean_valence_wanting": 738.3942063649495,
+      "mean_n_active_centers": 32.0,
+      "mean_injection_coverage": 0.0
+    },
+    "ARM_2_forced_low": {
+      "mean_valence_wanting": 317.03838318735365,
+      "mean_n_active_centers": 32.0,
+      "mean_injection_coverage": 1.0
+    },
+    "ARM_3_forced_high": {
+      "mean_valence_wanting": 2994.655576299429,
+      "mean_n_active_centers": 32.0,
+      "mean_injection_coverage": 1.0
+    }
+  },
+  "per_seed_arm_results": [
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 42,
+      "mean_valence_wanting": 0.0,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 0.0,
+      "steps_total": 1200
+    },
+    {
+      "arm": "ARM_1_canonical",
+      "seed": 42,
+      "mean_valence_wanting": 729.004494934082,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 0.0,
+      "steps_total": 1200
+    },
+    {
+      "arm": "ARM_2_forced_low",
+      "seed": 42,
+      "mean_valence_wanting": 598.6732387453318,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 1.0,
+      "steps_total": 1200
+    },
+    {
+      "arm": "ARM_3_forced_high",
+      "seed": 42,
+      "mean_valence_wanting": 2995.0662660360335,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 1.0,
+      "steps_total": 1200
+    },
+    {
+      "arm": "ARM_0_baseline",
+      "seed": 7,
+      "mean_valence_wanting": 0.0,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 0.0,
+      "steps_total": 1200
+    },
+    {
+      "arm": "ARM_1_canonical",
+      "seed": 7,
+      "mean_valence_wanting": 747.783917795817,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 0.0,
+      "steps_total": 1200
+    },
+    {
+      "arm": "ARM_2_forced_low",
+      "seed": 7,
+      "mean_valence_wanting": 35.40352762937546,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 1.0,
+      "steps_total": 70
+    },
+    {
+      "arm": "ARM_3_forced_high",
+      "seed": 7,
+      "mean_valence_wanting": 2994.2448865628244,
+      "mean_n_active_centers": 32.0,
+      "n_centers_post_train": 32,
+      "injection_coverage": 1.0,
+      "steps_total": 1200
+    }
+  ],
+  "notes": "WPC Rung 2: forced VALENCE_WANTING write diagnostic. Tests write->read seam in ResidueField valence pipeline. ARM_2/ARM_3 inject via update_valence(); ARM_1 tests natural MECH-216 path."
+}
