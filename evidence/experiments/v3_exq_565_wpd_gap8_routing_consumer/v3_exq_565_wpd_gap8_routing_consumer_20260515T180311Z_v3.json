@@ -1,0 +1,78 @@
+{
+  "run_id": "v3_exq_565_wpd_gap8_routing_consumer_20260515T180311Z_v3",
+  "queue_id": "V3-EXQ-565",
+  "experiment_type": "v3_exq_565_wpd_gap8_routing_consumer",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-272"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-272": "supports"
+  },
+  "timestamp_utc": "20260515T180311Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      7
+    ],
+    "n_sense_steps": 20,
+    "n_anchors": 4,
+    "sws_anchor_weight": 0.6,
+    "draws_per_cycle": 8
+  },
+  "acceptance_criteria": {
+    "C1_arm0_weight_eq_1": 1e-06,
+    "C2_arm1_weight_near_sws_anchor": 0.0001,
+    "C3_min_sws_writes": 1
+  },
+  "criteria_results": {
+    "C1_pass": true,
+    "C2_pass": true,
+    "C3_pass": true
+  },
+  "arm0_applied_mean": 1.0,
+  "arm1_applied_mean": 0.6,
+  "per_arm_per_seed_results": {
+    "ARM_0_consumer_off": [
+      {
+        "seed": 42,
+        "routing_consumer": false,
+        "sws_anchor_weight_applied": 1.0,
+        "sws_n_writes": 5.0,
+        "mech285_n_draws": 8.0,
+        "mech272_n_routed": 8.0
+      },
+      {
+        "seed": 7,
+        "routing_consumer": false,
+        "sws_anchor_weight_applied": 1.0,
+        "sws_n_writes": 5.0,
+        "mech285_n_draws": 8.0,
+        "mech272_n_routed": 8.0
+      }
+    ],
+    "ARM_1_consumer_on": [
+      {
+        "seed": 42,
+        "routing_consumer": true,
+        "sws_anchor_weight_applied": 0.6,
+        "sws_n_writes": 5.0,
+        "mech285_n_draws": 8.0,
+        "mech272_n_routed": 8.0
+      },
+      {
+        "seed": 7,
+        "routing_consumer": true,
+        "sws_anchor_weight_applied": 0.6,
+        "sws_n_writes": 5.0,
+        "mech285_n_draws": 8.0,
+        "mech272_n_routed": 8.0
+      }
+    ]
+  },
+  "notes": "GAP-8 validation: MECH-272 routing-gate downstream consumer. ARM_0 (consumer OFF) must write at sws_anchor_weight_applied==1.0; ARM_1 (consumer ON) must write at sws_anchor_weight_applied~=0.6. Validates use_mech272_routing_consumer flag in SleepLoopManager._run_cycle()."
+}
