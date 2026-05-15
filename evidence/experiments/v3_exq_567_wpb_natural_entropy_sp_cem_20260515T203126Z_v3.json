@@ -1,0 +1,174 @@
+{
+  "run_id": "v3_exq_567_wpb_natural_entropy_sp_cem_20260515T203126Z_v3",
+  "queue_id": "V3-EXQ-567",
+  "experiment_type": "v3_exq_567_wpb_natural_entropy_sp_cem",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260515T203126Z",
+  "outcome": "PASS",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "ARC-065"
+  ],
+  "evidence_direction": "supports",
+  "evidence_direction_note": "ARM_1 (SP-CEM + stratified + ao_std_floor) vs ARM_0 (normal CEM) on natural selected_action_entropy and candidate support. PASS = SP-CEM meaningfully diversifies natural action selection. FAIL = SP-CEM does not lift natural entropy above the baseline threshold.",
+  "supersedes_queue_id": "V3-EXQ-563b",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "p1_entropy_margin": 0.05,
+    "p2_support_margin": 0.5,
+    "std_floor": 0.2,
+    "arms": [
+      "ARM_0_normal_cem",
+      "ARM_1_support_preserving"
+    ]
+  },
+  "acceptance_criteria": {
+    "P1_entropy_lift": true,
+    "P2_candidate_support_lift": true,
+    "P3_arm1_achieves_min_unique_classes": true
+  },
+  "summary": {
+    "arm0_selected_entropy_mean": 0.012438,
+    "arm1_selected_entropy_mean": 0.496543,
+    "entropy_delta_arm1_minus_arm0": 0.484105,
+    "arm0_candidate_support_mean": 1.007125,
+    "arm1_candidate_support_mean": 2.810017,
+    "support_delta_arm1_minus_arm0": 1.802892,
+    "p1_entropy_lift": true,
+    "p2_candidate_support_lift": true,
+    "p3_arm1_achieves_min_unique_classes": true,
+    "overall_pass": true
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_normal_cem",
+      "seed": 42,
+      "total_steps": 280,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 280
+      },
+      "candidate_unique_first_action_classes_mean": 1.0,
+      "candidate_first_action_entropy_mean": 0.0,
+      "candidate_first_action_counts": {
+        "4": 8960
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_0_normal_cem",
+      "seed": 43,
+      "total_steps": 8000,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 8000
+      },
+      "candidate_unique_first_action_classes_mean": 1.0,
+      "candidate_first_action_entropy_mean": 0.0,
+      "candidate_first_action_counts": {
+        "1": 256000
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_0_normal_cem",
+      "seed": 44,
+      "total_steps": 8000,
+      "selected_action_class_entropy": 0.037315,
+      "action_0_fraction": 0.006125,
+      "unique_actions_taken": 2,
+      "action_counts": {
+        "0": 49,
+        "2": 7951
+      },
+      "candidate_unique_first_action_classes_mean": 1.021375,
+      "candidate_first_action_entropy_mean": 0.008217,
+      "candidate_first_action_counts": {
+        "0": 1676,
+        "2": 254324
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_1_support_preserving",
+      "seed": 42,
+      "total_steps": 781,
+      "selected_action_class_entropy": 0.702561,
+      "action_0_fraction": 0.578745,
+      "unique_actions_taken": 3,
+      "action_counts": {
+        "0": 452,
+        "1": 3,
+        "4": 326
+      },
+      "candidate_unique_first_action_classes_mean": 2.248399,
+      "candidate_first_action_entropy_mean": 0.556458,
+      "candidate_first_action_counts": {
+        "0": 5665,
+        "1": 192,
+        "2": 8,
+        "3": 10,
+        "4": 19117
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_1_support_preserving",
+      "seed": 43,
+      "total_steps": 7779,
+      "selected_action_class_entropy": 0.11634,
+      "action_0_fraction": 0.014526,
+      "unique_actions_taken": 4,
+      "action_counts": {
+        "0": 113,
+        "1": 7617,
+        "3": 43,
+        "4": 6
+      },
+      "candidate_unique_first_action_classes_mean": 2.366885,
+      "candidate_first_action_entropy_mean": 0.377839,
+      "candidate_first_action_counts": {
+        "0": 26348,
+        "1": 219340,
+        "3": 1008,
+        "4": 2232
+      },
+      "support_preserving_active_steps": 23
+    },
+    {
+      "arm": "ARM_1_support_preserving",
+      "seed": 44,
+      "total_steps": 6894,
+      "selected_action_class_entropy": 0.670729,
+      "action_0_fraction": 0.78474,
+      "unique_actions_taken": 4,
+      "action_counts": {
+        "0": 5410,
+        "2": 1075,
+        "3": 355,
+        "4": 54
+      },
+      "candidate_unique_first_action_classes_mean": 3.814766,
+      "candidate_first_action_entropy_mean": 1.181835,
+      "candidate_first_action_counts": {
+        "0": 76517,
+        "1": 3,
+        "2": 80581,
+        "3": 51642,
+        "4": 11865
+      },
+      "support_preserving_active_steps": 0
+    }
+  ]
+}
