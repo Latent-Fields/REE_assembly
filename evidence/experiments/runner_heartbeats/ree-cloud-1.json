@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-15T21:24:25Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-567",
-  "current_exq_started_utc": "2026-05-15T20:50:09.315024+00:00",
-  "current_title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_1_support_preserving",
-    "runs_done": 6,
-    "runs_total": 6,
-    "episodes_done": 40,
-    "episodes_total": 40,
-    "overall_pct": 116.7
-  },
-  "seconds_elapsed": 2056,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "Outcome: PASS",
-    "P1_entropy_lift: True",
-    "P2_candidate_support_lift: True",
-    "P3_arm1_achieves_min_unique_classes: True",
-    "[experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-567 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-567.json"
+  "last_tick_utc": "2026-05-15T21:24:30Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-540f",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-554a",
+      "result": "FAIL",
+      "completed_at": "2026-05-12T06:23:30.381648+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-540e",
+      "result": "FAIL",
+      "completed_at": "2026-05-12T08:59:27.479228+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-563c",
+      "result": "PASS",
+      "completed_at": "2026-05-15T20:15:59.684511+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-566",
+      "result": "FAIL",
+      "completed_at": "2026-05-15T20:50:08.970980+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-567",
+      "result": "PASS",
+      "completed_at": "2026-05-15T21:24:25.915491+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 669,
   "runner_version": null,
   "gpu": {
