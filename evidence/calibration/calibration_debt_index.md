@@ -149,7 +149,7 @@ Primary metrics: action_class_entropy, state_coverage, trajectory_diversity, rul
 ```
 Rung 1: forced z_goal injection -- V3-EXQ-562 FAIL: injection fires, goal component ~0.1% score variance; Rung 2 unblocked
 Rung 2: forced VALENCE_WANTING write -- V3-EXQ-564 queued 2026-05-15 (DLAPTOP-4.local, priority 1)
-Rung 3: forced schema_salience
+Rung 3: forced schema_salience -- V3-EXQ-566 queued 2026-05-15 (DLAPTOP-4.local, priority 2)
 Rung 4: reactive resource-proximity wanting
 Rung 5: predictive wanting
 Rung 6: sustained-drive sweep
