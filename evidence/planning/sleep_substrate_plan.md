@@ -81,11 +81,11 @@ closure_plan:
       phase: 3
       status: done
       severity: high
-      owner_exq: EXP-0168
+      owner_exq: V3-EXQ-565
       unblocks_claims: [MECH-272, MECH-285]
       depends_on: []
       last_updated: 2026-05-15
-      completed_note: "anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated."
+      completed_note: "Substrate: anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated. Validation: V3-EXQ-565 queued + smoke C1/C2/C3 PASS 2026-05-15 (ARM_0 consumer-OFF weight==1.0; ARM_1 consumer-ON weight~=0.6; sws_n_writes=5 both arms via act_with_split_obs driver). EXP-0168 was the planning-time placeholder ID; V3-EXQ-565 is the queued validation experiment."
 ---
 # Sleep Substrate Plan
 
@@ -419,7 +419,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
 | GAP-6 | 5 | done | (none) | Audit complete: all 7 write sites documented in sleep_aggregation_cluster.md; all are architectural exceptions; zero require StepHarness routing | substrate audit (no EXQ) | 2026-05-15 |
 | GAP-7 | 6 | open | nothing | Update /queue-experiment skill, audit 19 experiments | n/a | 2026-05-08 |
-| GAP-8 | 3 | done | (none) | anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated | EXP-0168 | 2026-05-15 |
+| GAP-8 | 3 | done | (none) | Substrate wired (run_sws_schema_pass anchor_weight scaling; SleepLoopManager mean_anchor forwarding). Validation V3-EXQ-565 queued + smoke C1/C2/C3 PASS 2026-05-15 (consumer-OFF weight 1.0, consumer-ON ~0.6, sws_n_writes=5 via act_with_split_obs driver) | V3-EXQ-565 | 2026-05-15 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`.
 A `paused` row carries a resume condition in the [Decision log](#decision-log).
@@ -482,7 +482,7 @@ SD-016 confound, the experiment configs must additionally enable:
 | GAP-4 / Phase 4 | (new entry to add for "real targets") | MECH-273 | sleep_aggregation_cluster.md |
 | GAP-6 / Phase 5 | (new entry to add) | (audit, no claim) | sleep_aggregation_cluster.md |
 | GAP-7 / Phase 6 | (skill change, no queue entry) | n/a | n/a |
-| GAP-8 / Phase 3 | (new entry to add for "downstream wiring") | MECH-272 | sleep_aggregation_cluster.md |
+| GAP-8 / Phase 3 | V3-EXQ-565 (queued 2026-05-15, smoke C1/C2/C3 PASS) | MECH-272 | sleep_aggregation_cluster.md |
 
 The substrate_queue.json edits to add cross-references and new entries are
 made in the same session as this plan registration.
@@ -492,6 +492,28 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-15 - GAP-8 validation experiment V3-EXQ-565 queued
+
+V3-EXQ-565 written + queued via /queue-experiment (ree-v3 6ddf4ab). Two-arm
+diagnostic: ARM_0 (use_mech272_routing_consumer=False) asserts
+sws_anchor_weight_applied==1.0; ARM_1 (consumer ON) asserts ~=0.6 (the SWS-row
+mech272_sws_anchor_weight). Three acceptance criteria C1/C2/C3; smoke all PASS
+2026-05-15 (anchor_weight 1.0 vs 0.6 exact within tol; sws_n_writes=5 both arms;
+mech285_draws=8; mech272_routed=8).
+
+**Driver-pattern finding (carries to GAP-7).** First smoke FAILed C3
+(sws_n_writes=0): `run_sws_schema_pass()` returns early at `n_buf < 2`, and
+`_world_experience_buffer` is appended ONLY inside `REEAgent._e1_tick()`, which
+runs from `act()` / `act_with_split_obs()` -- never from bare `agent.sense()`.
+The Phase C contract test (`tests/contracts/test_sleep_phase_c_routing_consumer.py`)
+drives with bare `sense()` and so can only assert `sws_anchor_weight_applied`,
+not `sws_n_writes`. Any sleep experiment that needs the SWS write path exercised
+must drive the agent with `act_with_split_obs()`. This is the concrete instance
+of the GAP-7 multi-episode/driver-standardisation gap and should be folded into
+the GAP-7 skill/audit work (the 19-experiment audit must check the driver call,
+not just episode count). owner_exq for GAP-8 set to V3-EXQ-565 (EXP-0168 was the
+planning-time placeholder ID).
 
 ### 2026-05-15 - GAP-6 done (StepHarness audit) + GAP-8 done (MECH-272 anchor-channel consumer)
 
