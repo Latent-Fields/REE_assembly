@@ -3935,11 +3935,5 @@
     "subject": "environment.reef_enrichment_substrate",
     "title": "Reef enrichment substrate: env-level behavioral-diversity substrate adding coral-reef safe zones (hazard-free patches with a static scent gradient) and food-attracted hazard drift to CausalGridWorldV2. Creates two competing behavioral attractors -- 'flee to reef' vs 'forage' -- to break monomodal route-exploitation in agents whose policy collapses to a single fixed trajectory, unblocking SD-029 C2 / C3 measurement. Pure environment substrate; no trainable parameters; no MECH-094 interaction. Renamed from SD-050 on 2026-05-08 to resolve a registry-ID collision with the suffering-derivative comparator.",
     "type": "design_decision"
-  },
-  "SD-055": {
-    "status": "candidate",
-    "subject": "hippocampal.differentiable_cem_selection",
-    "title": "Differentiable CEM selection approximation -- replaces the non-differentiable argmax / argsort elite-selection step in HippocampalModule.propose_trajectories() with a softmax-weighted candidate mean so that gradient flows from task reward back through candidate selection to SD-016 cue_action_proj. Opt-in via use_differentiable_cem flag (default False; legacy argmax path bit-identical when off). Preserves ARC-007 STRICT value-flat constraint: scoring uses existing residue-terrain evaluation, not a new value head.",
-    "type": "design_decision"
   }
 }

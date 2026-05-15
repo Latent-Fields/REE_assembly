@@ -2,55 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 669,
   "runner_started_at": "2026-05-15T19:17:00.807490+00:00",
-  "last_updated": "2026-05-15T20:19:04.643435+00:00",
+  "last_updated": "2026-05-15T21:24:25.916053+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-566",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "WPC Rung 3: forced schema_salience injection diagnostic (MECH-216 write seam)",
-    "description": "",
-    "script": "experiments/v3_exq_566_wpc3_schema_salience_injection.py",
-    "started_at": "2026-05-15T20:16:03.987737+00:00",
-    "progress": {
-      "run_label": "Seed 42 / ARM_0_baseline",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 10,
-      "episodes_total": 30,
-      "overall_pct": 33.3
-    },
-    "seconds_elapsed": 181,
-    "seconds_remaining": 362,
-    "recent_lines": [
-      "Seed 42 Condition ARM_0_baseline",
-      "[train] seed=42 arm=ARM_0_baseline ep 10/30"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-566",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "WPC Rung 3: forced schema_salience injection diagnostic (MECH-216 write seam)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-567",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
-      "description": "",
-      "estimated_minutes": 32.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-540f",
       "backlog_id": "",
@@ -2983,6 +2938,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_563c_stratified_cem_bias_calibration_20260515T201559Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 3536.0
+    },
+    {
+      "queue_id": "V3-EXQ-566",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "WPC Rung 3: forced schema_salience injection diagnostic (MECH-216 write seam)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "P3 (ARM_3 > ARM_2 + 0.05): FAIL (22.2941 vs 441.1962) | Overall outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-566 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-566.json",
+      "started_at": "2026-05-15T20:16:03.987737+00:00",
+      "completed_at": "2026-05-15T20:50:08.970980+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_566_wpc3_schema_salience_injection/v3_exq_566_wpc3_schema_salience_injection_20260515T205008Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 2045.0
+    },
+    {
+      "queue_id": "V3-EXQ-567",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-567 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-567.json",
+      "started_at": "2026-05-15T20:50:09.315024+00:00",
+      "completed_at": "2026-05-15T21:24:25.915491+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_567_wpb_natural_entropy_sp_cem_20260515T212425Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 2056.6
     }
   ]
 }
