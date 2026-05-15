@@ -2,9 +2,32 @@
   "schema_version": "v1",
   "runner_pid": 669,
   "runner_started_at": "2026-05-15T19:17:00.807490+00:00",
-  "last_updated": "2026-05-15T20:15:59.684997+00:00",
+  "last_updated": "2026-05-15T20:19:04.643435+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-566",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "WPC Rung 3: forced schema_salience injection diagnostic (MECH-216 write seam)",
+    "description": "",
+    "script": "experiments/v3_exq_566_wpc3_schema_salience_injection.py",
+    "started_at": "2026-05-15T20:16:03.987737+00:00",
+    "progress": {
+      "run_label": "Seed 42 / ARM_0_baseline",
+      "runs_done": 0,
+      "runs_total": 1,
+      "episodes_done": 10,
+      "episodes_total": 30,
+      "overall_pct": 33.3
+    },
+    "seconds_elapsed": 181,
+    "seconds_remaining": 362,
+    "recent_lines": [
+      "Seed 42 Condition ARM_0_baseline",
+      "[train] seed=42 arm=ARM_0_baseline ep 10/30"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-566",
@@ -13,7 +36,7 @@
       "title": "WPC Rung 3: forced schema_salience injection diagnostic (MECH-216 write seam)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
