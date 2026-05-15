@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic1_canonical_babbling_warlaumont_finnegan2016",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Learning to Produce Syllabic Speech Sounds via Reward-Modulated Neural Plasticity",
+    "authors": ["Anne S. Warlaumont", "Megan K. Finnegan"],
+    "year": 2016,
+    "venue": "PLoS ONE",
+    "doi": "10.1371/journal.pone.0145096",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26808148/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Computational model combining spiking neural network, STDP reinforcement, and a human-like vocal tract; directly models canonical babbling emergence. The finding that reward modulation (not random noise) drives increasing canonical syllable frequency is highly relevant to the developmental bootstrapping claim. Source quality moderate (PLoS ONE computational; not replicated). Mapping fidelity good because the model explicitly instantiates the action-repertoire-bootstrapping-through-reward claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Model relies on external reward (caregiver contingent response) which may not be the primary driver in all developmental contexts.",
+    "Simulation only; no direct comparison with longitudinal infant data on babbling diversity trajectories."
+  ],
+  "tags": ["babbling", "computational_model", "reward_modulated_learning", "motor_repertoire", "canonical_syllables", "developmental_bootstrapping", "arc_065"],
+  "mapping": {
+    "source_claim_statement": "The gradual increase in canonical babbling frequency arises from dopamine-modulated STDP in motor cortex, which harnesses natural oscillatory dynamics to produce syllabic sounds; reward receipt from auditory salience shapes the repertoire.",
+    "ree_translation": "Motor exploration is not random noise: it is reward-shaped from the start, and the reward signal is self-referential (auditory salience of own output). This is directly analogous to REE's claim that action diversity generation requires intrinsic motivation / reward to avoid collapse to a single strategy. The model shows that insufficient reward variability (deaf or tracheostomised simulations) arrests development at pre-canonical babbling.",
+    "mapping_caveat": "REE uses harm/goal-based reward rather than auditory salience; the dopamine-STDP mechanism is one specific implementation of intrinsic reward for exploration.",
+    "source_context": "Computational simulation of human infant vocal development; comparison with deaf and tracheostomised infant data."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Computational paper; conceptually close mapping to REE repertoire bootstrapping logic."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic1_respiratory_rhythm_babbling_fuchs2026",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Toward a Fuller Integration of Respiratory Rhythms Into Research on Infant Vocal and Motor Development",
+    "authors": ["Susanne Fuchs", "Elina Rubertus", "Laura L. Koenig", "Aude Noiray"],
+    "year": 2026,
+    "venue": "Annals of the New York Academy of Sciences",
+    "doi": "10.1111/nyas.70197",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41649880/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Recent review in Annals of the New York Academy of Sciences; argues that canonical babbling represents the emergence of three-way coordination (motor, respiratory, vocal) not mere random vocalisation. The progressive coordination framing is relevant to the bootstrapping story. Source quality moderate-good (review, not primary data). Mapping fidelity good: the paper explicitly argues that babbling is a coordinated calibration milestone.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper is a perspective/review with limited primary data; the mechanistic claim about respiratory rhythm as the coordination scaffold is proposed rather than experimentally demonstrated."
+  ],
+  "tags": ["babbling", "motor_coordination", "respiratory_rhythm", "sensorimotor_integration", "developmental_bootstrapping", "arc_065"],
+  "mapping": {
+    "source_claim_statement": "Canonical babbling is a multimodal motor milestone reflecting progressive coordination among respiratory, motor, and vocal subsystems; respiration provides the temporal scaffold for integrating speech articulation and movement.",
+    "ree_translation": "Babbling is not noise but a phase in which multiple motor subsystems are being co-calibrated. This maps to the claim that a sufficiently broad and long exploration epoch is necessary to build the coordinated action store -- piecemeal exploration of one modality at a time leaves the multi-modal behavioural repertoire incomplete.",
+    "mapping_caveat": "The three-way respiratory-motor-vocal coordination is specific to speech production; REE's action repertoire involves spatial navigation rather than vocalization.",
+    "source_context": "Review synthesising motor control, physiology, speech, and language acquisition literatures; Annals NYAS, 2026."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Good conceptual fit; primary caveat is review-only status and vocal-specific framing."
+  }
+}

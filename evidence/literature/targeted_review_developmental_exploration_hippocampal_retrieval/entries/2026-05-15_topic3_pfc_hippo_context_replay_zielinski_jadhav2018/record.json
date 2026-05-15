@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic3_pfc_hippo_context_replay_zielinski_jadhav2018",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-016", "MECH-025", "ARC-007"],
+  "source": {
+    "title": "The role of replay and theta sequences in mediating hippocampal-prefrontal interactions for memory and cognition",
+    "authors": ["Mark C. Zielinski", "Wenbo Tang", "Shantanu P. Jadhav"],
+    "year": 2018,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22821",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29251801/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Jadhav lab review in Hippocampus; explicitly frames hippocampal-prefrontal interactions via replay and theta sequences as the mechanism for context-dependent memory retrieval and decision-making. Directly addresses the cue-differentiation requirement by arguing that PFC-hippocampal theta interactions at different learning stages mediate different retrieval modes. Good source quality; high mapping fidelity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review is primarily phenomenological -- the causal roles of replay vs. theta sequences in guiding PFC activity are proposals awaiting closed-loop intervention evidence.",
+    "The framework relies on the assumption that replay content is read out by PFC, but the mechanism for this readout is not established."
+  ],
+  "tags": ["hippocampus", "prefrontal_cortex", "replay", "theta_sequences", "context_retrieval", "memory_guided_behavior", "arc_007", "arc_016", "mech_025"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal-prefrontal interactions mediated by replay (SWRs) and theta sequences play complementary roles at different learning stages: encoding and retrieval via replay, deliberative decision making and future-path planning via theta; PFC reads hippocampal sequences to guide actions.",
+    "ree_translation": "This is the mechanistic bridge between Miller & Cohen 2001 (PFC bias signals) and ARC-007 (hippocampal trajectory retrieval): PFC does not store trajectories but reads and selects among hippocampal sequences via theta-coupled query. The cue-differentiation requirement (Topic 3) is satisfied by the finding that different PFC activity states (encoding vs. retrieval phase) engage hippocampal replay in different ways.",
+    "mapping_caveat": "The 'PFC reads hippocampal sequences' formulation is inferred from coordination -- the actual synaptic projection from hippocampus to PFC that allows this readout is structural, but the functional gating by PFC cue content is not directly demonstrated.",
+    "source_context": "Review paper in Hippocampus journal; Jadhav lab (Brandeis); covers both awake SWR replay and theta-sequence mechanisms in spatial memory tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.18,
+    "notes": "Best available review connecting the two bodies of evidence (PFC control + hippocampal sequences) into a unified framework."
+  }
+}

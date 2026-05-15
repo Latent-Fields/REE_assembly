@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic4_enrichment_behavioral_flexibility_wang2017",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Differential effects of social and novelty enrichment on individual differences in impulsivity and behavioral flexibility",
+    "authors": ["Maya Zhe Wang", "Andrew T. Marshall", "Kimberly Kirkpatrick"],
+    "year": 2017,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2017.03.028",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28341610/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.64,
+  "confidence_rationale": "Behavioural Brain Research; systematically separates social vs. novelty enrichment components and their effects on impulsivity and behavioral flexibility (reversal learning). Finding is mixed: social enrichment decreased impulsive choice but increased regressive errors; novelty enrichment increased impulsive choice; both reduced never-reinforced errors. The nuanced dissociation is informative but also complicates a simple 'more enrichment = more flexibility' narrative.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Social enrichment increased regressive errors in behavioral flexibility (more perseveration on previously-rewarded options), which is the opposite of the expected result if social enrichment boosts hippocampal option diversity.",
+    "The specific direction of the flexibility effect depends on the enrichment type -- a simple 'more exploration = better flexibility' account is not supported."
+  ],
+  "tags": ["enrichment", "social_isolation", "behavioral_flexibility", "impulsivity", "novelty", "reversal_learning", "arc_065"],
+  "mapping": {
+    "source_claim_statement": "Social and novelty enrichment produce distinct and partially opposing effects on behavioral flexibility and impulsivity; novelty enrichment reduces never-reinforced errors (reduces inflexibility about un-tried options) while social enrichment increases regressive errors (increases perseveration on previously-rewarded options).",
+    "ree_translation": "The dissociation between novelty enrichment (reduces inflexibility about untried options -- expands option representation) and social enrichment (increases perseveration -- narrows behavioral control) is an important caveat. The claim that 'sufficient early exploration bootstraps behavioral diversity' needs qualification: it is exploratory variety (novelty), not mere social complexity, that most directly expands the behavioral option store.",
+    "mapping_caveat": "The task used (multiple choice operant) differs substantially from spatial navigation; the mapping from 'novelty enrichment reduces never-reinforced errors' to 'hippocampal trajectory store is more populated' is inferential.",
+    "source_context": "Sprague-Dawley rats; four rearing conditions (isolated/social x no-novelty/novelty); operant impulsivity, behavioral flexibility, and impulsive action tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.76,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "Nuanced result; the dissociation complicates but does not refute the developmental bootstrapping claim; novelty > social for option-space expansion."
+  }
+}

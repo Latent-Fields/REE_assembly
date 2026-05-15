@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic2_hippo_prediction_imagination_buckner2010",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-007", "MECH-033"],
+  "source": {
+    "title": "The role of the hippocampus in prediction and imagination",
+    "authors": ["Randy L. Buckner"],
+    "year": 2010,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev.psych.60.110707.163508",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19958178/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Buckner 2010 is one of the canonical reframings of hippocampal function away from pure episodic memory retrieval toward prospective prediction and imagination. Very high citation count; synthesises both rodent (preplay/replay) and human (fMRI prospection) literatures. Strong mapping to the claim that hippocampus is a cue-indexed sequence store for future trajectories rather than a passive archive. Transfer risk low.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Review does not provide direct evidence that hippocampal sequence events are actually used online to guide specific goal-directed choices -- the mechanistic link between hippocampal prospection and action selection remains indirect in the human fMRI literature."
+  ],
+  "tags": ["hippocampus", "prospection", "prediction", "imagination", "preplay", "replay", "mental_simulation", "arc_007", "mech_033"],
+  "mapping": {
+    "source_claim_statement": "The hippocampal system may be better understood as a prediction/simulation device than a retrieval archive: in rats, ensembles preplay and replay event sequences that, strung in novel combinations, provide building blocks for simulating upcoming events; in humans, the same system supports future event imagination.",
+    "ree_translation": "Buckner 2010 provides the conceptual anchor for ARC-007 (hippocampal trajectory store indexed by context) and MECH-033 (kernel-chaining interface). The preplay finding is precisely the claim that hippocampus generates forward trajectories from a stored template library under goal-directed cuing, not from a generative model built on the fly.",
+    "mapping_caveat": "The 2010 review predates the Pfeiffer & Foster 2013 goal-directed preplay result, so it is more suggestive than directly evidential. The mechanism by which novel combinations are generated from stored building blocks is not specified.",
+    "source_context": "Annual Review of Psychology; synthesis of rodent electrophysiology, human neuroimaging, and patient lesion data."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Landmark review paper; very high prior probability of the claim being correct."
+  }
+}

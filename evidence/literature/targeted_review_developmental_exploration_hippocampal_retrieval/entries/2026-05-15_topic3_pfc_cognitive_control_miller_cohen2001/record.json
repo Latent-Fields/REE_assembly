@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic3_pfc_cognitive_control_miller_cohen2001",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-016", "MECH-025"],
+  "source": {
+    "title": "An integrative theory of prefrontal cortex function",
+    "authors": ["Earl K. Miller", "Jonathan D. Cohen"],
+    "year": 2001,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.24.1.167",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11283309/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Miller & Cohen 2001 is one of the most cited papers in cognitive neuroscience (~8000+ citations). The core claim -- that PFC maintains goal and context representations that provide top-down bias signals to downstream areas -- is precisely the frontal cue gating mechanism in Topic 3. Source quality exceptional. Mapping fidelity very high: the 'bias signal' model is the REE ARC-016 claim about PFC providing context that shapes hippocampal retrieval.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The original formulation emphasises sensory and motor routing, less explicitly the hippocampal memory retrieval pathway -- the extension to hippocampal option retrieval requires citing subsequent work (Jadhav, Tang).",
+    "Lesion and single-unit data available in 2001 were largely from non-human primates on working memory tasks; the generality to naturalistic behaviour is assumed."
+  ],
+  "tags": ["prefrontal_cortex", "cognitive_control", "bias_signals", "goal_maintenance", "context_gating", "arc_016", "mech_025"],
+  "mapping": {
+    "source_claim_statement": "Cognitive control stems from active maintenance of goal/context patterns in PFC that provide bias signals to downstream brain structures, guiding activity along neural pathways to establish proper input-output mappings for a given task.",
+    "ree_translation": "This is the foundational account of ARC-016: PFC's role is not to compute responses but to bias which pathways are active given a goal context. In REE, the 'bias signal' is what selects which hippocampal trajectories are retrieved for evaluation by E3. The Miller/Cohen framework gives the mechanistic vocabulary: goal-active PFC biases the hippocampal pattern-completion attractor toward context-relevant options.",
+    "mapping_caveat": "Miller & Cohen 2001 does not explicitly address hippocampal trajectory retrieval -- their model is primarily about sensory-to-motor routing and PFC-cortical projections. The extension to hippocampal sequence retrieval is a downstream inference that has since been supported empirically.",
+    "source_context": "Annual Review of Neuroscience; synthesis of single-unit NHP data, neuroimaging, lesion, and computational modelling across attention, working memory, and task switching paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.97,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.15,
+    "notes": "Canonical source; mapping requires one downstream inference step (PFC bias -> hippocampal retrieval)."
+  }
+}

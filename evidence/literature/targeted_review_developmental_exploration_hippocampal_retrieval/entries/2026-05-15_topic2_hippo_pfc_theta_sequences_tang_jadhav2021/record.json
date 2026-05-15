@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic2_hippo_pfc_theta_sequences_tang_jadhav2021",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-007", "MECH-033"],
+  "source": {
+    "title": "Multiple time-scales of decision-making in the hippocampus and prefrontal cortex",
+    "authors": ["Wenbo Tang", "Justin D. Shin", "Shantanu P. Jadhav"],
+    "year": 2021,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.66227",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33683201/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "eLife in-vivo electrophysiology; demonstrates theta sequences in prefrontal cortex nested within behavioural sequences, coordinated with hippocampal theta sequences that encode alternatives for deliberation. The critical finding is that hippocampal theta sequences encode alternatives (not just current location) and are coordinated with prefrontal sequences that predict upcoming choices -- direct support for the PFC cue / hippocampal option-retrieval model.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "During error trials, the coordination between hippocampal alternatives and prefrontal upcoming-choice representations was preserved at the theta level -- suggesting this coupling is robust but not sufficient to prevent errors.",
+    "The causal direction (PFC cueing hippocampus vs. hippocampus informing PFC) cannot be resolved from correlation data alone."
+  ],
+  "tags": ["hippocampus", "prefrontal_cortex", "theta_sequences", "deliberation", "decision_making", "working_memory", "arc_007", "mech_033"],
+  "mapping": {
+    "source_claim_statement": "PFC exhibits theta sequences nested in behavioural sequences; hippocampal theta sequences at decision points encode alternative trajectories for deliberation and are coordinated with PFC predictions of upcoming choices at the theta timescale.",
+    "ree_translation": "The theta-timescale hippocampal encoding of alternatives (not just current state) is the most direct mechanistic evidence available for the cue-indexed option retrieval claim in ARC-007. The nested PFC theta sequence that predicts upcoming choices is the 'frontal cue -> hippocampal pattern completion -> sequence retrieval' circuit in action.",
+    "mapping_caveat": "Theta sequences are on a ~100-200ms timescale; REE's trajectory rollout operates over longer horizons. The deliberation-via-theta mechanism may be a sub-component of, rather than identical to, the full trajectory retrieval system.",
+    "source_context": "Simultaneous hippocampal and prefrontal ensemble recordings in rats during spatial working memory task; analysis at both behavioural (~seconds) and theta (~100-200ms) timescales."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.18,
+    "notes": "Strong multi-timescale evidence; closest available mechanistic evidence for the PFC-hippocampal query-retrieval model."
+  }
+}

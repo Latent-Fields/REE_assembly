@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic2_hippo_pfc_replay_decision_shin_jadhav2019",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-007", "MECH-033"],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making",
+    "authors": ["Justin D. Shin", "Wenbo Tang", "Shantanu P. Jadhav"],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.09.012",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31677957/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Simultaneous hippocampal-prefrontal ensemble recording in rats during spatial alternation learning. Direct evidence that hippocampal forward replay (during immobility pauses) co-occurs with prefrontal readout of correct future paths and is coordinated across both regions. The reverse/forward asymmetry with learning stage is strong mechanistic evidence for the cue-retrieval model. High source quality (Neuron, in vivo electrophysiology); high mapping fidelity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study uses a constrained linear track / Y-maze, so the generalisation to open-field novel-combination trajectory planning (as in Pfeiffer & Foster 2013) is uncertain.",
+    "Causal role of prefrontal readout in guiding decisions is correlational at this stage -- prefrontal sequence activity tracks correct paths but causal necessity is not proven."
+  ],
+  "tags": ["hippocampus", "prefrontal_cortex", "replay", "forward_replay", "reverse_replay", "decision_making", "spatial_learning", "arc_007", "mech_033"],
+  "mapping": {
+    "source_claim_statement": "Awake hippocampal replay at pause points supports both retrospective evaluation (reverse replay) and prospective planning (forward replay), with coordinated prefrontal activity distinguishing correct future paths from alternatives; learning shifts from reverse- to forward-replay dominance.",
+    "ree_translation": "This is direct evidence for the ARC-007 claim that hippocampus provides prospective trajectory templates that are selected by a prefrontal context signal. The coordinated hippocampal-prefrontal activity during pauses is exactly the retrieval mechanism: PFC query context gates which hippocampal sequence template is replayed and broadcast.",
+    "mapping_caveat": "The spatial working memory task constrains the trajectory space; REE's open-field planning problem requires broader generalisation. The 'prefrontal cue -> hippocampal pattern' directionality is not directly shown -- the PFC may be reading rather than querying.",
+    "source_context": "In vivo electrophysiology in rats; simultaneous 200+ neuron recordings in CA1 and mPFC during spatial alternation task; longitudinal across learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Strong mechanistic evidence; slight caveat on causal direction of the hippocampal-prefrontal interaction."
+  }
+}

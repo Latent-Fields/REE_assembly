@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic2_hippo_imagination_comrie_frank2022",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-007", "MECH-033"],
+  "source": {
+    "title": "Imagination as a fundamental function of the hippocampus",
+    "authors": ["Alison E. Comrie", "Loren M. Frank", "Kenneth Kay"],
+    "year": 2022,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2021.0336",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36314152/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Phil Trans B review by Frank lab; proposes that the fundamental hippocampal function is generating hypothetical experiences and thoughts -- a broader claim than memory retrieval. Directly addresses the question of hippocampus as option generator vs. archive. Good source quality (Phil Trans B themed issue); strong mapping fidelity to ARC-007. Limited primary data specific to behavioural sequence retrieval.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The imagination framing is under-constrained: firing patterns corresponding to alternatives to actual experience are shown, but the functional role in guiding specific choices is not always established.",
+    "The review acknowledges that many of the 'imagination' firing events may be epiphenomenal with respect to behaviour."
+  ],
+  "tags": ["hippocampus", "imagination", "hypothetical_experience", "replay", "theta", "place_cells", "arc_007", "mech_033"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal firing patterns regularly correspond to alternatives to actual experience -- including locations not currently occupied, paths not taken, and scenarios with no direct past/future reference -- suggesting the fundamental hippocampal function is generating hypothetical experiences.",
+    "ree_translation": "The 'imagination' framing here is the ARC-007 claim stated from the other direction: if hippocampus generates hypothetical trajectories that are not necessarily past memories, it functions as a cue-queryable option space rather than a passive archive. This supports the idea that different PFC cues can retrieve different non-experienced options from the hippocampal store.",
+    "mapping_caveat": "The Frank/Kay 2022 framing is explicitly broader than the cue-indexed store model; it does not require that the imagination events are specifically triggered by PFC cues.",
+    "source_context": "Themed issue in Phil Trans B on 'Thinking about possibilities'; synthesis of rodent and human hippocampal firing data; Frank lab (UCSF), Kay lab (Columbia)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.20,
+    "notes": "Conceptually strong; limited on the cue-trigger specificity aspect of the claim."
+  }
+}

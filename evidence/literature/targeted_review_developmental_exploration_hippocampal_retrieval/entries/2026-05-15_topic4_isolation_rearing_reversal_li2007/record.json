@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic4_isolation_rearing_reversal_li2007",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Chronic administration of clozapine alleviates reversal-learning impairment in isolation-reared rats",
+    "authors": ["Nanxin Li", "Xihong Wu", "Liang Li"],
+    "year": 2007,
+    "venue": "Behavioural Pharmacology",
+    "doi": "10.1097/FBP.0b013e3280d3ee83",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17351420/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Behavioural pharmacology study; demonstrates that post-weaning isolation rearing specifically impairs reversal learning (new-strategy acquisition phase) but not initial acquisition learning in rats. This is the monostrategy signature: the isolation-reared animal learns one strategy but cannot update it. Source quality moderate (small n, pharmacological intervention focus); mapping fidelity good for the specific claim that impoverished early exploration -> rigid behavioral repertoire.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Isolation rearing impairs social experience as well as environmental exploration; the specific contribution of motor/sensory exploration deprivation vs. social deprivation cannot be separated.",
+    "Clozapine remediation suggests the effect is dopaminergic/prefrontal, but this does not establish the hippocampal trajectory store as the locus of the deficit."
+  ],
+  "tags": ["isolation_rearing", "reversal_learning", "behavioral_flexibility", "monostrategy", "prefrontal_dopamine", "arc_065"],
+  "mapping": {
+    "source_claim_statement": "Isolation-reared rats perform significantly worse than socially-reared rats on reversal learning (new-strategy acquisition), but not on initial discrimination learning; this deficit is partially reversed by clozapine.",
+    "ree_translation": "This is the developmental monostrategy result: insufficient early exploration (social + environmental impoverishment) produces animals that can learn one strategy but cannot acquire a new strategy when contingencies change. In REE terms, the behavioral option store was not populated during the developmental window, so when a new context demands a different trajectory, retrieval fails and the animal repeats the previously-reinforced pattern.",
+    "mapping_caveat": "Isolation rearing is a global deprivation; the mechanism of the flexibility deficit (reduced hippocampal place field diversity? PFC dopamine depletion?) is not established. Transfer risk: the schizophrenia model framing is context-specific.",
+    "source_context": "Sprague-Dawley rats; post-weaning isolation rearing; rotating T-maze reversal learning task; Behavioural Pharmacology 2007."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Good behavioral result; mechanism not resolved; moderate transfer risk from schizophrenia model to general developmental bootstrapping claim."
+  }
+}

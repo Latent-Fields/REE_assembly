@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-15_topic1_birdsong_babbling_doupe_kuhl1999",
+  "timestamp_utc": "2026-05-15T19:56:10Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Birdsong and human speech: common themes and mechanisms",
+    "authors": ["Allison J. Doupe", "Patricia K. Kuhl"],
+    "year": 1999,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.22.1.567",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10202549/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical high-citation review in Annual Review of Neuroscience. Establishes the convergent architecture of basal ganglia-driven motor exploration in both avian and human vocal learning, with a strong auditory-motor feedback loop argument. High source quality and conceptual mapping fidelity to the developmental bootstrapping story. Transfer risk moderate because some features (critical period rigidity, BG role) are better established in birds.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Language meaning, abstraction, and flexible associations are acknowledged as not analogous between birds and humans, limiting how far the birdsong model generalises.",
+    "How auditory feedback of self is actually processed in forebrain areas remains unclear in both species."
+  ],
+  "tags": ["babbling", "vocal_learning", "basal_ganglia", "auditory_feedback", "critical_period", "developmental_bootstrapping", "arc_065"],
+  "mapping": {
+    "source_claim_statement": "Both humans and songbirds begin learning their vocalizations with an unstructured subsong/babbling phase driven by basal ganglia circuits, which is necessary for building the motor-sensory map that guides later production.",
+    "ree_translation": "The subsong/babbling phase in both species is an intrinsically-motivated motor exploration epoch that bootstraps a sensorimotor calibration map. In REE, this maps onto the developmental precursor to the candidate-generation machinery: the agent must traverse action space before the hippocampal trajectory store can be populated.",
+    "mapping_caveat": "Basal ganglia LMAN-driven variability in birds may not map directly onto REE's CEM-based candidate generation; the evolutionary convergence is functional, not mechanistic.",
+    "source_context": "Comparative review across songbird species and human developmental literature; covers basal ganglia circuitry, critical periods, auditory feedback, and sensorimotor integration."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Landmark review with very high citation. Transfer from vocal learning to general motor learning is the primary caveat."
+  }
+}
