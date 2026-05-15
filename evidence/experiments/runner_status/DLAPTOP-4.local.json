@@ -2,48 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 29534,
   "runner_started_at": "2026-05-15T06:24:50.419759+00:00",
-  "last_updated": "2026-05-15T21:37:38.185216+00:00",
+  "last_updated": "2026-05-15T23:31:22.440583+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-540g",
-    "backlog_id": "",
-    "claim_id": "MECH-307",
-    "title": "MECH-307 corrected C1 criterion (liking_writes baseline fix)",
-    "description": "",
-    "script": "experiments/v3_exq_540g_mech307_criterion_fix.py",
-    "started_at": "2026-05-15T21:17:10.782741+00:00",
-    "progress": {
-      "run_label": "Seed 42 / ARM_1_split_only",
-      "runs_done": 1,
-      "runs_total": 1,
-      "episodes_done": 20,
-      "episodes_total": 70,
-      "overall_pct": 128.6
-    },
-    "seconds_elapsed": 1227,
-    "seconds_remaining": 0,
-    "recent_lines": [
-      "seed=42 arm=ARM_0_off          liking= 14 gap4=  0 z_beta_exc=0.0203 split_surp_centers=0 pos=0 neg=0 conj_fire_ticks=0 conj_fire_rate=0.000 approach=1.000 contacts=14 elapsed=851.9s",
-      "verdict: PASS",
-      "Seed 42 Condition ARM_1_split_only",
-      "[train] ARM_1_split_only seed=42 ep 10/70 (warmup)",
-      "[train] ARM_1_split_only seed=42 ep 20/70 (warmup)"
-    ],
-    "ree_version": "v3"
-  },
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-540g",
-      "backlog_id": "",
-      "claim_id": "MECH-307",
-      "title": "MECH-307 corrected C1 criterion (liking_writes baseline fix)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "current": null,
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -7836,6 +7798,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204931Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2.1
+    },
+    {
+      "queue_id": "V3-EXQ-540g",
+      "backlog_id": "",
+      "claim_id": "MECH-307",
+      "title": "MECH-307 corrected C1 criterion (liking_writes baseline fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "",
+      "started_at": "2026-05-15T21:17:10.782741+00:00",
+      "completed_at": "2026-05-15T23:31:22.430144+00:00",
+      "output_file": "",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 8051.6
     }
   ]
 }
