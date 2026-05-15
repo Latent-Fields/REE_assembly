@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-15T19:18:59Z",
+  "last_tick_utc": "2026-05-15T19:20:01Z",
   "state": "running",
   "current_exq": "V3-EXQ-566",
   "current_exq_started_utc": "2026-05-15T19:17:10.928200+00:00",
@@ -9,20 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_baseline",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_1_canonical",
+    "runs_done": 1,
     "runs_total": 1,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 30,
     "overall_pct": 100.0
   },
-  "seconds_elapsed": 107,
+  "seconds_elapsed": 170,
   "seconds_remaining": 0,
   "recent_lines": [
-    "Seed 42 Condition ARM_0_baseline",
-    "[train] seed=42 arm=ARM_0_baseline ep 10/30",
     "[train] seed=42 arm=ARM_0_baseline ep 20/30",
-    "[train] seed=42 arm=ARM_0_baseline ep 30/30"
+    "[train] seed=42 arm=ARM_0_baseline ep 30/30",
+    "result seed=42 arm=ARM_0_baseline mean_wanting=0.0000 n_centers=32.0 inj_cov=0.00",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_1_canonical"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
