@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 665,
   "runner_started_at": "2026-05-15T19:17:09.412775+00:00",
-  "last_updated": "2026-05-15T19:59:34.525656+00:00",
+  "last_updated": "2026-05-15T20:19:03.658272+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-567",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
+    "description": "",
+    "script": "experiments/v3_exq_567_wpb_natural_entropy_sp_cem.py",
+    "started_at": "2026-05-15T19:59:39.949072+00:00",
+    "progress": {
+      "run_label": "Seed 43 / ARM_1_support_preserving",
+      "runs_done": 4,
+      "runs_total": 6,
+      "episodes_done": 10,
+      "episodes_total": 40,
+      "overall_pct": 70.8
+    },
+    "seconds_elapsed": 1164,
+    "seconds_remaining": 437,
+    "recent_lines": [
+      "[train] arm=ARM_1_support_preserving seed=42 ep 30/40",
+      "[train] arm=ARM_1_support_preserving seed=42 ep 40/40",
+      "verdict: PASS",
+      "Seed 43 Condition ARM_1_support_preserving",
+      "[train] arm=ARM_1_support_preserving seed=43 ep 10/40"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-563c",
@@ -24,7 +50,7 @@
       "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
       "description": "",
       "estimated_minutes": 32.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
