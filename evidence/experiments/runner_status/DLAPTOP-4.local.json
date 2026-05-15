@@ -2,10 +2,48 @@
   "schema_version": "v1",
   "runner_pid": 29534,
   "runner_started_at": "2026-05-15T06:24:50.419759+00:00",
-  "last_updated": "2026-05-15T18:03:11.842638+00:00",
+  "last_updated": "2026-05-15T18:56:27.615560+00:00",
   "idle": false,
-  "current": null,
-  "queue": [],
+  "current": {
+    "queue_id": "V3-EXQ-540f",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "MECH-307 default-fix clean 3-seed rerun (seeds 42, 43, 45)",
+    "description": "",
+    "script": "experiments/v3_exq_540f_mech307_default_fix_3seed.py",
+    "started_at": "2026-05-15T18:34:46.094447+00:00",
+    "progress": {
+      "run_label": "Seed 42 / ARM_1_split_only",
+      "runs_done": 1,
+      "runs_total": 1,
+      "episodes_done": 55,
+      "episodes_total": 70,
+      "overall_pct": 178.6
+    },
+    "seconds_elapsed": 1302,
+    "seconds_remaining": 0,
+    "recent_lines": [
+      "[train] ARM_1_split_only seed=42 ep 20/70 (warmup)",
+      "[train] ARM_1_split_only seed=42 ep 30/70 (warmup)",
+      "[train] ARM_1_split_only seed=42 ep 40/70 (warmup)",
+      "[train] ARM_1_split_only seed=42 ep 50/70 (warmup)",
+      "[train] ARM_1_split_only seed=42 ep 55/70 (eval)"
+    ],
+    "ree_version": "v3"
+  },
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-540f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-307 default-fix clean 3-seed rerun (seeds 42, 43, 45)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-000",

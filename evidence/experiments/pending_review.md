@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-05-14T06:33:09Z`  
-Last review: `2026-05-14T06:32:00Z`  
-Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-15T18:53:51Z`  
+Last review: `2026-05-15T18:42:36Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_561_arc065_diversity_stack_heartbeat_20260514T042146Z_v3` | 2026-05-14T04:21 | ARC-065, MECH-313, MECH-314, MECH-320 |
+All experiments reviewed. Nothing pending.
 
 ---
 

@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_563_action_bias_actuator_test",
+  "run_id": "v3_exq_563_action_bias_actuator_test_20260514T183416Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-05-14T18:34:16Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-065",
+    "MECH-320"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3. EXQ-563 could not test the action-bias actuator because CEM collapse left all candidates in one action class; forced bias had nothing to act on. EXQ-563a added scaffold candidates to restore multi-class support and confirmed the E3 score-bias seam is intact.",
+  "evidence_direction_per_claim": {
+    "ARC-065": "superseded",
+    "MECH-320": "superseded"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

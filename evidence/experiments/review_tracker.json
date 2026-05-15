@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-14T06:32:00Z",
+  "last_review_utc": "2026-05-15T18:42:36Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-562",
     "V3-EXQ-449c",
@@ -308,7 +308,11 @@
     "V3-EXQ-540c",
     "V3-EXQ-559",
     "V3-EXQ-559a",
-    "V3-EXQ-560"
+    "V3-EXQ-560",
+    "V3-EXQ-563",
+    "V3-EXQ-563a",
+    "V3-EXQ-563b",
+    "V3-EXQ-564"
   ],
   "reviewed_run_ids": [
     "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
@@ -2366,7 +2370,13 @@
     "v3_exq_552_forced_exploration_warmup_20260511T202246Z_v3",
     "v3_exq_555_seed7_env_factorization_20260512T052128Z_v3",
     "v3_exq_557_agent_seed_sweep_20260512T063600Z_v3",
-    "v3_exq_558_agent_seed_readout_rank_diagnostic_20260512T185123Z_v3"
+    "v3_exq_558_agent_seed_readout_rank_diagnostic_20260512T185123Z_v3",
+    "v3_exq_561_arc065_diversity_stack_heartbeat_20260514T042146Z_v3",
+    "v3_exq_563_action_bias_actuator_test_20260514T183416Z_v3",
+    "v3_exq_563_candidate_support_collapse_diagnosis_20260514T185309Z_v3",
+    "v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3",
+    "v3_exq_563b_candidate_support_repair_20260514T205949Z_v3",
+    "v3_exq_565_wpd_gap8_routing_consumer_20260515T180311Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2567,6 +2577,26 @@
       "reviewed_run_ids": [],
       "discussed_experiment_dirs_added": ["V3-EXQ-562"],
       "subject": "WPC Rung 1 diagnostic (EXQ-562) reviewed. P1 FAIL: goal component range ~3.8e-5 vs score range ~0.035 (~0.1% contribution). z_goal injection working (P3 PASS, norm=1.0 in forced arms). Goal weight doubling produces monotone range increase (P2 PASS). But monostrategy persists (action_class_entropy=0.0 across all 4 arms and both seeds). P1 FAIL interpretation: goal scoring seam is live but negligibly weak -- E3's harm/world costs overwhelm the goal component structurally. WPC Rung 2 will investigate WHY goal component is so small (e.g. dramatically higher goal_weight arms, or E3 score decomposition)."
+    },
+    {
+      "reviewed_at_utc": "2026-05-15T06:18:59Z",
+      "reviewed_run_ids": [
+        "v3_exq_561_arc065_diversity_stack_heartbeat_20260514T042146Z_v3"
+      ],
+      "discussed_experiment_dirs_added": ["V3-EXQ-563", "V3-EXQ-563a", "V3-EXQ-563b"],
+      "subject": "WPB heartbeat (EXQ-561) and candidate-support repair series (EXQ-563/563a/563b) reviewed. EXQ-561 PASS/non_contributory: all 6 arms entropy=0.0, unique_actions=1 across both seeds. CEM collapse blocks every arm identically; MECH-313/314/320 modules fire but have nothing to amplify. MECH-320 v_raw=-69.6 (sign/scale bug confirmed). EXQ-563 series: 563=diagnosis (CEM collapse confirmed, E3 score-bias seam independently live), 563a=scaffold actuator (forced bias moves action under scaffold), 563b=support-preserving CEM repair. 563b key finding: even with 5-class scaffold support (candidate entropy=0.55), E3 raw score range ~20-37 overwhelms weak bias (10 scale). Bias must be 30-100 to reliably override E3 learned preference. Root cause: E3 has trained into a genuine monostrategy from lack of diverse waking training data -- score advantage 35x over alternatives. Not a plumbing failure. Fix requires waking diversity first (ARC-065 precondition for all downstream). WPD GAP-2 (SD-017 retest) remains upstream-blocked; proceeding to ARC-065-independent WPD work (GAP-8 routing-consumer, GAP-6 StepHarness audit, GAP-7 driver pattern)."
+    },
+    {
+      "reviewed_at_utc": "2026-05-15T18:42:36Z",
+      "reviewed_run_ids": [
+        "v3_exq_563_action_bias_actuator_test_20260514T183416Z_v3",
+        "v3_exq_563_candidate_support_collapse_diagnosis_20260514T185309Z_v3",
+        "v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3",
+        "v3_exq_563b_candidate_support_repair_20260514T205949Z_v3",
+        "v3_exq_565_wpd_gap8_routing_consumer_20260515T180311Z_v3"
+      ],
+      "discussed_experiment_dirs_added": ["V3-EXQ-564"],
+      "subject": "Governance cycle 2026-05-15. EXQ-563 cluster (4 runs): all confirmed diagnostic non_contributory. 563/563a additionally marked superseded (563a supersedes 563, 563b supersedes 563a). Key finding: E3 score-bias seam intact; CEM elite-refit collapse is the upstream blocker; MECH-320 v_raw magnitude (~-25 to -50) too small relative to E3 score range (~20-37) for natural v_t to shift behaviour. V3-EXQ-563c (stratified support-preserving CEM) already queued. EXQ-565 (MECH-272, GAP-8): PASS, evidence_direction=supports. Routing-gate consumer correctly modulates sws_anchor_weight from 1.0 (consumer OFF) to 0.6 (consumer ON), both seeds. MECH-272 remains hold_pending_v3_substrate (v3_pending gate). EXQ-564 (runner-only, WPC Rung 2): PASS diagnostic, claim_ids=[]. ValenceWanting write->read seam confirmed; ARM_2 forced_low mean_wanting=599, ARM_1 natural=6.2. Cleared to discussed_experiment_dirs. Promotion/demotion: 9 hold_pending_v3_substrate items applied (ARC-066/067/068, ARC-070/071, MECH-320, Q-043/044/045)."
     }
   ]
 }
