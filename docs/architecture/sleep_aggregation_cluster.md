@@ -299,6 +299,45 @@ Stateless across draws within a cycle; the snapshot is frozen at entry.
 
 ---
 
+## StepHarness write-path audit (GAP-6)
+
+**Completed:** 2026-05-15. Every write site reachable from the five sleep entry/exit/pass
+methods was walked and classified. The audit question per `sleep_substrate_plan.md` Phase 5:
+does any sleep-side write site need to be re-routed through `StepHarness`, or does each site
+have a documented architectural exception?
+
+**Note on StepHarness location.** `StepHarness` lives in `experiments/_harness.py` (line 106),
+NOT in `ree_core/`. It enforces the canonical waking per-tick sequence
+(`sense -> _e1_tick -> generate -> update_z_goal -> update_residue -> act`). Sleep-period
+writes are architectural exceptions to the waking sequence by design; they cannot and should
+not call the harness.
+
+### Write sites and exception classifications
+
+| Site | Method | Exception class | Reason |
+|------|--------|----------------|--------|
+| `e1.context_memory.write(e1_input)` | `run_sws_schema_pass()` | Intentional offline schema installation | Offline gate temporarily lifted (`e1._offline_mode = False`) to write schema content, then restored. This IS the designed offline write; not a waking experience write. MECH-272 anchor_channel scaling applied before write: `e1_input = e1_input * anchor_weight`. |
+| `e1.shy_normalise(decay)` | `enter_sws_mode()` | Weight-decay write; not an experience write | The canonical exception cited in the GAP-6 spec. Modifies `context_memory.memory.data` in-place (slot weight decay toward slot mean). No gradient flow; no replay content. |
+| `e2_harm_s.parameters()` via `offline_gradient_pass()` | `SelfModelAggregator.offline_gradient_pass()` (called from `_run_cycle()` WRITEBACK phase) | Explicit MECH-094 exception | Only MECH-094-scoped exception in the entire sleep path. Adam optimizer constructed locally over `e2_harm_s.parameters()` ONLY; no other module's parameters are touched. Bounded MSE steps targeting SWS-snapshot posterior means. |
+| Serotonin state transitions | `enter_sws_mode()`, `enter_rem_mode()`, `exit_sleep_mode()` | Internal neuromodulator state | `serotonin.enter_sws()`, `serotonin.enter_rem(current_precision=...)`, `serotonin.exit_sleep()` update tonic_5ht / phase flags. Not experience writes; not residue writes. |
+| `pcc.note_offline_entry()`, `pacc.note_offline_entry()` | `enter_offline_mode()` (called by `enter_sws_mode()` and `enter_rem_mode()`) | Internal counter resets | Resets `_steps_since_offline` counter and success EMA state. No content writes. |
+| Bayesian aggregator `update()` and `snapshot()` | `_run_cycle()` SWS and REM loops | Internal aggregator posterior state | Updates `GaussianPosterior` (mean, variance, n_evidence) per-domain per-region. Not a `ResidueField` write, not a `ContextMemory` write. `snapshot()` deep-copies live posteriors at PHASE_SWITCH. |
+| `staleness.partial_decay(replayed_regions, decay_factor=...)` | `_run_cycle()` WRITEBACK | MECH-284 internal staleness state | Multiplicative decay of region-keyed staleness scalars. Not an experience write; not residue. |
+
+**Audit result:** ALL sleep-side write sites are documented exceptions. Zero sites require
+re-routing through `StepHarness`. The GAP-6 acceptance criterion is satisfied.
+
+### Phase ordering note
+
+`hypothesis_tag=True` is enforced throughout `run_rem_attribution_pass()` so no
+`ResidueField` writes occur during the REM pass. All `_score_trajectory()` calls are
+read-only terrain evaluations. The offline gate (`e1._offline_mode = True`) is set by
+`enter_offline_mode()` at the start of both SWS and REM modes, suppressing all waking
+observation writes from `context_memory.write()` on the normal sense path. The SWS schema
+pass temporarily lifts the gate only for its own intentional schema writes, then restores it.
+
+---
+
 ## Validation plan
 
 | Phase | What lands | Validation experiment | Acceptance criterion |

@@ -59,13 +59,14 @@ closure_plan:
     - id: "sleep_substrate:GAP-6"
       title: "StepHarness audit: SWS / REM write paths vs canonical sense/update sequence"
       phase: 5
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: []
       depends_on: []
       cross_plan_link: ["commitment_closure:GAP-10"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-15
+      completed_note: "All 7 write sites audited and documented in sleep_aggregation_cluster.md; all are documented architectural exceptions; zero require StepHarness routing."
     - id: "sleep_substrate:GAP-7"
       title: "Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)"
       phase: 6
@@ -78,12 +79,13 @@ closure_plan:
     - id: "sleep_substrate:GAP-8"
       title: "MECH-272 routing weights flip but HippocampalRouter does not consume them"
       phase: 3
-      status: open
+      status: done
       severity: high
       owner_exq: EXP-0168
       unblocks_claims: [MECH-272, MECH-285]
       depends_on: []
-      last_updated: 2026-05-08
+      last_updated: 2026-05-15
+      completed_note: "anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated."
 ---
 # Sleep Substrate Plan
 
@@ -415,9 +417,9 @@ work. See [Resume ritual](#resume-ritual) below.
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
 | GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
-| GAP-6 | 5 | open | nothing | Walk write sites in SWS / REM / WRITEBACK paths | substrate audit (no EXQ) | 2026-05-08 |
+| GAP-6 | 5 | done | (none) | Audit complete: all 7 write sites documented in sleep_aggregation_cluster.md; all are architectural exceptions; zero require StepHarness routing | substrate audit (no EXQ) | 2026-05-15 |
 | GAP-7 | 6 | open | nothing | Update /queue-experiment skill, audit 19 experiments | n/a | 2026-05-08 |
-| GAP-8 | 3 | open | nothing | Extend HippocampalRouter to read routing_gate.weights | EXP-0168 | 2026-05-08 |
+| GAP-8 | 3 | done | (none) | anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated | EXP-0168 | 2026-05-15 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`.
 A `paused` row carries a resume condition in the [Decision log](#decision-log).
@@ -490,6 +492,24 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-15 - GAP-6 done (StepHarness audit) + GAP-8 done (MECH-272 anchor-channel consumer)
+
+**GAP-6 (StepHarness write-path audit):** All 7 write sites reachable from the five
+sleep entry/exit/pass methods were walked and classified. Every site is a documented
+architectural exception; zero sites require re-routing through StepHarness.
+StepHarness lives in experiments/_harness.py:106, not ree_core/; sleep-period writes
+cannot and should not call it by design. Audit documented in
+sleep_aggregation_cluster.md under new section "## StepHarness write-path audit
+(GAP-6)". GAP-6 acceptance criterion satisfied.
+
+**GAP-8 (MECH-272 anchor-channel consumer):** anchor_weight scaling wired through
+three layers: (1) RoutingGate.route() produces RoutedEvent.anchor_channel; (2)
+SleepLoopManager._run_cycle() computes mean_anchor over SWS draws and calls
+agent.run_sleep_cycle(sws_anchor_weight=mean_anchor); (3)
+run_sws_schema_pass(anchor_weight) scales e1_input by anchor_weight before
+context_memory.write(e1_input). routing_gate.py module docstring updated to document
+the Phase C anchor channel consumption (GAP-8, 2026-05-15 tag).
 
 ### 2026-05-10 - GAP-2 status `in-progress` -> `upstream-blocked` by ARC-065 substrate
 
