@@ -1,0 +1,130 @@
+{
+  "run_id": "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233019Z_v3",
+  "experiment_type": "v3_exq_570_e2_rollout_collapse_diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-065"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "diagnostic",
+  "outcome": "PASS",
+  "outcome_note": "E2 rollout preserves diversity (ARM_1 ratio=51.007 >= 0.5); Stage 3 is NOT the bottleneck",
+  "timestamp_utc": "20260515T233019Z",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "n_probe_steps": 50,
+  "n_random_candidates": 32,
+  "arm_names": [
+    "ARM_0_random_cem",
+    "ARM_1_class_scaffold",
+    "ARM_2_mixed"
+  ],
+  "arm_summaries": {
+    "ARM_0_random_cem": {
+      "mean_first_step_spread": 0.036948050682743386,
+      "mean_terminal_spread": 4.962821324666341,
+      "diversity_preservation_ratio": 137.45895146338822,
+      "n_valid_seeds": 3
+    },
+    "ARM_1_class_scaffold": {
+      "mean_first_step_spread": 0.01742454742391904,
+      "mean_terminal_spread": 0.902392135726081,
+      "diversity_preservation_ratio": 51.00745815670777,
+      "n_valid_seeds": 3
+    },
+    "ARM_2_mixed": {
+      "mean_first_step_spread": 0.03483244507677025,
+      "mean_terminal_spread": 5.700959470536975,
+      "diversity_preservation_ratio": 165.5185370372494,
+      "n_valid_seeds": 3
+    }
+  },
+  "per_seed_results": {
+    "ARM_0_random_cem": [
+      {
+        "arm": "ARM_0_random_cem",
+        "seed": 42,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.04312045375506083,
+        "mean_terminal_spread": 5.001680692036946,
+        "diversity_preservation_ratio": 115.99053966147738
+      },
+      {
+        "arm": "ARM_0_random_cem",
+        "seed": 123,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.03915999084711075,
+        "mean_terminal_spread": 5.250133673350017,
+        "diversity_preservation_ratio": 134.0653941532576
+      },
+      {
+        "arm": "ARM_0_random_cem",
+        "seed": 456,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.02856370744605859,
+        "mean_terminal_spread": 4.6366496086120605,
+        "diversity_preservation_ratio": 162.32092057542965
+      }
+    ],
+    "ARM_1_class_scaffold": [
+      {
+        "arm": "ARM_1_class_scaffold",
+        "seed": 42,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.01968185727794965,
+        "mean_terminal_spread": 1.237506111462911,
+        "diversity_preservation_ratio": 62.872279872153854
+      },
+      {
+        "arm": "ARM_1_class_scaffold",
+        "seed": 123,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.02002628023425738,
+        "mean_terminal_spread": 0.90408323208491,
+        "diversity_preservation_ratio": 45.142586587391094
+      },
+      {
+        "arm": "ARM_1_class_scaffold",
+        "seed": 456,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.012565504759550095,
+        "mean_terminal_spread": 0.565587063630422,
+        "diversity_preservation_ratio": 45.00750801057836
+      }
+    ],
+    "ARM_2_mixed": [
+      {
+        "arm": "ARM_2_mixed",
+        "seed": 42,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.04007650539278984,
+        "mean_terminal_spread": 5.477198759714763,
+        "diversity_preservation_ratio": 136.66516181668683
+      },
+      {
+        "arm": "ARM_2_mixed",
+        "seed": 123,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.03564578418930372,
+        "mean_terminal_spread": 6.586193243662517,
+        "diversity_preservation_ratio": 184.76262006374168
+      },
+      {
+        "arm": "ARM_2_mixed",
+        "seed": 456,
+        "n_valid": 3,
+        "mean_first_step_spread": 0.0287750456482172,
+        "mean_terminal_spread": 5.039486408233643,
+        "diversity_preservation_ratio": 175.1278292313197
+      }
+    ]
+  },
+  "thresholds": {
+    "pass": 0.5,
+    "fail": 0.3,
+    "non_contributory_spread_min": 0.01
+  }
+}

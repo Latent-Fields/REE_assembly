@@ -1,0 +1,113 @@
+{
+  "run_id": "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T232232Z_v3",
+  "queue_id": "V3-EXQ-570",
+  "experiment_type": "v3_exq_570_e2_rollout_collapse_diagnostic",
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "outcome": "PASS",
+  "timestamp_utc": "20260515T232232Z",
+  "seeds": [
+    42,
+    123
+  ],
+  "episodes_per_arm": 2,
+  "steps_per_episode": 30,
+  "warmup_steps": 5,
+  "oracle_rollout_horizon": 8,
+  "threshold_oracle_z_world_dist": 0.05,
+  "threshold_arm0_entropy_diagnostic": 0.3,
+  "arm_labels": [
+    "ARM_0_baseline",
+    "ARM_1_high_temp",
+    "ARM_2_bipartite",
+    "ARM_3_oracle"
+  ],
+  "all_results": {
+    "seed42_ARM_0_baseline": {
+      "arm": "ARM_0_baseline",
+      "seed": 42,
+      "episodes": 2,
+      "mean_first_action_entropy": 0.0,
+      "mean_action_seq_diversity": 0.00011228142594269053,
+      "mean_e3_score_variance": 0.5,
+      "mean_oracle_z_world_pairwise_dist": null,
+      "arm_passed": true
+    },
+    "seed42_ARM_1_high_temp": {
+      "arm": "ARM_1_high_temp",
+      "seed": 42,
+      "episodes": 2,
+      "mean_first_action_entropy": 0.0,
+      "mean_action_seq_diversity": 0.00011228142594269053,
+      "mean_e3_score_variance": 0.5,
+      "mean_oracle_z_world_pairwise_dist": null,
+      "arm_passed": true
+    },
+    "seed42_ARM_2_bipartite": {
+      "arm": "ARM_2_bipartite",
+      "seed": 42,
+      "episodes": 2,
+      "mean_first_action_entropy": 0.0,
+      "mean_action_seq_diversity": 0.0002383898618386264,
+      "mean_e3_score_variance": 0.5,
+      "mean_oracle_z_world_pairwise_dist": null,
+      "arm_passed": true
+    },
+    "seed42_ARM_3_oracle": {
+      "arm": "ARM_3_oracle",
+      "seed": 42,
+      "episodes": 2,
+      "mean_first_action_entropy": null,
+      "mean_action_seq_diversity": null,
+      "mean_e3_score_variance": null,
+      "mean_oracle_z_world_pairwise_dist": 1.460748861644949,
+      "arm_passed": true
+    },
+    "seed123_ARM_0_baseline": {
+      "arm": "ARM_0_baseline",
+      "seed": 123,
+      "episodes": 2,
+      "mean_first_action_entropy": 0.0,
+      "mean_action_seq_diversity": 0.000136671714019045,
+      "mean_e3_score_variance": 0.5,
+      "mean_oracle_z_world_pairwise_dist": null,
+      "arm_passed": true
+    },
+    "seed123_ARM_1_high_temp": {
+      "arm": "ARM_1_high_temp",
+      "seed": 123,
+      "episodes": 2,
+      "mean_first_action_entropy": 0.0,
+      "mean_action_seq_diversity": 0.000136671714019045,
+      "mean_e3_score_variance": 0.5,
+      "mean_oracle_z_world_pairwise_dist": null,
+      "arm_passed": true
+    },
+    "seed123_ARM_2_bipartite": {
+      "arm": "ARM_2_bipartite",
+      "seed": 123,
+      "episodes": 2,
+      "mean_first_action_entropy": 0.0,
+      "mean_action_seq_diversity": 0.00023195659767005113,
+      "mean_e3_score_variance": 0.5,
+      "mean_oracle_z_world_pairwise_dist": null,
+      "arm_passed": true
+    },
+    "seed123_ARM_3_oracle": {
+      "arm": "ARM_3_oracle",
+      "seed": 123,
+      "episodes": 2,
+      "mean_first_action_entropy": null,
+      "mean_action_seq_diversity": null,
+      "mean_e3_score_variance": null,
+      "mean_oracle_z_world_pairwise_dist": 1.612898705346244,
+      "arm_passed": true
+    }
+  },
+  "oracle_passed_per_seed": [
+    true,
+    true
+  ],
+  "dry_run": true
+}
