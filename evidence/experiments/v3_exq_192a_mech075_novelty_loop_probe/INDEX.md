@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_192a_mech075_novelty_loop_probe
 
-Generated: `2026-05-15T18:49:47.459464Z`
+Generated: `2026-05-15T21:33:26.469699Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

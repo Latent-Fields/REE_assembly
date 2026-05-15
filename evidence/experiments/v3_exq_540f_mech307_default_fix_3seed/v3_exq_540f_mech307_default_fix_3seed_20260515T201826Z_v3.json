@@ -14,15 +14,17 @@
   ],
   "experiment_purpose": "diagnostic",
   "outcome": "FAIL",
-  "evidence_direction": "does_not_support",
-  "per_claim_direction": {
-    "MECH-307": "does_not_support",
-    "MECH-216": "does_not_support",
-    "MECH-205": "does_not_support",
-    "MECH-093": "does_not_support",
-    "SD-014": "does_not_support",
-    "MECH-295": "does_not_support"
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Superseded by V3-EXQ-540g (queued 2026-05-15). Root cause: C1 arm0_silent criterion (liking_writes==0) was never achievable because consummatory update_liking and the MECH-295 bridge always produce non-zero liking writes. V3-EXQ-540g replaces C1 with a delta-based criterion (ARM_2 liking_lift >= 5 vs ARM_0 baseline). C2 data (conjunction_fire_rate_mean=32.0 in ARM_2_full, 0 in ARM_0/1) demonstrates the conjunction wiring is live; C3 (approach_commit_lift) could not be evaluated under the broken C1 gate. The does_not_support blanket applied by the indexer (missing evidence_direction_per_claim field name) is not valid evidence against MECH-307 or dependent claims.",
+  "evidence_direction_per_claim": {
+    "MECH-307": "superseded",
+    "MECH-216": "superseded",
+    "MECH-205": "superseded",
+    "MECH-093": "superseded",
+    "SD-014": "superseded",
+    "MECH-295": "superseded"
   },
+  "superseded_by": "V3-EXQ-540g",
   "timestamp_utc": "2026-05-15T20:18:26.097339Z",
   "elapsed_seconds": 6218.933766841888,
   "seeds": [

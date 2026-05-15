@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-15T18:42:36Z",
+  "last_updated_utc": "2026-05-15T21:35:06Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2753,6 +2753,30 @@
       "last_seen_session": "governance-2026-05-11T1713Z",
       "implementation_status": "substrate_landed_pending_behavioural_validation",
       "validation_experiment": "V3-EXQ-547 (MECH-320 child substrate-readiness PASS)"
+    },
+    {
+      "sd_id": "SD-055",
+      "title": "Differentiable CEM selection approximation -- softmax-weighted candidate mean replaces argsort elite-selection in HippocampalModule, restoring gradient to SD-016 cue_action_proj",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-072",
+        "MECH-326"
+      ],
+      "failure_record": [
+        {
+          "run_id": "EXP-0155",
+          "experiment_type": "exploration_mode_cue_bias",
+          "metric": "cue_action_proj gradient = 0 due to argsort barrier in CEM elite-selection",
+          "target": "gradient flows through softmax-weighted ao_mean to cue_action_proj.weight"
+        }
+      ],
+      "implementation_hint": "Code is already in ree-v3/ree_core/hippocampal/module.py (use_differentiable_cem flag, softmax-weighted ao_mean path). EXQ-568 confirmed gradient flow (grad_max=372). ree-v3/CLAUDE.md documentation update pending; behavioral validation requires trained-policy cue-conditioned divergence experiment on goal-rich env.",
+      "priority": 2,
+      "added_session": "governance-cycle-2026-05-15T205941Z",
+      "last_seen_session": "governance-cycle-2026-05-15T205941Z",
+      "status": "substrate_implemented_pending_validation"
     }
   ],
   "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"

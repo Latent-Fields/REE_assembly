@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_512_sd048_arc058_arc033_comparator_gap_behavioural
 
-Generated: `2026-05-15T18:49:47.459464Z`
+Generated: `2026-05-15T21:33:26.469699Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

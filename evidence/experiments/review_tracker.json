@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-15T18:42:36Z",
+  "last_review_utc": "2026-05-15T21:22:39Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-562",
     "V3-EXQ-449c",
@@ -312,7 +312,8 @@
     "V3-EXQ-563",
     "V3-EXQ-563a",
     "V3-EXQ-563b",
-    "V3-EXQ-564"
+    "V3-EXQ-564",
+    "V3-EXQ-554"
   ],
   "reviewed_run_ids": [
     "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
@@ -2376,7 +2377,12 @@
     "v3_exq_563_candidate_support_collapse_diagnosis_20260514T185309Z_v3",
     "v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3",
     "v3_exq_563b_candidate_support_repair_20260514T205949Z_v3",
-    "v3_exq_565_wpd_gap8_routing_consumer_20260515T180311Z_v3"
+    "v3_exq_565_wpd_gap8_routing_consumer_20260515T180311Z_v3",
+    "v3_exq_540f_mech307_default_fix_3seed_20260515T201826Z_v3",
+    "v3_exq_563c_stratified_cem_bias_calibration_20260515T201559Z_v3",
+    "v3_exq_567_wpb_natural_entropy_sp_cem_20260515T203126Z_v3",
+    "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204821Z_v3",
+    "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204931Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2597,6 +2603,19 @@
       ],
       "discussed_experiment_dirs_added": ["V3-EXQ-564"],
       "subject": "Governance cycle 2026-05-15. EXQ-563 cluster (4 runs): all confirmed diagnostic non_contributory. 563/563a additionally marked superseded (563a supersedes 563, 563b supersedes 563a). Key finding: E3 score-bias seam intact; CEM elite-refit collapse is the upstream blocker; MECH-320 v_raw magnitude (~-25 to -50) too small relative to E3 score range (~20-37) for natural v_t to shift behaviour. V3-EXQ-563c (stratified support-preserving CEM) already queued. EXQ-565 (MECH-272, GAP-8): PASS, evidence_direction=supports. Routing-gate consumer correctly modulates sws_anchor_weight from 1.0 (consumer OFF) to 0.6 (consumer ON), both seeds. MECH-272 remains hold_pending_v3_substrate (v3_pending gate). EXQ-564 (runner-only, WPC Rung 2): PASS diagnostic, claim_ids=[]. ValenceWanting write->read seam confirmed; ARM_2 forced_low mean_wanting=599, ARM_1 natural=6.2. Cleared to discussed_experiment_dirs. Promotion/demotion: 9 hold_pending_v3_substrate items applied (ARC-066/067/068, ARC-070/071, MECH-320, Q-043/044/045)."
+    },
+    {
+      "timestamp_utc": "2026-05-15T21:22:39Z",
+      "session_label": "governance-cycle-2026-05-15-evening",
+      "reviewed_run_ids": [
+        "v3_exq_540f_mech307_default_fix_3seed_20260515T201826Z_v3",
+        "v3_exq_563c_stratified_cem_bias_calibration_20260515T201559Z_v3",
+        "v3_exq_567_wpb_natural_entropy_sp_cem_20260515T203126Z_v3",
+        "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204821Z_v3",
+        "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204931Z_v3"
+      ],
+      "discussed_experiment_dirs_added": ["V3-EXQ-554"],
+      "subject": "Governance cycle 2026-05-15 (evening). EXQ-540f marked superseded: C1 criterion (arm0_liking_writes==0) was unfulfillable; V3-EXQ-540g (delta-based C1, already running) supersedes it. C2 data confirms MECH-307 conjunction wiring is live (fire_rate=32.0 in ARM_2). EXQ-563c (ARC-065/MECH-320): diagnostic PASS, non_contributory confirmed, 7-arm CEM/bias wiring verified. EXQ-567 (ARC-065): evidence PASS, first exp support for ARC-065; entropy lift 0.484 (>>0.05 threshold), support lift 1.803 (>>0.5 threshold). ARC-065 remains hold_pending_v3_substrate. EXQ-568x2 (SD-055): dual substrate-readiness PASS, gradient confirmed (grad_max=372.06), non_contributory. Two runs identical (simultaneous claim on two machines). V3-EXQ-554 (runner-only ERROR): cleared -- orphaned ree-cloud-1 runner_status entry from systemctl-killed run; V3-EXQ-554a (re-run) already reviewed. Promotion/demotion: 9 hold_pending_v3_substrate confirmed (ARC-066/067/068, ARC-070/071, MECH-320, Q-043/044/045) -- all v3_pending already set."
     }
   ]
 }
