@@ -85,7 +85,7 @@ closure_plan:
       unblocks_claims: [MECH-272, MECH-285]
       depends_on: []
       last_updated: 2026-05-15
-      completed_note: "Substrate: anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated. Validation: V3-EXQ-565 queued + smoke C1/C2/C3 PASS 2026-05-15 (ARM_0 consumer-OFF weight==1.0; ARM_1 consumer-ON weight~=0.6; sws_n_writes=5 both arms via act_with_split_obs driver). EXP-0168 was the planning-time placeholder ID; V3-EXQ-565 is the queued validation experiment."
+      completed_note: "Substrate: anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated. Validation: V3-EXQ-565 smoke C1/C2/C3 PASS 2026-05-15 (ARM_0 consumer-OFF weight==1.0; ARM_1 consumer-ON weight~=0.6; sws_n_writes=5 both arms via act_with_split_obs driver). Full runner PASS confirmed 2026-05-15T18:03:11Z (manifest v3_exq_565_wpd_gap8_routing_consumer_20260515T180311Z_v3.json; arm0_applied_mean=1.0, arm1_applied_mean=0.6, C1/C2/C3 all True). EXP-0168 was the planning-time placeholder ID; V3-EXQ-565 is the validated experiment."
 ---
 # Sleep Substrate Plan
 
@@ -419,7 +419,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
 | GAP-6 | 5 | done | (none) | Audit complete: all 7 write sites documented in sleep_aggregation_cluster.md; all are architectural exceptions; zero require StepHarness routing | substrate audit (no EXQ) | 2026-05-15 |
 | GAP-7 | 6 | open | nothing | Update /queue-experiment skill, audit 19 experiments | n/a | 2026-05-08 |
-| GAP-8 | 3 | done | (none) | Substrate wired (run_sws_schema_pass anchor_weight scaling; SleepLoopManager mean_anchor forwarding). Validation V3-EXQ-565 queued + smoke C1/C2/C3 PASS 2026-05-15 (consumer-OFF weight 1.0, consumer-ON ~0.6, sws_n_writes=5 via act_with_split_obs driver) | V3-EXQ-565 | 2026-05-15 |
+| GAP-8 | 3 | done | (none) | Substrate wired (run_sws_schema_pass anchor_weight scaling; SleepLoopManager mean_anchor forwarding). V3-EXQ-565 smoke C1/C2/C3 PASS + full runner PASS confirmed 2026-05-15T18:03Z (arm0=1.0, arm1~=0.6, sws_n_writes>0 both arms) | V3-EXQ-565 | 2026-05-15 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`.
 A `paused` row carries a resume condition in the [Decision log](#decision-log).
@@ -482,7 +482,7 @@ SD-016 confound, the experiment configs must additionally enable:
 | GAP-4 / Phase 4 | (new entry to add for "real targets") | MECH-273 | sleep_aggregation_cluster.md |
 | GAP-6 / Phase 5 | (new entry to add) | (audit, no claim) | sleep_aggregation_cluster.md |
 | GAP-7 / Phase 6 | (skill change, no queue entry) | n/a | n/a |
-| GAP-8 / Phase 3 | V3-EXQ-565 (queued 2026-05-15, smoke C1/C2/C3 PASS) | MECH-272 | sleep_aggregation_cluster.md |
+| GAP-8 / Phase 3 | V3-EXQ-565 (full runner PASS 2026-05-15T18:03Z) | MECH-272 | sleep_aggregation_cluster.md |
 
 The substrate_queue.json edits to add cross-references and new entries are
 made in the same session as this plan registration.
