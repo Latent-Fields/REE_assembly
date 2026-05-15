@@ -1,46 +1,33 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-15T16:25:43Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-562",
-      "result": "FAIL",
-      "completed_at": "2026-05-14T05:03:39.005886+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-563",
-      "result": "PASS",
-      "completed_at": "2026-05-14T18:34:17.193290+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-563a",
-      "result": "PASS",
-      "completed_at": "2026-05-14T19:46:58.966781+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-563b",
-      "result": "PASS",
-      "completed_at": "2026-05-14T20:59:49.718303+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-564",
-      "result": "PASS",
-      "completed_at": "2026-05-15T06:47:34.732638+00:00"
-    }
+  "last_tick_utc": "2026-05-15T18:41:52Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-540f",
+  "current_exq_started_utc": "2026-05-15T18:34:46.094447+00:00",
+  "current_title": "MECH-307 default-fix clean 3-seed rerun (seeds 42, 43, 45)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_off",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 40,
+    "episodes_total": 70,
+    "overall_pct": 57.1
+  },
+  "seconds_elapsed": 426,
+  "seconds_remaining": 320,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_off",
+    "[train] ARM_0_off seed=42 ep 10/70 (warmup)",
+    "[train] ARM_0_off seed=42 ep 20/70 (warmup)",
+    "[train] ARM_0_off seed=42 ep 30/70 (warmup)",
+    "[train] ARM_0_off seed=42 ep 40/70 (warmup)"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 29534,
   "runner_version": null,
   "gpu": {
