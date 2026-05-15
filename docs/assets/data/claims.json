@@ -425,6 +425,12 @@
     "title": "policy_composition_via_repeated_grounding (zoom-out / chunk a sequence of primitives into a single atomic primitive after repeated successful execution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: sequences of policy primitives that have been repeatedly executed together with consistent outcomes are accumulated into a single primitive that the rule-apprehension and diversity-generation layers can treat atomically. Trigger: repetition count + outcome consistency (slow accumulator). Direction: zoom out. Phenomenology anchor: 'making coffee was once seventeen motor acts; after a thousand repetitions it is one unit.' Names the TRANSITION mechanism (planned -> habitual chunk) that MECH-163 dual systems presupposes but does not specify.",
     "type": "architectural_commitment"
   },
+  "ARC-072": {
+    "status": "candidate",
+    "subject": "architecture.developmental_bootstrapping_and_cue_indexed_retrieval_gaps",
+    "title": "developmental_bootstrapping_and_cue_indexed_retrieval_gaps -- REE lacks (1) a dedicated diversity-bootstrapping epoch that populates the hippocampal trajectory store before reinforcement narrowing; and (2) a differentiable cue-indexed retrieval path from PFC context representation to trajectory generation. EXQ-561 cluster / MECH-269 is diagnostic of gap (1); EXP-0155 zero-gradient cue_action_proj is diagnostic of gap (2). The two gaps are inter-dependent: the severed cue gradient (gap 2) is the mechanism that prevents diverse option population (gap 1).",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -1251,6 +1257,13 @@
     "status": "candidate",
     "subject": "ethics.violence_conditions_corollary",
     "title": "Violence corollary: violence is conditionally permissible only when an agent is not modelled as sufficiently self-like OR poses a genuine threat; both conditions require accurate inference.",
+    "type": "invariant"
+  },
+  "INV-073": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "learning.developmental_bootstrapping_necessity",
+    "title": "Developmental bootstrapping necessity: any model-building agent requiring flexible multi-option behavioral selection must undergo a dedicated motor-sensory exploration epoch before reinforcement learning narrows the repertoire; insufficient exploration permanently restricts the option library.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -3249,6 +3262,18 @@
     "status": "candidate",
     "subject": "policy.composition.chunk_maintenance_dissolution",
     "title": "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-325": {
+    "status": "candidate",
+    "subject": "hippocampus.cue_indexed_trajectory_library",
+    "title": "hippocampal_cue_indexed_trajectory_library -- the hippocampal module should function as a content-addressable trajectory store where PFC context/goal cues pattern-complete against the stored library to retrieve trajectory templates appropriate for the current context; different PFC context states retrieve different trajectory subsets, enabling context-differentiated behavioral option selection without regenerating trajectories from scratch each tick.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-326": {
+    "status": "candidate",
+    "subject": "pfc.context_bias_hippocampal_retrieval_gate",
+    "title": "pfc_context_bias_as_hippocampal_retrieval_gate -- PFC active goal/task representations send top-down bias signals that steer which hippocampal trajectory templates are retrieved or replayed; different PFC context states should produce different hippocampal retrieval subsets, enabling context-appropriate behavioral option selection; without this routing, the trajectory library is queried uniformly regardless of goal state.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

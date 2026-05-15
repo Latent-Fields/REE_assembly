@@ -15851,6 +15851,62 @@
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
+- id: INV-073
+  title: "Developmental bootstrapping necessity: any model-building agent requiring flexible multi-option behavioral selection must undergo a dedicated motor-sensory exploration epoch before reinforcement learning narrows the repertoire; insufficient exploration permanently restricts the option library."
+  claim_type: invariant
+  invariant_type: universal
+  subject: learning.developmental_bootstrapping_necessity
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - ARC-065    # diversity stack -- the runtime mechanism INV-073 must pre-populate
+    - MECH-269   # V_s monostrategy -- the downstream effect INV-073 explains causally
+  lit_conf: 0.76
+  literature_anchors:
+    - "Doupe & Kuhl (1999) Annual Review of Neuroscience -- LMAN silencing arrests subsong,
+       produces permanent monostrategy. conf 0.78."
+    - "Leitao & Gahr (2024) PNAS -- premature babbling opens sensory template phase;
+       motor exploration is causally upstream of perceptual template encoding. conf 0.76."
+    - "Warlaumont & Finnegan (2016) PLoS ONE -- severed auditory feedback (simulated
+       deafness/tracheostomy) collapses babbling to single low-diversity attractor. conf 0.70."
+    - "Li, Wu & Li (2007) Behavioural Pharmacology -- isolation-reared rats: initial
+       acquisition unimpaired, reversal learning specifically impaired; developmental
+       impoverishment -> permanent behavioral rigidity. conf 0.68."
+    - "Wang, Marshall & Kirkpatrick (2017) Behavioural Brain Research -- novelty enrichment
+       (not social enrichment) specifically reduces never-tried-this-option failure mode.
+       conf 0.64."
+  notes: >
+    INV-073 identifies the causal upstream factor for the monostrategy problem observed
+    in MECH-269 and the EXQ-561 cluster. The claim is at invariant level because the
+    principle transcends REE's specific architecture: it applies to any model-based agent
+    that uses iterative optimisation to select from a stored option library.
+
+    Three mechanisms converge:
+    (1) BG-driven variability epoch is causally necessary (Doupe & Kuhl 1999 LMAN lesion):
+        the epoch is not incidental exploratory noise but a structured variability-
+        generating system. Suppressing it leaves the option library unpopulated.
+    (2) Motor exploration opens the perceptual template phase (Leitao & Gahr 2024):
+        the exploration epoch is upstream of template formation, not downstream. An agent
+        that abbreviates exploration also fails to form the perceptual cues that later
+        serve as retrieval keys for the hippocampal store.
+    (3) Closed feedback loop is required (Warlaumont & Finnegan 2016): without intrinsic
+        reward from own-action sensory consequences, the system collapses to a single
+        low-diversity attractor regardless of exploration duration. The loop, not just
+        the duration, is the critical structural requirement.
+
+    REE diagnostic signature: the CEM generator in HippocampalModule regenerates
+    trajectories from the same terrain each tick; there is no mechanism to populate a
+    persistent trajectory store during an early exploration epoch. The cue_action_proj
+    gradient path is severed (EXP-0155), meaning the intrinsic feedback loop between
+    goal representation and action generation is broken -- the exact Warlaumont & Finnegan
+    topology. This is ARC-072.
+
+    Invariant type: emergent (not derivable from ethics axioms; follows from the
+    interaction of optimisation dynamics, motor-sensory feedback, and the structure of
+    the option-store lookup problem).
+  registered_utc: "2026-05-15"
+  location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
+
 - id: ARC-053
   title: "Temporal Coherence Loop (TCL): architecture must include a distributed loop responsible for maintaining phase alignment and temporal synchrony necessary for V(t) to be computable."
   claim_type: arch_commitment
@@ -29355,6 +29411,125 @@
     decisive.
   location: docs/architecture/policy_primitive_granularity.md
 
+- id: ARC-072
+  title: "developmental_bootstrapping_and_cue_indexed_retrieval_gaps -- REE lacks (1) a dedicated diversity-bootstrapping epoch that populates the hippocampal trajectory store before reinforcement narrowing; and (2) a differentiable cue-indexed retrieval path from PFC context representation to trajectory generation. EXQ-561 cluster / MECH-269 is diagnostic of gap (1); EXP-0155 zero-gradient cue_action_proj is diagnostic of gap (2). The two gaps are inter-dependent: the severed cue gradient (gap 2) is the mechanism that prevents diverse option population (gap 1)."
+  claim_type: architectural_commitment
+  subject: architecture.developmental_bootstrapping_and_cue_indexed_retrieval_gaps
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  claim_level: architectural
+  registered_utc: "2026-05-15"
+  depends_on:
+    - INV-073    # developmental bootstrapping necessity (causal upstream principle)
+    - ARC-065    # diversity stack -- the V3 mechanism ARC-072 scopes the gap beyond
+    - MECH-269   # V_s monostrategy -- diagnostic of gap (1)
+    - MECH-325   # hippocampal cue-indexed trajectory library (what gap (2) requires)
+    - MECH-326   # PFC top-down bias as retrieval gate (the missing routing mechanism)
+    - SD-016     # frontal cue-indexed integration -- the V3 stub with broken gradient
+  lit_conf: 0.74
+  literature_anchors:
+    - "Doupe & Kuhl (1999) Annual Review of Neuroscience -- developmental window + LMAN
+       epoch necessity. conf 0.78."
+    - "Warlaumont & Finnegan (2016) PLoS ONE -- severed feedback -> single attractor;
+       maps directly to zero-gradient cue_action_proj. conf 0.70."
+    - "Shin, Tang & Jadhav (2019) Neuron -- forward replay + PFC coherence at decision
+       point; the cue-indexed retrieval pattern REE does not yet implement. conf 0.84."
+    - "Li, Wu & Li (2007) Behavioural Pharmacology -- reversal learning deficit after
+       developmental impoverishment; update failure not acquisition failure. conf 0.68."
+  functional_restatement: >
+    ARC-072 names two inter-dependent architectural gaps in V3 REE.
+
+    Gap 1 -- No diversity-bootstrapping phase:
+    The V3 HippocampalModule generates K candidates per tick by CEM
+    refit starting from the current terrain prior. There is no
+    persistent trajectory store that accumulates diverse options over
+    an early exploration epoch, and no intrinsic diversity reward
+    that would prevent CEM from collapsing to the dominant
+    action class under repeated refit. The EXQ-563 series (support-
+    preserving CEM stratification) treats the symptom -- keeping
+    diversity within one tick's candidate set -- but does not
+    populate a diverse library across ticks. The monostrategy
+    experiments (MECH-269, EXQ-561 cluster) are the diagnostic.
+
+    Gap 2 -- No differentiable cue-indexed retrieval:
+    SD-016 introduced cue_action_proj as the structural hook for PFC
+    affordance bias into action generation. EXP-0155 confirmed zero
+    gradient through the CEM argmax: the path is structurally present
+    but computationally broken. MECH-292/293 (ghost-goal bank + waking
+    probes) provides goal-location-indexed seeding, which is a narrow
+    spatial-context approximation -- it is not general cue-indexed
+    retrieval keyed by arbitrary PFC goal representations.
+
+    Why the gaps are inter-dependent:
+    The feedback loop that would populate the trajectory store with
+    diverse options IS the cue gradient path that is severed in
+    gap 2. Without a differentiable route from goal cue to
+    trajectory generation, the CEM cannot be shaped by diverse goal
+    states during the exploration epoch. The agent is unable to
+    discover that different goal cues should produce different
+    trajectories because the gradient does not flow. This is the
+    Warlaumont & Finnegan topology: severed feedback -> single
+    attractor, regardless of exploration duration.
+
+    V4 architectural requirements (derived from ARC-072):
+    R1: Trajectory library structure (MECH-325) -- persistent
+        content-addressable store of (trajectory, cue, value) tuples.
+    R2: Diversity-bootstrapping epoch (INV-073) -- early training
+        phase with intrinsic diversity reward preceding task-reward.
+    R3: Differentiable PFC-to-retrieval path (MECH-326) -- replace or
+        supplement CEM argmax with differentiable retrieval operation
+        (e.g., attention over trajectory library, Gumbel-softmax
+        over stored indices).
+    R4: Context-sensitive retrieval gate (MECH-326) -- different
+        z_goal representations pattern-complete to different trajectory
+        subsets; gate is learnable, not static.
+
+    V3 diagnostic experiments scoped by ARC-072:
+    Gap 1 severity: EXQ-563c (support-preserving CEM), EXQ-567
+        (natural entropy measurement). These quantify how much
+        diversity CEM can maintain given current terrain gradient.
+        They do NOT address gap 2.
+    Gap 2 severity: EXP-0155 established the zero-gradient finding.
+        A follow-on diagnostic should establish whether the gradient
+        path can be restored with a differentiable approximation to
+        CEM selection (V3 staging experiment) before committing to
+        the full library architecture at V4.
+
+    ARC-072 is not a regression from ARC-065. ARC-065 is the runtime
+    diversity mechanism (MECH-313/314 noise floor, structured
+    curiosity, score-bias perturbation). ARC-072 identifies what
+    ARC-065 cannot fix: a trajectory library that was never
+    populated with diverse options in the first place, and a cue
+    routing system that cannot differentially retrieve from whatever
+    library exists.
+  notes: >
+    Relationship to existing V3 substrate:
+      - The EXQ-563 series (support-preserving CEM stratification)
+        is valid V3 work that quantifies Gap 1 severity. It does not
+        close the gap but establishes the severity diagnostic.
+      - SD-016 cue_action_proj is the V3 stub for Gap 2's
+        structural requirement. Restoring the gradient path is the
+        minimal V3 experiment for Gap 2; full library architecture
+        is V4.
+      - MECH-292/293 ghost-goal bank and probes is the closest V3
+        approximation to cue-indexed retrieval. It is spatially-
+        indexed (by goal location in observation space), not
+        arbitrary-cue-indexed. ARC-072 names the extension required.
+
+    Psychiatric failure mode prediction:
+      - If Gap 1 is severe enough: monostrategy under novel
+        contingencies = cognitive inflexibility / reversal learning
+        deficit (Li et al. 2007 isolation-reared phenotype).
+      - If Gap 2 is severe enough: context-inappropriate strategy
+        selection = perseveration (wrong strategy retrieved for
+        context) or strategy generalization failure (same option
+        retrieved regardless of cue).
+      - Combined gap: the agent learns one thing in one context
+        and cannot adapt in any other context -- the null-diversity
+        pole.
+  location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
+
 - id: MECH-320
   title: "tonic_vigor_coupling_score_bias (capacity-keyed E3 score-side action drive / mesolimbic-DA-vigor-analog / average-reward-rate opportunity-cost regulator). First child mechanism for ARC-066. Adds a tonic vigor scalar v_t to E3 trajectory scoring as an additive bias toward action-trajectories (or equivalently an additive cost on no-op trajectories), where v_t is a slow EWMA over the realised E3-score-receipt stream. Target-free: bias applies regardless of whether any z_goal is currently active. Distinct from MECH-313 (LC-NE noise floor -- noise on choice, orthogonal axis), MECH-216 (target-conditioned wanting), SD-012 (deficit-keyed drive, opposite coupling), and ARC-068 (opportunity-cost no-op penalty -- mathematical complement that may collapse with MECH-320 into one signed scalar at design refinement)."
   claim_type: mechanism_hypothesis
@@ -30760,3 +30935,197 @@
         first validation experiment.
   location: docs/architecture/policy_primitive_granularity.md
 
+
+- id: MECH-325
+  title: "hippocampal_cue_indexed_trajectory_library -- the hippocampal module should function as a content-addressable trajectory store where PFC context/goal cues pattern-complete against the stored library to retrieve trajectory templates appropriate for the current context; different PFC context states retrieve different trajectory subsets, enabling context-differentiated behavioral option selection without regenerating trajectories from scratch each tick."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.cue_indexed_trajectory_library
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-15"
+  depends_on:
+    - ARC-007    # value-flat proposals -- the V3 substrate MECH-325 upgrades
+    - MECH-033   # kernel_chaining_interface -- the trajectory-retrieval interface
+    - MECH-292   # ghost-goal bank -- the V3 spatial-indexed approximation
+    - MECH-293   # ghost-goal waking probes -- the V3 spatial-indexed approximation
+    - ARC-072    # the architectural gap cluster naming the requirement
+  lit_conf: 0.82
+  literature_anchors:
+    - "Buckner (2010) Annual Review of Psychology -- hippocampus as prediction/simulation
+       device; preplay events are cue-queryable sequence subsets, not time-indexed archive.
+       conf 0.82."
+    - "Shin, Tang & Jadhav (2019) Neuron -- forward replay specifically discriminates
+       future paths; PFC theta coherence during forward replay predicts correct choice.
+       conf 0.84."
+    - "Comrie, Frank & Kay (2022) Phil Trans R Soc B -- hippocampal firing codes paths
+       not taken, novel path combinations, locations not occupied; imagination as core
+       function. conf 0.77."
+    - "Tang, Shin & Jadhav (2021) eLife -- theta sequences at decision points encode
+       alternatives for deliberation, not just current path; sub-second retrieval
+       mechanism. conf 0.82."
+  functional_restatement: >
+    MECH-325 describes the target architecture for the hippocampal
+    module beyond V3. The V3 HippocampalModule (ARC-007 STRICT) is
+    a CEM generator: it produces K trajectory candidates per tick
+    by iterative refit of a Gaussian in action-object space, guided
+    by the terrain prior. It does not store trajectories across
+    ticks; each tick's candidates are generated fresh.
+
+    MECH-325 specifies the upgrade: a persistent content-addressable
+    store of trajectory templates accumulated during experience,
+    indexed by the context/goal cue that was active when the
+    trajectory was executed. Retrieval at inference time: PFC
+    context representation (z_goal + task context) pattern-completes
+    against the stored keys to retrieve the subset of templates
+    appropriate for the current context.
+
+    This is distinct from MECH-292/293 (ghost-goal bank + waking
+    probes), which is spatially indexed -- it seeds CEM from past
+    goal-location anchor z_world representations. MECH-325 requires
+    arbitrary-cue indexing (not only spatial proximity) so that any
+    distinguishable PFC context state can retrieve a distinct
+    trajectory subset.
+
+    The Buckner (2010) framing is the conceptual anchor: hippocampus
+    is not a time-indexed archive but a generator of possible
+    sequences indexed by context cue. The Shin/Jadhav (2019) result
+    is the most direct experimental evidence: forward replay events
+    specifically retrieve trajectory templates toward remembered
+    goals, and PFC theta coherence during those events predicts
+    subsequent correct choice -- this is PFC reading out hippocampal
+    retrieval content to guide upcoming action.
+
+    Implementation notes (V4 candidate designs):
+      - Episodic buffer with learned key-query retrieval (attention
+        over stored (cue, trajectory, value) tuples).
+      - Differentiable nearest-neighbour over stored cue embeddings
+        (soft lookup, gradient-preserving).
+      - Hippocampal-inspired network: pattern completion via
+        recurrent attractor dynamics (Hopfield-style; modern
+        transformer attention is a differentiable analog).
+    All candidates require the diversity-bootstrapping phase (INV-073,
+    ARC-072 R2) to populate the store before task-reward narrows
+    what gets written.
+
+    V3 staging: the minimal V3 diagnostic is to verify that a
+    differentiable approximation to CEM selection can restore the
+    gradient path from cue_action_proj to trajectory generation
+    before committing to the full library architecture. This
+    precedes the full MECH-325 V4 implementation.
+  notes: >
+    MECH-325 is the positive specification; ARC-072 names the gap
+    between MECH-325 and the V3 substrate. Together they set the
+    V4 scope for the hippocampal module.
+
+    Cross-link to Buckner (2010) prediction framing: the transition
+    from episodic memory (backward-looking) to prediction/imagination
+    (forward-looking) mirrors the Shin/Jadhav reverse-to-forward
+    replay learning gradient. Early learning is retrospective; late
+    learning is prospective. MECH-325's retrieval function is the
+    prospective operation.
+
+    ARC-007 STRICT (value-flat proposals) remains valid at V3: the
+    terrain navigation produces value-flat candidates because the
+    terrain IS value-shaped (residue_val writes value into z_world
+    geometry). MECH-325 does not replace this; it adds cue-indexed
+    retrieval as a parallel or subsequent retrieval pathway.
+  location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
+
+- id: MECH-326
+  title: "pfc_context_bias_as_hippocampal_retrieval_gate -- PFC active goal/task representations send top-down bias signals that steer which hippocampal trajectory templates are retrieved or replayed; different PFC context states should produce different hippocampal retrieval subsets, enabling context-appropriate behavioral option selection; without this routing, the trajectory library is queried uniformly regardless of goal state."
+  claim_type: mechanism_hypothesis
+  subject: pfc.context_bias_hippocampal_retrieval_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-15"
+  depends_on:
+    - ARC-016    # dynamic precision -- the V3 PFC influence mechanism MECH-326 extends
+    - MECH-025   # action_doing_mode_probe -- PFC-to-hippocampal routing baseline
+    - MECH-325   # hippocampal cue-indexed library -- must exist before it can be gated
+    - SD-016     # cue_action_proj -- the V3 structural stub with severed gradient
+    - ARC-072    # the architectural gap cluster naming the requirement
+  lit_conf: 0.82
+  literature_anchors:
+    - "Miller & Cohen (2001) Annual Review of Neuroscience -- PFC maintains goal/rule
+       representations that bias downstream input-output mappings via top-down projections;
+       foundational mechanism for context-appropriate response selection. conf 0.84."
+    - "Zielinski, Tang & Jadhav (2018) Hippocampus -- PFC context gates hippocampal
+       replay content; coordinated hippocampal-PFC SWR activity during inter-trial pauses
+       predicts upcoming correct choices. conf 0.79."
+    - "Tang, Shin & Jadhav (2021) eLife -- theta sequences at decision points encode
+       alternatives; PFC theta sequences simultaneously predict upcoming choice, coordinated
+       with hippocampal alternatives; PFC bias steers which hippocampal sweep is selected.
+       conf 0.82."
+    - "Shin, Tang & Jadhav (2019) Neuron -- PFC theta coherence during forward replay
+       predicts correct choice; replay content is goal-directed not random. conf 0.84."
+  functional_restatement: >
+    MECH-326 describes the routing mechanism that connects PFC goal
+    representations to hippocampal trajectory retrieval. Without this
+    mechanism, the MECH-325 trajectory library is queried
+    unconditionally: the same retrieval distribution over the library
+    applies regardless of what goal is currently active.
+
+    Miller & Cohen (2001) provides the PFC side of the mechanism:
+    PFC neurons that represent task rules and goals send top-down
+    projections to downstream circuits, biasing their input-output
+    mappings toward context-appropriate responses. MECH-326 extends
+    this to the hippocampal retrieval case: the PFC goal representation
+    (z_goal) sends a bias signal that steers the pattern-completion
+    lookup in the MECH-325 trajectory store.
+
+    Zielinski/Jadhav (2018) and Tang/Jadhav (2021) provide the
+    hippocampal-side experimental evidence: different PFC context
+    states produce different hippocampal replay content; PFC theta
+    sequences predict upcoming choices in coordination with
+    hippocampal alternative-encoding theta sequences.
+
+    In REE's current substrate:
+      - SD-016 cue_terrain_proj is partially working: it weights
+        terrain precision (harm/goal) by the current cue, which
+        steers which part of the residue field guides CEM.
+      - SD-016 cue_action_proj is structurally present but
+        computationally broken: zero gradient through CEM argmax
+        (EXP-0155). This is the open slot for MECH-326.
+
+    V4 implementation target:
+      The cue_action_proj path must be replaced with a
+      differentiable routing operation: e.g., soft attention over
+      the MECH-325 trajectory library keyed by z_goal, or a
+      Gumbel-softmax sampling step over stored trajectory indices.
+      The key requirement is that the gradient from task-reward
+      flows back through the retrieval operation to update the
+      cue-key representations in the library.
+
+    V3 staging path:
+      Minimal experiment: insert a differentiable approximation to
+      CEM selection (e.g., weighted combination of candidate
+      action-objects using softmax scores as weights) and verify
+      that gradient flows from task reward through the combination
+      to cue_action_proj. This restores the topological requirement
+      without full library architecture.
+  notes: >
+    MECH-326 is the routing mechanism that gives MECH-325 its
+    cue-differentiation property. Without MECH-326, MECH-325 is
+    a library with a flat retrieval distribution -- all contexts
+    get the same mix of trajectory templates. With MECH-326, the
+    PFC goal state steers which templates are retrieved.
+
+    Relationship to ARC-016 (dynamic precision):
+    ARC-016 is about E3-derived dynamic precision modulating the
+    relative weight of harm vs goal error signals. MECH-326 is
+    orthogonal: it is about goal representation steering trajectory
+    retrieval, not about weighting error channels. Both are PFC-
+    influenced but via different downstream circuits.
+
+    Failure mode: if MECH-326 is absent or weak, behavioral
+    diversity at inference time is independent of goal state --
+    the agent proposes the same candidate set regardless of what
+    goal it is currently pursuing. This is the situation diagnosed
+    by EXP-0155 and the EXQ-561 cluster.
+  location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
