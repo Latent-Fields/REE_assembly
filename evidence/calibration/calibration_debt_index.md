@@ -123,7 +123,7 @@ calibration_status:
 |---------|-------|--------|
 | **A** (this doc) | Calibration registry | **done 2026-05-13** |
 | **B** | ARC-065 / MECH-320 combined heartbeat: candidate support and bias-scale calibration | V3-EXQ-563a PASS/non_contributory 2026-05-14 confirms E3 forced score-bias seam when scaffold support exists; normal CEM candidate support is primary bottleneck; V3-EXQ-563b queued for support-preserving CEM and forced-bias dose response |
-| **C** | Goal-stream calibration ladder: forced -> naturalistic | pending |
+| **C** | Goal-stream calibration ladder: forced -> naturalistic | V3-EXQ-562 Rung 1 FAIL (z_goal injection fires, goal component ~0.1% score variance, monostrategy persists); V3-EXQ-564 Rung 2 queued 2026-05-15 (forced VALENCE_WANTING write->read seam diagnostic) |
 | **D** | Sleep calibration: Phase B-E flags, routing-consumer check, cycle-count sweep | pending -- requires ARC-065 first |
 | **E** | ARC-062 input distinguishability: candidate variance, TV distance, head separability | pending |
 
@@ -147,8 +147,8 @@ Primary metrics: action_class_entropy, state_coverage, trajectory_diversity, rul
 ### Work Package C target sequence (goal-stream ladder)
 
 ```
-Rung 1: forced z_goal injection
-Rung 2: forced VALENCE_WANTING write
+Rung 1: forced z_goal injection -- V3-EXQ-562 FAIL: injection fires, goal component ~0.1% score variance; Rung 2 unblocked
+Rung 2: forced VALENCE_WANTING write -- V3-EXQ-564 queued 2026-05-15 (DLAPTOP-4.local, priority 1)
 Rung 3: forced schema_salience
 Rung 4: reactive resource-proximity wanting
 Rung 5: predictive wanting
