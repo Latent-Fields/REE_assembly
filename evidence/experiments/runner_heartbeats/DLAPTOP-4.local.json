@@ -1,33 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-15T20:18:24Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-540f",
-  "current_exq_started_utc": "2026-05-15T18:34:46.094447+00:00",
-  "current_title": "MECH-307 default-fix clean 3-seed rerun (seeds 42, 43, 45)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 45 / ARM_2_full",
-    "runs_done": 8,
-    "runs_total": 1,
-    "episodes_done": 65,
-    "episodes_total": 70,
-    "overall_pct": 892.9
-  },
-  "seconds_elapsed": 6218,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[train] ARM_2_full seed=45 ep 40/70 (warmup)",
-    "[train] ARM_2_full seed=45 ep 50/70 (warmup)",
-    "[train] ARM_2_full seed=45 ep 55/70 (eval)",
-    "[train] ARM_2_full seed=45 ep 60/70 (eval)",
-    "[train] ARM_2_full seed=45 ep 65/70 (eval)"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-05-15T20:18:33Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-563a",
+      "result": "PASS",
+      "completed_at": "2026-05-14T19:46:58.966781+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-563b",
+      "result": "PASS",
+      "completed_at": "2026-05-14T20:59:49.718303+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-564",
+      "result": "PASS",
+      "completed_at": "2026-05-15T06:47:34.732638+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-565",
+      "result": "PASS",
+      "completed_at": "2026-05-15T18:03:11.839532+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-540f",
+      "result": "FAIL",
+      "completed_at": "2026-05-15T20:18:26.637689+00:00"
+    }
+  ],
   "runner_pid": 29534,
   "runner_version": null,
   "gpu": {
