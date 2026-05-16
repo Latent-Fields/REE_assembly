@@ -356,18 +356,51 @@ structural_diversity_strength: float = 1.0  # 0=fixed layout, 1=fully variable
 ### 5.6 Stochastic-Attractor Audit (Pre-Condition for Curiosity Bonus Deployment)
 
 **Proposal (design constraint, not a feature):** Before enabling `novelty_bonus_weight > 0` in
-infant stage, audit the CausalGridWorldV2 for all stochastic attractors. Per Burda (2018) / Pathak
-(2017), any irreducibly random element with accessible variance will capture the MECH-314c
-learning-progress signal permanently.
+infant stage, audit CausalGridWorldV2 for all stochastic attractors. Per Burda (2018) / Pathak
+(2017), any irreducibly random element with accessible variance will permanently capture a
+prediction-error / novelty curiosity signal (the "noisy-TV" failure).
 
-**Audit checklist:**
-- [ ] Hazard drift direction: is it purely stochastic or Markovian? (SD-047 hazard_drift)
-- [ ] Resource respawn: is respawn purely random or predictable? (resource_respawn)
-- [ ] SD-048 interoceptive noise: is this variance exploitable by curiosity signal?
-- [ ] Any `random.random()` calls in step() that affect obs but not env dynamics?
+**Audit completed 2026-05-16 (GAP-4, code-read only).** One seeded master RNG
+(`self._rng = np.random.default_rng(seed)`, `causal_grid_world.py:607`) makes every run
+reproducible across machines; the attractor concern is *not* reproducibility but
+*within-episode irreducible* entropy that a curiosity signal cannot predict away.
 
-**Action:** For each identified stochastic element, either (a) make it Markovian (predictable
-with uncertainty) rather than purely random, or (b) exclude it from the novelty signal computation.
+Enumeration and classification of every RNG call site in `reset()` / `step()`:
+
+| Site (causal_grid_world.py) | Source | Class | Attractor risk |
+|---|---|---|---|
+| :696, :2243-44, :2087, :2354/:2379 | reset-time placement / GAP-2 Voronoi seed / SD-054 pool shuffles / drift seed + initial velocity | learnable-stochastic (per-episode layout; stationary generative rule) | none |
+| :804, :1845, :2167 | SD-049 resource-type + spawn weighted draws | learnable-stochastic (stationary distribution) | none |
+| :2718, :2805 | SD-029 hazard-injection target, resource respawn | learnable-stochastic (fixed rate, observable) | none |
+| :2751/:2768, :2364 | hazard random-walk drift step / drift velocity | bounded; hazard position fully observable | low |
+| :2399 | SD-047 weather AR(1) Gaussian innovation -> hazard_field | partial: AR(1) learnable, innovation irreducible | moderate (OFF by default) |
+| :2415 | SD-047 transient-event Poisson appear/disappear | cell-level irreducible, rate learnable | moderate (OFF by default) |
+| :2575 | SD-048 fatigue AR(1) innovation on harm_obs_a | partial: irreducible innovation | moderate |
+| :2609 | SD-048 sensitisation Poisson onset (harm_obs_a) | memoryless onset -> irreducible | high |
+| :2631 | SD-048 autonomic i.i.d. Gaussian on harm_obs_a, every tick | zero autocorrelation, injected straight into the encoded observation | **PRIMARY ATTRACTOR** (textbook noisy-TV) |
+
+**Verdict:** SD-048 interoceptive noise is the primary irreducible stochastic attractor --
+chiefly Source 1 autonomic i.i.d. Gaussian (`:2631`) and the Poisson sensitisation onset
+(`:2609`); the fatigue AR(1) (`:2575`) is a partial attractor. SD-047 weather innovation
+(`:2399`) and transient-event Poisson (`:2415`) are secondary partial attractors. Reset-time,
+spawn, respawn and hazard-drift randomness are learnable-stochastic and pose no attractor
+risk. All of SD-047/SD-048 are OFF by default; the risk materialises only when these
+substrates are enabled concurrently with `novelty_bonus_weight > 0` (the infant-stage
+configuration). This confirms the plan's pre-registered suspicion (Burda 2018 / Pathak 2017;
+SD-048 named as primary suspect at plan registration).
+
+**Action (binding constraint on GAP-13 / EXQ-ISEF-004 and any infant-stage curiosity run):**
+1. MECH-314a striatal novelty is min-distance in **z_world** RBF space; z_world does not
+   carry `harm_obs_a`, so 314a is structurally safe as-is -- no change required.
+2. The exposure is **MECH-314b/c**: they consume `e3._running_variance` (PE), which the
+   SD-048 autonomic Gaussian inflates with irreducible variance, so 314b/c would chase it.
+   When `use_structured_curiosity AND interoceptive_noise_enabled`, the PE feed to 314b/c
+   must exclude / low-pass the harm-stream PE component. Action option (b) "exclude from
+   the novelty signal" applies; option (a) "make it Markovian" is structurally unavailable
+   for i.i.d. readout noise.
+3. Treat `interoceptive_noise_scale` and SD-047 `multi_source_intensity_scale` as
+   quantities that must be masked from any novelty-signal computation; wire an explicit
+   config-coupling assertion BEFORE GAP-13 runs (GAP-13 `depends_on` GAP-4).
 
 ---
 
