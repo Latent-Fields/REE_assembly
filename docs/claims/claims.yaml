@@ -31292,4 +31292,100 @@
     is sufficient, or whether full L1+L2+L3 is required (continuous background + ambiguity repair
     from both parties). Ham 2024 shows frame mismatch is worse than frame absence -- suggesting
     L2/L3 are probably required. Full test requires V4 multi-agent substrate with role-switching.
+
+- id: ARC-074
+  title: "The infant stage requires a reward-free Phase 0 motor babbling epoch, prior to any E3 scoring or reward-weighted learning, in which Hebbian sensorimotor mappings, basic z_self structure, and non-trivial residue gradients are established."
+  claim_type: architectural_commitment
+  subject: development.phase_0_reward_free_exploration_epoch
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - ARC-046
+    - INV-055
+    - SD-005
+  short: >
+    A reward-free Hebbian babbling phase (Phase 0) must precede E3 scoring. Without it,
+    cold-start E3 scores on a flat residue field, making ARC-065 diversity mechanisms
+    structurally ineffective regardless of parameter settings.
+  description: >
+    Current infant training begins with E3 scoring active from step 0. On a flat
+    residue field (all regions equally unexplored), E3 cannot differentiate trajectories
+    -- every proposal receives near-identical scores. This produces a cold-start attractor
+    that collapses the CEM proposer to monostrategy (V_s) regardless of diversity
+    parameters (MECH-313, MECH-314, MECH-320). The solution is a Phase 0 epoch in which
+    E3 weighting is suppressed and the agent performs purely Hebbian sensorimotor
+    exploration: z_self encoder is trained on proprioceptive prediction error, basic
+    approach/avoidance gradients are established by ambient harm/benefit contacts, and
+    the residue field accumulates its first spatial heterogeneity. Only after Phase 0
+    criteria are met (minimum residue_entropy threshold, z_self encoder loss below
+    criterion) does E3 scoring activate and Phase 1 infant training begin.
+    Biological grounding: Doupe & Kuhl 1999 (subsong = pre-critical-period
+    undirected motor babbling before song-template-guided learning); Griffin et al.
+    2026 (reward-free exploration epoch before goal-directed RL); Garcia-Guzman 2026
+    (pre-reward Hebbian phase as prerequisite for structured curriculum). The phase is
+    analogous to the prespeech babbling stage in human infants: rich motor exploration
+    before any communicative reinforcement is received.
+    Implementation: a Phase0Config block with epoch_steps, hebbian_lr, and two gate
+    criteria (residue_entropy_min, z_self_loss_max). Phase 0 is skipped if warm-start
+    checkpoint is loaded. Failure to meet gate criteria within epoch_steps raises a
+    training error rather than silently proceeding.
+  location: docs/architecture/infant_substrate_expansion.md
+  notes: >
+    Registered 2026-05-16 following governance decision in developmental_experiment_priorities.md.
+    This is a new architectural commitment, not an amendment to ARC-046 (which governs hazard
+    protection during Phase 1+ infant training). ARC-074 governs the earlier pre-scoring epoch.
+    Without Phase 0, the warm-start gate calibration (DEV-NEED-029, ARC-065) has no valid
+    baseline: ARC-065 diversity mechanisms cannot be evaluated on a substrate that has never
+    produced differentiated E3 scores. Phase 0 completion is a prerequisite for EXQ-ISEF-006
+    (warm-start gate calibration experiment). See developmental_experiment_priorities.md for
+    the dependency graph and ranked experiment schedule.
+
+- id: MECH-329
+  title: "The wanting system (mesolimbic dopamine / approach motivation) seeds z_goal anchors via accidental benefit contacts before the liking system (hedonic evaluation) is calibrated -- producing a first wave of super-ordinal goals shaped by approach drive rather than calibrated preference."
+  claim_type: mechanism_hypothesis
+  subject: development.wanting_before_liking_goal_seeding_sequence
+  polarity: asserts
+  status: candidate
+  confidence: 0.0
+  depends_on:
+    - MECH-189
+    - SD-014
+    - INV-037
+    - INV-038
+  short: >
+    VALENCE_WANTING (z_goal seeding via MECH-189) precedes VALENCE_LIKING calibration.
+    Earliest z_goal ContextMemory writes reflect approach drive under accidental benefit
+    contacts, not mature hedonic discrimination -- wanting shapes the goal hierarchy
+    before liking is operational.
+  description: >
+    MECH-189 describes how high-salience benefit contacts write super-ordinal goals to
+    ContextMemory. MECH-329 specifies the temporal ordering: the approach-motivation
+    (wanting) component activates first, seeding z_goal anchors from the earliest
+    accidental benefit contacts, while the hedonic evaluation (liking) component lags
+    and calibrates progressively across infancy and childhood. This sequencing means
+    the first layer of the goal hierarchy is structured by exploration-drive and
+    accidental outcomes rather than by any calibrated preference function.
+    Biological grounding: Berridge & Robinson 1998 (wanting/liking dissociation --
+    mesolimbic dopamine mediates incentive salience / approach motivation independently
+    of hedonic pleasure; lesioned rats approach without liking); Keren-Portnoy &
+    Tomasello 2021 (infant proto-intentional reach precedes preference discrimination
+    -- desire-like states appear before calibrated hedonic evaluation in human
+    development). In animals and human infants, approach toward novel stimuli is
+    driven by dopaminergic wanting before opioid-mediated liking is established.
+    Implementation consequence: z_goal ContextMemory writes during Phase 0 and early
+    Phase 1 (infant) are triggered by approach-drive proximity to benefit patches, not
+    by repeated preference evaluation. MECH-329 predicts that removing Phase 0 (ARC-074
+    violation) degrades the goal hierarchy: without accidental benefit contacts in a
+    non-trivial environment, wanting-driven goal seeding produces no z_goal anchors,
+    and the adult agent begins with a structurally empty goal hierarchy. The infant
+    substrate enrichment (infant_substrate_expansion.md: EXQ-ISEF-002 transient benefit
+    patches) is the direct experimental test of this mechanism.
+  location: docs/architecture/developmental_curriculum.md
+  notes: >
+    Registered 2026-05-16 as a child mechanism of MECH-189. Grounded in wanting/liking
+    dissociation literature (Berridge 1998) and infant intentionality sequencing (Keren-Portnoy
+    2021). Proposed experimental test: EXQ-ISEF-002 (transient benefit patches in infant
+    substrate) -- compare z_goal ContextMemory write rate and anchor diversity with and without
+    benefit patches in Phase 0/Phase 1. Ranked experiment 2 in developmental_experiment_priorities.md.
   suggested_experiment_type: multi_agent_behavioral
