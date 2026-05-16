@@ -1,33 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-16T07:33:17Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-572",
-  "current_exq_started_utc": "2026-05-16T06:21:26.454298+00:00",
-  "current_title": "Intervention A dual attractor: context-sensitive strategy switching (ARC-065 Rung 3)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 123 / ARM_1_harm_affect",
-    "runs_done": 4,
-    "runs_total": 12,
-    "episodes_done": 1,
-    "episodes_total": 50,
-    "overall_pct": 33.5
-  },
-  "seconds_elapsed": 4311,
-  "seconds_remaining": 8192,
-  "recent_lines": [
-    "[train] label seed=42 ep 40/50 arm=ARM_1_harm_affect",
-    "[train] label seed=42 ep 50/50 arm=ARM_1_harm_affect",
-    "verdict: FAIL",
-    "Seed 123 Condition ARM_1_harm_affect",
-    "[train] label seed=123 ep 1/50 arm=ARM_1_harm_affect"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-05-16T11:04:11Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-570",
+      "result": "PASS",
+      "completed_at": "2026-05-15T23:33:08.957546+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-569",
+      "result": "FAIL",
+      "completed_at": "2026-05-16T00:38:31.608852+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-571",
+      "result": "PASS",
+      "completed_at": "2026-05-16T00:40:17.484578+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-572",
+      "result": "FAIL",
+      "completed_at": "2026-05-16T09:51:19.258753+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-574",
+      "result": "PASS",
+      "completed_at": "2026-05-16T10:59:00.759574+00:00"
+    }
+  ],
   "runner_pid": 29534,
   "runner_version": null,
   "gpu": {
