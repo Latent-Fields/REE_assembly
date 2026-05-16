@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-16T23:52:10Z",
+  "last_tick_utc": "2026-05-16T23:53:12Z",
   "state": "running",
   "current_exq": "V3-EXQ-543e",
   "current_exq_started_utc": "2026-05-16T23:42:42.559107+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 0 / ARM_2_gated_only",
-    "runs_done": 2,
+    "run_label": "Seed 0 / ARM_3_both",
+    "runs_done": 3,
     "runs_total": 12,
-    "episodes_done": 80,
+    "episodes_done": 0,
     "episodes_total": 108,
-    "overall_pct": 22.8
+    "overall_pct": 25.0
   },
-  "seconds_elapsed": 567,
-  "seconds_remaining": 1917,
+  "seconds_elapsed": 630,
+  "seconds_remaining": 1826,
   "recent_lines": [
-    "[probe] ARM_2_gated_only INERT-GATING SHORT-CIRCUIT at P1 ep 30: mean_tv=0.0001 < 0.05",
-    "[train] ARM_2_gated_only ep 70/108  phase=P1  rv=0.0009  ep_reward=-1.3073  inert_gating=True",
-    "[probe] ARM_2_gated_only P1 ep 35/60  applicable=True  mean_tv=0.0000  max_tv=0.0000",
-    "[probe] ARM_2_gated_only P1 ep 40/60  applicable=True  mean_tv=0.0000  max_tv=0.0000",
-    "[train] ARM_2_gated_only ep 80/108  phase=P1  rv=0.0007  ep_reward=-1.0395  inert_gating=True"
+    "seed=0 arm=ARM_2_gated_only  reef_frac=0.280  rho=-0.143  forage_hr=0.1923  transit_hr=1.0000  ratio=0.192  inert_gating=True",
+    "verdict: FAIL",
+    "Seed 0 Condition ARM_3_both",
+    "use_gated_policy=True  use_dacc=True  dacc_suppression_weight=0.5  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on  agent.dacc=on"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
