@@ -29,14 +29,15 @@ closure_plan:
       resume_condition: "V3-EXQ-543b/c PASS demonstrating non-degenerate cross-seed behavioural diversity in waking phase under ARC-065 substrate, then re-queue 418m + 436b under the diversity-substrate stack."
       last_updated: 2026-05-10
     - id: "sleep_substrate:GAP-3"
-      title: "Phase B-E master flags default-False (cluster silent)"
+      title: "Phase B-E master flags default-False (cluster silent) -- unified use_sleep_aggregation_cluster master flag landed 2026-05-16"
       phase: 3
-      status: open
+      status: done
       severity: high
-      owner_exq: null
+      owner_exq: V3-EXQ-581
       unblocks_claims: [MECH-285, MECH-272, MECH-275, MECH-273]
       depends_on: ["sleep_substrate:GAP-8"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-16
+      completed_note: "Root cause was eight independent default-False flags (use_sleep_loop, sws_enabled, rem_enabled, use_mech285_sampler, use_mech272_routing, use_mech272_routing_consumer, use_mech275_aggregator, use_mech273_self_model); the offline-consolidation pathway was silent unless an experiment set all eight by hand. Fix: REEConfig.use_sleep_aggregation_cluster field + enable_sleep_aggregation_cluster() method, resolved in __post_init__ (direct construction) and at the end of from_dims (factory path experiments use), mirroring the use_mech307_conjunction / enable_goal_stream conventions. OR-only (flips False->True); MECH-204 precision recalibration and the anchor-set / e2_harm_s substrate prereqs are deliberately NOT bundled (separate GAP-1 / MECH-269 / ARC-033 switches; keeps GAP-3 scoped to the sleep-phase flags). Bit-identical OFF (default False; full contracts 410 + preflight 9 PASS). New contract test test_sleep_aggregation_cluster_gap3.py 7/7. V3-EXQ-581 dry-run 6/6 PASS: C1-C5 all four Phase B-E components fire end-to-end under the single flag; C6 ARM_CLUSTER == ARM_EXPLICIT (master flag is pure ergonomics, zero behavioural divergence -- after threading torch+numpy+random seeds, since the MECH-285 sampler draws via the module-level numpy RNG). NOTE: the 2026-05-16 GAP-4 decision-log entry's claim 'GAP-3 PASS (V3-EXQ-565 on 2026-05-15)' was a conflation -- V3-EXQ-565 is GAP-8's owner-EXQ; GAP-3's own deliverable (the unified flag) was not done until 2026-05-16 / V3-EXQ-581. GAP-4 was completed ahead of its stated GAP-3 dependency; that dependency is now satisfied."
     - id: "sleep_substrate:GAP-4"
       title: "MECH-273 offline gradient uses synthetic batch (replace with replay-derived)"
       phase: 4
@@ -109,6 +110,14 @@ StepHarness retest cohort, Q-040 factorial), the deviation is logged in the
 > not. Every post-A master flag is independently default-False, and the one
 > recalibration claim that justified pulling sleep into V3 (MECH-204) captures
 > its zero-point reference but never applies it.
+
+**Status update 2026-05-16:** the read paths have since landed. GAP-1 (MECH-204
+consumer), GAP-4 (MECH-273 replay-derived targets), GAP-6 (StepHarness audit),
+GAP-8 (MECH-272 consumer) and now GAP-3 (the eight-default-False-flags problem,
+resolved by the unified `use_sleep_aggregation_cluster` master flag) are all
+`done`. GAP-2 is upstream-blocked on ARC-065; GAP-7 (multi-episode driver
+standardisation) remains open. The framing above describes the 2026-05-08 audit
+state and is retained for provenance.
 
 The waking-side substrate has matured fast: V_s invalidation runtime (Phase 1-3),
 anchor sets with dual-trace, MECH-284 staleness accumulator, MECH-269b rollout
@@ -414,7 +423,7 @@ work. See [Resume ritual](#resume-ritual) below.
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
 | GAP-2 | 2 | upstream-blocked | ARC-065 (behavioral-diversity-generation pathway) substrate not landed -- V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 (bit-identical sleep-vs-waking metrics; agent in monomodal collapse). 500a + 503a are surviving Tier-1 successors in pending review and are NOT diversity-dependent the same way. Resume after V3-EXQ-543b/c PASS under ARC-065 substrate, then re-queue 418m + 436b. See decision log 2026-05-10 entry + arc_062_rule_apprehension_plan.md for cross-cluster reflection. Original entry: | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
-| GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
+| GAP-3 | 3, 4 | done | (none) | Unified `use_sleep_aggregation_cluster` master flag landed 2026-05-16. Root cause: eight independent default-False flags (use_sleep_loop, sws_enabled, rem_enabled, use_mech285_sampler, use_mech272_routing, use_mech272_routing_consumer, use_mech275_aggregator, use_mech273_self_model) -- cluster silent unless an experiment set all eight by hand. Fix: REEConfig.use_sleep_aggregation_cluster field + enable_sleep_aggregation_cluster() method, resolved in __post_init__ (direct) and at end of from_dims (factory path), mirroring use_mech307_conjunction / enable_goal_stream. OR-only; MECH-204 + anchor-set/e2_harm_s prereqs deliberately NOT bundled. Bit-identical OFF: contracts 410 + preflight 9 PASS; new test_sleep_aggregation_cluster_gap3.py 7/7. V3-EXQ-581 dry-run 6/6 PASS (C1-C5 all four Phase B-E components fire end-to-end under one flag; C6 ARM_CLUSTER == ARM_EXPLICIT proves pure ergonomics, zero behavioural divergence). **The 2026-05-16 GAP-4 entry below claimed "GAP-3 PASS (V3-EXQ-565 2026-05-15)" -- that was a GAP-8/GAP-3 conflation (V3-EXQ-565 is GAP-8's owner-EXQ). GAP-3's own deliverable was not done until 2026-05-16; GAP-4 was completed ahead of its dependency, now satisfied.** | V3-EXQ-581 | 2026-05-16 |
 | GAP-4 | 4 | done | (none) | _harm_replay_buffer populated in REEAgent.sense() (waking only: hypothesis_tag=False, z_harm not None, _last_action not None); capped 1000 entries; snapshotted at SLEEP_ENTRY in SleepLoopManager._run_cycle(); passed to offline_gradient_pass as harm_replay_buffer kwarg. Real tuples sampled via random.choices; synthetic zeros/round-robin one-hot fallback preserved when buffer None or empty. 4 new E11-E14 Phase E contract tests added; 14/14 PASS. | code change (no EXQ) | 2026-05-16 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
 | GAP-6 | 5 | done | (none) | Audit complete: all 7 write sites documented in sleep_aggregation_cluster.md; all are architectural exceptions; zero require StepHarness routing | substrate audit (no EXQ) | 2026-05-15 |
@@ -492,6 +501,93 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-16 - GAP-3 done (unified use_sleep_aggregation_cluster master flag) + correction of the GAP-4-entry conflation
+
+**Record correction (read first).** The GAP-4 entry immediately below states
+"GAP-3 PASS (V3-EXQ-565 on 2026-05-15) unblocked GAP-4." That is a
+GAP-8/GAP-3 conflation: V3-EXQ-565 is **GAP-8's** owner-EXQ (MECH-272
+anchor-channel downstream consumer), not GAP-3's. GAP-3's own deliverable --
+removing the eight-independent-default-False-flags problem so the cluster is
+not silent -- was **not** done on 2026-05-15. It is done now, 2026-05-16, via
+V3-EXQ-581. GAP-4 (`depends_on: [sleep_substrate:GAP-3]`) was therefore
+completed ahead of its stated dependency; the dependency is now satisfied and
+the chain is consistent. Append-only discipline preserved: the GAP-4 entry is
+left intact and corrected here rather than edited in place.
+
+**What landed.** The Phase A-E surface was gated by eight independent
+default-False flags: `use_sleep_loop`, `sws_enabled`, `rem_enabled`,
+`use_mech285_sampler`, `use_mech272_routing`, `use_mech272_routing_consumer`,
+`use_mech275_aggregator`, `use_mech273_self_model`. An experiment had to set
+all eight by hand or the offline-consolidation pathway produced no effect
+(the GAP-3 "cluster silent" symptom).
+
+Fix (`ree-v3/ree_core/utils/config.py`, single substrate change, no agent.py
+change needed since the agent already reads each sub-flag via getattr at
+construction):
+
+1. New dataclass field `use_sleep_aggregation_cluster: bool = False` at the
+   head of the sleep-aggregation cluster section.
+2. New method `enable_sleep_aggregation_cluster()` forcing the eight
+   sub-flags True, returning self -- mirrors the existing `enable_goal_stream`
+   bundle-method idiom.
+3. Resolved from BOTH construction paths: `__post_init__` (direct
+   `REEConfig(use_sleep_aggregation_cluster=True)`, mirrors the
+   `use_mech307_conjunction` resolver) and the end of `from_dims()` (the
+   factory path experiments use, which sets fields after `cls()` so the
+   __post_init__ resolver alone would miss it -- mirrors how
+   `goal_stream_enabled` is wired through from_dims).
+
+Design decisions:
+
+- **OR-only semantics.** The resolver only flips False -> True, matching the
+  `use_mech307_conjunction` convention. A sub-flag explicitly set False
+  alongside the master is overridden to True; fine-grained opt-out means
+  using the individual flags, not the master.
+- **MECH-204 NOT bundled.** `use_rem_precision_recalibration` is a separate
+  sibling WRITEBACK step under GAP-1 (serotonergic, different claim cluster);
+  bundling it would over-scope GAP-3 past its stated unblocks_claims
+  (MECH-285/272/275/273).
+- **Substrate prereqs NOT bundled.** Anchor sets (Phase B) and `e2_harm_s`
+  (Phase E) are separate MECH-269 / ARC-033 switches. GAP-3's definition is
+  precisely the *sleep-phase master flags*; folding substrate-presence
+  switches in would be scope creep. Experiments needing the cluster to
+  actually fire must still enable those prereqs (documented in the field
+  comment + the V3-EXQ-581 builder).
+
+Validation:
+
+- Bit-identical OFF: default False; full `tests/contracts/` 410 PASS +
+  9 preflight PASS, unchanged.
+- New `tests/contracts/test_sleep_aggregation_cluster_gap3.py` -- 7 contracts
+  (C1 default-off both paths; C2 sub-flags stay False under OFF; C3
+  __post_init__ path resolves all 8; C4 from_dims path resolves all 8; C5
+  OR-only override; C6 end-to-end agent constructs all 4 Phase B-E
+  components + sleep_loop; C7 method returns self / idempotent / no MECH-204).
+  7/7 PASS.
+- V3-EXQ-581 (owner-EXQ; diagnostic / substrate-readiness, claim_ids=[]):
+  ARM_CLUSTER (single flag) vs ARM_EXPLICIT (eight flags by hand). Dry-run
+  6/6 PASS. C1-C5 confirm all four phases fire end-to-end under the single
+  flag (mech285_n_draws=8, sws_anchor_weight=0.6, mech275_n_updates=16,
+  mech273_n_offline_steps=5). C6 confirms ARM_CLUSTER == ARM_EXPLICIT
+  bit-for-bit -- the master flag is pure ergonomics, zero behavioural
+  divergence. Queued V3-EXQ-581; runner claimed it 2026-05-16T22:52Z.
+
+**Experiment-design note (carries to future sleep-validation EXQs).** C6
+equivalence initially failed on the region-diversity metrics
+(mech285_n_distinct_regions_drawn, mech275_n_posteriors,
+mech273_n_offline_regions_consumed) while every deterministic count matched.
+Root cause: the MECH-285 `SleepReplaySampler` draws via the **module-level
+numpy RNG** (`np.random.choice`), and the GAP-4 replay buffer samples via
+`random.choices`; seeding only `torch` left those non-deterministic and let
+the first arm's draws bleed into the second within one process. Any sleep
+experiment that asserts cross-arm/cross-seed determinism must seed torch
+**and numpy and random**, and re-seed after agent construction (the two
+construction paths consume different RNG amounts during weight init).
+
+GAP-3 status: open -> done. owner_exq V3-EXQ-581. MECH-285/272/275/273
+empirical-promotion path now unblocked (substrate is reachable from one
+switch; the promotion EXQs themselves are separate work).
 
 ### 2026-05-16 - GAP-4 done (MECH-273 synthetic batch replaced with replay-derived tuples)
 
