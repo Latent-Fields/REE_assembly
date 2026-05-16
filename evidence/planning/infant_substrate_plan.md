@@ -8,9 +8,9 @@ closure_plan:
     - id: "infant_substrate:GAP-1"
       title: "Harm gradient env feature (harm_gradient_enabled, graduated harm proximity signal without terminal contact)"
       phase: 1
-      status: open
+      status: done
       severity: high
-      owner_exq: null
+      owner_exq: "V3-EXQ-576"
       unblocks_claims: [DEV-NEED-004, ARC-013]
       depends_on: []
       last_updated: 2026-05-16

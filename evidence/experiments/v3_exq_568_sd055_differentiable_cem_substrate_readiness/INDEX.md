@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_568_sd055_differentiable_cem_substrate_readiness
 
-Generated: `2026-05-16T17:55:32.902305Z`
+Generated: `2026-05-16T19:10:55.351466Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

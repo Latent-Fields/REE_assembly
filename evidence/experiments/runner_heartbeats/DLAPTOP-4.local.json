@@ -1,47 +1,34 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-16T17:14:45Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-570",
-      "result": "PASS",
-      "completed_at": "2026-05-15T23:33:08.957546+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-569",
-      "result": "FAIL",
-      "completed_at": "2026-05-16T00:38:31.608852+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-571",
-      "result": "PASS",
-      "completed_at": "2026-05-16T00:40:17.484578+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-572",
-      "result": "FAIL",
-      "completed_at": "2026-05-16T09:51:19.258753+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-574",
-      "result": "PASS",
-      "completed_at": "2026-05-16T10:59:00.759574+00:00"
-    }
+  "last_tick_utc": "2026-05-16T19:12:17Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-575",
+  "current_exq_started_utc": "2026-05-16T19:06:01.607989+00:00",
+  "current_title": "ISEF-001 harm gradient baseline -- warm-start gate diagnostic",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_control",
+    "runs_done": 0,
+    "runs_total": 10,
+    "episodes_done": 50,
+    "episodes_total": 200,
+    "overall_pct": 2.5
+  },
+  "seconds_elapsed": 376,
+  "seconds_remaining": 12005,
+  "recent_lines": [
+    "V3-EXQ-575: ISEF-001 Harm Gradient Baseline -- Warm-Start Gate",
+    "seeds=[42, 43, 44, 45, 46] dry_run=False",
+    "ARM_0 harm_scale=0.05 ARM_1 harm_scale=0.3",
+    "Seed 42 Condition ARM_0_control",
+    "[train] ARM_0_control ep 50/200 seed=42 coverage=1.000"
   ],
-  "runner_pid": 29534,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 90611,
   "runner_version": null,
   "gpu": {
     "available": false
