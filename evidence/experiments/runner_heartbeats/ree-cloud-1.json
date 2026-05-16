@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-16T08:35:43Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-573",
-  "current_exq_started_utc": "2026-05-16T06:36:24.375269+00:00",
-  "current_title": "ARC-065 bias-scale 5-10x sweep: MECH-313/314/320 calibration vs F-term",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_9_combined_10x",
-    "runs_done": 29,
-    "runs_total": 30,
-    "episodes_done": 20,
-    "episodes_total": 30,
-    "overall_pct": 98.9
-  },
-  "seconds_elapsed": 7158,
-  "seconds_remaining": 79,
-  "recent_lines": [
-    "[train] arm=ARM_9_combined_10x seed=43 ep 30/30",
-    "verdict: PASS",
-    "Seed 44 Condition ARM_9_combined_10x",
-    "[train] arm=ARM_9_combined_10x seed=44 ep 10/30",
-    "[train] arm=ARM_9_combined_10x seed=44 ep 20/30"
+  "last_tick_utc": "2026-05-16T08:36:07Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-572",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-540e",
+      "result": "FAIL",
+      "completed_at": "2026-05-12T08:59:27.479228+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-563c",
+      "result": "PASS",
+      "completed_at": "2026-05-15T20:15:59.684511+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-566",
+      "result": "FAIL",
+      "completed_at": "2026-05-15T20:50:08.970980+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-567",
+      "result": "PASS",
+      "completed_at": "2026-05-15T21:24:25.915491+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-573",
+      "result": "FAIL",
+      "completed_at": "2026-05-16T08:36:05.351221+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 673,
   "runner_version": null,
   "gpu": {
