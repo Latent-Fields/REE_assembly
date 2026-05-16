@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+  "entry_id": "2026-05-16_rl_diversity_mapelites_mouret2015",
+  "timestamp_utc": "2026-05-16T11:18:42Z",
+  "claim_ids_tested": ["ARC-065", "MECH-314"],
+  "source": {
+    "title": "Illuminating search spaces by mapping elites",
+    "authors": ["Jean-Baptiste Mouret", "Jeff Clune"],
+    "year": 2015,
+    "venue": "arXiv preprint (foundational QD paper; widely cited as equivalent to GECCO 2015 proceedings)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1504.04909"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Foundational quality-diversity paper, extremely highly cited; introduces the behavioral descriptor / feature map concept that has become the standard approach to structural diversity preservation. Directly relevant to ARC-065. Core finding: maintaining a map of the best solution found per behavioral descriptor cell structurally prevents monostrategy by forcing the archive to retain high-quality solutions across the full behavioral space. Mapping fidelity moderate: MAP-Elites is a population/archive algorithm, not a single-policy algorithm; however the behavioral descriptor concept is directly applicable to REE's candidate evaluation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MAP-Elites requires a user-specified behavioral descriptor space. If the descriptor does not capture the behaviorally relevant dimensions of variation (e.g. specifying 'limb usage' for a robot but the relevant diversity axis is 'route taken'), the archive will be diverse on the wrong dimensions and monostrategy on the relevant ones.",
+    "Within each cell of the archive, MAP-Elites only retains the single best solution by fitness -- it does not maintain diversity within a cell. This means it enforces between-cell diversity but not within-cell diversity.",
+    "MAP-Elites scales poorly in very high-dimensional behavioral descriptor spaces (curse of dimensionality in the archive grid)."
+  ],
+  "tags": ["arc_065", "mech_314", "quality_diversity", "behavioral_descriptor", "archive", "illumination", "monostrategy_prevention"],
+  "mapping": {
+    "source_claim_statement": "Maintaining a map of the best solution per cell in a user-specified behavioral descriptor space (the 'feature space') simultaneously optimises fitness and preserves diversity across the full descriptor space. Solutions compete locally within cells, not globally, so diverse high-performing solutions across the behavioral space are retained rather than eliminated by a single dominant strategy.",
+    "ree_translation": "ARC-065 (behavioral diversity generation) and MECH-314 (curiosity/novelty bias) would benefit from defining a behavioral descriptor for REE's action selection. The natural descriptor for the V_s monostrategy problem is a trajectory-level measure: which region of the environment was visited, what reward mode was pursued (safety vs foraging), and at what step in the episode. If REE's CEM maintains a soft archive over these descriptors -- preferring candidates that cover under-represented behavioral regions -- this is a local implementation of MAP-Elites within the candidate selection step. The behavioral descriptor is the key design decision: it must capture route-mode diversity, not just action diversity.",
+    "mapping_caveat": "MAP-Elites is a population algorithm (offline optimization across many solutions). REE's CEM is a real-time per-step candidate generator. A direct port would require maintaining a per-episode behavioral archive that persists between steps and biases CEM sampling toward under-represented cells. This is computationally feasible but architecturally novel. The deeper challenge is that the behavioral descriptor must be specified in advance (or learned), and REE does not currently have a route-mode descriptor.",
+    "source_context": "Three domains: modular neural networks, simulated soft robots, real soft robots. Behavioral descriptors are domain-specific (e.g. limb proportions for robots). Evolutionary algorithm (mutation only, no crossover in original version)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Foundational paper; extremely high impact in QD literature. Mapping fidelity moderate because MAP-Elites is a population/offline algorithm while REE needs within-episode diversity. The behavioral descriptor insight transfers cleanly; the archive mechanism requires significant adaptation."
+  }
+}

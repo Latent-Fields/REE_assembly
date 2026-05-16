@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+  "entry_id": "2026-05-16_rl_diversity_imgep_forestier2017",
+  "timestamp_utc": "2026-05-16T11:18:42Z",
+  "claim_ids_tested": ["ARC-065", "ARC-066", "ARC-072"],
+  "source": {
+    "title": "Intrinsically Motivated Goal Exploration Processes with Automatic Curriculum Learning",
+    "authors": ["Sebastien Forestier", "Remy Portelas", "Yoan Mollard", "Pierre-Yves Oudeyer"],
+    "year": 2022,
+    "venue": "JMLR (Journal of Machine Learning Research), Vol 23",
+    "doi": "10.5555/3586589.3586741",
+    "url": "https://arxiv.org/abs/1708.02190"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "JMLR publication (submitted 2017, published 2022); grounded in developmental robotics and infant curiosity research; demonstrates automatic curriculum generation through learning progress maximisation across a parameterised goal space. Highly relevant to REE's infant-stage substrate problem: IMGEP's learning-progress-driven curriculum prevents monostrategy by actively seeking goals where the agent is currently making progress, rather than goals where it has already converged. Maps onto ARC-066 (tonic vigor) and ARC-072 (hippocampal cue-indexed goal repertoire). Main caveat: IMGEP's goal space is explicitly parameterised and continuous; REE's goal space is more implicit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Learning-progress-based goal selection can stall if the agent reaches a plateau on all current goals simultaneously -- the system needs a mechanism to invent new goals or expand the goal space when progress is zero everywhere.",
+    "IMGEP requires the agent to have already learned to pursue some goals before it can generate a useful learning-progress curriculum. A cold-start agent with no goal representation cannot initialise the system -- suggests IMGEP-like curricula require a bootstrapping phase (infant babbling analog) before they can generate diversity.",
+    "Without an explicit goal-space parameterisation, learning progress is not computable. REE's implicit goal representation (residue field wanting) needs to be made explicit enough to track per-goal progress for an IMGEP-like curriculum to operate."
+  ],
+  "tags": ["arc_065", "arc_066", "arc_072", "curriculum", "learning_progress", "goal_exploration", "developmental_robotics", "infant_curriculum"],
+  "mapping": {
+    "source_claim_statement": "Autonomous developmental learning through intrinsically motivated goal exploration: the agent self-generates goals, selects the next goal based on empirical learning progress (competence improvement rate), and reuses experience across goals. This produces an automatic curriculum of increasing task complexity and diverse skill acquisition without external supervision.",
+    "ree_translation": "REE's infant-stage substrate problem (V_s: how does the agent bootstrap behavioral diversity before gradient training collapses it?) is directly addressed by IMGEP's learning-progress curriculum. The REE analog: track per-goal (per-schema / per-attractor region) competence; when competence in one region saturates, shift attention to the least-explored competence-improving region. This acts as an internal curriculum that diversifies the agent's goal-pursuit history before gradient pressure consolidates a single dominant mode. Maps onto ARC-066 (tonic vigor: modulating exploration pressure based on competence state) and ARC-072 (hippocampal storage of goal-region repertoire). The practical implementation: wrap REE's wanting mechanism with a learning-progress tracker per schema_id, and modulate schema salience by progress rate rather than (or in addition to) current wanting level.",
+    "mapping_caveat": "IMGEP requires an explicit parameterised goal space. REE's goal space is implicit in the residue field -- not a set of discrete parameterised goals. Extracting a learning-progress signal from the residue field requires either discretising the goal space (e.g. per-region wanting saturation) or approximating it from E3 score variance per region. This is an engineering gap, not a conceptual one.",
+    "source_context": "Real humanoid robot with hundreds of continuous goal dimensions; also validated in simulated arm manipulation tasks. Learning progress measured as change in competence (ability to reach a goal) over a sliding window."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "JMLR publication; well-grounded in developmental science. Mapping fidelity moderate because IMGEP needs explicit goal parameterisation. Transfer risk lower than other entries because REE already has a wanting/residue mechanism that is the natural home for a learning-progress proxy."
+  }
+}

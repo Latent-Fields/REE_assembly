@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+  "entry_id": "2026-05-16_rl_diversity_paired_dennis2020",
+  "timestamp_utc": "2026-05-16T11:18:42Z",
+  "claim_ids_tested": ["ARC-065", "Q-046"],
+  "source": {
+    "title": "Emergent Complexity and Zero-shot Transfer via Unsupervised Environment Design",
+    "authors": ["Michael Dennis", "Natasha Jaques", "Eugene Vinitsky", "Alexandre Bayen", "Stuart J. Russell", "Andrew Critch", "Sergey Levine"],
+    "year": 2020,
+    "venue": "NeurIPS 2020",
+    "doi": "10.5555/3495724.3496819",
+    "url": "https://arxiv.org/abs/2010.03934"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "NeurIPS 2020; strong zero-shot transfer results; decision-theoretic grounding (minimax regret) for curriculum generation. Relevant to REE's environment design question: enriching the reef with competing attractors is necessary but not sufficient; the curriculum of which attractors are salient must match the agent's current capabilities. PAIRED shows that environments calibrated to the edge of agent competence (regret-based) prevent monostrategy by constantly exposing weaknesses. Mapping fidelity moderate: PAIRED targets environment generation, REE's problem is within a fixed environment; the curriculum insight is extractable but the full algorithm is not directly applicable.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Adding competing attractors to an environment does not prevent monostrategy if the agent's current policy makes one attractor overwhelmingly dominant -- the agent needs to encounter the competing attractors at a difficulty level where they are also tractable. Enriched environments without difficulty calibration produce the same monostrategy as unenriched ones.",
+    "Minimax adversarial environment design (without the regret correction) produces environments the agent cannot solve at all -- pure difficulty maximisation is as harmful as no diversity pressure.",
+    "Regret-based design requires a second (antagonist) agent as a counterfactual baseline -- computationally expensive for REE's current single-agent setup."
+  ],
+  "tags": ["arc_065", "q_046", "environment_design", "curriculum", "minimax_regret", "automatic_curriculum", "adversarial_training"],
+  "mapping": {
+    "source_claim_statement": "Training environments should be automatically generated to be at the edge of the agent's current capabilities, defined formally as maximising regret (the difference between the best achievable return and the agent's actual return). This produces a natural curriculum of increasingly complex environments that prevents both impossible-task failure and easy-task monostrategy.",
+    "ree_translation": "REE's environment enrichment efforts (reef safety zones + foraging zones as competing attractors) address the right level but not with adaptive difficulty calibration. PAIRED's regret principle implies: the bipartite reef environment (SD-054) will only force behavioral diversity if the relative salience of safety vs foraging attractors is calibrated to the edge of the agent's current competence. A fixed bipartite environment where one attractor is always easier will still produce monostrategy. REE needs a curriculum parameter (e.g. relative density or reward magnitude of attractors) that tracks agent performance and adjusts difficulty -- the V_s MECH-269 diversity problem may require curriculum over environment parameters, not just diversity bias in E3 scoring.",
+    "mapping_caveat": "PAIRED requires a second antagonist agent as the regret estimator, which REE does not currently have. The practical lesson for REE is not to implement full PAIRED but to take the curriculum principle: track which behavioural modes are currently underperforming (proxy for regret on those modes) and temporarily increase their salience in the environment. This is a manual approximation of the regret-based curriculum, not the full algorithm.",
+    "source_context": "Grid-world navigation environments; two-agent setup (protagonist + antagonist); environment generator trained via minimax regret; zero-shot transfer to held-out test environments."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "NeurIPS 2020; decision-theoretic grounding is solid. Mapping fidelity lower because PAIRED generates a curriculum of environments while REE operates within a fixed environment (or a parameterically adjustable one). The curriculum principle is extractable but the full algorithm is not directly ported."
+  }
+}

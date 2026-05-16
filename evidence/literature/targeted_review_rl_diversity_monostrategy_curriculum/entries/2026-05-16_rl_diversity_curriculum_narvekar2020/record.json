@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+  "entry_id": "2026-05-16_rl_diversity_curriculum_narvekar2020",
+  "timestamp_utc": "2026-05-16T11:18:42Z",
+  "claim_ids_tested": ["ARC-065", "Q-046"],
+  "source": {
+    "title": "Curriculum Learning for Reinforcement Learning Domains: A Framework and Survey",
+    "authors": ["Sanmit Narvekar", "Bei Peng", "Matteo Leonetti", "Jivko Sinapov", "Matthew E. Taylor", "Peter Stone"],
+    "year": 2020,
+    "venue": "Journal of Machine Learning Research, Vol. 21(181):1-50",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2003.04960"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "JMLR comprehensive survey; provides the most complete taxonomy of curriculum learning approaches for RL available. Directly relevant to REE's curriculum design question. Mapping fidelity moderate: this is a survey paper, not an empirical study, so it provides framework and classification rather than specific evidence for behavioral diversity. The key contribution for REE is identifying which curriculum design choices are relevant to the monostrategy problem and which are not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Curriculum approaches that only vary task difficulty (easy-to-hard) without varying task diversity can still produce monostrategy if all easy and hard tasks require the same strategy -- curriculum must vary behavioral relevance across tasks, not just difficulty.",
+    "Transfer between curriculum tasks requires shared structure in the state or action space; if REE's diversity curriculum introduces tasks that are behaviorally orthogonal to the target environment, the transferred policies may not compose correctly.",
+    "Source task selection (which tasks to put in the curriculum and in what order) is often the hardest part of curriculum design -- the survey notes this is largely unsolved for automatic curriculum generation."
+  ],
+  "tags": ["arc_065", "q_046", "curriculum", "transfer_learning", "task_sequencing", "taxonomy", "behavioral_diversity"],
+  "mapping": {
+    "source_claim_statement": "Curriculum learning for RL can be classified by: who designs the curriculum (human vs automatic), what varies (task difficulty, task type, reward shaping, environment parameters), when tasks are introduced (fixed schedule vs adaptive), and what the transfer mechanism is (policy initialisation, reward shaping, state abstraction). Effective curricula sequence tasks to maximise learning transfer while maintaining challenge calibration.",
+    "ree_translation": "For REE's V_s diversity curriculum: the relevant curriculum dimension is task type (which attractor/goal-mode is primary), not task difficulty. A diversity curriculum for REE should sequence experiences by which region of the goal space is being explored, with explicit transfer goals -- skills learned pursuing foraging goals should be leveraged when switching to safety-seeking goals and vice versa. The survey's framework suggests REE needs: (1) an automatic curriculum generator based on agent performance metrics (not a fixed schedule), (2) curriculum tasks that vary which mode is dominant (not just how hard the dominant mode is), and (3) a transfer mechanism that ensures diversity modes learned early are retained when gradient pressure on the dominant mode is strongest.",
+    "mapping_caveat": "This is a survey, not an empirical study. It does not provide direct evidence for any specific curriculum preventing monostrategy. Its value is taxonomic: helping REE choose among curriculum approaches (PAIRED's regret-based vs IMGEP's learning-progress vs simple graduated attractor salience). The survey does not cover the QD literature (MAP-Elites, DIAYN) in depth, so it complements rather than covers those approaches.",
+    "source_context": "Survey paper covering RL curriculum literature from 2003-2020; 3 main curriculum types: teacher-student, self-paced, task generation. Applications span game-playing, robotic manipulation, and navigation domains."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "JMLR publication; comprehensive scope. Mapping fidelity moderate because this is a taxonomy paper -- it organises the space but does not provide direct experimental evidence for which curriculum type best prevents monostrategy in REE's specific setting. Transfer risk low: the framework applies generically to RL curriculum design."
+  }
+}

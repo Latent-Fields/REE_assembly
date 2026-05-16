@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+  "entry_id": "2026-05-16_rl_diversity_dvd_parkerholder2020",
+  "timestamp_utc": "2026-05-16T11:18:42Z",
+  "claim_ids_tested": ["ARC-065", "MECH-313"],
+  "source": {
+    "title": "Effective Diversity in Population Based Reinforcement Learning",
+    "authors": ["Jack Parker-Holder", "Aldo Pacchiano", "Krzysztof Choromanski", "Stephen Roberts"],
+    "year": 2020,
+    "venue": "NeurIPS 2020",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2002.00632"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "NeurIPS 2020 spotlight. Introduces DvD (Diversity via Determinants), which measures population diversity as the volume of a behavioral embedding manifold via the log-determinant of the kernel matrix. Critical finding: traditional pairwise diversity methods suffer from cycling and redundancy -- only volume-based measures prevent degeneracy. Mapping fidelity is high for ARC-065 (what 'effective' diversity means operationally). Caveat: operates on a population of agents, not a single policy with context variable; direct translation to REE's single-agent CEM requires adaptation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pairwise distance-based diversity measures (e.g. mean L2 distance between policies) suffer from cycling: a population can have high mean pairwise distance but still cluster into a few degenerate modes. Volume-based measures are necessary to catch this failure mode.",
+    "Explicitly boosting diversity often hurts performance when reward-landscape exploration is not needed -- REE should not apply diversity pressure uniformly throughout training but adaptively (DvD uses online learning to modulate diversity weight).",
+    "Behavioral embeddings that are domain-specific or handcrafted introduce an inductive bias that shapes which diversity modes are captured; REE's embedding must be tuned to capture route-mode diversity, not just action diversity."
+  ],
+  "tags": ["arc_065", "mech_313", "population_diversity", "determinantal_point_process", "behavioral_embedding", "diversity_metrics", "monostrategy_prevention"],
+  "mapping": {
+    "source_claim_statement": "Diversity in a population-based RL system should be measured as the volume of the population in behavioral space (log-det of the pairwise kernel matrix), not as pairwise distances. Volume measurement via DvD prevents degeneracy (cycling, mode collapse to a few clusters) that pairwise methods miss. Diversity pressure should be adaptive, not fixed.",
+    "ree_translation": "ARC-065 claims behavioral diversity generation requires structured mechanisms beyond noise (MECH-313 = structured noise/diversity floor). DvD's volume-based metric suggests that measuring 'how many distinct route modes are active in REE's candidate population' requires a determinant-like measure over the trajectory embedding space, not just mean pairwise trajectory distance. For REE: compute diversity of CEM candidate trajectories via their behavioral descriptor embeddings, use log-det as the diversity signal. This would let the diversity pressure adapt -- high when candidates are degenerate, low when already diverse.",
+    "mapping_caveat": "DvD operates across a population of independently trained agents; REE generates diversity within a single CEM candidate set at inference time. The formal connection is the same (avoid degenerate pairwise distance metrics in favor of volume measures), but the implementation is per-step CEM sampling, not multi-agent training. Adaptive diversity weight from online learning is also computationally heavier for real-time CEM.",
+    "source_context": "Continuous control benchmarks (MuJoCo); population of N independent policies trained in parallel; behavioral embeddings from rollout state-action sequences; gradient-based (TD3) and evolution strategies (ES) instantiations of DvD."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "NeurIPS spotlight; solid theory and empirical results. Transfer risk moderate: population vs single-agent architecture; REE's CEM is a within-episode candidate generator, not a multi-agent population. The diversity metric insight (volume > pairwise distance) transfers cleanly."
+  }
+}

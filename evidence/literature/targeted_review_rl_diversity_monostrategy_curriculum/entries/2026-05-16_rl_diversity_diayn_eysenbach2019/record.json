@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+  "entry_id": "2026-05-16_rl_diversity_diayn_eysenbach2019",
+  "timestamp_utc": "2026-05-16T11:18:42Z",
+  "claim_ids_tested": ["ARC-065", "MECH-314"],
+  "source": {
+    "title": "Diversity is All You Need: Learning Skills without a Reward Function",
+    "authors": ["Benjamin Eysenbach", "Abhishek Gupta", "Julian Ibarz", "Sergey Levine"],
+    "year": 2019,
+    "venue": "ICLR 2019",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1802.06070"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "ICLR publication; strong theoretical result (unique optimum = even state-space partition); multiple robotic benchmarks confirm diverse skill emergence. Mapping fidelity is high for ARC-065 (behavioral diversity generation). The REE analog -- using mutual information between context and visited states to prevent mode collapse -- is structurally identical to DIAYN's objective. Main caveat: DIAYN operates in pre-training (no task reward); REE needs diversity during task learning, which is harder.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Skills may fail to scale to very high-dimensional observation spaces, suggesting MI-based diversity objectives need a compact behavioral embedding (not raw observations) to work in REE's latent space.",
+    "Some behaviors remain suboptimal even after training (e.g., ant forward locomotion). DIAYN can learn orthogonal skills that are individually suboptimal rather than the dominant-plus-diverse structure REE needs.",
+    "DIAYN requires domain knowledge to incorporate priors about task-relevant features -- without this, the diversity objective may reward modes that are irrelevant to the task (undirected diversity problem)."
+  ],
+  "tags": ["arc_065", "mech_314", "skill_discovery", "mutual_information", "diversity_objective", "monostrategy_prevention", "unsupervised_rl"],
+  "mapping": {
+    "source_claim_statement": "Maximizing mutual information I(S;Z) between a discrete skill variable Z and visited states S, under a maximum-entropy policy, forces the policy family to partition state space evenly across skills, preventing collapse to a single mode. The unique optimum has each skill uniformly distributed over its own state partition.",
+    "ree_translation": "ARC-065 (behavioral diversity generation) is partially implemented by MECH-314 (novelty/curiosity bias in E3 scoring). DIAYN's theoretical result says that if REE's diversity objective can be framed as maximizing MI between a context variable (which region/goal-mode is active) and the states visited under that context, gradient-based training will structurally prevent monostrategy. This maps to REE needing a context-conditional discriminability term in the E3 scoring function, not just a novelty penalty on individual steps.",
+    "mapping_caveat": "DIAYN operates fully unsupervised (no task reward). REE trains with concurrent task reward (harm avoidance + goal pursuit). Multi-objective tension means the MI diversity term will compete with the forward model F which dominates E3 score variance (EXQ-571 finding: F variance fraction ~0.89). The DIAYN solution -- using a separate diversity-only training phase before task training -- may be more tractable than adding diversity bias to a live task-reward pipeline.",
+    "source_context": "Simulated robotics (MuJoCo: HalfCheetah, Hopper, Ant); discrete skill variable Z with 50 skills; SAC policy optimizer; pre-training without task reward."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "ICLR is a top-tier venue. Theory is clean. Transfer risk moderate: REE has concurrent task reward, not a pure diversity-training phase; and REE's monostrategy is a route-preference problem in a navigation domain, not a locomotion skill-diversity problem."
+  }
+}
