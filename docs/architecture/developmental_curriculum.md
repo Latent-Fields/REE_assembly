@@ -23,6 +23,15 @@ This document consolidates the developmental thread implied by Q‑006 and the t
 
 ---
 
+## Audit / Checklist View
+
+The canonical traceability register for REE developmental needs is
+[`developmental_needs_register.md`](developmental_needs_register.md). This document remains the
+main narrative specification; the register is the audit/checklist view that breaks the same
+commitments into gate-checkable needs, claim links, failure modes, evidence links, and open questions.
+
+---
+
 ## Architectural Commitment
 
 REE must be trained through **staged development** with explicit gates:
@@ -160,6 +169,7 @@ Transition from childhood to adulthood when:
 
 ---
 
+<a id="minimal-stage-gates"></a>
 ## Minimal Stage Model (with Gates)
 
 ### Stage 0 — Sensorimotor Grounding
@@ -210,6 +220,7 @@ Curriculum stages should explicitly set:
 
 ---
 
+<a id="offline-integration-between-stages"></a>
 ## Offline Integration Between Stages
 
 Stage transitions should be separated by offline integration passes:
@@ -220,6 +231,7 @@ Stage transitions should be separated by offline integration passes:
 
 ---
 
+<a id="curriculum-failure-modes"></a>
 ## Failure Modes (Curriculum‑Specific)
 
 - Premature precision escalation → brittle or rigid modes.
@@ -299,6 +311,7 @@ producing personality structures oriented toward domination, isolation, or self-
 
 ---
 
+<a id="responsibility-precedes-full-ethical-capacity"></a>
 ## Responsibility Precedes Full Ethical Capacity
 
 During development, responsibility-bearing situations arise before E3 is fully stable
@@ -423,7 +436,6 @@ Expected violation signature when order is ignored:
 - ARC-013
 - INV-010
 - Q-006
-- MECH-042
 - INV-041 (Childhood phase as architectural prerequisite)
 - INV-055 (Infant stage necessity)
 - INV-056 (Selective neoteny as design principle)
@@ -433,6 +445,9 @@ Expected violation signature when order is ignored:
 - INV-043 (Caregiver requirement for ethical development)
 - MECH-158 ("Love exists but not for me" failure mode)
 - MECH-052 (Care persistence, social.md)
+- ARC-047 (Multi-agent social harness for caregiver/peer frame maintenance, social.md)
+- ARC-048 (Language as high-bandwidth externalization after stable functional states)
+- MECH-042 (Telemetry exposure channels before language self-report, control_plane.md)
 - INV-025-029 (original axiom registrations; current Axiom 3 grounds the forgiveness requirement)
 - INV-058 (Play as structural necessity)
 - INV-059 (Frame maintenance necessity)
