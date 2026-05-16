@@ -7,6 +7,8 @@ nav_exclude: true
 This is the canonical audit and checklist view of REE developmental needs.
 The narrative specification remains [Developmental Curriculum and Staged Training](developmental_curriculum.md).
 
+**Metrics companion:** Quantitative metrics, failure signatures, telemetry proposals, and gate thresholds for each DEV-NEED row are in [`developmental_metrics.md`](developmental_metrics.md) (2026-05-16).
+
 Use this register when planning implementations, reviewing developmental claims, or checking whether a new
 developmental idea is already represented. The register preserves existing REE terminology and claim IDs; it does
 not replace `docs/claims/claims.yaml`.
@@ -34,7 +36,7 @@ not replace `docs/claims/claims.yaml`.
 - **Infant:** [DEV-NEED-001](#dev-need-001) to [DEV-NEED-008](#dev-need-008)
 - **Childhood/play:** [DEV-NEED-009](#dev-need-009) to [DEV-NEED-018](#dev-need-018)
 - **Social/language/adult:** [DEV-NEED-019](#dev-need-019) to [DEV-NEED-028](#dev-need-028)
-- **Cross-stage / diversity mechanics:** [DEV-NEED-029](#dev-need-029)
+- **Cross-stage / diversity mechanics:** [DEV-NEED-029](#dev-need-029), [DEV-NEED-030](#dev-need-030), [DEV-NEED-031](#dev-need-031)
 
 ## Needs Register
 
@@ -70,6 +72,9 @@ not replace `docs/claims/claims.yaml`.
 | <a id="dev-need-028"></a>DEV-NEED-028 | Developmental failure-mode tracking | Governance / all stages | ARC-019, INV-043, MECH-158, MECH-198, INV-059; PROPOSED if converted into a dedicated governance claim | Curriculum gates must record absences and failure signatures: love-exclusion, frame confusion, residue saturation, premature responsibility, language drift, empathic collapse, and monostrategy lock-in. | Each developmental gate records expected failure if absent and links failed experiments or open questions to the relevant need row. | Repeated developmental ideas fragment across prose docs; governance cannot tell whether a failure is new, known, or already represented. | This register implements the first source-doc pass; dedicated tracker/claim not registered. | Governance only | [developmental_curriculum.md#curriculum-failure-modes](developmental_curriculum.md#curriculum-failure-modes)<br>[developmental_curriculum.md#mech-158](developmental_curriculum.md#mech-158)<br>[play_mode.md#frame-integrity-play-vs-manipulation-inv-059](play_mode.md#frame-integrity-play-vs-manipulation-inv-059) | Should failure-mode tracking live only in this register, or also become a generated governance index? |
 | <a id="dev-need-029"></a>DEV-NEED-029 | ARC-065 diversity mechanisms warm-start gate | Infant / infant-to-childhood transition (cross-stage) | ARC-065, MECH-313, MECH-314, MECH-320; PROPOSED gate claim | ARC-065 child mechanisms (MECH-314a novelty, MECH-320 tonic vigor, MECH-313 noise floor) require a warm substrate before producing non-zero effects: a populated ResidueField, a built-up EWMA reward-rate, and non-random E3 scores (trained network). The infant stage produces this warm substrate; the mechanisms were designed for a post-infant agent, not a cold-start one. A formal gate criterion is needed to prevent diversity sprint experiments from running at the wrong developmental stage and returning methodologically correct but scientifically uninformative null results. | MECH-314a produces non-zero score bias (ResidueField has at least N_centers centers); MECH-320 v_raw EWMA > epsilon after K episodes; E3 score variance > noise floor (measured without diversity substrates). All three thresholds TBD from empirical calibration. | Diversity sprint experiments run on cold-start agents, return zero-differential results (confirmed: V3-EXQ-573 all 10 arms bit-for-bit identical), and are misread as calibration failures. Sprint effort spent scaling bias parameters that are zero because the substrate is not ready, not because the parameters are miscalibrated. | PROPOSED gap. V3-EXQ-573 (2026-05-16) confirmed zero-differential across 10x bias scale sweep due to cold-start warm-start failure. No dedicated gate criterion yet. See behavioral_diversity_acceptance_criteria.md open questions 4-5. | After V_s diversity | [behavioral_diversity_acceptance_criteria.md](../../../evidence/planning/behavioral_diversity_acceptance_criteria.md) open questions 4-6<br>EXQ-573 null result (2026-05-16)<br>[developmental_curriculum.md#inv-055](developmental_curriculum.md#inv-055) | What minimum episodes / ResidueField coverage / EWMA warmup are required before each of MECH-313, MECH-314a, MECH-320 can produce non-zero effects? Should v_t_floor serve as an infant-stage proxy for MECH-320 before EWMA is available? |
 
+| <a id="dev-need-030"></a>DEV-NEED-030 | Stage-aware replay scheduling | Cross-stage (infant, childhood, adult) | ARC-011, SD-017, MECH-285; PROPOSED new scheduling claim | Replay scheduler must accept a `dev_stage` parameter and dispatch a stage-indexed policy: infant = coverage-maximising (coverage_floor >= 0.6, RPE_weight <= 0.2); childhood = interleaved play+real (play:real >= 1:1, RPE_weight = 0.4); adult = RPE+staleness priority (RPE_weight = 0.6, staleness_weight = 0.3). See replay_development_analysis.md §6.1–6.4 for parameter tables. | replay_scheduler_stage matches current dev_stage; stage-specific metrics pass (infant: replay_zone_coverage_fraction > 0.6; childhood: replay_play_real_interleave_ratio >= 0.5; adult: monostrategy_prevention_score >= 1.0). | Infant stage uses adult RPE-priority: replay_low_salience_fraction < 0.1, valence map never consolidated. Adulthood uses infant coverage-priority: MECH-124 option-space contraction is never caught. | PROPOSED; not registered as a claim. Analysis and parameter tables in replay_development_analysis.md §6. | After infant_substrate_expansion.md substrate features | [replay_development_analysis.md](replay_development_analysis.md)<br>[sleep_aggregation_cluster.md](sleep_aggregation_cluster.md)<br>[developmental_curriculum.md](developmental_curriculum.md) | What is the stage-detection mechanism — inferred from episode count, explicit curriculum parameter, or gate-passage signal? Should the scheduler fall back to coverage-priority when no stage is set? |
+| <a id="dev-need-031"></a>DEV-NEED-031 | MECH-124 prevention gate | All stages (especially adult and post-harm childhood) | MECH-124, ARC-011; PROPOSED new monitoring claim | `monostrategy_prevention_score` (post-sleep traj_volume / pre-sleep traj_volume) must be monitored per sleep cycle; MECH-285 staleness correction provides the mechanism. If monostrategy_prevention_score < 1.0 over a rolling window, sleep is amplifying the dominant trajectory rather than expanding the option space. | monostrategy_prevention_score >= 1.0 across rolling 5 sleep cycles; option_space_contraction_rate <= 0 (traj_volume_estimate non-declining across sleep). | Progressive option-space contraction: adult agent converges to PTSD/depression phenotype (Walker PTSD analog). High-RPE traumatic content replayed preferentially → dominant mode lock-in → viable alternatives excluded from policy. MECH-124 contraction proceeds silently because current telemetry lacks the monostrategy_prevention_score channel. | PROPOSED; not registered as a claim. Monitoring design and clinical mapping in replay_development_analysis.md §4, §6.4. | With sleep aggregation cluster implementation | [replay_development_analysis.md](replay_development_analysis.md)<br>[sleep_aggregation_cluster.md](sleep_aggregation_cluster.md)<br>[hippocampal_systems.md](hippocampal_systems.md) | Should MECH-124 prevention gate block stage progression or only trigger an alert? What intervention is available when the gate is red — increase staleness_weight, reduce RPE_weight, or require a coverage-boosting recovery cycle? |
+
 ## Gap Log
 
 ### Requirements Implied But Not Explicitly Claimed
@@ -85,6 +90,14 @@ not replace `docs/claims/claims.yaml`.
 - DEV-NEED-029 ARC-065 warm-start gate is a PROPOSED gap surfaced 2026-05-16 by V3-EXQ-573 null result. No claim
   registered yet. The gate criterion (ResidueField coverage, EWMA warmup threshold, E3 score variance floor) requires
   empirical calibration from a two-phase warm-start + measurement experiment before a formal Q-claim or SD can be written.
+- DEV-NEED-030 stage-aware replay scheduling is a PROPOSED gap surfaced 2026-05-16 by replay_development_analysis.md.
+  The current replay scheduler has no developmental stage awareness; infant-appropriate coverage-maximising policy and
+  adult RPE+staleness policy are both absent. A stage-indexed scheduler must be implemented before EXQ-IDEV-003 and
+  EXQ-IDEV-004 can produce meaningful signal. No claim registered yet.
+- DEV-NEED-031 MECH-124 prevention gate is a PROPOSED gap surfaced 2026-05-16 by replay_development_analysis.md.
+  Monitoring for monostrategy_prevention_score is absent; option-space contraction can proceed silently across sleep
+  cycles. The gate requires monostrategy_prevention_score telemetry (new MECH-042 channel) and MECH-285 staleness
+  correction. No claim registered yet; priority is with sleep aggregation cluster implementation.
 
 ### Claims Referenced But Lacking Implementation Substrate
 
@@ -97,14 +110,29 @@ not replace `docs/claims/claims.yaml`.
 
 ### Items Lacking Gate Criteria
 
-- DEV-NEED-001 through DEV-NEED-008 need quantitative infant-stage thresholds for prediction stability, valence-map
-  coverage, entropy floor/ceiling, z_goal norm, and sleep output quality.
-- DEV-NEED-010 through DEV-NEED-014 need staged play transition gates and transfer metrics.
-- DEV-NEED-017 needs a behavioral or telemetry signature for "love applies to me" that is not reducible to reward
-  prediction.
-- DEV-NEED-020 through DEV-NEED-022 need calibrated thresholds for self-impact reliability, OTHER_SELFLIKE readiness,
-  and empathy coupling bounds.
-- DEV-NEED-025 needs concrete plasticity schedules per substrate.
+**Updated 2026-05-16:** `developmental_metrics.md` provides quantitative thresholds for all DEV-NEEDs where V3 substrate
+is sufficient. Summary of new gates added:
+
+- **DEV-NEED-001:** H_pos > 0.65 × ln(grid_cells²) [blocking]; action_entropy_zone_KL > 0.05, perseveration_rate < 0.25 [advisory]
+- **DEV-NEED-002:** harm_homeostasis_channel_correlation < 0.3 [blocking]; harm_channel_activation_rate > 0.70 [blocking]
+- **DEV-NEED-003:** residue_coverage_pct > 0.15 [blocking]; harm_benefit_ratio in [0.2, 5.0] [advisory]
+- **DEV-NEED-004:** z_harm_s_activation_rate > 0.50 [blocking]; residue_saturation_pct < 0.15 [blocking]
+- **DEV-NEED-005:** action_entropy_global > ln(3) [advisory]; traj_pairwise_cosine_mean > 0.3 [advisory]
+- **DEV-NEED-006:** z_goal.norm() > 0.4 [blocking]; accidental_benefit_contacts ≥ 5 in last 100 episodes [advisory]
+- **DEV-NEED-007:** post_sleep_z_goal_retention > 0.85 [advisory]; replay_RPE_priority_score > 0.6 [advisory]
+- **DEV-NEED-008:** 8-criterion table (3 blocking, 5 advisory) — see `developmental_metrics.md`
+- **DEV-NEED-011:** play_to_real_competence_SCC > 0.4 [advisory]; synthetic_magnitude_leak_ratio in [0.7, 1.3] [advisory]
+- **DEV-NEED-013:** norm_belief_update_rate in [0.05, 0.50] [advisory]; two-channel (outcome vs intent) required
+- **DEV-NEED-017:** loveability_coupling_gain in [0.1, 0.7] [GovernanceOnly]; MECH158_failure_indicator: absent [GovernanceOnly]
+- **DEV-NEED-020:** action_PE_vs_reward_PE_correlation < 0.3 [advisory]; self_impact_attribution_accuracy > 0.70 [advisory]
+- **DEV-NEED-021:** implicit_ToM_score and explicit_ToM_score reported separately; self_stability_gate blocking
+- **DEV-NEED-022:** empathy_coupling_gain in [0.05, 0.65] [GovernanceOnly]; self_other_signal_swap_rate < 0.05 [advisory]
+- **DEV-NEED-025:** plasticity_schedule_config required field [GovernanceOnly]; non-uniform per_substrate_plasticity_index [advisory]
+- **DEV-NEED-029:** residue_field_center_count > N_min; MECH320_EWMA > epsilon; E3_score_variance > noise_floor [all blocking for diversity sprints; thresholds TBD from EXQ-ISEF-001]
+
+Remaining gaps:
+- DEV-NEED-010 through DEV-NEED-014: most gates require V4 multi-agent substrate; V3 proxies specified in `developmental_metrics.md` for sensorimotor and constructive play gates.
+- Thresholds marked TBD in DEV-NEED-029 require empirical calibration from dedicated experiments before becoming blocking gates.
 
 ### Items Lacking Experiments
 
