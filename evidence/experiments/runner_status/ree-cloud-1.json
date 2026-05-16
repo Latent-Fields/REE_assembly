@@ -1,18 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 669,
-  "runner_started_at": "2026-05-15T19:17:00.807490+00:00",
-  "last_updated": "2026-05-15T21:24:25.916053+00:00",
+  "runner_pid": 668,
+  "runner_started_at": "2026-05-16T19:50:00.227036+00:00",
+  "last_updated": "2026-05-16T19:50:14.991455+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-540f",
+      "queue_id": "V3-EXQ-575",
       "backlog_id": "",
       "claim_id": "",
-      "title": "MECH-307 default-fix clean 3-seed rerun (seeds 42, 43, 45)",
+      "title": "ISEF-001 harm gradient baseline -- warm-start gate diagnostic",
       "description": "",
-      "estimated_minutes": 17.3,
+      "estimated_minutes": 266.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2966,6 +2966,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_567_wpb_natural_entropy_sp_cem_20260515T212425Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 2056.6
+    },
+    {
+      "queue_id": "V3-EXQ-573",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-065 bias-scale 5-10x sweep: MECH-313/314/320 calibration vs F-term",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-573 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-573.json",
+      "started_at": "2026-05-16T06:36:24.375269+00:00",
+      "completed_at": "2026-05-16T08:36:05.351221+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_573_arc065_bias_scale_sweep_20260516T083605Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 7180.1
+    },
+    {
+      "queue_id": "V3-EXQ-576",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "GAP-1 harm gradient env feature substrate validation",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "Manifest written: /home/ree/REE_Working/ree-v3/experiments/../../REE_assembly/evidence/experiments/v3_exq_576_gap1_harm_gradient_validation_20260516T195014Z_v3.json | Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-576 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-576.json",
+      "started_at": "2026-05-16T19:50:02.475303+00:00",
+      "completed_at": "2026-05-16T19:50:14.990709+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_576_gap1_harm_gradient_validation_20260516T195014Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 12.5
     }
   ]
 }
