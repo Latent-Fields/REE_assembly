@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-16T23:45:55Z",
+  "last_tick_utc": "2026-05-16T23:46:57Z",
   "state": "running",
   "current_exq": "V3-EXQ-543e",
   "current_exq_started_utc": "2026-05-16T23:42:42.559107+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 0 / ARM_0_baseline",
-    "runs_done": 0,
+    "run_label": "Seed 0 / ARM_1_dacc_only",
+    "runs_done": 1,
     "runs_total": 12,
-    "episodes_done": 90,
+    "episodes_done": 20,
     "episodes_total": 108,
-    "overall_pct": 6.9
+    "overall_pct": 9.9
   },
-  "seconds_elapsed": 192,
-  "seconds_remaining": 21992,
+  "seconds_elapsed": 255,
+  "seconds_remaining": 2333,
   "recent_lines": [
-    "[probe] ARM_0_baseline P1 ep 40/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
-    "[train] ARM_0_baseline ep 80/108  phase=P1  rv=0.0007  ep_reward=-1.0015  inert_gating=False",
-    "[probe] ARM_0_baseline P1 ep 45/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
-    "[probe] ARM_0_baseline P1 ep 50/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
-    "[train] ARM_0_baseline ep 90/108  phase=P1  rv=0.0007  ep_reward=-1.0304  inert_gating=False"
+    "Seed 0 Condition ARM_1_dacc_only",
+    "use_gated_policy=False  use_dacc=True  dacc_suppression_weight=0.5  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=on",
+    "[train] ARM_1_dacc_only ep 10/108  phase=P0  rv=0.0007  ep_reward=-1.1214",
+    "[train] ARM_1_dacc_only ep 20/108  phase=P0  rv=0.0006  ep_reward=-1.2811"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
