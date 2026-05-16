@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-05-16_arc065_primate_curiosity_circuits_monosov2024",
+  "timestamp_utc": "2026-05-16T11:18:07Z",
+  "claim_ids_tested": ["ARC-065", "MECH-314", "MECH-314a", "MECH-314b"],
+  "source": {
+    "title": "Curiosity: primate neural circuits for novelty and information seeking",
+    "authors": ["Ilya E. Monosov"],
+    "year": 2024,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-023-00784-9",
+    "url": "https://doi.org/10.1038/s41583-023-00784-9"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "High-quality Nature Reviews Neuroscience paper providing the most current synthesis of primate circuits for curiosity. Directly supports the biological grounding of MECH-314a (novelty-based) and MECH-314b (uncertainty-driven) as distinct sub-mechanisms, not reducible to each other. The developmental angle -- how curiosity-related behaviours arise during postnatal development -- is directly relevant to the REE infant-stage question. High source quality, good mapping fidelity for the circuit-separation question (Q-044).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Curiosity circuits that only track novelty (recent vs. not-recent) are distinct from circuits that track uncertainty (resolution of predictive uncertainty) -- conflating the two produces mechanisms that each fail to capture the full biological function.",
+    "Curiosity-related behaviours in primates arise during postnatal development and are shaped by the richness of environmental experience -- the biological evidence implies that a fixed novelty bonus without environmental structure will not generate genuine curiosity-like exploration."
+  ],
+  "tags": ["arc-065", "mech-314", "mech-314a", "mech-314b", "primate-circuits", "novelty-detection", "uncertainty-coding", "postnatal-development", "q-044"],
+  "mapping": {
+    "source_claim_statement": "Primate circuits responsible for curiosity involve distinct sub-circuits for detecting and predicting novelty (amygdala, striatum, anterior cingulate cortex) and for computing uncertainty and its value (frontopolar cortex, basolateral amygdala, dopaminergic projections). These are dissociable both anatomically and computationally; neither fully subsumes the other.",
+    "ree_translation": "Supports the ARC-065 synthesis finding that MECH-314a (striatal novelty) and MECH-314b (frontopolar uncertainty) are genuinely distinct sub-mechanisms with separate anatomical substrates, providing biological support for maintaining the sub-flavour split rather than collapsing them. Q-044 (are the sub-flavours distinct or three readings of one mechanism?) gets a partial answer here: novelty and uncertainty are anatomically separable in primates. The MECH-314c (learning-progress) sub-flavour is not directly addressed by this review.",
+    "mapping_caveat": "Primate circuit anatomy is not directly implemented in REE -- REE approximates the functional role, not the circuit topology. The review focuses on baseline curiosity; it does not specifically address the developmental transition from novelty-dominated to uncertainty-dominated curiosity that the REE infant stage needs to support. Transfer risk is moderate because primate circuit findings are closer to the intended REE biological grounding than rodent data, but the mapping from primate PFC/striatum circuits to REE's z_world/E3 scoring chain involves multiple abstraction steps.",
+    "source_context": "Review of primate single-unit, fMRI, and lesion studies primarily in macaques and humans. Novelty-based and uncertainty-based curiosity are dissociated using paradigms where the two are orthogonalized."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Nature Reviews Neuroscience 2024, senior author (Monosov) has a long publication record on the neuroscience of curiosity and information-seeking. Mapping fidelity is good for the sub-flavour independence question and the novelty-vs-uncertainty dissociation. The developmental angle is present but not the primary focus."
+  }
+}

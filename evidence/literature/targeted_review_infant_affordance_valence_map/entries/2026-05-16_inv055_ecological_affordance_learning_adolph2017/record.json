@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_affordance_valence_map",
+  "entry_id": "2026-05-16_inv055_ecological_affordance_learning_adolph2017",
+  "timestamp_utc": "2026-05-16T11:20:37Z",
+  "claim_ids_tested": ["INV-055", "INV-073", "ARC-072"],
+  "source": {
+    "title": "An Ecological Approach To Learning In (Not And) Development",
+    "authors": ["Karen E. Adolph"],
+    "year": 2019,
+    "venue": "Psychological Learning & Memory",
+    "doi": "10.1037/xlm0000741",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8048368/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality theoretical review from a leading lab (NYU Infant Action Lab, Adolph) synthesizing decades of empirical work. Mapping fidelity to INV-055/INV-073 is strong: the core claim that behavioral flexibility requires extensive varied motor experience before reinforcement narrows the repertoire directly evidences both invariants. Transfer risk is low -- the developmental substrate (motor-sensory exploration epoch, posture-specific learning, error-as-information) maps cleanly to REE's infant stage design requirements. Confidence capped at 0.78 rather than higher because the paper does not address valence or reward learning directly -- only the affordance/motor side of INV-055.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Affordance learning is posture-specific: experience as a crawler does not transfer to walking. REE's infant stage would need to support multiple action-posture modalities (or a single abstract motor interface) to avoid re-learning per new capability layer.",
+    "Infants do not perceive affordances when first acquiring skills -- the infant stage must therefore precede the point where goal-pursuit learning begins, or goal learning will lock in prematurely.",
+    "Environmental variation is necessary for flexibility: an impoverished training substrate (few object types, fixed layouts, no surface diversity) would produce a narrow option library even with long training time."
+  ],
+  "tags": ["inv055", "inv073", "arc072", "affordance_learning", "motor_variability", "developmental_bootstrapping", "behavioral_flexibility"],
+  "mapping": {
+    "source_claim_statement": "Behavioral flexibility -- the capacity to adjust actions moment-to-moment as bodies, skills, and environments change -- requires a dedicated motor-sensory exploration epoch accumulating varied, error-laden experience across diverse body-environment relations before reinforcement mechanisms narrow the repertoire. Learning is posture-specific and context-specific; infants must re-learn affordances whenever their motor capability changes.",
+    "ree_translation": "INV-073 posits that any model-building agent must undergo a diversity-bootstrapping epoch before RL narrows the option library. Adolph's ecological framework directly instantiates this: the infant stage (INV-055) must expose the agent to a wide variety of action-environment pairings with low reinforcement pressure, so that the hippocampal trajectory store (MECH-325 / ARC-072) is populated before goal pursuit begins. The posture-specificity finding implies the exploration epoch must cover all action modalities REE will need in later stages.",
+    "mapping_caveat": "Adolph focuses exclusively on motor affordances and behavioral flexibility; she does not address valence map formation, harm/benefit geography, or reward sensitivity. INV-055 also requires accumulation of a valence map and harm/benefit residue field -- that component has no support from this paper. Transfer from infant locomotion research to a grid-world agent is also approximate: infants physically fail (fall, get stuck) in ways grid-world agents do not unless harm contacts are designed similarly.",
+    "source_context": "Human infant motor development (crawling/walking/reaching), cross-species, primarily 8-16 months, observational + controlled laboratory paradigms. No clinical population."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Source quality high: Adolph is the leading empiricist in infant affordance learning; paper synthesizes ~30 years of her lab's data. Mapping fidelity capped at 0.72: the paper covers the motor/repertoire component of INV-055 strongly but is silent on valence and harm/benefit geography. Transfer risk low: the core principle (exploration epoch before RL narrowing) is substrate-independent."
+  }
+}

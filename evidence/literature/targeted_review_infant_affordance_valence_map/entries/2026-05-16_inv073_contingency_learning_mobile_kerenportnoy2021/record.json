@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_affordance_valence_map",
+  "entry_id": "2026-05-16_inv073_contingency_learning_mobile_kerenportnoy2021",
+  "timestamp_utc": "2026-05-16T11:20:37Z",
+  "claim_ids_tested": ["INV-073", "MECH-189", "INV-055"],
+  "source": {
+    "title": "Did I just do that? Six-month-olds learn the contingency between their vocalizations and a visual reward in 5 minutes",
+    "authors": ["Tamar Keren-Portnoy", "Helena Daffern", "Rory A. DePaolis", "Christopher M. M. Cox", "Ken I. Brown", "Florence A. R. Oxley", "Mona Kanaan"],
+    "year": 2021,
+    "venue": "Infancy",
+    "doi": "10.1111/infa.12433",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8650573/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Peer-reviewed empirical study, well-powered (experimental vs control design), published in the leading infancy journal. Key finding -- 83% of 6-month-olds increased vocal rate when vocalizations were contingently rewarded with visual feedback -- directly evidences the infant capacity for rapid accidental discovery of action-outcome contingencies. This is the mechanism MECH-189 and INV-073 depend on: accidental actions (first vocalizations, first kicks) discover beneficial contingencies, and the resulting association seeds goal-directed repetition. Confidence capped at 0.73: the study does not document the positive affect/valence change upon discovery, only the behavioral change, leaving the 'accidental benefit contact seeds z_goal' part of MECH-189 supported by inference rather than direct measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study uses a non-social visual reward (colorful shapes on iPad), showing the effect does not require social/caregiver contingency. This is relevant to REE's non-social training substrate design but also means we cannot assume affect-amplified discovery from this data alone.",
+    "No measurement of affective state change upon discovery: the study tracks vocalization rate only. The internal state change (motivation, wanting, goal formation) upon contingency detection is inferred, not measured.",
+    "The contingency is single-action-to-single-outcome: REE needs multi-action affordance repertoires, which the mobile/iPad paradigm cannot straightforwardly address."
+  ],
+  "tags": ["inv073", "mech189", "inv055", "contingency_learning", "accidental_discovery", "goal_formation", "reward_sensitivity"],
+  "mapping": {
+    "source_claim_statement": "Six-month-old infants can detect and learn the contingency between their own vocal actions and a non-social visual reward within five minutes. 83% of infants increased vocalization frequency when doing so produced visual consequences, compared to 47% in controls. Learning proceeds from accidental production of the outcome to systematic increase in the producing action.",
+    "ree_translation": "MECH-189 posits that high-salience benefit contacts are written to persistent ContextMemory as super-ordinal goal anchors. Keren-Portnoy et al. provide behavioral evidence for the precursor process: an accidental action (vocalization, kick) encounters a benefit contact (moving mobile, colorful display), and the infant rapidly increases the rate of that action. In REE terms, this is the moment when a neutral action-vector in the hippocampal trajectory store gets tagged with a VALENCE_WANTING entry -- before any deliberate goal pursuit, accidental contact bootstraps goal representation. INV-073 (bootstrapping epoch before RL narrowing) is confirmed: infants in the contingent condition are effectively running their own self-generated exploration trial, not responding to externally imposed reward signals.",
+    "mapping_caveat": "The paper does not measure z_goal-equivalent representations or valence tagging. The transition from 'accidentally discovered contingency' to 'persistently maintained goal' requires additional theory (MECH-189) that the paper cannot directly test. The 5-minute learning window is far faster than REE's grid-world exposure timescales, but the principle generalizes.",
+    "source_context": "Human infants at 6 months (N reported as experimental vs control groups), laboratory setting, non-social visual reward paradigm. Generalizes the mobile paradigm (Rovee-Collier 1969) to vocal actions without social cues."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good: peer-reviewed, controlled design, Infancy journal. Mapping fidelity moderate: behavioral mechanism (accidental action -> discovered contingency -> increased rate) maps well; affective/valence consequences are inferred. Transfer risk moderate: infant vocal contingency to REE grid-world benefit contact is indirect but the principle (accidental contact seeds directed repetition) is domain-general."
+  }
+}

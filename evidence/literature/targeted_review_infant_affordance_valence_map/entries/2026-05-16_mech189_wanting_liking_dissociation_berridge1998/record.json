@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_affordance_valence_map",
+  "entry_id": "2026-05-16_mech189_wanting_liking_dissociation_berridge1998",
+  "timestamp_utc": "2026-05-16T11:20:37Z",
+  "claim_ids_tested": ["MECH-189", "INV-055"],
+  "source": {
+    "title": "What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?",
+    "authors": ["K C Berridge", "T E Robinson"],
+    "year": 1998,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/s0165-0173(98)00019-8",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9858756/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical highly-cited review (~3000 citations) establishing the wanting/liking dissociation with strong experimental evidence. The dissociation is directly relevant to REE's SD-014 valence architecture (VALENCE_WANTING vs VALENCE_LIKING as distinct channels) and to MECH-189 (benefit contacts seed goal anchors). The key finding -- dopamine mediates incentive salience (wanting/approach motivation) but not hedonic pleasure (liking/consummatory affect) -- predicts that accidental benefit contacts in the infant stage should generate wanting-type activation that drives approach and goal formation, even before there is a well-calibrated liking signal. Confidence at 0.72: this is an adult/rodent neuroscience paper; the developmental (infant-stage) application is theoretical transfer. Positive hedonic reactions to sweet taste at birth are noted, but the wanting/liking dissociation in infants specifically is not tested here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The wanting/liking dissociation is established in adult animals and humans; its application to the infant learning window requires additional inference -- there is no direct evidence that these systems are independently operational in early infancy.",
+    "The paper focuses on pharmacological manipulation (dopamine depletion, benzodiazepines) -- the naturalistic developmental context of REE's infant stage is not directly addressed.",
+    "Hedonic 'liking' reactions to sucrose are present from birth, but whether the NAcc-mediated wanting signal is functional as early as 2-3 months (the critical mobile paradigm window) is not established here."
+  ],
+  "tags": ["mech189", "inv055", "wanting_liking", "valence_dissociation", "dopamine", "incentive_salience", "goal_formation", "sd014"],
+  "mapping": {
+    "source_claim_statement": "Mesolimbic dopamine mediates incentive salience -- the motivational 'wanting' that drives approach toward rewards -- but is neither necessary nor sufficient for hedonic pleasure ('liking') or for reward learning. Dopamine-depleted animals retain normal affective reactions (gapes, lip-licks to sucrose/quinine) and normal hedonic learning but show profound apathy and akinesia despite intact pleasure.",
+    "ree_translation": "REE's SD-014 distinguishes VALENCE_WANTING from VALENCE_LIKING as separable channels with distinct write pathways. Berridge and Robinson's dissociation provides direct mechanistic grounding: accidental benefit contacts in the infant stage would initially generate a wanting-type signal (dopamine-mediated incentive salience, VALENCE_WANTING) that drives approach and repetition, even before the agent has calibrated liking-signals that accurately reflect the hedonic quality of the outcome. MECH-189 (high-salience benefit contacts seeding persistent goal anchors) maps onto the wanting channel specifically: it is the wanting that drives the infant to approach and repeat, not necessarily the liking. For the infant substrate, this implies that a benefit contact architecture should generate approach motivation independently of consummatory reward calibration -- the exploration epoch produces wanting-seeded goal representations that persist into the deliberate-planning stage.",
+    "mapping_caveat": "The dissociation is established in adult rodents with pharmacological manipulation; developmental trajectory of the wanting/liking split in infancy is not covered. REE uses this as mechanistic grounding for the SD-014 architecture, but the specific age at which wanting and liking become independently modifiable in human infants is unknown from this source.",
+    "source_context": "Adult rodents (dopamine-depleted via 6-OHDA), adult humans (neurological and pharmacological studies), Brain Research Reviews 1998. Highly cited canonical review."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high: canonical paper, replicated extensively. Mapping fidelity moderate: the wanting/liking distinction maps well to SD-014, but the developmental infant-stage application requires theoretical transfer. Transfer risk moderate: adult rodent -> infant agent is a multi-step transfer."
+  }
+}

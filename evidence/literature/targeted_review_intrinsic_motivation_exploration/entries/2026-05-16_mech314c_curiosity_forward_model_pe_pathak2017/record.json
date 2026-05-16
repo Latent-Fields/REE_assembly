@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-05-16_mech314c_curiosity_forward_model_pe_pathak2017",
+  "timestamp_utc": "2026-05-16T11:18:07Z",
+  "claim_ids_tested": ["MECH-314", "MECH-314c", "ARC-065"],
+  "source": {
+    "title": "Curiosity-driven Exploration by Self-supervised Prediction",
+    "authors": ["Deepak Pathak", "Pulkit Agrawal", "Alexei A. Efros", "Trevor Darrell"],
+    "year": 2017,
+    "venue": "Proceedings of the 34th International Conference on Machine Learning (ICML 2017)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1705.05363"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Foundational paper directly instantiating MECH-314c (learning-progress curiosity via forward-model PE). High source quality (ICML, highly cited). Mapping fidelity is moderate: the REE substrate uses e3._running_variance as the PE proxy rather than a dedicated learned feature space, which is Phase-1 approximation. The stochastic environment failure mode Pathak 2017 identifies is directly REE-relevant: a random causal grid world with intrinsic novelty only could exhibit the same failure unless the environment has structure the agent can learn to predict.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In stochastic environments prediction error stays high even after optimal learning, producing an endlessly high curiosity signal that does not track real learning progress -- the environment randomness is indistinguishable from learnable structure.",
+    "When the learned feature space is poor, prediction error measures noise rather than meaningful state transitions, misdirecting exploration.",
+    "Curiosity alone (without any task reward) is insufficient to solve tasks requiring goal-directed persistence -- it drives coverage, not completion."
+  ],
+  "tags": ["mech-314c", "mech-314", "arc-065", "learning-progress", "forward-model", "exploration-bonus", "curiosity", "stochastic-environment-failure"],
+  "mapping": {
+    "source_claim_statement": "Curiosity formulated as the error in an agent's ability to predict the consequence of its own actions in a learned visual feature space provides a useful intrinsic reward for exploration in sparse-reward and no-reward settings.",
+    "ree_translation": "MECH-314c uses EMA of |PE_t - PE_{t-K}| (learning-progress signal derived from e3._running_variance) as the broadcast scalar sub-flavour of the structured-curiosity bonus. This is the Phase-1 instantiation of the Pathak intrinsic-reward tradition: the agent should prefer actions whose consequences it is currently improving at predicting.",
+    "mapping_caveat": "REE Phase 1 uses a broadcast scalar (global running variance) rather than per-candidate forward-model error. This means all K candidates receive the same MECH-314c nudge regardless of which candidate would produce more informative next states -- the per-candidate refinement is explicitly deferred to Phase 2. Pathak's architecture uses a learned inverse dynamics model to filter out environmentally uncontrollable factors; REE Phase 1 lacks this and is vulnerable to the stochastic-environment failure if the CausalGridWorld environment has irreducible stochastic components.",
+    "source_context": "Simulated robotics environments: VizDoom first-person 3D navigation and Super Mario Bros platformer. Both are relatively structured (the agent's actions have predictable physical consequences); the stochastic failure is noted as a theoretical concern and demonstrated in a 3D task where the agent controls part of the environment."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high: ICML 2017, over 3000 citations, foundational reference for the field. Mapping fidelity reduced because REE Phase 1 uses a broadcast scalar proxy rather than per-candidate learned prediction error (architectural mismatch). Transfer risk is moderate: the core insight (PE as curiosity) is domain-general, but the specific stochastic failure condition depends on CausalGridWorld's stochasticity profile."
+  }
+}

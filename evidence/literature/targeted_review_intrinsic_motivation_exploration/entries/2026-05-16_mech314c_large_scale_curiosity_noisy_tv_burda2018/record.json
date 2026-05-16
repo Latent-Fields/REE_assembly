@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-05-16_mech314c_large_scale_curiosity_noisy_tv_burda2018",
+  "timestamp_utc": "2026-05-16T11:18:07Z",
+  "claim_ids_tested": ["MECH-314", "MECH-314c", "MECH-314b", "ARC-065"],
+  "source": {
+    "title": "Large-Scale Study of Curiosity-Driven Learning",
+    "authors": ["Yuri Burda", "Harri Edwards", "Deepak Pathak", "Amos Storkey", "Trevor Darrell", "Alexei A. Efros"],
+    "year": 2018,
+    "venue": "International Conference on Learning Representations (ICLR 2019); arXiv:1808.04355",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1808.04355"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "Critical evidence for ARC-065 / MECH-314 design. The positive finding (curiosity alone achieves surprisingly good performance on 54 benchmarks) strongly supports the functional value of prediction-error-based exploration bonuses. The noisy TV finding is the most important cautionary result: it shows that a maximally curious agent in a structurally poor environment (one with accessible irreducible randomness) exploits the noise source rather than exploring useful state space. This directly addresses the user's central question: novelty_bonus_weight at maximum is insufficient if the environment has random attractors.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Noisy TV problem: agents presented with an unpredictable stochastic stimulus (TV showing random pixels) fixate on it and stop exploring, because maximum curiosity is maintained by the noise source.",
+    "Random features are sufficient for game benchmarks that align with the curiosity objective, but learned features generalize better to novel configurations -- novelty_bonus on random features is environment-specific, not general.",
+    "Curiosity-driven learning produces high coverage in environments where the agent's actions have learnable consequences; it produces fixation in environments where irreducible randomness is accessible.",
+    "Environments where curiosity aligns well with task reward tend to have structured causal relationships between agent actions and state transitions -- the alignment is not guaranteed and breaks in distractors-rich environments."
+  ],
+  "tags": ["mech-314c", "mech-314b", "mech-314", "arc-065", "noisy-tv-problem", "stochastic-environment", "environment-structure", "exploration-bonus", "novelty-bonus"],
+  "mapping": {
+    "source_claim_statement": "Curiosity as prediction error bonus achieves good exploration across diverse environments but fails catastrophically in environments containing accessible irreducible stochasticity (noisy TV problem). Random feature spaces suffice for static benchmarks but learned features generalize better.",
+    "ree_translation": "For REE infant-stage training: novelty_bonus_weight at maximum is only sufficient if the CausalGridWorld environment does not contain accessible random attractors. MECH-314b (uncertainty-driven; e3._running_variance broadcast) and MECH-314c (learning-progress EMA) both share this failure mode -- if the environment contains stimuli the agent cannot learn to predict, the curiosity signal will fixate on those stimuli rather than driving useful exploration. This is the central empirical support for the user question: the environment itself needs richer structure, not just a higher novelty bonus.",
+    "mapping_caveat": "REE CausalGridWorld is a discrete gridworld with deterministic transitions (except for any stochastic reward components); the noisy TV failure is less likely in a structured gridworld than in a 3D physics environment with freely accessible random stimuli. However, if the infant-stage training adds any stochastic environmental elements (random goal placement, random obstacle appearance), the failure mode could manifest as novelty-seeking fixation on those random elements rather than strategy formation.",
+    "source_context": "54 Atari and procedurally-generated environments; the noisy TV demonstration is a dedicated 3D navigation task with an added random-pixel TV. Agents are standard RL agents (PPO backbone) with ICM or feature-prediction curiosity modules."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "Source quality very high: ICLR 2019, OpenAI-backed large-scale study. Mapping fidelity is good for the failure-mode finding (directly applicable to REE environment design) and the feature-space finding. Transfer risk is low because the gridworld setting REE uses is structurally less susceptible to the noisy TV failure than 3D photorealistic environments, but the risk is non-zero."
+  }
+}

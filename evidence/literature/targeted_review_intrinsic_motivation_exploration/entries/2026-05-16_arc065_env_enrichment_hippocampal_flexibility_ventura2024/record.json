@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-05-16_arc065_env_enrichment_hippocampal_flexibility_ventura2024",
+  "timestamp_utc": "2026-05-16T11:18:07Z",
+  "claim_ids_tested": ["ARC-065"],
+  "source": {
+    "title": "Increased flexibility of CA3 memory representations following environmental enrichment",
+    "authors": ["Silvia Ventura", "Stephen Duncan", "James A. Ainge"],
+    "year": 2024,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2024.03.054",
+    "url": "https://doi.org/10.1016/j.cub.2024.03.054"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Good biological evidence that environmental enrichment -- not just exploration drive -- is necessary for the downstream learning flexibility that curiosity-driven exploration is supposed to produce. The finding that enriched environments produce CA3 place cells with greater spatial tuning and enhanced contextual remapping provides a mechanistic account of why environment structure matters beyond the novelty signal itself. Mapping fidelity is moderate: the REE substrate's hippocampal residue field has parallels to place cell remapping, but REE does not implement adult neurogenesis. The key REE-relevant finding is the causal arrow: enrichment -> better representational flexibility, not just exploration -> better representations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rats reared in impoverished environments develop CA3 representations that are less flexible -- they fail to disambiguate similar contexts even when they later explore normally.",
+    "The effect of enrichment on memory flexibility was abolished by temozolomide treatment (reducing neurogenesis), suggesting the mechanism requires structural hippocampal change, not just increased activity.",
+    "Enrichment during a sensitive early period (not equivalent adult experience alone) produced the strongest effects -- timing and environmental structure interact."
+  ],
+  "tags": ["arc-065", "environment-structure", "hippocampal-flexibility", "ca3-remapping", "neurogenesis", "enrichment", "behavioral-flexibility", "early-development"],
+  "mapping": {
+    "source_claim_statement": "Environmental enrichment (stimulus-rich housing with objects, social partners, varied exploration opportunities) increases CA3 place cell spatial tuning, enhances contextual remapping, and improves fine memory discrimination. The effect depends on adult neurogenesis and produces behavioral flexibility that persists beyond the enrichment period.",
+    "ree_translation": "For REE infant-stage design: this paper provides the biological argument that the environment structure during early exploration determines representational flexibility downstream. REE's novelty_bonus_weight at maximum will drive exploration -- but if the environment is a flat gridworld with few contextually distinct regions, the exploration will not produce the representational differentiation that underlies strategy flexibility. The CA3 remapping findings map onto REE's residue field: a richer environment with more distinct context configurations will produce a more differentiated residue field topology, which in turn enables better context-sensitive strategy selection (ARC-065 downstream). This is the sharpest biological argument for the user's central question.",
+    "mapping_caveat": "The biological mechanism involves adult hippocampal neurogenesis, which REE does not implement. The REE analog is the residue field RBF center expansion -- whether the residue field can develop the equivalent of CA3 remapping depends on how many distinct contexts the CausalGridWorld environment presents. This is an indirect argument: the paper establishes environment richness -> hippocampal flexibility in biology; REE extrapolates to environment richness -> residue field differentiation -> strategy diversity.",
+    "source_context": "Adult rats (Long-Evans), two enrichment conditions vs. standard housing, CA3 single-unit recordings during contextual discrimination tasks, adult neurogenesis ablation via temozolomide. Rodent data; direct primate or human replication with the specific neurogenesis mechanism is not available."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Current Biology 2024, rigorous rodent electrophysiology with ablation confirmation. Mapping fidelity reduced because the specific mechanism (neurogenesis -> CA3 tuning) is not implemented in REE; the REE analog (residue field differentiation) is plausible but not confirmed. Transfer risk is above average: rodent -> REE requires two jumps (rodent -> human, biology -> computation). Maintained in the pull because the environment-richness finding is the strongest biological grounding available for the infant-stage design question."
+  }
+}

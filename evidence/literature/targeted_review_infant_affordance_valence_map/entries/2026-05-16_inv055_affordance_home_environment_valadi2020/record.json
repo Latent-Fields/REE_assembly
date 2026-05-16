@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_affordance_valence_map",
+  "entry_id": "2026-05-16_inv055_affordance_home_environment_valadi2020",
+  "timestamp_utc": "2026-05-16T11:20:37Z",
+  "claim_ids_tested": ["INV-055", "INV-073"],
+  "source": {
+    "title": "Effects of affordances in the home environment on children's personal-social, problem-solving, and communication skills",
+    "authors": ["Saeed Valadi", "Carl Gabbard", "Faramarz Hooshyari"],
+    "year": 2020,
+    "venue": "Child: Care, Health and Development",
+    "doi": "10.1111/cch.12756",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32026508/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Cross-sectional study using the validated AHEMD-IS tool (Affordances in the Home Environment for Motor Development - Infant Scale). N=251 children 18-42 months. Finding: home environment affordance richness significantly predicted personal-social, problem-solving, and communication skills -- not just motor outcomes. This is relevant to INV-055/INV-073 because it demonstrates that affordance diversity in the training environment has downstream effects beyond the motor domain, supporting the claim that the infant stage curriculum richness determines the breadth of the later-stage repertoire. Confidence moderated to 0.65: cross-sectional design cannot establish causality; confounds (SES, education) are noted; the affordance measure is parental self-report; and the paper covers children older than the critical infant window for affordance bootstrapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cross-sectional design cannot establish causal direction: it is possible that more capable children elicit richer affordance provision from parents, reversing the causal arrow.",
+    "SES confounds: all AHEMD-IS dimensions are significantly influenced by socioeconomic status, making it difficult to isolate the affordance richness effect from resource availability effects.",
+    "Age range (18-42 months) is post the critical infant window hypothesized for REE: affordance effects may be smaller or saturated earlier."
+  ],
+  "tags": ["inv055", "inv073", "affordance_diversity", "home_environment", "behavioral_repertoire", "developmental_substrate"],
+  "mapping": {
+    "source_claim_statement": "Home environment affordance richness (physical space, variety of stimulation, fine-motor toys, gross-motor toys) significantly predicts children's personal-social, problem-solving, and communication skills at 18-42 months. The effect generalises beyond motor outcomes to cognitive and social domains.",
+    "ree_translation": "INV-055 requires the infant stage to produce a behavioral repertoire and harm/benefit geography -- not just motor patterns but also the conceptual substrate for object-schema formation and social pattern recognition. Valadi et al. show that affordance diversity in the training environment produces diverse downstream competencies, not just motor ones. For REE, this supports designing the infant substrate to include diverse object types (MECH-296 / multi-resource variety), varied layouts, and surface diversity -- because environmental richness during exploration maps to downstream repertoire breadth across multiple domains. The AHEMD-IS physical space and variety dimensions map most directly to REE's grid-world layout and object diversity parameters.",
+    "mapping_caveat": "The AHEMD-IS measures home affordances through parental report, not through controlled experimental variation -- REE needs the causal direction to be environment -> repertoire, which this study cannot establish. The children are 18-42 months (toddler/early childhood), not the 0-12 month infant window most relevant to REE's pre-deliberate-planning stage.",
+    "source_context": "Human children 18-42 months (N=251), Persian-speaking families, cross-sectional, parental self-report. Uses validated AHEMD-IS and Ages and Stages Inventories."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate: validated instruments, adequate N, but cross-sectional and self-report. Mapping fidelity lower: the paper evidences the correlation between environment richness and repertoire breadth but cannot establish causality or isolate the critical window. Transfer risk moderate-high: children in this study are older and in social family contexts, not grid-world agents."
+  }
+}

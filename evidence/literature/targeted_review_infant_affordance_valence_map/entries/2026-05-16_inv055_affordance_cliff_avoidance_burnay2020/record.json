@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_affordance_valence_map",
+  "entry_id": "2026-05-16_inv055_affordance_cliff_avoidance_burnay2020",
+  "timestamp_utc": "2026-05-16T11:20:37Z",
+  "claim_ids_tested": ["INV-055", "INV-073"],
+  "source": {
+    "title": "The effect of specific locomotor experiences on infants' avoidance behaviour on real and water cliffs",
+    "authors": ["Carolina Burnay", "Rita Cordovil", "Chris Button", "James L. Croft", "Matthew Schofield", "Joana Pereira", "David I. Anderson"],
+    "year": 2020,
+    "venue": "Developmental Science",
+    "doi": "10.1111/desc.13047",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33037732/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Well-powered cross-sectional study (N=102) directly testing how experience with different locomotor postures (crawling vs walking) shapes affordance-guided avoidance behavior. The posture-specificity finding -- that crawling experience, but not walking experience, predicts drop-off avoidance in walkers -- is directly relevant to INV-073 (exploration epoch must cover all action modalities) and INV-055 (harm/benefit geography accumulation is posture-specific). The additional finding that longer crawling experience accelerates recalibration to walking posture suggests a cumulative exploration benefit. Confidence at 0.70: study is cross-sectional, uses a specific and dramatic affordance (drop-off avoidance), and does not address the reward/benefit side of INV-055's valence map requirement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Affordance learning is posture-specific and does not transfer across locomotor mode: the cliff avoidance learned through crawling only partially transfers to walking, requiring active recalibration. REE's infant stage would need to expose the agent across its full action repertoire, not just a single locomotor policy.",
+    "The paper addresses harm avoidance only (drop-off geography), not benefit discovery. REE's INV-055 requires both harm/benefit geography accumulation -- the benefit side is unaddressed here.",
+    "Cross-sectional design: causal relationships between crawling experience and affordance learning are inferred, not experimentally verified."
+  ],
+  "tags": ["inv055", "inv073", "cliff_avoidance", "posture_specific_learning", "harm_geography", "motor_experience", "affordance_calibration"],
+  "mapping": {
+    "source_claim_statement": "Crawling experience duration is positively associated with drop-off avoidance in both crawlers and walkers. Walkers who had more crawling experience show better recalibration of drop-off avoidance than those with less. Longer crawling experience facilitates faster recalibration to the new walking capability. Crucially, posture-specific experience (crawling) transfers partially but not fully to a different posture (walking): the harm geography requires re-learning with each new locomotor modality.",
+    "ree_translation": "INV-055 specifies that the infant stage must accumulate harm/benefit geography through novelty-driven exploration. Burnay et al. provide direct evidence that harm geography is encoded in a posture-specific, action-mode-specific manner -- consistent with the idea that REE's harm residue field must be populated through the specific action-observation pairs the agent uses in its later deliberate-planning phase. If the infant stage uses only random-walk exploration but deliberate planning uses CEM-generated action sequences, the harm geography accumulated during exploration may require recalibration. INV-073's exploration epoch requirement is strengthened: not just quantity of experience but diversity of action modalities during exploration is necessary.",
+    "mapping_caveat": "This study addresses only harm avoidance (drop-offs) -- the benefit/reward side of the geography is not addressed. The mapping to REE's residue field is plausible but requires that REE's harm/benefit residue operates analogously to the posture-specific perceptual calibration described here, which is not guaranteed by current substrate design.",
+    "source_context": "Human infants 11-16 months, 58 crawlers and 44 walkers, cross-sectional, visual cliff / water cliff apparatus. New Zealand / Portugal research groups."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good: peer-reviewed, adequate N, Developmental Science, uses validated cliff paradigm. Mapping fidelity moderate: harm geography component of INV-055 is addressed; benefit component is not. Transfer risk moderate: locomotor cliff avoidance maps to REE's harm residue field plausibly but not identically."
+  }
+}

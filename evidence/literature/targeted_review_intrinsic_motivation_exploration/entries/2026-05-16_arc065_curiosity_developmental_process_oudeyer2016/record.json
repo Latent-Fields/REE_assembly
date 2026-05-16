@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-05-16_arc065_curiosity_developmental_process_oudeyer2016",
+  "timestamp_utc": "2026-05-16T11:18:07Z",
+  "claim_ids_tested": ["ARC-065", "MECH-314", "MECH-314c"],
+  "source": {
+    "title": "How Evolution May Work Through Curiosity-Driven Developmental Process",
+    "authors": ["Pierre-Yves Oudeyer", "Linda B. Smith"],
+    "year": 2016,
+    "venue": "Topics in Cognitive Science",
+    "doi": "10.1111/tops.12196",
+    "url": "https://doi.org/10.1111/tops.12196"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Moderate-to-good evidence for the core REE infant-stage design question. The paper's central finding -- that learning-progress curiosity (not novelty per se) produces emergent developmental stage ordering in robots -- is the best available evidence for MECH-314c specifically. However, this is a theoretical review with robotic demonstrations rather than controlled experiments, and the robotics context involves richer multi-modal environments than REE's current gridworld. The finding that developmental curriculum emerges automatically from progress-driven curiosity (rather than hand-designed staging) has direct implications for REE infant-stage design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pure novelty bonuses (visit novel states) do not produce emergent developmental stage ordering -- the agent visits all states equally and does not dwell in regions where learning is currently productive.",
+    "Learning-progress curiosity requires the environment to contain a natural difficulty gradient: if all tasks are equally hard or all equally easy, the progress signal is flat and provides no gradient for developmental sequencing.",
+    "The emergent curriculum observed in the robot experiments depended on environmental structure (objects with affordances, vocal interaction partners) that the agent could explore and gradually master -- in a featureless environment, no developmental structure emerged."
+  ],
+  "tags": ["arc-065", "mech-314c", "mech-314", "learning-progress", "developmental-curriculum", "infant-development", "curiosity-driven-development", "environment-richness"],
+  "mapping": {
+    "source_claim_statement": "Robots equipped with learning-progress curiosity (preferentially selecting experiences according to their potential for reducing prediction uncertainty) spontaneously develop ordered behavioral and cognitive stages that parallel infant development. Pure novelty-based curiosity does not produce this staged development.",
+    "ree_translation": "For REE infant-stage design: MECH-314c (learning-progress via EMA of PE change) is the sub-flavour most likely to support emergent developmental sequencing. A novelty_bonus_weight at maximum (MECH-314a analog only) will not produce staged development -- the agent will cover novel states without dwelling in regions where productive learning is currently occurring. The environment needs to contain a difficulty gradient (some tasks that transition from hard to mastered over time) for the learning-progress signal to be non-flat.",
+    "mapping_caveat": "The Oudeyer/Smith robot experiments used multi-modal environments with objects and social partners -- substantially richer than REE's CausalGridWorld. The 'emergent curriculum' finding is contingent on environmental structure providing a natural scaffolding. If REE's infant-stage environment is a flat gridworld with equal-difficulty tiles, neither novelty nor learning-progress curiosity will produce meaningful developmental sequencing. This is the strongest argument from this paper for the user's question: the environment needs richer structure.",
+    "source_context": "Humanoid and simulated robot experiments using the IADM (Intelligent Adaptive Curiosity) and related architectures. Infant developmental patterns drawn from Linda Smith's lab developmental psychology data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Topics in Cognitive Science 2016, well-cited in the developmental robotics community. Oudeyer is the primary architect of the IADM/SAGG-RIAC curiosity tradition. Transfer risk is above average because the robotic environments are richer than REE's gridworld and the claim about emergent developmental stages requires the environment to have a difficulty gradient -- this must be verified for REE's specific environment."
+  }
+}
