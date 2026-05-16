@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-15T21:35:06Z",
+  "last_updated_utc": "2026-05-16T11:41:18Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2777,6 +2777,80 @@
       "added_session": "governance-cycle-2026-05-15T205941Z",
       "last_seen_session": "governance-cycle-2026-05-15T205941Z",
       "status": "substrate_implemented_pending_validation"
+    },
+    {
+      "sd_id": "INF-ENV-001",
+      "title": "Harm gradient zones -- graduated harm proximity signal in CausalGridWorldV2 (harm_gradient_enabled, harm_gradient_outer_radius, harm_gradient_inner_radius, harm_gradient_scale)",
+      "ready": true,
+      "design_doc": "docs/architecture/infant_substrate_expansion.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "DEV-NEED-004",
+        "ARC-013"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Add harm_gradient_* params to CausalGridWorldV2.__init__. In step(): compute d = min distance to nearest hazard; if d < outer_radius: apply -hazard_harm * (1-d/outer_radius)^2 * harm_gradient_scale to reward. Terminal contact unchanged (r_inner = existing contact boundary). Default all flags False. See Section 5.1 of infant_substrate_expansion.md.",
+      "priority": 2,
+      "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "last_seen_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "status": "open",
+      "closure_plan_gap": "infant_substrate:GAP-1"
+    },
+    {
+      "sd_id": "INF-ENV-002",
+      "title": "Microhabitat zones -- Voronoi-seeded zone map with per-zone resource+hazard density modulation in CausalGridWorldV2 (microhabitat_enabled, zone A/B/C factors, ambient bonus)",
+      "ready": true,
+      "design_doc": "docs/architecture/infant_substrate_expansion.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "DEV-NEED-001",
+        "DEV-NEED-003",
+        "DEV-NEED-007",
+        "ARC-065"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Add microhabitat_* params to CausalGridWorldV2. On reset(): generate Voronoi zone_map[y][x] from n_microhabitats seed points. In reset() resource/hazard placement: multiply base probs by per-zone factors (zone_A: resource 1.5x hazard 0.3x; zone_B: resource 0.8x hazard 1.8x; zone_C: resource 0.3x hazard 0.0x + ambient_bonus). Expose zone of current agent position in info dict. See Section 5.2 of infant_substrate_expansion.md.",
+      "priority": 2,
+      "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "last_seen_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "status": "open",
+      "closure_plan_gap": "infant_substrate:GAP-2"
+    },
+    {
+      "sd_id": "INF-ENV-003",
+      "title": "Transient benefit patches -- stochastic high-salience patch spawn in CausalGridWorldV2 for z_goal seeding (transient_benefit_enabled, transient_benefit_prob, transient_benefit_duration, transient_benefit_multiplier)",
+      "ready": true,
+      "design_doc": "docs/architecture/infant_substrate_expansion.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "DEV-NEED-006",
+        "MECH-189"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Add transient_benefit_* params to CausalGridWorldV2. In step(): with prob transient_benefit_prob, add patch at zone-weighted random cell (zone A: 40%, B: 20%, C: 30%, border: 10%). Track active patches as list of (cell, expiry_step). On contact: reward += resource_benefit * transient_benefit_multiplier. Patch removed on contact or expiry. Default all flags False. See Section 5.3 of infant_substrate_expansion.md.",
+      "priority": 2,
+      "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "last_seen_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "status": "open",
+      "closure_plan_gap": "infant_substrate:GAP-3"
+    },
+    {
+      "sd_id": "INF-ENV-004",
+      "title": "Stochastic attractor audit -- enumerate irreducibly random elements in CausalGridWorldV2 step()/reset() and mark or isolate from curiosity signal computation",
+      "ready": true,
+      "design_doc": "docs/architecture/infant_substrate_expansion.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "DEV-NEED-003",
+        "MECH-314"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Code-read only. Find all random.random()/torch.randn() calls in causal_grid_world.py step() and reset(). Classify each: (a) Markovian/predictable-stochastic (OK for curiosity), (b) irreducibly random (must be excluded from novelty signal). Primary suspect: SD-048 interoceptive_noise_scale. Flag SD-047 hazard drift direction for inspection. Document findings in a code comment block at top of CausalGridWorldV2. No new implementation required unless a problematic element is found. See Section 5.6 of infant_substrate_expansion.md.",
+      "priority": 2,
+      "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "last_seen_session": "infant-substrate-expansion-2026-05-16T111412Z",
+      "status": "open",
+      "closure_plan_gap": "infant_substrate:GAP-4"
     }
   ],
   "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"
