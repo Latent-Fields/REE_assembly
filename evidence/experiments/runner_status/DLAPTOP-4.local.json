@@ -2,22 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 29534,
   "runner_started_at": "2026-05-15T06:24:50.419759+00:00",
-  "last_updated": "2026-05-15T23:33:08.959324+00:00",
+  "last_updated": "2026-05-16T00:40:17.489922+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-569",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "WPB matched-entropy sweep: structured diversity vs noise floor (ARC-065)",
-      "description": "",
-      "estimated_minutes": 96.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -7838,6 +7826,34 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233308Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 37.5
+    },
+    {
+      "queue_id": "V3-EXQ-569",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "WPB matched-entropy sweep: structured diversity vs noise floor (ARC-065)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-569 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-569.json",
+      "started_at": "2026-05-15T23:33:15.135202+00:00",
+      "completed_at": "2026-05-16T00:38:31.608852+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_569_wpb_matched_entropy_sweep_20260516T003830Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3916.5
+    },
+    {
+      "queue_id": "V3-EXQ-571",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "E3 score variance decomposition diagnostic (ARC-065 / MECH-313 / MECH-314 / MECH-320)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-571 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-571.json",
+      "started_at": "2026-05-16T00:39:41.320534+00:00",
+      "completed_at": "2026-05-16T00:40:17.484578+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 36.2
     }
   ]
 }
