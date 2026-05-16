@@ -1,0 +1,206 @@
+{
+  "run_id": "v3_exq_580_gap6_residue_coverage_validation_20260516T224700Z_v3",
+  "queue_id": "V3-EXQ-580",
+  "experiment_type": "gap6_residue_coverage_validation",
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260516T224700Z",
+  "outcome": "PASS",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_episodes": 40,
+    "n_steps": 120,
+    "residue_scale_factor": 0.1,
+    "expected_threshold": 0.002,
+    "n_basis_functions": 512,
+    "thresh_arm1_min_margin": 0.01
+  },
+  "acceptance_checks": {
+    "C0_both_arms_wellformed": true,
+    "C1_arm1_coverage_strictly_gt_arm0": true,
+    "C2_benefit_terrain_off_sentinel": true,
+    "C3_noninvasive_get_statistics_intact": true,
+    "C4_arm0_has_harm_residue": true
+  },
+  "c0_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c1_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c2_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c3_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c4_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "results_by_seed": {
+    "0": {
+      "ARM_0_grad_off": {
+        "grad_on": false,
+        "harm_ticks": 120,
+        "telemetry": {
+          "residue_coverage_pct": 0.234375,
+          "residue_coverage_threshold": 0.002,
+          "residue_active_centers": 120,
+          "residue_n_centers": 512,
+          "harm_benefit_ratio": -1.0,
+          "harm_total": 4.939996719360352,
+          "benefit_total": -1.0
+        },
+        "c0_wellformed": true,
+        "c2_sentinel": true,
+        "c3_noninvasive": true,
+        "stats_unchanged": true,
+        "telemetry_idempotent": true,
+        "weights_unchanged": true
+      },
+      "ARM_1_grad_on": {
+        "grad_on": true,
+        "harm_ticks": 577,
+        "telemetry": {
+          "residue_coverage_pct": 0.916015625,
+          "residue_coverage_threshold": 0.002,
+          "residue_active_centers": 512,
+          "residue_n_centers": 512,
+          "harm_benefit_ratio": -1.0,
+          "harm_total": 9.337990760803223,
+          "benefit_total": -1.0
+        },
+        "c0_wellformed": true,
+        "c2_sentinel": true,
+        "c3_noninvasive": true,
+        "stats_unchanged": true,
+        "telemetry_idempotent": true,
+        "weights_unchanged": true
+      },
+      "seed_summary": {
+        "arm0_coverage": 0.234375,
+        "arm1_coverage": 0.916015625,
+        "c0": true,
+        "c1": true,
+        "c2": true,
+        "c3": true,
+        "c4": true
+      }
+    },
+    "1": {
+      "ARM_0_grad_off": {
+        "grad_on": false,
+        "harm_ticks": 119,
+        "telemetry": {
+          "residue_coverage_pct": 0.232421875,
+          "residue_coverage_threshold": 0.002,
+          "residue_active_centers": 119,
+          "residue_n_centers": 512,
+          "harm_benefit_ratio": -1.0,
+          "harm_total": 4.899997234344482,
+          "benefit_total": -1.0
+        },
+        "c0_wellformed": true,
+        "c2_sentinel": true,
+        "c3_noninvasive": true,
+        "stats_unchanged": true,
+        "telemetry_idempotent": true,
+        "weights_unchanged": true
+      },
+      "ARM_1_grad_on": {
+        "grad_on": true,
+        "harm_ticks": 633,
+        "telemetry": {
+          "residue_coverage_pct": 0.939453125,
+          "residue_coverage_threshold": 0.002,
+          "residue_active_centers": 512,
+          "residue_n_centers": 512,
+          "harm_benefit_ratio": -1.0,
+          "harm_total": 9.708442687988281,
+          "benefit_total": -1.0
+        },
+        "c0_wellformed": true,
+        "c2_sentinel": true,
+        "c3_noninvasive": true,
+        "stats_unchanged": true,
+        "telemetry_idempotent": true,
+        "weights_unchanged": true
+      },
+      "seed_summary": {
+        "arm0_coverage": 0.232421875,
+        "arm1_coverage": 0.939453125,
+        "c0": true,
+        "c1": true,
+        "c2": true,
+        "c3": true,
+        "c4": true
+      }
+    },
+    "2": {
+      "ARM_0_grad_off": {
+        "grad_on": false,
+        "harm_ticks": 119,
+        "telemetry": {
+          "residue_coverage_pct": 0.232421875,
+          "residue_coverage_threshold": 0.002,
+          "residue_active_centers": 119,
+          "residue_n_centers": 512,
+          "harm_benefit_ratio": -1.0,
+          "harm_total": 4.829996585845947,
+          "benefit_total": -1.0
+        },
+        "c0_wellformed": true,
+        "c2_sentinel": true,
+        "c3_noninvasive": true,
+        "stats_unchanged": true,
+        "telemetry_idempotent": true,
+        "weights_unchanged": true
+      },
+      "ARM_1_grad_on": {
+        "grad_on": true,
+        "harm_ticks": 453,
+        "telemetry": {
+          "residue_coverage_pct": 0.765625,
+          "residue_coverage_threshold": 0.002,
+          "residue_active_centers": 453,
+          "residue_n_centers": 512,
+          "harm_benefit_ratio": -1.0,
+          "harm_total": 7.200316905975342,
+          "benefit_total": -1.0
+        },
+        "c0_wellformed": true,
+        "c2_sentinel": true,
+        "c3_noninvasive": true,
+        "stats_unchanged": true,
+        "telemetry_idempotent": true,
+        "weights_unchanged": true
+      },
+      "seed_summary": {
+        "arm0_coverage": 0.232421875,
+        "arm1_coverage": 0.765625,
+        "c0": true,
+        "c1": true,
+        "c2": true,
+        "c3": true,
+        "c4": true
+      }
+    }
+  }
+}
