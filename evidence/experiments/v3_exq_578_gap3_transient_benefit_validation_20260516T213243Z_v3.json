@@ -1,0 +1,128 @@
+{
+  "run_id": "v3_exq_578_gap3_transient_benefit_validation_20260516T213243Z_v3",
+  "queue_id": "V3-EXQ-578",
+  "experiment_type": "gap3_transient_benefit_validation",
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260516T213243Z",
+  "outcome": "PASS",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_episodes": 100,
+    "n_steps": 200,
+    "resource_benefit": 0.3,
+    "tb_prob": 0.15,
+    "tb_duration": 15,
+    "tb_multiplier": 2.0,
+    "spawn_lo": 0.075,
+    "spawn_hi": 0.22499999999999998,
+    "expected_contact": 0.6
+  },
+  "acceptance_checks": {
+    "C1_arm1_spawn_rate": true,
+    "C2_arm0_fully_silent": true,
+    "C3_arm1_patches_expire": true,
+    "C4_arm1_contact_multiplier_exact": true
+  },
+  "c1_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c2_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c3_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c4_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "results_by_seed": {
+    "0": {
+      "ARM_0_disabled": {
+        "tb_enabled": false,
+        "total_steps": 4150,
+        "total_spawned": 0,
+        "total_contacted": 0,
+        "total_expired": 0,
+        "spawn_fraction": 0.0,
+        "n_contact_ticks": 0,
+        "n_contact_mismatch": 0,
+        "max_contact_value": 0.0
+      },
+      "ARM_1_enabled": {
+        "tb_enabled": true,
+        "total_steps": 4112,
+        "total_spawned": 619,
+        "total_contacted": 39,
+        "total_expired": 364,
+        "spawn_fraction": 0.1505350194552529,
+        "n_contact_ticks": 39,
+        "n_contact_mismatch": 0,
+        "max_contact_value": 0.6
+      }
+    },
+    "1": {
+      "ARM_0_disabled": {
+        "tb_enabled": false,
+        "total_steps": 3764,
+        "total_spawned": 0,
+        "total_contacted": 0,
+        "total_expired": 0,
+        "spawn_fraction": 0.0,
+        "n_contact_ticks": 0,
+        "n_contact_mismatch": 0,
+        "max_contact_value": 0.0
+      },
+      "ARM_1_enabled": {
+        "tb_enabled": true,
+        "total_steps": 4246,
+        "total_spawned": 630,
+        "total_contacted": 35,
+        "total_expired": 380,
+        "spawn_fraction": 0.14837494112105512,
+        "n_contact_ticks": 35,
+        "n_contact_mismatch": 0,
+        "max_contact_value": 0.6
+      }
+    },
+    "2": {
+      "ARM_0_disabled": {
+        "tb_enabled": false,
+        "total_steps": 4162,
+        "total_spawned": 0,
+        "total_contacted": 0,
+        "total_expired": 0,
+        "spawn_fraction": 0.0,
+        "n_contact_ticks": 0,
+        "n_contact_mismatch": 0,
+        "max_contact_value": 0.0
+      },
+      "ARM_1_enabled": {
+        "tb_enabled": true,
+        "total_steps": 4473,
+        "total_spawned": 732,
+        "total_contacted": 37,
+        "total_expired": 474,
+        "spawn_fraction": 0.1636485580147552,
+        "n_contact_ticks": 37,
+        "n_contact_mismatch": 0,
+        "max_contact_value": 0.6
+      }
+    }
+  }
+}
