@@ -1,33 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-15T23:31:21Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-540g",
-  "current_exq_started_utc": "2026-05-15T21:17:10.782741+00:00",
-  "current_title": "MECH-307 corrected C1 criterion (liking_writes baseline fix)",
-  "current_claim_id": "MECH-307",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 45 / ARM_2_full",
-    "runs_done": 8,
-    "runs_total": 1,
-    "episodes_done": 65,
-    "episodes_total": 70,
-    "overall_pct": 892.9
-  },
-  "seconds_elapsed": 8050,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[train] ARM_2_full seed=45 ep 40/70 (warmup)",
-    "[train] ARM_2_full seed=45 ep 50/70 (warmup)",
-    "[train] ARM_2_full seed=45 ep 55/70 (eval)",
-    "[train] ARM_2_full seed=45 ep 60/70 (eval)",
-    "[train] ARM_2_full seed=45 ep 65/70 (eval)"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-05-16T05:59:18Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-568",
+      "result": "PASS",
+      "completed_at": "2026-05-15T20:49:31.771880+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-540g",
+      "result": "PASS",
+      "completed_at": "2026-05-15T23:31:22.430144+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-570",
+      "result": "PASS",
+      "completed_at": "2026-05-15T23:33:08.957546+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-569",
+      "result": "FAIL",
+      "completed_at": "2026-05-16T00:38:31.608852+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-571",
+      "result": "PASS",
+      "completed_at": "2026-05-16T00:40:17.484578+00:00"
+    }
+  ],
   "runner_pid": 29534,
   "runner_version": null,
   "gpu": {
