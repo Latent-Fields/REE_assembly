@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-05-16_q_019_trn_sensory_selection_circuit_ahrens2015",
+  "timestamp_utc": "2026-05-16T18:39:04Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "ErbB4 regulation of a thalamic reticular nucleus circuit for sensory selection",
+    "authors": ["Ahrens S", "Jaramillo S", "Yu K", "Ghosh S", "Hwang GR", "Paik R", "Lai C", "He M", "Huang ZJ", "Li B"],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3897",
+    "pmid": "25501036",
+    "pmcid": "PMC4281280"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Nature Neuroscience paper from Li laboratory (Cold Spring Harbor) using genetic, optogenetic, and electrophysiological techniques to establish a causal role for TRN SOM-expressing neurons in sensory selection. The key finding is that TRN implements sensory gating via a cortico-TRN-thalamic loop, with cortical feedback setting TRN sensitivity. ErbB4 deficiency in TRN neurons enhanced cortical drive, improving within-modality target detection but impairing cross-modal attention switching -- a double dissociation that establishes the TRN circuit as a genuine sensory gate rather than a generic arousal mechanism. Reversal of the TRN phenotype by selective manipulation of cortico-TRN synapses causally confirmed the circuit. This directly supports Q-019's sensorium loop (loop 1), which posits that TRN or equivalent structure gates what the system attends to. Confidence is somewhat reduced by the mouse-to-human transfer and by the fact that TRN's relationship to the limbic BG loop specifically (as opposed to sensory gating generally) requires extrapolation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If TRN were a non-specific arousal modulator rather than a topographic sensory gate, then ErbB4 manipulation should affect all sensory selection tasks uniformly -- enhanced performance in within-modality AND across-modalities tasks, or deficits in both. The double dissociation (enhanced within, impaired across) falsifies non-specific arousal accounts.",
+    "If cortico-TRN input were not the critical control signal, then manipulating the GluA4 AMPA receptor at cortico-TRN synapses should not rescue the behavioral phenotype. The rescue experiment demonstrates that the cortical drive onto TRN SOM neurons is causally necessary for the normal balance of sensory selection and attentional flexibility.",
+    "Q-019's sensorium loop predicts that TRN is part of a separate loop from the thought and action commitment loops. If TRN simply relayed all thalamic signals uniformly, there would be no topographic selectivity and no double dissociation. The within-vs-across-modalities dissociation is the behavioral signature of a topographic gate, not a unified one."
+  ],
+  "tags": ["q_019", "thalamic_reticular_nucleus", "TRN", "sensory_gating", "attention", "cortico_thalamic", "sensorium_loop", "ErbB4", "mouse", "optogenetics"],
+  "mapping": {
+    "source_claim_statement": "TRN SOM-expressing neurons gate sensory information en route to cortex via a cortico-TRN-thalamic circuit. ErbB4 normally suppresses cortical drive onto TRN SOM neurons. Deficiency enhances this drive, increasing lateral inhibition in thalamus, improving within-modality target selection but impairing cross-modal attention switching. TRN open-loop connections provide lateral inhibition that suppresses thalamic responses to distractors while allowing attended targets to reach cortex.",
+    "ree_translation": "Q-019's sensorium loop (loop 1) proposes that the limbic BG loop, via TRN or equivalent reticular gating structure, gates what the E3 complex attends to -- selecting not only from environmental input but from ongoing sensorimotor loops. The Ahrens 2015 paper provides causal mechanistic evidence for TRN as an active sensory selection gate whose sensitivity is controlled by cortical top-down feedback. The within-vs-across-modality double dissociation maps onto Q-019's prediction that the sensorium gate can be set for high sensitivity (within-modality = attending to task-relevant channel) or high flexibility (cross-modal = switching attention between channels). In REE terms: high cortical drive onto TRN = strong sensorium lock on the current input channel; low drive = permissive switching for the thought loop to redirect attention. This is exactly the kind of mechanism Q-019's sensorium loop requires: a gate that can both maintain and release attentional focus, not merely pass all signals.",
+    "mapping_caveat": "The paper is in mice and the sensory selection tasks are perceptual (auditory and visual discrimination). REE's sensorium loop is more broadly conceived as gating what the whole E1/E2/E3 pipeline processes, not just perceptual sensory streams. The TRN gating mechanism described here operates at the thalamo-cortical level, and the relationship between this mechanism and the limbic BG loop specifically (as opposed to sensory gating in general) is inferential. Crick 1984 proposed TRN as the searchlight of attention; Ahrens 2015 provides the first causal genetic confirmation of this role but does not directly test the BG-TRN interaction. For REE, TRN is proposed as the inter-loop routing switch; this paper establishes TRN as a sensory gate but not directly as a BG-loop interface. That extrapolation is the primary transfer risk.",
+    "source_context": "Mouse genetic + optogenetic + electrophysiology study. SOM-Cre x ErbB4-flox mice, with TRN-specific manipulation confirmed by local AAV injection. Behavioral tasks: auditory/auditory target-in-distractors, visual/auditory cross-modal switching, visual/visual target-in-distractors. N = cohorts of ~12-20 mice per condition. Nature Neuroscience 2015; Li lab, Cold Spring Harbor Laboratory."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high: Nature Neuroscience, causal genetic + optogenetic + rescue experiment design, replicated double dissociation across multiple task variants. Mapping fidelity moderate: TRN sensory gating is relevant to Q-019's sensorium loop but TRN is not explicitly connected to the BG loop architecture in this paper. Transfer risk moderate: mouse-to-human, perceptual task to broader E1/E2/E3 gating, sensory TRN to limbic BG TRN."
+  }
+}

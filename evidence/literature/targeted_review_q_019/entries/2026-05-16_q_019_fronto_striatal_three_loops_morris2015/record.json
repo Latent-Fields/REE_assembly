@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-05-16_q_019_fronto_striatal_three_loops_morris2015",
+  "timestamp_utc": "2026-05-16T18:39:04Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Fronto-striatal organization: Defining functional and microstructural substrates of behavioural flexibility",
+    "authors": ["Morris LS", "Kundu P", "Dowell N", "Mechelmans DJ", "Favre P", "Irvine MA", "Robbins TW", "Daw N", "Bullmore ET", "Harrison NA", "Voon V"],
+    "year": 2015,
+    "venue": "Cortex",
+    "doi": "10.1016/j.cortex.2015.11.004",
+    "pmid": "26673945",
+    "pmcid": "PMC4729321"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Multi-echo resting-state fMRI plus NODDI microstructure in humans, showing three anatomically and functionally dissociable fronto-striatal circuits: limbic (vmPFC/VS/VTA), associative/cognitive (lateral PFC/caudate), and sensorimotor (SMA/putamen/SNc). Each circuit had distinct behavioral correlates -- mOFC-VS connectivity predicted model-based goal-directed learning, SMA-putamen connectivity predicted model-free habitual responding, lateral OFC-VS predicted reversal learning, and dlPFC-VS predicted attentional shifting. Microstructure (NODDI neurite density) further confirmed the dissociation: mOFC neurite density correlated with model-based performance, putamen neurite complexity with model-free. Confidence high for the functional dissociation claim; moderate transfer risk because Q-019 asks about the gating operations implemented within each circuit, not just the connectivity patterns, and the behavioral paradigms (probabilistic reversal, attentional shift) are not equivalent to the specific gating operations REE models for each loop.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a single unified BG selector implements all three behavioral functions (Redgrave 1999, Mink 1996), then mOFC-VS, SMA-putamen, and lateral PFC-caudate connectivity should all load onto the same behavioral factor -- the paper would show a principal component explaining all variance, not three separate circuits. The observed behavioral dissociation directly contradicts that prediction.",
+    "If the three circuits are not anatomically distinct (convergent into a single gate), NODDI microstructure should show overlapping neurite density patterns across vmPFC, SMA, and lateral PFC. The NODDI findings (different microstructural correlates for different behavioral functions) falsify this."
+  ],
+  "tags": ["q_019", "fronto_striatal", "fmri", "three_loops", "limbic", "associative", "sensorimotor", "habit", "goal_directed", "reversal_learning", "behavioral_dissociation", "human"],
+  "mapping": {
+    "source_claim_statement": "Distinct limbic (vmPFC, VS, VTA), sensorimotor (SMA, putamen, SNc), and cognitive (lateral PFC, caudate) functional connectivity circuits exist in humans, with dissociable behavioral correlates: goal-directed model-based behavior maps onto mOFC-VS, habitual model-free onto SMA-putamen, reversal learning onto lOFC-VS, attentional shifting onto dlPFC-VS. Microstructure (NODDI) confirms the dissociation at the tissue level.",
+    "ree_translation": "Q-019's three-gate model posits three anatomically distinct BG loops: sensorium (limbic/VS), thought (associative/caudate), and action commitment (sensorimotor/putamen). Morris et al. 2015 provide the clearest human fMRI + microstructure evidence that these three circuits have behaviorally non-overlapping functions. The limbic circuit (vmPFC-VS-VTA) corresponds to REE's sensorium loop gating motivationally salient inputs. The associative circuit (lateral PFC-caudate) corresponds to REE's thought loop governing trajectory planning. The sensorimotor circuit (SMA-putamen-SNc) corresponds to REE's action commitment loop, with the model-free habit association captured by the automaticity gradient (expert performance migrates to this loop). The SMA-putamen habit association also supports the REE claim that harm residue re-elevates automated patterns for E3 oversight -- without a distinct sensorimotor loop, this selective re-elevation would have no anatomical basis.",
+    "mapping_caveat": "The fMRI functional connectivity maps circuits but cannot resolve the directionality or timing of gating operations within each circuit. Q-019 asks whether the three loops implement separate gating computations, which requires more than connectivity -- it requires evidence that each circuit responds to distinct inputs, applies distinct criteria, and produces distinct outputs. Morris et al. confirm the circuits exist and dissociate behaviorally; they do not directly test the gating operations. Transfer risk also involves the model-based/model-free dichotomy, which is not identical to REE's thought loop/action commitment loop distinction -- the mapping is close but not exact.",
+    "source_context": "Human resting-state fMRI (multi-echo sequence) + NODDI microstructure MRI + three behavioral tasks (Cambridge Gambling task, probabilistic reversal learning, spatial planning) + three cognitive measures. N=59 healthy adults. Behavioural and Clinical Neuroscience Institute, Cambridge."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Source quality high: multi-echo fMRI reduces dropout artefact; NODDI adds microstructural convergent validity; Cambridge BCNI group with strong methodological standards. Mapping fidelity good: three circuits map directly onto Q-019's three loops, behavioral dissociation is the key prediction. Transfer risk moderate-low: human data is ideal for Q-019 which is framed as a structural question about the human-like BG; main risk is that model-based/model-free is not identical to REE's thought/action commitment loops."
+  }
+}

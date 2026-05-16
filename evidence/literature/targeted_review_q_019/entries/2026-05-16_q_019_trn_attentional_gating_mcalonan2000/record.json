@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-05-16_q_019_trn_attentional_gating_mcalonan2000",
+  "timestamp_utc": "2026-05-16T18:39:04Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Thalamic reticular nucleus activation reflects attentional gating during classical conditioning",
+    "authors": ["McAlonan K", "Brown VJ", "Bowman EM"],
+    "year": 2000,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.20-23-08897.2000",
+    "pmid": "11102499",
+    "pmcid": "PMC6773087"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Direct neurobiological evidence that TRN is topographically activated by selective attention. The blocking paradigm allows comparison of TRN responses to an attended versus unattended CS using the same animal, controlling for stimulus-level confounds. Fos protein, while a proxy measure, reflects cumulative neural activity during conditioning sessions and is well-validated for this use. The topographic sector-level specificity (more Fos in the TRN sector for the attended modality) is the key result -- it shows TRN activation is spatially organized relative to what the animal attends to, not diffusely elevated. Confidence reduced relative to Ahrens 2015 because: (1) Fos is a lagged proxy, not real-time; (2) blocking paradigm tests conditioned attention, not active top-down voluntary attention; (3) rat study requires human transfer. Nevertheless, this is early but clean evidence for the attentional gate hypothesis of TRN that predates and motivates the genetic studies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If TRN were not an attentional gate but rather a general arousal modulator, Fos density should be uniform across TRN sectors regardless of which stimulus was attended. The sector-specific Fos increase falsifies global arousal accounts.",
+    "If blocking fails to train selective attention to the CS1 (attended) channel, the Fos difference between sectors would disappear -- the experiment would show no TRN topographic differentiation. The sector difference validates that blocking induced genuine attentional selectivity for the CS1.",
+    "If TRN topography does not map onto stimulus-processing circuits, the attended-modality TRN sector would not show more Fos. The sector-specific result confirms that TRN maintains a topographic register of which sensory channel is currently privileged."
+  ],
+  "tags": ["q_019", "thalamic_reticular_nucleus", "TRN", "attention", "attentional_gating", "blocking", "classical_conditioning", "Fos", "topographic", "rat"],
+  "mapping": {
+    "source_claim_statement": "Thalamic reticular nucleus activation, indexed by Fos-positive cell count, is greater in the TRN sector corresponding to the attended conditioned stimulus than in the sector corresponding to the unattended stimulus during a blocking paradigm. TRN topographically reflects attentional gating.",
+    "ree_translation": "Q-019's sensorium loop proposes TRN as the inter-loop routing switch -- a topographically organized gate that selects which sensory channel's representations reach the E3 complex. McAlonan 2000 provides direct behavioral neuroscience evidence that TRN sector activation tracks selective attention at the single-stimulus level. The attended-CS TRN sector is more active than the unattended-CS sector, consistent with TRN implementing an attentional filter rather than a uniform relay. For REE: when the sensorium loop is engaged on a particular input channel, that channel's corresponding TRN sector should be more active (stronger gating of competing signals to thalamus). This is the mechanism by which the sensorium loop prevents distractor signals from polluting the E3 complex's representational space.",
+    "mapping_caveat": "The blocking paradigm tests conditioned attentional orienting -- a reflex-like process -- rather than voluntary top-down attention as REE's sensorium loop is intended to implement. The relationship between conditioned TRN activation and deliberate goal-directed attentional control requires extrapolation. The Fos measure is also cumulative across an entire session and cannot resolve moment-to-moment attentional gating. Transfer from rat to human is required. The paper predates optogenetic and genetic techniques, so causality is associative rather than interventional (in contrast to Ahrens 2015).",
+    "source_context": "Rat classical conditioning study with blocking design. Rats were pre-trained with CS1 (light or tone) to criterion, then given compound CS1+CS2 conditioning. Post-conditioning Fos immunohistochemistry in TRN. University of St Andrews. Journal of Neuroscience 2000."
+  },
+  "confidence_components": {
+    "source_quality": 0.73,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Source quality moderate-high: elegant blocking design controls for stimulus confounds; Fos is well-validated but is a lagged proxy; small sample sizes typical for Fos-IHC studies; associative rather than interventional. Mapping fidelity moderate: TRN topographic activation does directly support the sensorium gate concept. Transfer risk moderate: conditioned attention vs. deliberate top-down, rat vs. human."
+  }
+}
