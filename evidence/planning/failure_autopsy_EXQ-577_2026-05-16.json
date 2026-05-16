@@ -1,0 +1,59 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-16T22:27:18Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_577_gap2_microhabitat_validation_20260516T210801Z_v3",
+      "queue_id": "V3-EXQ-577",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "failed_subcondition": "C2.missing_012 (one base Voronoi zone fully consumed by boundary->D promotion in ~2-3% of stochastic episodes; sticky over 100 episodes)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A - diagnostic, no claim tagged",
+        "biological_reference": "clear - stochastic Voronoi niches + ecotone (zone D); faithful, deliberately stochastic translation",
+        "prerequisites": "present - GAP-1 done, GAP-2 mechanism complete",
+        "implementation": "complete - behaves exactly as _build_microhabitat_zones docstring states",
+        "environment": "adequate",
+        "measurement": "misleading - C2 missing_012 per-episode over-constraint incompatible with stochastic seeding",
+        "integration": "N/A",
+        "scale": "N/A"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ecological microhabitat heterogeneity (Voronoi foraging niches + ecotone transition band)",
+        "dependencies": ["per-episode zone map", "zone-keyed resource/hazard spawn weighting", "zone-C ambient presence bonus"],
+        "is_formal_import": false,
+        "divergence": "none - C2's per-episode determinism demand fights the intended ecological stochasticity",
+        "lit_status": "absent (not required - faithful translation, no formal import)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-577 (gap2_microhabitat_validation, diagnostic, claim_ids:[]) FAIL is a false-negative from an over-strict per-episode C2 invariant: ~2-3% of stochastic Voronoi episodes fully absorb one base niche into the ecotone (zone D) by design. GAP-2 substrate functionally validated by C1/C3/C4. Superseded by V3-EXQ-577a (corrected C2 + collapse-frequency stat) after the GAP-2 redraw guard lands. Not claim-weighing; non_contributory retained. Reconcile infant_substrate_plan.md GAP-2 owner-EXQ to V3-EXQ-577a on its PASS.",
+      "recommended_substrate_queue_entry": {
+        "target": "infant_substrate:GAP-2",
+        "file": "ree-v3/ree_core/environment/causal_grid_world.py",
+        "function": "_build_microhabitat_zones",
+        "change": "Degenerate-seeding redraw guard: if fewer than n_microhabitats base zones survive boundary->D promotion, redraw seeds via self._rng (capped retries, deterministic); on exhausted retries keep best draw and surface a diagnostic.",
+        "metric_that_broke": "C2.missing_012 per-episode base-zone collapse rate ~2-3/100",
+        "threshold_a_working_impl_must_exceed": "base-zone-collapse rate ~0 over 100 episodes (post-guard); strict per-episode {0,1,2} presence holds"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "GAP-2 microhabitat substrate functionally validated (C1 switch discipline, C3 zone weighting, C4 ambient decay all PASS)",
+        "Readiness criteria for stochastic env substrate must assert per-episode well-formedness + aggregate properties, not per-episode determinism",
+        "GAP-5 zone_coverage consumer must tolerate episodes where a base zone is absent (per-zone key may have 0 cells)",
+        "GAP-2 done status and EXQ-ISEF / DEV-NEED-001/003/007 / ARC-065 unblocking must not be gated on this nominal FAIL",
+        "infant_substrate_plan.md line 373 marks GAP-2 done/owner=V3-EXQ-577 despite the FAIL - governance must reconcile owner-EXQ to V3-EXQ-577a on PASS"
+      ],
+      "routing": ["implement-substrate", "queue-experiment"],
+      "routing_detail": {
+        "implement-substrate": "GAP-2 redraw-on-degenerate-seeding guard in _build_microhabitat_zones",
+        "queue-experiment": "V3-EXQ-577a (alphabetic suffix - same scientific question, measurement fix): corrected C2 (per-episode well-formedness + >=2 base zones + zone 3 present; {0,1,2} presence aggregated over episodes) + report base-zone-collapse frequency as a diagnostic stat"
+      },
+      "gap5_flag": "Active parallel session infant-substrate-gap5-2026-05-16T220427Z: GAP-5 zone_coverage consumes GAP-2 _zone_map and must not assume all of {0,1,2,3} present every episode (a per-zone key may legitimately have 0 cells)."
+    }
+  ],
+  "cluster_pattern": null
+}
