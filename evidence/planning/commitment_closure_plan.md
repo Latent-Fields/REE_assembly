@@ -568,6 +568,28 @@ both this plan and the sleep plan.
 
 Append-only. Every architectural choice + every deviation pause / resume.
 
+### 2026-05-16 - Closure-map reconciliation: GAP-1 upstream gate (arc_062:GAP-B) cleared by ARC-065 SP-CEM
+
+Staleness pass (status tables 5-8 days behind runner, now V3-EXQ-581).
+
+GAP-1 (SD-033a bias head untrained, load-bearing) is gated through
+cross_plan_link arc_062:GAP-A/B/C/D. The load-bearing upstream node
+arc_062:GAP-B (CEM-candidate-distinguishability) was reconciled
+blocked -> open today: V3-EXQ-567 PASS (supports ARC-065) provides the
+support-preserving CEM that lifts candidate support 1.007 -> 2.810 and
+natural action entropy 0.012 -> 0.497, satisfying the 2026-05-11
+substrate-readiness gate. V3-EXQ-563a / 563c independently confirmed the
+E3 rule_bias actuator is wired and live (bias-norm wiring confirmed).
+
+GAP-1 itself stays `blocked`: the bias head is still untrained until the
+re-issued MECH-309 falsifier lands on SP-CEM, then GAP-C (route
+discriminator to LateralPFCAnalog.update source) and GAP-D (add
+rule_bias_head.parameters() to the E3 optimiser) close. But the path is
+now substrate-unblocked end-to-end -- GAP-1 is no longer waiting on an
+unresolved root cause, only on the sequenced GAP-B -> C -> D execution.
+GAP-2 remains done (2026-05-12); its dependant GAP-4 dependency is
+therefore satisfied (GAP-4 still needs the OCD-battery EXQ scoping).
+
 ### 2026-05-12 - GAP-2 V3-EXQ-461 substrate-readiness PASS reviewed
 
 GAP-2 moved `open -> done` at substrate-readiness level. New script:

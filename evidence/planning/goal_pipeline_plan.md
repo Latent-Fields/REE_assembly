@@ -23,7 +23,8 @@ closure_plan:
       owner_exq: V3-EXQ-514g
       unblocks_claims: [SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030]
       depends_on: ["goal_pipeline:GAP-1"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-16
+      resume_condition: "Monostrategy root cause has a validated substrate fix (V3-EXQ-567 PASS, supports ARC-065: SP-CEM lifts natural action entropy 0.012->0.497, candidate support 1.007->2.810). V3-EXQ-550 settled that the blocker is NOT z_goal wiring. Retest unblockable once SP-CEM lands in the main agent action path; re-issue the SD-049 Phase 2 behavioural validation via /queue-experiment then. See 2026-05-16 decision-log entry."
     - id: "goal_pipeline:GAP-3"
       title: "SD-012 sustained-drive EMA amendment"
       phase: 3
@@ -41,7 +42,8 @@ closure_plan:
       owner_exq: V3-EXQ-490g
       unblocks_claims: [MECH-295, ARC-030, MECH-117, Q-040]
       depends_on: ["goal_pipeline:GAP-1", "goal_pipeline:GAP-3"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-16
+      resume_condition: "Same monostrategy gate as GAP-2 -- validated substrate fix is V3-EXQ-567 (ARC-065 SP-CEM). Also depends on GAP-3 (SD-012 sustained-drive EMA, blocked on goal_pipeline Q2). Retest unblockable once SP-CEM lands + GAP-3 EMA decision made. See 2026-05-16 decision-log entry."
     - id: "goal_pipeline:GAP-5"
       title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
       phase: 5
@@ -477,6 +479,31 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-16 - Closure-map reconciliation: GAP-2 / GAP-4 monostrategy blocker has a validated substrate fix (ARC-065 SP-CEM)
+
+Staleness pass (status tables 5-8 days behind runner, now V3-EXQ-581).
+
+GAP-2 (SD-049 Phase 2 behavioural) and GAP-4 (MECH-295 cascade Tier-1
+retest) have been `blocked` since 2026-05-08 on the z_goal /
+monostrategy root cause. Reconciled evidence:
+- V3-EXQ-550 FAIL (supports MECH-269): wired z_goal alone does NOT
+  break monostrategy (entropy delta ~0 at no-training depth). Settles
+  that the blocker is NOT missing z_goal wiring.
+- V3-EXQ-551 / 551a / 570 PASS (diagnostic): bottleneck localised to
+  E2-rollout / CEM-candidate collapse, not the goal pipeline.
+- V3-EXQ-560 / 561 / 562 non_contributory: the diversity stack
+  (ARC-065 / MECH-313/314/320 arms) does not break monostrategy under
+  the OLD collapsed CEM.
+- V3-EXQ-567 PASS (supports ARC-065): SP-CEM lifts natural action
+  entropy 0.012 -> 0.497, candidate support 1.007 -> 2.810 -- the
+  validated substrate fix for exactly this root cause.
+
+GAP-2 / GAP-4 stay `blocked` (behavioural retest not yet run) but the
+resume condition is now precise: gated on SP-CEM landing in the main
+agent action path + retest re-issue via /queue-experiment, NOT on
+further z_goal wiring (V3-EXQ-550 closed that question). last_updated
+bumped on both nodes.
 
 ### 2026-05-11 - V3-EXQ-550 FAIL: MECH-269 V_s monostrategy substrate-level reading sustained at no-training depth; new "wired-but-inert z_goal" gap surfaced
 

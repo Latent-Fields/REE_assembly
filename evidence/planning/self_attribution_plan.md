@@ -24,8 +24,9 @@ closure_plan:
       owner_exq: TBD
       unblocks_claims: [SD-029, MECH-256, ARC-033, SD-013]
       depends_on: ["sleep_substrate:GAP-1", "goal_pipeline:GAP-1"]
-      blocking_external: ["MECH-269 V_s monostrategy landing"]
-      last_updated: 2026-05-08
+      blocking_external: ["MECH-269 V_s monostrategy landing (satisfier path identified 2026-05-16: ARC-065 SP-CEM, V3-EXQ-567 PASS)"]
+      last_updated: 2026-05-16
+      resume_condition: "Monostrategy gate now has a concrete satisfier: V3-EXQ-567 PASS (supports ARC-065) -- SP-CEM lifts natural action entropy 0.012->0.497, producing the policy diversity needed for balanced agent-vs-env event distributions (the SD-029 C2/C3 measurement requirement). Retest unblockable once SP-CEM lands in the main agent action path; re-issue SD-029 / MECH-256 retest via /queue-experiment then. See 2026-05-16 decision-log entry."
     - id: "self_attribution:GAP-3"
       title: "MECH-257 dual-function 3-arm ablation re-queue"
       phase: 3
@@ -468,6 +469,29 @@ unblocks_claims -- this is reflected explicitly in the
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-16 - Closure-map reconciliation: SD-029 / MECH-256 retest monostrategy gate has a validated substrate fix (ARC-065 SP-CEM)
+
+Staleness pass (status tables 5-8 days behind runner, now V3-EXQ-581).
+
+GAP-2 (SD-029 / MECH-256 retest) carries
+`blocking_external: ["MECH-269 V_s monostrategy landing"]`; GAP-1 and
+GAP-3 inherit the same gate (GAP-1 resume_condition: "Same upstream
+substrate gates as GAP-2"). Reconciled evidence:
+- V3-EXQ-550 FAIL (supports MECH-269): confirms the monostrategy
+  reading at no-training depth -- a monomodal policy cannot generate the
+  balanced agent-vs-env event distributions the SD-029 C2/C3 metrics
+  need.
+- V3-EXQ-567 PASS (supports ARC-065): support-preserving CEM lifts
+  natural action entropy 0.012 -> 0.497 and candidate support
+  1.007 -> 2.810 -- the validated mechanism that produces the policy
+  diversity the retest requires.
+
+The "MECH-269 V_s monostrategy landing" blocking_external now has a
+concrete satisfier path (ARC-065 SP-CEM, V3-EXQ-567). GAP-1/2/3 stay
+`blocked` (retest not yet run) but are unblockable once SP-CEM lands in
+the main agent path; GAP-2 blocking_external + last_updated updated
+accordingly.
 
 ### 2026-05-11 - GAP-1 monostrategy inversion {#2026-05-11-gap-1-monostrategy-inversion}
 
