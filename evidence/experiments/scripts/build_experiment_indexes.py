@@ -86,6 +86,7 @@ class RunRecord:
     experiment_purpose: str = "evidence"
     adapter_contract_status: str = "n/a"
     adapter_contract_errors: list[str] = field(default_factory=list)
+    evidence_level: str = "C"
 
 
 @dataclass
@@ -179,6 +180,13 @@ def _normalize_confidence(raw: Any, default: float = 0.5) -> float:
         value = float(raw)
     value = max(0.0, min(1.0, value))
     return round(value, 3)
+
+
+def _normalize_evidence_level(raw: Any) -> str:
+    """Validate evidence_level is one of A-E; default to C (single controlled experiment)."""
+    VALID = {"A", "B", "C", "D", "E"}
+    value = str(raw).strip().upper() if raw is not None else ""
+    return value if value in VALID else "C"
 
 
 def _normalize_text_list(raw: Any) -> list[str]:
@@ -361,6 +369,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # auto-inferred (e.g. design-inconclusive experiments marked "unknown").
         direction_explicitly_set = bool(manifest.get("evidence_direction_note"))
         experiment_purpose = str(manifest.get("experiment_purpose", "evidence")).strip() or "evidence"
+        evidence_level = _normalize_evidence_level(manifest.get("evidence_level"))
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -382,6 +391,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 experiment_purpose=experiment_purpose,
                 architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
+                evidence_level=evidence_level,
             )
         )
 
@@ -1137,6 +1147,7 @@ def _summarize_claim_entries(
     }
     genuine_exp_count = 0
     evidence_class_counts: dict[str, int] = {}
+    evidence_level_counts: dict[str, int] = {}
     source_counts: dict[str, int] = {"experimental": 0, "literature": 0}
 
     pass_runs = 0
@@ -1154,6 +1165,11 @@ def _summarize_claim_entries(
 
         evidence_class = str(entry.get("evidence_class", "unclassified"))
         evidence_class_counts[evidence_class] = evidence_class_counts.get(evidence_class, 0) + 1
+
+        # evidence_level is only set on experimental entries (A-E scale, default C).
+        if entry.get("source_type") == "experimental" and "evidence_level" in entry:
+            level = str(entry["evidence_level"])
+            evidence_level_counts[level] = evidence_level_counts.get(level, 0) + 1
 
         source = str(entry.get("source_type", "experimental"))
         source_counts[source] = source_counts.get(source, 0) + 1
@@ -1185,6 +1201,7 @@ def _summarize_claim_entries(
         "genuine_exp_direction_counts": genuine_exp_direction_counts,
         "genuine_exp_count": genuine_exp_count,
         "evidence_class_counts": evidence_class_counts,
+        "evidence_level_counts": evidence_level_counts,
         "source_counts": source_counts,
         "experimental_confidence": exp_conf,
         "literature_confidence": lit_conf,
@@ -1274,6 +1291,7 @@ def _write_claim_evidence_matrix(
                 "status": run.final_status,
                 "evidence_class": _prefix_class("experimental", run.evidence_class),
                 "evidence_direction": claim_direction,
+                "evidence_level": run.evidence_level,
                 "confidence": entry_confidence,
                 "confidence_rationale": entry_confidence_rationale,
                 "failure_signatures": run.failure_signatures,

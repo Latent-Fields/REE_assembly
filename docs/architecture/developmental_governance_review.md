@@ -344,6 +344,11 @@ manifests with empty or missing tags as `unlinked_run_ids`.
 
 **Grounded in:** CIViC Griffith et al. 2017; Krysiak et al. 2023  
 **Priority:** Medium  
+**Status: IMPLEMENTED 2026-05-16** — `evidence_level` field added to `RunRecord`, `_scan_runs`,
+per-claim entry dict, and `evidence_level_counts` in claim-level aggregation summary in
+`evidence/experiments/scripts/build_experiment_indexes.py`. Field is optional and backward-
+compatible; manifests without it default to level C. Confidence weighting by level is deferred
+to a future governance cycle.  
 **Description:** Add an optional `evidence_level` field (A-E scale) to experiment manifests,
 allowing the aggregator to weight strong mechanistic experiments above weak proxy experiments:
 
@@ -351,7 +356,7 @@ allowing the aggregator to weight strong mechanistic experiments above weak prox
 |---|---|---|
 | A | Strong mechanistic: direct causal isolation, multi-seed, clean criteria | EXQ-565 PASS (GAP-8 routing consumer) |
 | B | Proxy-causal: causal argument with known limitations | V3 single-agent proxy for caregiver function |
-| C | Correlational: outcome correlates with claim prediction | Early V2 substrate results |
+| C | Correlational: outcome correlates with claim prediction | Early V2 substrate results (default) |
 | D | Indirect: logically related but not directly testing the mechanism | |
 | E | Synthetic: test environment only, not representative substrate | Old ree-v2 synthetic runs |
 
