@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-15T21:22:39Z",
+  "last_review_utc": "2026-05-16T18:22:30Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-562",
     "V3-EXQ-449c",
@@ -2382,7 +2382,21 @@
     "v3_exq_563c_stratified_cem_bias_calibration_20260515T201559Z_v3",
     "v3_exq_567_wpb_natural_entropy_sp_cem_20260515T203126Z_v3",
     "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204821Z_v3",
-    "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204931Z_v3"
+    "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204931Z_v3",
+    "v3_exq_567_wpb_natural_entropy_sp_cem_20260515T212425Z_v3",
+    "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233019Z_v3",
+    "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233240Z_v3",
+    "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233308Z_v3",
+    "v3_exq_540g_mech307_criterion_fix_20260515T233121Z_v3",
+    "v3_exq_571_e3_score_variance_decomp_20260515T234624Z_v3",
+    "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+    "v3_exq_574_mech273_self_model_aggregator_validation_20260516T105859Z_v3",
+    "v3_exq_569_wpb_matched_entropy_sweep_20260516T003830Z_v3",
+    "v3_exq_572_intervention_a_dual_attractor_20260516T063719Z_v3",
+    "v3_exq_572_intervention_a_dual_attractor_20260516T063813Z_v3",
+    "v3_exq_572_intervention_a_dual_attractor_20260516T064121Z_v3",
+    "v3_exq_572_intervention_a_dual_attractor_20260516T095117Z_v3",
+    "v3_exq_573_arc065_bias_scale_sweep_20260516T083605Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2616,6 +2630,27 @@
       ],
       "discussed_experiment_dirs_added": ["V3-EXQ-554"],
       "subject": "Governance cycle 2026-05-15 (evening). EXQ-540f marked superseded: C1 criterion (arm0_liking_writes==0) was unfulfillable; V3-EXQ-540g (delta-based C1, already running) supersedes it. C2 data confirms MECH-307 conjunction wiring is live (fire_rate=32.0 in ARM_2). EXQ-563c (ARC-065/MECH-320): diagnostic PASS, non_contributory confirmed, 7-arm CEM/bias wiring verified. EXQ-567 (ARC-065): evidence PASS, first exp support for ARC-065; entropy lift 0.484 (>>0.05 threshold), support lift 1.803 (>>0.5 threshold). ARC-065 remains hold_pending_v3_substrate. EXQ-568x2 (SD-055): dual substrate-readiness PASS, gradient confirmed (grad_max=372.06), non_contributory. Two runs identical (simultaneous claim on two machines). V3-EXQ-554 (runner-only ERROR): cleared -- orphaned ree-cloud-1 runner_status entry from systemctl-killed run; V3-EXQ-554a (re-run) already reviewed. Promotion/demotion: 9 hold_pending_v3_substrate confirmed (ARC-066/067/068, ARC-070/071, MECH-320, Q-043/044/045) -- all v3_pending already set."
+    },
+    {
+      "timestamp_utc": "2026-05-16T18:22:30Z",
+      "session_label": "governance-cycle-2026-05-16-evening",
+      "reviewed_run_ids": [
+        "v3_exq_567_wpb_natural_entropy_sp_cem_20260515T212425Z_v3",
+        "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233019Z_v3",
+        "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233240Z_v3",
+        "v3_exq_570_e2_rollout_collapse_diagnostic_20260515T233308Z_v3",
+        "v3_exq_540g_mech307_criterion_fix_20260515T233121Z_v3",
+        "v3_exq_571_e3_score_variance_decomp_20260515T234624Z_v3",
+        "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+        "v3_exq_574_mech273_self_model_aggregator_validation_20260516T105859Z_v3",
+        "v3_exq_569_wpb_matched_entropy_sweep_20260516T003830Z_v3",
+        "v3_exq_572_intervention_a_dual_attractor_20260516T063719Z_v3",
+        "v3_exq_572_intervention_a_dual_attractor_20260516T063813Z_v3",
+        "v3_exq_572_intervention_a_dual_attractor_20260516T064121Z_v3",
+        "v3_exq_572_intervention_a_dual_attractor_20260516T095117Z_v3",
+        "v3_exq_573_arc065_bias_scale_sweep_20260516T083605Z_v3"
+      ],
+      "subject": "Governance cycle 2026-05-16 (evening, post-G3/G4 update). ARC-065 calibration cluster root-cause identified: EXQ-571 diagnostic proved all diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance -- forward model F dominates 88-89%. EXQ-569/572/573 all reclassified non_contributory (bias channel not propagating to selection). EXQ-570x3 (diagnostic PASS): E2 rollout diversity preservation 51x, confirming E2 is not the collapse site. EXQ-567 212425Z (ARC-065 PASS): second evidence run confirms entropy lift (previously 484, this run also PASS). EXQ-540g (MECH-307/MECH-295): PASS on C1+C2 (conjunction_fire_rate=32.0, liking_lift=+9); C3 ceiling effect (approach_commit=1.0) from environment, not mechanism failure -- classified partial support. EXQ-574 (MECH-273): PASS, loss converges 0.003->5e-5 over 3 sleep cycles, 3 seeds -- first experimental support for self-model aggregator. All remain hold_pending_v3_substrate. G4 heterogeneity_note added to SD-018 (ratio=1.0 substrate-version confound), SD-005 (ratio=0.917 design-failure cluster), ARC-024 (ratio=0.857 pre-split scope). Governance_agenda updated: 13 hold_pending_v3_substrate applied (ARC-066/067/068/070/071, MECH-314/314a/314b/314c, MECH-320, Q-043/044/045)."
     }
   ]
 }

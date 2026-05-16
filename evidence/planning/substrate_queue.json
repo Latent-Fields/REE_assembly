@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-16T11:41:18Z",
+  "last_updated_utc": "2026-05-16T18:22:30Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1922,7 +1922,7 @@
       "implementation_hint": "SelfModelAggregator subclasses MECH-275 BayesianAggregator specialised on SD-003 causal_sig posterior. offline_gradient_pass(e2_harm_s, replayed_regions, n_steps, use_snapshot=True) reads from last_snapshot; constructs synthetic (z_harm_s zeros, action one-hot round-robin) batch; trains via Adam at waking_lr * offline_lr_scale for n_steps bounded MSE steps. MECH-094 exception scoped: optimiser local to e2_harm_s.parameters() only. NEW API: StalenessAccumulator.partial_decay(replayed_regions, decay_factor=0.5). Module: ree_core/sleep/self_model_aggregator.py.",
       "priority": 2,
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
-      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "governance-cycle-2026-05-16T174522Z",
       "implementation_status": "implemented",
       "implemented_session": "implement-sleep-cluster-phase-e-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
@@ -2045,7 +2045,7 @@
       "implementation_hint": "Wires the missing link between SD-012 drive amplification, SD-014/SD-015 liking-stream substrate, and E3/BG action selection. Two integration sites: (a) update_z_goal() writes anticipatory liking pulse to VALENCE_LIKING at the GOAL location (NOT current z_world; distinct from update_liking() consummatory) gated on drive*z_goal_norm; (b) select_action() reads per-candidate goal_proximity, computes drive*proximity, negates (E3 lower-is-better), composes additively with dacc_score_bias before e3.select(). WEAK reading commitment: cue-side gain is function of drive * goal_proximity, not drive * residue.liking. Severed-bridge arm (cue gain=0) is the falsifiable test. Module: ree_core/regulators/mech295_liking_bridge.py.",
       "priority": 1,
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
-      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
+      "last_seen_session": "governance-cycle-2026-05-16T174522Z",
       "implementation_status": "implemented",
       "implemented_session": "implement-mech295-bridge-2026-04-26T16:40",
       "implemented_utc": "2026-04-26T19:48:32Z",
@@ -2354,7 +2354,7 @@
       "implementation_hint": "Four-gap conjunction fix to existing channels: (1) signed VALENCE_SURPRISE (negative for harm-paired surprise, positive for reward-paired); (2) MECH-216 z_beta coupling so arousal pulse fires on VALENCE_SURPRISE write; (3) anticipatory VALENCE_LIKING write at the predicted future location (not the current one); (4) write-at-predicted-z_world via the cached e1_prior, not at current_z_world. All four must fire conjunctively to generate excitement/dread; missing any one yields the wired-but-inert pattern observed in EXQ-490f, 514f, 536b, etc. ~40 lines of code per the 2026-05-08 design doc. SD-014 6-channel amendment (add VALENCE_EXCITEMENT + VALENCE_DREAD as discrete channels) is the fallback architectural option if MECH-307 conjunction does not produce the expected derived states.",
       "priority": 1,
       "added_session": "governance-cycle-friday-pm-2026-05-08",
-      "last_seen_session": "governance-cycle-2026-05-08T2221Z"
+      "last_seen_session": "governance-cycle-2026-05-16T174522Z"
     },
     {
       "sd_id": "MECH-256",
@@ -2573,11 +2573,18 @@
         "MECH-314b",
         "MECH-314c"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+          "experiment_type": "v3_exq_571_e3_score_variance_decomp",
+          "metric": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
+          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable"
+        }
+      ],
       "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-2026-05-11T1713Z"
+      "last_seen_session": "governance-cycle-2026-05-16T174522Z"
     },
     {
       "sd_id": "MECH-313",
@@ -2592,11 +2599,18 @@
       "unblocks_claims": [
         "MECH-313"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+          "experiment_type": "v3_exq_571_e3_score_variance_decomp",
+          "metric": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
+          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable"
+        }
+      ],
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-544 5/5 PASS. Pure-arithmetic regulator at e3.select() call site. Phase-1 placement choice (separate NoiseFloor module rather than per-head temperature inside GatedPolicy) is provisional pending cross-substrate placement review with MECH-314.",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-2026-05-11T1713Z"
+      "last_seen_session": "governance-cycle-2026-05-16T174522Z"
     },
     {
       "sd_id": "MECH-314",
@@ -2614,11 +2628,18 @@
         "MECH-314b",
         "MECH-314c"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+          "experiment_type": "v3_exq_571_e3_score_variance_decomp",
+          "metric": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
+          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable"
+        }
+      ],
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-545 5/5 PASS. Single module + 3 independently-togglable sub-switches per Pull 1 R3 verdict. 314a is genuinely per-candidate; 314b/c are state-dependent global scalars broadcast across [K] in Phase 1 (per-candidate refinement deferred to Phase 2).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-2026-05-11T1713Z"
+      "last_seen_session": "governance-cycle-2026-05-16T174522Z"
     },
     {
       "sd_id": "MECH-316",
@@ -2729,11 +2750,18 @@
       "unblocks_claims": [
         "ARC-066"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+          "experiment_type": "v3_exq_571_e3_score_variance_decomp",
+          "metric": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
+          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable"
+        }
+      ],
       "implementation_hint": "MECH-320 substrate landed 2026-05-10 (commit ecccf2f). V3-EXQ-547 substrate-readiness PASS 2026-05-10T20:56Z (UC1-UC6: instantiation, master OFF no-op, EWMA arithmetic, select_action wiring, MECH-094 sim gate, additive-vs-multiplicative R3 discriminability). Behavioural validation (3-arm discriminative pair baseline / additive / multiplicative on well-fed-safe-familiar substrate) queued AFTER substrate landing.",
       "priority": 2,
       "added_session": "governance-2026-05-11T1713Z",
-      "last_seen_session": "governance-2026-05-11T1713Z",
+      "last_seen_session": "governance-cycle-2026-05-16T174522Z",
       "implementation_status": "substrate_landed_pending_behavioural_validation",
       "validation_experiment": "V3-EXQ-547 (substrate-readiness, PASS); behavioural 3-arm discriminative pair pending"
     },

@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-05-16T17:33:00.845078Z`
+Generated: `2026-05-16T17:46:17.914620Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -163,7 +163,7 @@ Total: **169** discrepant claims (standard-gating only).
 | `SD-040` | design_decision | candidate | 0.755 | 0.000 | 0.755 | 0 | 1 | plausible_unproven |
 | `SD-054` | design_decision | candidate | 0.882 | 0.000 | 0.882 | 0 | 6 | plausible_unproven |
 | `MECH-118` | mechanism_hypothesis | candidate | 0.660 | 0.216 | 0.808 | 1 | 3 | plausible_unproven |
-| `MECH-165` | mechanism_hypothesis | candidate | 0.677 | 0.234 | 0.825 | 1 | 3 | plausible_unproven |
+| `MECH-165` | mechanism_hypothesis | candidate | 0.677 | 0.233 | 0.825 | 1 | 3 | plausible_unproven |
 | `MECH-188` | mechanism_hypothesis | candidate | 0.664 | 0.238 | 0.806 | 1 | 3 | plausible_unproven |
 | `SD-023` | design_decision | candidate | 0.717 | 0.262 | 0.868 | 1 | 4 | plausible_unproven |
 | `MECH-220` | mechanism_hypothesis | candidate | 0.716 | 0.263 | 0.867 | 1 | 4 | plausible_unproven |
@@ -258,7 +258,7 @@ Total: **41**.
 |---|---|---:|---:|
 | `MECH-118` | candidate | 0.216 | 1 |
 | `MECH-150` | candidate | 0.222 | 1 |
-| `MECH-165` | candidate | 0.234 | 1 |
+| `MECH-165` | candidate | 0.233 | 1 |
 | `SD-018` | implemented | 0.236 | 1 |
 | `MECH-188` | candidate | 0.238 | 1 |
 | `SD-023` | candidate | 0.262 | 1 |

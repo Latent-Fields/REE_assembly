@@ -3213,6 +3213,13 @@
     The further behavioral prediction — that approach detection grows faster
     than contact detection as a function of training depth — is a separable
     empirical claim registered as ARC-026.
+  heterogeneity_note: >
+    Conflict entries pre-date the 2026-03-19 claim split: EXQ-033 FAIL tested
+    the behavioral capability-expansion prediction now registered as ARC-026,
+    not ARC-024's philosophical/architectural layer. The conflict ratio is
+    inflated by evidence inherited from a superseded pre-split scope; the
+    architectural claim itself (proxy-gradient fields are necessary and
+    learnable) is supported by EXQ-028/029 PASS and is not genuinely contested.
 
 # Foundational definitions extracted from Philosophy repo — registered 2026-03-18
 - id: INV-030
@@ -6155,6 +6162,15 @@
     which would provide a stronger and self-improving separation mechanism. See SD-007 notes.
   depends_on: []
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
+  heterogeneity_note: >
+    Conflict driven by EXQ-047d/e/f design failures (frozen-probe test with no
+    separation objective, post-hoc GRL race instability, geometric orthogonality
+    constraint that penalises legitimate shared dimensions) -- all documented in
+    evidence_quality_note as methodological failures rather than genuine
+    disconfirmation. EXQ-078 PASS (behavioural cross-decoding) and EXQ-047
+    attribution improvement (82% gap, delta 0.016) confirm the split at the
+    functional level; the high conflict ratio reflects iterative probe redesign,
+    not scientific contradiction about SD-005.
 
 - id: SD-006
   title: "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep."
@@ -14497,6 +14513,14 @@
     EXQ-238, and the entire EXQ-085h-085o SD-015 series).
   registered: "2026-04-07"
   depends_on: [SD-009, SD-005]
+  heterogeneity_note: >
+    All conflict entries are pre-implementation runs (EXQ-085 cohort and
+    sibling diagnostics) where the resource_proximity_head was absent. They
+    demonstrate the encoding gap SD-018 addresses, not disconfirmation of the
+    design decision itself. The decision was made on diagnostic evidence
+    (benefit_eval_r2=-0.004 proving z_world was blind to resources before the
+    fix); a ratio of 1.0 is expected and appropriate for a substrate decision
+    whose pre-implementation baseline was zero-benefit-encoding by construction.
 
 - id: SD-019
   title: affective_harm_nonredundancy_constraint

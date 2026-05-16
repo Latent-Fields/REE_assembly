@@ -1,0 +1,316 @@
+{
+  "run_id": "v3_exq_571_e3_score_variance_decomp_20260515T234624Z_v3",
+  "experiment_type": "v3_exq_571_e3_score_variance_decomp",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-065",
+    "MECH-313",
+    "MECH-314",
+    "MECH-320"
+  ],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "diagnostic",
+  "outcome": "PASS",
+  "outcome_note": "decomp data collected OK (ARM_0 5 steps, ARM_1 5 steps); ARM_1 bias_fraction_total=0.0000 vs ARM_0 0.0000. Diagnostic complete -- see arm_summaries for component fractions and recommendations.",
+  "timestamp_utc": "20260515T234624Z",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "n_steps": 200,
+  "warn_low_fraction": 0.01,
+  "warn_high_fraction": 0.9,
+  "arm_names": [
+    "ARM_0_baseline",
+    "ARM_1_diversity_stack"
+  ],
+  "score_components": [
+    "f",
+    "harm_weighted",
+    "residue_weighted",
+    "benefit_weighted",
+    "novelty_weighted",
+    "goal_weighted"
+  ],
+  "bias_components": [
+    "dacc",
+    "lateral_pfc",
+    "ofc",
+    "gated_policy",
+    "mech295_liking",
+    "curiosity",
+    "tonic_vigor",
+    "forced",
+    "noise_floor_temp",
+    "total_bias"
+  ],
+  "arm_summaries": {
+    "ARM_0_baseline": {
+      "arm": "ARM_0_baseline",
+      "n_seeds": 3,
+      "temporal_fraction_f": 0.0,
+      "temporal_fraction_harm_weighted": 0.0,
+      "temporal_fraction_residue_weighted": 0.0,
+      "temporal_fraction_benefit_weighted": 0.0,
+      "temporal_fraction_novelty_weighted": 0.0,
+      "temporal_fraction_goal_weighted": 0.0,
+      "bias_fraction_dacc": 0.0,
+      "bias_fraction_lateral_pfc": 0.0,
+      "bias_fraction_ofc": 0.0,
+      "bias_fraction_gated_policy": 0.0,
+      "bias_fraction_mech295_liking": 0.0,
+      "bias_fraction_curiosity": 0.0,
+      "bias_fraction_tonic_vigor": 0.0,
+      "bias_fraction_forced": 0.0,
+      "bias_fraction_noise_floor_temp": 0.0,
+      "bias_fraction_total_bias": 0.0,
+      "inter_candidate_score_std_mean": 1.687805930536847,
+      "all_warnings": [],
+      "scaling_recommendations": [
+        "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+        "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+        "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+        "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores"
+      ]
+    },
+    "ARM_1_diversity_stack": {
+      "arm": "ARM_1_diversity_stack",
+      "n_seeds": 3,
+      "temporal_fraction_f": 0.0,
+      "temporal_fraction_harm_weighted": 0.0,
+      "temporal_fraction_residue_weighted": 0.0,
+      "temporal_fraction_benefit_weighted": 0.0,
+      "temporal_fraction_novelty_weighted": 0.0,
+      "temporal_fraction_goal_weighted": 0.0,
+      "bias_fraction_dacc": 0.0,
+      "bias_fraction_lateral_pfc": 0.0,
+      "bias_fraction_ofc": 0.0,
+      "bias_fraction_gated_policy": 0.0,
+      "bias_fraction_mech295_liking": 0.0,
+      "bias_fraction_curiosity": 0.0,
+      "bias_fraction_tonic_vigor": 0.0,
+      "bias_fraction_forced": 0.0,
+      "bias_fraction_noise_floor_temp": 0.0,
+      "bias_fraction_total_bias": 0.0,
+      "inter_candidate_score_std_mean": 1.6970200082914986,
+      "all_warnings": [],
+      "scaling_recommendations": [
+        "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+        "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+        "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+        "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores"
+      ]
+    }
+  },
+  "per_seed_results": {
+    "ARM_0_baseline": [
+      {
+        "temporal_fraction": {
+          "f": 0.0,
+          "harm_weighted": 0.0,
+          "residue_weighted": 0.0,
+          "benefit_weighted": 0.0,
+          "novelty_weighted": 0.0,
+          "goal_weighted": 0.0
+        },
+        "bias_fraction": {
+          "dacc": 0.0,
+          "lateral_pfc": 0.0,
+          "ofc": 0.0,
+          "gated_policy": 0.0,
+          "mech295_liking": 0.0,
+          "curiosity": 0.0,
+          "tonic_vigor": 0.0,
+          "forced": 0.0,
+          "noise_floor_temp": 0.0,
+          "total_bias": 0.0
+        },
+        "inter_candidate_score_std_mean": 1.4347191154364893,
+        "warnings": [],
+        "scaling_recommendations": [
+          "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores",
+          "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero"
+        ],
+        "noise_floor_temp_mean": 1.0,
+        "arm": "ARM_0_baseline",
+        "seed": 42,
+        "n_steps_collected": 5
+      },
+      {
+        "temporal_fraction": {
+          "f": 0.0,
+          "harm_weighted": 0.0,
+          "residue_weighted": 0.0,
+          "benefit_weighted": 0.0,
+          "novelty_weighted": 0.0,
+          "goal_weighted": 0.0
+        },
+        "bias_fraction": {
+          "dacc": 0.0,
+          "lateral_pfc": 0.0,
+          "ofc": 0.0,
+          "gated_policy": 0.0,
+          "mech295_liking": 0.0,
+          "curiosity": 0.0,
+          "tonic_vigor": 0.0,
+          "forced": 0.0,
+          "noise_floor_temp": 0.0,
+          "total_bias": 0.0
+        },
+        "inter_candidate_score_std_mean": 0.40601303226003366,
+        "warnings": [],
+        "scaling_recommendations": [
+          "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores",
+          "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero"
+        ],
+        "noise_floor_temp_mean": 1.0,
+        "arm": "ARM_0_baseline",
+        "seed": 123,
+        "n_steps_collected": 5
+      },
+      {
+        "temporal_fraction": {
+          "f": 0.0,
+          "harm_weighted": 0.0,
+          "residue_weighted": 0.0,
+          "benefit_weighted": 0.0,
+          "novelty_weighted": 0.0,
+          "goal_weighted": 0.0
+        },
+        "bias_fraction": {
+          "dacc": 0.0,
+          "lateral_pfc": 0.0,
+          "ofc": 0.0,
+          "gated_policy": 0.0,
+          "mech295_liking": 0.0,
+          "curiosity": 0.0,
+          "tonic_vigor": 0.0,
+          "forced": 0.0,
+          "noise_floor_temp": 0.0,
+          "total_bias": 0.0
+        },
+        "inter_candidate_score_std_mean": 3.222685643914018,
+        "warnings": [],
+        "scaling_recommendations": [
+          "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores",
+          "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero"
+        ],
+        "noise_floor_temp_mean": 1.0,
+        "arm": "ARM_0_baseline",
+        "seed": 456,
+        "n_steps_collected": 5
+      }
+    ],
+    "ARM_1_diversity_stack": [
+      {
+        "temporal_fraction": {
+          "f": 0.0,
+          "harm_weighted": 0.0,
+          "residue_weighted": 0.0,
+          "benefit_weighted": 0.0,
+          "novelty_weighted": 0.0,
+          "goal_weighted": 0.0
+        },
+        "bias_fraction": {
+          "dacc": 0.0,
+          "lateral_pfc": 0.0,
+          "ofc": 0.0,
+          "gated_policy": 0.0,
+          "mech295_liking": 0.0,
+          "curiosity": 0.0,
+          "tonic_vigor": 0.0,
+          "forced": 0.0,
+          "noise_floor_temp": 0.0,
+          "total_bias": 0.0
+        },
+        "inter_candidate_score_std_mean": 1.1675504465033228,
+        "warnings": [],
+        "scaling_recommendations": [
+          "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores",
+          "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero"
+        ],
+        "noise_floor_temp_mean": 1.1,
+        "arm": "ARM_1_diversity_stack",
+        "seed": 42,
+        "n_steps_collected": 5
+      },
+      {
+        "temporal_fraction": {
+          "f": 0.0,
+          "harm_weighted": 0.0,
+          "residue_weighted": 0.0,
+          "benefit_weighted": 0.0,
+          "novelty_weighted": 0.0,
+          "goal_weighted": 0.0
+        },
+        "bias_fraction": {
+          "dacc": 0.0,
+          "lateral_pfc": 0.0,
+          "ofc": 0.0,
+          "gated_policy": 0.0,
+          "mech295_liking": 0.0,
+          "curiosity": 0.0,
+          "tonic_vigor": 0.0,
+          "forced": 0.0,
+          "noise_floor_temp": 0.0,
+          "total_bias": 0.0
+        },
+        "inter_candidate_score_std_mean": 0.4525180682953377,
+        "warnings": [],
+        "scaling_recommendations": [
+          "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores",
+          "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero"
+        ],
+        "noise_floor_temp_mean": 1.1,
+        "arm": "ARM_1_diversity_stack",
+        "seed": 123,
+        "n_steps_collected": 5
+      },
+      {
+        "temporal_fraction": {
+          "f": 0.0,
+          "harm_weighted": 0.0,
+          "residue_weighted": 0.0,
+          "benefit_weighted": 0.0,
+          "novelty_weighted": 0.0,
+          "goal_weighted": 0.0
+        },
+        "bias_fraction": {
+          "dacc": 0.0,
+          "lateral_pfc": 0.0,
+          "ofc": 0.0,
+          "gated_policy": 0.0,
+          "mech295_liking": 0.0,
+          "curiosity": 0.0,
+          "tonic_vigor": 0.0,
+          "forced": 0.0,
+          "noise_floor_temp": 0.0,
+          "total_bias": 0.0
+        },
+        "inter_candidate_score_std_mean": 3.470991510075836,
+        "warnings": [],
+        "scaling_recommendations": [
+          "total_bias explains <1%% of temporal variance; diversity stack has negligible effect on E3 scores",
+          "curiosity bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "tonic_vigor bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero",
+          "dacc bias fraction=0.0000 effectively zero -- check that the module is enabled and its inputs are non-zero"
+        ],
+        "noise_floor_temp_mean": 1.1,
+        "arm": "ARM_1_diversity_stack",
+        "seed": 456,
+        "n_steps_collected": 5
+      }
+    ]
+  }
+}

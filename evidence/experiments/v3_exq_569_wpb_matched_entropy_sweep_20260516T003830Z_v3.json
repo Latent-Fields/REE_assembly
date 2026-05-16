@@ -9,8 +9,8 @@
   "claim_ids": [
     "ARC-065"
   ],
-  "evidence_direction": "weakens",
-  "evidence_direction_note": "6-arm matched-entropy sweep: ARM_0 SP-CEM baseline vs ARM_1 noise-floor vs ARM_2 structured-curiosity vs ARM_3 matched-entropy random-noise control vs ARM_4 combo vs ARM_5 all-mechanisms. PASS = ARC-065 structured diversity mechanisms produce more useful state coverage than matched-entropy random noise at the same entropy level. FAIL = no structured mechanism beats matched entropy on coverage.",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-16 governance review. All 6 arms produced identical metrics (delta=0) because bias_fraction=0 for all diversity components (confirmed by EXQ-571 diagnostic: F dominates 88-89% of temporal variance, all bias components machine-epsilon). The structured-vs-random comparison was never activated -- the test condition was invalid. Original verdict: weakens.",
   "dry_run": false,
   "config": {
     "seeds": [
