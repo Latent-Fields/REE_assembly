@@ -1,0 +1,243 @@
+{
+  "run_id": "v3_exq_572_intervention_a_dual_attractor_20260516T095117Z_v3",
+  "experiment_type": "v3_exq_572_intervention_a_dual_attractor",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-065"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_direction": "weakens",
+  "outcome": "FAIL",
+  "outcome_note": "ARM_3 (full Intervention A) passed overall on only 0/3 seeds (C1 pass: 0/3, C2 pass: 0/3, C3 pass: 0/3). Behavioral diversity criterion not met.",
+  "timestamp_utc": "20260516T095117Z",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "warmup_episodes": 20,
+  "eval_episodes": 30,
+  "total_episodes": 50,
+  "steps_per_episode": 200,
+  "arm_names": [
+    "ARM_0_baseline",
+    "ARM_1_harm_affect",
+    "ARM_2_goal",
+    "ARM_3_all"
+  ],
+  "arm_summaries": {
+    "ARM_0_baseline": {
+      "mean_c1_tv": 1.0417592714399385e-14,
+      "mean_c2_delta": -0.0010000000000000002,
+      "mean_c3_delta": 0.0,
+      "c1_pass_seeds": 0,
+      "c2_pass_seeds": 0,
+      "c3_pass_seeds": 0,
+      "overall_pass_seeds": 0
+    },
+    "ARM_1_harm_affect": {
+      "mean_c1_tv": 8.548717289613705e-15,
+      "mean_c2_delta": -0.0006666666666666664,
+      "mean_c3_delta": 0.0,
+      "c1_pass_seeds": 0,
+      "c2_pass_seeds": 0,
+      "c3_pass_seeds": 0,
+      "overall_pass_seeds": 0
+    },
+    "ARM_2_goal": {
+      "mean_c1_tv": 9.177843670234628e-15,
+      "mean_c2_delta": -0.00022222222222222204,
+      "mean_c3_delta": 0.0,
+      "c1_pass_seeds": 0,
+      "c2_pass_seeds": 0,
+      "c3_pass_seeds": 0,
+      "overall_pass_seeds": 0
+    },
+    "ARM_3_all": {
+      "mean_c1_tv": 8.696747026230392e-15,
+      "mean_c2_delta": 0.0006666666666666666,
+      "mean_c3_delta": 0.0,
+      "c1_pass_seeds": 0,
+      "c2_pass_seeds": 0,
+      "c3_pass_seeds": 0,
+      "overall_pass_seeds": 0
+    }
+  },
+  "per_seed_results": {
+    "ARM_0_baseline": [
+      {
+        "arm": "ARM_0_baseline",
+        "seed": 42,
+        "c1_tv": 1.6653345369377348e-16,
+        "c2_delta": -0.003000000000000001,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_0_baseline",
+        "seed": 123,
+        "c1_tv": 2.886579864025407e-15,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_0_baseline",
+        "seed": 456,
+        "c1_tv": 2.8199664825478976e-14,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      }
+    ],
+    "ARM_1_harm_affect": [
+      {
+        "arm": "ARM_1_harm_affect",
+        "seed": 42,
+        "c1_tv": 0.0,
+        "c2_delta": -0.001999999999999999,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_1_harm_affect",
+        "seed": 123,
+        "c1_tv": 2.3869795029440866e-15,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_1_harm_affect",
+        "seed": 456,
+        "c1_tv": 2.325917236589703e-14,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      }
+    ],
+    "ARM_2_goal": [
+      {
+        "arm": "ARM_2_goal",
+        "seed": 42,
+        "c1_tv": 0.0,
+        "c2_delta": -0.0006666666666666661,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_2_goal",
+        "seed": 123,
+        "c1_tv": 1.2212453270876722e-15,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_2_goal",
+        "seed": 456,
+        "c1_tv": 2.631228568361621e-14,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      }
+    ],
+    "ARM_3_all": [
+      {
+        "arm": "ARM_3_all",
+        "seed": 42,
+        "c1_tv": 1.6653345369377348e-16,
+        "c2_delta": 0.002,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_3_all",
+        "seed": 123,
+        "c1_tv": 2.3869795029440866e-15,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      },
+      {
+        "arm": "ARM_3_all",
+        "seed": 456,
+        "c1_tv": 2.353672812205332e-14,
+        "c2_delta": 0.0,
+        "c3_delta": 0.0,
+        "c1_pass": false,
+        "c2_pass": false,
+        "c3_pass": false,
+        "overall_pass": false,
+        "n_c2_records": 6000,
+        "n_c3_records": 6000
+      }
+    ]
+  },
+  "thresholds": {
+    "c1_tv": 0.2,
+    "c2_delta": 0.15,
+    "c3_delta": 0.15,
+    "min_pass_seeds": 2
+  },
+  "arm3_c1_pass_count": 0,
+  "arm3_c2_pass_count": 0,
+  "arm3_c3_pass_count": 0,
+  "arm3_overall_pass_count": 0,
+  "arm0_c1_pass_count": 0
+}
