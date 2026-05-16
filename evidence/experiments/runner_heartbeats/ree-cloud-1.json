@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-16T21:32:39Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-578",
-  "current_exq_started_utc": "2026-05-16T21:32:34.520395+00:00",
-  "current_title": "GAP-3 transient benefit patches env feature substrate validation",
-  "current_claim_id": "DEV-NEED-006",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 1 / ARM_1_enabled",
-    "runs_done": 3,
-    "runs_total": 6,
-    "episodes_done": 0,
-    "episodes_total": 100,
-    "overall_pct": 50.0
-  },
-  "seconds_elapsed": 5,
-  "seconds_remaining": 5,
-  "recent_lines": [
-    "[train] seed=1 cond=ARM_0_disabled ep 60/100",
-    "[train] seed=1 cond=ARM_0_disabled ep 80/100",
-    "[train] seed=1 cond=ARM_0_disabled ep 100/100",
-    "verdict: PASS",
-    "Seed 1 Condition ARM_1_enabled"
+  "last_tick_utc": "2026-05-16T21:32:47Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-575",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-567",
+      "result": "PASS",
+      "completed_at": "2026-05-15T21:24:25.915491+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-573",
+      "result": "FAIL",
+      "completed_at": "2026-05-16T08:36:05.351221+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-576",
+      "result": "PASS",
+      "completed_at": "2026-05-16T19:50:14.990709+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-577",
+      "result": "FAIL",
+      "completed_at": "2026-05-16T21:08:01.222967+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-578",
+      "result": "PASS",
+      "completed_at": "2026-05-16T21:32:44.149901+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 668,
   "runner_version": null,
   "gpu": {
