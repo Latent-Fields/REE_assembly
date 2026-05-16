@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_mech198_imagination_ef_pretend_francis2023",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["MECH-198", "MECH-094", "DEV-NEED-012"],
+  "source": {
+    "title": "A plausible role of imagination in pretend play, counterfactual reasoning, and executive functions",
+    "authors": ["Francis, Gill Althia", "Gibson, Jenny Louise"],
+    "year": 2023,
+    "venue": "British Journal of Psychology",
+    "doi": "10.1111/bjop.12650",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10952659/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Structural equation modelling with N=189 children (mean age 4.8 years) shows pretend play and counterfactual reasoning load onto separate but significantly correlated latent constructs (r=.51, p=.001), both predicted by a higher-order latent imaginative capacity. EF accounts for unique variance in both (beta=.21 and .22 respectively). This is the most methodologically rigorous empirical test of the Weisberg-Gopnik imagination-as-shared-substrate hypothesis. Direct relevance to MECH-198: the imagination latent factor is what REE would call the hypothesis-tag system exercised across both task types. Confidence slightly reduced because the 'imagination' latent is inferred from structural model fit rather than independently measured; the model shows good but not excellent fit (CFI=.94, RMSEA=.08).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If EF were the only driver (no shared imagination construct), the SEM model would fit equally well without the imagination latent factor -- but model fit degrades substantially when imagination is removed, supporting a distinct imaginative capacity beyond EF.",
+    "Object substitution, referring to absent objects, verbal property attribution, and sequenced imaginary actions are the behavioral indicators of the pretend play construct -- agents lacking any of these show reduced counterfactual transfer, each mapping to distinct aspects of REE's frame+hypothesis_tag architecture."
+  ],
+  "tags": ["mech198", "mech094", "dev_need_012", "imagination", "executive_function", "counterfactual", "pretend_play", "SEM"],
+  "mapping": {
+    "source_claim_statement": "In children aged ~5 years, pretend play (PP) and counterfactual reasoning (CFR) load onto distinct but correlated latent constructs (r=.51); a higher-order imaginative capacity predicts both; complex executive function (inhibition + working memory + cognitive flexibility combined) accounts for unique variance in both after language is controlled.",
+    "ree_translation": "The shared 'imaginative capacity' latent is REE's hypothesis tag system (MECH-094) -- the agent-level capacity to generate and maintain counterfactual/synthetic representations decoupled from the real-consequence stream. EF requirements in both tasks reflect the cognitive cost of maintaining dual representation (one real, one synthetic) without frame confusion -- exactly the commitment architecture exercise that MECH-198 predicts pretend play trains.",
+    "mapping_caveat": "The study measures imagination as an inferred latent from behavioral indicators, not via direct neurobiological measurement. The specific EF components contributing are complex EF (multi-factorial), not decomposed into inhibition alone or working memory alone -- this limits mapping to specific REE substrate mechanisms.",
+    "source_context": "N=189, ages 4-5, UK. Confirmatory factor analysis + SEM. Good model fit. Ecologically valid pretend play observation + standardized CFR tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.18,
+    "notes": "Good source quality: British Journal of Psychology, SEM methodology, adequate N. Good mapping fidelity: imagination latent directly maps to hypothesis_tag conceptually. Low transfer risk: same developmental population."
+  }
+}

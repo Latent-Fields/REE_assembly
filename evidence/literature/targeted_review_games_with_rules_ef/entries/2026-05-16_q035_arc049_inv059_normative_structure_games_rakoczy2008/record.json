@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_q035_arc049_inv059_normative_structure_games_rakoczy2008",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["Q-035", "ARC-049", "INV-059"],
+  "source": {
+    "title": "The sources of normativity: young children's awareness of the normative structure of games",
+    "authors": ["Rakoczy, Hannes", "Warneken, Felix", "Tomasello, Michael"],
+    "year": 2008,
+    "venue": "Developmental Psychology",
+    "doi": "10.1037/0012-1649.44.3.875"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct empirical test of children's sensitivity to normative rule structure in games. High source quality (Developmental Psychology, Max Planck group). Mapping fidelity is strong: the key finding -- children distinguish game-constitutive violations from identical acts outside the game context -- maps directly onto ARC-049's co-maintained context tag (the frame determines normative status of actions). The bilateral enforcement finding (children police violations on third parties) supports INV-059. Transfer risk is low: human child developmental data maps cleanly to REE's developmental curriculum claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Two-year-olds showed normative responses at a less explicit level than three-year-olds, suggesting shared-frame normativity is not fully consolidated before age 3.",
+    "The study used simple experimenter-introduced games, not naturalistic peer play -- ecological validity of frame co-maintenance outside adult-structured contexts untested."
+  ],
+  "tags": ["q_035", "arc_049", "inv_059", "games_with_rules", "normativity", "frame_monitoring", "rule_violation"],
+  "mapping": {
+    "source_claim_statement": "Even 2- and 3-year-old children distinguish normative rule violations in a game from the identical action performed outside that game context, and spontaneously protest or correct third-party violators.",
+    "ree_translation": "The game context acts as a co-maintained context tag (ARC-049): the frame determines whether an action is a violation. Children detecting violations in real time implies continuous monitoring of game state relative to frame, not merely discrete open/close boundary detection. This directly evidences that the ARC-049 frame is structured -- shared constraints, not just shared authorization -- and supports MECH-197's claim that games-with-rules require structured shared-state monitoring.",
+    "mapping_caveat": "The study cannot distinguish whether children monitor game state continuously or only compute normativity reactively at the moment of action. Continuous heartbeat vs. reactive checking cannot be separated from this paradigm.",
+    "source_context": "2- and 3-year-old children, experimenter-introduced puppet games, Leipzig developmental lab."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.15,
+    "notes": "High-quality empirical study from leading developmental lab. Mapping fidelity slightly reduced because the study tests normative detection capacity, not ongoing monitoring architecture."
+  }
+}

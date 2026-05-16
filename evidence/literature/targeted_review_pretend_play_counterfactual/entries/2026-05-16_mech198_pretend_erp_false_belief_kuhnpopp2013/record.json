@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["MECH-198", "MECH-094", "ARC-049"],
+  "source": {
+    "title": "Same or different? ERP correlates of pretense and false belief reasoning in children",
+    "authors": ["Kuhn-Popp, N.", "Sodian, B.", "Sommer, M.", "Dohnel, K.", "Meinhardt, J."],
+    "year": 2013,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2013.06.017"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "ERP study showing that pretense reasoning and false belief reasoning recruit distinct neural processes in 6-8 year olds: pretense elicits an early parietal P2 (incongruence detection) and negative frontal slow wave (intention processing); false belief elicits the characteristic late positive fronto-central slow wave (metarepresentation). This challenges the strong Leslie account of pretend play and false belief sharing the same neural substrate. For REE, this is mixed evidence: it supports that the play-frame tag and the hypothesis tag are distinct cognitive operations (consistent with ARC-049 + MECH-094 being separate mechanisms), but conflicts with a simple 'pretend play exercises false-belief architecture' story. The study uses 6-8 year olds (past the pretend play acquisition window) and ERP is indirect measure of neural substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pretend play and false belief shared the same neurocognitive substrate, ERP components should be identical in polarity, latency, and topography -- the observed differences (early/parietal/negative for pretense vs late/fronto-central/positive for FB) argue against substrate identity.",
+    "The negative frontal slow wave for pretense reasoning is attributed to 'intention processing' (simpler mentalistic process) rather than full metarepresentation -- suggesting children process others' pretense through behavioral-intentional cues without necessarily engaging the full hypothesis_tag+play_frame system."
+  ],
+  "tags": ["mech198", "mech094", "arc049", "erp", "false_belief", "pretend_play", "neural_substrate", "distinct_mechanisms"],
+  "mapping": {
+    "source_claim_statement": "In 6-8 year old children, pretense reasoning and false belief reasoning produce distinct ERP signatures in timing, polarity, and scalp distribution, suggesting they rely on distinct neurocognitive mechanisms; pretense may use simpler intention-processing rather than full metarepresentation.",
+    "ree_translation": "This is consistent with REE's two-tag decomposition: ARC-049 (bilateral play frame, intention-level tagging) and MECH-094 (hypothesis tag, full metarepresentational decoupling) are distinct mechanisms that co-operate during pretend play but are individually separable. Pretense reasoning in 6-8 year olds may rely primarily on ARC-049 (frame recognition from behavioral/intentional cues) without necessarily recruiting the full MECH-094 hypothesis-tag system. This is a refining finding for REE, not a contradicting one -- REE's two-tag architecture predicts exactly this dissociation.",
+    "mapping_caveat": "ERP components are temporally precise but spatially coarse. The 6-8 year age range is past the pretend play acquisition window; whether these distinct components reflect the same dissociation that exists at 18-36 months (when pretend play emerges) is unknown. The task is *reasoning about* pretense, not naturalistic pretend play production.",
+    "source_context": "N=28 children, ages 6-8, German lab. Within-subject ERP design. Pretense condition, false belief condition, non-mental control condition."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Good source: Neuroscience journal, ERP methodology, controlled design. Moderate mapping fidelity: neural dissociation supports two-tag architecture but the specific component-to-mechanism mapping is inferential. Moderate transfer risk: task is reasoning about others' pretense (not production), age range is past acquisition window."
+  }
+}

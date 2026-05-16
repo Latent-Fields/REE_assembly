@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_inv061_pretend_mental_health_longitudinal_vasilopoulos2026",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["MECH-200", "MECH-201", "MECH-198", "DEV-NEED-012"],
+  "source": {
+    "title": "Longitudinal Evidence of the Relationship Between Pretend Play and Mental Health in the Early Years",
+    "authors": ["Vasilopoulos, Fotini", "Grummitt, Lucinda", "Bailey, Sasha", "Birrell, Louise", "Dumontheil, Iroise", "Francis, Gill", "Oliver, Eliza", "Karaolis, Olivia", "Ewing, Robyn", "Anderson, Michael", "Teesson, Maree", "Barrett, Emma L."],
+    "year": 2026,
+    "venue": "Early Childhood Education Journal",
+    "doi": "10.1007/s10643-026-02150-7"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Large longitudinal cohort (N=1426 from the Longitudinal Study of Australian Children) showing that higher pretend play ability at age 2-3 predicts fewer internalising (anxiety, withdrawal) AND externalising (aggression, hyperactivity) problems at ages 4-5 and 6-7, after controlling for SES, maternal mental health, language, and attachment. Crucially, emotional regulation does NOT mediate the relationship, implicating other mechanisms. This directly evidences INV-061/MECH-200/201: pretend play skill at the developmental window (2-3 years) predicts adult-trajectory mental health outcomes that REE maps to frame-confusion failure modes (internalising = synthetic-reads-as-real derealization/anxiety cluster; externalising = impulsivity/commitment-without-evaluation cluster). The non-mediation by emotional regulation is a meaningful negative finding that constrains mechanistic accounts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Emotional regulation does not mediate the pretend play -> mental health relationship -- if frame-distinction skill were simply a downstream effect of emotion regulation, emotional regulation should fully mediate. Its failure to mediate supports an independent frame-distinction mechanism.",
+    "The relationship covers both internalising AND externalising outcomes -- if it were purely about anxiety (one failure direction), only internalising effects would appear. The dual direction is consistent with REE's two failure modes: real-reads-as-synthetic (MECH-200, derealization/mania) and synthetic-reads-as-real (MECH-201, anxiety/delusion)."
+  ],
+  "tags": ["mech200", "mech201", "mech198", "dev_need_012", "longitudinal", "mental_health", "internalising", "externalising", "pretend_play"],
+  "mapping": {
+    "source_claim_statement": "Pretend play ability at age 2-3 predicts significantly fewer internalising and externalising mental health problems at ages 4-5 and 6-7 in a large Australian birth cohort (N=1426), after controlling for confounders; emotional regulation does not mediate the relationship.",
+    "ree_translation": "This is population-level evidence for REE's prediction that pretend play training protects against commitment architecture failure modes. Internalising outcomes (anxiety, withdrawal) map to MECH-201 (synthetic-reads-as-real: simulations processed without hypothesis tag, causing excess harm signal). Externalising outcomes (aggression, impulsivity) map to MECH-202 (commitment gate undertrained: commits without evaluation) and MECH-200 (real-reads-as-synthetic: real consequences discounted). The non-mediation by emotional regulation is particularly important -- it rules out the simpler 'play teaches emotion regulation' account and points to a cognitive-representational mechanism (frame-distinction), which is exactly REE's architecture.",
+    "mapping_caveat": "The pretend play measure at age 2-3 is a composite parental/observational measure; what specific pretend play capacities (object substitution, role play, mutual frame maintenance) drive the effect is unknown. The 2-3 year window is early pretend play emergence, before full MECH-198 pretend+hypothesis_tag co-operation (which requires more sophisticated pretend play at 3-4). The proposed embodied cognition mechanism is speculative and not tested.",
+    "source_context": "N=1426, Longitudinal Study of Australian Children, LSAC birth cohort 2004. Ages 2-3, 4-5, 6-7 measurement waves. Pretend play from standardized developmental assessment."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "High source quality: large birth cohort, longitudinal, multiple waves, strong covariate control. Moderate mapping fidelity: the mapping from internalising/externalising categories to specific REE failure modes is inferential, not measured directly. Moderate transfer risk: outcome categories are broad clinical constructs."
+  }
+}

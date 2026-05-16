@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_arc049_pretend_social_competence_meta_smits2024",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["ARC-049", "MECH-198", "DEV-NEED-012"],
+  "source": {
+    "title": "The Value of Pretend Play for Social Competence in Early Childhood: A Meta-analysis",
+    "authors": ["Smits-van der Nat, Mireille", "van der Wilt, Femke", "Meeter, Martijn", "van der Veen, Chiel"],
+    "year": 2024,
+    "venue": "Educational Psychology Review",
+    "doi": "10.1007/s10648-024-09884-z"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Meta-analysis of 34 empirical studies finding positive relationship between pretend play and social competence in early childhood (ages 3-8). Two key moderating findings: (1) studies measuring *quality* of pretend play find stronger correlations with social competence than studies measuring *quantity*, and (2) the relationship weakens with age. These moderating effects are directly relevant to ARC-049 (bilateral frame tag): social competence requires bilateral frame maintenance, and quality of pretend play (whether the child maintains the play frame with a partner) is the relevant dimension, not just frequency. The age-related weakening is consistent with other competencies eventually saturating. Confidence moderate-high: meta-analytic synthesis across 34 studies, no specific effect size retrieved for the overall r value, limiting quantitative mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Studies measuring quantity of pretend play (hours of play) find weaker correlations with social competence than studies measuring quality (how well the child maintains the bilateral play frame with partners) -- this distinguishes social-competence-relevant pretend play from mere activity.",
+    "Solitary pretend play shows lower correlations with social competence than social pretend play -- consistent with the bilateral frame requirement: ARC-049 requires a partner to be fully exercised."
+  ],
+  "tags": ["arc049", "mech198", "dev_need_012", "social_competence", "bilateral_frame", "meta_analysis", "pretend_play"],
+  "mapping": {
+    "source_claim_statement": "Across 34 studies, pretend play quality (not quantity) is more strongly associated with social competence in early childhood; the relationship weakens with age; the association holds across various measures of social competence.",
+    "ree_translation": "The quality-quantity dissociation directly evidences ARC-049's role: what matters is whether the child can successfully maintain a shared bilateral play frame (quality) not just engage in solitary pretend behavior (quantity). Social competence requires bilateral frame maintenance -- the child must monitor the partner's frame state, correct frame violations, and negotiate shared frame content. This is precisely what ARC-049 requires. The weakening with age is consistent with REE's developmental curriculum: ARC-049 bilateral frame competence should reach asymptote during the pretend-play developmental window (3-6 years), so cross-sectional correlations weaken once the competence is established in most children.",
+    "mapping_caveat": "The meta-analysis is cross-sectional (most included studies); causal direction is not established -- social competence may enable better pretend play as much as the reverse. The specific effect size (overall r) was not extracted from the full text. 'Social competence' covers multiple constructs (prosocial behavior, conflict resolution, peer acceptance) that do not map one-to-one onto ARC-049.",
+    "source_context": "Meta-analysis, 34 empirical studies, ages 3-8, various countries and measurement approaches. Educational Psychology Review 2024."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.25,
+    "notes": "Good source: meta-analysis, Educational Psychology Review, 34 studies. Moderate mapping fidelity: quality>quantity dissociation maps well to ARC-049 bilateral frame requirement, but 'social competence' is not the same as 'bilateral frame maintenance'. Moderate transfer risk: social competence is a broad construct."
+  }
+}

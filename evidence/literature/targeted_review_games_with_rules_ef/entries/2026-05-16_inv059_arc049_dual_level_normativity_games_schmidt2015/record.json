@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_inv059_arc049_dual_level_normativity_games_schmidt2015",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["INV-059", "ARC-049", "Q-035", "MECH-197"],
+  "source": {
+    "title": "Preschoolers understand the normativity of cooperatively structured competition",
+    "authors": ["Schmidt, Marco F. H.", "Hardecker, Susanne", "Tomasello, Michael"],
+    "year": 2015,
+    "venue": "Journal of Experimental Child Psychology",
+    "doi": "10.1016/j.jecp.2015.10.014"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Strong empirical design testing a nuanced prediction: children should monitor not just rule compliance but also strategic rationality (trying to win), both of which are normatively required in competitive games. Finding that 5-year-olds but not 3-year-olds grasp the dual-level structure maps to MECH-197's developmental timeline. High source quality (Max Planck group, JECP). Mapping fidelity is high for ARC-049/INV-059 and for the frame complexity increase at games-with-rules stage.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Three-year-olds only protested rule breaches from irrational opponents, not from rational ones -- full dual-level understanding comes after age 3, consistent with MECH-197 but indicating late timing.",
+    "Many 3-year-olds refrained from protesting altogether, suggesting partial understanding only.",
+    "Puppet-as-opponent paradigm may not fully capture naturalistic peer game dynamics."
+  ],
+  "tags": ["inv_059", "arc_049", "q_035", "mech_197", "dual_level_normativity", "cooperative_competition", "shared_frame", "rule_violation", "protest"],
+  "mapping": {
+    "source_claim_statement": "Games-with-rules require children to simultaneously monitor two normative levels: rule-level compliance (no cheating) and strategic rationality (actually trying to win). Five-year-olds but not 3-year-olds fully grasp this dual-level structure and protest violations at both levels.",
+    "ree_translation": "This directly evidences that the ARC-049 frame in games-with-rules is STRUCTURED -- not just 'this is play' but 'this is play with these specific constraints AND this rational engagement requirement.' Children at 5 maintain a richer shared-state model than at 3, consistent with MECH-197's progression and the claim that games-with-rules require ongoing shared-state monitoring. The dual-level monitoring (rule + strategy) is necessarily continuous: you must track whether the opponent is trying to win throughout the game, not just at boundaries.",
+    "mapping_caveat": "The 'ongoing monitoring' interpretation is inferred -- the paradigm presents discrete events (opponent's moves) and measures discrete responses (protest). Whether children actively monitor between events or sample game state reactively at each move cannot be determined.",
+    "source_context": "3- and 5-year-olds (N=48), competitive game with puppet opponent, Max Planck Institute."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.18,
+    "notes": "Excellent study design with a nuanced prediction. Strong developmental psychology lab. Mapping fidelity high for frame-structure claims; Q-035 continuous-vs-discrete monitoring cannot be directly resolved."
+  }
+}

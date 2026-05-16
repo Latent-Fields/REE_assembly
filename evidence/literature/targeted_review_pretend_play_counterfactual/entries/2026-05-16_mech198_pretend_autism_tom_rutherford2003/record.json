@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_mech198_pretend_autism_tom_rutherford2003",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["MECH-198", "MECH-094", "ARC-049", "MECH-200", "MECH-201"],
+  "source": {
+    "title": "Cognitive underpinnings of pretend play in autism",
+    "authors": ["Rutherford, M. D.", "Rogers, Sally J."],
+    "year": 2003,
+    "venue": "Journal of Autism and Developmental Disorders",
+    "doi": "10.1023/a:1024406601334"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Compared pretend play in autism (N=28), other developmental disorders (N=24), and typical children (N=26). Key finding: children with autism showed significant deficits in ToM but not EF measures, and ToM (not EF) best predicted pretend play deficits; generativity (one EF measure) showed a secondary role. This supports MECH-198's implication: pretend play failure maps primarily onto the hypothesis tag / metarepresentational decoupling system (ToM-associated), not onto general executive function. This gives REE the ability to distinguish two mechanistically distinct failure modes: ToM-deficit (missing hypothesis tag co-operation) vs. EF-deficit (frame maintenance cost). The autism model also grounds MECH-200/201 failure signatures in developmental deficit data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Children with autism who pass EF measures still show pretend play deficits -- EF is not the gating prerequisite; ToM/metarepresentational decoupling is. This contradicts executive function accounts of pretend play development.",
+    "Even with ToM deficits, some children with autism produce simple object substitution pretense -- suggesting the play-frame tag (ARC-049, behavioral/intentional level) is partially intact while the hypothesis-tag system (MECH-094) is selectively impaired."
+  ],
+  "tags": ["mech198", "mech094", "arc049", "mech200", "mech201", "autism", "theory_of_mind", "pretend_play", "executive_function"],
+  "mapping": {
+    "source_claim_statement": "Pretend play deficits in autism are predicted by theory of mind deficits (not executive function deficits); generativity (an EF component related to generating novel action sequences) shows a secondary but significant role.",
+    "ree_translation": "Autism maps onto selective impairment of the hypothesis tag system (MECH-094): the agent lacks the metarepresentational capacity to simultaneously maintain a primary reality-tracking representation and a decoupled synthetic representation marked as counterfactual. The partial preservation of simple object substitution (even with ToM deficit) suggests ARC-049 (behavioral frame-opening via social cues) can operate without full MECH-094 -- supporting REE's two-tag decomposition. The generativity role (generating novel action sequences within play) is consistent with REE's requirement that E3 trajectory selection must function in synthetic mode during pretend play.",
+    "mapping_caveat": "Autism is a complex multi-factor developmental condition; selecting it as the model for isolated hypothesis-tag impairment risks attributing multiple confounds to a single mechanism. The ToM-EF dissociation in autism is contested in more recent literature (later studies show EF deficits when more sensitive measures are used). Sample sizes are small for three-group comparison.",
+    "source_context": "N=78 total (autism N=28, developmental disorders N=24, typical N=26). Cross-sectional. Multiple pretend play and cognitive measures. Journal of Autism and Developmental Disorders 2003."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Adequate source: JADD, three-group design, multiple measures. Moderate mapping fidelity: autism as model for hypothesis-tag impairment is directionally correct but mechanistically noisy. Moderate transfer risk: autism involves multiple co-occurring impairments."
+  }
+}

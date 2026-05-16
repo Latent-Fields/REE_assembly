@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_dev_need013_mech197_ef_play_pfc_diamond2011",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["MECH-197", "DEV-NEED-013"],
+  "source": {
+    "title": "Biological and social influences on cognitive control processes dependent on prefrontal cortex",
+    "authors": ["Diamond, Adele"],
+    "year": 2011,
+    "venue": "Progress in Brain Research",
+    "doi": "10.1016/B978-0-444-53884-0.00032-4"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Review by Adele Diamond -- the leading authority on EF development and PFC maturation -- providing the biological and social grounding for how play trains EF through PFC engagement. Source quality is high (Progress in Brain Research, expert author). Mapping fidelity is moderate: Diamond reviews EF generally and notes play's importance for EF, but does not specifically dissect games-with-rules vs. other play types. Transfer risk is low.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Does not distinguish games-with-rules from other play types -- treats play as a unified category for EF purposes.",
+    "Review paper without new primary data.",
+    "PFC argument is at the level of brain region, not specific circuit mechanism -- cannot map to REE subsystem architecture directly."
+  ],
+  "tags": ["mech_197", "dev_need_013", "executive_function", "prefrontal_cortex", "play", "self_regulation", "inhibitory_control", "working_memory"],
+  "mapping": {
+    "source_claim_statement": "Play (along with physical education and the arts) is among the activities that improve EF and frontal-lobe-dependent cognitive control, even without specialists or fancy equipment. EF functions (attentional control, self-regulation, working memory, inhibition) depend on late-maturing PFC and can be improved even in preschoolers.",
+    "ree_translation": "Grounds the biological feasibility of MECH-197: play trains EF components precisely because those components depend on PFC, which is still rapidly developing during the games-with-rules stage (ages 4-7). The rule-following demands of games-with-rules place repeated, progressive demands on PFC-dependent inhibitory control (suppress impulse to cheat), working memory (track shared game state, remember whose turn), and cognitive flexibility (adapt to opponent moves). This is the biological substrate for MECH-197's social coordination training claim.",
+    "mapping_caveat": "Diamond does not distinguish games-with-rules from other play types or from physical activity. The specific mechanism linking rule-game structure to PFC training is inferred, not demonstrated. The paper provides the neural level but does not specify what game features drive the PFC engagement.",
+    "source_context": "Review chapter drawing on neurobiological and developmental psychology literature. Leading expert on EF development."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.18,
+    "notes": "High-quality review from leading expert. Mapping fidelity reduced because play is treated as a unified category; games-with-rules specificity requires additional inference."
+  }
+}

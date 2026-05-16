@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_arc049_q035_infant_play_structure_monitoring_fantasia2014",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["Q-035", "ARC-049", "INV-059"],
+  "source": {
+    "title": "Changing the game: exploring infants' participation in early play routines",
+    "authors": ["Fantasia, Valentina", "Fasulo, Alessandra", "Costall, Alan", "Lopez, Beatriz"],
+    "year": 2014,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2014.00522"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Provides direct empirical evidence for continuous frame monitoring at 3 months of age -- infants track multimodal game structure moment-by-moment and respond with reduced engagement when structure is altered mid-game. This is the earliest developmental evidence for continuous frame monitoring rather than discrete boundary detection. Transfer risk is moderate because 3-month-old mother-infant games are far from peer rule games. Mapping fidelity for Q-035 is high in terms of directionality (evidence for ongoing monitoring) but involves a large developmental step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Study uses 3-month-old infants in mother-infant dyads -- this is sensorimotor play, not games-with-rules, making the direct REE mapping indirect.",
+    "Game structure alteration was adult-imposed (researcher removed sound or gesture) rather than partner-generated violation; does not test bilateral enforcement.",
+    "Effects are on engagement metrics (limb movements, gaze) not protest or repair -- normative enforcement is not present at this age."
+  ],
+  "tags": ["q_035", "arc_049", "inv_059", "frame_monitoring", "continuous_monitoring", "infant_play", "game_structure", "multimodal"],
+  "mapping": {
+    "source_claim_statement": "Three-month-old infants show temporally precise, reduced engagement when a familiar play routine's multimodal structure is altered (removing sound or gesture mid-game), suggesting ongoing tracking of game structure rather than discrete boundary recognition.",
+    "ree_translation": "The earliest human data point for continuous frame monitoring. If 3-month-olds track the internal structure of play routines moment-by-moment, the developmental lineage suggests continuous monitoring is phylogenetically primitive -- not an achievement of games-with-rules specifically. This refines Q-035: continuous monitoring may be present throughout play type development, not a novel requirement at the games-with-rules stage. What games-with-rules add is the normative complexity of what is being monitored (rules, strategy, fairness), not the monitoring architecture itself.",
+    "mapping_caveat": "Large developmental gap: 3-month sensorimotor games to peer games-with-rules spans ~4 years. The monitoring mechanism at 3 months is dyadic, adult-driven, and pre-normative. Transfer to peer-generated, rule-governed frames requires substantial interpretive extrapolation.",
+    "source_context": "N=20 three-month-old infants, structured mother-infant play, Southampton/Rome lab."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Good empirical design; Frontiers in Psychology is a reputable venue. Mapping fidelity reduced by large developmental gap from infant dyadic games to peer rule games."
+  }
+}

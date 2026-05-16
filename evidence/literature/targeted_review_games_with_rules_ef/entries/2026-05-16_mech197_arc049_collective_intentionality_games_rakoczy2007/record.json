@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_mech197_arc049_collective_intentionality_games_rakoczy2007",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["MECH-197", "ARC-049"],
+  "source": {
+    "title": "Play, games, and the development of collective intentionality",
+    "authors": ["Rakoczy, Hannes"],
+    "year": 2007,
+    "venue": "New Directions for Child and Adolescent Development",
+    "doi": "10.1002/cd.182"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Theoretical review paper -- not primary empirical data, but represents the leading developmental theory on games and collective intentionality. The key claim maps directly to MECH-197 and ARC-049. Source quality is strong (leading researcher in the field, peer-reviewed). Mapping fidelity is high for the conceptual claims. Transfer risk is moderate: the paper theorizes about human child development and the claim maps to REE architecture via the play type progression thesis.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Review paper without primary empirical data; theoretical claims require separate empirical support.",
+    "Does not distinguish games-with-rules from cooperative play at the architectural level -- progression into multi-agent full bilateral frame is not mapped."
+  ],
+  "tags": ["mech_197", "arc_049", "q_035", "games_with_rules", "collective_intentionality", "play_progression", "normativity"],
+  "mapping": {
+    "source_claim_statement": "Play and games are the developmental crucible for collective intentionality: children first enter conventional, rule-governed practices through play, progressing from individual pretense through shared pretense to games with externally enforceable, agent-neutral rules. Games require understanding that rules are constitutive -- not merely regulative -- and apply to any participant in the practice.",
+    "ree_translation": "This directly evidences MECH-197's play type progression claim. Sensorimotor and constructive play train E1/E2; pretend play exercises MECH-094 + ARC-049 intersection; games with rules introduce the constitutive rule layer that requires structured shared-state monitoring (the ARC-049 frame becomes a structured constraint set, not just authorization). The progression is driven by increasing demands on collective intentionality infrastructure, matching REE's layered claim.",
+    "mapping_caveat": "The paper describes the progression in terms of collective intentionality development, not neural architecture. REE's mapping of play types to specific subsystems (E1/E2/E3/hippocampus) is not directly supported -- the paper provides the developmental-psychological layer but not the mechanism.",
+    "source_context": "Theoretical review of developmental psychology literature on play and games. Human child data."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Strong theoretical anchor but transfer from conceptual framework to REE subsystem architecture requires interpretive step."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_mech197_q035_play_ef_systematic_rosas2019",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["MECH-197", "DEV-NEED-013"],
+  "source": {
+    "title": "Executive Functions Can Be Improved in Preschoolers Through Systematic Playing in Educational Settings: Evidence From a Longitudinal Study",
+    "authors": ["Rosas, Ricardo", "Espinoza, Victoria", "Porflitt, Felipe", "Ceric, Francisco"],
+    "year": 2019,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2019.02024"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Longitudinal study (3 timepoints: baseline, post-intervention, 8-month follow-up) testing 32 specifically designed games targeting inhibitory control, working memory, and cognitive flexibility. Key finding -- sustained EF improvements at 8 months -- is relevant to DEV-NEED-013 (games-with-rules training). Source quality is moderate (Frontiers in Psychology). Mapping fidelity is moderate: the designed games include rule-based structures but are not specifically games-with-rules in the Piagetian sense. Transfer risk is low.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Games were adult-designed and administered (60 daily sessions), not naturalistic peer games -- social coordination and bilateral frame-maintenance are not being trained.",
+    "Effect sizes between T1 and T2 (immediately post-intervention) were not significant; only T1-T3 (8-month) effects reached significance -- medium-term consolidation rather than immediate transfer.",
+    "No active control matched for adult game-facilitation -- cannot rule out general engagement effects."
+  ],
+  "tags": ["mech_197", "dev_need_013", "executive_function", "inhibitory_control", "working_memory", "cognitive_flexibility", "games_with_rules", "longitudinal"],
+  "mapping": {
+    "source_claim_statement": "Systematic playing of 32 purpose-designed rule-based games (60 sessions, 45 min/day) produced significant, sustained improvements in EF at 8-month follow-up in preschoolers (ages 4-6). EF gains were not significant immediately post-intervention but emerged over 8 months.",
+    "ree_translation": "Supports DEV-NEED-013: structured rule-based play can be designed to train EF components. The delayed emergence of effects (T1-T3 but not T1-T2) is particularly interesting for REE: it suggests consolidation processes operate after the play intervention, consistent with MECH-197's claim that each play type trains subsystems that the next type builds on. The pattern of delayed gains may indicate the same sleep-mediated consolidation that REE's sleep architecture (MECH-272, MECH-273) should produce.",
+    "mapping_caveat": "Games are purpose-designed by researchers, not organically arising peer games. The social coordination dimension (bilateral frame maintenance, partner monitoring) is absent. Cannot speak to ARC-049/INV-059 or Q-035. Maps primarily to DEV-NEED-013 as a training existence proof.",
+    "source_context": "Preschool children ages 4-6, 60-session intervention, longitudinal design with 8-month follow-up, Chile."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.22,
+    "notes": "Frontiers in Psychology is reputable but lower-impact than flagship journals. Longitudinal design is a strength. Mapping fidelity limited by adult-designed game context."
+  }
+}

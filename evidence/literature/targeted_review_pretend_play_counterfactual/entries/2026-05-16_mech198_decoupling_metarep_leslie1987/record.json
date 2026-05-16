@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_mech198_decoupling_metarep_leslie1987",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["MECH-198", "MECH-094", "ARC-049", "DEV-NEED-012"],
+  "source": {
+    "title": "Pretense and Representation: The Origins of 'Theory of Mind'",
+    "authors": ["Leslie, Alan M."],
+    "year": 1987,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.94.4.412",
+    "url": "https://worrydream.com/refs/Leslie_1987_-_Pretense_and_Representation.pdf"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the canonical theoretical paper establishing the decoupling/metarepresentation framework for pretend play. Leslie's decoupling mechanism -- creating a metarepresentational copy that suspends reference, truth, and existence relations -- maps directly onto REE's hypothesis tag (MECH-094). The framework is widely replicated and remains the dominant theoretical account. Confidence is high for the theoretical mapping (REE's hypothesis tag IS a decoupling mechanism). Confidence not maximal because the paper is theoretical (no direct neurobiological substrate specified) and some aspects of Leslie's 'PRETEND' operator remain contested (Jarrold et al. 2010 show pretense understanding can occur without full metarepresentation).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pretend play required full metarepresentation, children with theory-of-mind delays would show zero pretend play -- but autism literature shows partial pretend play even with ToM deficits, suggesting the decoupling mechanism is separable from full propositional metarepresentation.",
+    "The PRETEND operator in Leslie's framework is unitary; REE predicts a two-tag system (hypothesis tag + play frame tag) that must co-operate -- this is a REE-specific elaboration beyond what Leslie's original framework entails."
+  ],
+  "tags": ["mech198", "mech094", "arc049", "dev_need_012", "decoupling", "metarepresentation", "pretend_play", "hypothesis_tag"],
+  "mapping": {
+    "source_claim_statement": "Pretend play requires a cognitive mechanism that copies a primary representation into a metarepresentational context, suspending its reference, truth, and existence relations ('decoupling'), so the child can entertain a counterfactual scenario without confusing it with reality.",
+    "ree_translation": "Leslie's decoupling operator is structurally equivalent to REE's hypothesis tag (MECH-094): a categorical write gate that marks a representation as simulation/counterfactual, suppressing its normal downstream consequences (post-commit learning, reality updating). Pretend play (MECH-198) is the first point where this decoupling (hypothesis tag) co-operates with the play frame tag (ARC-049).",
+    "mapping_caveat": "Leslie posits a single 'PRETEND' operator; REE decompose this into two separate tags (hypothesis tag agent-internal; play frame tag bilateral). This decomposition is REE-specific and is not directly tested by Leslie's framework. Leslie also worked before modern inhibitory control / executive function accounts, so the relationship between his PRETEND operator and EF measures is underdetermined in his original paper.",
+    "source_context": "Theoretical paper based on developmental behavioral observations in typically developing children and early work on autism. No neuroimaging. Foundational for subsequent 30+ years of pretend play research."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "High source quality: canonical theoretical paper, 1500+ citations, field-defining. High mapping fidelity: decoupling = hypothesis tag is a tight structural equivalence. Transfer risk low: developmental cognitive framework, directly applicable."
+  }
+}

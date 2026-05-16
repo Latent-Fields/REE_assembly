@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_mech198_causal_counterfactual_pretend_buchsbaum2012",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["MECH-198", "MECH-094", "DEV-NEED-012"],
+  "source": {
+    "title": "The power of possibility: causal learning, counterfactual reasoning, and pretend play",
+    "authors": ["Buchsbaum, Daphna", "Bridgers, Sophie", "Skolnick Weisberg, Deena", "Gopnik, Alison"],
+    "year": 2012,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2012.0122",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3385687/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Empirical demonstration that pretend play and counterfactual reasoning use the same underlying cognitive machinery: children transfer newly learned causal structure into pretend scenarios at the same rate as into explicit counterfactuals, and the correlation persists after controlling for age, general cognitive development, and executive function (r=0.38, p<0.05). This directly evidences MECH-198's claim that pretend play exercises counterfactual representation. The causal coherence finding -- children in pretend mode make causally valid interventions on the pretend system -- supports the REE claim that play frame does not suppress causal/simulation learning, only stake-reality. Sample is preschoolers, relatively small N, single lab; confidence moderate-high.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If pretend play and counterfactual reasoning were entirely separable cognitive systems, the correlation after EF controls should be near zero -- the residual r=0.38 argues against full separability and favors a shared imaginative capacity.",
+    "Children who do not engage in causally coherent pretense (e.g. treating pretend scenarios as arbitrary) show reduced counterfactual transfer, suggesting causal coherence maintenance during play is a prerequisite for the training benefit."
+  ],
+  "tags": ["mech198", "mech094", "dev_need_012", "counterfactual", "causal_learning", "pretend_play", "bayesian", "gopnik"],
+  "mapping": {
+    "source_claim_statement": "Preschool children given new causal information make statistically indistinguishable inferences when asked counterfactuals vs. when engaging in pretend play about the same causal system; counterfactual cognition and causally coherent pretense are significantly correlated (r=0.38) even when age, EF, and cognitive development are controlled.",
+    "ree_translation": "Pretend play exercises the same causal-model machinery as counterfactual reasoning. In REE terms, play frame (ARC-049) enables counterfactual causal simulation (hypothesis tag active) while keeping causal learning from the simulated consequences active -- consistent with MECH-094's architecture where play is 'authorized-synthetic learning' not gradient suppression. The child's causally coherent pretense is a real exercise of E2 rollout within a hypothesis-tagged frame.",
+    "mapping_caveat": "The study does not separately measure frame maintenance (bilateral vs. solitary); the 'birthday machine' task used adult experimenters as play partners, so it is operationally a bilateral play context. Cannot distinguish which element (causal coherence, bilateral frame, or counterfactual scaffolding) drives the transfer.",
+    "source_context": "N = 3-4 year old preschoolers, Berkeley lab. Two experiments. Novel causal toy. Both pretend and counterfactual conditions performed by same children."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Good source quality: Phil Trans B, well-controlled, 2 experiments. Moderate-high mapping fidelity: directly demonstrates shared causal-counterfactual mechanism. Low transfer risk: same developmental population, identical domain."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_mech197_q035_play_ef_development_zhao2025",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["MECH-197", "DEV-NEED-013"],
+  "source": {
+    "title": "The effect of child-appropriate play with various types on preschoolers' executive function",
+    "authors": ["Zhao, Tianyu", "Luan, Jun", "Dan, Fei", "Chang, Xingru", "Cong, Longhao"],
+    "year": 2025,
+    "venue": "Acta Psychologica",
+    "doi": "10.1016/j.actpsy.2025.106022"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "RCT with 3-month follow-up directly comparing EF outcomes across play types (movement, puzzle, language play). High source quality for design. Mapping fidelity is moderate: the study uses play categories that do not directly map to Piaget/Smilansky play types, but the finding that rule-based structures within play drive EF gains -- regardless of specific play type -- directly evidences MECH-197's mechanism claim. Transfer risk is low.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Working memory effects of movement play were not maintained at 3-month follow-up -- play-type specificity for WM is weak.",
+    "Play categories (movement, puzzle, language) do not directly map to the sensorimotor/constructive/pretend/rule-games taxonomy, limiting direct MECH-197 mapping.",
+    "No active control matched for adult engagement -- facilitator effects cannot be fully ruled out."
+  ],
+  "tags": ["mech_197", "dev_need_013", "games_with_rules", "executive_function", "inhibitory_control", "working_memory", "cognitive_flexibility", "rct"],
+  "mapping": {
+    "source_claim_statement": "All three play types (movement, puzzle, language) improved inhibitory control and cognitive flexibility; working memory effects varied by type. The critical shared mechanism was adult-guided, rule-based structure integrated systematically into play activities, in synergy with emotional regulation demands.",
+    "ree_translation": "The finding that rule-based structure (not play type per se) drives EF gains aligns with MECH-197: the structured constraint system within the play frame trains the specific EF capacities (inhibitory control = impulse suppression for rule adherence; cognitive flexibility = switching between rule-constrained roles/turns). This confirms that games-with-rules train constraint satisfaction as a competence, supporting DEV-NEED-013.",
+    "mapping_caveat": "The play interventions are adult-scaffolded and directed, not peer-generated. The social coordination and bilateral frame-maintenance dimensions of games-with-rules (relevant to ARC-049/INV-059) are not the target -- this study tests EF training, not shared-state monitoring development. Cannot speak to Q-035.",
+    "source_context": "4-5 year old children, 10-week RCT with 3-month follow-up, N=62, China."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.20,
+    "notes": "RCT design with follow-up is strong; play categories are non-standard which reduces mapping fidelity."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_games_with_rules_ef",
+  "entry_id": "2026-05-16_dev_need013_mech197_shared_intentionality_tomasello2005",
+  "timestamp_utc": "2026-05-16T12:03:37Z",
+  "claim_ids_tested": ["MECH-197", "ARC-049", "DEV-NEED-014"],
+  "source": {
+    "title": "Understanding and sharing intentions: the origins of cultural cognition",
+    "authors": ["Tomasello, Michael", "Carpenter, Malinda", "Call, Josep", "Behne, Tanya", "Moll, Henrike"],
+    "year": 2005,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/S0140525X05000129"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Landmark BBS target article establishing shared intentionality as the foundation of human cultural cognition, including games and social institutions. High source quality. Mapping fidelity is high for ARC-049 and MECH-197's claim that play type progression tracks shared intentionality development. Transfer risk is low. Slightly reduced by the generality of the claim -- shared intentionality underlies all human collaborative practice, making specific predictions for games-with-rules architecture require extrapolation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Theoretical review -- not direct empirical test of games-with-rules specifically.",
+    "Developmental timeline (14 months for first shared intentionality) does not directly specify the games-with-rules emergence timeline.",
+    "Cannot speak to Q-035 (continuous vs. discrete monitoring) from this level of theoretical analysis."
+  ],
+  "tags": ["mech_197", "arc_049", "dev_need_014", "shared_intentionality", "joint_attention", "joint_goals", "cultural_cognition", "cooperative_play"],
+  "mapping": {
+    "source_claim_statement": "Shared intentionality -- joint goals and attention with mutual understanding of individual roles and perspectives -- is the species-unique cognitive infrastructure enabling human cultural cognition including games, social norms, and institutions. It develops in two intertwined pathways beginning in the first 14 months.",
+    "ree_translation": "Shared intentionality is the cognitive substrate for ARC-049's bilateral frame. The progression from joint attention (12 months) to joint goals/roles in collaborative activities (24 months) to normative rule games (36-60 months) matches MECH-197's play type progression. Each play type requires and recruits richer shared intentionality: sensorimotor play needs joint attention only, pretend play needs shared counterfactual premises, games-with-rules need agent-neutral normative shared goals. DEV-NEED-014 (cooperative play as a training objective) maps to the multi-agent full bilateral ARC-049 that shared intentionality theory predicts as the developmental endpoint.",
+    "mapping_caveat": "The paper establishes shared intentionality as a general cognitive capacity, not a specific architecture for play frame maintenance. REE's mapping from shared intentionality theory to ARC-049's specific bilateral frame mechanism requires an architectural translation that the paper does not perform.",
+    "source_context": "BBS target article with extensive commentary. Review of comparative (great apes vs. humans) and developmental psychology evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.22,
+    "notes": "Landmark paper with very high citation count. Mapping fidelity reduced by generality -- the paper grounds the whole domain of shared intentionality, not games-with-rules specifically."
+  }
+}

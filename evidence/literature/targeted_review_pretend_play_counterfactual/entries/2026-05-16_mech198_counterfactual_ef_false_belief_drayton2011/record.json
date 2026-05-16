@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_pretend_play_counterfactual",
+  "entry_id": "2026-05-16_mech198_counterfactual_ef_false_belief_drayton2011",
+  "timestamp_utc": "2026-05-16T12:01:01Z",
+  "claim_ids_tested": ["MECH-198", "MECH-094", "DEV-NEED-012"],
+  "source": {
+    "title": "Counterfactual thinking and false belief: the role of executive function",
+    "authors": ["Drayton, Stefane", "Turley-Ames, Kandi J.", "Guajardo, Nicole R."],
+    "year": 2011,
+    "venue": "Journal of Experimental Child Psychology",
+    "doi": "10.1016/j.jecp.2010.09.007"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Demonstrates that working memory and inhibitory control each partially mediate the relationship between counterfactual thinking and false belief performance in 3-5 year olds (N=76). This establishes the executive function prerequisites for counterfactual cognition in the same age window as pretend play emergence. The specific dissociation of working memory and inhibitory control as separable mediators maps onto the dual demands REE places on the hypothesis_tag system (maintaining the synthetic representation in working memory while inhibiting the real-consequence pathway). Confidence moderate-high: direct measurement of EF components, but correlational design limits causal inference about the developmental order.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "After controlling for both working memory and inhibitory control, counterfactual reasoning still accounts for unique variance in false belief, suggesting a residual representational capacity (Leslie's PRETEND operator; REE's hypothesis tag) beyond pure EF.",
+    "3-year-olds show floor performance on both counterfactual and false belief tasks -- the 3-to-4 year developmental jump correlates with EF maturation, placing the pretend play / commitment architecture calibration window at age 3-4."
+  ],
+  "tags": ["mech198", "mech094", "dev_need_012", "executive_function", "working_memory", "inhibitory_control", "counterfactual", "false_belief"],
+  "mapping": {
+    "source_claim_statement": "In 3-5 year old children, working memory and inhibitory control each partially mediate the relationship between counterfactual thinking and false belief performance; even after both are controlled, counterfactual thinking accounts for residual unique variance in false belief.",
+    "ree_translation": "Working memory corresponds to REE's requirement to maintain the hypothesis-tagged representation in the active workspace while the real-state representation persists; inhibitory control corresponds to suppressing the post-commit learning pathway while hypothesis_tag=True. The residual variance suggests the decoupling mechanism (hypothesis tag itself) is not fully reducible to these two EF components -- it is an independent cognitive prerequisite. This frames the developmental window for pretend play (approximately age 3-4) as the window when both EF substrates and the decoupling mechanism become simultaneously available.",
+    "mapping_caveat": "The study measures counterfactual reasoning in a structured task (not naturalistic pretend play) and false belief through standard ToM tasks. The EF measures are composite scores, not real-time neural measurements. The partial mediation leaves unexplained variance that could reflect measurement error rather than a distinct decoupling capacity.",
+    "source_context": "N=76, ages 3-5, US. Correlational/regression design. Standard false belief tasks, counterfactual statements generation, CANTAB WM and Stroop inhibition measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.22,
+    "notes": "Good source: JECP peer-reviewed, well-established design. Moderate mapping fidelity: EF components map structurally but are assessed via proxy tasks. Low transfer risk."
+  }
+}
