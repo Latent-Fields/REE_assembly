@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_play_contingency",
+  "entry_id": "2026-05-16_arc049_inv059_feldman2007_synchrony_shared_timing",
+  "timestamp_utc": "2026-05-16T12:28:06Z",
+  "claim_ids_tested": ["ARC-049", "INV-059", "DEV-NEED-010", "DEV-NEED-015"],
+  "source": {
+    "title": "Parent-infant synchrony and the construction of shared timing; physiological precursors, developmental outcomes, and risk conditions",
+    "authors": ["Feldman, Ruth"],
+    "year": 2007,
+    "venue": "Journal of Child Psychology and Psychiatry",
+    "doi": "10.1111/j.1469-7610.2006.01701.x",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17355401/"
+  },
+  "evidence_class": "review_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Feldman's review synthesises evidence that parent-infant synchrony -- the temporal matching of affective behavior across the dyad -- has physiological precursors in neonatal oscillator systems (sleep-wake cyclicity, cardiac vagal tone) and predicts self-regulation, symbol use, and empathy across childhood. Crucially, synchrony is characterised as a continuous, temporally-matched process (not episodic): it requires ongoing monitoring of the partner's state to maintain the match. The biological grounding of synchrony in oscillatory systems (shared with sleep-wake regulation) is directly relevant to REE's model of frame monitoring as a biological rhythm. Moderate-high confidence: comprehensive review, strong empirical base, but as a review it synthesises heterogeneous methods. The connection to DEV-NEED-015 (caregiver protection function) is strong: synchrony failure predicts psychopathology trajectories.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Review paper -- individual effect sizes vary widely across synthesised studies.",
+    "Synchrony operationalisation varies across studies (concurrent, sequential, patterned); the monitoring mechanism underlying synchrony is inferred rather than directly tested.",
+    "The physiological precursor story (neonatal oscillators -> social synchrony) is correlational, not mechanistic."
+  ],
+  "tags": ["arc_049", "inv_059", "dev_need_010", "dev_need_015", "synchrony", "shared_timing", "biological_rhythm", "physiological_precursor", "self_regulation", "oscillator"],
+  "mapping": {
+    "source_claim_statement": "Parent-infant interaction synchrony -- temporally-matched affective coordination -- has physiological precursors in neonatal oscillator systems and predicts self-regulation, symbol use, and empathy across childhood. Synchrony is a continuous temporally-matched relationship, not a discrete event. Cardiac pacemaker and biological clock systems underlie the capacity to engage in temporally-matched social dialogue.",
+    "ree_translation": "The synchrony framework provides the biological basis for continuous frame monitoring: the infant's capacity to maintain temporally-matched interaction is grounded in the same oscillatory systems that regulate sleep-wake cycles and cardiac rhythms. For ARC-049 (bilateral play frame): the 'bilateral' aspect of the play frame may be implemented as a synchrony process -- each agent's frame-monitoring heartbeat entrains to the other's rhythm. For INV-059 (mutual frame maintenance as necessity): synchrony breakdown predicts psychopathology, suggesting mutual temporal coordination is not optional but constitutive of healthy social development. For DEV-NEED-015: the caregiver protection function is implemented partly through maintaining synchrony -- the caregiver's contingent responding provides the oscillatory input that regulates infant arousal.",
+    "mapping_caveat": "Synchrony in Feldman's model is dyadic affective coordination -- a population-level statistical construct measured over minutes of interaction. The REE play frame monitoring operates on a faster timescale (seconds) and tracks semantic content (are we playing?) not just affective timing. The synchrony framework provides biological grounding but does not directly specify the monitoring mechanism.",
+    "source_context": "Bar-Ilan University. Comprehensive review of longitudinal and experimental studies on parent-infant synchrony. N>71 in physiological precursor study, larger Ns in developmental outcomes literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "JCPP is a top-tier developmental psychopathology journal. Feldman's synchrony programme is one of the most influential in infant development. Transfer risk elevated because synchrony as a population-level temporal correlation is not the same as moment-by-moment frame monitoring -- the levels of description differ."
+  }
+}

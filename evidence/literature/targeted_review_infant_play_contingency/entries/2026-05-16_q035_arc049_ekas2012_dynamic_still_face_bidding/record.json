@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_play_contingency",
+  "entry_id": "2026-05-16_q035_arc049_ekas2012_dynamic_still_face_bidding",
+  "timestamp_utc": "2026-05-16T12:28:06Z",
+  "claim_ids_tested": ["Q-035", "ARC-049", "INV-059"],
+  "source": {
+    "title": "The dynamic still-face effect: do infants decrease bidding over time when parents are not responsive?",
+    "authors": ["Ekas, Naomi V.", "Haltigan, John D.", "Messinger, Daniel S."],
+    "year": 2012,
+    "venue": "Developmental Psychology",
+    "doi": "10.1037/a0029330",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22799583/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This study tracks within-episode dynamics during the still-face period using hierarchical linear modelling. Infant social bidding (smiling while gazing at parent), gaze, and smiling all decrease significantly over time within the still-face episode, while cry-face increases. This dynamic is the first rigorous quantification of what happens during continuous monitoring of a contingency failure: infants do not simply detect the frame violation at onset and then hold steady -- they show a progressive response trajectory across the episode. This is key evidence that the monitoring is ongoing and drives graded behavioral responses, not just a one-shot violation detector. Changes within the episode predict attachment and internalizing problems -- establishing individual difference validity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hierarchical linear modelling captures population-level trajectories, not individual monitoring cycles -- cannot determine sampling rate of the monitoring process.",
+    "The progressive bidding decrease could reflect fatigue or affect regulation cascades rather than monitoring-driven inference.",
+    "Still-face confounds contingency monitoring with face-processing and social stress -- cannot isolate monitoring contribution."
+  ],
+  "tags": ["q_035", "arc_049", "inv_059", "dynamic_still_face", "within_episode", "social_bidding", "continuous_monitoring", "graded_response", "individual_differences"],
+  "mapping": {
+    "source_claim_statement": "Infant social bidding, gaze, and smiling decrease progressively across time within the still-face episode (not just between episodes), while cry-face increases. This dynamic pattern within the unresponsiveness period predicts attachment security and internalizing problems in later development.",
+    "ree_translation": "The within-episode progressive decline in bidding is the behavioral signature of continuous monitoring driving a graded inference process. If infants merely detected frame violation at onset, bidding would drop once and stay flat. Instead, the graded decrease suggests ongoing checking -- each successive monitoring cycle returning 'still unresponsive' and updating the inference toward 'this frame is broken'. This is direct evidence that the monitoring architecture generates a continuous time-series of frame-state updates during the episode, not a one-shot boundary detection. For Q-035: the heartbeat signal is not just open/close but continuously updating frame confidence. For ARC-049: the bilateral play frame tag requires an ongoing signal with decay properties -- the REE substrate should model frame confidence as a decreasing function of elapsed time since last reciprocal contingency, not as a binary state.",
+    "mapping_caveat": "The progressive decrease could reflect habituation, fatigue, or regulatory state changes rather than explicit monitoring. Bidding is an active social repair attempt, not a direct read of the monitoring state. Individual differences in the trajectory (predicted by attachment) suggest the monitoring system is modulated by relational history, which is not yet in the REE model.",
+    "source_context": "University of Miami. N=77 infant-parent dyads, 4-6 months. Video-coded FFSF paradigm with HLM analysis of within-episode temporal dynamics. PMC open access."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.28,
+    "notes": "Developmental Psychology is top-tier. HLM within-episode analysis is the methodological contribution. The individual difference prediction (attachment) is a useful validity check. Transfer risk moderate: the progressive bidding decrease is a complex outcome that mixes monitoring with social repair and regulation."
+  }
+}

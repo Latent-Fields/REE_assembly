@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_play_contingency",
+  "entry_id": "2026-05-16_q035_arc049_striano2005_social_contingency_1to3months",
+  "timestamp_utc": "2026-05-16T12:28:06Z",
+  "claim_ids_tested": ["Q-035", "ARC-049", "MECH-197"],
+  "source": {
+    "title": "Sensitivity to social contingencies between 1 and 3 months of age",
+    "authors": ["Striano, Tricia", "Henning, Anne", "Stahl, Daniel"],
+    "year": 2005,
+    "venue": "Developmental Science",
+    "doi": "10.1111/j.1467-7687.2005.00442.x",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16246242/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This study provides a developmental onset boundary for continuous social contingency monitoring: 1-month-olds do not discriminate Normal, Non-Contingent, and Imitation interaction conditions; 3-month-olds do (gazing longer in imitation, smiling more in normal vs. non-contingent). The developmental transition between 1 and 3 months pins the emergence of the monitoring architecture to a narrow window, before pretend play, theory-of-mind, or language. High quality journal, within-study comparison design, clean manipulation. Directly addresses when the monitoring capacity comes online.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Single lab, relatively small N per age group.",
+    "The three conditions (Normal, Non-Contingent, Imitation) conflate contingency and timing -- Imitation is contingent but time-delayed, making it hard to isolate what dimension 3-month-olds are sensitive to.",
+    "Does not track within-episode dynamics -- cannot determine whether monitoring is continuous or periodic sampling."
+  ],
+  "tags": ["q_035", "arc_049", "mech_197", "contingency_emergence", "1_month", "3_months", "developmental_transition", "social_contingency", "primitive_monitoring"],
+  "mapping": {
+    "source_claim_statement": "One-month-old infants do not discriminate contingent from non-contingent or imitation interaction conditions. Three-month-olds discriminate all three: they smile more in normal contingent interaction and gaze longer in the imitation condition. This marks a developmental transition in social contingency sensitivity between 1 and 3 months.",
+    "ree_translation": "Pins the emergence of continuous frame monitoring to a narrow developmental window (1-3 months) -- before any sophisticated cognitive capacity. For MECH-197 (play type progression): if the monitoring architecture is already in place by 3 months, then the progression from sensorimotor to functional to constructive to pretend to games-with-rules play does NOT switch on monitoring -- it escalates what monitoring tracks (from contingency-of-response to content-of-game to rules-of-game). The architecture is constant; the register content grows. For Q-035: the heartbeat signal is present in the simplest play; only the frequency and semantic complexity of what it checks changes across development.",
+    "mapping_caveat": "The imitation condition introduces its own complexity (social mirroring versus contingent response). The study operationalises contingency as conditional probability of maternal response, not as a formal frame-monitoring task. Extrapolation to REE's play frame concept requires theoretical bridge work.",
+    "source_context": "Max Planck Institute for Evolutionary Anthropology, Leipzig. N=48 across two studies (1-month, 3-month). Face-to-face interaction in three conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Developmental Science is high-quality. Study design is clean with within-study comparison across ages. The developmental boundary (onset between 1-3 months) is the most precise published estimate of when the monitoring capacity emerges."
+  }
+}

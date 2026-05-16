@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_play_contingency",
+  "entry_id": "2026-05-16_arc049_inv059_gergely_watson1996_social_biofeedback",
+  "timestamp_utc": "2026-05-16T12:28:06Z",
+  "claim_ids_tested": ["ARC-049", "INV-059", "Q-035"],
+  "source": {
+    "title": "The social biofeedback theory of parental affect-mirroring: the development of emotional self-awareness and self-control in infancy",
+    "authors": ["Gergely, Gyorgy", "Watson, John S."],
+    "year": 1996,
+    "venue": "International Journal of Psycho-Analysis",
+    "doi": "10.1097/00004583-198903000-00016",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/9119582/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Gergely and Watson develop the social biofeedback theory: contingency detection is a dedicated mechanism (not derived from general learning) that infants use to track whether caregiver responses are temporally and probabilistically contingent on infant behavior. The mechanism detects the degree of contingency, maximises toward high-contingency partners, and uses contingency to build secondary representations of emotional states. This provides the mechanistic substrate for continuous frame monitoring: the contingency detection module is the primitive monitoring mechanism. Theoretical paper -- confidence is limited by lack of direct experimental evidence in this paper, but the framework has been supported by a large experimental literature. Directly grounds INV-059 (mutual frame maintenance as necessity) in a biologically-based mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is primarily a theoretical paper; empirical support comes from cited studies rather than novel data.",
+    "The theory focuses on dyadic contingency with a caregiver, not mutual peer-play frames -- the 'bilateral' aspect of ARC-049 is not directly addressed.",
+    "The contingency-detection module is posited as specialized but its neural substrate and developmental origin are left unspecified in this paper."
+  ],
+  "tags": ["arc_049", "inv_059", "q_035", "contingency_detection_module", "social_biofeedback", "affect_mirroring", "monitoring_mechanism", "primitive_capacity"],
+  "mapping": {
+    "source_claim_statement": "Infants possess a dedicated contingency detection and maximising mechanism that tracks the conditional probability of environmental responses to their behavior. When applied to parental affect-mirroring, this mechanism mediates emotional self-awareness development. The mechanism operates preverbally, presymbolically, and is biologically primary.",
+    "ree_translation": "Provides the mechanistic grounding for continuous frame monitoring as a primitive: the contingency detection module is not a developmental achievement but a core biological capacity present from early infancy. For ARC-049 (bilateral play frame tag): the monitoring signal is not a high-level social contract but a low-level contingency computation that runs continuously. For INV-059 (mutual frame maintenance as necessity): the necessity follows from the fact that play is grounded in contingency -- the moment contingency collapses, the monitoring system generates a mismatch signal and the play frame degrades. The 'marked' mirroring concept (caregiver expressions that are similar but perceptibly different from infant's) prefigures the REE idea of frame-acknowledgment signals that must be distinguishable from ordinary behavior.",
+    "mapping_caveat": "The social biofeedback theory addresses dyadic caregiver-infant contingency, not mutual peer play. The transition to bilateral peer monitoring (where BOTH agents are simultaneously monitoring EACH OTHER's frame compliance) is a step beyond this framework. Also: confidence here covers the theoretical claim, not a specific experiment.",
+    "source_context": "Theoretical review paper, University College London. Watson (1972, 1994) contingency detection work provides empirical foundation."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.38,
+    "notes": "International Journal of Psycho-Analysis is a leading psychoanalytic theory journal; Gergely-Watson is one of the most cited frameworks in infant social cognition. Transfer risk elevated because the theory is about dyadic caregiver-infant contingency, not peer play frames."
+  }
+}

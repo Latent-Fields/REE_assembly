@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_infant_play_contingency",
+  "entry_id": "2026-05-16_mech197_arc049_rochat1999_protoconversation_timing",
+  "timestamp_utc": "2026-05-16T12:28:06Z",
+  "claim_ids_tested": ["MECH-197", "ARC-049", "Q-035"],
+  "source": {
+    "title": "Emerging sensitivity to the timing and structure of protoconversation in early infancy",
+    "authors": ["Rochat, Philippe", "Querido, Jose G.", "Striano, Tricia"],
+    "year": 1999,
+    "venue": "Developmental Psychology",
+    "doi": "10.1037//0012-1649.35.4.950",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10442864/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Cross-sectional study across 2-, 4-, and 6-month-olds in organized vs. disorganized peekaboo. Two-month-olds show no differential response to organized vs. disorganized structure -- they are sensitive only to the presence of a social partner. Four-month-olds show the monitoring upgrade: they smile more and gaze less in organized games, suggesting they now track the narrative envelope (timing and structure) of the interaction, not just its presence. This provides a developmental timeline for when monitoring CONTENT escalates from primitive contingency-detection (present by 2-3 months) to structure-sensitive monitoring (present by 4 months). Strongly relevant to MECH-197's claim that play type progression adds content-complexity without switching on monitoring.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cross-sectional design (not longitudinal) so individual developmental trajectories are not captured.",
+    "The organized/disorganized peekaboo manipulation confounds timing with narrative coherence -- hard to isolate whether infants are monitoring timing per se or overall predictability.",
+    "Sample size is moderate (36 infants across three age groups, 12 per group)."
+  ],
+  "tags": ["mech_197", "arc_049", "q_035", "protoconversation", "timing", "narrative_envelope", "peekaboo", "4_months", "2_months", "content_escalation"],
+  "mapping": {
+    "source_claim_statement": "Two-month-olds show no differential response to organized vs. disorganized peekaboo games. Four-month-olds smile more and gaze differently in organized games, indicating sensitivity to the timing and structure of social exchanges. The authors interpret this as evidence of developing social expectations specifically about the narrative envelope of protoconversation.",
+    "ree_translation": "Provides the critical developmental sequence: at 2 months, the monitoring system detects 'partner present/active' but not structure-within-interaction. By 4 months, the monitoring content expands to include the temporal narrative of the exchange -- when turns should come, what structure the game should have. This directly maps to MECH-197's play type progression claim: the monitoring architecture is constant across these ages, but what it tracks escalates. For ARC-049 (bilateral play frame tag): the 4-month data suggests the frame state being monitored is no longer just 'are we playing?' but 'are we following the expected play structure?' -- exactly the content-escalation hypothesis. For Q-035: this is independent evidence that continuous monitoring is present by 2-4 months; the question is about what is monitored, not whether monitoring exists.",
+    "mapping_caveat": "Peekaboo is an adult-structured game -- the infant is tracking an adult's game structure, not co-maintaining a bilateral frame. Peer play frames where both partners monitor each other's compliance are not addressed. The 2-month null result could reflect a floor effect rather than true absence of structure monitoring.",
+    "source_context": "Emory University. 36 infants (12 per age group: 2, 4, 6 months). Female adult stranger as social partner (not mother). Peekaboo games, organized vs. disorganized variants."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.30,
+    "notes": "Developmental Psychology is top-tier. Cross-sectional design is a limitation. The stranger (not mother) as partner is an advantage for generalization. The null result at 2 months is interpretable as a lower bound on structure-monitoring onset."
+  }
+}
