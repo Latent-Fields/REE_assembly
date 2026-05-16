@@ -40,12 +40,12 @@ closure_plan:
     - id: "sleep_substrate:GAP-4"
       title: "MECH-273 offline gradient uses synthetic batch (replace with replay-derived)"
       phase: 4
-      status: blocked
+      status: done
       severity: high
-      owner_exq: EXP-0169
+      owner_exq: null
       unblocks_claims: [MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-16
     - id: "sleep_substrate:GAP-5"
       title: "Sleep entry K-episode deterministic (no arousal trigger)"
       phase: null
@@ -415,7 +415,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
 | GAP-2 | 2 | upstream-blocked | ARC-065 (behavioral-diversity-generation pathway) substrate not landed -- V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 (bit-identical sleep-vs-waking metrics; agent in monomodal collapse). 500a + 503a are surviving Tier-1 successors in pending review and are NOT diversity-dependent the same way. Resume after V3-EXQ-543b/c PASS under ARC-065 substrate, then re-queue 418m + 436b. See decision log 2026-05-10 entry + arc_062_rule_apprehension_plan.md for cross-cluster reflection. Original entry: | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
 | GAP-3 | 3, 4 | open | covered by Phase 3 + Phase 4 | tracked under those phases | n/a | 2026-05-08 |
-| GAP-4 | 4 | blocked | Phase 3 PASS (cluster must produce real routed events first) | After Phase 3 PASS, replace synthetic batch with replay-derived tuples | EXP-0169 | 2026-05-08 |
+| GAP-4 | 4 | done | (none) | _harm_replay_buffer populated in REEAgent.sense() (waking only: hypothesis_tag=False, z_harm not None, _last_action not None); capped 1000 entries; snapshotted at SLEEP_ENTRY in SleepLoopManager._run_cycle(); passed to offline_gradient_pass as harm_replay_buffer kwarg. Real tuples sampled via random.choices; synthetic zeros/round-robin one-hot fallback preserved when buffer None or empty. 4 new E11-E14 Phase E contract tests added; 14/14 PASS. | code change (no EXQ) | 2026-05-16 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
 | GAP-6 | 5 | done | (none) | Audit complete: all 7 write sites documented in sleep_aggregation_cluster.md; all are architectural exceptions; zero require StepHarness routing | substrate audit (no EXQ) | 2026-05-15 |
 | GAP-7 | 6 | open | nothing | Update /queue-experiment skill, audit 19 experiments | n/a | 2026-05-08 |
@@ -492,6 +492,37 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-16 - GAP-4 done (MECH-273 synthetic batch replaced with replay-derived tuples)
+
+GAP-3 PASS (V3-EXQ-565 on 2026-05-15) unblocked GAP-4. Implementation landed in the
+same session as the 4 new Phase E contract tests.
+
+Three files modified in ree-v3:
+
+1. `ree_core/sleep/self_model_aggregator.py` -- `offline_gradient_pass` gains a
+   `harm_replay_buffer: Optional[List[Tuple[Tensor, Tensor]]]` kwarg. When non-empty,
+   `random.choices(harm_replay_buffer, k=n_regions)` samples real waking-stream
+   `(z_harm_s, action)` tuples; `.view(-1)[:z_dim]` flattens any leading batch-1 dim
+   from `sense()`. Synthetic zeros+round-robin one-hot fallback preserved when buffer is
+   `None` or empty (backward compatible).
+
+2. `ree_core/agent.py` -- `REEAgent._harm_replay_buffer: List[...]` added; populated in
+   `sense()` when `hypothesis_tag=False AND z_harm is not None AND _last_action is not
+   None`; dequeues to cap 1000 entries.
+
+3. `ree_core/sleep/phase_manager.py` -- `SleepLoopManager._run_cycle()` snapshots the
+   buffer at `SLEEP_ENTRY` into `harm_replay_buffer_snapshot = list(agent._harm_replay_buffer)`
+   and passes it to `offline_gradient_pass(harm_replay_buffer=harm_replay_buffer_snapshot)`.
+
+4. `tests/contracts/test_sleep_phase_e_self_model_aggregator.py` -- 4 new contracts:
+   - E11: real buffer path updates E2_harm_s parameters
+   - E12: empty buffer (`[]`) uses synthetic fallback, completes without error
+   - E13: `None` buffer (default) uses synthetic fallback
+   - E14: buffer smaller than n_regions samples with replacement via `random.choices`
+   Full Phase E suite: 14/14 PASS.
+
+GAP-4 status: blocked -> done. MECH-273 unblocked.
 
 ### 2026-05-15 - GAP-8 validation experiment V3-EXQ-565 queued
 
