@@ -61,6 +61,20 @@ echo "--- Step 3b: Generating Option E shadow recommendations ---"
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
+echo "--- Step 4b: Backward traceability check (G2) ---"
+if ! "$PYTHON" scripts/check_backward_traceability.py; then
+  echo "" >&2
+  echo "WARNING: check_backward_traceability.py found developmental claims missing from" >&2
+  echo "         docs/architecture/developmental_needs_register.md." >&2
+  echo "         Re-run with --warn-only for informational output without blocking." >&2
+  echo "         To suppress: add the claim to the register or run with SKIP_TRACEABILITY=1" >&2
+  if [ "${SKIP_TRACEABILITY:-0}" = "1" ]; then
+    echo "         SKIP_TRACEABILITY=1 set -- continuing despite warnings." >&2
+  else
+    exit 1
+  fi
+fi
+
 echo "--- Step 5/7: Rebuilding claim dependency process dashboard data ---"
 "$PYTHON" scripts/build_claim_dependency_process.py
 
