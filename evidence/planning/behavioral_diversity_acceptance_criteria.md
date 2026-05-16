@@ -744,6 +744,41 @@ commitment (ARC-065) as open -- the implementation may be wrong, not the commitm
    is a candidate child MECH for SD-017 / MECH-120 that should be pre-designed before the
    Rung 3 experiment runs, so the remediation is ready if needed.
 
+4. **Should diversity sprint experiments test on a warmed rather than cold-start agent?**
+   EXQ-573 (bias-scale sweep, 2026-05-16) showed all 10 arms bit-for-bit identical: MECH-314a
+   produces zero bias because ResidueField is empty at cold start, MECH-320 produces zero bias
+   because EWMA has not built up, and MECH-313 temperature-lift is irrelevant because random-
+   network scores are near-uniform. The zero-differential is not a calibration failure; it is
+   the correct behaviour at developmental stage 0. The question is whether the diversity sprint
+   should be redesigned to pre-warm the agent (e.g., N episodes of novelty-bonus exploration to
+   populate ResidueField and build EWMA) before measuring MECH-313/314/320 contributions.
+   Resolution path: design a two-phase protocol (warm-up + diversity measurement) and confirm
+   that bias components become non-zero in the second phase before re-running the scale sweep.
+   See DEV-NEED-029 in developmental_needs_register.md for the related developmental gate question.
+
+5. **Is there a developmental gate specifying when ARC-065 diversity mechanisms first fire?**
+   ARC-065 child mechanisms (MECH-313, MECH-314a, MECH-320) are all developmental: they require
+   a warm substrate (populated ResidueField, built-up EWMA, trained E3 scores) before producing
+   non-zero effects. There is currently no formal gate criterion specifying the minimum waking
+   experience (episodes, residue coverage, EWMA warmup time) required for these mechanisms to
+   contribute. Without such a gate, diversity sprint experiments may run at the wrong
+   developmental stage and return null results that are methodologically correct but
+   scientifically uninformative. Candidate gate criteria: ResidueField coverage > threshold,
+   EWMA v_raw > epsilon, E3 score variance > noise floor. See DEV-NEED-029 in
+   developmental_needs_register.md.
+
+6. **Does v_t_floor have a place as a developmental bootstrapping tool (infant stage)?**
+   Setting `tonic_vigor_v_t_floor > 0` bypasses the EWMA warm-up requirement and gives MECH-320
+   an immediate action/noop discrimination bias from episode 1. This does NOT resolve the Rung 1
+   diversity metrics (action-type entropy is unchanged) but it could serve as a bootstrapping
+   mechanism during the infant-to-childhood transition: providing a positive gradient toward any
+   action over noop before EWMA has accumulated enough signal to drive the full vigor coupling.
+   The v_t_floor would function analogously to ARC-046's reduced hazard magnitudes -- a
+   curriculum parameter that attenuates the developmental warmup cost for one specific mechanism.
+   Resolution path: add v_t_floor as a named infant-stage parameter in developmental_curriculum.md
+   with a note that it is distinct from the adult MECH-320 mechanism; evaluate whether the
+   developmental_needs_register.md MECH-320 entry should carry an infant-stage proxy note.
+
 ---
 
 *This document is the plan-of-record for behavioural diversity governance in REE-v3.*
