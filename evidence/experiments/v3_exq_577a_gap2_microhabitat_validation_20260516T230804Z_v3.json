@@ -1,0 +1,190 @@
+{
+  "run_id": "v3_exq_577a_gap2_microhabitat_validation_20260516T230804Z_v3",
+  "queue_id": "V3-EXQ-577a",
+  "experiment_type": "gap2_microhabitat_validation",
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "evidence_direction": "non_contributory",
+  "supersedes": "gap2_microhabitat_validation",
+  "timestamp_utc": "20260516T230804Z",
+  "outcome": "PASS",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_episodes": 100,
+    "n_steps": 200,
+    "size": 14,
+    "n_hazards": 6,
+    "n_microhabitats": 3,
+    "zone_C_ambient_bonus": 0.05,
+    "zone_novelty_decay": 0.95
+  },
+  "acceptance_checks": {
+    "C1_arm0_bit_identical_off": true,
+    "C2_arm1_zone_map_wellformed_and_agg_base": true,
+    "C3_arm1_zone_c_zero_hazard_and_density_bias": true,
+    "C4_arm1_zone_c_ambient_fires_and_decays": true
+  },
+  "c1_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c2_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c3_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c4_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "results_by_seed": {
+    "0": {
+      "ARM_0_disabled": {
+        "microhabitat_enabled": false,
+        "c1_bit_identical_off": true,
+        "ambient_fires_when_disabled": 0
+      },
+      "ARM_1_enabled": {
+        "microhabitat_enabled": true,
+        "c2_zone_map_wellformed_and_agg_base": true,
+        "c2_well_formed_all_episodes": true,
+        "c2_aggregate_base_zones_present": true,
+        "c2_aggregate_codes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "c3_zone_c_zero_hazard_and_B_gt_A": true,
+        "c4_ambient_fires_and_decays": true,
+        "diag_base_zone_collapse_count": 0,
+        "diag_base_zone_collapse_rate": 0.0,
+        "diag_redraw_count_total": 1,
+        "diag_redraw_exhausted_count": 0,
+        "haz_by_zone": [
+          80,
+          317,
+          0,
+          203
+        ],
+        "cells_by_zone": [
+          3834,
+          3412,
+          3544,
+          3610
+        ],
+        "hazard_density_by_zone": [
+          0.020866,
+          0.092907,
+          0.0,
+          0.056233
+        ],
+        "c4_ambient_visit0": 0.05,
+        "c4_ambient_visit1": 0.0475
+      }
+    },
+    "1": {
+      "ARM_0_disabled": {
+        "microhabitat_enabled": false,
+        "c1_bit_identical_off": true,
+        "ambient_fires_when_disabled": 0
+      },
+      "ARM_1_enabled": {
+        "microhabitat_enabled": true,
+        "c2_zone_map_wellformed_and_agg_base": true,
+        "c2_well_formed_all_episodes": true,
+        "c2_aggregate_base_zones_present": true,
+        "c2_aggregate_codes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "c3_zone_c_zero_hazard_and_B_gt_A": true,
+        "c4_ambient_fires_and_decays": true,
+        "diag_base_zone_collapse_count": 0,
+        "diag_base_zone_collapse_rate": 0.0,
+        "diag_redraw_count_total": 1,
+        "diag_redraw_exhausted_count": 0,
+        "haz_by_zone": [
+          70,
+          329,
+          0,
+          201
+        ],
+        "cells_by_zone": [
+          3677,
+          3637,
+          3602,
+          3484
+        ],
+        "hazard_density_by_zone": [
+          0.019037,
+          0.090459,
+          0.0,
+          0.057692
+        ],
+        "c4_ambient_visit0": 0.05,
+        "c4_ambient_visit1": 0.0475
+      }
+    },
+    "2": {
+      "ARM_0_disabled": {
+        "microhabitat_enabled": false,
+        "c1_bit_identical_off": true,
+        "ambient_fires_when_disabled": 0
+      },
+      "ARM_1_enabled": {
+        "microhabitat_enabled": true,
+        "c2_zone_map_wellformed_and_agg_base": true,
+        "c2_well_formed_all_episodes": true,
+        "c2_aggregate_base_zones_present": true,
+        "c2_aggregate_codes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "c3_zone_c_zero_hazard_and_B_gt_A": true,
+        "c4_ambient_fires_and_decays": true,
+        "diag_base_zone_collapse_count": 0,
+        "diag_base_zone_collapse_rate": 0.0,
+        "diag_redraw_count_total": 1,
+        "diag_redraw_exhausted_count": 0,
+        "haz_by_zone": [
+          66,
+          326,
+          0,
+          208
+        ],
+        "cells_by_zone": [
+          3857,
+          3655,
+          3369,
+          3519
+        ],
+        "hazard_density_by_zone": [
+          0.017112,
+          0.089193,
+          0.0,
+          0.059108
+        ],
+        "c4_ambient_visit0": 0.05,
+        "c4_ambient_visit1": 0.0475
+      }
+    }
+  }
+}
