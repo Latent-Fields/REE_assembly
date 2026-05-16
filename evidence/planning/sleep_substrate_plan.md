@@ -42,7 +42,7 @@ closure_plan:
       phase: 4
       status: done
       severity: high
-      owner_exq: null
+      owner_exq: "V3-EXQ-574"
       unblocks_claims: [MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
       last_updated: 2026-05-16
