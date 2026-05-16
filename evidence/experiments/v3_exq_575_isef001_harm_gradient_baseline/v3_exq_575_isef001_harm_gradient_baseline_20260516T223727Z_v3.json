@@ -1,0 +1,262 @@
+{
+  "run_id": "v3_exq_575_isef001_harm_gradient_baseline_20260516T223727Z_v3",
+  "queue_id": "V3-EXQ-575",
+  "experiment_type": "v3_exq_575_isef001_harm_gradient_baseline",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260516T223727Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 200,
+    "steps_per_episode": 200,
+    "num_basis_functions": 32,
+    "arm_harm_scales": {
+      "ARM_0_control": 0.05,
+      "ARM_1_treatment": 0.3
+    }
+  },
+  "acceptance_criteria": {
+    "C1_arm1_min_mean_coverage": 0.15,
+    "C2_arm1_exceeds_arm0": true
+  },
+  "criteria_results": {
+    "C1_pass": true,
+    "C2_pass": false
+  },
+  "metrics": {
+    "arm0_mean_final_coverage": 1.0,
+    "arm1_mean_final_coverage": 1.0,
+    "arm0_per_seed_coverages": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "arm1_per_seed_coverages": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "harm_scale": 0.05,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.988125,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "harm_scale": 0.3,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.973125,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "harm_scale": 0.05,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.97640625,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "harm_scale": 0.3,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.99421875,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "harm_scale": 0.05,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.98796875,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "harm_scale": 0.3,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.98640625,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "harm_scale": 0.05,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.98265625,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "harm_scale": 0.3,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.97921875,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "harm_scale": 0.05,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.9846875,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "harm_scale": 0.3,
+          "final_coverage": 1.0,
+          "mean_coverage": 0.99609375,
+          "coverage_per_ep": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  ],
+  "notes": "DEV-NEED-029 warm-start gate diagnostic (ISEF-001). ARM_0: proximity_harm_scale=0.05 (default cold-start control). ARM_1: proximity_harm_scale=0.30 (treatment warm-start). Primary metric: residue_coverage_pct = active_centers / 32 RBF bases. PASS gates downstream ARC-065 diversity sweeps and Q-043/044/045 retests."
+}
