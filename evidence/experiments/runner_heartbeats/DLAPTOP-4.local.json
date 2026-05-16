@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-16T23:43:50Z",
+  "last_tick_utc": "2026-05-16T23:44:52Z",
   "state": "running",
   "current_exq": "V3-EXQ-543e",
   "current_exq_started_utc": "2026-05-16T23:42:42.559107+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_0_baseline",
     "runs_done": 0,
     "runs_total": 12,
-    "episodes_done": 30,
+    "episodes_done": 60,
     "episodes_total": 108,
-    "overall_pct": 2.3
+    "overall_pct": 4.6
   },
-  "seconds_elapsed": 68,
-  "seconds_remaining": 28945,
+  "seconds_elapsed": 130,
+  "seconds_remaining": 25468,
   "recent_lines": [
-    "use_gated_policy=False  use_dacc=False  dacc_suppression_weight=0.0  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
-    "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0007  ep_reward=-1.1214",
-    "[train] ARM_0_baseline ep 20/108  phase=P0  rv=0.0006  ep_reward=-1.2811",
-    "[train] ARM_0_baseline ep 30/108  phase=P0  rv=0.0005  ep_reward=-1.2056"
+    "[probe] ARM_0_baseline P1 ep 10/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
+    "[train] ARM_0_baseline ep 50/108  phase=P1  rv=0.0011  ep_reward=-1.1514  inert_gating=False",
+    "[probe] ARM_0_baseline P1 ep 15/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
+    "[probe] ARM_0_baseline P1 ep 20/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
+    "[train] ARM_0_baseline ep 60/108  phase=P1  rv=0.0007  ep_reward=-1.0907  inert_gating=False"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
