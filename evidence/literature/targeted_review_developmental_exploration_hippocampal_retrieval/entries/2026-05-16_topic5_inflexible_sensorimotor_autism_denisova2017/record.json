@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-16_topic5_inflexible_sensorimotor_autism_denisova2017",
+  "timestamp_utc": "2026-05-16T11:17:19Z",
+  "claim_ids_tested": ["ARC-065", "INV-073"],
+  "source": {
+    "title": "Inflexible neurobiological signatures precede atypical development in infants at high risk for autism",
+    "authors": ["Kristina Denisova", "Guihu Zhao"],
+    "year": 2017,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-017-09028-0",
+    "url": "https://doi.org/10.1038/s41598-017-09028-0"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Nature Scientific Reports study; n=71 infants (high-risk HR and low-risk LR for ASD) with Motion Capture from 1-2 months; validated against a 1,445 infant sibling dataset. Key finding is that context-inflexibility (not raw variability level) is the pathological signature. This directly bears on REE's diversity mechanism design: the target is context-appropriate variability, not maximum entropy. High source quality; mapping fidelity strong because the operationalization of healthy vs pathological exploration maps directly to REE's diversity acceptance criteria.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The HR group does not uniformly develop ASD -- only a subset, limiting causal inference.",
+    "Head movement is used as the primary motor proxy, which may not generalize to limb or whole-body motor variability patterns.",
+    "The ASD pathway may be atypical in ways specific to social development; the logic may not transfer cleanly to non-social behavioral flexibility."
+  ],
+  "tags": ["context_flexibility", "sensorimotor_variability", "autism_risk", "behavioral_diversity", "developmental_bootstrapping", "arc_065", "inv_073"],
+  "mapping": {
+    "source_claim_statement": "Context-inflexible sensorimotor systems at 1-2 months predict atypical developmental trajectory. Healthy LR infants' movements differ significantly between language listening and sleep; HR infants' movements are similar in both conditions -- a striking lack of contextual diversity rather than a flat variability deficit.",
+    "ree_translation": "The critical infant-stage metric is not action entropy per se but context-modulated variability -- the same finding REE's behavioral diversity acceptance criteria Rung 2 requires (context-sensitive switching). An infant REE substrate that produces high entropy uniformly across contexts would be pathological by this standard. REE needs an environmental context signal that modulates exploration amplitude.",
+    "mapping_caveat": "The ASD risk framing introduces clinical confounds (genetic predisposition, atypical social brain development). The core finding -- context-inflexibility as a failure mode -- is robustly transferable, but the etiology may not be.",
+    "source_context": "Human infant longitudinal; Columbia University cohort; motion capture of spontaneous head movements during language listening and sleep; validated against Cambridge baby-sibling cohort."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "Strong empirical result in Scientific Reports with replication cohort; transfer risk is moderate because ASD-specific mechanisms may not generalize."
+  }
+}

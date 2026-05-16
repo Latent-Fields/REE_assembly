@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-16_topic5_muscle_correlations_transition_dolinskaya2021",
+  "timestamp_utc": "2026-05-16T11:17:19Z",
+  "claim_ids_tested": ["ARC-065", "INV-073"],
+  "source": {
+    "title": "Increasing muscle activity correlations during spontaneous movements in the first six months of life",
+    "authors": ["I.Y. Dolinskaya", "I.A. Solopova", "D.S. Zhvansky", "E.S. Keshishian", "Y. Ivanenko"],
+    "year": 2021,
+    "venue": "Neuroscience Letters",
+    "doi": "10.1016/j.neulet.2021.135957",
+    "url": "https://doi.org/10.1016/j.neulet.2021.135957"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "EMG study of n=40 full-term infants from 1 week to 6 months; longitudinal within-subject design with 12 muscles measured across ipsilateral/contralateral limb pairs. Directly tracks the transition from uncorrelated to coordinated spontaneous limb activity. Source quality moderate (Neuroscience Letters, not top-tier); mapping fidelity good because the progressive emergence of inter-limb coordination is the mechanism underlying the random-to-structured transition REE needs to understand.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Study is purely observational EMG; no intervention, so causal direction of the correlation increase (maturation vs experience-driven) is unresolved.",
+    "Spontaneous vs voluntary distinction is operational only (spontaneous = no salient external trigger), not mechanistically verified."
+  ],
+  "tags": ["muscle_coordination", "spontaneous_movement", "neuromuscular_maturation", "random_to_structured_transition", "limb_correlations", "arc_065", "inv_073"],
+  "mapping": {
+    "source_claim_statement": "From 1 week to 6 months, ipsilateral and contralateral limb muscle activity correlations increase progressively in both flexors and extensors, consistent with maturation of physiologically relevant neuromuscular network connections underlying the transition from spontaneous-like to voluntary goal-directed movements.",
+    "ree_translation": "The random-to-structured transition is not a discrete switch but a continuous coordination gradient. For REE, this implies that the infant-stage substrate should track inter-module coordination as a metric of developmental progress, not just individual action entropy. The emergence of cross-limb correlations is the structural scaffold that the option store is built on.",
+    "mapping_caveat": "The REE architecture has no direct analog of limb-coupling; the closest mapping is cross-module prediction error correlation or latent state coherence. Transfer from neuromuscular coordination to latent space coordination is indirect.",
+    "source_context": "Russian cohort, full-term healthy infants; surface EMG with passive leg movement paradigm to test cross-limb coupling."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Solid within-domain EMG study; the mapping from cross-limb muscle correlation to REE module coordination requires a conceptual bridge step."
+  }
+}

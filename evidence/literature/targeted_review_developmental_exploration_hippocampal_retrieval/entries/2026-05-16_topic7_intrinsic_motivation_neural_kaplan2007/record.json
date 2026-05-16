@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007",
+  "timestamp_utc": "2026-05-16T11:17:19Z",
+  "claim_ids_tested": ["ARC-065", "INV-073"],
+  "source": {
+    "title": "In search of the neural circuits of intrinsic motivation",
+    "authors": ["Frederic Kaplan", "Pierre-Yves Oudeyer"],
+    "year": 2007,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/neuro.01.1.1.017.2007",
+    "url": "https://doi.org/10.3389/neuro.01.1.1.017.2007"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Foundational Frontiers Neuroscience paper by Kaplan and Oudeyer; robotic experiments + explicit neural hypotheses (tonic dopamine as learning progress signal; cortical microcircuits as meta-prediction systems). Highly cited foundational work. Mapping fidelity strong because it proposes a specific neural mechanism -- tonic dopamine encodes learning progress -- that maps onto REE's existing reward/neuromodulation architecture. Source quality: Frontiers early paper (2007), but foundational in the field with many citations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Neural hypotheses about tonic dopamine encoding learning progress remain speculative -- this has not been directly demonstrated in developing human infants.",
+    "The meta-prediction hierarchy is an abstraction; the actual cortical microcircuit substrate is not validated.",
+    "The experiments use simple robotic platforms that do not test the system under harm/safety constraints."
+  ],
+  "tags": ["intrinsic_motivation", "dopamine", "learning_progress", "prediction_error", "neural_circuits", "meta_prediction", "exploration_stages", "arc_065", "inv_073"],
+  "mapping": {
+    "source_claim_statement": "Intrinsically motivating activities correspond to expected decrease in prediction error. Tonic dopamine acts as a learning progress signal. A hierarchy of microcortical circuits acts as both prediction and meta-prediction systems. This generates organized sequences of behavior of increasing complexity characteristic of several behavioral patterns in human development.",
+    "ree_translation": "The proposed tonic dopamine / learning progress architecture maps onto REE's E1 prediction error stream as the natural intrinsic motivation signal during the infant phase. The hypothesis that children avoid both predictable and unpredictable situations (focusing on the intermediate -- the 'zone of proximal development') directly grounds ARC-065's diversity requirement: exploration should concentrate on the boundary of current capability, not uniformly over the full action space.",
+    "mapping_caveat": "REE does not currently implement a meta-prediction hierarchy; E1 provides prediction error but not a learning-progress signal (rate of change of prediction error). Implementing this would require tracking E1 loss trajectory over time, which is not in the current substrate.",
+    "source_context": "Robotic experiments (Epigenetic robotics platform); theoretical neuroscience hypotheses; Frontiers in Neuroscience inaugural issue."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "Foundational but early-Frontiers paper; neural hypotheses speculative but computationally well-grounded; meta-prediction gap is a real implementation need for REE."
+  }
+}

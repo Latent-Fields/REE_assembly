@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-16_topic6_motor_noise_vs_exploration_gliga2018",
+  "timestamp_utc": "2026-05-16T11:17:19Z",
+  "claim_ids_tested": ["ARC-065", "INV-073"],
+  "source": {
+    "title": "Telling Apart Motor Noise and Exploratory Behavior, in Early Development",
+    "authors": ["Teodora Gliga"],
+    "year": 2018,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2018.01939",
+    "url": "https://doi.org/10.3389/fpsyg.2018.01939"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Invited review in Frontiers in Psychology; synthesizes empirical literature on infant motor variability vs noise. The core proposal -- that infants increase motor variability when facing information-gathering opportunities -- is directly testable and well-supported by cited studies. Source quality moderate (Frontiers, review paper). Mapping fidelity strong because it operationalizes the distinction between noise-floor variability and exploration-driven variability, which is exactly the distinction REE's diversity acceptance criteria must make.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review is theoretical; the proposed guiding principle (infants increase variability for information-gathering) is not yet directly tested in a large-scale empirical study.",
+    "The mechanisms proposed remain somewhat underspecified -- the review identifies what the signal is (context-modulated variability) but not how the infant generates it neurally."
+  ],
+  "tags": ["motor_noise", "exploratory_behavior", "variability_discrimination", "information_gathering", "context_modulation", "arc_065", "inv_073"],
+  "mapping": {
+    "source_claim_statement": "Infants increase motor activity and variability when faced with opportunities to gather new information (about their own bodies or the world). This contextual modulation of variability is the distinguishing feature separating active exploration from noise produced by an immature motor system.",
+    "ree_translation": "REE's infant substrate needs to implement context-sensitive variability, not just entropy maximization. The relevant signal is: is the agent in an information-rich or information-poor context? In information-rich contexts, exploration amplitude should increase. The review also identifies that variability takes multiple forms -- deliberate hypothesis testing, increasing environmental variability, and sensorimotor contingency learning -- all of which correspond to distinct REE diversity mechanisms (MECH-313, MECH-314, MECH-320).",
+    "mapping_caveat": "The review discusses infants, not artificial agents; the mechanism by which context-sensitivity is implemented in the infant brain is not specified, so there is no direct blueprint for REE substrate design.",
+    "source_context": "Review of human infant reaching, mouthing, and vocalization variability studies; Frontiers special issue on cognitive development."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.20,
+    "notes": "High conceptual relevance; source quality moderate because it is a theoretical review. The mapping to REE diversity mechanisms is unusually direct."
+  }
+}

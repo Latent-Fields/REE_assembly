@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-16_topic6_babbling_cell_assembly_dopamine_griffin2026",
+  "timestamp_utc": "2026-05-16T11:17:19Z",
+  "claim_ids_tested": ["ARC-065", "INV-073"],
+  "source": {
+    "title": "From Spontaneous Ignitions to Sensorimotor Cell Assemblies via Dopamine: A Spiking Neurocomputational Model of Infants' Hand Action Acquisition",
+    "authors": ["Nick Griffin", "Andrea Mattera", "Gianluca Baldassarre", "Max Garagnani"],
+    "year": 2026,
+    "venue": "Brain Sciences",
+    "doi": "10.3390/brainsci16020158",
+    "url": "https://doi.org/10.3390/brainsci16020158"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Neurobiologically constrained spiking neural network model (six brain area maps; excitatory/inhibitory; STDP + Hebbian + dopamine-modulated reward). Two-phase model -- Hebbian self-organization first, dopamine-reward consolidation second -- directly formalizes the babbling-to-action-consolidation pipeline. Source quality moderate (Brain Sciences is broad; model is simulation only). Mapping fidelity strong because the two-phase architecture (exploration then reward-consolidation) is exactly what REE needs for its infant-stage substrate. A pure reward-from-birth architecture would skip phase 1 and produce no option diversity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Simulation only; no direct comparison with infant neurophysiological data on cell assembly formation.",
+    "Dopamine is used as a global reward signal -- this may not capture the context-specific neuromodulation required for flexible repertoire formation.",
+    "The model is tested only on hand action acquisition; generalization to whole-body or locomotor repertoires is unverified."
+  ],
+  "tags": ["babbling", "cell_assembly", "dopamine", "two_phase_learning", "hebbian", "reinforcement", "motor_exploration", "action_repertoire", "arc_065", "inv_073"],
+  "mapping": {
+    "source_claim_statement": "During an initial Hebbian exploratory phase, the neural architecture develops action-perception circuits for multiple hand actions via spontaneous motor babbling (noise-driven ignitions). In a second phase, dopamine-mediated reward reinforces a subset of those circuits, increasing their spontaneous ignition frequency and driving the transition from exploration to reward-seeking.",
+    "ree_translation": "The two-phase model maps precisely onto REE's infant-stage design problem. Phase 1 (Hebbian self-organization) is what the infant substrate must support without yet having a calibrated reward signal. Phase 2 (dopamine consolidation) is what the agent does once the harm/goal signals are available. Without Phase 1, the agent has no option diversity for Phase 2 to select from. This is the mechanistic justification for a dedicated exploration phase before reward-based learning.",
+    "mapping_caveat": "REE uses CEM + E3 scoring rather than spiking neural nets; the Hebbian + dopamine mechanism is one implementation of the two-phase logic, not a prescription for the REE architecture.",
+    "source_context": "Computational simulation; 6-area model covering motor cortex, premotor cortex, somatosensory regions; simulating human hand action development."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "High conceptual alignment with REE infant-stage problem; moderate source quality (simulation, broad-scope journal)."
+  }
+}

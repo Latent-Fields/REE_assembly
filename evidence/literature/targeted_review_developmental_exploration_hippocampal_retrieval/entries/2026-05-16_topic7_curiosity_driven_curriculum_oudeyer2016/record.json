@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-16_topic7_curiosity_driven_curriculum_oudeyer2016",
+  "timestamp_utc": "2026-05-16T11:17:19Z",
+  "claim_ids_tested": ["ARC-065", "INV-073"],
+  "source": {
+    "title": "How Evolution May Work Through Curiosity-Driven Developmental Process",
+    "authors": ["Pierre-Yves Oudeyer", "Linda B. Smith"],
+    "year": 2016,
+    "venue": "Topics in Cognitive Science",
+    "doi": "10.1111/tops.12196",
+    "url": "https://doi.org/10.1111/tops.12196"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Topics in Cognitive Science review + robotic experiment by Oudeyer (FLOWERS team) and Linda Smith (Indiana developmental psychology). The robot experiment showing ordered developmental stages from curiosity-driven learning (first affordances, then vocal interaction) directly evidences that progress-seeking intrinsic motivation is sufficient to generate a structured curriculum without external design. Source quality: venue is strong (TopiCS); it is partly a theoretical synthesis. Mapping fidelity: strong because it directly addresses REE's transition from random exploration to structured action patterns.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The robot experiment uses a simplified environment; the generalization to REE's reef/harm environment is not guaranteed.",
+    "The intrinsic reward signal (learning progress = reduction in prediction error) is one specific implementation; whether REE's existing E1/E2 prediction error signals naturally implement this is an open question.",
+    "Ordered stages are a specific prediction that may not hold in REE's continuous action space."
+  ],
+  "tags": ["curiosity_driven_learning", "intrinsic_motivation", "developmental_curriculum", "learning_progress", "self_organized_stages", "exploration_to_structure", "arc_065", "inv_073"],
+  "mapping": {
+    "source_claim_statement": "Curiosity-driven learning (maximizing learning progress, operationalized as expected prediction error reduction) self-organizes ordered developmental stages with a mixture of regularities and diversities. The robot learner successively discovers object affordances and vocal interactions without any pre-programmed curriculum.",
+    "ree_translation": "For REE's infant stage, the transition from random exploration to structured action patterns does not require an external curriculum signal -- it can emerge from prediction error reduction as an intrinsic reward. This grounds ARC-065 (behavioral diversity generation) in a self-organizing mechanism: the agent naturally transitions to exploitation when learning progress on exploration slows. E1's prediction error is the natural candidate for this signal in REE.",
+    "mapping_caveat": "The robot experiment uses a simplified embodiment and environment. REE's harm/goal landscape introduces asymmetric costs that are absent from curiosity-only architectures, so pure curiosity-driven learning would need augmentation with harm sensitivity.",
+    "source_context": "Robotic experiment (FLOWERS team, INRIA/ENSTA); developmental psychology synthesis; Topics in Cognitive Science invited contribution."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "Strong theoretical + empirical paper; mapping is close but REE's harm dimension adds complexity not present in curiosity-only systems."
+  }
+}

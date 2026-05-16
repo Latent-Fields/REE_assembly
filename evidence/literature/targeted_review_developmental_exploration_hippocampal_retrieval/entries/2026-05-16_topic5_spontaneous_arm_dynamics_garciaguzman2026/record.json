@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_exploration_hippocampal_retrieval",
+  "entry_id": "2026-05-16_topic5_spontaneous_arm_dynamics_garciaguzman2026",
+  "timestamp_utc": "2026-05-16T11:17:19Z",
+  "claim_ids_tested": ["ARC-065", "INV-073"],
+  "source": {
+    "title": "Infants' spontaneous movements explore arm dynamics",
+    "authors": ["Juan H. Garcia-Guzman", "Eduardo Ros", "Niceto R. Luque"],
+    "year": 2026,
+    "venue": "Communications Biology",
+    "doi": "10.1038/s42003-026-09986-0",
+    "url": "https://doi.org/10.1038/s42003-026-09986-0"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Nature Communications Biology empirical study using RGB-D motion capture (n=20 infants, 270+ spontaneous movement units) with synthetic comparison datasets. Directly measures kinematic space coverage and acceleration distributions. High source quality; mapping fidelity is strong because the finding -- that spontaneous movements are optimized for maximal dynamic excitation, not goal achievement -- directly supports the REE claim that action diversity generation precedes and bootstraps capability formation. Transfer risk low because human infant data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Analysis is confined to arm movement; it is unclear whether the same dynamic-excitation optimization logic extends to lower-limb or whole-body locomotor exploration.",
+    "Comparison was against reaching-like motions, not other spontaneous movement types; the design assumes a clear spontaneous/goal-directed dichotomy that may not be clean in naturalistic settings."
+  ],
+  "tags": ["spontaneous_movement", "arm_dynamics", "kinematic_variability", "motor_exploration", "developmental_bootstrapping", "arc_065", "inv_073"],
+  "mapping": {
+    "source_claim_statement": "Infant spontaneous movements engage arm dynamics more extensively than reaching-like motions, with acceleration distributions skewed toward trajectories that maximize dynamic excitation; the kinematic space explored has significantly higher variability than goal-directed reaching.",
+    "ree_translation": "In REE terms, the infant exploration phase is not random noise nor degraded reaching -- it is a systematic probe of the action space's dynamic range. This directly supports ARC-065 (behavioral diversity generation is a distinct functional phase) and INV-073 (developmental bootstrapping is a universal prerequisite for capability acquisition). An agent that skips exploration cannot map the corners of its own action space.",
+    "mapping_caveat": "The study quantifies kinematic richness but does not measure what representational structure is built from this exploration. The REE claim that exploration builds a behavioral option store remains an inference, not a direct observation.",
+    "source_context": "Human infants aged approximately 3-6 months; RGB-D motion capture + YouTube video corpus; synthetic data comparison using inverse dynamics models."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.10,
+    "notes": "Strong empirical design with direct kinematic measurement; minor mapping gap between kinematic richness and representational structure."
+  }
+}
