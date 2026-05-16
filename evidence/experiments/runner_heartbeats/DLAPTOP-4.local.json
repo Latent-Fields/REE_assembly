@@ -1,33 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-16T22:33:47Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-575",
-  "current_exq_started_utc": "2026-05-16T19:06:01.607989+00:00",
-  "current_title": "ISEF-001 harm gradient baseline -- warm-start gate diagnostic",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 46 / ARM_1_treatment",
-    "runs_done": 9,
-    "runs_total": 10,
-    "episodes_done": 150,
-    "episodes_total": 200,
-    "overall_pct": 97.5
-  },
-  "seconds_elapsed": 12466,
-  "seconds_remaining": 305,
-  "recent_lines": [
-    "verdict: PASS",
-    "Seed 46 Condition ARM_1_treatment",
-    "[train] ARM_1_treatment ep 50/200 seed=46 coverage=1.000",
-    "[train] ARM_1_treatment ep 100/200 seed=46 coverage=1.000",
-    "[train] ARM_1_treatment ep 150/200 seed=46 coverage=1.000"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-05-16T23:11:13Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-575",
+      "result": "FAIL",
+      "completed_at": "2026-05-16T22:37:28.441582+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-579",
+      "result": "PASS",
+      "completed_at": "2026-05-16T22:38:42.400011+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-580",
+      "result": "PASS",
+      "completed_at": "2026-05-16T22:47:00.640501+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-581",
+      "result": "PASS",
+      "completed_at": "2026-05-16T22:52:30.598469+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-577a",
+      "result": "PASS",
+      "completed_at": "2026-05-16T23:08:05.215070+00:00"
+    }
+  ],
   "runner_pid": 90611,
   "runner_version": null,
   "gpu": {
