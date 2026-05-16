@@ -1,0 +1,125 @@
+{
+  "run_id": "v3_exq_574_mech273_self_model_aggregator_validation_20260516T105859Z_v3",
+  "queue_id": "V3-EXQ-574",
+  "experiment_type": "v3_exq_574_mech273_self_model_aggregator_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-273"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-273": "supports"
+  },
+  "timestamp_utc": "20260516T105859Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "n_anchors": 4,
+    "n_cycles": 3,
+    "episodes_per_cycle": 30,
+    "total_eps": 90,
+    "draws_per_cycle": 50,
+    "offline_n_steps": 100
+  },
+  "acceptance_criteria": {
+    "C1_min_steps_per_cycle": 100,
+    "C2_min_regions_some_cycle": 1,
+    "C3_min_loss_cycle1": 0.0001,
+    "C3_also_requires_loss_decrease": true
+  },
+  "criteria_results": {
+    "C1_pass": true,
+    "C2_pass": true,
+    "C3_pass": true
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "c1_pass": true,
+      "c2_pass": true,
+      "c3_pass": true,
+      "seed_pass": true,
+      "cycle_records": [
+        {
+          "cycle": 1,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 0.00316905643674545
+        },
+        {
+          "cycle": 2,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 0.0006033754252712242
+        },
+        {
+          "cycle": 3,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 4.9563068157567616e-05
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "c1_pass": true,
+      "c2_pass": true,
+      "c3_pass": true,
+      "seed_pass": true,
+      "cycle_records": [
+        {
+          "cycle": 1,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 0.0030842346884310244
+        },
+        {
+          "cycle": 2,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 0.0006686812466068659
+        },
+        {
+          "cycle": 3,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 7.640858726517763e-05
+        }
+      ]
+    },
+    {
+      "seed": 13,
+      "c1_pass": true,
+      "c2_pass": true,
+      "c3_pass": true,
+      "seed_pass": true,
+      "cycle_records": [
+        {
+          "cycle": 1,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 0.0040059784892946485
+        },
+        {
+          "cycle": 2,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 0.000933890380547382
+        },
+        {
+          "cycle": 3,
+          "n_steps": 100.0,
+          "n_regions": 4.0,
+          "mean_loss": 9.721087966681808e-05
+        }
+      ]
+    }
+  ],
+  "notes": "MECH-273 validation: SelfModelAggregator.offline_gradient_pass Phase E WRITEBACK. C1 checks bounded n_steps=100. C2 checks that posterior regions are consumed (non-empty posterior store). C3 checks that E2_harm_s loss is non-trivial and decreases across 3 sleep cycles (learning convergence). GAP-4 real-replay path exercised via act_with_split_obs() populating harm_replay_buffer."
+}
