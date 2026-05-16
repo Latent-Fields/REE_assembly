@@ -3249,7 +3249,7 @@
   "MECH-320": {
     "status": "candidate_substrate_landed",
     "subject": "action.tonic_vigor_coupling_score_bias",
-    "title": "tonic_vigor_coupling_score_bias (capacity-keyed E3 score-side action drive / mesolimbic-DA-vigor-analog / average-reward-rate opportunity-cost regulator). First child mechanism for ARC-066. Adds a tonic vigor scalar v_t to E3 trajectory scoring as an additive bias toward action-trajectories (or equivalently an additive cost on no-op trajectories), where v_t is a slow EWMA over the realised E3-score-receipt stream. Target-free: bias applies regardless of whether any z_goal is currently active. Distinct from MECH-313 (LC-NE noise floor -- noise on choice, orthogonal axis), MECH-216 (target-conditioned wanting), SD-012 (deficit-keyed drive, opposite coupling), and ARC-068 (opportunity-cost no-op penalty -- mathematical complement that may collapse with MECH-320 into one signed scalar at design refinement).",
+    "title": "tonic_vigor_coupling_score_bias (capacity-keyed E3 score-side action drive / mesolimbic-DA-vigor-analog / average-reward-rate opportunity-cost regulator). Child mechanism for ARC-066 (tonic_vigor_coupling) AND ARC-068 (opportunity_cost_no_op_penalty -- collapse into MECH-320 per ARC-068 lit-pull R3 verdict 2026-05-16; MECH-320's w_passive term IS the ARC-068 implementation). Adds a tonic vigor scalar v_t to E3 trajectory scoring as an additive bias toward action-trajectories and an additive cost on no-op / repeated-stationary trajectories, where v_t is a slow EWMA over the realised E3-score-receipt stream. Target-free: bias applies regardless of whether any z_goal is currently active. Distinct from MECH-313 (LC-NE noise floor -- noise on choice, orthogonal axis), MECH-216 (target-conditioned wanting), SD-012 (deficit-keyed drive, opposite coupling), and MECH-330 (ARC-067 boredom -- valence-side z_harm_a write, different architectural layer).",
     "type": "mechanism_hypothesis"
   },
   "MECH-321": {
@@ -3304,6 +3304,18 @@
     "status": "candidate",
     "subject": "development.wanting_before_liking_goal_seeding_sequence",
     "title": "The wanting system (mesolimbic dopamine / approach motivation) seeds z_goal anchors via accidental benefit contacts before the liking system (hedonic evaluation) is calibrated -- producing a first wave of super-ordinal goals shaped by approach drive rather than calibrated preference.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-330": {
+    "status": "candidate",
+    "subject": "action.idle_aversion_acute_restlessness_accumulator",
+    "title": "idle_aversion_acute_restlessness_accumulator (engagement-rate-keyed aversive accumulator on z_harm_a / affective stream at the acute timescale ~minutes/tens-of-episodes. First child mechanism for ARC-067. Routes boredom-aversive through SD-011 affective harm stream / AIC analog per Danckert 2018 AIC-deactivation under boredom and Wilson 2014 Science self-shock exchangeability with physical pain. Three-input executive-engagement-rate estimator: commit transitions per episode, E3 deliberation depth, residue-write rate; novel-observation count dropped as primary input (van Tilburg 2017 meaning-seeking not stimulation-seeking). MAC meaning-component adds a parallel secondary channel via existing z_goal substrate (SD-012 / MECH-308). Cross-talk to MECH-331: sustained MECH-330 activation without discharge seeds the chronic frontostriatal effort-allocation substrate.)",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-331": {
+    "status": "candidate",
+    "subject": "action.idle_aversion_chronic_anhedonic_flatness",
+    "title": "idle_aversion_chronic_anhedonic_flatness_substrate (slow-integrating frontostriatal effort-allocation substrate at the chronic timescale ~sessions/episode-blocks. Second child mechanism for ARC-067. Seeded by sustained MECH-330 acute-restlessness activation without discharge. Implements the apathy archetype (Husain-Roiser 2018 frontostriatal effort-allocation failure) as a slow-integrating complement to MECH-330's acute restlessness pole. Preserved hedonic experience (MECH-295 liking-channel intact); impaired effort-to-act mobilisation. HPA-axis substrate context (Ulrich-Lai & Herman 2009 chronic understimulation / loss-of-control signature). Ablation predicts reduced action-density in long-horizon episodes even when MECH-330 acute restlessness is firing -- the chronic substrate damps the effort-mobilisation pathway below what the acute channel alone can drive.)",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

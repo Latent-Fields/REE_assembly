@@ -28525,13 +28525,21 @@
         only -- pathology mapping deferred to future
         psychiatric_failure_modes.md governance pass.
 
-    What this pull does NOT settle: acute/chronic split execution
-    (governance call), engagement-rate estimator quantitative
-    calibration, MAC meaning-component channel integration shape,
-    boredom-impulsivity failure-mode literature (deferred), ARC-068
-    composition specification (Pull 3), alternative single-component
-    FEP-flavoured information-gain-failure accounts (worth flagging
-    if subsequent validation experiments resist two-component
+    GOVERNANCE CALL 2026-05-16: two-child split APPROVED (MECH-330
+    acute / MECH-331 chronic). ARC-068 Pull 3 has landed (2026-05-10);
+    ARC-068 collapses into MECH-320 per ARC-068 lit-pull R3 verdict.
+    Child MECHs registered: MECH-330 (acute restlessness accumulator)
+    and MECH-331 (chronic anhedonic flatness substrate). One-way cross-
+    talk specification: MECH-330 sustained activation -> seeds MECH-331.
+
+    What this pull does NOT settle: engagement-rate estimator
+    quantitative calibration, MAC meaning-component channel integration
+    shape (additive sum / max / multiplicative gate -- child-MECH
+    proposes default, discriminated experimentally), boredom-impulsivity
+    failure-mode literature (deferred to follow-up pull if pathological
+    ARC-067-overfiring becomes governance topic), alternative single-
+    component FEP-flavoured information-gain-failure accounts (worth
+    flagging if subsequent validation experiments resist two-component
     reading).
   notes: >
     Cross-reference family: ARC-067 is the aversive-side companion of
@@ -28708,6 +28716,19 @@
     targeted_review_arc_068_opportunity_cost/synthesis.md; expected
     lit_conf 0.78-0.82 supports-direction-dominant (4 supports + 1
     mixed + 1 weakens).
+
+    IMPLEMENTATION LAYER COLLAPSE DECISION 2026-05-16: ARC-068 child
+    MECH collapses into MECH-320 (tonic_vigor_coupling_score_bias) per
+    R3 verdict. MECH-320's w_passive term (additive cost on no-op /
+    repeated-stationary trajectories, proportional to v_t EWMA scalar)
+    IS the ARC-068 implementation. The R2 long-window historical EMA
+    kernel is already specified in MECH-320 (same v_t scalar, same Niv
+    2007 formalism). R4 effort-cost separation (ARC-068 should NOT
+    collapse into MECH-258 / SD-032b dacc_effort_cost) holds; the
+    collapse is specifically into MECH-320, not into effort-cost
+    machinery. MECH-320 depends_on and notes updated. Slot-level ARC-068
+    registration preserved to allow future re-splitting if anhedonia /
+    mania dissociations motivate separate scalars (R3 note).
   notes: >
     Cross-reference family: ARC-066 + ARC-067 + ARC-068 form the
     non_deficit_action_drives cluster. ARC-068 is the score-side
@@ -29583,7 +29604,7 @@
   location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
 
 - id: MECH-320
-  title: "tonic_vigor_coupling_score_bias (capacity-keyed E3 score-side action drive / mesolimbic-DA-vigor-analog / average-reward-rate opportunity-cost regulator). First child mechanism for ARC-066. Adds a tonic vigor scalar v_t to E3 trajectory scoring as an additive bias toward action-trajectories (or equivalently an additive cost on no-op trajectories), where v_t is a slow EWMA over the realised E3-score-receipt stream. Target-free: bias applies regardless of whether any z_goal is currently active. Distinct from MECH-313 (LC-NE noise floor -- noise on choice, orthogonal axis), MECH-216 (target-conditioned wanting), SD-012 (deficit-keyed drive, opposite coupling), and ARC-068 (opportunity-cost no-op penalty -- mathematical complement that may collapse with MECH-320 into one signed scalar at design refinement)."
+  title: "tonic_vigor_coupling_score_bias (capacity-keyed E3 score-side action drive / mesolimbic-DA-vigor-analog / average-reward-rate opportunity-cost regulator). Child mechanism for ARC-066 (tonic_vigor_coupling) AND ARC-068 (opportunity_cost_no_op_penalty -- collapse into MECH-320 per ARC-068 lit-pull R3 verdict 2026-05-16; MECH-320's w_passive term IS the ARC-068 implementation). Adds a tonic vigor scalar v_t to E3 trajectory scoring as an additive bias toward action-trajectories and an additive cost on no-op / repeated-stationary trajectories, where v_t is a slow EWMA over the realised E3-score-receipt stream. Target-free: bias applies regardless of whether any z_goal is currently active. Distinct from MECH-313 (LC-NE noise floor -- noise on choice, orthogonal axis), MECH-216 (target-conditioned wanting), SD-012 (deficit-keyed drive, opposite coupling), and MECH-330 (ARC-067 boredom -- valence-side z_harm_a write, different architectural layer)."
   claim_type: mechanism_hypothesis
   subject: action.tonic_vigor_coupling_score_bias
   polarity: asserts
@@ -29594,6 +29615,7 @@
   registered_utc: "2026-05-10"
   depends_on:
     - ARC-066     # parent architectural commitment (capacity-keyed action drive)
+    - ARC-068     # opportunity_cost_no_op_penalty -- collapses into MECH-320 per lit-pull R3 verdict 2026-05-16
     - MECH-313    # LC-NE noise floor; orthogonal axis; lit-pull R2 verdict establishes non-redundancy
   functional_restatement: >
     MECH-320 names the primary child mechanism for ARC-066. It adds a
@@ -29771,16 +29793,28 @@
     parametric-sweep on a pre-existing-action-preference batch is the
     test that arbitrates additive-as-primary vs multiplicative.
   notes: >
-    Companion-claim cross-reference: MECH-320 is the first child
-    mechanism for ARC-066. Companion ARC-066-family child mechanisms
-    deferred to their respective lit-pulls:
-      - ARC-067 (idle_aversion_boredom) child MECH -- pending pull.
-        Likely a z_harm_a-side accumulator on engagement-rate, NOT a
-        score-side mechanism (ARC-067 routes via affective valence).
-      - ARC-068 (opportunity_cost_no_op_penalty) child MECH --
-        pending pull. May collapse with MECH-320 into one signed
-        scalar (per ARC-066 lit-pull R3 verdict), or land as a
-        separable mechanism on the no-op-trajectory cost side.
+    Companion-claim cross-reference: MECH-320 is the child mechanism
+    for both ARC-066 and ARC-068 (collapsed implementation).
+
+    ARC-067 (idle_aversion_boredom): child MECHs registered 2026-05-16
+    after lit-pull completion (2026-05-10) and two-child governance call:
+      - MECH-330 (idle_aversion_acute_restlessness_accumulator) -- acute
+        timescale; z_harm_a-side accumulator on engagement-rate; NOT a
+        score-side mechanism (routes via affective valence as confirmed by
+        ARC-067 lit-pull R3 Danckert 2018 AIC-deactivation verdict).
+      - MECH-331 (idle_aversion_chronic_anhedonic_flatness_substrate) --
+        chronic timescale; frontostriatal effort-allocation substrate;
+        seeded by sustained MECH-330 activation; implements apathy archetype.
+
+    ARC-068 (opportunity_cost_no_op_penalty): COLLAPSED INTO MECH-320
+    per ARC-068 lit-pull R3 verdict 2026-05-16. Niv 2007's derivation
+    is symmetric: the same average-reward-rate scalar produces (a) a
+    positive bias on action vigor (ARC-066 territory = MECH-320 positive
+    addend) and equivalently (b) an additive cost on time-spent-passive
+    (ARC-068 territory = MECH-320 w_passive term). MECH-320's w_passive
+    term IS the ARC-068 implementation. Slot-level ARC-068 registration
+    preserved to allow future psychiatric failure-mode dissociations
+    (anhedonia vs mania may require re-splitting the signed scalar).
 
     Implementation-phase placement (parallel to MECH-313 phase-1
     instantiation choice, see MECH-313 notes): a separate
@@ -31418,3 +31452,334 @@
     substrate) -- compare z_goal ContextMemory write rate and anchor diversity with and without
     benefit patches in Phase 0/Phase 1. Ranked experiment 2 in developmental_experiment_priorities.md.
   suggested_experiment_type: multi_agent_behavioral
+
+- id: MECH-330
+  title: "idle_aversion_acute_restlessness_accumulator (engagement-rate-keyed aversive accumulator on z_harm_a / affective stream at the acute timescale ~minutes/tens-of-episodes. First child mechanism for ARC-067. Routes boredom-aversive through SD-011 affective harm stream / AIC analog per Danckert 2018 AIC-deactivation under boredom and Wilson 2014 Science self-shock exchangeability with physical pain. Three-input executive-engagement-rate estimator: commit transitions per episode, E3 deliberation depth, residue-write rate; novel-observation count dropped as primary input (van Tilburg 2017 meaning-seeking not stimulation-seeking). MAC meaning-component adds a parallel secondary channel via existing z_goal substrate (SD-012 / MECH-308). Cross-talk to MECH-331: sustained MECH-330 activation without discharge seeds the chronic frontostriatal effort-allocation substrate.)"
+  claim_type: mechanism_hypothesis
+  subject: action.idle_aversion_acute_restlessness_accumulator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-16"
+  depends_on:
+    - ARC-067     # parent architectural commitment (idle aversion / boredom)
+    - SD-011      # affective harm stream (z_harm_a) -- routing target for boredom-aversive write
+    - MECH-308    # homeostatic_drive_signal -- z_goal substrate feeds MAC meaning secondary channel
+  functional_restatement: >
+    MECH-330 names the primary acute child mechanism for ARC-067. It adds
+    a slow negative-valence accumulator to the z_harm_a affective stream
+    that activates when the agent's executive engagement-rate falls below
+    a threshold, at the timescale of minutes to tens of episodes.
+
+    Architecture (from ARC-067 lit-pull R1 + R3 + R4 verdicts):
+
+    1. THREE-INPUT ENGAGEMENT-RATE ESTIMATOR (R4 verdict):
+         e_t = w_commit * commit_rate(window)
+               + w_depth  * deliberation_depth(window)
+               + w_resid  * residue_write_rate(window)
+               [+ w_mean  * meaning_channel(z_goal, SD-012/MECH-308)  -- secondary]
+       where:
+         - commit_rate: transitions per episode into/out of committed
+           action (rare commits -> low engagement)
+         - deliberation_depth: mean E3 trajectory candidates evaluated
+           before selection in recent window (shallow selection -> low)
+         - residue_write_rate: residue writes per episode in recent
+           window (no learning -> low engagement)
+         - meaning_channel: z_goal presence and goal-progress signal
+           from existing SD-012 / MECH-308 substrate (MAC secondary
+           per Westgate & Wilson 2018; low cost -- reuses existing
+           estimator, does not build a new one)
+       Novel-observation count DROPPED per R4 verdict: conflates
+       with MECH-314a striatal novelty bonus; van Tilburg 2017
+       meaning-seeking (not stimulation-seeking) signature rules
+       it out as primary input.
+
+    2. SLOW ACCUMULATOR WITH THRESHOLD:
+         e_deficit_t = max(0, e_threshold - e_t)
+         boredom_t   = ewma_window(e_deficit_t, half_life=H_acute)
+       H_acute is the acute-timescale integration window (~minutes-
+       scale; short enough to accumulate within an episode, long
+       enough to avoid false alarms on single low-deliberation steps).
+       boredom_t decays automatically once e_t rises above e_threshold
+       -- the accumulator self-terminates on engagement discharge.
+
+    3. ROUTING THROUGH z_harm_a (R3 verdict):
+         z_harm_a += w_boredom * boredom_t
+       Same channel as physical harm -- enables the pain/boredom
+       exchangeability that Wilson 2014 Science documents
+       (self-shock finding: boredom-aversive traded against physical
+       pain across 11 studies). Produces low-arousal-but-action-
+       recruiting valence signature consistent with van Tilburg 2017
+       empirical differentiation; does NOT couple to SD-037 broadcast
+       override (which requires high-arousal aversive -- different
+       corner of agent state space).
+
+    4. CROSS-TALK TO MECH-331 (one-way seeding):
+       Sustained MECH-330 activation without discharge -- defined as
+       boredom_t >= b_chronic_threshold for >= N_episodes without an
+       engagement discharge event (commit transition, goal contact,
+       or residue write spike) -- seeds the MECH-331 frontostriatal
+       effort-allocation substrate. One-directional: MECH-330 ->
+       MECH-331; MECH-331 does not gate MECH-330's accumulation.
+       MECH-331 represents the slow consequence of sustained non-
+       discharge.
+
+    DISCHARGE CONDITION (van Tilburg 2017 functional-emotion action-
+    toward-new-engagement framing): a single commit transition or
+    residue-write spike restores e_t above e_threshold; boredom_t
+    decays at H_acute. The mechanism self-terminates cleanly without
+    an explicit reset event.
+
+    Falsifiable prediction: agent in well-fed-safe-familiar env with
+    no z_goal active. ARM_0 ARC-067-OFF: action_density at MECH-313
+    noise floor. ARM_1 MECH-330-ON: boredom_t rises monotonically,
+    z_harm_a accumulates, E3 scores bias toward action trajectories;
+    action density increases specifically at boredom_t threshold
+    crossing, not before.
+  evidence_quality_note: >
+    Registered 2026-05-16 from ARC-067 lit-pull synthesis
+    (evidence/literature/targeted_review_arc_067_boredom/synthesis.md,
+    2026-05-10, 8 entries, 7 supports + 1 mixed).
+
+    R1 functional-account verdict: PRIMARY = engagement-rate aversive
+    accumulator (Eastwood 2012 unengaged-mind definition, Bench &
+    Lench 2013 goal-shift function, van Tilburg 2017 emotion
+    differentiation). MAC meaning-component (Westgate & Wilson 2018
+    Psychol Rev) is parallel secondary channel reusing z_goal
+    substrate. ARC-068 opportunity-cost overlap is real but operates
+    on a different architectural layer (E3 score vs z_harm_a valence).
+
+    R3 routing verdict: grounded in Danckert & Merrifield 2018 (AIC-
+    deactivation under boredom -- boredom falls in affective-salience /
+    AIC territory = z_harm_a routing) and Wilson et al. 2014 Science
+    (boredom-self-shock exchangeability with physical pain -- shared
+    axis requires shared channel).
+
+    R4 input-narrowing verdict: THREE inputs KEPT (commit-transitions,
+    deliberation-depth, residue-write-rate). Novel-observation-count
+    DROPPED. Bench & Lench 2013 goal-shift function supports commit-
+    transition-rate. Danckert 2018 AIC/executive-network deactivation
+    supports deliberation-depth as executive-engagement proxy.
+
+    Lit anchors (6 of 8 in pull directly relevant):
+      - Eastwood 2012 (Perspect Psychol Sci, PMID 26168101) --
+        definitional: boredom as unengaged mind. supports 0.78.
+      - Westgate & Wilson 2018 (Psychol Rev) -- MAC model, secondary
+        meaning channel. supports 0.82.
+      - van Tilburg & Igou 2017 (Emotion, PMID 28079397) -- meaning-
+        seeking differentiation. supports 0.74.
+      - Bench & Lench 2013 (Behav Sci) -- goal-shift function,
+        commit-transition-rate proxy. supports 0.66.
+      - Wilson 2014 (Science, PMID 24993755) -- self-shock
+        exchangeability, direct aversive evidence. supports 0.78.
+      - Danckert & Merrifield 2018 (Exp Brain Res) -- AIC-deactivation
+        under boredom, anatomical routing anchor. supports 0.72.
+
+    Not yet experimentally tested. First validation experiment: 3-arm
+    substrate-readiness diagnostic (ARC-067-OFF / MECH-330-ON acute-
+    only / MECH-330+331-ON both poles). Target substrate: SD-054 reef
+    or equivalent environment with structurally rich engagement options.
+    Aggregate acute-pole lit_conf expected 0.74-0.78.
+  notes: >
+    First child mechanism for ARC-067. Second child is MECH-331
+    (idle_aversion_chronic_anhedonic_flatness_substrate) at the chronic
+    timescale; cross-talk via one-way seeding signal (MECH-330
+    sustained activation -> MECH-331 substrate seeding).
+
+    Implementation-phase placement: MECH-330 is a valence-accumulator
+    write to z_harm_a (affective stream), NOT a score-side mechanism.
+    The boredom valence feeds E3 scoring via the existing z_harm_a ->
+    E3 pathway -- the same path physical harm uses. This contrasts with
+    MECH-320 (tonic vigor, score-side) and MECH-313 (noise floor,
+    temperature-side). All three create non-specific action pressure via
+    different architectural layers.
+
+    Distinct-from contracts:
+      - MECH-314a (striatal novelty bonus): novelty is a positive bonus
+        on novel candidates (score-side); MECH-330 is a valence-side
+        aversive on engagement-failure. Can fire simultaneously in novel
+        territory with low engagement opportunity; operate on orthogonal
+        channels.
+      - MECH-313 (noise floor): orthogonal. MECH-313 lifts softmax
+        temperature uniformly; MECH-330 writes to z_harm_a valence.
+      - MECH-320 (tonic vigor / ARC-066): vigor is a positive score-side
+        addend; boredom is a z_harm_a write on the valence channel.
+        Both create action pressure via different architectural layers.
+      - MECH-320 w_passive / ARC-068 (opportunity cost): opportunity
+        cost is score-side cost on no-op trajectories; boredom is
+        valence-side. Distinct layers, compound in action pressure.
+      - SD-037 (broadcast override / orexin): recruited by sustained
+        harm + drive escalation (high-arousal). MECH-330 routes through
+        z_harm_a at low arousal (van Tilburg 2017 low-arousal signature).
+        Different arousal corners of agent state space.
+
+    HYBRID-naming convention: title carries both REE-internal name
+    (idle_aversion_acute_restlessness_accumulator) and literature
+    anchors (engagement-rate-keyed / z_harm_a / AIC analog / Wilson
+    2014 self-shock / Danckert 2018 AIC-deactivation).
+
+    Open Q-claim at substrate-landing time: what is the configurable
+    relationship between H_acute integration window and episode length?
+    If episodes are short (< 100 steps), H_acute must be episode-
+    spanning; if long, H_acute can be intra-episode. The calibration
+    should track a biological ~minutes timescale, translating to REE's
+    episode / step duration.
+  location: docs/architecture/non_deficit_action_drives.md
+
+- id: MECH-331
+  title: "idle_aversion_chronic_anhedonic_flatness_substrate (slow-integrating frontostriatal effort-allocation substrate at the chronic timescale ~sessions/episode-blocks. Second child mechanism for ARC-067. Seeded by sustained MECH-330 acute-restlessness activation without discharge. Implements the apathy archetype (Husain-Roiser 2018 frontostriatal effort-allocation failure) as a slow-integrating complement to MECH-330's acute restlessness pole. Preserved hedonic experience (MECH-295 liking-channel intact); impaired effort-to-act mobilisation. HPA-axis substrate context (Ulrich-Lai & Herman 2009 chronic understimulation / loss-of-control signature). Ablation predicts reduced action-density in long-horizon episodes even when MECH-330 acute restlessness is firing -- the chronic substrate damps the effort-mobilisation pathway below what the acute channel alone can drive.)"
+  claim_type: mechanism_hypothesis
+  subject: action.idle_aversion_chronic_anhedonic_flatness
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-16"
+  depends_on:
+    - ARC-067     # parent architectural commitment
+    - MECH-330    # acute restlessness accumulator -- seeds chronic substrate
+    - SD-011      # affective harm stream (z_harm_a) -- shared routing target
+  functional_restatement: >
+    MECH-331 names the chronic timescale child mechanism for ARC-067.
+    It represents a slow-integrating modulation of the effort-to-act
+    mobilisation pathway that accumulates when sustained MECH-330
+    boredom activation is not resolved over session-scale time windows.
+
+    Architecture (from ARC-067 lit-pull R2 + R5 verdicts):
+
+    1. SEED SIGNAL FROM MECH-330:
+         mech330_seed_t = I[boredom_t >= b_chronic_threshold
+                            for >= N_episodes without discharge]
+       Binary or soft-threshold signal indicating "sustained boredom
+       without resolution." Activates the chronic substrate only after
+       MECH-330 has been firing without producing engagement discharge
+       for a session-scale window.
+
+    2. SLOW FRONTOSTRIATAL EFFORT-ALLOCATION INTEGRATOR:
+         fatigue_t = ewma_window(mech330_seed_t, half_life=H_chronic)
+       H_chronic >> H_acute (MECH-330). H_chronic covers session
+       timescale (many episodes, across-episode persistent state).
+       fatigue_t represents effort-mobilisation impairment analogous
+       to frontostriatal effort-allocation failure in apathy
+       (Husain & Roiser 2018).
+
+    3. MODULATION OF z_harm_a WRITE GATE:
+         z_harm_a_gain = max(gain_floor, 1 - w_fatigue * fatigue_t)
+       fatigue_t scales DOWN the z_harm_a write amplitude from
+       MECH-330. This is the mechanistic signature of apathy: the
+       acute boredom-aversive signal is present but the effort-
+       mobilisation pathway is attenuated. The agent experiences
+       engagement-failure (MECH-330 fires) but cannot convert that
+       aversive into action at the expected amplitude. gain_floor
+       (configurable, > 0) prevents complete elimination -- consistent
+       with apathy being a matter of degree.
+
+    APATHY ARCHETYPE (R5 verdict): MECH-331 implements the apathy
+    clinical archetype: preserved capacity (E1/E2/E3 functional),
+    preserved hedonic experience (MECH-295 intact), impaired effort-
+    to-act mobilisation. NOT anhedonia (MECH-295 failure), NOT hedonic
+    flatness (z_harm_a absence). The substrate distinction matters
+    for future psychiatric_failure_modes.md cross-reference.
+
+    CROSS-TALK ASYMMETRY: MECH-330 seeds MECH-331 but MECH-331 does
+    not gate MECH-330's accumulation. An apathetic agent still
+    accumulates boredom (MECH-330 fires), it just cannot convert it
+    into action at full amplitude.
+
+    RECOVERY: fatigue_t decays at H_chronic once mech330_seed_t drops.
+    Recovery requires extended sustained engagement discharge. Slow
+    H_chronic decay = correspondingly slow recovery, consistent with
+    clinical apathy remission timescales.
+
+    Falsifiable prediction: long-horizon episode, no-target no-harm
+    full-energy. ARM_0 ARC-067-OFF: action_density = noise floor.
+    ARM_1 MECH-330-ON only (acute): action_density increases after
+    boredom accumulation onset. ARM_2 MECH-330+331-ON (chronic-seeded
+    after N episodes): action_density is LOWER than ARM_1 at
+    equivalent episodes -- chronic substrate attenuates acute boredom-
+    to-action conversion. Discriminative: attenuation should be
+    specific to action-mobilisation pathway (z_harm_a write gain),
+    not to E3.select() trajectory scoring itself (E3 intact).
+  evidence_quality_note: >
+    Registered 2026-05-16 from ARC-067 lit-pull synthesis
+    (evidence/literature/targeted_review_arc_067_boredom/synthesis.md,
+    2026-05-10, 8 entries).
+
+    R2 timescale-split verdict: BIOLOGY SUPPORTS THE SPLIT at 0.72
+    confidence. Acute and chronic substrates are partially dissociable
+    in real biology (different lesion patterns, different effort-cost-
+    benefit profiles per Husain-Roiser; different diurnal-cortisol
+    signatures per Ulrich-Lai). Split execution was a governance call
+    deferred until Pull 3 (ARC-068) landed. Pull 3 landed 2026-05-10;
+    governance call made 2026-05-16: two-child split approved,
+    MECH-330 acute / MECH-331 chronic, with explicit one-way cross-
+    talk seeding specification.
+
+    R5 clinical-anchor verdict: ARC-067 ablation maps onto APATHY
+    (Husain-Roiser 2018 frontostriatal effort-allocation failure), NOT
+    anhedonia (MECH-295 liking-channel). MECH-331 is the architectural
+    substrate of that apathy mapping. Anchor only -- pathology mapping
+    deferred to future psychiatric_failure_modes.md governance pass.
+
+    Lit anchors (2 of 8 in pull relevant to chronic pole):
+      - Husain & Roiser 2018 (Nat Rev Neurosci, PMID 29946107) --
+        transdiagnostic apathy/anhedonia; frontostriatal effort-
+        allocation substrate of apathy; dissociation from anhedonia.
+        supports 0.78.
+      - Ulrich-Lai & Herman 2009 (Nat Rev Neurosci, PMID 19543232) --
+        HPA-axis chronic-stress substrate context; chronic
+        understimulation / low-control signature. mixed 0.55
+        (substrate context, not direct boredom evidence).
+
+    Implementation is more preliminary than MECH-330. The effort-
+    mobilisation-pathway modulation architecture (z_harm_a write-gain
+    scaled by fatigue_t) is the most parsimonious interpretation of
+    the Husain-Roiser apathy substrate but has not been validated
+    experimentally. H_chronic integration window is a configurable
+    parameter; calibration depends on the episode/session timescale
+    of the validation environment.
+
+    IMPLEMENTATION NOTE: MECH-331 introduces across-episode state
+    (fatigue_t must persist across episode boundaries). This contrasts
+    with MECH-330 (within-episode accumulation). MECH-331 requires a
+    session-level state buffer in REEAgent, analogous to how MECH-295
+    carries persistent preference state. Infrastructure requirement
+    deferred to substrate-landing time.
+
+    Aggregate chronic-pole lit_conf expected 0.62-0.68 (2-paper
+    cohort; lower confidence than MECH-330's 0.74-0.78; implementation
+    is correspondingly more speculative at registration time).
+  notes: >
+    Second child mechanism for ARC-067. Companion: MECH-330 (acute
+    restlessness accumulator). Cross-talk: one-way seeding signal
+    (MECH-330 sustained activation -> MECH-331 substrate seeding);
+    MECH-331 does not gate MECH-330 accumulation.
+
+    PSYCHIATRIC CROSS-REFERENCE (future psychiatric_failure_modes.md):
+    MECH-331 is the primary architectural anchor for the apathy
+    archetype. Intended entry: ARC-067 (MECH-330+331) -- healthy
+    engagement (both near-zero) vs acute boredom-aversive (MECH-330
+    firing, MECH-331 normal) vs apathy (MECH-330 firing, MECH-331
+    attenuating) vs abulia / catatonic flatness (deep MECH-331-
+    attenuation axis). Requires explicit distinction from anhedonia
+    (MECH-295 failure, different substrate) in any cross-reference.
+
+    Open Q-claims at substrate-landing time:
+      - Session-boundary persistence model for fatigue_t: (a) reset
+        at episode end (loses chronic accumulation); (b) persist to
+        disk/checkpoint between sessions (adds infrastructure);
+        (c) within-session approximation with long H_chronic. Option
+        (c) most tractable for V3 experiments; choice affects whether
+        MECH-331 can model session-to-session apathy trajectory.
+      - Bidirectional coupling: is there a MECH-331 -> MECH-330
+        feedback loop (e.g., chronic fatigue suppresses the
+        engagement-rate estimator's threshold)? Defer to validation.
+
+    HYBRID-naming convention: title carries both REE-internal name
+    (idle_aversion_chronic_anhedonic_flatness_substrate) and
+    literature anchors (frontostriatal / Husain-Roiser apathy /
+    HPA-axis / effort-allocation failure).
+  location: docs/architecture/non_deficit_action_drives.md

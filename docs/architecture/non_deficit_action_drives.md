@@ -147,15 +147,27 @@ After each lit-pull, child MECH design can proceed independently. The three slot
 
 ## Child mechanisms registered to date
 
-- **MECH-320** (registered 2026-05-10) — `tonic_vigor_coupling_score_bias`. First child mechanism for ARC-066. Adds an additive vigor bias on E3 action-trajectory scoring (or equivalently an additive cost on no-op), where the vigor scalar v_t is a slow EWMA over the realised E3-score-receipt stream gated by secondary internal-state modulators (energy / drive / PE). Companions for ARC-067 and ARC-068 deferred to their respective lit-pulls. R3 falsifiable secondary alternative (multiplicative gain) discriminable from primary via parametric sweep on a pre-existing action preference; substrate-readiness diagnostic experiment will be the first validation step. See `claims.yaml` MECH-320 entry for the full functional restatement, falsifiable predictions, and distinct-from contracts.
+All three family lit-pulls complete (2026-05-10). Child MECH design executed 2026-05-16.
+
+### ARC-066 child mechanisms
+- **MECH-320** (registered 2026-05-10) — `tonic_vigor_coupling_score_bias`. Child mechanism for ARC-066 AND ARC-068 (collapsed implementation, see below). Adds an additive vigor bias on E3 action-trajectory scoring (positive addend on action candidates, negative addend on no-op candidates via w_passive term), where v_t is a slow EWMA over the realised E3-score-receipt stream gated by secondary internal-state modulators (energy / drive / PE). Substrate: mesolimbic DA-vigor (Niv 2007 formalism, Salamone & Correa 2012 substrate identity, Beierholm 2013 human causal test). R3 falsifiable secondary alternative (multiplicative gain) discriminable from primary via parametric sweep on a pre-existing action preference. Substrate landed 2026-05-10 in `ree-v3/ree_core/policy/tonic_vigor.py`.
+
+### ARC-067 child mechanisms
+- **MECH-330** (registered 2026-05-16) — `idle_aversion_acute_restlessness_accumulator`. First child mechanism for ARC-067, acute timescale (~minutes / tens of episodes). Three-input executive engagement-rate estimator (commit transitions, E3 deliberation depth, residue-write rate) -> slow accumulator with threshold -> writes negative valence to z_harm_a affective stream (SD-011 routing per Danckert 2018 AIC-deactivation and Wilson 2014 Science self-shock exchangeability). MAC meaning-component secondary channel reuses existing z_goal substrate (SD-012 / MECH-308). One-way cross-talk: seeds MECH-331 on sustained non-discharge.
+- **MECH-331** (registered 2026-05-16) — `idle_aversion_chronic_anhedonic_flatness_substrate`. Second child mechanism for ARC-067, chronic timescale (~sessions / episode-blocks). Slow frontostriatal effort-allocation integrator seeded by sustained MECH-330 activation; scales DOWN z_harm_a write amplitude from MECH-330 via gain gate (gain_floor > 0). Implements the apathy archetype (preserved capacity, preserved hedonic experience, impaired effort-to-act mobilisation). HPA-axis substrate context (Ulrich-Lai & Herman 2009). Introduces across-episode persistent state; infrastructure deferred to substrate-landing time.
+
+### ARC-068 child mechanisms
+- **MECH-320 w_passive term** — ARC-068 collapses into MECH-320 per ARC-068 lit-pull R3 verdict (2026-05-16). Niv 2007's derivation is symmetric: the same average-reward-rate scalar produces (a) positive bias on action vigor (ARC-066 = MECH-320 positive addend) and (b) additive cost on time-spent-passive (ARC-068 = MECH-320 w_passive term). No separate MECH registered for ARC-068; ARC-068 slot-level registration preserved to allow future re-splitting if psychiatric failure-mode dissociations (anhedonia vs mania) motivate separate scalars.
 
 ## See also
 
-- `claims.yaml` — ARC-066 / ARC-067 / ARC-068 entries (full functional_restatement and notes per claim) and MECH-320 (first child mechanism for ARC-066).
-- `evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md` — ARC-066 lit-pull synthesis (R1-R4 verdicts, lit_conf 0.789).
-- `MECH-313` — LC-NE tonic noise floor (ARC-065 child). Per ARC-066 R2 verdict, MECH-313 fully covers the LC-NE substrate; ARC-066 / MECH-320 is mesolimbic-DA-attributed, NOT LC-NE.
+- `claims.yaml` — ARC-066 / ARC-067 / ARC-068 / MECH-320 / MECH-330 / MECH-331 entries (full functional_restatement and notes).
+- `evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md` — ARC-066 lit-pull (R1-R4 verdicts, lit_conf 0.789).
+- `evidence/literature/targeted_review_arc_067_boredom/synthesis.md` — ARC-067 lit-pull (R1-R5 verdicts, lit_conf 0.72-0.76).
+- `evidence/literature/targeted_review_arc_068_opportunity_cost/synthesis.md` — ARC-068 lit-pull (R1-R4 verdicts, lit_conf 0.78-0.82).
+- `MECH-313` — LC-NE tonic noise floor (ARC-065 child). Per ARC-066 R2 verdict, MECH-313 fully covers the LC-NE substrate; MECH-320 is mesolimbic-DA-attributed, NOT LC-NE.
 - `MECH-216` — predictive wanting (target-conditioned; ARC-066 is target-free).
 - `SD-012` — homeostatic drive (deficit-keyed; ARC-066 is capacity-keyed inverse).
-- `SD-032b` — dACC adaptive control / foraging_value (closest existing relative to ARC-068; Walton 2003 ACC effort-cost machinery lives here, not in ARC-066).
+- `SD-032b` — dACC adaptive control / foraging_value (closest existing relative to ARC-068; boundary is kernel timescale: ARC-068 uses long-window historical EMA, SD-032b uses current-environmental scalar per Kolling 2016).
 - `SD-037` — broadcast override / orexin (deficit-recruited; ARC-066 is surplus-recruited; opposite corners of state space).
-- `SD-011` — affective harm stream (likely z_harm_a-side routing for ARC-067 aversive).
+- `SD-011` — affective harm stream (z_harm_a routing for MECH-330 boredom aversive).
