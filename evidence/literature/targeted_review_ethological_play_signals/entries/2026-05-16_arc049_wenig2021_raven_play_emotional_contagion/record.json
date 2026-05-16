@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ethological_play_signals",
+  "entry_id": "2026-05-16_arc049_wenig2021_raven_play_emotional_contagion",
+  "timestamp_utc": "2026-05-16T12:28:47Z",
+  "claim_ids_tested": ["ARC-049", "INV-059", "DEV-NEED-009", "DEV-NEED-014"],
+  "source": {
+    "title": "Early evidence for emotional play contagion in juvenile ravens",
+    "authors": ["Wenig, Katharina", "Boucherie, Palmyre H.", "Bugnyar, Thomas"],
+    "year": 2021,
+    "venue": "Animal Cognition",
+    "doi": "10.1007/s10071-020-01466-0",
+    "url": "https://link.springer.com/article/10.1007/s10071-020-01466-0"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This study documents emotional play contagion in juvenile common ravens (Corvus corax) as young as 3 months post-hatching -- evidence for generalized playful mood transfer in a corvid (non-mammalian) species. Ravens are among the most cognitively sophisticated non-mammalian species, but they are separated from mammals by approximately 320 million years. The finding that observer ravens show increased locomotion and social play (but not the same motor patterns as demonstrators) after observing demonstrators playing argues for mood-state transfer rather than behavioral mimicry -- a general playful-mood-contagion mechanism. This extends the play signal architecture argument to birds. However, the study does not address discrete play signals (play bows, play faces) -- corvids have very limited facial mobility. Confidence reflects good experimental design with two test ages (3 and 6 months), solid sample size (N=10), and PMC availability, but the absence of specific visual signal documentation limits direct mapping to ARC-049's signal levels.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If observer ravens showed increased object play (same category as demonstrators) rather than locomotion/social play, this would be behavioral contagion (imitation) rather than emotional contagion (mood spread) -- weakening the mood-transfer interpretation.",
+    "If emotional contagion was absent at 3 months but present at 6 months, this would place the onset of play frame sensitivity outside the earliest developmental period -- but both ages showed the effect, supporting early onset."
+  ],
+  "tags": ["arc049", "inv059", "dev_need_009", "dev_need_014", "raven", "corvid", "bird", "emotional_contagion", "play_mood", "cross_species", "developmental", "non_mammalian"],
+  "mapping": {
+    "source_claim_statement": "Juvenile common ravens (3 and 6 months post-hatching) show emotional play contagion: when observer ravens see demonstrator ravens playing with objects, observer ravens increase locomotion and social play but not object play. The transferred state is a general playful mood, not a specific motor pattern. This is present at 3 months, the earliest age tested.",
+    "ree_translation": "For ARC-049's generalizability argument, the raven finding extends the play frame maintenance architecture to non-mammalian species at a 320 million year phylogenetic distance. Ravens do not have the facial mobility to produce ROM/play faces, but they achieve play frame synchronization through mood contagion (observing another's play induces playful state). This suggests the level-2 background signal function (sustaining mutual playful state across an episode) can be implemented through multiple channels -- not only facial expressions but also behavioral mood broadcast. For INV-059, the raven evidence suggests mutual frame maintenance is a general principle even in species lacking the canonical facial signal infrastructure, though the mechanism differs. DEV-NEED-009 is supported by the 3-month onset: emotional play contagion is present very early in raven development, before the full social and cognitive repertoire is established. DEV-NEED-014 (cooperative play with conspecifics) is supported: the contagion requires social context (observing a conspecific playing), not just observing objects.",
+    "mapping_caveat": "Ravens do not produce discrete visual play signals analogous to play bows or play faces. The contagion mechanism is different from the explicit RFM channel in mammals. It is unclear whether ravens have any equivalent to a level-3 repair signal. The study is experimental (standardized playground setup) rather than naturalistic play observation, which may not fully represent the play communication system in wild ravens. The non-mammalian generalization is important but the absence of a documented signal repertoire in corvid play is a gap -- this entry supports the mood-maintenance layer but does not directly test the signal architecture.",
+    "source_context": "Experimental study at Haidlhof Research Station (University of Vienna). 10 juvenile ravens tested at two developmental periods (3 and 6 months). Observer-demonstrator paradigm using standardized playground setup. PMC full-text available (PMC8238721). doi:10.1007/s10071-020-01466-0, PMID 33420859."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Good source quality: Animal Cognition, PMC open access, University of Vienna raven research group. Mapping fidelity moderate: the mood contagion mechanism is a weaker instantiation of level-2 background signal function than RFM in mammals; the signal architecture details are not mapped. Transfer risk higher: non-mammalian species with a fundamentally different communication system."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ethological_play_signals",
+  "entry_id": "2026-05-16_arc049_bekoff1995_play_signals_canids_punctuation",
+  "timestamp_utc": "2026-05-16T12:28:47Z",
+  "claim_ids_tested": ["ARC-049", "Q-035", "INV-059"],
+  "source": {
+    "title": "Play Signals as Punctuation: The Structure of Social Play in Canids",
+    "authors": ["Bekoff, Marc"],
+    "year": 1995,
+    "venue": "Behaviour",
+    "doi": "10.1163/156853995X00101",
+    "url": "https://www.wellbeingintlstudiesrepository.org/cgi/viewcontent.cgi?article=1029&context=acwp_ena"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This is the canonical primary source for the three-level play signal architecture. Bekoff documented non-random placement of play bows in infant and adult domestic dogs, wolves, and coyotes using systematic behavioral observation and sequence analysis. The core finding -- that play bows occur specifically before or after actions that are also used in agonistic contexts (especially bite-shakes), not randomly throughout play -- is robustly demonstrated across three species. The paper directly operationalizes what REE calls level-3 explicit repair signals: signals deployed selectively at ambiguity moments rather than throughout the episode. Confidence is high because this is the foundational empirical paper, the three-species replication strengthens generalizability, and the temporal analysis methodology is sound. Confidence not maximal because later studies (Byosiere 2017) found that adult dogs use bows more for reinitiation after pauses than ambiguity repair specifically, suggesting the repair function may be developmentally modulated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If play bows occurred uniformly throughout play (not clustered before/after ambiguous actions), this would disconfirm the repair hypothesis and leave REE's level-3 explicit signal architecture without empirical support in the foundational canid data.",
+    "If the metacommunicative function applied equally at all moments rather than specifically at ambiguity junctures, Q-035 (is open/close sufficient, or does ongoing exchange need sustaining?) would be answered 'open/close sufficient' -- contradicting the three-level architecture."
+  ],
+  "tags": ["arc049", "q035", "inv059", "play_bow", "canid", "metacommunication", "repair_signal", "punctuation", "three_level_architecture", "bekoff"],
+  "mapping": {
+    "source_claim_statement": "Play bows in canids are non-randomly distributed, occurring predominantly before or after actions that are also seen in agonistic contexts (bite-shakes, biting). This non-random placement supports the hypothesis that bows function metacommunicatively to clarify playful intent at specific ambiguity moments -- they punctuate play rather than filling it continuously.",
+    "ree_translation": "Bekoff's 'punctuation' framing directly maps onto REE's level-3 explicit repair signal in ARC-049. The play bow is not a continuous background signal (level-2) but a discrete, selectively deployed signal at moments when the partner could misread an action as aggression. This is the empirical foundation for distinguishing continuous background signals (level-2: play face, body orientation) from repair signals (level-3: deployed only at ambiguity junctures). REE's architecture predicts exactly this non-random deployment pattern: repair signals fire when P(misread | current_action) exceeds threshold. Q-035 (is open/close sufficient?) is partially answered: open/close alone is insufficient because the episode contains ambiguous actions requiring in-session clarification.",
+    "mapping_caveat": "Bekoff's 1995 analysis treated play bows as primarily serving a repair function. Subsequent work (Byosiere et al. 2017 PLoS One) found that in adult dogs, bows more often function to reinitiate play after pauses, not to repair imminent misreads. This does not negate the three-level architecture but suggests level-3 repair signals in dogs may serve reinitiation-after-pause as a variant of ambiguity management (pause = potential misread of disengagement as aggression). The developmental modulation (puppies show repair placement, adults show reinitiation placement) is itself an important finding for DEV-NEED-009.",
+    "source_context": "Behavioral observation study across three canid species (dogs, wolves, coyotes) at multiple ages (adult and infant). Sequence analysis using focal animal sampling and transition matrices to establish non-random bow placement. Published in Behaviour, a leading ethology journal. This paper established the punctuation metaphor for play signals that is now standard in the field."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.25,
+    "notes": "Very high source quality: canonical founding paper with 700+ citations, systematic behavioral methodology across three species. High mapping fidelity: punctuation/repair framing is the direct empirical precursor to REE's level-3 signal concept. Transfer risk moderate: canids are the primary species; generalization to non-canid taxa requires the subsequent cross-species literature in this review."
+  }
+}

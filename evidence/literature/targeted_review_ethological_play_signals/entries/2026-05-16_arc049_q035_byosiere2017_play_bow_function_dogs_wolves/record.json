@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ethological_play_signals",
+  "entry_id": "2026-05-16_arc049_q035_byosiere2017_play_bow_function_dogs_wolves",
+  "timestamp_utc": "2026-05-16T12:28:47Z",
+  "claim_ids_tested": ["ARC-049", "Q-035", "DEV-NEED-009"],
+  "source": {
+    "title": "Investigating the Function of Play Bows in Dog and Wolf Puppies (Canis lupus familiaris, Canis lupus occidentalis)",
+    "authors": ["Byosiere, Sarah-Elizabeth", "Espinosa, Julia", "Marshall-Pescini, Sarah", "Smuts, Barbara", "Range, Friederike"],
+    "year": 2017,
+    "venue": "PLoS ONE",
+    "doi": "10.1371/journal.pone.0168570",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0168570"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "refines",
+  "confidence": 0.77,
+  "confidence_rationale": "This study tests the metacommunicative repair hypothesis (bows bracket ambiguous actions) vs. the reinitiation hypothesis (bows restart play after pauses) in dog and wolf puppies. The primary finding is that play bows in young dogs occur most often after brief pauses in play, not after ambiguous actions -- supporting the reinitiation hypothesis over the repair hypothesis for dogs. Wolf puppies show bows in similar temporal positions but bows are less effective at eliciting continued play from wolf partners. This refines rather than contradicts REE's architecture: reinitiation after pause is itself a form of ambiguity management (silence/pause can be misread as disengagement or pending aggression). Confidence reflects good methodology and PMC availability, but the sample is limited to captive puppies and the wolf n is small.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If play bows in wolves were as effective as in dogs at reinitiation, this would suggest domestication does not modulate the repair signal architecture -- which would simplify the cross-species story for REE but reduce the developmental modulation finding.",
+    "If bows were completely random in timing, both repair and reinitiation hypotheses would fail, undermining the level-3 signal concept entirely."
+  ],
+  "tags": ["arc049", "q035", "dev_need_009", "play_bow", "canid", "dog", "wolf", "reinitiation", "repair_signal", "developmental", "domestication"],
+  "mapping": {
+    "source_claim_statement": "In dog puppies, play bows occur primarily after pauses in play activity (reinitiation function) rather than specifically before or after ambiguous actions (repair function). Wolf puppies show bows in similar positions but bows are less successful at eliciting partner response. This suggests domestication has shaped the play bow's functional context.",
+    "ree_translation": "For REE's three-level architecture, this paper refines the interpretation of level-3 explicit repair signals: in domestic dogs, the explicit signal fires primarily at pause-after-activity moments (reinitiation), not specifically at bite-shake moments (repair per Bekoff). This distinction matters for ARC-049's implementation: the trigger for level-3 signals may be 'any ambiguity about whether play is still active' (which includes pauses), not only 'action with cross-context meaning'. REE's play frame context tag can go stale if no signal confirms active maintenance -- a pause is a threat to INV-059 (mutual frame maintenance necessity) just as an ambiguous action is. The wolf/dog difference also introduces a domestication confound that limits the generalization from canids to REE's agent architecture.",
+    "mapping_caveat": "The paper's finding that bows in dogs serve reinitiation does not nullify Bekoff's repair finding -- Bekoff studied infant animals, Byosiere studied puppies of different ages, and the two functions may coexist or shift across development. The developmental arc from repair-emphasis (infants) to reinitiation-emphasis (juveniles) may itself be informative for REE's DEV-NEED-009 trajectory.",
+    "source_context": "PMC full-text available. Multi-site study: dogs from University of Michigan, wolves from Wolf Science Centre Austria. Ages 2-7.8 months. Behavioral coding using focal animal sampling with frame-by-frame video analysis. Preregistered behavioral coding scheme from Bekoff 1995."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Good source quality: PMC open access, rigorous video analysis, multi-site. Mapping fidelity moderate: the reinitiation finding refines but does not replace the repair architecture; the theoretical translation requires care. Transfer risk moderate: canid-specific, domestication confound."
+  }
+}

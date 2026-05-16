@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ethological_play_signals",
+  "entry_id": "2026-05-16_arc049_palagi2011_gelada_play_face_ontogeny",
+  "timestamp_utc": "2026-05-16T12:28:47Z",
+  "claim_ids_tested": ["ARC-049", "DEV-NEED-009", "DEV-NEED-014", "INV-059"],
+  "source": {
+    "title": "Playing with the face: playful facial \"chattering\" and signal modulation in a monkey species (Theropithecus gelada)",
+    "authors": ["Palagi, Elisabetta", "Mancini, Giada"],
+    "year": 2011,
+    "venue": "Journal of Comparative Psychology",
+    "doi": "10.1037/a0020869",
+    "url": "https://doi.org/10.1037/a0020869"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This study documents developmental progression of play face variants in geladas (Theropithecus gelada) -- from PF (lower teeth only) in juveniles to FPF (full play face, upper teeth also exposed) in adults -- and shows that adults are more sensitive than immatures to others' play face displays. The age-related transition in facial expression variant mirrors the phylogenetic sequence (PF is ancestral, FPF is derived). Adults show better social calibration of play face use and are more responsive to partners' displays. This is the most direct evidence on developmental timeline of play signal competence in a non-canid species, directly relevant to REE's DEV-NEED-009 (play-dominant childhood builds the play frame substrate). Confidence reflects good behavioral data from zoo geladas with systematic age comparisons, published in J Comparative Psychology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If immatures and adults showed identical play face variant usage and response sensitivity, this would undermine the developmental trajectory claim and weaken DEV-NEED-009's prediction that childhood play builds adult social signal competence.",
+    "If PF and FPF had identical social consequences (same response rates from partners), there would be no evidence that signal variant encodes contextually important information."
+  ],
+  "tags": ["arc049", "dev_need_009", "dev_need_014", "inv059", "gelada", "Theropithecus", "play_face", "ontogeny", "development", "facial_expression", "background_signal"],
+  "mapping": {
+    "source_claim_statement": "In geladas, the standard play face (PF, lower teeth) is replaced by the full play face (FPF, lower+upper teeth) across ontogenetic development: PF is common in immatures, FPF becomes dominant in adults. Adults are more sensitive than immatures to detecting and responding to conspecifics' play face displays. The ontogenetic shift mirrors the inferred phylogenetic sequence (PF is ancestral to FPF).",
+    "ree_translation": "For REE's DEV-NEED-009, this is direct evidence that play signal competence has a developmental trajectory: immature animals use the simpler, lower-cost background signal (PF); adult social experience, neural maturation, and play history install the ability to produce and respond to the more socially precise variant (FPF). The adult's increased sensitivity to others' play faces is a calibrated social receptor, not an innate reflex -- it is learned through accumulated play experience. This supports the claim that play-dominant childhood is a developmental necessity for building the play frame architecture: an agent that has not had extensive juvenile play experience will have immature background signal sensitivity (cannot reliably decode partner's frame state) even if it has been trained to produce formal play signals. INV-059 (mutual frame maintenance necessity) is supported by the finding that adult FPF sensitivity predicts better-calibrated play interactions (more balanced, longer). DEV-NEED-014 (cooperative play) is supported: cooperative play with conspecifics of varied age is the training environment for this developmental progression.",
+    "mapping_caveat": "The study is with zoo-housed geladas, limiting ecological validity. The sample spans a wide age range but is cross-sectional (different animals at different ages), not longitudinal. The developmental transition from PF to FPF is a primate-specific finding; whether the same developmental progression applies to REE's three-level architecture more broadly requires inference from the cross-species comparative pattern. The emotional vs. strategic distinction (FPF being more emotional in intimate social contexts like mother-offspring play) suggests the background signal may carry affective as well as social information.",
+    "source_context": "Systematic behavioral observation of zoo-housed geladas across age groups. Focal animal sampling with ethogram of play face variants. Published in Journal of Comparative Psychology. PubMed PMID 21244137, doi:10.1037/a0020869."
+  },
+  "confidence_components": {
+    "source_quality": 0.83,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Good source quality: systematic ethogram, J Comparative Psychology, Palagi group is the leading team on play face signals. Mapping fidelity high: developmental trajectory finding directly addresses DEV-NEED-009. Transfer risk moderate: zoo-housed non-human primates."
+  }
+}

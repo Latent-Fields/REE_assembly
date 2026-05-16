@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ethological_play_signals",
+  "entry_id": "2026-05-16_arc049_waller2012_gorilla_play_face_teeth_exposure",
+  "timestamp_utc": "2026-05-16T12:28:47Z",
+  "claim_ids_tested": ["ARC-049", "Q-035", "INV-059"],
+  "source": {
+    "title": "Facilitating Play Through Communication: Significance of Teeth Exposure in the Gorilla Play Face",
+    "authors": ["Waller, Bridget M.", "Cherry, Lyndsay"],
+    "year": 2012,
+    "venue": "American Journal of Primatology",
+    "doi": "10.1002/ajp.21018",
+    "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/ajp.21018"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This study documents two morphologically distinct play face variants in Western Lowland gorillas: the standard play face (ROM, relaxed open mouth, lower teeth only) and the full play face (upper teeth exposed), and shows they have different functions. The full play face was more common in intense play and was associated with longer intense play bouts and higher post-play affiliative behavior relative to standard play face. This provides evidence that within the background signal level (level-2), signal modulation encodes intensity information -- the background signal is not binary but graded. This is important for REE's architecture: the level-2 background signal may carry a continuous intensity channel rather than being a binary 'play on/play off' marker. Confidence reflects solid behavioral data from captive gorillas with good focal animal sampling, but the captive setting and single-species scope limit generalizability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the full play face and standard play face had identical behavioral consequences (same bout length, same post-play affiliation), there would be no evidence for within-level signal modulation and REE's level-2 could be treated as binary.",
+    "If the full play face occurred randomly with respect to play intensity, the hypothesis that signals encode intensity would be unsupported."
+  ],
+  "tags": ["arc049", "q035", "inv059", "gorilla", "play_face", "ROM", "background_signal", "intensity_modulation", "primate"],
+  "mapping": {
+    "source_claim_statement": "Western Lowland gorillas use two play face variants: the standard relaxed open mouth (ROM/PF) and the full play face (PF with upper teeth exposed). The full PF occurs more in intense play and is associated with longer intense play bouts and greater post-play affiliation. Both variants are associated with affinitive behavior after play, but the full PF shows a larger effect.",
+    "ree_translation": "For ARC-049, this paper confirms that the background signal (level-2 in Bekoff's framework) is not binary but graded. The standard play face is the baseline continuous signal ('frame is open, play intensity moderate'), while the full play face is an elevated signal ('frame is open, play intensity high, please recalibrate expectations'). This graded modulation within level-2 means REE's frame context tag may need an intensity dimension, not just a binary play/not-play flag. INV-059 (mutual frame maintenance necessity) is supported: both variants function to maintain the shared frame, but the graded modulation provides additional information about frame state to the partner. Q-035 is further informed: the background signal is functionally necessary (not just convenient) because it carries intensity information that cannot be inferred from action content alone during ambiguous rough play.",
+    "mapping_caveat": "The gorilla data comes from captive animals (N=10), limiting ecological validity. The full PF appears to function partly as a reassurance signal in intense play (reducing receiver's uncertainty that play is turning real) -- which maps onto a hybrid of level-2 (background) and level-3 (repair) in Bekoff's framework. Whether gorillas have a separate level-3 repair signal (analogous to the play bow) in addition to the graded play face is not established by this paper.",
+    "source_context": "Focal animal sampling of 10 captive Western Lowland gorillas. Behavioral observation over structured periods. Measurements include bout duration, frequency of PF vs full PF, and post-bout affiliative behavior. PubMed PMID 22512019, doi:10.1002/ajp.21018."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Good source quality: published in Am J Primatol, systematic focal animal sampling, appropriate statistical analysis. Mapping fidelity moderate-high: graded modulation of background signal is a REE-relevant finding. Transfer risk moderate: captive gorillas, single primate species."
+  }
+}

@@ -3,7 +3,8 @@
 **Status:** Draft — 2026-05-16
 **Architect session:** play-substrate-design-2026-05-16T115621Z
 **Depends on:** play_mode.md, developmental_curriculum.md, developmental_needs_register.md
-**Registered claims:** MECH-194–199, ARC-049, INV-058–060, Q-035
+**Registered claims:** MECH-194–199, ARC-049, INV-058–060, Q-035 (resolved), Q-048–Q-051, MECH-327, MECH-328, ARC-073
+**Follow-on lit-pulls:** targeted_review_infant_play_contingency, targeted_review_ethological_play_signals (2026-05-16)
 
 ---
 
@@ -127,6 +128,67 @@ peer-level bilateral frame is V4.
 
 ---
 
+### 1.10 Follow-On Lit-Pull: Infant Contingency Detection (2026-05-16)
+
+*Sources: Tronick 1978, Murray & Trevarthen 1985, Striano et al. 2005, Gergely & Watson 1996,
+Rochat et al. 1999, Ekas et al. 2012, Feldman 2007.*
+
+**Convergent finding:** Continuous frame monitoring is operational from 2–3 months of age,
+before any play type in the MECH-197 progression. What escalates across play types is the
+CONTENT of what is monitored, not the monitoring architecture. This resolves Q-035 (closed)
+and refines ARC-049 with two implementation constraints:
+
+1. **Frame confidence is a decaying scalar** (Ekas 2012): Within-episode monitoring dynamics
+   show progressive decline when contingency fails -- monitoring computes a continuously-updating
+   frame-confidence signal with temporal decay, not a one-shot violation detector. Implement as a
+   scalar restored by reciprocal exchange, decremented per monitoring cycle that returns no
+   contingency.
+
+2. **Play frame signals must be "marked"** (Gergely & Watson 1996): The contingency-detection
+   module distinguishes marked (perceptibly distinct) from unmarked signals. ARC-049's frame
+   signal must be perceptibly different from ordinary behavior for the monitoring system to use
+   it. This is a concrete design constraint: `play_frame_open_signal` must be qualitatively
+   distinct from normal step outputs, not just a flag toggle in latent state.
+
+**Suggested new MECH (not yet registered):** A MECH for the contingency-detection module as the
+biological substrate of frame monitoring -- grounding it in the Gergely-Watson mechanism and the
+Feldman 2007 oscillator biology (synchrony has physiological precursors in neonatal oscillator
+systems). Would link play frame monitoring to REE's sleep/oscillator thread (INV-049).
+
+### 1.11 Follow-On Lit-Pull: Ethological Play Signals (2026-05-16)
+
+*Sources: Bekoff 1995, Byosiere et al. 2017, Davila-Ross & Palagi 2022, Nolfo & Palagi 2022,
+Palagi 2011, Palagi 2024, Waller et al. 2012, Wenig et al. 2021.*
+
+**Convergent finding across 8 species spanning mammals and corvids:**
+
+1. **L2 background signal is universal and graded, not binary** (Waller 2012 gorilla; Nolfo &
+   Palagi 2022 hyena): The background signal (open-mouth play face, hyena "happy face") varies
+   in intensity as play intensity changes. Standard = frame open at baseline; elevated = higher
+   play intensity. Frame confidence is not binary — it is graded. This converges with Ekas 2012
+   from the infant lit-pull. Both implementation constraints point to the same architecture:
+   frame confidence should be implemented as a continuous scalar.
+
+2. **L3 fires at pause-reinitiation, not only ambiguity** (Byosiere 2017, refines Bekoff 1995):
+   In domestic dogs, play bows occur primarily after pauses in play, functioning to reinitiate
+   rather than repair imminent misread. This extends L3's functional role: it fires whenever
+   the background monitoring signal detects a disruption (ambiguous action OR pause) — a broader
+   trigger than the original Bekoff punctuation framing. Implement: L3 trigger condition =
+   `P(misread | current_action) > threshold OR frame_confidence_drop > reinitiation_threshold`.
+
+3. **Universal across taxonomy** (Palagi 2024 dolphins; Wenig 2021 ravens): Dolphins (90 MY
+   divergence from terrestrial mammals) and ravens (320 MY from mammals) both exhibit the L2
+   background signal (open-mouth play face, play-specific vocalizations/movements). The
+   architecture predates the mammalian lineage split, confirming it is not a primate-specific
+   elaboration. This raises the generalizability confidence for ARC-049 to cross-substrate level.
+
+4. **Play signal competence has a developmental trajectory** (Palagi 2011 gelada): Immature
+   animals use only L2 (simpler background signal); adults add L3 (explicit repair/reinitiation
+   signals). This mirrors the caregiver → peer transition in MECH-199 and implies that L3
+   competence is acquired through play experience, not present from birth.
+
+---
+
 ## 2. Literature Evidence Mapping Table
 
 | Source | Finding | Action | Claim IDs | DEV-NEED IDs |
@@ -154,37 +216,74 @@ peer-level bilateral frame is V4.
 | Lynch 2020 Play-LMP | Task-agnostic play trains policy structure, not magnitude; full task transfer | Supports | MECH-194, MECH-195, INV-058 | DEV-NEED-009 |
 | Caselles-Dupre 2019 | Mode-tag failure causes gradient contamination in robotic systems | Supports MECH-094 | MECH-094, MECH-194 | DEV-NEED-009 |
 | Pezzato 2022 | Competitive drive dynamics produce natural mode-switching without schedule | Suggests ARC claim | ARC-050, MECH-194 | DEV-NEED-009 |
+| Tronick et al. 1978 | Still-face paradigm: 3-4 month infants respond within-episode to contingency violation, not just at boundaries | Resolves Q-035 (monitoring primitive) | Q-035 (resolved), ARC-049, INV-059 | DEV-NEED-010 |
+| Murray & Trevarthen 1985 | Double-video: 2-month temporal contingency detection; isolates timing from content | Resolves Q-035 | Q-035 (resolved), ARC-049 | DEV-NEED-010 |
+| Striano et al. 2005 | 1-month: no discrimination; 3-month: full discrimination of contingency conditions | Pins monitoring onset to 1-3 months | MECH-197, ARC-049 | DEV-NEED-010 |
+| Ekas et al. 2012 | Within-episode progressive bidding decline during SFP; frame confidence is a decaying scalar | Refines ARC-049 implementation | ARC-049, Q-035 (resolved) | DEV-NEED-010 |
+| Gergely & Watson 1996 | Contingency-detection module; play signals must be "marked" (perceptibly distinct) | Design constraint: ARC-049 frame signal must be qualitatively distinct | ARC-049 | DEV-NEED-010 |
+| Feldman 2007 | Parent-infant synchrony grounded in neonatal oscillators; predicts self-reg, empathy; failure -> psychopathology | Links play frame to INV-049 oscillator thread; strengthens INV-059 | ARC-049, INV-059 | DEV-NEED-015 |
+| Bekoff 1995 | Play bow: non-random placement before/after agonistic actions; L3 punctuation not L2 background | Three-level architecture: L1/L2/L3 distinct | ARC-049, Q-035 (resolved) | DEV-NEED-009 |
+| Byosiere et al. 2017 | Play bow fires at pause-reinitiation in adult dogs, not just ambiguity; refines Bekoff | L3 trigger = ambiguity OR pause (frame confidence drop) | ARC-049 | DEV-NEED-009 |
+| Nolfo & Palagi 2022 | Hyena "happy face" (continuous) dissociates from snapping (L3); clear L2/L3 split | Strongest species-level L2/L3 dissociation | ARC-049 | DEV-NEED-009 |
+| Waller et al. 2012 | Gorilla play face is graded (teeth exposure = intensity); background signal is scalar | Frame confidence scalar confirmed | ARC-049 | DEV-NEED-009 |
+| Palagi 2024 | Dolphin open-mouth play face + mimicry (90 MY divergence from terrestrial mammals) | L2 background signal universal mammalian feature | ARC-049 | DEV-NEED-009 |
+| Wenig et al. 2021 | Raven play emotional contagion via play sounds (320 MY from mammals) | L2 background architecture predates mammal-bird split | ARC-049 | DEV-NEED-009 |
+| Palagi 2011 | Gelada: immatures use only L2; adults acquire L3; competence developmental | Play signal competence acquired through experience (MECH-199 analogue) | ARC-049, MECH-199 | DEV-NEED-009 |
 
 ---
 
 ## 3. Q-035 Resolution: Minimal Frame Signal Architecture
 
-**Q-035 (open):** Is a single bilateral open/close tag sufficient, or does ongoing
+**Q-035 (RESOLVED 2026-05-16):** Is a single bilateral open/close tag sufficient, or does ongoing
 exchange need to be sustained?
 
 ### 3.1 Resolution
 
-Q-035 conflates four distinct mechanisms that vary by play type. The correct answer is
-context-dependent and escalates in complexity across the play type hierarchy:
+**The original framing was incorrect.** Q-035 was premised on a model where the monitoring
+architecture *escalates* across play types — from open/close only at simple types to continuous
+heartbeat at complex types. Follow-on lit-pulls on infant contingency detection (Tronick 1978,
+Murray & Trevarthen 1985, Fantasia 2014) and ethological play signals (Bekoff 1995) establish
+that this is wrong.
 
-| Play type | Minimum frame signal | Rationale |
+**Correct resolution:** Continuous bilateral monitoring is a PRIMITIVE CAPACITY present from
+2–3 months of age — before any named play type begins. What escalates across play types is
+the **CONTENT COMPLEXITY** of the shared state being monitored, not the monitoring architecture.
+
+| Play type | Monitoring architecture | Content being monitored |
 |---|---|---|
-| Sensorimotor | Open/close only | Caregiver unilateral; no bilateral state to track |
-| Constructive | Open/close only | Caregiver unilateral; goal is single agent's sequence |
-| Pretend play | **Persistent co-active tags** (hypothesis_tag + play_frame_tag both held throughout) | Both tags must co-exist; either dropout = frame confusion |
-| Games with rules | **Ongoing shared-state monitoring** of rule/constraint state | Frame content (active constraints) updates each turn; violations detectable only with current state |
-| Cooperative | **Continuous bilateral background signal** + explicit repair at ambiguity points | Bekoff three-level architecture; partner-state tracking required |
+| Sensorimotor | L1 (open/close) + L2 (continuous background) — BOTH present from infancy | "Is partner still contingently responding?" |
+| Constructive | L1 + L2 | "Is compositional goal still shared?" |
+| Pretend | L1 + L2 + both hypothesis_tag and play_frame_tag co-active | "Are both decoupling layers simultaneously maintained?" |
+| Games with rules | L1 + L2 + L3 (repair at violations) | Dual-level: rule compliance AND strategic rationality (Schmidt 2015) |
+| Cooperative | L1 + L2 + L3 from BOTH parties | Full bilateral role/goal state + repair at role ambiguity |
 
-### 3.2 Q-035 Should Be Split
+**Three-level signal architecture (Bekoff 1995):**
+- **L1 (discrete boundary signals):** play bow / play-face onset — open/close markers
+- **L2 (continuous background signal):** ongoing play face, body orientation — absence is itself a violation signal
+- **L3 (repair signals):** selectively deployed at ambiguity junctures (P(misread | action) > threshold) — NOT continuous
 
-Q-035 should be closed and replaced by four targeted sub-claims:
+The three levels are present across all play types from the start. They are not invented at games-with-rules.
 
-- **Q-035a**: Is open/close frame tagging sufficient for sensorimotor and constructive play? (Predicted: yes)
-- **Q-035b**: Does pretend play require both hypothesis_tag and play_frame_tag to be co-active throughout, not just at open/close transitions? (Predicted: yes; supported by Leslie 1987, Kuhn-Popp 2013)
-- **Q-035c**: Do games-with-rules require ongoing shared constraint-state monitoring per decision step? (Predicted: yes; supported by Rakoczy 2008, Vygotsky)
-- **Q-035d**: Does cooperative play require a continuous low-cost background frame signal distinct from explicit open/close events? (Predicted: yes; supported by Bekoff 1995, Bakeman 1984)
+**Empirical grounding:**
+- Tronick 1978 (still-face): 3-4 month infants respond to mid-episode contingency violations, not just episode boundaries
+- Murray & Trevarthen 1985 (double-video): 2-month temporal contingency monitoring isolates timing from content
+- Fantasia 2014: 3-month infants detect structural alterations to play routine mid-episode
+- Bekoff 1995: three-level signal architecture in canid play regardless of play type
 
-All four can be tested via behavioral ablation experiments in V3 and V4 substrates.
+### 3.2 Sub-Questions (Q-048–Q-051)
+
+Q-035 is resolved. The residual open questions concern what CONTENT needs to be monitored at each
+play stage, not whether the monitoring architecture exists:
+
+- **Q-048**: Is L2 background signal sufficient for sensorimotor/constructive content ("is partner still responding?"), or are L3 repair events also required? (V3-tractable)
+- **Q-049**: Does pretend play require hypothesis_tag + play_frame_tag co-active **throughout** the episode, or only at moments of object substitution? (V3-tractable)
+- **Q-050**: Do games-with-rules require per-step dual-level content monitoring (rule + strategic rationality simultaneously), or does turn-by-turn sequential sampling suffice? (V4 needed)
+- **Q-051**: Does cooperative play require full L1+L2+L3 from BOTH parties, or can bilateral L1 alone maintain frame integrity? (V4 needed)
+
+**V3 implementation:** The persistent `play_frame_tag` flag in `LatentState` already implements L2.
+L1 = `frame_open` / `frame_close` events. L3 = ambiguity-repair triggered by
+`P(misread | action) > ambiguity_threshold`. No architectural change needed for V3 degenerate case.
+Q-048 and Q-049 are tractable in V3.
 
 ---
 
@@ -501,7 +600,7 @@ turn-taking mechanism; inhibitory control (ability to suppress non-permitted mov
 - Shared state monitoring: tracking current legal action set based on rule state
 - Rule violation detection: detecting partner violations and own-violations
 - Inhibitory control: suppressing moves that are valid actions but currently rule-prohibited
-- Q-035c mechanism: per-step shared-state update
+- Q-050 mechanism: per-step shared-state update
 
 **Synthetic signals:**
 - z_goal_synthetic = rule-defined objective (score, reach target, achieve winning condition)
@@ -537,7 +636,7 @@ turn-taking mechanism; inhibitory control (ability to suppress non-permitted mov
 **V3 proxy:** Structured rule-state obs; experimenter-injected violation harm; legal_moves
 set in obs; CausalGridWorld turn-taking variant.
 
-**V4 requirements:** Genuine peer partner for bilateral rule enforcement and real Q-035c
+**V4 requirements:** Genuine peer partner for bilateral rule enforcement and real Q-050
 shared-state monitoring test.
 
 ---
@@ -715,7 +814,7 @@ Prerequisite before any play experiment:
 - [ ] Violation harm injection (rule violation fires z_harm_synthetic)
 - [ ] Per-step rule-state update protocol
 - [ ] Run EXQ-PLAY-004: rule learning and constraint satisfaction in CausalGridWorld variant
-- [ ] Tests Q-035c: shared-state monitoring requirement
+- [ ] Tests Q-050: shared-state monitoring requirement
 
 ### Phase 5: Cooperative Play (V4 prerequisite)
 
@@ -724,7 +823,7 @@ Prerequisite before any play experiment:
 - [ ] Joint benefit signal (fires only on both agents' contribution)
 - [ ] Frame-mismatch detection and downgrade protocol
 - [ ] Run EXQ-PLAY-005 (V4): bilateral frame integrity test with peer partner
-- [ ] Tests Q-035d: continuous background signal requirement
+- [ ] Tests Q-051: continuous background signal requirement
 
 ---
 
@@ -772,7 +871,7 @@ condition 3 = no transfer (learning suppressed by hypothesis_tag alone).
 
 ---
 
-### EXQ-PLAY-003: Q-035c Test — Rule-State Monitoring Necessity
+### EXQ-PLAY-003: Q-050 Test — Rule-State Monitoring Necessity
 
 **Question:** In games-with-rules, is per-step shared-state monitoring necessary, or does
 open/close frame suffice?
@@ -889,11 +988,12 @@ throughout (not just at open/close).
 **Proposed update:** Add persistent dual-tag co-activation as explicit implementation
 requirement; add frame confusion metrics (MECH-200, MECH-201 rates) as gate sub-criteria.
 
-### 11.4 DEV-NEED-013 (Games-with-Rules) — Specify Q-035c as Implementation Requirement
+### 11.4 DEV-NEED-013 (Games-with-Rules) — Specify Q-050 as Implementation Requirement
 
-**Current:** Q-035 listed as open question.
-**Proposed:** Close Q-035 as parent; open Q-035a/b/c/d as sub-claims. Add per-step
-shared-state monitoring as implementation requirement for DEV-NEED-013. Add rule inference
+**Current:** Q-035 now resolved; Q-050 (games-with-rules dual-level content monitoring) is open.
+**Proposed:** Add per-step dual-level shared-state monitoring (rule compliance + strategic
+rationality simultaneously, per Schmidt 2015) as implementation requirement for DEV-NEED-013.
+Q-050 is marked substrate_conditional (requires V4 multi-agent substrate). Add rule inference
 (novel rule generalization) as gate sub-criterion.
 
 ### 11.5 New Claims to Propose
@@ -950,13 +1050,48 @@ full claims.yaml registration in a governance pass:
 
 The following literature record directories were created during this design session:
 
-- `evidence/literature/targeted_review_pretend_play_counterfactual/` — 6 records
+**Initial session (2026-05-16 AM):**
+- `evidence/literature/targeted_review_pretend_play_counterfactual/` — 8 records
   (Leslie 1987, Buchsbaum 2012, Francis 2023, Drayton 2011, Kuhn-Popp 2013,
-  Rutherford 2003, Vasilopoulos 2026)
-- `evidence/literature/targeted_review_games_with_rules_ef/` — records in progress
-  (Rakoczy 2008 complete; additional records being written)
+  Rutherford 2003, Vasilopoulos 2026, Smits 2024)
+- `evidence/literature/targeted_review_games_with_rules_ef/` — 9 records
+  (Rakoczy 2008, Schmidt 2015, Rakoczy 2007, Tomasello 2005/2019, Zhao 2025,
+  Diamond 2011, Fantasia 2014, Rosas 2019)
+
+**Follow-on session (2026-05-16, Q-035 correction pass):**
+- `evidence/literature/targeted_review_infant_play_contingency/` — 7 records
+  (Tronick 1978, Murray & Trevarthen 1985, Striano et al. 2005, Gergely & Watson 1996,
+  Rochat et al. 1999, Ekas et al. 2012, Feldman 2007)
+- `evidence/literature/targeted_review_ethological_play_signals/` — 8 records
+  (Bekoff 1995, Byosiere et al. 2017, Davila-Ross & Palagi 2022, Nolfo & Palagi 2022,
+  Palagi 2011, Palagi 2024, Waller et al. 2012, Wenig et al. 2021)
 
 Other lit-pull results (cognitive development, sensorimotor, social/R&T, robotics) were
 returned as structured findings tables and are not yet written as individual records. Those
 topics should be written into their respective `targeted_review_*` directories in a
 follow-on session.
+
+---
+
+## 13. Claims Registered (Follow-On Pass, 2026-05-16)
+
+**New claims:**
+- **MECH-327**: E1 PE locus upweights probe-action selection during sensorimotor play
+- **MECH-328**: Goal-space continuity (synthetic z_goal and real z_goal in same manifold)
+- **ARC-073**: Play-to-real transition criterion = competence saturation (not schedule)
+- **Q-048**: L2 sufficient for sensorimotor/constructive monitoring? (V3-tractable)
+- **Q-049**: Pretend play requires hypothesis_tag + play_frame_tag co-active throughout? (V3-tractable)
+- **Q-050**: Games-with-rules require per-step dual-level content monitoring? (V4 needed)
+- **Q-051**: Cooperative play requires full L1+L2+L3 from both parties? (V4 needed)
+
+**Claims refined (notes updated):**
+- **MECH-194**: z_harm threshold-shifted not suppressed (Panksepp 1998); z_goal must be LP-weighted
+- **MECH-195**: Incommensurable by construction (Schmidhuber 2010 formal derivation)
+- **ARC-049**: Three-level signal architecture + monitoring-is-primitive + graded scalar framing
+- **MECH-197**: Corrected: monitoring is primitive throughout; games-with-rules adds content complexity
+- **Q-035**: Closed as resolved; resolution_note added; sub-questions Q-048–Q-051 opened
+
+**Suggested future claim (not yet registered):**
+- **MECH-329** (candidate): Contingency-detection module as biological substrate of frame monitoring
+  (Gergely-Watson mechanism + Feldman 2007 oscillator biology). Would link play frame monitoring
+  to REE's sleep/oscillator thread (INV-049).

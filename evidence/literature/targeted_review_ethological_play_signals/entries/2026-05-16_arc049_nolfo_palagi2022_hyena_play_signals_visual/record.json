@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ethological_play_signals",
+  "entry_id": "2026-05-16_arc049_nolfo_palagi2022_hyena_play_signals_visual",
+  "timestamp_utc": "2026-05-16T12:28:47Z",
+  "claim_ids_tested": ["ARC-049", "INV-059", "Q-035"],
+  "source": {
+    "title": "Visual communication in social play of a hierarchical carnivore species: the case of wild spotted hyenas",
+    "authors": ["Nolfo, Andrea Paolo", "Casetta, Grazia", "Palagi, Elisabetta"],
+    "year": 2022,
+    "venue": "Current Zoology",
+    "doi": "10.1093/cz/zoab076",
+    "url": "https://academic.oup.com/cz/article/68/4/411/6371184"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is one of the only studies to explicitly dissociate two functionally distinct visual signals during social play in wild animals using sequential behavioral analysis. Wild spotted hyenas display two signals during play fighting: ROM (relaxed open mouth, the standard open-mouth play face) and HB (head bobbing, a rhythmic vertical head movement). The study found that ROM, not HB, operates as a metacommunicative signal -- specifically, ROM is produced more often before play biting (anticipating an ambiguous action, analogous to Bekoff's play bow timing), and is produced more when the player is within the partner's visual field. HB does not show these properties. Moreover, when play fighting became asymmetric (one player dominating), ROM frequency increased -- consistent with ROM functioning as an explicit repair or reassurance signal at escalated ambiguity moments. Wild population (not captive), systematic sequential analysis, published in Current Zoology. This is the strongest evidence for explicit dissociation of level-2 vs level-3 signal functions in a non-canid species.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ROM and HB showed identical behavioral relationships to play biting and identical sensitivity to receiver visual field, there would be no dissociation between signal types -- the two-signal hypothesis would fail and a single undifferentiated background signal account would suffice.",
+    "If ROM frequency did not increase during asymmetric play (greater ambiguity), the ambiguity-detection trigger for explicit signals would be unsupported."
+  ],
+  "tags": ["arc049", "inv059", "q035", "hyena", "carnivore", "ROM", "head_bobbing", "metacommunicative", "explicit_repair", "background_signal", "sequential_analysis", "wild"],
+  "mapping": {
+    "source_claim_statement": "In wild spotted hyenas, two visual signals co-occur during play fighting: ROM (relaxed open mouth) and HB (head bobbing). Sequential analysis shows that ROM is produced predominantly before offensive play patterns (anticipatory), when the sender is in the receiver's visual field (attention-sensitive), and increases during asymmetric play (ambiguity-elevated). HB shows none of these properties. ROM is interpreted as a metacommunicative signal; HB is not.",
+    "ree_translation": "This study provides the clearest available dissociation between a level-2 background signal (HB -- continuous, non-attention-sensitive, non-anticipatory) and a level-3 explicit repair/repair-adjacent signal (ROM -- attention-sensitive, anticipatory, ambiguity-calibrated) in a non-canid wild species. The dissociation within a single species directly supports ARC-049's claim that the three-level architecture is not a single signal but a multi-channel system with distinct functions at each level. ROM firing before offensive play patterns corresponds exactly to Bekoff's play bow firing before bite-shakes: the level-3 signal anticipates high-ambiguity actions and brackets them. ROM increasing during asymmetric play is the clearest evidence that signal frequency is modulated by detected ambiguity, not by play intensity per se -- supporting the 'explicit repair signal fires at ambiguity junctures' specification of ARC-049. INV-059 (mutual frame maintenance) is supported: the ROM's attention-sensitivity (emitted within receiver's visual field) shows that both parties' attentional states are actively tracked and respected in the signaling architecture.",
+    "mapping_caveat": "Spotted hyenas are a highly hierarchical species with a complex dominance structure that may make play particularly ambiguous (dominance postures and play postures overlap more than in non-hierarchical species). Whether the ROM/HB dissociation generalizes to less hierarchical species is not established by this paper. The captive/wild distinction is favorable (wild animals), but the ethogram used is specific to spotted hyenas and the behavioral categories may not map perfectly onto other carnivores.",
+    "source_context": "Wild spotted hyena population in Kenya. PMC full-text available (PMC9450175). Sequential transition analysis using focal animal sampling over multiple observation sessions. Published in Current Zoology. doi:10.1093/cz/zoab076, PMID 36090136."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "High source quality: wild population, PMC full-text, rigorous sequential analysis. High mapping fidelity: explicit dissociation of background vs. metacommunicative signal in a single species maps directly onto ARC-049's two-channel level-2/level-3 architecture. Transfer risk low: wild animals, sequential analysis methodology is robust."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ethological_play_signals",
+  "entry_id": "2026-05-16_arc049_palagi2024_dolphin_open_mouth_play_mimicry",
+  "timestamp_utc": "2026-05-16T12:28:47Z",
+  "claim_ids_tested": ["ARC-049", "INV-059", "Q-035"],
+  "source": {
+    "title": "Smiling underwater: Exploring playful signals and rapid mimicry in bottlenose dolphins",
+    "authors": ["Palagi, Elisabetta", "Versace, F.", "Fanfani, L.", "Marcon, V.", "Poirier, C.", "Bouvry, M."],
+    "year": 2024,
+    "venue": "iScience",
+    "doi": "10.1016/j.isci.2024.110966",
+    "url": "https://www.cell.com/iscience/fulltext/S2589-0042(24)02191-6"
+  },
+  "evidence_class": "empirical_behavioral",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "This is the first study documenting open-mouth play signals and rapid facial mimicry (RFM) in a marine mammal species (bottlenose dolphins, Tursiops truncatus). Dolphins are phylogenetically distant from primates and terrestrial carnivores, separated by approximately 95 million years. The finding that dolphins use open-mouth displays almost exclusively during social (conspecific) play (not solitary play, not interspecific play), emit the display within the receiver's visual field at significantly higher rates than non-visual-context events, and replicate a partner's OM display 13x more often when they can see it (vs. control condition), provides strong cross-taxon convergent evidence for the background signal mechanism. The 33% replication rate falls within the range reported for terrestrial carnivores (meerkats 27%, sun bears 39%). PMC full-text available. Published October 2024 in iScience (Cell Press). High methodological quality with multiple observation sessions across two facilities.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If open-mouth displays in dolphins were not context-specific (occurring equally in solitary and social play), this would argue against the signal interpretation and for a non-communicative motor pattern.",
+    "If the 13x RFM odds ratio were an artifact of behavioral synchrony (both dolphins opening mouths for the same reason simultaneously), the mimicry interpretation would be confounded -- the study addresses this by showing the ratio drops dramatically when the partner cannot see the signal."
+  ],
+  "tags": ["arc049", "inv059", "q035", "dolphin", "cetacean", "open_mouth", "rapid_facial_mimicry", "RFM", "background_signal", "cross_species", "convergent_evolution", "marine_mammal"],
+  "mapping": {
+    "source_claim_statement": "Bottlenose dolphins use an open mouth (OM) display almost exclusively during intraspecific social play (1,288 OM events in social play vs. 1 in solitary play). OM is emitted within the receiver's visual field at significantly higher rates than non-visual-context controls. Detecting a partner's OM is 13x more likely to evoke OM replication within 1 second than non-detection (RFM). OM is not accompanied by biting attempts, supporting ritualization (vs. defensive open-mouth).",
+    "ree_translation": "The dolphin finding is the strongest cross-species convergent evidence for the background signal mechanism being a universal feature of social play in mammals. Dolphins separated from terrestrial mammals ~95 million years ago and have a completely different social ecology (fission-fusion aquatic groups, acoustic primary communication). Yet they independently evolved the same open-mouth background signal mechanism, with RFM rates matching terrestrial carnivores. For ARC-049, this convergence across such phylogenetic distance strongly supports the universality of the three-level signal architecture as an adaptive solution to the play frame maintenance problem rather than a phylogenetic accident. INV-059 (mutual frame maintenance necessity) is supported by the visual field sensitivity: dolphins track the partner's attentional state and emit OM preferentially when the partner can see them, demonstrating intentional structure in background signal production. The 13x RFM effect size is operationalizable as a metric for REE's frame maintenance integrity: Q-035's continuous monitoring requirement is quantitatively instantiated as the probability of within-1s signal replication.",
+    "mapping_caveat": "The study uses captive dolphins at two facilities, which provides excellent observation conditions but limits ecological validity. The acoustic communication channel (dolphin vocalizations during play) is not measured in this study, so the OM display may be part of a larger multimodal play signal system not fully captured. The study notes that OM rarely occurs during interspecific (human-dolphin) play, which may reflect that the dolphins have not developed species-appropriate signal calibration for cross-species play.",
+    "source_context": "Observational study across two captive dolphin facilities: Zoomarine Rome and Planete Sauvage (France). 80 hours of video across 60 working days, 22 subjects in four social groups. Video analysis using BORIS software. PMC full-text available (PMC11519433). doi:10.1016/j.isci.2024.110966, PMID 39474076. Published October 2024."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.18,
+    "notes": "High source quality: iScience (Cell Press open access), large dataset, two facilities, rigorous GLMM analysis. High mapping fidelity: cross-species convergence finding is the strongest available evidence for architecture universality. Transfer risk low: convergent evidence across phylogenetically distant species specifically reduces transfer risk for REE's claims about universal play signal architecture."
+  }
+}

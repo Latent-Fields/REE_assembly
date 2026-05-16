@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-16T12:34:06.234950Z`
+Generated: `2026-05-16T12:38:31.452030Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -121,7 +121,7 @@ Generated: `2026-05-16T12:34:06.234950Z`
 | `targeted_review_developmental_exploration_hippocampal_retrieval` | [`2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007`](targeted_review_developmental_exploration_hippocampal_retrieval/entries/2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007/record.json) | 19 | [`summary`](targeted_review_developmental_exploration_hippocampal_retrieval/entries/2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007/summary.md) |
 | `targeted_review_devrobotics_play_frame` | [`2026-05-16_devrobotics_sim2real_policy_transfer_khor2025`](targeted_review_devrobotics_play_frame/entries/2026-05-16_devrobotics_sim2real_policy_transfer_khor2025/record.json) | 6 | [`summary`](targeted_review_devrobotics_play_frame/entries/2026-05-16_devrobotics_sim2real_policy_transfer_khor2025/summary.md) |
 | `targeted_review_e2_dual_function_mode_distinction` | [`2026-04-18_e2_dual_shenhav2016_dacc`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/record.json) | 5 | [`summary`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/summary.md) |
-| `targeted_review_ethological_play_signals` | [`2026-05-16_arc049_waller2012_gorilla_play_face_teeth_exposure`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_waller2012_gorilla_play_face_teeth_exposure/record.json) | 6 | [`summary`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_waller2012_gorilla_play_face_teeth_exposure/summary.md) |
+| `targeted_review_ethological_play_signals` | [`2026-05-16_arc049_wenig2021_raven_play_emotional_contagion`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_wenig2021_raven_play_emotional_contagion/record.json) | 8 | [`summary`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_wenig2021_raven_play_emotional_contagion/summary.md) |
 | `targeted_review_event_segmentation` | [`2026-04-22_mech_288_temporal_memory_dubrow2014`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/record.json) | 11 | [`summary`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/summary.md) |
 | `targeted_review_excitement_5th_valence_channel` | [`2026-05-09_mech307_pupil_arousal_disrupts_memory_lloyd2025`](targeted_review_excitement_5th_valence_channel/entries/2026-05-09_mech307_pupil_arousal_disrupts_memory_lloyd2025/record.json) | 14 | [`summary`](targeted_review_excitement_5th_valence_channel/entries/2026-05-09_mech307_pupil_arousal_disrupts_memory_lloyd2025/summary.md) |
 | `targeted_review_frontal_goal_grounding` | [`2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020`](targeted_review_frontal_goal_grounding/entries/2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020/record.json) | 5 | [`summary`](targeted_review_frontal_goal_grounding/entries/2026-04-28_frontal_goal_grounding_vmpfc_ec_task_structure_baram2020/summary.md) |

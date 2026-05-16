@@ -431,6 +431,12 @@
     "title": "developmental_bootstrapping_and_cue_indexed_retrieval_gaps -- REE lacks (1) a dedicated diversity-bootstrapping epoch that populates the hippocampal trajectory store before reinforcement narrowing; and (2) a differentiable cue-indexed retrieval path from PFC context representation to trajectory generation. EXQ-561 cluster / MECH-269 is diagnostic of gap (1); EXP-0155 zero-gradient cue_action_proj is diagnostic of gap (2). The two gaps are inter-dependent: the severed cue gradient (gap 2) is the mechanism that prevents diverse option population (gap 1).",
     "type": "architectural_commitment"
   },
+  "ARC-073": {
+    "status": "candidate",
+    "subject": "play.transition_criterion",
+    "title": "Play-to-real transition is triggered by competence saturation (d(PE)/dt < threshold) or competitive drive pressure, not by scheduled duration; premature transition leaves policy structure undertrained.",
+    "type": "architecture_hypothesis"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -3276,6 +3282,18 @@
     "title": "pfc_context_bias_as_hippocampal_retrieval_gate -- PFC active goal/task representations send top-down bias signals that steer which hippocampal trajectory templates are retrieved or replayed; different PFC context states should produce different hippocampal retrieval subsets, enabling context-appropriate behavioral option selection; without this routing, the trajectory library is queried uniformly regardless of goal state.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-327": {
+    "status": "candidate",
+    "subject": "play.pe_locus_probe_action_selection",
+    "title": "During sensorimotor play, E1 prediction-error locus upweights probe-action selection: actions targeting high-PE regions of z_world are preferentially selected, implementing curiosity-driven exploration within the play frame.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-328": {
+    "status": "candidate",
+    "subject": "play.goal_space_continuity",
+    "title": "Synthetic and real z_goal vectors must lie in the same latent manifold for play-to-real policy transfer to succeed; disjoint manifolds produce a transfer failure where play-acquired competence cannot generalise to real goal-pursuit.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3481,7 +3499,7 @@
     "type": "question"
   },
   "Q-035": {
-    "status": "open",
+    "status": "resolved",
     "subject": "play.frame_signal_minimal_architecture",
     "title": "What is the minimal signal architecture for play frame maintenance: is a single bilateral open/close tag sufficient, or does ongoing signal exchange (a continuous play-face equivalent) need to be sustained throughout the episode?",
     "type": "question"
@@ -3545,6 +3563,30 @@
     "subject": "policy.anti_monostrategy.substrate_independence_lc_vs_dacc",
     "title": "Is MECH-313 (LC-NE tonic noise floor) a separate parameter from MECH-260 (dACC anti-recency penalty), or do they collapse into one anti-monostrategy substrate? Falsifiable with the four-arm ablation: both-OFF / 313-only / 260-only / both-ON, on SD-054 reef substrate with ARC-062 gated-policy enabled.",
     "type": "open_question"
+  },
+  "Q-048": {
+    "status": "open",
+    "subject": "play.frame_content_sensorimotor_constructive",
+    "title": "During sensorimotor and constructive play, is a persistent background signal (L2) sufficient for frame integrity monitoring, or are explicit mid-episode repair signals (L3) also required?",
+    "type": "question"
+  },
+  "Q-049": {
+    "status": "open",
+    "subject": "play.frame_content_pretend_cotag",
+    "title": "Does pretend play require the hypothesis tag (MECH-094) and play frame tag (ARC-049) to be continuously co-active throughout the episode, or do they merely need to be co-active at the moment of object substitution?",
+    "type": "question"
+  },
+  "Q-050": {
+    "status": "open",
+    "subject": "play.frame_content_games_rules_dual_level",
+    "title": "Do games-with-rules require per-step dual-level content monitoring (rule compliance + strategic rationality simultaneously), or does sequential sampling across turns suffice?",
+    "type": "question"
+  },
+  "Q-051": {
+    "status": "open",
+    "subject": "play.frame_content_cooperative_bilateral",
+    "title": "Does cooperative play require a continuous bilateral background signal (L2) plus explicit repair at ambiguity (L3), or do one-sided frame-open/close events (L1 only) suffice for cooperative frame maintenance?",
+    "type": "question"
   },
   "SD-001": {
     "status": "resolved",
