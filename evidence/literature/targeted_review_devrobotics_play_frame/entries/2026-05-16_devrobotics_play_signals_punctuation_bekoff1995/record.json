@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_devrobotics_play_frame",
+  "entry_id": "2026-05-16_devrobotics_play_signals_punctuation_bekoff1995",
+  "timestamp_utc": "2026-05-16T12:28:16Z",
+  "claim_ids_tested": ["INV-059", "ARC-049", "MECH-196"],
+  "source": {
+    "title": "Play Signals as Punctuation: The Structure of Social Play in Canids",
+    "authors": ["Marc Bekoff"],
+    "year": 1995,
+    "venue": "Behaviour",
+    "doi": "10.1163/156853995X00822",
+    "url": "https://www.wellbeingintlstudiesrepository.org/acwp_ena/30/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical empirical study with ethogram-based quantification of play frame maintenance signals across three canid species. Non-random placement of play bows relative to ambiguous actions operationally defines frame integrity measurement. High source quality (Behaviour journal, widely cited). Moderate transfer risk from animal ethology to REE because the play bow is a motor signal, not a latent-space tag -- the mapping requires the additional claim that bilateral signal architecture is functionally analogous. Important for INV-059 (bilateral frame maintenance necessity) and ARC-049 (co-maintained context tag) because it shows empirically that frame maintenance signals are timed to prevent confusion at the transition point between play and non-play actions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Recent work (Rooney et al. 2016, Ward et al. 2023) finds no evidence for metacommunicative function of play bows -- bows may re-initiate play after pauses rather than clarify ambiguous actions, which would weaken the frame-punctuation interpretation.",
+    "The study addresses animal canids, not children or robots -- transfer to bilateral tag architecture in REE requires assuming structural analogy that the paper does not establish.",
+    "Frame breakdown signatures (escalation to real aggression) are identified narratively but not formally measured in a transition-detection framework."
+  ],
+  "tags": ["play_frame", "play_signals", "metacommunication", "frame_integrity", "inv_059", "arc_049", "mech_196", "bilateral_signaling", "ethology"],
+  "mapping": {
+    "source_claim_statement": "Play bows in canids appear non-randomly before or after actions borrowed from aggressive/predatory contexts (especially bite-shakes). This non-random placement functions to maintain the play frame by clarifying intent -- communicating 'I want to play despite what I am doing or just did.' Ethogram of 35 behavioral patterns was coded; statistical analysis confirmed bows cluster around ambiguous actions rather than being randomly distributed across play sequences.",
+    "ree_translation": "The non-random placement of play bows is the operationalization of INV-059's bilateral frame-maintenance requirement. Frame collapse without mutual signal corresponds to real harm with reduced defensive response -- exactly the exploitation window MECH-196 must close. The play bow as punctuation is the empirical precedent for ARC-049's requirement for ongoing signal exchange: because bows appear at ambiguous action transitions throughout the episode (not just at open/close), this evidence favors the Q-035 answer that ongoing signal exchange is necessary (not just open/close tags), placing ARC-049 at the heartbeat-signal end of the architecture space.",
+    "mapping_caveat": "Transfer risk is real: canid play bows are motor/postural signals observable by a partner, not latent-space tags maintained by a computational system. The functional analogy (bilateral signal -> play frame integrity) is plausible but not proven across the domain gap. Recent challenges to the metacommunicative interpretation (Rooney 2016) are a live methodological dispute.",
+    "source_context": "Behavioral ethology. Adult and infant domestic dogs, infant wolves, infant coyotes. Film analysis of naturally occurring play sequences."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "High source quality for behavioral ethology. Moderate mapping fidelity because the paper does not measure play frame collapse (transition to real aggression) directly -- it measures frame maintenance signal placement. Transfer risk from canid motor signals to REE latent-space tag architecture is non-trivial."
+  }
+}

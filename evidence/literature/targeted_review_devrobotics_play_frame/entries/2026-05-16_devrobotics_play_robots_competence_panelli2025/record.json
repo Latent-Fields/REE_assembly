@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_devrobotics_play_frame",
+  "entry_id": "2026-05-16_devrobotics_play_robots_competence_panelli2025",
+  "timestamp_utc": "2026-05-16T12:28:16Z",
+  "claim_ids_tested": ["INV-058", "INV-059", "ARC-049", "MECH-197"],
+  "source": {
+    "title": "Play robots to develop competences",
+    "authors": ["Erica Panelli", "Lorenzo Guerrieri", "Andrea Bonarini"],
+    "year": 2025,
+    "venue": "Frontiers in Robotics and AI",
+    "doi": "10.3389/frobt.2025.1646523",
+    "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1646523/full"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Recent Frontiers paper directly addressing play-frame integrity in robot-mediated play activities with children. Operationally distinguishes genuine play (pleasant, voluntary, intrinsically motivated) from non-play (externally imposed, therapeutically directed). Uses observational behavioral measures (sustained engagement, cooperative behaviors, emotional regulation, skill transfer) rather than parametric metrics -- these are qualitative but ecologically valid. Supports INV-058 (play is structurally necessary; without bounded low-stakes context, exploration requires harm acceptance) and INV-059 (bilateral frame maintenance). Relevance to ARC-049 comes from the six-step design process which implicitly describes a co-maintained frame: the robot environment and the child both sustain play conditions. Mapping fidelity moderate -- the framework is prescriptive/design-oriented, not metric-oriented.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "No formal metrics are defined for play frame integrity -- the paper uses qualitative observation and practitioner feedback, which are not operationalizable as DEV-NEED gate criteria.",
+    "The paper does not address frame breakdown operationally -- play vs non-play is treated as a design property (activity design = play mode), not as a detected state that can collapse.",
+    "Sample sizes are small and participant characteristics are difficult to capture -- ecological validity comes at the cost of statistical rigor."
+  ],
+  "tags": ["play_frame", "robot_play", "developmental_competence", "frame_integrity", "voluntary_play", "inv_058", "inv_059", "arc_049", "mech_197", "child_robot"],
+  "mapping": {
+    "source_claim_statement": "Robot-mediated play activities support skill development across cognitive, physical, and social domains when designed to be pleasant, voluntary, and intrinsically motivated. Success indicators are sustained engagement, cooperative behaviors, emotional regulation, and skill transfer to peer interactions. The six-step design process creates a structured frame (robot environment + caregiver + child co-maintain play context).",
+    "ree_translation": "The three-criterion definition of genuine play (pleasant, voluntary, intrinsically motivated) maps to the REE play frame tag: the bilateral signal must confirm all three conditions to open and maintain the play episode. The contrast with non-play (externally imposed, therapeutically directed) is exactly the ARC-049 distinction: when the environment imposes the frame unilaterally without agent buy-in, it is not play -- it is manipulation. The success indicators (sustained engagement, skill transfer) are qualitative operationalizations of what the DEV-NEED gate should ultimately measure. The long-term adoption data (one robot, 60 children, 4 years) provides ecological validity for the claim that robot-mediated play can maintain frame integrity at scale.",
+    "mapping_caveat": "The paper is design-oriented and qualitative -- it does not produce metric instruments usable as automated DEV-NEED gate criteria. The three-criterion definition of play mode is not operationalized as a measurable signal. Frame breakdown (the play becoming non-play) is not addressed as a detection problem. Transfer risk from human-child robot play to REE agent architecture is significant.",
+    "source_context": "Human-robot interaction. Children with and without developmental challenges. Longitudinal observational study. Italy."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Frontiers journal with qualitative ecological data. Mapping fidelity moderate-low: the three-criterion definition is conceptually relevant but not operationalized. Transfer risk from child-robot interaction to REE agent is significant."
+  }
+}

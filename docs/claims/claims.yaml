@@ -13429,7 +13429,7 @@
     - SD-012
     - ARC-049
   location: docs/architecture/play_mode.md
-  notes: "The synthetic nature of play signals is tracked by the play frame tag (ARC-049), not by suppressing gradients. Within the episode, weight updates proceed normally -- E3 trajectory competence, E2 forward model, E1 world model all update as if signals were real. Play is not simulation (which suppresses post-commit learning) -- play is authorized-synthetic learning. The frame tag authorizes the synthetic signals as legitimate training targets for the duration of the episode."
+  notes: "The synthetic nature of play signals is tracked by the play frame tag (ARC-049), not by suppressing gradients. Within the episode, weight updates proceed normally -- E3 trajectory competence, E2 forward model, E1 world model all update as if signals were real. Play is not simulation (which suppresses post-commit learning) -- play is authorized-synthetic learning. The frame tag authorizes the synthetic signals as legitimate training targets for the duration of the episode. REFINEMENT (2026-05-16): z_harm_s and z_harm_a are NOT suppressed during play -- they remain active with a raised escalation threshold. This is the Panksepp (1998) PLAY system property: opioid-mediated elevation of the harm escalation threshold, not harm signal suppression. Play episodes thus provide graduated exposure to harm-adjacent signals under conditions where the threshold is shifted upward, training the commitment architecture in the realistic range. Separately, z_goal_synthetic must encode learning progress d(PE)/dt (competence-based), not flat or entropy-based magnitude -- per Oudeyer 2007 (intrinsic motivation), Andersen 2022, and Lynch 2020 (Play-LMP: task-agnostic play trains policy structure, not magnitude). This connects to MECH-327 (E1 PE locus upweights probe-action selection) and MECH-328 (goal-space continuity)."
 
 - id: MECH-195
   title: "Strategy and calibration dissociate at play episode close: policy structure transfers to real episodes; goal/harm magnitude calibration is re-anchored by real homeostatic and harm signals."
@@ -13442,7 +13442,7 @@
     - MECH-196
     - SD-012
   location: docs/architecture/play_mode.md
-  notes: "What transfers from play: trajectory competence, action-object associations, goal-pursuit policy structure (E3/E2 weight updates -- HOW to pursue goals). What does not transfer directly: goal/harm magnitude calibration (WHAT the correct goal intensity and harm thresholds are) -- this is re-anchored by real homeostatic/harm signals after play ends. The dissociation is what makes play productive rather than contaminating: the agent learns goal-pursuit structure in play, then real experience sets the thresholds against which that structure operates."
+  notes: "What transfers from play: trajectory competence, action-object associations, goal-pursuit policy structure (E3/E2 weight updates -- HOW to pursue goals). What does not transfer directly: goal/harm magnitude calibration (WHAT the correct goal intensity and harm thresholds are) -- this is re-anchored by real homeostatic/harm signals after play ends. The dissociation is what makes play productive rather than contaminating: the agent learns goal-pursuit structure in play, then real experience sets the thresholds against which that structure operates. GROUNDING (2026-05-16): Schmidhuber 2010 provides formal derivation of this dissociation: intrinsic drives are derivative signals d(PE)/dt (rate-of-change), while extrinsic drives are absolute magnitude signals. These are INCOMMENSURABLE BY CONSTRUCTION -- a derivative signal cannot be re-scaled into an absolute signal by any coefficient. The dissociation is therefore not a design choice but a mathematical consequence of using LP-weighted z_goal_synthetic. Lynch 2020 (Play-LMP) confirms empirically: task-agnostic play in robotics transfers policy structure but requires real task episodes for magnitude calibration. This formal grounding eliminates the risk of 'calibration leakage' between play and real episodes: the signals are dimensionally distinct."
 
 - id: MECH-196
   title: "Play episode termination triggers real-signal recalibration: homeostatic and harm signals override synthetic thresholds; the frame signal drop is the recalibration trigger."
@@ -13467,7 +13467,7 @@
     - MECH-094
     - INV-059
   location: docs/architecture/play_mode.md
-  notes: "Contrast with MECH-094 (hypothesis tag): simulation is agent-internal (the agent tags its own trajectory evaluation as hypothetical). Play is bilateral: agent and environment/partner co-maintain the play frame tag. The tag must be externally legible for the partner to monitor it. V3 degenerate case: environment is complicit by design (experimenter sets play mode). Full bilateral architecture is a V4 multi-agent requirement. Primate analogue: play bow (episode open signal) + play face (ongoing frame maintenance). See Q-035 for whether ongoing exchange is necessary."
+  notes: "Contrast with MECH-094 (hypothesis tag): simulation is agent-internal (the agent tags its own trajectory evaluation as hypothetical). Play is bilateral: agent and environment/partner co-maintain the play frame tag. The tag must be externally legible for the partner to monitor it. V3 degenerate case: environment is complicit by design (experimenter sets play mode). Full bilateral architecture is a V4 multi-agent requirement. THREE-LEVEL SIGNAL ARCHITECTURE (2026-05-16, Bekoff 1995 / ethological literature): ARC-049 requires three distinct signal layers: (L1) discrete open/close frame markers (play bow / play-face onset); (L2) continuous low-intensity background signal maintained throughout the episode (ongoing play face, body orientation -- the absence of which is itself a violation signal); (L3) explicit repair signals deployed selectively at ambiguity junctures (play bow mid-episode, after bite-shakes or other aggression-adjacent actions). L3 signals are NOT continuous -- they are triggered by P(misread | current_action) exceeding a threshold (Bekoff 1995: non-random placement before/after agonistic-context actions). MONITORING IS PRIMITIVE (2026-05-16): Q-035 (now resolved -- see Q-048 through Q-051 for sub-questions) was premised on a false escalation model. Continuous frame monitoring is NOT invented at games-with-rules -- it is operational from 2-3 months of age (Tronick 1978 still-face paradigm: immediate violation response during episode; Murray & Trevarthen 1985 double-video: temporal contingency detection at 2 months; Fantasia 2014: 3-month-olds detect structural alterations to routine). What escalates across play types is the CONTENT COMPLEXITY of the shared state being monitored (simple contingency -> rule compliance + strategic rationality), not the monitoring architecture. V3 implementation: persistent play_frame_tag flag in LatentState implements L2; L1 and L3 are triggered by frame_open/frame_close events and ambiguity_threshold crossings respectively."
 
 - id: ARC-050
   title: "Play episodes provide a curriculum for E3 goal-pursuit competence acquisition before SD-012 (homeostatic drive) is resolved: synthetic z_goal seeding bypasses the drive_level requirement."
@@ -13487,7 +13487,7 @@
   claim_type: question
   subject: play.frame_signal_minimal_architecture
   polarity: open_question
-  status: open
+  status: resolved
   confidence: 0.0
   depends_on:
     - INV-059
@@ -13507,6 +13507,28 @@
     unknown. REE implication: determines whether ARC-049 requires a heartbeat signal
     mechanism or just open/close transitions.
   suggested_experiment_type: behavioral_mode_ablation
+  resolution: resolution_a
+  resolution_note: |
+    RESOLVED 2026-05-16 via lit-pulls on infant contingency detection and ethological play signals.
+    The original question was premised on a false escalation model (monitoring architecture escalates
+    from open/close to continuous heartbeat across play types). The evidence shows instead that:
+    (a) CONTINUOUS MONITORING IS PRIMITIVE: Tronick 1978 (still-face paradigm) shows infants as
+    young as 3-4 months respond immediately to mid-episode contingency violations, not just at
+    episode boundaries. Murray and Trevarthen 1985 (double-video) isolates temporal contingency
+    from content at 2 months. Fantasia 2014 shows structural alteration detection at 3 months.
+    This means the monitoring architecture is NOT invented at any play type -- it is present from
+    before sensorimotor play begins.
+    (b) WHAT ESCALATES IS CONTENT, NOT ARCHITECTURE: Games-with-rules (Schmidt 2015) require
+    dual-level content monitoring (rule compliance + strategic rationality). Pretend play (Leslie 1987)
+    requires co-active hypothesis_tag + play_frame_tag. Cooperative play requires bilateral role/goal
+    state. But the underlying monitoring mechanism -- a continuous background signal checking frame
+    integrity -- is the same at every level. The three-level signal architecture (Bekoff 1995:
+    L1 open/close, L2 continuous background, L3 ambiguity-repair) is present in canid play regardless
+    of play type complexity.
+    (c) V3 IMPLEMENTATION: The persistent play_frame_tag in LatentState already implements L2.
+    L1 = frame_open/frame_close events. L3 = ambiguity repair (threshold-triggered).
+    Sub-questions Q-048 through Q-051 operationalise the content-complexity dimension:
+    what content does the monitoring signal need to track at each play stage?
 
 - id: INV-060
   title: "Play dominates the child developmental phase; the type of play progresses as subsystem competence develops, systematically training architectural components in dependency order."
@@ -13537,7 +13559,7 @@
     - INV-058
     - MECH-194
   location: docs/architecture/play_mode.md
-  notes: "Sensorimotor play trains E1/E2 (world and motor models, single-step synthetic goals). Constructive play trains E2 rollout and E3 trajectory selection (compositional multi-step goals). Pretend play exercises MECH-094 + ARC-049 intersection and commitment architecture (counterfactual representations within play frame). Games with rules train social coordination and constraint satisfaction (structured shared-state monitoring). Cooperative play trains full multi-agent ARC-049 with mutual frame maintenance. Each type requires the previous type's competencies. The ARC-049 frame complexity increases at each stage -- by games-with-rules, ongoing shared-state monitoring is required, empirically answering Q-035."
+  notes: "Sensorimotor play trains E1/E2 (world and motor models, single-step synthetic goals). Constructive play trains E2 rollout and E3 trajectory selection (compositional multi-step goals). Pretend play exercises MECH-094 + ARC-049 intersection and commitment architecture (counterfactual representations within play frame). Games with rules train social coordination and constraint satisfaction (structured shared-state monitoring). Cooperative play trains full multi-agent ARC-049 with mutual frame maintenance. Each type requires the previous type's competencies. CORRECTION (2026-05-16): The frame MONITORING ARCHITECTURE does not escalate across play types -- continuous bilateral monitoring is a primitive capacity present from 2-3 months (Tronick 1978, Fantasia 2014), before any of these play types emerge. What escalates is the CONTENT COMPLEXITY of the shared state being monitored: sensorimotor (is partner still contingently responding?), constructive (is compositional goal still shared?), pretend (are both hypothesis_tag and play_frame_tag co-active?), games-with-rules (Schmidt 2015 dual-level: are current rules valid + is partner engaging rationally?), cooperative (bilateral role/goal state). Q-035 is resolved -- see Q-048 through Q-051 for the content-dimension sub-questions."
 
 - id: MECH-198
   title: "Pretend play is the developmental point where the hypothesis tag (MECH-094) and play frame tag (ARC-049) first co-operate: the agent maintains counterfactual representations within a play frame, exercising the full commitment architecture in synthetic mode."
@@ -31129,3 +31151,144 @@
     goal it is currently pursuing. This is the situation diagnosed
     by EXP-0155 and the EXQ-561 cluster.
   location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
+
+# Play substrate follow-on claims -- registered 2026-05-16 (play substrate follow-on pass)
+
+- id: MECH-327
+  title: "During sensorimotor play, E1 prediction-error locus upweights probe-action selection: actions targeting high-PE regions of z_world are preferentially selected, implementing curiosity-driven exploration within the play frame."
+  claim_type: mechanism_hypothesis
+  subject: play.pe_locus_probe_action_selection
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-194
+    - ARC-049
+    - SD-012
+  location: docs/architecture/play_substrate_design.md
+  notes: "Stahl and Feigenson 2015 (infant surprise and subsequent probe-action selection): infants who witness expectation violations (surprising physics events) selectively direct subsequent play toward the surprising object and engage in causal testing actions (dropping, banging) rather than conventional play. Schulz and Bonawitz 2007 (toddlers choose to play with ambiguous vs. unambiguous toys after differential teaching): free-choice exploration is directed toward regions of highest epistemic uncertainty. REE translation: the E1 prediction error field (PE map over z_world) provides a natural selection bias for play-episode action choices. Actions that probe high-PE regions provide maximal learning signal per episode step, implementing intrinsic curiosity within the play frame. This is distinct from MECH-328 (z_goal synthetic manifold) -- MECH-327 is about action selection steering, not goal representation. Implementation: during play episodes, add PE-weighted exploration bonus to E3 action-object scoring before CEM candidate evaluation. Missing from initial play_substrate_design.md -- flagged as DEV-NEED in original design."
+
+- id: MECH-328
+  title: "Synthetic and real z_goal vectors must lie in the same latent manifold for play-to-real policy transfer to succeed; disjoint manifolds produce a transfer failure where play-acquired competence cannot generalise to real goal-pursuit."
+  claim_type: mechanism_hypothesis
+  subject: play.goal_space_continuity
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-194
+    - MECH-195
+    - ARC-049
+  location: docs/architecture/play_substrate_design.md
+  notes: "Colas 2022 (MAGE -- language-conditioned goal representations for transfer): task-agnostic play transfers policy structure only when play-generated goals and task goals are grounded in the same representation space. Manifold disjunction (e.g., one-hot synthetic goals vs. continuous real z_goal) produces a near-zero transfer rate -- the agent has learned to pursue an entirely different kind of goal object. REE translation: z_goal_synthetic must be constructed by sampling from the same encoder that generates real z_goal vectors (E3 or SD-012 output), not from a separate synthetic goal generator. During play, z_goal_synthetic is a real vector in z_goal space, but one whose magnitude is LP-weighted (MECH-194, Oudeyer 2007 learning progress) rather than derived from drive_level. This is a strong implementation constraint: the GoalConfig.z_goal_synthetic_vector must pass through the same normalisation and embedding as real goal vectors."
+
+- id: ARC-073
+  title: "Play-to-real transition is triggered by competence saturation (d(PE)/dt < threshold) or competitive drive pressure, not by scheduled duration; premature transition leaves policy structure undertrained."
+  claim_type: architecture_hypothesis
+  subject: play.transition_criterion
+  polarity: asserts
+  status: candidate
+  depends_on:
+    - MECH-194
+    - MECH-195
+    - MECH-327
+    - ARC-049
+  location: docs/architecture/play_substrate_design.md
+  notes: "Pezzulo 2014 (homeostatic vs. exploratory drive competition): transition from exploration to exploitation is driven by the ratio of exploratory to homeostatic drive strength, not by a fixed clock. Forestier 2022 (CURIOUS -- modular curiosity + competence saturation in robotics): play continues as long as learning progress is positive for any goal region; transition to real-task mode occurs when LP < threshold across all goal regions. REE translation: play episodes should persist as long as E1 PE is declining (d(PE)/dt < 0 but |d(PE)/dt| > threshold) -- i.e., as long as play is producing useful world-model learning. When learning progress saturates (|d(PE)/dt| < threshold for all reachable PE regions), homeostatic drive (SD-012) reasserts and overrides synthetic z_goal, triggering episode close (MECH-196). Implementation: monitor rolling LP estimate during play; close episode when LP drops below play_lp_saturation_threshold (GoalConfig parameter). Alternative trigger: real homeostatic drive_level exceeds synthetic z_goal benefit_exposure (competition criterion)."
+
+- id: Q-048
+  title: "During sensorimotor and constructive play, is a persistent background signal (L2) sufficient for frame integrity monitoring, or are explicit mid-episode repair signals (L3) also required?"
+  claim_type: question
+  subject: play.frame_content_sensorimotor_constructive
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  epistemic_category: standard
+  depends_on:
+    - ARC-049
+    - Q-035
+  location: docs/architecture/play_substrate_design.md
+  short: >
+    For simple play types, is L2 background signal sufficient or are L3 repair events also needed?
+  description: >
+    Q-035 established that continuous monitoring is primitive and present from infancy. For
+    sensorimotor and constructive play, the monitored CONTENT is simple: is the partner still
+    contingently responding, and is the compositional goal still shared? Q-048 asks whether the
+    L2 background signal alone (persistent play_frame_tag) is sufficient to maintain frame
+    integrity for this simple content, or whether L3 repair signals must also fire. Animal
+    parallel: play-face maintenance without play-bow reinitiation during low-ambiguity play (e.g.,
+    simple chase games). V3-tractable: ablate L3 signals during simple play episodes and measure
+    frame collapse rate under perturbation.
+  suggested_experiment_type: behavioral_mode_ablation
+
+- id: Q-049
+  title: "Does pretend play require the hypothesis tag (MECH-094) and play frame tag (ARC-049) to be continuously co-active throughout the episode, or do they merely need to be co-active at the moment of object substitution?"
+  claim_type: question
+  subject: play.frame_content_pretend_cotag
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  epistemic_category: standard
+  depends_on:
+    - ARC-049
+    - MECH-094
+    - MECH-198
+    - Q-035
+  location: docs/architecture/play_substrate_design.md
+  short: >
+    Pretend play: must hypothesis_tag and play_frame_tag be co-active throughout or only at substitution moments?
+  description: >
+    Leslie 1987 established that pretend play requires a decoupling operator suspending reference,
+    truth, AND existence relations simultaneously -- more than simple suppression. In REE terms this
+    maps to MECH-094. Q-049 asks whether the co-activity of hypothesis_tag + play_frame_tag must
+    be maintained continuously throughout a pretend episode (strong co-tag hypothesis) or only at
+    moments of active object substitution (weaker event hypothesis). Kuhn-Popp 2013 found distinct
+    ERP signatures for both tags but the timing resolution does not resolve this. V3-tractable:
+    compare policy quality under continuous co-tag vs. event-only co-tag; measure false-commit rate.
+  suggested_experiment_type: ablation_comparison
+
+- id: Q-050
+  title: "Do games-with-rules require per-step dual-level content monitoring (rule compliance + strategic rationality simultaneously), or does sequential sampling across turns suffice?"
+  claim_type: question
+  subject: play.frame_content_games_rules_dual_level
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  epistemic_category: substrate_conditional
+  depends_on:
+    - ARC-049
+    - MECH-197
+    - Q-035
+  location: docs/architecture/play_substrate_design.md
+  short: >
+    Games-with-rules: per-step dual-level monitoring, or turn-by-turn sequential sampling?
+  description: >
+    Schmidt 2015 showed normative monitoring in games operates at two levels simultaneously: rule
+    compliance (what moves are allowed) and strategic rationality (is partner playing to win?).
+    Q-050 asks whether implementation must track both levels simultaneously per step, or whether
+    interleaved sampling suffices. V4-tractable: requires multi-agent substrate. Cannot be tested
+    in V3 degenerate case (experimenter-complicit environment does not generate strategic violations).
+  suggested_experiment_type: multi_agent_behavioral
+
+- id: Q-051
+  title: "Does cooperative play require a continuous bilateral background signal (L2) plus explicit repair at ambiguity (L3), or do one-sided frame-open/close events (L1 only) suffice for cooperative frame maintenance?"
+  claim_type: question
+  subject: play.frame_content_cooperative_bilateral
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  epistemic_category: substrate_conditional
+  depends_on:
+    - ARC-049
+    - INV-059
+    - MECH-197
+    - Q-035
+  location: docs/architecture/play_substrate_design.md
+  short: >
+    Cooperative play: does frame maintenance require full L1+L2+L3 or can L1 suffice?
+  description: >
+    Cooperative play requires bilateral role and goal state monitoring across extended episodes
+    with role-switching. INV-059 asserts unilateral frame assertion is manipulation, implying
+    bilateral is necessary. Q-051 asks whether bilateral L1 (open/close events from both parties)
+    is sufficient, or whether full L1+L2+L3 is required (continuous background + ambiguity repair
+    from both parties). Ham 2024 shows frame mismatch is worse than frame absence -- suggesting
+    L2/L3 are probably required. Full test requires V4 multi-agent substrate with role-switching.
+  suggested_experiment_type: multi_agent_behavioral

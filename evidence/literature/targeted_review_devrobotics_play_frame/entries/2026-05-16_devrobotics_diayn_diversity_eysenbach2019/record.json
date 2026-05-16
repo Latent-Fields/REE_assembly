@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_devrobotics_play_frame",
+  "entry_id": "2026-05-16_devrobotics_diayn_diversity_eysenbach2019",
+  "timestamp_utc": "2026-05-16T12:28:16Z",
+  "claim_ids_tested": ["MECH-194", "MECH-195", "ARC-050", "INV-058"],
+  "source": {
+    "title": "Diversity is All You Need: Learning Skills without a Reward Function",
+    "authors": ["Benjamin Eysenbach", "Abhishek Gupta", "Julian Ibarz", "Sergey Levine"],
+    "year": 2019,
+    "venue": "ICLR 2019",
+    "doi": "10.48550/arXiv.1802.06070",
+    "url": "https://arxiv.org/abs/1802.06070"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "ICLR-published computational framework demonstrating that diverse skills can be acquired without reward by maximizing mutual information I(S;Z) between states and skill identifiers. The discriminability metric operationalizes rollout diversity measurement: skills are diverse to the extent that a discriminator can reliably identify which skill generated a given state sequence. This provides a concrete diversity metric for the DEV-NEED gate. However, DIAYN does not model play frames -- all skill learning is real-signal (states are real environment states) -- and the mutual information metric measures discriminability rather than strategy-calibration separation. Mapping fidelity to MECH-195 is moderate: DIAYN separates what-skill from how-well-skilled (the two entropy components) but does not separate strategy structure from magnitude calibration in the REE sense.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DIAYN skills are learned without reward -- this is not analogous to play (which uses synthetic rewards). The absence of reward in DIAYN is a methodological choice; play's synthetic reward is a frame-maintenance mechanism. The analogy is structural, not mechanistic.",
+    "Mutual information I(S;Z) measures discriminability of state distributions, not strategy quality or calibration accuracy. A skill can be highly discriminable but poorly calibrated.",
+    "State coverage (skill state distributions being spread across the state space) is used as a proxy for diversity but may conflate geometric coverage with behavioral strategy diversity."
+  ],
+  "tags": ["rollout_diversity", "mutual_information", "discriminability", "skill_diversity", "play_pretraining", "mech_194", "mech_195", "arc_050", "inv_058", "trajectory_diversity"],
+  "mapping": {
+    "source_claim_statement": "Skills can be learned without a reward function by maximizing I(S;Z) -- mutual information between states and skill latent z. A discriminator q(z|s) is trained to identify skills from states. Skills are diverse (different z -> different state distributions, discriminable by q). Pretrained skills provide good parameter initialization for downstream tasks and can be composed hierarchically.",
+    "ree_translation": "DIAYN's discriminability metric operationalizes the rollout diversity measurement needed for DEV-NEED gates. For DEV-NEED-010 (sensorimotor play), the exit criterion should include: are synthetic-goal rollouts discriminably different from each other? If I(S;Z) is near zero across play-generated trajectories, sensorimotor play has not produced a diverse behavioral repertoire. The pretrained-skills-as-initialization finding directly maps to ARC-050: play episodes produce E3 trajectory competence (policy initialization) before real homeostatic drive is active. MECH-195's strategy-calibration dissociation has a DIAYN analogue: the skill competence (trajectory structure, discriminability) transfers while the reward magnitude (calibration) is not involved in DIAYN training at all.",
+    "mapping_caveat": "The analogy between DIAYN skill learning and REE play mode is structural, not mechanistic. DIAYN has no play frame, no synthetic harm signal, no bilateral tag. The mutual information metric measures discriminability of state distributions, not the REE-specific distinction between E3 trajectory structure and harm/goal magnitude calibration. Using DIAYN metrics directly as DEV-NEED gates would require implementing a discriminator over play-episode trajectory distributions.",
+    "source_context": "Computational RL. Continuous control environments (MuJoCo). Skill pretraining then fine-tuning on downstream tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "ICLR 2019 is high-quality venue. Mapping fidelity is moderate-low because the DIAYN framework does not model play frames, synthetic rewards, or strategy-calibration dissociation. The metric (I(S;Z)) is applicable by analogy but requires REE-specific adaptation."
+  }
+}

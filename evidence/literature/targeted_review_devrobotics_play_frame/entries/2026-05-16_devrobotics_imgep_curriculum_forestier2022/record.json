@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_devrobotics_play_frame",
+  "entry_id": "2026-05-16_devrobotics_imgep_curriculum_forestier2022",
+  "timestamp_utc": "2026-05-16T12:28:16Z",
+  "claim_ids_tested": ["INV-060", "MECH-197", "ARC-050", "INV-058"],
+  "source": {
+    "title": "Intrinsically Motivated Goal Exploration Processes with Automatic Curriculum Learning",
+    "authors": ["Sebastien Forestier", "Remy Portelas", "Yoan Mollard", "Pierre-Yves Oudeyer"],
+    "year": 2022,
+    "venue": "Journal of Machine Learning Research",
+    "doi": "10.48550/arXiv.1708.02190",
+    "url": "https://www.jmlr.org/papers/v23/21-0808.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Empirically demonstrated computational system (real humanoid robot) achieving automatic curriculum via competence-progress measurement. The competence-progress metric -- rate of change in success rate within sliding windows over goal regions -- is operationally defined and non-Goodharted: it selects for regions where learning is active, not for regions where performance is already high or already near chance. Direct relevance to INV-060 (play dominates childhood; type progresses by subsystem competence) and MECH-197 (stage progression tracks competence dependencies). Source quality high (JMLR). Mapping fidelity moderate because IMGEP uses goal-region competence rather than play-mode competence specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "IMGEP does not distinguish play mode from non-play mode -- all exploration is treated as intrinsically motivated, without a separate frame signal architecture.",
+    "Competence progress metric is continuous; stage transitions are not formally gated -- the curriculum is self-organizing but does not produce discrete stage certificates.",
+    "Diversity of the learned repertoire is measured implicitly by goal coverage, not by an explicit behavioral characterization metric -- this conflates exploration coverage with behavioral diversity."
+  ],
+  "tags": ["developmental_curriculum", "competence_progress", "intrinsic_motivation", "repertoire_diversity", "stage_transition", "inv_060", "mech_197", "arc_050", "inv_058", "goal_exploration"],
+  "mapping": {
+    "source_claim_statement": "IMGEP systems achieve automatic curriculum learning by selecting learning goals based on competence-progress: the rate of change in success rate within a sliding window over a goal region. Regions with neither maximal nor minimal competence progress are prioritized. Skills discovered in earlier stages act as stepping stones for later stages. A real humanoid robot experiment demonstrates multi-hundred-dimensional motor skill acquisition without pre-specified stages.",
+    "ree_translation": "Competence-progress provides the operational metric REE needs for DEV-NEED gate evaluation. For sensorimotor play (DEV-NEED-010), the gate criterion should be: is competence-progress for basic motor goals near zero (saturation)? For constructive play (DEV-NEED-011), is competence-progress for compositional multi-step goals active? The IMGEP stepping-stones finding supports INV-060's claim that play type progression is not optional -- skills acquired in one stage are prerequisites for the next, and this dependency is self-organizing when the competence-progress signal is used as curriculum driver. The LCAS algorithm from Wu et al. 2017 (saturation threshold gate) is a discrete version of the same principle.",
+    "mapping_caveat": "IMGEP does not model play frames, synthetic signals, or the bilateral tag mechanism of ARC-049. It assumes exploration is always intrinsically motivated and always real-consequence -- the play/non-play distinction central to REE is absent. The competence-progress metric would need to be applied within play episodes specifically, not just in general exploration, to serve as a DEV-NEED gate.",
+    "source_context": "Computational developmental robotics. Experiments include simulated environments and a real iCub humanoid robot. Motor skill acquisition paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "JMLR venue is top-tier for ML. Experiments on real robot add ecological validity. Mapping fidelity moderate because play frame is absent from IMGEP. Transfer risk low because computational model directly applicable to REE substrate."
+  }
+}

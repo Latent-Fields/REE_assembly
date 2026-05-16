@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_devrobotics_play_frame",
+  "entry_id": "2026-05-16_devrobotics_sensorimotor_contingency_jacquey2019",
+  "timestamp_utc": "2026-05-16T12:28:16Z",
+  "claim_ids_tested": ["INV-060", "MECH-194", "MECH-197", "ARC-050"],
+  "source": {
+    "title": "Sensorimotor Contingencies as a Key Drive of Development: From Babies to Robots",
+    "authors": ["Lisa Jacquey", "Gianluca Baldassarre", "Vieri Giuliano Santucci", "J. Kevin O'Regan"],
+    "year": 2019,
+    "venue": "Frontiers in Neurorobotics",
+    "doi": "10.3389/fnbot.2019.00098",
+    "url": "https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2019.00098/full"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Well-specified review synthesizing infant and robot developmental data. Stage metrics (retention interval, reactivation window, generalization tolerance, means-end revaluation) are operationally concrete and cross-validated across species. Moderate transfer risk because the robot blueprint is architecturally schematic rather than implemented end-to-end. Mapping fidelity to INV-060 (play dominates child phase, progression by subsystem competence) is indirect -- the paper does not explicitly discuss play as the mechanism, only sensorimotor contingency sensitivity. Strong alignment with MECH-197 stage ordering via the 3-month, 6-month, 9-month, 24-month developmental pivots.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper does not define discrete gated stages with formal threshold criteria -- progression is described as continuous accumulation of matching events, not as a pass/fail stage gate.",
+    "Competence-calibration separation is implicit, not formally defined: the finding that 7-month-olds have bidirectional contingency knowledge but cannot use it in action selection shows dissociation, but no metric distinguishes the two channels.",
+    "Blueprint architecture is schematic (Mannella 2018 instantiation) rather than a validated metric framework usable as a developmental readiness gate."
+  ],
+  "tags": ["dev_robotics", "stage_metrics", "sensorimotor_contingency", "inv_060", "mech_197", "arc_050", "mech_194", "competence_calibration"],
+  "mapping": {
+    "source_claim_statement": "Sensitivity to sensorimotor contingencies drives four developmental domains -- body knowledge, memory, generalization, goal-directedness -- each with operationally measurable metrics: retention interval, reactivation window, generalization tolerance, revaluation success. Developmental pivots occur at 3, 6, 9, and 24 months. Competence (bidirectional contingency knowledge) dissociates from calibration (calibrated action selection) around 7 months.",
+    "ree_translation": "The four domains map onto REE subsystems: body knowledge -> E1/E2 motor-sensory model, memory -> hippocampal replay, generalization -> z_world transferability, goal-directedness -> E3 trajectory selection under SD-012. The developmental pivots provide empirical grounding for INV-060's claim that play type progression tracks subsystem competence in dependency order. Competence-calibration dissociation at 7 months directly supports MECH-195 (strategy transfers, magnitude re-anchors at episode close) and the DEV-NEED-011 gate requiring strategy competence independent of synthetic calibration.",
+    "mapping_caveat": "The paper addresses infant human/robot development, not play-stage gating specifically. The link from sensorimotor contingency to play type progression (INV-060, MECH-197) requires the additional assumption that sensorimotor play is the primary context in which these contingencies are exercised -- the paper does not establish this. The blueprint architecture is not demonstrated in a multi-stage system.",
+    "source_context": "Infant behavioral paradigms (mobile contingency, mobile paradigm, means-end revaluation) + robotic blueprint review. Human infant age range 2-24 months."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (Frontiers Neurorobotics, four author team including Baldassarre and Santucci who lead the ICDL/GRAIL research program). Moderate mapping fidelity because play is not the explicit frame -- sensorimotor contingency is the driver, and we infer play-stage mapping. Transfer risk is moderate: infant-to-robot transfer is the explicit goal of the paper, but REE's specific architecture (E1/E2/E3 with play frame tags) is more complex than the blueprint."
+  }
+}
