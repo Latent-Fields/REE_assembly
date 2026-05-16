@@ -1,0 +1,179 @@
+{
+  "run_id": "v3_exq_581_gap3_sleep_aggregation_cluster_validation_v3_20260516T225229Z_v3",
+  "queue_id": "V3-EXQ-581",
+  "experiment_type": "v3_exq_581_gap3_sleep_aggregation_cluster_validation_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260516T225229Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      7
+    ],
+    "n_drive_steps": 20,
+    "n_anchors": 4,
+    "sws_anchor_weight": 0.6,
+    "draws_per_cycle": 8,
+    "offline_n_steps": 5
+  },
+  "acceptance_criteria": {
+    "C1": "cluster arm resolves 8 sub-flags + constructs 5 components",
+    "C2": "Phase B mech285_n_draws > 0",
+    "C3": "Phase C sws_anchor_weight_applied within 0.0001 of 0.6 and <= 1 - 0.001",
+    "C4": "Phase D mech275_n_updates > 0",
+    "C5": "Phase E mech273_n_offline_steps > 0",
+    "C6": "ARM_CLUSTER per-phase metrics == ARM_EXPLICIT (equivalence)"
+  },
+  "criteria_results": {
+    "C1_pass": true,
+    "C2_pass": true,
+    "C3_pass": true,
+    "C4_pass": true,
+    "C5_pass": true,
+    "C6_pass": true,
+    "C6_mismatches": []
+  },
+  "per_arm_per_seed_results": {
+    "ARM_CLUSTER": [
+      {
+        "seed": 42,
+        "use_cluster_flag": true,
+        "resolved_subflags": {
+          "use_sleep_loop": true,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "use_mech285_sampler": true,
+          "use_mech272_routing": true,
+          "use_mech272_routing_consumer": true,
+          "use_mech275_aggregator": true,
+          "use_mech273_self_model": true
+        },
+        "component_presence": {
+          "sleep_loop": true,
+          "sleep_replay_sampler": true,
+          "sleep_routing_gate": true,
+          "sleep_bayesian_aggregator": true,
+          "sleep_self_model_aggregator": true
+        },
+        "phase_metrics": {
+          "mech285_n_draws": 8.0,
+          "mech285_n_distinct_regions_drawn": 3.0,
+          "sws_anchor_weight_applied": 0.6,
+          "sws_n_writes": 5.0,
+          "mech272_n_routed": 8.0,
+          "mech275_n_updates": 16.0,
+          "mech275_n_posteriors": 3.0,
+          "mech273_n_offline_steps": 5.0,
+          "mech273_n_offline_passes": 1.0,
+          "mech273_n_offline_regions_consumed": 3.0
+        }
+      },
+      {
+        "seed": 7,
+        "use_cluster_flag": true,
+        "resolved_subflags": {
+          "use_sleep_loop": true,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "use_mech285_sampler": true,
+          "use_mech272_routing": true,
+          "use_mech272_routing_consumer": true,
+          "use_mech275_aggregator": true,
+          "use_mech273_self_model": true
+        },
+        "component_presence": {
+          "sleep_loop": true,
+          "sleep_replay_sampler": true,
+          "sleep_routing_gate": true,
+          "sleep_bayesian_aggregator": true,
+          "sleep_self_model_aggregator": true
+        },
+        "phase_metrics": {
+          "mech285_n_draws": 8.0,
+          "mech285_n_distinct_regions_drawn": 4.0,
+          "sws_anchor_weight_applied": 0.6,
+          "sws_n_writes": 5.0,
+          "mech272_n_routed": 8.0,
+          "mech275_n_updates": 16.0,
+          "mech275_n_posteriors": 4.0,
+          "mech273_n_offline_steps": 5.0,
+          "mech273_n_offline_passes": 1.0,
+          "mech273_n_offline_regions_consumed": 4.0
+        }
+      }
+    ],
+    "ARM_EXPLICIT": [
+      {
+        "seed": 42,
+        "use_cluster_flag": false,
+        "resolved_subflags": {
+          "use_sleep_loop": true,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "use_mech285_sampler": true,
+          "use_mech272_routing": true,
+          "use_mech272_routing_consumer": true,
+          "use_mech275_aggregator": true,
+          "use_mech273_self_model": true
+        },
+        "component_presence": {
+          "sleep_loop": true,
+          "sleep_replay_sampler": true,
+          "sleep_routing_gate": true,
+          "sleep_bayesian_aggregator": true,
+          "sleep_self_model_aggregator": true
+        },
+        "phase_metrics": {
+          "mech285_n_draws": 8.0,
+          "mech285_n_distinct_regions_drawn": 3.0,
+          "sws_anchor_weight_applied": 0.6,
+          "sws_n_writes": 5.0,
+          "mech272_n_routed": 8.0,
+          "mech275_n_updates": 16.0,
+          "mech275_n_posteriors": 3.0,
+          "mech273_n_offline_steps": 5.0,
+          "mech273_n_offline_passes": 1.0,
+          "mech273_n_offline_regions_consumed": 3.0
+        }
+      },
+      {
+        "seed": 7,
+        "use_cluster_flag": false,
+        "resolved_subflags": {
+          "use_sleep_loop": true,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "use_mech285_sampler": true,
+          "use_mech272_routing": true,
+          "use_mech272_routing_consumer": true,
+          "use_mech275_aggregator": true,
+          "use_mech273_self_model": true
+        },
+        "component_presence": {
+          "sleep_loop": true,
+          "sleep_replay_sampler": true,
+          "sleep_routing_gate": true,
+          "sleep_bayesian_aggregator": true,
+          "sleep_self_model_aggregator": true
+        },
+        "phase_metrics": {
+          "mech285_n_draws": 8.0,
+          "mech285_n_distinct_regions_drawn": 4.0,
+          "sws_anchor_weight_applied": 0.6,
+          "sws_n_writes": 5.0,
+          "mech272_n_routed": 8.0,
+          "mech275_n_updates": 16.0,
+          "mech275_n_posteriors": 4.0,
+          "mech273_n_offline_steps": 5.0,
+          "mech273_n_offline_passes": 1.0,
+          "mech273_n_offline_regions_consumed": 4.0
+        }
+      }
+    ]
+  },
+  "notes": "sleep_substrate GAP-3 validation: unified use_sleep_aggregation_cluster master flag lights Phase A-E end-to-end (C1-C5) and is behaviourally identical to setting the eight sub-flags by hand (C6 equivalence). Diagnostic / substrate-readiness; non-claim-weighing (claim_ids=[]); unblocks but does not test MECH-285/272/275/273."
+}
