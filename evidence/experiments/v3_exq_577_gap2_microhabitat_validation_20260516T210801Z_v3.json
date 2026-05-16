@@ -1,0 +1,153 @@
+{
+  "run_id": "v3_exq_577_gap2_microhabitat_validation_20260516T210801Z_v3",
+  "queue_id": "V3-EXQ-577",
+  "experiment_type": "gap2_microhabitat_validation",
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260516T210801Z",
+  "outcome": "FAIL",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_episodes": 100,
+    "n_steps": 200,
+    "size": 14,
+    "n_hazards": 6,
+    "n_microhabitats": 3,
+    "zone_C_ambient_bonus": 0.05,
+    "zone_novelty_decay": 0.95
+  },
+  "acceptance_checks": {
+    "C1_arm0_bit_identical_off": true,
+    "C2_arm1_zone_map_coverage": false,
+    "C3_arm1_zone_c_zero_hazard_and_density_bias": true,
+    "C4_arm1_zone_c_ambient_fires_and_decays": true
+  },
+  "c1_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c2_by_seed": [
+    false,
+    false,
+    false
+  ],
+  "c3_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c4_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "results_by_seed": {
+    "0": {
+      "ARM_0_disabled": {
+        "microhabitat_enabled": false,
+        "c1_bit_identical_off": true,
+        "ambient_fires_when_disabled": 0
+      },
+      "ARM_1_enabled": {
+        "microhabitat_enabled": true,
+        "c2_zone_map_coverage": false,
+        "c3_zone_c_zero_hazard_and_B_gt_A": true,
+        "c4_ambient_fires_and_decays": true,
+        "haz_by_zone": [
+          76,
+          310,
+          0,
+          214
+        ],
+        "cells_by_zone": [
+          3824,
+          3409,
+          3505,
+          3662
+        ],
+        "hazard_density_by_zone": [
+          0.019874,
+          0.090936,
+          0.0,
+          0.058438
+        ],
+        "c4_ambient_visit0": 0.05,
+        "c4_ambient_visit1": 0.0475
+      }
+    },
+    "1": {
+      "ARM_0_disabled": {
+        "microhabitat_enabled": false,
+        "c1_bit_identical_off": true,
+        "ambient_fires_when_disabled": 0
+      },
+      "ARM_1_enabled": {
+        "microhabitat_enabled": true,
+        "c2_zone_map_coverage": false,
+        "c3_zone_c_zero_hazard_and_B_gt_A": true,
+        "c4_ambient_fires_and_decays": true,
+        "haz_by_zone": [
+          72,
+          323,
+          0,
+          205
+        ],
+        "cells_by_zone": [
+          3730,
+          3561,
+          3610,
+          3499
+        ],
+        "hazard_density_by_zone": [
+          0.019303,
+          0.090705,
+          0.0,
+          0.058588
+        ],
+        "c4_ambient_visit0": 0.05,
+        "c4_ambient_visit1": 0.0475
+      }
+    },
+    "2": {
+      "ARM_0_disabled": {
+        "microhabitat_enabled": false,
+        "c1_bit_identical_off": true,
+        "ambient_fires_when_disabled": 0
+      },
+      "ARM_1_enabled": {
+        "microhabitat_enabled": true,
+        "c2_zone_map_coverage": false,
+        "c3_zone_c_zero_hazard_and_B_gt_A": true,
+        "c4_ambient_fires_and_decays": true,
+        "haz_by_zone": [
+          76,
+          323,
+          0,
+          201
+        ],
+        "cells_by_zone": [
+          4084,
+          3473,
+          3321,
+          3522
+        ],
+        "hazard_density_by_zone": [
+          0.018609,
+          0.093003,
+          0.0,
+          0.05707
+        ],
+        "c4_ambient_visit0": 0.05,
+        "c4_ambient_visit1": 0.0475
+      }
+    }
+  }
+}
