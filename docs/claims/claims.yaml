@@ -1369,6 +1369,7 @@
     threshold-adaptation behaviour is dominated by the lock-in rather than by the
     precision-to-commitment circuit under test. ARC-016 core circuit remains
     validated by EXQ-018b/EXQ-060; pending behavioural retest after MECH-269.
+  heterogeneity_note: "Substrate-version confound: the FAILs predate the relative-threshold implementation (EXQ-018) or are confounded by V_s monostrategy lock (EXQ-396a/396b, EXQ-454) rather than reflecting a circuit failure; the core mechanism is validated by EXQ-018b and EXQ-060."
   depends_on:
     - ARC-005
     - MECH-059
@@ -3548,6 +3549,7 @@
     weakens balance is not affected since duplicates always carry the same evidence
     direction, but the inflation in counts means the effective evidence base is closer
     to ~12 distinct experiments. Flagged for a follow-up dup-sweep pass.
+  heterogeneity_note: "Genuine scientific contradiction: the conflict reflects irreducible philosophical disagreement about when violence is justified as last resort and an operationalisation ceiling (current substrate has 2-3 coping channels rather than the multi-channel hierarchy the claim requires); the structural claim is separable from the normative question and held at substrate_ceiling pending V4 multi-agent substrate."
 
 # Three-gate BG gating architecture — registered 2026-02-27
 - id: Q-019
@@ -3765,6 +3767,7 @@
     full scene, not resource specifically; features are not location-invariant across
     respawns. Dedicated z_resource encoder needed (SD-015). MECH-071 calibration claim
     intact (C3 consistently PASS); failure is in goal navigation, not harm calibration.
+  heterogeneity_note: "Methodological divergence: the C2 FAILs (EXQ-085 through EXQ-085g) reflect a scaffolding bug (goal_state not wired to action_selection) that prevented MECH-071's calibration mechanism from being instantiated; C3 (harm calibration gradient) consistently PASSes throughout the series, and the core claim is validated by EXQ-026 and EXQ-029."
   notes: >
     After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
     and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
@@ -5119,6 +5122,7 @@
     isolates the EXQ-047k condition (larger-N stratification) as the substrate-condition-of-
     success, (c) deferral to V4 multi-channel/multi-agent territory. See MECH-102 for the
     cluster diagnosis and the substrate_ceiling category if it is later formalised.
+  heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
   claim_type: mechanism_hypothesis
@@ -7412,6 +7416,7 @@
     EXQ-353 (2026-04-15, PASS, supports): Interventional vs observational training
     distinguished. ARC-033, SD-003, SD-013 all tagged as supports. First clean
     multi-claim PASS confirming E2_harm_s forward model architecture end-to-end.
+  heterogeneity_note: "Substrate-version confound: the early FAILs (EXQ-095a/095b) reflect near-zero harm_obs_s variance (sparse training signal) and the obs-space dead end (EXQ-166a), not a forward model architecture failure; subsequent experiments with the dedicated z_harm_s stream and denser harm exposure (EXQ-353 PASS) confirmed learnability end-to-end."
   notes: >
     E2_harm_s is a small MLP: (z_harm_s, action) -> z_harm_s_next, trained with direct
     MSE supervision on actual next-step z_harm_s values. Architecture mirrors E2.world_forward.

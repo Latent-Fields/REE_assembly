@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-16T17:18:54.564114Z`
+Generated: `2026-05-16T17:32:59.088648Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -23,6 +23,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-058` | directional, mixed_evidence | 6 | 2 | 0.5 | `2026-05-04_sd_048_dyshomeostasis_fatigue_stephan2016` | 9 |
 | `ARC-062` | directional, source_disagreement, mixed_evidence | 16 | 2 | 0.222 | `v3_exq_543d_arc062_mech260_factorial_falsifier_20260512T010638Z_v3` | 22 |
 | `ARC-064` | directional | 18 | 1 | 0.105 | `2026-05-10_vocab_mapping_rl_fast_slow_botvinick2019` | 19 |
+| `ARC-065` | directional, source_disagreement, mixed_evidence | 37 | 6 | 0.279 | `2026-05-16_rl_diversity_paired_dennis2020` | 48 |
 | `ARC-066` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `2026-05-16_rl_diversity_imgep_forestier2017` | 9 |
 | `ARC-068` | directional, mixed_evidence | 4 | 1 | 0.4 | `2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007` | 6 |
 | `ARC-071` | directional | 8 | 1 | 0.222 | `2026-05-10_arc_071_visuomotor_chunk_size_sakai2003` | 9 |
@@ -66,6 +67,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-261` | directional | 24 | 1 | 0.08 | `v3_exq_484_sd033a_distractor_resistance_20260427T054449Z_v3` | 25 |
 | `MECH-262` | directional, mixed_evidence | 7 | 1 | 0.25 | `2026-04-28_frontal_goal_grounding_md_thalamus_pfc_rule_schmitt2017` | 12 |
 | `MECH-302` | directional, source_disagreement, mixed_evidence | 4 | 3 | 0.857 | `v3_exq_517_mech302_relief_completion_discriminative_pair_20260504T150341Z_v3` | 9 |
+| `MECH-313` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-05-16_rl_diversity_dvd_parkerholder2020` | 4 |
+| `MECH-314` | directional, source_disagreement, mixed_evidence | 5 | 1 | 0.333 | `2026-05-16_rl_diversity_mapelites_mouret2015` | 7 |
 | `MECH-318` | directional | 7 | 1 | 0.25 | `2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019` | 8 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 7 |
@@ -401,6 +404,26 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `An REE substrate without a striatum-analog action-chunking mechanism will fail Smith & Graybiel 2013's signature: rapid acquisition of action-bracketing patterns during overtraining, with sensitivity to running automaticity but insensitivity to reward devaluation.` (1)
   - `If ARC-064's bottom-up rule extraction does not develop a stable substrate-level signature over training (in REE: stable rule-cluster representations after extended episodes in similar contexts), the substrate is not 'crystallising' rules the way the dorsolateral striatum does in Smith & Graybiel.` (1)
   - `If MECH-312's arbitration variable is purely uncertainty-based (Daw 2005), it will fail to capture the practice-length-driven habit takeover Smith & Graybiel demonstrate; arbitration may need to track time-on-task / repetition-count as well.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### ARC-065
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=37, weakens=6, conflict_ratio=0.279, exp_conf=0.637, lit_conf=0.873, overall_confidence_legacy=0.755
+- Recent entries:
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.8
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.78
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.77
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.75
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.76
+- Recurring failure signatures:
+  - `If active inference's epistemic-value formulation is wrong, any MECH-314 instantiation that uses information-gain as the curiosity signal (vs novelty-bonus a la Wittmann 2008 or learning-progress a la Schmidhuber) loses its theoretical grounding.` (1)
+  - `If the precision-as-confidence framing is wrong, REE's existing precision-modulation substrates (MECH-269b, SD-032b) would also be affected since they share the same theoretical commitment.` (1)
+  - `Treating 'curiosity' as a single substrate with a single threshold (the temptation in REE's MECH-216 schema-readout-wanting framing) will fail to capture the heterogeneity Kidd & Hayden document; the substrate may need multiple sub-mechanisms for different curiosity flavours (perceptual / epistemic / diversive).` (1)
+  - `An REE substrate that conflates information-seeking with noise will fail to reproduce ethological-context-dependence of curiosity that Kidd & Hayden emphasise (curiosity is not a temperature parameter -- it is goal-shaped).` (1)
+  - `Either-or arguments for behavioural diversity (curiosity-only or noise-only) are predicted to fail to explain horizon-dependent shifts in both information-seeking AND decision noise that this study quantifies.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -1246,6 +1269,46 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `An REE relief-completion mechanism that simply 'reads dopamine concentration' as the teaching signal will mis-learn — ventral-VTA DA fires for the *aversive event itself*, not just for its offset.` (1)
   - `Does not record during aversive *offset* directly; the inference about relief comes from combining this with later work, not from this paper alone.` (1)
   - `If REE collapses all dopaminergic modulation into a single channel, it will mis-attribute salience-driven phasic firing to reward learning and end up with a Brischoux/Matsumoto-style failure mode where avoidance and reward signals contaminate each other.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### MECH-313
+- Conflict types: directional, source_disagreement
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.324, lit_conf=0.843, overall_confidence_legacy=0.713
+- Recent entries:
+  - `2026-05-14T04:21:46Z` `experimental` `v3_exq_561_arc065_diversity_stack_heartbeat` direction=`non_contributory` confidence=0
+  - `2026-05-15T23:46:24Z` `experimental` `v3_exq_571_e3_score_variance_decomp` direction=`supports` confidence=0.75
+  - `2026-05-16T00:40:17Z` `experimental` `v3_exq_571_e3_score_variance_decomp` direction=`supports` confidence=0.75
+  - `2026-05-16T08:36:05Z` `experimental` `v3_exq_573_arc065_bias_scale_sweep` direction=`weakens` confidence=0.75
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.78
+- Recurring failure signatures:
+  - `If REE's MECH-313 (stochastic-noise-floor) and MECH-316 (cross-episode-regularity-extraction) cannot be unified into a single mutual-information objective like DIAYN's, the architectural-economy claim that ARC-065 and ARC-064 are one machinery in two readings is weakened.` (1)
+  - `DIAYN's discriminator-collapse failure mode (degenerate skills the discriminator cannot distinguish) is directly homologous to the option-collapse and monomodal-collapse patterns REE has hit; the mitigation literature transfers.` (1)
+  - `If REE's MECH-313 stochastic-noise-floor cannot be implemented as MaxEnt-RL-style policy-entropy regularisation, the inheritance pathway from SAC weakens. This is unlikely -- MaxEnt regularisation is a standard substrate-implementation technique.` (1)
+  - `SAC has known temperature-parameter sensitivity: too low, and the policy collapses to deterministic; too high, and the policy ignores the reward signal. REE's MECH-313 inherits this sensitivity. The temperature parameter is a hyperparameter to be calibrated, not derivable from first principles.` (1)
+  - `Pairwise distance-based diversity measures (e.g. mean L2 distance between policies) suffer from cycling: a population can have high mean pairwise distance but still cluster into a few degenerate modes. Volume-based measures are necessary to catch this failure mode.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### MECH-314
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.324, lit_conf=0.888, overall_confidence_legacy=0.747
+- Recent entries:
+  - `2026-05-16T11:18:07Z` `literature` `targeted_review_intrinsic_motivation_exploration` direction=`supports` confidence=0.82
+  - `2026-05-16T11:18:07Z` `literature` `targeted_review_intrinsic_motivation_exploration` direction=`supports` confidence=0.75
+  - `2026-05-16T11:18:07Z` `literature` `targeted_review_intrinsic_motivation_exploration` direction=`mixed` confidence=0.78
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.8
+  - `2026-05-16T11:18:42Z` `literature` `targeted_review_rl_diversity_monostrategy_curriculum` direction=`supports` confidence=0.75
+- Recurring failure signatures:
+  - `Pure novelty bonuses (visit novel states) do not produce emergent developmental stage ordering -- the agent visits all states equally and does not dwell in regions where learning is currently productive.` (1)
+  - `Learning-progress curiosity requires the environment to contain a natural difficulty gradient: if all tasks are equally hard or all equally easy, the progress signal is flat and provides no gradient for developmental sequencing.` (1)
+  - `The emergent curriculum observed in the robot experiments depended on environmental structure (objects with affordances, vocal interaction partners) that the agent could explore and gradually master -- in a featureless environment, no developmental structure emerged.` (1)
+  - `Curiosity circuits that only track novelty (recent vs. not-recent) are distinct from circuits that track uncertainty (resolution of predictive uncertainty) -- conflating the two produces mechanisms that each fail to capture the full biological function.` (1)
+  - `Curiosity-related behaviours in primates arise during postnatal development and are shaped by the richness of environmental experience -- the biological evidence implies that a fixed novelty bonus without environmental structure will not generate genuine curiosity-like exploration.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.

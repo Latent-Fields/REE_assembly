@@ -11,5 +11,10 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-No recent FAIL runs. Keep monitoring key stop metrics.
+Recent failure runs:
+- `v3_exq_566_wpc3_schema_salience_injection_20260515T205008Z_v3` at `2026-05-15T20:50:08Z` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

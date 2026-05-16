@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-16T17:18:54.564114Z`
+Generated: `2026-05-16T17:32:59.088648Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -327,7 +327,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-065
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=36, weakens=0, mixed=5, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=37, weakens=6, mixed=5, unknown=0, conflict_ratio=0.279
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1085,7 +1085,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-273
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1427,7 +1427,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-313
 - Current status: `candidate_substrate_landed`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1445,7 +1445,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-314
 - Current status: `candidate_substrate_landed`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=5, weakens=1, mixed=1, unknown=0, conflict_ratio=0.333
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1559,7 +1559,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-320
 - Current status: `candidate_substrate_landed`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=0, weakens=1, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=0, weakens=2, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -2056,3 +2056,78 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: Reef substrate for SD-029 / monomodal-collapse falsifier work. Registered v3_pending. Hold pending V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.
+
+## G4: Heterogeneity Warnings
+
+Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in claims.yaml. Per GRADE/PRISMA, divergent evidence requires an explanatory account before governance aggregates a certainty estimate. Add a one-sentence note classifying the conflict as: substrate-version confound, methodological divergence, genuine scientific contradiction, or supersession lag.
+
+| claim_id | status | conflict_ratio |
+|---|---|---|
+| `SD-018` | `implemented` | 1 |
+| `SD-005` | `implemented` | 0.917 |
+| `ARC-024` | `provisional` | 0.857 |
+| `MECH-075` | `candidate` | 0.857 |
+| `MECH-098` | `candidate` | 0.857 |
+| `MECH-302` | `candidate` | 0.857 |
+| `MECH-111` | `candidate` | 0.8 |
+| `MECH-186` | `candidate` | 0.8 |
+| `Q-002` | `active` | 0.8 |
+| `Q-003` | `active` | 0.8 |
+| `SD-015` | `candidate` | 0.8 |
+| `ARC-042` | `candidate` | 0.75 |
+| `MECH-099` | `candidate` | 0.727 |
+| `MECH-090` | `active` | 0.706 |
+| `ARC-041` | `candidate` | 0.667 |
+| `INV-054` | `candidate` | 0.667 |
+| `MECH-093` | `provisional` | 0.667 |
+| `MECH-150` | `candidate` | 0.667 |
+| `Q-001` | `active` | 0.667 |
+| `Q-007` | `active` | 0.667 |
+| `SD-016` | `implemented` | 0.667 |
+| `ARC-030` | `candidate` | 0.625 |
+| `SD-007` | `implemented` | 0.609 |
+| `MECH-153` | `candidate` | 0.6 |
+| `SD-049` | `candidate` | 0.6 |
+| `ARC-038` | `candidate` | 0.571 |
+| `ARC-066` | `candidate` | 0.571 |
+| `MECH-073` | `candidate` | 0.571 |
+| `MECH-128` | `candidate` | 0.571 |
+| `MECH-204` | `candidate` | 0.571 |
+| `Q-034` | `open` | 0.545 |
+| `SD-021` | `candidate` | 0.545 |
+| `Q-019` | `open` | 0.533 |
+| `ARC-045` | `candidate` | 0.5 |
+| `ARC-058` | `candidate` | 0.5 |
+| `INV-010` | `active` | 0.5 |
+| `MECH-118` | `candidate` | 0.5 |
+| `MECH-165` | `candidate` | 0.5 |
+| `MECH-188` | `candidate` | 0.5 |
+| `MECH-256` | `candidate` | 0.5 |
+| `MECH-313` | `candidate_substrate_landed` | 0.5 |
+| `SD-029` | `candidate` | 0.5 |
+| `SD-032c` | `candidate` | 0.5 |
+| `MECH-089` | `active` | 0.471 |
+| `ARC-032` | `candidate` | 0.444 |
+| `MECH-116` | `candidate` | 0.444 |
+| `MECH-120` | `candidate` | 0.444 |
+| `ARC-068` | `candidate` | 0.4 |
+| `MECH-135` | `candidate` | 0.4 |
+| `MECH-166` | `candidate` | 0.4 |
+| `MECH-220` | `candidate` | 0.4 |
+| `Q-020` | `resolved` | 0.4 |
+| `SD-023` | `candidate` | 0.4 |
+| `SD-032b` | `candidate` | 0.4 |
+| `SD-047` | `provisional` | 0.4 |
+| `SD-004` | `implemented` | 0.381 |
+| `MECH-112` | `candidate` | 0.375 |
+| `ARC-007` | `active` | 0.343 |
+| `MECH-091` | `candidate` | 0.333 |
+| `MECH-155` | `candidate` | 0.333 |
+| `MECH-314` | `candidate_substrate_landed` | 0.333 |
+
+WARNING: 61 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
+
+## Substrate changes with dependent invariants
+
+No substrate status changes this run. No dependent invariants flagged.
+

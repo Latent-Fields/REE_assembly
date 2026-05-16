@@ -2,8 +2,9 @@
 nav_exclude: true
 ---
 
-<!-- DEVGOV_REVIEW_VERSION: 2026-05-16.1 -->
+<!-- DEVGOV_REVIEW_VERSION: 2026-05-16.2 -->
 <!-- author: claude-sonnet-4-6, session dev-governance-synthesis-2026-05-16T163217Z -->
+<!-- G4 implemented: session g4-heterogeneity-note-gate-2026-05-16T172425Z -->
 
 # Developmental Governance Synthesis Review
 
@@ -369,6 +370,18 @@ Level E evidence should carry near-zero weight; Level A should carry full weight
 
 **Grounded in:** PRISMA Page et al. 2021; GRADE Kirmayr et al. 2021  
 **Priority:** Medium  
+**Status: IMPLEMENTED 2026-05-16** — G4 check added to
+`evidence/experiments/scripts/build_experiment_indexes.py` in
+`_write_promotion_demotion_recommendations()`. For every active claim in `scoped_claims`
+with `conflict_ratio > 0.3`, the function checks whether `heterogeneity_note` is present
+and non-empty in `claim_registry`. Missing notes are collected and emitted as a "G4:
+Heterogeneity Warnings" section at the end of `promotion_demotion_recommendations.md`
+with a tabular list (claim_id | status | conflict_ratio) and a summary WARNING line.
+Claims with a note present are not flagged. The check is a documentation gate only —
+it does not block promotion. Five example notes were added to the highest-entry-count
+high-conflict claims (ARC-016, MECH-071, MECH-095, MECH-102, ARC-033) using the
+classification vocabulary: substrate-version confound, methodological divergence,
+genuine scientific contradiction.  
 **Description:** Claims entering a governance cycle with `conflict_ratio > 0.3` must
 carry a `heterogeneity_note` field in claims.yaml explaining the divergence before the
 cycle's promotion/demotion recommendation is issued. The note should classify the

@@ -1414,6 +1414,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     current_impl_phase: str | None = None
     current_eq_note: str | None = None
     current_defer_until: str | None = None
+    current_het_note: str | None = None
     _collecting_eq_note: bool = False  # True while reading a block-scalar evidence_quality_note
 
     if not path.exists():
@@ -1442,6 +1443,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "implementation_phase": current_impl_phase or "",
                     "evidence_quality_note": (current_eq_note or "").strip(),
                     "defer_promotion_until": current_defer_until or "",
+                    "heterogeneity_note": (current_het_note or "").strip(),
                 }
             current_id = line.split(":", 1)[1].strip()
             current_status = None
@@ -1452,6 +1454,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_impl_phase = None
             current_eq_note = None
             current_defer_until = None
+            current_het_note = None
             _collecting_eq_note = False
             continue
 
@@ -1494,6 +1497,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_defer_until = line.split(":", 1)[1].strip().strip("\"'")
             continue
 
+        if current_id and line.startswith("  heterogeneity_note:"):
+            current_het_note = line.split(":", 1)[1].strip().strip("\"'")
+            continue
+
     if current_id:
         registry[current_id] = {
             "status": current_status or "unknown",
@@ -1504,6 +1511,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "implementation_phase": current_impl_phase or "",
             "evidence_quality_note": (current_eq_note or "").strip(),
             "defer_promotion_until": current_defer_until or "",
+            "heterogeneity_note": (current_het_note or "").strip(),
         }
     return registry
 
@@ -2424,6 +2432,51 @@ def _write_promotion_demotion_recommendations(
                 if prior.get("rationale"):
                     lines.append(f"- Last rationale: {prior['rationale']}")
             lines.append("")
+
+    # ── G4: Heterogeneity warnings ───────────────────────────────────────────
+    # GRADE / PRISMA require that divergent evidence carries an explanatory
+    # note before governance can aggregate a certainty estimate. Flag any active
+    # claim with conflict_ratio > 0.3 that lacks a heterogeneity_note in
+    # claims.yaml. This is a documentation gate, not a promotion gate.
+    _G4_THRESHOLD = 0.3
+    g4_warnings: list[tuple[float, str, str]] = []  # (conflict_ratio, claim_id, status)
+    for _g4_cid in sorted(scoped_claims.keys()):
+        _g4_meta = scoped_claims[_g4_cid]
+        _g4_reg = claim_registry.get(_g4_cid, {})
+        if _is_inactive_claim_status(str(_g4_reg.get("status", "unknown"))):
+            continue
+        _g4_cr = _direction_conflict_ratio(_g4_meta.get("direction_counts", {}))
+        if _g4_cr > _G4_THRESHOLD:
+            _g4_note = str(_g4_reg.get("heterogeneity_note", "")).strip()
+            if not _g4_note:
+                g4_warnings.append((_g4_cr, _g4_cid, str(_g4_reg.get("status", "unknown"))))
+    g4_warnings.sort(key=lambda x: (-x[0], x[1]))
+
+    lines.append("## G4: Heterogeneity Warnings")
+    lines.append("")
+    lines.append(
+        "Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in "
+        "claims.yaml. Per GRADE/PRISMA, divergent evidence requires an explanatory account "
+        "before governance aggregates a certainty estimate. Add a one-sentence note "
+        "classifying the conflict as: substrate-version confound, methodological divergence, "
+        "genuine scientific contradiction, or supersession lag."
+    )
+    lines.append("")
+    if g4_warnings:
+        lines.append("| claim_id | status | conflict_ratio |")
+        lines.append("|---|---|---|")
+        for _cr, _cid, _st in g4_warnings:
+            lines.append(f"| `{_cid}` | `{_st}` | {_fmt_number(_cr)} |")
+        lines.append("")
+        lines.append(
+            f"WARNING: {len(g4_warnings)} active claim(s) have conflict_ratio > 0.3 "
+            f"without a heterogeneity_note. Add the field to each entry in "
+            f"docs/claims/claims.yaml before the next governance promotion decision."
+        )
+    else:
+        lines.append("All high-conflict active claims carry a `heterogeneity_note`. No warnings.")
+    lines.append("")
+    # ── end G4 ───────────────────────────────────────────────────────────────
 
     (base_dir / "promotion_demotion_recommendations.md").write_text(
         "\n".join(lines).rstrip() + "\n",
