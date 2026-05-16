@@ -39,8 +39,9 @@ closure_plan:
       owner_exq: null
       unblocks_claims: [SD-034, MECH-266, MECH-268]
       depends_on: []
-      blocking_external: ["env scoping decision Q2"]
-      last_updated: 2026-05-08
+      blocking_external: []
+      last_updated: 2026-05-16
+      resume_condition: "Q2 RESOLVED 2026-05-16 (user decision): tolerance-band completion = ADAPTIVE (scaled to env size), not the previously-proposed fixed window. Approach decision (user 2026-05-16): spec primitives 1-3 (adaptive tolerance-band / counter-evidence injection hook / dual simultaneously-active resource cue) now; deliverable 4 (phased rule_state training curriculum -- the V3-EXQ-321/261 committed-mode-elicitation blocker) split into its own design pass. Spec: causalgridworldv2_env_extensions_spec.md. GAP-3 is no longer blocked on a scoping decision -- next is spec review then env-infra implementation of primitives 1-3 (no claim-validation EXQ; env infrastructure)."
     - id: "commitment_closure:GAP-4"
       title: "OCD battery completeness (V3-EXQ-460..468)"
       phase: 2
@@ -460,7 +461,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | blocked (upstream in-progress) | arc_062_rule_apprehension Phase 1 + Phase 2 (GAP-A done; GAP-B in-progress, V3-EXQ-543b queued Mac 120 min, awaiting runner pickup) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; resume when ARC-062 PASSes monomodal-collapse falsifier (V3-EXQ-543b is the live owner) | TBD | 2026-05-10 |
 | GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
-| GAP-3 | 3 | open | env scoping decision (Q2) | Pick tolerance-window default, scope counter-evidence injection API, dual-cue trigger primitive | env infra (no EXQ) | 2026-05-08 |
+| GAP-3 | 3 | open | nothing (Q2 RESOLVED 2026-05-16: adaptive tolerance) | Review causalgridworldv2_env_extensions_spec.md (primitives 1-3: adaptive tolerance-band / counter-evidence injection hook / dual-cue), then implement env infra. Deliverable 4 (phased curriculum) split to its own design pass. | env infra (no EXQ); spec doc | 2026-05-16 |
 | GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
 | GAP-5 | 6 | open | nothing internal; coupled to anchor-reset substrate | Audit `_committed_anchor_keys` capture; widen / relax release predicate; queue 481b | V3-EXQ-481b | 2026-05-08 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
@@ -567,6 +568,30 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-16 - Q2 RESOLVED: GAP-3 tolerance-band = ADAPTIVE (user decision); spec primitives 1-3, curriculum split
+
+User decision (surfaced after the closure-map reconciliation same day):
+
+- **Q2 tolerance-band completion default = ADAPTIVE (scaled to env
+  size)**, overriding the plan's proposed fixed-window default. The
+  SD-034 / MECH-266 / MECH-268 behavioural arms (EXP-0156/0157/0162)
+  will be specced against an adaptive `T`. Concrete scaling function +
+  per-experiment override in causalgridworldv2_env_extensions_spec.md.
+- **Approach = spec primitives 1-3 now** (adaptive tolerance-band /
+  counter-evidence injection hook / dual simultaneously-active resource
+  cue); **deliverable 4 (phased rule_state training curriculum) split
+  into its own design pass** -- it is the V3-EXQ-321 / V3-EXQ-261
+  committed-mode-elicitation blocker (substrate_queue SD-021 / SD-022)
+  and is the highest-risk piece, kept off the GAP-3 critical path.
+
+GAP-3 `blocking_external` cleared (no longer waiting on a scoping
+decision). Status stays `open`: next is spec review then env-infra
+implementation of primitives 1-3 (no claim-validation EXQ; env
+infrastructure). GAP-3 closure unblocks GAP-8 (SD-033b behavioural
+validation, depends_on GAP-3) and the full behavioural arms of
+GAP-2 / GAP-4. Q2 open-question entry struck through + marked resolved;
+GAP-3 YAML node + status-table row reconciled.
 
 ### 2026-05-16 - Closure-map reconciliation: GAP-1 upstream gate (arc_062:GAP-B) cleared by ARC-065 SP-CEM
 
@@ -745,10 +770,20 @@ Numbered for reference from future sessions.
   See [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md)
   Open Question R1 / R2 / R3 / R4 for the resolved-default values
   (biology-anchored from Pull A + Pull B lit-pulls 2026-05-09).
-- **Q2**: Phase 3 tolerance-band completion default -- fixed window
+- **Q2**: ~~Phase 3 tolerance-band completion default -- fixed window
   (T_default ~ 1 step / 1 grid cell) vs adaptive (scaled to env size)?
   Default proposed: fixed window per env config, configurable per
-  experiment.
+  experiment.~~ **RESOLVED 2026-05-16 (user decision): ADAPTIVE
+  (scaled to env size)**, overriding the proposed fixed-window default.
+  Rationale: robustness across env sizes; the SD-034 / MECH-266 /
+  MECH-268 behavioural arms (EXP-0156/0157/0162) are to be specced
+  against an adaptive `T` rather than a hard 1-cell window. Concrete
+  scaling function + per-experiment override surface specified in
+  [causalgridworldv2_env_extensions_spec.md](./causalgridworldv2_env_extensions_spec.md).
+  Approach decision (same session): spec primitives 1-3 now; deliverable
+  4 (phased rule_state training curriculum) treated as a separate design
+  pass (it is the V3-EXQ-321 / V3-EXQ-261 committed-mode-elicitation
+  blocker; substrate_queue SD-021 / SD-022).
 - **Q3**: Multi-rule SD-034 -- when multiple rule_states are committed
   simultaneously (e.g. nested goals), is the per-rule closure pulse
   sufficient or does the architecture need a chained / hierarchical
