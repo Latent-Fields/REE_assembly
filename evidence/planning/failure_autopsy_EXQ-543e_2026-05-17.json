@@ -60,5 +60,36 @@
     "claims_yaml": "NOT modified",
     "manifest_evidence_direction": "left non_contributory; supersession set when V3-EXQ-543f is queued",
     "diagnostic_harness": "/tmp/diag_543e_spcem.py (throwaway, not committed)"
+  },
+  "addendum_session_b": {
+    "generated_utc": "2026-05-17T06:54:38Z",
+    "session": "failure-autopsy-exq543e-20260517T060331Z",
+    "relation_to_session_a": "complementary, not contradictory: A root-caused the gated-policy axis (ARC-062 under-fed z_world-only head); B root-causes the dACC axis (exact-zero D1/D2 that A noted but did not explain). Both true and independent.",
+    "scope": "cluster",
+    "dacc_axis_root_cause": "DACCtoE3Adapter.forward (ree-v3/ree_core/cingulate/dacc.py:482-484): weight = dacc_weight * drive_gain; if weight==0.0 the adapter returns torch.zeros_like(mode_ev) BEFORE the dacc_suppression_weight*suppression term (line 491). Experiment sets only dacc_suppression_weight=0.5 and leaves dacc_weight=0.0 (master gain). use_dacc=True instantiates the module, record_action fills the FIFO, z_harm_a is populated -- but adapter output is identically zero every step. MECH-260 axis never live -> ARM_0==ARM_1 and ARM_2==ARM_3 byte-identical across all 3 seeds; D1=D2=0.0 exactly.",
+    "cluster_pattern": {
+      "shape": "MECH-260 dACC factorial axis inert via dacc_weight=0.0 adapter master-gate",
+      "is_independent_bugs": false,
+      "structural_property": "the 543d-lineage 2x2 falsifier's dACC axis has never been live on any substrate (collapsed-CEM 543d OR SP-CEM 543e); the supersession rationale '543d invalid only because collapsed-CEM' is incomplete",
+      "members": ["V3-EXQ-543d", "V3-EXQ-543e"]
+    },
+    "recommended_epistemic_category": "dual: configuration_error (dACC axis) + substrate_under_fed (ARC-062 axis, per session A H3)",
+    "recommended_evidence_direction_per_claim": {"ARC-062": "non_contributory (reclassify from weakens -- wrong layer attribution: degenerate factorial + inert gating 3/3)", "MECH-309": "non_contributory (keep)"},
+    "pending_retest_after_substrate": false,
+    "pending_retest_note": "dACC fix is config-only (not a substrate gap); ARC-062 option-2 head augmentation is a real substrate change (session A). V3-EXQ-543f needs BOTH landed to be a valid 2x2 test. ARC-062/MECH-309 stay candidate/v3_pending; no conflict-ratio movement.",
+    "routing": {
+      "confirmed": "dual (user interactive gate)",
+      "queue_experiment": "V3-EXQ-543f supersedes V3-EXQ-543e, claim_ids [ARC-062, MECH-309]: set dacc_weight>0 (e.g. 1.0) + dacc_suppression_weight=0.5 + pre-flight non-degeneracy assertion (dACC-on arm != dACC-off arm); correct docstring mischaracterisation of dacc_weight",
+      "implement_substrate": "ARC-062 GatedPolicy head-input first-action one-hot augmentation (2026-05-11 option 2; session A) -- justified by SP-CEM inert-gating probe, NOT by the degenerate D-grid",
+      "not_lit_pull": "no biology divergence (dACC axis is pure config error)",
+      "not_governance_demotion": "claim never fairly tested"
+    },
+    "governance_recommendations": {
+      "reclassify_543e_per_claim": "ARC-062 weakens -> non_contributory",
+      "retrospective_caveat_543d": "543d ARC-062=weakens/MECH-309=non_contributory was invalid for the dacc_weight=0 reason in addition to collapsed-CEM; add explicit note (supersession already implies inactive)",
+      "claims_yaml": "NOT modified by this autopsy; ARC-062/MECH-309 remain candidate/v3_pending",
+      "arc_062_plan": "GAP-B owner_exq V3-EXQ-543e -> V3-EXQ-543f; status stays in-progress (plan-owner/governance applies; autopsy does not edit the plan doc)"
+    },
+    "concurrency": "two /failure-autopsy sessions ran on 543e independently; A committed first (481d4eef0b); B appended per user direction; no claims.yaml/manifest/review_tracker/substrate_queue edits by either."
   }
 }

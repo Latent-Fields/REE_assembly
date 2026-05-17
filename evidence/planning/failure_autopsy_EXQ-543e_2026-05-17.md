@@ -166,3 +166,113 @@ option 2 fixes.
   `non_contributory` (not superseded yet — supersession is set when
   V3-EXQ-543f is queued, per the EXQ versioning policy).
 - Diagnostic harness: `/tmp/diag_543e_spcem.py` (throwaway; not committed).
+
+---
+
+# Addendum (session B, 2026-05-17T06:54:38Z) — dACC root cause + 543d cluster
+
+> Independent second-session autopsy. **Complementary, not contradictory.**
+> Session A above root-caused the *gated-policy* axis (ARC-062 z_world-only
+> head under-fed despite genuinely diverse SP-CEM candidates). This
+> addendum root-causes the *other* factorial axis — the **exact-zero
+> D1/D2** that A recorded as a fact ("dACC anti-recency: zero behavioural
+> change") but did not explain. Both findings are true and independent:
+> the 2x2 had BOTH a dead dACC axis (config bug) AND an under-fed ARC-062
+> head (substrate). Routing decisions below are user-confirmed via the
+> interactive gate.
+
+## A1. Root cause of the exact-zero D1/D2 (decisive, in adapter code)
+
+`DACCtoE3Adapter.forward()` — `ree-v3/ree_core/cingulate/dacc.py:482-484`:
+
+```python
+weight = self.config.dacc_weight * float(bundle.get("drive_gain", 1.0))
+if weight == 0.0:
+    return torch.zeros_like(mode_ev)   # returns BEFORE the suppression term (line 491)
+```
+
+V3-EXQ-543e sets only `dacc_suppression_weight=0.5` and **leaves
+`dacc_weight=0.0`** (script docstring lines 66-69 treat it as a peer
+"other channel"). But `dacc_weight` is the adapter's **master gain**.
+With it 0.0 the adapter returns the zero vector *before* the
+`dacc_suppression_weight * suppression` term (line 491) ever executes.
+`DACCConfig` docstring: *"All weights default to zero so the module is
+no-op."* Adapter docstring: activation requires *"dacc_weight > 0
+(combined with at least one sub-weight > 0)."*
+
+`use_dacc=True` instantiates the module, `agent.py:3489-3492` fills the
+FIFO via `record_action`, and `agent.sense(...obs_harm_a...)` populates
+`z_harm_a` (so the `z_harm_a is not None` gate at agent.py:2683 passes).
+The history and bundle are live — only the adapter's master gain is zero,
+so its E3 score_bias is identically zero every step. Hence ARM_0≡ARM_1
+and ARM_2≡ARM_3 **byte-identical across all 3 seeds** (D1=D2=0.0 exactly).
+The MECH-260 anti-recency axis was never live. "dACC produced zero
+behavioural change" is a configuration artifact, NOT a MECH-260 signal —
+it must not be read as evidence MECH-260 is ineffective.
+
+## A2. Cluster finding (load-bearing) — 543d carries the identical bug
+
+`grep` confirms V3-EXQ-543d has the same config pattern (same docstring
+lines 65-66; `dacc_suppression_weight=DACC_SUPPRESSION_WEIGHT`, no
+`dacc_weight`). 543d's verdict was attributed *solely* to the collapsed-CEM
+substrate; in fact its dACC axis was also inert for this independent
+reason. **Structural property (one bug, not two):** across two
+structurally-different CEM substrates (collapsed-CEM 543d, SP-CEM 543e),
+the MECH-260 second axis of the 543d-lineage falsifier has **never been
+live**. The "2x2 factorial" has only ever been a confounded 1x2. The
+543d→543e supersession rationale ("543d invalid *only* because
+collapsed-CEM") is incomplete.
+
+## A3. Reconciled epistemic category
+
+This run is **dual-natured**:
+- **dACC axis → `configuration_error`** (harness misconfiguration;
+  `dacc_weight=0.0` master-gate). NOT substrate, NOT claim pressure.
+- **ARC-062 gated axis → substrate under-fed** (session A's H3:
+  z_world-only head input; genuine substrate question).
+
+Session A's `non_contributory` (overall) is correct and not force-mapped.
+The manifest's **per-claim `ARC-062: weakens` is the wrong layer
+attribution** — the gated-only contrast ran inside a degenerate factorial
+(dead dACC axis) with the gating probe inert in 3/3 seeds; that is a
+harness/translation gap, not soft evidence against ARC-062.
+
+## A4. Routing refinements (user-confirmed; extend, do not replace, §"Routing recommendation")
+
+1. **Confirmed dual routing.** Session A's `/implement-substrate` option-2
+   (augment ARC-062 head input with first-action one-hot) **stands** and
+   matches the user's decision. **Addition:** the re-issued **V3-EXQ-543f**
+   must *also* set `dacc_weight>0` (e.g. 1.0) alongside
+   `dacc_suppression_weight=0.5`, AND carry a pre-flight non-degeneracy
+   assertion (dACC-on arm != dACC-off arm by epsilon) — otherwise the
+   MECH-260 axis stays dead even after the head augmentation, and 543f
+   would *again* be a confounded 1x2. Also correct the script docstring's
+   mischaracterisation of `dacc_weight` as a peer channel.
+2. **Recommend governance reclassify** the manifest per-claim direction
+   **ARC-062 `weakens` → `non_contributory`** (keeps ARC-062
+   candidate/v3_pending; no conflict-ratio movement; non_contributory is
+   inactive in scoring — no illusory conflict resolution).
+3. **Retrospective caveat on V3-EXQ-543d** (governance to note): its
+   recorded `ARC-062=weakens / MECH-309=non_contributory` was invalid for
+   the `dacc_weight=0` reason in addition to the collapsed-CEM reason.
+   Supersession (543e supersedes 543d) already implies inactive; add the
+   explicit note so the reason is not mis-recorded as substrate-only.
+4. `pending_retest_after_substrate`: the ARC-062 option-2 substrate change
+   is real (session A); the dACC fix is config-only. **543f needs BOTH**
+   landed before it is a valid test of the 2x2.
+
+## A5. Biological-reference triage (dACC axis)
+
+Not a biology case. MECH-260 (dACC recency/monostrategy suppression —
+Scholl & Klein-Flugge 2018) has a working existence proof and the adapter
+behaves exactly as its own contract documents. Pure configuration error.
+**No /lit-pull indicated** for the dACC axis.
+
+## A6. Concurrency note
+
+Two `/failure-autopsy` sessions ran on V3-EXQ-543e independently. Session
+A committed first (`481d4eef0b`). Session B (this addendum,
+TASK_CLAIMS `failure-autopsy-exq543e-20260517T060331Z`) appended rather
+than overwrote, per user direction. No claims.yaml / manifest /
+review_tracker / substrate_queue edits by either session — governance
+applies the recommendations.
