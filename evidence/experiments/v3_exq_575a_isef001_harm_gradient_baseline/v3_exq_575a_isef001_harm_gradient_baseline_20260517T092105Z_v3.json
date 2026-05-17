@@ -287,5 +287,7 @@
       }
     }
   ],
-  "notes": "DEV-NEED-029 warm-start gate diagnostic (ISEF-001). Supersedes V3-EXQ-575 (instrument fix per failure_autopsy_EXQ-575_2026-05-17: get_statistics().active_centers is a 32-slot ring-buffer saturation counter blind to harm intensity). Primary metric: get_coverage_telemetry()['residue_coverage_pct'] = (active_mask & |weight| > 0.02) / 32. Secondary metrics harm_total / mean_weight expose the intensity separation even if thresholded coverage co-saturates; C3 is informational only and NOT part of the outcome gate. ARM_0 proximity_harm_scale=0.05 (cold-start control), ARM_1 0.30 (warm-start treatment). PASS gates downstream ARC-065 sweeps and Q-043/044/045 / INV-049 retests."
+  "notes": "DEV-NEED-029 warm-start gate diagnostic (ISEF-001). Supersedes V3-EXQ-575 (instrument fix per failure_autopsy_EXQ-575_2026-05-17: get_statistics().active_centers is a 32-slot ring-buffer saturation counter blind to harm intensity). Primary metric: get_coverage_telemetry()['residue_coverage_pct'] = (active_mask & |weight| > 0.02) / 32. Secondary metrics harm_total / mean_weight expose the intensity separation even if thresholded coverage co-saturates; C3 is informational only and NOT part of the outcome gate. ARM_0 proximity_harm_scale=0.05 (cold-start control), ARM_1 0.30 (warm-start treatment). PASS gates downstream ARC-065 sweeps and Q-043/044/045 / INV-049 retests.",
+  "result": "FAIL",
+  "completed_at": "2026-05-17T09:21:05Z"
 }

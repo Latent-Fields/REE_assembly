@@ -2,9 +2,35 @@
   "schema_version": "v1",
   "runner_pid": 59137,
   "runner_started_at": "2026-05-17T13:11:02.364507+00:00",
-  "last_updated": "2026-05-17T14:03:34.758762+00:00",
+  "last_updated": "2026-05-17T14:13:56.811037+00:00",
   "idle": false,
-  "current": null,
+  "current": {
+    "queue_id": "V3-EXQ-589",
+    "backlog_id": "",
+    "claim_id": "ARC-065",
+    "title": "EXQ-ISEF-003: microhabitat zones vs homogeneous geography -- z_world latent diversity (infant_substrate:GAP-12)",
+    "description": "",
+    "script": "experiments/v3_exq_589_isef003_microhabitat_latent_diversity.py",
+    "started_at": "2026-05-17T14:03:43.230628+00:00",
+    "progress": {
+      "run_label": "Seed 42 / ARM_0_control",
+      "runs_done": 0,
+      "runs_total": 10,
+      "episodes_done": 0,
+      "episodes_total": 1000,
+      "overall_pct": 0.0
+    },
+    "seconds_elapsed": 614,
+    "seconds_remaining": 9000,
+    "recent_lines": [
+      "dry_run=False seeds=[42, 43, 44, 45, 46] n_episodes=1000 steps=200",
+      "ARM_0: microhabitat_enabled=False (homogeneous geography)",
+      "ARM_1: microhabitat_enabled=True n_microhabitats=3",
+      "C1 gate: ARM_1 top3_abs_var_sum > 1.2x ARM_0 in >= 4/5 seeds at ep999",
+      "Seed 42 Condition ARM_0_control"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
       "queue_id": "V3-EXQ-587",
@@ -35,7 +61,7 @@
       "title": "EXQ-ISEF-003: microhabitat zones vs homogeneous geography -- z_world latent diversity (infant_substrate:GAP-12)",
       "description": "",
       "estimated_minutes": 1333.3,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
