@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-17T18:13:12Z",
+  "last_tick_utc": "2026-05-17T18:14:14Z",
   "state": "running",
   "current_exq": "V3-EXQ-543g",
   "current_exq_started_utc": "2026-05-17T15:55:04.499432+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 2 / ARM_1_dacc_only",
     "runs_done": 9,
     "runs_total": 12,
-    "episodes_done": 5,
+    "episodes_done": 50,
     "episodes_total": 108,
-    "overall_pct": 75.4
+    "overall_pct": 78.9
   },
-  "seconds_elapsed": 8288,
-  "seconds_remaining": 2431,
+  "seconds_elapsed": 8350,
+  "seconds_remaining": 2088,
   "recent_lines": [
-    "[train] ARM_1_dacc_only ep 10/108  phase=P0  rv=0.0003  ep_reward=-1.0876",
-    "[train] ARM_1_dacc_only ep 20/108  phase=P0  rv=0.0004  ep_reward=-1.2173",
     "[train] ARM_1_dacc_only ep 30/108  phase=P0  rv=0.0007  ep_reward=-1.0100",
     "[train] ARM_1_dacc_only ep 40/108  phase=P0  rv=0.0013  ep_reward=-1.0054",
-    "[probe] ARM_1_dacc_only P1 ep 5/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0"
+    "[probe] ARM_1_dacc_only P1 ep 5/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
+    "[probe] ARM_1_dacc_only P1 ep 10/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
+    "[train] ARM_1_dacc_only ep 50/108  phase=P1  rv=0.0005  ep_reward=-1.0839  baseline=-1.0835  buf=0  inert_gating=False"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
