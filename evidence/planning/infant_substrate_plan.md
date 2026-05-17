@@ -98,7 +98,7 @@ closure_plan:
     - id: "infant_substrate:GAP-11"
       title: "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison"
       phase: 4
-      status: queued
+      status: in-progress
       severity: medium
       owner_exq: V3-EXQ-588
       unblocks_claims: [DEV-NEED-006, MECH-189]
@@ -107,7 +107,7 @@ closure_plan:
     - id: "infant_substrate:GAP-12"
       title: "EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)"
       phase: 4
-      status: queued
+      status: in-progress
       severity: medium
       owner_exq: "V3-EXQ-589"
       unblocks_claims: [DEV-NEED-001, DEV-NEED-007, ARC-065]
@@ -116,7 +116,7 @@ closure_plan:
     - id: "infant_substrate:GAP-13"
       title: "EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attractor capture)"
       phase: 4
-      status: queued
+      status: in-progress
       severity: medium
       owner_exq: V3-EXQ-590
       unblocks_claims: [DEV-NEED-003, MECH-314]
@@ -125,7 +125,7 @@ closure_plan:
     - id: "infant_substrate:GAP-14"
       title: "EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)"
       phase: 4
-      status: queued
+      status: in-progress
       severity: medium
       owner_exq: V3-EXQ-591
       unblocks_claims: [DEV-NEED-008, ARC-046]
