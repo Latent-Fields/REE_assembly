@@ -1,33 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-17T07:39:08Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-575a",
-  "current_exq_started_utc": "2026-05-17T06:07:00.797560+00:00",
-  "current_title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_0_control",
-    "runs_done": 4,
-    "runs_total": 10,
-    "episodes_done": 150,
-    "episodes_total": 200,
-    "overall_pct": 47.5
-  },
-  "seconds_elapsed": 5527,
-  "seconds_remaining": 5868,
-  "recent_lines": [
-    "verdict: PASS",
-    "Seed 44 Condition ARM_0_control",
-    "[train] ARM_0_control ep 50/200 seed=44 coverage=1.000 harm_total=10.637 mean_weight=0.3324",
-    "[train] ARM_0_control ep 100/200 seed=44 coverage=1.000 harm_total=24.386 mean_weight=0.7621",
-    "[train] ARM_0_control ep 150/200 seed=44 coverage=1.000 harm_total=39.730 mean_weight=1.2416"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-05-17T09:30:16Z",
+  "state": "paused",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-580",
+      "result": "PASS",
+      "completed_at": "2026-05-16T22:47:00.640501+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-581",
+      "result": "PASS",
+      "completed_at": "2026-05-16T22:52:30.598469+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-577a",
+      "result": "PASS",
+      "completed_at": "2026-05-16T23:08:05.215070+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-543e",
+      "result": "FAIL",
+      "completed_at": "2026-05-17T01:02:03.306065+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-575a",
+      "result": "FAIL",
+      "completed_at": "2026-05-17T09:21:06.261950+00:00"
+    }
+  ],
   "runner_pid": 90611,
   "runner_version": null,
   "gpu": {

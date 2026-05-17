@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-17T09:39:30.261799Z`
+Generated: `2026-05-17T11:43:08.172991Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -435,7 +435,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-054
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.365, conflict_ratio=0.667, exp_entries=3, lit_entries=6; directions supports=6, weakens=3, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.364, conflict_ratio=0.667, exp_entries=3, lit_entries=6; directions supports=6, weakens=3, mixed=0, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -734,7 +734,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-153
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.4, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.399, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -829,7 +829,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-204
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.558, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.557, conflict_ratio=0.571, exp_entries=3, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=0, conflict_ratio=0.571
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -847,7 +847,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-220
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.262, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.261, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -866,7 +866,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-256
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=9, weakens=3, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=9, weakens=3, mixed=3, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1901,7 +1901,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-029
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=9, weakens=3, mixed=2, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=9, weakens=3, mixed=4, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -2162,8 +2162,3 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-314` | `candidate_substrate_landed` | 0.333 |
 
 WARNING: 58 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
-
-## Substrate changes with dependent invariants
-
-No substrate status changes this run. No dependent invariants flagged.
-

@@ -1,11 +1,23 @@
 {
   "schema_version": "v1",
-  "runner_pid": 90611,
+  "runner_pid": null,
   "runner_started_at": "2026-05-16T19:05:59.351166+00:00",
-  "last_updated": "2026-05-16T23:08:05.217603+00:00",
-  "idle": false,
+  "last_updated": "2026-05-17T09:30:33.423343+00:00",
+  "idle": true,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-583",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SP-CEM main-path default-wiring validation (3-arm equivalence)",
+      "description": "",
+      "estimated_minutes": 48.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -7952,6 +7964,35 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_577a_gap2_microhabitat_validation_20260516T230804Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 9.4
+    },
+    {
+      "queue_id": "V3-EXQ-543e",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 x MECH-260 2x2 factorial monomodal-collapse falsifier on SP-CEM substrate",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[legacy ARM_3-vs-ARM_0 grid; NON-PASS-GATING] C2=True C3=False C4=True F1=False F2=False legacy_pass=False | outcome:            FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-543e -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-543e.json",
+      "started_at": "2026-05-16T23:42:42.559107+00:00",
+      "completed_at": "2026-05-17T01:02:03.306065+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4760.7
+    },
+    {
+      "queue_id": "V3-EXQ-575a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_575a_isef001_harm_gradient_baseline.py:368: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Result written to: /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_575a_isef001_harm_gradient_baseline/v3_exq_575a_isef001_harm_gradient_baseline_20260517T092105Z_v3.json | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-575a -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-575a.json",
+      "started_at": "2026-05-17T06:07:00.797560+00:00",
+      "completed_at": "2026-05-17T09:21:06.261950+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_575a_isef001_harm_gradient_baseline/v3_exq_575a_isef001_harm_gradient_baseline_20260517T092105Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 11645.4
     }
-  ]
+  ],
+  "draining": false
 }
