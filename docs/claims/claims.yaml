@@ -32372,6 +32372,9 @@
     - MECH-333   # an instance of the LOCK arm (critical-period open phase)
     - MECH-334   # an instance of the LOCK arm (critical-period closure / crystallization)
     - Q-052      # the F-error-dependence question is one instance of "is signal X self-extinguishing"
+    - ARC-076    # the personality / commitment-loop-calibration instance of the LOCK arm
+                 # (developmental window then crystallization; two-layer L1 endogenous /
+                 # L2 environmentally-calibrated). Children: MECH-335, MECH-336.
   lit_conf: 0.80
   literature_anchors:
     - "Pathak et al. (2017) ICML arXiv:1705.05363 -- ICM: F-error-coupled curiosity is the
@@ -32465,3 +32468,188 @@
     cases (Pathak, Deidda, Huang), the lock arm (Pizzorusso, Morishita), and the
     handoff arm (Aton, Kleinman). INV-074 retained as the competitive specialization;
     its depends_on now points to INV-075 as parent.
+- id: ARC-076
+  title: "Developmental commitment-loop calibration window with critical-period lock
+    (two-layer): the three BG-like cortico-striatal commitment loops (ARC-021 / MECH-069
+    / ARC-023) are calibrated during a bounded juvenile/adolescent developmental window
+    and then crystallized (an INV-075 LOCK-arm instance), and this locked calibration IS
+    personality. The architecture is two-layer: (L1) the basic drive-prior set-points of
+    the loops (temperament; the limbic-loop value prior) lock on a largely ENDOGENOUS
+    maturational timer, while (L2) a downstream commitment-policy / characteristic-
+    adaptation layer is calibrated by the juvenile play/peer environment and consolidated
+    at window close. Personality is neither a pure environmental readout nor purely
+    endogenous: the environment writes L2; the timer locks L1."
+  claim_type: architectural_commitment
+  subject: development.commitment_loop_calibration_window_personality
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-05-17"
+  depends_on:
+    - INV-075    # parent invariant -- ARC-076 is its personality/commitment-loop LOCK-arm instance
+    - ARC-021    # the three BG-like cortico-striatal loops being calibrated
+    - MECH-069   # the loops' error channels are incommensurable -> each calibrated separately
+    - ARC-023    # the loops run on distinct thalamic timescales -> distinct calibration windows
+    - ARC-046    # infant curriculum architecture (the developmental window lives here)
+    - ARC-074    # Phase 0 reward-free babbling epoch (the self-extinguishing setup signal)
+    - INV-073    # developmental bootstrapping -- play/exploration is the self-extinguishing setup
+    - MECH-333   # LOCK arm: critical-period open phase (same crystallization pattern)
+    - MECH-334   # LOCK arm: critical-period closure / crystallization (same pattern as 543h)
+  lit_conf: 0.70
+  literature_anchors:
+    - "Pellis, Pellis, Ham & Stark (2023) Neurosci Biobehav Rev 145:105037 -- juvenile play is
+       self-extinguishing AND load-bearing: deprivation in the juvenile window yields persistent
+       adult socio-cognitive deficit; play trains a transferable arbitration skill, not stored
+       motor policies (a commitment-calibration signature). INV-075 antecedent in biology.
+       supports, conf 0.74.
+       evidence/literature/targeted_review_play_commitment_loop_personality_window/"
+    - "Zohar, Zwir, Wang, Cloninger & Anokhin (2018) Dev Psychopathol 31(2):601 -- longitudinal
+       (n=752): temperament (drive priors) vs character (peer-calibrated commitment regulation);
+       post-14 internalization of the created identity = window-then-LOCK, not perpetual
+       maintenance. Clearest human evidence for the INV-075 lock arm in personality.
+       supports, conf 0.72."
+    - "McCrae, Costa, Ostendorf et al. (2000) J Pers Soc Psychol 78(1):173 -- COUNTERWEIGHT:
+       basic-trait stability is largely endogenously maturational, not environmentally written;
+       environment shapes 'characteristic adaptations'. Forces the two-layer split (L1 endogenous
+       lock / L2 environmentally-calibrated). mixed, conf 0.70."
+    - "Miller, Carroll, Armstrong et al. (2024) Brain Behav Immun 117:215 -- a first-decade
+       sensitive period persistently calibrates the ventral/limbic corticostriatal (value)
+       loop; the loop-level, human leg of the cluster. supports, conf 0.60."
+  functional_restatement: >
+    REE currently has the three commitment loops (ARC-021 / MECH-069 / ARC-023) and an
+    infant curriculum (ARC-046, ARC-074) but NO mechanism that uses the developmental
+    window to calibrate the loops' commitment gains and then lock them. ARC-076 asserts
+    that mechanism is architecturally required and that its locked output is what REE
+    should call personality.
+
+    TWO-LAYER STRUCTURE (forced by the McCrae 2000 counterweight):
+      L1 (set-points / temperament): the basic drive-prior gains of the three loops --
+         most importantly the limbic-loop value prior (what is worth committing to) --
+         lock on a largely endogenous maturational timer. The environment does NOT
+         write L1; it is the INV-075 lock arm with an endogenous, schedule-driven
+         (not input-driven) trigger.
+      L2 (commitment policy / characteristic adaptations / character): how those drive
+         priors are gated into actual commitment under context is calibrated by the
+         juvenile play/peer environment during the window and consolidated at closure.
+         L2 is the environmentally-determined layer.
+
+    INV-075 MAPPING: ARC-076 is an instance of INV-075's LOCK arm, not the handoff arm
+    (consistent with the 2026-05-17 handoff-failure lit pull: handoff-alone is not the
+    biological pattern for developmentally-established circuits). The lock pattern is
+    the same crystallization family as MECH-333/334 / V3-EXQ-543h, applied to the
+    commitment loops rather than the gated-policy diversity heads.
+
+    REQUIRED ADDITIONS (V3, design prescription -- not yet implemented):
+    (1) a commitment-loop calibration phase in the infant curriculum during which the
+        loops' relative gains are shaped by the environment (L2);
+    (2) a closure/lock at window end that crystallizes the L2 commitment policy;
+    (3) an endogenous (timer/criterion, NOT input-magnitude) lock for the L1 set-points;
+    (4) the per-loop window structure (MECH-335) and the maladaptive-lock failure mode
+        (MECH-336) as child mechanisms.
+  evidence_quality_note: >
+    Registered 2026-05-17 from a biology-before-formal-definitions lit pull
+    (evidence/literature/targeted_review_play_commitment_loop_personality_window/, 6
+    entries; INV-075 literature_confidence 0.837). ARC-076 is a design prescription /
+    candidate, not a tested claim. The "environmentally-determined personality" framing
+    is deliberately BOUNDED by McCrae 2000 into the two-layer structure -- over-claiming
+    environmental determination of L1 set-points would be unsupported. Distinct from
+    V3-EXQ-543h / MECH-334 (which locks the gated-policy diversity heads); ARC-076 locks
+    the commitment-loop calibration. No experiment queued this session (registration
+    only, per scope).
+- id: MECH-335
+  title: "Staggered ventral->dorsal commitment-loop calibration windows: the three
+    commitment loops do not share a single critical period. Their calibration windows
+    are staggered ventral->dorsal -- the limbic/value loop (ventral striatum / OFC)
+    opens earliest and is the most environmentally sensitive, the associative loop
+    next, the sensorimotor loop last -- with region-specific consolidation latencies (a
+    calibration can be induced during a window but only expressed after it closes)."
+  claim_type: mechanism_hypothesis
+  subject: basal_ganglia.staggered_commitment_loop_calibration_windows
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-17"
+  depends_on:
+    - ARC-076    # parent: the calibration-window-then-lock architecture
+    - ARC-021    # the three loops
+    - MECH-069   # incommensurable error channels -> separate, non-synchronous calibration
+    - ARC-023    # distinct loop timescales -> distinct windows
+  lit_conf: 0.63
+  literature_anchors:
+    - "Bijlsma, Vanderschuren & Wierenga (2023) Cereb Cortex 33(15):9399 -- play deprivation
+       P21-P42 reduces prefrontal inhibition region-specifically: the mPFC change manifests
+       DURING the window, the OFC change only AFTER it -- direct evidence of staggered windows
+       and region-specific consolidation latency. supports, conf 0.66.
+       evidence/literature/targeted_review_play_commitment_loop_personality_window/"
+    - "Miller, Carroll, Armstrong et al. (2024) Brain Behav Immun 117:215 -- the first-decade
+       sensitive period localises to ventral striatum + OFC (the value/limbic loop), supporting
+       'ventral/limbic loop earliest and most environmentally sensitive'. supports, conf 0.60."
+    - "Pellis, Pellis, Ham & Stark (2023) Neurosci Biobehav Rev 145:105037 -- juvenile-period-
+       specific play effects with region-heterogeneous prefrontal trajectories. supports,
+       conf 0.74."
+  functional_restatement: >
+    A model that calibrated all three commitment loops in one shared critical period
+    would mispredict the region-specific, time-staggered trajectories observed
+    biologically. MECH-335 asserts the windows are ordered ventral->dorsal (value/limbic
+    first and most plastic to environment, then associative, then sensorimotor) and that
+    consolidation can lag window-close. Implementation consequence: the ARC-076
+    calibration phase is not one switch but an ordered schedule of per-loop windows, and
+    a post-window readout is required to detect latently-consolidated calibrations
+    (analog of the post-critical-period monocular-deprivation test).
+  evidence_quality_note: >
+    Registered 2026-05-17 (lit pull, same corpus as ARC-076). Candidate / design
+    prescription. Bijlsma 2023 is the cleanest analogue but is prefrontal, not measured
+    at the striatal loop nodes; the ventral->dorsal ordering is inferred from convergent
+    region-specificity, not directly demonstrated at loop level. Child of ARC-076.
+- id: MECH-336
+  title: "Maladaptive-lock failure mode (personality-pathology analog): adequate
+    environmental input does NOT determine the locked calibration value. A stable subset
+    of agents locks a maladaptive commitment-loop configuration despite sufficient input
+    (lock-onto-bad-calibration), and failure to lock at all yields an unstable / diffuse
+    commitment policy. These are the REE substrate of personality-disorder-analog
+    failure modes: lock-too-early / lock-onto-bad-value (rigid maladaptive personality)
+    and failure-to-lock (identity diffusion)."
+  claim_type: mechanism_hypothesis
+  subject: development.maladaptive_commitment_lock_failure_mode
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-17"
+  depends_on:
+    - ARC-076    # parent: window-then-lock calibration
+    - INV-075    # the lock arm whose failure modes this enumerates
+    - MECH-334   # the crystallization mechanism whose mis-timing / mis-targeting this describes
+  lit_conf: 0.62
+  literature_anchors:
+    - "Ham, Iwaniuk & Pellis (2026) Behav Brain Res 508:116198 -- with ABUNDANT play, ~20.4%
+       of rats still lock a maladaptive (aggression-prone, under-pruned mPFC) configuration,
+       indistinguishable in play input from competent peers -- adequate input does not
+       determine the locked value. supports, conf 0.62.
+       evidence/literature/targeted_review_play_commitment_loop_personality_window/"
+    - "Zohar, Zwir, Wang, Cloninger & Anokhin (2018) Dev Psychopathol 31(2):601 -- character
+       maturity = internalization of a created identity; its failure is identity diffusion
+       (failure-to-lock). supports, conf 0.72."
+    - "McCrae, Costa, Ostendorf et al. (2000) J Pers Soc Psychol 78(1):173 -- bounds the
+       determinism: because L1 set-points are largely endogenous, the maladaptive lock is not
+       purely an input-deprivation phenomenon. mixed, conf 0.70."
+  functional_restatement: >
+    A substrate in which adequate environmental input guarantees adaptive calibration is
+    falsified by Ham 2026. MECH-336 asserts the locked value is under-determined by
+    input: given the same window and the same input, some agents crystallize a
+    maladaptive commitment policy. Two clinically-meaningful failure modes follow, both
+    INV-075-shaped: (a) lock-onto-bad-calibration / lock-too-early -> rigid maladaptive
+    personality; (b) failure-to-lock -> unstable, diffuse commitment policy (identity
+    diffusion). This is the REE handle on personality pathology and the falsification
+    surface for ARC-076: an experiment must show a stable maladaptive-lock
+    subpopulation under adequate input.
+  evidence_quality_note: >
+    Registered 2026-05-17 (lit pull, same corpus). Candidate. Ham 2026 is a single
+    recent primary study (male-only; mechanism of the individual difference
+    unresolved). The clinical mapping (personality disorders as lock failure modes) is
+    REE's interpretation, flagged as a hypothesis -- NOT a claim that PD etiology is
+    settled. Child of ARC-076; the falsification target for the cluster.

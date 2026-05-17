@@ -82,3 +82,50 @@ The planning horizon ordering E2 > E1 is architecturally required: if E2 only pr
 HippocampalModule chains E2 rollout kernels into even longer plans (hippocampal planning horizon >> E2's rollout horizon). E2 provides the motor-sensory kernels; the hippocampus chains them into multi-step trajectories navigated under residue-field terrain (ARC-018, MECH-033). The kernel metaphor in MECH-033 refers to E2's single-transition outputs being *composed* into longer rollouts — not to E2's individual planning horizon being short.
 
 **Connection to ARC-021:** E2 is the "action-enacting loop" of the three-loop architecture. Its error signal (motor-sensory mismatch on z_gamma) is incommensurable with E1's sensory prediction error and E3's harm/goal error (MECH-069). This grounds why E2 must be trained separately from E1, with its own optimizer and its own transition buffer recording `(z_t, action, z_{t+1})` tuples.
+
+---
+
+## Developmental calibration and locking of the three loops (ARC-076 / MECH-335 / MECH-336)
+
+ARC-021 / MECH-069 / ARC-023 say the three cortico-striatal loops are *architecturally
+distinct* (separate channels, incommensurable errors, distinct timescales). They do not
+say how the loops' relative commitment gains are *set*. ARC-076 (registered 2026-05-17,
+from the `targeted_review_play_commitment_loop_personality_window` lit pull) supplies
+that: the loops are calibrated during a bounded juvenile/adolescent developmental window
+and then crystallized — an instance of INV-075's LOCK arm — and the locked calibration
+is what REE should call **personality**.
+
+**Two-layer structure** (forced by the McCrae 2000 counterweight, which shows basic-trait
+stability is largely *endogenous*, not environmentally written):
+
+- **L1 — set-points / temperament.** The basic drive-prior gains of the loops (above all
+  the limbic-loop value prior: *what is worth committing to*) lock on a largely
+  endogenous maturational timer. The environment does not write L1. INV-075 lock arm
+  with an endogenous, schedule-driven trigger.
+- **L2 — commitment policy / character.** How those drive priors are gated into actual
+  commitment under context is calibrated by the juvenile play/peer environment during
+  the window and consolidated at closure. L2 is the environmentally-determined layer.
+
+So personality is neither a pure environmental readout nor purely endogenous.
+
+**Child mechanisms:**
+
+- **MECH-335 — staggered ventral→dorsal windows.** The loops do not share one critical
+  period; the limbic/value loop (ventral striatum / OFC) opens earliest and is most
+  environmentally sensitive, then associative, then sensorimotor, with consolidation
+  that can lag window-close (Bijlsma 2023: mPFC change *during* the window, OFC change
+  *after*). The ARC-076 calibration phase is therefore an ordered schedule of per-loop
+  windows plus a post-window readout.
+- **MECH-336 — maladaptive-lock failure mode.** Adequate environmental input does not
+  determine the locked value (Ham 2026: ~20% lock a maladaptive configuration despite
+  abundant play). Two INV-075-shaped failure modes: lock-onto-bad-calibration /
+  lock-too-early → rigid maladaptive personality; failure-to-lock → identity diffusion.
+  This is REE's hypothesised handle on personality pathology (a hypothesis, not a
+  settled etiology) and the falsification surface for ARC-076.
+
+**Relation to V3-EXQ-543h / MECH-334.** Same crystallization family, different target:
+543h / MECH-334 locks the gated-policy *diversity heads*; ARC-076 locks the
+*commitment-loop calibration*. Both are LOCK-arm instances of INV-075; the 2026-05-17
+handoff-failure lit pull established that handoff-alone is not the biological pattern for
+developmentally-established circuits, which is why ARC-076 is a lock claim. ARC-076 is a
+V3 design prescription — not yet implemented, no experiment queued at registration.
