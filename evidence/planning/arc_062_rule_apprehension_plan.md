@@ -102,8 +102,8 @@ closure_plan:
       severity: low
       owner_exq: null
       unblocks_claims: [MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d]
-      depends_on: []
-      last_updated: 2026-05-10
+      depends_on: ["arc_062_rule_apprehension:GAP-B"]
+      last_updated: 2026-05-17
     - id: "arc_062_rule_apprehension:GAP-K"
       title: "MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-543c-successor falsifier pending"
       phase: "2-3"
@@ -393,7 +393,7 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-G | 5 | deferred V4 | sleep_substrate plan progression | Pull C lit-pull (sleep-vs-waking refinement biology) when ARC-063 V4 work opens | n/a | 2026-05-09 |
 | GAP-H | 2-3 | partial | MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation queue | ARC-065 diversity-generation cluster registered. **MECH-313 substrate landed 2026-05-10** (`ree_core/policy/noise_floor.py` + `REEConfig.use_noise_floor`/`noise_floor_alpha`/`noise_floor_min_temperature` + `select_action` e3.select call site + 11 contract tests + V3-EXQ-544 substrate-readiness diagnostic 5/5 PASS + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). **MECH-314 / MECH-314a/b/c substrate landed 2026-05-10** (`ree_core/policy/structured_curiosity.py` + `StructuredCuriosity` + `StructuredCuriosityConfig` + `REEConfig.use_structured_curiosity` master + 3 independently-togglable sub-flavour switches (`use_curiosity_novelty`/`_uncertainty`/`_learning_progress`) + per-sub-flavour weights + `select_action` `dacc_score_bias` composition site between MECH-295 and MECH-313 + 13 contract tests + V3-EXQ-545 substrate-readiness diagnostic 5/5 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed` for parent + 3 children). MECH-318 / MECH-319 substrates + Q-043 / Q-044 / Q-045 ablation experiments remain to be authored. V3 falsification paths: Q-044 three-arm ablation (314a-OFF / 314b-OFF / 314c-OFF) on V3-EXQ-543b/c successors AFTER MECH-318/319 absorption checks; Q-045 4-arm ablation (MECH-313 vs MECH-260 collapse) on V3-EXQ-543b/c successors. | V3-EXQ-544 (done) + V3-EXQ-545 (done) / Q-043 / Q-044 / Q-045 EXQs TBD | 2026-05-10 |
 | GAP-I | 2-3 | partial | empirical retire-vs-promote on multi-rule-context substrate (V3-EXQ-543c-successor; downstream of GAP-B + GAP-C closure) | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. **MECH-318 absorption check done 2026-05-10**: VERDICT (B) PARTIALLY ABSORBED (`REE_assembly/docs/architecture/mech_318_absorption_check.md`). Within-V3 functional weight borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) + W5 (cross-episode continuity) gaps remain; W2 blocked on multi-rule-context substrate, W5 likely V4-scope. NO new V3 substrate commissioned. claims.yaml MECH-318 evidence_quality_note + notes updated; status retained `candidate` pending V3-EXQ-543c-successor empirical gate. MECH-316 / MECH-317 absorption checks separately scoped. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C) | 2026-05-10 |
-| GAP-J | 2-3 | open | claims-only registration | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline is the V3-EXQ-543b/c falsifying alternative. | V3-EXQ-543b/c | 2026-05-10 |
+| GAP-J | 2-3 | open | claims-only registration; **blocked on GAP-B** (additive-logit comparison requires non-inert gating) | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline needs a 543g-successor arm (V3-EXQ-543b/c listed as owner is stale -- all non_contributory due to inert-gating, not a multiplicative-vs-additive comparison). depends_on updated to [GAP-B] 2026-05-17. | TBD (543g-successor) | 2026-05-17 |
 | GAP-K | 2-3 | in-progress | V3-EXQ-543c-successor (admit_writes=True falsifier with replay-driven invocation) AFTER MECH-313 / MECH-314 / MECH-318 sibling substrates land | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. **MECH-319 substrate landed 2026-05-10** (`ree_core/regulators/simulation_mode_rule_gate.py` + `SimulationModeRuleGate` + `SimulationModeRuleGateConfig` + `REEConfig.use_simulation_mode_rule_gate` master + `simulation_mode_rule_gate_admit_writes` V3-EXQ-543c falsifier inverse-debug flag + `select_action` GatedPolicy + LateralPFCAnalog call-site wiring + 15 contract tests + V3-EXQ-546 substrate-readiness diagnostic 6/6 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). MECH-094 NOT modified per Pull 3 R1 + Pull 4 R3 KEEP-AS-IS verdicts. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c-successor (paired arm: `admit_writes=False` MECH-319 normal vs `admit_writes=True` falsifier with replay-driven invocation; predicted monomodal-collapse re-emergence under the falsifier arm). | V3-EXQ-546 (done) / V3-EXQ-543c-successor TBD | 2026-05-10 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `partial`,
@@ -487,6 +487,14 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-J depends_on corrected to [GAP-B]; stale owner_exq updated
+
+GAP-J `depends_on: []` was a documentation bug. The additive-logit-vs-multiplicative-gate
+comparison (MECH-312's core test) is not interpretable while gating is inert -- a contributory
+GAP-B result is a prerequisite. Added `depends_on: ["arc_062_rule_apprehension:GAP-B"]`.
+`owner_exq` updated from stale `V3-EXQ-543b/c` (all non_contributory for inert-gating reasons
+unrelated to combination-rule architecture) to `TBD (543g-successor)`.
 
 ### 2026-05-17 - V3-EXQ-543e FAIL non_contributory diagnosed (H3 confirmed): route to pre-registered option 2 (ARC-062 head-input augmentation)
 
