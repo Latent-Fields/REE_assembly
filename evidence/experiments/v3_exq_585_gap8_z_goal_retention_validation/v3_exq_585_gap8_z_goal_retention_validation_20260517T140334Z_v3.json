@@ -1,0 +1,98 @@
+{
+  "run_id": "v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3",
+  "queue_id": "V3-EXQ-585",
+  "experiment_type": "v3_exq_585_gap8_z_goal_retention_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260517T140334Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "n_sense_steps": 20,
+    "z_goal_seed_norm": 0.6
+  },
+  "acceptance_criteria": {
+    "C1_arm0_z_goal_sentinel": -1.0,
+    "C2_arm0_replay_div_sentinel": -1.0,
+    "C3_arm1_retention_min": 0.95,
+    "C4_arm1_before_min": 0.1
+  },
+  "criteria_results": {
+    "C1_pass": true,
+    "C2_pass": true,
+    "C3_pass": true,
+    "C4_pass": true
+  },
+  "arm0_before_mean": -1.0,
+  "arm1_before_mean": 0.6000000238418579,
+  "arm1_retention_mean": 1.0,
+  "arm0_div_mean": -1.0,
+  "per_arm_per_seed_results": {
+    "ARM_0_no_goal": [
+      {
+        "seed": 42,
+        "z_goal_enabled": false,
+        "post_sleep_z_goal_before": -1.0,
+        "post_sleep_z_goal_after": -1.0,
+        "post_sleep_z_goal_retention": -1.0,
+        "replay_diversity_index": -1.0,
+        "sws_n_writes": 5.0
+      },
+      {
+        "seed": 7,
+        "z_goal_enabled": false,
+        "post_sleep_z_goal_before": -1.0,
+        "post_sleep_z_goal_after": -1.0,
+        "post_sleep_z_goal_retention": -1.0,
+        "replay_diversity_index": -1.0,
+        "sws_n_writes": 5.0
+      },
+      {
+        "seed": 13,
+        "z_goal_enabled": false,
+        "post_sleep_z_goal_before": -1.0,
+        "post_sleep_z_goal_after": -1.0,
+        "post_sleep_z_goal_retention": -1.0,
+        "replay_diversity_index": -1.0,
+        "sws_n_writes": 5.0
+      }
+    ],
+    "ARM_1_goal_seeded": [
+      {
+        "seed": 42,
+        "z_goal_enabled": true,
+        "post_sleep_z_goal_before": 0.6000000238418579,
+        "post_sleep_z_goal_after": 0.6000000238418579,
+        "post_sleep_z_goal_retention": 1.0,
+        "replay_diversity_index": -1.0,
+        "sws_n_writes": 5.0
+      },
+      {
+        "seed": 7,
+        "z_goal_enabled": true,
+        "post_sleep_z_goal_before": 0.6000000238418579,
+        "post_sleep_z_goal_after": 0.6000000238418579,
+        "post_sleep_z_goal_retention": 1.0,
+        "replay_diversity_index": -1.0,
+        "sws_n_writes": 5.0
+      },
+      {
+        "seed": 13,
+        "z_goal_enabled": true,
+        "post_sleep_z_goal_before": 0.6000000238418579,
+        "post_sleep_z_goal_after": 0.6000000238418579,
+        "post_sleep_z_goal_retention": 1.0,
+        "replay_diversity_index": -1.0,
+        "sws_n_writes": 5.0
+      }
+    ]
+  },
+  "notes": "infant_substrate:GAP-8 validation. post_sleep_z_goal_retention and replay_diversity_index telemetry added to SleepLoopManager._run_cycle() (ree_core/sleep/phase_manager.py). ARM_0 (no goal pipeline) verifies -1.0 sentinels. ARM_1 (goal seeded to norm=0.6) verifies retention > 0.95 (sleep does not modify _z_goal). DEV-NEED-007 advisory gate instrumentation."
+}
