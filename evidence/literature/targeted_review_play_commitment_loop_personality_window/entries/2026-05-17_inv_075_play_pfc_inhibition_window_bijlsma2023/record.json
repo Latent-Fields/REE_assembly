@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_play_commitment_loop_personality_window",
+  "entry_id": "2026-05-17_inv_075_play_pfc_inhibition_window_bijlsma2023",
+  "timestamp_utc": "2026-05-17T19:23:12Z",
+  "claim_ids_tested": ["INV-075"],
+  "source": {
+    "title": "Social play behavior shapes the development of prefrontal inhibition in a region-specific manner",
+    "authors": ["Ate Bijlsma", "Louk J M J Vanderschuren", "Corette J Wierenga"],
+    "year": 2023,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhad212"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Direct whole-cell evidence that play deprivation during a bounded juvenile window (P21-P42) selectively reduces prefrontal inhibition, with region-specific timing (mPFC change manifests during the window, OFC change only after). Strong for the 'bounded window + sub-circuit-specific trajectory' part of the candidate cluster. Discounted because it is prefrontal E/I, not striatal commitment-loop gains, and rodent-only.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The OFC effect of play deprivation only becomes manifest AFTER the deprivation window closes -- a model assuming all play-calibrated structure is readable at window-close, with no delayed-consolidation dynamics, mispredicts this.",
+    "Excitatory transmission was unaffected; only inhibitory transmission was reduced -- a calibration model that tunes gain symmetrically across E and I would be unsupported."
+  ],
+  "tags": ["inv-075", "candidate_play_commitment_window", "personality_formation", "critical_period", "prefrontal", "inhibition", "arc-023"],
+  "mapping": {
+    "source_claim_statement": "Social play deprivation between P21 and P42 reduces inhibitory (not excitatory) synaptic transmission in both mPFC and OFC, but with region-specific timing: the mPFC reduction occurs during deprivation whereas the OFC reduction only appears after the deprivation period; prefrontal subregions follow different developmental trajectories.",
+    "ree_translation": "Play acts within a bounded juvenile window to set inhibitory gain, and different prefrontal subregions (which feed different cortico-striatal loops) have different windows and different consolidation latencies. This maps onto REE's prediction that the three commitment loops (ARC-021/MECH-069) are not calibrated synchronously -- each has its own window -- and to ARC-023's claim that the loops run on distinct timescales.",
+    "mapping_caveat": "Measured at prefrontal pyramidal cells, not at striatal loop nodes; 'loop-specific window' is inferred from region-specific prefrontal trajectories, not measured at the striatum. The delayed-OFC effect is suggestive of a consolidation/lock latency but the paper does not characterise a lock mechanism.",
+    "source_context": "Whole-cell patch-clamp recordings in layer-5 pyramidal neurons of juvenile (P21), adolescent (P42) and adult (P85) rats, mPFC and OFC, after P21-P42 social play deprivation."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Good electrophysiological rigour. Mapping fidelity moderate: the region-specific-window finding is the cleanest available analogue of differential loop windows, but it is prefrontal not striatal. Transfer risk moderate-high (rodent; loop-level inference)."
+  }
+}

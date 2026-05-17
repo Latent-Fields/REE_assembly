@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_play_commitment_loop_personality_window",
+  "entry_id": "2026-05-17_inv_075_intrinsic_personality_maturation_mccrae2000",
+  "timestamp_utc": "2026-05-17T19:23:12Z",
+  "claim_ids_tested": ["INV-075"],
+  "source": {
+    "title": "Nature over nurture: temperament, personality, and life span development",
+    "authors": ["R R McCrae", "P T Costa", "F Ostendorf", "A Angleitner", "M Hrebickova", "M D Avia", "J Sanz", "M L Sanchez-Bernardos", "M E Kusdil", "R Woodfield", "P R Saunders", "P B Smith"],
+    "year": 2000,
+    "venue": "Journal of Personality and Social Psychology",
+    "doi": "10.1037//0022-3514.78.1.173"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Strong, large, cross-cultural classic. It is the deliberate counterweight: it argues basic-trait stability is intrinsically/endogenously maturational, with only modest empirical association to environment, and that environment writes 'characteristic adaptations' rather than basic tendencies. High confidence the finding is real; direction is 'mixed' for the cluster because it weakens the *environmentally-determined* qualifier while supporting the *lock exists* half (an endogenous maturational lock).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Basic personality traits show intrinsic maturation with only modest empirical association to parent-child environment across five cultures -- a model in which the locked personality value is primarily environmentally written is weakened.",
+    "Environmental/cultural influence concentrates on 'characteristic adaptations' that express traits, not on the basic tendencies themselves -- a cluster that conflates the calibrated drive-prior set-point with the environmentally-conditioned adaptation layer would be mis-specified."
+  ],
+  "tags": ["inv-075", "candidate_play_commitment_window", "personality_formation", "intrinsic_maturation", "counterweight", "nature_nurture", "endogenous_lock"],
+  "mapping": {
+    "source_claim_statement": "Five-factor personality traits behave as biologically based tendencies with intrinsic developmental paths; behavior-genetic, parent-child, cross-cultural and longitudinal evidence indicates endogenous maturation with only modest environmental association, while culturally conditioned development shapes the 'characteristic adaptations' that express personality, not the basic tendencies.",
+    "ree_translation": "Splits the candidate cluster's claim in two. The 'load-bearing structure persists via a lock' half is supported -- but the lock is predicted to be an ENDOGENOUS maturational timer (intrinsic, schedule-driven), not an environmentally-written one. The 'environmentally-determined' qualifier is relocated to a separate layer: REE's commitment-loop drive-prior set-points may be largely endogenously locked, with the peer/play environment calibrating a downstream characteristic-adaptation/policy layer rather than the basic set-points.",
+    "mapping_caveat": "FFM trait psychometrics, not neural loop measurement; 'intrinsic maturation' is inferred from convergent indirect evidence (behaviour genetics, cross-cultural invariance), and the paper predates much gene-environment-interaction work that has since complicated a strong nature-over-nurture reading. It bounds, not refutes, the environmental-determinism claim.",
+    "source_context": "Cross-cultural analysis of NEO-FFI scores, N=5085, ages 14+, German/British/Spanish/Czech/Turkish samples, plus review of behaviour-genetic and longitudinal evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.30,
+    "notes": "Large, multi-culture, foundational. Direction deliberately logged as 'mixed' -- it strengthens the lock-exists half and weakens the environmentally-written half; both are decision-relevant. Mapping fidelity moderate because it adjudicates the determinism question well but says nothing about loops."
+  }
+}

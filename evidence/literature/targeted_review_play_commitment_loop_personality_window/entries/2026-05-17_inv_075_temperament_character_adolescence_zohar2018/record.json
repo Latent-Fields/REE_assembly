@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_play_commitment_loop_personality_window",
+  "entry_id": "2026-05-17_inv_075_temperament_character_adolescence_zohar2018",
+  "timestamp_utc": "2026-05-17T19:23:12Z",
+  "claim_ids_tested": ["INV-075"],
+  "source": {
+    "title": "The development of temperament and character during adolescence: The processes and phases of change",
+    "authors": ["Ada H Zohar", "Igor Zwir", "Jiayu Wang", "C Robert Cloninger", "Andrey P Anokhin"],
+    "year": 2018,
+    "venue": "Development and Psychopathology",
+    "doi": "10.1017/S0954579418000159"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong human longitudinal cohort (n=752, ages 12/14/16) in the Cloninger framework, which natively separates temperament (early, monoaminergically-grounded drive priors) from character (self-regulation toward personally valued, peer-shaped goals). The biphasic emancipation-then-internalization pattern is a close conceptual analogue of 'environmental window then lock'. Discounted because the BG-loop attribution is REE's and the study is psychometric, not neural.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Novelty seeking, reward dependence and self-transcendence rise to age 14 then fall, while character rises monotonically -- a single-monotone-maturation model of personality is falsified; the trajectory is biphasic with a peer-emancipation inflection.",
+    "Character maturity at 16 is predicted by BOTH earlier temperament AND earlier character, whereas temperament dependability at 16 is predicted mainly by earlier temperament -- a model in which the regulatory layer is a pure function of the drive layer is unsupported."
+  ],
+  "tags": ["inv-075", "candidate_play_commitment_window", "personality_formation", "temperament", "character", "adolescence", "cloninger", "identity_internalization"],
+  "mapping": {
+    "source_claim_statement": "In 752 adolescents, temperament traits (harm avoidance, novelty seeking, reward dependence, persistence) and character traits (self-directedness, cooperativeness) follow distinct trajectories from 12 to 16; character develops rapidly in adolescence to self-regulate temperament toward personally valued goals shaped by peers, with a biphasic pattern: pre-14 emancipation from adult authority and alignment to peer norms, post-14 internalization of a created identity.",
+    "ree_translation": "Temperament = the early, relatively fixed limbic/drive priors of the commitment loops (REE limbic-loop value prior; Cloninger ties these to monoaminergic systems). Character = an adolescently-developing regulatory layer that re-weights how those drive priors gate commitment, calibrated by the peer environment. 'Internalization of the created identity' post-14 is the candidate cluster's LOCK: the peer-calibrated commitment policy is consolidated into a persisting structure once the social-calibration window closes.",
+    "mapping_caveat": "Psychometric (Junior TCI), not neural; the basal-ganglia loop attribution is REE's overlay on Cloninger's psychobiological model. 'Internalization' is operationalised as trait-stabilisation and predictive structure, not as a measured plasticity-restriction mechanism, so it evidences the existence of a window-then-stabilise pattern, not the lock mechanism per se.",
+    "source_context": "Longitudinal population-based US cohort, n=752, Junior Temperament and Character Inventory at ages 12, 14, 16; hierarchical linear modelling of age and gender variance."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Large human longitudinal sample, established instrument and theory. Mapping fidelity good: Cloninger's temperament/character split maps almost directly onto drive-prior vs commitment-regulation. Transfer risk low for the human-personality claim; the neural-loop overlay carries the residual risk."
+  }
+}

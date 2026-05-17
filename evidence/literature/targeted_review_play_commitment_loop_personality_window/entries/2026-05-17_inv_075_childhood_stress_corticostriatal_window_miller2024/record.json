@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_play_commitment_loop_personality_window",
+  "entry_id": "2026-05-17_inv_075_childhood_stress_corticostriatal_window_miller2024",
+  "timestamp_utc": "2026-05-17T19:23:12Z",
+  "claim_ids_tested": ["INV-075"],
+  "source": {
+    "title": "Major stress in early childhood strengthens the association between peripheral inflammatory activity and corticostriatal responsivity to reward",
+    "authors": ["Gregory E Miller", "Ann L Carroll", "Casey C Armstrong", "Michelle G Craske", "Richard E Zinbarg", "Susan Y Bookheimer", "Iris Ka-Yi Chat", "Meghan Vinograd", "Katherine S Young", "Robin Nusslock"],
+    "year": 2024,
+    "venue": "Brain, Behavior, and Immunity",
+    "doi": "10.1016/j.bbi.2024.01.013"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Human fMRI evidence that environmental adversity specifically in the FIRST DECADE (a sensitive period) leaves a persisting alteration in corticostriatal -- ventral striatum + OFC -- reward responsivity, detectable in late adolescence. Supports the existence of a childhood window that environmentally calibrates a commitment-relevant (limbic/value) loop and persists. Discounted: stress x inflammation, not play; preliminary by the authors' own framing; correlational.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The inflammation-corticostriatal coupling was specific to participants who experienced major stress in EARLY childhood (first decade), implying a sensitive period -- a model with no bounded childhood window for environmental calibration of the value loop is unsupported.",
+    "The effect localised to ventral striatum and OFC, not dorsal/sensorimotor striatum -- consistent with the candidate cluster's prediction that the limbic/value loop is the first and most environmentally-sensitive of the three to be calibrated."
+  ],
+  "tags": ["inv-075", "candidate_play_commitment_window", "personality_formation", "corticostriatal", "ventral_striatum", "sensitive_period", "reward", "limbic_loop"],
+  "mapping": {
+    "source_claim_statement": "In 180 older adolescents, peripheral inflammatory activity covaried with reduced corticostriatal (ventral striatum and OFC) responsivity to reward acquisition specifically among those who experienced major stressors in the first decade of life, implying a sensitive period for the exposure; effect independent of age, sex, ethnicity, income, depression.",
+    "ree_translation": "Environmental input during a bounded early-childhood window leaves a persisting set-point change in the value/limbic cortico-striatal loop (ventral striatum + OFC) -- the REE limbic-loop drive prior that gates what is worth committing to. Supports the candidate cluster's middle leg: the three loops are environmentally calibratable within bounded windows, and the value loop is the most environmentally sensitive and earliest.",
+    "mapping_caveat": "The environmental signal here is early-life major stress with an inflammatory mediator, NOT play; it evidences that a childhood sensitive period for environmentally-determined corticostriatal calibration EXISTS and persists, not that play specifically is the calibrating signal. Cross-sectional/correlational; authors frame it as a preliminary test.",
+    "source_context": "Human fMRI monetary-incentive task + multiplex inflammatory biomarkers, n=180 (mean age 19.1), retrospective Childhood Trauma Interview; ventral striatum and OFC ROIs."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Solid human design but correlational and self-described preliminary. Mapping fidelity moderate: it nails 'childhood sensitive period for persisting corticostriatal calibration' but the calibrating signal is stress, not play -- it is the closest available evidence for the cluster's corticostriatal-window leg, which the play literature does not cover at the striatal level."
+  }
+}

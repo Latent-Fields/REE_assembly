@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_play_commitment_loop_personality_window",
+  "entry_id": "2026-05-17_inv_075_play_social_brain_pellis2023",
+  "timestamp_utc": "2026-05-17T19:23:12Z",
+  "claim_ids_tested": ["INV-075"],
+  "source": {
+    "title": "Play fighting and the development of the social brain: The rat's tale",
+    "authors": ["Sergio M Pellis", "Vivien C Pellis", "Jackson R Ham", "Rachel A Stark"],
+    "year": 2023,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2023.105037"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, coherent rat model in a top review venue. Directly establishes the INV-075 antecedent for the candidate cluster: juvenile play is a developmentally self-extinguishing signal whose absence produces persistent adult socio-cognitive deficit with anatomical mPFC change -- i.e. it is load-bearing. Confidence capped below 0.8 because the leap from 'play tunes prefrontal social-cognitive competence' to 'play calibrates the three BG commitment loops' is a REE-side architectural extrapolation the paper does not itself make.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Play does not train specific motor actions; benefit is a transferable skill set deployed across social and non-social contexts -- a substrate that hard-codes play-acquired motor policies rather than a domain-general commitment-calibration would mispredict this.",
+    "Benefit is tied to the juvenile period specifically; deprivation outside that window does not reproduce the deficit, so a model with no bounded developmental window for commitment calibration is unsupported."
+  ],
+  "tags": ["inv-075", "candidate_play_commitment_window", "personality_formation", "arc-021", "mech-069", "developmental_bootstrapping", "prefrontal", "play"],
+  "mapping": {
+    "source_claim_statement": "Depriving rats of peer play during the juvenile period yields adults with socio-cognitive deficiencies correlated with physiological and anatomical changes in the medial prefrontal cortex; play improves a general, transferable skill set rather than specific motor actions.",
+    "ree_translation": "Juvenile play is an INV-075-antecedent signal: self-extinguishing (play wanes with maturation) AND load-bearing (the socio-cognitive/commitment competence it establishes must persist into adulthood). The transferable-skill-set finding maps onto REE's claim that what play calibrates is not stored motor policies but the cross-context arbitration of the three commitment loops (ARC-021/MECH-069).",
+    "mapping_caveat": "The paper measures prefrontal social-cognitive competence, not basal-ganglia commitment-loop gains. 'Commitment-loop calibration' is the REE interpretation; the paper supports the antecedent (self-extinguishing + load-bearing developmental signal) but is silent on the specific loop-level mechanism and on whether the persistence is achieved by a lock or a handoff.",
+    "source_context": "Review of juvenile rough-and-tumble play in laboratory rats; behavioural development plus mPFC/OFC neuronal anatomy."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (canonical review). Mapping fidelity good for the antecedent, weaker for the loop-level mechanism. Transfer risk moderate: rat->human is well-trodden for play, but the BG-commitment-loop reading is REE-specific."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_play_commitment_loop_personality_window",
+  "entry_id": "2026-05-17_inv_075_play_individual_differences_ham2026",
+  "timestamp_utc": "2026-05-17T19:23:12Z",
+  "claim_ids_tested": ["INV-075"],
+  "source": {
+    "title": "Juvenile social play and the development of socio-cognitive skills in male rats: Does everyone benefit?",
+    "authors": ["Jackson R Ham", "Andrew N Iwaniuk", "Sergio M Pellis"],
+    "year": 2026,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2026.116198"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Directly evidences the failure-mode half of the candidate cluster: even with abundant play input, a stable minority (~20%) fail to acquire the socio-cognitive benefit and show the play-deprived neural signature (mPFC under-pruning). This is the 'lock onto a maladaptive calibration despite adequate environmental input' prediction. Confidence moderate: single primary study, male-only, mechanism of the individual difference unidentified.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "~20.4% of richly-played rats escalate play into aggression and show reduced mPFC pruning despite equivalent play frequency and tactics -- a model in which adequate environmental input guarantees adaptive calibration is falsified.",
+    "The incompetent subgroup did not differ in juvenile play frequency or defensive tactics, so the divergence is not explained by input quantity -- a purely input-driven (no endogenous-set-point) calibration model is unsupported."
+  ],
+  "tags": ["inv-075", "candidate_play_commitment_window", "personality_formation", "individual_differences", "maladaptive_lock", "prefrontal", "aggression"],
+  "mapping": {
+    "source_claim_statement": "Reared with abundant rough-and-tumble play, 20.4% of male rats nonetheless escalated play into aggression in adulthood and showed larger mPFC layer-III dendritic arbors and greater distal spine density (reduced pruning) -- neural/behavioural traits paralleling play-deprived animals -- despite equivalent juvenile play exposure.",
+    "ree_translation": "Adequate environmental input does not guarantee adaptive calibration of the commitment system; a stable subset locks a maladaptive configuration. This is the INV-075 lock-arm failure mode (lock onto a bad calibration) and the substrate of environmentally-determined-yet-individually-variable personality: the window and the lock exist, but the value the lock fixes is not a deterministic function of input quantity.",
+    "mapping_caveat": "Rat play-fighting and mPFC pruning, not human personality or BG loop gains; the 'maladaptive lock' reading is REE's interpretation of an under-pruning phenotype, and the paper does not identify whether the divergence is endogenous predisposition, micro-experiential, or stochastic.",
+    "source_context": "54 male Long-Evans rats reared in large social groups (rich play) weaning-to-adulthood; play scoring, adult social-competence test, Golgi mPFC dendritic morphology."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Single recent primary study, male-only, modest n; the individual-difference mechanism is unresolved (the authors call for follow-up). Mapping to 'maladaptive lock / environmentally-determined personality variance' is apt but interpretive."
+  }
+}
