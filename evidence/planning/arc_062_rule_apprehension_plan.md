@@ -98,7 +98,7 @@ closure_plan:
     - id: "arc_062_rule_apprehension:GAP-J"
       title: "MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)"
       phase: "2-3"
-      status: open
+      status: blocked
       severity: low
       owner_exq: null
       unblocks_claims: [MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d]
