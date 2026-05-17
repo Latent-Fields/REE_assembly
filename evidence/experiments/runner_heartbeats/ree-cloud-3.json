@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-17T17:59:45Z",
+  "last_tick_utc": "2026-05-17T18:00:47Z",
   "state": "running",
   "current_exq": "V3-EXQ-543g",
   "current_exq_started_utc": "2026-05-17T15:55:04.499432+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 2 / ARM_1_dacc_only",
     "runs_done": 9,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 108,
-    "overall_pct": 75.0
+    "overall_pct": 75.8
   },
-  "seconds_elapsed": 7481,
-  "seconds_remaining": 2469,
+  "seconds_elapsed": 7543,
+  "seconds_remaining": 2393,
   "recent_lines": [
-    "seed=2 arm=ARM_0_baseline  reef_frac=0.938  rho=-0.014  forage_hr=0.4118  transit_hr=1.0000  ratio=0.412  inert_gating=False  outcome_buf=0",
     "verdict: PASS",
     "Seed 2 Condition ARM_1_dacc_only",
     "use_gated_policy=False  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=False  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=on(dw=1.0,sw=0.5)"
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=on(dw=1.0,sw=0.5)",
+    "[train] ARM_1_dacc_only ep 10/108  phase=P0  rv=0.0003  ep_reward=-1.0876"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
