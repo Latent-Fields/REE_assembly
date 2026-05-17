@@ -55,12 +55,13 @@ closure_plan:
     - id: "commitment_closure:GAP-5"
       title: "MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)"
       phase: 6
-      status: open
+      status: done
       severity: medium
       owner_exq: V3-EXQ-481b
       unblocks_claims: [MECH-090]
       depends_on: []
-      last_updated: 2026-05-08
+      last_updated: 2026-05-17
+      completion_note: "Root causes audited (2026-05-17): (1) natural variance gate never crossed in short runs -> beta never elevated -> _committed_anchor_keys never set; (2) empty-snapshot secondary: set().issubset(any)=True -> predicate vacuously False. Fixes: (1) V3-EXQ-481b uses forced commitment (beta_gate.elevate() + manual snapshot) per EXQ-461 pattern; (2) lazy re-population added to agent.py select_action() -- if snapshot is non-None but empty and current_keys is non-empty while beta elevated, re-populate; release runs on next tick. 477/477 contracts pass. Dry-run: UC1 (ON fires) + UC2 (OFF silent) + UC3 (empty-snapshot re-pop) all PASS. Queued 2026-05-17."
     - id: "commitment_closure:GAP-6"
       title: "MECH-260 vs SD-034 No-Go pulse boundary unclear (V4 flag)"
       phase: 8
@@ -474,7 +475,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
 | GAP-3 | 3 | open | nothing (Q2 RESOLVED 2026-05-16: adaptive tolerance) | Review causalgridworldv2_env_extensions_spec.md (primitives 1-3: adaptive tolerance-band / counter-evidence injection hook / dual-cue), then implement env infra. Deliverable 4 (phased curriculum) split to its own design pass. | env infra (no EXQ); spec doc | 2026-05-16 |
 | GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
-| GAP-5 | 6 | open | nothing internal; coupled to anchor-reset substrate | Audit `_committed_anchor_keys` capture; widen / relax release predicate; queue 481b | V3-EXQ-481b | 2026-05-08 |
+| GAP-5 | 6 | done | (none) | Two root causes fixed: (1) forced commitment pattern for 481b; (2) empty-snapshot re-population in agent.py. V3-EXQ-481b queued 2026-05-17; dry-run UC1/UC2/UC3 PASS. | V3-EXQ-481b | 2026-05-17 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
 | GAP-7 | 8 | deferred V4 | SD-006 phase 2 async heartbeat | none in V3 unless SD-006 phase 2 lands | n/a | 2026-05-08 |
 | GAP-8 | 7 | blocked | Phase 3 env extensions (devaluation hook + task-role discriminability) | After Phase 3 PASS, queue 485b/c | V3-EXQ-485b, 485c | 2026-05-08 |
@@ -599,6 +600,42 @@ awaits the GAP-3 env extension. Not a routing error; intentional deferral.
 
 Mirrors `sleep_substrate:GAP-6` result (2026-05-15): both clusters find their write sites are
 architectural exceptions that cannot and should not call the harness.
+
+### 2026-05-17 - GAP-5 DONE: MECH-090 V_s commit-release audited, fixed, V3-EXQ-481b queued
+
+Root-cause audit of V3-EXQ-481 (vs_commit_release_count=0 in BOTH arms):
+
+**Root cause 1 (primary)**: The 6-episode x 200-step run never crossed the
+commitment threshold. `running_variance` (init 0.5) requires a converged E2
+world-forward model to fall below `commitment_threshold=0.40`; untrained short
+runs don't achieve this. So `beta_gate` was never elevated, `_committed_anchor_keys`
+was never set, and the release check block in `select_action()` was never entered.
+
+**Root cause 2 (secondary, empty-snapshot)**: Even if commitment fires naturally
+before any BoundaryEvent installs an anchor, `_committed_anchor_keys = set()`
+(empty). `set().issubset(anything)` is vacuously True -> `not True = False` ->
+predicate never fires. Affects the natural case as well as any race between
+commit entry and the first BoundaryEvent.
+
+**Fix 1**: V3-EXQ-481b uses forced commitment (`agent.beta_gate.elevate()` +
+manual `_committed_anchor_keys` snapshot from the current active anchor set),
+following the EXQ-461 substrate-readiness pattern. The variance-gate blocker
+belongs to GAP-11 (phased curriculum), which is separate.
+
+**Fix 2**: Lazy re-population added to `ree_core/agent.py` `select_action()`
+(lines 2508-2531 region). If `_committed_anchor_keys` is non-None but empty and
+`current_keys` is non-empty while beta is elevated, the snapshot is re-populated.
+The release check then runs on the NEXT tick when any of those keys become
+inactive. 477/477 contracts PASS.
+
+**V3-EXQ-481b**: Three UCs -- UC1 (ON arm: release fires after anchor
+invalidated by hysteresis), UC2 (OFF arm: release silent), UC3 (empty-snapshot
+re-population path). Dry-run: all three PASS. Queued 2026-05-17, priority=2,
+any machine.
+
+GAP-5 status: open -> done. MECH-090 release-via-V_s pathway is now validated
+at substrate-readiness level. Governance evidence requires the full committed-
+mode curriculum (GAP-11) to run the behavioural arms.
 
 ### 2026-05-17 - GAP-11 design questions O-1..O-5 RESOLVED (user); implementation concurrency-blocked
 
