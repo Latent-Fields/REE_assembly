@@ -1,10 +1,9 @@
 # Phased rule_state Training Curriculum -- Design + Risk Analysis
 
 **Owner:** `commitment_closure` deliverable 4 (the GAP-3 carve-out)
-**Status:** DESIGN COMPLETE -- PENDING IMPLEMENTATION. Design questions
-  O-1..O-5 RESOLVED 2026-05-17 (Section 8 is the frozen implementation
-  contract). Implementation concurrency-blocked on the active
-  goal_pipeline:GAP-3 session (holds `experiments/` + queue).
+**Status:** IMPLEMENTED 2026-05-17. Design questions O-1..O-5 RESOLVED
+  (Section 8 is the frozen implementation contract). Harness helper:
+  `ree-v3/experiments/committed_mode_curriculum.py`.
 **Registered:** 2026-05-17
 **Depends on:** GAP-3 env primitives 1-3 (IMPLEMENTED 2026-05-17,
   causalgridworldv2_env_extensions_spec.md); MECH-090 BetaGate bistable
