@@ -93,11 +93,36 @@ Each offline integration pass during infancy:
 Heavy MEL from novel experience (INV-051) drives high sleep demand. The infant's sleep output
 is the curriculum's product — not ethical behaviour, but substrate quality.
 
-### Gate Criterion
+### Gate Criteria (Infant → Childhood Transition)
 
-Transition to childhood (INV-041) when:
-- `z_goal.norm() > infant_goal_threshold`
-- Behavioral entropy below ceiling (repertoire established, not pure random walk)
+**Updated 2026-05-17 (infant_substrate:GAP-15).** Replaces the prior single criterion.
+Full metric definitions in `developmental_metrics.md` DEV-NEED-008; original proposal
+in `infant_substrate_expansion.md` §8.
+
+Criteria 1–3 are blocking (all must pass). Criteria 4–8 are advisory: flag if missing
+but allow transition with supervisor override.
+
+| # | Criterion | Threshold | Type | DEV-NEED |
+|---|-----------|-----------|------|----------|
+| 1 | `z_goal.norm()` > threshold | 0.4 | **blocking** | DEV-NEED-006 |
+| 2 | `H_pos` > 0.65 × ln(grid_cells) | rolling 100-ep | **blocking** | DEV-NEED-001 |
+| 3 | `residue_coverage_pct` > 0.15 | ≥ 15% of cells with residue | **blocking** | DEV-NEED-004 |
+| 4 | `action_entropy_global` > ln(3) AND `action_entropy_zone_KL` > 0.05 | ≥ 3 effective actions; context-sensitive | advisory | DEV-NEED-001, DEV-NEED-005 |
+| 5 | `harm_benefit_ratio` in [0.2, 5.0] | harm and benefit both present | advisory | DEV-NEED-004 |
+| 6 | `post_sleep_z_goal_retention` > 0.85 | z_goal survives sleep cycle | advisory | DEV-NEED-007 |
+| 7 | `traj_pairwise_cosine_mean` > 0.3 | trajectory library non-trivially diverse | advisory | DEV-NEED-002, DEV-NEED-005 |
+| 8 | `competence_progress_rate` > 0 at transition | agent still learning, not at plateau | advisory | DEV-NEED-008 |
+
+**Perseveration check (gate blocker).** If `perseveration_rate` > 0.4 at any of criteria
+1–3 pass time, flag for governance review: thresholds may have been reached via
+monostrategy rather than genuine repertoire formation.
+
+**False-pass detection.** Criterion 1 (z_goal.norm) and criterion 2 (H_pos) can both be met
+via a single repeated strategy (one resource, random walk). Cross-check with
+`perseveration_rate` and `traj_volume_estimate` before advancing.
+
+**Advisory thresholds are proposals.** EXQ-ISEF-001..004 (V3-EXQ-587..589) will calibrate
+achievable thresholds for criteria 3–7 empirically before these become hard gates.
 
 ---
 
