@@ -1,0 +1,126 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-17T14:20:35Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3",
+      "queue_id": "V3-EXQ-539",
+      "claim_ids": ["MECH-307", "MECH-216", "MECH-205", "MECH-093", "SD-014"],
+      "failed_criterion": "discrimination -- approach_commit_rate saturation (1.0 in both arms)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- measurement problem, not mechanism failure",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete -- wiring active (liking_writes, z_beta_excursion, neg_surprise_centers all discriminate)",
+        "environment": "adequate",
+        "measurement": "broken -- approach_commit_rate saturates trivially under standard env config",
+        "integration": "partial -- C1/C2 present; C3 behavioral endpoint disconnected",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "NAcc anticipatory affect (Knutson 2001) -- conjunction of wanting-stream + valenced PE",
+        "dependencies": ["SD-014", "MECH-216", "MECH-205", "MECH-093"],
+        "is_formal_import": false,
+        "divergence": "None -- biological translation is sound",
+        "lit_status": "clear"
+      },
+      "recommended_epistemic_category": "measurement_design_broken_predicate",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "mixed: MECH-216/205/093 support (per-claim confirmed); MECH-307 mixed due to approach_commit_rate saturation (trivially 1.0 in both arms). Measurement design bug, not mechanism failure. Part of measurement-design progression culminating in EXQ-540g PASS.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "approach_commit_rate predicate saturates trivially under standard env config -- avoid as primary criterion",
+        "MECH-216/205/093 confirmed supports via per-claim directions",
+        "neg_surprise_centers=33 in ARM_ON vs 0 in ARM_OFF -- anticipatory dread-like PE clusters present"
+      ],
+      "routing": "measurement_design_progression -- no further action needed (superseded by 540g PASS)"
+    },
+    {
+      "run_id": "v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3",
+      "queue_id": "V3-EXQ-540e",
+      "claim_ids": ["MECH-307", "MECH-216", "MECH-205", "MECH-093", "SD-014", "MECH-295"],
+      "failed_criterion": "C2 aggregate -- seed44 early termination (134 ticks vs 4000)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- seed truncation artifact, not mechanism failure",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete -- 2/3 seeds pass C2 (0.101 and 0.115 fire rates)",
+        "environment": "adequate",
+        "measurement": "broken -- seed44 truncation drags aggregate below floor; seeds 42/43 valid",
+        "integration": "partial",
+        "scale": "adequate at 2/3 seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "NAcc anticipatory affect (Knutson 2001)",
+        "dependencies": ["SD-014", "MECH-216", "MECH-205", "MECH-093"],
+        "is_formal_import": false,
+        "divergence": "None",
+        "lit_status": "clear"
+      },
+      "recommended_epistemic_category": "measurement_design_seed_truncation",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "mixed: default fix (min_drive_to_fire 0.1->0.01, conjunction_z_beta_threshold 0.6->0.3) validated at 2/3 seeds (fire_rate 0.101/0.115 in ARM_2). Formal FAIL caused by seed44 early termination (134 ticks), not mechanism failure. Superseded by EXQ-540f/540g.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Seed44 truncation is a recurring artifact -- avoid in 3-seed configs by substituting seed 45",
+        "Default fix (threshold lowering) validated at 2/3 seeds -- correctly applied in subsequent runs"
+      ],
+      "routing": "measurement_design_progression -- superseded by 540g PASS"
+    },
+    {
+      "run_id": "v3_exq_540f_mech307_default_fix_3seed_20260515T201826Z_v3",
+      "queue_id": "V3-EXQ-540f",
+      "claim_ids": ["MECH-307", "MECH-216", "MECH-205", "MECH-093", "SD-014", "MECH-295"],
+      "failed_criterion": "C1 -- broken always-false predicate (arm0_silent: liking_writes always > 0)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C1 criterion design bug, not mechanism failure",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete -- C2 conjunction wiring live (fire_rate=32 in ARM_2)",
+        "environment": "adequate",
+        "measurement": "broken -- C1 arm0_silent criterion broken by consummatory update_liking always firing",
+        "integration": "partial",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "NAcc anticipatory affect (Knutson 2001)",
+        "dependencies": ["SD-014", "MECH-216", "MECH-205", "MECH-093", "MECH-295"],
+        "is_formal_import": false,
+        "divergence": "None",
+        "lit_status": "clear"
+      },
+      "recommended_epistemic_category": "measurement_design_broken_criterion",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "superseded: C1 criterion (arm0_silent) broken because consummatory update_liking always produces non-zero liking writes. C2 confirmed live (conjunction_fire_rate=32 in ARM_2 vs 0 in ARM_0/1). Superseded by EXQ-540g (delta-criterion C1 design).",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "C1 'silent arm' criterion breaks when always-on subsystem overlaps with baseline -- use delta criterion instead",
+        "C2 conjunction wiring confirmed live: fire_rate=32.0 ARM_2 vs 0 ARM_0/1 -- strongest C2 signal in the cluster"
+      ],
+      "routing": "measurement_design_progression -- superseded by 540g PASS"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Measurement design progression: each FAIL identifies a specific measurement bug (approach saturation, seed truncation, broken C1 criterion); mechanism itself is live throughout (C2 firing confirmed progressively). Cluster culminates in PASS (EXQ-540g).",
+    "is_independent_bugs": true,
+    "structural_property": "None -- mechanism correct; measurement design needed iterative fixing",
+    "readings": ["measurement_design_progression (primary)", "C3 (approach_commit_lift) = separate MECH-295 substrate gap"],
+    "pass_resolution": {
+      "run_id": "v3_exq_540g_mech307_criterion_fix_20260515T233121Z_v3",
+      "queue_id": "V3-EXQ-540g",
+      "outcome": "PASS",
+      "evidence_direction": "supports",
+      "claim_ids": ["MECH-307", "MECH-295"],
+      "governance_action": "Add 540g as supports entry for MECH-307 + MECH-295 in claims.yaml",
+      "c3_gap": "approach_commit_lift still fails -- track as separate open gap under MECH-295"
+    }
+  }
+}

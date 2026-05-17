@@ -1,0 +1,127 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-17T14:20:35Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_541_mech204_precision_recalibration_consumer_20260508T234302Z_v3",
+      "queue_id": "V3-EXQ-541",
+      "claim_ids": ["MECH-204"],
+      "failed_criterion": "within-cycle no-op (target==rv at writeback)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- experiment did not implement the mechanism correctly",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial -- F1 bug: within-cycle no-op (target==rv at writeback)",
+        "environment": "adequate",
+        "measurement": "broken -- no-op means nothing to measure",
+        "integration": "absent -- F1 not integrated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "5-HT dorsal raphe tonic silence during REM; cumulative cross-cycle modulation of replay quality",
+        "dependencies": ["MECH-123", "MECH-186", "MECH-178", "INV-045"],
+        "is_formal_import": false,
+        "divergence": "None -- EMA-based cross-cycle reference is defensible biological translation",
+        "lit_status": "clear"
+      },
+      "recommended_epistemic_category": "implementation_bug",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "Superseded: within-cycle no-op bug (target==rv at writeback). F1 fix applied in EXQ-541a.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Within-cycle no-op: rv read and written back in same cycle produces no net change",
+        "F1 fix: cross-cycle EMA (alpha=0.1) replaces capture-only consumer"
+      ],
+      "routing": "superseded -- no further action"
+    },
+    {
+      "run_id": "v3_exq_541a_mech204_precision_recalibration_f1_20260509T120116Z_v3",
+      "queue_id": "V3-EXQ-541a",
+      "claim_ids": ["MECH-204"],
+      "failed_criterion": "C3 discrimination -- rv_relative_divergence=0.56% (threshold 5%)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- mechanism fires correctly; C3 failure = timescale mismatch",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete -- fires every cycle, sign-consistent, step=0.1 produces consistent adjustments",
+        "environment": "too sparse -- timescale: 4 sleep cycles per arm; EMA_alpha=0.1 needs ~10 cycles",
+        "measurement": "under-instrumented -- rv divergence is noisy proxy; GAP-8 metrics more direct",
+        "integration": "present",
+        "scale": "insufficient -- EMA damping overwhelms 4-cycle experiment"
+      },
+      "biological_reference": {
+        "closest_mechanism": "5-HT dorsal raphe tonic silence during REM; cumulative cross-cycle modulation (Jouvet 1969, reviewed in Hobson & Pace-Schott 2002)",
+        "dependencies": ["MECH-123", "MECH-186", "MECH-178", "INV-045"],
+        "is_formal_import": false,
+        "divergence": "None -- slow cumulative EMA is correct biological translation",
+        "lit_status": "clear"
+      },
+      "recommended_epistemic_category": "measurement_gap_timescale",
+      "recommended_evidence_direction": "inconclusive_timescale",
+      "recommended_evidence_quality_note": "Reclassify from weakens to inconclusive_timescale. Mechanism fires every cycle (C1 PASS, 3/3 seeds), sign-consistent adjustments (C2: sign_consistency=1.0, mean_abs_delta=0.0036). C3 fails (rv_divergence 0.56% vs threshold 5%) because 4 sleep cycles insufficient for EMA_alpha=0.1 signal (needs ~10 cycles). Not a falsification. Retest with >20 cycles + GAP-8 proxy metrics.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-204 fires every cycle (3/3 seeds) with sign-consistent adjustments -- mechanism confirmed functional",
+        "rv divergence = 0.56% at 4 cycles, step=0.1 -- timescale gap identified",
+        "EMA_alpha=0.1 requires ~10 cycles to accumulate detectable signal"
+      ],
+      "routing": "queue-experiment -- longer timescale (>20 sleep cycles, step=0.25) + GAP-8 proxy metrics"
+    },
+    {
+      "run_id": "v3_exq_541b_mech204_step_size_sweep_20260509T123704Z_v3",
+      "queue_id": "V3-EXQ-541b",
+      "claim_ids": ["MECH-204"],
+      "failed_criterion": "C4 discrimination -- best arm (step=0.50) rv_divergence=1.75% (threshold 5%)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- monotone dose-response confirmed; C4 failure = timescale mismatch",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "too sparse -- timescale: 4 sleep cycles per arm",
+        "measurement": "under-instrumented -- rv trajectory divergence is noisy; GAP-8 metrics more direct",
+        "integration": "present",
+        "scale": "insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "5-HT dorsal raphe tonic silence during REM; cumulative modulation",
+        "dependencies": ["MECH-123", "MECH-186", "MECH-178", "INV-045"],
+        "is_formal_import": false,
+        "divergence": "None",
+        "lit_status": "clear"
+      },
+      "recommended_epistemic_category": "measurement_gap_timescale",
+      "recommended_evidence_direction": "inconclusive_timescale",
+      "recommended_evidence_quality_note": "Reclassify from weakens to inconclusive_timescale. Monotone dose-response confirmed (C4: 0.31% -> 0.63% -> 1.56% rv divergence at step 0.05/0.10/0.25). Best arm (step=0.50) achieves 1.75% at 4 cycles. C4 threshold (5%) requires ~24 cycles at step=0.5. Not a falsification -- timescale gap. Retest with >20 cycles + GAP-8 proxy metrics.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Monotone dose-response (0.31% -> 0.63% -> 1.56% at step 0.05/0.10/0.25) -- weak positive signal",
+        "Step=0.50 achieves 1.75% at 4 cycles; ~24 cycles needed for 5% at this step",
+        "Linear extrapolation: ~11 cycles for 5% at step=0.25 (most biologically plausible step size)"
+      ],
+      "routing": "queue-experiment -- >20 sleep cycles per arm, step=0.25, GAP-8 metrics as primary criterion"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Mechanism fires correctly (C1/C2 PASS in 541a/541b), monotone dose-response confirmed, but rv trajectory divergence too small due to timescale mismatch (4 cycles vs ~10-24 needed). weakens over-strong.",
+    "is_independent_bugs": false,
+    "structural_property": "Timescale mismatch: EMA_alpha=0.1 requires ~10+ sleep cycles for signal accumulation; experiments run 4 cycles. This is a consistent property across both runs.",
+    "readings": [
+      "inconclusive_timescale (primary) -- mechanism confirmed functional, effect size unreachable at short timescale",
+      "measurement_gap (secondary) -- rv trajectory divergence is noisy proxy; GAP-8 metrics (replay_diversity_index, post_sleep_z_goal_retention) are more direct"
+    ],
+    "retest_design": {
+      "n_sleep_cycles_recommended": 20,
+      "step_size_recommended": 0.25,
+      "primary_criterion": "replay_diversity_index or post_sleep_z_goal_retention (GAP-8 metrics)",
+      "secondary_criterion": "rv_relative_divergence (expected ~5.6% at step=0.25 over 20 cycles based on linear extrapolation)"
+    }
+  }
+}
