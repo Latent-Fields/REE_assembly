@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_543c_arc062_phase3_bipartite_falsifier
 
-Generated: `2026-05-16T19:10:55.351466Z`
+Generated: `2026-05-17T00:02:18.337433Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

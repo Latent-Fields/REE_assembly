@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-16T19:10:55.351466Z`
+Generated: `2026-05-17T00:02:18.337433Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -102,7 +102,7 @@ Generated: `2026-05-16T19:10:55.351466Z`
 | `targeted_review_connectome_mech_262` | [`2026-04-24_mech_262_rule_selective_stable_state_stokes2013`](targeted_review_connectome_mech_262/entries/2026-04-24_mech_262_rule_selective_stable_state_stokes2013/record.json) | 3 | [`summary`](targeted_review_connectome_mech_262/entries/2026-04-24_mech_262_rule_selective_stable_state_stokes2013/summary.md) |
 | `targeted_review_connectome_mech_266` | [`2026-04-27_mech_266_dopamine_paradox_cools2008`](targeted_review_connectome_mech_266/entries/2026-04-27_mech_266_dopamine_paradox_cools2008/record.json) | 6 | [`summary`](targeted_review_connectome_mech_266/entries/2026-04-27_mech_266_dopamine_paradox_cools2008/summary.md) |
 | `targeted_review_connectome_mech_267` | [`2026-04-27_mech_267_theta_seq_goals_wikenheiser_redish2015`](targeted_review_connectome_mech_267/entries/2026-04-27_mech_267_theta_seq_goals_wikenheiser_redish2015/record.json) | 5 | [`summary`](targeted_review_connectome_mech_267/entries/2026-04-27_mech_267_theta_seq_goals_wikenheiser_redish2015/summary.md) |
-| `targeted_review_connectome_mech_268` | [`2026-04-27_mech_268_volatility_learning_behrens2007`](targeted_review_connectome_mech_268/entries/2026-04-27_mech_268_volatility_learning_behrens2007/record.json) | 6 | [`summary`](targeted_review_connectome_mech_268/entries/2026-04-27_mech_268_volatility_learning_behrens2007/summary.md) |
+| `targeted_review_connectome_mech_268` | [`2026-05-16_mech_268_contingency_validity_piquet2023`](targeted_review_connectome_mech_268/entries/2026-05-16_mech_268_contingency_validity_piquet2023/record.json) | 8 | [`summary`](targeted_review_connectome_mech_268/entries/2026-05-16_mech_268_contingency_validity_piquet2023/summary.md) |
 | `targeted_review_connectome_mech_269` | [`2026-04-24_mech_269_ec_hc_theta_coordinated_replay_santospata2023`](targeted_review_connectome_mech_269/entries/2026-04-24_mech_269_ec_hc_theta_coordinated_replay_santospata2023/record.json) | 8 | [`summary`](targeted_review_connectome_mech_269/entries/2026-04-24_mech_269_ec_hc_theta_coordinated_replay_santospata2023/summary.md) |
 | `targeted_review_connectome_mech_270` | [`2026-04-24_mech_270_field_effects_theta_sharpwave_anastassiou2010`](targeted_review_connectome_mech_270/entries/2026-04-24_mech_270_field_effects_theta_sharpwave_anastassiou2010/record.json) | 4 | [`summary`](targeted_review_connectome_mech_270/entries/2026-04-24_mech_270_field_effects_theta_sharpwave_anastassiou2010/summary.md) |
 | `targeted_review_connectome_mech_271` | [`2026-04-24_mech_271_segregated_pyramidal_cortical_readout_harvey2023`](targeted_review_connectome_mech_271/entries/2026-04-24_mech_271_segregated_pyramidal_cortical_readout_harvey2023/record.json) | 4 | [`summary`](targeted_review_connectome_mech_271/entries/2026-04-24_mech_271_segregated_pyramidal_cortical_readout_harvey2023/summary.md) |

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_528_sd029_comparator_trained
 
-Generated: `2026-05-16T19:10:55.351466Z`
+Generated: `2026-05-17T00:02:18.337433Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

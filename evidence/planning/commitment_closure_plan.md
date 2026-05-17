@@ -569,6 +569,37 @@ both this plan and the sleep plan.
 
 Append-only. Every architectural choice + every deviation pause / resume.
 
+### 2026-05-16 - GAP-3 env-extension spec sub-questions RESOLVED (lit-pull + engineering)
+
+All six open sub-questions in causalgridworldv2_env_extensions_spec.md
+resolved. Biology-grounded via a literature pull
+(literature_synthesis_2026-05-16_counter_evidence_generalization_competing_goals.md;
+2 new MECH-268 lit entries):
+
+- **Q-2a (load-bearing)**: counter-evidence = **graded contingency
+  degradation** (context held constant, dose+duration sweepable), NOT a
+  signed perturbation or identity-flip/reversal. Basis: Piquet 2023
+  Curr Biol (contingency degradation = action-validity detection,
+  vHPC->mPFC) + Dutech 2011 J Physiol Paris (weak/strong
+  contradiction-detection asymmetry; sustained regime is the
+  discriminating one). Spec section 3 rewritten; this directly shapes
+  EXP-0164 (SD-034 vs MECH-268 dACC pe-saturation).
+- **Q-1b**: Chebyshev confirmed (grid x/y integral -> Shepard isotropic
+  metric; Manhattan rejected) + optional graded_exp kernel added
+  (generalization is concave-graded). Basis: Shepard 1987, Marjieh 2024.
+- **Q-3b**: invalidate-episode (replace_on_early_consume default flipped
+  True->False) -- mid-episode replacement is a reactive-measurement
+  confound for MECH-266 mode stickiness.
+- **Q-1a/Q-2b/Q-3a** (engineering): waypoint-only tolerance default;
+  independent counter-evidence scheduler (not shared with SD-029);
+  hard precondition error for dual_cue without SD-049 (fail-fast).
+
+Spec is now decision-complete for primitives 1-3; next step is
+/implement-substrate review. Deliverable 4 (phased curriculum) remains a
+separate design pass. The MECH-309 falsifier re-issue (V3-EXQ-543e) on
+the SP-CEM substrate is independently running (arc_062:GAP-B
+in-progress, runner DLAPTOP-4.local).
+
 ### 2026-05-16 - Q2 RESOLVED: GAP-3 tolerance-band = ADAPTIVE (user decision); spec primitives 1-3, curriculum split
 
 User decision (surfaced after the closure-map reconciliation same day):

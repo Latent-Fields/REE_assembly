@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_268",
+  "entry_id": "2026-05-16_mech_268_contingency_degradation_rl_dutech2011",
+  "timestamp_utc": "2026-05-16T23:56:48Z",
+  "claim_ids_tested": ["MECH-268"],
+  "source": {
+    "title": "A reinforcement learning approach to instrumental contingency degradation in rats.",
+    "authors": ["Dutech A", "Coutureau E", "Marchand AR"],
+    "year": 2011,
+    "venue": "Journal of Physiology - Paris",
+    "doi": "10.1016/j.jphysparis.2011.07.017",
+    "url": "https://doi.org/10.1016/j.jphysparis.2011.07.017"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "A TD/SARSA reinforcement-learning model fit jointly to normal and medial-prefrontal-lesioned rats reproduces the differential adaptation to instrumental contingency degradation, and isolates the lesion deficit specifically as an inability to *initially detect weak contingency changes*. This is a near-exact behavioural-computational analogue of the EXP-0164 dissociation MECH-268 must support: the dACC pe must NOT fire (closure must not release) on weak / local contradicted outcomes, but must accumulate and fire under genuine sustained change. Held at 0.68 because the mechanism is a low-learning-rate TD account rather than an explicit dACC pe-saturation cap, and the locus is medial PFC in rat, not human dACC.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model explains the weak-change-detection deficit with a low TD learning rate, not with a pe-saturation cap. A low learning rate and a saturating pe produce similar 'ignores weak local contradiction' behaviour over short windows but diverge under sustained contradiction: a low-learning-rate agent eventually integrates the change, while a hard-capped pe never accumulates past the cap. MECH-268's V3 implementation must pick; EXP-0164's sustained-counter-evidence arm is the regime where the two predictions separate, so the env must be able to run contradiction long enough to expose the divergence.",
+    "If MECH-268's saturation is implemented as a strict cap and the true biology is a low-gain integrator (as this model suggests), EXP-0164 could read a false 'PE saturated, closure correctly withheld' when in fact a longer horizon would have driven detection. The env's counter-evidence duration / cumulative-dose parameters must therefore be first-class and swept, not fixed."
+  ],
+  "tags": ["mech_268", "contingency_degradation", "reinforcement_learning", "weak_change_detection", "medial_prefrontal", "pe_saturation", "gap3_q2a"],
+  "mapping": {
+    "source_claim_statement": "Instrumental contingency degradation in rats, and the differential failure of medial-prefrontal-lesioned rats, can be captured by a simple temporal-difference (SARSA) model with a low learning rate operating over event-sequence states. Lesioned rats differ from controls chiefly in low rates of magazine visits after a lever press and in an inability to initially detect weak contingency changes; they retain flexibility and will stop pressing if the action actively prevents reward.",
+    "ree_translation": "MECH-268 commits the dACC pe to cap / habituate so that the SD-034 closure operator does NOT release on weak, local, contradicted outcomes but does release (or, in the contradiction arm, correctly withholds) under genuine sustained change. Dutech 2011 supports the existence and shape of exactly this weak-vs-strong asymmetry: detection of weak contingency change is the fragile computation, and it is the one a prefrontal lesion removes. For EXP-0164 this means the env must (a) deliver counter-evidence as graded contingency degradation and (b) make contradiction *dose and duration* tunable, because the weak/strong boundary -- not a single perturbation -- is the measured quantity.",
+    "mapping_caveat": "The computational account is a low-learning-rate TD model, not a pe-saturation cap; the two are behaviourally similar at short horizons and dissociable only under sustained contradiction. The locus is rat medial PFC, not human dACC. The support is therefore for the *phenomenon* MECH-268 relies on (a weak/strong contradiction-detection asymmetry) rather than for its specific saturation-cap implementation.",
+    "source_context": "Rat free-operant lever-pressing with instrumental contingency degradation; behavioural data from normal and medial-prefrontal-lesioned animals fed into a SARSA model with softmax policy; model fit with shared parameters across groups."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "Solid specialist computational-behavioural paper (J Physiol Paris 2011). Mapping fidelity moderate: it nails the weak/strong contradiction-detection asymmetry EXP-0164 measures but explains it with low-gain TD rather than a saturation cap. Transfer risk moderate: rat mPFC lesion model, structural analogy to REE."
+  }
+}

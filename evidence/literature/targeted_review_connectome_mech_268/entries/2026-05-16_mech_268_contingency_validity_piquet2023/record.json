@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_268",
+  "entry_id": "2026-05-16_mech_268_contingency_validity_piquet2023",
+  "timestamp_utc": "2026-05-16T23:56:48Z",
+  "claim_ids_tested": ["MECH-268"],
+  "source": {
+    "title": "A hippocampo-cortical pathway detects changes in the validity of an action as a predictor of reward.",
+    "authors": ["Piquet R", "Faugere A", "Parkes SL"],
+    "year": 2023,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2023.11.036",
+    "url": "https://doi.org/10.1016/j.cub.2023.11.036"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Causal (chemogenetic + lesion + circuit-specific) rodent demonstration that adapting to instrumental contingency degradation requires a ventral-hippocampus -> medial-prefrontal pathway, and that the psychological basis of the deficit is an inability to discern the relative validity of the action versus the context as a predictor of reward. This directly grounds the EXP-0164 design question: 'counter-evidence against a committed action' is, mechanistically, contingency degradation (the action loses validity as a predictor of outcome), not a one-shot signed reward perturbation. Held at 0.70 because the paper localises the detection mechanism to a vHPC->mPFC validity computation rather than to a dACC pe-saturation cap per se -- it constrains the env operationalisation MECH-268 is tested against more than it tests the dACC saturation cap directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper localises contingency-change detection to a vHPC->mPFC pathway computing action-vs-context predictive validity. If MECH-268's dACC pe-saturation is downstream of (or parallel to) this validity computation, an env that injects counter-evidence as a bare signed perturbation at the target -- rather than as a degradation of the action->outcome contingency relative to context -- would not engage the mechanism the biology says is load-bearing, and EXP-0164 could measure a saturation artefact rather than the genuine commitment-vs-contradiction dissociation.",
+    "Degradation here is operationalised as making reward delivery unrelated to lever-pressing while context-outcome learning remains intact. A grid-world 'identity flip' (target now yields the opposite outcome) is a contingency reversal, not a degradation; the two are dissociable in this literature and engage partly different circuitry. Conflating them in the env primitive would blur the EXP-0164 readout."
+  ],
+  "tags": ["mech_268", "contingency_degradation", "action_outcome_validity", "ventral_hippocampus", "mpfc", "goal_directed", "gap3_q2a"],
+  "mapping": {
+    "source_claim_statement": "Sensitivity to instrumental contingency degradation depends on the ventral (not dorsal) hippocampus and on a vHPC->mPFC projection. The deficit produced by disrupting this pathway is an inability to learn the relative predictive validity of the action compared with the context as a predictor of reward; intact context-outcome learning is a prerequisite for detecting that an action has lost validity.",
+    "ree_translation": "For EXP-0164 (SD-034 closure operator vs MECH-268 dACC pe-saturation under sustained counter-evidence), the env's 'counter-evidence injection' primitive should operationalise counter-evidence as contingency degradation against a persistent rule_state -- the committed action progressively loses its validity as a predictor of the committed outcome while the surrounding context is unchanged -- rather than as a single signed reward/harm perturbation at the target. This is the manipulation the biology identifies as the one a healthy agent detects and a lesioned agent fails to detect, which is precisely the discrimination EXP-0164 must be able to resolve.",
+    "mapping_caveat": "The paper does not measure dACC pe magnitude or its saturation; it identifies the circuit that detects contingency change. The translation therefore constrains the env-design choice (degradation, not perturbation, not reversal) with high confidence but only indirectly supports MECH-268's specific dACC-saturation-cap commitment. Rodent operant chamber -> REE grid-world is a structural-analogy transfer.",
+    "source_context": "Rodent instrumental conditioning; excitotoxic lesions, DREADD chemogenetic inhibition, and circuit-specific (vHPC terminals in mPFC) manipulation; latent inhibition and Pavlovian context-conditioning controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Current Biology 2023, causal multi-method circuit dissection). Mapping fidelity moderate: the paper pins the operationalisation of counter-evidence (degradation vs perturbation vs reversal) tightly but speaks to the dACC saturation cap only indirectly. Transfer risk elevated by rodent-operant -> REE-grid structural analogy and by the vHPC/mPFC localisation not being the dACC locus MECH-268 names."
+  }
+}
