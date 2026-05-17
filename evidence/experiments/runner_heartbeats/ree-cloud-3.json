@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-17T16:19:57Z",
+  "last_tick_utc": "2026-05-17T16:20:59Z",
   "state": "running",
   "current_exq": "V3-EXQ-543g",
   "current_exq_started_utc": "2026-05-17T15:55:04.499432+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_3_both",
     "runs_done": 3,
     "runs_total": 12,
-    "episodes_done": 10,
+    "episodes_done": 20,
     "episodes_total": 108,
-    "overall_pct": 25.8
+    "overall_pct": 26.5
   },
-  "seconds_elapsed": 1493,
-  "seconds_remaining": 4174,
+  "seconds_elapsed": 1555,
+  "seconds_remaining": 4130,
   "recent_lines": [
-    "verdict: FAIL",
     "Seed 0 Condition ARM_3_both",
     "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  P0=40  P1=60  P2=8  steps/ep=200",
     "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)",
-    "[train] ARM_3_both ep 10/108  phase=P0  rv=0.0021  ep_reward=-1.0573"
+    "[train] ARM_3_both ep 10/108  phase=P0  rv=0.0021  ep_reward=-1.0573",
+    "[train] ARM_3_both ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.0882"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
