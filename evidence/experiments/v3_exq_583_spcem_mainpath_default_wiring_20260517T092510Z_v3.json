@@ -1,0 +1,258 @@
+{
+  "run_id": "v3_exq_583_spcem_mainpath_default_wiring_20260517T092510Z_v3",
+  "queue_id": "V3-EXQ-583",
+  "experiment_type": "v3_exq_583_spcem_mainpath_default_wiring",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260517T092510Z",
+  "outcome": "PASS",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [],
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "DIAGNOSTIC substrate-wiring check (experiment_purpose=diagnostic, claim_ids=[]). Validates that the 2026-05-17 SP-CEM main-path default flip wires through from_dims identically to the explicit V3-EXQ-567 ARM_1 flags (P1) and reproduces the diversity effect with zero flags passed (P2). Not governance evidence for ARC-065 (that is V3-EXQ-569's matched-entropy job). Pre-registered non_contributory -- excluded from confidence/conflict scoring; NOT a force-mapped FAIL.",
+  "supersedes_queue_id": null,
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "eval_episodes": 40,
+    "steps_per_episode": 200,
+    "equiv_tol": 1e-09,
+    "p2_entropy_margin": 0.05,
+    "p2_min_unique": 2.0,
+    "std_floor": 0.2,
+    "arms": [
+      "ARM_default",
+      "ARM_explicit_on",
+      "ARM_explicit_off"
+    ]
+  },
+  "acceptance_criteria": {
+    "P1_wiring_equivalence": true,
+    "P2_effect_reproduced": true
+  },
+  "summary": {
+    "seeds_matched": [
+      42,
+      43,
+      44
+    ],
+    "p1_max_float_gap": 0.0,
+    "p1_worst_float_key": null,
+    "p1_exact_mismatches": [],
+    "p1_per_seed_gap": {
+      "42": 0.0,
+      "43": 0.0,
+      "44": 0.0
+    },
+    "p1_wiring_equivalence": true,
+    "default_selected_entropy_mean": 0.489722,
+    "explicit_off_selected_entropy_mean": 0.01265,
+    "entropy_delta_default_minus_off": 0.477072,
+    "default_candidate_support_mean": 2.801461,
+    "explicit_off_candidate_support_mean": 1.00475,
+    "p2_entropy_reproduced": true,
+    "p2_support_reproduced": true,
+    "p2_effect_reproduced": true,
+    "overall_pass": true
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_default",
+      "seed": 42,
+      "total_steps": 827,
+      "selected_action_class_entropy": 0.673834,
+      "action_0_fraction": 0.616687,
+      "unique_actions_taken": 3,
+      "action_counts": {
+        "0": 510,
+        "3": 1,
+        "4": 316
+      },
+      "candidate_unique_first_action_classes_mean": 2.217654,
+      "candidate_first_action_entropy_mean": 0.54514,
+      "candidate_first_action_counts": {
+        "0": 5892,
+        "1": 185,
+        "2": 4,
+        "3": 2,
+        "4": 20381
+      },
+      "support_preserving_active_steps": 1
+    },
+    {
+      "arm": "ARM_default",
+      "seed": 43,
+      "total_steps": 7859,
+      "selected_action_class_entropy": 0.138686,
+      "action_0_fraction": 0.015651,
+      "unique_actions_taken": 4,
+      "action_counts": {
+        "0": 123,
+        "1": 7660,
+        "3": 66,
+        "4": 10
+      },
+      "candidate_unique_first_action_classes_mean": 2.353353,
+      "candidate_first_action_entropy_mean": 0.377829,
+      "candidate_first_action_counts": {
+        "0": 26751,
+        "1": 221480,
+        "2": 10,
+        "3": 888,
+        "4": 2359
+      },
+      "support_preserving_active_steps": 15
+    },
+    {
+      "arm": "ARM_default",
+      "seed": 44,
+      "total_steps": 7712,
+      "selected_action_class_entropy": 0.656646,
+      "action_0_fraction": 0.789549,
+      "unique_actions_taken": 4,
+      "action_counts": {
+        "0": 6089,
+        "2": 1181,
+        "3": 397,
+        "4": 45
+      },
+      "candidate_unique_first_action_classes_mean": 3.833377,
+      "candidate_first_action_entropy_mean": 1.180824,
+      "candidate_first_action_counts": {
+        "0": 85236,
+        "1": 33,
+        "2": 91083,
+        "3": 57496,
+        "4": 12936
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_explicit_on",
+      "seed": 42,
+      "total_steps": 827,
+      "selected_action_class_entropy": 0.673834,
+      "action_0_fraction": 0.616687,
+      "unique_actions_taken": 3,
+      "action_counts": {
+        "0": 510,
+        "3": 1,
+        "4": 316
+      },
+      "candidate_unique_first_action_classes_mean": 2.217654,
+      "candidate_first_action_entropy_mean": 0.54514,
+      "candidate_first_action_counts": {
+        "0": 5892,
+        "1": 185,
+        "2": 4,
+        "3": 2,
+        "4": 20381
+      },
+      "support_preserving_active_steps": 1
+    },
+    {
+      "arm": "ARM_explicit_on",
+      "seed": 43,
+      "total_steps": 7859,
+      "selected_action_class_entropy": 0.138686,
+      "action_0_fraction": 0.015651,
+      "unique_actions_taken": 4,
+      "action_counts": {
+        "0": 123,
+        "1": 7660,
+        "3": 66,
+        "4": 10
+      },
+      "candidate_unique_first_action_classes_mean": 2.353353,
+      "candidate_first_action_entropy_mean": 0.377829,
+      "candidate_first_action_counts": {
+        "0": 26751,
+        "1": 221480,
+        "2": 10,
+        "3": 888,
+        "4": 2359
+      },
+      "support_preserving_active_steps": 15
+    },
+    {
+      "arm": "ARM_explicit_on",
+      "seed": 44,
+      "total_steps": 7712,
+      "selected_action_class_entropy": 0.656646,
+      "action_0_fraction": 0.789549,
+      "unique_actions_taken": 4,
+      "action_counts": {
+        "0": 6089,
+        "2": 1181,
+        "3": 397,
+        "4": 45
+      },
+      "candidate_unique_first_action_classes_mean": 3.833377,
+      "candidate_first_action_entropy_mean": 1.180824,
+      "candidate_first_action_counts": {
+        "0": 85236,
+        "1": 33,
+        "2": 91083,
+        "3": 57496,
+        "4": 12936
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_explicit_off",
+      "seed": 42,
+      "total_steps": 280,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "4": 280
+      },
+      "candidate_unique_first_action_classes_mean": 1.0,
+      "candidate_first_action_entropy_mean": 0.0,
+      "candidate_first_action_counts": {
+        "4": 8960
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_explicit_off",
+      "seed": 43,
+      "total_steps": 8000,
+      "selected_action_class_entropy": 0.0,
+      "action_0_fraction": 0.0,
+      "unique_actions_taken": 1,
+      "action_counts": {
+        "1": 8000
+      },
+      "candidate_unique_first_action_classes_mean": 1.0,
+      "candidate_first_action_entropy_mean": 0.0,
+      "candidate_first_action_counts": {
+        "1": 256000
+      },
+      "support_preserving_active_steps": 0
+    },
+    {
+      "arm": "ARM_explicit_off",
+      "seed": 44,
+      "total_steps": 8000,
+      "selected_action_class_entropy": 0.03795,
+      "action_0_fraction": 0.00625,
+      "unique_actions_taken": 2,
+      "action_counts": {
+        "0": 50,
+        "2": 7950
+      },
+      "candidate_unique_first_action_classes_mean": 1.01425,
+      "candidate_first_action_entropy_mean": 0.004965,
+      "candidate_first_action_counts": {
+        "0": 1254,
+        "2": 254746
+      },
+      "support_preserving_active_steps": 0
+    }
+  ]
+}
