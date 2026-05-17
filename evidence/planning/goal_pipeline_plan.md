@@ -30,11 +30,11 @@ closure_plan:
       phase: 3
       status: in-progress
       severity: high
-      owner_exq: TBD (Option-2 + warm-start follow-on; V3-EXQ-582 superseded)
+      owner_exq: V3-EXQ-582a
       unblocks_claims: [SD-012, MECH-216, ARC-051]
       depends_on: []
       last_updated: 2026-05-17
-      resume_condition: "Substrate landed 2026-05-17 (GoalConfig.drive_ema_alpha, default 1.0=OFF bit-identical; GoalState.update EMA-smooths drive_level into _drive_trace; reset() zeroes it; from_dims passthrough; contract test_sustained_drive_ema_gap3.py 7/7; full suite 426/426). Q2 RESOLVED (alpha=0.02 first-PASS, sweep {0.01,0.02,0.2,1.0}, knob drive_ema_alpha, zero-init). V3-EXQ-582 FAILED 2026-05-17T08:29Z (FAIL autopsy 2026-05-17: n_contacts_post_warmup=0 all 12 runs; EMA trace unmeasurable without warm-start z_goal; OFF anchor reproduces 536a=0.005 -- instrumentation valid, Option 1 not refuted). BLOCKING PREREQUISITE: warm-start z_goal bootstrap needed before Option 1 or Option 2 can be tested. The follow-on experiment must include: (A) a warm-start arm (transient_benefit_enabled=True from infant_substrate GAP-3, or forced z_goal seeding), (B) Option 2 insatiability floor / drive_floor arm, (C) Option 1 EMA arm for comparison, (D) OFF arm for 536a anchor; acceptance must gate on n_contacts_post_warmup > 0 before interpreting EMA/floor trace. Queue via /queue-experiment once V3-EXQ-587/588 (infant_substrate ISEF-001/002) confirm adequate contact density. See failure_autopsy_EXQ-566-582_2026-05-17.md for full diagnosis."
+      resume_condition: "Option 1 substrate landed 2026-05-17 (drive_ema_alpha). V3-EXQ-582 FAILED: diagnostic grid row 'No arm clears A1 (incl. 0.01)' -> Escalate to Option 2. Root cause: drive_level near-zero throughout episodes (agent well-fed); EMA cannot help when input is consistently low. Post_warmup_cut=100 masked the contacts (all contacts before step 100). Option 2 substrate landed 2026-05-17T13:03Z: GoalConfig.drive_floor (default 0.0 bit-identical); GoalState.update() drive_level_floored=max(drive_level,drive_floor) fed into EMA; contract test_drive_floor_gap3_opt2.py 7/7; full suite 484/484. V3-EXQ-582a queued 2026-05-17T13:03Z (priority 1, any machine): sweeps drive_floor {0.0,0.3,0.6,0.9,1.2} x 3 seeds, drive_ema_alpha=1.0 (Option 1 OFF), no post_warmup_cut. Dry-run confirms floor scaling: mean_eff_benefit_on_contact 0.035->0.098->0.119 across floors. GAP-3 done when V3-EXQ-582a PASSes (A1-A4); on PASS register MECH-306 + mark GAP-3 done. On FAIL follow 582a diagnostic grid (see script docstring)."
     - id: "goal_pipeline:GAP-4"
       title: "MECH-295 drive->liking->approach cascade Tier-1 retest cohort"
       phase: 4
@@ -369,7 +369,7 @@ See [Resume ritual](#resume-ritual) below.
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (substrate landed 2026-05-11; 4-arm validation pending separate session) | Queue 4-arm discriminative pair via /queue-experiment under master flag use_mech307_conjunction=True. **NOTE 2026-05-11 (EXQ-550 review):** V3-EXQ-550 FAIL sustains MECH-269 V_s monostrategy substrate-level reading at no-training depth; same run surfaced wired-but-inert z_goal pipeline (1200/1200 update_z_goal calls, z_goal_norm_peak=0.0) -- see decision-log 2026-05-11 entry. V3-EXQ-551 (pipeline-entropy diagnostic) + V3-EXQ-552 (forced-exploration warmup) queued by parallel sessions to narrow mechanism before trained-z_goal follow-up. | TBD (4-arm discriminative pair) | 2026-05-11 |
 | GAP-2 | 2 | blocked | Phase 1 PASS | Re-queue V3-EXQ-514 successor with phased training under MECH-307-fixed substrate | V3-EXQ-514g (TBD) | 2026-05-08 |
-| GAP-3 | 3 | in-progress | V3-EXQ-582 result | Substrate landed 2026-05-17 (GoalConfig.drive_ema_alpha default 1.0=OFF; EMA trace in GoalState.update; reset() zeroes it; from_dims passthrough; contract 7/7; full suite 426/426). Q2 RESOLVED (alpha=0.02 first-PASS, sweep {0.01,0.02,0.2,1.0}, zero-init). V3-EXQ-582 discriminative sweep queued (priority 2, diagnostic). On 582 PASS: mark GAP-3 done + register MECH-306 sustained_drive_trace via governance (claims.yaml NOT touched by the landing). On FAIL: follow the script's diagnostic interpretation grid. | V3-EXQ-582 | 2026-05-17 |
+| GAP-3 | 3 | in-progress | V3-EXQ-582a result | Option 1 (EMA) substrate landed + EXQ-582 FAILED 2026-05-17 (no arm cleared A1; drive near-zero all episode). Option 2 (drive_floor) substrate landed 2026-05-17T13:03Z (GoalConfig.drive_floor, 7/7 contracts, 484/484 suite). EXQ-582a queued (priority 1, floor sweep {0.0,0.3,0.6,0.9,1.2} x 3 seeds, no warmup_cut). On 582a PASS: GAP-3 done + register MECH-306. On FAIL: follow 582a diagnostic grid. | V3-EXQ-582a | 2026-05-17 |
 | GAP-4 | 4 | blocked | Phase 1 + Phase 3 PASS | Re-queue Tier-1 cohort under StepHarness with Phase 1 + Phase 3 landed | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-08 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
@@ -526,6 +526,44 @@ combined-cluster combined-arm path). The goal_pipeline infrastructure dependency
 the monostrategy confound not interfere with Tier-3 behavioural tests -- is satisfied.
 
 **Status transition:** GAP-6 open/tracked -> done.
+
+### 2026-05-17T13:03Z - GAP-3 Option 2 escalation: drive_floor substrate + V3-EXQ-582a queued
+
+V3-EXQ-582 FAILED (all 5 alphas incl. 0.01; diagnostic grid row "No arm clears A1"
+-> escalate to Option 2). Root cause: drive_level near-zero throughout the episode
+(agent well-fed); EMA cannot help when the EMA INPUT is consistently low. Additionally
+POST_WARMUP_CUT=100 masked all contacts (every contact occurred before step 100 in
+the 200-step episodes). Option 2 proceeds per the pre-registered diagnostic grid.
+
+**Substrate landed** (ree-v3 466e7db):
+- `GoalConfig.drive_floor: float = 0.0` (default, bit-identical OFF)
+- `GoalState.update()`: `drive_level_floored = max(drive_level, drive_floor)` applied
+  before the EMA -- guarantees trace >= drive_floor in steady state, giving
+  `effective_benefit >= benefit * (1 + drive_weight * drive_floor)` at every contact.
+- `config.py from_dims()` wired with `drive_floor` kwarg.
+- Contract `test_drive_floor_gap3_opt2.py` 7/7 PASS; full suite 484/484 PASS.
+
+**V3-EXQ-582a queued** (priority 1, any machine, supersedes V3-EXQ-582):
+- Sweeps `drive_floor` in {0.0, 0.3, 0.6, 0.9, 1.2} x 3 seeds.
+- `drive_ema_alpha=1.0` (Option 1 OFF; testing Option 2 in isolation).
+- No POST_WARMUP_CUT: floor applies from step 0, no cold-start transient.
+- First-PASS arm: floor=0.9 (predicted: effective_benefit ~ 0.03 * 2.8 = 0.084 at
+  first contact; accumulates to > 0.1 by the 2nd-3rd contact within an episode).
+- Dry-run confirms floor scaling: mean_eff_benefit_on_contact = 0.035 / 0.056 /
+  0.077 / 0.098 / 0.119 across floors 0.0 -> 1.2.
+- On PASS (A1-A4): GAP-3 done, register MECH-306 via governance.
+- On FAIL: follow 582a diagnostic grid (see script docstring). If no floor clears A1
+  (incl. 1.2), escalate to Option 3 (MECH-216 schema-driven wanting).
+
+Note: prior session `resume_condition` recommended waiting for V3-EXQ-587/588
+(infant substrate contact density gate). User explicitly chose to proceed with
+Option 2 now per the EXQ-582 diagnostic grid. The 582a dry-run confirms contacts
+DO occur without the warm-start gate (n_contacts > 0 in 40-step eval for 2/3
+seeds). The warm-start prerequisite may have been overstated; 582a will resolve it.
+
+**Status:** GAP-3 remains in-progress; owner_exq updated to V3-EXQ-582a.
+
+---
 
 ### 2026-05-17 - GAP-3 Q2 RESOLVED + SD-012 sustained-drive EMA (Option 1) substrate landed; V3-EXQ-582 queued
 

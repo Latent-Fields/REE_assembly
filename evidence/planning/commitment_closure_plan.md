@@ -9,7 +9,7 @@ closure_plan:
     - id: "commitment_closure:GAP-1"
       title: "SD-033a bias head untrained (Go-side mechanically silent)"
       phase: 1
-      status: blocked
+      status: substrate_ready
       severity: load-bearing
       owner_exq: TBD
       unblocks_claims: [SD-033a, MECH-262, SD-034]
@@ -20,7 +20,8 @@ closure_plan:
         - "arc_062_rule_apprehension:GAP-C"
         - "arc_062_rule_apprehension:GAP-D"
       blocking_external: []
-      last_updated: 2026-05-09
+      last_updated: 2026-05-17
+      substrate_note: "GAP-C + GAP-D substrate implemented 2026-05-17: discriminator_proj routing and train_rule_bias_head flag landed; bias_head_parameters() method exposed. Substrate is ready for the validation EXQ (2-arm ablation: frozen-zero vs trainable head on ARC-062+SD-054 stack). Validation EXQ deferred until V3-EXQ-543f returns a contributory result (GAP-B scientific gate). Status blocked -> substrate_ready."
     - id: "commitment_closure:GAP-2"
       title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence PASS"
       phase: 2

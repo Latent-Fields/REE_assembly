@@ -30,23 +30,25 @@ closure_plan:
     - id: "arc_062_rule_apprehension:GAP-C"
       title: "ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector"
       phase: 3
-      status: open
+      status: substrate_implemented
       severity: high
       owner_exq: TBD
       unblocks_claims: [SD-033a, MECH-262, SD-034]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       cross_plan_link: ["commitment_closure:GAP-1"]
-      last_updated: 2026-05-09
+      last_updated: 2026-05-17
+      substrate_note: "Substrate implemented 2026-05-17 (pre-GAP-B-PASS pre-positioning). LateralPFCConfig.use_discriminator_source (bool, default False) + discriminator_pool_weight (float, 0.3) + discriminator_proj (nn.Linear(1, rule_dim)) added. LateralPFCAnalog.update() gains optional disc_output param. REEConfig gains lateral_pfc_use_discriminator_source + lateral_pfc_discriminator_pool_weight. agent.py reordered: gated_policy block now before lateral_pfc block so gp_output.gating_weight is available as disc_output. 484/484 contracts PASS; 543f dry-run exit 0. All defaults False/0 -- bit-identical backward compat. Validation EXQ (commitment_closure:GAP-1 2-arm ablation) deferred until V3-EXQ-543f returns a contributory result."
     - id: "arc_062_rule_apprehension:GAP-D"
       title: "E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)"
       phase: 3
-      status: open
+      status: substrate_implemented
       severity: high
       owner_exq: TBD
       unblocks_claims: [SD-033a, MECH-262]
       depends_on: ["arc_062_rule_apprehension:GAP-C"]
       cross_plan_link: ["commitment_closure:GAP-1"]
-      last_updated: 2026-05-09
+      last_updated: 2026-05-17
+      substrate_note: "Substrate implemented 2026-05-17 (pre-GAP-B-PASS pre-positioning). LateralPFCConfig.train_rule_bias_head (bool, default False) added; when True last Linear is NOT zeroed at init. LateralPFCAnalog.bias_head_parameters() method added for optimizer inclusion. REEConfig gains lateral_pfc_train_rule_bias_head (bool, default False). Experiment use: optim.Adam(list(agent.lateral_pfc.bias_head_parameters()), lr=LR) in P1 optimizer. Gradient path: E3 loss -> score_bias -> compute_bias() -> rule_bias_head weights. Default False preserves existing zeroed-last-Linear behavior. Validation EXQ deferred until V3-EXQ-543f contributory result."
     - id: "arc_062_rule_apprehension:GAP-E"
       title: "Multi-strategy scaling probe (>2 strategies) -- distinguishes ARC-062 weak from ARC-063 strong"
       phase: 4
