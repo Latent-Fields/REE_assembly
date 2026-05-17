@@ -34,14 +34,14 @@ closure_plan:
     - id: "commitment_closure:GAP-3"
       title: "CausalGridWorldV2 env extensions (tolerance/counter-evidence/dual-cue)"
       phase: 3
-      status: open
+      status: done
       severity: high
       owner_exq: null
       unblocks_claims: [SD-034, MECH-266, MECH-268]
       depends_on: []
       blocking_external: []
-      last_updated: 2026-05-16
-      resume_condition: "Q2 RESOLVED 2026-05-16 (user decision): tolerance-band completion = ADAPTIVE (scaled to env size), not the previously-proposed fixed window. Approach decision (user 2026-05-16): spec primitives 1-3 (adaptive tolerance-band / counter-evidence injection hook / dual simultaneously-active resource cue) now; deliverable 4 (phased rule_state training curriculum -- the V3-EXQ-321/261 committed-mode-elicitation blocker) split into its own design pass. Spec: causalgridworldv2_env_extensions_spec.md. GAP-3 is no longer blocked on a scoping decision -- next is spec review then env-infra implementation of primitives 1-3 (no claim-validation EXQ; env infrastructure)."
+      last_updated: 2026-05-17
+      completion_note: "Primitives 1-3 IMPLEMENTED 2026-05-17 in ree-v3/ree_core/environment/causal_grid_world.py (env-only constructor kwargs; NO config.py/REEConfig/queue -- concurrency-safe vs the active goal_pipeline:GAP-3 session). Validated by ree-v3/tests/contracts/test_env_extensions_gap3.py 14/14 (C1 bit-identical OFF + frac=0.0 dynamics-identical; C2 tolerance band/graded_exp; C3 counter-evidence persistent-only + monotone validity->floor + context-invariant; C4 dual-cue SD-049 fail-fast + accounting; C5 spec-section-5 integration smoke) and full ree-v3 contract regression 434/434. NO claim-validation EXQ (spec section 5: env infrastructure; concurrency forbade queue) -- a spec-sanctioned deviation from the implement-substrate skill Step 8. Scope deviation: completion_tolerance_targets='waypoint+resource' is reserved/fail-fast (primitive 1 ships waypoint-only per Q-1a; no EXP arm needs the resource half). GAP-3 (= the tolerance/counter-evidence/dual-cue env primitives) is DONE; this unblocks GAP-8 (depends_on GAP-3). NOTE: the SD-034/MECH-266/MECH-268 *behavioural* arms still require deliverable 4 (phased rule_state training curriculum -- the V3-EXQ-321/261 blocker), which was deliberately split into its own separate design pass (spec section 6) and is NOT part of GAP-3. Spec: causalgridworldv2_env_extensions_spec.md (Status: IMPLEMENTED 2026-05-17)."
     - id: "commitment_closure:GAP-4"
       title: "OCD battery completeness (V3-EXQ-460..468)"
       phase: 2
@@ -568,6 +568,48 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-3 DONE: CausalGridWorldV2 env extensions primitives 1-3 IMPLEMENTED
+
+Implemented via /implement-substrate (plan confirmed by user) in
+`ree-v3/ree_core/environment/causal_grid_world.py` as env-only
+constructor kwargs -- NO config.py / REEConfig / queue / experiments
+touched (the concurrency-safe path; the goal_pipeline:GAP-3 session held
+those files, and the spec was deliberately designed env-only to avoid
+them).
+
+- Primitive 1 (adaptive tolerance-band completion): 7
+  `completion_tolerance_*` kwargs; Chebyshev/Manhattan; hard /
+  graded_exp `exp(-d/lambda)`; OFF and frac=0.0 both dynamics
+  bit-identical (lockstep-verified). `waypoint+resource` reserved /
+  fail-fast (Q-1a default is waypoint-only; no EXP-0156/0157/0162 arm
+  needs the resource half -- fail-fast preferred over a silent partial).
+- Primitive 2 (counter-evidence = graded contingency degradation):
+  6 `counter_evidence_*` kwargs + `_inject_counter_evidence()` cloned
+  structurally from the SD-029 injector. Validity decremented toward
+  floor while the rule is persistent; committed-target reward scaled by
+  validity; context provably untouched (method-level invariant test).
+- Primitive 3 (dual-cue): 4 `dual_cue_*` kwargs; rides SD-049; hard
+  ValueError if SD-049 off (Q-3a fail-fast); replace_on_early_consume
+  default False (invalidate-episode, Q-3b).
+
+Validated by `tests/contracts/test_env_extensions_gap3.py` 14/14 (C1-C5
+incl. spec-section-5 integration smoke) + full ree-v3 contract
+regression 434/434 (bit-identical OFF confirmed suite-wide). **Deviation
+from implement-substrate Step 8 (queue a validation EXQ): NONE queued --
+spec section 5 states Phase 3 is env infrastructure with no
+claim-validation EXQ, and the concurrency constraint forbade touching
+the queue. Validation is the contract test + integration smoke, as the
+user explicitly directed.**
+
+GAP-3 status open -> done. This unblocks GAP-8 (`depends_on: GAP-3`).
+**Important scoping note:** GAP-3 == the tolerance/counter-evidence/
+dual-cue env primitives only. The SD-034 / MECH-266 / MECH-268
+*behavioural* arms still need deliverable 4 (phased rule_state training
+curriculum -- the V3-EXQ-321/261 committed-mode-elicitation blocker),
+which the 2026-05-16 user decision deliberately split into its own
+separate design pass (spec section 6). GAP-3 done does NOT by itself
+enable the behavioural promotions; it removes the env-primitive blocker.
 
 ### 2026-05-16 - GAP-3 env-extension spec sub-questions RESOLVED (lit-pull + engineering)
 

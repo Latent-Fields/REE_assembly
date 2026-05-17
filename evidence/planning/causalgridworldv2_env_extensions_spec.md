@@ -1,8 +1,56 @@
 # CausalGridWorldV2 Env Extensions -- Spec (primitives 1-3)
 
-- Status: **DRAFT for review** (no implementation yet)
+- Status: **IMPLEMENTED 2026-05-17** (primitives 1-3; validated by
+  contract test, no claim-validation EXQ per spec section 5)
 - Owner gap: `commitment_closure:GAP-3` (Phase 3, env infrastructure, no claim-validation EXQ)
 - Registered: 2026-05-16
+
+## Implementation record (2026-05-17)
+
+Primitives 1-3 implemented in
+`ree-v3/ree_core/environment/causal_grid_world.py` as env-only
+constructor kwargs (NO REEConfig / config.py / queue change -- the
+concurrency-safe path; concurrent goal_pipeline:GAP-3 session held those
+files). Contract test:
+`ree-v3/tests/contracts/test_env_extensions_gap3.py` (14 tests, C1-C5
+incl. the section-5 integration smoke) -- 14/14 PASS; full ree-v3
+contract regression 434/434 PASS (bit-identical OFF confirmed
+suite-wide).
+
+- **Primitive 1** -- `completion_tolerance_*` (7 kwargs). Tolerance
+  block wraps the waypoint exact-match; Chebyshev/Manhattan; `hard` /
+  `graded_exp` (credit `exp(-d/lambda)`). OFF and `frac=0.0` both
+  dynamics bit-identical (verified by lockstep rollout). Per-tick
+  diagnostics reset every step.
+  **Scope deviation:** `completion_tolerance_targets="waypoint+resource"`
+  is **reserved and raises ValueError** -- primitive 1 ships
+  waypoint-only (Q-1a default). The resource-target extension
+  (tolerance-driven consume-at-distance) is a documented future option;
+  failing fast was preferred over silently honouring only the waypoint
+  half. None of EXP-0156/0157/0162 need the resource half.
+- **Primitive 2** -- `counter_evidence_*` (6 kwargs) +
+  `_inject_counter_evidence()` (cloned structurally from the SD-029
+  injector). Graded contingency degradation: validity decremented toward
+  floor while the rule_state is persistent; committed-target reward
+  scaled by validity; context (hazards/resources/drift) provably
+  untouched (method-level invariant test). `transition_type` is set by
+  the existing waypoint path; the hook degrades the realised outcome,
+  not the transition label. Bit-identical when disabled.
+- **Primitive 3** -- `dual_cue_*` (4 kwargs). Rides SD-049
+  `_resources_by_type`; **hard ValueError if SD-049 not enabled**
+  (Q-3a fail-fast); `dual_cue_replace_on_early_consume` defaults
+  **False** (invalidate-episode, Q-3b); both-active tick accounting via
+  SD-049 per-type lists + the existing `_consumed_type_tag_this_tick`
+  (no edit to the consume block).
+
+Validation deviates from the implement-substrate skill Step 8 (queue a
+validation EXQ) **by spec design**: spec section 5 states Phase 3 has no
+claim-validation EXQ (env infrastructure), and the concurrency
+constraint forbade touching the queue/experiments. Validation is the
+14-test contract file incl. the section-5 integration smoke. Deliverable
+4 (phased rule_state training curriculum) remains a separate design pass
+(section 6) -- the SD-034/MECH-266/MECH-268 *behavioural* arms still
+need it before they run end-to-end.
 - Decision basis: user decision 2026-05-16 -- Q2 tolerance-band = **adaptive
   (scaled to env size)**; spec primitives 1-3 now; deliverable 4 (phased
   rule_state training curriculum) split to a separate design pass.
