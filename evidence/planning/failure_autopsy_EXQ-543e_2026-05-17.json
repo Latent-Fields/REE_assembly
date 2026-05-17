@@ -1,0 +1,64 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-17T06:09:58Z",
+  "plan": "arc_062_rule_apprehension",
+  "gap": "GAP-B",
+  "experiment": "v3_exq_543e_arc062_spcem_falsifier",
+  "run_id": "v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3",
+  "manifest_path": "evidence/experiments/v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3.json",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {"ARC-062": "weakens", "MECH-309": "non_contributory"},
+  "force_mapped": false,
+  "run_quality": {"dry_run": false, "exit_reason": "ok", "actual_secs": 4760.7, "crash": false},
+  "claim_weighing": false,
+  "verdict": "H3_confirmed_confound_free_substrate_finding",
+  "hypotheses": {
+    "H1_spcem_not_engaging": {
+      "status": "FALSE",
+      "evidence": {
+        "candidate_unique_first_action_classes_mean": 4.95,
+        "candidate_first_action_entropy_mean": 1.26,
+        "n_candidates_per_propose": 32,
+        "support_preserving_active_steps": "0/22",
+        "note": "support_preserving_active=0 is expected when stratified-elites delivers diversity without the injection path (per V3-EXQ-567 notes); candidate population is genuinely diverse"
+      }
+    },
+    "H2_probe_feature_masking_543b_cause1_repeat": {
+      "status": "FALSE",
+      "evidence": {
+        "world_states_0_pairwise_meanL2": 0.0,
+        "world_states_1_pairwise_meanL2": 0.013,
+        "ratio_vs_543b": "~1000x larger than 543b 1.2e-5",
+        "note": "world_states[1] fix correctly in place; probe candidate_features non-degenerate"
+      }
+    },
+    "H3_genuine_substrate_finding": {
+      "status": "CONFIRMED",
+      "evidence": {
+        "candidate_first_action_classes_unique": 4.95,
+        "world_states_1_vector_norm_per_candidate": 0.6705,
+        "cross_candidate_per_dim_std": 0.001473,
+        "cross_candidate_variation_over_signal_magnitude": 0.0022,
+        "e3_fresh_propose_step_fraction": 0.09,
+        "note": "first-action categorical diversity is strong but compressed to 0.22% of z_world magnitude by E2 world-forward before reaching the z_world-only ARC-062 head"
+      }
+    }
+  },
+  "root_cause": "ARC-062 GatedPolicy head reads z_world-derived features (R1 multi-stream z_world/z_self/z_harm_a); SP-CEM/stratified delivers ~5 distinct first-action classes but E2 world-forward compresses that categorical diversity to ~0.22% of the z_world signal magnitude, so the head cannot produce context-conditional behavioural divergence. Substrate is sound but under-fed: the head input contract, not the CEM substrate, is the bottleneck.",
+  "contributory_note": "First 543-lineage run with the candidate-distinguishability confound provably absent (world_states[1] L2 0.013 vs 543b 1e-5; 4.95 unique first-action classes). Persistent inert-gating with the confound removed cleanly isolates the head input contract. non_contributory direction left as-is; contributory weight captured by this autopsy + plan-doc routing, not by manifest relabelling.",
+  "routing": {
+    "recommended": "implement_substrate_option2_head_input_first_action_onehot",
+    "next_skill": "/implement-substrate",
+    "then": "re-issue falsifier as V3-EXQ-543f via /queue-experiment (543d 2x2 factorial + SP-CEM unchanged; only head input contract changes; supersedes V3-EXQ-543e)",
+    "gap_b_status": "in-progress (blocked on option-2 substrate change)",
+    "gap_c_gap_d": "remain open, sequenced after a contributory falsifier PASS",
+    "not_recommended": "ARC-062 substrate-rationale retirement (substrate is under-fed, not redundant)"
+  },
+  "handoff": {
+    "review_tracker": "NOT modified (diagnose-errors boundary); V3-EXQ-543e is a completed FAIL now diagnosed -- flag for next governance/review pass to add run_id to reviewed_run_ids",
+    "claims_yaml": "NOT modified",
+    "manifest_evidence_direction": "left non_contributory; supersession set when V3-EXQ-543f is queued",
+    "diagnostic_harness": "/tmp/diag_543e_spcem.py (throwaway, not committed)"
+  }
+}

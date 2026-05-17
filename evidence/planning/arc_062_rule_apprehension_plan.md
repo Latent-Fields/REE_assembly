@@ -17,16 +17,16 @@ closure_plan:
       cross_plan_link: ["commitment_closure:GAP-1"]
       last_updated: 2026-05-09
     - id: "arc_062_rule_apprehension:GAP-B"
-      title: "MECH-309 monomodal-collapse falsifier re-issued on SP-CEM substrate (V3-EXQ-543e queued)"
+      title: "MECH-309 falsifier: V3-EXQ-543e FAIL non_contributory diagnosed as confound-free head-input bottleneck -> option 2 (head-input augmentation)"
       phase: 2
       status: in-progress
       severity: load-bearing
-      owner_exq: V3-EXQ-543e
+      owner_exq: "TBD: V3-EXQ-543f after ARC-062 option-2 head-input augmentation (/implement-substrate)"
       unblocks_claims: [MECH-309, ARC-062]
       depends_on: ["arc_062_rule_apprehension:GAP-A"]
       cross_plan_link: ["commitment_closure:GAP-1"]
-      last_updated: 2026-05-16
-      resume_condition: "IN-PROGRESS 2026-05-16. The CEM-candidate-distinguishability gate (SATISFIED by V3-EXQ-567 PASS, ARC-065 SP-CEM) is cleared and the re-issued falsifier V3-EXQ-543e is authored + queued + auto-claimed by runner DLAPTOP-4.local (2026-05-16T23:42:41Z, ~540 min). 543e = the canonical 543d 2x2 factorial (use_gated_policy x use_dacc, D1-D4 grid, PASS=D2 AND D3, claim_ids [ARC-062, MECH-309]) with the ONLY change being all 4 arms now build with support-preserving CEM (use_support_preserving_cem=True + stratified_elites=True + ao_std_floor=0.2 + min_first_action_classes=2 -- exact V3-EXQ-567 config). The 543b/c/d evidence stays non_contributory/weakens (ran on the invalidated collapsed CEM) and is NOT force-mapped; 543e is the FIRST contributory test of MECH-309. Next action: on 543e completion, review the outcome and route per the pre-registered D-grid -- PASS (D2 AND D3) closes GAP-B (done) and unblocks GAP-C/D Phase 3 wiring (commitment_closure GAP-1); FAIL D1-only routes to ARC-062 substrate-rationale review; FAIL all-D-null routes to option 2 head-input augmentation (/implement-substrate)."
+      last_updated: 2026-05-17
+      resume_condition: "IN-PROGRESS 2026-05-17 (blocked on the option-2 ARC-062 substrate change). V3-EXQ-543e ran to completion 2026-05-17T01:02Z (real run, exit ok, ~79 min) and registered FAIL non_contributory {ARC-062: weakens, MECH-309: non_contributory} -- same inert-gating signature as 543b/c/d (probe-gate FAIL all 3 gated-arm seeds; D1=D2=0.0, D3=-0.13). A /diagnose-errors root-cause (failure_autopsy_EXQ-543e_2026-05-17.{md,json}) discriminated the three hypotheses with a direct harness replicating 543e's exact ARM_2 P0 path: H1 (SP-CEM not engaging) FALSE -- candidates have 4.95 unique first-action classes, entropy 1.26, support_preserving_active=0 is the expected stratified-elites signature per V3-EXQ-567; H2 (probe-feature masking / 543b Cause-1 repeat) FALSE -- world_states[0] pairwise L2=0.0 (fix in place), world_states[1] L2~0.013 (~1000x larger than 543b 1e-5, non-degenerate); H3 (genuine substrate finding) CONFIRMED -- the ~5 first-action classes are compressed by E2 world-forward to only 0.22% of the z_world signal magnitude (norm 0.67, cross-candidate std 0.0015) before reaching the z_world-only ARC-062 head, so the head cannot produce behavioural divergence. This is the FIRST 543-lineage run with the 2026-05-11 candidate-distinguishability confound provably absent, so the persistent inert-gating cleanly isolates the ARC-062 head input contract as the bottleneck (substrate is sound but under-fed). The non_contributory direction is left as-is and NOT force-mapped; contributory weight is captured by the autopsy. Next action: /implement-substrate to augment the ARC-062 GatedPolicy head input with the first-action one-hot (pre-registered option 2; quantitatively justified by the autopsy), then re-issue the falsifier as V3-EXQ-543f via /queue-experiment (543d 2x2 factorial + SP-CEM unchanged; only the head input contract changes; supersedes V3-EXQ-543e). ARC-062 substrate-rationale retirement NOT recommended -- the substrate is under-fed, not redundant."
     - id: "arc_062_rule_apprehension:GAP-C"
       title: "ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector"
       phase: 3
@@ -347,7 +347,7 @@ The resume primitive. Updated every session that touches this cluster.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-A | 1 | done | nothing | Substrate landed (ree_core/policy/gated_policy.py + use_gated_policy flag + REEAgent wiring + 5 contract tests + V3-EXQ-542 substrate-readiness diagnostic 5/5 PASS) | V3-EXQ-542 | 2026-05-09 |
-| GAP-B | 2 | in-progress | V3-EXQ-543e authored + queued + auto-claimed by runner DLAPTOP-4.local (2026-05-16T23:42:41Z, ~540 min); awaiting completion + review | **UPDATE 2026-05-16 (falsifier re-issued on SP-CEM):** GAP-B open -> in-progress. The MECH-309 monomodal-collapse falsifier was re-issued as **V3-EXQ-543e** via /queue-experiment and is now running. 543e = the canonical 543d 2x2 factorial (ARM_0 gated/dacc OFF, ARM_1 dacc-only, ARM_2 gated-only, ARM_3 both; pre-registered D1-D4; PASS=D2 AND D3; claim_ids [ARC-062, MECH-309]; per-claim direction grid) with the ONLY change being all 4 arms now build the agent with support-preserving CEM (use_support_preserving_cem=True + support_preserving_stratified_elites=True + support_preserving_ao_std_floor=0.2 + support_preserving_min_first_action_classes=2 -- the exact config V3-EXQ-567 validated PASS for ARC-065). supersedes V3-EXQ-543d. Local smoke dry-run PASS (12 verdict lines, 36 progress lines, SP-CEM flags verified reaching config.hippocampal in all 4 arms, runner-conformance validated). The 543b/c/d evidence stays non_contributory/weakens (ran on the invalidated collapsed CEM) and is NOT force-mapped -- 543e is the FIRST contributory test of MECH-309. On completion: route per the pre-registered D-grid (PASS D2 AND D3 -> close GAP-B + unblock GAP-C/D; FAIL D1-only -> ARC-062 substrate-rationale review; FAIL all-D-null -> option 2 head-input augmentation). See decision-log 2026-05-16 (V3-EXQ-543e queued).<br><br>**PRIOR 2026-05-16 (closure-map reconciliation):** GAP-B blocked -> open. V3-EXQ-567 PASS (evidence_direction=supports, ARC-065) lifts natural selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 -- the candidate-feature variance the 2026-05-11 gate required. Next action: re-issue the MECH-309 monomodal-collapse falsifier on the SP-CEM substrate via /queue-experiment. The 543b/c/d non_contributory/superseded evidence was run under the OLD collapsed CEM and is not force-mapped. See decision-log 2026-05-16.<br><br>**UPDATE 2026-05-11 (EXQ-543c review):** V3-EXQ-543c ran 19:02Z and registered FAIL `non_contributory` for both ARC-062 + MECH-309 -- probe_gate_arm_failed on all 3 ARM_1c seeds (n_inert_gating_seeds_arm1c=3); per-seed metrics floating-point-identical between ARM_0 and ARM_1c across reef_fraction / rho / forage_hazard / transit_hazard / risk_type_ratio. 543c is a strict replication of 543b's inert-gating signature on SD-054 bipartite even with the world_states[1] Cause-1 fix applied. V3-EXQ-543d (2x2 factorial of use_gated_policy x use_dacc with MECH-260 anti-recency=0.5; supersedes 543c) is already queued and running -- its outcome supersedes 543c interpretation per its pre-registered D1-D4 grid. See decision-log 2026-05-11 (EXQ-543c) entry for the full routing logic.<br><br>**PRIOR 2026-05-11**: V3-EXQ-543b ran 2026-05-10 and registered `non_contributory` with `inert_gating_detected` on all 3 seeds; mean_tv_distance = max = min = 0.0 exact across 3 seeds x 12 windows x 32 probe states. Diagnose-errors session 2026-05-11T06:35Z--06:44Z surfaced two distinct causes: (1) script-level bug -- candidate_features = world_states[0] = initial_z_world (identical across K candidates by E2FastPredictor convention); (2) substrate-level finding -- even with the bug fixed (world_states[0] -> world_states[1]), CEM proposer at init produces 8 candidates with shared argmax-first-action, continuous-action vectors differing only ~1e-4, post-action world_states diverging only ~1e-5; ARC-062 head consumes z_world-only inputs that are structurally near-indistinguishable. Status `in-progress -> blocked` pending CEM-candidate-distinguishability substrate-readiness diagnostic that characterises first-action entropy, continuous-action L2 spread, and world_states-1 pairwise distance at init and during P0/P1 training. Three architectural options surfaced for downstream resolution (see decision-log 2026-05-11 for the full rationale): (1) land Cause-1 microscopic fix and rerun; (2) augment GatedPolicy head input with first-action (substrate change to ARC-062 contract; belongs under /implement-substrate); (3) **env-side diversification** -- design SD-054 (or successor) so the signals ARC-062 needs are structurally guaranteed-present per candidate by construction (user-direction, 2026-05-11). unblocks_claims tightened to [MECH-309, ARC-062]; SD-029 dropped per claim_ids accuracy rule (SD-054 is not SD-029's measurement substrate). | V3-EXQ-543e | 2026-05-16 |
+| GAP-B | 2 | in-progress | option-2 ARC-062 substrate change (/implement-substrate: augment GatedPolicy head input with first-action one-hot), then re-issue as V3-EXQ-543f | **UPDATE 2026-05-17 (V3-EXQ-543e FAIL diagnosed -> option 2):** V3-EXQ-543e ran to completion 2026-05-17T01:02Z (real run, exit ok, ~79 min) and registered **FAIL non_contributory {ARC-062: weakens, MECH-309: non_contributory}** -- same inert-gating signature as 543b/c/d (probe-gate FAIL all 3 gated-arm seeds; reef_fraction ARM_0=ARM_1=0.6918, ARM_2=ARM_3=0.5600; D1=D2=0.0, D3=-0.13). A /diagnose-errors root-cause (`failure_autopsy_EXQ-543e_2026-05-17.{md,json}`) ran a direct harness replicating 543e's exact ARM_2 P0 path and discriminated the three hypotheses: **H1 FALSE** (candidates have 4.95 unique first-action classes / entropy 1.26; `support_preserving_active=0` is the expected stratified-elites signature per V3-EXQ-567 -- SP-CEM IS engaging); **H2 FALSE** (world_states[0] pairwise L2=0.0 confirms the world_states[1] fix is in place; world_states[1] L2~0.013, ~1000x larger than 543b's 1e-5 -- probe features non-degenerate); **H3 CONFIRMED** (the ~5 first-action classes are compressed by E2 world-forward to only **0.22%** of the z_world signal magnitude before reaching the z_world-only ARC-062 head). This is the FIRST 543-lineage run with the 2026-05-11 candidate-distinguishability confound **provably absent**, so the persistent inert-gating cleanly isolates the **ARC-062 head input contract** as the bottleneck -- substrate is sound but under-fed. The `non_contributory` direction is left as-is and **NOT force-mapped**; contributory weight is captured by the autopsy + this routing. **Routing: pre-registered option 2** -- /implement-substrate to augment the GatedPolicy head input with the first-action one-hot, then re-issue as **V3-EXQ-543f** via /queue-experiment (543d 2x2 factorial + SP-CEM substrate unchanged; only the head input contract changes; supersedes V3-EXQ-543e). ARC-062 substrate-rationale retirement NOT recommended (under-fed, not redundant). GAP-C/GAP-D stay open, sequenced after a contributory falsifier PASS. See decision-log 2026-05-17. Handoff: V3-EXQ-543e is a completed FAIL now diagnosed -- flag for next governance pass to add run_id to reviewed_run_ids.<br><br>**PRIOR 2026-05-16 (falsifier re-issued on SP-CEM):** GAP-B open -> in-progress. The MECH-309 monomodal-collapse falsifier was re-issued as **V3-EXQ-543e** via /queue-experiment and is now running. 543e = the canonical 543d 2x2 factorial (ARM_0 gated/dacc OFF, ARM_1 dacc-only, ARM_2 gated-only, ARM_3 both; pre-registered D1-D4; PASS=D2 AND D3; claim_ids [ARC-062, MECH-309]; per-claim direction grid) with the ONLY change being all 4 arms now build the agent with support-preserving CEM (use_support_preserving_cem=True + support_preserving_stratified_elites=True + support_preserving_ao_std_floor=0.2 + support_preserving_min_first_action_classes=2 -- the exact config V3-EXQ-567 validated PASS for ARC-065). supersedes V3-EXQ-543d. Local smoke dry-run PASS (12 verdict lines, 36 progress lines, SP-CEM flags verified reaching config.hippocampal in all 4 arms, runner-conformance validated). The 543b/c/d evidence stays non_contributory/weakens (ran on the invalidated collapsed CEM) and is NOT force-mapped -- 543e is the FIRST contributory test of MECH-309. On completion: route per the pre-registered D-grid (PASS D2 AND D3 -> close GAP-B + unblock GAP-C/D; FAIL D1-only -> ARC-062 substrate-rationale review; FAIL all-D-null -> option 2 head-input augmentation). See decision-log 2026-05-16 (V3-EXQ-543e queued).<br><br>**PRIOR 2026-05-16 (closure-map reconciliation):** GAP-B blocked -> open. V3-EXQ-567 PASS (evidence_direction=supports, ARC-065) lifts natural selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 -- the candidate-feature variance the 2026-05-11 gate required. Next action: re-issue the MECH-309 monomodal-collapse falsifier on the SP-CEM substrate via /queue-experiment. The 543b/c/d non_contributory/superseded evidence was run under the OLD collapsed CEM and is not force-mapped. See decision-log 2026-05-16.<br><br>**UPDATE 2026-05-11 (EXQ-543c review):** V3-EXQ-543c ran 19:02Z and registered FAIL `non_contributory` for both ARC-062 + MECH-309 -- probe_gate_arm_failed on all 3 ARM_1c seeds (n_inert_gating_seeds_arm1c=3); per-seed metrics floating-point-identical between ARM_0 and ARM_1c across reef_fraction / rho / forage_hazard / transit_hazard / risk_type_ratio. 543c is a strict replication of 543b's inert-gating signature on SD-054 bipartite even with the world_states[1] Cause-1 fix applied. V3-EXQ-543d (2x2 factorial of use_gated_policy x use_dacc with MECH-260 anti-recency=0.5; supersedes 543c) is already queued and running -- its outcome supersedes 543c interpretation per its pre-registered D1-D4 grid. See decision-log 2026-05-11 (EXQ-543c) entry for the full routing logic.<br><br>**PRIOR 2026-05-11**: V3-EXQ-543b ran 2026-05-10 and registered `non_contributory` with `inert_gating_detected` on all 3 seeds; mean_tv_distance = max = min = 0.0 exact across 3 seeds x 12 windows x 32 probe states. Diagnose-errors session 2026-05-11T06:35Z--06:44Z surfaced two distinct causes: (1) script-level bug -- candidate_features = world_states[0] = initial_z_world (identical across K candidates by E2FastPredictor convention); (2) substrate-level finding -- even with the bug fixed (world_states[0] -> world_states[1]), CEM proposer at init produces 8 candidates with shared argmax-first-action, continuous-action vectors differing only ~1e-4, post-action world_states diverging only ~1e-5; ARC-062 head consumes z_world-only inputs that are structurally near-indistinguishable. Status `in-progress -> blocked` pending CEM-candidate-distinguishability substrate-readiness diagnostic that characterises first-action entropy, continuous-action L2 spread, and world_states-1 pairwise distance at init and during P0/P1 training. Three architectural options surfaced for downstream resolution (see decision-log 2026-05-11 for the full rationale): (1) land Cause-1 microscopic fix and rerun; (2) augment GatedPolicy head input with first-action (substrate change to ARC-062 contract; belongs under /implement-substrate); (3) **env-side diversification** -- design SD-054 (or successor) so the signals ARC-062 needs are structurally guaranteed-present per candidate by construction (user-direction, 2026-05-11). unblocks_claims tightened to [MECH-309, ARC-062]; SD-029 dropped per claim_ids accuracy rule (SD-054 is not SD-029's measurement substrate). | V3-EXQ-543f (after option-2 /implement-substrate) | 2026-05-17 |
 | GAP-C | 3 | open | GAP-B (via V3-EXQ-543b) PASS | Wire discriminator output into LateralPFCAnalog.update() source vector. NOTE 2026-05-10: GAP-C scope partially absorbed into V3-EXQ-543b (gated_policy params in optimizer is a Phase-3 deliverable). Remaining GAP-C work: explicit LateralPFCAnalog wiring after 543b PASS confirms training-time gating produces behavioral divergence. | TBD | 2026-05-10 |
 | GAP-D | 3 | open | GAP-C | Add bias head params to E3 optimiser; default-flag flip; queue GAP-1 validation EXQ. NOTE 2026-05-10: bias-head-in-optimizer also partially absorbed into 543b. | TBD | 2026-05-10 |
 | GAP-E | 4 | deferred | GAP-D PASS | Extend SD-054 to ≥3 strategies; 3-arm scaling experiment | n/a in V3 | 2026-05-09 |
@@ -449,6 +449,94 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - V3-EXQ-543e FAIL non_contributory diagnosed (H3 confirmed): route to pre-registered option 2 (ARC-062 head-input augmentation)
+
+V3-EXQ-543e ran to completion on DLAPTOP-4.local 2026-05-16T23:42:42Z ->
+2026-05-17T01:02:03Z (real run, `exit_reason: ok`, `actual_secs=4760.7`,
+NOT a crash) and registered **FAIL** with
+`evidence_direction: non_contributory`,
+`per_claim {ARC-062: weakens, MECH-309: non_contributory}` (pre-registered
+`_compute_per_claim_direction` grid; NOT force-mapped). reef_fraction
+ARM_0=ARM_1_dacc_only=0.6918, ARM_2_gated_only=ARM_3_both=0.5600; D1 and
+D2 deltas exactly 0.0, D3=-0.1317; probe-gate FAIL all 3 seeds in both
+gated arms -- the same inert-gating signature as 543b/c/d.
+
+Per the memory rule (non_contributory results need /diagnose-errors, not
+force-mapping) the user routed this to /diagnose-errors. A direct
+diagnostic harness replicated 543e's exact ARM_2 (gated ON, dacc OFF) P0
+stepping path and instrumented
+`agent.hippocampal.get_last_propose_diagnostics()` plus the pairwise L2
+spread of the exact `candidate_features` tensor the probe uses
+(`cat([c.world_states[1] for c in candidates[:8]])`). The three
+hypotheses were discriminated:
+
+- **H1 (SP-CEM not engaging at probe time): FALSE.**
+  `candidate_unique_first_action_classes` mean **4.95**,
+  `candidate_first_action_entropy` mean **1.26**, 32 candidates/propose.
+  `support_preserving_active=0/22` is the EXPECTED signature when
+  stratified-elites delivers diversity without the injection path
+  (V3-EXQ-567's own notes record exactly this). The candidate population
+  is genuinely first-action-diverse.
+- **H2 (probe-feature masking / 543b Cause-1 repeat): FALSE.**
+  `world_states[0]` pairwise meanL2 = **0.0 exact** (confirms the
+  world_states[1] fix is correctly in place -- the script is not reading
+  the identical pre-action z_world); `world_states[1]` pairwise meanL2
+  ~ **0.013**, ~1000x larger than 543b's ~1.2e-5. The probe features are
+  non-degenerate.
+- **H3 (genuine substrate finding): CONFIRMED.** `world_states[1]` vector
+  norm/candidate 0.6705; cross-candidate per-dim std 0.001473; ratio
+  **0.0022 (0.22%)**. SP-CEM/stratified produces ~5 distinct first-action
+  classes, but E2's world-forward model compresses that categorical
+  diversity to 0.22% of the z_world signal magnitude before it reaches
+  the z_world-only ARC-062 `GatedPolicy` head. The head cannot convert a
+  0.22%-relative signal into behavioural divergence; the probe correctly
+  detects inert-gating. (Secondary: only ~9-10% of steps generate fresh
+  candidates via an E3 tick; the rest return the MECH-057a cached set --
+  expected heartbeat behaviour, not the bottleneck.)
+
+**Interpretation.** 543e is the FIRST run in the 543 lineage where the
+2026-05-11 candidate-distinguishability confound is **provably absent**.
+With that confound removed, the persistent inert-gating is a clean,
+confound-free isolation of the ARC-062 head's z_world-only input contract
+as the architectural bottleneck. The substrate (SP-CEM/stratified) is
+sound but the head is under-fed: the discriminating signal lives in
+action space (4.95 classes) but not in the head's z_world input space.
+The script's pre-registered grid maps the probe-gate short-circuit to
+`non_contributory` (a conservative pre-registration authored when the
+substrate confound was still suspected); the underlying finding is the
+substrate-level result the MECH-309 / ARC-062 narrative predicts. The
+`non_contributory` manifest direction is left as-is and NOT force-mapped
+-- contributory weight is captured by this decision-log entry and the
+autopsy artifact, not by relabelling.
+
+**Routing decision: pre-registered option 2 (ARC-062 head-input
+augmentation).** Of the three pre-registered FAIL routes (D1-only ->
+ARC-062 substrate-rationale review; option 2 head-input augmentation;
+ARC-062 retirement / ARC-063 V4 escalation), the diagnosis directly
+selects option 2 and quantitatively justifies it: feed the first-action
+one-hot (≈5 distinct classes, the strong signal) directly into the
+`GatedPolicy` head input rather than relying on the 0.22%-relative
+z_world projection. ARC-062 substrate-rationale retirement is explicitly
+NOT recommended -- the substrate is under-fed, not redundant; the
+mechanism is sound and option 2 is a small, well-scoped contract change.
+
+**Next action.** /implement-substrate: augment the ARC-062
+`GatedPolicy` head input with the first-action one-hot (a change to the
+ARC-062 head input contract registered in ree-v3/CLAUDE.md -- belongs
+under /implement-substrate, not /queue-experiment). Then re-issue the
+falsifier as **V3-EXQ-543f** via /queue-experiment: the canonical 543d
+2x2 factorial and the SP-CEM substrate are unchanged; only the head
+input contract changes. supersedes V3-EXQ-543e. GAP-B stays
+`in-progress`, blocked on the option-2 substrate change; GAP-C / GAP-D
+stay `open`, sequenced after a contributory falsifier PASS.
+
+**Artifacts.** `evidence/planning/failure_autopsy_EXQ-543e_2026-05-17.md`
++ `.json`. Diagnostic harness `/tmp/diag_543e_spcem.py` (throwaway, not
+committed). claims.yaml NOT modified; review_tracker.json NOT modified
+(diagnose-errors boundary -- V3-EXQ-543e is a completed FAIL now
+diagnosed; flag for the next governance/review pass to add the run_id to
+`reviewed_run_ids`).
 
 ### 2026-05-16 - V3-EXQ-543e queued: MECH-309 monomodal-collapse falsifier re-issued on the SP-CEM substrate (GAP-B open -> in-progress)
 
