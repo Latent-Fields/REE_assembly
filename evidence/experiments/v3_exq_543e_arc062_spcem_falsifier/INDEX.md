@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_543e_arc062_spcem_falsifier
+
+Generated: `2026-05-17T12:26:11.642128Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3` | `2026-05-17T01:02:02.090379Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3/summary.md) / [`manifest`](runs/v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3/manifest.json) / [`metrics`](runs/v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3/metrics.json) |

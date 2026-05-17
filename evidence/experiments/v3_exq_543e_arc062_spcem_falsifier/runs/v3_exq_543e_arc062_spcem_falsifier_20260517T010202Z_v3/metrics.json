@@ -1,0 +1,1749 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_summaries": {
+      "ARM_0_baseline": {
+        "mean_reef_fraction": 0.6917534392789374,
+        "std_reef_fraction": 0.19991492437138902,
+        "cov_reef_fraction": 0.2889973696115978,
+        "rhos_per_seed": [
+          -0.057290322580645155,
+          -0.18758647321694275,
+          -0.13690381142264502
+        ],
+        "abs_rho_per_seed": [
+          0.057290322580645155,
+          0.18758647321694275,
+          0.13690381142264502
+        ],
+        "n_rho_above_threshold": 0,
+        "mean_abs_rho": 0.1272602024067443,
+        "mean_forage_hazard_rate": 0.6194953391192543,
+        "mean_transit_hazard_rate": 1.0,
+        "mean_risk_type_ratio_legacy": 0.6194953391192543,
+        "ratios_per_seed_hardened": [
+          0.6617647058823529,
+          1.0,
+          0.19672131147540983
+        ],
+        "n_valid_seeds_for_c3": 3,
+        "mean_risk_type_ratio_hardened": 0.6194953391192543,
+        "inert_gating_per_seed": [
+          false,
+          false,
+          false
+        ],
+        "n_inert_gating_seeds": 0
+      },
+      "ARM_1_dacc_only": {
+        "mean_reef_fraction": 0.6917534392789374,
+        "std_reef_fraction": 0.19991492437138902,
+        "cov_reef_fraction": 0.2889973696115978,
+        "rhos_per_seed": [
+          -0.057290322580645155,
+          -0.18758647321694275,
+          -0.13690381142264502
+        ],
+        "abs_rho_per_seed": [
+          0.057290322580645155,
+          0.18758647321694275,
+          0.13690381142264502
+        ],
+        "n_rho_above_threshold": 0,
+        "mean_abs_rho": 0.1272602024067443,
+        "mean_forage_hazard_rate": 0.6194953391192543,
+        "mean_transit_hazard_rate": 1.0,
+        "mean_risk_type_ratio_legacy": 0.6194953391192543,
+        "ratios_per_seed_hardened": [
+          0.6617647058823529,
+          1.0,
+          0.19672131147540983
+        ],
+        "n_valid_seeds_for_c3": 3,
+        "mean_risk_type_ratio_hardened": 0.6194953391192543,
+        "inert_gating_per_seed": [
+          false,
+          false,
+          false
+        ],
+        "n_inert_gating_seeds": 0
+      },
+      "ARM_2_gated_only": {
+        "mean_reef_fraction": 0.5600273073611742,
+        "std_reef_fraction": 0.31208705887996296,
+        "cov_reef_fraction": 0.5572711451348764,
+        "rhos_per_seed": [
+          -0.14341806351491582,
+          -0.45998457525987785,
+          0.779344043931093
+        ],
+        "abs_rho_per_seed": [
+          0.14341806351491582,
+          0.45998457525987785,
+          0.779344043931093
+        ],
+        "n_rho_above_threshold": 2,
+        "mean_abs_rho": 0.46091556090196223,
+        "mean_forage_hazard_rate": 0.5734658599827139,
+        "mean_transit_hazard_rate": 1.0,
+        "mean_risk_type_ratio_legacy": 0.5734658599827139,
+        "ratios_per_seed_hardened": [
+          0.19230769230769232,
+          1.0,
+          0.5280898876404494
+        ],
+        "n_valid_seeds_for_c3": 3,
+        "mean_risk_type_ratio_hardened": 0.5734658599827139,
+        "inert_gating_per_seed": [
+          true,
+          true,
+          true
+        ],
+        "n_inert_gating_seeds": 3
+      },
+      "ARM_3_both": {
+        "mean_reef_fraction": 0.5600273073611742,
+        "std_reef_fraction": 0.31208705887996296,
+        "cov_reef_fraction": 0.5572711451348764,
+        "rhos_per_seed": [
+          -0.14341806351491582,
+          -0.45998457525987785,
+          0.779344043931093
+        ],
+        "abs_rho_per_seed": [
+          0.14341806351491582,
+          0.45998457525987785,
+          0.779344043931093
+        ],
+        "n_rho_above_threshold": 2,
+        "mean_abs_rho": 0.46091556090196223,
+        "mean_forage_hazard_rate": 0.5734658599827139,
+        "mean_transit_hazard_rate": 1.0,
+        "mean_risk_type_ratio_legacy": 0.5734658599827139,
+        "ratios_per_seed_hardened": [
+          0.19230769230769232,
+          1.0,
+          0.5280898876404494
+        ],
+        "n_valid_seeds_for_c3": 3,
+        "mean_risk_type_ratio_hardened": 0.5734658599827139,
+        "inert_gating_per_seed": [
+          true,
+          true,
+          true
+        ],
+        "n_inert_gating_seeds": 3
+      }
+    },
+    "acceptance": {
+      "D1_dacc_alone_pass": false,
+      "D1_delta_arm1_minus_arm0": 0.0,
+      "D2_dacc_adds_to_gated_pass": false,
+      "D2_delta_arm3_minus_arm2": 0.0,
+      "D3_gated_adds_to_dacc_pass": false,
+      "D3_delta_arm3_minus_arm1": -0.13172613191776317,
+      "D4_replication_543c_pass": false,
+      "D4_delta_abs_arm2_minus_arm0": 0.13172613191776317,
+      "overall_pass": false,
+      "reef_fraction_per_arm": {
+        "ARM_0_baseline": 0.6917534392789374,
+        "ARM_1_dacc_only": 0.6917534392789374,
+        "ARM_2_gated_only": 0.5600273073611742,
+        "ARM_3_both": 0.5600273073611742
+      },
+      "probe_gate_arm2_failed": true,
+      "probe_gate_arm3_failed": true,
+      "n_inert_gating_seeds_arm2": 3,
+      "n_inert_gating_seeds_arm3": 3,
+      "C1_density_tracking": "non_contributory_phase2a_corrected_single_density",
+      "C2_state_dependence_pass": true,
+      "C2_a3_seeds_above_threshold": 2,
+      "C2_a3_mean_abs_rho": 0.46091556090196223,
+      "C2_a0_mean_abs_rho": 0.1272602024067443,
+      "C3_risk_type_dissociation_pass": false,
+      "C3_relative_delta_hardened": 0.07430157457194289,
+      "C3_a0_ratio_hardened": 0.6194953391192543,
+      "C3_a3_ratio_hardened": 0.5734658599827139,
+      "C3_a0_n_valid_seeds": 3,
+      "C3_a3_n_valid_seeds": 3,
+      "C3_arms_have_enough_valid_seeds": true,
+      "C4_cross_seed_variation_pass": true,
+      "C4_a3_cov_reef_fraction": 0.5572711451348764,
+      "C4_a0_cov_reef_fraction": 0.2889973696115978,
+      "n_criteria_passed_legacy": 2,
+      "legacy_pass_rule_met": false,
+      "F1_monomodal_collapse_signature": false,
+      "F2_biologically_inverted_signature": false
+    },
+    "per_seed_per_arm": {
+      "ARM_0_baseline": [
+        {
+          "arm_label": "ARM_0_baseline",
+          "seed": 0,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.0005247755016355907,
+          "p0_first10_reward": -1.139173573255539,
+          "p0_last10_reward": -1.1591990548372268,
+          "p0_n_probe_states_collected": 0,
+          "p1_first10_reward": -1.1079325783252716,
+          "p1_last10_reward": -1.1256720286607744,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 0.0006327307575114949,
+          "mean_reef_fraction": 0.4234375,
+          "rho_drive_vs_reef": -0.057290322580645155,
+          "forage_hazard_rate": 0.6617647058823529,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.6617647058823529,
+          "n_forage_steps": 68,
+          "n_transit_steps": 8,
+          "n_forage_hazards": 45,
+          "n_transit_hazards": 8,
+          "per_episode_reef_fractions": [
+            0.5833333333333334,
+            0.8666666666666667,
+            0.375,
+            0.0,
+            0.0,
+            0.875,
+            0.0,
+            0.6875
+          ]
+        },
+        {
+          "arm_label": "ARM_0_baseline",
+          "seed": 1,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.00044572910125953864,
+          "p0_first10_reward": -1.1842168629169465,
+          "p0_last10_reward": -1.286255840063095,
+          "p0_n_probe_states_collected": 0,
+          "p1_first10_reward": -1.1613895183801652,
+          "p1_last10_reward": -1.2278105917572977,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 7.563285447890344e-05,
+          "mean_reef_fraction": 0.74875,
+          "rho_drive_vs_reef": -0.18758647321694275,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 1.0,
+          "n_forage_steps": 14,
+          "n_transit_steps": 6,
+          "n_forage_hazards": 14,
+          "n_transit_hazards": 6,
+          "per_episode_reef_fractions": [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            0.99,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "arm_label": "ARM_0_baseline",
+          "seed": 2,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.0005557728742133898,
+          "p0_first10_reward": -1.13264853566885,
+          "p0_last10_reward": -1.1122117668390274,
+          "p0_n_probe_states_collected": 0,
+          "p1_first10_reward": -0.9215396934747695,
+          "p1_last10_reward": -1.0025657713413239,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 8.723263596582675e-05,
+          "mean_reef_fraction": 0.9030728178368121,
+          "rho_drive_vs_reef": -0.13690381142264502,
+          "forage_hazard_rate": 0.19672131147540983,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.19672131147540983,
+          "n_forage_steps": 61,
+          "n_transit_steps": 10,
+          "n_forage_hazards": 12,
+          "n_transit_hazards": 10,
+          "per_episode_reef_fractions": [
+            1.0,
+            0.425,
+            0.9926470588235294,
+            1.0,
+            0.995,
+            0.82,
+            0.9919354838709677,
+            1.0
+          ]
+        }
+      ],
+      "ARM_1_dacc_only": [
+        {
+          "arm_label": "ARM_1_dacc_only",
+          "seed": 0,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.0005247755016355907,
+          "p0_first10_reward": -1.139173573255539,
+          "p0_last10_reward": -1.1591990548372268,
+          "p0_n_probe_states_collected": 0,
+          "p1_first10_reward": -1.1079325783252716,
+          "p1_last10_reward": -1.1256720286607744,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 0.0006327307575114949,
+          "mean_reef_fraction": 0.4234375,
+          "rho_drive_vs_reef": -0.057290322580645155,
+          "forage_hazard_rate": 0.6617647058823529,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.6617647058823529,
+          "n_forage_steps": 68,
+          "n_transit_steps": 8,
+          "n_forage_hazards": 45,
+          "n_transit_hazards": 8,
+          "per_episode_reef_fractions": [
+            0.5833333333333334,
+            0.8666666666666667,
+            0.375,
+            0.0,
+            0.0,
+            0.875,
+            0.0,
+            0.6875
+          ]
+        },
+        {
+          "arm_label": "ARM_1_dacc_only",
+          "seed": 1,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.00044572910125953864,
+          "p0_first10_reward": -1.1842168629169465,
+          "p0_last10_reward": -1.286255840063095,
+          "p0_n_probe_states_collected": 0,
+          "p1_first10_reward": -1.1613895183801652,
+          "p1_last10_reward": -1.2278105917572977,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 7.563285447890344e-05,
+          "mean_reef_fraction": 0.74875,
+          "rho_drive_vs_reef": -0.18758647321694275,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 1.0,
+          "n_forage_steps": 14,
+          "n_transit_steps": 6,
+          "n_forage_hazards": 14,
+          "n_transit_hazards": 6,
+          "per_episode_reef_fractions": [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            0.99,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "arm_label": "ARM_1_dacc_only",
+          "seed": 2,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.0005557728742133898,
+          "p0_first10_reward": -1.13264853566885,
+          "p0_last10_reward": -1.1122117668390274,
+          "p0_n_probe_states_collected": 0,
+          "p1_first10_reward": -0.9215396934747695,
+          "p1_last10_reward": -1.0025657713413239,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 8.723263596582675e-05,
+          "mean_reef_fraction": 0.9030728178368121,
+          "rho_drive_vs_reef": -0.13690381142264502,
+          "forage_hazard_rate": 0.19672131147540983,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.19672131147540983,
+          "n_forage_steps": 61,
+          "n_transit_steps": 10,
+          "n_forage_hazards": 12,
+          "n_transit_hazards": 10,
+          "per_episode_reef_fractions": [
+            1.0,
+            0.425,
+            0.9926470588235294,
+            1.0,
+            0.995,
+            0.82,
+            0.9919354838709677,
+            1.0
+          ]
+        }
+      ],
+      "ARM_2_gated_only": [
+        {
+          "arm_label": "ARM_2_gated_only",
+          "seed": 0,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.0009469956240263565,
+          "p0_first10_reward": -1.1113535577058795,
+          "p0_last10_reward": -1.116419013738632,
+          "p0_n_probe_states_collected": 10,
+          "p1_first10_reward": -1.0492197817564013,
+          "p1_last10_reward": -1.063784347176552,
+          "p1_inert_gating_detected": true,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 8.257441222667695e-05,
+              "max_tv_distance": 0.00013111531734466553,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0001091357320547104,
+              "max_tv_distance": 0.00024040043354034424,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 8.521787822246552e-05,
+              "max_tv_distance": 0.00043258070945739746,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.00012495294213294984,
+              "max_tv_distance": 0.0007833503186702728,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0002003200352191925,
+              "max_tv_distance": 0.001261729747056961,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.00010997019708156586,
+              "max_tv_distance": 0.001031477004289627,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 0.0009140916778843187,
+          "mean_reef_fraction": 0.2795630107090291,
+          "rho_drive_vs_reef": -0.14341806351491582,
+          "forage_hazard_rate": 0.19230769230769232,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.19230769230769232,
+          "n_forage_steps": 234,
+          "n_transit_steps": 12,
+          "n_forage_hazards": 45,
+          "n_transit_hazards": 12,
+          "per_episode_reef_fractions": [
+            0.029411764705882353,
+            0.9333333333333333,
+            0.18,
+            0.0,
+            0.16393442622950818,
+            0.013157894736842105,
+            0.9166666666666666,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_2_gated_only",
+          "seed": 1,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.0003957514698547624,
+          "p0_first10_reward": -1.0640831148624421,
+          "p0_last10_reward": -1.2091398811340333,
+          "p0_n_probe_states_collected": 17,
+          "p1_first10_reward": -1.110144073367119,
+          "p1_last10_reward": -1.0301343774795533,
+          "p1_inert_gating_detected": true,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00019680204636910383,
+              "max_tv_distance": 0.0008305124938488007,
+              "min_tv_distance": 5.098804831504822e-05,
+              "applicable": true,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00015024753177867215,
+              "max_tv_distance": 0.00035677477717399597,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00014893272343803854,
+              "max_tv_distance": 0.0006074048578739166,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00016001546207596273,
+              "max_tv_distance": 0.000989861786365509,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 2.6348978281021118e-05,
+              "max_tv_distance": 0.0002777315676212311,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 4.4030458571909595e-05,
+          "mean_reef_fraction": 0.9953904981210806,
+          "rho_drive_vs_reef": -0.45998457525987785,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 1.0,
+          "n_forage_steps": 3,
+          "n_transit_steps": 8,
+          "n_forage_hazards": 3,
+          "n_transit_hazards": 8,
+          "per_episode_reef_fractions": [
+            1.0,
+            1.0,
+            1.0,
+            0.9807692307692307,
+            1.0,
+            0.9902912621359223,
+            0.9920634920634921,
+            1.0
+          ]
+        },
+        {
+          "arm_label": "ARM_2_gated_only",
+          "seed": 2,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.0010484759488774838,
+          "p0_first10_reward": -1.1204307210445403,
+          "p0_last10_reward": -1.0607433682680132,
+          "p0_n_probe_states_collected": 28,
+          "p1_first10_reward": -1.083220728635788,
+          "p1_last10_reward": -1.0708409637212752,
+          "p1_inert_gating_detected": true,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 5.372254444020135e-05,
+              "max_tv_distance": 0.00013752654194831848,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 6.081443279981613e-05,
+              "max_tv_distance": 0.00017790868878364563,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 4.231131502560207e-05,
+              "max_tv_distance": 0.00023743510246276855,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 5.6435221007892066e-05,
+              "max_tv_distance": 0.0003978163003921509,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 7.42631299155099e-05,
+              "max_tv_distance": 0.0005958341062068939,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 0.00011195202491113118,
+              "max_tv_distance": 0.0009286850690841675,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 8.021547858204161e-05,
+              "max_tv_distance": 0.0006204843521118164,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 5.3968945784228186e-05,
+              "max_tv_distance": 0.0005242154002189636,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 1.2952036091259547e-05,
+              "max_tv_distance": 0.0001465529203414917,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 1.1893388416085924e-05,
+              "max_tv_distance": 0.00013402849435806274,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 1.0975503495761327e-05,
+              "max_tv_distance": 0.00016546621918678284,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 9.908340871334076e-06,
+              "max_tv_distance": 0.0002774335443973541,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 0.004118545386246836,
+          "mean_reef_fraction": 0.4051284132534133,
+          "rho_drive_vs_reef": 0.779344043931093,
+          "forage_hazard_rate": 0.5280898876404494,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.5280898876404494,
+          "n_forage_steps": 89,
+          "n_transit_steps": 7,
+          "n_forage_hazards": 47,
+          "n_transit_hazards": 7,
+          "per_episode_reef_fractions": [
+            0.9885714285714285,
+            0.0,
+            0.0,
+            0.06060606060606061,
+            0.7692307692307693,
+            0.7142857142857143,
+            0.7083333333333334,
+            0.0
+          ]
+        }
+      ],
+      "ARM_3_both": [
+        {
+          "arm_label": "ARM_3_both",
+          "seed": 0,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.0009469956240263565,
+          "p0_first10_reward": -1.1113535577058795,
+          "p0_last10_reward": -1.116419013738632,
+          "p0_n_probe_states_collected": 10,
+          "p1_first10_reward": -1.0492197817564013,
+          "p1_last10_reward": -1.063784347176552,
+          "p1_inert_gating_detected": true,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 8.257441222667695e-05,
+              "max_tv_distance": 0.00013111531734466553,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0001091357320547104,
+              "max_tv_distance": 0.00024040043354034424,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 8.521787822246552e-05,
+              "max_tv_distance": 0.00043258070945739746,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.00012495294213294984,
+              "max_tv_distance": 0.0007833503186702728,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0002003200352191925,
+              "max_tv_distance": 0.001261729747056961,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.00010997019708156586,
+              "max_tv_distance": 0.001031477004289627,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 10,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 0.0009140916778843187,
+          "mean_reef_fraction": 0.2795630107090291,
+          "rho_drive_vs_reef": -0.14341806351491582,
+          "forage_hazard_rate": 0.19230769230769232,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.19230769230769232,
+          "n_forage_steps": 234,
+          "n_transit_steps": 12,
+          "n_forage_hazards": 45,
+          "n_transit_hazards": 12,
+          "per_episode_reef_fractions": [
+            0.029411764705882353,
+            0.9333333333333333,
+            0.18,
+            0.0,
+            0.16393442622950818,
+            0.013157894736842105,
+            0.9166666666666666,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_3_both",
+          "seed": 1,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.0003957514698547624,
+          "p0_first10_reward": -1.0640831148624421,
+          "p0_last10_reward": -1.2091398811340333,
+          "p0_n_probe_states_collected": 17,
+          "p1_first10_reward": -1.110144073367119,
+          "p1_last10_reward": -1.0301343774795533,
+          "p1_inert_gating_detected": true,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00019680204636910383,
+              "max_tv_distance": 0.0008305124938488007,
+              "min_tv_distance": 5.098804831504822e-05,
+              "applicable": true,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00015024753177867215,
+              "max_tv_distance": 0.00035677477717399597,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00014893272343803854,
+              "max_tv_distance": 0.0006074048578739166,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.00016001546207596273,
+              "max_tv_distance": 0.000989861786365509,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 2.6348978281021118e-05,
+              "max_tv_distance": 0.0002777315676212311,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 17,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 4.4030458571909595e-05,
+          "mean_reef_fraction": 0.9953904981210806,
+          "rho_drive_vs_reef": -0.45998457525987785,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 1.0,
+          "n_forage_steps": 3,
+          "n_transit_steps": 8,
+          "n_forage_hazards": 3,
+          "n_transit_hazards": 8,
+          "per_episode_reef_fractions": [
+            1.0,
+            1.0,
+            1.0,
+            0.9807692307692307,
+            1.0,
+            0.9902912621359223,
+            0.9920634920634921,
+            1.0
+          ]
+        },
+        {
+          "arm_label": "ARM_3_both",
+          "seed": 2,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.0010484759488774838,
+          "p0_first10_reward": -1.1204307210445403,
+          "p0_last10_reward": -1.0607433682680132,
+          "p0_n_probe_states_collected": 28,
+          "p1_first10_reward": -1.083220728635788,
+          "p1_last10_reward": -1.0708409637212752,
+          "p1_inert_gating_detected": true,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 5.372254444020135e-05,
+              "max_tv_distance": 0.00013752654194831848,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 5
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 6.081443279981613e-05,
+              "max_tv_distance": 0.00017790868878364563,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 10
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 4.231131502560207e-05,
+              "max_tv_distance": 0.00023743510246276855,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 15
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 5.6435221007892066e-05,
+              "max_tv_distance": 0.0003978163003921509,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 20
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 7.42631299155099e-05,
+              "max_tv_distance": 0.0005958341062068939,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 25
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 0.00011195202491113118,
+              "max_tv_distance": 0.0009286850690841675,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 30
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 8.021547858204161e-05,
+              "max_tv_distance": 0.0006204843521118164,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 35
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 5.3968945784228186e-05,
+              "max_tv_distance": 0.0005242154002189636,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 40
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 1.2952036091259547e-05,
+              "max_tv_distance": 0.0001465529203414917,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 45
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 1.1893388416085924e-05,
+              "max_tv_distance": 0.00013402849435806274,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 50
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 1.0975503495761327e-05,
+              "max_tv_distance": 0.00016546621918678284,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 55
+            },
+            {
+              "n_probe_states": 28,
+              "mean_tv_distance": 9.908340871334076e-06,
+              "max_tv_distance": 0.0002774335443973541,
+              "min_tv_distance": 0.0,
+              "applicable": true,
+              "p1_ep": 60
+            }
+          ],
+          "p1_final_running_variance": 0.004118545386246836,
+          "mean_reef_fraction": 0.4051284132534133,
+          "rho_drive_vs_reef": 0.779344043931093,
+          "forage_hazard_rate": 0.5280898876404494,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.5280898876404494,
+          "n_forage_steps": 89,
+          "n_transit_steps": 7,
+          "n_forage_hazards": 47,
+          "n_transit_hazards": 7,
+          "per_episode_reef_fractions": [
+            0.9885714285714285,
+            0.0,
+            0.0,
+            0.06060606060606061,
+            0.7692307692307693,
+            0.7142857142857143,
+            0.7083333333333334,
+            0.0
+          ]
+        }
+      ]
+    }
+  }
+}

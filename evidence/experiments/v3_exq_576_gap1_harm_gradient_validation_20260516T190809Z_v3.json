@@ -1,0 +1,84 @@
+{
+  "run_id": "v3_exq_576_gap1_harm_gradient_validation_20260516T190809Z_v3",
+  "queue_id": "V3-EXQ-576",
+  "experiment_type": "gap1_harm_gradient_validation",
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260516T190809Z",
+  "outcome": "PASS",
+  "dry_run": true,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_episodes": 5,
+    "n_steps": 200,
+    "outer_radius": 3.0,
+    "inner_radius": 0.0,
+    "scale": 1.0,
+    "thresh_c1": -0.0001,
+    "thresh_c2": 0.0
+  },
+  "acceptance_checks": {
+    "C1_arm1_gradient_fires": true,
+    "C2_arm0_no_gradient": true
+  },
+  "c1_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "c2_by_seed": [
+    true,
+    true,
+    true
+  ],
+  "results_by_seed": {
+    "0": {
+      "ARM_0_disabled": {
+        "mean_gradient_reward": 0.0,
+        "n_gradient_fires": 0,
+        "total_steps": 222,
+        "gradient_enabled": false
+      },
+      "ARM_1_enabled": {
+        "mean_gradient_reward": -0.010112351028969043,
+        "n_gradient_fires": 27,
+        "total_steps": 222,
+        "gradient_enabled": true
+      }
+    },
+    "1": {
+      "ARM_0_disabled": {
+        "mean_gradient_reward": 0.0,
+        "n_gradient_fires": 0,
+        "total_steps": 269,
+        "gradient_enabled": false
+      },
+      "ARM_1_enabled": {
+        "mean_gradient_reward": -0.00934697271324386,
+        "n_gradient_fires": 33,
+        "total_steps": 269,
+        "gradient_enabled": true
+      }
+    },
+    "2": {
+      "ARM_0_disabled": {
+        "mean_gradient_reward": 0.0,
+        "n_gradient_fires": 0,
+        "total_steps": 353,
+        "gradient_enabled": false
+      },
+      "ARM_1_enabled": {
+        "mean_gradient_reward": -0.007433479887098383,
+        "n_gradient_fires": 25,
+        "total_steps": 353,
+        "gradient_enabled": true
+      }
+    }
+  }
+}

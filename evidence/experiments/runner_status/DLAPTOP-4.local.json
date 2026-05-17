@@ -1,45 +1,129 @@
 {
   "schema_version": "v1",
-  "runner_pid": 90611,
-  "runner_started_at": "2026-05-16T19:05:59.351166+00:00",
-  "last_updated": "2026-05-17T08:09:50.885045+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-575a",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
-    "description": "",
-    "script": "experiments/v3_exq_575a_isef001_harm_gradient_baseline.py",
-    "started_at": "2026-05-17T06:07:00.797560+00:00",
-    "progress": {
-      "run_label": "Seed 45 / ARM_0_control",
-      "runs_done": 6,
-      "runs_total": 10,
-      "episodes_done": 50,
-      "episodes_total": 200,
-      "overall_pct": 62.5
-    },
-    "seconds_elapsed": 7370,
-    "seconds_remaining": 4390,
-    "recent_lines": [
-      "[train] ARM_1_treatment ep 150/200 seed=44 coverage=1.000 harm_total=53.685 mean_weight=1.6776",
-      "[train] ARM_1_treatment ep 200/200 seed=44 coverage=1.000 harm_total=73.517 mean_weight=2.2974",
-      "verdict: PASS",
-      "Seed 45 Condition ARM_0_control",
-      "[train] ARM_0_control ep 50/200 seed=45 coverage=1.000 harm_total=11.038 mean_weight=0.3449"
-    ],
-    "ree_version": "v3"
-  },
+  "runner_pid": null,
+  "runner_started_at": "2026-05-17T13:09:45.696913+00:00",
+  "last_updated": "2026-05-17T13:09:47.767528+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-575a",
+      "queue_id": "V3-EXQ-543f",
       "backlog_id": "",
       "claim_id": "",
-      "title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
+      "title": "ARC-062 x MECH-309 monomodal-collapse falsifier -- one-hot head augmentation + dacc_weight fix",
       "description": "",
-      "estimated_minutes": 266.7,
-      "status": "running",
+      "estimated_minutes": 172.8,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-587",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "EXQ-ISEF-001: harm_gradient_enabled vs binary-contact residue geography formation (GAP-10)",
+      "description": "",
+      "estimated_minutes": 1333.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-588",
+      "backlog_id": "",
+      "claim_id": "MECH-189",
+      "title": "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison (GAP-11)",
+      "description": "",
+      "estimated_minutes": 1333.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-585",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "infant_substrate GAP-8 validation -- post_sleep_z_goal_retention + replay_diversity_index",
+      "description": "",
+      "estimated_minutes": 0.8,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-589",
+      "backlog_id": "",
+      "claim_id": "ARC-065",
+      "title": "EXQ-ISEF-003: microhabitat zones vs homogeneous geography -- z_world latent diversity (infant_substrate:GAP-12)",
+      "description": "",
+      "estimated_minutes": 1333.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-590",
+      "backlog_id": "",
+      "claim_id": "MECH-314",
+      "title": "EXQ-ISEF-004: novelty bonus Goldilocks calibration -- MECH-111 broadcast weight sweep (infant_substrate:GAP-13)",
+      "description": "",
+      "estimated_minutes": 2000.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-591",
+      "backlog_id": "",
+      "claim_id": "ARC-046",
+      "title": "EXQ-ISEF-005: 4-phase infant curriculum vs flat parameter baselines (GAP-14)",
+      "description": "",
+      "estimated_minutes": 4000.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-586",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "GAP-9 infant curriculum scheduler validation",
+      "description": "",
+      "estimated_minutes": 104.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-481b",
+      "backlog_id": "",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 V_s commit-release substrate validation (re-issue 481)",
+      "description": "",
+      "estimated_minutes": 0.4,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-584",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "GAP-7 traj_pairwise_cosine_mean substrate-readiness diagnostic",
+      "description": "",
+      "estimated_minutes": 4.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-582a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "GAP-3 Option 2: drive_floor insatiability floor sweep (escalation from EXQ-582 FAIL)",
+      "description": "",
+      "estimated_minutes": 60.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -8005,5 +8089,6 @@
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 4760.7
     }
-  ]
+  ],
+  "draining": false
 }
