@@ -1,0 +1,85 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-17T14:20:35Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_572_intervention_a_dual_attractor_20260516T095117Z_v3",
+      "queue_id": "V3-EXQ-572",
+      "claim_ids": ["ARC-065"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "missing -- MECH-269/V_s monostrategy resolution",
+        "implementation": "partial -- substrate landed; bias not propagating to E3 selection",
+        "environment": "too sparse -- CausalGridWorldV2 monostrategy ceiling confirmed (C1_TV~=1e-14)",
+        "measurement": "adequate for final run; earlier 3 runs had data collection failure (n_c2/c3_records=0)",
+        "integration": "uncoupled -- diversity/intervention signals not reaching E3 score function",
+        "scale": "unknown -- cannot evaluate until propagation fixed"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic gain modulation, frontopolar BA10 uncertainty-driven exploration, striatal mesolimbic vigor (Niv 2007, Daw 2006, Wittmann 2008)",
+        "dependencies": ["monostrategy resolution (MECH-269/V_s)", "E3 score sensitivity to upstream signals"],
+        "is_formal_import": true,
+        "divergence": "Bias-addition architecture (score offset) may not match biological gain-modulation mechanism. Not falsifiable until monostrategy resolved.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Non-contributory: monostrategy ceiling prevents discrimination. EXQ-572 (C1_TV~=1e-14, C2/C3_delta~=0 across all 4 arms) confirms Intervention A parameters produce no behavioral differentiation under CausalGridWorldV2 monostrategy. Reclassified non_contributory 2026-05-16. pending_retest_after_substrate: MECH-269/V_s monostrategy. Not claim pressure.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Monostrategy ceiling is gating prerequisite for Intervention A testing",
+        "C3_delta=0.0 exactly confirms z_goal not driving foraging behavior -- consistent with EXQ-582 zero-contact finding",
+        "Earlier runs (3) had data collection failure (n=0); final run has records but result trivially zero"
+      ],
+      "routing": "pending_retest_after_substrate"
+    },
+    {
+      "run_id": "v3_exq_573_arc065_bias_scale_sweep_20260516T083605Z_v3",
+      "queue_id": "V3-EXQ-573",
+      "claim_ids": ["ARC-065", "MECH-313", "MECH-314", "MECH-320"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "missing -- MECH-269/V_s monostrategy resolution",
+        "implementation": "partial -- substrate landed; bias channel not reaching E3 selection",
+        "environment": "too sparse -- monostrategy ceiling; all 10 arms identical",
+        "measurement": "adequate -- scale invariance is diagnostic (10x produces no change)",
+        "integration": "uncoupled -- bias_fraction=0 for all components (per EXQ-571)",
+        "scale": "unknown -- cannot evaluate until propagation fixed"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic (MECH-313), frontopolar curiosity (MECH-314), striatal tonic DA vigor (MECH-320)",
+        "dependencies": ["E3 score function sensitivity to additive bias", "monostrategy resolution"],
+        "is_formal_import": true,
+        "divergence": "Score-bias addition is a formal-definition import; biological mechanism is global gain modulation. Scale invariance (10x = identical to 0x) confirms structural disconnection, not just under-power.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Non-contributory: bias channel not propagating to E3 selection (bias_fraction=0 at 1x/5x/10x scale; all 10 arms produce identical entropy=0.515109). Reclassified non_contributory 2026-05-16. EXQ-571 confirmed bias_fraction=0 for all components. Scale invariance is structural, not power issue. pending_retest_after_substrate: MECH-269/V_s monostrategy. Biology-divergence flag: bias-addition may not match LC-NE/frontopolar gain-modulation mechanism -- commission lit-pull when diversity track resumes.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Bias channel is structurally disconnected from E3 selection (not under-powered)",
+        "10x scaling produces no entropy change -- confirms structural disconnection, not parameter tuning issue",
+        "Biology-divergence: bias-addition architecture vs global gain modulation -- flag for lit-pull review"
+      ],
+      "routing": "pending_retest_after_substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Absolute zero discrimination across all arms and seeds despite sufficient data collection. Scale invariance confirms structural disconnection.",
+    "is_independent_bugs": false,
+    "structural_property": "CausalGridWorldV2 monostrategy ceiling: agent collapses to single behavioral mode regardless of upstream diversity/intervention signals. No arm produces any behavioral differentiation.",
+    "readings": ["substrate_ceiling (monostrategy)", "bias-addition architecture mismatch with biology (secondary, untestable until monostrategy resolved)"],
+    "convergent_experiments": ["EXQ-550 (monostrategy falsifier)", "EXQ-553 (orthogonal seeding)", "EXQ-569 (entropy sweep)", "EXQ-582 (zero contact density)", "EXQ-572 (TV~=1e-14)", "EXQ-573 (bias_fraction=0)"]
+  }
+}
