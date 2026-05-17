@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012",
+  "timestamp_utc": "2026-05-17T17:38:18Z",
+  "claim_ids_tested": ["MECH-120"],
+  "source": {
+    "title": "Protein synthesis during sleep consolidates cortical plasticity in vivo",
+    "authors": ["Seibt, Julie", "Dumoulin, Michelle C.", "Aton, Sara J.", "Coleman, Tammi", "Watson, Adam", "Naidoo, Nirinjini", "Frank, Marcos G."],
+    "year": 2012,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2012.02.016"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Strong causal evidence that mTOR-dependent protein synthesis during sleep (not wakefulness) is required to consolidate experience-dependent plasticity in visual cortex. Inhibiting mTOR during post-MD sleep abolishes ODP consolidation; the same inhibition during wakefulness has no effect on plasticity induction. Direct evidence that sleep consolidation is mechanistically distinct from waking plasticity induction -- wakefulness alone is insufficient for full consolidation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rapamycin has broad effects on cellular protein synthesis; specificity to ODP-related proteins vs general cellular maintenance cannot be fully verified.",
+    "The study uses a short monocular deprivation paradigm (6 h MD) in cats at the critical period peak; whether the same sleep-specific consolidation requirement exists at other developmental stages is not tested.",
+    "The finding that waking mTOR inhibition does not impair induction does not necessarily mean waking is insufficient for consolidation under all conditions."
+  ],
+  "tags": [
+    "mech120", "sleep-consolidation", "protein-synthesis", "mTOR", "ODP", "ocular-dominance",
+    "BDNF", "ARC", "Frank-lab", "wakefulness-insufficient", "critical-period", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Intracortical inhibition of mTOR-dependent protein synthesis during post-MD sleep abolishes ODP consolidation in cat visual cortex, while the same inhibition during wakefulness has no effect on plasticity induction. Sleep also promotes phosphorylation of translation regulators (4E-BP1, eEF2) and translation (but not transcription) of ARC and BDNF mRNAs.",
+    "ree_translation": "MECH-120 claims that SWS-analog sleep performs consolidation work that cannot occur during active waking. The Seibt finding provides causal evidence for the 'waking is insufficient' premise: even with full plasticity induction during waking (the MD experience is registered), consolidation fails if the sleep translational program is blocked. The structural stabilisation that converts the update into a lasting change requires the offline phase. This supports MECH-120's claim that the SWS-analog offline phase is executing a specific consolidation program that waking cannot substitute for.",
+    "mapping_caveat": "The protein synthesis requirement is for consolidation following an already-induced plasticity change. The REE monostrategy concern is whether sleep can rescue a substrate where waking dynamics have already produced excessive dominance -- this paper speaks to consolidation of waking-induced changes, not to reversal of maladaptive convergence. Additionally, the study uses a defined sensory deprivation paradigm and cats -- transfer to a self-generating policy convergence problem in a computational model requires additional assumptions.",
+    "source_context": "Critical period cats (postnatal days 28-41); 6 h monocular deprivation then 8 h sleep; mTOR inhibitor rapamycin infused intracortically during post-MD sleep or during waking MD; ODP assessed with optical imaging and microelectrode recordings."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (Current Biology, Frank lab, causal pharmacological intervention). Mapping fidelity moderate -- directly relevant to consolidation-requires-sleep claim but requires further step to reach the monostrategy rescue question. Transfer risk moderate."
+  }
+}

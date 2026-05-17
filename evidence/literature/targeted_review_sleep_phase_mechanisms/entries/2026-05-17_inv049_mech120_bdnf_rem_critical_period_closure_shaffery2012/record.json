@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-05-17_inv049_mech120_bdnf_rem_critical_period_closure_shaffery2012",
+  "timestamp_utc": "2026-05-17T17:38:18Z",
+  "claim_ids_tested": ["INV-049", "MECH-120"],
+  "source": {
+    "title": "Brain-derived neurotrophic factor (BDNF) reverses the effects of rapid eye movement sleep deprivation (REMSD) on developmentally regulated, long-term potentiation (LTP) in visual cortex slices",
+    "authors": ["Shaffery, James P.", "Lopez, Jorge", "Roffwarg, Howard P."],
+    "year": 2012,
+    "venue": "Neuroscience Letters",
+    "doi": "10.1016/j.neulet.2012.02.012"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Important paper establishing that REM sleep deprivation in adolescent rats re-opens a developmentally regulated form of LTP in visual cortex (LTPWM-III) normally closed after the critical period, and that BDNF infusion reverses this effect. Demonstrates that REM sleep contributes to critical period CLOSURE (crystallisation) through BDNF-dependent maturation of cortical inhibitory tone. The finding answers a core question: sleep closes critical periods, it does not merely extend them or operate independently.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The platform-over-water REMSD procedure is significantly more stressful than instrumental avoidance, introducing corticosteroid confounds that could affect BDNF expression independently of sleep loss.",
+    "LTPWM-III is a slice LTP protocol; whether this directly reflects in vivo plasticity levels is assumed but not proven.",
+    "BDNF infusion is local and osmotic, which may not replicate the spatiotemporal dynamics of endogenous BDNF release during natural sleep.",
+    "The causal direction (REM drives BDNF -> closure vs REMSD stress -> BDNF reduction -> incomplete closure) is not fully resolved."
+  ],
+  "tags": [
+    "inv049", "mech120", "REM-sleep", "BDNF", "critical-period-closure", "LTP",
+    "visual-cortex", "adolescent", "Shaffery", "Roffwarg", "inhibitory-maturation", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "REM sleep deprivation in late-adolescent rats re-induces LTPWM-III (normally restricted to the visual cortex critical period) and reduces inhibitory tone. Infusing BDNF into visual cortex of REM-deprived animals prevents LTPWM-III induction and restores age-appropriate inhibitory tone. REM sleep drives BDNF expression, which matures cortical inhibitory circuits and thereby closes the critical period.",
+    "ree_translation": "INV-049 argues that offline phases are a computational necessity for model-building agents, and MECH-120 proposes that SWS-analog sleep prevents WTA convergence. The Shaffery 2012 paper adds a third dimension: REM sleep actively CLOSES the critical period by driving BDNF-dependent inhibitory maturation. In REE terms: without adequate sleep (offline phases), the substrate may be trapped in a perpetually juvenile, high-plasticity state where waking WTA dynamics continue to operate unchecked. Normal sleep progressively builds the inhibitory scaffolding that limits how much any single waking experience can dominate the weight landscape. Sleep deprivation produces a double deficit: the acute WTA amplification (Oksenberg 1996) AND failure to mature the inhibitory scaffolding that would limit future WTA dynamics. Rescuing the substrate requires both the acute normalisation mechanism (MECH-120/SHY) and the maturation mechanism (BDNF/inhibitory circuit closure) to function.",
+    "mapping_caveat": "The paper addresses critical period CLOSURE in adolescent rats, not prevention of monostrategy within an open critical period. The BDNF mechanism is molecular-level; whether REE's computational architecture has an analog of 'inhibitory maturation via BDNF' is conceptually far from the direct mechanism.",
+    "source_context": "Late-adolescent Long-Evans rats (~postnatal day 50-60, past the visual critical period); 4-day platform-over-water REM sleep deprivation; unilateral BDNF minipump infusion; ex vivo visual cortex slices with theta-burst stimulation for LTPWM-III induction."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Moderate source quality (Neuroscience Letters, ex vivo LTP, platform stress confound). Mapping fidelity moderate -- relevant to critical period closure question but two conceptual steps from REE monostrategy concern. Transfer risk moderate-high."
+  }
+}

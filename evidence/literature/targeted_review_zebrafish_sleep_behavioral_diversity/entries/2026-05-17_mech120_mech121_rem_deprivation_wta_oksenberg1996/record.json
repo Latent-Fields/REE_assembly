@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_zebrafish_sleep_behavioral_diversity",
+  "entry_id": "2026-05-17_mech120_mech121_rem_deprivation_wta_oksenberg1996",
+  "timestamp_utc": "2026-05-17T17:38:18Z",
+  "claim_ids_tested": ["MECH-120", "MECH-121"],
+  "source": {
+    "title": "Rapid eye movement sleep deprivation in kittens amplifies LGN cell-size disparity induced by monocular deprivation",
+    "authors": ["Oksenberg, A.", "Shaffery, J.P.", "Marks, G.A.", "Speciale, S.G.", "Mihailoff, G.", "Roffwarg, H.P."],
+    "year": 1996,
+    "venue": "Brain Research: Developmental Brain Research",
+    "doi": "10.1016/s0165-3806(96)00131-9"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Direct empirical demonstration that REM sleep deprivation during monocular deprivation in kittens during the critical period amplifies the already winner-take-all LGN cell-size disparity: patched-eye LGN cells become even smaller, non-patched-eye cells grow even larger. The mechanism proposed is that REM sleep normally provides symmetric brainstem activation to all LGN relay cells irrespective of eye innervation, buffering against asymmetric visual input. When this symmetric activation is removed, the already-dominant non-deprived pathway captures still greater advantage. This is the clearest available biological demonstration that sleep deprivation ACCELERATES winner-take-all dynamics rather than simply impairing plasticity symmetrically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The amplification was measured in LGN cell soma size, not in downstream cortical ODP -- the cortical-level winner-take-all dynamics require a separate inference step.",
+    "REM sleep deprivation using instrumental avoidance involves stress and locomotion confounds that could contribute to the amplification effect via non-sleep mechanisms.",
+    "The symmetric activation hypothesis (brainstem fires to both eyes equally during REM) is a proposed mechanism, not directly measured -- the paper infers it from results.",
+    "The study examines a thalamic circuit (retina -> LGN); whether the same mechanism operates at cortical E1/E3 levels is not directly demonstrated."
+  ],
+  "tags": [
+    "mech120", "mech121", "critical-period", "REM-sleep", "sleep-deprivation", "winner-take-all",
+    "LGN", "monocular-deprivation", "competitive-plasticity", "ocular-dominance", "Roffwarg", "Shaffery",
+    "monostrategy", "sleep-accelerates-WTA", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "One week of REM sleep deprivation during two weeks of monocular deprivation in kittens during the developmental critical period amplifies LGN cell-size disparity: cells receiving input from the patched eye become even smaller than with MD alone, and cells receiving input from the non-deprived eye grow even larger. The proposed mechanism is that REM sleep provides symmetric brainstem (PGO wave) activation to all LGN relay cells regardless of eye innervation, buffering against the asymmetric advantage that the non-deprived eye gains during waking.",
+    "ree_translation": "MECH-120 posits that SWS-analog sleep prevents dominant waking experiences from monopolising the weight landscape. The Oksenberg data adds a mechanistically distinct point: REM sleep provides a source of symmetric, experience-independent activation that actively counteracts the competitive advantage the dominant pathway accumulates during waking. In REE terms: if waking scoring dynamics already favour one trajectory strongly (winner-take-all forward model dominance), REM deprivation would not merely fail to correct this but would actively worsen it by removing symmetric activation that normally dampens inter-pathway competition. The experiment shows sleep deprivation ACCELERATES monostrategy convergence -- implying that working sleep is doing real rescue work against waking competitive dynamics, even if it cannot fully reverse pre-established dominance once extreme.",
+    "mapping_caveat": "The LGN-level finding maps onto thalamo-cortical relay circuits, not directly onto the E1/E3 cortical weight competition REE models. The REM activation mechanism (symmetric PGO waves to LGN) has a cortical analog in REM-phase cortical reactivation but the two should not be equated without caveat. REE's monostrategy problem involves self-generated policy convergence, not externally-imposed sensory deprivation -- the mapping requires assuming internally-driven attractor dominance follows the same competitive dynamics.",
+    "source_context": "Kittens aged approximately postnatal day 28-42 (peak visual critical period); 1 week REM deprivation via instrumental avoidance during week 2 of 2-week monocular lid suture; LGN cell soma size measured in A and A1 laminae."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "High source quality for 1996: rigorously designed animal experiment with anatomical readout in a classical plasticity model. Mapping fidelity good for the core claim (sleep deprivation accelerates WTA) but requiring multiple inferential steps to reach REE architecture. Transfer risk moderate: kitten visual system to REE computational architecture."
+  }
+}

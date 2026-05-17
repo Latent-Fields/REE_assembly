@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_phase_mechanisms",
+  "entry_id": "2026-05-17_mech120_mech121_sleep_odp_disinhibition_aton2013",
+  "timestamp_utc": "2026-05-17T17:38:18Z",
+  "claim_ids_tested": ["MECH-120", "MECH-121"],
+  "source": {
+    "title": "Visual experience and subsequent sleep induce sequential plastic changes in putative inhibitory and excitatory cortical neurons",
+    "authors": ["Aton, Sara J.", "Broussard, Christopher", "Dumoulin, Michelle", "Seibt, Julie", "Watson, Adam", "Coleman, Tammi", "Frank, Marcos G."],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1208093110"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Key mechanistic paper resolving the circuit-level sequence by which waking experience and subsequent sleep together produce ODP in cat visual cortex. Monocular deprivation first depresses FS interneurons responding to the deprived eye, disinhibiting open-eye excitatory principal neurons. During subsequent NREM sleep, principal neurons fire more and become phase-locked to slow waves. OD shifts are only measurable after sleep -- the waking changes alone are insufficient. Directly supports the necessary-but-not-sufficient framing and provides the two-stage gate mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The mechanism linking slow-wave phase-locking to lasting synaptic weight changes is not directly demonstrated at the molecular level.",
+    "The finding that OD shifts require sleep does not rule out the possibility that extended wakefulness would also produce equivalent shifts.",
+    "The FS interneuron -> principal neuron disinhibition mechanism is cat visual cortex specific and may not generalise to all forms of experience-dependent plasticity."
+  ],
+  "tags": [
+    "mech120", "mech121", "NREM", "slow-wave-sleep", "disinhibition", "interneuron", "ODP",
+    "ocular-dominance", "critical-period", "sleep-required", "wakefulness-insufficient",
+    "Frank-lab", "Aton", "cat", "two-stage-gate", "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "In freely behaving cats during the critical period, monocular deprivation depresses FS interneurons biased toward the deprived eye, disinhibiting open-eye principal neurons. During subsequent NREM sleep, principal neurons increase firing and become phase-locked to slow waves. OD shifts are only evident after sleep, proportional to MD-induced FS changes and to sleep-associated principal neuron changes, greatest in principal neurons firing 40-300 ms after neighboring FS neurons during slow waves.",
+    "ree_translation": "MECH-120 and MECH-121 claim the offline phase executes a consolidation program that cannot be replicated during waking. The Aton PNAS paper provides the mechanistic circuit account: waking experience creates an instructive change in the inhibitory network (FS interneuron depression disinhibits open-eye principal neurons), but the actual synaptic strengthening requires slow-wave-phase-locked principal neuron firing that only occurs during NREM sleep. This is a two-stage gate: (gate 1) waking experience determines what is tagged for consolidation; (gate 2) sleep determines when and how the consolidation is written. If waking dynamics produce excessive tagging of dominant trajectories (WTA forward model dominance), gate 1 is corrupted before gate 2 even opens -- sleep cannot consolidate clean instructions when the instructions themselves are biased toward a dominant strategy.",
+    "mapping_caveat": "The specific mechanism (FS interneuron depression -> principal neuron disinhibition -> slow-wave phase-locking) is a visual cortex critical period finding. REE's consolidation mechanism is at a different level of abstraction. The implication that 'corrupted waking tagging corrupts sleep consolidation' follows logically from the two-stage gate model but is not directly tested in this paper.",
+    "source_context": "Adult cats (critical period postnatal days 28-41); freely behaving; simultaneous recording of FS interneurons and putative principal neurons in extragranular visual cortex across MD and post-MD sleep."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Excellent source quality (PNAS, in vivo simultaneous recordings, Frank lab). Mapping fidelity good for the two-stage gate functional logic; moderate deduction to reach REE architecture. Transfer risk moderate."
+  }
+}
