@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-17T20:39:18Z",
+  "last_tick_utc": "2026-05-17T20:40:20Z",
   "state": "running",
   "current_exq": "V3-EXQ-589",
   "current_exq_started_utc": "2026-05-17T14:03:43.230628+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-065",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_0_control",
-    "runs_done": 2,
+    "run_label": "Seed 43 / ARM_1_treatment",
+    "runs_done": 3,
     "runs_total": 10,
-    "episodes_done": 900,
+    "episodes_done": 0,
     "episodes_total": 1000,
-    "overall_pct": 29.0
+    "overall_pct": 30.0
   },
-  "seconds_elapsed": 23222,
-  "seconds_remaining": 55114,
+  "seconds_elapsed": 23284,
+  "seconds_remaining": 54220,
   "recent_lines": [
-    "[train] ARM_0_control seed=43 ep 500/1000 top3var=0.0004 traj_cosine=0.862",
-    "[train] ARM_0_control seed=43 ep 600/1000",
-    "[train] ARM_0_control seed=43 ep 700/1000",
     "[train] ARM_0_control seed=43 ep 800/1000",
-    "[train] ARM_0_control seed=43 ep 900/1000"
+    "[train] ARM_0_control seed=43 ep 900/1000",
+    "[train] ARM_0_control seed=43 ep 1000/1000 top3var=0.0007 traj_cosine=0.926",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_1_treatment"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
