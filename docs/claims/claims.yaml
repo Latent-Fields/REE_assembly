@@ -31931,6 +31931,7 @@
   status: candidate
   registered_utc: "2026-05-17"
   depends_on:
+    - INV-075    # parent: signal-structure temporal decoupling. INV-074 is the COMPETITIVE special case (decay mechanism = active dominant-pathway overwriting; resolution = crystallization/lock arm)
     - INV-073    # developmental bootstrapping necessity (exploration epoch)
     - ARC-065    # diversity stack -- the circuit that must crystallize
     - MECH-120   # sleep SWY downscaling -- the consolidation mechanism
@@ -32309,3 +32310,98 @@
     dependent (ICM failure mode, Pathak 2017) -- if so, Q-052 resolves to (B) regardless
     of EXQ-573 result, because the diversity signal source will self-extinguish as F
     consolidates further.
+
+- id: INV-075
+  title: "Signal-structure temporal decoupling: any signal that is BOTH self-extinguishing
+    (its magnitude is coupled to its own success and therefore necessarily fades as what it
+    bootstraps succeeds) AND load-bearing (the structure it establishes must persist after
+    the signal fades) necessarily requires either a crystallization mechanism (LOCK -- the
+    structure is rendered plasticity-resistant) or a handoff mechanism (a durable,
+    non-extinguishing signal assumes maintenance of the structure before the establishing
+    signal vanishes). Absent both, the structure decays and the acquisition is lost. The
+    lock/handoff disjunction is exhaustive: no third resolution exists."
+  claim_type: invariant
+  invariant_type: universal
+  subject: learning.signal_structure_temporal_decoupling
+  polarity: asserts
+  status: candidate
+  registered_utc: "2026-05-17"
+  specializes_into:
+    - INV-074    # the COMPETITIVE special case: decay mechanism = active dominant-pathway
+                 # overwriting (Hebbian WTA / heterosynaptic depression); resolution = the
+                 # crystallization/lock arm (critical-period closure, MECH-333/334)
+  related:
+    - INV-073    # developmental bootstrapping -- the exploration epoch is a self-extinguishing
+                 # setup signal; INV-075 explains why its acquisitions need lock or handoff
+    - MECH-333   # an instance of the LOCK arm (critical-period open phase)
+    - MECH-334   # an instance of the LOCK arm (critical-period closure / crystallization)
+    - Q-052      # the F-error-dependence question is one instance of "is signal X self-extinguishing"
+  lit_conf: 0.80
+  literature_anchors:
+    - "Pathak et al. (2017) ICML arXiv:1705.05363 -- ICM: F-error-coupled curiosity is the
+       canonical self-extinguishing load-bearing signal; collapses to zero as F consolidates;
+       demonstrates the failure mode when NEITHER lock nor handoff is present. conf 0.85."
+    - "Burda et al. (2019) ICLR arXiv:1810.12894 -- RND: a signal-LEVEL escape -- making the
+       novelty signal NOT coupled to F's success (fixed random target) dissolves the antecedent
+       entirely; confirms the invariant is correctly scoped to self-extinguishing signals only,
+       not all setup signals. conf 0.85."
+    - "Deidda et al. (2015) Nature Neurosci 18:87 + Huang et al. (1999) Cell 98:739 --
+       depolarizing GABA and the developmental BDNF surge are self-extinguishing by
+       construction (transient developmental signals that fade with maturation); biological
+       instances of the antecedent. conf 0.84."
+    - "Pizzorusso et al. (2002) Science 298:1248 + Morishita et al. (2010) Science 330:1238 --
+       PNN / Lynx1 are the biological LOCK arm: structure made plasticity-resistant after the
+       transient setup signals have faded. conf 0.90."
+    - "Aton et al. (2013) PNAS 110:3059 + use-dependent maintenance of sensory circuits --
+       biological HANDOFF arm: after developmental setup signals fade, ongoing sensory drive
+       (a durable signal) maintains the now load-bearing circuit; lock and handoff co-occur
+       in normal development. conf 0.82."
+    - "Kleinman, Achille & Soatto (2023) CVPR arXiv:2210.04643 -- cross-channel joint
+       predictive loss is an ML HANDOFF: ties the bootstrapped structure into a durable shared
+       objective before the setup signal fades. conf 0.83."
+    - "Bengio et al. (2009) ICML -- curriculum learning with NEITHER lock nor handoff converges
+       to monostrategy: the failure case at ML level when the antecedent holds and the
+       consequent is unmet. conf 0.82."
+  notes: >
+    INV-075 is the parent invariant; INV-074 is its competitive special case. The
+    generalization was established by exhaustion (no counterexample exists): if a
+    signal is self-extinguishing and the structure it builds is load-bearing, then
+    by the time the signal has faded the structure either (a) has been made resistant
+    to subsequent plasticity (lock) or (b) is being actively maintained by some other
+    durable signal (handoff), or else (c) it decays. There is no fourth case --
+    "the signal maintains it" is excluded by self-extinguishing; "it does not need
+    to persist" is excluded by load-bearing.
+
+    SCOPE PRECISION (important -- prevents over-claiming):
+    INV-075 does NOT assert that all setup signals must be self-extinguishing. It is
+    conditional: GIVEN a self-extinguishing AND load-bearing signal, lock-or-handoff
+    is necessary. There is a distinct signal-LEVEL design option -- make the signal
+    NOT self-extinguishing in the first place (Burda 2019 RND: a novelty signal
+    decoupled from F's success does not decay as F learns). That option escapes the
+    invariant's antecedent rather than satisfying its consequent. The three exhaustive
+    design responses to a load-bearing setup need are therefore:
+      (i)  use a non-self-extinguishing signal (avoid the antecedent), OR
+      (ii) lock the structure (crystallization), OR
+      (iii) hand off to a durable maintaining signal.
+    (i) is upstream of INV-075; (ii) and (iii) are the invariant's two-arm consequent.
+
+    RELATION TO REE SUBSTRATE:
+    - The infant-curriculum bootstrapping signals (novelty_bonus, residue_scale ramp,
+      high early replay) are self-extinguishing by schedule. The gated-policy /
+      residue / z_goal structure they establish is load-bearing for later rule
+      apprehension. INV-075 says that structure MUST be locked or handed off before
+      Phase-3->adult. V3-EXQ-543g attempted a HANDOFF (outcome-coupled REINFORCE so a
+      durable return signal maintains the gating) and it failed -- so the open design
+      fork for 543h is lock vs. a better handoff vs. both. This is the direct
+      operational consequence of INV-075 for the 543 lineage.
+    - Q-052's F-error-dependence audit is the test of whether MECH-313/314/320 fall
+      under INV-075's antecedent at all (option (i) vs (ii)/(iii)).
+  evidence_quality_note: >
+    Registered 2026-05-17. Invariant established by logical exhaustion (user-confirmed:
+    no counterexample of a self-extinguishing load-bearing signal that needs neither
+    lock nor handoff). Biological and ML anchors drawn from the 2026-05-17 four-agent
+    lit pull (already grounds both the antecedent instances and both consequent arms).
+    No new lit pull required -- the existing corpus spans the self-extinguishing-signal
+    cases (Pathak, Deidda, Huang), the lock arm (Pizzorusso, Morishita), and the
+    handoff arm (Aton, Kleinman). INV-074 retained as the competitive specialization;
+    its depends_on now points to INV-075 as parent.
