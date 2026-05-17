@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-05-17.1 -->
+<!-- CLOSURE_VERSION: 2026-05-17.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -549,7 +549,17 @@ function renderGraph() {
   const planOrder = CLOSURE.plans.map(p => p.id);
   const colW = 250;
   const colGap = 60;
-  const colH = 700;
+  const yStart = 60;
+  const nodeH = 56;
+  const nodeGap = 8;
+  // colH must fit the tallest plan's node stack. A fixed cap clipped the tail
+  // of large plans (infant_substrate = 15 nodes) with no way to scroll to it.
+  let maxNodesInPlan = 0;
+  for (const pid of planOrder) {
+    const c = CLOSURE.nodes.filter(n => n.plan_id === pid).length;
+    if (c > maxNodesInPlan) maxNodesInPlan = c;
+  }
+  const colH = Math.max(700, yStart + maxNodesInPlan * (nodeH + nodeGap) + 20);
   const xOf = i => 30 + i * (colW + colGap);
   const totalW = Math.max(1200, planOrder.length * (colW + colGap) + 60);
   svg.setAttribute('width', totalW);
@@ -601,9 +611,6 @@ function renderGraph() {
         if (pa !== pb) return pa - pb;
         return (a.id < b.id ? -1 : 1);
       });
-    const yStart = 60;
-    const nodeH = 56;
-    const nodeGap = 8;
     for (let j = 0; j < planNodes.length; j++) {
       const n = planNodes[j];
       const x = xOf(i);
