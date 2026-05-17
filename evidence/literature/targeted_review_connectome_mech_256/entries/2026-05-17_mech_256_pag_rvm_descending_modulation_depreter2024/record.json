@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_256",
+  "entry_id": "2026-05-17_mech_256_pag_rvm_descending_modulation_depreter2024",
+  "timestamp_utc": "2026-05-17T11:40:08Z",
+  "claim_ids_tested": ["MECH-256", "SD-029"],
+  "source": {
+    "title": "The 'in's and out's' of descending pain modulation from the rostral ventromedial medulla",
+    "authors": ["De Preter, Caitlynn C", "Heinricher, Mary M"],
+    "year": 2024,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2024.04.006",
+    "pmid": "38749825",
+    "pmcid": "PMC11168876"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality review (Trends in Neurosciences, Heinricher lab has canonical authority on RVM circuit). Mapping fidelity is moderate: the paper definitively characterises the PAG/RVM mechanism as behavioural-state gating via ON/OFF cells, NOT efference-copy comparator -- this weakens the hypothesis that PAG/RVM IS the nociceptive comparator substrate but does not undermine MECH-256 itself (behavioural attenuation of self-generated pain, shown by Lalouni 2020 in this corpus, is real). The paper supports the existence of a rich, regulated descending nociceptive control system, while implying the efference-copy mechanism operates at a different anatomical level (spinal dorsal horn / somatosensory cortex, via corticospinal collaterals).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PAG/RVM ON/OFF cell firing is governed by behavioural state (arousal, stress, defensive motivation) and opioid tone, NOT by motor command prediction -- the system does not implement efference-copy cancellation of predicted nociception from a_actual.",
+    "If MECH-256 were implemented primarily in PAG/RVM, the clinical literature would predict that lesioning PAG/RVM abolishes self-generated pain attenuation; the paper does not support this specificity.",
+    "Molecular identification of RVM cell types produces conflicting behavioural results, indicating the system's modulatory function is more context-sensitive and less mechanistically clean than a forward-model comparator."
+  ],
+  "tags": ["mech_256", "sd_029", "pag_rvm", "descending_pain_modulation", "efference_copy", "nociceptive_comparator", "precision_gating"],
+  "mapping": {
+    "source_claim_statement": "The RVM exerts descending control of pain via two functionally defined cell classes: OFF-cells (antinociceptive, pause at nocifensive reflex) and ON-cells (pronociceptive, burst at nocifensive reflex). Their activity is regulated by inputs from PAG (emotionally/motivationally driven), spinal cord (ascending nociceptive signals), and brainstem nuclei. Top-down control reflects behavioural state -- stress, opioid tone, anticipation -- not per-step motor command prediction.",
+    "ree_translation": "The PAG/RVM implements CONTEXTUAL PRECISION-GATING of nociceptive gain, not the efference-copy forward-model comparator proposed in MECH-256. In REE terms: the PAG/RVM shifts the expected precision (reliability) of harm signals based on motivational state -- higher expected pain in hypervigilant states, lower in stress-analgesia states. This is conceptually distinct from the MECH-256 mechanism where residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual) on a per-step basis. The PAG/RVM modulates the BASELINE GAIN rather than subtracting an action-conditional prediction.",
+    "mapping_caveat": "The review does not directly test whether the nociceptive efference-copy comparator (MECH-256) exists at ALL in biology -- it simply shows that the PAG/RVM is not its substrate. The behavioural evidence (Lalouni 2020, already in this corpus for SD-029) that self-generated pain IS attenuated implies the comparator mechanism operates elsewhere -- most likely at spinal dorsal horn (corticospinal collateral corollary discharge to dorsal horn interneurons) or somatosensory cortex (S1/insula forward-model subtraction). MECH-256 generalisation to z_harm_s is supported behaviourally but the anatomical substrate is NOT the descending PAG/RVM pathway.",
+    "source_context": "Primarily rodent in vivo electrophysiology and pharmacology, with corroborating evidence from human imaging. Canonical review from the Heinricher lab (Oregon Health & Science University), which has defined the ON/OFF cell framework for three decades."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "Source quality is high: Heinricher is the field's authority on RVM cell-type function. Mapping fidelity is moderate: the paper is directly about the nociceptive descending pathway, but the gap it leaves open (that the efference-copy comparator operates elsewhere, not that it doesn't exist) requires inference. Transfer risk is low: the paper includes human imaging corroboration."
+  }
+}

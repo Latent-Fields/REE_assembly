@@ -39,12 +39,13 @@ closure_plan:
     - id: "self_attribution:GAP-4"
       title: "Nociceptive-comparator lit-pull (PAG/RVM/ACC)"
       phase: 4
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-256, SD-029]
       depends_on: []
-      last_updated: 2026-05-08
+      last_updated: 2026-05-17
+      completion_note: "Lit-pull complete 2026-05-17. Two new entries written: (1) De Preter & Heinricher 2024 (Trends in Neurosciences, PMID 38749825) in targeted_review_connectome_mech_256 -- mixed 0.74 -- establishes that PAG/RVM implements CONTEXTUAL PRECISION-GATING via ON/OFF cells (behavioural-state gating, opioid-mediated), NOT efference-copy comparator. (2) Seymour 2019 (Neuron, PMID 30897355) in targeted_review_sd_029 -- mixed 0.61 -- frames pain as precision-weighted prediction-error signal for RL/control; computationally convergent with MECH-256 at Marr level 2 but distinct at implementation level. ARCHITECTURAL VERDICT: OPTION A applies (comparator-class behaviour confirmed on nociceptive streams). Existing Lalouni 2020 entry (SD-029 corpus) already established the behavioural evidence (40% self-pain attenuation). PAG/RVM is NOT the substrate for the efference-copy comparator -- it implements a parallel precision-gating layer (contextual, motivational). The MECH-256 per-step efference-copy comparator operates at spinal dorsal horn / somatosensory cortex level (corticospinal collateral corollary discharge). SD-029 inherits MECH-256's lit_conf. No separate design doc needed -- the comparator metaphor on z_harm_s is NOT over-specified, but an architectural note should distinguish E2_harm_s (efference-copy, spinal/cortical) from PAG/RVM contextual gain control (parallel, not competing). MECH-256 lit_conf post-pull: 0.867 (mixed entries push it down slightly from 0.87 baseline but the existing supports dominate). SD-029 lit_conf: 0.858."
     - id: "self_attribution:GAP-5"
       title: "SD-030/SD-031 z_self / z_world materialisation (V4)"
       phase: 5
@@ -419,7 +420,7 @@ attribution work. See [Resume ritual](#resume-ritual) below.
 | GAP-1 | 1 | blocked | sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture (same gates as GAP-2) | After upstream gates close, queue a fresh three-arm ablation (NOT 445h -- that script is two-arm) that exercises ARC-033 vs ARC-058 under balanced events. Forensic read 2026-05-11 surfaced substrate-ceiling, not arbitration data -- see Decision log | TBD (post-substrate-gates) | 2026-05-11 |
 | GAP-2 | 2 | blocked | sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture | After all three upstream gates close, re-queue SD-029 / MECH-256 retest with full substrate stack | TBD (post-substrate-gates) | 2026-05-08 |
 | GAP-3 | 3 | blocked | Phase 2 PASS + Phase 1 verdict | After Phase 2 PASS, re-queue MECH-257 dual-function 3-arm ablation | re-queue of EXQ-452 (TBD) | 2026-05-08 |
-| GAP-4 | 4 | open | nothing | Schedule nociceptive-comparator lit-pull (PAG/RVM descending modulation, ACC pain attribution) | n/a (lit-pull) | 2026-05-08 |
+| GAP-4 | 4 | done | (none) | Lit-pull complete: 2 entries written (De Preter & Heinricher 2024 Trends Neurosci; Seymour 2019 Neuron). Verdict: Option A -- MECH-256 generalises to z_harm_s; SD-029 inherits lit_conf; PAG/RVM implements parallel precision-gating (NOT efference-copy); no separate SD-029 design doc needed | n/a (lit-pull) | 2026-05-17 |
 | GAP-5 | 5 | deferred V4 | z_self / z_world materialisation in V4 | none in V3 | n/a | 2026-05-08 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`.
@@ -469,6 +470,25 @@ unblocks_claims -- this is reflected explicitly in the
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-4 DONE: nociceptive-comparator lit-pull complete; architectural verdict Option A
+
+Lit-pull for self_attribution:GAP-4 complete. Two papers added:
+
+1. **De Preter & Heinricher 2024** (*Trends in Neurosciences*, PMID 38749825, DOI 10.1016/j.tins.2024.04.006) -- `targeted_review_connectome_mech_256`. Mixed 0.74. The PAG/RVM implements behavioural-state-gated precision control of nociception via ON/OFF cells (opioid tone, motivational context), NOT efference-copy forward-model comparator. This establishes that the "PAG/RVM shares efference-copy structure" posit in the plan was not borne out mechanistically: the PAG/RVM system is a contextual precision-gating layer, not a per-step motor-prediction subtraction site.
+
+2. **Seymour 2019** (*Neuron*, PMID 30897355, DOI 10.1016/j.neuron.2019.01.055) -- `targeted_review_sd_029`. Mixed 0.61. Pain as precision-weighted prediction-error signal for RL/control. Computationally convergent with MECH-256 at Marr level 2 (both use prediction-error logic for harm signals) but distinct at implementation: Seymour's framework addresses multi-trial learned-expectation priors; MECH-256/SD-029 addresses per-step efference-copy forward-model residual.
+
+**Architectural verdict: OPTION A** (plan sec. Phase 4, "if lit converges on comparator-class nociceptive circuit"):
+
+- Self-generated pain IS attenuated by an efference-copy comparator mechanism (established behaviourally by Lalouni 2020, already in SD-029 corpus, ~40% threshold shift).
+- The PAG/RVM does NOT implement this comparator -- it implements a parallel precision-gating layer.
+- The efference-copy substrate is most likely at: (a) spinal dorsal horn via corticospinal collateral corollary discharge to dorsal horn interneurons, and/or (b) somatosensory cortex (S1/insula) forward-model subtraction.
+- MECH-256 generalises to z_harm_s (the nociceptive reafferent stream). SD-029 inherits MECH-256's lit_conf.
+- No separate design doc needed for SD-029. The comparator metaphor is NOT over-specified.
+- Architectural note: add a clarifying sentence to any SD-029 / MECH-256 design docs noting that E2_harm_s's efference-copy comparator operates at spinal/cortical level; the PAG/RVM precision-gating is a parallel modulatory layer that adjusts expected-precision of z_harm_s based on motivational state (separate mechanism, not competing).
+
+GAP-4 closed. Phase 4 of the plan is DONE.
 
 ### 2026-05-16 - Closure-map reconciliation: SD-029 / MECH-256 retest monostrategy gate has a validated substrate fix (ARC-065 SP-CEM)
 
