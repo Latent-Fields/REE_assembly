@@ -71,12 +71,13 @@ closure_plan:
     - id: "sleep_substrate:GAP-7"
       title: "Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)"
       phase: 6
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: []
       depends_on: []
-      last_updated: 2026-05-08
+      last_updated: 2026-05-17
+      completed_note: "Deliverable 1: added 'multi-episode driver' section + 'SLEEP DRIVER' code-review check to /queue-experiment skill (both .claude/skills/ and .agents/skills/). Deliverable 2: audited all 41 sleep-touching experiments; 17 are sleep-adjacent only (SHY/serotonin/context-memory, no SleepLoopManager); 24 use the sleep cycle pipeline and were annotated with canonical SLEEP DRIVER: label in their docstrings. Pattern breakdown: 8 manual-multi (run_sleep_cycle every SLEEP_INTERVAL=10 ep, 265/385/385a/418/418a/429/430/436), 2 manual-cycle-loop (500/503), 5 K=1 default (265a/418l/436a/500a/503a), 4 K=1 explicit (541c/565/581/585), 4 K=N multi-fire (538 K=3; 541/541a/541b K=2), 1 K=never (574, K=TOTAL_EPS+1). Deliverable 3: this node open->done. No validation EXQ (process improvement only)."
     - id: "sleep_substrate:GAP-8"
       title: "MECH-272 routing weights flip but HippocampalRouter does not consume them"
       phase: 3
@@ -111,12 +112,11 @@ StepHarness retest cohort, Q-040 factorial), the deviation is logged in the
 > recalibration claim that justified pulling sleep into V3 (MECH-204) captures
 > its zero-point reference but never applies it.
 
-**Status update 2026-05-16:** the read paths have since landed. GAP-1 (MECH-204
-consumer), GAP-4 (MECH-273 replay-derived targets), GAP-6 (StepHarness audit),
-GAP-8 (MECH-272 consumer) and now GAP-3 (the eight-default-False-flags problem,
-resolved by the unified `use_sleep_aggregation_cluster` master flag) are all
-`done`. GAP-2 is upstream-blocked on ARC-065; GAP-7 (multi-episode driver
-standardisation) remains open. The framing above describes the 2026-05-08 audit
+**Status update 2026-05-17:** the read paths have since landed. GAP-1 (MECH-204
+consumer), GAP-3 (unified master flag), GAP-4 (MECH-273 replay-derived targets),
+GAP-6 (StepHarness audit), GAP-7 (multi-episode driver standardisation), and
+GAP-8 (MECH-272 consumer) are all `done`. GAP-2 is upstream-blocked on ARC-065;
+GAP-5 is deferred to V4. The framing above describes the 2026-05-08 audit
 state and is retained for provenance.
 
 The waking-side substrate has matured fast: V_s invalidation runtime (Phase 1-3),
@@ -427,7 +427,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | GAP-4 | 4 | done | (none) | _harm_replay_buffer populated in REEAgent.sense() (waking only: hypothesis_tag=False, z_harm not None, _last_action not None); capped 1000 entries; snapshotted at SLEEP_ENTRY in SleepLoopManager._run_cycle(); passed to offline_gradient_pass as harm_replay_buffer kwarg. Real tuples sampled via random.choices; synthetic zeros/round-robin one-hot fallback preserved when buffer None or empty. 4 new E11-E14 Phase E contract tests added; 14/14 PASS. | code change (no EXQ) | 2026-05-16 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
 | GAP-6 | 5 | done | (none) | Audit complete: all 7 write sites documented in sleep_aggregation_cluster.md; all are architectural exceptions; zero require StepHarness routing | substrate audit (no EXQ) | 2026-05-15 |
-| GAP-7 | 6 | open | nothing | Update /queue-experiment skill, audit 19 experiments | n/a | 2026-05-08 |
+| GAP-7 | 6 | done | (none) | /queue-experiment skill updated with SLEEP DRIVER section + code-review check; 41 sleep-touching experiments audited; 24 annotated with canonical SLEEP DRIVER: label (17 sleep-adjacent only, no annotation needed); skill mirrored to .agents/. | process improvement (no EXQ) | 2026-05-17 |
 | GAP-8 | 3 | done | (none) | Substrate wired (run_sws_schema_pass anchor_weight scaling; SleepLoopManager mean_anchor forwarding). V3-EXQ-565 smoke C1/C2/C3 PASS + full runner PASS confirmed 2026-05-15T18:03Z (arm0=1.0, arm1~=0.6, sws_n_writes>0 both arms) | V3-EXQ-565 | 2026-05-15 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`.
@@ -501,6 +501,26 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-7 done (multi-episode driver standardisation)
+
+**Deliverables completed (no validation EXQ -- process improvement).**
+
+**D1 -- skill update:** Added a `SLEEP DRIVER` section to the `/queue-experiment` skill (both `.claude/skills/queue-experiment/SKILL.md` and `.agents/skills/queue-experiment/SKILL.md`). The section surfaces whenever `use_sleep_loop`, `sws_enabled`, `rem_enabled`, or `use_sleep_aggregation_cluster` is set True, requiring the author to declare the driver pattern with a canonical `SLEEP DRIVER:` line in the docstring. Five canonical labels defined: `K=1 single-fire`, `K=N multi-fire`, `K=never`, `manual-multi`, `manual-cycle-loop`. The code-review checklist (step 3.5) gained a "Sleep driver" block requiring both the docstring label and a `sleep_driver_pattern` manifest field.
+
+**D2 -- experiment audit and annotation:** All 41 sleep-touching experiments audited. 17 are sleep-adjacent only (SHY normalisation, serotonin, context-memory slot experiments -- no SleepLoopManager, no annotation required). 24 use the sleep-cycle pipeline and were annotated with a `SLEEP DRIVER:` line in their module docstrings:
+
+| Pattern | Count | Experiments |
+|---|---|---|
+| manual-multi (SLEEP_INTERVAL=10 ep) | 8 | 265, 385, 385a, 418, 418a, 429, 430, 436 |
+| manual-cycle-loop (N_CYCLES loop) | 2 | 500, 503 |
+| K=1 single-fire (SleepLoopManager default) | 5 | 265a, 418l, 436a, 500a, 503a |
+| K=1 single-fire (SleepLoopManager explicit) | 4 | 541c, 565, 581, 585 |
+| K=2 multi-fire (SleepLoopManager) | 3 | 541, 541a, 541b |
+| K=3 multi-fire (SleepLoopManager) | 1 | 538 |
+| K=never (SleepLoopManager, eval-only call) | 1 | 574 |
+
+**D3 -- plan node:** GAP-7 status open -> done (this entry).
 
 ### 2026-05-16 - GAP-3 done (unified use_sleep_aggregation_cluster master flag) + correction of the GAP-4-entry conflation
 
