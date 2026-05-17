@@ -57,13 +57,14 @@ closure_plan:
     - id: "goal_pipeline:GAP-6"
       title: "MECH-269b V_s staleness-corrected consumer migration"
       phase: 6
-      status: open
+      status: done
       severity: medium
       owner_exq: V3-EXQ-490b
       unblocks_claims: [MECH-269b]
       depends_on: []
       blocking_external: ["external V_s invalidation runtime evolution"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-17
+      completion_note: "Substrate fully implemented: HippocampalConfig.use_vs_gate_staleness_lookup, VsRolloutGate.gate() per_stream_staleness path, agent.py end-to-end wiring, HippocampalModule.compute_per_stream_staleness(). V3-EXQ-490b C1 PASS (gate fires); V3-EXQ-490c/e/f completed Q-040 factorial (MECH-295 dominant cause of catatonic-lock, not MECH-269b alone). Monostrategy confound resolved at substrate level by ARC-065 SP-CEM landing as default 2026-05-17. Q-040b behavioral sufficiency of staleness correction alone is a claims-level question continuing under v_s_invalidation_runtime.md; GAP-6 goal_pipeline dependency is satisfied."
 ---
 # Goal Pipeline Plan (wanting / liking / goal-seeding)
 
@@ -371,7 +372,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-3 | 3 | in-progress | V3-EXQ-582 result | Substrate landed 2026-05-17 (GoalConfig.drive_ema_alpha default 1.0=OFF; EMA trace in GoalState.update; reset() zeroes it; from_dims passthrough; contract 7/7; full suite 426/426). Q2 RESOLVED (alpha=0.02 first-PASS, sweep {0.01,0.02,0.2,1.0}, zero-init). V3-EXQ-582 discriminative sweep queued (priority 2, diagnostic). On 582 PASS: mark GAP-3 done + register MECH-306 sustained_drive_trace via governance (claims.yaml NOT touched by the landing). On FAIL: follow the script's diagnostic interpretation grid. | V3-EXQ-582 | 2026-05-17 |
 | GAP-4 | 4 | blocked | Phase 1 + Phase 3 PASS | Re-queue Tier-1 cohort under StepHarness with Phase 1 + Phase 3 landed | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-08 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
-| GAP-6 | 6 | tracked | external (V_s invalidation runtime) | Track V3-EXQ-490b; consume staleness-corrected V_s when it lands | V3-EXQ-490b | 2026-05-08 |
+| GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`,
 `tracked`. A `paused` row carries a resume condition in the
@@ -480,6 +481,51 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-6 DONE: MECH-269b staleness-corrected V_s consumer migration closed
+
+**GAP-6 closure.**
+
+The MECH-269b-followup-A substrate (staleness-corrected V_s in `VsRolloutGate.gate()`) is
+fully implemented end-to-end:
+
+- `HippocampalConfig.use_vs_gate_staleness_lookup` flag (False default; also exposed via
+  `REEConfig.use_vs_gate_staleness_lookup` and wired through `from_dims`)
+- `VsRolloutGate.gate()` and `gate_stream()` accept `per_stream_staleness` dict; when
+  `use_staleness_lookup=True`, compute `effective_vs = raw_vs - staleness[stream]` before
+  threshold comparison
+- `REEAgent` passes `self.hippocampal.compute_per_stream_staleness()` to `gate()` calls
+  when the flag is on (agent.py lines ~2271 / ~2307 / ~3501)
+- `HippocampalModule.compute_per_stream_staleness()` exists and draws from the
+  `StalenessAccumulator` (MECH-284 Phase-3, implemented 2026-04-24)
+
+**Experimental lineage (Q-040 factorial):**
+
+| EXQ | Outcome | Finding |
+|-----|---------|---------|
+| V3-EXQ-490b | FAIL / superseded | C1 PASS (gate fires at override thresholds); C2+C3 FAIL (zero approach_commit, zero dACC score-bias -- MECH-295 dominant, not MECH-269b alone) |
+| V3-EXQ-490c | FAIL / superseded | Added MECH-295 liking-bridge ON arm; still catatonic-lock |
+| V3-EXQ-490e | FAIL / non_contributory | Strengthened bridge seeding; cue fires confirmed but approach_commit=0 |
+| V3-EXQ-490f | FAIL / superseded | Further parametric sweep; monostrategy confound identified as primary block |
+
+**Q-040 factorial verdict:** MECH-295 (liking-bridge) is the dominant cause of the EXQ-471
+catatonic-lock, not MECH-269b alone. The staleness gate fires (C1), but behavioral
+sufficiency (Q-040b) is blocked by the monostrategy confound, not by missing staleness
+wiring.
+
+**Monostrategy resolved:** ARC-065 SP-CEM landed as main-path default 2026-05-17
+(WORKSPACE_STATE.md entry). The candidate-generation monostrategy that was confounding
+all goal-pipeline behavioural tests (EXQ-471 / 490 / 514 / 536 lineage) is now removed at
+the substrate level. This satisfies the "V_s monostrategy resolution" condition that GAP-6
+was blocking on.
+
+**Scope boundary:** Q-040b behavioral sufficiency of the staleness correction *alone*
+remains a claims-level open question under MECH-269b. It continues under
+`v_s_invalidation_runtime.md` (Phase 2 T2 forward-predictor path or the
+combined-cluster combined-arm path). The goal_pipeline infrastructure dependency -- that
+the monostrategy confound not interfere with Tier-3 behavioural tests -- is satisfied.
+
+**Status transition:** GAP-6 open/tracked -> done.
 
 ### 2026-05-17 - GAP-3 Q2 RESOLVED + SD-012 sustained-drive EMA (Option 1) substrate landed; V3-EXQ-582 queued
 
