@@ -107,6 +107,50 @@ Behavioural variants with full E3 task loop + tolerance-band completion env are 
 - **MECH-094** — hypothesis tag / categorical write gate. Closure mode-conditioning generalises this to the closure operation.
 - **MECH-268** — dACC PE saturation. Closure couples to MECH-268 via `closure_reset_pe_ema` and the optional `dacc_pe_cap` install.
 
+## StepHarness write-path audit (commitment_closure:GAP-10)
+
+**Completed:** 2026-05-17. All four governance write sites named in the GAP-10 spec were walked
+and classified. The audit question (per `commitment_closure_plan.md` Phase 8): does any
+commitment/closure write site need to be re-routed through `StepHarness`, or does each site have
+a documented architectural exception?
+
+**Note on StepHarness location.** `StepHarness` lives in `experiments/_harness.py`, NOT in
+`ree_core/`. It enforces the canonical waking per-tick sequence
+(`sense → record_transition → clock/E1/generate → update_z_goal → update_schema_wanting →
+select_action → env.step → update_residue`). Governance writes that run inside `select_action()`
+are within-step-7 architectural exceptions by design — they fire after the canonical sense/
+update_z_goal inputs are in place and before `env.step` consumes the action.
+
+### Write sites and exception classifications
+
+| Site | Code location | Exception class | Notes |
+|------|--------------|----------------|-------|
+| **SD-034 closure pulse** (`closure_operator.tick()`) | `agent.py:3525-3550`, called at end of `select_action()`, after action tensor is formed | Within-select_action governance write | `_current_latent` (sense step 1) and mode/gate (update_z_goal step 4) are already in place. Closure fires after, not before, the canonical update steps. Hypothesis-tag guard (`hypothesis_tag=False`) enforced at call site — replay paths cannot trigger closure. |
+| **MECH-260 `dacc.record_action()`** | `agent.py:3511-3518`, end of `select_action()` | Within-select_action governance write | Execution-path recency recording — appends chosen action class to `_action_history` FIFO. Fires after action is chosen; consumed by next `select_action()` call. |
+| **MECH-260 `dacc.inject_nogo()`** | `closure_operator._fire()` → triggered by `tick()` at `agent.py:3541` | Within-select_action governance write | Closure-driven No-Go injection (multiple `record_action`-equivalent pushes for the just-completed action class). Mechanistically identical to `record_action()` but semantically distinct; both are within step 7. |
+| **MECH-268 `dacc.reset_outcome_history()`** | `closure_operator._fire()` → `agent.py:3541` | Within-select_action governance write | SD-034 closure hook: clears the MECH-268 saturation FIFO so the next rule-state starts fresh. Fires inside step 7 alongside the other closure sub-signals. |
+| **MECH-268 `dacc.reset_episode_pe()`** | `closure_operator._fire()` → `agent.py:3541` | Within-select_action governance write | Rebaselines the precision-weighted PE EMA on closure. Distinct from `reset()` (which also clears action history — too destructive for a per-closure event). Within step 7. |
+| **MECH-268 `dacc.record_outcome()`** | EXQ-463 / EXQ-468 experiment scripts only; NOT in `agent.py` | Experiment-only unit test; canonical wiring deferred | Outcome class labeling after `env.step()` would naturally sit at StepHarness step 10 (after `update_residue()`). This call site is absent from the agent canonical path intentionally: env-level outcome tagging requires the GAP-3 env extension (counter-evidence/dual-cue hooks). EXQ-463 and EXQ-468 test the MECH-268 mechanism in isolation directly on a standalone `DACCAdaptiveControl` object, bypassing REEAgent. No routing gap; intentional deferral. |
+| **SD-033a `lateral_pfc.update()`** | `agent.py:2835`, inside `select_action()` after MECH-319 sim-mode gate check | Within-select_action governance write | `z_delta`/`z_world` from `_current_latent` (sense step 1); `lpfc_gate` from `salience.write_gate("sd_033a")` (update_z_goal step 4). Both prerequisites established by canonical harness steps before step 7. MECH-319 sim-mode gate (`simulation_mode_rule_gate`) guards against replay-path rule-state writes at this site. |
+
+**Audit result:** ALL six write sub-sites are documented exceptions. Zero require re-routing
+through `StepHarness`. The one pending item (`dacc.record_outcome()` in canonical agent path) is
+a deferred wiring task gated on GAP-3 env extension, not a routing error. The GAP-10 acceptance
+criterion is satisfied.
+
+### Sequence alignment note
+
+The four major sites all run inside `select_action()` (StepHarness step 7). By the time step 7
+runs, the canonical prerequisites are in place:
+- `_current_latent` (z_world, z_self, z_delta) set by `sense()` at step 1.
+- `update_z_goal(benefit_exposure, drive_level)` has run at step 4, setting salience gate state
+  including `write_gate("sd_033a")`.
+- No subsequent harness step modifies these values until `env.step()` at step 9.
+
+There is therefore no ordering hazard between the governance writes and the canonical sequence.
+
+---
+
 ## Anchor Documents
 
 - Anchor doc: `REE_assembly/evidence/planning/sd033_governance_plan.md`

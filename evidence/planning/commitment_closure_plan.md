@@ -101,13 +101,14 @@ closure_plan:
     - id: "commitment_closure:GAP-10"
       title: "StepHarness audit of governance write paths"
       phase: 8
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: []
       depends_on: []
       cross_plan_link: ["sleep_substrate:GAP-6"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-17
+      completion_note: "Audit complete 2026-05-17. All 6 write sub-sites documented in sd_034_governance_closure_operator.md under 'StepHarness write-path audit (GAP-10)'. All sites are within-select_action() architectural exceptions (steps 1+4 prerequisites met before step 7 runs) or experiment-only unit tests (dacc.record_outcome). Zero sites require StepHarness re-routing. dacc.record_outcome() canonical wiring deferred to GAP-3 env extension landing (no routing error; intentional deferral)."
     - id: "commitment_closure:GAP-11"
       title: "Phased rule_state training curriculum (GAP-3 deliverable 4 -- committed-mode elicitation)"
       phase: 4
@@ -478,7 +479,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-7 | 8 | deferred V4 | SD-006 phase 2 async heartbeat | none in V3 unless SD-006 phase 2 lands | n/a | 2026-05-08 |
 | GAP-8 | 7 | blocked | Phase 3 env extensions (devaluation hook + task-role discriminability) | After Phase 3 PASS, queue 485b/c | V3-EXQ-485b, 485c | 2026-05-08 |
 | GAP-9 | 8 | deferred | low-priority graph completeness | none in V3 | n/a | 2026-05-08 |
-| GAP-10 | 8 | open | nothing | Walk governance write sites against StepHarness canonical sequence; combine with sleep-plan GAP-6 audit | substrate audit (no EXQ) | 2026-05-08 |
+| GAP-10 | 8 | done | (none) | Audit complete: 6 write sub-sites documented in sd_034_governance_closure_operator.md; all are within-select_action() architectural exceptions; zero require StepHarness re-routing | substrate audit (no EXQ) | 2026-05-17 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `partial`,
 `done`, `deferred`. A `paused` row carries a resume condition in the
@@ -578,6 +579,26 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-10 DONE: StepHarness write-path audit complete
+
+All 6 governance write sub-sites audited against the StepHarness canonical sequence
+(`sense → update_z_goal → select_action → env.step → update_residue`). Full findings in
+`sd_034_governance_closure_operator.md` under "StepHarness write-path audit (GAP-10)".
+
+Summary: every site is either a within-`select_action()` architectural exception (SD-034 closure
+pulse, MECH-260 `record_action` + `inject_nogo`, MECH-268 `reset_outcome_history` +
+`reset_episode_pe`, SD-033a `lateral_pfc.update()`) or an experiment-only unit test on a
+standalone `DACCAdaptiveControl` object (MECH-268 `record_outcome()` in EXQ-463/EXQ-468). All
+prerequisite latent and gate states (`_current_latent` from step 1, `write_gate("sd_033a")` from
+step 4) are established before step 7 runs -- no ordering hazard.
+
+One pending item: `dacc.record_outcome()` has no agent-level call site yet. The canonical home
+(StepHarness step 10, after `update_residue()`) requires env-level outcome class tagging that
+awaits the GAP-3 env extension. Not a routing error; intentional deferral.
+
+Mirrors `sleep_substrate:GAP-6` result (2026-05-15): both clusters find their write sites are
+architectural exceptions that cannot and should not call the harness.
 
 ### 2026-05-17 - GAP-11 design questions O-1..O-5 RESOLVED (user); implementation concurrency-blocked
 
