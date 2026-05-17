@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-05-11.1 -->
+<!-- CLOSURE_VERSION: 2026-05-17.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -197,7 +197,7 @@
   #graph[data-selected] .node.selected .node-rect { stroke-width: 4 !important; filter: brightness(1.4) drop-shadow(0 0 4px var(--accent)); }
   #graph[data-selected] .edge.in-graph { opacity: 1; }
 
-  /* #5 ready-to-work filter: fade nodes that are not ready (open + unblocked + load-bearing or high severity) */
+  /* #5 ready-to-work filter: fade nodes that are not ready (open + unblocked + load-bearing, high, or medium severity) */
   #graph[data-ready-filter] .node:not(.is-ready) .node-rect { opacity: 0.18; }
   #graph[data-ready-filter] .node:not(.is-ready) text { opacity: 0.18; }
   #graph[data-ready-filter] .edge { opacity: 0.10; }
@@ -353,7 +353,7 @@
   <span class="lg"><span class="dot" style="background:var(--st-open)"></span>open</span>
   <span class="lg"><span class="dot" style="background:var(--st-deferred)"></span>deferred (excluded from %)</span>
   <span class="lg" style="margin-left:auto">
-    <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing or high severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
+    <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing, high, or medium severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
     solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan
   </span>
 </div>
@@ -422,7 +422,7 @@ function computeDerivedSets() {
 
   // Ready set (#5):
   //   status == 'open'
-  //   AND severity in {'load-bearing','high'}
+  //   AND severity in {'load-bearing','high','medium'}
   //   AND every depends_on (within-plan) target has status in {'done','deferred'}
   // Cross-plan links are visualisation aids and not treated as hard blockers
   // for filter purposes -- if a within-plan ancestor is incomplete that's the
@@ -430,7 +430,7 @@ function computeDerivedSets() {
   // the click-to-highlight view.
   READY_NODE_IDS = new Set();
   const blockerStatuses = new Set(['done', 'deferred']);
-  const readySeverities = new Set(['load-bearing', 'high']);
+  const readySeverities = new Set(['load-bearing', 'high', 'medium']);
   for (const n of CLOSURE.nodes) {
     if (n.status !== 'open') continue;
     if (!readySeverities.has(n.severity)) continue;
