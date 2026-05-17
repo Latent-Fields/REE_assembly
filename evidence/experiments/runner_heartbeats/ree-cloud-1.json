@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-17T11:20:46Z",
+  "last_tick_utc": "2026-05-17T11:21:48Z",
   "state": "running",
   "current_exq": "V3-EXQ-587",
   "current_exq_started_utc": "2026-05-17T10:52:08.571777+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 42 / ARM_0_binary_contact",
     "runs_done": 0,
     "runs_total": 10,
-    "episodes_done": 0,
+    "episodes_done": 100,
     "episodes_total": 1000,
-    "overall_pct": 0.0
+    "overall_pct": 1.0
   },
-  "seconds_elapsed": 1717,
-  "seconds_remaining": 16800,
+  "seconds_elapsed": 1779,
+  "seconds_remaining": 23074,
   "recent_lines": [
-    "dry_run=False seeds=[42, 43, 44, 45, 46] n_episodes=1000",
     "ARM_0: harm_gradient_enabled=False (binary contact only)",
     "ARM_1: harm_gradient_enabled=True harm_gradient_scale=0.30",
     "C1 gate: ARM_1 mean_weight > 2.0x ARM_0 in >= 4/5 seeds",
-    "Seed 42 Condition ARM_0_binary_contact"
+    "Seed 42 Condition ARM_0_binary_contact",
+    "[train] ARM_0_binary_contact ep 100/1000 seed=42 coverage=1.000 mean_weight=7.9255"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
