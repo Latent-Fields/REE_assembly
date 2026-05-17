@@ -1,0 +1,75 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-17T14:19:31Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_utc": "2026-05-17T14:19:31Z",
+  "session_id": "failure-autopsy-543f-2026-05-17T141151Z",
+  "targets": [
+    {
+      "run_id": "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T140320Z_v3",
+      "queue_id": "V3-EXQ-543f",
+      "claim_ids": ["ARC-062", "MECH-309"],
+      "failed_criterion": "discrimination",
+      "failure_summary": "GatedPolicy gated_score_bias stays near zero (TV 0.0001-0.0006) throughout all of P1 training across all 3 seeds on ARM_2 and ARM_3. Both substrate fixes (FIX 1: one-hot augmentation; FIX 2: dacc_weight=1.0) confirmed landed via pre-flight assertions. Inert gating caused by training signal gap: P1 diversification loss (head_div + disc_var) is self-supervised with no outcome-coupled gradient.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- gated heads had correct input but no outcome signal; ARC-062 never expressed itself",
+        "biological_reference": "partial -- architecture matches PFC/BG gating anatomy; reward-dependent plasticity analog (dopamine-equivalent outcome coupling) absent from training",
+        "prerequisites": "missing -- outcome-coupled credit assignment for candidate selection",
+        "implementation": "partial -- heads built + input correct (one-hot fix working), P1 training procedure decoupled from outcomes",
+        "environment": "adequate -- SD-054 carries discriminative signal; C3 hint (ARM_3 forage_hazard_rate 0.325 vs 0.619) confirms environment is capable",
+        "measurement": "adequate -- TV probe correctly detects inert gating; C2/C4 confirm residual state-dependent variation",
+        "integration": "isolated -- gated policy trained via diversity loss only; not wired to candidate-outcome returns",
+        "scale": "unknown -- irrelevant until training signal is fixed"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Lateral PFC rule-coding units (Bongard & Nieder 2010 PNAS: abstract rule cells; Miller & Cohen 2001: sustained PFC bias of posterior regions)",
+        "dependencies": [
+          "Reward-dependent abstraction pressure (task contingencies that make abstract rule application rewardable)",
+          "Dopaminergic outcome coupling (plasticity conditioned on whether the correct rule was applied)"
+        ],
+        "is_formal_import": false,
+        "divergence": "PFC rule-coding units emerge under reward-dependent task pressure, not diversity regularization. The diversification loss achieves head separation without behavioral divergence when discriminator w ~ 0.5.",
+        "lit_status": "present",
+        "lit_directories": [
+          "evidence/literature/targeted_review_arc_062_rule_apprehension",
+          "evidence/literature/targeted_review_arc_062_refuge_forage_ecology"
+        ],
+        "lit_anticipation": "SYNTHESIS.md explicitly noted: 'ARC-062 may need an explicit rule-discrimination loss on the encoder rather than relying on policy-loss back-propagation alone.' No new lit-pull needed."
+      },
+      "recommended_epistemic_category": "implementation_gap",
+      "recommended_evidence_direction": {
+        "ARC-062": "non_contributory",
+        "MECH-309": "non_contributory"
+      },
+      "manifest_evidence_direction_correction": {
+        "ARC-062": "change from 'weakens' to 'non_contributory'",
+        "rationale": "ARC-062 was never tested under conditions where it could express itself (no outcome-coupled training signal). The architecture is not implicated by inert gating caused by a diversity-only loss."
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-543f (2026-05-17): reclassified non_contributory (confirmed user-gated; see failure_autopsy_EXQ-543f_2026-05-17). Both substrate fixes from 543e autopsy landed (pre-flight assertions confirmed: one-hot augmentation active, dacc_weight=1.0). Inert gating (TV 0.0001-0.0006 across all seeds, threshold 0.05) caused by training signal gap: P1 diversification loss (head_div + disc_var) is self-supervised with no outcome-coupled gradient. The composed gated_score_bias = w*head_0 + (1-w)*head_1 stays near zero when discriminator w ~ 0.5, even when heads diverge, because symmetric head divergence cancels in the composition. Architecture untested in confound-free conditions. No confidence change. No conflict-ratio movement. Routing: V3-EXQ-543g with outcome-coupled P1 loss (advantage-weighted candidate supervision or policy gradient on GatedPolicy parameters).",
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "P1 diversification loss (head_div + disc_var) conflates head-level diversity with behavioral diversity: composed bias can be zero even when head_0 and head_1 are maximally divergent, if discriminator w ~ 0.5.",
+        "FIX 1 (one-hot augmentation) and FIX 2 (dacc_weight=1.0) both confirmed working by pre-flight assertions; substrate is no longer the bottleneck.",
+        "C2/C4 passing with dACC active (ARM_3): state-dependent behavioral variation exists in the substrate + environment; likely dACC-driven but confirms an outcome-coupled GatedPolicy would have real signal to train on.",
+        "C3 hint (ARM_3 forage_hazard_rate 0.325 vs ARM_0 0.619, 47.5% reduction): environment carries discriminative behavioral signal; probe gate failure means this cannot count as evidence but it is encouraging.",
+        "Biological parallel: Bongard & Nieder 2010 rule-cell representations emerge under reward-contingent abstraction pressure, not diversity regularization."
+      ],
+      "routing": "queue-experiment",
+      "routing_details": {
+        "proposed_id": "V3-EXQ-543g",
+        "scientific_question": "unchanged -- can a two-head gated architecture with learned context discriminator break monomodal collapse on SD-054 substrate?",
+        "structural_changes": "Same 2x2 factorial (ARM_0-ARM_3), same SD-054 substrate, same P0/P1/P2 phased structure. Redesign P1 loss: replace diversity regularizer with outcome-coupled credit assignment (advantage-weighted candidate supervision or policy gradient on GatedPolicy parameters). Recommended: store (probe_state, candidate_selected_index, episode_return) during P1; advantage-weighted CE loss; keep disc_var as secondary regularizer with reduced lambda; remove head_div_term.",
+        "acceptance_criteria": "unchanged from 543c/543e pre-registration: D2 AND D3 for PASS",
+        "unblocks": ["GAP-C", "GAP-D"]
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "positive_signals_for_follow_on": [
+    "C2 PASS (ARM_3 mean_abs_rho=0.205): state-dependent variation exists with dACC active",
+    "C4 PASS (ARM_3 CoV=0.708): high cross-seed behavioral diversity with full substrate",
+    "C3 hint: ARM_3 forage_hazard_rate 0.325 vs ARM_0 0.619 (47.5% relative delta)"
+  ]
+}
