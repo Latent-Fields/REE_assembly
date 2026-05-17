@@ -1,0 +1,677 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T144716Z_v3",
+  "experiment_type": "v3_exq_543g_arc062_outcome_coupled_falsifier",
+  "queue_id": "V3-EXQ-543g",
+  "supersedes": "V3-EXQ-543f",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-17T14:47:16.328909Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "ARC-062",
+    "MECH-309"
+  ],
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-062": "weakens",
+    "MECH-309": "non_contributory"
+  },
+  "metrics": {
+    "arm_summaries": {
+      "ARM_0_baseline": {
+        "mean_reef_fraction": 0.27777777777777773,
+        "std_reef_fraction": 0.2038215147538238,
+        "cov_reef_fraction": 0.7337574531137657,
+        "rhos_per_seed": [
+          0.457126979716588,
+          -0.15709919422061688,
+          0.17243678799666579
+        ],
+        "abs_rho_per_seed": [
+          0.457126979716588,
+          0.15709919422061688,
+          0.17243678799666579
+        ],
+        "n_rho_above_threshold": 1,
+        "mean_abs_rho": 0.26222098731129023,
+        "mean_forage_hazard_rate": 0.15683760683760684,
+        "mean_transit_hazard_rate": 0.6666666666666666,
+        "mean_risk_type_ratio_legacy": 72222.30683760684,
+        "ratios_per_seed_hardened": [
+          NaN,
+          0.1,
+          0.15384615384615385
+        ],
+        "n_valid_seeds_for_c3": 2,
+        "mean_risk_type_ratio_hardened": 0.12692307692307692,
+        "inert_gating_per_seed": [
+          false,
+          false,
+          false
+        ],
+        "n_inert_gating_seeds": 0
+      },
+      "ARM_1_dacc_only": {
+        "mean_reef_fraction": 0.17361111111111113,
+        "std_reef_fraction": 0.24552318791199568,
+        "cov_reef_fraction": 1.414213562373095,
+        "rhos_per_seed": [
+          0.2916666666666667,
+          -0.18665904326281682,
+          -0.43
+        ],
+        "abs_rho_per_seed": [
+          0.2916666666666667,
+          0.18665904326281682,
+          0.43
+        ],
+        "n_rho_above_threshold": 2,
+        "mean_abs_rho": 0.30277523664316114,
+        "mean_forage_hazard_rate": 0.6412121212121212,
+        "mean_transit_hazard_rate": 0.3333333333333333,
+        "mean_risk_type_ratio_legacy": 520000.1212121213,
+        "ratios_per_seed_hardened": [
+          NaN,
+          0.36363636363636365,
+          NaN
+        ],
+        "n_valid_seeds_for_c3": 1,
+        "mean_risk_type_ratio_hardened": 0.36363636363636365,
+        "inert_gating_per_seed": [
+          false,
+          false,
+          false
+        ],
+        "n_inert_gating_seeds": 0
+      },
+      "ARM_2_gated_only": {
+        "mean_reef_fraction": 0.4435319377348363,
+        "std_reef_fraction": 0.3569574418585828,
+        "cov_reef_fraction": 0.8048066249334863,
+        "rhos_per_seed": [
+          0.6153846153846154,
+          0.5724137931034481,
+          0.5969017371013742
+        ],
+        "abs_rho_per_seed": [
+          0.6153846153846154,
+          0.5724137931034481,
+          0.5969017371013742
+        ],
+        "n_rho_above_threshold": 3,
+        "mean_abs_rho": 0.5949000485298126,
+        "mean_forage_hazard_rate": 1.0,
+        "mean_transit_hazard_rate": 0.6666666666666666,
+        "mean_risk_type_ratio_legacy": 333334.0,
+        "ratios_per_seed_hardened": [
+          NaN,
+          1.0,
+          1.0
+        ],
+        "n_valid_seeds_for_c3": 2,
+        "mean_risk_type_ratio_hardened": 1.0,
+        "inert_gating_per_seed": [
+          false,
+          false,
+          false
+        ],
+        "n_inert_gating_seeds": 0
+      },
+      "ARM_3_both": {
+        "mean_reef_fraction": 0.24305555555555558,
+        "std_reef_fraction": 0.19568059449451905,
+        "cov_reef_fraction": 0.8050858744917354,
+        "rhos_per_seed": [
+          -0.23952292373345005,
+          0.5942157953281423,
+          0.6320557491289199
+        ],
+        "abs_rho_per_seed": [
+          0.23952292373345005,
+          0.5942157953281423,
+          0.6320557491289199
+        ],
+        "n_rho_above_threshold": 3,
+        "mean_abs_rho": 0.48859815606350415,
+        "mean_forage_hazard_rate": 0.5829959514170041,
+        "mean_transit_hazard_rate": 0.6666666666666666,
+        "mean_risk_type_ratio_legacy": 70175.95141700405,
+        "ratios_per_seed_hardened": [
+          NaN,
+          1.0,
+          0.5384615384615384
+        ],
+        "n_valid_seeds_for_c3": 2,
+        "mean_risk_type_ratio_hardened": 0.7692307692307692,
+        "inert_gating_per_seed": [
+          false,
+          false,
+          false
+        ],
+        "n_inert_gating_seeds": 0
+      }
+    },
+    "acceptance": {
+      "D1_dacc_alone_pass": false,
+      "D1_delta_arm1_minus_arm0": -0.1041666666666666,
+      "D2_dacc_adds_to_gated_pass": false,
+      "D2_delta_arm3_minus_arm2": -0.2004763821792807,
+      "D3_gated_adds_to_dacc_pass": true,
+      "D3_delta_arm3_minus_arm1": 0.06944444444444445,
+      "D4_replication_543c_pass": false,
+      "D4_delta_abs_arm2_minus_arm0": 0.16575415995705856,
+      "overall_pass": false,
+      "reef_fraction_per_arm": {
+        "ARM_0_baseline": 0.27777777777777773,
+        "ARM_1_dacc_only": 0.17361111111111113,
+        "ARM_2_gated_only": 0.4435319377348363,
+        "ARM_3_both": 0.24305555555555558
+      },
+      "probe_gate_arm2_failed": false,
+      "probe_gate_arm3_failed": false,
+      "n_inert_gating_seeds_arm2": 0,
+      "n_inert_gating_seeds_arm3": 0,
+      "C1_density_tracking": "non_contributory_phase2a_corrected_single_density",
+      "C2_state_dependence_pass": true,
+      "C2_a3_seeds_above_threshold": 3,
+      "C2_a3_mean_abs_rho": 0.48859815606350415,
+      "C2_a0_mean_abs_rho": 0.26222098731129023,
+      "C3_risk_type_dissociation_pass": true,
+      "C3_relative_delta_hardened": 5.0606060606060606,
+      "C3_a0_ratio_hardened": 0.12692307692307692,
+      "C3_a3_ratio_hardened": 0.7692307692307692,
+      "C3_a0_n_valid_seeds": 2,
+      "C3_a3_n_valid_seeds": 2,
+      "C3_arms_have_enough_valid_seeds": true,
+      "C4_cross_seed_variation_pass": true,
+      "C4_a3_cov_reef_fraction": 0.8050858744917354,
+      "C4_a0_cov_reef_fraction": 0.7337574531137657,
+      "n_criteria_passed_legacy": 3,
+      "legacy_pass_rule_met": true,
+      "F1_monomodal_collapse_signature": false,
+      "F2_biologically_inverted_signature": false
+    },
+    "per_seed_per_arm": {
+      "ARM_0_baseline": [
+        {
+          "arm_label": "ARM_0_baseline",
+          "seed": 0,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.4517446487594861,
+          "p0_first10_reward": -1.1246024608612062,
+          "p0_last10_reward": -1.1246024608612062,
+          "p0_n_probe_states_collected": 0,
+          "p0_mean_reward": -1.1246024608612062,
+          "p1_first10_reward": -1.0366882652044298,
+          "p1_last10_reward": -1.0366882652044298,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.053309314745613665,
+          "p1_final_baseline": -1.0841300634860995,
+          "p1_outcome_buf_size": 0,
+          "mean_reef_fraction": 0.0,
+          "rho_drive_vs_reef": 0.457126979716588,
+          "forage_hazard_rate": 0.21666666666666667,
+          "transit_hazard_rate": 0.0,
+          "risk_type_ratio": 216666.6666666667,
+          "n_forage_steps": 60,
+          "n_transit_steps": 0,
+          "n_forage_hazards": 13,
+          "n_transit_hazards": 0,
+          "per_episode_reef_fractions": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_0_baseline",
+          "seed": 1,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.21214647598682823,
+          "p0_first10_reward": -0.8542265693346661,
+          "p0_last10_reward": -0.8542265693346661,
+          "p0_n_probe_states_collected": 0,
+          "p0_mean_reward": -0.8542265693346661,
+          "p1_first10_reward": -0.7909463539719582,
+          "p1_last10_reward": -0.7909463539719582,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.012977678195922679,
+          "p1_final_baseline": -0.842050476204753,
+          "p1_outcome_buf_size": 0,
+          "mean_reef_fraction": 0.48333333333333334,
+          "rho_drive_vs_reef": -0.15709919422061688,
+          "forage_hazard_rate": 0.1,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.1,
+          "n_forage_steps": 30,
+          "n_transit_steps": 3,
+          "n_forage_hazards": 3,
+          "n_transit_hazards": 3,
+          "per_episode_reef_fractions": [
+            0.03333333333333333,
+            0.9333333333333333
+          ]
+        },
+        {
+          "arm_label": "ARM_0_baseline",
+          "seed": 2,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.050420312771388885,
+          "p0_first10_reward": -0.817501449584961,
+          "p0_last10_reward": -0.817501449584961,
+          "p0_n_probe_states_collected": 0,
+          "p0_mean_reward": -0.817501449584961,
+          "p1_first10_reward": -0.4847909852862359,
+          "p1_last10_reward": -0.4847909852862359,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.0006513460324732025,
+          "p1_final_baseline": -0.7191923722207547,
+          "p1_outcome_buf_size": 0,
+          "mean_reef_fraction": 0.35,
+          "rho_drive_vs_reef": 0.17243678799666579,
+          "forage_hazard_rate": 0.15384615384615385,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.15384615384615385,
+          "n_forage_steps": 39,
+          "n_transit_steps": 1,
+          "n_forage_hazards": 6,
+          "n_transit_hazards": 1,
+          "per_episode_reef_fractions": [
+            0.0,
+            0.7
+          ]
+        }
+      ],
+      "ARM_1_dacc_only": [
+        {
+          "arm_label": "ARM_1_dacc_only",
+          "seed": 0,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.5,
+          "p0_first10_reward": -1.1683500111103058,
+          "p0_last10_reward": -1.1683500111103058,
+          "p0_n_probe_states_collected": 0,
+          "p0_mean_reward": -1.1683500111103058,
+          "p1_first10_reward": -0.6292102009057999,
+          "p1_last10_reward": -0.6292102009057999,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.02235960473076506,
+          "p1_final_baseline": -0.9790673366886377,
+          "p1_outcome_buf_size": 0,
+          "mean_reef_fraction": 0.0,
+          "rho_drive_vs_reef": 0.2916666666666667,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 0.0,
+          "risk_type_ratio": 1000000.0,
+          "n_forage_steps": 17,
+          "n_transit_steps": 0,
+          "n_forage_hazards": 17,
+          "n_transit_hazards": 0,
+          "per_episode_reef_fractions": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_1_dacc_only",
+          "seed": 1,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.09438850603016907,
+          "p0_first10_reward": -0.530946707725525,
+          "p0_last10_reward": -0.530946707725525,
+          "p0_n_probe_states_collected": 0,
+          "p0_mean_reward": -0.530946707725525,
+          "p1_first10_reward": -0.46371615976095204,
+          "p1_last10_reward": -0.46371615976095204,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.004104263344189684,
+          "p1_final_baseline": -0.49703140600085266,
+          "p1_outcome_buf_size": 0,
+          "mean_reef_fraction": 0.5208333333333334,
+          "rho_drive_vs_reef": -0.18665904326281682,
+          "forage_hazard_rate": 0.36363636363636365,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.36363636363636365,
+          "n_forage_steps": 22,
+          "n_transit_steps": 3,
+          "n_forage_hazards": 8,
+          "n_transit_hazards": 3,
+          "per_episode_reef_fractions": [
+            0.041666666666666664,
+            1.0
+          ]
+        },
+        {
+          "arm_label": "ARM_1_dacc_only",
+          "seed": 2,
+          "use_gated_policy": false,
+          "p0_final_running_variance": 0.0929735472230536,
+          "p0_first10_reward": -0.9234598418076834,
+          "p0_last10_reward": -0.9234598418076834,
+          "p0_n_probe_states_collected": 0,
+          "p0_mean_reward": -0.9234598418076834,
+          "p1_first10_reward": -0.9544040471315384,
+          "p1_last10_reward": -0.9544040471315384,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 0,
+              "mean_tv_distance": 0.0,
+              "max_tv_distance": 0.0,
+              "min_tv_distance": 0.0,
+              "applicable": false,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.004035094823288907,
+          "p1_final_baseline": -0.9303836148005723,
+          "p1_outcome_buf_size": 0,
+          "mean_reef_fraction": 0.0,
+          "rho_drive_vs_reef": -0.43,
+          "forage_hazard_rate": 0.56,
+          "transit_hazard_rate": 0.0,
+          "risk_type_ratio": 560000.0000000001,
+          "n_forage_steps": 25,
+          "n_transit_steps": 0,
+          "n_forage_hazards": 14,
+          "n_transit_hazards": 0,
+          "per_episode_reef_fractions": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "ARM_2_gated_only": [
+        {
+          "arm_label": "ARM_2_gated_only",
+          "seed": 0,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.35033386266431443,
+          "p0_first10_reward": -1.1184160590171814,
+          "p0_last10_reward": -1.1184160590171814,
+          "p0_n_probe_states_collected": 41,
+          "p0_mean_reward": -1.1184160590171814,
+          "p1_first10_reward": -1.0291485533118248,
+          "p1_last10_reward": -1.0291485533118248,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 32,
+              "mean_tv_distance": 0.0005301509518176317,
+              "max_tv_distance": 0.0006833821535110474,
+              "min_tv_distance": 0.00040791556239128113,
+              "applicable": true,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.09323792219961287,
+          "p1_final_baseline": -1.0837938251960277,
+          "p1_outcome_buf_size": 17,
+          "mean_reef_fraction": 0.0,
+          "rho_drive_vs_reef": 0.6153846153846154,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 0.0,
+          "risk_type_ratio": 1000000.0,
+          "n_forage_steps": 12,
+          "n_transit_steps": 0,
+          "n_forage_hazards": 12,
+          "n_transit_hazards": 0,
+          "per_episode_reef_fractions": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_2_gated_only",
+          "seed": 1,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.1416073811467813,
+          "p0_first10_reward": -1.1183365643024448,
+          "p0_last10_reward": -1.1183365643024448,
+          "p0_n_probe_states_collected": 58,
+          "p0_mean_reward": -1.1183365643024448,
+          "p1_first10_reward": -1.1581383898854256,
+          "p1_last10_reward": -1.1581383898854256,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 32,
+              "mean_tv_distance": 0.001132089295424521,
+              "max_tv_distance": 0.001558057963848114,
+              "min_tv_distance": 0.000880122184753418,
+              "applicable": true,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.09941165965375487,
+          "p1_final_baseline": -1.1325469265252355,
+          "p1_outcome_buf_size": 12,
+          "mean_reef_fraction": 0.45652173913043476,
+          "rho_drive_vs_reef": 0.5724137931034481,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 1.0,
+          "n_forage_steps": 8,
+          "n_transit_steps": 1,
+          "n_forage_hazards": 8,
+          "n_transit_hazards": 1,
+          "per_episode_reef_fractions": [
+            0.9130434782608695,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_2_gated_only",
+          "seed": 2,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.07205815939742286,
+          "p0_first10_reward": -0.9867263873418172,
+          "p0_last10_reward": -0.9867263873418172,
+          "p0_n_probe_states_collected": 71,
+          "p0_mean_reward": -0.9867263873418172,
+          "p1_first10_reward": -0.45358407944440843,
+          "p1_last10_reward": -0.45358407944440843,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 32,
+              "mean_tv_distance": 0.0006342605920508504,
+              "max_tv_distance": 0.0010130517184734344,
+              "min_tv_distance": 0.0003256388008594513,
+              "applicable": true,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.00271478871608407,
+          "p1_final_baseline": -0.8170357105910778,
+          "p1_outcome_buf_size": 26,
+          "mean_reef_fraction": 0.874074074074074,
+          "rho_drive_vs_reef": 0.5969017371013742,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 1.0,
+          "n_forage_steps": 7,
+          "n_transit_steps": 2,
+          "n_forage_hazards": 7,
+          "n_transit_hazards": 2,
+          "per_episode_reef_fractions": [
+            0.9333333333333333,
+            0.8148148148148148
+          ]
+        }
+      ],
+      "ARM_3_both": [
+        {
+          "arm_label": "ARM_3_both",
+          "seed": 0,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.24542352751110613,
+          "p0_first10_reward": -0.8890301505724589,
+          "p0_last10_reward": -0.8890301505724589,
+          "p0_n_probe_states_collected": 48,
+          "p0_mean_reward": -0.8890301505724589,
+          "p1_first10_reward": -0.9788968071341515,
+          "p1_last10_reward": -0.9788968071341515,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 32,
+              "mean_tv_distance": 0.00036831723991781473,
+              "max_tv_distance": 0.00043111294507980347,
+              "min_tv_distance": 0.00022688135504722595,
+              "applicable": true,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.01369507216954289,
+          "p1_final_baseline": -0.9231079874360562,
+          "p1_outcome_buf_size": 24,
+          "mean_reef_fraction": 0.0,
+          "rho_drive_vs_reef": -0.23952292373345005,
+          "forage_hazard_rate": 0.21052631578947367,
+          "transit_hazard_rate": 0.0,
+          "risk_type_ratio": 210526.31578947368,
+          "n_forage_steps": 38,
+          "n_transit_steps": 0,
+          "n_forage_hazards": 8,
+          "n_transit_hazards": 0,
+          "per_episode_reef_fractions": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_3_both",
+          "seed": 1,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.03789453287619322,
+          "p0_first10_reward": -0.5819588611523311,
+          "p0_last10_reward": -0.5819588611523311,
+          "p0_n_probe_states_collected": 84,
+          "p0_mean_reward": -0.5819588611523311,
+          "p1_first10_reward": -0.780274823307991,
+          "p1_last10_reward": -0.780274823307991,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 32,
+              "mean_tv_distance": 0.0008747692918404937,
+              "max_tv_distance": 0.001210339367389679,
+              "min_tv_distance": 0.0006356760859489441,
+              "applicable": true,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.002171623062400007,
+          "p1_final_baseline": -0.6498095776167512,
+          "p1_outcome_buf_size": 24,
+          "mean_reef_fraction": 0.4791666666666667,
+          "rho_drive_vs_reef": 0.5942157953281423,
+          "forage_hazard_rate": 1.0,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 1.0,
+          "n_forage_steps": 7,
+          "n_transit_steps": 1,
+          "n_forage_hazards": 7,
+          "n_transit_hazards": 1,
+          "per_episode_reef_fractions": [
+            0.9583333333333334,
+            0.0
+          ]
+        },
+        {
+          "arm_label": "ARM_3_both",
+          "seed": 2,
+          "use_gated_policy": true,
+          "p0_final_running_variance": 0.037157369612096654,
+          "p0_first10_reward": -1.0022529939810436,
+          "p0_last10_reward": -1.0022529939810436,
+          "p0_n_probe_states_collected": 84,
+          "p0_mean_reward": -1.0022529939810436,
+          "p1_first10_reward": -0.9133514210581779,
+          "p1_last10_reward": -0.9133514210581779,
+          "p1_inert_gating_detected": false,
+          "p1_probe_log": [
+            {
+              "n_probe_states": 32,
+              "mean_tv_distance": 0.0007185258436948061,
+              "max_tv_distance": 0.0011660456657409668,
+              "min_tv_distance": 0.0003163851797580719,
+              "applicable": true,
+              "p1_ep": 4
+            }
+          ],
+          "p1_final_running_variance": 0.0013921567317149684,
+          "p1_final_baseline": -0.971658875066042,
+          "p1_outcome_buf_size": 27,
+          "mean_reef_fraction": 0.25,
+          "rho_drive_vs_reef": 0.6320557491289199,
+          "forage_hazard_rate": 0.5384615384615384,
+          "transit_hazard_rate": 1.0,
+          "risk_type_ratio": 0.5384615384615384,
+          "n_forage_steps": 26,
+          "n_transit_steps": 1,
+          "n_forage_hazards": 14,
+          "n_transit_hazards": 1,
+          "per_episode_reef_fractions": [
+            0.0,
+            0.5
+          ]
+        }
+      ]
+    }
+  },
+  "elapsed_seconds": 146.77012300491333,
+  "dry_run": true,
+  "notes": "V3-EXQ-543g: ARC-062 x MECH-309 monomodal-collapse falsifier with outcome-coupled REINFORCE P1 loss. Supersedes V3-EXQ-543f. Inherits both substrate fixes from 543f (one-hot augmentation: FIX 1; dacc_weight=1.0: FIX 2). Key change: P1 diversification regularizer (head_div + disc_var self-supervised) replaced with REINFORCE on GatedPolicy parameters. During P1 episodes, records (snap, sel_idx, ep_return) every RECORD_EVERY_N_STEPS=4 steps; after each episode, advantage = ep_return - EMA_baseline is computed and a minibatch REINFORCE gradient step is taken: loss = mean(-advantage * log_softmax(gated_score_bias / T, dim=0)[sel_idx]) - LAMBDA_DISC_VAR * disc_var_secondary. head_div_term removed: it caused symmetric cancellation (head_0->+X, head_1->-X gives composed bias = (2w-1)*X ~ 0 for w~0.5) without moving behavioral output. disc_var retained at reduced weight (0.1). EMA baseline initialized from P0 mean reward to avoid cold-start advantage explosion. Per-claim direction grid extended: if REINFORCE still fails to activate gating (TV < threshold at mid-training across all gated seeds), ARC-062 is non_contributory (deeper barrier than training signal gap); if gating is active but D criteria fail, ARC-062 weakens (architecture expressed itself but failed discrimination). 2x2 factorial, SD-054 bipartite layout, D2 AND D3 PASS rule, all pre-registered thresholds and metrics inherited unchanged from 543c/543d/543e/543f."
+}
