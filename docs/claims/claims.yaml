@@ -26381,6 +26381,39 @@
     networks). The ML support is sufficient to register and run the
     falsifying-pair experiment without a deep biology lit-pull, but the
     biology side becomes load-bearing for the strong reading (ARC-063).
+
+    2026-05-17 governance (V3-EXQ-543e, supersedes 543d): the SP-CEM
+    re-issue of the 2x2 falsifier FAILed but is NON-CONTRIBUTORY for
+    ARC-062 (reclassified from "weakens" per the confirmed dual-root-cause
+    failure autopsy failure_autopsy_EXQ-543e_2026-05-17, session A +
+    session-B addendum, user-gated). Dual root cause, neither implicating
+    the ARC-062 architectural commitment: (1) configuration_error -- the
+    MECH-260 dACC factorial axis was never live (DACCtoE3Adapter returns
+    the zero vector when dacc_weight==0.0; the script set only
+    dacc_suppression_weight=0.5), making the factorial degenerate
+    (ARM_0==ARM_1, ARM_2==ARM_3 byte-identical, D1=D2=0.0 all 3 seeds);
+    (2) substrate_under_fed -- SP-CEM delivers ~5 first-action classes but
+    E2 world-forward compresses that to ~0.22% of z_world magnitude,
+    starving the z_world-only gated head. The ARC-062 weak-reading
+    architecture has STILL not had a confound-free test. Stays
+    candidate / v3_pending; no confidence change; no conflict-ratio
+    movement. The whole 543b/c/d/e lineage is non-contributory (collapsed
+    CEM and/or inert dACC). First valid test = V3-EXQ-543f, gated on two
+    landings: /implement-substrate ARC-062 head-input first-action one-hot
+    augmentation, AND dacc_weight>0 with a pre-flight non-degeneracy
+    assertion.
+  epistemic_category: substrate_conditional
+  heterogeneity_note: >
+    substrate-version confound + supersession lag. ARC-062's
+    conflict_ratio is driven entirely by the 543-lineage 2x2 falsifier
+    FAILs (543b/c/d/e), none of which is a confound-free test of the
+    weak-reading gated-policy architecture: 543b/c/d ran on the pre-SP-CEM
+    collapsed CEM (candidate-feature variance below head discriminability)
+    and the dACC factorial axis was never live on ANY of them
+    (dacc_weight=0.0). All are reclassified non_contributory. The conflict
+    resolves once V3-EXQ-543f provides the first confound-free test
+    (SP-CEM + live dACC + head-input augmentation). Not a genuine
+    scientific contradiction.
   notes: >
     The split between ARC-062 (weak) and ARC-063 (strong) follows the
     feedback_biology_before_formal_definitions principle in reverse: we

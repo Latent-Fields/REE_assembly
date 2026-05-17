@@ -14,7 +14,7 @@
   "outcome": "FAIL",
   "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-062": "weakens",
+    "ARC-062": "non_contributory",
     "MECH-309": "non_contributory"
   },
   "metrics": {
@@ -1765,5 +1765,6 @@
   },
   "elapsed_seconds": 12598.278226137161,
   "dry_run": false,
-  "notes": "ARC-062 x MECH-260 2x2 factorial monomodal-collapse falsifier on bipartite SD-054. Supersedes V3-EXQ-543c. 4 arms x 3 seeds: ARM_0_baseline (gated OFF, dacc OFF), ARM_1_dacc_only (gated OFF, dacc ON with suppression_weight=0.5), ARM_2_gated_only (gated ON, dacc OFF; replicates 543c ARM_1c null), ARM_3_both (gated ON, dacc ON). dACC sub-weights other than suppression left at default 0.0 to isolate MECH-260 anti-recency. Inherited from 543c: SD-054 bipartite layout, world_states[1] probe-buffer fix, P0=40 / P1=60 / P2=8 phased training, hardened C3, behavioral-divergence probe (kept as diagnostic; NON-FATAL in 543d). Pre-registered cross-arm attribution: D1 ARM_1>ARM_0 (dACC alone); D2 ARM_3>ARM_2 (dACC adds to gated); D3 ARM_3>ARM_1 (gated adds to dACC); D4 ARM_2~=ARM_0 (543c null replication). PASS = D2 AND D3; FAIL D1-only routes to ARC-062 substrate-rationale review; FAIL all-D-null routes to option 2 head-input augmentation per 2026-05-11 decision-log. Plan-of-record: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md decision-log entries 2026-05-11."
+  "notes": "ARC-062 x MECH-260 2x2 factorial monomodal-collapse falsifier on bipartite SD-054. Supersedes V3-EXQ-543c. 4 arms x 3 seeds: ARM_0_baseline (gated OFF, dacc OFF), ARM_1_dacc_only (gated OFF, dacc ON with suppression_weight=0.5), ARM_2_gated_only (gated ON, dacc OFF; replicates 543c ARM_1c null), ARM_3_both (gated ON, dacc ON). dACC sub-weights other than suppression left at default 0.0 to isolate MECH-260 anti-recency. Inherited from 543c: SD-054 bipartite layout, world_states[1] probe-buffer fix, P0=40 / P1=60 / P2=8 phased training, hardened C3, behavioral-divergence probe (kept as diagnostic; NON-FATAL in 543d). Pre-registered cross-arm attribution: D1 ARM_1>ARM_0 (dACC alone); D2 ARM_3>ARM_2 (dACC adds to gated); D3 ARM_3>ARM_1 (gated adds to dACC); D4 ARM_2~=ARM_0 (543c null replication). PASS = D2 AND D3; FAIL D1-only routes to ARC-062 substrate-rationale review; FAIL all-D-null routes to option 2 head-input augmentation per 2026-05-11 decision-log. Plan-of-record: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md decision-log entries 2026-05-11.",
+  "evidence_direction_note": "Governance 2026-05-17 retrospective caveat (failure_autopsy_EXQ-543e_2026-05-17 session-B addendum, cluster scope): the original supersession rationale -- '543d invalid only because it ran on the collapsed-CEM substrate' -- is INCOMPLETE. 543d's MECH-260 dACC factorial axis was also never live (same DACCtoE3Adapter dacc_weight==0.0 zero-return path as 543e; the 543d-lineage 2x2 falsifier's dACC axis has never been live on ANY substrate). 543d's factorial was therefore degenerate independently of the CEM-collapse confound. ARC-062 reclassified weakens -> non_contributory for consistency with the cluster finding (wrong-layer attribution; already non_contributory overall and superseded by V3-EXQ-543e, so no evidence-weight change). MECH-309 unchanged. Confound-free retest is V3-EXQ-543f (live dACC + head-input augmentation)."
 }
