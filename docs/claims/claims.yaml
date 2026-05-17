@@ -26659,6 +26659,26 @@
     precondition for ARC-062. The chain is: behavioural diversity
     generation -> representational discriminability -> rule apprehension.
     All three are upstream of SD-029 monomodal-collapse measurement.
+  implementation_note: >
+    2026-05-17: the hippocampal-trajectory-sampling child substrate
+    (support-preserving + stratified CEM, "SP-CEM") was LANDED AS THE
+    MAIN-PATH DEFAULT in ree-v3. Config defaults flipped (HippocampalConfig
+    dataclass + REEConfig.from_dims signature, both layers):
+    use_support_preserving_cem False->True,
+    support_preserving_stratified_elites False->True,
+    support_preserving_ao_std_floor 0.0->0.2. The legacy collapsing CEM
+    (monostrategy) is no longer the default; bit-identical opt-out is
+    explicitly passing those three flags False/False/0.0. Evidence basis:
+    V3-EXQ-567 PASS 2026-05-15 (selected_action_entropy 0.0124->0.4965,
+    candidate support 1.007->2.810), corroborated by V3-EXQ-573/568 and
+    confirmed confound-free by the V3-EXQ-543e failure autopsy 2026-05-17.
+    This is a SUBSTRATE landing only -- NOT a promotion. ARC-065 stays
+    status=candidate, v3_pending=true: provisional promotion still requires
+    Rung-1 matched-entropy governance (V3-EXQ-569: structured diversity >
+    entropy-matched noise) plus independent multi-env replication, per
+    evidence/planning/behavioral_diversity_acceptance_criteria.md. Default-
+    wiring validation queued (3-arm equivalence). See ree-v3/CLAUDE.md
+    "ARC-065 SP-CEM Main-Path Landing (2026-05-17)".
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-313

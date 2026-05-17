@@ -686,6 +686,24 @@ Rung 4  <- Requires Rung 3 PASS + SD-003 substrate active (E2 counterfactual wir
 Current V3 position (2026-05-15): Rung 1 PARTIAL (V3-EXQ-567 entropy lift confirmed;
 V3-EXQ-569 matched-entropy control pending). Rungs 2-4 blocked.
 
+**2026-05-17 update -- SP-CEM landed as the main-path default.** The ARC-065
+hippocampal-trajectory-sampling child substrate (support-preserving + stratified
+CEM) was promoted from opt-in to the default REE-v3 action path: config defaults
+flipped to the V3-EXQ-567 ARM_1 combination (`use_support_preserving_cem=True`,
+`support_preserving_stratified_elites=True`, `support_preserving_ao_std_floor=0.2`)
+in both the `HippocampalConfig` dataclass and `REEConfig.from_dims`. Governance
+consequences: (1) every NEW experiment now measures behaviour under SP-CEM unless
+it explicitly pins the legacy flags False/False/0.0 -- the monostrategy confound
+that made SD-029, ARC-062 Rung 2, goal_pipeline GAP-2/4 and self_attribution
+GAP-1/2/3 non_contributory is removed at the substrate level; (2) the Rung-1
+gate is now strictly the matched-entropy control (V3-EXQ-569), not "is SP-CEM
+enabled"; (3) this is a SUBSTRATE landing, NOT a promotion -- ARC-065 stays
+candidate / v3_pending pending Rung-1 matched-entropy PASS + multi-env
+replication. Pre-2026-05-17 default-config runs were under the legacy collapsing
+CEM and their monostrategy signatures must not be force-mapped (non-standard
+directions rule). See ree-v3/CLAUDE.md "ARC-065 SP-CEM Main-Path Landing
+(2026-05-17)" and claims.yaml ARC-065 implementation_note.
+
 ### Promotion/demotion rules
 
 **Supporting evidence** for ARC-065 requires Rung 1 PASS on matched-entropy-controlled
