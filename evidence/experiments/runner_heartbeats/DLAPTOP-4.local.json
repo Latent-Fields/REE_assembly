@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-17T13:26:47Z",
+  "last_tick_utc": "2026-05-17T13:28:53Z",
   "state": "running",
   "current_exq": "V3-EXQ-543f",
   "current_exq_started_utc": "2026-05-17T13:11:05.185387+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 1 / ARM_1_dacc_only",
-    "runs_done": 5,
+    "run_label": "Seed 1 / ARM_2_gated_only",
+    "runs_done": 6,
     "runs_total": 12,
-    "episodes_done": 90,
+    "episodes_done": 5,
     "episodes_total": 108,
-    "overall_pct": 48.6
+    "overall_pct": 50.4
   },
-  "seconds_elapsed": 942,
-  "seconds_remaining": 887,
+  "seconds_elapsed": 1068,
+  "seconds_remaining": 969,
   "recent_lines": [
-    "[probe] ARM_1_dacc_only P1 ep 40/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
-    "[train] ARM_1_dacc_only ep 80/108  phase=P1  rv=0.0005  ep_reward=-1.2332  inert_gating=False",
-    "[probe] ARM_1_dacc_only P1 ep 45/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
-    "[probe] ARM_1_dacc_only P1 ep 50/60  applicable=False  mean_tv=0.0000  max_tv=0.0000",
-    "[train] ARM_1_dacc_only ep 90/108  phase=P1  rv=0.0004  ep_reward=-1.1563  inert_gating=False"
+    "[train] ARM_2_gated_only ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.3294",
+    "[train] ARM_2_gated_only ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.2334",
+    "[train] ARM_2_gated_only ep 30/108  phase=P0  rv=0.0003  ep_reward=-1.2194",
+    "[train] ARM_2_gated_only ep 40/108  phase=P0  rv=0.0003  ep_reward=-1.1965",
+    "[probe] ARM_2_gated_only P1 ep 5/60  applicable=True  mean_tv=0.0009  max_tv=0.0012"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
