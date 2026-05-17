@@ -142,6 +142,56 @@ describes no longer exists.
 
 ---
 
+## Sustained-drive amendment (goal_pipeline:GAP-3, Option 1) — IMPLEMENTED 2026-05-17
+
+EXQ-536a exposed a second, structural failure mode distinct from the 2026-04-13
+instrumentation bug: even with the seeding signal read correctly, the multiplier
+`(1 + drive_weight * drive_level)` collapses to ~1.0 the step a resource is consumed,
+because `drive_level = 1 - energy` and energy resets toward 1.0 on consumption. Drive and
+benefit are forced to anti-correlate around contact events — exactly when seeding must
+fire (EXQ-536a: `H_b_threshold_never_crossed`, mean drive on contact 0.005, multiplier
+~1.01). This is a general property of instantaneous-drive x instantaneous-benefit gating,
+not a tuning issue. See `sustained_drive_anticipatory_wanting.md` for the full scoping
+(three options) and `goal_pipeline_plan.md` GAP-3 / Phase 3.
+
+**Option 1 (sustained-drive EMA) is implemented.** `GoalConfig.drive_ema_alpha`
+(float, default **1.0**; in `ree_core/goal.py`). `GoalState.update()` now smooths
+`drive_level` into a persistent trace before the multiplier:
+
+```
+_drive_trace = (1 - drive_ema_alpha) * _drive_trace + drive_ema_alpha * drive_level
+effective_benefit = benefit_exposure * z_goal_seeding_gain
+                    * (1 + drive_weight * _drive_trace)
+```
+
+- `drive_ema_alpha = 1.0` (default) -> `_drive_trace == drive_level` every step
+  regardless of init -> **bit-identical** to the instantaneous form documented above.
+  Backward-compatible; every existing experiment is unaffected (full contract +
+  preflight suite 426/426 green; contract `test_sustained_drive_ema_gap3.py` C1/C2).
+- Lit-anchored operating value **0.02** (~35-step half-life), inside the 30-60 step
+  post-consummatory wanting-persistence window established in
+  `evidence/literature/wanting_liking_sleep_consolidation_synthesis.md` (Berridge /
+  Robinson sustained anticipatory wanting; Aponte / Livneh slow-decay hunger drive).
+- `_drive_trace` is **zero-initialised** (goal_pipeline Q2 decision): for
+  `alpha < 1.0` this carries a deliberate ~1/alpha-step cold-start transient that
+  underestimates drive early in an episode — an accepted, documented confound the
+  discriminative sweep accounts for.
+- Surfaced through `REEConfig.from_dims()` mirroring the `drive_weight` plumbing.
+
+**Naming reconciliation:** the canonical knob is `drive_ema_alpha` (the operative
+`goal_pipeline_plan.md` / Q2 term). An earlier draft of
+`sustained_drive_anticipatory_wanting.md` used `alpha_drive_trace`; that name is
+superseded — same semantics, default 1.0 = OFF.
+
+**Validation:** discriminative `drive_ema_alpha` sweep {0.01, 0.02, 0.2, 1.0} (first-PASS
+arm 0.02, 1.0 = OFF parity) queued via `/queue-experiment` — see `goal_pipeline_plan.md`
+GAP-3. **claims.yaml is not modified by this implementation**: registering
+**MECH-306 sustained_drive_trace** (mechanism_hypothesis, EXQ-536a empirical anchor, lit
+anchors per the wanting/liking synthesis) is the governance follow-on, gated on the sweep
+result.
+
+---
+
 ## Related Claims
 
 - **SD-012** — this design decision

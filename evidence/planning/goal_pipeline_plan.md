@@ -28,12 +28,13 @@ closure_plan:
     - id: "goal_pipeline:GAP-3"
       title: "SD-012 sustained-drive EMA amendment"
       phase: 3
-      status: open
+      status: in-progress
       severity: high
-      owner_exq: TBD
+      owner_exq: V3-EXQ-582
       unblocks_claims: [SD-012, MECH-216, ARC-051]
       depends_on: []
-      last_updated: 2026-05-08
+      last_updated: 2026-05-17
+      resume_condition: "Substrate landed 2026-05-17 (GoalConfig.drive_ema_alpha, default 1.0=OFF bit-identical; GoalState.update EMA-smooths drive_level into _drive_trace; reset() zeroes it; from_dims passthrough; contract test_sustained_drive_ema_gap3.py 7/7; full suite 426/426). Q2 RESOLVED (alpha=0.02 first-PASS, sweep {0.01,0.02,0.2,1.0}, knob drive_ema_alpha, zero-init). V3-EXQ-582 discriminative sweep QUEUED (priority 2, diagnostic claim_ids=[]). GAP-3 -> done when V3-EXQ-582 PASSes (A1-A4); on PASS, register MECH-306 sustained_drive_trace via governance (claims.yaml deliberately NOT touched by the substrate landing). If 582 FAILs, follow the script's diagnostic interpretation grid (Option 2 insatiability floor escalation, or regime-drift diagnosis). See 2026-05-17 decision-log entry."
     - id: "goal_pipeline:GAP-4"
       title: "MECH-295 drive->liking->approach cascade Tier-1 retest cohort"
       phase: 4
@@ -43,7 +44,7 @@ closure_plan:
       unblocks_claims: [MECH-295, ARC-030, MECH-117, Q-040]
       depends_on: ["goal_pipeline:GAP-1", "goal_pipeline:GAP-3"]
       last_updated: 2026-05-16
-      resume_condition: "Same monostrategy gate as GAP-2 -- validated substrate fix is V3-EXQ-567 (ARC-065 SP-CEM). Also depends on GAP-3 (SD-012 sustained-drive EMA, blocked on goal_pipeline Q2). Retest unblockable once SP-CEM lands + GAP-3 EMA decision made. See 2026-05-16 decision-log entry."
+      resume_condition: "Same monostrategy gate as GAP-2 -- validated substrate fix is V3-EXQ-567 (ARC-065 SP-CEM). Also depends on GAP-3: as of 2026-05-17 the GAP-3 Q2 EMA decision is RESOLVED and the SD-012 sustained-drive EMA substrate has landed; GAP-3 is now in-progress with V3-EXQ-582 (discriminative sweep) queued. GAP-4 retest unblockable once SP-CEM lands AND V3-EXQ-582 PASSes (GAP-3 done). See 2026-05-16 and 2026-05-17 decision-log entries."
     - id: "goal_pipeline:GAP-5"
       title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
       phase: 5
@@ -367,7 +368,7 @@ See [Resume ritual](#resume-ritual) below.
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (substrate landed 2026-05-11; 4-arm validation pending separate session) | Queue 4-arm discriminative pair via /queue-experiment under master flag use_mech307_conjunction=True. **NOTE 2026-05-11 (EXQ-550 review):** V3-EXQ-550 FAIL sustains MECH-269 V_s monostrategy substrate-level reading at no-training depth; same run surfaced wired-but-inert z_goal pipeline (1200/1200 update_z_goal calls, z_goal_norm_peak=0.0) -- see decision-log 2026-05-11 entry. V3-EXQ-551 (pipeline-entropy diagnostic) + V3-EXQ-552 (forced-exploration warmup) queued by parallel sessions to narrow mechanism before trained-z_goal follow-up. | TBD (4-arm discriminative pair) | 2026-05-11 |
 | GAP-2 | 2 | blocked | Phase 1 PASS | Re-queue V3-EXQ-514 successor with phased training under MECH-307-fixed substrate | V3-EXQ-514g (TBD) | 2026-05-08 |
-| GAP-3 | 3 | open | nothing internal | Land sustained-drive EMA (Option 1) per sustained_drive_anticipatory_wanting.md; queue discriminative drive_ema_alpha sweep | TBD (SD-012 amendment) | 2026-05-08 |
+| GAP-3 | 3 | in-progress | V3-EXQ-582 result | Substrate landed 2026-05-17 (GoalConfig.drive_ema_alpha default 1.0=OFF; EMA trace in GoalState.update; reset() zeroes it; from_dims passthrough; contract 7/7; full suite 426/426). Q2 RESOLVED (alpha=0.02 first-PASS, sweep {0.01,0.02,0.2,1.0}, zero-init). V3-EXQ-582 discriminative sweep queued (priority 2, diagnostic). On 582 PASS: mark GAP-3 done + register MECH-306 sustained_drive_trace via governance (claims.yaml NOT touched by the landing). On FAIL: follow the script's diagnostic interpretation grid. | V3-EXQ-582 | 2026-05-17 |
 | GAP-4 | 4 | blocked | Phase 1 + Phase 3 PASS | Re-queue Tier-1 cohort under StepHarness with Phase 1 + Phase 3 landed | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-08 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | tracked | external (V_s invalidation runtime) | Track V3-EXQ-490b; consume staleness-corrected V_s when it lands | V3-EXQ-490b | 2026-05-08 |
@@ -479,6 +480,64 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-3 Q2 RESOLVED + SD-012 sustained-drive EMA (Option 1) substrate landed; V3-EXQ-582 queued
+
+User invoked goal-pipeline GAP-3. GAP-3 was `open`/unstarted (no EMA knob in
+goal.py; the design memo's reserved EXQ-539-541 had been reused for MECH-204
+work). Surfaced the registered open question **Q2** (the EMA timescale) plus a
+plan-of-record inconsistency: the plan body/Q2 proposed knob `drive_ema_alpha`
+default 0.05; the design memo used `alpha_drive_trace` operating value 0.02;
+the lit synthesis `wanting_liking_sleep_consolidation_synthesis.md` endorses a
+30-60 step half-life window and flags 0.05 (~14-step) as too fast.
+
+**User decisions:** (Q2) canonical knob `drive_ema_alpha`, config default 1.0
+(bit-identical OFF, non-negotiable), first-PASS arm **alpha=0.02** (lit-
+anchored ~35-step half-life), discriminative sweep {0.01, 0.02, 0.2, 1.0};
+(implementation sub-choice) **zero-init** the trace rather than first-obs init,
+explicitly accepting the ~1/alpha-step per-episode cold-start transient as a
+documented confound the validation EXQ accounts for.
+
+**Landed (via /implement-substrate):** `GoalConfig.drive_ema_alpha` (goal.py,
+default 1.0); `GoalState.update()` EMA recursion
+`_drive_trace = (1-alpha)*_drive_trace + alpha*drive_level` then the SD-012
+multiplier uses `_drive_trace`; `GoalState.reset()` zeroes `_drive_trace` (the
+Q2 cold-start is per-episode -- caught during code review when tracing the
+eval-loop reset() semantics, a substrate gap fixed before queuing);
+`REEConfig.from_dims` passthrough mirroring `drive_weight`. Backward compat is
+load-bearing and verified: alpha=1.0 -> trace==drive_level regardless of init
+(contract C1/C2), full contract+preflight suite 426/426 green, an existing
+drive-modulated goal experiment runs unchanged under default config. New
+contract `tests/contracts/test_sustained_drive_ema_gap3.py` 7/7 (C1 default,
+C2 bit-identical-to-instantaneous, C3 no contact-collapse, C4 ~35-step
+half-life, C5 monotone falsifier curve = trace-at-contact post-warmup, C6
+zero-init cold-start bound, C7 reset() re-zeroes). Docs reconciled: SD-012 doc
+gained a "Sustained-drive amendment" section; the design memo's
+`alpha_drive_trace` name marked superseded; ree-v3/CLAUDE.md SD section entry.
+
+**Scope discipline:** `claims.yaml` deliberately NOT modified. Registering
+**MECH-306 sustained_drive_trace** (mechanism_hypothesis; EXQ-536a empirical
+anchor; lit anchors per the wanting/liking synthesis) is the governance
+follow-on, gated on V3-EXQ-582 PASS -- consistent with the recent GAP-closure
+convention ("GAP unblocks but does not itself promote").
+
+**Validation:** V3-EXQ-582 (`v3_exq_582_gap3_sustained_drive_ema_sweep`,
+diagnostic, claim_ids=[], priority 2) queued -- 4 alpha arms x 3 seeds on the
+EXQ-536a goal-seeding regime, ungated per-step `update_z_goal` (substrate-
+faithful time-EMA; diverges from 536a's benefit-gate by design), trace read
+from `goal_state._drive_trace` post-update, metrics over an all + fixed
+post-warmup (cut=100) window. PASS = A1 drive-trace@contact(0.02)>0.10
+(vs 536a 0.005) & A2 >=2/3 seeds clear benefit_threshold & A3
+z_goal_active_fraction>0.20 & A4 monotone alpha curve with the OFF arm at the
+536a value. Script carries the mandatory diagnostic interpretation grid
+(Option-2 escalation / regime-drift / downstream-bottleneck routings).
+
+**Status:** GAP-3 open -> in-progress (NOT done -- the EXQ has not run; per
+the never-mark-complete-before-artifact rule). On 582 PASS: GAP-3 -> done,
+MECH-306 to governance, GAP-4's GAP-3 prerequisite satisfied (GAP-4 still
+separately gated on the ARC-065 SP-CEM monostrategy fix). GAP-4
+resume_condition updated to reflect Q2 resolved + EMA landed. ree-v3 and
+REE_assembly committed.
 
 ### 2026-05-16 - Closure-map reconciliation: GAP-2 / GAP-4 monostrategy blocker has a validated substrate fix (ARC-065 SP-CEM)
 
@@ -728,11 +787,26 @@ Numbered for reference from future sessions.
   proposed: signed single channel behind `surprise_signed` config flag. Open:
   whether any downstream consumer needs the channel-level separation rather
   than reading sign-magnitude.
-- **Q2**: For Phase 3 Option 1 (sustained-drive EMA), what is the right
-  `drive_ema_alpha` default? Too slow (alpha=0.01) gives an insatiability-floor
-  signature; too fast (alpha=0.5) reproduces the contact-collapse problem.
-  Default proposed: alpha=0.05 with a discriminative sweep (0.01 / 0.05 / 0.2 /
-  1.0 the last being instantaneous-OFF parity).
+- **Q2**: ~~For Phase 3 Option 1 (sustained-drive EMA), what is the right
+  `drive_ema_alpha` default?~~ **RESOLVED 2026-05-17 (user decision).**
+  Config *default* = **1.0** (non-negotiable: alpha=1.0 -> trace == drive_level
+  every step regardless of init -> bit-identical OFF / backward-compat).
+  Canonical knob name = **`drive_ema_alpha`** (the design memo's
+  `alpha_drive_trace` is superseded; identical semantics). First-PASS /
+  acceptance operating arm = **alpha=0.02** (~35-step half-life), chosen over
+  the originally-proposed 0.05 (~14-step) because the lit synthesis
+  `wanting_liking_sleep_consolidation_synthesis.md` endorses a 30-60 step
+  post-consummatory wanting window and explicitly flags 0.05 as risking the
+  documented "trace too fast -> resembles OFF" failure mode. Discriminative
+  sweep = **{0.01, 0.02, 0.2, 1.0}** (0.02 first-PASS, 0.01 slow bracket, 0.2
+  fast-end falsifier, 1.0 OFF parity). Trace is **zero-initialised**
+  (user-chosen over first-obs init): for alpha<1.0 this carries a deliberate
+  ~1/alpha-step per-episode cold-start transient -- an accepted, documented
+  confound that V3-EXQ-582 accounts for by reporting metrics over a fixed
+  post-warmup window. Landed: GoalConfig.drive_ema_alpha; GoalState.update
+  EMA recursion; GoalState.reset() zeroes the trace (per-episode cold-start);
+  REEConfig.from_dims passthrough; contract test_sustained_drive_ema_gap3.py
+  (7/7). Validation: V3-EXQ-582 (queued).
 - **Q3**: For Phase 4 Tier-1 cohort, should V3-EXQ-471a / V3-EXQ-475a / V3-EXQ-483c /
   V3-EXQ-490g / V3-EXQ-524a all run together as a Tier-1 batch, or sequentially?
   Default proposed: batch, since they share substrate (MECH-307 + SD-012

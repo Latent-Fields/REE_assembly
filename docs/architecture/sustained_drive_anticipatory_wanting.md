@@ -3,8 +3,19 @@
 **Created:** 2026-05-08
 **Trigger:** EXQ-536a (`H_b_threshold_never_crossed: true`, `mean drive on contact:
 0.005`, `n_contact_events: 2 across 4000 steps`).
-**Status:** design memo, pre-registration. No implementation yet. Lit-pull
-companion to follow.
+**Status:** Option 1 IMPLEMENTED 2026-05-17 (goal_pipeline:GAP-3 Phase 3).
+Options 2-3 gated on the Option 1 discriminative sweep outcome. Lit-pull
+companion landed (`evidence/literature/wanting_liking_sleep_consolidation_synthesis.md`).
+
+> **Knob name reconciliation (2026-05-17):** the canonical config knob is
+> **`drive_ema_alpha`** (the operative `goal_pipeline_plan.md` / Q2 term),
+> default **1.0 = OFF / bit-identical**. The `alpha_drive_trace` name used in
+> the Option 1 sketch below is superseded -- identical semantics. The Q2
+> decision set the first-PASS arm to **0.02** (~35-step half-life,
+> lit-anchored) with discriminative sweep {0.01, 0.02, 0.2, 1.0}; the trace
+> is **zero-initialised** (accepted ~1/alpha-step cold-start confound, not
+> the first-obs init the sketch mentions). See SD-012 doc "Sustained-drive
+> amendment" section and `goal_pipeline_plan.md` GAP-3.
 
 ## Problem (the finding to solve)
 
