@@ -1,0 +1,37 @@
+{
+  "machine": "ree-cloud-4",
+  "hostname": "ree-cloud-4",
+  "last_tick_utc": "2026-05-17T19:49:54Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-543h",
+  "current_exq_started_utc": "2026-05-17T19:49:49.018441+00:00",
+  "current_title": "ARC-062 GAP-B x crystallize_at_phase3 falsifier (INV-074/MECH-334; 2x2x2)",
+  "current_claim_id": "ARC-062",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / ARM_0_baseline",
+    "runs_done": 0,
+    "runs_total": 24,
+    "episodes_done": 0,
+    "episodes_total": 108,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 12000,
+  "recent_lines": [
+    "Preflight non-degeneracy check PASS: dacc_weight=1.0 active, first_action_onehot=True (action_dim=5); crystallize factor arms gated.crystallize_enabled + residue.ewc without pre-firing; MECH-314 novelty-only on xtal arms.",
+    "[V3-EXQ-543h] ARC-062 x MECH-309 x crystallize_at_phase3 Falsifier (INV-074/MECH-334; outcome-coupled REINFORCE P1 loss; 2x2x2)  seeds=[0, 1, 2]  dry_run=False",
+    "Seed 0 Condition ARM_0_baseline",
+    "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
+  ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 3220,
+  "runner_version": null,
+  "gpu": {
+    "available": false
+  },
+  "schema_version": "v1"
+}
