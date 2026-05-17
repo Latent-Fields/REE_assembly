@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-17T13:36:14Z",
+  "last_tick_utc": "2026-05-17T13:37:17Z",
   "state": "running",
   "current_exq": "V3-EXQ-543f",
   "current_exq_started_utc": "2026-05-17T13:11:05.185387+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 1 / ARM_3_both",
-    "runs_done": 7,
+    "run_label": "Seed 2 / ARM_0_baseline",
+    "runs_done": 8,
     "runs_total": 12,
-    "episodes_done": 45,
+    "episodes_done": 0,
     "episodes_total": 108,
-    "overall_pct": 61.8
+    "overall_pct": 66.7
   },
-  "seconds_elapsed": 1510,
-  "seconds_remaining": 802,
+  "seconds_elapsed": 1572,
+  "seconds_remaining": 776,
   "recent_lines": [
-    "[train] ARM_3_both ep 70/108  phase=P1  rv=0.0001  ep_reward=-1.3374  inert_gating=True",
-    "[probe] ARM_3_both P1 ep 35/60  applicable=True  mean_tv=0.0002  max_tv=0.0032",
-    "[probe] ARM_3_both P1 ep 40/60  applicable=True  mean_tv=0.0002  max_tv=0.0033",
-    "[train] ARM_3_both ep 80/108  phase=P1  rv=0.0001  ep_reward=-1.2996  inert_gating=True",
-    "[probe] ARM_3_both P1 ep 45/60  applicable=True  mean_tv=0.0002  max_tv=0.0051"
+    "seed=1 arm=ARM_3_both  reef_frac=0.750  rho=-0.297  forage_hr=0.5152  transit_hr=1.0000  ratio=0.515  inert_gating=True",
+    "verdict: FAIL",
+    "Seed 2 Condition ARM_0_baseline",
+    "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
