@@ -31836,3 +31836,83 @@
     literature anchors (frontostriatal / Husain-Roiser apathy /
     HPA-axis / effort-allocation failure).
   location: docs/architecture/non_deficit_action_drives.md
+
+- id: MECH-332
+  title: "Nociceptive attenuation on z_harm_s is implemented by two mechanistically dissociable parallel pathways: (1) per-step efference-copy comparator (MECH-256/SD-029, spinal/cortical substrate, triggered by a_actual) and (2) commitment-gated PAG/RVM precision suppression (SD-021, PAG/RVM substrate, triggered by committed-trajectory state). Their substrates and triggers are independent; their attenuation effects are additive."
+  claim_type: mechanism_hypothesis
+  subject: harm_stream.nociceptive_attenuation_dual_substrate_dissociation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-17"
+  depends_on:
+    - MECH-256    # efference-copy comparator (pathway 1)
+    - SD-021      # commitment-gated PAG/RVM suppression (pathway 2)
+    - SD-011      # dual nociceptive streams (z_harm_s must exist as separate stream)
+    - SD-029      # concrete V3 instantiation of MECH-256 on z_harm_s
+  functional_restatement: >
+    During self-generated harm, z_harm_s attenuation is produced by two
+    independent mechanisms operating at different anatomical levels with
+    different triggers. Understanding that they are dissociable has
+    consequences for V3 experiment interpretation: a failed MECH-256
+    substrate does NOT imply failed SD-021, and vice versa.
+
+    PATHWAY 1 -- PER-STEP EFFERENCE-COPY COMPARATOR (MECH-256 / SD-029):
+      residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual)
+    Substrate: spinal dorsal horn interneurons receiving corticospinal
+    collateral corollary discharge, and/or somatosensory cortex (S1/insula)
+    forward-model subtraction. Trigger: each action step a_actual.
+    Attenuation is proportional to how accurately E2_harm_s predicted the
+    nociceptive consequence of the action. NOT implemented by PAG/RVM
+    (De Preter & Heinricher 2024 establishes PAG/RVM drives behavioral-state
+    gating, not per-step motor-prediction cancellation).
+
+    PATHWAY 2 -- COMMITMENT-GATED PAG/RVM PRECISION SUPPRESSION (SD-021):
+      harm_s_gain = f(operating_mode, drive_level) < 1.0 when committed
+    Substrate: pgACC -> PAG -> RVM descending inhibitory circuit.
+    Trigger: E3 commitment state (beta_gate elevated, trajectory through
+    expected harm). Attenuation is uniform across all harm steps during
+    commitment, regardless of E2_harm_s accuracy. Implemented as contextual
+    behavioral-state gating (ON/OFF cell firing modulated by opioid tone
+    and ACC/pgACC motivational input).
+
+    DISSOCIATION PREDICTIONS:
+    D1. E2_harm_s ablation (MECH-256 removed): SD-021 pathway should still
+      attenuate z_harm_s during committed action. Prediction: a committed
+      agent with ablated E2_harm_s shows equal or near-equal z_harm_s
+      attenuation to intact agent during committed traversal of expected
+      harm (SD-021 operates independently).
+    D2. SD-021 OFF (descending_mod_factor = 1.0): MECH-256 pathway still
+      attenuates z_harm_s for self-generated harm vs. externally-imposed
+      equivalent in a non-committed agent. The ~40% self/other attenuation
+      ratio (Lalouni 2020) should persist without SD-021.
+    D3. Both active (committed agent, self-generated movement through harm):
+      combined attenuation is greater than either pathway alone.
+
+    CLINICAL MAPPING:
+    D1 failure = phantom-limb-class pain (efference-copy mechanism absent;
+    no residual suppression of expected harm). D2 failure = impaired
+    stress-induced analgesia / commitment courage deficit (PAG/RVM pathway
+    down; SD-021 absent; agent over-registers expected harm during committed
+    trajectory). These are distinct failure signatures.
+  evidence_quality_note: >
+    Registered 2026-05-17 from self_attribution:GAP-4 lit-pull synthesis.
+    Evidence for the dissociation is indirect:
+    (1) De Preter & Heinricher 2024 (Trends Neurosci, PMID 38749825)
+        establishes PAG/RVM as behavioral-state gating (NOT efference-copy).
+        Filed against MECH-256 + SD-029 (targeted_review_connectome_mech_256
+        entry 2026-05-17_mech_256_pag_rvm_descending_modulation_depreter2024).
+        Also cross-filed against SD-021 (targeted_review_sd_021 entry
+        2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024).
+    (2) Lalouni 2020 (Pain, already in SD-029 corpus): 40% self/other
+        threshold shift -- behavioural evidence for pathway 1 on nociceptive
+        streams.
+    (3) SD-021 corpus (8 entries, lit_conf=0.852): PAG/RVM commitment-gated
+        analgesia established.
+    No V3 dissociation experiment exists yet. Requires: (a) E2_harm_s
+    ablation arm in an SD-021-enabled run; (b) SD-021-OFF arm in a
+    self/other nociception comparison run. Both blocked until full substrate
+    stack lands (MECH-256 + SD-021 jointly requiring committed-mode
+    substrate -- see commitment_closure_plan.md GAP-11).

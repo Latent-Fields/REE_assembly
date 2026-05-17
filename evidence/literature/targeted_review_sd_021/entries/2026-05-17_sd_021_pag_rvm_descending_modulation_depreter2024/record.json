@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_021",
+  "entry_id": "2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024",
+  "timestamp_utc": "2026-05-17T12:23:33Z",
+  "claim_ids_tested": ["SD-021", "MECH-332"],
+  "source": {
+    "title": "The 'in's and out's' of descending pain modulation from the rostral ventromedial medulla",
+    "authors": ["De Preter, Caitlynn C", "Heinricher, Mary M"],
+    "year": 2024,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2024.04.006",
+    "pmid": "38749825",
+    "pmcid": "PMC11168876"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "High-quality review from the Heinricher lab, the canonical authority on RVM cell-type function for three decades. Mapping fidelity is high: the paper directly characterises the PAG/RVM circuit as the substrate for SD-021's commitment-gated precision suppression. The ON/OFF cell firing pattern driven by ACC/pgACC motivational input and opioid tone is exactly the biological circuit SD-021 posits as its implementation. Transfer risk is low given human imaging corroboration of the PAG/RVM role in anticipatory analgesia. Confidence 0.82 (higher than the MECH-256 cross-file entry because the paper speaks more directly to SD-021's substrate than to the efference-copy question).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Molecular identification of RVM cell types does not cleanly align with the ON/OFF functional classification, suggesting the circuit has more heterogeneity than SD-021's current binary model; this could mean the commitment-gated attenuation is less precise than modelled.",
+    "The review focuses primarily on rodent data; human imaging evidence for the specific ON/OFF cell firing patterns is limited to indirect BOLD correlates."
+  ],
+  "tags": ["sd_021", "mech_332", "pag_rvm", "descending_pain_modulation", "on_off_cells", "commitment_gated_analgesia", "behavioural_state_gating"],
+  "mapping": {
+    "source_claim_statement": "The RVM integrates top-down (PAG, ACC/prefrontal) and bottom-up (ascending nociceptive) inputs to gate pain via OFF-cells (antinociceptive, disinhibit in committed/analgesic states) and ON-cells (pronociceptive, facilitated during hyperalgesic states). The system implements contextual, motivationally-sensitive precision control of nociceptive transmission at the dorsal horn.",
+    "ree_translation": "This is the biological substrate for SD-021. When E3 is committed to a trajectory through expected harm, the ACC/pgACC (salience network coordinator, SD-032a) projects to PAG, activating RVM OFF-cells and suppressing ON-cells. The net effect: dorsal horn nociceptive gain is reduced -- this is exactly the harm_s_gain = f(operating_mode, drive_level) < 1.0 mechanism SD-021 specifies. The paper also grounds the SD-021 implementation constraint (Hohmann 2005, also in this corpus): the descending attenuation cannot be a single opioid switch -- it is a graded, context-sensitive suppression involving both opioid and endocannabinoid pathways.",
+    "mapping_caveat": "The paper does not directly test commitment-gated analgesia; it characterises the circuit anatomy and physiology. The inference that SD-021's commitment trigger (E3 committed trajectory + beta_gate) maps onto ACC/pgACC -> PAG activation is grounded in Petrovic 2002, Crawford 2021, and Wager 2004 (also in this corpus) rather than in this paper itself. De Preter 2024 provides the mechanistic circuit description; the ACC-to-PAG gating trigger is established by the companion placebo/anticipation studies.",
+    "source_context": "Primarily rodent in vivo electrophysiology and pharmacology with human imaging corroboration. Canonical review from Heinricher lab (Oregon Health & Science University)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (Heinricher canonical authority). Mapping fidelity strong: paper directly describes the SD-021 substrate circuit. Transfer risk low (human imaging supports rodent-to-human generalisation). Cross-filed from targeted_review_connectome_mech_256 where this paper also appears with a lower confidence (0.74, mixed) because in that context the finding weakens the assumption that PAG/RVM implements efference-copy comparator -- here it supports SD-021 directly."
+  }
+}

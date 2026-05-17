@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_050b_mech025_doing_mode_relative_threshold
 
-Generated: `2026-05-17T11:43:08.172991Z`
+Generated: `2026-05-17T12:26:11.642128Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

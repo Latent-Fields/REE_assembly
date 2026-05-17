@@ -1,19 +1,45 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
+  "runner_pid": 90611,
   "runner_started_at": "2026-05-16T19:05:59.351166+00:00",
-  "last_updated": "2026-05-17T09:30:33.423343+00:00",
-  "idle": true,
-  "current": null,
+  "last_updated": "2026-05-17T08:09:50.885045+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-575a",
+    "backlog_id": "",
+    "claim_id": "",
+    "title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
+    "description": "",
+    "script": "experiments/v3_exq_575a_isef001_harm_gradient_baseline.py",
+    "started_at": "2026-05-17T06:07:00.797560+00:00",
+    "progress": {
+      "run_label": "Seed 45 / ARM_0_control",
+      "runs_done": 6,
+      "runs_total": 10,
+      "episodes_done": 50,
+      "episodes_total": 200,
+      "overall_pct": 62.5
+    },
+    "seconds_elapsed": 7370,
+    "seconds_remaining": 4390,
+    "recent_lines": [
+      "[train] ARM_1_treatment ep 150/200 seed=44 coverage=1.000 harm_total=53.685 mean_weight=1.6776",
+      "[train] ARM_1_treatment ep 200/200 seed=44 coverage=1.000 harm_total=73.517 mean_weight=2.2974",
+      "verdict: PASS",
+      "Seed 45 Condition ARM_0_control",
+      "[train] ARM_0_control ep 50/200 seed=45 coverage=1.000 harm_total=11.038 mean_weight=0.3449"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
     {
-      "queue_id": "V3-EXQ-583",
+      "queue_id": "V3-EXQ-575a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SP-CEM main-path default-wiring validation (3-arm equivalence)",
+      "title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
       "description": "",
-      "estimated_minutes": 48.0,
-      "status": "claimed",
+      "estimated_minutes": 266.7,
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -7978,21 +8004,6 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 4760.7
-    },
-    {
-      "queue_id": "V3-EXQ-575a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "/Users/dgolden/REE_Working/ree-v3/experiments/v3_exq_575a_isef001_harm_gradient_baseline.py:368: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC). | Result written to: /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_575a_isef001_harm_gradient_baseline/v3_exq_575a_isef001_harm_gradient_baseline_20260517T092105Z_v3.json | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-575a -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-575a.json",
-      "started_at": "2026-05-17T06:07:00.797560+00:00",
-      "completed_at": "2026-05-17T09:21:06.261950+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_575a_isef001_harm_gradient_baseline/v3_exq_575a_isef001_harm_gradient_baseline_20260517T092105Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 11645.4
     }
-  ],
-  "draining": false
+  ]
 }

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_514f_sd049_phase_2_reef_behavioural_validation
 
-Generated: `2026-05-17T11:43:08.172991Z`
+Generated: `2026-05-17T12:26:11.642128Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

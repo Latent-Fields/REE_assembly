@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-17T11:43:08.172991Z`
+Generated: `2026-05-17T12:26:11.642128Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -257,7 +257,7 @@ Generated: `2026-05-17T11:43:08.172991Z`
 | `targeted_review_sd_017` | [`2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/record.json) | 4 | [`summary`](targeted_review_sd_017/entries/2026-04-05_sd017_wikenheiser_2015_theta_goal_sequences/summary.md) |
 | `targeted_review_sd_018` | [`2026-04-21_sd_018_nac_dopamine_approach_costa2025`](targeted_review_sd_018/entries/2026-04-21_sd_018_nac_dopamine_approach_costa2025/record.json) | 2 | [`summary`](targeted_review_sd_018/entries/2026-04-21_sd_018_nac_dopamine_approach_costa2025/summary.md) |
 | `targeted_review_sd_019` | [`2026-04-17_sd_019_pain_asymbolia_berthier1988`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/record.json) | 5 | [`summary`](targeted_review_sd_019/entries/2026-04-17_sd_019_pain_asymbolia_berthier1988/summary.md) |
-| `targeted_review_sd_021` | [`2026-04-17_sd_021_sensory_affective_dissociation_hofbauer2001`](targeted_review_sd_021/entries/2026-04-17_sd_021_sensory_affective_dissociation_hofbauer2001/record.json) | 4 | [`summary`](targeted_review_sd_021/entries/2026-04-17_sd_021_sensory_affective_dissociation_hofbauer2001/summary.md) |
+| `targeted_review_sd_021` | [`2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024`](targeted_review_sd_021/entries/2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024/record.json) | 5 | [`summary`](targeted_review_sd_021/entries/2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024/summary.md) |
 | `targeted_review_sd_022` | [`2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/record.json) | 2 | [`summary`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/summary.md) |
 | `targeted_review_sd_023` | [`2026-04-17_sd_023_surface_texture_boundaries_place_cells_wang2020`](targeted_review_sd_023/entries/2026-04-17_sd_023_surface_texture_boundaries_place_cells_wang2020/record.json) | 4 | [`summary`](targeted_review_sd_023/entries/2026-04-17_sd_023_surface_texture_boundaries_place_cells_wang2020/summary.md) |
 | `targeted_review_sd_029` | [`2026-05-17_sd_029_pain_precision_signal_seymour2019`](targeted_review_sd_029/entries/2026-05-17_sd_029_pain_precision_signal_seymour2019/record.json) | 6 | [`summary`](targeted_review_sd_029/entries/2026-05-17_sd_029_pain_precision_signal_seymour2019/summary.md) |
