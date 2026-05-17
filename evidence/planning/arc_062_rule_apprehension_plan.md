@@ -77,6 +77,42 @@ closure_plan:
       depends_on: ["arc_062_rule_apprehension:GAP-E"]
       cross_plan_link: ["sleep_substrate:GAP-1"]
       last_updated: 2026-05-09
+    - id: "arc_062_rule_apprehension:GAP-H"
+      title: "ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending"
+      phase: "2-3"
+      status: partial
+      severity: medium
+      owner_exq: "V3-EXQ-544 + V3-EXQ-545 (done); Q-043 / Q-044 / Q-045 TBD"
+      unblocks_claims: [ARC-065, Q-043, Q-044, Q-045]
+      depends_on: ["arc_062_rule_apprehension:GAP-B"]
+      last_updated: 2026-05-10
+    - id: "arc_062_rule_apprehension:GAP-I"
+      title: "ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending"
+      phase: "2-3"
+      status: partial
+      severity: medium
+      owner_exq: "TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C)"
+      unblocks_claims: [ARC-064, MECH-316, MECH-317, MECH-318]
+      depends_on: ["arc_062_rule_apprehension:GAP-B", "arc_062_rule_apprehension:GAP-C"]
+      last_updated: 2026-05-10
+    - id: "arc_062_rule_apprehension:GAP-J"
+      title: "MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)"
+      phase: "2-3"
+      status: registered
+      severity: low
+      owner_exq: null
+      unblocks_claims: [MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d]
+      depends_on: []
+      last_updated: 2026-05-10
+    - id: "arc_062_rule_apprehension:GAP-K"
+      title: "MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-543c-successor falsifier pending"
+      phase: "2-3"
+      status: in-progress
+      severity: medium
+      owner_exq: "V3-EXQ-546 (done); V3-EXQ-543c-successor TBD"
+      unblocks_claims: [MECH-319]
+      depends_on: ["arc_062_rule_apprehension:GAP-B", "arc_062_rule_apprehension:GAP-H", "arc_062_rule_apprehension:GAP-I"]
+      last_updated: 2026-05-10
 ---
 # Rule Apprehension Plan (ARC-062 / MECH-309 / ARC-063)
 
