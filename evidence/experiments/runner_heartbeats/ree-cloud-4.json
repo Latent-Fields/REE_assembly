@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-17T20:57:22Z",
+  "last_tick_utc": "2026-05-17T20:58:24Z",
   "state": "running",
   "current_exq": "V3-EXQ-543h",
   "current_exq_started_utc": "2026-05-17T19:49:49.018441+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 1 / ARM_2_gated_only",
-    "runs_done": 10,
+    "run_label": "Seed 1 / ARM_3_both",
+    "runs_done": 11,
     "runs_total": 24,
-    "episodes_done": 104,
+    "episodes_done": 0,
     "episodes_total": 108,
-    "overall_pct": 45.7
+    "overall_pct": 45.8
   },
-  "seconds_elapsed": 4054,
-  "seconds_remaining": 4421,
+  "seconds_elapsed": 4116,
+  "seconds_remaining": 4794,
   "recent_lines": [
-    "[train] ARM_2_gated_only ep 90/108  phase=P1  rv=0.0001  ep_reward=-1.1607  baseline=-0.9689  buf=512  inert_gating=True",
-    "[probe] ARM_2_gated_only P1 ep 55/60  applicable=True  mean_tv=0.0008  max_tv=0.0012  buf=512",
-    "[probe] ARM_2_gated_only P1 ep 60/60  applicable=True  mean_tv=0.0008  max_tv=0.0012  buf=512",
-    "[train] ARM_2_gated_only ep 100/108  phase=P1  rv=0.0000  ep_reward=-1.2826  baseline=-1.1137  buf=512  inert_gating=True",
-    "[train] ARM_2_gated_only ep 104/108  phase=P2  reef_frac=0.991  steps=114"
+    "seed=1 arm=ARM_2_gated_only  reef_frac=0.857  rho=+0.008  forage_hr=0.4167  transit_hr=1.0000  ratio=0.417  inert_gating=True  outcome_buf=512",
+    "verdict: FAIL",
+    "Seed 1 Condition ARM_3_both",
+    "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
