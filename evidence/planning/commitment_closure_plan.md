@@ -108,6 +108,16 @@ closure_plan:
       depends_on: []
       cross_plan_link: ["sleep_substrate:GAP-6"]
       last_updated: 2026-05-08
+    - id: "commitment_closure:GAP-11"
+      title: "Phased rule_state training curriculum (GAP-3 deliverable 4 -- committed-mode elicitation)"
+      phase: 4
+      status: design_complete
+      severity: load-bearing
+      owner_exq: null
+      unblocks_claims: [SD-034, MECH-266, MECH-268, MECH-090, SD-021]
+      depends_on: ["commitment_closure:GAP-3"]
+      last_updated: 2026-05-17
+      resume_condition: "Design pass COMPLETE 2026-05-17: docs/architecture/phased_rule_state_training_curriculum.md (Status: DESIGN -- PENDING IMPLEMENTATION). Root cause = the commit gate is a single trained-variance threshold (running_variance < commitment_threshold, 0.5 init vs 0.40) that short generic training loops never cross -> the EXQ-321/261/325 all-zero committed-mode signature; plus an env-side competence floor. Design = 3-phase experiment-harness training protocol (P0 world-model+nav warmup to cross the gate; P1 staged-difficulty consolidation + mid-curriculum abort probe; P2 frozen eval) + emergent-vs-forced-control contrast + GAP-3 primitive 1 as competence ramp; NOT a substrate scheduler, NOT an oracle rule-cue curriculum (retired Q1). Existential risk R1: the gate may be mis-calibrated vs achievable world-model error (a substrate finding, not curriculum tuning) -- front-loaded for cheap early falsification on the easiest-env P0 + the mid-curriculum probe. 5 open design questions O-1..O-5 (architecture home / emergent+forced / R1 escalation trigger / validation route / pilot arm) awaiting user review BEFORE implementation. Next: user resolves O-1..O-5, then /implement-substrate (or harness build) for the curriculum + pilot on EXP-0157 (V3-EXQ-461). Blocks all Phase 4/5 behavioural arms (V3-EXQ-460b/461/463b/464b/466b/467b/468b)."
 ---
 # Commitment / Closure / Mode-Governance Plan
 
@@ -568,6 +578,52 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-3 deliverable 4 DESIGN PASS COMPLETE: phased rule_state training curriculum (GAP-11 registered)
+
+Design doc + risk analysis written:
+docs/architecture/phased_rule_state_training_curriculum.md (Status:
+DESIGN -- PENDING IMPLEMENTATION). Registered as plan node GAP-11
+(status design_complete, depends_on GAP-3, load-bearing).
+
+Root-cause finding (verified in source): committed mode is gated solely
+by `running_variance < commitment_threshold` in e3_selector.py:806
+(precision_init 0.5 vs commitment_threshold 0.40, config.py:309-311);
+running_variance only crosses under a converged E2 world-forward model,
+which the short generic training loops in the OCD-battery experiments
+never achieve -> `total_committed_steps = 0` across all seeds/arms
+(EXQ-321/261/325). The lone "PASS" (EXQ-321b) scripted the state; not
+emergent. Env-side `_sequence_in_progress` adds a navigation-competence
+floor on top.
+
+Design: a 3-phase experiment-harness training protocol (NOT a ree_core
+substrate scheduler, NOT an oracle rule-cue curriculum -- the retired Q1
+trap). P0 world-model + navigation warmup until the variance gate is
+crossed on an easy env; P1 staged-difficulty consolidation keyed on the
+SD-049 _global_step pattern with a mid-curriculum abort probe (ARC-062
+behavioural-divergence-probe precedent); P2 frozen eval. Emergent arm +
+forced-commitment control arm (EXQ-125a/321b primitive) to convert the
+scripted-only MECH-090 evidence into a controlled contrast. GAP-3
+primitive 1 (adaptive tolerance) is the competence-ramp lever;
+primitives 2/3 enter only at end-P1/P2.
+
+Existential risk R1: the commit gate may be mis-calibrated vs the
+world-model accuracy actually achievable on CausalGridWorldV2 -- in
+which case this is a substrate finding, not a curriculum-tuning problem.
+The design front-loads the cheap R1 test (easiest-env P0 + ~60%-budget
+abort probe) so the >=7 expensive behavioural arms are never launched
+until R1 is retired.
+
+Acceptance bar (pre-stated, from substrate_queue SD-021): total_
+committed_steps > 100 per eval episode, emergent (no scripted variance /
+forced rv), MECH-090 latch holding on the same curriculum, stable
+SD-033a ||rule_state|| > 0 satisfying the SD-034 stability predicate.
+
+5 open design questions O-1..O-5 (architecture home; emergent-only vs
+emergent+forced; R1 escalation trigger; validation route incl. the
+concurrency note that experiments/+queue are held by goal_pipeline:GAP-3;
+pilot arm) are surfaced for user decision BEFORE any implementation.
+This remains deliberately off the critical path until O-1..O-5 resolve.
 
 ### 2026-05-17 - GAP-3 DONE: CausalGridWorldV2 env extensions primitives 1-3 IMPLEMENTED
 

@@ -325,6 +325,21 @@ highest-risk piece, and is kept off the GAP-3 critical path per the
 before the SD-034 behavioural arms can run end-to-end even with
 primitives 1-3 landed.
 
+**Design pass complete 2026-05-17:**
+[../../docs/architecture/phased_rule_state_training_curriculum.md](../../docs/architecture/phased_rule_state_training_curriculum.md)
+(Status: DESIGN -- PENDING IMPLEMENTATION). Root cause: the commit gate
+is a single trained-variance threshold (`running_variance <
+commitment_threshold`, 0.5 init vs 0.40) that short generic training
+loops never cross -> the EXQ-321/261/325 all-zero signature. Design:
+a 3-phase experiment-harness training protocol (P0 world-model+nav
+warmup to cross the gate; P1 staged-difficulty consolidation with a
+mid-curriculum abort probe; P2 frozen eval), emergent + forced-control
+contrast arms, GAP-3 primitive 1 as the competence-ramp lever. R1 (the
+gate may be mis-calibrated vs achievable world-model error, not a
+curriculum-tuning problem) is the existential risk and is front-loaded
+for cheap early falsification. 5 open design questions (O-1..O-5) await
+review before implementation.
+
 ## 7. Sub-questions -- RESOLVED 2026-05-16
 
 All six resolved. Biology-grounded ones (Q-1b, Q-2a, Q-3b) via the
