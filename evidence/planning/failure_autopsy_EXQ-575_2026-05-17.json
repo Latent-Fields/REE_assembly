@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-17T00:19:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_575_isef001_harm_gradient_baseline_20260516T223727Z_v3",
+      "queue_id": "V3-EXQ-575",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (no claim tagged; nothing falsified)",
+        "biological_reference": "clear - aversive trace is intensity-graded; biology predicts the GAP-6 magnitude-thresholded metric, not a binary count",
+        "prerequisites": "present - residue accumulation path confirmed LIVE end-to-end (coverage->1.0 means accumulate fired in both arms)",
+        "implementation": "substrate complete; the METRIC is the gap - get_statistics().active_centers is a 32-slot ring-buffer saturation counter",
+        "environment": "adequate - harm generated in both arms",
+        "measurement": "misleading - DOMINANT diagnosis: binary active_mask count saturates 32/32 regardless of harm_scale, structurally cannot express C2",
+        "integration": "coupled - accumulate->active_mask->get_statistics path works as coded",
+        "scale": "the ceiling itself - 32-center ring buffer fills within episode 1; metric pinned for 200 episodes"
+      },
+      "biological_reference": {
+        "closest_mechanism": "persistent residue field phi(z_world) - REE aversive-trace analogue (hippocampal/amygdalar accumulated nociceptive value map)",
+        "dependencies": ["harm signal generation", "z_world latent", "RBF center allocation"],
+        "is_formal_import": false,
+        "divergence": "none - biology (intensity-graded aversive memory) predicts the corrected magnitude-thresholded instrument; supports the fix rather than diverging",
+        "lit_status": "present (not warranted - biology is clear, no lit-pull needed)"
+      },
+      "recommended_epistemic_category": "measurement_artifact",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-575 non_contributory: C2 FAIL is a measurement artifact, not substrate/claim pressure. get_statistics().active_centers is a 32-slot ring-buffer saturation counter blind to harm intensity; both arms pin at 1.0. Residue accumulation path confirmed LIVE end-to-end (positive signal). DEV-NEED-029 warm-start gate remains UNVALIDATED; downstream ARC-065 / Q-043/044/045 / INV-049 stay blocked pending V3-EXQ-575a on get_coverage_telemetry().",
+      "recommended_substrate_queue_entry": null,
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Measurement gap: get_statistics()['active_centers'] is a ring-buffer saturation counter blind to harm intensity; harm-intensity discrimination needs magnitude-thresholded coverage",
+        "Positive signal: residue accumulation path confirmed LIVE end-to-end in both arms (not a null/dead-path result)",
+        "Corrected instrument already exists: ResidueField.get_coverage_telemetry() (GAP-6, field.py:652); EXQ-575 is its empirical motivation",
+        "Downstream gating (ARC-065 / Q-043/044/045 / INV-049) must re-spec on get_coverage_telemetry, never the binary active-center count"
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "new_id": "V3-EXQ-575a",
+        "id_rule": "alphabetic suffix - same scientific question, instrument fix only",
+        "supersedes": "V3-EXQ-575",
+        "redesign_spec": "Replace get_statistics()['active_centers']/32 with agent.residue_field.get_coverage_telemetry()['residue_coverage_pct']; keep arms 0.05 vs 0.30, seeds 42-46, 200ep x 200steps, 32 bases; keep C1 (ARM_1 >= 0.15) + C2 (ARM_1 > ARM_0); add secondary harm_total/mean_weight metric; update interpretation grid so co-saturation routes to contrast/threshold adjustment not a substrate conclusion",
+        "gate_status": "DEV-NEED-029 warm-start gate UNVALIDATED until V3-EXQ-575a passes; downstream ARC-065 / Q-043/044/045 / INV-049 remain blocked"
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "absolute/floor criterion passes, discrimination criterion fails by metric saturation (both arms pinned at 1.0)",
+    "is_independent_bugs": false,
+    "structural_property": "single-target measurement artifact - metric ceiling (32-slot ring-buffer active-center count), NOT a substrate ceiling; deliberately not folded into the cross-claim substrate-ceiling pattern doc",
+    "readings": ["measurement_artifact"]
+  }
+}
