@@ -1,0 +1,161 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-17T12:55:18Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_577_gap2_microhabitat_validation_20260516T210801Z_v3",
+      "queue_id": "V3-EXQ-577",
+      "claim_ids": [],
+      "failed_criterion": "C2_zone_map_coverage",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A",
+        "biological_reference": "N/A",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "test-design false-negative (per-episode missing_012 over-constraint vs stochastic Voronoi)",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "N/A (infra test)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "absent (not needed)"
+      },
+      "recommended_epistemic_category": "N/A",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Test-design false-negative on C2 zone_map_coverage. Existing autopsy artifact failure_autopsy_EXQ-577_2026-05-16.md. V3-EXQ-577a PASS supersedes. Run_id added to review_tracker 2026-05-17.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "C2 criterion used per-episode strict invariant against stochastic Voronoi redraw design; 2-3/100 episodes expected to have one base zone absent by design",
+        "V3-EXQ-577a redefined C2 as aggregate coverage + redraw guard; passed all seeds"
+      ],
+      "routing": "close (existing autopsy; review_tracker updated)"
+    },
+    {
+      "run_id": "v3_exq_566_wpc3_schema_salience_injection_20260515T205008Z_v3",
+      "queue_id": "V3-EXQ-566",
+      "claim_ids": [],
+      "failed_criterion": "P3_scale (ARM_3_forced_high < ARM_2_forced_mid * scale_eps)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A",
+        "biological_reference": "N/A",
+        "prerequisites": "present",
+        "implementation": "complete (confirmed by concurrent PASS run)",
+        "environment": "adequate",
+        "measurement": "broken (70-step early termination invalidates P3)",
+        "integration": "isolated seam test",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "N/A (seam diagnostic)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "absent (not needed)"
+      },
+      "recommended_epistemic_category": "N/A (claim_ids=[])",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Runtime anomaly: SD-055 CEM change (commit 5fdba4c) landed between the 19:59Z PASS run (cloud-2) and 20:50Z FAIL run (cloud-1), causing early termination at 70 steps for ARM_1/2/3 seed=7 and ARM_3 seed=42. ARM_1 canonical (no forced injection) also terminated at 70 steps for seed=7, ruling out MECH-216 seam failure. MECH-216 schema_salience seam confirmed functional by concurrent PASS run (20260515T195934Z, all arms 1200 steps, P1/P2/P3 PASS, ARM_3 wanting=1008.56).",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-216 schema_salience -> update_schema_wanting -> residue_field seam functional (confirmed by PASS run)",
+        "Multi-machine claiming can produce duplicate runs with different code versions when substrate changes land between claim and execution",
+        "ARM_1 canonical crash ruling out injection as cause is a reliable diagnostic signature for code-version race artifacts"
+      ],
+      "routing": "mark-reviewed (both runs); no re-queue needed; seam confirmed"
+    },
+    {
+      "run_id": "v3_exq_566_wpc3_schema_salience_injection_20260515T195934Z_v3",
+      "queue_id": "V3-EXQ-566",
+      "claim_ids": [],
+      "failed_criterion": "none (PASS)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A",
+        "biological_reference": "N/A",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated seam test",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "N/A",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "absent (not needed)"
+      },
+      "recommended_epistemic_category": "N/A",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "PASS run confirming MECH-216 seam functional. Marked reviewed together with concurrent FAIL run (runtime anomaly). No claim weighting (claim_ids=[]).",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "WPC Rung 3 seam confirmed: forced schema_salience injection at 0.5 (ARM_2) and 0.9 (ARM_3) produces monotone wanting amplification (0 < 748 < 871 < 1009). P1+P2+P3 PASS."
+      ],
+      "routing": "mark-reviewed"
+    },
+    {
+      "run_id": "v3_exq_582_gap3_sustained_drive_ema_sweep_20260517T082933Z_v3",
+      "queue_id": "V3-EXQ-582",
+      "claim_ids": [],
+      "failed_criterion": "A1 (null, no post-warmup contacts); A2 (0 seeds); A3 (z_goal_active_fraction=0.0); A4 (non-monotone)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A",
+        "biological_reference": "clear (incentive salience / wanting persistence well-established)",
+        "prerequisites": "missing (warm-start z_goal bootstrap; z_goal_active_fraction=0.0 all arms)",
+        "implementation": "complete (GoalState.drive_ema_alpha contract test 7/7 PASS)",
+        "environment": "too sparse (contact density): 2-4 benefit contacts in 4000 eval steps, all pre-warmup",
+        "measurement": "adequate (null result correctly detected; OFF anchor reproduces EXQ-536a at 0.005)",
+        "integration": "partially coupled but inert (EMA wired; z_goal-seeking loop not bootstrapped)",
+        "scale": "adequate if contacts occurred"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Incentive salience (Berridge/Robinson wanting system): tonic DA sustains anticipatory wanting post-consummatory; wanting builds during post-consummatory windows",
+        "dependencies": [
+          "tonic dopaminergic tone (drive level)",
+          "repeated reward contact to build DA trace",
+          "goal-directed navigation toward reward cues"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- biology supports sustained wanting trace. Failure is implementation-level (cold-start), not theoretical.",
+        "lit_status": "present (wanting_liking_sleep_consolidation_synthesis.md; alpha=0.02 lit-anchored 35-step half-life)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-582 FAIL (diagnostic, claim_ids=[]): n_contacts_post_warmup=0 across all 12 runs (4 alphas x 3 seeds). EMA trace unmeasurable in post-warmup window. OFF anchor (alpha=1.0) reproduces EXQ-536a collapse (0.005) -- instrumentation correct, regime valid. Failure is contact-density / warm-start dependent: z_goal_active_fraction=0.0 across all arms; agent makes 2-4 chance contacts in 4000 eval steps, all pre-warmup. Option 1 EMA not refuted -- warm-start z_goal bootstrap is the missing prerequisite. Per interpretation grid: escalate to Option 2 + warm-start arm (transient_benefit_enabled or forced z_goal seeding). pending_retest_after_substrate=true (infant_substrate transient-benefit + z_goal seeding combination required).",
+      "recommended_substrate_queue_entry": {
+        "gap": "goal_pipeline:GAP-3",
+        "note": "Option 2 + warm-start arm experiment required. Must include: (1) transient_benefit_enabled=True arm for contact density, (2) Option 2 drive_floor / insatiability arm, (3) Option 1 EMA arm for comparison, (4) OFF arm reproducing 536a. Acceptance must gate on n_contacts_post_warmup > 0 before interpreting EMA trace.",
+        "priority": 1
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Option 1 (EMA) not refuted: untestable without benefit contacts. Warm-start z_goal bootstrap is the missing prerequisite for both Option 1 and Option 2.",
+        "OFF anchor discipline confirmed: alpha=1.0 reproduces EXQ-536a (0.005). Measurement infrastructure trustworthy.",
+        "Chicken-and-egg cold-start: z_goal seeding requires benefit contact + drive amplification; agent cannot contact benefits without z_goal-driven seeking. Transient benefit patches (infant_substrate GAP-3) are the designed solution.",
+        "Script interpretation grid row 'No arm clears A1 -> Option 2' is correct routing but assumes contact-dense regime; warm-start arm required to satisfy that assumption.",
+        "All 12 post-warmup contact counts = 0: this is a structural property of the regime, not a per-seed or per-alpha anomaly."
+      ],
+      "routing": "queue-experiment (Option 2 + warm-start arm via /queue-experiment skill)"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "goal-pipeline infra: two diagnostic FAILs in the goal-seeding / MECH-216 seam stack. Not a shared scientific failure -- EXQ-566 FAIL is a runtime anomaly; EXQ-582 FAIL is a contact-density / warm-start prereq gap. EXQ-577 FAIL is an infrastructure test-criterion specification gap. No convergent claim-level failure pattern.",
+    "is_independent_bugs": true,
+    "structural_property": "none (three distinct, unrelated causes)",
+    "readings": []
+  }
+}

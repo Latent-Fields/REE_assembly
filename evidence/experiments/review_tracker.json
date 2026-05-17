@@ -2668,6 +2668,15 @@
         "v3_exq_573_arc065_bias_scale_sweep_20260516T083605Z_v3"
       ],
       "subject": "Governance cycle 2026-05-16 (evening, post-G3/G4 update). ARC-065 calibration cluster root-cause identified: EXQ-571 diagnostic proved all diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance -- forward model F dominates 88-89%. EXQ-569/572/573 all reclassified non_contributory (bias channel not propagating to selection). EXQ-570x3 (diagnostic PASS): E2 rollout diversity preservation 51x, confirming E2 is not the collapse site. EXQ-567 212425Z (ARC-065 PASS): second evidence run confirms entropy lift (previously 484, this run also PASS). EXQ-540g (MECH-307/MECH-295): PASS on C1+C2 (conjunction_fire_rate=32.0, liking_lift=+9); C3 ceiling effect (approach_commit=1.0) from environment, not mechanism failure -- classified partial support. EXQ-574 (MECH-273): PASS, loss converges 0.003->5e-5 over 3 sleep cycles, 3 seeds -- first experimental support for self-model aggregator. All remain hold_pending_v3_substrate. G4 heterogeneity_note added to SD-018 (ratio=1.0 substrate-version confound), SD-005 (ratio=0.917 design-failure cluster), ARC-024 (ratio=0.857 pre-split scope). Governance_agenda updated: 13 hold_pending_v3_substrate applied (ARC-066/067/068/070/071, MECH-314/314a/314b/314c, MECH-320, Q-043/044/045)."
+    },
+    {
+      "last_review_utc": "2026-05-17T12:55:18Z",
+      "reviewed_run_ids": [
+        "v3_exq_577_gap2_microhabitat_validation_20260516T210801Z_v3",
+        "v3_exq_566_wpc3_schema_salience_injection_20260515T195934Z_v3",
+        "v3_exq_566_wpc3_schema_salience_injection_20260515T205008Z_v3"
+      ],
+      "subject": "Failure autopsy session 2026-05-17T12:47Z (failure-autopsy-566-582). Three run closures: (1) EXQ-577 FAIL run: run_id not previously added to tracker despite autopsy completing 2026-05-16 (artifact failure_autopsy_EXQ-577_2026-05-16.md exists). Confirmed test-design false-negative; 577a PASS supersedes. (2) EXQ-566 FAIL run (20260515T205008Z, cloud-1): runtime anomaly -- early termination at 70 steps for ARM_1/2/3 seed=7 and ARM_3 seed=42. Root cause: SD-055 CEM change committed between the 19:59Z PASS (cloud-2) and 20:50Z FAIL (cloud-1) introduced a code-version divergence; ARM_1 canonical (no forced injection) crashed at 70 steps for seed=7, ruling out MECH-216 seam failure. (3) EXQ-566 PASS run (20260515T195934Z, cloud-2): confirmed MECH-216 schema_salience->update_schema_wanting->residue_field seam functional (P1/P2/P3 all PASS; ARM_3_forced_high wanting=1008.56 monotone). EXQ-582 FAIL (SD-012 EMA sweep, 2026-05-17T08:29Z): no run_id added here (flat-manifest format outside runs/ structure, not tracked in reviewed_run_ids). Discussed in artifact failure_autopsy_EXQ-566-582_2026-05-17.{md,json}. Core finding: n_contacts_post_warmup=0 all arms/seeds -- EMA untestable without warm-start z_goal bootstrap. Routing: /queue-experiment Option 2 + warm-start arm. goal_pipeline_plan.md GAP-3 resume_condition updated."
     }
   ]
 }

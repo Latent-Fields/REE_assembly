@@ -30,11 +30,11 @@ closure_plan:
       phase: 3
       status: in-progress
       severity: high
-      owner_exq: V3-EXQ-582
+      owner_exq: TBD (Option-2 + warm-start follow-on; V3-EXQ-582 superseded)
       unblocks_claims: [SD-012, MECH-216, ARC-051]
       depends_on: []
       last_updated: 2026-05-17
-      resume_condition: "Substrate landed 2026-05-17 (GoalConfig.drive_ema_alpha, default 1.0=OFF bit-identical; GoalState.update EMA-smooths drive_level into _drive_trace; reset() zeroes it; from_dims passthrough; contract test_sustained_drive_ema_gap3.py 7/7; full suite 426/426). Q2 RESOLVED (alpha=0.02 first-PASS, sweep {0.01,0.02,0.2,1.0}, knob drive_ema_alpha, zero-init). V3-EXQ-582 discriminative sweep QUEUED (priority 2, diagnostic claim_ids=[]). GAP-3 -> done when V3-EXQ-582 PASSes (A1-A4); on PASS, register MECH-306 sustained_drive_trace via governance (claims.yaml deliberately NOT touched by the substrate landing). If 582 FAILs, follow the script's diagnostic interpretation grid (Option 2 insatiability floor escalation, or regime-drift diagnosis). See 2026-05-17 decision-log entry."
+      resume_condition: "Substrate landed 2026-05-17 (GoalConfig.drive_ema_alpha, default 1.0=OFF bit-identical; GoalState.update EMA-smooths drive_level into _drive_trace; reset() zeroes it; from_dims passthrough; contract test_sustained_drive_ema_gap3.py 7/7; full suite 426/426). Q2 RESOLVED (alpha=0.02 first-PASS, sweep {0.01,0.02,0.2,1.0}, knob drive_ema_alpha, zero-init). V3-EXQ-582 FAILED 2026-05-17T08:29Z (FAIL autopsy 2026-05-17: n_contacts_post_warmup=0 all 12 runs; EMA trace unmeasurable without warm-start z_goal; OFF anchor reproduces 536a=0.005 -- instrumentation valid, Option 1 not refuted). BLOCKING PREREQUISITE: warm-start z_goal bootstrap needed before Option 1 or Option 2 can be tested. The follow-on experiment must include: (A) a warm-start arm (transient_benefit_enabled=True from infant_substrate GAP-3, or forced z_goal seeding), (B) Option 2 insatiability floor / drive_floor arm, (C) Option 1 EMA arm for comparison, (D) OFF arm for 536a anchor; acceptance must gate on n_contacts_post_warmup > 0 before interpreting EMA/floor trace. Queue via /queue-experiment once V3-EXQ-587/588 (infant_substrate ISEF-001/002) confirm adequate contact density. See failure_autopsy_EXQ-566-582_2026-05-17.md for full diagnosis."
     - id: "goal_pipeline:GAP-4"
       title: "MECH-295 drive->liking->approach cascade Tier-1 retest cohort"
       phase: 4
