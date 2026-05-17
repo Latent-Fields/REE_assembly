@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-17T16:02:23Z",
+  "last_tick_utc": "2026-05-17T16:03:25Z",
   "state": "running",
   "current_exq": "V3-EXQ-543g",
   "current_exq_started_utc": "2026-05-17T15:55:04.499432+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 0 / ARM_0_baseline",
-    "runs_done": 0,
+    "run_label": "Seed 0 / ARM_1_dacc_only",
+    "runs_done": 1,
     "runs_total": 12,
-    "episodes_done": 90,
+    "episodes_done": 0,
     "episodes_total": 108,
-    "overall_pct": 6.9
+    "overall_pct": 8.3
   },
-  "seconds_elapsed": 439,
-  "seconds_remaining": 5294,
+  "seconds_elapsed": 501,
+  "seconds_remaining": 5341,
   "recent_lines": [
-    "[probe] ARM_0_baseline P1 ep 40/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
-    "[train] ARM_0_baseline ep 80/108  phase=P1  rv=0.0007  ep_reward=-1.0015  baseline=-1.0875  buf=0  inert_gating=False",
-    "[probe] ARM_0_baseline P1 ep 45/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
-    "[probe] ARM_0_baseline P1 ep 50/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
-    "[train] ARM_0_baseline ep 90/108  phase=P1  rv=0.0007  ep_reward=-1.0304  baseline=-1.1281  buf=0  inert_gating=False"
+    "seed=0 arm=ARM_0_baseline  reef_frac=0.423  rho=-0.095  forage_hr=0.6618  transit_hr=1.0000  ratio=0.662  inert_gating=False  outcome_buf=0",
+    "verdict: PASS",
+    "Seed 0 Condition ARM_1_dacc_only",
+    "use_gated_policy=False  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=on(dw=1.0,sw=0.5)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
