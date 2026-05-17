@@ -32362,6 +32362,30 @@
     - "Bengio et al. (2009) ICML -- curriculum learning with NEITHER lock nor handoff converges
        to monostrategy: the failure case at ML level when the antecedent holds and the
        consequent is unmet. conf 0.82."
+    - "Faini et al. (2018) eLife 7:e41520 -- HANDOFF-FAILURE / lock-handoff co-dependence:
+       PNN (lock) and ongoing visual drive (handoff) are JOINTLY required; PNN-mediated
+       stabilization is itself abolished by 2-3d monocular deprivation and PNN removal
+       resets the circuit to a juvenile state. Predicts handoff-ALONE (no lock) is
+       biologically non-canonical and insufficient -- the durable signal maintains an
+       already-LOCKED structure. conf 0.84. [Part B pull; see
+       evidence/planning/inv075_handoff_arm_litpull.md F1]"
+    - "Lyle, Rowland & Dabney (2022) arXiv:2204.09560 'Capacity Loss in RL' -- the precise
+       mechanism of V3-EXQ-543g's handoff failure: Corollary 1 proves a sparse/non-stationary
+       outcome target (R^pi -> 0) collapses the feature representation to the zero vector for
+       every state, INDEPENDENT of learning rate; InFeR fix = anchor features to initialization
+       (= a soft LOCK). Sparse outcome-coupled REINFORCE does not maintain a structure -- it
+       provably destroys it. conf 0.86. [Part B; litpull F4 -- explains ARM_3 0.243 < ARM_2
+       0.444]"
+    - "Yuan et al. (2025) arXiv:2510.04454 -- naive supervised<->RL objective handoff causes
+       catastrophic forgetting of the established skill; the empirically working fix is
+       selective freezing of skill-critical parameters (a partial LOCK co-located with the
+       handoff). Independent ML confirmation that a working handoff is lock-assisted, not
+       standalone. conf 0.70. [Part B; litpull F6]"
+    - "Sokar et al. (2023) ICML PMLR 202 'Dormant Neuron Phenomenon' -- re-pointing a
+       pretrained network at a durable RL objective drives units dormant and erodes the
+       established representation absent explicit preservation (ReDo); corroborates that bare
+       reward-coupling is a degradation regime, not benign maintenance. conf 0.74. [Part B;
+       litpull F5]"
   notes: >
     INV-075 is the parent invariant; INV-074 is its competitive special case. The
     generalization was established by exhaustion (no counterexample exists): if a
