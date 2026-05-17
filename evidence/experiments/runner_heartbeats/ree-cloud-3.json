@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-17T15:55:09Z",
+  "last_tick_utc": "2026-05-17T15:56:11Z",
   "state": "running",
   "current_exq": "V3-EXQ-543g",
   "current_exq_started_utc": "2026-05-17T15:55:04.499432+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_0_baseline",
     "runs_done": 0,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 108,
-    "overall_pct": 0.0
+    "overall_pct": 0.8
   },
-  "seconds_elapsed": 5,
-  "seconds_remaining": 5400,
+  "seconds_elapsed": 67,
+  "seconds_remaining": 5452,
   "recent_lines": [
-    "Preflight non-degeneracy check PASS: dacc_weight=1.0 active, first_action_onehot=True (action_dim=5).",
     "[V3-EXQ-543g] ARC-062 x MECH-309 Monomodal-Collapse Falsifier (outcome-coupled REINFORCE P1 loss)  seeds=[0, 1, 2]  dry_run=False",
     "Seed 0 Condition ARM_0_baseline",
     "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
+    "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0007  ep_reward=-1.1214"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
