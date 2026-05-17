@@ -31916,3 +31916,396 @@
     self/other nociception comparison run. Both blocked until full substrate
     stack lands (MECH-256 + SD-021 jointly requiring committed-mode
     substrate -- see commitment_closure_plan.md GAP-11).
+
+- id: INV-074
+  title: "Plasticity crystallization necessity: any model-building agent whose internal
+    scoring is dominated by a high-variance predictive pathway will converge to monostrategy
+    under Hebbian-equivalent learning unless a time-bounded plasticity asymmetry allows
+    competing diversity circuits to establish competitive weight before winner-take-all
+    dynamics close off the option space; without this crystallization window, behavioral
+    diversity is permanently suppressed regardless of diversity-signal magnitude."
+  claim_type: invariant
+  invariant_type: universal
+  subject: learning.developmental_plasticity_crystallization_necessity
+  polarity: asserts
+  status: candidate
+  registered_utc: "2026-05-17"
+  depends_on:
+    - INV-073    # developmental bootstrapping necessity (exploration epoch)
+    - ARC-065    # diversity stack -- the circuit that must crystallize
+    - MECH-120   # sleep SWY downscaling -- the consolidation mechanism
+    - MECH-165   # replay diversity -- required for crystallized distribution to be maintained
+  lit_conf: 0.82
+  literature_anchors:
+    - "Fagiolini & Hensch (2000) Nature 404:183 -- GAD65-KO mice never open CP spontaneously;
+       single benzodiazepine injection forces opening at any age; E/I threshold is causal gate,
+       not merely correlative. conf 0.88."
+    - "Clothiaux, Bear & Cooper (1991) J Neurophysiol 66:1785 -- BCM theory validated against
+       kitten visual cortex; dominant pathway reaches stable attractor, minority pathway decays;
+       sliding threshold provides meta-stabilization only if it tracks activity faster than
+       competitive dynamics. conf 0.85."
+    - "Achille, Rovere & Soatto (2019) ICLR arXiv:1711.08856 -- critical periods in ANNs;
+       Phase 1 (high Fisher Information) to Phase 2 (Fisher collapse) transition; deficit
+       incurred during Phase 1 is permanent; Fisher Information tracks window closure in real
+       time. conf 0.90."
+    - "Hubel & Wiesel (1970) J Physiol 206:419 -- 3-4 days monocular deprivation at peak CP
+       produces near-complete loss of deprived-eye representation; competitive imbalance (not
+       absolute activity level) is the driver -- binocular zone affected, monocular zone not.
+       conf 0.90."
+    - "Shaffery, Lopez & Roffwarg (2012) Neurosci Lett 521:77 -- REM sleep closes critical
+       periods via BDNF/PV maturation cascade; REM deprivation reopens pathologically juvenile
+       high-plasticity state where WTA continues indefinitely; BDNF infusion reverses reopening.
+       conf 0.78."
+    - "Oksenberg, Shaffery & Roffwarg (1996) Brain Res Dev Brain Res 95:169 -- REM deprivation
+       ACCELERATES WTA during monocular deprivation (amplified LGN cell-size disparity in both
+       directions); sleep is prophylactic against WTA, not merely neutral; threshold effect.
+       conf 0.86."
+    - "O'Dell (2025) Hippocampus DOI:10.1002/hipo.70043 -- beta-AR driven heterosynaptic
+       depression: dominant pathway actively depresses competitors (not merely passively
+       outcompetes); self-reinforcing dominance has active suppression component. conf 0.72."
+  notes: >
+    INV-074 identifies the structural reason why warm-start initializations and
+    infant-curriculum phases fail to produce lasting behavioral diversity benefit
+    in the current substrate: there is no mechanism to reduce F's plasticity
+    dominance after diversity circuits have been seeded, so the dominant scoring
+    pathway continues to overwrite diversity representations at the same rate as
+    any other configuration.
+
+    V3 experimental evidence (2026-05-16):
+    - EXQ-571 (E3 score variance decomposition): F accounts for 88-89% of E3
+      scoring variance across all arms. All diversity mechanisms (MECH-313, MECH-314,
+      MECH-320, MECH-260) show bias_fraction = 0.000 at E3 scoring.
+    - EXQ-569 (matched-entropy sweep, 6 arms): selected_action_entropy identical
+      (~0.496) regardless of which diversity mechanism is active.
+    - Implication: diversity is expressed in candidates (E2 rollout diversity confirmed,
+      EXQ-570) but immediately overwritten at E3 scoring by F dominance. This is the
+      substrate signature of a system with no critical period closure.
+
+    BIOLOGICAL GROUNDING (lit pull 2026-05-17):
+    The canonical case is ocular dominance plasticity. During the critical period,
+    E/I balance enables competitive plasticity. After closure (PNN formation, Lynx1
+    upregulation, NgR1/myelination), synaptic configurations are structurally locked.
+    The monocular deprivation experiment is the direct analog of EXQ-569: one dominant
+    input captures cortical representation when the plasticity window never closes around
+    the competing pathway. Crucially, the dominant pathway does not merely outcompete --
+    it actively depresses competitors via heterosynaptic mechanisms (O'Dell 2025), and
+    the suppressed pathway cannot recover without active Hebbian re-potentiation under
+    reversed-activity conditions (Gu, Bear & Singer 1989, NMDA-dependence of recovery).
+
+    ZEBRAFISH SPECIFICITY: The zebrafish tectum conserves GABA maturation and BDNF-
+    linked plasticity but PNNs and NgR1 myelination are not confirmed in zebrafish
+    tectum. A model calibrated to zebrafish biology may therefore have inherently weaker
+    closure mechanisms, consistent with the persistent monostrategy pattern observed.
+
+    MECH-120 and MECH-165 are necessary but not sufficient: they prevent monostrategy
+    convergence during sleep but cannot crystallize diversity if waking scoring dynamics
+    are already winner-take-all dominated. The crystallization window must precede full
+    F-dominance, not attempt to remediate after the fact. See Aton et al. 2013 (PNAS):
+    waking dynamics set gate 1 (consolidation instructions); if gate 1 is corrupted by
+    WTA, sleep cannot reconstruct diverse signals at gate 2.
+  evidence_quality_note: >
+    Registered 2026-05-17. V3 experimental support via EXQ-569/571 (indirect --
+    confirms F-dominance pattern; does not directly test the invariant's causal claim).
+    Lit pull completed 2026-05-17 (4 subagents). EXQ-573 (bias-scale sweep) provides
+    first falsification opportunity for Q-052; EXQ-591 (infant curriculum vs flat)
+    provides second. Both results will inform whether the invariant's structural claim
+    is correct or whether magnitude scaling suffices.
+
+- id: MECH-333
+  title: "Critical period open phase: the dominant scoring pathway's effective update
+    magnitude must be suppressed (or diversity circuit signal weight amplified to
+    competitive parity) during a time-bounded plasticity-open window, preventing
+    winner-take-all capture before diversity circuits achieve viable weight; REE analog
+    of E/I balance shift and GABA maturation that opens biological critical periods."
+  claim_type: mechanism_hypothesis
+  subject: learning.developmental_critical_period_open_phase
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-17"
+  depends_on:
+    - INV-074    # the invariant motivating this mechanism
+    - ARC-065    # diversity stack -- the circuit that must be seeded during the window
+    - ARC-074    # Phase 0 reward-free babbling epoch (precondition)
+    - MECH-120   # sleep SWY -- operates in parallel but does not substitute for open-phase gating
+  lit_conf: 0.76
+  literature_anchors:
+    - "Fagiolini & Hensch (2000) Nature 404:183 -- PV+ interneuron maturation threshold is the
+       causal gate for CP opening; competition should not begin until the inhibitory precision
+       mechanism is online (benzodiazepine can substitute for missing GABA maturation). conf 0.88."
+    - "Deidda et al. (2015) Nature Neurosci 18:87 -- depolarizing GABA -> BDNF -> PV maturation
+       cascade; mode switch from permissive (exploratory, depolarizing GABA) to competitive
+       (hyperpolarizing GABA) precedes the E/I balance threshold. conf 0.83."
+    - "Huang et al. (1999) Cell 98:739 -- BDNF precociously opens AND closes CP in transgenic
+       mice; BDNF is the molecular accelerator of PV maturation and CP timing; experience-
+       independent if BDNF is supplied exogenously. conf 0.85."
+    - "Nikishin et al. (2022) ICML arXiv:2205.07802 -- primacy bias fix: periodic reset of last
+       N layers (preserving replay buffer) re-opens F's plasticity window; most directly validated
+       ML technique for this exact failure mode in RL systems. conf 0.87."
+    - "Achille, Rovere & Soatto (2019) ICLR arXiv:1711.08856 -- Fisher Information as diagnostic
+       metric; Phase 1->Phase 2 transition detectable in real time; cyclic LR partially re-enters
+       high-plasticity dynamics; cross-channel joint predictive loss (Kleinman 2023 CVPR) protects
+       multi-source integration from critical period failure. conf 0.90."
+    - "Kirkpatrick et al. (2017) PNAS 114:3521 -- EWC Fisher-weighted weight protection applied
+       preemptively to diversity parameters prevents F gradient from overriding them during the
+       open window; inverse of normal EWC use case. conf 0.84."
+  functional_restatement: >
+    During the plasticity-open window, training dynamics must enforce a temporary
+    inversion of the normal operating ratio: diversity circuits receive full update weight
+    while F's gradient contribution to E3 scoring parameters is attenuated. This prevents
+    the forward model from capturing scoring variance before diversity circuits have
+    established stable attractor basins.
+
+    BIOLOGICAL TRIGGER (lit pull 2026-05-17):
+    The biological open-phase trigger is PV+ interneuron maturation reaching a functional
+    E/I threshold (Fagiolini & Hensch 2000). The cascade: depolarizing GABA -> BDNF ->
+    PV maturation -> E/I threshold crossed -> competitive plasticity begins. This means
+    competition should not start until an inhibitory normalization mechanism is online --
+    in REE terms, competitive E3 selection should not be active until the precision-
+    weighting architecture (z_beta, harm stream) is functional.
+
+    IMPLEMENTATION OPTIONS (to be resolved by Q-052 + experiment):
+    (A) Learning rate scheduling: reduce F's effective LR during open window, restore at
+        closure. Simple; may be insufficient if F dominance is structural.
+    (B) Magnitude rescaling: increase diversity bias_scale during open window, ramp down
+        at closure. EXQ-573 tests a static version; MECH-333 requires the temporal version.
+    (C) Gradient blocking: prevent F's gradient from updating E3 scoring parameters
+        during the open window. Strongest isolation; highest implementation complexity.
+    (D) PV-analog penalty: a penalty term scaling with F's current scoring dominance level
+        (biological analog: PV interneurons providing feedback inhibition proportional to
+        dominant excitatory drive -- the soft-WTA mechanism). Most biologically faithful.
+    (E) Plasticity injection (Nikishin 2023 NeurIPS): additive fresh layer providing a
+        plastic gradient channel without destroying F's consolidated knowledge.
+
+    The open-phase mechanism must be paired with a closure mechanism (MECH-334) or the
+    plasticity asymmetry never resolves and the system remains in a permanently tilted
+    training regime.
+  evidence_quality_note: >
+    Registered 2026-05-17. No V3 implementation exists; MECH-333 is a design
+    prescription derived from the EXQ-569/571 audit and the 2026-05-17 lit pull.
+    Implementation gated on Q-052 resolution (magnitude vs structure). Lit pull
+    completed 2026-05-17 -- biological analog (PV soft-WTA via feedback inhibition
+    proportional to dominant drive) identified as the most faithful computational
+    target.
+
+- id: MECH-334
+  title: "Critical period closure / crystallization: once diversity circuits establish
+    competitive weight during the MECH-333 open window, a complementary closure mechanism
+    reduces plasticity for the crystallized diversity distribution while restoring full
+    dominant-pathway update scale; without closure, diversity representations remain
+    equally vulnerable to gradient-driven overwriting throughout all subsequent training."
+  claim_type: mechanism_hypothesis
+  subject: learning.developmental_critical_period_closure_crystallization
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-17"
+  depends_on:
+    - MECH-333   # open phase (must precede closure)
+    - INV-074    # the invariant motivating this mechanism
+    - MECH-120   # sleep SWY -- operates post-closure to prevent slow reconvergence
+    - MECH-165   # replay diversity -- maintains crystallized distribution during sleep
+  lit_conf: 0.78
+  literature_anchors:
+    - "Pizzorusso et al. (2002) Science 298:1248 -- ChABC degrades PNNs and fully reactivates
+       adult OD plasticity; closure is ACTIVE LOCKING not passive reduction; multi-mechanism
+       (physical constraint + Otx2 trap + Sema3A scaffold); requires ongoing molecular
+       maintenance. conf 0.92."
+    - "Morishita et al. (2010) Science 330:1238 -- Lynx1 is an active cholinergic brake
+       upregulated at CP closure; Lynx1-KO mice retain juvenile-like OD plasticity into
+       adulthood; closure requires active molecular braking. conf 0.88."
+    - "Stephany et al. (2014) J Neurosci 34:11631 + Stephany et al. (2016) Neuroscientist
+       22:653 -- NgR1/myelination as layer-4-specific interface lock; parallel and partially
+       redundant with PNNs; genetic KO prevents CP closure; multi-lock architecture. conf 0.85."
+    - "Shaffery, Lopez & Roffwarg (2012) Neurosci Lett 521:77 -- REM sleep closes critical
+       periods via BDNF->PV maturation pathway; the closure signal is sleep-gated (translational
+       program requiring mTOR activation during sleep, Seibt 2012 Curr Biol); MECH-334 needs
+       a sleep-phase trigger for execution. conf 0.78."
+    - "Aton et al. (2013) PNAS 110:3059 -- two-stage gate: waking MD depresses FS interneurons
+       (gate 1 = consolidation instruction); NREM slow-wave phase-locking executes OD shift
+       (gate 2); gate 1 must encode correct diversity before gate 2 crystallizes it -- corrupted
+       waking dynamics prevent sleep from crystallizing the right representation. conf 0.87."
+    - "Kirkpatrick et al. (2017) PNAS 114:3521 -- EWC write-protect analog: Fisher-weighted
+       quadratic penalty applied to diversity parameters after MECH-333 window closes; protects
+       crystallized diversity distribution against subsequent F gradient overwriting. conf 0.84."
+    - "Dohare et al. (2024) Nature DOI:10.1038/s41586-024-07711-7 -- loss of plasticity in
+       deep continual learning; continual backprop (selective reinitialization of lowest-utility
+       units) restores plasticity; CReLU activation prevents unit death; relevant for maintaining
+       diversity parameter plasticity post-closure. conf 0.85."
+  functional_restatement: >
+    The closure mechanism converts the established diversity distribution from a plastic
+    to a semi-stable state: subsequent gradient updates can refine individual diversity
+    circuit weights but cannot wholesale overwrite the diversity distribution.
+
+    BIOLOGICAL ANALOG (lit pull 2026-05-17):
+    Three parallel brakes operate redundantly at biological critical period closure:
+    (1) PNNs around PV cells (physical constraint + Otx2/Sema3A scaffold -- active,
+        not passive; requires ongoing maintenance; ChABC dissolves them and restores
+        plasticity in adults even decades post-closure)
+    (2) Lynx1 (cholinergic brake actively upregulated at closure; structurally
+        homologous to alpha-bungarotoxin; Lynx1-KO restores juvenile-like plasticity)
+    (3) NgR1/myelination at layer-4 thalamocortical interface (layer-specific lock;
+        partially redundant with PNNs)
+    The multi-lock architecture means MECH-334 cannot be implemented as a single
+    mechanism -- redundant write-protect pathways targeting different components of
+    the diversity circuit are more faithful to the biology.
+
+    TWO-STAGE GATE (Aton et al. 2013):
+    Waking dynamics set gate 1 (which circuits are tagged for consolidation);
+    NREM slow-wave phase-locking executes the crystallization at gate 2. If waking
+    F-dominance has already corrupted gate 1 (diversity circuits are not differentially
+    tagged because they never drove action selection), sleep cannot reconstruct diverse
+    consolidation signals. MECH-333 must ensure gate 1 receives correct diversity
+    signals before MECH-334 closure executes.
+
+    RELATIONSHIP TO SLEEP:
+    MECH-120 (SWY downscaling) and MECH-165 (replay diversity) are maintenance
+    mechanisms within an open plasticity window -- they are NOT substitutes for
+    closure. Shaffery/Roffwarg 2012: REM sleep closes critical periods via BDNF/PV
+    pathway; SHY (Tononi/Cirelli) is a separate homeostatic normalizer that operates
+    within an open window. Both are required but neither implements crystallization
+    by itself.
+  evidence_quality_note: >
+    Registered 2026-05-17. No V3 implementation exists. MECH-334 is logically
+    dependent on MECH-333. Lit pull completed 2026-05-17 -- PNN/Lynx1/NgR1 three-
+    brake architecture identified as the biological model. Implementation design
+    requires resolving MECH-333 first; write-protect approach (EWC applied to
+    diversity weights) is the most direct computational translation.
+
+- id: ARC-075
+  title: "The infant curriculum architecture must implement plasticity magnitude
+    asymmetry across developmental phases, not only temporal phase scheduling: F's
+    effective update weight must be suppressed during the MECH-333 plasticity-open
+    window to allow diversity circuits to reach competitive weight; temporal scheduling
+    alone (as in current GAP-9/GAP-14 implementation) is insufficient."
+  claim_type: architectural_commitment
+  subject: development.infant_curriculum_plasticity_magnitude_gating
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-05-17"
+  depends_on:
+    - ARC-046    # infant curriculum architecture (phased learning)
+    - ARC-074    # Phase 0 reward-free babbling epoch
+    - INV-074    # plasticity crystallization necessity
+    - MECH-333   # critical period open mechanism
+    - MECH-334   # critical period closure mechanism
+  lit_conf: 0.74
+  literature_anchors:
+    - "Bengio et al. (2009) ICML -- curriculum learning accelerates convergence but does NOT
+       preserve behavioral diversity without explicit diversity regularizer; temporal scheduling
+       alone converges to monostrategy if one strategy suffices across difficulty levels.
+       Direct confirmation that GAP-9/GAP-14 phase scheduling is insufficient. conf 0.82."
+    - "Aton et al. (2013) PNAS 110:3059 -- two-stage gate: waking phase dynamics determine what
+       consolidation instructions sleep receives; temporal phase scheduling without magnitude
+       gating produces corrupted gate 1 (waking-phase diversity absent), preventing sleep from
+       crystallizing diverse representations at gate 2. conf 0.87."
+    - "Kleinman, Achille & Soatto (2023) CVPR arXiv:2210.04643 -- multi-source integration has
+       a critical period; cross-channel joint predictive loss during early training immunizes
+       against integration failure before it starts; tying F and diversity mechanisms in a shared
+       early objective may prevent competitive capture before it occurs. conf 0.83."
+    - "Hagewoud et al. (2010) Sleep 33:1465 -- sleep deprivation shifts to rigid monostrategy;
+       confirms temporal curriculum without correct waking-phase dynamics AND sleep consolidation
+       produces permanent behavioral narrowing. conf 0.82."
+  functional_restatement: >
+    The current infant substrate plan (GAP-9: 4-phase scheduler, GAP-14: curriculum vs
+    flat baseline) schedules transitions between developmental phases but does not gate
+    plasticity magnitudes between phases. ARC-075 asserts this is architecturally
+    incomplete.
+
+    REQUIRED ADDITIONS TO INFANT CURRICULUM:
+    (1) Phase-gated F attenuation: during Phase 0 (babbling) and Phase 1 (early
+        learning), F's gradient contribution to E3 scoring is reduced to allow diversity
+        circuits to establish competitive weight.
+    (2) Closure trigger: criterion-based or time-based trigger ending the attenuated-F
+        phase and restoring normal dynamics, crystallizing the diversity distribution.
+    (3) Post-closure diversity validation: metric confirming the distribution is stable
+        against F-dominated overwriting after closure (analog of monocular deprivation
+        test post-critical-period).
+
+    IMPLICATION FOR EXQ-591:
+    V3-EXQ-591 (GAP-14 curriculum vs flat baseline) will likely show no benefit from
+    the 4-phase curriculum unless F attenuation is also implemented. A null result would
+    confirm ARC-075 but not constitute a PASS for developmental hardening hypothesis.
+  evidence_quality_note: >
+    Registered 2026-05-17. ARC-075 is a design prescription, not a tested claim.
+    EXQ-591 provides the first falsification opportunity. Bengio et al. (2009) directly
+    confirms the core claim that temporal scheduling alone is insufficient. Lit pull
+    completed 2026-05-17.
+
+- id: Q-052
+  title: "Is forward-model dominance in E3 scoring a magnitude calibration problem
+    solvable by 5-10x diversity bias scaling, or a structural plasticity dominance
+    problem requiring phase-specific learning rate asymmetry as per MECH-333/334?"
+  claim_type: question
+  subject: learning.forward_model_dominance_magnitude_vs_structural_plasticity
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  epistemic_category: substrate_conditional
+  registered_utc: "2026-05-17"
+  depends_on:
+    - INV-074    # the invariant -- Q-052 asks whether EXQ-573 resolves it
+    - MECH-333   # required if Q-052 resolves to structural
+    - ARC-065    # diversity stack -- the locus of the problem
+  literature_anchors:
+    - "Achille, Rovere & Soatto (2019) ICLR arXiv:1711.08856 -- Phase 2 Fisher Information
+       lock-in is structural; magnitude scaling in Phase 2 cannot undo Phase 1 bias; leans
+       toward hypothesis (B) structural. conf 0.90."
+    - "Frenkel & Bear (2004) Neuron 44:917 + Lambo & Turrigiano (2013) J Neurosci 33:8810 --
+       biphasic OD plasticity: competitive LTD (days 1-3) then homeostatic scaling (days 3-7);
+       EXQ-573 static bias scaling addresses Phase 2 only, not Phase 1 competitive
+       restructuring; further supports (B). conf 0.87."
+    - "Nikishin et al. (2022) ICML arXiv:2205.07802 -- primacy bias / periodic layer reset:
+       a THIRD option beyond (A) magnitude and (B) structure -- re-opens F's plasticity window
+       via architectural intervention without requiring full MECH-333/334; decision rule may
+       need three branches. conf 0.87."
+    - "Pathak et al. (2017) ICML arXiv:1705.05363 -- ICM self-defeat: F-error-based curiosity
+       signal collapses to zero as F consolidates; if MECH-313/314/320 diversity signals are
+       F-error-dependent, EXQ-573 magnitude scaling is temporary and Q-052 resolves to (B)
+       regardless of initial entropy lift. conf 0.85."
+    - "Aton et al. (2013) PNAS 110:3059 -- two-stage gate; waking diversity must be correct
+       for sleep consolidation to produce diverse output; EXQ-573 PASS does not guarantee
+       gate 1 is producing diverse consolidation signals at the correct timescale. conf 0.87."
+  short: >
+    F dominance (88-89% variance, all diversity bias_fractions = 0): magnitude fix or structural plasticity fix?
+  description: >
+    EXQ-571 (2026-05-16) established that F accounts for 88-89% of E3 scoring variance
+    and all diversity mechanisms have bias_fraction = 0.000. EXQ-573 (queued) tests
+    static 5-10x diversity bias scaling across MECH-313/314/320 individually and combined.
+
+    TWO PRIMARY HYPOTHESES:
+    (A) MAGNITUDE: F dominance is a calibration artefact -- diversity signals too small
+        relative to F's score contribution. A one-time bias_scale increase restores
+        competitive parity without temporal gating. EXQ-573 PASS supports this; MECH-333/334
+        would not be required as architectural mechanisms.
+    (B) STRUCTURAL PLASTICITY: F dominance is self-reinforcing under Hebbian-equivalent
+        learning -- F won early, its gradient updates reinforce its dominance, diversity signals
+        cannot catch up regardless of static magnitude rescaling. Literature leans toward (B):
+        Achille & Soatto Phase 2 lock-in is structural; OD competitive dynamics require active
+        re-competition not just homeostatic rescaling (Gu 1989); F-error-based diversity signals
+        self-extinguish as F consolidates (Pathak 2017).
+
+    THIRD OPTION (identified by ML lit pull):
+    (C) PERIODIC RESET: Nikishin et al. (2022) primacy bias fix -- periodic reset of last
+        N layers of action-selector while preserving replay buffer. Less disruptive than full
+        MECH-333/334 architecture; directly validated in RL. Would constitute a minimal
+        implementation of the open-phase mechanism without requiring full plasticity scheduling.
+
+    DECISION RULE:
+    - EXQ-573 PASS (all three acceptance criteria met, diversity stable over extended
+      training): Q-052 resolves to (A); MECH-333/334 deprioritized.
+    - EXQ-573 FAIL or partial (entropy lifts but regresses under extended training):
+      Q-052 resolves to (B); MECH-333/334 or option (C) periodic reset required.
+    - EXQ-573 PASS + EXQ-591 FAIL (curriculum still shows no benefit): ambiguous;
+      requires further probe distinguishing magnitude fix from developmental crystallization.
+
+    DIAGNOSTIC FLAG: Check whether MECH-313/314/320 diversity signals are F-error-
+    dependent (ICM failure mode, Pathak 2017) -- if so, Q-052 resolves to (B) regardless
+    of EXQ-573 result, because the diversity signal source will self-extinguish as F
+    consolidates further.
