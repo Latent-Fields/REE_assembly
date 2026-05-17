@@ -9,7 +9,7 @@ closure_plan:
     - id: "commitment_closure:GAP-1"
       title: "SD-033a bias head untrained (Go-side mechanically silent)"
       phase: 1
-      status: substrate_ready
+      status: in-progress
       severity: load-bearing
       owner_exq: TBD
       unblocks_claims: [SD-033a, MECH-262, SD-034]
@@ -114,7 +114,7 @@ closure_plan:
     - id: "commitment_closure:GAP-11"
       title: "Phased rule_state training curriculum (GAP-3 deliverable 4 -- committed-mode elicitation)"
       phase: 4
-      status: implementation_complete
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [SD-034, MECH-266, MECH-268, MECH-090, SD-021]
@@ -472,9 +472,9 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | blocked (upstream in-progress) | arc_062_rule_apprehension Phase 1 + Phase 2 (GAP-A done; GAP-B in-progress, V3-EXQ-543b queued Mac 120 min, awaiting runner pickup) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; resume when ARC-062 PASSes monomodal-collapse falsifier (V3-EXQ-543b is the live owner) | TBD | 2026-05-10 |
+| GAP-1 | 1 | in-progress | arc_062_rule_apprehension GAP-B in-progress (V3-EXQ-543g is the live falsifier; substrate GAP-C/D implemented 2026-05-17) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; closes when 543g returns contributory PASS -> GAP-C/D validation EXQ (2-arm ablation) queued | TBD | 2026-05-17 |
 | GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
-| GAP-3 | 3 | open | nothing (Q2 RESOLVED 2026-05-16: adaptive tolerance) | Review causalgridworldv2_env_extensions_spec.md (primitives 1-3: adaptive tolerance-band / counter-evidence injection hook / dual-cue), then implement env infra. Deliverable 4 (phased curriculum) split to its own design pass. | env infra (no EXQ); spec doc | 2026-05-16 |
+| GAP-3 | 3 | done | (none) | DONE 2026-05-17: env extensions primitives 1-3 IMPLEMENTED; 14/14 contract tests PASS + 434/434 regression. Deliverable 4 (phased curriculum) is GAP-11 (separate). Unblocks GAP-8. | env infra (no EXQ) | 2026-05-17 |
 | GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
 | GAP-5 | 6 | done | (none) | Two root causes fixed: (1) forced commitment pattern for 481b; (2) empty-snapshot re-population in agent.py. V3-EXQ-481b queued 2026-05-17; dry-run UC1/UC2/UC3 PASS. | V3-EXQ-481b | 2026-05-17 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
@@ -482,6 +482,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-8 | 7 | blocked | Phase 3 env extensions (devaluation hook + task-role discriminability) | After Phase 3 PASS, queue 485b/c | V3-EXQ-485b, 485c | 2026-05-08 |
 | GAP-9 | 8 | deferred | low-priority graph completeness | none in V3 | n/a | 2026-05-08 |
 | GAP-10 | 8 | done | (none) | Audit complete: 6 write sub-sites documented in sd_034_governance_closure_operator.md; all are within-select_action() architectural exceptions; zero require StepHarness re-routing | substrate audit (no EXQ) | 2026-05-17 |
+| GAP-11 | 4 | done | (none) | DONE 2026-05-17: committed_mode_curriculum.py harness helper IMPLEMENTED; P0/P1/P2/clone_trained_agent API; smoke PASS. Pilot EXQ V3-EXQ-592 queued (3 arms: EMERGENT/FORCED_RV/STARVED). | V3-EXQ-592 | 2026-05-17 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `partial`,
 `done`, `deferred`. A `paused` row carries a resume condition in the
