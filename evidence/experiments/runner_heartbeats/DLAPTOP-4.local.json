@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-16T23:53:12Z",
+  "last_tick_utc": "2026-05-17T00:04:17Z",
   "state": "running",
   "current_exq": "V3-EXQ-543e",
   "current_exq_started_utc": "2026-05-16T23:42:42.559107+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 0 / ARM_3_both",
-    "runs_done": 3,
+    "run_label": "Seed 1 / ARM_1_dacc_only",
+    "runs_done": 5,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 20,
     "episodes_total": 108,
-    "overall_pct": 25.0
+    "overall_pct": 43.2
   },
-  "seconds_elapsed": 630,
-  "seconds_remaining": 1826,
+  "seconds_elapsed": 1295,
+  "seconds_remaining": 1676,
   "recent_lines": [
-    "seed=0 arm=ARM_2_gated_only  reef_frac=0.280  rho=-0.143  forage_hr=0.1923  transit_hr=1.0000  ratio=0.192  inert_gating=True",
-    "verdict: FAIL",
-    "Seed 0 Condition ARM_3_both",
-    "use_gated_policy=True  use_dacc=True  dacc_suppression_weight=0.5  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=on  agent.dacc=on"
+    "Seed 1 Condition ARM_1_dacc_only",
+    "use_gated_policy=False  use_dacc=True  dacc_suppression_weight=0.5  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=on",
+    "[train] ARM_1_dacc_only ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.1490",
+    "[train] ARM_1_dacc_only ep 20/108  phase=P0  rv=0.0005  ep_reward=-1.3563"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
