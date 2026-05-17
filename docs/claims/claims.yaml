@@ -32557,6 +32557,27 @@
     V3-EXQ-543h / MECH-334 (which locks the gated-policy diversity heads); ARC-076 locks
     the commitment-loop calibration. No experiment queued this session (registration
     only, per scope).
+  implementation_prerequisites: >
+    HARD ORDERING GATE (user-stated 2026-05-17). ARC-076 / MECH-335 / MECH-336 are NOT
+    implementable, and MUST NOT be scheduled, experiment-queued, or treated as actionable
+    by any session or governance run, until BOTH of the following are first satisfied --
+    in this order:
+      (1) INFANT STAGE VALIDATED. The infant curriculum is demonstrated working, not
+          merely scheduled: ARC-046 / ARC-074 / ARC-075 resolved (in particular ARC-075's
+          plasticity-magnitude gating, since temporal scheduling alone is architecturally
+          insufficient), with V3-EXQ-586 (GAP-9) and V3-EXQ-591 (GAP-14 curriculum-vs-
+          flat) run and passing. As of registration these are queued, not run.
+      (2) BEHAVIOURAL DIVERSITY ACHIEVED THROUGH THE LOCK. At minimum, sustained
+          behavioural diversity that survives critical-period closure is demonstrated:
+          ARC-065 plus the MECH-333/334 crystallization validated via V3-EXQ-543h PASS
+          (its predecessor 543g FAILED; 543h is queued, not run). The commitment-loop
+          calibration ARC-076 describes is a strictly harder instance of the same
+          lock pattern -- it cannot be built on an unproven lock.
+    Rationale: ARC-076's depends_on (ARC-046/ARC-074/MECH-333/334/ARC-065-family) are
+    all themselves candidate / v3_pending with their gating experiments unrun, so
+    v3_pending alone under-states the constraint. This gate makes the ordering explicit
+    so the cluster is not picked up prematurely. Lift this block only when (1) and (2)
+    are evidenced.
 - id: MECH-335
   title: "Staggered ventral->dorsal commitment-loop calibration windows: the three
     commitment loops do not share a single critical period. Their calibration windows
