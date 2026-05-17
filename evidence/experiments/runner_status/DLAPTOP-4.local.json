@@ -1,22 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-17T13:09:45.696913+00:00",
-  "last_updated": "2026-05-17T13:09:47.767528+00:00",
-  "idle": true,
+  "runner_pid": 59137,
+  "runner_started_at": "2026-05-17T13:11:02.364507+00:00",
+  "last_updated": "2026-05-17T14:03:34.758762+00:00",
+  "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-543f",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-062 x MECH-309 monomodal-collapse falsifier -- one-hot head augmentation + dacc_weight fix",
-      "description": "",
-      "estimated_minutes": 172.8,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-587",
       "backlog_id": "",
@@ -36,17 +25,6 @@
       "description": "",
       "estimated_minutes": 1333.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-585",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "infant_substrate GAP-8 validation -- post_sleep_z_goal_retention + replay_diversity_index",
-      "description": "",
-      "estimated_minutes": 0.8,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -8088,7 +8066,34 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 4760.7
+    },
+    {
+      "queue_id": "V3-EXQ-543f",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062 x MECH-309 monomodal-collapse falsifier -- one-hot head augmentation + dacc_weight fix",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[legacy ARM_3-vs-ARM_0 grid; NON-PASS-GATING] C2=True C3=False C4=True F1=False F2=False legacy_pass=False | outcome:            FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-543f -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-543f.json",
+      "started_at": "2026-05-17T13:11:05.185387+00:00",
+      "completed_at": "2026-05-17T14:03:20.677794+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T140320Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 3135.5
+    },
+    {
+      "queue_id": "V3-EXQ-585",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "infant_substrate GAP-8 validation -- post_sleep_z_goal_retention + replay_diversity_index",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "C4 (ARM_1 before > 0.1): PASS before=['0.6000', '0.6000', '0.6000'] | Overall outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-585 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-585.json",
+      "started_at": "2026-05-17T14:03:25.470971+00:00",
+      "completed_at": "2026-05-17T14:03:34.757637+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_585_gap8_z_goal_retention_validation/v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 9.3
     }
-  ],
-  "draining": false
+  ]
 }
