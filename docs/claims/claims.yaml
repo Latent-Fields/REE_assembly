@@ -32090,6 +32090,17 @@
     completed 2026-05-17 -- biological analog (PV soft-WTA via feedback inhibition
     proportional to dominant drive) identified as the most faithful computational
     target.
+  implementation_note: >
+    PARTIAL implementation 2026-05-17 -- option (E) plasticity injection
+    (Nikishin 2023 NeurIPS) only. ree-v3 GatedPolicy.crystallize() adds a
+    fresh plastic expansion channel at the infant-curriculum Phase 2->3
+    transition (forward = frozen_gated(x) + expansion(x.detach())); config
+    REEConfig.crystallize_at_phase3 (default False, bit-identical OFF). The
+    pre-window F-attenuation half of MECH-333 (ARC-075 requirement 1:
+    suppress F's gradient contribution during Phases 0-1) is NOT yet
+    implemented -- this landing is the plastic channel that the MECH-334
+    closure presupposes. v3_pending RETAINED (experiment evidence pending
+    via V3-EXQ-543h). See docs/architecture/critical_period_crystallization.md.
 
 - id: MECH-334
   title: "Critical period closure / crystallization: once diversity circuits establish
@@ -32176,6 +32187,21 @@
     brake architecture identified as the biological model. Implementation design
     requires resolving MECH-333 first; write-protect approach (EWC applied to
     diversity weights) is the most direct computational translation.
+  implementation_note: >
+    IMPLEMENTED 2026-05-17 (primary closure mechanism). ree-v3:
+    GatedPolicy.crystallize() freezes head_0/head_1/discriminator at the
+    infant-curriculum Phase 2->3 transition (plasticity-injection closure
+    for the policy heads); ResidueField.snapshot_ewc_anchor() +
+    ewc_penalty() apply a Fisher-weighted quadratic write-protect anchored
+    to the Phase-3 checkpoint (Kirkpatrick 2017), Fisher proxy
+    |anchor_w|*active_mask -- NOT a hard freeze, established basins resist
+    overwriting in proportion to strength (faithful to the claim text).
+    Config REEConfig.crystallize_at_phase3 (default False) +
+    ResidueConfig.ewc_enabled/ewc_lambda; from_dims residue_ewc_lambda.
+    Multi-lock note: the PNN/Lynx1/NgR1 redundancy is collapsed to a
+    single EWC lock in this landing (cost-controlled); redundant locks
+    deferred. v3_pending RETAINED (validation via V3-EXQ-543h pending).
+    See docs/architecture/critical_period_crystallization.md.
 
 - id: ARC-075
   title: "The infant curriculum architecture must implement plasticity magnitude
@@ -32238,6 +32264,16 @@
     EXQ-591 provides the first falsification opportunity. Bengio et al. (2009) directly
     confirms the core claim that temporal scheduling alone is insufficient. Lit pull
     completed 2026-05-17.
+  implementation_note: >
+    PARTIAL 2026-05-17. Requirement (2) closure trigger IMPLEMENTED
+    (infant-curriculum Phase 2->3 fires GatedPolicy.crystallize() +
+    ResidueField.snapshot_ewc_anchor() via the on_phase3_entry hook);
+    requirement (3) post-closure diversity validation is the V3-EXQ-543h
+    D2 criterion. Requirement (1) phase-gated F attenuation during Phases
+    0-1 is NOT yet implemented (the open-phase half of MECH-333). So the
+    "temporal scheduling alone is insufficient" claim is now testable:
+    543h adds crystallize_at_phase3 as a 3rd factor on the 543g 2x2.
+    v3_pending RETAINED. See docs/architecture/critical_period_crystallization.md.
 
 - id: Q-052
   title: "Is forward-model dominance in E3 scoring a magnitude calibration problem
