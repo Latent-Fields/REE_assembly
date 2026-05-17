@@ -1,47 +1,32 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-15T20:37:40Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-540c",
-      "result": "ERROR",
-      "completed_at": "2026-05-12T06:10:13.242473+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-540d",
-      "result": "PASS",
-      "completed_at": "2026-05-12T06:29:28.517588+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-556",
-      "result": "FAIL",
-      "completed_at": "2026-05-12T10:45:29.925039+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-566",
-      "result": "PASS",
-      "completed_at": "2026-05-15T19:59:34.525196+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-567",
-      "result": "PASS",
-      "completed_at": "2026-05-15T20:31:26.786714+00:00"
-    }
+  "last_tick_utc": "2026-05-17T11:02:20Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-588",
+  "current_exq_started_utc": "2026-05-17T10:52:17.859451+00:00",
+  "current_title": "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison (GAP-11)",
+  "current_claim_id": "MECH-189",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_control",
+    "runs_done": 0,
+    "runs_total": 10,
+    "episodes_done": 0,
+    "episodes_total": 1000,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 602,
+  "seconds_remaining": 9000,
+  "recent_lines": [
+    "V3-EXQ-588: EXQ-ISEF-002 transient benefit z_goal seeding rate",
+    "dry_run=False seeds=[42, 43, 44, 45, 46] n_episodes=1000 steps=200 z_cross_thr=0.4",
+    "Seed 42 Condition ARM_0_control"
   ],
-  "runner_pid": 665,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 670,
   "runner_version": null,
   "gpu": {
     "available": false
