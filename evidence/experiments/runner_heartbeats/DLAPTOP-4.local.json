@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-17T13:37:17Z",
+  "last_tick_utc": "2026-05-17T13:38:17Z",
   "state": "running",
   "current_exq": "V3-EXQ-543f",
   "current_exq_started_utc": "2026-05-17T13:11:05.185387+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 2 / ARM_0_baseline",
     "runs_done": 8,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 108,
-    "overall_pct": 66.7
+    "overall_pct": 67.4
   },
-  "seconds_elapsed": 1572,
-  "seconds_remaining": 776,
+  "seconds_elapsed": 1633,
+  "seconds_remaining": 758,
   "recent_lines": [
-    "seed=1 arm=ARM_3_both  reef_frac=0.750  rho=-0.297  forage_hr=0.5152  transit_hr=1.0000  ratio=0.515  inert_gating=True",
     "verdict: FAIL",
     "Seed 2 Condition ARM_0_baseline",
     "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
+    "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0003  ep_reward=-1.0032"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
