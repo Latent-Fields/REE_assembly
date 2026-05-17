@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-17T13:18:23Z",
+  "last_tick_utc": "2026-05-17T13:19:24Z",
   "state": "running",
   "current_exq": "V3-EXQ-543f",
   "current_exq_started_utc": "2026-05-17T13:11:05.185387+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_3_both",
     "runs_done": 3,
     "runs_total": 12,
-    "episodes_done": 40,
+    "episodes_done": 55,
     "episodes_total": 108,
-    "overall_pct": 28.1
+    "overall_pct": 29.2
   },
-  "seconds_elapsed": 438,
-  "seconds_remaining": 1090,
+  "seconds_elapsed": 500,
+  "seconds_remaining": 1072,
   "recent_lines": [
-    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)",
-    "[train] ARM_3_both ep 10/108  phase=P0  rv=0.0021  ep_reward=-1.0573",
-    "[train] ARM_3_both ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.0882",
-    "[train] ARM_3_both ep 30/108  phase=P0  rv=0.0005  ep_reward=-1.0840",
-    "[train] ARM_3_both ep 40/108  phase=P0  rv=0.0016  ep_reward=-1.0136"
+    "[train] ARM_3_both ep 80/108  phase=P1  rv=0.0014  ep_reward=-1.0522  inert_gating=True",
+    "[probe] ARM_3_both P1 ep 45/60  applicable=True  mean_tv=0.0004  max_tv=0.0022",
+    "[probe] ARM_3_both P1 ep 50/60  applicable=True  mean_tv=0.0003  max_tv=0.0019",
+    "[train] ARM_3_both ep 90/108  phase=P1  rv=0.0017  ep_reward=-1.0409  inert_gating=True",
+    "[probe] ARM_3_both P1 ep 55/60  applicable=True  mean_tv=0.0003  max_tv=0.0022"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
