@@ -1,16 +1,16 @@
 {
   "schema_version": "v1",
-  "runner_pid": 668,
-  "runner_started_at": "2026-05-16T19:50:00.227036+00:00",
-  "last_updated": "2026-05-16T21:32:44.150955+00:00",
+  "runner_pid": 671,
+  "runner_started_at": "2026-05-17T07:13:57.073726+00:00",
+  "last_updated": "2026-05-17T09:25:10.507105+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-575",
+      "queue_id": "V3-EXQ-575a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "ISEF-001 harm gradient baseline -- warm-start gate diagnostic",
+      "title": "ISEF-001 harm-gradient warm-start gate (instrument fix; supersedes V3-EXQ-575)",
       "description": "",
       "estimated_minutes": 266.7,
       "status": "claimed",
@@ -3022,6 +3022,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_578_gap3_transient_benefit_validation_20260516T213243Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 9.6
+    },
+    {
+      "queue_id": "V3-EXQ-582",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "goal_pipeline:GAP-3 SD-012 sustained-drive EMA discriminative alpha sweep",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | OUTCOME: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-582 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-582.json",
+      "started_at": "2026-05-17T07:13:58.581685+00:00",
+      "completed_at": "2026-05-17T08:29:33.792093+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_582_gap3_sustained_drive_ema_sweep/v3_exq_582_gap3_sustained_drive_ema_sweep_20260517T082933Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 4534.5
+    },
+    {
+      "queue_id": "V3-EXQ-583",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SP-CEM main-path default-wiring validation (3-arm equivalence)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-583 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-583.json",
+      "started_at": "2026-05-17T08:31:39.680919+00:00",
+      "completed_at": "2026-05-17T09:25:10.506606+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_583_spcem_mainpath_default_wiring_20260517T092510Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 3210.8
     }
   ]
 }
