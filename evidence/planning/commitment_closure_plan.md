@@ -117,7 +117,7 @@ closure_plan:
       unblocks_claims: [SD-034, MECH-266, MECH-268, MECH-090, SD-021]
       depends_on: ["commitment_closure:GAP-3"]
       last_updated: 2026-05-17
-      resume_condition: "Design pass COMPLETE 2026-05-17: docs/architecture/phased_rule_state_training_curriculum.md (Status: DESIGN -- PENDING IMPLEMENTATION). Root cause = the commit gate is a single trained-variance threshold (running_variance < commitment_threshold, 0.5 init vs 0.40) that short generic training loops never cross -> the EXQ-321/261/325 all-zero committed-mode signature; plus an env-side competence floor. Design = 3-phase experiment-harness training protocol (P0 world-model+nav warmup to cross the gate; P1 staged-difficulty consolidation + mid-curriculum abort probe; P2 frozen eval) + emergent-vs-forced-control contrast + GAP-3 primitive 1 as competence ramp; NOT a substrate scheduler, NOT an oracle rule-cue curriculum (retired Q1). Existential risk R1: the gate may be mis-calibrated vs achievable world-model error (a substrate finding, not curriculum tuning) -- front-loaded for cheap early falsification on the easiest-env P0 + the mid-curriculum probe. 5 open design questions O-1..O-5 (architecture home / emergent+forced / R1 escalation trigger / validation route / pilot arm) awaiting user review BEFORE implementation. Next: user resolves O-1..O-5, then /implement-substrate (or harness build) for the curriculum + pilot on EXP-0157 (V3-EXQ-461). Blocks all Phase 4/5 behavioural arms (V3-EXQ-460b/461/463b/464b/466b/467b/468b)."
+      resume_condition: "Design pass COMPLETE 2026-05-17: docs/architecture/phased_rule_state_training_curriculum.md (Status: DESIGN -- PENDING IMPLEMENTATION). Root cause = the commit gate is a single trained-variance threshold (running_variance < commitment_threshold, 0.5 init vs 0.40) that short generic training loops never cross -> the EXQ-321/261/325 all-zero committed-mode signature; plus an env-side competence floor. Design = 3-phase experiment-harness training protocol (P0 world-model+nav warmup to cross the gate; P1 staged-difficulty consolidation + mid-curriculum abort probe; P2 frozen eval) + emergent-vs-forced-control contrast + GAP-3 primitive 1 as competence ramp; NOT a substrate scheduler, NOT an oracle rule-cue curriculum (retired Q1). Existential risk R1: the gate may be mis-calibrated vs achievable world-model error (a substrate finding, not curriculum tuning) -- front-loaded for cheap early falsification on the easiest-env P0 + the mid-curriculum probe. Design questions O-1..O-5 RESOLVED 2026-05-17 (user): O-1 experiment-harness helper (NOT a substrate scheduler); O-2 emergent + forced-rv control arm per behavioural arm (mandatory contrast); O-3 at most ONE commitment_threshold step 0.40->0.45 on easiest env then ESCALATE as a substrate mis-calibration finding (no param sweep); O-4 contract/integration validation per GAP-3 spec-section-5 precedent, queued EXQ deferred until goal_pipeline:GAP-3 frees experiments/+queue; O-5 pilot = EXP-0157 / V3-EXQ-461 (delayed-reward persistence). Section 8 of the design doc is now the frozen implementation contract. NEXT STEP (implementation: build experiments/_lib/committed_mode_curriculum.py harness helper + EXP-0157 pilot) is CONCURRENCY-BLOCKED -- requires experiments/ + experiment_queue.json, currently held by the active goal_pipeline:GAP-3 session; the implementation pass must wait for that claim to clear or be explicitly coordinated. GAP-11 stays design_complete until then. Blocks all Phase 4/5 behavioural arms (V3-EXQ-460b/461/463b/464b/466b/467b/468b)."
 ---
 # Commitment / Closure / Mode-Governance Plan
 
@@ -578,6 +578,30 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-17 - GAP-11 design questions O-1..O-5 RESOLVED (user); implementation concurrency-blocked
+
+User resolved all five open design questions; design doc Section 8 is
+now the frozen implementation contract:
+
+- O-1 = experiment-harness helper (`experiments/_lib/
+  committed_mode_curriculum.py`), NOT a ree_core substrate scheduler.
+- O-2 = emergent + forced-`_running_variance` control arm per
+  behavioural arm (the contrast is mandatory; ~2x compute accepted).
+- O-3 = at most ONE `commitment_threshold` step 0.40->0.45 on the
+  easiest env, then ESCALATE as a substrate mis-calibration finding
+  (R1). No variance-gate hyperparameter sweep (the R3 hazard).
+- O-4 = contract/integration validation per the GAP-3 spec-section-5
+  precedent; queued governance EXQ deferred regardless until
+  goal_pipeline:GAP-3 releases experiments/ + queue.
+- O-5 = pilot arm EXP-0157 / V3-EXQ-461 (delayed-reward persistence).
+
+GAP-11 stays `design_complete`. The next step -- build the harness
+helper + run the EXP-0157 pilot -- is deliberately NOT started: it is
+concurrency-blocked on the active goal_pipeline:GAP-3 session (holds
+`experiments/` + `experiment_queue.json`). Implementation resumes when
+that claim clears or via explicit coordination. No code, no substrate
+change, claims.yaml untouched this pass.
 
 ### 2026-05-17 - GAP-3 deliverable 4 DESIGN PASS COMPLETE: phased rule_state training curriculum (GAP-11 registered)
 

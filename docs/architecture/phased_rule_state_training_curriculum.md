@@ -1,7 +1,10 @@
 # Phased rule_state Training Curriculum -- Design + Risk Analysis
 
 **Owner:** `commitment_closure` deliverable 4 (the GAP-3 carve-out)
-**Status:** DESIGN -- PENDING IMPLEMENTATION (this is a design pass; no code)
+**Status:** DESIGN COMPLETE -- PENDING IMPLEMENTATION. Design questions
+  O-1..O-5 RESOLVED 2026-05-17 (Section 8 is the frozen implementation
+  contract). Implementation concurrency-blocked on the active
+  goal_pipeline:GAP-3 session (holds `experiments/` + queue).
 **Registered:** 2026-05-17
 **Depends on:** GAP-3 env primitives 1-3 (IMPLEMENTED 2026-05-17,
   causalgridworldv2_env_extensions_spec.md); MECH-090 BetaGate bistable
@@ -342,31 +345,44 @@ primitives and an end-to-end OCD battery.
 
 ---
 
-## 8. Open design questions (for review)
+## 8. Design questions -- RESOLVED 2026-05-17 (user)
 
-- **O-1 (architecture home).** Recommended: a shared experiment-harness
-  helper (e.g. `experiments/_lib/committed_mode_curriculum.py`) that
-  behavioural EXQs import, NOT a `ree_core` substrate scheduler. Confirm,
-  or prefer a substrate-level curriculum module (higher risk, but
-  reusable outside experiments). *Recommendation: harness helper.*
-- **O-2 (emergent-only vs emergent+forced control).** Recommended: every
-  behavioural arm runs both the curriculum (emergent) arm and a
-  forced-commitment control arm (4.3). Confirm, or accept emergent-only
-  (loses the validity contrast but halves compute).
-- **O-3 (R1 escalation trigger).** What relaxation of
-  `commitment_threshold` (if any) is permissible before R1 is declared
-  a substrate mis-calibration finding rather than a curriculum knob?
-  Proposed: at most one documented step (0.40 -> 0.45) on the easiest
-  env; beyond that, escalate.
-- **O-4 (validation route).** Per the GAP-3 spec-section-5 precedent,
-  validate via contract/integration harness rather than a governance
-  EXQ? Or queue a dedicated curriculum substrate-readiness diagnostic
-  via /queue-experiment (note: experiments/ + queue are currently held
-  by the concurrent goal_pipeline:GAP-3 session -- a queued route must
-  wait for that claim to clear).
-- **O-5 (first behavioural arm).** Recommended pilot: EXP-0157 /
-  V3-EXQ-461 (delayed-reward persistence -- the simplest committed-hold
-  test). Confirm, or pick the arm whose science is most urgent.
+All five resolved; this section is now the implementation contract.
+
+- **O-1 (architecture home) -- RESOLVED: experiment-harness helper.**
+  The curriculum is a shared helper (e.g.
+  `experiments/_lib/committed_mode_curriculum.py`) that behavioural EXQs
+  import -- NOT a `ree_core` substrate scheduler. No substrate change;
+  generalises the EXQ-321b `run_training` precedent.
+- **O-2 (emergent vs forced) -- RESOLVED: emergent + forced control.**
+  Every behavioural arm runs BOTH the curriculum (emergent) arm and a
+  forced-`_running_variance` control arm (4.3). The contrast is
+  mandatory -- it is what converts the EXQ-321b scripted-only MECH-090
+  evidence into a controlled comparison. Accept the ~2x per-arm compute.
+- **O-3 (R1 escalation trigger) -- RESOLVED: one step, then escalate.**
+  At most ONE documented `commitment_threshold` step (0.40 -> 0.45) on
+  the easiest env. If commitment still does not emerge, STOP and
+  escalate as "the commit gate is mis-calibrated vs achievable
+  world-model error" -- a substrate finding, not a curriculum knob. NO
+  hyperparameter sweep of the variance-gate params (the R3 hazard).
+  Section 4.4 is bound by this: the only in-scope gate tuning is the
+  single 0.40->0.45 step plus `beta_gate_bistable=True`.
+- **O-4 (validation route) -- RESOLVED: contract/integration, queue
+  deferred.** Validate via the contract/integration harness per the
+  GAP-3 spec-section-5 precedent. A queued governance EXQ is deferred
+  regardless until the concurrent goal_pipeline:GAP-3 session releases
+  its hold on `experiments/` + `experiment_queue.json`.
+- **O-5 (pilot arm) -- RESOLVED: EXP-0157 / V3-EXQ-461.** The pilot is
+  delayed-reward persistence (the simplest committed-hold test). Prove
+  the curriculum elicits + holds commitment there before scaling to the
+  harder SD-034 / MECH-268 / MECH-266 arms.
+
+**Implementation gating:** the next step (harness-helper build + the
+EXP-0157 pilot) is **concurrency-blocked** -- it needs `experiments/`
+(and the queue for the pilot run), currently held by the active
+goal_pipeline:GAP-3 session. The implementation pass waits for that
+claim to clear (or explicit coordination). Until then GAP-11 stays
+`design_complete` with this section as the frozen contract.
 
 ---
 
