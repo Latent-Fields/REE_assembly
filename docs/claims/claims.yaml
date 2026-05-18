@@ -26731,6 +26731,42 @@
     - ARC-062     # sibling top-down route whose blockage (substrate_ceiling) motivated bringing the strong-reading cluster forward
     - ARC-064     # peer bottom-up route; ARC-077 is the third (socially-sourced) member of the rule-source triad
     - MECH-269    # V_s monostrategy: representational precondition (a scaffolded context must be discriminably represented before it can tag a CandidateRule)
+  lit_conf: 0.74
+  literature_anchors:
+    - "Csibra & Gergely (2009) Trends Cogn Sci 13:148 -- natural pedagogy /
+       ostensive cueing: human communication is adapted to transmit generic,
+       kind-relevant knowledge an observer could not extract alone; the
+       direct grounding for an externally-populated hypothesis space
+       (answers MECH-309). conf 0.80. [GAP-L pull;
+       targeted_review_socially_scaffolded_rule_population]"
+    - "Wood, Bruner & Ross (1976) J Child Psychol Psychiatry 17:89 --
+       scaffolding / ZPD: an external agent controls task structure beyond
+       the learner's unaided reach; the third rule-source operates in a
+       band bottom-up self-extraction cannot reach. conf 0.78. [GAP-L]"
+    - "Tomasello, Carpenter, Call, Behne & Moll (2005) Behav Brain Sci
+       28:675 -- shared intentionality / joint attention / social
+       referencing: the enabling PRECONDITION for a socially-scaffolded
+       rule-source; conventions and norms are taken up via this channel,
+       not invented. conf 0.74. [GAP-L]"
+    - "COUNTERWEIGHT -- Spelke & Kinzler (2007) Dev Sci 10:89 -- core
+       knowledge: substantial structured content (objects, agents/goals,
+       number, space) is endogenous-maturational, NOT socially sourced.
+       Bounds ARC-077 scope (social population acts on an
+       endogenously-structured field; not the whole story) without
+       refuting the peer-pathway slot. mixed, conf 0.66. [GAP-L]"
+    - "COUNTERWEIGHT -- Heyes (2016) Perspect Psychol Sci 11:280 -- the
+       receptive machinery may be constructed from non-specific
+       social-bonding/social-learning adaptations, not an innate dedicated
+       module; bounds a STRONG (innate-primitive) framing of the channel
+       and reinforces the GAP-L caregiver-substrate gate. mixed, conf 0.70.
+       [GAP-L]"
+    # Reasoned aggregate 0.74 (conservative vs indexer parallel
+    # literature_confidence=0.868 in claim_evidence.v1.json): strong,
+    # textbook-grade developmental biology for the FUNCTIONAL channel,
+    # discounted for (a) two principled mixed counterweights and (b)
+    # structural-slot-only status with the caregiver-substrate gate still
+    # open. lit_conf is a PARALLEL signal -- NOT blended into exp
+    # confidence, does NOT promote past candidate.
   functional_restatement: >
     MECH-309 establishes that a parametric-policy / Bayesian agent does
     not invent the hypothesis space it updates over. ARC-062 (top-down)
@@ -26795,9 +26831,19 @@
     (natural pedagogy / ostensive cueing); Tomasello (shared
     intentionality, early rule acquisition); joint attention + social
     referencing; context-dependent / cued recall (Godden & Baddeley
-    1975; Tulving & Thomson 1973 encoding-specificity). Until the
-    GAP-L lit-pull is discharged this claim carries lit_conf=0 and
-    must NOT be promoted past candidate.
+    1975; Tulving & Thomson 1973 encoding-specificity).
+
+    GAP-L lit-pull DISCHARGED 2026-05-18 (session
+    gap-l-litpull-socially-scaffolded; 8 entries in
+    evidence/literature/targeted_review_socially_scaffolded_rule_population,
+    tagged ARC-077/MECH-337/MECH-338). lit_conf set to 0.74 (reasoned
+    aggregate; indexer parallel literature_confidence=0.868). The lit
+    gate is now satisfied; the claim REMAINS candidate -- discharging
+    the lit-pull does NOT promote it (lit and exp evidence are not
+    co-equal; exp_conf=0) and the SECOND HARD GATE (the
+    caregiver/teacher-agent substrate, which does not exist in V3) is
+    independently still OPEN. Must NOT be promoted past candidate on the
+    strength of lit_conf alone.
   implementation_prerequisites: >
     HARD ORDERING GATE (none currently satisfied). ARC-077 / MECH-337
     / MECH-338 are NOT implementable or schedulable until ALL of:
@@ -26837,6 +26883,35 @@
     - ARC-077     # parent pathway
     - ARC-063     # the CandidateRule field this mechanism writes into
     - MECH-309    # the diagnostic motivating an external rule source
+  lit_conf: 0.78
+  literature_anchors:
+    - "Csibra & Gergely (2009) Trends Cogn Sci 13:148 -- ostensive marking
+       IS the population mechanism: a regularity is written into the field
+       interpreted as generic/kind-relevant (a rule, not an episode) and
+       context-bound. Most direct grounding for the 'in' face. conf 0.80.
+       [GAP-L pull; targeted_review_socially_scaffolded_rule_population]"
+    - "Wood, Bruner & Ross (1976) J Child Psychol Psychiatry 17:89 -- the
+       six tutoring functions ('marking critical features', 'reduction in
+       degrees of freedom') decompose the write operation; the ZPD bounds
+       which candidates are populatable; contingency/fading is a design
+       constraint on the channel. conf 0.78. [GAP-L]"
+    - "Tomasello et al. (2005) Behav Brain Sci 28:675 -- joint attention /
+       social referencing are the channel over which ostensive marking
+       operates and why the populated candidate is inherently
+       context-bound (bound to the shared-attention episode). conf 0.74.
+       [GAP-L]"
+    - "COUNTERWEIGHT -- Heyes (2016) Perspect Psychol Sci 11:280 -- the
+       ostensive-receptivity machinery may be constructed, not innate;
+       counter-evidence to a STRONG (innate-primitive) framing of MECH-337,
+       NOT to the population effect (which Heyes accepts). Implies MECH-337
+       must be modelled as a constructed/learned channel. mixed, conf 0.70.
+       [GAP-L]"
+    # Reasoned aggregate 0.78 (indexer parallel
+    # literature_confidence=0.878). Highest of the cluster: the 'in' face
+    # has near-verbatim mechanistic grounding (Csibra & Gergely + the WBR
+    # six-function decomposition). Discounted modestly for the Heyes
+    # innateness bound and structural-slot-only status. PARALLEL signal --
+    # not blended into exp confidence, does NOT promote past candidate.
   functional_restatement: >
     The mechanism by which a candidate regularity enters the ARC-063
     field from outside the agent. A caregiver/teacher agent (i) selects
@@ -26858,8 +26933,15 @@
     evidence, NO lit-pull yet (lit_conf=0). Biology to be pulled under
     GAP-L: Csibra & Gergely 2009 natural pedagogy; Wood/Bruner/Ross
     1976 scaffolding; Vygotsky ZPD; Tomasello shared intentionality;
-    infant-directed-interaction / ostensive-cue literature. Must NOT
-    be promoted past candidate until GAP-L is discharged.
+    infant-directed-interaction / ostensive-cue literature.
+
+    GAP-L lit-pull DISCHARGED 2026-05-18 (lit_conf=0.78; indexer
+    parallel literature_confidence=0.878; entries in
+    targeted_review_socially_scaffolded_rule_population). lit gate
+    satisfied; REMAINS candidate -- the lit-pull does not promote
+    (exp_conf=0) and the inherited ARC-077 caregiver-substrate gate is
+    independently still open. Must NOT be promoted past candidate on
+    lit_conf alone.
   implementation_prerequisites: >
     Inherits the ARC-077 HARD ORDERING GATE (GAP-L lit-pull + ARC-063
     field prototyped + caregiver/teacher-agent substrate, none of which
@@ -26886,6 +26968,32 @@
     - ARC-063     # the CandidateRule field whose rollout-eligibility this gates
     - MECH-337    # consumes the context tags written at population time
     - MECH-269    # context must be discriminably represented before a cue can address it
+  lit_conf: 0.75
+  literature_anchors:
+    - "Tulving & Thomson (1973) Psychol Rev 80:352 -- encoding
+       specificity: a retrieval cue is effective iff it overlaps the
+       encoded operations; the formal core of MECH-338's cue<->context-tag
+       match. Robustly replicated, theory-defining. Also implies
+       context-FREE population breaks cued retrieval (constraint on
+       MECH-337). conf 0.82. [GAP-L pull;
+       targeted_review_socially_scaffolded_rule_population]"
+    - "Nakazawa et al. (2002) Science 297:211 -- CA3-NR1 knockout
+       selectively impairs recall from an INCOMPLETE cue set: the causal
+       neural substrate for pattern completion = cue-driven retrieval of a
+       context-tagged candidate via attractor dynamics; motivates the
+       MECH-269 dependence. conf 0.78. [GAP-L]"
+    - "ROBUSTNESS CONTRA -- Godden & Baddeley (1975) Br J Psychol 66:325 --
+       canonical environmental context-dependent recall (land/underwater),
+       BUT a 2021 pre-registered powered replication (R Soc Open Sci
+       8:200724) FAILED to reproduce it. Concrete instantiation only;
+       MECH-338 rests on Tulving & Thomson + Nakazawa, not on this fragile
+       effect. supports-but-fragile, conf 0.58. [GAP-L]"
+    # Reasoned aggregate 0.75 (indexer parallel
+    # literature_confidence=0.813). Carried by Tulving & Thomson (robust
+    # principle) + Nakazawa (substrate); deliberately tempered because the
+    # specific environmental-context phenomenon (Godden & Baddeley) did
+    # not survive a powered replication. PARALLEL signal -- not blended
+    # into exp confidence, does NOT promote past candidate.
   functional_restatement: >
     The retrieval / access mechanism. CandidateRules carry context
     tags (written at population time by MECH-337, or by any other
@@ -26907,8 +27015,18 @@
     under GAP-L: Tulving & Thomson 1973 encoding-specificity; Godden
     & Baddeley 1975 context-dependent memory; reinstatement /
     cue-dependent retrieval literature; hippocampal pattern-completion
-    as the biological substrate. Must NOT be promoted past candidate
-    until GAP-L is discharged.
+    as the biological substrate.
+
+    GAP-L lit-pull DISCHARGED 2026-05-18 (lit_conf=0.75; indexer
+    parallel literature_confidence=0.813; entries in
+    targeted_review_socially_scaffolded_rule_population). Note: the
+    specific environmental context-dependent-recall effect (Godden &
+    Baddeley) failed a 2021 powered pre-registered replication, so
+    MECH-338's grounding rests on Tulving & Thomson (encoding
+    specificity) + Nakazawa 2002 (CA3 pattern completion), not on the
+    environmental phenomenon. lit gate satisfied; REMAINS candidate
+    (exp_conf=0; inherited ARC-077 caregiver-substrate gate still
+    open). Must NOT be promoted past candidate on lit_conf alone.
   implementation_prerequisites: >
     Inherits the ARC-077 HARD ORDERING GATE. implementation_phase=v3 =
     active design target under the V3-Pending Gate, NOT

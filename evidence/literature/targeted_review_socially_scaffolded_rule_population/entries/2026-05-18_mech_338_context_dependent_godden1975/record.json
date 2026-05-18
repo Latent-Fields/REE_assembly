@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_socially_scaffolded_rule_population",
+  "entry_id": "2026-05-18_mech_338_context_dependent_godden1975",
+  "timestamp_utc": "2026-05-18T21:02:14Z",
+  "claim_ids_tested": ["MECH-338"],
+  "source": {
+    "title": "Context-dependent memory in two natural environments: on land and underwater",
+    "authors": ["Duncan R. Godden", "Alan D. Baddeley"],
+    "year": 1975,
+    "venue": "British Journal of Psychology",
+    "doi": "10.1111/j.2044-8295.1975.tb01468.x"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "The canonical empirical demonstration that ENVIRONMENTAL context at encoding gates later recall (the concrete instance of MECH-338's cue<->context-tag matching), but a high-powered 2021 pre-registered replication (Royal Society Open Science) failed to reproduce the effect. The principle MECH-338 rests on is independently secured by Tulving & Thomson; this entry is included for the concrete environmental instantiation but its confidence is deliberately low to register the robustness problem honestly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Original result: free recall was substantially better when the test environment matched the learning environment (land/underwater), directly instantiating context-as-retrieval-cue -- a retrieval gate insensitive to reinstated context would not show this.",
+    "ROBUSTNESS CONTRA: a 2021 pre-registered, higher-powered replication (Royal Society Open Science 8:200724) did NOT find a same-context advantage. The specific environmental-context-dependent-recall effect is fragile; MECH-338 must therefore rest on the general encoding-specificity principle (Tulving & Thomson) and on the neural substrate (Nakazawa CA3 pattern completion), NOT on the strength of the environmental-context phenomenon alone."
+  ],
+  "tags": ["mech-338", "context_dependent_memory", "cued_recall", "environmental_reinstatement", "retrieval", "replication_caveat", "gap-l"],
+  "mapping": {
+    "source_claim_statement": "Divers learned word lists on land or underwater and recalled them 4 minutes later in the same or the other environment (all four combinations). Recall was markedly better when the recall environment matched the learning environment -- environmental context at encoding functions as a retrieval cue.",
+    "ree_translation": "The concrete environmental instantiation of MECH-338's 'select' face: a candidate populated (encoded) in context C is more accessible when context C is reinstated at retrieval -- i.e. an environmental cue matched against a context tag gates availability. It demonstrates that the cue need not be the rule's content; a co-encoded context feature suffices, which is exactly what 'context-bound' means in MECH-337/338.",
+    "mapping_caveat": "Two layers of caveat. (1) Domain: adult human verbal free recall, not candidate-rule retrieval -- analogical transfer. (2) ROBUSTNESS: the specific environmental effect did not survive a powered pre-registered replication (2021). This entry is retained for the concrete instantiation and to log the contra-evidence transparently, NOT as primary support; MECH-338's grounding leans on Tulving & Thomson (principle) and Nakazawa 2002 (substrate). Confidence is set low (0.58) to encode this.",
+    "source_context": "Field experiment with trained divers; auditory word-list learning and free recall on land vs. ~6m underwater."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Source quality marked DOWN (0.55) specifically because of the failed 2021 high-powered pre-registered replication -- the canonical status is historical, the effect is not robust. Mapping fidelity to MECH-338's environmental-cue case is good. Transfer risk moderate (verbal recall -> rule retrieval). Net confidence 0.58: included for the concrete instantiation, weighted down to register robustness honestly."
+  }
+}

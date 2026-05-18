@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_socially_scaffolded_rule_population",
+  "entry_id": "2026-05-18_mech_338_encoding_specificity_tulving1973",
+  "timestamp_utc": "2026-05-18T21:02:14Z",
+  "claim_ids_tested": ["MECH-338"],
+  "source": {
+    "title": "Encoding specificity and retrieval processes in episodic memory",
+    "authors": ["Endel Tulving", "Donald M. Thomson"],
+    "year": 1973,
+    "venue": "Psychological Review",
+    "doi": "10.1037/h0020071"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational, robustly-replicated principle that is the formal core of MECH-338: a retrieval cue is effective to the extent it overlaps the operations performed at encoding. Maps almost verbatim onto 'a cue is matched against context tags written at population time; matching candidates become rollout-eligible'. High confidence; held at 0.82 (not higher) because the principle is general-memory, the REE object is a context-tagged candidate RULE rather than an episodic item, and the rollout-eligibility gate is a REE-side construct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A strong pre-experimental associate that was NOT the encoding context fails to cue an item that a weak but encoding-matched cue retrieves -- cue strength per se is not what governs access; encoding-context match is. A retrieval gate that scored candidate availability by raw cue salience rather than by match to the tags written at population time would mispredict this (the recognition-failure-of-recallable-words result).",
+    "If the operations performed at encoding determine what is stored and therefore which cues are effective, a population mechanism that writes a candidate WITHOUT binding it to its scaffolding context provides nothing for a later cue to match -- context-free population breaks cued retrieval."
+  ],
+  "tags": ["mech-338", "encoding_specificity", "cued_recall", "context_dependent_memory", "retrieval", "rule_apprehension", "gap-l"],
+  "mapping": {
+    "source_claim_statement": "Specific encoding operations performed on what is perceived determine what is stored, and what is stored determines which retrieval cues are effective in providing access to it. A cue (even a normally strong associate) is effective only to the extent it matches the trace as encoded; cues present and encoded with the target are effective even when weak.",
+    "ree_translation": "MECH-338 is the 'select' face of the ARC-063 field: a cue is matched against the context tags a CandidateRule was given at population time (MECH-337), and matching candidates are promoted toward rollout-eligibility. Encoding specificity is the formal principle behind exactly this: a rule scaffolded in context C is retrievable later iff the present cue overlaps the encoded context C -- which is why context-bound population (MECH-337) is the precondition that makes cue-driven retrieval pay off, and why the discriminative cut can be a function of episode/agent history (sharpening ARC-063 falsifiable-prediction a).",
+    "mapping_caveat": "Tulving & Thomson concern episodic memory for word lists in adult humans; the REE object is a context-tagged candidate RULE feeding a rollout-eligibility gate, not an episodic recollection. The principle transfers cleanly at the level of mechanism (cue<->encoded-context match governs access) but MECH-338's specific gate (Tolerance-Principle availability still decides final eligibility; MECH-338 only supplies the cue-addressed candidate set) is a REE construct the paper does not speak to.",
+    "source_context": "Adult human verbal episodic-memory experiments (cued recall vs. recognition; the recognition-failure-of-recallable-words paradigm)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Source quality very high: foundational, repeatedly replicated, theory-defining. Mapping fidelity high -- the principle is essentially MECH-338's mechanism stated in memory-science terms. Transfer risk low-moderate: episodic-item memory -> context-tagged candidate-rule retrieval is an analogical but well-motivated mapping; the rollout-eligibility gate itself is REE-specific."
+  }
+}

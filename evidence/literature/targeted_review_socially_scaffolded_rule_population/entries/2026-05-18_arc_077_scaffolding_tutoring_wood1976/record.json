@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_socially_scaffolded_rule_population",
+  "entry_id": "2026-05-18_arc_077_scaffolding_tutoring_wood1976",
+  "timestamp_utc": "2026-05-18T21:02:14Z",
+  "claim_ids_tested": ["ARC-077", "MECH-337"],
+  "source": {
+    "title": "The role of tutoring in problem solving",
+    "authors": ["David Wood", "Jerome S. Bruner", "Gail Ross"],
+    "year": 1976,
+    "venue": "Journal of Child Psychology and Psychiatry",
+    "doi": "10.1111/j.1469-7610.1976.tb00381.x"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Foundational, field-defining observational study (it introduced the term 'scaffolding') and the canonical operationalization of Vygotsky's zone of proximal development. Direct support for ARC-077's architectural commitment that an external agent controls task structure beyond the learner's unassisted reach, and for MECH-337's six-function population mechanism. Below 0.8 because it is a small-sample observational tutoring study, the scaffolding<->ZPD link was tightened by later authors rather than this paper, and the REE mapping (tutoring functions -> CandidateRule writes) is an architectural extrapolation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A scaffold lets a novice solve a task beyond unassisted effort by the tutor controlling the elements initially beyond the learner's capability -- a substrate whose candidate rules are bounded by what the agent can already do unaided (no external task-structuring) cannot acquire regularities in this above-unaided band.",
+    "Effective tutoring is contingent: support is titrated to the learner's current state and withdrawn as competence grows. A non-contingent, fixed external signal would not reproduce the tutoring gain, so a scaffolding channel modelled as a static injection rather than a contingent, fading one is mis-specified."
+  ],
+  "tags": ["arc-077", "mech-337", "scaffolding", "zone_of_proximal_development", "vygotsky", "tutoring", "social_scaffolding", "gap-l"],
+  "mapping": {
+    "source_claim_statement": "An expert tutor enables a child to solve a problem beyond the child's unassisted capability by 'scaffolding' -- controlling task elements initially beyond the learner so the learner concentrates on the in-range parts. Six tutoring functions are identified: recruitment, reduction in degrees of freedom, direction maintenance, marking critical features, frustration control, and demonstration. This operationalizes Vygotsky's zone of proximal development (the gap between unaided and assisted performance).",
+    "ree_translation": "ARC-077: grounds the architectural commitment that rule structure is populated from outside the agent, within a zone the agent cannot reach alone -- the third rule-source, peer to ARC-062 top-down and ARC-064 bottom-up. MECH-337: the six tutoring functions are a concrete decomposition of the 'in' face -- 'marking critical features' and 'reduction in degrees of freedom' are precisely the operations that write a context-tagged candidate regularity into the field; the ZPD bounds WHICH candidates are populatable (not too easy = already extractable bottom-up; not unlearnable).",
+    "mapping_caveat": "Wood/Bruner/Ross study dyadic adult-child tutoring on a physical construction task; REE has no caregiver/teacher-agent substrate in V3 and the candidate-rule field (ARC-063) is itself only a prototype slot. The mapping from 'tutoring functions' to 'CandidateRule writes within a ZPD-bounded band' is an architectural interpretation; the paper makes no representational claim. Note also that Vygotsky never used 'scaffolding' and did not himself tie it to the ZPD -- that synthesis is later (Bruner 1985; Cazden 1979); the entry treats ZPD + scaffolding as the standard composite, flagged here as a historical caveat.",
+    "source_context": "Observational study of 3-, 4-, and 5-year-old children individually tutored by an adult on a 3D wooden block construction (pyramid) task."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.32,
+    "notes": "Source quality good but it is a small-sample foundational observational study, not a powered modern experiment. Mapping fidelity high: the six functions decompose MECH-337's 'in' face cleanly and the ZPD bounds the populatable band. Transfer risk moderate -- adult-child tutoring -> abstract caregiver-agent slot, plus the historical scaffolding<->ZPD attribution caveat."
+  }
+}

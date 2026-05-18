@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_socially_scaffolded_rule_population",
+  "entry_id": "2026-05-18_mech_338_ca3_pattern_completion_nakazawa2002",
+  "timestamp_utc": "2026-05-18T21:02:14Z",
+  "claim_ids_tested": ["MECH-338"],
+  "source": {
+    "title": "Requirement for hippocampal CA3 NMDA receptors in associative memory recall",
+    "authors": ["Kazu Nakazawa", "Michael C. Quirk", "Raymond A. Chitwood", "Masahiko Watanabe", "Mark F. Yeckel", "Linus D. Sun", "Akira Kato", "Candice A. Carr", "Daniel Johnston", "Matthew A. Wilson", "Susumu Tonegawa"],
+    "year": 2002,
+    "venue": "Science",
+    "doi": "10.1126/science.1071795"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality, mechanistically decisive mouse genetics in Science: a region-specific CA3 NMDA-receptor knockout selectively impairs recall from an INCOMPLETE cue set while sparing full-cue recall -- the canonical causal demonstration of hippocampal pattern completion. This is the biological substrate MECH-338 names for cue-driven, context-tagged retrieval. Held at 0.78: rodent model, and 'pattern completion of a stored representation' -> 'cue-addressed CandidateRule retrieval' is a substrate-plausibility mapping, not a behavioural spec.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CA3-NR1 knockout mice show normal spatial memory with a full cue set but a selective deficit when retrieval is induced by an INCOMPLETE/partial cue set; CA1 place cells stay normal in full-cue environments but degrade under partial-cue removal -- direct causal evidence that a dedicated recurrent substrate completes a stored pattern from a partial cue. A retrieval architecture with no partial-cue completion stage would not reproduce the dissociation.",
+    "The deficit is specifically in recall from degraded input, not in encoding or in full-cue performance -- a model that conflated 'cue match' with simple feature lookup (no attractor/completion dynamics) mis-specifies the substrate MECH-338 depends on."
+  ],
+  "tags": ["mech-338", "pattern_completion", "hippocampus", "ca3", "cued_recall", "partial_cue_retrieval", "neural_substrate", "gap-l"],
+  "mapping": {
+    "source_claim_statement": "Genetic ablation of NMDA receptors restricted to CA3 pyramidal cells in adult mice leaves full-cue spatial memory and CA1 place fields intact but selectively impairs (i) recall when only an incomplete set of spatial cues is available and (ii) CA1 place-field stability under partial-cue conditions. CA3 recurrent collateral plasticity is therefore causally required for pattern completion -- retrieval of a complete stored representation from a partial input.",
+    "ree_translation": "Provides the biological substrate MECH-338 posits for the 'select' face: cue-driven retrieval of a context-tagged CandidateRule is, mechanistically, pattern completion -- a partial cue (a reinstated context feature, a caregiver signal) reactivates the complete stored candidate via attractor-like recurrent dynamics. It anchors MECH-338's dependence on MECH-269 (a context must be discriminably represented before a partial cue can complete to it) and explains how a cue that is NOT the rule's content can still address the rule.",
+    "mapping_caveat": "Mouse hippocampal spatial memory, not rule retrieval; 'completing a stored memory pattern from a partial cue' maps onto 'a cue addresses a context-tagged CandidateRule' by structural analogy at the substrate level, not as a behavioural or representational identity. REE does not implement a CA3 module; this grounds the PLAUSIBILITY and shape (attractor completion, not lookup) of the MECH-338 mechanism, not an implementation.",
+    "source_context": "Region-specific conditional-knockout mice (CA3-restricted NR1 deletion); Morris water maze with full vs. partial cue sets plus in vivo CA1 place-cell recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.34,
+    "notes": "Source quality very high: decisive, well-replicated causal genetics in a top venue. Mapping fidelity good: the partial-cue completion dissociation is structurally the MECH-338 mechanism. Transfer risk moderate: rodent spatial memory -> abstract candidate-rule retrieval is a substrate-plausibility analogy, and REE implements no CA3 module."
+  }
+}

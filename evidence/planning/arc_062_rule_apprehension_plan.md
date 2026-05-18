@@ -116,13 +116,13 @@ closure_plan:
     - id: "arc_062_rule_apprehension:GAP-L"
       title: "Biology lit-pull prerequisite for the socially-scaffolded rule-population sub-cluster (ARC-077 / MECH-337 / MECH-338) -- HARD GATE before any implementation"
       phase: "3-4"
-      status: blocked
+      status: done
       severity: load-bearing
-      owner_exq: null
+      owner_exq: "lit-pull (GAP-L litpull session 2026-05-18T205635Z)"
       unblocks_claims: [ARC-077, MECH-337, MECH-338, ARC-063]
       depends_on: []
       last_updated: 2026-05-18
-      resume_condition: "BLOCKED 2026-05-18 (registration session: ARC-063 bring-forward + ARC-077/MECH-337/MECH-338 registered as structural slots). Per the standing biology-before-formal-definitions rule, NO implementation (V3 or V4) of ARC-063's socially-scaffolded population pathway may begin until a caregiver-scaffolding / cued-recall / context-dependent rule-acquisition lit-pull is discharged into evidence/literature/, covering at minimum: Csibra & Gergely 2009 natural pedagogy / ostensive cueing; Vygotsky ZPD + Wood/Bruner/Ross 1976 scaffolding; Tomasello shared intentionality + early rule acquisition; joint attention + social referencing; Godden & Baddeley 1975 context-dependent memory; Tulving & Thomson 1973 encoding-specificity; hippocampal pattern-completion as cued-retrieval substrate. SECOND HARD GATE (independent of the lit-pull): the pathway requires a caregiver/teacher-agent substrate which DOES NOT EXIST in V3 (single-agent); scaffolded exposure needs a second agent or an environment that delivers ostensive cues -- a required new substrate, not an assumed one. ARC-077/MECH-337/MECH-338 carry lit_conf=0 and MUST NOT be promoted past candidate until GAP-L is discharged. implementation_phase=v3 on these claims = active V3 design target under the V3-Pending Gate, NOT V3-implementable now. RESUME: GAP-L moves to in-progress when the lit-pull is commissioned (/lit-pull), and to done when the literature entries are written + indexed and the ARC-077 cluster lit_conf is set from them. Implementation scheduling of ARC-077 additionally requires the caregiver-agent substrate gate to be separately resolved. NOTE: this gate is independent of the ARC-062 weak-route verdict (GAP-B); ARC-063 was brought forward on the independent-need rationale, NOT because the weak route is declared dead -- GAP-B remains blocked and owned by V3-EXQ-543i/543j."
+      resume_condition: "DONE 2026-05-18 (session gap-l-litpull-socially-scaffolded). The biology-before-formal-definitions lit-pull is DISCHARGED: 8 entries written + indexed in evidence/literature/targeted_review_socially_scaffolded_rule_population, tagged ARC-077/MECH-337/MECH-338, covering the full minimum-coverage set -- Csibra & Gergely 2009 natural pedagogy/ostensive cueing; Wood/Bruner/Ross 1976 scaffolding + Vygotsky ZPD; Tomasello et al. 2005 shared intentionality/joint attention/social referencing; Tulving & Thomson 1973 encoding-specificity; Godden & Baddeley 1975 context-dependent memory (with the 2021 failed-replication caveat logged); Nakazawa et al. 2002 CA3 pattern-completion substrate; plus two principled counterweights (Heyes 2016 innateness critique; Spelke & Kinzler 2007 core-knowledge / endogenous-maturational scope bound). claims.yaml lit_conf set as a PARALLEL signal: ARC-077=0.74, MECH-337=0.78, MECH-338=0.75 (indexer parallel literature_confidence 0.868/0.878/0.813). The LIT gate is now satisfied; ARC-077/MECH-337/MECH-338 REMAIN candidate -- discharging the lit-pull does NOT promote them (lit and exp evidence are not co-equal; exp_conf=0). The SECOND HARD GATE remains independently OPEN and is NOT discharged by this work: the pathway still requires a caregiver/teacher-agent substrate that DOES NOT EXIST in V3 (single-agent); scaffolded exposure needs a second agent or an ostensive-cue-delivering environment -- a required new substrate. Implementation scheduling of ARC-077 still requires that caregiver-agent substrate gate to be separately resolved. This gate is independent of the ARC-062 weak-route verdict (GAP-B remains blocked, owned by V3-EXQ-543i/543j); no ARC-062 posture change. PRIOR (BLOCKED 2026-05-18, registration session): NO implementation may begin until the caregiver-scaffolding/cued-recall lit-pull is discharged AND the caregiver-agent substrate exists; ARC-077/MECH-337/MECH-338 carried lit_conf=0."
 ---
 # Rule Apprehension Plan (ARC-062 / MECH-309 / ARC-063)
 
@@ -405,7 +405,7 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-I | 2-3 | partial | empirical retire-vs-promote on multi-rule-context substrate (V3-EXQ-543c-successor; downstream of GAP-B + GAP-C closure) | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. **MECH-318 absorption check done 2026-05-10**: VERDICT (B) PARTIALLY ABSORBED (`REE_assembly/docs/architecture/mech_318_absorption_check.md`). Within-V3 functional weight borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) + W5 (cross-episode continuity) gaps remain; W2 blocked on multi-rule-context substrate, W5 likely V4-scope. NO new V3 substrate commissioned. claims.yaml MECH-318 evidence_quality_note + notes updated; status retained `candidate` pending V3-EXQ-543c-successor empirical gate. MECH-316 / MECH-317 absorption checks separately scoped. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C) | 2026-05-10 |
 | GAP-J | 2-3 | open | claims-only registration; **blocked on GAP-B** (additive-logit comparison requires non-inert gating) | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline needs a 543g-successor arm (V3-EXQ-543b/c listed as owner is stale -- all non_contributory due to inert-gating, not a multiplicative-vs-additive comparison). depends_on updated to [GAP-B] 2026-05-17. | TBD (543g-successor) | 2026-05-17 |
 | GAP-K | 2-3 | in-progress | V3-EXQ-543c-successor (admit_writes=True falsifier with replay-driven invocation) AFTER MECH-313 / MECH-314 / MECH-318 sibling substrates land | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. **MECH-319 substrate landed 2026-05-10** (`ree_core/regulators/simulation_mode_rule_gate.py` + `SimulationModeRuleGate` + `SimulationModeRuleGateConfig` + `REEConfig.use_simulation_mode_rule_gate` master + `simulation_mode_rule_gate_admit_writes` V3-EXQ-543c falsifier inverse-debug flag + `select_action` GatedPolicy + LateralPFCAnalog call-site wiring + 15 contract tests + V3-EXQ-546 substrate-readiness diagnostic 6/6 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). MECH-094 NOT modified per Pull 3 R1 + Pull 4 R3 KEEP-AS-IS verdicts. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c-successor (paired arm: `admit_writes=False` MECH-319 normal vs `admit_writes=True` falsifier with replay-driven invocation; predicted monomodal-collapse re-emergence under the falsifier arm). | V3-EXQ-546 (done) / V3-EXQ-543c-successor TBD | 2026-05-10 |
-| GAP-L | 3-4 | blocked | TWO independent HARD gates: (1) caregiver-scaffolding / cued-recall / context-dependent rule-acquisition biology lit-pull NOT discharged (biology-before-formal-definitions rule); (2) caregiver/teacher-agent substrate DOES NOT EXIST in V3 (single-agent) | 2026-05-18 bring-forward: ARC-063 promoted V4 -> V3 (implementation_phase, v3_pending true, brought_forward_utc). New socially-scaffolded rule-population pathway registered as structural slots only: **ARC-077** (parent, peer to ARC-062 top-down / ARC-064 bottom-up, feeds ARC-063) + **MECH-337** (caregiver-scaffolded population, "in" face) + **MECH-338** (cue-driven context-bound retrieval, "cue pipeline" / "select" face); hippocampal-rollout-eligibility "out" face cross-referenced to existing ARC-063, not re-registered. claims 645 -> 648; all carry implementation_prerequisites HARD ORDERING GATE + lit_conf=0. NO ARC-062 posture change (GAP-B stays blocked, owned by V3-EXQ-543i/543j); brought forward on the independent-need rationale. | null (lit-pull TBD via /lit-pull) | 2026-05-18 |
+| GAP-L | 3-4 | done (lit gate); substrate gate still OPEN | Gate (1) caregiver-scaffolding / cued-recall biology lit-pull = DISCHARGED 2026-05-18. Gate (2) caregiver/teacher-agent substrate STILL DOES NOT EXIST in V3 (single-agent) -- independently open, NOT discharged by this work | 2026-05-18 bring-forward: ARC-063 promoted V4 -> V3; socially-scaffolded rule-population pathway registered as structural slots (**ARC-077** parent + **MECH-337** "in" + **MECH-338** "select"); claims 645 -> 648; lit_conf=0 at registration. **2026-05-18 GAP-L lit-pull DISCHARGED** (session gap-l-litpull-socially-scaffolded): 8 entries in evidence/literature/targeted_review_socially_scaffolded_rule_population (Csibra & Gergely 2009; Wood/Bruner/Ross 1976 + Vygotsky ZPD; Tomasello et al. 2005; Tulving & Thomson 1973; Godden & Baddeley 1975 [+2021 failed-replication caveat]; Nakazawa et al. 2002 CA3 pattern-completion; counterweights Heyes 2016 + Spelke & Kinzler 2007). lit_conf set as PARALLEL signal: ARC-077=0.74 / MECH-337=0.78 / MECH-338=0.75 (indexer parallel 0.868/0.878/0.813). Claims REMAIN candidate (lit != exp; exp_conf=0). NO ARC-062 posture change (GAP-B stays blocked, owned by V3-EXQ-543i/543j). | lit-pull (GAP-L litpull session 2026-05-18) | 2026-05-18 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `partial`,
 `done`, `deferred`, `registered`. `registered` = claims registered in
@@ -498,6 +498,68 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-18 - GAP-L lit-pull DISCHARGED: socially-scaffolded rule-population biology grounded (ARC-077 / MECH-337 / MECH-338); lit gate closed, caregiver-substrate gate still open
+
+Trigger: the GAP-L hard prerequisite added in the same-day registration
+entry below. Per the standing biology-before-formal-definitions rule,
+ARC-077 / MECH-337 / MECH-338 were registered as structural slots with
+lit_conf=0 and could not be implemented or promoted until a
+caregiver-scaffolding / cued-recall / context-dependent
+rule-acquisition lit-pull was discharged. This session (`/lit-pull`,
+session gap-l-litpull-socially-scaffolded) discharges exactly that
+gate and nothing more.
+
+Work done. New cross-cutting literature dir
+`evidence/literature/targeted_review_socially_scaffolded_rule_population`,
+8 entries (record.json + summary.md), tagged ARC-077/MECH-337/MECH-338,
+covering the full GAP-L minimum-coverage set:
+
+- **Csibra & Gergely 2009** (Trends Cogn Sci) -- natural pedagogy /
+  ostensive cueing -> MECH-337/ARC-077, supports, conf 0.80.
+- **Wood, Bruner & Ross 1976** (J Child Psychol Psychiatry) --
+  scaffolding + Vygotsky ZPD operationalization -> ARC-077/MECH-337,
+  supports, conf 0.78.
+- **Tomasello, Carpenter, Call, Behne & Moll 2005** (Behav Brain Sci)
+  -- shared intentionality / joint attention / social referencing
+  (the enabling precondition) -> ARC-077/MECH-337, supports, conf 0.74.
+- **Tulving & Thomson 1973** (Psychol Rev) -- encoding specificity (the
+  formal core of cued retrieval) -> MECH-338, supports, conf 0.82.
+- **Godden & Baddeley 1975** (Br J Psychol) -- environmental
+  context-dependent recall; **2021 powered pre-registered replication
+  FAILED** -> MECH-338, supports-but-fragile, conf 0.58 (logged with
+  the contra).
+- **Nakazawa et al. 2002** (Science) -- CA3 NMDA pattern completion =
+  the partial-cue retrieval substrate -> MECH-338, supports, conf 0.78.
+- **Heyes 2016** (Perspect Psychol Sci) -- COUNTERWEIGHT: the receptive
+  machinery may be constructed, not innate; bounds a strong framing of
+  MECH-337, not the effect -> mixed, conf 0.70.
+- **Spelke & Kinzler 2007** (Dev Sci) -- COUNTERWEIGHT: core knowledge
+  / endogenous-maturational structure bounds how much rule structure is
+  socially sourced -> ARC-077, mixed, conf 0.66.
+
+Index rebuilt (literature entries 1458). claims.yaml lit_conf set as a
+**parallel** signal (NOT blended into exp confidence; lit and exp
+evidence are not co-equal): ARC-077=0.74, MECH-337=0.78, MECH-338=0.75
+(reasoned aggregates, conservative vs the indexer parallel
+literature_confidence 0.868/0.878/0.813 in claim_evidence.v1.json --
+discounted for the two principled mixed counterweights and the
+structural-slot-only status). literature_anchors added to all three
+claims; evidence_quality_note updated on each.
+
+Decision / posture. The LIT gate is **closed**; ARC-077/MECH-337/
+MECH-338 **remain candidate** -- discharging the lit-pull explicitly
+does NOT promote them (exp_conf=0; the biology-before-formal rule is a
+gate on registration validity, not a promotion lever). The **second
+hard gate is untouched and still OPEN**: the pathway requires a
+caregiver/teacher-agent substrate that does not exist in V3
+(single-agent); scaffolded exposure needs a second agent or an
+ostensive-cue-delivering environment. GAP-L node status -> `done` for
+the lit gate with the substrate gate explicitly flagged as separately
+unresolved. No ARC-062 posture change; GAP-B remains blocked and owned
+by V3-EXQ-543i/543j (out of scope for this session). The Heyes
+counterweight notably *reinforces* the substrate gate (a constructed,
+not innate, channel must be built deliberately).
 
 ### 2026-05-18 - ARC-063 brought forward (V4 -> V3) + socially-scaffolded rule-population pathway registered (ARC-077 / MECH-337 / MECH-338); GAP-L lit-pull gate added
 

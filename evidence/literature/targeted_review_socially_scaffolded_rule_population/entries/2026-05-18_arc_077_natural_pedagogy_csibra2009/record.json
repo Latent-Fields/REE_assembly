@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_socially_scaffolded_rule_population",
+  "entry_id": "2026-05-18_arc_077_natural_pedagogy_csibra2009",
+  "timestamp_utc": "2026-05-18T21:02:14Z",
+  "claim_ids_tested": ["MECH-337", "ARC-077"],
+  "source": {
+    "title": "Natural pedagogy",
+    "authors": ["Gergely Csibra", "Gyorgy Gergely"],
+    "year": 2009,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2009.01.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Canonical, heavily-cited theoretical synthesis in a top review venue, marshalling a converging infant-cognition literature. It is the single most direct external grounding for MECH-337: it specifies the exact mechanism the slot posits -- ostensive cueing marks a regularity as generalizable/kind-relevant, enabling transmission of cognitively opaque content the agent could not extract observationally. Held below 0.85 because it is a theoretical proposal (not one decisive experiment) and its strong-innateness framing is itself contested (see Heyes 2016 counter-entry); the REE-side instantiation as a CandidateRule write is an architectural extrapolation the paper does not make.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cognitively opaque cultural content (where the function/rationale is not recoverable from observation alone) is shown to require ostensive communicative transmission rather than observational learning -- a substrate that populates its candidate-rule space only from the agent's own observation/behaviour (ARC-064 bottom-up alone) would fail to acquire exactly this class.",
+    "Ostensively marked information is interpreted by infants as generic and kind-relevant rather than episodic; a population mechanism that wrote scaffolded regularities as one-off episodic facts rather than as context-tagged generalizable candidates would mispredict this."
+  ],
+  "tags": ["arc-077", "mech-337", "natural_pedagogy", "ostensive_cueing", "social_scaffolding", "rule_apprehension", "gap-l"],
+  "mapping": {
+    "source_claim_statement": "Human communication is specifically adapted to transmit generic, kind-relevant knowledge: infants are sensitive to ostensive signals (eye contact, infant-directed speech, contingent reactivity, referential gaze) that mark that they are being addressed, and they interpret ostensively-referential communication as conveying generalizable information -- enabling fast social learning of cognitively opaque cultural knowledge that observational mechanisms alone cannot acquire.",
+    "ree_translation": "This is the biological grounding for MECH-337 (the 'in' face of the ARC-063 CandidateRule field). The caregiver's ostensive marking IS the population mechanism: a regularity the agent could not have invented or extracted from its own behaviour is written into the candidate-rule field, interpreted as generic (a rule, not an episode) and bound to the scaffolding context. At the ARC-077 level it grounds the architectural commitment that the hypothesis space is populated from OUTSIDE the agent, answering MECH-309 (a non-Bayesian rule-creator does not invent its hypotheses -- a caregiver supplies them).",
+    "mapping_caveat": "Csibra & Gergely describe a human-infant developmental adaptation; REE maps it onto an abstract architectural slot with no caregiver-agent substrate yet in V3. The transfer is at the level of functional necessity (cognitively opaque rules need an external ostensive source), NOT a quantitative or implementational specification. The paper's claim that natural pedagogy is an innate, dedicated adaptation is explicitly contested (Heyes 2016) and is NOT load-bearing for the REE slot, which only needs the functional channel to exist, not for it to be innate.",
+    "source_context": "Theoretical review synthesising human infant looking-time, gaze-following, and word/artifact-learning studies (predominantly Western infant samples)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (canonical review, but a proposal not a single empirical test). Mapping fidelity very high -- the paper's mechanism is almost a verbatim description of MECH-337's 'in' face. Transfer risk moderate: human-infant developmental adaptation -> REE architectural slot is a functional-necessity mapping, and the innateness sub-claim is dropped at the mapping boundary."
+  }
+}

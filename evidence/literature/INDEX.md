@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-18T20:54:13.199503Z`
+Generated: `2026-05-18T21:08:25.740727Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -276,6 +276,7 @@ Generated: `2026-05-18T20:54:13.199503Z`
 | `targeted_review_sleep_phase_mechanisms` | [`2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/record.json) | 8 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |
 | `targeted_review_social_signal_legibility` | [`2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/record.json) | 10 | [`summary`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/summary.md) |
+| `targeted_review_socially_scaffolded_rule_population` | [`2026-05-18_mech_338_encoding_specificity_tulving1973`](targeted_review_socially_scaffolded_rule_population/entries/2026-05-18_mech_338_encoding_specificity_tulving1973/record.json) | 8 | [`summary`](targeted_review_socially_scaffolded_rule_population/entries/2026-05-18_mech_338_encoding_specificity_tulving1973/summary.md) |
 | `targeted_review_state_abstraction_psychiatry` | [`2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005`](targeted_review_state_abstraction_psychiatry/entries/2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005/record.json) | 3 | [`summary`](targeted_review_state_abstraction_psychiatry/entries/2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005/summary.md) |
 | `targeted_review_systems_consolidation_waking_propagation` | [`2026-04-19_mech_261_systems_consolidation_review_frankland2005`](targeted_review_systems_consolidation_waking_propagation/entries/2026-04-19_mech_261_systems_consolidation_review_frankland2005/record.json) | 5 | [`summary`](targeted_review_systems_consolidation_waking_propagation/entries/2026-04-19_mech_261_systems_consolidation_review_frankland2005/summary.md) |
 | `targeted_review_theta_abstraction_scaling` | [`2026-04-28_theta_abstraction_remote_replay_karlsson2009`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/record.json) | 5 | [`summary`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/summary.md) |

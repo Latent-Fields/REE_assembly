@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_socially_scaffolded_rule_population",
+  "entry_id": "2026-05-18_arc_077_shared_intentionality_tomasello2005",
+  "timestamp_utc": "2026-05-18T21:02:14Z",
+  "claim_ids_tested": ["ARC-077", "MECH-337"],
+  "source": {
+    "title": "Understanding and sharing intentions: the origins of cultural cognition",
+    "authors": ["Michael Tomasello", "Malinda Carpenter", "Josep Call", "Tanya Behne", "Henrike Moll"],
+    "year": 2005,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/S0140525X05000129"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Highly influential BBS target article synthesising comparative and developmental evidence. It grounds the PRECONDITION for ARC-077/MECH-337 -- shared intentionality, joint attention and social referencing are the motivational/representational substrate that lets an agent be scaffolded at all. Confidence is moderate (not high) precisely because it maps to the enabling condition rather than to the population mechanism itself: it explains why a caregiver channel can transmit conventions, not the write operation that MECH-337 specifies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Skills of shared intentionality (joint attention, social referencing, role-reversal) emerge gradually over the first ~14 months and are species-unique; an agent lacking the motivation/representation to share psychological states does not acquire conventions or norms from others even with exposure -- a caregiver-population channel bolted onto a substrate with no shared-intentionality precondition would not function.",
+    "Convention and norm acquisition is shown to depend on the species-unique social-motivation pathway, not on general intention-reading alone; a model that assumes scaffolded rule uptake from observation/imitation without a sharing motivation mis-locates the mechanism."
+  ],
+  "tags": ["arc-077", "mech-337", "shared_intentionality", "joint_attention", "social_referencing", "cultural_cognition", "rule_apprehension", "gap-l"],
+  "mapping": {
+    "source_claim_statement": "The species-unique basis of human cultural cognition is shared intentionality: collaborative activity with shared goals and intentions, supported by a unique motivation to share psychological states and unique representational means. It develops gradually over the first 14 months as the general ape line of goal/intention reading intertwines with a human-specific motivation to share emotions, experience and activities; this scaffolds linguistic symbols, social norms and institutions.",
+    "ree_translation": "ARC-077: grounds why a socially-scaffolded rule-source is architecturally distinct and necessary -- conventions/norms (paradigmatic context-bound rules) are acquired through a shared-intentionality channel, not invented by the agent (the MECH-309 point) nor compressed from solo behaviour (ARC-064). MECH-337: joint attention and social referencing are the channel over which ostensive marking operates -- they are the enabling substrate that makes a caregiver's mark addressable to the learner, and they make the populated candidate inherently context-bound (bound to the shared-attention episode).",
+    "mapping_caveat": "This paper grounds the PRECONDITION (the social-cognitive machinery that makes scaffolding possible), not the population write itself -- mapping fidelity is deliberately lower than the Csibra & Gergely entry. REE additionally has no second-agent substrate, so 'shared intentionality' is an architectural motivation, not an implementable spec. The 14-month developmental-emergence claim is human-ontogenetic and is not transferred as a timeline, only as evidence that the channel is a substantive, separable capacity rather than a free by-product of general learning.",
+    "source_context": "Theoretical synthesis (BBS target article) integrating comparative great-ape experiments and human infant developmental studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.34,
+    "notes": "Source quality high (landmark, extensively peer-commented synthesis). Mapping fidelity moderate by design: it evidences the enabling precondition for ARC-077/MECH-337, not the population mechanism. Transfer risk moderate: comparative+developmental human data -> abstract second-agent slot REE does not yet have."
+  }
+}
