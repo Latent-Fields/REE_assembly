@@ -26402,6 +26402,33 @@
     landings: /implement-substrate ARC-062 head-input first-action one-hot
     augmentation, AND dacc_weight>0 with a pre-flight non-degeneracy
     assertion.
+  implementation_note: >
+    2026-05-18 (implement-substrate, NO confidence/promotion/flag change --
+    governance gated on V3-EXQ-543i). GatedPolicy two-head reparameterization
+    landed in ree-v3/ree_core/policy/gated_policy.py behind
+    GatedPolicyConfig.use_differential_heads (default False = bit-identical
+    pre-fix two-independent-head path). Motivated by the V3-EXQ-543h failure
+    autopsy + cross-machine 543g replication
+    (evidence/planning/failure_autopsy_V3-EXQ-543h_2026-05-18.{md,json}):
+    the same 543g config landed gating-ACTIVE on host-A but INERT
+    (n_inert_gating_seeds=3, behavioral-divergence TV<0.05) on cloud-3 AND
+    cloud-4 -- head_0==head_1 collapse is the cross-machine COMMON attractor;
+    the host-A "weakens ARC-062" landing (_144716Z) is a 1/3 minority
+    lucky-basin artifact, so 543g overall is non_contributory and ARC-062
+    has zero reliable contributory trained-policy evidence. Fix: heads
+    synthesized as base +/- delta_hat with delta_hat's candidate-axis L2
+    norm pinned to differential_bias_scale; delta==0 (the inert collapse)
+    is structurally non-reachable (scale-invariant normalization -> zero
+    loss-gradient on ||delta||; nonzero delta-bias init) and at w=0.5
+    d(gated)/dw = 2*delta_hat != 0 gives REINFORCE a non-vanishing escape
+    gradient. P1 training loss deliberately UNCHANGED so V3-EXQ-543i
+    (supersedes 543g + 543h) is a clean single-variable test of
+    structure-vs-MECH-309: escape -> ARC-062 weak reading viable; still
+    collapses -> MECH-309 strong confirmation -> ARC-063/V4. A separate
+    MECH-309-support reading of the 543 cluster (cross-machine collapse =
+    positive evidence for MECH-309) is a parked governance follow-on, not
+    applied this session. See ree-v3/CLAUDE.md "ARC-062 GatedPolicy
+    differential-heads robustness fix (2026-05-18)".
   epistemic_category: substrate_conditional
   heterogeneity_note: >
     substrate-version confound + supersession lag. ARC-062's
@@ -32101,6 +32128,18 @@
     implemented -- this landing is the plastic channel that the MECH-334
     closure presupposes. v3_pending RETAINED (experiment evidence pending
     via V3-EXQ-543h). See docs/architecture/critical_period_crystallization.md.
+    2026-05-18 addendum: V3-EXQ-543h is non_contributory (failure autopsy
+    failure_autopsy_V3-EXQ-543h_2026-05-18) -- its gated policy was inert
+    (cross-machine common attractor), so crystallize() froze an already-
+    collapsed policy and MECH-333's differentiation could not be exercised.
+    The ARC-062 GatedPolicy differential-heads robustness fix (implement-
+    substrate 2026-05-18, GatedPolicyConfig.use_differential_heads, ree-v3/
+    ree_core/policy/gated_policy.py) makes head differentiation a structural
+    non-equilibrium so the plastic-channel closure can be tested on a
+    functional policy. Experiment evidence now pending via V3-EXQ-543i
+    (supersedes 543g + 543h). crystallize() freezes (base,delta,
+    discriminator) under the differential reparameterization -- write-protect
+    semantics unchanged. v3_pending RETAINED; no confidence/flag change.
 
 - id: MECH-334
   title: "Critical period closure / crystallization: once diversity circuits establish
