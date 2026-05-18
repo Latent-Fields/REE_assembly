@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-18T18:46:06Z",
+  "last_tick_utc": "2026-05-18T18:47:09Z",
   "state": "running",
   "current_exq": "V3-EXQ-543i",
   "current_exq_started_utc": "2026-05-18T15:44:23.251731+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 2 / ARM_8_gated_only_diff",
     "runs_done": 32,
     "runs_total": 36,
-    "episodes_done": 0,
+    "episodes_done": 20,
     "episodes_total": 108,
-    "overall_pct": 88.9
+    "overall_pct": 89.4
   },
-  "seconds_elapsed": 10903,
-  "seconds_remaining": 1361,
+  "seconds_elapsed": 10966,
+  "seconds_remaining": 1298,
   "recent_lines": [
-    "seed=2 arm=ARM_7_both_xtal  reef_frac=0.689  rho=+0.315  forage_hr=0.0868  transit_hr=1.0000  ratio=0.087  inert_gating=True  outcome_buf=512",
-    "verdict: FAIL",
     "Seed 2 Condition ARM_8_gated_only_diff",
     "use_gated_policy=True  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=True  crystallize=False  differential_heads=True  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=off"
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=off",
+    "[train] ARM_8_gated_only_diff ep 10/108  phase=P0  rv=0.0005  ep_reward=-1.2349",
+    "[train] ARM_8_gated_only_diff ep 20/108  phase=P0  rv=0.0004  ep_reward=-1.1567"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
