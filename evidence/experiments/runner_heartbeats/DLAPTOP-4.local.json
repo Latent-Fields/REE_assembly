@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-18T18:33:31Z",
+  "last_tick_utc": "2026-05-18T18:34:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-543i",
   "current_exq_started_utc": "2026-05-18T15:44:23.251731+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 2 / ARM_5_dacc_only_xtal",
-    "runs_done": 29,
+    "run_label": "Seed 2 / ARM_6_gated_only_xtal",
+    "runs_done": 30,
     "runs_total": 36,
-    "episodes_done": 55,
+    "episodes_done": 10,
     "episodes_total": 108,
-    "overall_pct": 82.0
+    "overall_pct": 83.6
   },
-  "seconds_elapsed": 10148,
-  "seconds_remaining": 2190,
+  "seconds_elapsed": 10213,
+  "seconds_remaining": 2001,
   "recent_lines": [
-    "[train] ARM_5_dacc_only_xtal ep 80/108  phase=P1  rv=0.0004  ep_reward=-1.0409  baseline=-1.1254  buf=0  inert_gating=False",
-    "[probe] ARM_5_dacc_only_xtal P1 ep 45/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
-    "[probe] ARM_5_dacc_only_xtal P1 ep 50/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
-    "[train] ARM_5_dacc_only_xtal ep 90/108  phase=P1  rv=0.0005  ep_reward=-1.1083  baseline=-1.1482  buf=0  inert_gating=False",
-    "[probe] ARM_5_dacc_only_xtal P1 ep 55/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0"
+    "verdict: PASS",
+    "Seed 2 Condition ARM_6_gated_only_xtal",
+    "use_gated_policy=True  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=True  crystallize=True  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=off",
+    "[train] ARM_6_gated_only_xtal ep 10/108  phase=P0  rv=0.0002  ep_reward=-1.0383"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
