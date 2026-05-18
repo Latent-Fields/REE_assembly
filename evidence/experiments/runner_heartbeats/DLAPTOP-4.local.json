@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-18T17:33:14Z",
+  "last_tick_utc": "2026-05-18T17:34:18Z",
   "state": "running",
   "current_exq": "V3-EXQ-543i",
   "current_exq_started_utc": "2026-05-18T15:44:23.251731+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_7_both_xtal",
     "runs_done": 19,
     "runs_total": 36,
-    "episodes_done": 5,
+    "episodes_done": 60,
     "episodes_total": 108,
-    "overall_pct": 52.9
+    "overall_pct": 54.3
   },
-  "seconds_elapsed": 6531,
-  "seconds_remaining": 5624,
+  "seconds_elapsed": 6595,
+  "seconds_remaining": 5455,
   "recent_lines": [
-    "[train] ARM_7_both_xtal ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.1374",
-    "[train] ARM_7_both_xtal ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.3414",
-    "[train] ARM_7_both_xtal ep 30/108  phase=P0  rv=0.0002  ep_reward=-1.1149",
-    "[train] ARM_7_both_xtal ep 40/108  phase=P0  rv=0.0002  ep_reward=-1.2468",
-    "[probe] ARM_7_both_xtal P1 ep 5/60  applicable=True  mean_tv=0.0008  max_tv=0.0016  buf=68"
+    "[probe] ARM_7_both_xtal P1 ep 10/60  applicable=True  mean_tv=0.0009  max_tv=0.0016  buf=201",
+    "[train] ARM_7_both_xtal ep 50/108  phase=P1  rv=0.0001  ep_reward=-1.2172  baseline=-1.1259  buf=201  inert_gating=False",
+    "[probe] ARM_7_both_xtal P1 ep 15/60  applicable=True  mean_tv=0.0010  max_tv=0.0018  buf=355",
+    "[probe] ARM_7_both_xtal P1 ep 20/60  applicable=True  mean_tv=0.0010  max_tv=0.0019  buf=412",
+    "[train] ARM_7_both_xtal ep 60/108  phase=P1  rv=0.0001  ep_reward=-1.2863  baseline=-1.1520  buf=412  inert_gating=False"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
