@@ -1,67 +1,41 @@
 {
   "schema_version": "v1",
-  "runner_pid": 665,
-  "runner_started_at": "2026-05-15T19:17:09.412775+00:00",
-  "last_updated": "2026-05-15T20:19:03.658272+00:00",
+  "runner_pid": 670,
+  "runner_started_at": "2026-05-17T10:52:16.374621+00:00",
+  "last_updated": "2026-05-18T22:25:09.978355+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-567",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
-    "description": "",
-    "script": "experiments/v3_exq_567_wpb_natural_entropy_sp_cem.py",
-    "started_at": "2026-05-15T19:59:39.949072+00:00",
-    "progress": {
-      "run_label": "Seed 43 / ARM_1_support_preserving",
-      "runs_done": 4,
-      "runs_total": 6,
-      "episodes_done": 10,
-      "episodes_total": 40,
-      "overall_pct": 70.8
-    },
-    "seconds_elapsed": 1164,
-    "seconds_remaining": 437,
-    "recent_lines": [
-      "[train] arm=ARM_1_support_preserving seed=42 ep 30/40",
-      "[train] arm=ARM_1_support_preserving seed=42 ep 40/40",
-      "verdict: PASS",
-      "Seed 43 Condition ARM_1_support_preserving",
-      "[train] arm=ARM_1_support_preserving seed=43 ep 10/40"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-563c",
+      "queue_id": "V3-EXQ-587",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Stratified CEM and E3 score-bias calibration diagnostic (7 arms)",
+      "title": "EXQ-ISEF-001: harm_gradient_enabled vs binary-contact residue geography formation (GAP-10)",
       "description": "",
-      "estimated_minutes": 17.3,
+      "estimated_minutes": 1333.3,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-567",
+      "queue_id": "V3-EXQ-586",
       "backlog_id": "",
       "claim_id": "",
-      "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
+      "title": "GAP-9 infant curriculum scheduler validation",
       "description": "",
-      "estimated_minutes": 32.0,
-      "status": "running",
+      "estimated_minutes": 104.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-540f",
+      "queue_id": "V3-EXQ-584",
       "backlog_id": "",
       "claim_id": "",
-      "title": "MECH-307 default-fix clean 3-seed rerun (seeds 42, 43, 45)",
+      "title": "GAP-7 traj_pairwise_cosine_mean substrate-readiness diagnostic",
       "description": "",
-      "estimated_minutes": 17.3,
-      "status": "claimed",
+      "estimated_minutes": 4.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2160,6 +2134,48 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_566_wpc3_schema_salience_injection/v3_exq_566_wpc3_schema_salience_injection_20260515T195934Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 2542.5
+    },
+    {
+      "queue_id": "V3-EXQ-567",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "WPB natural entropy measurement: SP-CEM vs normal CEM (no scaffold, no forced bias)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-567 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-567.json",
+      "started_at": "2026-05-15T19:59:39.949072+00:00",
+      "completed_at": "2026-05-15T20:31:26.786714+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_567_wpb_natural_entropy_sp_cem_20260515T203126Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1906.8
+    },
+    {
+      "queue_id": "V3-EXQ-588",
+      "backlog_id": "",
+      "claim_id": "MECH-189",
+      "title": "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison (GAP-11)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C1 (ARM_1 median first-crossing < 0.7x ARM_0): FAIL | Overall outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-588 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-588.json",
+      "started_at": "2026-05-17T10:52:17.859451+00:00",
+      "completed_at": "2026-05-18T22:24:57.276142+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_588_isef002_transient_benefit_zgoal_seeding/v3_exq_588_isef002_transient_benefit_zgoal_seeding_20260518T222457Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 127958.4
+    },
+    {
+      "queue_id": "V3-EXQ-585",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "infant_substrate GAP-8 validation -- post_sleep_z_goal_retention + replay_diversity_index",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "C4 (ARM_1 before > 0.1): PASS before=['0.6000', '0.6000', '0.6000'] | Overall outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-585 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-585.json",
+      "started_at": "2026-05-18T22:24:58.885856+00:00",
+      "completed_at": "2026-05-18T22:25:09.977587+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_585_gap8_z_goal_retention_validation/v3_exq_585_gap8_z_goal_retention_validation_20260518T222509Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 11.1
     }
   ]
 }
