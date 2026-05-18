@@ -3,7 +3,7 @@ closure_plan:
   id: arc_062_rule_apprehension
   title: "Rule Apprehension"
   registered: 2026-05-09
-  scope_claims: [MECH-309, ARC-062, ARC-063, ARC-064, ARC-065, MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-316, MECH-317, MECH-318, MECH-319, Q-043, Q-044, Q-045, SD-054, SD-029, MECH-269]
+  scope_claims: [MECH-309, ARC-062, ARC-063, ARC-064, ARC-065, ARC-077, MECH-337, MECH-338, MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-316, MECH-317, MECH-318, MECH-319, Q-043, Q-044, Q-045, SD-054, SD-029, MECH-269]
   sibling_plans: [commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution]
   nodes:
     - id: "arc_062_rule_apprehension:GAP-A"
@@ -113,6 +113,16 @@ closure_plan:
       unblocks_claims: [MECH-319]
       depends_on: ["arc_062_rule_apprehension:GAP-B", "arc_062_rule_apprehension:GAP-H", "arc_062_rule_apprehension:GAP-I"]
       last_updated: 2026-05-10
+    - id: "arc_062_rule_apprehension:GAP-L"
+      title: "Biology lit-pull prerequisite for the socially-scaffolded rule-population sub-cluster (ARC-077 / MECH-337 / MECH-338) -- HARD GATE before any implementation"
+      phase: "3-4"
+      status: blocked
+      severity: load-bearing
+      owner_exq: null
+      unblocks_claims: [ARC-077, MECH-337, MECH-338, ARC-063]
+      depends_on: []
+      last_updated: 2026-05-18
+      resume_condition: "BLOCKED 2026-05-18 (registration session: ARC-063 bring-forward + ARC-077/MECH-337/MECH-338 registered as structural slots). Per the standing biology-before-formal-definitions rule, NO implementation (V3 or V4) of ARC-063's socially-scaffolded population pathway may begin until a caregiver-scaffolding / cued-recall / context-dependent rule-acquisition lit-pull is discharged into evidence/literature/, covering at minimum: Csibra & Gergely 2009 natural pedagogy / ostensive cueing; Vygotsky ZPD + Wood/Bruner/Ross 1976 scaffolding; Tomasello shared intentionality + early rule acquisition; joint attention + social referencing; Godden & Baddeley 1975 context-dependent memory; Tulving & Thomson 1973 encoding-specificity; hippocampal pattern-completion as cued-retrieval substrate. SECOND HARD GATE (independent of the lit-pull): the pathway requires a caregiver/teacher-agent substrate which DOES NOT EXIST in V3 (single-agent); scaffolded exposure needs a second agent or an environment that delivers ostensive cues -- a required new substrate, not an assumed one. ARC-077/MECH-337/MECH-338 carry lit_conf=0 and MUST NOT be promoted past candidate until GAP-L is discharged. implementation_phase=v3 on these claims = active V3 design target under the V3-Pending Gate, NOT V3-implementable now. RESUME: GAP-L moves to in-progress when the lit-pull is commissioned (/lit-pull), and to done when the literature entries are written + indexed and the ARC-077 cluster lit_conf is set from them. Implementation scheduling of ARC-077 additionally requires the caregiver-agent substrate gate to be separately resolved. NOTE: this gate is independent of the ARC-062 weak-route verdict (GAP-B); ARC-063 was brought forward on the independent-need rationale, NOT because the weak route is declared dead -- GAP-B remains blocked and owned by V3-EXQ-543i/543j."
 ---
 # Rule Apprehension Plan (ARC-062 / MECH-309 / ARC-063)
 
@@ -395,6 +405,7 @@ The resume primitive. Updated every session that touches this cluster.
 | GAP-I | 2-3 | partial | empirical retire-vs-promote on multi-rule-context substrate (V3-EXQ-543c-successor; downstream of GAP-B + GAP-C closure) | ARC-064 bottom-up rule-discovery cluster registered (ARC-064 anchor + MECH-316 cross-episode regularities + MECH-317 behavioural pattern compression + MECH-318 rule-state abstraction provisional). MECH-315 absorbed into MECH-292/293 ghost-goal substrate per Pull 2 R5. **MECH-318 absorption check done 2026-05-10**: VERDICT (B) PARTIALLY ABSORBED (`REE_assembly/docs/architecture/mech_318_absorption_check.md`). Within-V3 functional weight borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) + W5 (cross-episode continuity) gaps remain; W2 blocked on multi-rule-context substrate, W5 likely V4-scope. NO new V3 substrate commissioned. claims.yaml MECH-318 evidence_quality_note + notes updated; status retained `candidate` pending V3-EXQ-543c-successor empirical gate. MECH-316 / MECH-317 absorption checks separately scoped. V3 falsification path: substrate-design EXQ deferred (requires multi-rule-context substrate beyond SD-054 alone). | TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C) | 2026-05-10 |
 | GAP-J | 2-3 | open | claims-only registration; **blocked on GAP-B** (additive-logit comparison requires non-inert gating) | MECH-312 parent + MECH-312a/b/c/d sub-MECHs registered (uncertainty / practice-maturity / affective-stream-modulation / V_s-freshness-modulation). MECH-312e controllability/agency deferred per Pull 3 R5 (substrate not available). Multiplicative-gate combination rule registered as architectural default; additive-logit baseline needs a 543g-successor arm (V3-EXQ-543b/c listed as owner is stale -- all non_contributory due to inert-gating, not a multiplicative-vs-additive comparison). depends_on updated to [GAP-B] 2026-05-17. | TBD (543g-successor) | 2026-05-17 |
 | GAP-K | 2-3 | in-progress | V3-EXQ-543c-successor (admit_writes=True falsifier with replay-driven invocation) AFTER MECH-313 / MECH-314 / MECH-318 sibling substrates land | MECH-319 simulation-mode rule-write-gating substrate registered as REE-novel substrate-level instantiation of MECH-094 at the arbitration layer. SWR machinery + reverse-replay are the substrate anchors; the categorical write-gate function is REE-novel. **MECH-319 substrate landed 2026-05-10** (`ree_core/regulators/simulation_mode_rule_gate.py` + `SimulationModeRuleGate` + `SimulationModeRuleGateConfig` + `REEConfig.use_simulation_mode_rule_gate` master + `simulation_mode_rule_gate_admit_writes` V3-EXQ-543c falsifier inverse-debug flag + `select_action` GatedPolicy + LateralPFCAnalog call-site wiring + 15 contract tests + V3-EXQ-546 substrate-readiness diagnostic 6/6 PASS smoke + design doc + claims.yaml status `candidate -> candidate_substrate_landed`). MECH-094 NOT modified per Pull 3 R1 + Pull 4 R3 KEEP-AS-IS verdicts. V3 falsification path: artificial-write-channel-routing config flag in V3-EXQ-543c-successor (paired arm: `admit_writes=False` MECH-319 normal vs `admit_writes=True` falsifier with replay-driven invocation; predicted monomodal-collapse re-emergence under the falsifier arm). | V3-EXQ-546 (done) / V3-EXQ-543c-successor TBD | 2026-05-10 |
+| GAP-L | 3-4 | blocked | TWO independent HARD gates: (1) caregiver-scaffolding / cued-recall / context-dependent rule-acquisition biology lit-pull NOT discharged (biology-before-formal-definitions rule); (2) caregiver/teacher-agent substrate DOES NOT EXIST in V3 (single-agent) | 2026-05-18 bring-forward: ARC-063 promoted V4 -> V3 (implementation_phase, v3_pending true, brought_forward_utc). New socially-scaffolded rule-population pathway registered as structural slots only: **ARC-077** (parent, peer to ARC-062 top-down / ARC-064 bottom-up, feeds ARC-063) + **MECH-337** (caregiver-scaffolded population, "in" face) + **MECH-338** (cue-driven context-bound retrieval, "cue pipeline" / "select" face); hippocampal-rollout-eligibility "out" face cross-referenced to existing ARC-063, not re-registered. claims 645 -> 648; all carry implementation_prerequisites HARD ORDERING GATE + lit_conf=0. NO ARC-062 posture change (GAP-B stays blocked, owned by V3-EXQ-543i/543j); brought forward on the independent-need rationale. | null (lit-pull TBD via /lit-pull) | 2026-05-18 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `partial`,
 `done`, `deferred`, `registered`. `registered` = claims registered in
@@ -487,6 +498,73 @@ dissociation, C4 cross-seed variation).
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-18 - ARC-063 brought forward (V4 -> V3) + socially-scaffolded rule-population pathway registered (ARC-077 / MECH-337 / MECH-338); GAP-L lit-pull gate added
+
+Trigger (user, this session): "So the Blocked ARC-062 weak route means I
+think I now need to: create ARC-063 CandidateRule field / context-bound
+rule population; connect to cue pipeline / hippocampal rollout /
+caregiver-scaffolded exposure." Scope pinned via AskUserQuestion (4
+questions): (1) scope = bring ARC-063 forward + register the sub-cluster;
+(2) 543j gate = proceed in parallel on the independent-need basis, NO
+ARC-062 posture change; (3) biology = register slot now, flag lit-pull as
+hard prereq; (4) framing = "you decide from the architecture".
+
+Finding that reframed the request: **ARC-063 already existed** (registered
+2026-05-08 as the V4-deferred strong-reading persistent flag), already
+sketching the CandidateRule field, tolerance gate, hippocampal-rollout-
+eligibility, evidence-trace records, sleep/waking asymmetry. So this was
+not a from-scratch creation but an elaborate-and-bring-forward, plus two
+genuinely-new commitments (cue pipeline + caregiver-scaffolded exposure;
+hippocampal rollout was already an ARC-063 face).
+
+Architecture decision (framing, delegated). Registered the socially-
+scaffolded / cue-driven context-bound population as a **new peer pathway
+ARC-077**, NOT a sub-mechanism of ARC-063. Reasoning: ARC-063 is the
+*field* that HOLDS candidate rules; MECH-309's core point is that
+gradient/Bayesian learners do not invent the hypothesis space, so "where
+do candidate rules COME from" is architecturally primary, and the cluster
+already partitions rule-*sources* by pathway (ARC-062 top-down, ARC-064
+bottom-up, ARC-065 upstream diversity). Caregiver-scaffolded population is
+the third source -- biologically the dominant one -- so it is peer to
+ARC-062/ARC-064 and feeds the ARC-063 field rather than living inside it.
+Three faces of the field made explicit: population/"in" = MECH-337
+(caregiver-scaffolded, context-bound by construction); select/"cue
+pipeline" = MECH-338 (cue-driven context-bound retrieval, feeds the
+existing ARC-063 Tolerance-Principle gate); express/"out" = hippocampal-
+rollout-eligibility, already an ARC-063 commitment (cross-referenced, not
+re-registered).
+
+Applied (single-pass, REE_assembly): claims.yaml -- ARC-063
+implementation_phase v4 -> v3, v3_pending false -> true,
+brought_forward_utc 2026-05-18, bring-forward evidence_quality_note,
+stale MECH-310..313 sub-claim list corrected (MECH-312/313 are now taken
+by unrelated claims -- must not be reused), notes V3-Pending-Gate text
+updated; ARC-077 + MECH-337 + MECH-338 registered (645 -> 648 claims) as
+structural slots with implementation_prerequisites HARD ORDERING GATE;
+MECH-309.depends_on += ARC-077; ARC-062 notes CROSS-REF added (explicit
+NO posture change -- still candidate / substrate_ceiling /
+pending_retest_after_substrate / narrow_supports_flag). Architecture doc
+rule_apprehension_layer.md preamble + new "Socially-scaffolded rule-
+population pathway" section + corrected sub-claim landscape. Plan-doc:
+scope_claims += ARC-077/MECH-337/MECH-338; GAP-L node added (this gate);
+status-table row; this entry.
+
+GAP-L (the gate). Two independent HARD gates before ANY implementation:
+(1) caregiver-scaffolding / cued-recall / context-dependent rule-
+acquisition biology lit-pull (Csibra & Gergely; Vygotsky ZPD;
+Wood/Bruner/Ross; Tomasello; joint attention / social referencing;
+Godden & Baddeley; Tulving & Thomson) -- standing biology-before-formal-
+definitions rule; (2) a caregiver/teacher-agent substrate, which DOES
+NOT EXIST in V3 (single-agent). lit_conf=0; must not promote past
+candidate until GAP-L discharged.
+
+NO ARC-062 posture change. GAP-B stays blocked, owned by V3-EXQ-543i
+(/failure-autopsy of the diff-OFF non-reproduction) + the in-flight
+V3-EXQ-543j cross-machine confirmation. ARC-063 was brought forward on
+the independent-need rationale (moral-residue attribution + clinically-
+realistic failure modes are needed regardless of the weak-route
+verdict), explicitly NOT a declaration that the weak route is dead.
 
 ### 2026-05-18 - Closure-map reconciliation: confirmed failure_autopsy_V3-EXQ-543h applied; GAP-B in-progress -> blocked, owner 543h -> 543i
 

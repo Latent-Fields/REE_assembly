@@ -26160,7 +26160,8 @@
     - MECH-256    # SD-029 successor mechanism that consumes the same enriched event stream
     - MECH-269    # V_s monostrategy: representational precondition for any rule-apprehension layer
     - ARC-062     # rule-apprehension architectural slot, weak reading -- the falsifying-condition for MECH-309
-    - ARC-063     # rule-apprehension architectural slot, strong reading -- the V4-deferred form
+    - ARC-063     # rule-apprehension architectural slot, strong reading (brought forward to V3 2026-05-18)
+    - ARC-077     # socially-scaffolded rule-population pathway -- the most direct architectural answer to MECH-309 (caregiver supplies the hypotheses the agent does not invent)
   functional_restatement: >
     Strict Bayesian inference does not invent hypotheses: the support of the
     posterior is the support of the prior. Non-parametric Bayes (CRP, HDP)
@@ -26492,6 +26493,19 @@
     commitment first, and only formalising the heavier biology-grounded
     form (ARC-063) if the simple form fails or is insufficient at scale.
     This matches the methodological note in MECH-309's functional_restatement.
+
+    CROSS-REF 2026-05-18 (NO posture change to ARC-062). The ARC-063
+    strong reading was brought forward (implementation_phase v4 -> v3)
+    and a socially-scaffolded rule-population sub-cluster registered
+    (ARC-077 / MECH-337 / MECH-338), on the independent-need rationale
+    -- NOT because the weak route is declared dead. ARC-062 remains
+    candidate / epistemic_category=substrate_ceiling /
+    pending_retest_after_substrate / narrow_supports_flag, UNCHANGED.
+    The weak-route verdict is still owned by V3-EXQ-543i
+    (/failure-autopsy of the diff-OFF non-reproduction) and the
+    in-flight V3-EXQ-543j cross-machine confirmation, ahead of
+    ARC-062/MECH-309 governance. This cross-reference does not alter
+    ARC-062's status, confidence, flags, conflict ratio, or phase.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: ARC-063
@@ -26500,13 +26514,17 @@
   subject: policy.rule_apprehension_layer.strong_reading
   polarity: asserts
   status: candidate
-  implementation_phase: v4
-  v3_pending: false
+  implementation_phase: v3
+  v3_pending: true
   claim_level: architectural
   registered_utc: "2026-05-08"
+  brought_forward_utc: "2026-05-18"
   depends_on:
     - MECH-309    # the diagnostic claim that motivates the rule-apprehension layer cluster
     - ARC-062     # the V3 weak-reading first pass; ARC-063 is its biology-faithful elaboration or successor
+    - ARC-077     # 2026-05-18 bring-forward: the socially-scaffolded rule-population pathway that fills this field (peer to ARC-062 top-down / ARC-064 bottom-up)
+    - MECH-337    # child of ARC-077: caregiver-scaffolded rule-population mechanism (the "in" face of this field)
+    - MECH-338    # child of ARC-077: cue-driven context-bound rule retrieval (the context-bound rollout-eligibility gate / "select" face of this field)
     - SD-029      # the downstream measurement; ARC-063 carries SD-029 the rest of the way if ARC-062 cannot
     - SD-033a     # rule_state substrate (committed-rule side); ARC-063 sits upstream of SD-033a in the apprehension -> commitment pipeline
     - SD-034      # closure operator for committed rule_states; complementary to ARC-063 on the release side
@@ -26584,6 +26602,46 @@
     and surfaces it as a known V4 architectural commitment in the
     promotion / demotion recommendations report.
   evidence_quality_note: >
+    BROUGHT FORWARD 2026-05-18 (user-directed; scope-gated via
+    AskUserQuestion). Trigger: the ARC-062 weak route is blocked
+    (GAP-B status=blocked; the 543f/543g/543h falsifier cluster is
+    non_contributory, epistemic_category=substrate_ceiling; ARC-062 /
+    MECH-309 carry narrow_supports_flag with ZERO reliable contributory
+    trained-policy evidence). Per the claims.yaml decision tree
+    (escape -> ARC-062 weak reading viable; still collapses -> MECH-309
+    strong-confirmed -> ARC-063/V4), and on the independent-need
+    rationale (ARC-063 is required regardless of the weak-route verdict
+    for moral-residue attribution and clinically-realistic failure
+    modes), ARC-063 is promoted from V4-deferred persistent-flag to an
+    active design target: implementation_phase v4 -> v3, v3_pending
+    false -> true, brought_forward_utc 2026-05-18. It will now surface
+    under the V3-Pending Gate as hold_pending_v3_substrate rather than
+    "V4-deferred architectural commitments".
+
+    NO change to ARC-062 posture this session. V3-EXQ-543j is in flight
+    (concurrent active session) to cross-machine-confirm the 543i
+    differential-heads result and resolve the weak-route verdict before
+    ARC-062/MECH-309 governance; ARC-063 is brought forward in parallel
+    on the independent-need basis, NOT as a declaration that the weak
+    route is dead. ARC-062 stays candidate / substrate_ceiling /
+    pending_retest_after_substrate, unchanged.
+
+    HARD PREREQUISITE -- biology lit-pull (NOT YET DISCHARGED). Per the
+    standing biology-before-formal-definitions rule, the
+    socially-scaffolded population sub-cluster (ARC-077 / MECH-337 /
+    MECH-338, registered 2026-05-18 alongside this bring-forward) and
+    any V4 strong-reading-internal machinery are registered as
+    structural slots ONLY. No implementation (V3 or V4) of ARC-063 or
+    its ARC-077 population sub-cluster may begin until a caregiver-
+    scaffolding / cued-recall / context-dependent rule-acquisition
+    lit-pull is discharged, covering at minimum: Csibra & Gergely
+    natural pedagogy / ostensive cueing; Vygotsky ZPD + Wood/Bruner/Ross
+    scaffolding; Tomasello shared-intentionality + early rule
+    acquisition; joint attention + social referencing; context-dependent
+    / cued recall (Godden & Baddeley, Tulving encoding-specificity);
+    plus the lit base already named below. See
+    arc_062_rule_apprehension_plan.md GAP-L (lit-pull prerequisite node).
+
     Registered 2026-05-08 as the persistent V4-deferred flag for the
     strong-reading rule-apprehension cluster. Implementation cost
     estimate: substantial -- this is a V4 architectural commitment
@@ -26602,37 +26660,263 @@
     PTSD-schema, etc.). The biology-before-formal-definitions principle
     (memory feedback file) applies here.
 
-    Sub-claims to register if / when ARC-063 is taken up for V4
-    implementation, drawn directly from the thought-intake doc:
-      MECH-310 -- tolerance-gated rule-availability mechanism
-      MECH-311 -- rules-as-rollout-selection-structures mechanism
-      MECH-312 -- rule-evidence-trace records mechanism
-      MECH-313 -- waking-vs-sleep rule-refinement asymmetry mechanism
-      INV-XXX -- action-requires-collapse invariant (already covered
-                 by INV-COMMITMENT-001 candidate in intake; needs V4 ID)
-      INV-XXX -- no-waking-rule-is-final invariant (INV-UNCERTAINTY-001
-                 candidate)
+    Sub-claim landscape (corrected 2026-05-18 during the bring-forward;
+    the original 2026-05-08 list assigned MECH-310..313 as placeholders
+    and is now PARTLY STALE -- two of those IDs were subsequently used
+    for unrelated claims and MUST NOT be reused for the strong reading):
 
-    These are NOT registered as separate top-level claims now, to avoid
-    premature commitment. They are listed here so the cluster is
-    machine-grep-able (e.g., a future indexer query for "ARC-063
-    sub-claims to register" returns this list).
+      ACTIVE -- socially-scaffolded population sub-cluster, registered
+      2026-05-18 (the "where do candidate rules come from" answer; peer
+      to ARC-062 top-down / ARC-064 bottom-up; fills this field):
+        ARC-077  -- socially-scaffolded rule-population pathway (parent)
+        MECH-337 -- caregiver-scaffolded rule-population mechanism
+        MECH-338 -- cue-driven context-bound rule retrieval (cue pipeline)
+
+      STILL-UNREGISTERED strong-reading-internal machinery (needs FRESH
+      IDs at V4 take-up -- the old placeholder IDs are no longer valid):
+        - tolerance-gated rule-availability mechanism  (placeholder was
+          "MECH-310"; MECH-310 is still free but assign at take-up)
+        - rules-as-rollout-selection-structures mechanism (placeholder
+          was "MECH-311"; MECH-311 still free)
+        - rule-evidence-trace records mechanism  (placeholder "MECH-312"
+          is NOW TAKEN by policy.rule_arbitration_multi_variable -- do
+          NOT reuse; allocate a fresh MECH ID)
+        - waking-vs-sleep rule-refinement asymmetry mechanism
+          (placeholder "MECH-313" is NOW TAKEN by
+          policy.stochastic_noise_floor_lc_ne_tonic_analog -- do NOT
+          reuse; allocate a fresh MECH ID)
+        - INV: action-requires-collapse (INV-COMMITMENT-001 candidate
+          in intake; needs a real INV ID at take-up)
+        - INV: no-waking-rule-is-final (INV-UNCERTAINTY-001 candidate)
+
+    The ACTIVE sub-cluster is registered now (structural slots, gated on
+    the GAP-L biology lit-pull). The strong-reading-internal machinery
+    stays unregistered to avoid premature commitment; this list is kept
+    machine-grep-able (indexer query "ARC-063 sub-claim landscape").
   notes: >
     Persistent flag function. ARC-063 is the user-requested mechanism
     by which the strong reading of rule apprehension stays visible to
     every future governance cycle and every memory walk. Three places
     where it surfaces:
-      1. claims.yaml entry with implementation_phase=v4 -- the V3-
-         Pending Gate excludes it from current promotion logic but
-         surfaces it under "V4-deferred architectural commitments"
-         in promotion_demotion_recommendations.md.
+      1. claims.yaml entry. As of the 2026-05-18 bring-forward
+         implementation_phase=v3 / v3_pending=true -- the V3-Pending
+         Gate now SURFACES it as hold_pending_v3_substrate (no longer
+         under "V4-deferred architectural commitments"). Pre-2026-05-18
+         it was implementation_phase=v4 and excluded from promotion
+         logic; that exclusion no longer applies.
       2. Cross-reference network -- depends_on / depended_by relations
-         from MECH-309, ARC-062, SD-054, SD-029, SD-033a, SD-034 keep
-         it linked from the live experimental cluster.
+         from MECH-309, ARC-062, ARC-077, MECH-337, MECH-338, SD-054,
+         SD-029, SD-033a, SD-034 keep it linked from the live
+         experimental cluster.
       3. rule_apprehension_layer.md design doc -- the architecture-
          doc-level anchor that any future designer working on rule-
          apprehension, sleep-vs-waking refinement, moral-residue
          attribution, or schema-failure-mode pathology will surface.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: ARC-077
+  title: "Socially-scaffolded rule-population pathway: the third rule-source, peer to ARC-062 (top-down gated-policy apprehension) and ARC-064 (bottom-up behavioural-pattern extraction), and upstream-fed by ARC-065 (behavioural diversity generation). Architectural commitment: in biology the candidate-rule hypothesis space is not invented by the agent alone -- caregivers populate it from outside via scaffolded exposure (Vygotsky ZPD; Wood/Bruner/Ross scaffolding; Csibra & Gergely ostensive cueing / natural pedagogy; Tomasello shared intentionality; joint attention / social referencing). This is the most direct architectural answer to MECH-309: a non-Bayesian rule-creator that does not invent its own hypotheses receives candidate regularities, context-bound to the scaffolding episode, from a caregiver. The pathway fills the ARC-063 CandidateRule field (the 'in' face); MECH-337 is the population mechanism; MECH-338 is the cue-driven context-bound retrieval mechanism (the 'select' face). Registered 2026-05-18 as a structural slot only -- hard-gated on the GAP-L biology lit-pull and on a caregiver/teacher-agent substrate that does not yet exist in V3."
+  claim_type: architectural_commitment
+  subject: rule_apprehension.socially_scaffolded_rule_population_pathway
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-18"
+  depends_on:
+    - MECH-309    # the diagnostic this pathway most directly answers (Bayesian/gradient learners do not invent the hypothesis space; a caregiver supplies it)
+    - ARC-063     # the CandidateRule field this pathway populates ('in' face); brought forward 2026-05-18
+    - ARC-065     # upstream behavioural-diversity generation -- a precondition (a scaffolded candidate still needs behavioural variety to be exercised against)
+    - ARC-062     # sibling top-down route whose blockage (substrate_ceiling) motivated bringing the strong-reading cluster forward
+    - ARC-064     # peer bottom-up route; ARC-077 is the third (socially-sourced) member of the rule-source triad
+    - MECH-269    # V_s monostrategy: representational precondition (a scaffolded context must be discriminably represented before it can tag a CandidateRule)
+  functional_restatement: >
+    MECH-309 establishes that a parametric-policy / Bayesian agent does
+    not invent the hypothesis space it updates over. ARC-062 (top-down)
+    tries to make gradient pressure discover a discriminative cut;
+    ARC-064 (bottom-up) tries to compress regularities out of the
+    agent's own observed behaviour. ARC-077 registers the third and
+    biologically dominant source: the candidate-rule space is populated
+    from OUTSIDE the agent by a caregiver who structures exposure so
+    that a regularity the agent could not have invented alone becomes
+    apprehensible.
+
+    Three faces of the ARC-063 field, made explicit by this
+    bring-forward:
+      - population ("in"): MECH-337 -- caregiver-scaffolded exposure /
+        ostensive cueing writes candidate regularities into the
+        CandidateRule field, tagged with the scaffolding context
+        (context-bound by construction -- this is what "context-bound
+        rule population" means: a candidate enters the field already
+        bound to the context in which it was scaffolded).
+      - select ("the cue pipeline"): MECH-338 -- environmental /
+        internal cues match CandidateRule context tags to gate
+        rollout-eligibility; context-dependent / cued recall
+        (encoding-specificity). A rule populated in a context becomes
+        available again when that context (or its cue) recurs.
+      - express ("out"): hippocampal-rollout-eligibility shaping --
+        already an ARC-063 commitment (rules bias which futures are
+        easy to imagine). ARC-077 does NOT re-register this; it
+        cross-references the existing ARC-063 mechanism.
+
+    Why this is peer to ARC-062 / ARC-064, not a sub-mechanism of
+    ARC-063: ARC-063 is the field (the representation that HOLDS
+    candidate rules). The question "where do candidate rules COME
+    from" is architecturally primary (it is MECH-309's whole point),
+    and the cluster already partitions rule-sources by pathway
+    (ARC-062 top-down, ARC-064 bottom-up, ARC-065 upstream diversity).
+    Socially-scaffolded population is the third source and gets a
+    peer ARC-level slot; it feeds ARC-063 rather than living inside it.
+
+    Falsifiable framing (V4-bound; not V3-tractable until the
+    substrate exists): an agent with ARC-065 diversity + the ARC-063
+    field but NO socially-scaffolded population channel should fail to
+    acquire context-bound rules whose discriminative cut is a function
+    of agent/episode history rather than current observation
+    (sharpening ARC-063 falsifiable-prediction (a)); adding a
+    caregiver-scaffolding channel (MECH-337) + cue-driven retrieval
+    (MECH-338) should rescue exactly that class. This is the V4
+    validation gate; it presupposes a caregiver/teacher-agent
+    substrate REE does not have today.
+  evidence_quality_note: >
+    Registered 2026-05-18 as a structural slot during the ARC-063
+    bring-forward (user-directed; framing decision "you decide from
+    the architecture" -> registered as a new peer pathway, not a
+    sub-mechanism of ARC-063; reasoning recorded in
+    rule_apprehension_layer.md and the arc_062 plan decision-log).
+
+    NO experimental evidence. NO biology lit-pull yet -- this is the
+    explicitly-approved "register slot now, flag lit-pull as prereq"
+    path (the same posture under which ARC-063 itself was registered
+    2026-05-08). The biology here is strong and well-known but has NOT
+    been pulled into evidence/literature/ for this cluster: Vygotsky
+    ZPD; Wood, Bruner & Ross 1976 (scaffolding); Csibra & Gergely 2009
+    (natural pedagogy / ostensive cueing); Tomasello (shared
+    intentionality, early rule acquisition); joint attention + social
+    referencing; context-dependent / cued recall (Godden & Baddeley
+    1975; Tulving & Thomson 1973 encoding-specificity). Until the
+    GAP-L lit-pull is discharged this claim carries lit_conf=0 and
+    must NOT be promoted past candidate.
+  implementation_prerequisites: >
+    HARD ORDERING GATE (none currently satisfied). ARC-077 / MECH-337
+    / MECH-338 are NOT implementable or schedulable until ALL of:
+      (1) GAP-L biology lit-pull discharged (caregiver-scaffolding /
+          cued-recall / context-dependent rule-acquisition) -- the
+          standing biology-before-formal-definitions rule;
+      (2) ARC-063 CandidateRule field prototyped (the thing this
+          pathway populates must exist);
+      (3) a caregiver / teacher-agent substrate -- DOES NOT EXIST in
+          V3 today (V3 is single-agent; scaffolded exposure needs a
+          second agent or an environment that delivers ostensive
+          cues). This is a required NEW substrate, not an assumed one.
+    implementation_phase=v3 here means "active V3 design target under
+    the V3-Pending Gate", NOT "V3-implementable now". The gate above
+    is the honest blocker.
+  notes: >
+    Cross-references: ARC-063 (the field; depends_on ARC-077 after the
+    2026-05-18 bring-forward), MECH-309 (the diagnostic), ARC-062 /
+    ARC-064 (sibling/peer rule-source routes), ARC-065 (upstream
+    diversity), arc_062_rule_apprehension_plan.md GAP-L (the lit-pull
+    prerequisite node) + the 2026-05-18 decision-log entry,
+    rule_apprehension_layer.md (the "Socially-scaffolded rule-
+    population pathway" section).
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-337
+  title: "Caregiver-scaffolded rule-population mechanism (the 'in' face of the ARC-063 CandidateRule field). A caregiver / teacher agent structures the agent's exposure (Vygotsky ZPD; Wood/Bruner/Ross scaffolding) and marks regularities ostensively (Csibra & Gergely natural pedagogy); the marked regularity is written into the ARC-063 CandidateRule field as a candidate the agent could not have invented alone, tagged with the scaffolding context. Population is context-bound by construction -- this is the concrete mechanism behind 'context-bound rule population'. Child of ARC-077. Structural slot only; hard-gated on the GAP-L biology lit-pull and a caregiver-agent substrate that does not exist in V3."
+  claim_type: mechanism_hypothesis
+  subject: rule_apprehension.caregiver_scaffolded_rule_population
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-18"
+  depends_on:
+    - ARC-077     # parent pathway
+    - ARC-063     # the CandidateRule field this mechanism writes into
+    - MECH-309    # the diagnostic motivating an external rule source
+  functional_restatement: >
+    The mechanism by which a candidate regularity enters the ARC-063
+    field from outside the agent. A caregiver/teacher agent (i) selects
+    exposure within the agent's zone of proximal development (not too
+    easy, not unlearnable), and (ii) ostensively marks the regularity
+    (gaze, pointing, contingent demonstration, infant-directed
+    emphasis -- the natural-pedagogy cue set). The marked regularity is
+    instantiated as an ARC-063 CandidateRule with status=latent, its
+    context tags populated from the scaffolding episode (place, task,
+    caregiver identity, the cue itself). Because the candidate is born
+    with context tags, retrieval is later cue-addressable (MECH-338).
+    Distinct from ARC-064 bottom-up extraction: the regularity is NOT
+    compressed out of the agent's own behaviour history -- it is
+    supplied and marked by another agent, which is why it can carry
+    structure the agent's own exploration would not have generated.
+  evidence_quality_note: >
+    Registered 2026-05-18 as a structural slot (child of ARC-077; same
+    "register slot now, lit-pull as prereq" posture). NO experimental
+    evidence, NO lit-pull yet (lit_conf=0). Biology to be pulled under
+    GAP-L: Csibra & Gergely 2009 natural pedagogy; Wood/Bruner/Ross
+    1976 scaffolding; Vygotsky ZPD; Tomasello shared intentionality;
+    infant-directed-interaction / ostensive-cue literature. Must NOT
+    be promoted past candidate until GAP-L is discharged.
+  implementation_prerequisites: >
+    Inherits the ARC-077 HARD ORDERING GATE (GAP-L lit-pull + ARC-063
+    field prototyped + caregiver/teacher-agent substrate, none of which
+    exists today). implementation_phase=v3 = active design target under
+    the V3-Pending Gate, NOT V3-implementable now.
+  notes: >
+    The "in" face of the ARC-063 three-face model (in = MECH-337;
+    select = MECH-338; out = ARC-063 hippocampal-rollout-eligibility,
+    not re-registered here). See rule_apprehension_layer.md.
+  location: docs/architecture/rule_apprehension_layer.md
+
+- id: MECH-338
+  title: "Cue-driven context-bound rule retrieval (the 'cue pipeline' / 'select' face of the ARC-063 CandidateRule field). Environmental or internal cues are matched against CandidateRule context tags to gate rollout-eligibility: a rule populated in a context becomes available again when that context, or a cue associated with it, recurs (context-dependent / cued recall; Tulving & Thomson encoding-specificity; Godden & Baddeley context-dependent memory). This is the retrieval pay-off of context-bound population (MECH-337) and the access gate that decides which CandidateRules enter hippocampal rollout. Child of ARC-077. Structural slot only; hard-gated on the GAP-L biology lit-pull."
+  claim_type: mechanism_hypothesis
+  subject: rule_apprehension.cue_driven_context_bound_rule_retrieval
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-18"
+  depends_on:
+    - ARC-077     # parent pathway
+    - ARC-063     # the CandidateRule field whose rollout-eligibility this gates
+    - MECH-337    # consumes the context tags written at population time
+    - MECH-269    # context must be discriminably represented before a cue can address it
+  functional_restatement: >
+    The retrieval / access mechanism. CandidateRules carry context
+    tags (written at population time by MECH-337, or by any other
+    source). A cue -- an environmental feature, an interoceptive
+    state, a caregiver signal, or a reinstated context -- is matched
+    against those tags; matching CandidateRules are promoted toward
+    rollout_eligible (the ARC-063 Tolerance-Principle availability gate
+    still decides final eligibility; MECH-338 supplies the
+    cue-addressed CANDIDATE SET it operates over). This is the
+    mechanism that makes context-bound population pay off: a rule
+    scaffolded in context C is dormant until C (or a learned cue for
+    C) recurs, then becomes rollout-eligible. It also sharpens
+    ARC-063 falsifiable-prediction (a): the discriminative cut can be
+    a function of episode/agent history because the cue, not just the
+    current observation, addresses the rule.
+  evidence_quality_note: >
+    Registered 2026-05-18 as a structural slot (child of ARC-077).
+    NO experimental evidence, NO lit-pull yet (lit_conf=0). Biology
+    under GAP-L: Tulving & Thomson 1973 encoding-specificity; Godden
+    & Baddeley 1975 context-dependent memory; reinstatement /
+    cue-dependent retrieval literature; hippocampal pattern-completion
+    as the biological substrate. Must NOT be promoted past candidate
+    until GAP-L is discharged.
+  implementation_prerequisites: >
+    Inherits the ARC-077 HARD ORDERING GATE. implementation_phase=v3 =
+    active design target under the V3-Pending Gate, NOT
+    V3-implementable now.
+  notes: >
+    The "select" face of the ARC-063 three-face model. Feeds the
+    existing ARC-063 Tolerance-Principle availability gate; does not
+    replace it. See rule_apprehension_layer.md.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: ARC-065

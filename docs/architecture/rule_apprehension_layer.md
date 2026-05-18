@@ -4,28 +4,111 @@ nav_exclude: true
 
 # Rule Apprehension Layer (architecture anchor)
 
-**Status:** registered architectural slot; weak reading (ARC-062) at implementation_phase=v3 candidate, strong reading (ARC-063) at implementation_phase=v4 candidate. Falsifiable claim: MECH-309 (monomodal collapse as equilibrium without rule-apprehender).
+**Status:** registered architectural slot. Weak reading (ARC-062) at implementation_phase=v3 candidate, **BLOCKED** (GAP-B status=blocked; 543f/543g/543h falsifier cluster non_contributory, epistemic_category=substrate_ceiling; weak-route verdict in flight via V3-EXQ-543i /failure-autopsy + V3-EXQ-543j cross-machine confirm). Strong reading (ARC-063) **brought forward 2026-05-18** from implementation_phase=v4 to v3 candidate (user-directed, independent-need rationale). New socially-scaffolded rule-population pathway **ARC-077** (+ children MECH-337 / MECH-338) registered 2026-05-18 as structural slots, hard-gated on the GAP-L biology lit-pull. Falsifiable claim: MECH-309 (monomodal collapse as equilibrium without rule-apprehender).
 
 **Origin:** this document was promoted from `docs/thoughts/2026-05-04_Waking_rule_apprehension_later_sleep_schema.md` to `docs/architecture/rule_apprehension_layer.md` on 2026-05-08 after the SD-054 substrate-purpose-validation discussion identified the rule-apprehension layer as the proximate next-stage architectural commitment that explains the EXQ-433e/f / 523-series non_contributory pattern. The body of the doc is preserved verbatim from the original intake; this preamble adds the cross-reference scaffolding.
 
 **Cross-references:**
 - MECH-309 (claims.yaml) -- the diagnostic claim ("monomodal collapse is the equilibrium of a parametric-policy agent without a rule-apprehension layer"). MECH-309 is falsifiable by the ARC-062 weak-reading experiment.
 - ARC-062 (claims.yaml) -- weak-reading architectural slot: gated-policy architecture with learned context discriminator. V3 first pass; engineering-cheap.
-- ARC-063 (claims.yaml) -- strong-reading architectural slot: distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, waking-vs-sleep refinement asymmetry. V4-deferred. Persistent flag for future governance cycles.
+- ARC-063 (claims.yaml) -- strong-reading architectural slot: distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, waking-vs-sleep refinement asymmetry. **Brought forward 2026-05-18** (implementation_phase v4 -> v3, v3_pending false -> true). Now the *field* that the ARC-077 population pathway fills.
+- ARC-077 (claims.yaml) -- **socially-scaffolded rule-population pathway** (registered 2026-05-18). The third rule-source, peer to ARC-062 (top-down) and ARC-064 (bottom-up), upstream-fed by ARC-065 (diversity). Caregivers populate the candidate-rule space from outside the agent. Structural slot; hard-gated on the GAP-L biology lit-pull + a caregiver-agent substrate that does not exist in V3.
+- MECH-337 (claims.yaml) -- caregiver-scaffolded rule-population mechanism (child of ARC-077; the "in" face of the ARC-063 field).
+- MECH-338 (claims.yaml) -- cue-driven context-bound rule retrieval (child of ARC-077; the "cue pipeline" / "select" face of the ARC-063 field).
+- ARC-064 / ARC-065 (claims.yaml) -- peer bottom-up rule-discovery route / upstream behavioural-diversity-generation pathway. ARC-077 is the third member of the rule-source triad they belong to.
 - SD-054 (claims.yaml + sd_054_reef_enrichment_substrate.md) -- the substrate that exposes the gap between substrate-readiness and substrate-purpose-validation under trained policy.
 - SD-029, MECH-256, MECH-269 -- the downstream measurement and representational precondition cluster.
 - SD-033a (sd_033a_lateral_pfc_analog.md) -- the *committed* rule_state substrate; sits downstream of the apprehension layer on the apprehension -> commitment pipeline.
 - SD-034 (sd_034_governance_closure_operator.md) -- closure operator on the release side; complementary to ARC-063.
 
-**Sub-claim cluster to register if / when ARC-063 is taken up for V4 implementation** (listed in the ARC-063 evidence_quality_note for machine-grep-ability):
-- MECH-310 -- tolerance-gated rule-availability mechanism
-- MECH-311 -- rules-as-rollout-selection-structures mechanism
-- MECH-312 -- rule-evidence-trace records mechanism
-- MECH-313 -- waking-vs-sleep rule-refinement asymmetry mechanism
-- INV-XXX -- action-requires-collapse invariant
-- INV-XXX -- no-waking-rule-is-final invariant
+## Socially-scaffolded rule-population pathway (ARC-077) -- 2026-05-18 bring-forward
 
-These are NOT registered as separate top-level claims now, to avoid premature commitment. The intake-doc-original "Proposed REE claims" section below preserves the original IDs (MECH-TOLERANCE-ACCESS-001 etc.); those names are the intake-doc internal labels and do not match REE's MECH-NNN registry. Treat the labels as design tokens, not registered IDs.
+**Trigger.** The ARC-062 weak route is blocked: GAP-B status=blocked; the
+543f/543g/543h falsifier cluster is non_contributory with
+epistemic_category=substrate_ceiling; ARC-062 / MECH-309 carry
+narrow_supports_flag (zero reliable contributory trained-policy
+evidence). The weak-route verdict is still in flight (V3-EXQ-543i
+/failure-autopsy of the diff-OFF non-reproduction + the concurrent
+V3-EXQ-543j cross-machine confirmation, ahead of ARC-062/MECH-309
+governance). On the user's direction and on the independent-need
+rationale (ARC-063 is required regardless of the weak-route verdict for
+moral-residue attribution and clinically-realistic failure modes), the
+strong reading was brought forward and a third rule-source pathway
+registered. **ARC-062 posture is unchanged by this work.**
+
+**Why a new peer pathway, not a sub-mechanism of ARC-063 (framing
+decision, user delegated "you decide from the architecture").** ARC-063
+is the *field* -- the representation that HOLDS candidate rules. MECH-309's
+whole point is that gradient/Bayesian learners do not invent the
+hypothesis space, so "where do candidate rules COME from" is the
+architecturally primary question, and the cluster already partitions
+rule-sources by pathway: ARC-062 top-down (gradient pressure finds a
+cut), ARC-064 bottom-up (compress regularities out of own behaviour),
+ARC-065 upstream (behavioural diversity to cluster over). The
+biologically dominant source is none of these: caregivers populate the
+infant's candidate-rule space from outside via scaffolded exposure.
+That is a third *source*, peer to ARC-062 / ARC-064, that feeds the
+ARC-063 field -- so it gets its own ARC-level slot (ARC-077), not a
+slot inside ARC-063.
+
+**Three faces of the ARC-063 field, made explicit:**
+- **population ("in") -- MECH-337:** a caregiver/teacher agent structures
+  exposure within the zone of proximal development and ostensively marks
+  a regularity; it is written into the ARC-063 field as a CandidateRule
+  the agent could not have invented alone, *tagged with the scaffolding
+  context*. Population is context-bound by construction -- this is what
+  "context-bound rule population" means.
+- **select ("the cue pipeline") -- MECH-338:** environmental/internal
+  cues are matched against CandidateRule context tags to gate
+  rollout-eligibility (context-dependent / cued recall;
+  encoding-specificity). A rule scaffolded in context C is dormant until
+  C, or a learned cue for C, recurs. Feeds -- does not replace -- the
+  ARC-063 Tolerance-Principle availability gate.
+- **express ("out"):** hippocampal-rollout-eligibility shaping. This is
+  *already* an ARC-063 commitment (rules bias which futures are easy to
+  imagine); ARC-077 cross-references it rather than re-registering it.
+
+**HARD PREREQUISITE -- GAP-L biology lit-pull (NOT yet discharged).**
+Per the standing biology-before-formal-definitions rule, ARC-077 /
+MECH-337 / MECH-338 are registered as **structural slots only**
+(lit_conf=0, must not be promoted past candidate). No implementation
+(V3 or V4) may begin until a caregiver-scaffolding / cued-recall /
+context-dependent rule-acquisition lit-pull is discharged: Csibra &
+Gergely natural pedagogy / ostensive cueing; Vygotsky ZPD +
+Wood/Bruner/Ross scaffolding; Tomasello shared intentionality;
+joint attention / social referencing; Godden & Baddeley
+context-dependent memory; Tulving & Thomson encoding-specificity.
+A second hard gate: the pathway needs a caregiver/teacher-agent
+substrate, which **does not exist in V3** (single-agent). See
+`arc_062_rule_apprehension_plan.md` GAP-L and the 2026-05-18
+decision-log entry. `implementation_phase=v3` here means "active V3
+design target under the V3-Pending Gate", not "V3-implementable now".
+
+## Strong-reading-internal sub-claim landscape (corrected 2026-05-18)
+
+The original 2026-05-08 placeholder list assigned MECH-310..313 and is
+now **partly stale** -- two of those IDs were reused for unrelated
+claims and MUST NOT be reused for the strong reading:
+- *tolerance-gated rule-availability mechanism* -- placeholder was
+  "MECH-310"; MECH-310 still free, allocate at V4 take-up.
+- *rules-as-rollout-selection-structures mechanism* -- placeholder was
+  "MECH-311"; MECH-311 still free.
+- *rule-evidence-trace records mechanism* -- placeholder "MECH-312" is
+  **NOW TAKEN** (policy.rule_arbitration_multi_variable); allocate a
+  fresh ID.
+- *waking-vs-sleep rule-refinement asymmetry mechanism* -- placeholder
+  "MECH-313" is **NOW TAKEN** (policy.stochastic_noise_floor_lc_ne_tonic_analog);
+  allocate a fresh ID.
+- INV: action-requires-collapse (INV-COMMITMENT-001 candidate in intake).
+- INV: no-waking-rule-is-final (INV-UNCERTAINTY-001 candidate).
+
+These strong-reading-internal mechanisms stay unregistered to avoid
+premature commitment. The ACTIVE registered sub-cluster is the
+socially-scaffolded population triad above (ARC-077 / MECH-337 /
+MECH-338). The intake-doc-original "Proposed REE claims" section below
+preserves the original intake labels (MECH-TOLERANCE-ACCESS-001 etc.);
+those are intake-doc internal design tokens and do not match REE's
+MECH-NNN registry -- treat as design tokens, not registered IDs.
 
 ---
 
