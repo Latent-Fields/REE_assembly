@@ -1,0 +1,88 @@
+{
+  "run_id": "v3_exq_584_gap7_traj_cosine_validation_20260518T222522Z_v3",
+  "queue_id": "V3-EXQ-584",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_584_gap7_traj_cosine_validation",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [],
+  "outcome": "PASS",
+  "timestamp_utc": "20260518T222522Z",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "n_episodes_per_arm": 5,
+  "mean_metric_arm1": 0.9508395727930797,
+  "all_arm0_pass": true,
+  "all_arm1_pass": true,
+  "c0_sentinel_ok": true,
+  "c1_ep2_valid": true,
+  "c2_ep3_valid": true,
+  "c3_no_mid_update": true,
+  "c4_positive_mean": true,
+  "per_seed_arm0": {
+    "0": {
+      "passed": true,
+      "c_enabled_ok": true,
+      "c_stored_ok": true,
+      "c_value_ok": true
+    },
+    "1": {
+      "passed": true,
+      "c_enabled_ok": true,
+      "c_stored_ok": true,
+      "c_value_ok": true
+    },
+    "2": {
+      "passed": true,
+      "c_enabled_ok": true,
+      "c_stored_ok": true,
+      "c_value_ok": true
+    }
+  },
+  "per_seed_arm1": {
+    "0": {
+      "passed": true,
+      "c0_ok": true,
+      "c1_ok": true,
+      "c2_ok": true,
+      "c3_ok": true,
+      "c4_ok": true,
+      "end_metrics": [
+        1.0,
+        1.0,
+        0.924095094203949,
+        0.9376681925728917
+      ]
+    },
+    "1": {
+      "passed": true,
+      "c0_ok": true,
+      "c1_ok": true,
+      "c2_ok": true,
+      "c3_ok": true,
+      "c4_ok": true,
+      "end_metrics": [
+        0.8398211449384689,
+        0.9417433294778069,
+        0.9208364711763958,
+        0.9344831363297998
+      ]
+    },
+    "2": {
+      "passed": true,
+      "c0_ok": true,
+      "c1_ok": true,
+      "c2_ok": true,
+      "c3_ok": true,
+      "c4_ok": true,
+      "end_metrics": [
+        1.0,
+        1.0,
+        0.9525771389404932,
+        0.9588503658771514
+      ]
+    }
+  }
+}
