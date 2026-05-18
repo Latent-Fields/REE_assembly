@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-18T17:50:39Z",
+  "last_tick_utc": "2026-05-18T17:51:41Z",
   "state": "running",
   "current_exq": "V3-EXQ-543i",
   "current_exq_started_utc": "2026-05-18T15:44:23.251731+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_11_both_xtal_diff",
     "runs_done": 23,
     "runs_total": 36,
-    "episodes_done": 20,
+    "episodes_done": 5,
     "episodes_total": 108,
-    "overall_pct": 64.4
+    "overall_pct": 64.0
   },
-  "seconds_elapsed": 7576,
-  "seconds_remaining": 4172,
+  "seconds_elapsed": 7638,
+  "seconds_remaining": 4217,
   "recent_lines": [
-    "Seed 1 Condition ARM_11_both_xtal_diff",
-    "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=True  differential_heads=True  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)",
     "[train] ARM_11_both_xtal_diff ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.1374",
-    "[train] ARM_11_both_xtal_diff ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.3414"
+    "[train] ARM_11_both_xtal_diff ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.3414",
+    "[train] ARM_11_both_xtal_diff ep 30/108  phase=P0  rv=0.0002  ep_reward=-1.1149",
+    "[train] ARM_11_both_xtal_diff ep 40/108  phase=P0  rv=0.0002  ep_reward=-1.1565",
+    "[probe] ARM_11_both_xtal_diff P1 ep 5/60  applicable=True  mean_tv=0.0011  max_tv=0.0019  buf=71"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
