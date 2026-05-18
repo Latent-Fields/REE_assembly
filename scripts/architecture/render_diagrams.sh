@@ -12,8 +12,13 @@ fi
 
 "${SCRIPT_DIR}/check_consistency.sh"
 
-mmdc -i "${DOCS_DIR}/architecture_static.mmd" -o "${DOCS_DIR}/architecture_static.svg"
-mmdc -i "${DOCS_DIR}/architecture_typed_dataflow.mmd" -o "${DOCS_DIR}/architecture_typed_dataflow.svg"
-mmdc -i "${DOCS_DIR}/episode_sequence.mmd" -o "${DOCS_DIR}/episode_sequence.svg"
+# Chromium on GitHub-hosted Ubuntu runners has no usable sandbox
+# (unprivileged user namespaces disabled), so mmdc's headless browser
+# must be launched with --no-sandbox via this puppeteer config.
+PUPPETEER_CONFIG="${SCRIPT_DIR}/puppeteer-config.json"
+
+mmdc -p "${PUPPETEER_CONFIG}" -i "${DOCS_DIR}/architecture_static.mmd" -o "${DOCS_DIR}/architecture_static.svg"
+mmdc -p "${PUPPETEER_CONFIG}" -i "${DOCS_DIR}/architecture_typed_dataflow.mmd" -o "${DOCS_DIR}/architecture_typed_dataflow.svg"
+mmdc -p "${PUPPETEER_CONFIG}" -i "${DOCS_DIR}/episode_sequence.mmd" -o "${DOCS_DIR}/episode_sequence.svg"
 
 echo "Rendered architecture SVGs in ${DOCS_DIR}."
