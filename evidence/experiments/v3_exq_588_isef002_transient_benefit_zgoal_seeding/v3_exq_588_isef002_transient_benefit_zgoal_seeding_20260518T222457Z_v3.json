@@ -1,0 +1,408 @@
+{
+  "run_id": "v3_exq_588_isef002_transient_benefit_zgoal_seeding_20260518T222457Z_v3",
+  "queue_id": "V3-EXQ-588",
+  "experiment_type": "v3_exq_588_isef002_transient_benefit_zgoal_seeding",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-189"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "MECH-189": "does_not_support"
+  },
+  "timestamp_utc": "20260518T222457Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 1000,
+    "steps_per_episode": 200,
+    "z_goal_crossing_threshold": 0.4,
+    "crossing_sentinel": 1001,
+    "c1_treatment_fraction": 0.7,
+    "arm0_transient_benefit_enabled": false,
+    "arm1_transient_benefit_enabled": true,
+    "arm1_transient_benefit_multiplier": 3.0,
+    "alpha_world": 0.9,
+    "z_goal_enabled": true,
+    "drive_weight": 2.0
+  },
+  "acceptance_criteria": {
+    "C1_primary_gate": "ARM_1 median first-crossing < 0.7x ARM_0 median (sentinel=1001 when never crosses)",
+    "C2_secondary_info": "ARM_1 mean transient_contacts_per_ep > ARM_0",
+    "C3_secondary_info": "ARM_1 active_episode_fraction > ARM_0"
+  },
+  "criteria_results": {
+    "C1_pass": false,
+    "C2_contacts_info": true,
+    "C3_active_fraction_info": true
+  },
+  "metrics": {
+    "arm0_median_first_crossing_episode": 1001.0,
+    "arm1_median_first_crossing_episode": 1001.0,
+    "c1_threshold": 700.6999999999999,
+    "arm0_crossings_per_seed": [
+      1001,
+      1001,
+      1001,
+      1001,
+      1001
+    ],
+    "arm1_crossings_per_seed": [
+      1001,
+      1001,
+      1001,
+      1001,
+      1001
+    ],
+    "arm0_mean_transient_contacts_per_ep": 0.0,
+    "arm1_mean_transient_contacts_per_ep": 0.028600000000000004,
+    "arm0_mean_active_fraction": 0.2366,
+    "arm1_mean_active_fraction": 0.4129999999999999
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 0.0,
+          "mean_transient_contacts_per_ep": 0.0,
+          "active_episode_fraction": 0.374,
+          "z_goal_norms_last10": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 0.0010760435834527016,
+          "mean_transient_contacts_per_ep": 0.022,
+          "active_episode_fraction": 0.434,
+          "z_goal_norms_last10": [
+            9.118814432440558e-07,
+            3.3462231385783525e-07,
+            1.2279240024781757e-07,
+            4.505966799683847e-08,
+            1.653501513487754e-08,
+            6.0676592639197224e-09,
+            2.226577366926108e-09,
+            0.007990919053554535,
+            0.0029323329217731953,
+            0.0010760435834527016
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 0.00012606900418177247,
+          "mean_transient_contacts_per_ep": 0.0,
+          "active_episode_fraction": 0.165,
+          "z_goal_norms_last10": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.018946338444948196,
+            0.006952513474971056,
+            0.0025512820575386286,
+            0.000936213880777359,
+            0.0003435513935983181,
+            0.00012606900418177247
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 3.5211600302176294e-10,
+          "mean_transient_contacts_per_ep": 0.012,
+          "active_episode_fraction": 0.383,
+          "z_goal_norms_last10": [
+            2.9183456717873923e-06,
+            1.0709105708883726e-06,
+            3.9297944454119715e-07,
+            1.4420702143524977e-07,
+            5.291794380468673e-08,
+            1.9418672891902133e-08,
+            7.12584036222097e-09,
+            2.614885419305324e-09,
+            9.595536587525544e-10,
+            3.5211600302176294e-10
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 1.2067896193457273e-07,
+          "mean_transient_contacts_per_ep": 0.0,
+          "active_episode_fraction": 0.42,
+          "z_goal_norms_last10": [
+            0.0010001900373026729,
+            0.0003670278820209205,
+            0.00013468388351611793,
+            4.942335726809688e-05,
+            1.8136306607630104e-05,
+            6.655265679000877e-06,
+            2.442204049657448e-06,
+            8.961866910794924e-07,
+            3.2886299550227704e-07,
+            1.2067896193457273e-07
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 0.0008515938534401357,
+          "mean_transient_contacts_per_ep": 0.049,
+          "active_episode_fraction": 0.62,
+          "z_goal_norms_last10": [
+            2.377950636400783e-07,
+            8.726084388399613e-08,
+            3.2021080897948195e-08,
+            1.1750397099774545e-08,
+            4.311904167053626e-09,
+            0.046964120119810104,
+            0.017233869060873985,
+            0.006324110087007284,
+            0.0023206837940961123,
+            0.0008515938534401357
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 0.0,
+          "mean_transient_contacts_per_ep": 0.0,
+          "active_episode_fraction": 0.053,
+          "z_goal_norms_last10": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 0.017103873193264008,
+          "mean_transient_contacts_per_ep": 0.018,
+          "active_episode_fraction": 0.235,
+          "z_goal_norms_last10": [
+            2.925949277787429e-14,
+            1.0737010815219192e-14,
+            3.9400334699761595e-15,
+            1.445827536843559e-15,
+            5.305581447540442e-16,
+            1.9469266697854867e-16,
+            7.144406596223783e-17,
+            2.621698328033333e-17,
+            9.620537349187789e-18,
+            0.017103873193264008
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 0.0,
+          "mean_transient_contacts_per_ep": 0.0,
+          "active_episode_fraction": 0.171,
+          "z_goal_norms_last10": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "transient_contacts_last10": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "first_crossing_episode": 1001,
+          "final_z_goal_norm": 1.6763797248131596e-05,
+          "mean_transient_contacts_per_ep": 0.042,
+          "active_episode_fraction": 0.393,
+          "z_goal_norms_last10": [
+            0.13893869519233704,
+            0.0509846955537796,
+            0.018709249794483185,
+            0.0068655130453407764,
+            0.00251935631968081,
+            0.0009244983666576445,
+            0.00033925226307474077,
+            0.00012449141649995,
+            4.568314034258947e-05,
+            1.6763797248131596e-05
+          ],
+          "transient_contacts_last10": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  ],
+  "notes": "infant_substrate:GAP-11 closure. EXQ-ISEF-002 z_goal seeding rate comparison: uniform resource placement (ARM_0) vs transient benefit patches multiplier=3.0 (ARM_1). Primary criterion: ARM_1 median first z_goal.norm() > 0.4 crossing episode < 0.7x ARM_0 median. Agent persists across all 1000 episodes per seed (goal state accumulates -- developmental model). C2/C3 are informational: C2 confirms patches generate measurable transient contacts; C3 confirms broader goal-state activation in treatment. PASS enables enabling transient patches as infant default and proceeding to 7-criterion gate update (GAP-15). FAIL triggers goal-seeding pipeline diagnostic (MECH-189 write path)."
+}
