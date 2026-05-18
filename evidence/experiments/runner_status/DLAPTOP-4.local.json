@@ -1,37 +1,22 @@
 {
   "schema_version": "v1",
-  "runner_pid": 59137,
-  "runner_started_at": "2026-05-17T13:11:02.364507+00:00",
-  "last_updated": "2026-05-18T13:32:07.128259+00:00",
-  "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-589",
-    "backlog_id": "",
-    "claim_id": "ARC-065",
-    "title": "EXQ-ISEF-003: microhabitat zones vs homogeneous geography -- z_world latent diversity (infant_substrate:GAP-12)",
-    "description": "",
-    "script": "experiments/v3_exq_589_isef003_microhabitat_latent_diversity.py",
-    "started_at": "2026-05-17T14:03:43.230628+00:00",
-    "progress": {
-      "run_label": "Seed 46 / ARM_1_treatment",
-      "runs_done": 9,
-      "runs_total": 10,
-      "episodes_done": 900,
-      "episodes_total": 1000,
-      "overall_pct": 99.0
-    },
-    "seconds_elapsed": 83990,
-    "seconds_remaining": 849,
-    "recent_lines": [
-      "[train] ARM_1_treatment seed=46 ep 500/1000 top3var=0.0004 traj_cosine=0.977",
-      "[train] ARM_1_treatment seed=46 ep 600/1000",
-      "[train] ARM_1_treatment seed=46 ep 700/1000",
-      "[train] ARM_1_treatment seed=46 ep 800/1000",
-      "[train] ARM_1_treatment seed=46 ep 900/1000"
-    ],
-    "ree_version": "v3"
-  },
+  "runner_pid": null,
+  "runner_started_at": "2026-05-18T15:43:37.385067+00:00",
+  "last_updated": "2026-05-18T15:43:42.171385+00:00",
+  "idle": true,
+  "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-543i",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 differential-heads falsifier: does base+norm-pinned-differential STRUCTURE escape monomodal collapse (supersedes 543g+543h)",
+      "description": "",
+      "estimated_minutes": 518.4,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-587",
       "backlog_id": "",
@@ -51,17 +36,6 @@
       "description": "",
       "estimated_minutes": 1333.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-589",
-      "backlog_id": "",
-      "claim_id": "ARC-065",
-      "title": "EXQ-ISEF-003: microhabitat zones vs homogeneous geography -- z_world latent diversity (infant_substrate:GAP-12)",
-      "description": "",
-      "estimated_minutes": 1333.3,
-      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -105,6 +79,17 @@
       "title": "MECH-090 V_s commit-release substrate validation (re-issue 481)",
       "description": "",
       "estimated_minutes": 0.4,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-592",
+      "backlog_id": "",
+      "claim_id": "MECH-090",
+      "title": "GAP-11 pilot: committed-mode curriculum harness validation (EXP-0157)",
+      "description": "",
+      "estimated_minutes": 480.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -8120,6 +8105,21 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_585_gap8_z_goal_retention_validation/v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 9.3
+    },
+    {
+      "queue_id": "V3-EXQ-589",
+      "backlog_id": "",
+      "claim_id": "ARC-065",
+      "title": "EXQ-ISEF-003: microhabitat zones vs homogeneous geography -- z_world latent diversity (infant_substrate:GAP-12)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "C3 [advisory] zones > 0.1 in treatment: 3/5 seeds have >= 2 zones visited -> PASS | Overall outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-589 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-589.json",
+      "started_at": "2026-05-17T14:03:43.230628+00:00",
+      "completed_at": "2026-05-18T13:49:05.739486+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_589_isef003_microhabitat_latent_diversity/v3_exq_589_isef003_microhabitat_latent_diversity_20260518T134905Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 85008.9
     }
-  ]
+  ],
+  "draining": false
 }
