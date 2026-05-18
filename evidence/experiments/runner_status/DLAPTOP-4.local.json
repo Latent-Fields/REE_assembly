@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 59137,
   "runner_started_at": "2026-05-17T13:11:02.364507+00:00",
-  "last_updated": "2026-05-17T14:22:28.286155+00:00",
+  "last_updated": "2026-05-18T13:32:07.128259+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-589",
@@ -13,21 +13,21 @@
     "script": "experiments/v3_exq_589_isef003_microhabitat_latent_diversity.py",
     "started_at": "2026-05-17T14:03:43.230628+00:00",
     "progress": {
-      "run_label": "Seed 42 / ARM_0_control",
-      "runs_done": 0,
+      "run_label": "Seed 46 / ARM_1_treatment",
+      "runs_done": 9,
       "runs_total": 10,
-      "episodes_done": 100,
+      "episodes_done": 900,
       "episodes_total": 1000,
-      "overall_pct": 1.0
+      "overall_pct": 99.0
     },
-    "seconds_elapsed": 1125,
-    "seconds_remaining": 13050,
+    "seconds_elapsed": 83990,
+    "seconds_remaining": 849,
     "recent_lines": [
-      "ARM_0: microhabitat_enabled=False (homogeneous geography)",
-      "ARM_1: microhabitat_enabled=True n_microhabitats=3",
-      "C1 gate: ARM_1 top3_abs_var_sum > 1.2x ARM_0 in >= 4/5 seeds at ep999",
-      "Seed 42 Condition ARM_0_control",
-      "[train] ARM_0_control seed=42 ep 100/1000"
+      "[train] ARM_1_treatment seed=46 ep 500/1000 top3var=0.0004 traj_cosine=0.977",
+      "[train] ARM_1_treatment seed=46 ep 600/1000",
+      "[train] ARM_1_treatment seed=46 ep 700/1000",
+      "[train] ARM_1_treatment seed=46 ep 800/1000",
+      "[train] ARM_1_treatment seed=46 ep 900/1000"
     ],
     "ree_version": "v3"
   },

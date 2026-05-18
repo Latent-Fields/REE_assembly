@@ -1,0 +1,526 @@
+{
+  "run_id": "v3_exq_589_isef003_microhabitat_latent_diversity_20260518T134905Z_v3",
+  "queue_id": "V3-EXQ-589",
+  "experiment_type": "v3_exq_589_isef003_microhabitat_latent_diversity",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-065"
+  ],
+  "experiment_purpose": "diagnostic",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "ARC-065": "supports"
+  },
+  "timestamp_utc": "20260518T134905Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 1000,
+    "steps_per_episode": 200,
+    "snapshot_episodes": [
+      499,
+      999
+    ],
+    "arm0_microhabitat_enabled": false,
+    "arm1_microhabitat_enabled": true,
+    "arm1_n_microhabitats": 3,
+    "alpha_world": 0.9,
+    "c1_var_ratio_min": 1.2,
+    "c1_min_seeds_passing": 4,
+    "c3_min_zones_visited": 2,
+    "c3_zone_coverage_threshold": 0.1
+  },
+  "acceptance_criteria": {
+    "C1_gate": "ARM_1 top3_abs_var_sum (PCA sum of top-3 absolute variances of z_world at ep999) > 1.2x ARM_0 in >= 4/5 seeds",
+    "C2_advisory": "ARM_1 mean traj_pairwise_cosine_mean > ARM_0 at ep999",
+    "C3_advisory": "ARM_1 treatment zone_coverage has >= 2 zones each > 0.1 in >= 3/5 seeds"
+  },
+  "criteria_results": {
+    "C1_pass": true,
+    "seeds_passing_c1": 4,
+    "C2_traj_cosine_advisory": false,
+    "C3_zone_coverage_advisory": true,
+    "c3_seeds_passing": 3
+  },
+  "metrics": {
+    "arm0_traj_pairwise_cosine_mean": 0.8316354107025836,
+    "arm1_traj_pairwise_cosine_mean": 0.7951691489615769
+  },
+  "per_seed_c1_results": [
+    {
+      "seed": 42,
+      "arm0_top3_var_sum": 0.0003625679310061969,
+      "arm1_top3_var_sum": 0.0009880758298095316,
+      "ratio": 2.7252157328626057,
+      "c1_pass": true
+    },
+    {
+      "seed": 43,
+      "arm0_top3_var_sum": 0.0006902512177475728,
+      "arm1_top3_var_sum": 0.0006193250192154665,
+      "ratio": 0.8972458190460675,
+      "c1_pass": false
+    },
+    {
+      "seed": 44,
+      "arm0_top3_var_sum": 0.0009809251641854644,
+      "arm1_top3_var_sum": 0.0013384285412030295,
+      "ratio": 1.3644553020662151,
+      "c1_pass": true
+    },
+    {
+      "seed": 45,
+      "arm0_top3_var_sum": 0.00011216063830943312,
+      "arm1_top3_var_sum": 0.0004325599948060699,
+      "ratio": 3.8566113863644977,
+      "c1_pass": true
+    },
+    {
+      "seed": 46,
+      "arm0_top3_var_sum": 0.0010560204027569853,
+      "arm1_top3_var_sum": 0.00153397761459928,
+      "ratio": 1.452602251428549,
+      "c1_pass": true
+    }
+  ],
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "top3_abs_var_sum_ep1000": 0.0003625679310061969,
+          "var_pc1_ep1000": 0.00019282610446680337,
+          "var_pc2_ep1000": 9.734540799399838e-05,
+          "var_pc3_ep1000": 7.239641854539514e-05,
+          "traj_pairwise_cosine_mean_ep1000": 0.9221300486904511,
+          "n_zones_visited_ep1000": 1,
+          "zone_coverage_ep1000": {
+            "0": 0.140625
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0004526714692474343,
+              "var_pc1": 0.0002636483986862004,
+              "var_pc2": 0.0001428524119546637,
+              "var_pc3": 4.6170658606570214e-05,
+              "traj_pairwise_cosine_mean": 0.8206381862772105,
+              "zone_coverage": {
+                "0": 0.109375
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0003625679310061969,
+              "var_pc1": 0.00019282610446680337,
+              "var_pc2": 9.734540799399838e-05,
+              "var_pc3": 7.239641854539514e-05,
+              "traj_pairwise_cosine_mean": 0.9221300486904511,
+              "zone_coverage": {
+                "0": 0.140625
+              }
+            }
+          }
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "top3_abs_var_sum_ep1000": 0.0009880758298095316,
+          "var_pc1_ep1000": 0.0008006677962839603,
+          "var_pc2_ep1000": 0.0001326252386206761,
+          "var_pc3_ep1000": 5.478279490489513e-05,
+          "traj_pairwise_cosine_mean_ep1000": 0.8019329320639372,
+          "n_zones_visited_ep1000": 2,
+          "zone_coverage_ep1000": {
+            "0": 0.05,
+            "1": 0.2222222222222222,
+            "2": 0.0,
+            "3": 0.2608695652173913
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.00026143683135160245,
+              "var_pc1": 0.00013381533790379763,
+              "var_pc2": 7.137844659155235e-05,
+              "var_pc3": 5.6243046856252477e-05,
+              "traj_pairwise_cosine_mean": 0.9095424812752754,
+              "zone_coverage": {
+                "0": 0.125,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.16129032258064516
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0009880758298095316,
+              "var_pc1": 0.0008006677962839603,
+              "var_pc2": 0.0001326252386206761,
+              "var_pc3": 5.478279490489513e-05,
+              "traj_pairwise_cosine_mean": 0.8019329320639372,
+              "zone_coverage": {
+                "0": 0.05,
+                "1": 0.2222222222222222,
+                "2": 0.0,
+                "3": 0.2608695652173913
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "top3_abs_var_sum_ep1000": 0.0006902512177475728,
+          "var_pc1_ep1000": 0.0004506918485276401,
+          "var_pc2_ep1000": 0.00013470949488691986,
+          "var_pc3_ep1000": 0.00010484987433301285,
+          "traj_pairwise_cosine_mean_ep1000": 0.9261306246116874,
+          "n_zones_visited_ep1000": 1,
+          "zone_coverage_ep1000": {
+            "0": 0.109375
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0004463502191356383,
+              "var_pc1": 0.0003015407710336149,
+              "var_pc2": 8.061972766881809e-05,
+              "var_pc3": 6.418972043320537e-05,
+              "traj_pairwise_cosine_mean": 0.8615703654708341,
+              "zone_coverage": {
+                "0": 0.109375
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0006902512177475728,
+              "var_pc1": 0.0004506918485276401,
+              "var_pc2": 0.00013470949488691986,
+              "var_pc3": 0.00010484987433301285,
+              "traj_pairwise_cosine_mean": 0.9261306246116874,
+              "zone_coverage": {
+                "0": 0.109375
+              }
+            }
+          }
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "top3_abs_var_sum_ep1000": 0.0006193250192154665,
+          "var_pc1_ep1000": 0.0004715333925560117,
+          "var_pc2_ep1000": 0.0001074853862519376,
+          "var_pc3_ep1000": 4.030624040751718e-05,
+          "traj_pairwise_cosine_mean_ep1000": 0.8229521152097732,
+          "n_zones_visited_ep1000": 1,
+          "zone_coverage_ep1000": {
+            "0": 0.1875,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0011403533717384562,
+              "var_pc1": 0.000557920488063246,
+              "var_pc2": 0.00041275989497080445,
+              "var_pc3": 0.00016967298870440573,
+              "traj_pairwise_cosine_mean": 0.9039329873863607,
+              "zone_coverage": {
+                "0": 0.26666666666666666,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0006193250192154665,
+              "var_pc1": 0.0004715333925560117,
+              "var_pc2": 0.0001074853862519376,
+              "var_pc3": 4.030624040751718e-05,
+              "traj_pairwise_cosine_mean": 0.8229521152097732,
+              "zone_coverage": {
+                "0": 0.1875,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "top3_abs_var_sum_ep1000": 0.0009809251641854644,
+          "var_pc1_ep1000": 0.0006726935971528292,
+          "var_pc2_ep1000": 0.00028347855550237,
+          "var_pc3_ep1000": 2.4753011530265212e-05,
+          "traj_pairwise_cosine_mean_ep1000": 0.7523953909054398,
+          "n_zones_visited_ep1000": 1,
+          "zone_coverage_ep1000": {
+            "0": 0.125
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.001031547726597637,
+              "var_pc1": 0.0008639208972454071,
+              "var_pc2": 0.00012032211088808253,
+              "var_pc3": 4.73047184641473e-05,
+              "traj_pairwise_cosine_mean": 0.8597332602366805,
+              "zone_coverage": {
+                "0": 0.046875
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0009809251641854644,
+              "var_pc1": 0.0006726935971528292,
+              "var_pc2": 0.00028347855550237,
+              "var_pc3": 2.4753011530265212e-05,
+              "traj_pairwise_cosine_mean": 0.7523953909054398,
+              "zone_coverage": {
+                "0": 0.125
+              }
+            }
+          }
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "top3_abs_var_sum_ep1000": 0.0013384285412030295,
+          "var_pc1_ep1000": 0.0008771656430326402,
+          "var_pc2_ep1000": 0.00030475633684545755,
+          "var_pc3_ep1000": 0.00015650656132493168,
+          "traj_pairwise_cosine_mean_ep1000": 0.7008991214330308,
+          "n_zones_visited_ep1000": 0,
+          "zone_coverage_ep1000": {
+            "0": 0.08333333333333333,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0006061038511688821,
+              "var_pc1": 0.0003642860392574221,
+              "var_pc2": 0.00013890134869143367,
+              "var_pc3": 0.00010291646322002634,
+              "traj_pairwise_cosine_mean": 0.8594171440927312,
+              "zone_coverage": {
+                "0": 0.3684210526315789,
+                "1": 0.0,
+                "2": 0.16666666666666666,
+                "3": 0.125
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0013384285412030295,
+              "var_pc1": 0.0008771656430326402,
+              "var_pc2": 0.00030475633684545755,
+              "var_pc3": 0.00015650656132493168,
+              "traj_pairwise_cosine_mean": 0.7008991214330308,
+              "zone_coverage": {
+                "0": 0.08333333333333333,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "top3_abs_var_sum_ep1000": 0.00011216063830943312,
+          "var_pc1_ep1000": 8.516793604940176e-05,
+          "var_pc2_ep1000": 1.708802483335603e-05,
+          "var_pc3_ep1000": 9.904677426675335e-06,
+          "traj_pairwise_cosine_mean_ep1000": 0.7931186256930232,
+          "n_zones_visited_ep1000": 1,
+          "zone_coverage_ep1000": {
+            "0": 0.109375
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0004935031683999114,
+              "var_pc1": 0.00030206586234271526,
+              "var_pc2": 0.00010699748963816091,
+              "var_pc3": 8.44398164190352e-05,
+              "traj_pairwise_cosine_mean": 0.8323537941556424,
+              "zone_coverage": {
+                "0": 0.171875
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.00011216063830943312,
+              "var_pc1": 8.516793604940176e-05,
+              "var_pc2": 1.708802483335603e-05,
+              "var_pc3": 9.904677426675335e-06,
+              "traj_pairwise_cosine_mean": 0.7931186256930232,
+              "zone_coverage": {
+                "0": 0.109375
+              }
+            }
+          }
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "top3_abs_var_sum_ep1000": 0.0004325599948060699,
+          "var_pc1_ep1000": 0.0003220778307877481,
+          "var_pc2_ep1000": 6.501983443740755e-05,
+          "var_pc3_ep1000": 4.546232958091423e-05,
+          "traj_pairwise_cosine_mean_ep1000": 0.9039475950587075,
+          "n_zones_visited_ep1000": 2,
+          "zone_coverage_ep1000": {
+            "0": 0.125,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.1111111111111111
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.000856703903991729,
+              "var_pc1": 0.0006229906575754285,
+              "var_pc2": 0.0001469651033403352,
+              "var_pc3": 8.674814307596534e-05,
+              "traj_pairwise_cosine_mean": 0.9414171141572296,
+              "zone_coverage": {
+                "0": 0.5384615384615384,
+                "1": 0.0625,
+                "2": 0.0,
+                "3": 0.125
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0004325599948060699,
+              "var_pc1": 0.0003220778307877481,
+              "var_pc2": 6.501983443740755e-05,
+              "var_pc3": 4.546232958091423e-05,
+              "traj_pairwise_cosine_mean": 0.9039475950587075,
+              "zone_coverage": {
+                "0": 0.125,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.1111111111111111
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "arm_results": {
+        "ARM_0_control": {
+          "arm": "ARM_0_control",
+          "top3_abs_var_sum_ep1000": 0.0010560204027569853,
+          "var_pc1_ep1000": 0.0005602441960945725,
+          "var_pc2_ep1000": 0.0003779990365728736,
+          "var_pc3_ep1000": 0.00011777717008953914,
+          "traj_pairwise_cosine_mean_ep1000": 0.7644023636123165,
+          "n_zones_visited_ep1000": 0,
+          "zone_coverage_ep1000": {
+            "0": 0.015625
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.00045184087503002957,
+              "var_pc1": 0.0002607427886687219,
+              "var_pc2": 0.00011582803563214839,
+              "var_pc3": 7.527005072915927e-05,
+              "traj_pairwise_cosine_mean": 0.9037953418213874,
+              "zone_coverage": {
+                "0": 0.21875
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0010560204027569853,
+              "var_pc1": 0.0005602441960945725,
+              "var_pc2": 0.0003779990365728736,
+              "var_pc3": 0.00011777717008953914,
+              "traj_pairwise_cosine_mean": 0.7644023636123165,
+              "zone_coverage": {
+                "0": 0.015625
+              }
+            }
+          }
+        },
+        "ARM_1_treatment": {
+          "arm": "ARM_1_treatment",
+          "top3_abs_var_sum_ep1000": 0.00153397761459928,
+          "var_pc1_ep1000": 0.0009828581241890788,
+          "var_pc2_ep1000": 0.0003575317095965147,
+          "var_pc3_ep1000": 0.00019358778081368655,
+          "traj_pairwise_cosine_mean_ep1000": 0.7461139810424356,
+          "n_zones_visited_ep1000": 2,
+          "zone_coverage_ep1000": {
+            "0": 0.2857142857142857,
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.13636363636363635
+          },
+          "snapshots": {
+            "499": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.0004308349307393655,
+              "var_pc1": 0.000230883015319705,
+              "var_pc2": 0.00010921472130576149,
+              "var_pc3": 9.073719411389902e-05,
+              "traj_pairwise_cosine_mean": 0.9769758734386415,
+              "zone_coverage": {
+                "0": 0.0,
+                "1": 0.3076923076923077,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "999": {
+              "n_z_world_vecs": 200,
+              "top3_abs_var_sum": 0.00153397761459928,
+              "var_pc1": 0.0009828581241890788,
+              "var_pc2": 0.0003575317095965147,
+              "var_pc3": 0.00019358778081368655,
+              "traj_pairwise_cosine_mean": 0.7461139810424356,
+              "zone_coverage": {
+                "0": 0.2857142857142857,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.13636363636363635
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "notes": "EXQ-ISEF-003: infant_substrate:GAP-12 closure. Microhabitat zones vs homogeneous geography latent diversity comparison. Primary criterion: z_world top-3 PCA absolute variance sum (sum of singular_values[:3]^2 / (n-1)) at ep999 (episode 1000) is >= 1.2x control in >= 4/5 seeds. Variance collected from all steps of the snapshot episode (200 vectors x 32-dim z_world). C2: trajectory pairwise cosine diversity (advisory; reads from env info dict at last step of snapshot episode). C3: zone visitation breadth in treatment (advisory; >= 2 zones with > 0.1 coverage fraction in >= 3/5 seeds). PASS closes GAP-12 and confirms ARC-065 substrate-readiness; unblocks DEV-NEED-001 / DEV-NEED-007. FAIL indicates zone map not propagating into z_world encoder -- check obs_world channel content per zone."
+}

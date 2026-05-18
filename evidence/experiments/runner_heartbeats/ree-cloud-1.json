@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-18T13:49:15Z",
+  "last_tick_utc": "2026-05-18T13:30:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-587",
   "current_exq_started_utc": "2026-05-17T10:52:08.571777+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 45 / ARM_1_harm_gradient",
-    "runs_done": 7,
+    "run_label": "Seed 45 / ARM_0_binary_contact",
+    "runs_done": 6,
     "runs_total": 10,
-    "episodes_done": 0,
+    "episodes_done": 900,
     "episodes_total": 1000,
-    "overall_pct": 70.0
+    "overall_pct": 69.0
   },
-  "seconds_elapsed": 97026,
-  "seconds_remaining": 41252,
+  "seconds_elapsed": 95905,
+  "seconds_remaining": 43016,
   "recent_lines": [
+    "[train] ARM_0_binary_contact ep 500/1000 seed=45 coverage=1.000 mean_weight=10.0915",
+    "[train] ARM_0_binary_contact ep 600/1000 seed=45 coverage=1.000 mean_weight=12.1275",
+    "[train] ARM_0_binary_contact ep 700/1000 seed=45 coverage=1.000 mean_weight=14.2863",
     "[train] ARM_0_binary_contact ep 800/1000 seed=45 coverage=1.000 mean_weight=16.3996",
-    "[train] ARM_0_binary_contact ep 900/1000 seed=45 coverage=1.000 mean_weight=18.4785",
-    "[train] ARM_0_binary_contact ep 1000/1000 seed=45 coverage=1.000 mean_weight=20.4288",
-    "verdict: PASS",
-    "Seed 45 Condition ARM_1_harm_gradient"
+    "[train] ARM_0_binary_contact ep 900/1000 seed=45 coverage=1.000 mean_weight=18.4785"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
