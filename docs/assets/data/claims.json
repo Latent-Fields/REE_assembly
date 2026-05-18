@@ -443,6 +443,18 @@
     "title": "The infant stage requires a reward-free Phase 0 motor babbling epoch, prior to any E3 scoring or reward-weighted learning, in which Hebbian sensorimotor mappings, basic z_self structure, and non-trivial residue gradients are established.",
     "type": "architectural_commitment"
   },
+  "ARC-075": {
+    "status": "candidate",
+    "subject": "development.infant_curriculum_plasticity_magnitude_gating",
+    "title": "The infant curriculum architecture must implement plasticity magnitude asymmetry across developmental phases, not only temporal phase scheduling: F's effective update weight must be suppressed during the MECH-333 plasticity-open window to allow diversity circuits to reach competitive weight; temporal scheduling alone (as in current GAP-9/GAP-14 implementation) is insufficient.",
+    "type": "architectural_commitment"
+  },
+  "ARC-076": {
+    "status": "candidate",
+    "subject": "development.commitment_loop_calibration_window_personality",
+    "title": "Developmental commitment-loop calibration window with critical-period lock (two-layer): the three BG-like cortico-striatal commitment loops (ARC-021 / MECH-069 / ARC-023) are calibrated during a bounded juvenile/adolescent developmental window and then crystallized (an INV-075 LOCK-arm instance), and this locked calibration IS personality. The architecture is two-layer: (L1) the basic drive-prior set-points of the loops (temperament; the limbic-loop value prior) lock on a largely ENDOGENOUS maturational timer, while (L2) a downstream commitment-policy / characteristic- adaptation layer is calibrated by the juvenile play/peer environment and consolidated at window close. Personality is neither a pure environmental readout nor purely endogenous: the environment writes L2; the timer locks L1.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -1276,6 +1288,20 @@
     "status": "candidate",
     "subject": "learning.developmental_bootstrapping_necessity",
     "title": "Developmental bootstrapping necessity: any model-building agent requiring flexible multi-option behavioral selection must undergo a dedicated motor-sensory exploration epoch before reinforcement learning narrows the repertoire; insufficient exploration permanently restricts the option library.",
+    "type": "invariant"
+  },
+  "INV-074": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "learning.developmental_plasticity_crystallization_necessity",
+    "title": "Plasticity crystallization necessity: any model-building agent whose internal scoring is dominated by a high-variance predictive pathway will converge to monostrategy under Hebbian-equivalent learning unless a time-bounded plasticity asymmetry allows competing diversity circuits to establish competitive weight before winner-take-all dynamics close off the option space; without this crystallization window, behavioral diversity is permanently suppressed regardless of diversity-signal magnitude.",
+    "type": "invariant"
+  },
+  "INV-075": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "learning.signal_structure_temporal_decoupling",
+    "title": "Signal-structure temporal decoupling: any signal that is BOTH self-extinguishing (its magnitude is coupled to its own success and therefore necessarily fades as what it bootstraps succeeds) AND load-bearing (the structure it establishes must persist after the signal fades) necessarily requires either a crystallization mechanism (LOCK -- the structure is rendered plasticity-resistant) or a handoff mechanism (a durable, non-extinguishing signal assumes maintenance of the structure before the establishing signal vanishes). Absent both, the structure decays and the acquisition is lost. The lock/handoff disjunction is exhaustive: no third resolution exists.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -3318,6 +3344,36 @@
     "title": "idle_aversion_chronic_anhedonic_flatness_substrate (slow-integrating frontostriatal effort-allocation substrate at the chronic timescale ~sessions/episode-blocks. Second child mechanism for ARC-067. Seeded by sustained MECH-330 acute-restlessness activation without discharge. Implements the apathy archetype (Husain-Roiser 2018 frontostriatal effort-allocation failure) as a slow-integrating complement to MECH-330's acute restlessness pole. Preserved hedonic experience (MECH-295 liking-channel intact); impaired effort-to-act mobilisation. HPA-axis substrate context (Ulrich-Lai & Herman 2009 chronic understimulation / loss-of-control signature). Ablation predicts reduced action-density in long-horizon episodes even when MECH-330 acute restlessness is firing -- the chronic substrate damps the effort-mobilisation pathway below what the acute channel alone can drive.)",
     "type": "mechanism_hypothesis"
   },
+  "MECH-332": {
+    "status": "candidate",
+    "subject": "harm_stream.nociceptive_attenuation_dual_substrate_dissociation",
+    "title": "Nociceptive attenuation on z_harm_s is implemented by two mechanistically dissociable parallel pathways: (1) per-step efference-copy comparator (MECH-256/SD-029, spinal/cortical substrate, triggered by a_actual) and (2) commitment-gated PAG/RVM precision suppression (SD-021, PAG/RVM substrate, triggered by committed-trajectory state). Their substrates and triggers are independent; their attenuation effects are additive.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-333": {
+    "status": "candidate",
+    "subject": "learning.developmental_critical_period_open_phase",
+    "title": "Critical period open phase: the dominant scoring pathway's effective update magnitude must be suppressed (or diversity circuit signal weight amplified to competitive parity) during a time-bounded plasticity-open window, preventing winner-take-all capture before diversity circuits achieve viable weight; REE analog of E/I balance shift and GABA maturation that opens biological critical periods.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-334": {
+    "status": "candidate",
+    "subject": "learning.developmental_critical_period_closure_crystallization",
+    "title": "Critical period closure / crystallization: once diversity circuits establish competitive weight during the MECH-333 open window, a complementary closure mechanism reduces plasticity for the crystallized diversity distribution while restoring full dominant-pathway update scale; without closure, diversity representations remain equally vulnerable to gradient-driven overwriting throughout all subsequent training.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-335": {
+    "status": "candidate",
+    "subject": "basal_ganglia.staggered_commitment_loop_calibration_windows",
+    "title": "Staggered ventral->dorsal commitment-loop calibration windows: the three commitment loops do not share a single critical period. Their calibration windows are staggered ventral->dorsal -- the limbic/value loop (ventral striatum / OFC) opens earliest and is the most environmentally sensitive, the associative loop next, the sensorimotor loop last -- with region-specific consolidation latencies (a calibration can be induced during a window but only expressed after it closes).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-336": {
+    "status": "candidate",
+    "subject": "development.maladaptive_commitment_lock_failure_mode",
+    "title": "Maladaptive-lock failure mode (personality-pathology analog): adequate environmental input does NOT determine the locked calibration value. A stable subset of agents locks a maladaptive commitment-loop configuration despite sufficient input (lock-onto-bad-calibration), and failure to lock at all yields an unstable / diffuse commitment policy. These are the REE substrate of personality-disorder-analog failure modes: lock-too-early / lock-onto-bad-value (rigid maladaptive personality) and failure-to-lock (identity diffusion).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3610,6 +3666,12 @@
     "status": "open",
     "subject": "play.frame_content_cooperative_bilateral",
     "title": "Does cooperative play require a continuous bilateral background signal (L2) plus explicit repair at ambiguity (L3), or do one-sided frame-open/close events (L1 only) suffice for cooperative frame maintenance?",
+    "type": "question"
+  },
+  "Q-052": {
+    "status": "open",
+    "subject": "learning.forward_model_dominance_magnitude_vs_structural_plasticity",
+    "title": "Is forward-model dominance in E3 scoring a magnitude calibration problem solvable by 5-10x diversity bias scaling, or a structural plasticity dominance problem requiring phase-specific learning rate asymmetry as per MECH-333/334?",
     "type": "question"
   },
   "SD-001": {
