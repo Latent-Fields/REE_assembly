@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-18T15:45:31Z",
+  "last_tick_utc": "2026-05-18T15:46:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-543i",
   "current_exq_started_utc": "2026-05-18T15:44:23.251731+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_0_baseline",
     "runs_done": 0,
     "runs_total": 36,
-    "episodes_done": 10,
+    "episodes_done": 40,
     "episodes_total": 108,
-    "overall_pct": 0.3
+    "overall_pct": 1.0
   },
-  "seconds_elapsed": 69,
-  "seconds_remaining": 26870,
+  "seconds_elapsed": 132,
+  "seconds_remaining": 26177,
   "recent_lines": [
-    "[V3-EXQ-543i] ARC-062 differential-heads Falsifier (use_differential_heads x the 543h 2x2x2; outcome-coupled REINFORCE P1 loss UNCHANGED; 12 arms; supersedes 543g+543h)  seeds=[0, 1, 2]  dry_run=False",
-    "Seed 0 Condition ARM_0_baseline",
-    "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=False  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
     "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
-    "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0007  ep_reward=-1.1214"
+    "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0007  ep_reward=-1.1214",
+    "[train] ARM_0_baseline ep 20/108  phase=P0  rv=0.0006  ep_reward=-1.2811",
+    "[train] ARM_0_baseline ep 30/108  phase=P0  rv=0.0005  ep_reward=-1.2056",
+    "[train] ARM_0_baseline ep 40/108  phase=P0  rv=0.0005  ep_reward=-1.1832"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
