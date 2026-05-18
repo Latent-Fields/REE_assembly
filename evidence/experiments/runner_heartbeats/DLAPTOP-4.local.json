@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-18T17:40:27Z",
+  "last_tick_utc": "2026-05-18T17:41:27Z",
   "state": "running",
   "current_exq": "V3-EXQ-543i",
   "current_exq_started_utc": "2026-05-18T15:44:23.251731+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 1 / ARM_8_gated_only_diff",
-    "runs_done": 20,
+    "run_label": "Seed 1 / ARM_9_both_diff",
+    "runs_done": 21,
     "runs_total": 36,
-    "episodes_done": 45,
+    "episodes_done": 0,
     "episodes_total": 108,
-    "overall_pct": 56.7
+    "overall_pct": 58.3
   },
-  "seconds_elapsed": 6964,
-  "seconds_remaining": 5284,
+  "seconds_elapsed": 7025,
+  "seconds_remaining": 5015,
   "recent_lines": [
-    "[train] ARM_8_gated_only_diff ep 70/108  phase=P1  rv=0.0004  ep_reward=-1.3096  baseline=-1.2253  buf=219  inert_gating=True",
-    "[probe] ARM_8_gated_only_diff P1 ep 35/60  applicable=True  mean_tv=0.0012  max_tv=0.0019  buf=284",
-    "[probe] ARM_8_gated_only_diff P1 ep 40/60  applicable=True  mean_tv=0.0012  max_tv=0.0018  buf=346",
-    "[train] ARM_8_gated_only_diff ep 80/108  phase=P1  rv=0.0003  ep_reward=-1.3438  baseline=-1.2049  buf=346  inert_gating=True",
-    "[probe] ARM_8_gated_only_diff P1 ep 45/60  applicable=True  mean_tv=0.0011  max_tv=0.0017  buf=402"
+    "seed=1 arm=ARM_8_gated_only_diff  reef_frac=0.854  rho=+0.262  forage_hr=0.1481  transit_hr=1.0000  ratio=0.148  inert_gating=True  outcome_buf=512",
+    "verdict: FAIL",
+    "Seed 1 Condition ARM_9_both_diff",
+    "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=False  differential_heads=True  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
