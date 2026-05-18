@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_520_sd052_contextual_safety_terrain_readiness
 
-Generated: `2026-05-17T12:26:11.642128Z`
+Generated: `2026-05-18T16:32:24.860090Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

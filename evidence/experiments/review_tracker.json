@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-17T10:24:31Z",
+  "last_review_utc": "2026-05-18T16:30:27Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-562",
     "V3-EXQ-449c",
@@ -319,7 +319,9 @@
     "V3-EXQ-579",
     "V3-EXQ-580",
     "V3-EXQ-581",
-    "v3_exq_575a_isef001_harm_gradient_baseline"
+    "v3_exq_575a_isef001_harm_gradient_baseline",
+    "v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3",
+    "V3-EXQ-585"
   ],
   "reviewed_run_ids": [
     "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
@@ -2403,7 +2405,15 @@
     "v3_exq_572_intervention_a_dual_attractor_20260516T064121Z_v3",
     "v3_exq_572_intervention_a_dual_attractor_20260516T095117Z_v3",
     "v3_exq_573_arc065_bias_scale_sweep_20260516T083605Z_v3",
-    "v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3"
+    "v3_exq_543e_arc062_spcem_falsifier_20260517T010202Z_v3",
+    "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T125958Z_v3",
+    "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T130046Z_v3",
+    "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T130300Z_v3",
+    "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T140320Z_v3",
+    "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T144716Z_v3",
+    "v3_exq_543h_arc062_crystallization_falsifier_20260518T000930Z_v3",
+    "v3_exq_543h_arc062_crystallization_falsifier_20260518T060905Z_v3",
+    "v3_exq_589_isef003_microhabitat_latent_diversity_20260518T134905Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2677,6 +2687,21 @@
         "v3_exq_566_wpc3_schema_salience_injection_20260515T205008Z_v3"
       ],
       "subject": "Failure autopsy session 2026-05-17T12:47Z (failure-autopsy-566-582). Three run closures: (1) EXQ-577 FAIL run: run_id not previously added to tracker despite autopsy completing 2026-05-16 (artifact failure_autopsy_EXQ-577_2026-05-16.md exists). Confirmed test-design false-negative; 577a PASS supersedes. (2) EXQ-566 FAIL run (20260515T205008Z, cloud-1): runtime anomaly -- early termination at 70 steps for ARM_1/2/3 seed=7 and ARM_3 seed=42. Root cause: SD-055 CEM change committed between the 19:59Z PASS (cloud-2) and 20:50Z FAIL (cloud-1) introduced a code-version divergence; ARM_1 canonical (no forced injection) crashed at 70 steps for seed=7, ruling out MECH-216 seam failure. (3) EXQ-566 PASS run (20260515T195934Z, cloud-2): confirmed MECH-216 schema_salience->update_schema_wanting->residue_field seam functional (P1/P2/P3 all PASS; ARM_3_forced_high wanting=1008.56 monotone). EXQ-582 FAIL (SD-012 EMA sweep, 2026-05-17T08:29Z): no run_id added here (flat-manifest format outside runs/ structure, not tracked in reviewed_run_ids). Discussed in artifact failure_autopsy_EXQ-566-582_2026-05-17.{md,json}. Core finding: n_contacts_post_warmup=0 all arms/seeds -- EMA untestable without warm-start z_goal bootstrap. Routing: /queue-experiment Option 2 + warm-start arm. goal_pipeline_plan.md GAP-3 resume_condition updated."
+    },
+    {
+      "id": "2026-05-18T16:30:27Z_governance",
+      "session_label": "governance-cycle-2026-05-18T161204Z",
+      "reviewed_run_ids": [
+        "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T125958Z_v3",
+        "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T130046Z_v3",
+        "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T130300Z_v3",
+        "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T140320Z_v3",
+        "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T144716Z_v3",
+        "v3_exq_543h_arc062_crystallization_falsifier_20260518T000930Z_v3",
+        "v3_exq_543h_arc062_crystallization_falsifier_20260518T060905Z_v3",
+        "v3_exq_589_isef003_microhabitat_latent_diversity_20260518T134905Z_v3"
+      ],
+      "subject": "Governance cycle 2026-05-18T16:12Z. Confirmed failure_autopsy_V3-EXQ-543h applied to the 543f/543g/543h crystallization-falsifier cluster (7 runs): all marked evidence_direction=superseded by V3-EXQ-543i, epistemic_category=substrate_ceiling, pending_retest_after_substrate. Diagnosis: GatedPolicy head-differentiation is not a robust attractor under outcome-coupled REINFORCE (cross-machine proof: 543g ACTIVE host-A only, INERT cloud-3+cloud-4, bit-identical ARM_0; 543g _144716Z 'weakens ARC-062' = 1/3 minority-basin artifact). 543h INV-074/MECH-334 branch-(b) per_claim weakens corrected -> non_contributory. narrow_supports_flag: ARC-062/MECH-309 have ZERO reliable contributory trained-policy evidence; voiding the cluster is NOT conflict resolution. claims.yaml evidence_quality_note + epistemic_category + pending_retest_after_substrate applied to ARC-062, MECH-309, INV-074, MECH-334. V3-EXQ-543i (063711Z; differential-heads substrate-fix validation -- diff_on_escape=true confirms use_differential_heads resolves head-collapse, but diff_off_reproduced_collapse=false so non_contributory) FLAGGED FOR /failure-autopsy by user; NOT marked reviewed, carries no evidence_direction this cycle. V3-EXQ-589 (ARC-065, experiment_purpose=diagnostic) classified diagnostic substrate-readiness (GAP-12 closure, unblocks DEV-NEED-001/007) -- no claim weighting, ARC-065 stays hold_pending_v3_substrate. V3-EXQ-585 (unclaimed GAP-8 z_goal-retention instrumentation diagnostic PASS) -> discussed_experiment_dirs. Promotion recs: MECH-332 + MECH-334 hold_pending_v3_substrate approved."
     }
   ]
 }

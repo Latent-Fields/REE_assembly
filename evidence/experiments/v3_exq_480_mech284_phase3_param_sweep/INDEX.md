@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_480_mech284_phase3_param_sweep
 
-Generated: `2026-05-17T12:26:11.642128Z`
+Generated: `2026-05-18T16:32:24.860090Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

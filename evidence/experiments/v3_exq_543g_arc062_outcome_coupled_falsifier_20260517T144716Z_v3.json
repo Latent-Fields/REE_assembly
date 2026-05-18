@@ -12,10 +12,10 @@
     "MECH-309"
   ],
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "ARC-062": "weakens",
-    "MECH-309": "non_contributory"
+    "ARC-062": "superseded",
+    "MECH-309": "superseded"
   },
   "metrics": {
     "arm_summaries": {
@@ -673,5 +673,9 @@
   },
   "elapsed_seconds": 146.77012300491333,
   "dry_run": true,
-  "notes": "V3-EXQ-543g: ARC-062 x MECH-309 monomodal-collapse falsifier with outcome-coupled REINFORCE P1 loss. Supersedes V3-EXQ-543f. Inherits both substrate fixes from 543f (one-hot augmentation: FIX 1; dacc_weight=1.0: FIX 2). Key change: P1 diversification regularizer (head_div + disc_var self-supervised) replaced with REINFORCE on GatedPolicy parameters. During P1 episodes, records (snap, sel_idx, ep_return) every RECORD_EVERY_N_STEPS=4 steps; after each episode, advantage = ep_return - EMA_baseline is computed and a minibatch REINFORCE gradient step is taken: loss = mean(-advantage * log_softmax(gated_score_bias / T, dim=0)[sel_idx]) - LAMBDA_DISC_VAR * disc_var_secondary. head_div_term removed: it caused symmetric cancellation (head_0->+X, head_1->-X gives composed bias = (2w-1)*X ~ 0 for w~0.5) without moving behavioral output. disc_var retained at reduced weight (0.1). EMA baseline initialized from P0 mean reward to avoid cold-start advantage explosion. Per-claim direction grid extended: if REINFORCE still fails to activate gating (TV < threshold at mid-training across all gated seeds), ARC-062 is non_contributory (deeper barrier than training signal gap); if gating is active but D criteria fail, ARC-062 weakens (architecture expressed itself but failed discrimination). 2x2 factorial, SD-054 bipartite layout, D2 AND D3 PASS rule, all pre-registered thresholds and metrics inherited unchanged from 543c/543d/543e/543f."
+  "notes": "V3-EXQ-543g: ARC-062 x MECH-309 monomodal-collapse falsifier with outcome-coupled REINFORCE P1 loss. Supersedes V3-EXQ-543f. Inherits both substrate fixes from 543f (one-hot augmentation: FIX 1; dacc_weight=1.0: FIX 2). Key change: P1 diversification regularizer (head_div + disc_var self-supervised) replaced with REINFORCE on GatedPolicy parameters. During P1 episodes, records (snap, sel_idx, ep_return) every RECORD_EVERY_N_STEPS=4 steps; after each episode, advantage = ep_return - EMA_baseline is computed and a minibatch REINFORCE gradient step is taken: loss = mean(-advantage * log_softmax(gated_score_bias / T, dim=0)[sel_idx]) - LAMBDA_DISC_VAR * disc_var_secondary. head_div_term removed: it caused symmetric cancellation (head_0->+X, head_1->-X gives composed bias = (2w-1)*X ~ 0 for w~0.5) without moving behavioral output. disc_var retained at reduced weight (0.1). EMA baseline initialized from P0 mean reward to avoid cold-start advantage explosion. Per-claim direction grid extended: if REINFORCE still fails to activate gating (TV < threshold at mid-training across all gated seeds), ARC-062 is non_contributory (deeper barrier than training signal gap); if gating is active but D criteria fail, ARC-062 weakens (architecture expressed itself but failed discrimination). 2x2 factorial, SD-054 bipartite layout, D2 AND D3 PASS rule, all pre-registered thresholds and metrics inherited unchanged from 543c/543d/543e/543f.",
+  "evidence_direction_note": "Superseded by V3-EXQ-543i per confirmed failure_autopsy_V3-EXQ-543h_2026-05-18 (status: confirmed; cluster [543f,543g,543h]). Diagnosis: substrate_ceiling -- GatedPolicy head-differentiation does not robustly persist under outcome-coupled REINFORCE; gated arms collapse to inert intermittently. Cross-machine proof: identical 543g config ACTIVE host-A only, INERT cloud-3 + cloud-4 (bit-identical ARM_0). 543g _144716Z 'weakens ARC-062' is a 1/3 minority-basin artifact; 543g overall non_contributory. Do NOT honor 543h supersedes 543g (543h never reproduced 543g substrate). 543i supersedes BOTH 543g and 543h. ARC-062 has ZERO reliable contributory trained-policy evidence (narrow_supports_flag) -- voiding this cluster is NOT conflict resolution. pending_retest_after_substrate=true; routing=implement-substrate.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true,
+  "superseded_by": "V3-EXQ-543i"
 }

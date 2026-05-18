@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_575a_isef001_harm_gradient_baseline
 
-Generated: `2026-05-18T04:20:03.265648Z`
+Generated: `2026-05-18T16:32:24.860090Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
