@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "Mac",
-  "last_tick_utc": "2026-05-18T17:52:41Z",
+  "last_tick_utc": "2026-05-18T17:53:41Z",
   "state": "running",
   "current_exq": "V3-EXQ-543i",
   "current_exq_started_utc": "2026-05-18T15:44:23.251731+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_11_both_xtal_diff",
     "runs_done": 23,
     "runs_total": 36,
-    "episodes_done": 30,
+    "episodes_done": 55,
     "episodes_total": 108,
-    "overall_pct": 64.7
+    "overall_pct": 65.3
   },
-  "seconds_elapsed": 7698,
-  "seconds_remaining": 4142,
+  "seconds_elapsed": 7758,
+  "seconds_remaining": 4066,
   "recent_lines": [
-    "[probe] ARM_11_both_xtal_diff P1 ep 25/60  applicable=True  mean_tv=0.0010  max_tv=0.0026  buf=446",
-    "[probe] ARM_11_both_xtal_diff P1 ep 30/60  applicable=True  mean_tv=0.0010  max_tv=0.0027  buf=506",
-    "[probe] ARM_11_both_xtal_diff INERT-GATING at P1 ep 30: mean_tv=0.0010 < 0.05 (REINFORCE outcome-coupling active)",
-    "[train] ARM_11_both_xtal_diff ep 70/108  phase=P1  rv=0.0001  ep_reward=-1.1800  baseline=-1.2097  buf=506  inert_gating=True",
-    "[crystallize] ARM_11_both_xtal_diff P1 ep 30/60  gated_frozen=4467  expansion_params=1249  ewc_anchored=True  ewc_active_centers=0  (closure == InfantCurriculumScheduler.on_phase3_entry)"
+    "[train] ARM_11_both_xtal_diff ep 80/108  phase=P1  rv=0.0001  ep_reward=-1.2165  baseline=-1.1584  buf=512  inert_gating=True",
+    "[probe] ARM_11_both_xtal_diff P1 ep 45/60  applicable=True  mean_tv=0.0008  max_tv=0.0028  buf=512",
+    "[probe] ARM_11_both_xtal_diff P1 ep 50/60  applicable=True  mean_tv=0.0008  max_tv=0.0027  buf=512",
+    "[train] ARM_11_both_xtal_diff ep 90/108  phase=P1  rv=0.0001  ep_reward=-1.2009  baseline=-1.1837  buf=512  inert_gating=True",
+    "[probe] ARM_11_both_xtal_diff P1 ep 55/60  applicable=True  mean_tv=0.0008  max_tv=0.0027  buf=512"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
