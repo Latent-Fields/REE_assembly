@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-18T22:25:03Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-585",
-  "current_exq_started_utc": "2026-05-18T22:24:58.885856+00:00",
-  "current_title": "infant_substrate GAP-8 validation -- post_sleep_z_goal_retention + replay_diversity_index",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 13 / ARM_0_no_goal",
-    "runs_done": 2,
-    "runs_total": 6,
-    "episodes_done": 0,
-    "episodes_total": 1,
-    "overall_pct": 33.3
-  },
-  "seconds_elapsed": 5,
-  "seconds_remaining": 9,
-  "recent_lines": [
-    "verdict: PASS",
-    "Seed 7 Condition ARM_0_no_goal",
-    "[result] seed=7 arm=ARM_0_no_goal before=-1.0000 after=-1.0000 retention=-1.0000 replay_div=-1.0000 sws_writes=5",
-    "verdict: PASS",
-    "Seed 13 Condition ARM_0_no_goal"
+  "last_tick_utc": "2026-05-18T22:25:28Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-587",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-567",
+      "result": "PASS",
+      "completed_at": "2026-05-15T20:31:26.786714+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-588",
+      "result": "FAIL",
+      "completed_at": "2026-05-18T22:24:57.276142+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-585",
+      "result": "PASS",
+      "completed_at": "2026-05-18T22:25:09.977587+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-586",
+      "result": "PASS",
+      "completed_at": "2026-05-18T22:25:15.571097+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-584",
+      "result": "PASS",
+      "completed_at": "2026-05-18T22:25:22.810462+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 670,
   "runner_version": null,
   "gpu": {
