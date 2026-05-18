@@ -115,4 +115,18 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/architecture/*.svg
           git commit -m "docs: render architecture diagrams"
-          git push
+          # The runner heartbeat pushes to master roughly every minute, so a
+          # naive push almost always loses the race. Rebase the SVG-only
+          # commit onto the latest master and retry; paths are disjoint from
+          # heartbeat files so the rebase never conflicts.
+          for attempt in 1 2 3 4 5 6; do
+            if git push; then
+              echo "Pushed rendered SVGs (attempt ${attempt})."
+              exit 0
+            fi
+            echo "Push rejected (attempt ${attempt}); rebasing on origin/master and retrying."
+            git fetch origin master
+            git rebase origin/master
+          done
+          echo "Failed to push rendered SVGs after 6 attempts." >&2
+          exit 1
