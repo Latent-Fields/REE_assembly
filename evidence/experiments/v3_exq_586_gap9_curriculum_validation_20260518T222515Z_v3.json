@@ -1,0 +1,195 @@
+{
+  "run_id": "v3_exq_586_gap9_curriculum_validation_20260518T222515Z_v3",
+  "queue_id": "V3-EXQ-586",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_586_gap9_curriculum_validation",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [],
+  "outcome": "PASS",
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260518T222515Z",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "arm0_episodes": 2050,
+  "arm1_episodes": 2050,
+  "c0_hard_count_transitions": true,
+  "c1_telemetry_transitions": true,
+  "c2_env_constructor_ok": true,
+  "c3_feature_flags_ok": true,
+  "c4_config_ordering_ok": true,
+  "env_check_details": {},
+  "expected_arm1_transitions": [
+    [
+      150,
+      1
+    ],
+    [
+      650,
+      2
+    ],
+    [
+      2000,
+      3
+    ]
+  ],
+  "arm1_h_pos_high": 4.0,
+  "arm1_z_goal_high": 0.4,
+  "h_pos_frac_of_max": 0.7,
+  "per_seed_arm0": {
+    "0": {
+      "passed": true,
+      "c0_ok": true,
+      "transitions": [
+        [
+          100,
+          1
+        ],
+        [
+          500,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ]
+    },
+    "1": {
+      "passed": true,
+      "c0_ok": true,
+      "transitions": [
+        [
+          100,
+          1
+        ],
+        [
+          500,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ]
+    },
+    "2": {
+      "passed": true,
+      "c0_ok": true,
+      "transitions": [
+        [
+          100,
+          1
+        ],
+        [
+          500,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ]
+    }
+  },
+  "per_seed_arm1": {
+    "0": {
+      "passed": true,
+      "c1_ok": true,
+      "transitions": [
+        [
+          150,
+          1
+        ],
+        [
+          650,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ],
+      "expected_transitions": [
+        [
+          150,
+          1
+        ],
+        [
+          650,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ]
+    },
+    "1": {
+      "passed": true,
+      "c1_ok": true,
+      "transitions": [
+        [
+          150,
+          1
+        ],
+        [
+          650,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ],
+      "expected_transitions": [
+        [
+          150,
+          1
+        ],
+        [
+          650,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ]
+    },
+    "2": {
+      "passed": true,
+      "c1_ok": true,
+      "transitions": [
+        [
+          150,
+          1
+        ],
+        [
+          650,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ],
+      "expected_transitions": [
+        [
+          150,
+          1
+        ],
+        [
+          650,
+          2
+        ],
+        [
+          2000,
+          3
+        ]
+      ]
+    }
+  }
+}
