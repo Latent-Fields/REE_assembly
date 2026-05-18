@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_extinction_renewal_bouton2004",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["ARC-060", "MECH-292", "SD-039"],
+  "source": {
+    "title": "Context and behavioral processes in extinction",
+    "authors": ["Mark E. Bouton"],
+    "year": 2004,
+    "venue": "Learning & Memory",
+    "doi": "10.1101/lm.78804",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15466298/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Canonical framework establishing that a blocked/extinguished trace is not erased but preserved and re-expressed under context change (renewal, spontaneous recovery, reinstatement, rapid reacquisition). Strongly validates ARC-060/SD-039's preserve-don't-erase architecture. Held at 0.75 because it simultaneously weakens the sub-claim that MECH-292's recoverability gate can be inhibition-only: biology shows that without an explicit erase path, rumination/intrusion is the predicted equilibrium, not an aberration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A cue/behaviour judged 'extinguished' (zero response) re-expresses at full strength merely because the test context differs from the extinction context (renewal) -- a 'resolved' goal returns on context change with no new evidence.",
+    "Elapsed time alone reinstates the inactive trace (spontaneous recovery): suppression is treated as time-bounded.",
+    "A single outcome re-exposure (reinstatement) or one reinforced repetition (rapid reacquisition) snaps the whole inactive trace back -- small triggers produce disproportionate full return.",
+    "Inhibition is more context-specific than excitation, so the maladaptive original trace generalises across contexts better than its suppression -- the system is structurally biased toward relapse."
+  ],
+  "tags": ["arc-060", "mech-292", "sd-039", "ghost_goal", "cue_system", "extinction", "renewal", "spontaneous_recovery", "reinstatement"],
+  "mapping": {
+    "source_claim_statement": "Extinction does not erase the original CS-US memory; it forms a new, inhibitory, context-dependent memory that competes with but never destroys the original trace. The latent original is recoverable via renewal, spontaneous recovery, reinstatement, and rapid reacquisition; the currently expressed meaning of an ambiguous cue is selected by the retrieval context (broadly construed: place, interoceptive/mood state, recent events, elapsed time).",
+    "ree_translation": "Direct biological warrant for ARC-060/SD-039's design choice that inactive anchors are PRESERVED, not deleted, and remain context-recoverable -- a blocked goal is a latent competing trace, not an erasure. For MECH-292 it specifies that 'recoverability' is context-selection between competing traces, not a decay scalar.",
+    "mapping_caveat": "Purely behavioural/associative; no neural mechanism, no quantitative recoverability metric. Its central claim -- suppression is never erasure and is inherently less context-general than the original -- means an engineered bank that relies on inhibition-only suppression will, per this theory, equilibrate to rumination/relapse. The model predicts the failure mode of an inhibition-only gate; it does not endorse it as optimal, and an artificial system may need an explicit abandon/erase path biology lacks.",
+    "source_context": "Review of animal Pavlovian conditioning and extinction (renewal/recovery/reinstatement paradigms)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (canonical, foundational, heavily cited). Mapping fidelity moderate-high: preserve-don't-erase and context-selection map cleanly onto the dual-trace anchor design. Transfer risk moderate: behavioural-only, no quantitative gate; engineered system has an erase option biology does not."
+  }
+}

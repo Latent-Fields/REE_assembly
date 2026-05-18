@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_cue_incentive_salience_flagel2011",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "MECH-293"],
+  "source": {
+    "title": "A selective role for dopamine in stimulus-reward learning",
+    "authors": ["Shelly B. Flagel", "Jeremy J. Clark", "Terry E. Robinson", "Leah Mayo", "Alayna Czuj", "Ingo Willuhn", "Christina A. Akers", "Sarah M. Clinton", "Paul E. M. Phillips", "Huda Akil"],
+    "year": 2011,
+    "venue": "Nature",
+    "doi": "10.1038/nature09588",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21150898/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Causally and neurochemically isolates the computation MECH-292's 'wanting' multiplier abstracts: a dopamine-gated transformation of a predictive cue into an action-invigorating incentive. High source quality (voltammetry + DA antagonism + selective-line behaviour, Nature). Held below 0.85 because the biology says incentive attribution is a separable, individually-variable gated process -- not a scalar that automatically scales with predictive match, which the bank's multiplicative term implicitly assumes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In sign-trackers a cue becomes attractive and 'wanted' even when approaching/contacting it does not improve outcome -- wanting detaches from instrumental value (a craving/compulsive-attention signature).",
+    "Incentive salience persists and drives behaviour when the predicted reward's value should not warrant pursuit, conferring impulse-control vulnerability.",
+    "Goal-trackers show the inverse failure: a fully predictive cue never gains motivational pull -- a 'blocked goal never re-probed' signature."
+  ],
+  "tags": ["mech-292", "mech-293", "ghost_goal", "cue_system", "incentive_salience", "dopamine", "sign_tracking", "wanting"],
+  "mapping": {
+    "source_claim_statement": "A reward-predictive cue can be used either as a pure predictor (goal-tracking) or have incentive salience attributed to it so the cue itself becomes 'wanted' (sign-tracking); phasic dopamine transfers to cue onset only in sign-trackers, and dopamine antagonism selectively blocks acquisition of the incentive (sign-tracking) response while sparing the predictive (goal-tracking) response.",
+    "ree_translation": "Provides the mechanistic anchor for MECH-292's 'wanting' multiplier and for MECH-293 re-probing being motivationally driven: matching a cue to a stored trace is not sufficient to invigorate pursuit -- a dopamine-gated step converts a matched predictive trace into an action-driving incentive. The 'wanting' term in ghost_priority is naming a real, separable computation.",
+    "mapping_caveat": "Incentive attribution here is a trait-variable, dopamine-gated process that some individuals barely express even for fully predictive cues. An artificial 'wanting x goal_match' product assumes every well-matched cue receives motivational gain; the biology says gain is a distinct gated process dissociable from predictive accuracy, so the multiplicative coupling is a simplification the data does not endorse.",
+    "source_context": "Selectively bred sign-tracker vs goal-tracker rats; Pavlovian lever-CS autoshaping; fast-scan cyclic voltammetry in nucleus accumbens core; systemic flupenthixol."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high (causal + neurochemical + selective-line, Nature). Mapping fidelity moderate: it validates the existence and separability of a 'wanting' computation but argues against its being a simple multiplicative function of match. Transfer risk moderate (rodent Pavlovian conditioning -> artificial goal bank)."
+  }
+}

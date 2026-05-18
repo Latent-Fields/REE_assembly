@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_operant_resurgence_bouton2014",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "ARC-060"],
+  "source": {
+    "title": "Why behavior change is difficult to sustain",
+    "authors": ["Mark E. Bouton"],
+    "year": 2014,
+    "venue": "Preventive Medicine",
+    "doi": "10.1016/j.ypmed.2014.06.010",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24937649/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Net supports modelling deferred/blocked goals as persistent context-recoverable OPERANT traces (extends Bouton 2004 from Pavlovian cues to voluntary action policies -- directly the bank's case). But it specifically and strongly WEAKENS the recoverability-gate-can-close assumption: accumulated suppression evidence (36 vs 4 sessions, identical resurgence) does not retire the trace, so a literal recoverability cutoff is biologically unsupported. Confidence moderate: behavioural-only, clinically framed, no quantitative gate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Resurgence: a deferred goal that was successfully replaced by an alternative returns the moment the alternative stops paying off -- relapse triggered by loss of the substitute, not by the original cue (retiring an anchor because a competitor is winning is unsafe).",
+    "Extended elimination training does not reduce return (36 sessions = 4 sessions resurgence): more evidence of hopelessness does not make the trace safer to drop; an evidence-integrating recoverability gate will be falsely confident.",
+    "Rapid reacquisition: one lapse restores the full behaviour because the reinforced trial is itself part of the original context.",
+    "Reinstatement after punishment: aversively suppressed behaviour returns after a single outcome reminder -- knowledge of bad consequences does not durably retire the trace."
+  ],
+  "tags": ["mech-292", "arc-060", "ghost_goal", "cue_system", "resurgence", "operant_extinction", "relapse", "recoverability"],
+  "mapping": {
+    "source_claim_statement": "Operant behaviour change (extinction, counterconditioning, punishment, alternative reinforcement, abstinence) inhibits but never erases the original response, and that inhibition is highly context-specific; operant renewal, spontaneous recovery, reinstatement, rapid reacquisition and resurgence are all demonstrated, including in drug self-administration. Longer/stronger elimination training does not monotonically reduce return.",
+    "ree_translation": "Extends the preserve-don't-erase result from Pavlovian cues to voluntary action policies -- which is what ghost-bank entries actually are -- so ARC-060/MECH-292 inherit the operant evidence directly. Crucially it constrains MECH-292's recoverability term: the gate cannot be a function that integrates accumulated suppression evidence toward 'retire this anchor', because biology shows no dose of such evidence closes the gate; recoverability must be risk-reduction, not erasure, and 'competitor is winning' is not a safe retire condition (resurgence).",
+    "mapping_caveat": "Behavioural mechanism only; 'context' is loosely operationalised (place, time, recent reinforcers, mood, recent behaviours). The load-bearing transfer risk: there is no empirically supported 'safe to retire' state, which directly contradicts any recoverability cutoff that accumulates suppression evidence -- an artificial system may still need an explicit abandon path, but it cannot be justified by 'enough evidence of hopelessness'.",
+    "source_context": "Clinically framed review of operant extinction/relapse phenomena, including drug self-administration and health-behaviour-change relapse (~70% one-year relapse cited)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.42,
+    "notes": "Source quality good (recent, clinically explicit, operant + drug self-admin breadth). Mapping fidelity moderate-high: operant traces ARE the bank's case. Transfer risk moderate: behavioural-only; the strong claim is a falsifier of a specific gate design, which is itself a high-value mapping."
+  }
+}

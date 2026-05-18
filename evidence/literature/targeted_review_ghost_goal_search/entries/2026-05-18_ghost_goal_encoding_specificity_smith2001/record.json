@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_encoding_specificity_smith2001",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "SD-039", "ARC-060"],
+  "source": {
+    "title": "Environmental context-dependent memory: a review and meta-analysis",
+    "authors": ["Steven M. Smith", "Edward Vela"],
+    "year": 2001,
+    "venue": "Psychonomic Bulletin & Review",
+    "doi": "10.3758/bf03196157",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11495110/"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Establishes that cue-context overlap drives retrieval (encoding specificity is real and reliable), but the effect is moderate and the outshining/overshadowing moderators are the load-bearing finding for us: a strong direct cue OUTSHINES contextual overlap. This both supports the cue-system framing and weakens any design that always weights context -- hence mixed. Confidence moderate: robust behavioural meta-analysis but the mapping to an internal goal/context vector is indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When a salient direct/identity cue is available at test (cued recall), context-overlap retrieval is 'outshone' and the context benefit vanishes or reverses to negligible.",
+    "When non-contextual information is emphasised at encoding (overshadowing), the trace is not bound to context and later contextual cues fail to reinstate it.",
+    "Mental reinstatement of the original context substitutes for physical context, so physical-context manipulations fail when subjects internally reinstate -- a confound that breaks naive context-overlap predictions."
+  ],
+  "tags": ["mech-292", "sd-039", "arc-060", "ghost_goal", "cue_system", "encoding_specificity", "context_dependent_memory", "outshining"],
+  "mapping": {
+    "source_claim_statement": "Incidental environmental context-dependent memory is reliable but moderate in size; it is systematically reduced by overshadowing (strong non-contextual cues at encoding), outshining (strong non-contextual cues at test), and mental reinstatement -- i.e. context-overlap retrieval is a conditional fallback, strongest precisely when a strong direct cue is absent.",
+    "ree_translation": "Directly constrains the bank's matching function. SD-039 should preserve more than z_goal in the payload (context features), because biology binds traces to context and retrieves on overlap. But MECH-292's goal_match should be designed so that a strong direct goal-vector match DOMINATES (outshining), with the context channel acting as the weak fallback that matters only when direct match is poor -- not an always-on additive term. ARC-060's discrete bank is the substrate this gating operates over.",
+    "mapping_caveat": "This is human verbal-memory behaviour with incidental physical context; 'context' is a room, not an internal world/affect vector. The outshining/overshadowing structure is a strong qualitative design constraint but the quantitative effect sizes do not transfer, and the precise gating curve in an artificial bank is unspecified by the data.",
+    "source_context": "Meta-analysis and review of human incidental environmental context-dependent recall/recognition experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (cited meta-analysis). Mapping fidelity moderate: the outshining principle is a precise and useful design constraint, but physical-room context is an indirect analogue of an internal context vector. Transfer risk moderate. Exact reported effect size deliberately not quoted -- summarised qualitatively per source-verification flag."
+  }
+}

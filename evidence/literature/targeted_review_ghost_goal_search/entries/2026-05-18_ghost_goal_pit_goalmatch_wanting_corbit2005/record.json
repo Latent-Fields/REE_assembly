@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_pit_goalmatch_wanting_corbit2005",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "MECH-293", "ARC-060"],
+  "source": {
+    "title": "Double dissociation of basolateral and central amygdala lesions on the general and outcome-specific forms of pavlovian-instrumental transfer",
+    "authors": ["Laura H. Corbit", "Bernard W. Balleine"],
+    "year": 2005,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4507-04.2005",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15673677/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Provides the causal anatomical substrate for cue-matched-trace -> instrumental invigoration and a clean double dissociation of outcome-specific (BLA) vs general (CeA) cue-driven vigor, replicated one synapse downstream by Corbit & Balleine 2011 (NAc shell vs core) including reversible inactivation at test. Directly validates separating goal_match (specific) from a general wanting/arousal gain in ghost_priority. Held below 0.85 because the biology insists these are dissociable channels, not one multiplicative product.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CeA/NAc-core-type failure: cues generally invigorate ANY available action regardless of whether it earns the cue's predicted goal -- nonspecific arousal-driven over-pursuit.",
+    "BLA/NAc-shell-type failure: loss of the cue->specific-goal mapping, so a matched cue no longer preferentially re-probes its own deferred goal while generic drive persists.",
+    "Because expression depends on these structures at test (2011 muscimol), a well-encoded cue can fail to invigorate if the retrieval-time channel is offline -- 'stored but un-actionable' bank entries."
+  ],
+  "tags": ["mech-292", "mech-293", "arc-060", "ghost_goal", "cue_system", "pavlovian_instrumental_transfer", "amygdala", "nucleus_accumbens", "goal_match"],
+  "mapping": {
+    "source_claim_statement": "Pavlovian-instrumental transfer has two dissociable forms: outcome-specific PIT (a cue selectively invigorates the action earning that cue's predicted outcome) requires basolateral amygdala (and, downstream, NAc shell); general PIT (a cue nonspecifically energises any instrumental action) requires central amygdala (and NAc core). Reversible inactivation at test reproduces the lesion pattern, so the structures are required at retrieval/expression.",
+    "ree_translation": "Maps almost directly onto the ghost_priority score: a BLA/NAc-shell channel computes 'this cue matches this stored goal, re-probe THAT goal' (goal_match, MECH-292; the targeted probe of MECH-293) and a CeA/NAc-core channel computes a value-general arousal/vigor gain. ARC-060's discrete addressable bank is the structure the specific channel indexes into.",
+    "mapping_caveat": "The biology insists the specific-match and general-wanting terms are anatomically and computationally SEPARABLE channels with independent failure modes; a single 'wanting x goal_match' product collapses two dissociable systems and cannot represent their independent failure (intact matching with absent vigor, or nonspecific over-invigoration with intact matching).",
+    "source_context": "Rats; excitotoxic amygdala lesions (2005) and reversible muscimol inactivation of NAc subregions (2011); appetitive Pavlovian + instrumental training; PIT test in extinction."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (double dissociation replicated across two anatomical levels with reversible inactivation; pairs 2005 PMID 15673677 with 2011 PMID 21849539, DOI 10.1523/JNEUROSCI.2711-11.2011, PMC3208020). Mapping fidelity high: PIT is operationally exactly the bank operation (a cue invigorating a separately-stored action). Transfer risk moderate (rodent -> artificial bank)."
+  }
+}

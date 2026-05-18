@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_internal_cue_reinstatement_gelbardsagiv2008",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "MECH-293", "ARC-060"],
+  "source": {
+    "title": "Internally generated reactivation of single neurons in human hippocampus during free recall",
+    "authors": ["Hagar Gelbard-Sagiv", "Roy Mukamel", "Michal Harel", "Rafael Malach", "Itzhak Fried"],
+    "year": 2008,
+    "venue": "Science",
+    "doi": "10.1126/science.1164685",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18772395/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct human single-unit evidence that an internally generated cue reinstates the original episode-specific trace, and does so ~1.5 s before the content reaches verbal report. This is the strongest available warrant that an internal goal/context vector is a legitimate retrieval cue (MECH-293's internally triggered probe). Held below 0.85 because it is correlational -- it shows reinstatement precedes report, not that the internal cue causes selection of that trace -- and it does not adjudicate the matching rule.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Only a sparse, item-specific subset of episode-selective neurons reliably reactivated at recall -- not every stored trace is addressable by the internal cue.",
+    "The paper characterises successful reinstatement only; the common recall-omission case (internal cue evokes no reinstatement) is left uncharacterised, so the silent-miss boundary is unknown."
+  ],
+  "tags": ["mech-292", "mech-293", "arc-060", "ghost_goal", "cue_system", "internal_cue", "reinstatement", "free_recall"],
+  "mapping": {
+    "source_claim_statement": "Human MTL neurons that fire selectively for a specific encoded episode reactivate during free recall of that episode, with reactivation preceding verbal report by ~1.5 s; retrieval is reinstatement of the encoding-time representation triggered by an internally generated (un-cued) signal.",
+    "ree_translation": "Validates that an internally generated goal/context vector -- not only an externally presented stimulus -- is a legitimate retrieval cue that reinstates a stored trace. This is the biological warrant for MECH-293's awake ghost-probe (the agent re-probes deferred goals from an internal state), for MECH-292's ranked-retrieval premise, and for ARC-060's discrete addressable bank.",
+    "mapping_caveat": "Correlational and from epileptic tissue. It establishes that internal-cue reinstatement happens and temporally leads report, but it does not show the internal cue causes selection of that particular trace, and it cannot adjudicate cosine-similarity vs attractor-completion as the matching function the bank should use.",
+    "source_context": "Epilepsy patients with implanted hippocampal/entorhinal depth electrodes; audiovisual film-clip encoding followed by free verbal recall; single-unit recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (rare human intracranial single-unit, Science). Mapping fidelity moderate-high: internally triggered reinstatement is exactly MECH-293's premise, but episodic-memory recall is not goal re-probing. Transfer risk moderate: clinical tissue + correlational, and the matching rule is unspecified."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_contextual_gate_psychopathology_maren2013",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "MECH-293", "ARC-060"],
+  "source": {
+    "title": "The contextual brain: implications for fear conditioning, extinction and psychopathology",
+    "authors": ["Stephen Maren", "K. Luan Phan", "Israel Liberzon"],
+    "year": 2013,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3492",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23635870/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Supplies the neural circuit (hippocampal configural context -> amygdala/vmPFC gate) that decides whether an inactive trace re-expresses, and shows gate failure IS the mechanism of intrusion/relapse psychopathology (PTSD, addiction, schizophrenia). Close to a direct biological endorsement of recoverability-gated return with rumination/intrusion as the failure mode. Held below 0.85 by the spatial/configural-context homology caveat -- a thin internal context tag is not homologous to the hippocampal configural representation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PTSD: failure of hippocampal/vmPFC contextual gating renews the extinguished trace in safe contexts -- intrusive re-experiencing/flashbacks are the inactive trace re-expressing as if the current context were the original.",
+    "Exaggerated dorsal-ACC + deficient vmPFC during extinction recall = the recoverability gate stuck open, the suppressed trace cannot stay suppressed.",
+    "Addiction: loss of context-specific tolerance/sensitization; drug-associated context cues reinstate seeking.",
+    "Schizophrenia: degraded context processing yields retrieval/failure-to-suppress unconstrained by situational appropriateness (intrusive thoughts, paranoid ideation)."
+  ],
+  "tags": ["mech-292", "mech-293", "arc-060", "ghost_goal", "cue_system", "contextual_gating", "hippocampus", "vmpfc", "ptsd", "psychopathology"],
+  "mapping": {
+    "source_claim_statement": "A hippocampus-amygdala-vmPFC circuit gates whether an extinguished (inactive) trace re-expresses: the hippocampus encodes the configural context and acts as occasion-setter selecting fear vs safety memory; renewal is hippocampus-dependent; vmPFC/anterior hippocampus track extinction retrieval while amygdala/posterior hippocampus track renewal. Gate failure produces inappropriate context-independent renewal -- the mechanism of PTSD intrusion, addiction relapse, and schizophrenic intrusion.",
+    "ree_translation": "Gives MECH-292's recoverability term and MECH-293's re-probe gate a concrete circuit identity: context-keyed selection between competing active/inactive traces, with an explicit prefrontal inhibitory limb. Validates ARC-060's discrete preserved-trace bank by showing return is gated, not free. Maps the rumination/intrusion failure mode onto a specific gate-stuck-open lesion.",
+    "mapping_caveat": "The gating power comes from a HIGH-DIMENSIONAL hippocampal configural/spatial representation with consolidation dynamics; the review explicitly flags that even human fMRI struggles to instantiate true context. A recoverability gate keyed on a thin internal context tag is not homologous and will misfire (over- or under-renewing) exactly as impoverished human paradigms did -- the caveat is load-bearing for design, not a footnote.",
+    "source_context": "Review integrating rodent single-unit/lesion fear-conditioning-extinction work with human fMRI and clinical PTSD/addiction/schizophrenia populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high (Nature Reviews Neuroscience, multi-method convergence). Mapping fidelity moderate-high: a context-keyed gate with a prefrontal inhibitory limb maps cleanly onto recoverability + a regulable re-probe gate. Transfer risk moderate: configural-context homology is weak for a low-dimensional internal tag."
+  }
+}

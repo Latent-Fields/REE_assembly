@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_cue_reactivity_modulators_jasinska2014",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "MECH-293"],
+  "source": {
+    "title": "Factors modulating neural reactivity to drug cues in addiction: a survey of human neuroimaging studies",
+    "authors": ["Agnes J. Jasinska", "Elliot A. Stein", "Jochen Kaiser", "Marcus J. Naumer", "Yavor Yalachkov"],
+    "year": 2014,
+    "venue": "Neuroscience & Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2013.10.013",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24211373/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Supports the term STRUCTURE of ghost_priority (cue-triggered wanting is gated by an availability/expectancy term -- a recoverability analogue -- and is top-down regulable) but specifically WEAKENS the monotonic-staleness-decay prior: incubation of craving means a long-blocked entry can become MORE invigorating over time, inverting the staleness assumption. Narrative human review of the pathological extreme, so it documents how the term goes wrong, not the healthy setpoint.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cue reactivity scales with addiction severity and predicts relapse: the cue-triggered wanting signal grows with repeated retrieval and detaches from current outcome value (rumination/craving runaway for a re-probing budget).",
+    "Incubation: cue reactivity can intensify across abstinence, so a stale, long-blocked entry becomes MORE invigorating over time -- a direct counter-pattern to a monotonic staleness-decay assumption.",
+    "Loss/weakening of prefrontal top-down regulation releases cue-triggered wanting -- failure of the inhibitory gain control on re-probing.",
+    "When reward is signalled unavailable, healthy cue reactivity is suppressed; failure to apply this gate produces persistent craving for unattainable goals (recoverability term broken)."
+  ],
+  "tags": ["mech-292", "mech-293", "ghost_goal", "cue_system", "cue_reactivity", "craving", "incubation", "recoverability", "clinical"],
+  "mapping": {
+    "source_claim_statement": "Drug-cue reactivity in human ventral striatum/amygdala/OFC/ACC/insula is the homologue of the rodent incentive-salience substrate; its magnitude is systematically modulated by availability/expectancy, abstinence (incubation), addiction severity, stress, and cognitive regulation, and over-weighted cue reactivity tracks severity and predicts relapse.",
+    "ree_translation": "Clinically instantiates the cue-system pathology axis for MECH-292/MECH-293. It supports including an availability/expectancy gate (a recoverability analogue) and a top-down regulable gain on cue-triggered re-probing, but it shows the wanting term is NOT well-behaved: with repeated retrieval and time-since-block it can grow rather than decay, so a monotonic staleness-decay prior in ghost_priority is biologically wrong at the pathological extreme.",
+    "mapping_caveat": "This is the maladaptive extreme in clinical addiction; it documents how the cue-weighting term fails, not the normative operating range. The same circuitry is adaptive at low gain and a disorder only when chronically over-amplified and availability-insensitive -- importing its gain curve as the healthy default would be a category error.",
+    "source_context": "Narrative survey/model-building review of human fMRI/PET drug-cue-reactivity studies (cocaine, alcohol, tobacco); clinical addicted populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.50,
+    "notes": "Source quality good but it is a narrative review, not a coordinate-based meta-analysis. Mapping fidelity moderate: the modulator structure maps cleanly onto recoverability/staleness/regulation terms, but it is the pathological regime. Transfer risk elevated: clinical addiction extreme -> normative goal-bank gain."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-05-18_ghost_goal_pattern_completion_nakazawa2002",
+  "timestamp_utc": "2026-05-18T20:46:59Z",
+  "claim_ids_tested": ["MECH-292", "ARC-060", "SD-039"],
+  "source": {
+    "title": "Requirement for hippocampal CA3 NMDA receptors in associative memory recall",
+    "authors": ["Kazu Nakazawa", "Michael C. Quirk", "Raymond A. Chitwood", "Masahiko Watanabe", "Mark F. Yeckel", "Linus D. Sun", "Akira Kato", "Candice A. Carr", "Daniel Johnston", "Matthew A. Wilson", "Susumu Tonegawa"],
+    "year": 2002,
+    "venue": "Science",
+    "doi": "10.1126/science.1071795",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12040087/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical causal demonstration that biological cued recall is genuinely partial-cue pattern completion (CA3-specific NMDA knockout selectively abolishes partial-cue recall while sparing encoding and full-cue recall). High source quality. Confidence held below 0.9 by the transfer gap: the REE bank does a single linear cosine readout, not recurrent attractor dynamics, so it inherits the behaviour but not the basin-interference failure modes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When too few of the original cues remain, completion fails outright and the correct trace is not retrieved (CA3-NR1 mutants impaired specifically in the partial-cue condition).",
+    "Place-cell representational stability silently degrades under partial-cue conditions when recurrent NMDA plasticity is absent -- the cue->trace map fails quietly rather than signalling an error."
+  ],
+  "tags": ["mech-292", "arc-060", "sd-039", "ghost_goal", "cue_system", "pattern_completion", "ca3", "encoding_specificity"],
+  "mapping": {
+    "source_claim_statement": "CA3 recurrent collaterals implement an NMDA-dependent autoassociative attractor; removing CA3 NMDA receptors selectively impairs recall from partial/degraded cues while leaving encoding, full-cue recall, and CA1 place fields intact.",
+    "ree_translation": "The ghost-goal bank's retrieval step (goal_match between current goal/context and a stored anchor payload) is biologically licensed to be a partial-cue completion, not an identity match: a degraded or partial current cue should still recover the full stored goal trace. This supports MECH-292's matched-retrieval premise and ARC-060's claim that a discrete addressable bank is the right structure; SD-039's stored payload is what gets completed.",
+    "mapping_caveat": "The biology achieves completion via recurrent attractor dynamics with graceful degradation AND a catastrophic basin-hopping failure mode (a degraded cue can be pulled to a near-but-wrong attractor). A cosine-ranked bank reproduces graceful degradation but has no basin structure, so it neither inherits nor is protected against the biological interference pathology -- the homology is functional, not mechanistic.",
+    "source_context": "Adult mice, CA3-pyramidal-cell-restricted NR1 knockout; Morris water maze + in-vivo CA1 place-cell recording; spatial allocentric memory with physical-landmark cues."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high (causal transgenic + in-vivo recording, Science, heavily replicated mechanism). Mapping fidelity moderate-high: partial-cue completion is exactly the asserted retrieval property, but 'cue' here is physical landmarks not an internal goal vector. Transfer risk moderate: attractor vs linear-readout substrate divergence."
+  }
+}
