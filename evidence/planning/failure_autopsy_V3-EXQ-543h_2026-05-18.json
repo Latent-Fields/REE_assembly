@@ -7,7 +7,12 @@
     {
       "run_id": "v3_exq_543h_arc062_crystallization_falsifier_20260518T000930Z_v3",
       "queue_id": "V3-EXQ-543h",
-      "claim_ids": ["ARC-062", "MECH-309", "INV-074", "MECH-334"],
+      "claim_ids": [
+        "ARC-062",
+        "MECH-309",
+        "INV-074",
+        "MECH-334"
+      ],
       "failed_criterion": "discrimination",
       "negative_control_also_failed": true,
       "negative_control_detail": "inert-gating probe failed on every gated arm (ARM_2/3/6/7), all 3 seeds; n_inert_gating_seeds=3 each; C2_state_dependence_pass=false; C3_risk_type_dissociation_pass=false",
@@ -26,7 +31,10 @@
       },
       "biological_reference": {
         "closest_mechanism": "PNN/Lynx1/NgR1 critical-period three-brake (MECH-334); PFC-like contextual policy arbitration (ARC-062/MECH-309)",
-        "dependencies": ["functional differentiated GatedPolicy (MECH-333/INV-074)", "formed policy repertoire prior to arbitration"],
+        "dependencies": [
+          "functional differentiated GatedPolicy (MECH-333/INV-074)",
+          "formed policy repertoire prior to arbitration"
+        ],
         "is_formal_import": false,
         "divergence": "none -- biology present and consistent; failure is missing-prerequisite, not divergence or falsification",
         "lit_status": "present"
@@ -44,29 +52,56 @@
         "MECH-334": "weakens -> non_contributory"
       },
       "recommended_evidence_quality_note": {
-        "ARC-062_MECH-309": "V3-EXQ-543h non_contributory (autopsy 2026-05-18). Gated policy collapsed to inert on all gated arms and all 3 seeds (n_inert_gating_seeds=3, probe_gate failed). The script's repro_543g_signature check is sign-only (ARM_2>ARM_3) and returned True while the substrate inverted from active (543g) to inert; this misfired the pre-registered interpretation grid into branch (b). Correct branch is (c): non_contributory across all claims. ARC-062 contributory trained-policy evidence remains narrow (543g weakens [active gating], 543f non_contributory); pending_retest_after_substrate.",
+        "ARC-062_MECH-309": "V3-EXQ-543h non_contributory (autopsy 2026-05-18). Gated policy collapsed to inert on all gated arms/3 seeds (n_inert=3, probe_gate failed); repro_543g_signature is sign-only and misfired the grid into branch (b). Correct branch (c): non_contributory all claims. Cross-machine replication (Sec.7b): the 543g config is near-bifurcation fragile -- ACTIVE host-A (_144716Z), INERT cloud-3 (_191536Z) + cloud-4. 543g _144716Z 'weakens ARC-062' is a 1/3 minority-basin artifact; 543g overall non_contributory. ARC-062 has zero reliable contributory trained-policy evidence; pending_retest_after_substrate.",
         "INV-074_MECH-334": "V3-EXQ-543h does NOT weaken INV-074 or MECH-334 (autopsy 2026-05-18, correcting the manifest's branch-(b) per_claim weakens). Crystallization freezes head_0/head_1/discriminator; the gated policy was inert before the closure fired, so the PNN/Lynx1/NgR1-analog crystallization mechanism was never exercised. Missing prerequisite (functional differentiated GatedPolicy = MECH-333/INV-074), not claim pressure. evidence_direction = non_contributory; pending_retest_after_substrate.",
-        "supersession_indexer": "Do NOT honor V3-EXQ-543h supersedes: V3-EXQ-543g. 543h failed to reproduce 543g's substrate state (active -> inert). 543g remains active ARC-062 evidence until V3-EXQ-543i (which supersedes both) lands."
+        "supersession_indexer": "Do NOT honor V3-EXQ-543h supersedes: V3-EXQ-543g. Cross-machine: 543g config near-bifurcation fragile (ACTIVE host-A _144716Z; INERT cloud-3 _191536Z + cloud-4 543h xtal-OFF). _144716Z 'weakens' = 1/3 minority basin -> treat 543g overall non_contributory for ARC-062; do not weight the 'weakens'. No reliable interim ARC-062 evidence. V3-EXQ-543i supersedes BOTH after substrate stabilisation."
       },
       "supersession_directive": {
         "manifest_declares": "supersedes V3-EXQ-543g",
         "honor_in_indexer": false,
-        "reason": "543h did not reproduce 543g's substrate state (active gating -> inert all seeds); cannot subsume it",
-        "interim_active_arc062_evidence": "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T144716Z_v3",
-        "planned_future_supersedes": "V3-EXQ-543i supersedes BOTH V3-EXQ-543g and V3-EXQ-543h (queued only after substrate stabilisation)"
+        "reason": "543h did not reproduce 543g's substrate state; AND cross-machine replication shows 543g itself is near-bifurcation fragile (ACTIVE host-A _144716Z, INERT cloud-3 _191536Z + cloud-4 543h xtal-OFF)",
+        "interim_active_arc062_evidence": "NONE -- 543g _144716Z 'weakens' is a 1/3 minority lucky-basin artifact; 543g overall is non_contributory for ARC-062",
+        "planned_future_supersedes": "V3-EXQ-543i supersedes BOTH V3-EXQ-543g and V3-EXQ-543h (queued only after substrate stabilisation)",
+        "cross_machine_543g_runs": {
+          "v3_exq_543g_..._20260517T144716Z_v3": {
+            "machine": "host-A",
+            "gating": "ACTIVE",
+            "n_inert": 0,
+            "ev_dir": "weakens ARC-062",
+            "note": "minority basin, 1/3"
+          },
+          "v3_exq_543g_..._20260517T191536Z_v3": {
+            "machine": "cloud-3",
+            "gating": "INERT",
+            "n_inert": 3,
+            "ev_dir": "non_contributory",
+            "note": "common attractor; ARM_0 bit-identical to 543h xtal-OFF"
+          },
+          "v3_exq_543h_..._20260518T000930Z_v3 (xtal-OFF)": {
+            "machine": "cloud-4",
+            "gating": "INERT",
+            "n_inert": 3,
+            "ev_dir": "non_contributory",
+            "note": "common attractor"
+          }
+        }
       },
       "recommended_substrate_queue_entry": {
         "source_run_id": "v3_exq_543h_arc062_crystallization_falsifier_20260518T000930Z_v3",
         "substrate": "GatedPolicy head-differentiation under outcome-coupled REINFORCE",
         "metric_that_broke": "n_inert_gating_seeds (per gated arm)",
         "observed": "3/3 seeds inert on every gated arm (ARM_2/3/6/7); behavioral-divergence probe mean_tv_distance < INERT_GATING_THRESHOLD=0.05",
-        "threshold_a_working_impl_must_exceed": "n_inert_gating_seeds == 0 across all seeds on all gated arms under the trained-policy (REINFORCE) regime; behavioral-divergence probe mean_tv_distance sustained >= 0.05 at end of P1",
+        "threshold_a_working_impl_must_exceed": "n_inert_gating_seeds == 0 across all seeds on all gated arms AND reproducibly across machines (host-A / cloud-3 / cloud-4) -- head-differentiation must be a strong attractor, not a fragile 1/3 basin landing; behavioral-divergence probe mean_tv_distance sustained >= 0.05 at end of P1",
         "root_cause_hypothesis": "head_div regularizer removed (symmetric-cancellation argument, 543g/h); replacement disc_var@0.1 does not maintain head_0/head_1 divergence under REINFORCE -> heads collapse; activation RNG/init-sensitive",
-        "prerequisite_claims": ["MECH-333", "INV-074"]
+        "prerequisite_claims": [
+          "MECH-333",
+          "INV-074"
+        ],
+        "cross_machine_evidence": "3 runs of identical 543g config: 1 ACTIVE (host-A), 2 INERT (cloud-3, cloud-4) -- direct proof differentiation is not an attractor"
       },
       "pending_retest_after_substrate": true,
       "narrow_supports_flag": true,
-      "narrow_supports_detail": "ARC-062 contributory trained-policy evidence near-zero: 543g weakens (active gating), 543f non_contributory; MECH-309 family 522 PASS heuristic-only, 433e/433f/523/523a/523b non_contributory. Voiding 543h must not read as conflict resolution for ARC-062.",
+      "narrow_supports_detail": "ARC-062 contributory trained-policy evidence is ZERO: cross-machine replication shows 543g 'weakens' is a 1/3 minority-basin artifact (2/3 runs INERT/non_contributory); 543f non_contributory; MECH-309 family 522 PASS heuristic-only, 433e/433f/523/523a/523b non_contributory. Voiding 543h and downgrading 543g must NOT read as conflict resolution for ARC-062 -- it has no robust trained-policy support at all.",
       "learning_extracted": [
         "MECH-334/crystallization is untestable until the GatedPolicy it freezes carries differentiated heads under trained policy (discovered prerequisite, not falsification)",
         "GatedPolicy head-differentiation under outcome-coupled REINFORCE is unstable/init-sensitive after head_div removal; disc_var@0.1 insufficient",
@@ -74,16 +109,41 @@
         "A supersedes: declaration must not be honored when the superseding run failed to reproduce the predecessor's substrate state"
       ],
       "routing": "implement-substrate",
-      "secondary_routing": "queue-experiment (V3-EXQ-543i, supersedes 543g+543h, gated behind substrate fix; replace sign-only repro check with n_inert==0 branch-(b) precondition)"
+      "secondary_routing": "queue-experiment (V3-EXQ-543i, supersedes 543g+543h, gated behind substrate fix; replace sign-only repro check with n_inert==0 branch-(b) precondition)",
+      "cross_machine_confirmation": {
+        "retrieved_utc": "2026-05-18T05:44Z",
+        "source": "cloud-3 untracked v3_exq_543g_..._20260517T191536Z_v3 (read-only; safety copy /tmp/cloud3_543g_safety/)",
+        "ruled_out_by_static_read": [
+          "preflight-scaffolding RNG (per-arm reseed isolates arms)",
+          "crystallize plumbing init shift (expansion lazy in crystallize(), not __init__; xtal-OFF construction bit-identical)"
+        ],
+        "finding": "same 543g code: ACTIVE on host-A, INERT on cloud-3 AND cloud-4 -> near-bifurcation fragility CONFIRMED by direct cross-machine replication, not a 543g->543h code drift",
+        "bit_identical_corroboration": "cloud-3 543g ARM_0=0.6496934637947921 == 543h xtal-OFF ARM_0=0.6496934637947921 (INERT basin is the common attractor; host-A ACTIVE is 1/3 outlier)",
+        "material_revision": "543g _144716Z 'weakens ARC-062' is a minority lucky-basin artifact; 543g overall non_contributory; ARC-062 has zero reliable contributory trained-policy evidence"
+      }
     }
   ],
   "cluster_pattern": {
-    "members": ["V3-EXQ-543f", "V3-EXQ-543g", "V3-EXQ-543h"],
-    "extended_family": ["V3-EXQ-433e", "V3-EXQ-433f", "V3-EXQ-523", "V3-EXQ-523a", "V3-EXQ-523b", "V3-EXQ-522"],
+    "members": [
+      "V3-EXQ-543f",
+      "V3-EXQ-543g",
+      "V3-EXQ-543h"
+    ],
+    "extended_family": [
+      "V3-EXQ-433e",
+      "V3-EXQ-433f",
+      "V3-EXQ-523",
+      "V3-EXQ-523a",
+      "V3-EXQ-523b",
+      "V3-EXQ-522"
+    ],
     "shape": "GatedPolicy head-differentiation does not robustly persist under outcome-coupled REINFORCE; gated arms collapse to inert (probe TV < 0.05) intermittently -- active in 543g, inert in 543f/543h with structurally identical 2x2 config",
     "is_independent_bugs": false,
     "structural_property": "the gated/rule-apprehension substrate has the asserted wiring but does not reliably carry differentiated policy behaviour under a trained policy; activation is RNG/init-sensitive (substrate-ceiling, unstable-activation variant) -- continuous with MECH-309's documented V_s-monostrategy substrate-ceiling",
-    "readings": ["substrate_instability", "test_design_ceiling"],
-    "forced_decision": "substrate reading primary -> /implement-substrate (stabilise differentiation); test-design reading mandatory secondary -> fix repro acceptance gate in the redesigned V3-EXQ-543i"
+    "readings": [
+      "substrate_instability_confirmed"
+    ],
+    "forced_decision": "substrate reading CONFIRMED by cross-machine replication -> /implement-substrate (make differentiation a strong attractor reproducible across machines); test-design repro-gate fix folded into V3-EXQ-543i",
+    "cross_machine_proof": "543g config replicated across 3 machines: ACTIVE host-A only; INERT cloud-3 + cloud-4 (bit-identical ARM_0). Fragility is a confirmed substrate property, not inferred."
   }
 }

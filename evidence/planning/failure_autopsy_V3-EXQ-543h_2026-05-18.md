@@ -169,15 +169,63 @@ NOT be read as conflict resolution for ARC-062.
    indexer when the superseding run failed to reproduce the predecessor's substrate
    state. 543h does not subsume 543g.
 
+## 7b. Post-autopsy cross-machine confirmation (2026-05-18T05:44Z)
+
+Per user direction, the flagged-but-uncommitted cloud-3 543g DUPLICATE
+(`v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T191536Z_v3`, ran cloud-3
+15:55 -> 19:15) was retrieved read-only and compared. It runs the SAME 543g
+script/config as the authoritative `_144716Z`, on a DIFFERENT machine.
+
+Two construction-RNG hypotheses were first eliminated by static code reading:
+(1) preflight-scaffolding RNG -- 543h re-seeds the global RNG per arm-seed
+(`_make_agent_and_env` torch/np/random.seed(seed) at the top of every arm build),
+so `_preflight_check()` consumption cannot perturb the arms; (2) crystallize
+plumbing shifting init -- `GatedPolicy.expansion` is created lazily in
+`crystallize()`, not `__init__` (gated_policy.py:284-285); config flags are inert
+dataclass defaults, so xtal-OFF construction is bit-identical to 543g.
+
+| Run | Machine | ARM_0 | ARM_1 | ARM_2 | ARM_3 | gating | ev_dir |
+|---|---|---|---|---|---|---|---|
+| 543g `_144716Z` (authoritative) | host-A | 0.278 | 0.174 | 0.444 | 0.243 | ACTIVE (n_inert=0) | weakens ARC-062 |
+| 543g `_191536Z` (cloud-3 dup) | cloud-3 | 0.650 | 0.523 | 0.558 | 0.324 | INERT (n_inert=3) | non_contributory |
+| 543h xtal-OFF | cloud-4 | 0.650 | 0.558 | 0.518 | 0.250 | INERT (n_inert=3) | non_contributory |
+
+The same 543g code lands ACTIVE on host-A and INERT on cloud-3 AND cloud-4. This
+is NOT a 543g->543h code drift (543g itself flips basins by machine). Near-
+bifurcation fragility is now CONFIRMED by direct cross-machine replication, not
+inferred. Bit-identical corroboration: cloud-3 543g ARM_0 =
+0.6496934637947921 == 543h xtal-OFF ARM_0 = 0.6496934637947921 -- the INERT basin
+is the common attractor (cloud-3 + cloud-4 land there identically); host-A's
+ACTIVE landing is the rare outlier, 1 of 3 known runs.
+
+**Material revision to the autopsy:** the authoritative 543g `_144716Z`
+"weakens ARC-062" is itself a minority lucky-basin artifact (1/3 runs ACTIVE).
+The honest status is **543g as a whole is non_contributory** (2/3 runs
+INERT/non_contributory; the ACTIVE/weakens landing is not reproducible). ARC-062
+therefore has **zero reliable contributory trained-policy evidence** -- not even
+the 543g "weakens." The narrow_supports flag (Sec. 6) is confirmed at the
+strongest level. 543g `_144716Z` should NOT continue to weight ARC-062 governance
+as "weakens"; it is a fragile-substrate artifact.
+
+Safety copy of the at-risk single-VM uncommitted cloud-3 manifest + runner signal
+taken to local /tmp/cloud3_543g_safety/ (read-only; no push). Committing the
+cloud-3 duplicate to origin as preserved evidence is a governance/user decision
+(it is the same anti-double-count item flagged in the recover-stranded-543h
+WORKSPACE_STATE entry); not done here.
+
 ## 8. Routing decision (user-confirmed 2026-05-18)
 
 - Reclassification: branch (c) — evidence_direction non_contributory for ARC-062,
   MECH-309, INV-074, MECH-334. Correct INV-074 weakens -> non_contributory and
   MECH-334 weakens -> non_contributory in governance.
 - Supersession: 543h's `supersedes: V3-EXQ-543g` is VOIDED — not to be honored by the
-  indexer. 543g remains the active ARC-062 evidence (functional gating) in the
-  interim. A forthcoming **V3-EXQ-543i will supersede BOTH V3-EXQ-543g and
-  V3-EXQ-543h** (queued only after the substrate is stabilised).
+  indexer. REVISED post-cross-machine (Sec. 7b): 543g `_144716Z` "weakens ARC-062" is
+  a minority lucky-basin artifact (1/3 runs ACTIVE); **543g as a whole is
+  non_contributory** and should NOT weight ARC-062 governance as "weakens." There is
+  no reliable interim ARC-062 evidence to preserve. A forthcoming **V3-EXQ-543i will
+  supersede BOTH V3-EXQ-543g and V3-EXQ-543h** (queued only after the substrate is
+  stabilised so head-differentiation is a strong attractor reproducibly across
+  machines).
 - Primary routing: **/implement-substrate** — substrate_queue failure-record:
   stabilise GatedPolicy head-differentiation so n_inert_gating_seeds == 0 across all
   seeds under outcome-coupled REINFORCE before any crystallization retest.
@@ -207,6 +255,9 @@ INV-074 / MECH-334:
 > pressure. evidence_direction = non_contributory; pending_retest_after_substrate.
 
 Supersession (indexer):
-> Do NOT honor V3-EXQ-543h `supersedes: V3-EXQ-543g`. 543h failed to reproduce 543g's
-> substrate state (active -> inert). 543g remains active ARC-062 evidence until
-> V3-EXQ-543i (which supersedes both) lands.
+> Do NOT honor V3-EXQ-543h `supersedes: V3-EXQ-543g`. Cross-machine replication
+> (2026-05-18, Sec. 7b) shows the 543g config is near-bifurcation fragile: ACTIVE on
+> host-A (`_144716Z`), INERT on cloud-3 (`_191536Z`) and cloud-4 (543h xtal-OFF). The
+> `_144716Z` "weakens ARC-062" is a 1/3 minority-basin artifact -> treat 543g overall
+> as non_contributory for ARC-062 (do not weight the "weakens"). No reliable interim
+> ARC-062 evidence exists. V3-EXQ-543i supersedes BOTH once the substrate is stabilised.
