@@ -1,0 +1,50 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-19T21:53:32Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_588_isef002_transient_benefit_zgoal_seeding_20260518T222457Z_v3",
+      "queue_id": "V3-EXQ-588",
+      "claim_ids": ["MECH-189"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "could_not_express",
+        "biological_reference": "clear",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "too_sparse_for_gate",
+        "measurement": "adequate_high_gate",
+        "integration": "partially_coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "incentive salience / accidental operant contingency learning (infant wanting)",
+        "dependencies": [
+          "sustained wanting trace at sparse reward",
+          "repeated action-outcome contact",
+          "ContextMemory consolidation (MECH-189 proper substrate -- absent in this run)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- failure is sparse-contact + SD-012 gate collapse, not biology mismatch",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "non_contributory",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-588 FAIL (infant_substrate:GAP-11): non_contributory for MECH-189. Both arms median first-crossing=1001 (never reached z_goal.norm>0.4); C1 discrimination tied at failure, not 'patches slower than control.' C2/C3 PASS: patches generate contacts (0.029/ep) and higher is_active() fraction (0.41 vs 0.24) -- env GAP-3 works; GoalState gate not reachable with default SD-012 (benefit_threshold 0.1 + EMA alpha 0.1 + drive collapse at contact + decay). MECH-189 tests child-phase ContextMemory super-ordinal writes; this run tests infant within-episode attractor (MECH-112/DEV-NEED-006) -- claim could not express. Consistent with EXQ-582 substrate-ceiling and EXQ-582a PASS on drive_floor=0.9. Route: goal-seeding pipeline diagnostic (floor + patches + contact instrumentation) before any MECH-189 retest. pending_retest_after_substrate=true. lit/exp not blended.",
+      "recommended_substrate_queue_entry": null,
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Transient benefit patches (GAP-3) work at env level but do not reach z_goal.norm 0.4 without SD-012 sustained-drive amendments.",
+        "MECH-189 tag is wrong layer: ContextMemory super-ordinal writes vs infant GoalState attractor test.",
+        "C1 tied at sentinel 1001 both arms -- not treatment slower than control.",
+        "EXQ-582a drive_floor=0.9 is the known fix for contact-sparse seeding; 588 omitted it.",
+        "Governance does_not_support on MECH-189 is illusory conflict -- should be non_contributory."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
