@@ -1170,7 +1170,11 @@ def start_shadow() -> dict:
                   "&& sudo systemctl restart ree-runner")
         else:
             rc = "sudo systemctl restart ree-runner"
-        hosts[h] = _ssh(h, ssh_user, rc)
+        # Bare names like 'ree-cloud-1' do not resolve on the Mac. Let
+        # coordinator.env map each to a reachable target (WireGuard tunnel
+        # IP, ssh-config alias, ...). Default = the name (unchanged).
+        target = cfg.get("SHADOW_SSH_HOST_" + h, h)
+        hosts[h] = _ssh(target, ssh_user, rc)
 
     manual = {h: {"status": "manual",
                   "note": "start manually with COORDINATION_MODE=shadow"}
