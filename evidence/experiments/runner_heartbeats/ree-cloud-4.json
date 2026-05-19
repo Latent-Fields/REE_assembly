@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-19T02:38:31Z",
+  "last_tick_utc": "2026-05-19T02:39:33Z",
   "state": "running",
   "current_exq": "V3-EXQ-543j",
   "current_exq_started_utc": "2026-05-19T01:56:02.265178+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_9_both_diff",
     "runs_done": 9,
     "runs_total": 36,
-    "episodes_done": 0,
+    "episodes_done": 20,
     "episodes_total": 108,
-    "overall_pct": 25.0
+    "overall_pct": 25.5
   },
-  "seconds_elapsed": 2549,
-  "seconds_remaining": 7594,
+  "seconds_elapsed": 2611,
+  "seconds_remaining": 7542,
   "recent_lines": [
-    "seed=0 arm=ARM_8_gated_only_diff  reef_frac=0.010  rho=+0.162  forage_hr=0.4082  transit_hr=1.0000  ratio=0.408  inert_gating=True  outcome_buf=286",
-    "verdict: FAIL",
     "Seed 0 Condition ARM_9_both_diff",
     "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=False  differential_heads=True  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)"
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)",
+    "[train] ARM_9_both_diff ep 10/108  phase=P0  rv=0.0021  ep_reward=-1.0573",
+    "[train] ARM_9_both_diff ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.0882"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
