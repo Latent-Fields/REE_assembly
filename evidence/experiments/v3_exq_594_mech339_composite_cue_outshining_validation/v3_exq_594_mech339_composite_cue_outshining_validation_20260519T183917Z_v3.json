@@ -1,0 +1,60 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_594_mech339_composite_cue_outshining_validation_20260519T183917Z_v3",
+  "experiment_type": "v3_exq_594_mech339_composite_cue_outshining_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-19T18:39:17.339948Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-339"
+  ],
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-339": "supports"
+  },
+  "evidence_direction_note": "MECH-339 Constraint 1 substrate validation (diagnostic; NOT governance evidence). T1 confirms master-OFF is bit-identical to the pre-MECH-339 four-term bank (no 'context' channel leaking); T2 confirms a strong direct match closes the outshining gate (strong-anchor context term exactly 0.0, priority bit-identical, top entry unchanged -- falsifiable (i)); T3 confirms a weak direct match lets the context channel change the top entry -- falsifiable (ii); T4 confirms an ungated fixed-weight context term degrades top-1 on a clean direct match, i.e. the gate is doing real work -- falsifiable (iii). Behavioural validation belongs to the MECH-293 consumer and is out of scope here.",
+  "outcome": "PASS",
+  "metrics": {
+    "T1_backward_compat_bit_identical": {
+      "pass": true,
+      "n_entries": 3,
+      "components_keys_exactly_four": true,
+      "no_context_in_components": true,
+      "no_context_in_diag_sums": true,
+      "max_sum_vs_priority_diff": 0.0,
+      "max_handcomputed_diff": 0.0
+    },
+    "T2_strong_match_outshines": {
+      "pass": true,
+      "gm_strong": 1.0,
+      "gm_weak": 0.14795354008674622,
+      "strong_anchor_context_term": 0.0,
+      "strong_priority_off": 1.5,
+      "strong_priority_on": 1.5,
+      "gate_fully_closed_on_strong": true,
+      "strong_priority_bit_identical": true,
+      "top_off": "A",
+      "top_on": "A",
+      "top_unchanged": true
+    },
+    "T3_weak_match_context_changes_top": {
+      "pass": true,
+      "gm_d": 0.19997727870941162,
+      "gm_e": 0.12002597749233246,
+      "no_anchor_at_pivot": true,
+      "both_above_floor": true,
+      "top_off": "D",
+      "top_on": "E",
+      "context_changed_top": true
+    },
+    "T4_ungated_degrades_top1": {
+      "pass": true,
+      "top_zgoal_only": "A",
+      "top_gated": "A",
+      "top_ungated": "B",
+      "gate_protects_clean_match": true,
+      "ungated_degrades_top1": true
+    }
+  },
+  "dry_run": false
+}
