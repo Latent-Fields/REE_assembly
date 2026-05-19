@@ -26381,6 +26381,17 @@
     /failure-autopsy (diff-OFF contrast non-reproduction unexplained)
     and carries no evidence_direction pending that post-mortem.
     pending_retest_after_substrate.
+
+    2026-05-19 governance (failure_autopsy_543i_2026-05-19, confirmed):
+    Both V3-EXQ-543i runs non_contributory. Byte-identical runs landed
+    opposite basins (06:37Z branch-c all-escape reef 0.28; 19:10Z
+    branch-e all-collapse reef 0.69); basin selection RNG/init +
+    cross-run + cross-machine nondeterministic, NOT controlled by
+    use_differential_heads. 19:10Z 'weakens ARC-062' is single-basin
+    artifact; 19:10Z 'supports MECH-309' rests on non-deterministic
+    collapse baseline (narrow/single-basin). Manifest corrected:
+    evidence_direction 'mixed' -> non_contributory all claims.
+    pending_retest_after_substrate.
   notes: >
     Diagnostic claim, not a substrate or implementation claim. MECH-309
     explains why SD-054 (and any substrate alone) is insufficient to
@@ -26519,6 +26530,16 @@
     carries no evidence_direction pending that post-mortem.
     epistemic_category substrate_ceiling; routing=implement-substrate;
     pending_retest_after_substrate.
+
+    2026-05-19 governance (failure_autopsy_543i_2026-05-19, confirmed):
+    Both V3-EXQ-543i runs non_contributory. Byte-identical runs landed
+    opposite basins (06:37Z branch-c all-escape reef 0.28; 19:10Z
+    branch-e all-collapse reef 0.69); basin selection RNG/init +
+    cross-run + cross-machine nondeterministic, NOT controlled by
+    use_differential_heads. ARC-062 architectural slot has had zero
+    fair tests -- 543i does not resolve the substrate gap. Manifest
+    corrected: evidence_direction 'mixed' -> non_contributory all
+    claims. pending_retest_after_substrate.
   implementation_note: >
     2026-05-18 (implement-substrate, NO confidence/promotion/flag change --
     governance gated on V3-EXQ-543i). GatedPolicy two-head reparameterization
@@ -32570,6 +32591,16 @@
     validation) is FLAGGED FOR /failure-autopsy and carries no
     evidence_direction this cycle. epistemic_category
     substrate_ceiling; pending_retest_after_substrate.
+
+    2026-05-19 governance (failure_autopsy_543i_2026-05-19, confirmed):
+    Both V3-EXQ-543i runs non_contributory. Byte-identical runs landed
+    opposite basins (06:37Z branch-c all-escape; 19:10Z branch-e
+    all-collapse); basin selection nondeterministic, NOT controlled by
+    use_differential_heads. INV-074 (universal invariant, lit_conf 0.82)
+    not weakened -- crystallization froze a basin-dependent policy,
+    mechanism never exercised; missing prerequisite. Manifest corrected:
+    evidence_direction -> non_contributory all claims.
+    pending_retest_after_substrate.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
 
@@ -32774,6 +32805,16 @@
     marked superseded by V3-EXQ-543i; 543i is FLAGGED FOR
     /failure-autopsy and carries no evidence_direction this cycle.
     epistemic_category substrate_ceiling; pending_retest_after_substrate.
+
+    2026-05-19 governance (failure_autopsy_543i_2026-05-19, confirmed):
+    Both V3-EXQ-543i runs non_contributory. Byte-identical runs landed
+    opposite basins (06:37Z branch-c all-escape; 19:10Z branch-e
+    all-collapse); basin selection nondeterministic. MECH-334
+    (PNN/Lynx1/NgR1 three-brake closure, lit_conf 0.78) not weakened
+    -- crystallization froze a basin-dependent policy, lock mechanism
+    never exercised; missing prerequisite (functional differentiated
+    GatedPolicy). Manifest corrected: evidence_direction ->
+    non_contributory all claims. pending_retest_after_substrate.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   implementation_note: >

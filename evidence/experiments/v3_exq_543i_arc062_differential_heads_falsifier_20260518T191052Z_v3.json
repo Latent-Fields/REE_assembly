@@ -18,13 +18,14 @@
     "MECH-334"
   ],
   "outcome": "FAIL",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-062": "weakens",
-    "MECH-309": "supports",
+    "ARC-062": "non_contributory",
+    "MECH-309": "non_contributory",
     "INV-074": "non_contributory",
     "MECH-334": "non_contributory"
   },
+  "evidence_direction_note": "V3-EXQ-543i non_contributory all claims, both runs (failure autopsy 2026-05-19, user-confirmed). Two byte-identical runs landed opposite basins: 20260518T063711Z branch (c) -- diff-OFF gated arms 0/3 inert (no collapse baseline), all escape, baseline reef 0.28; 20260518T191052Z branch (e) -- diff-OFF 3/3 inert, diff-ON 3/3 inert, baseline reef 0.69. Basin selection is RNG/init + cross-run + cross-machine nondeterministic (continuous with 543g ACTIVE host-A / INERT cloud-3+cloud-4 and the 543h substrate-ceiling autopsy); NOT controlled by use_differential_heads, so ARC-062 could not express itself and the 19:10Z 'weakens' is a single-basin artifact. MECH-309's 19:10Z 'supports' rests on a collapse baseline that is itself non-deterministic -- flagged narrow/single-basin, not confirmation. ARC-062/MECH-309 have zero reliable contributory trained-policy evidence; pending_retest_after_substrate. INV-074 (universal invariant, lit_conf 0.82) and MECH-334 not weakened -- crystallization froze a collapsed/basin-dependent policy, mechanism never exercised; missing prerequisite, not claim pressure. Do NOT honor the 19:10Z per-claim weakens/supports in confidence or conflict scoring; do NOT honor 543i supersedes:V3-EXQ-543h as displacing any contributory result.",
   "metrics": {
     "arm_summaries": {
       "ARM_0_baseline": {

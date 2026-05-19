@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-18T16:30:27Z",
+  "last_updated_utc": "2026-05-19T21:27:25Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2505,7 +2505,7 @@
     {
       "sd_id": "ARC-062",
       "title": "Rule-apprehension architectural slot, weak reading: gated-policy heads + learned context discriminator. V3 instantiation of the rule-creating substrate MECH-309 identifies as logically necessary.",
-      "status": "phase_1_implemented_diffheads_landed_pending_543i_autopsy",
+      "status": "phase_1_diffheads_insufficient_pending_strong_attractor_implementation",
       "ready": true,
       "ready_blocked_by": null,
       "design_doc": "evidence/planning/arc_062_rule_apprehension_plan.md",
@@ -2535,12 +2535,24 @@
           "experiment_type": "v3_exq_543h_arc062_crystallization_falsifier",
           "metric": "GatedPolicy head-differentiation under outcome-coupled REINFORCE: 3/3 seeds inert on every gated arm (ARM_2/3/6/7), behavioral-divergence probe mean_tv_distance < INERT_GATING_THRESHOLD=0.05. CROSS-MACHINE PROOF (confirmed failure_autopsy_V3-EXQ-543h_2026-05-18): identical 543g config ACTIVE host-A only, INERT cloud-3 + cloud-4 (bit-identical ARM_0) -- head_0==head_1 collapse is the common attractor; differentiation is NOT an attractor, it is a fragile 1/3 basin landing. Root cause: head_div regularizer removed (symmetric-cancellation argument 543g/h); replacement disc_var@0.1 does not maintain head divergence under REINFORCE. Whole 543f/543g/543h cluster non_contributory + superseded by V3-EXQ-543i. prerequisite_claims [MECH-333, INV-074].",
           "target": "n_inert_gating_seeds == 0 across all seeds on all gated arms AND reproducibly across machines (host-A / cloud-3 / cloud-4); behavioral-divergence probe mean_tv_distance sustained >= 0.05 at end of P1. PARTIAL PROGRESS 2026-05-18: differential-heads fix landed (GatedPolicyConfig.use_differential_heads -- heads = base +/- delta_hat, candidate-axis L2 norm pinned so delta==0 is a structural non-equilibrium). V3-EXQ-543i validation: diff_on_escape=true (all 4 diff-ON gated arms 0 inert / 3 seeds -- fix WORKS) BUT diff_off_reproduced_collapse=false (fragile contrast did not reproduce this run) -> 543i non_contributory and FLAGGED FOR /failure-autopsy. Substrate fix demonstrated effective; clean single-variable validation still pending the 543i post-mortem."
+        },
+        {
+          "run_id": "v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3",
+          "experiment_type": "v3_exq_543i_arc062_differential_heads_falsifier",
+          "metric": "063711Z branch (c): diff-OFF gated arms 0/3 inert (escape basin, no collapse baseline -- opposite basin from 19:10Z). use_differential_heads (base +/- delta_hat, delta==0 structural non-equilibrium, L2 norm pin 0.1) did NOT make differentiation a strong attractor. Cross-run basin split: byte-identical 063711Z (all-escape) vs 191052Z (all-collapse) demonstrates RNG/init + cross-run nondeterminism. fix_attempt_marked_insufficient: use_differential_heads landed 2026-05-18.",
+          "target": "n_inert_gating_seeds == 0 on ALL gated arms reproducibly across K>=3 repeated same-machine runs AND across >=2 machines; mean_tv_distance >= 0.05 sustained at end of P1; basin selection deterministic w.r.t. init RNG. Secondary fix: manifests must record executing hostname."
+        },
+        {
+          "run_id": "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3",
+          "experiment_type": "v3_exq_543i_arc062_differential_heads_falsifier",
+          "metric": "191052Z branch (e): diff-OFF 3/3 inert, diff-ON 3/3 inert (collapse basin -- opposite basin from 063711Z). Basin selection nondeterministic; 19:10Z 'weakens ARC-062' (diff-ON also collapsed) is a single-basin artifact, NOT a fair test. Failure autopsy 2026-05-19 confirmed: root_cause = differentiated-heads state is flat/saddle equilibrium under outcome-coupled REINFORCE; head_init_bias_offset softmax-invisible, disc_var@0.1 + delta_hat norm-pin insufficient to make ACTIVE basin a strong attractor. manifest evidence_direction corrected from mixed to non_contributory all claims.",
+          "target": "n_inert_gating_seeds == 0 on ALL gated arms reproducibly across K>=3 repeated same-machine runs AND across >=2 machines; mean_tv_distance >= 0.05 sustained at end of P1; basin selection deterministic w.r.t. init RNG. prerequisite_claims: [MECH-333, INV-074]."
         }
       ],
       "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4). || NEXT SUBSTRATE STEP (post V3-EXQ-543e autopsy, user-gated 2026-05-17): autopsy 'option 2' head-input first-action one-hot augmentation -- feed the gated-policy scoring heads the first-action category directly (z_world alone is starved: E2 world-forward compresses SP-CEM's ~5 first-action classes to ~0.22% of z_world magnitude). Phase-1 module/contract is implemented and SP-CEM (ARC-065) is now the main-path default; the head-input contract is the remaining substrate bottleneck. The falsifier re-issue V3-EXQ-543f must ALSO set dacc_weight>0 + a pre-flight non-degeneracy assertion (the 543d/543e dACC factorial axis was never live on any substrate due to the dacc_weight=0.0 DACCtoE3Adapter zero-return path).",
       "priority": 1,
       "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
-      "last_seen_session": "governance-cycle-2026-05-18T161204Z"
+      "last_seen_session": "governance-2026-05-19T211406Z"
     },
     {
       "sd_id": "ARC-064",

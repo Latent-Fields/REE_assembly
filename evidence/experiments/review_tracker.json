@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-18T16:30:27Z",
+  "last_review_utc": "2026-05-19T21:27:25Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-562",
     "V3-EXQ-449c",
@@ -2413,7 +2413,12 @@
     "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T144716Z_v3",
     "v3_exq_543h_arc062_crystallization_falsifier_20260518T000930Z_v3",
     "v3_exq_543h_arc062_crystallization_falsifier_20260518T060905Z_v3",
-    "v3_exq_589_isef003_microhabitat_latent_diversity_20260518T134905Z_v3"
+    "v3_exq_589_isef003_microhabitat_latent_diversity_20260518T134905Z_v3",
+    "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T191536Z_v3",
+    "v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3",
+    "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3",
+    "v3_exq_481b_vs_commit_release_20260519T012616Z_v3",
+    "v3_exq_594_mech339_composite_cue_outshining_validation_20260519T183917Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2702,6 +2707,18 @@
         "v3_exq_589_isef003_microhabitat_latent_diversity_20260518T134905Z_v3"
       ],
       "subject": "Governance cycle 2026-05-18T16:12Z. Confirmed failure_autopsy_V3-EXQ-543h applied to the 543f/543g/543h crystallization-falsifier cluster (7 runs): all marked evidence_direction=superseded by V3-EXQ-543i, epistemic_category=substrate_ceiling, pending_retest_after_substrate. Diagnosis: GatedPolicy head-differentiation is not a robust attractor under outcome-coupled REINFORCE (cross-machine proof: 543g ACTIVE host-A only, INERT cloud-3+cloud-4, bit-identical ARM_0; 543g _144716Z 'weakens ARC-062' = 1/3 minority-basin artifact). 543h INV-074/MECH-334 branch-(b) per_claim weakens corrected -> non_contributory. narrow_supports_flag: ARC-062/MECH-309 have ZERO reliable contributory trained-policy evidence; voiding the cluster is NOT conflict resolution. claims.yaml evidence_quality_note + epistemic_category + pending_retest_after_substrate applied to ARC-062, MECH-309, INV-074, MECH-334. V3-EXQ-543i (063711Z; differential-heads substrate-fix validation -- diff_on_escape=true confirms use_differential_heads resolves head-collapse, but diff_off_reproduced_collapse=false so non_contributory) FLAGGED FOR /failure-autopsy by user; NOT marked reviewed, carries no evidence_direction this cycle. V3-EXQ-589 (ARC-065, experiment_purpose=diagnostic) classified diagnostic substrate-readiness (GAP-12 closure, unblocks DEV-NEED-001/007) -- no claim weighting, ARC-065 stays hold_pending_v3_substrate. V3-EXQ-585 (unclaimed GAP-8 z_goal-retention instrumentation diagnostic PASS) -> discussed_experiment_dirs. Promotion recs: MECH-332 + MECH-334 hold_pending_v3_substrate approved."
+    },
+    {
+      "id": "2026-05-19T21:27:25Z_governance",
+      "session_label": "governance-2026-05-19T211406Z",
+      "reviewed_run_ids": [
+        "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T191536Z_v3",
+        "v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3",
+        "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3",
+        "v3_exq_481b_vs_commit_release_20260519T012616Z_v3",
+        "v3_exq_594_mech339_composite_cue_outshining_validation_20260519T183917Z_v3"
+      ],
+      "subject": "Governance cycle 2026-05-19T21:14Z. 543g cloud-3 (_191536Z): already non_contributory, mark reviewed. 543i 063711Z: already non_contributory (branch-c all-escape, no collapse baseline), mark reviewed. 543i 191052Z: failure_autopsy_543i_2026-05-19 confirmed; manifest corrected mixed -> non_contributory all claims (ARC-062/MECH-309/INV-074/MECH-334); byte-identical runs landed opposite basins, basin selection nondeterministic, NOT controlled by use_differential_heads. ARC-062/MECH-309 zero reliable contributory trained-policy evidence. 481b (diagnostic PASS, MECH-269/MECH-090): classified diagnostic only, no evidence weight applied. 594 (diagnostic PASS, MECH-339 Constraint 1 substrate validation): classified diagnostic only, no evidence weight applied. v3_exq_588 (MECH-189, FAIL, does_not_support, unexplained): flagged for /failure-autopsy, NOT marked reviewed, stays pending. 9 promotion/demotion holds applied: ARC-063/077/078 + MECH-332/334/337/338 (hold_pending_v3_substrate); INV-074/MECH-189 (hold_candidate_resolve_conflict). claims.yaml evidence_quality_note updated: MECH-309/ARC-062/INV-074/MECH-334 with 543i autopsy confirmed note. decision_log.v1.jsonl: 9 entries appended."
     }
   ]
 }

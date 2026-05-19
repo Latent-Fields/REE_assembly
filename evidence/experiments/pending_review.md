@@ -1,14 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-18T16:32:44Z`  
-Last review: `2026-05-18T16:30:27Z`  
+Generated: `2026-05-19T21:33:04Z`  
+Last review: `2026-05-19T21:27:25Z`  
 Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3` | 2026-05-18T06:37 | ARC-062, INV-074, MECH-309, MECH-334 | — |
+| `v3_exq_588_isef002_transient_benefit_zgoal_seeding_20260518T222457Z_v3` | 2026-05-18T22:24 | MECH-189 | — |
 
 ---
 
