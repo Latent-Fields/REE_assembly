@@ -1,0 +1,92 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-05-19T07:06:52Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "targets": [
+  {
+   "run_id": "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3",
+   "queue_id": "V3-EXQ-543i",
+   "claim_ids": ["ARC-062", "MECH-309", "INV-074", "MECH-334"],
+   "failed_criterion": "discrimination",
+   "negative_control_also_failed": false,
+   "negative_control_detail": "diff_off_reproduced_collapse=true in 19:10Z (3/3 inert all gated arms) but FALSE in the byte-identical 20260518T063711Z run (0/3 inert) -- the collapse baseline is itself run-nondeterministic; this is the deeper tell, not a stable negative-control pass",
+   "self_reported_interpretation_branch": "e_collapse_survives_no_escape",
+   "corrected_interpretation_branch": "non_contributory_cross_run_basin_nondeterminism",
+   "correction_rationale": "byte-identical 06:37Z run landed branch (c) (all-escape, baseline reef 0.28); 19:10Z landed branch (e) (all-collapse, baseline reef 0.69). The two runs are opposite basins of an uncontrolled bistability (RNG/init + cross-run + cross-machine, continuous with 543g/543h). use_differential_heads does not control basin selection, so neither branch is attributable; the script's own branch-(c) non_contributory logic applies to the pair.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "could-not-express -- basin swing (all-escape vs all-collapse) dominates the use_differential_heads effect; 19:10Z ARC-062 weakens is a single-basin landing, not attributable",
+    "biological_reference": "clear -- PNN/Lynx1/NgR1 three-brake + PFC-like contextual arbitration; lit present; no divergence; missing-prerequisite / unstable-substrate signature",
+    "prerequisites": "missing -- a strong differentiation attractor (MECH-333 / functional differentiated GatedPolicy / INV-074) is absent",
+    "implementation": "partial -- use_differential_heads (base +/- delta_hat, candidate-axis L2 pinned 0.1) is the symbol; it does not stabilise basin selection",
+    "environment": "not the driver -- same SD-054 bipartite env where 543g activated",
+    "measurement": "misleading + gap -- per-claim direction emitted from a single basin landing; manifests record no hostname for a bistability under cross-machine investigation",
+    "integration": "unstable -- basin selection RNG/init + cross-run + cross-machine nondeterministic",
+    "scale": "possibly insufficient -- P1=60 ep without head_div force; unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "PNN/Lynx1/NgR1 critical-period three-brake (MECH-334); PFC-like contextual policy arbitration (ARC-062/MECH-309)",
+    "dependencies": [
+     "functional differentiated GatedPolicy (MECH-333 / INV-074)",
+     "formed policy repertoire prior to arbitration / closure"
+    ],
+    "is_formal_import": false,
+    "divergence": "none -- biology present and consistent; failure is substrate instability / missing strong-attractor prerequisite, not divergence or falsification",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_per_claim": {
+    "ARC-062": "non_contributory",
+    "MECH-309": "non_contributory",
+    "INV-074": "non_contributory",
+    "MECH-334": "non_contributory"
+   },
+   "recommended_evidence_quality_note": "V3-EXQ-543i non_contributory all claims, both runs (failure autopsy 2026-05-19, user-confirmed). Two byte-identical runs landed opposite basins: 20260518T063711Z branch (c) -- diff-OFF gated arms 0/3 inert (no collapse baseline), all escape, baseline reef 0.28; 20260518T191052Z branch (e) -- diff-OFF 3/3 inert, diff-ON 3/3 inert, baseline reef 0.69. Basin selection is RNG/init + cross-run + cross-machine nondeterministic (continuous with 543g ACTIVE host-A / INERT cloud-3+cloud-4 and the 543h substrate-ceiling autopsy); NOT controlled by use_differential_heads, so ARC-062 could not express itself and the 19:10Z 'weakens' is a single-basin artifact. MECH-309's 19:10Z 'supports' rests on a collapse baseline that is itself non-deterministic -- flagged narrow/single-basin, not confirmation. ARC-062/MECH-309 have zero reliable contributory trained-policy evidence; pending_retest_after_substrate. INV-074 (universal invariant, lit_conf 0.82) and MECH-334 not weakened -- crystallization froze a collapsed/basin-dependent policy, mechanism never exercised; missing prerequisite, not claim pressure. Do NOT honor the 19:10Z per-claim weakens/supports in confidence or conflict scoring; do NOT honor 543i supersedes:V3-EXQ-543h as displacing any contributory result.",
+   "recommended_substrate_queue_entry": {
+    "action": "extend_existing",
+    "extends": "543h substrate_queue entry: GatedPolicy head-differentiation under outcome-coupled REINFORCE",
+    "source_run_ids": [
+     "v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3",
+     "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3"
+    ],
+    "substrate": "GatedPolicy head-differentiation under outcome-coupled REINFORCE",
+    "metric_that_broke": "n_inert_gating_seeds (per gated arm) -- AND its run-to-run nondeterminism",
+    "observed": "byte-identical runs: 06:37Z all gated arms 0/3 inert (escape basin); 19:10Z all gated arms 3/3 inert (collapse basin). use_differential_heads (base +/- delta_hat, candidate-axis L2 pinned differential_bias_scale=0.1) did NOT make differentiation a strong attractor.",
+    "fix_attempt_marked_insufficient": "use_differential_heads (landed 2026-05-18) -- insufficient per 543i",
+    "threshold_a_working_impl_must_exceed": "n_inert_gating_seeds == 0 on ALL gated arms reproducibly across K>=3 repeated same-machine runs AND across >=2 machines; behavioural-divergence probe mean_tv_distance >= 0.05 sustained at end of P1; basin selection deterministic w.r.t. init RNG",
+    "root_cause_hypothesis": "the differentiated-heads state is a flat/saddle equilibrium under outcome-coupled REINFORCE; head_init_bias_offset softmax-invisible, removed head_div term softmax-cancelable, disc_var@0.1 + delta_hat norm-pin insufficient to make the ACTIVE basin a strong attractor; basin chosen by uncontrolled nondeterminism",
+    "prerequisite_claims": ["MECH-333", "INV-074"],
+    "cross_machine_evidence": "543g 3-machine ACTIVE/INERT split; 543i adds cross-RUN ACTIVE/INERT split on a single host (06:37Z vs 19:10Z, byte-identical)",
+    "secondary_measurement_fixes": [
+     "manifests must record executing hostname",
+     "no per-claim evidence_direction emitted until basin stability shown across K repeated runs (determinism guard)"
+    ]
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": true,
+   "learning_extracted": [
+    "use_differential_heads (delta_hat norm-pin) is insufficient to make head differentiation a strong attractor under outcome-coupled REINFORCE; basin-nondeterministic",
+    "bistability is cross-RUN on one host, not merely cross-machine; >=2-machine confirmation (543j) necessary but not sufficient -- basin determinism must be characterised over K repeated identical runs",
+    "per-claim evidence_direction must not be emitted from a single run when the script's documented failure mode is run-level basin nondeterminism",
+    "manifests record no hostname -- measurement gap blocking machine attribution in the cluster where it matters",
+    "MECH-309 support from a non-deterministic collapse baseline is a narrow/single-basin signal, not confirmation (illusory-conflict-resolution guard)"
+   ],
+   "routing": "implement-substrate",
+   "secondary_routing_notes": [
+    "do not block in-flight V3-EXQ-543j (cross-machine confirm, claimed by ree-cloud-4); interpret its branch under this autopsy -- branch-e does NOT confirm ARC-062 weakens, branch-a does NOT confirm supports; only basin-determinism characterisation resolves the chain",
+    "not governance-demotion (ARC-062 not tested fairly); not lit-pull (biology present, no divergence); not diagnose-errors (ran to completion)"
+   ]
+  }
+ ],
+ "cluster_pattern": {
+  "members": ["V3-EXQ-543f", "V3-EXQ-543g", "V3-EXQ-543h", "V3-EXQ-543i"],
+  "extended_family": ["V3-EXQ-433e", "V3-EXQ-433f", "V3-EXQ-522", "V3-EXQ-523", "V3-EXQ-523a", "V3-EXQ-523b"],
+  "shape": "GatedPolicy head-differentiation does not robustly persist under outcome-coupled REINFORCE; gated arms collapse to inert (probe TV < 0.05) basin-nondeterministically. 543i: byte-identical runs landed opposite basins (06:37Z all-escape branch-c, 19:10Z all-collapse branch-e) -- the use_differential_heads structural fix did not convert differentiation into a strong attractor.",
+  "is_independent_bugs": false,
+  "structural_property": "the gated/rule-apprehension substrate has the asserted wiring but does not reliably carry differentiated policy behaviour under a trained policy; basin selection (ACTIVE/differentiated vs INERT/collapsed) is governed by uncontrolled nondeterminism (init RNG + cross-run + cross-machine), not by the experimental manipulation -- substrate-ceiling, unstable-activation variant, continuous with MECH-309's V_s-monostrategy substrate-ceiling",
+  "readings": ["substrate_instability_confirmed_and_strengthened_cross_run"],
+  "forced_decision": "substrate reading confirmed and strengthened (cross-run on a single host) -> /implement-substrate; use_differential_heads marked insufficient; basin-determinism + cross-run threshold added; measurement/test-design fixes (manifest hostname, determinism-gate) folded into the next falsifier",
+  "cross_machine_proof": "543g 3-machine ACTIVE/INERT split; 543i cross-RUN ACTIVE/INERT split on a single host (byte-identical 06:37Z vs 19:10Z)"
+ }
+}
