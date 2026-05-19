@@ -985,7 +985,7 @@ def scan_evidence_runs() -> dict:
     return result
 
 
-def start_runner(ver: str = "v3") -> dict:
+def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
     if ver not in RUNNERS:
         return {"status": "error", "message": f"Unknown substrate: {ver}"}
 
@@ -1013,15 +1013,172 @@ def start_runner(ver: str = "v3") -> dict:
     if cfg.get("remote_control"):
         cmd.append("--remote-control")  # heartbeat + command channel for /machines dashboard
     # STUB: future config could set per-runner flags from a machines.json config file
-    proc = subprocess.Popen(
-        cmd,
-        stdout=log_fh,
-        stderr=log_fh,
-        cwd=str(cfg["script"].parent),
-    )
+    popen_kwargs = {"stdout": log_fh, "stderr": log_fh,
+                    "cwd": str(cfg["script"].parent)}
+    if extra_env:
+        # Only diverge from inherited environment when explicitly asked
+        # (shadow start). Default callers pass nothing -> behaviour is
+        # byte-identical to before.
+        _env = os.environ.copy()
+        _env.update({k: str(v) for k, v in extra_env.items()})
+        popen_kwargs["env"] = _env
+    proc = subprocess.Popen(cmd, **popen_kwargs)
     _runner_procs[ver] = proc
     print(f"[serve] {cfg['label']} runner started (PID {proc.pid})", flush=True)
     return {"status": "started", "pid": proc.pid, "substrate": ver}
+
+
+# -- Shadow Coordination -----------------------------------------------------
+# Backs the explorer "Shadow Coordination" panel. All shadow-only: this never
+# triggers a Phase-2 cutover. The local runner start reuses the proven
+# start_runner() path (only adding env); remote actions are bounded,
+# best-effort SSH that can never hang or crash the request.
+
+_COORDINATOR_ENV_FILE = SERVE_DIR / "coordinator.env"
+_SHADOW_CLOUD_HOSTS = ["ree-cloud-1", "ree-cloud-2", "ree-cloud-3",
+                       "ree-cloud-4"]
+_SHADOW_MANUAL_HOSTS = ["Daniel-PC", "EWIN-PC"]
+
+
+def _load_coordinator_cfg() -> dict:
+    """KEY=VALUE from coordinator.env (gitignored), overlaid by any matching
+    process env var. Keys: COORDINATOR_URL, COORDINATOR_LOCAL_TOKEN,
+    COORDINATOR_SSH_USER (default 'ree')."""
+    cfg = {"COORDINATOR_SSH_USER": "ree"}
+    try:
+        if _COORDINATOR_ENV_FILE.exists():
+            for line in _COORDINATOR_ENV_FILE.read_text().splitlines():
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, _, v = line.partition("=")
+                cfg[k.strip()] = v.strip()
+    except OSError:
+        pass
+    for k in ("COORDINATOR_URL", "COORDINATOR_LOCAL_TOKEN",
+              "COORDINATOR_SSH_USER"):
+        if os.environ.get(k):
+            cfg[k] = os.environ[k]
+    return cfg
+
+
+def _shadow_verdict(st: dict, stale_mins: float = 10.0) -> tuple:
+    """Same logic as ree-v3/coordinator/check_shadow.py (kept in sync by
+    hand -- the two live in different repos so duplication is deliberate)."""
+    from datetime import datetime, timezone
+    ndiv = st.get("divergences", 0)
+    total = st.get("total_claims", 0)
+    fresh = 0
+    for m in st.get("machines", []):
+        ls = m.get("last_seen")
+        if not ls:
+            continue
+        try:
+            dt = datetime.fromisoformat(ls.replace("Z", "+00:00"))
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        age = (datetime.now(timezone.utc) - dt).total_seconds()
+        if age <= stale_mins * 60.0:
+            fresh += 1
+    if ndiv > 0:
+        return ("DIVERGENCE", "red")
+    if total == 0 or fresh == 0:
+        return ("NO_SIGNAL", "amber")
+    return ("HEALTHY", "green")
+
+
+def read_shadow_status() -> dict:
+    """Proxy the coordinator's /shadow/status and fold in the verdict.
+    Never raises; degrades to a NOT_CONFIGURED / UNREACHABLE verdict."""
+    cfg = _load_coordinator_cfg()
+    url = cfg.get("COORDINATOR_URL")
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
+    if not url or not tok:
+        return {"verdict": "NOT_CONFIGURED", "color": "grey",
+                "detail": "coordinator.env missing COORDINATOR_URL / "
+                          "COORDINATOR_LOCAL_TOKEN"}
+    import urllib.request
+    import urllib.error
+    try:
+        req = urllib.request.Request(
+            url.rstrip("/") + "/shadow/status",
+            headers={"Authorization": "Bearer " + tok}, method="GET")
+        with urllib.request.urlopen(req, timeout=8) as r:
+            st = json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        return {"verdict": "UNREACHABLE", "color": "red",
+                "detail": f"HTTP {exc.code} from coordinator"}
+    except Exception as exc:  # noqa: BLE001 -- must not crash the request
+        return {"verdict": "UNREACHABLE", "color": "red",
+                "detail": repr(exc)}
+    verdict, color = _shadow_verdict(st)
+    return {"verdict": verdict, "color": color,
+            "mode": st.get("mode"),
+            "total_claims": st.get("total_claims", 0),
+            "divergences": st.get("divergences", 0),
+            "experiments_in_mirror": st.get("experiments_in_mirror", 0),
+            "machines": st.get("machines", []),
+            "recent_divergences": st.get("recent_divergences", [])}
+
+
+def _ssh(host: str, user: str, remote_cmd: str,
+         timeout: int = 20) -> dict:
+    """Bounded, password-less SSH. BatchMode + ConnectTimeout guarantee it
+    fails fast instead of hanging the HTTP request. Never raises."""
+    try:
+        cp = subprocess.run(
+            ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5",
+             "-o", "StrictHostKeyChecking=accept-new",
+             f"{user}@{host}", remote_cmd],
+            capture_output=True, text=True, timeout=timeout)
+        ok = cp.returncode == 0
+        detail = (cp.stdout or cp.stderr or "").strip()[-300:]
+        return {"ok": ok, "detail": detail or ("rc=%d" % cp.returncode)}
+    except subprocess.TimeoutExpired:
+        return {"ok": False, "detail": "ssh timed out (host unreachable?)"}
+    except Exception as exc:  # noqa: BLE001
+        return {"ok": False, "detail": repr(exc)}
+
+
+def start_shadow() -> dict:
+    """Start the shadow soak: local Mac runner in shadow mode + bounded
+    best-effort SSH to bring the coordinator (ree-cloud-1) and cloud
+    runners up in shadow. Daniel-PC / EWIN-PC are reported as manual."""
+    cfg = _load_coordinator_cfg()
+    url = cfg.get("COORDINATOR_URL")
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
+    if not url or not tok:
+        return {"status": "error",
+                "message": "coordinator.env not configured "
+                           "(COORDINATOR_URL / COORDINATOR_LOCAL_TOKEN). "
+                           "See coordinator.env.example."}
+    ssh_user = cfg.get("COORDINATOR_SSH_USER", "ree")
+
+    local = start_runner("v3", extra_env={
+        "COORDINATION_MODE": "shadow",
+        "COORDINATOR_URL": url,
+        "COORDINATOR_TOKEN": tok,
+        "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
+    })
+
+    hosts = {}
+    for h in _SHADOW_CLOUD_HOSTS:
+        if h == "ree-cloud-1":
+            rc = ("sudo systemctl start ree-coordinator ree-sync-daemon "
+                  "&& sudo systemctl restart ree-runner")
+        else:
+            rc = "sudo systemctl restart ree-runner"
+        hosts[h] = _ssh(h, ssh_user, rc)
+
+    manual = {h: {"status": "manual",
+                  "note": "start manually with COORDINATION_MODE=shadow"}
+              for h in _SHADOW_MANUAL_HOSTS}
+
+    return {"status": "ok", "coordinator_url": url,
+            "local_mac_runner": local, "cloud_hosts": hosts,
+            "manual_hosts": manual}
 
 
 def stop_runner(ver: str | None = None) -> dict:
@@ -1384,6 +1541,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(runner_status()).encode()
             self._json_response(body)
             return
+        if path == "/api/shadow/status":
+            body = json.dumps(read_shadow_status()).encode()
+            self._json_response(body)
+            return
         if path == "/api/regression/preflight":
             body = json.dumps(run_preflight_suite()).encode()
             self._json_response(body)
@@ -1543,6 +1704,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             result = stop_runner()  # stop any
         elif path == "/api/runner/force_stop":
             result = force_stop_runner()  # force-stop any
+        elif path == "/api/shadow/start":
+            result = start_shadow()
         elif path == "/api/run":
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length) or b'{}')

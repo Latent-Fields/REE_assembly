@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-10.2 -->
+<!-- EXPLORER_VERSION: 2026-05-19.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10410,6 +10410,116 @@ END CONFLICT RESOLUTION`;
     }
 
     init();
+  </script>
+
+  <!-- Shadow Coordination panel: self-contained, isolated from the main
+       script above. Backs serve.py /api/shadow/start + /api/shadow/status. -->
+  <div id="shadowCoordCard" style="position:fixed;right:14px;bottom:14px;
+       width:320px;background:#fff;border:1px solid #ccc;border-radius:8px;
+       box-shadow:0 2px 10px rgba(0,0,0,0.15);font:12px/1.4 system-ui,
+       sans-serif;z-index:9999;">
+    <div style="display:flex;align-items:center;justify-content:space-between;
+         padding:8px 10px;border-bottom:1px solid #eee;">
+      <strong>Shadow Coordination</strong>
+      <span id="shadowDot" title="verdict"
+            style="width:11px;height:11px;border-radius:50%;
+            background:#777;display:inline-block;"></span>
+    </div>
+    <div style="padding:8px 10px;">
+      <div id="shadowVerdict" style="font-weight:600;">loading...</div>
+      <div id="shadowMeta" style="color:#555;margin:3px 0 6px;"></div>
+      <div id="shadowMachines" style="color:#555;font-size:11px;
+           max-height:120px;overflow:auto;"></div>
+      <div style="margin-top:8px;display:flex;gap:6px;">
+        <button id="shadowStartBtn"
+                style="flex:1;padding:6px;cursor:pointer;">
+          Start shadow soak</button>
+        <button id="shadowRefreshBtn"
+                style="padding:6px 8px;cursor:pointer;">&#8635;</button>
+      </div>
+      <div id="shadowResult" style="margin-top:6px;color:#555;
+           font-size:11px;white-space:pre-wrap;"></div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var COLORS = {green:"#2e7d32", amber:"#b8860b", red:"#c62828",
+                  grey:"#777"};
+    function $(id){ return document.getElementById(id); }
+    function renderStatus(s) {
+      $("shadowDot").style.background = COLORS[s.color] || "#777";
+      $("shadowVerdict").textContent = s.verdict || "?";
+      $("shadowVerdict").style.color = COLORS[s.color] || "#777";
+      if (s.verdict === "NOT_CONFIGURED" || s.verdict === "UNREACHABLE") {
+        $("shadowMeta").textContent = s.detail || "";
+        $("shadowMachines").textContent = "";
+        return;
+      }
+      $("shadowMeta").textContent =
+        "mode=" + (s.mode||"?") + "  claims=" + (s.total_claims||0) +
+        "  divergences=" + (s.divergences||0) +
+        "  mirror=" + (s.experiments_in_mirror||0);
+      var now = Date.now(), rows = [];
+      (s.machines||[]).forEach(function (m) {
+        var age = "?", tag = "NO-TS";
+        if (m.last_seen) {
+          var t = Date.parse(m.last_seen.replace("Z","+00:00"));
+          if (!isNaN(t)) {
+            var sec = Math.round((now - t)/1000);
+            tag = sec <= 600 ? "FRESH" : "STALE";
+            age = sec < 120 ? sec+"s" : Math.round(sec/60)+"m";
+          }
+        }
+        rows.push("[" + tag + "] " + m.machine + "  " + age +
+                  "  " + (m.state||"") + "  " + (m.current_exq||""));
+      });
+      $("shadowMachines").textContent = rows.join("\n") ||
+        "(no machines reporting)";
+    }
+    function poll() {
+      fetch("/api/shadow/status?t=" + Date.now())
+        .then(function(r){ return r.json(); })
+        .then(renderStatus)
+        .catch(function(e){
+          renderStatus({verdict:"UNREACHABLE", color:"red",
+                        detail:String(e)}); });
+    }
+    $("shadowRefreshBtn").addEventListener("click", poll);
+    $("shadowStartBtn").addEventListener("click", function () {
+      if (!confirm("Start the shadow soak?\n\nThis starts the local Mac " +
+          "runner in shadow mode and SSH-starts the ree-cloud-1 " +
+          "coordinator + cloud runners. Daniel-PC / EWIN-PC must be " +
+          "started manually. No Phase-2 cutover.")) return;
+      var b = $("shadowStartBtn");
+      b.disabled = true; b.textContent = "Starting...";
+      $("shadowResult").textContent = "";
+      fetch("/api/shadow/start", {method:"POST"})
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          var lines = [];
+          if (j.status === "error") { lines.push("ERROR: " + j.message); }
+          else {
+            var lm = j.local_mac_runner || {};
+            lines.push("local Mac runner: " + (lm.status||"?") +
+                       (lm.pid ? " (pid "+lm.pid+")" : ""));
+            Object.keys(j.cloud_hosts||{}).forEach(function(h){
+              var c = j.cloud_hosts[h];
+              lines.push(h + ": " + (c.ok ? "ok" : "FAILED") +
+                         (c.detail ? " -- " + c.detail : "")); });
+            Object.keys(j.manual_hosts||{}).forEach(function(h){
+              lines.push(h + ": start manually"); });
+          }
+          $("shadowResult").textContent = lines.join("\n");
+        })
+        .catch(function(e){
+          $("shadowResult").textContent = "request failed: " + e; })
+        .finally(function(){
+          b.disabled = false; b.textContent = "Start shadow soak";
+          poll(); });
+    });
+    poll();
+    setInterval(poll, 15000);
+  })();
   </script>
 </body>
 </html>
