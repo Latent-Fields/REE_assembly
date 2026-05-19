@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-19T07:48:47Z",
+  "last_tick_utc": "2026-05-19T07:49:49Z",
   "state": "running",
   "current_exq": "V3-EXQ-543j",
   "current_exq_started_utc": "2026-05-19T01:56:02.265178+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 2 / ARM_10_gated_only_xtal_diff",
     "runs_done": 34,
     "runs_total": 36,
-    "episodes_done": 30,
+    "episodes_done": 45,
     "episodes_total": 108,
-    "overall_pct": 95.2
+    "overall_pct": 95.6
   },
-  "seconds_elapsed": 21165,
-  "seconds_remaining": 1036,
+  "seconds_elapsed": 21227,
+  "seconds_remaining": 952,
   "recent_lines": [
-    "[probe] ARM_10_gated_only_xtal_diff P1 ep 25/60  applicable=True  mean_tv=0.0006  max_tv=0.0013  buf=512",
-    "[probe] ARM_10_gated_only_xtal_diff P1 ep 30/60  applicable=True  mean_tv=0.0006  max_tv=0.0011  buf=512",
-    "[probe] ARM_10_gated_only_xtal_diff INERT-GATING at P1 ep 30: mean_tv=0.0006 < 0.05 (REINFORCE outcome-coupling active)",
-    "[train] ARM_10_gated_only_xtal_diff ep 70/108  phase=P1  rv=0.0003  ep_reward=-1.2635  baseline=-1.0758  buf=512  inert_gating=True",
-    "[crystallize] ARM_10_gated_only_xtal_diff P1 ep 30/60  gated_frozen=4467  expansion_params=1249  ewc_anchored=True  ewc_active_centers=0  (closure == InfantCurriculumScheduler.on_phase3_entry)"
+    "[crystallize] ARM_10_gated_only_xtal_diff P1 ep 30/60  gated_frozen=4467  expansion_params=1249  ewc_anchored=True  ewc_active_centers=0  (closure == InfantCurriculumScheduler.on_phase3_entry)",
+    "[probe] ARM_10_gated_only_xtal_diff P1 ep 35/60  applicable=True  mean_tv=0.0006  max_tv=0.0011  buf=512",
+    "[probe] ARM_10_gated_only_xtal_diff P1 ep 40/60  applicable=True  mean_tv=0.0006  max_tv=0.0011  buf=512",
+    "[train] ARM_10_gated_only_xtal_diff ep 80/108  phase=P1  rv=0.0004  ep_reward=-1.0116  baseline=-1.0877  buf=512  inert_gating=True",
+    "[probe] ARM_10_gated_only_xtal_diff P1 ep 45/60  applicable=True  mean_tv=0.0006  max_tv=0.0011  buf=512"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
