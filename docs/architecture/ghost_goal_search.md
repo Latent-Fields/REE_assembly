@@ -163,7 +163,7 @@ needed). The licit gate signal itself is the rest of Q-053.
 |---|---|
 | ARC-060 / MECH-292 / MECH-293 / SD-039 | reframed interpretation + revised falsifiable predictions; **status, phase, confidence unchanged** |
 | `ghost_priority` product formula (old Sections 4.2 / 6.2) | **SUPERSEDED** by the additive form already in the substrate |
-| Context channel from SD-039 payload fields | **new structural requirement** (Constraint 1); not yet implemented; not queued |
+| Context channel from SD-039 payload fields | **IMPLEMENTED 2026-05-19** (Constraint 1 / MECH-339): smallest substrate step -- arousal_tag context channel gated by goal_match in `ghost_goal_bank.py` (`use_composite_cue_outshining`, default off); `last_vs`/`cause` deferred. Diagnostic validation V3-EXQ-594 queued. See ree-v3/CLAUDE.md "MECH-339 C1". |
 | Three-state dissociation validation | **new falsifiable battery** (Constraint 2); not queued |
 | Explicit abandon path | **RESOLVED + INVERTED 2026-05-19** (0.3): persistence is gated, disengagement is the default, trace preserved; registered as ARC-079 / MECH-340 / Q-053 |
 | New claims | **ARC-078 + MECH-339** (cue-system, 2026-05-19) and **ARC-079 + MECH-340 + Q-053** (persistence-gate / C3 resolution, 2026-05-19); see 0.5 |
@@ -181,7 +181,11 @@ notes; see 0.4):
   (`ARC-060.depends_on += ARC-078`).
 - **MECH-339** (mechanism_hypothesis, candidate / v3_pending): the
   composite cue + outshining gate of Constraint 1; `depends_on` ARC-078 /
-  SD-039 / MECH-230 / MECH-292. Not implemented; not queued.
+  SD-039 / MECH-230 / MECH-292. **Substrate IMPLEMENTED 2026-05-19**
+  (smallest step: arousal_tag context channel gated by goal_match in
+  `ghost_goal_bank.py`, default off; `last_vs`/`cause` deferred). Diagnostic
+  validation EXQ queued; status stays candidate / v3_pending (implementation
+  is not evidence).
 - **C2** carries no new claim -- it is MECH-292's ratified additive form.
 - **C3 was resolved 2026-05-19** by the goal-disengagement biology-before
   pull (`targeted_review_goal_disengagement/`: Maier & Seligman 2016,

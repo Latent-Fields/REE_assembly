@@ -33345,6 +33345,14 @@
     Zeigarnik resumption gap (resume deferred work <-> retire it); the two
     should be wired, not registered in parallel. No experiment queued; not
     promoted; status candidate / v3_pending.
+    C1 substrate update (2026-05-19): the Constraint-1 child MECH-339
+    (composite cue + outshining gate) is now IMPLEMENTED in the ghost-goal
+    bank (smallest substrate step: arousal_tag context channel gated by
+    goal_match; see MECH-339.implementation_note and the ree-v3/CLAUDE.md
+    "MECH-339 C1" entry). C2 remains MECH-292's ratified additive form and
+    C3's abandon mechanism remains deferred. ARC-078 itself stays candidate
+    / v3_pending and unpromoted -- one child substrate landing is not
+    evidence for the parent architectural claim.
   evidence_quality_note: >
     Registered candidate. Literature support is the 2026-05-18 combined
     cue-system pull in `targeted_review_ghost_goal_search/`: Nakazawa 2002
@@ -33400,11 +33408,12 @@
     Registered 2026-05-19 from the retrieval-cue reframe, Constraint 1.
     Distinct from MECH-292 (the ranking / cued-recall step) and SD-039
     (the payload store): MECH-339 is the cue-composition + gating rule
-    that feeds goal_match. Not yet implemented -- SD-039 already preserves
-    the fields; the bank does not yet read them and there is no outshining
-    gate. NO experiment queued; not promoted; candidate / v3_pending. The
-    superseded product formula in the old ghost_goal_search.md sketch is
-    unrelated to this claim (that drift is C2 / MECH-292).
+    that feeds goal_match. Substrate landed 2026-05-19 (see
+    implementation_note); status stays candidate / v3_pending --
+    implementation is not evidence (exp_conf still 0), the validation
+    experiment is diagnostic, and no claim is promoted. The superseded
+    product formula in the old ghost_goal_search.md sketch is unrelated
+    to this claim (that drift is C2 / MECH-292).
   evidence_quality_note: >
     Registered candidate. Literature support from
     `targeted_review_ghost_goal_search/`: Smith & Vela 2001 (the
@@ -33417,6 +33426,36 @@
     exp_conf (feedback_lit_exp_decoupled); exp_conf = 0, so candidate /
     v3_pending. The exact outshining crossover curve for an artificial
     bank is not given by the data and must be found empirically.
+  implementation_note: >
+    IMPLEMENTED 2026-05-19 (smallest substrate step) in
+    ree-v3/ree_core/hippocampal/ghost_goal_bank.py: GhostGoalBank.rank
+    adds a gated context channel via _outshine_gate and
+    _context_salience_for_anchor. context_salience =
+    1 - exp(-arousal_tag / arousal_scale) in [0,1);
+    gate = clip_[0,1]((outshine_pivot - goal_match) / outshine_pivot);
+    context_term = context_weight * gate * context_salience is added to
+    the additive ghost_priority (Constraint 2 unaffected -- the
+    outshining is a within-channel multiplier, not a product across
+    channels). The context channel is sourced from arousal_tag ONLY --
+    the one SD-039 payload field that is both already stored and
+    entirely unused by the bank. last_vs is deferred (already consumed
+    by the recoverability channel; reuse would double-count) and the
+    `cause` tag is deferred (NOT present in the implemented
+    AnchorGoalPayload -- design-sketch only; folding it in requires an
+    SD-039 payload extension, out of scope for the smallest step).
+    Config: GhostGoalBankConfig.use_composite_cue_outshining (default
+    False), context_weight (0.0), outshine_pivot (0.5), arousal_scale
+    (1.0); all no-op defaults -> bit-identical to pre-MECH-339. No
+    rank() signature change, no anchor_set/agent wiring change. Verified
+    by inline smoke (backward-compat bit-identity; gate 0 at/above
+    pivot, monotone; context term exactly 0.0 for a strong-direct-match
+    anchor and > 0 for a weak-match high-arousal anchor; components sum
+    == ghost_priority) and v3_exq_496 MECH-292 validation --dry-run
+    PASS. ree-v3/CLAUDE.md "MECH-339 C1 Composite Cue + Outshining Gate
+    (2026-05-19)" is the implementation-status source of truth.
+    Diagnostic validation experiment V3-EXQ-594 queued (substrate
+    readiness; experiment_purpose=diagnostic so excluded from governance
+    scoring; smoke PASS on all 4 falsifiable-prediction sub-tests).
   literature_anchors:
     - targeted_review_ghost_goal_search
   location: docs/architecture/ghost_goal_search.md
