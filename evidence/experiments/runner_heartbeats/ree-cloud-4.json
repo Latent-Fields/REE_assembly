@@ -1,34 +1,34 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-19T01:55:49Z",
+  "last_tick_utc": "2026-05-19T01:56:07Z",
   "state": "running",
-  "current_exq": "V3-EXQ-587",
-  "current_exq_started_utc": "2026-05-18T00:09:33.833502+00:00",
-  "current_title": "EXQ-ISEF-001: harm_gradient_enabled vs binary-contact residue geography formation (GAP-10)",
-  "current_claim_id": "",
+  "current_exq": "V3-EXQ-543j",
+  "current_exq_started_utc": "2026-05-19T01:56:02.265178+00:00",
+  "current_title": "ARC-062 differential-heads cross-machine confirmation of 543i (ree-cloud-4)",
+  "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 45 / ARM_1_harm_gradient",
-    "runs_done": 7,
-    "runs_total": 10,
-    "episodes_done": 100,
-    "episodes_total": 1000,
-    "overall_pct": 71.0
+    "run_label": "Seed 0 / ARM_0_baseline",
+    "runs_done": 0,
+    "runs_total": 36,
+    "episodes_done": 0,
+    "episodes_total": 108,
+    "overall_pct": 0.0
   },
-  "seconds_elapsed": 92776,
-  "seconds_remaining": 37730,
+  "seconds_elapsed": 5,
+  "seconds_remaining": 19800,
   "recent_lines": [
-    "[train] ARM_0_binary_contact ep 900/1000 seed=45 coverage=1.000 mean_weight=17.8940",
-    "[train] ARM_0_binary_contact ep 1000/1000 seed=45 coverage=1.000 mean_weight=19.9014",
-    "verdict: PASS",
-    "Seed 45 Condition ARM_1_harm_gradient",
-    "[train] ARM_1_harm_gradient ep 100/1000 seed=45 coverage=1.000 mean_weight=2.0312"
+    "Preflight non-degeneracy check PASS: dacc_weight=1.0 active, first_action_onehot=True (action_dim=5); crystallize factor arms gated.crystallize_enabled + residue.ewc without pre-firing; MECH-314 novelty-only on xtal arms; use_differential_heads wires (OFF=two-head, ON=base+delta).",
+    "[V3-EXQ-543i] ARC-062 differential-heads Falsifier (use_differential_heads x the 543h 2x2x2; outcome-coupled REINFORCE P1 loss UNCHANGED; 12 arms; supersedes 543g+543h)  seeds=[0, 1, 2]  dry_run=False",
+    "Seed 0 Condition ARM_0_baseline",
+    "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=False  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
-  "runner_pid": 3220,
+  "runner_pid": 658374,
   "runner_version": null,
   "gpu": {
     "available": false
