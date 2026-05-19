@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-19T23:09:40Z",
+  "last_tick_utc": "2026-05-19T23:10:42Z",
   "state": "running",
   "current_exq": "V3-EXQ-590",
   "current_exq_started_utc": "2026-05-19T22:09:36.350662+00:00",
@@ -12,17 +12,18 @@
     "run_label": "Seed 42 / ARM_nbw01",
     "runs_done": 0,
     "runs_total": 15,
-    "episodes_done": 100,
+    "episodes_done": 200,
     "episodes_total": 1000,
-    "overall_pct": 0.7
+    "overall_pct": 1.3
   },
-  "seconds_elapsed": 3604,
-  "seconds_remaining": 43366,
+  "seconds_elapsed": 3667,
+  "seconds_remaining": 42717,
   "recent_lines": [
     "V3-EXQ-590: EXQ-ISEF-004 novelty bonus Goldilocks calibration",
     "dry_run=False seeds=[42, 43, 44] n_episodes=1000 steps=200 novelty_weights=[0.1, 0.3, 0.5, 0.7, 1.0]",
     "Seed 42 Condition ARM_nbw01",
-    "[train] ARM_nbw01 seed=42 ep 100/1000 H_pos=0.000 coverage=1.000 novelty_ema=0.01093"
+    "[train] ARM_nbw01 seed=42 ep 100/1000 H_pos=0.000 coverage=1.000 novelty_ema=0.01093",
+    "[train] ARM_nbw01 seed=42 ep 200/1000 H_pos=0.098 coverage=1.000 novelty_ema=0.01110"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
