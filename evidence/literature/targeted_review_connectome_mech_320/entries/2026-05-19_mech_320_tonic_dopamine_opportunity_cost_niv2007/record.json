@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_320",
+  "entry_id": "2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["MECH-320"],
+  "source": {
+    "title": "Tonic dopamine: opportunity costs and the control of response vigor.",
+    "authors": ["Yael Niv", "Nathaniel D Daw", "Daphna Joel", "Peter Dayan"],
+    "year": 2007,
+    "venue": "Psychopharmacology (Berl) 191(3):507-20",
+    "doi": "10.1007/s00213-006-0502-4",
+    "url": "https://doi.org/10.1007/s00213-006-0502-4"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This is the normative formalism MECH-320 instantiates: an average-reward reinforcement-learning model in which the long-run average reward rate enters cost-benefit control as an opportunity cost on time-spent-passive, equivalently a bonus on time-spent-acting. Mapping fidelity is near-exact (MECH-320's functional_restatement cites this paper as the source of its formalism); the only discount is the standard model-to-substrate transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model derives vigor from a single scalar opportunity cost (the average reward rate); it does not, on its own, separate an activational/vigor dopamine signal from a learning/prediction-error dopamine signal -- that dissociation must be argued separately (cf. Hamid 2016, which finds a single shared variable).",
+    "The formalism is target-free at the level of the average reward rate but says nothing about how competing active goals interact with the vigor bias; MECH-320's claim of target-free application is consistent with but not directly tested by this model."
+  ],
+  "tags": ["mech-320", "tonic_dopamine", "average_reward_rate", "opportunity_cost", "response_vigor", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "Optimal free-operant control balances the cost of acting quickly against the benefit of earning reward sooner; the long-run average reward rate acts as an opportunity cost on elapsed time, and tonic dopamine (putatively in nucleus accumbens) reports this average reward rate, explaining why higher tonic dopamine yields more vigorous responding.",
+    "ree_translation": "MECH-320's tonic vigor scalar v_t is the REE analogue of the average-reward-rate opportunity cost: a slow EWMA over the realised E3-score-receipt stream that adds an additive bias v_t * w_action to action trajectories and an additive cost v_t * w_passive to no-op/stationary trajectories in E3 scoring. The ARC-068 collapse (opportunity cost on no-op) is precisely the w_passive term of this formalism.",
+    "mapping_caveat": "Niv et al. model biological response latency in free-operant tasks; REE applies the same average-reward opportunity-cost algebra to discrete E3 trajectory scoring. The transfer is computational (same normative quantity), not anatomical, so 'tonic dopamine in NAcc' should be read as a substrate gloss, not a claim REE replicates striatal pharmacology.",
+    "source_context": "Normative average-reward reinforcement-learning model; reviewed against rodent free-operant pharmacology and tonic-dopamine evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.92,
+    "transfer_risk": 0.25,
+    "notes": "Foundational, heavily cited Dayan/Daw/Niv normative model -- highest source quality. Mapping fidelity is near-exact because MECH-320 explicitly adopts this formalism. Transfer risk is the modest model->E3-scoring computational transfer; weighted toward mapping_fidelity per the calibration rule for architectural/mechanistic claims."
+  }
+}

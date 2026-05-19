@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_320",
+  "entry_id": "2026-05-19_mech_320_mesolimbic_da_motivation_salamone2012",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["MECH-320"],
+  "source": {
+    "title": "The mysterious motivational functions of mesolimbic dopamine.",
+    "authors": ["John D Salamone", "Merce Correa"],
+    "year": 2012,
+    "venue": "Neuron 76(3):470-85",
+    "doi": "10.1016/j.neuron.2012.10.021",
+    "url": "https://doi.org/10.1016/j.neuron.2012.10.021"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Canonical Neuron review establishing that nucleus accumbens dopamine encodes the activational dimension of motivation -- behavioral activation, exertion of effort, sustained task engagement -- which is the substrate identity MECH-320's w_action / w_passive contrast claims. Confidence is held below the Niv formalism entry because this is a review (not a direct test of the average-reward coupling) and because its central caution (dopamine does NOT mediate primary appetite/reward) is a real boundary on the mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Accumbens dopamine does NOT mediate primary food motivation or appetite; therefore MECH-320's v_t must be construed strictly as an activational/opportunity-cost vigor term, not as a generic 'wanting' or reward-magnitude signal -- conflating the two would be a category error this review explicitly warns against.",
+    "The review documents that dopaminergic manipulations dissociate activational from directional aspects of motivation; a vigor scalar that bled into directional/goal selection would contradict the dissociation reported here."
+  ],
+  "tags": ["mech-320", "mesolimbic_dopamine", "behavioral_activation", "effort", "sustained_engagement", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "Nucleus accumbens dopamine does not mediate primary food motivation or appetite, but is causally involved in the activational dimension of motivation: behavioral activation, exertion of effort, approach behavior, and sustained task engagement, dissociable from the directional/hedonic aspects of motivated behavior.",
+    "ree_translation": "The activational dimension Salamone & Correa attribute to mesolimbic dopamine is the biological identity of MECH-320's w_action/w_passive vigor bias: a scalar that raises the propensity to act and sustains engagement without itself selecting which goal to pursue (target-free), distinct from SD-012's deficit-keyed drive and MECH-216's target-conditioned wanting.",
+    "mapping_caveat": "This is a pharmacology/lesion review in rodents; it grounds the *identity* of the vigor dimension but not the average-reward *coupling* that makes v_t a function of the realised score stream (that is Niv 2007 / Hamid 2016). The mapping uses this paper for substrate identity only, and must respect its explicit boundary that dopamine != primary reward.",
+    "source_context": "Review of rodent (and some human) pharmacological, lesion, and microdialysis evidence on accumbens dopamine and motivation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Top-tier canonical review (Neuron, Salamone). Mapping fidelity moderate: it fixes the activational identity of the vigor term but not its quantitative coupling, and its appetite/reward boundary constrains the translation. Transfer risk elevated by animal-pharmacology -> REE-scalar distance. Aggregate weighted toward mapping_fidelity per the architectural-claim calibration rule, hence 0.77."
+  }
+}

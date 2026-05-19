@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_critical_period_crystallization",
+  "entry_id": "2026-05-19_mech_334_pnn_active_lock_pizzorusso2002",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["MECH-334"],
+  "source": {
+    "title": "Reactivation of ocular dominance plasticity in the adult visual cortex.",
+    "authors": ["Tommaso Pizzorusso", "Paolo Medini", "Nicoletta Berardi", "Sabrina Chierzi", "James W Fawcett", "Lamberto Maffei"],
+    "year": 2002,
+    "venue": "Science 298(5596):1248-51",
+    "doi": "10.1126/science.1072699",
+    "url": "https://doi.org/10.1126/science.1072699"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "Direct causal demonstration that critical-period closure is an ACTIVE, maintained molecular lock rather than passive plasticity decay: perineuronal-net / CSPG maturation coincides with closure, is delayed by dark rearing, and enzymatic degradation (chondroitinase-ABC) in adults restores ocular-dominance plasticity. This is the core of MECH-334's 'closure is active locking, reversible in principle'. Slightly below the anchor's 0.92 to reserve headroom for the substrate-transfer gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Plasticity reactivation required active enzymatic removal of the lock; spontaneous reopening did not occur -- MECH-334's closure must therefore be modelled as a maintained constraint, not a one-time event, or the crystallized distribution will not in fact be protected long-term.",
+    "Closure timing tracked perineuronal-net assembly and was delayed (not abolished) by dark rearing -- closure is experience-modulated, so a MECH-334 implementation with a fixed closure epoch independent of the realised learning trajectory would diverge from the biology."
+  ],
+  "tags": ["mech-334", "critical_period_closure", "perineuronal_nets", "extracellular_matrix", "active_locking", "chondroitinase"],
+  "mapping": {
+    "source_claim_statement": "Maturation of chondroitin-sulphate-proteoglycan perineuronal nets coincides with the end of the visual-cortex critical period and is delayed by dark rearing; degrading these nets with chondroitinase-ABC in adult rats restores monocular-deprivation-induced ocular-dominance plasticity -- the mature extracellular matrix is actively inhibitory for experience-dependent plasticity.",
+    "ree_translation": "Pizzorusso et al. evidence MECH-334's central assertion that closure is ACTIVE LOCKING, not passive reduction: a maintained structural constraint that protects the crystallized distribution and can, in principle, be lifted. This is the biology behind REE's design choice that post-window the diversity distribution is write-protected while dominant-pathway update scale is restored.",
+    "mapping_caveat": "The lock is a physical/biochemical structure (perineuronal nets); REE's analogue is an algorithmic write-protection (EWC-style penalty on crystallized diversity weights). The transfer is to the abstract property 'closure is an actively maintained, in-principle-reversible constraint', not to extracellular-matrix biology. Evidences MECH-334 only; INV-074's necessity is upstream.",
+    "source_context": "Rats; perineuronal-net histology; chondroitinase-ABC injection; monocular deprivation; ocular-dominance and visual-acuity readouts in adult visual cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.30,
+    "notes": "Landmark Science paper, frequently replicated. Mapping fidelity high for the active-locking property MECH-334 asserts; trimmed by the structural-lock vs algorithmic-write-protection abstraction. Closure-is-maintained and closure-is-experience-modulated logged as failure signatures because they constrain how MECH-334 must be implemented."
+  }
+}

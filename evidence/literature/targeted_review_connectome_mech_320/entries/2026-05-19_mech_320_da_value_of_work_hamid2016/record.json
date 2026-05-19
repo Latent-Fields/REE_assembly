@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_320",
+  "entry_id": "2026-05-19_mech_320_da_value_of_work_hamid2016",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["MECH-320"],
+  "source": {
+    "title": "Mesolimbic dopamine signals the value of work.",
+    "authors": ["Arif A Hamid", "Jeffrey R Pettibone", "Omar S Mabrouk", "Vaughn L Hetrick", "Robert Schmidt", "Caitlin M Vander Weele", "Robert T Kennedy", "Brandon J Aragona", "Joshua D Berke"],
+    "year": 2016,
+    "venue": "Nat Neurosci 19(1):117-26",
+    "doi": "10.1038/nn.4173",
+    "url": "https://doi.org/10.1038/nn.4173"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Direct empirical demonstration (microdialysis + fast-scan voltammetry + optogenetics, rats) that minute-by-minute nucleus accumbens dopamine covaries with reward rate and motivational vigor, and that altering dopamine immediately changes willingness to work. This is the closest available measurement of the exact reward-rate -> vigor coupling MECH-320 posits for v_t. Gold-standard methods and venue; small discount for one nuance (a single shared learning+motivation variable) and animal->REE transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Dopamine conveyed a SINGLE rapidly-evolving decision variable used for BOTH learning and motivation; MECH-320 treats vigor as separable from learning-rate effects, so this unification is a partial tension -- supportive of the vigor coupling but cautioning against assuming a clean architectural split between v_t and learning signals.",
+    "The reward-rate/vigor covariation is correlational at the minute scale; causal manipulation showed dopamine changes willingness to work but the average-reward-rate readout itself is inferred, not independently clamped."
+  ],
+  "tags": ["mech-320", "mesolimbic_dopamine", "reward_rate", "motivational_vigor", "value_of_work", "voltammetry", "microdialysis"],
+  "mapping": {
+    "source_claim_statement": "Across timescales, nucleus accumbens dopamine release covaries minute-by-minute with reward rate and motivational vigor and second-by-second with a temporally discounted value function; dopamine conveys a single rapidly-evolving decision variable -- the reward available for investment of effort -- used for both learning and motivation, and changing dopamine immediately alters willingness to work.",
+    "ree_translation": "The minute-scale reward-rate/vigor covariation is the empirical signature of MECH-320's v_t: a slow EWMA over the realised E3-score stream whose magnitude scales the action-vs-no-op bias. 'Changing dopamine immediately alters willingness to work' is the causal analogue of v_t shifting the additive bias on action trajectories in E3 scoring.",
+    "mapping_caveat": "Hamid et al. find one shared variable serving learning AND motivation; MECH-320 isolates the motivational/vigor use and asserts distinctness from learning-rate and from MECH-313 noise. The paper supports the coupling but does not endorse the architectural separation -- the mapping must own that the biology may be less modular than the REE decomposition.",
+    "source_context": "Rats; nucleus accumbens dopamine via microdialysis and fast-scan cyclic voltammetry, with optogenetic manipulation, during adaptive decision-making."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Nature Neuroscience, Berke lab, complementary gold-standard neurochemical methods plus causal optogenetics -- very high source quality. Mapping fidelity high (measures the exact reward-rate->vigor coupling) but trimmed by the single-shared-variable finding that sits in mild tension with MECH-320's modularity. Transfer risk the standard rodent-neurochemistry -> REE-scalar gap."
+  }
+}

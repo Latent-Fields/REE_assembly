@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_critical_period_crystallization",
+  "entry_id": "2026-05-19_inv_074_competitive_imbalance_hubelwiesel1970",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["INV-074"],
+  "source": {
+    "title": "The period of susceptibility to the physiological effects of unilateral eye closure in kittens.",
+    "authors": ["D H Hubel", "T N Wiesel"],
+    "year": 1970,
+    "venue": "J Physiol 206(2):419-36",
+    "doi": "10.1113/jphysiol.1970.sp009022",
+    "url": "https://doi.org/10.1113/jphysiol.1970.sp009022"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "The canonical demonstration that a competitive developmental window exists, is sharply time-bounded, and that deprivation within it produces near-permanent loss while the same deprivation outside it produces none. This is direct causal evidence for the 'permanent suppression without a plasticity window' half of INV-074. Discounted because it is single-system biology (visual cortex ocular dominance), so the universal-invariant scope rests on convergence with the ANN evidence (Achille 2019), not on this paper alone.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Recovery after a 3-month in-window deprivation was very limited even with up to 5 years of subsequent eye opening -- consistent with INV-074's 'permanently suppressed regardless of diversity-signal magnitude', but it also means the claim's irreversibility is strong: a late diversity intervention cannot rescue a missed window.",
+    "Behavioural recovery required closing the formerly-normal eye (forcing competitive rebalancing); passive re-exposure was insufficient -- so the competitive-imbalance mechanism is necessary, not incidental, and any REE analogue that lacked active competition between pathways would not reproduce this."
+  ],
+  "tags": ["inv-074", "critical_period", "ocular_dominance", "competitive_imbalance", "monocular_deprivation", "permanence"],
+  "mapping": {
+    "source_claim_statement": "Susceptibility to monocular deprivation in kitten striate cortex begins abruptly near the start of week 4, stays high to weeks 6-8, then vanishes by ~3 months; 3-4 days of closure within the peak window collapses the deprived eye's cortical influence (cells driven from ~85% to ~7%), whereas year-long closure in an adult produces no detectable effect; post-window recovery is minimal.",
+    "ree_translation": "Hubel & Wiesel instantiate the biological half of INV-074: a model-building system under competitive (Hebbian-equivalent) dynamics permanently loses the under-driven pathway's representation unless competitive balance is established within a sharply time-bounded plasticity window. This is the empirical prototype of REE's claim that diversity circuits (ARC-065) must reach competitive weight before winner-take-all dynamics close the option space.",
+    "mapping_caveat": "Ocular-dominance plasticity is one sensory system; INV-074 is a universal invariant. This entry evidences the necessity and time-boundedness of the window in biology only -- the substrate-independent scope requires the artificial-network convergence (Achille et al. 2019). The mapping from 'deprived eye' to 'minority diversity circuit' is an analogy of competitive dynamics, not an anatomical identity.",
+    "source_context": "Kittens; lid-suture monocular deprivation at varied ages; single-unit recordings in striate cortex; lateral geniculate Nissl histology."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.40,
+    "notes": "Foundational, Nobel-grade causal developmental neuroscience -- source quality near ceiling. Mapping fidelity high for the window/permanence logic, lower for the 'monostrategy under Hebbian learning' framing which is REE's interpretation. Transfer risk elevated by single-sensory-system -> universal-invariant generalisation; mitigated by Achille 2019 convergence in the same folder."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_critical_period_crystallization",
+  "entry_id": "2026-05-19_inv_074_ei_threshold_gate_fagiolini2000",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["INV-074"],
+  "source": {
+    "title": "Inhibitory threshold for critical-period activation in primary visual cortex.",
+    "authors": ["M Fagiolini", "T K Hensch"],
+    "year": 2000,
+    "venue": "Nature 404(6774):183-6",
+    "doi": "10.1038/35004582",
+    "url": "https://doi.org/10.1038/35004582"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Causal, not correlational: GAD65-knockout mice never open the critical period spontaneously, yet a benzodiazepine restores plasticity at any age, and early GABA enhancement permanently closes it. This establishes that the plasticity window is gated by a controllable inhibitory (E/I) threshold and is triggered 'once in life' -- precisely the time-bounded plasticity asymmetry INV-074 requires. High confidence; discounted only for single-system biology and the absolute-irreversibility nuance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Early enhancement of GABA transmission rendered animals permanently insensitive to monocular deprivation as adults -- the window can be spent prematurely; INV-074's diversity circuits could be foreclosed by an over-early closure trigger, not only by a missed opening.",
+    "Plasticity 'may otherwise lie dormant' indefinitely without the threshold being reached -- a system that never crosses the E/I trigger never gets a window at all, which is a stronger (and more fragile) reading than 'the window is merely brief'."
+  ],
+  "tags": ["inv-074", "critical_period", "excitation_inhibition_balance", "gad65", "gating_trigger", "causal"],
+  "mapping": {
+    "source_claim_statement": "The potential for ocular-dominance plasticity is retained throughout life until an intracortical inhibitory threshold is attained; GAD65-knockout mice never trigger their critical period but benzodiazepines unmask plasticity at any age, while early GABA enhancement permanently prevents it -- a threshold level of inhibition triggers, once in life, an experience-dependent consolidation window.",
+    "ree_translation": "Fagiolini & Hensch supply the causal gate INV-074 presupposes: the plasticity window is not a passive maturational drift but an actively triggered, threshold-crossing event that opens 'once in life'. In REE terms this is the licence for MECH-333's bounded open phase to be a discrete, parameterised trigger rather than an emergent side effect of training time.",
+    "mapping_caveat": "The trigger here is a specific neurochemical variable (intracortical GABA/E-I balance); REE has no GABA, so the transfer is to the abstract structure 'a controllable scalar threshold opens a one-shot plasticity window', not to the molecular mechanism. Evidences INV-074's gating logic, and motivates MECH-333, but does not by itself speak to closure (MECH-334).",
+    "source_context": "Mice (GAD65 knockout and wild-type); benzodiazepine/diazepam pharmacology; monocular deprivation; visual cortex plasticity readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.33,
+    "notes": "Nature, Hensch -- definitive causal critical-period gating paper. Mapping fidelity high for the 'actively triggered one-shot window' structure that underwrites INV-074/MECH-333. Transfer risk moderate: the abstract gating structure transfers cleanly even though the GABA substrate does not."
+  }
+}

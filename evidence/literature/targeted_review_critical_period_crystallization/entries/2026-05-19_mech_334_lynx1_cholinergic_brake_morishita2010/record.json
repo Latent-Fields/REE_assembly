@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_critical_period_crystallization",
+  "entry_id": "2026-05-19_mech_334_lynx1_cholinergic_brake_morishita2010",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["MECH-334"],
+  "source": {
+    "title": "Lynx1, a cholinergic brake, limits plasticity in adult visual cortex.",
+    "authors": ["Hirofumi Morishita", "Julie M Miwa", "Nathaniel Heintz", "Takao K Hensch"],
+    "year": 2010,
+    "venue": "Science 330(6008):1238-40",
+    "doi": "10.1126/science.1195320",
+    "url": "https://doi.org/10.1126/science.1195320"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Independent, mechanistically distinct confirmation of MECH-334's active-locking thesis: Lynx1 protein rises with maturation and actively brakes adult visual-cortex plasticity; Lynx1 knockout retains juvenile-like plasticity into adulthood. A second, molecularly orthogonal lock (cholinergic brake) alongside Pizzorusso's perineuronal nets strengthens the 'closure is active, multi-mechanism braking' reading; held just under Pizzorusso for slightly narrower readout (VEP).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lynx1 knockout retains juvenile plasticity indefinitely -- removing a single brake is sufficient to prevent closure, so MECH-334's closure is not robust to omission of the locking mechanism: 'no closure' is the default, closure is the engineered addition.",
+    "Lynx1 acts via nicotinic acetylcholine receptor signalling, partially redundant with the perineuronal-net lock (Pizzorusso 2002); MECH-334 modelled as a single closure mechanism may under-represent a biologically multi-lock architecture, with implications for how brittle a single-mechanism REE implementation would be."
+  ],
+  "tags": ["mech-334", "critical_period_closure", "lynx1", "cholinergic_brake", "active_locking", "multi_lock"],
+  "mapping": {
+    "source_claim_statement": "Lynx1 protein expression increases with maturation and prevents ocular-dominance plasticity in adult primary visual cortex; removing Lynx1 enhances nicotinic acetylcholine receptor signalling and Lynx1-knockout mice retain juvenile-like plasticity into adulthood -- closure requires active molecular braking, not merely passive decline.",
+    "ree_translation": "Morishita et al. independently confirm MECH-334's claim that closure is ACTIVE: a brake that must be expressed and maintained, whose genetic removal leaves plasticity permanently open. Combined with Pizzorusso's perineuronal-net lock, this supports modelling REE closure as a deliberately engineered, maintained write-protection whose absence defaults to perpetual overwritability -- precisely INV-074's failure mode.",
+    "mapping_caveat": "The brake is a specific cholinergic-modulatory protein; REE's analogue is an algorithmic plasticity reduction on crystallized diversity weights. The transfer is to the abstract property 'closure is an actively expressed, removable brake whose default-off state is perpetual plasticity', not to nicotinic signalling. Evidences MECH-334 only.",
+    "source_context": "Mice (Lynx1 knockout and wild-type); visual-evoked-potential plasticity readout; pharmacological nicotinic manipulation; adult visual cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.32,
+    "notes": "Science, Hensch lab -- high source quality, mechanistically independent of the PNN lock, which is why it adds genuine evidential value rather than duplicating Pizzorusso. Held at 0.85 (just under Pizzorusso) for the slightly coarser VEP readout and the same structural-to-algorithmic abstraction."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_critical_period_crystallization",
+  "entry_id": "2026-05-19_inv_074_ann_critical_periods_achille2019",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["INV-074"],
+  "source": {
+    "title": "Critical Learning Periods in Deep Neural Networks",
+    "authors": ["Alessandro Achille", "Matteo Rovere", "Stefano Soatto"],
+    "year": 2019,
+    "venue": "ICLR 2019 (arXiv:1711.08856; submitted 2017-11-24, final 2019-02-25)",
+    "doi": "10.48550/arXiv.1711.08856",
+    "url": "https://arxiv.org/abs/1711.08856"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "This is the pivot from 'biological phenomenon' to 'universal invariant'. It demonstrates that critical learning periods emerge in artificial deep networks under gradient learning, with a Fisher-Information phase transition (rise then collapse of information plasticity) and permanent impairment from early-phase deficits. Because INV-074 is a universal invariant, the substrate-independent evidence carries disproportionate weight; high confidence, trimmed only by the analogy between an input deficit and REE's competitive diversity-circuit suppression.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The permanent impairment is demonstrated for input/stimulus deficits affecting low-level statistics; INV-074's specific failure mode is suppression of a competing diversity circuit by a high-variance dominant pathway. The mechanism (information-plasticity collapse) is shared, but Achille et al. do not directly instrument a diversity-vs-dominant-pathway competition, so the mapping to ARC-065 is structural, not literal.",
+    "Deficit severity depends on network size and deficit timing -- a corollary INV-074 does not yet quantify: the crystallization-window requirement may itself scale with model capacity, which the claim should eventually address rather than treat as a fixed schedule."
+  ],
+  "tags": ["inv-074", "critical_period", "deep_networks", "fisher_information", "information_plasticity", "substrate_independence"],
+  "mapping": {
+    "source_claim_statement": "Deep neural networks exhibit critical learning periods: Fisher Information in the weights rises sharply in early training then decreases ('loss of Information Plasticity'), the first few epochs create strong connections optimal for the input distribution, deficits during this early window cause lasting impairment while later disruptions are recoverable, and critical periods are not restricted to biological systems but emerge naturally in learning systems.",
+    "ree_translation": "Achille et al. supply the universality clause of INV-074: the rise-then-collapse of Information Plasticity is the substrate-independent form of 'winner-take-all dynamics close off the option space'. Fisher Information is the artificial-network analogue of the closing window, validating that REE -- a gradient-trained model-building agent -- is exactly the kind of system in which INV-074's monostrategy convergence must be expected absent a crystallization asymmetry.",
+    "mapping_caveat": "Their deficits are sensory/input perturbations; INV-074's failure is internal competitive suppression of a diversity circuit by a high-variance predictive pathway. The shared mechanism is information-plasticity collapse; the specific competition INV-074 names (ARC-065 vs dominant scoring pathway) is not directly instrumented here, so this supports the invariant's scope and dynamics, not its exact REE circuit.",
+    "source_context": "Artificial deep convolutional networks; supervised image classification; controlled stimulus deficits at varied training epochs; Fisher Information analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.22,
+    "notes": "ICLR 2019, widely-cited, methodologically careful (Soatto group). For a universal invariant the artificial-substrate evidence is the decisive pillar, so transfer_risk is low (REE is itself a gradient-trained net) and mapping_fidelity weighted heavily, yielding 0.88 -- the joint-strongest entry in this folder alongside the biological causal anchors."
+  }
+}

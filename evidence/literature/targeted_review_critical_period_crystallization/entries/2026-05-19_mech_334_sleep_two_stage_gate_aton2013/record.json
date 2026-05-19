@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_critical_period_crystallization",
+  "entry_id": "2026-05-19_mech_334_sleep_two_stage_gate_aton2013",
+  "timestamp_utc": "2026-05-19T07:12:18Z",
+  "claim_ids_tested": ["MECH-334", "INV-074"],
+  "source": {
+    "title": "Visual experience and subsequent sleep induce sequential plastic changes in putative inhibitory and excitatory cortical neurons.",
+    "authors": ["Sara J Aton", "Christopher Broussard", "Michelle Dumoulin", "Julie Seibt", "Adam Watson", "Tammi Coleman", "Marcos G Frank"],
+    "year": 2013,
+    "venue": "Proc Natl Acad Sci U S A 110(8):3101-6",
+    "doi": "10.1073/pnas.1208093110",
+    "url": "https://doi.org/10.1073/pnas.1208093110"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct in-vivo evidence for a two-stage gate: waking monocular deprivation depresses fast-spiking interneurons (the instruction), and only subsequent NREM sleep -- with increased phase-locked principal-neuron firing -- executes the ocular-dominance shift. Supports MECH-334's sleep-gated crystallization AND INV-074's ordering requirement (correct competitive instruction must be encoded before crystallization). Moderate-high confidence; the strongest evidential value is the temporal ordering, which is exactly what the REE sleep dependencies (MECH-120/165) need.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The ocular-dominance shift was evident ONLY after post-deprivation sleep, not after waking deprivation alone -- if REE crystallizes the diversity distribution during the active phase without a subsequent consolidation/sleep step, it will not reproduce the biological crystallization and MECH-334 would be mis-implemented.",
+    "Corrupted waking dynamics (incorrect gate-1 instruction) prevent sleep from crystallizing the right representation -- so MECH-334 cannot rescue a diversity distribution that was not competitively established during the MECH-333 open window; this couples MECH-334's success to INV-074's necessity condition and makes them jointly falsifiable."
+  ],
+  "tags": ["mech-334", "inv-074", "critical_period_closure", "sleep_consolidation", "two_stage_gate", "nrem_phase_locking"],
+  "mapping": {
+    "source_claim_statement": "Monocular deprivation during waking depresses fast-spiking interneuron firing and shifts their responses (instructive gate 1); during subsequent NREM sleep, principal-neuron firing increases and becomes phase-locked to slow-wave and spindle oscillations, and the ocular-dominance shift -- proportional to the waking interneuron changes -- emerges only after this post-deprivation sleep (executive gate 2).",
+    "ree_translation": "Aton et al. give MECH-334 its execution timing: crystallization of the consolidated representation is sleep-gated and requires a correct waking instruction first. This directly motivates REE's coupling of crystallization closure to the sleep mechanisms MECH-334 already depends on (MECH-120 SWY downscaling, MECH-165 replay diversity), and operationalises INV-074's ordering: competitive weight must be established before the closure/consolidation step can lock it in.",
+    "mapping_caveat": "The two-stage gate is demonstrated for ocular-dominance plasticity in cat visual cortex; REE's analogue is an offline consolidation phase crystallizing a diversity distribution. The transfer is to the abstract sequence 'waking competitive instruction -> sleep-phase crystallization', not to FS-interneuron physiology or cortical oscillations specifically. Evidences MECH-334's execution timing and INV-074's ordering, not the molecular lock (Pizzorusso/Morishita).",
+    "source_context": "Freely behaving cats; continuous extragranular recordings of fast-spiking interneurons and putative principal neurons across waking monocular deprivation and post-deprivation sleep."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.34,
+    "notes": "PNAS, Frank lab, careful continuous in-vivo recordings. Tagged to both MECH-334 (sleep-gated execution) and INV-074 (instruction-before-crystallization ordering) because it genuinely evidences both and makes them jointly falsifiable. Held at 0.82: high-value for temporal ordering, with the usual cat-visual-cortex -> REE-consolidation abstraction discount."
+  }
+}
