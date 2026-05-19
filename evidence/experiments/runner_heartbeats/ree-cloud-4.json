@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-19T03:45:54Z",
+  "last_tick_utc": "2026-05-19T03:46:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-543j",
   "current_exq_started_utc": "2026-05-19T01:56:02.265178+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_5_dacc_only_xtal",
     "runs_done": 17,
     "runs_total": 36,
-    "episodes_done": 5,
+    "episodes_done": 60,
     "episodes_total": 108,
-    "overall_pct": 47.4
+    "overall_pct": 48.8
   },
-  "seconds_elapsed": 6593,
-  "seconds_remaining": 6977,
+  "seconds_elapsed": 6655,
+  "seconds_remaining": 6790,
   "recent_lines": [
-    "[train] ARM_5_dacc_only_xtal ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.0611",
-    "[train] ARM_5_dacc_only_xtal ep 20/108  phase=P0  rv=0.0003  ep_reward=-1.1059",
-    "[train] ARM_5_dacc_only_xtal ep 30/108  phase=P0  rv=0.0002  ep_reward=-1.2291",
-    "[train] ARM_5_dacc_only_xtal ep 40/108  phase=P0  rv=0.0003  ep_reward=-1.2042",
-    "[probe] ARM_5_dacc_only_xtal P1 ep 5/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0"
+    "[probe] ARM_5_dacc_only_xtal P1 ep 10/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
+    "[train] ARM_5_dacc_only_xtal ep 50/108  phase=P1  rv=0.0007  ep_reward=-1.2402  baseline=-1.2309  buf=0  inert_gating=False",
+    "[probe] ARM_5_dacc_only_xtal P1 ep 15/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
+    "[probe] ARM_5_dacc_only_xtal P1 ep 20/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0",
+    "[train] ARM_5_dacc_only_xtal ep 60/108  phase=P1  rv=0.0006  ep_reward=-1.2045  baseline=-1.2370  buf=0  inert_gating=False"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
