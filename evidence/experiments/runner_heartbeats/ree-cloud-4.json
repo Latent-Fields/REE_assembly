@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-19T05:39:28Z",
+  "last_tick_utc": "2026-05-19T05:40:30Z",
   "state": "running",
   "current_exq": "V3-EXQ-543j",
   "current_exq_started_utc": "2026-05-19T01:56:02.265178+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 2 / ARM_2_gated_only",
     "runs_done": 26,
     "runs_total": 36,
-    "episodes_done": 25,
+    "episodes_done": 70,
     "episodes_total": 108,
-    "overall_pct": 72.9
+    "overall_pct": 74.0
   },
-  "seconds_elapsed": 13406,
-  "seconds_remaining": 4736,
+  "seconds_elapsed": 13468,
+  "seconds_remaining": 4534,
   "recent_lines": [
-    "[train] ARM_2_gated_only ep 50/108  phase=P1  rv=0.0007  ep_reward=-1.1996  baseline=-1.1033  buf=212  inert_gating=False",
-    "[probe] ARM_2_gated_only P1 ep 15/60  applicable=True  mean_tv=0.0004  max_tv=0.0008  buf=339",
-    "[probe] ARM_2_gated_only P1 ep 20/60  applicable=True  mean_tv=0.0004  max_tv=0.0007  buf=483",
     "[train] ARM_2_gated_only ep 60/108  phase=P1  rv=0.0004  ep_reward=-1.0281  baseline=-1.0862  buf=483  inert_gating=False",
-    "[probe] ARM_2_gated_only P1 ep 25/60  applicable=True  mean_tv=0.0004  max_tv=0.0007  buf=512"
+    "[probe] ARM_2_gated_only P1 ep 25/60  applicable=True  mean_tv=0.0004  max_tv=0.0007  buf=512",
+    "[probe] ARM_2_gated_only P1 ep 30/60  applicable=True  mean_tv=0.0004  max_tv=0.0008  buf=512",
+    "[probe] ARM_2_gated_only INERT-GATING at P1 ep 30: mean_tv=0.0004 < 0.05 (REINFORCE outcome-coupling active)",
+    "[train] ARM_2_gated_only ep 70/108  phase=P1  rv=0.0004  ep_reward=-1.3094  baseline=-1.1363  buf=512  inert_gating=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
