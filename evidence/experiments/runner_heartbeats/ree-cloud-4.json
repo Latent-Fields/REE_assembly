@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-19T03:56:13Z",
+  "last_tick_utc": "2026-05-19T03:57:15Z",
   "state": "running",
   "current_exq": "V3-EXQ-543j",
   "current_exq_started_utc": "2026-05-19T01:56:02.265178+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_6_gated_only_xtal",
     "runs_done": 18,
     "runs_total": 36,
-    "episodes_done": 25,
+    "episodes_done": 80,
     "episodes_total": 108,
-    "overall_pct": 50.6
+    "overall_pct": 52.1
   },
-  "seconds_elapsed": 7212,
-  "seconds_remaining": 6792,
+  "seconds_elapsed": 7273,
+  "seconds_remaining": 6597,
   "recent_lines": [
-    "[train] ARM_6_gated_only_xtal ep 50/108  phase=P1  rv=0.0001  ep_reward=-1.2900  baseline=-1.2303  buf=93  inert_gating=False",
-    "[probe] ARM_6_gated_only_xtal P1 ep 15/60  applicable=True  mean_tv=0.0013  max_tv=0.0021  buf=126",
-    "[probe] ARM_6_gated_only_xtal P1 ep 20/60  applicable=True  mean_tv=0.0014  max_tv=0.0021  buf=269",
-    "[train] ARM_6_gated_only_xtal ep 60/108  phase=P1  rv=0.0001  ep_reward=-0.3709  baseline=-1.0185  buf=269  inert_gating=False",
-    "[probe] ARM_6_gated_only_xtal P1 ep 25/60  applicable=True  mean_tv=0.0012  max_tv=0.0019  buf=362"
+    "[train] ARM_6_gated_only_xtal ep 70/108  phase=P1  rv=0.0000  ep_reward=-1.1078  baseline=-1.1388  buf=481  inert_gating=True",
+    "[crystallize] ARM_6_gated_only_xtal P1 ep 30/60  gated_frozen=4467  expansion_params=1249  ewc_anchored=True  ewc_active_centers=0  (closure == InfantCurriculumScheduler.on_phase3_entry)",
+    "[probe] ARM_6_gated_only_xtal P1 ep 35/60  applicable=True  mean_tv=0.0010  max_tv=0.0017  buf=512",
+    "[probe] ARM_6_gated_only_xtal P1 ep 40/60  applicable=True  mean_tv=0.0010  max_tv=0.0016  buf=512",
+    "[train] ARM_6_gated_only_xtal ep 80/108  phase=P1  rv=0.0001  ep_reward=-1.2319  baseline=-1.1746  buf=512  inert_gating=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
