@@ -23430,8 +23430,24 @@
   evidence_quality_note: >
     Registered candidate with literature support from
     `targeted_review_ghost_goal_search/` (Berridge 1998, Barch 2010, Berkowitz
-    1989) plus the existing MECH-269 / MECH-285 foundation pulls. No substrate
-    implementation yet.
+    1989) plus the existing MECH-269 / MECH-285 foundation pulls.
+
+    [2026-05-19 retrieval-cue reframe] Under the cue-system reading
+    (docs/architecture/ghost_goal_search.md Section 0; 2026-05-18 combined
+    pull: Nakazawa 2002, Gelbard-Sagiv 2008, Smith & Vela 2001, Flagel
+    2011, Corbit & Balleine 2005/2011, Jasinska 2014, Bouton 2004,
+    Maren/Phan/Liberzon 2013, Bouton 2014) the SD-039 payload IS the
+    stored retrieval trace and goal_match is a cue-to-trace match score.
+    Constraint 1 (Smith & Vela 2001 encoding specificity / outshining):
+    the already-preserved-but-match-unused fields (arousal_tag, last_vs,
+    cause) are the substrate for a context-cue channel that must be gated
+    to yield to a strong z_goal match, not summed with fixed weight.
+    Revised falsifiable: the existing "inactive anchors on the formerly
+    valid path retain goal-match" prediction stands, AND the stored
+    context fields must be sufficient to support a fallback context match
+    when the direct z_goal match is weak/absent. Interpretive reframe;
+    status/phase/confidence unchanged; no new claim/experiment; no
+    substrate change this pass.
   location: docs/architecture/ghost_goal_search.md
 
 - id: MECH-292
@@ -23487,6 +23503,32 @@
     claim; the proposal-diversity function it would have provided to
     ARC-064 / ARC-065 is already substantively covered by this
     substrate.
+
+    [2026-05-19 retrieval-cue reframe] (docs/architecture/
+    ghost_goal_search.md Section 0; mech_292_ghost_goal_bank.md reframe
+    section; 2026-05-18 combined cue-system pull). The bank is the
+    cued-recall step of a content-addressed retrieval system: z_goal/
+    context is the cue, the SD-039 payload the trace, rank() is recall,
+    goal_match is the cue-to-trace match score (not a priority weight).
+    Constraint 2 (Flagel 2011; Corbit & Balleine 2005/2011): wanting and
+    goal_match are dissociable channels with independent failure modes --
+    the additive ghost_priority already in the substrate
+    (ghost_goal_bank.py: w_w*wanting + w_m*goal_match + ...) is the
+    biologically correct form and is RATIFIED; the product form in the
+    old ghost_goal_search.md sketch is superseded. Constraint 3 (Bouton
+    2004/2014; Maren 2013; Jasinska 2014): recoverability must NOT become
+    a cutoff that integrates suppression/staleness evidence toward
+    excluding an anchor (accumulated hopelessness provably does not
+    justify retirement; incubation can invert the staleness sign). The
+    goal_match_floor rumination guard remains valid as a cue-relevance
+    gate (no matching cue -> not recalled) but must NOT be repurposed as
+    a hopelessness gate. Revised falsifiable signature: the three
+    dissociated states (intact match/absent vigor; nonspecific vigor/
+    absent match; match present but un-actionable) must be inducible, and
+    a strong direct goal_match must not be displaced by the context
+    channel. Interpretive reframe; status/phase/confidence unchanged; no
+    new claim/experiment; no substrate change this pass; explicit
+    abandon path is an open user-gated substrate question (Section 0.3).
   implementation_note: >
     SUBSTRATE IMPLEMENTED 2026-04-27 in ree-v3/ree_core/hippocampal/ghost_goal_bank.py
     (GhostGoalBank, GhostGoalBankConfig, GhostGoalBankEntry). Pure-arithmetic
@@ -23569,6 +23611,21 @@
     claim; the proposal-diversity function it would have provided to
     ARC-064 / ARC-065 is already substantively covered by this
     substrate.
+
+    [2026-05-19 retrieval-cue reframe] (docs/architecture/
+    ghost_goal_search.md Section 0; mech_293_ghost_goal_probe_search.md
+    reframe section). MECH-293 is the internally-triggered retrieval
+    step: an internal goal/context cue reinstates a stored trace and
+    re-pursues it, biologically licensed by Gelbard-Sagiv 2008 (internal
+    cue reinstates the encoding-time trace ahead of report). Constraint 3
+    implication: the open question in this note ("how large a waking
+    probe fraction before recovery turns into rumination") is NOT a free
+    knob -- inhibition-only recoverability makes rumination the predicted
+    equilibrium (Bouton 2004/2014; Maren 2013), so the probe fraction
+    interacts with the open abandon-path question (Section 0.3) and must
+    be validated against the Constraint-3 rumination signature, not tuned
+    in isolation. Interpretive reframe; status/phase/confidence
+    unchanged; no new claim/experiment; no substrate change this pass.
   implementation_note: "SUBSTRATE LANDED 2026-04-27. Module: ree-v3/ree_core/hippocampal/module.py (HippocampalModule.propose_trajectories() extended with optional current_z_goal kwarg + minority ghost-seeded branch consuming MECH-292 GhostGoalBank.rank(); new private methods _propose_ghost_seeded + _mix_value_flat_with_ghost; diagnostic accessor get_last_propose_diagnostics surfacing mech293_n_ghost_proposed / n_ghost_admitted / max_ghost_priority / mean_goal_match_at_seed / reason). ree-v3/ree_core/predictors/e2_fast.py: Trajectory dataclass extended with hypothesis_tag (bool, default False) and metadata (Optional[Dict[str, Any]], default None) fields. ree-v3/ree_core/agent.py: REEAgent._e3_tick threads goal_state.z_goal (when goal_state is active) into propose_trajectories; record_committed_trajectory explicitly sets hypothesis_tag=False / metadata=None on the executed committed trajectory so the executed path drops any ghost provenance from the source proposal (the executed trajectory IS real, regardless of origin -- spec requirement). Algorithm: n_ghost = clamp(round(n*mech293_ghost_fraction), [min_ghost, max_ghost]) bounded by bank size; each ghost seeds the action-object distribution from anchor.z_world (NOT current z_world), single noise draw (no inner CEM refit so probe cost <= one value-flat sample), e2.rollout_with_world rolls forward, traj.hypothesis_tag=True + traj.metadata={source: 'mech293_ghost_probe', anchor_key, ghost_priority, goal_match}; mix per mech293_replace_lowest_ranked (default True drops highest-cost value-flat candidates and appends ghosts at tail; False appends raising total). Config: REEConfig.use_mech293_ghost_probes (default False) + 4 sub-knobs (mech293_ghost_fraction=0.2, mech293_min_ghost_candidates=1, mech293_max_ghost_candidates=8, mech293_replace_lowest_ranked=True) all wired through REEConfig.from_dims. Precondition (HippocampalModule.__init__): use_mech293_ghost_probes=True requires use_mech292_ghost_bank=True; the MECH-292 block transitively guarantees use_anchor_sets=True and AnchorSetConfig.use_sd039_anchor_payload=True so only the bank flag is asserted explicitly here (loud-not-silent). Backward compat verified: 12/12 MECH-293 contracts + 183/183 full preflight + contracts PASS with master OFF (bit-identical to pre-MECH-293 HEAD). MECH-094: ghost trajectories carry hypothesis_tag=True for provenance routing; CEM rollout does not write residue/anchors during proposal; record_committed_trajectory strips the tag at commit; SD-039 build_goal_payload(simulation_mode=True) handles the population-side gate already. ARC-007 strict preserved: no value head added; goal-match enters via MECH-292's external ranking, ghost seeding is by LOCATION (anchor's z_world) not by internal value computation. Validation: V3-EXQ-497 5/5 PASS 2026-04-27 in 34s on Mac (UC1 module surface; UC2 master-OFF no-op n_ghost=0 / diagnostics={} / candidates default-clean; UC3 ghost branch fires n_ghost_admitted=4 max_priority=1.61 mean_goal_match_at_seed=0.998; UC4 hypothesis_tag preserved on every ghost + metadata complete + 28 value-flat candidates default-clean; UC5 budget arithmetic round(0.25*8)=2 in [1,4] arm A + bank-size cap to 1 in arm B + min-floor wins over fraction=0.0 in arm C). v3_pending KEPT TRUE -- behavioural validation (faster recovery from blocked-goal conditions vs random-probe baseline; lower revisitation of fully incoherent stale regions) lives in V3-EXQ-495 (V3 full-completion gate, MECH-163 dual systems test) and is not yet run. Design doc: REE_assembly/docs/architecture/mech_293_ghost_goal_probe_search.md (Status flipped DESIGNED -> IMPLEMENTED)."
   location: docs/architecture/ghost_goal_search.md
 
@@ -23615,6 +23672,22 @@
     need for persistent wanting/goal representations, Pfeiffer 2013 grounds goal-
     biased path search, Gillespie 2021 grounds non-current trace reactivation, and
     Muessig 2019 grounds a shared waking/offline sequence generator.
+
+    [2026-05-19 retrieval-cue reframe] (docs/architecture/
+    ghost_goal_search.md Section 0; 2026-05-18 combined cue-system pull).
+    The continuous-field vs discrete-bank split ARC-060 asserts IS the
+    recognition-vs-recall distinction: the field supports gradient
+    following when a local cue is present; the bank supports recall of a
+    goal whose local gradient has collapsed, from a partial or internal
+    cue (Nakazawa 2002 partial-cue completion; Gelbard-Sagiv 2008
+    internal-cue reinstatement). Bouton 2004/2014 + Maren 2013 ground
+    that the discrete preserved traces are biologically real AND that an
+    inhibition-only persistence design makes rumination/intrusion the
+    structural equilibrium -- so the architectural claim must treat an
+    explicit abandon path (the deliberate biology-divergence point,
+    Section 0.3) as an open structural element, not an implementation
+    detail. Interpretive reframe; status/phase/confidence unchanged; no
+    new claim/experiment; no substrate change this pass.
   location: docs/architecture/ghost_goal_search.md
 
 - id: ARC-061

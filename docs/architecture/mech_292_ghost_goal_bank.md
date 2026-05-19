@@ -29,6 +29,45 @@ and that the V3 full-completion gate (V3-EXQ-495) will exercise as the
 proposal-generation hook for the PLANNED arm of MECH-163's dual goal-directed
 systems.
 
+## Retrieval-Cue Reframe (2026-05-19)
+
+The combined cue-system literature pull
+(`evidence/literature/targeted_review_ghost_goal_search/`, 2026-05-18)
+recasts this bank as the **cued-recall step** of a content-addressed
+retrieval system: the current `z_goal`/context is the retrieval cue,
+the SD-039 payload is the stored trace, `rank()` is recall, and
+`goal_match` is the cue-to-trace match score (not a priority weight).
+See `ghost_goal_search.md` Section 0 for the full synthesis. Three
+structural constraints land specifically on MECH-292:
+
+- **Constraint 1 (Smith & Vela 2001):** the cue is `z_goal`-cosine only;
+  a context channel from the already-stored-but-unused payload fields
+  (`arousal_tag`, `last_vs`, `cause`) should be added, but **gated to
+  yield to a strong `goal_match`**, not summed with fixed weight
+  (outshining). Not yet implemented; not queued.
+- **Constraint 2 (Flagel 2011; Corbit & Balleine 2005/2011):** the
+  additive `ghost_priority` already implemented here (`w_w*wanting +
+  w_m*goal_match + ...`) is **biologically correct and is hereby
+  ratified**; the product form in the old `ghost_goal_search.md`
+  sketch is superseded. `wanting` and `goal_match` are dissociable
+  channels with independent failure modes -- the additive form is
+  required, not incidental.
+- **Constraint 3 (Bouton 2004/2014; Maren 2013; Jasinska 2014):**
+  `recoverability` (currently `clamp[0,1](last_vs)`) must NOT become a
+  cutoff that integrates suppression/staleness evidence toward
+  excluding an anchor -- accumulated "hopelessness" evidence provably
+  does not justify retirement, and incubation can invert the staleness
+  sign. The `goal_match_floor` rumination guard remains valid as a
+  *cue-relevance* gate (an anchor with no matching cue is not recalled);
+  it is **not** a hopelessness gate and must not be repurposed as one.
+  An explicit abandon path is the deliberate biology-divergence point
+  and is an open, user-gated substrate question (see
+  `ghost_goal_search.md` Section 0.3).
+
+Scope: interpretive reframe + revised falsifiable signature only. No
+substrate change in this pass, no new claim, no experiment queued,
+MECH-292 status/phase/confidence unchanged.
+
 ## What this lands
 
 ### New module
@@ -203,6 +242,13 @@ flagged in the ghost-goal-search lit-pull.
 These boundaries keep MECH-292 small and falsifiable in isolation.
 
 ## Falsifiable signature
+
+> Extended by the 2026-05-19 reframe: in addition to the paired-comparison
+> signature below, the three dissociated states of Constraint 2 must be
+> inducible (intact match / absent vigor; nonspecific vigor / absent match;
+> match present but un-actionable) and the Constraint 1 context-gating
+> prediction must hold (a strong direct `goal_match` must not be displaced
+> by the context channel). See `ghost_goal_search.md` Section 0.2.
 
 In a reward-relocation or blocked-corridor task:
 - Anchors from the now-obstructed but still-valued path should rank above

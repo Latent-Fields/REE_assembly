@@ -455,6 +455,12 @@
     "title": "Developmental commitment-loop calibration window with critical-period lock (two-layer): the three BG-like cortico-striatal commitment loops (ARC-021 / MECH-069 / ARC-023) are calibrated during a bounded juvenile/adolescent developmental window and then crystallized (an INV-075 LOCK-arm instance), and this locked calibration IS personality. The architecture is two-layer: (L1) the basic drive-prior set-points of the loops (temperament; the limbic-loop value prior) lock on a largely ENDOGENOUS maturational timer, while (L2) a downstream commitment-policy / characteristic- adaptation layer is calibrated by the juvenile play/peer environment and consolidated at window close. Personality is neither a pure environmental readout nor purely endogenous: the environment writes L2; the timer locks L1.",
     "type": "architectural_commitment"
   },
+  "ARC-077": {
+    "status": "candidate",
+    "subject": "rule_apprehension.socially_scaffolded_rule_population_pathway",
+    "title": "Socially-scaffolded rule-population pathway: the third rule-source, peer to ARC-062 (top-down gated-policy apprehension) and ARC-064 (bottom-up behavioural-pattern extraction), and upstream-fed by ARC-065 (behavioural diversity generation). Architectural commitment: in biology the candidate-rule hypothesis space is not invented by the agent alone -- caregivers populate it from outside via scaffolded exposure (Vygotsky ZPD; Wood/Bruner/Ross scaffolding; Csibra & Gergely ostensive cueing / natural pedagogy; Tomasello shared intentionality; joint attention / social referencing). This is the most direct architectural answer to MECH-309: a non-Bayesian rule-creator that does not invent its own hypotheses receives candidate regularities, context-bound to the scaffolding episode, from a caregiver. The pathway fills the ARC-063 CandidateRule field (the 'in' face); MECH-337 is the population mechanism; MECH-338 is the cue-driven context-bound retrieval mechanism (the 'select' face). Registered 2026-05-18 as a structural slot only -- hard-gated on the GAP-L biology lit-pull and on a caregiver/teacher-agent substrate that does not yet exist in V3.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -3372,6 +3378,18 @@
     "status": "candidate",
     "subject": "development.maladaptive_commitment_lock_failure_mode",
     "title": "Maladaptive-lock failure mode (personality-pathology analog): adequate environmental input does NOT determine the locked calibration value. A stable subset of agents locks a maladaptive commitment-loop configuration despite sufficient input (lock-onto-bad-calibration), and failure to lock at all yields an unstable / diffuse commitment policy. These are the REE substrate of personality-disorder-analog failure modes: lock-too-early / lock-onto-bad-value (rigid maladaptive personality) and failure-to-lock (identity diffusion).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-337": {
+    "status": "candidate",
+    "subject": "rule_apprehension.caregiver_scaffolded_rule_population",
+    "title": "Caregiver-scaffolded rule-population mechanism (the 'in' face of the ARC-063 CandidateRule field). A caregiver / teacher agent structures the agent's exposure (Vygotsky ZPD; Wood/Bruner/Ross scaffolding) and marks regularities ostensively (Csibra & Gergely natural pedagogy); the marked regularity is written into the ARC-063 CandidateRule field as a candidate the agent could not have invented alone, tagged with the scaffolding context. Population is context-bound by construction -- this is the concrete mechanism behind 'context-bound rule population'. Child of ARC-077. Structural slot only; hard-gated on the GAP-L biology lit-pull and a caregiver-agent substrate that does not exist in V3.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-338": {
+    "status": "candidate",
+    "subject": "rule_apprehension.cue_driven_context_bound_rule_retrieval",
+    "title": "Cue-driven context-bound rule retrieval (the 'cue pipeline' / 'select' face of the ARC-063 CandidateRule field). Environmental or internal cues are matched against CandidateRule context tags to gate rollout-eligibility: a rule populated in a context becomes available again when that context, or a cue associated with it, recurs (context-dependent / cued recall; Tulving & Thomson encoding-specificity; Godden & Baddeley context-dependent memory). This is the retrieval pay-off of context-bound population (MECH-337) and the access gate that decides which CandidateRules enter hippocampal rollout. Child of ARC-077. Structural slot only; hard-gated on the GAP-L biology lit-pull.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

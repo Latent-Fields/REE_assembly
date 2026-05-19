@@ -17,6 +17,21 @@ the PLANNED-arm proposal hook in MECH-163's dual goal-directed systems
 test. Without MECH-293, the gate's PLANNED arm has no mechanism distinct
 from the HABIT arm and the experiment is uninformative.
 
+## Retrieval-Cue Reframe (2026-05-19)
+
+Under the cue-system reframe (`ghost_goal_search.md` Section 0), MECH-293
+is the **internally-triggered retrieval** step: an internal goal/context
+cue reinstates a stored trace and re-pursues it -- biologically licensed
+by Gelbard-Sagiv 2008 (internal cue reinstates the encoding-time trace
+ahead of report). Constraint-3 implication for the probe budget: the
+"how large a waking probe fraction before recovery turns into rumination"
+question is not a free knob -- inhibition-only recoverability makes
+rumination the *predicted equilibrium* (Bouton 2004/2014; Maren 2013), so
+the probe fraction interacts with the open abandon-path question (Section
+0.3) and must be validated against the Constraint-3 rumination signature,
+not tuned in isolation. Interpretive reframe only; status/phase unchanged;
+nothing queued.
+
 ## Why this exists
 
 The current waking proposer (HippocampalModule.propose_trajectories) generates

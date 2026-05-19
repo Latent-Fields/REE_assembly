@@ -1,9 +1,156 @@
 # Ghost Goal Search
 
-**Status:** design sketch  
+**Status:** design sketch (2026-04-26) + **Retrieval-Cue Reframe (2026-05-19)** -- see Section 0  
 **Created:** 2026-04-26  
 **Scope:** explicit unresolved-goal traces for awake hippocampal search in V3  
 **Related claims:** MECH-216, MECH-217, MECH-230, ARC-051, MECH-269, MECH-284, MECH-285, MECH-291, SD-039, MECH-292, MECH-293, ARC-060
+
+---
+
+## 0. Retrieval-Cue Reframe (2026-05-19)
+
+> Provenance: this section folds in the synthesis of the combined cue-system
+> literature pull (`evidence/literature/targeted_review_ghost_goal_search/`,
+> 2026-05-18: Nakazawa 2002, Gelbard-Sagiv 2008, Smith & Vela 2001, Flagel
+> 2011, Corbit & Balleine 2005/2011, Jasinska 2014, Bouton 2004,
+> Maren/Phan/Liberzon 2013, Bouton 2014). Per the biology-before-formal-
+> definitions rule the divergences below are **structural constraints, not
+> caveats**. This is an interpretive reframe of the existing ARC-060 /
+> MECH-292 / MECH-293 / SD-039 cluster: **no new claim is registered, no
+> experiment is queued, no claim is promoted, statuses are unchanged.** The
+> 2026-04-26 sketch (Sections 1-10) is retained as history; where it
+> conflicts with Section 0, Section 0 governs.
+
+### 0.1 Thesis
+
+The ghost-goal bank is not, structurally, a priority queue of deferred
+goals. It is a **content-addressed cue -> target retrieval system**:
+
+- the current goal/context is the **retrieval cue**;
+- the SD-039 payload preserved on an inactive anchor is the **stored trace**;
+- `rank_ghost_goals()` is **cued recall** (`goal_match` is the
+  cue-to-trace match score, not a priority weight);
+- MECH-293's awake probe is an **internally-triggered retrieval** that
+  reinstates and re-pursues the recalled trace.
+
+ARC-060's "continuous wanting field vs discrete unresolved-goal bank" split
+is, in this light, the **recognition-vs-recall distinction**: the field
+supports gradient-following when a local cue is present; the bank supports
+recall of a goal whose local gradient has collapsed, from a partial or
+internal cue. The biology is unambiguous that this is a real operation:
+CA3 recurrent dynamics complete a partial cue to the full stored trace
+(Nakazawa 2002), and an internally generated cue reinstates the
+encoding-time trace ahead of report (Gelbard-Sagiv 2008).
+
+### 0.2 Three load-bearing structural constraints
+
+**Constraint 1 -- `goal_match` must DOMINATE a context channel; context is a
+conditional fallback, not an always-on additive term.**
+
+- Biology: encoding specificity is real but moderate, and is *outshone* by a
+  strong direct cue and *overshadowed* by strong non-contextual encoding
+  cues (Smith & Vela 2001). Context-overlap retrieval is the weak regime
+  that matters precisely when a strong direct match is absent.
+- Design requirement: the cue is currently `z_goal` cosine only. SD-039
+  already preserves `arousal_tag`, `last_vs`, and a `cause` tag but the
+  match ignores them. A context channel should be built from those
+  stored-but-unused payload fields, but it must be **gated to yield to a
+  strong `goal_match`**, not summed in with fixed weight. A bank that
+  always adds context degrades retrieval (by the outshining result)
+  whenever a clean direct match exists.
+- Falsifiable prediction: with a strong direct goal match present, adding
+  the context channel must not change the top-ranked entry; with direct
+  match weak/absent, the context channel must change it.
+- Failure mode: an always-on additive context term produces
+  context-driven misretrieval in exactly the regime where identity
+  matching would have been correct.
+
+**Constraint 2 -- `wanting` and `goal_match` are DISSOCIABLE ADDITIVE
+channels, NOT a multiplicative product.**
+
+- Biology: incentive attribution is a dopamine-gated step separable from
+  predictive accuracy -- a fully predictive cue can carry near-zero
+  wanting and vice versa (Flagel 2011). The substrate double-dissociates:
+  BLA -> NAc-shell carries outcome-*specific* transfer (the `goal_match`
+  channel), CeA -> NAc-core carries value-*general* invigoration (the
+  `wanting` channel), and each fails independently (Corbit & Balleine
+  2005/2011).
+- Design requirement: `ghost_priority` must be a sum of independently
+  gateable channels. **This is already true in the landed substrate**
+  (`ghost_goal_bank.py:168`, `priority = w_w*wanting + w_m*goal_match +
+  w_s*staleness + w_r*recoverability`). The drift is in this document:
+  the 2026-04-26 sketch wrote the product form `ghost_priority ~ wanting x
+  goal_match x staleness x recoverability` (Sections 4.2 and 6.2). **That
+  product form is SUPERSEDED.** The additive implemented form is the
+  biologically correct one; this reframe ratifies it rather than changing
+  it.
+- Falsifiable prediction: the three dissociated states must be inducible
+  -- (a) intact match, absent vigor (entries recalled, not pursued); (b)
+  nonspecific vigor, absent match (diffuse re-probing not tied to any
+  recalled goal); (c) match present but un-actionable because the
+  invigoration channel is offline at retrieval time.
+- Failure mode: a multiplicative score cannot represent any of the three;
+  it silently zeroes a recalled-but-unwanted (or wanted-but-unmatched)
+  trace that biology keeps distinct.
+
+**Constraint 3 -- `recoverability` cannot be inhibition-only, and cannot be
+a cutoff that accumulates suppression evidence toward "retire this
+anchor".**
+
+- Biology: extinction never erases; the original trace is preserved and
+  re-expressed under context change (renewal, spontaneous recovery,
+  reinstatement, rapid reacquisition -- Bouton 2004). The recoverability
+  gate is a hippocampus-amygdala-vmPFC context-selection circuit, and
+  gate-stuck-open *is* the mechanism of intrusion/relapse (PTSD,
+  addiction, schizophrenia -- Maren/Phan/Liberzon 2013). Critically,
+  accumulated suppression evidence does **not** close the gate: 36 vs 4
+  sessions of elimination produced identical return, and resurgence
+  returns a "resolved" goal the moment a competitor stops paying off
+  (Bouton 2014). Cue-reactivity can *incubate* -- a long-blocked trace
+  becomes *more* compelling with time, inverting a monotonic
+  staleness-decay prior (Jasinska 2014).
+- Design requirement: (i) `recoverability` is context-selection between
+  competing active/inactive traces, not a decay scalar; (ii) it must not
+  integrate "evidence of hopelessness" toward a retire decision -- biology
+  shows that inference to be false; (iii) "a competitor is winning" is
+  **not** a safe retire condition (resurgence); (iv) do not assume
+  staleness monotonically decays pull (incubation).
+- Falsifiable prediction: rumination/intrusion is the *predicted
+  equilibrium* of an inhibition-only design -- a bank with no explicit
+  abandon path, run long enough in a blocked-decoy environment, must
+  drift toward perseverative re-probing of hopeless traces.
+- Failure mode: a recoverability cutoff that closes on accumulated
+  suppression evidence will be confidently, systematically wrong, and
+  will under-weight exactly the incubating traces most likely to capture
+  the agent.
+
+### 0.3 The deliberate divergence point
+
+Constraint 3 has a corollary the reframe states explicitly: **the explicit
+abandon path is where REE should deliberately DIVERGE from biology, not
+imitate it.** Nervous systems have no clean erase operation, and the price
+they pay is that rumination/intrusion is the structural equilibrium of the
+machinery. An artificial system *can* introduce an abandon path -- but
+Constraint 3 forbids justifying it by accumulated evidence of hopelessness.
+A licit abandon trigger is therefore an open design question (candidate
+forms: an explicit external invalidation signal; a hard recoverability
+floor crossed *once* rather than integrated; an orthogonal
+goal-obsolescence write from self-model). This is the single highest-value
+follow-on and is intentionally left unspecified here -- it is a substrate
+design decision, not a documentation change, and is user-gated.
+
+### 0.4 What this reframe changes and does not change
+
+| Aspect | Status |
+|---|---|
+| ARC-060 / MECH-292 / MECH-293 / SD-039 | reframed interpretation + revised falsifiable predictions; **status, phase, confidence unchanged** |
+| `ghost_priority` product formula (old Sections 4.2 / 6.2) | **SUPERSEDED** by the additive form already in the substrate |
+| Context channel from SD-039 payload fields | **new structural requirement** (Constraint 1); not yet implemented; not queued |
+| Three-state dissociation validation | **new falsifiable battery** (Constraint 2); not queued |
+| Explicit abandon path | **flagged open substrate-design question** (0.3); user-gated, not specified |
+| New claims / experiments / promotion | **none** -- pull-informed reframe only |
+
+---
 
 ## 1. Why this note exists
 
@@ -91,6 +238,11 @@ broad pool:
 The bank should rank by something like:
 
 `ghost_priority ~ wanting x goal_match x staleness x recoverability`
+
+> **SUPERSEDED by Section 0 (2026-05-19, Constraint 2).** This product form
+> is biologically wrong: `wanting` and `goal_match` are dissociable
+> channels, not factors. The landed substrate already uses the correct
+> additive form; see Section 0.2 Constraint 2.
 
 where:
 
@@ -184,6 +336,14 @@ Initial conservative default:
 Later, replace fixed fractions with a dynamic `ghost_pressure` gate.
 
 ### 6.2 Ghost priority
+
+> **SUPERSEDED by Section 0 (2026-05-19).** The multiplicative `priority`
+> below violates Constraint 2 (additive dissociable channels); the
+> `recoverability = sigmoid(... - a2*staleness)` form violates Constraint 3
+> (recoverability must not integrate suppression/staleness evidence toward
+> a retire decision; incubation can invert the staleness sign). The landed
+> substrate uses the additive form (`ghost_goal_bank.py`); this block is
+> retained only as the original sketch.
 
 Recommended first-pass scoring:
 
