@@ -1,47 +1,32 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-18T22:25:28Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-587",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-567",
-      "result": "PASS",
-      "completed_at": "2026-05-15T20:31:26.786714+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-588",
-      "result": "FAIL",
-      "completed_at": "2026-05-18T22:24:57.276142+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-585",
-      "result": "PASS",
-      "completed_at": "2026-05-18T22:25:09.977587+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-586",
-      "result": "PASS",
-      "completed_at": "2026-05-18T22:25:15.571097+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-584",
-      "result": "PASS",
-      "completed_at": "2026-05-18T22:25:22.810462+00:00"
-    }
+  "last_tick_utc": "2026-05-19T00:53:22Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-590",
+  "current_exq_started_utc": "2026-05-19T00:48:14.934291+00:00",
+  "current_title": "EXQ-ISEF-004: novelty bonus Goldilocks calibration -- MECH-111 broadcast weight sweep (infant_substrate:GAP-13)",
+  "current_claim_id": "MECH-314",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_nbw01",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 0,
+    "episodes_total": 1000,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 307,
+  "seconds_remaining": 30000,
+  "recent_lines": [
+    "V3-EXQ-590: EXQ-ISEF-004 novelty bonus Goldilocks calibration",
+    "dry_run=False seeds=[42, 43, 44] n_episodes=1000 steps=200 novelty_weights=[0.1, 0.3, 0.5, 0.7, 1.0]",
+    "Seed 42 Condition ARM_nbw01"
   ],
-  "runner_pid": 670,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 562335,
   "runner_version": null,
   "gpu": {
     "available": false
