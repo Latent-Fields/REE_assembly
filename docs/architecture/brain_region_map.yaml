@@ -1,0 +1,414 @@
+# REE Brain Map -- region ontology (functional analogy, not homology).
+# Consumed by serve.py read_brain_map() and scripts/validate_brain_region_map.py.
+schema_version: 1
+
+disclaimer: >-
+  Regions denote computational roles inspired by neuroscience naming in REE.
+  Coverage reflects claims, substrate code, and experiment evidence -- not
+  biological completeness or anatomical accuracy.
+
+# Prefixes that must map to a region or engineering bucket (validate script).
+known_anatomy_prefixes:
+  - hippocampus
+  - hippocampal
+  - hippocampal_module
+  - hippocampal_proposer
+  - amygdala
+  - pfc
+  - vmPFC
+  - cingulate
+  - dacc
+  - basal_ganglia
+  - default_mode
+  - sleep
+  - sleep_phase
+  - thalamic
+  - pag
+  - lh_pag
+  - serotonin
+  - dopamine
+  - neuromodulation
+  - astrocyte
+  - respiratory
+  - harm_stream
+  - e1
+  - e2
+  - e3
+  - E1
+  - E2
+  - E3
+  - e1_e2
+  - e1_e3
+  - control_plane
+  - policy
+  - architecture
+  - residue
+  - latent_stack
+  - L_space
+
+regions:
+  - id: hippocampus
+    label: Hippocampus
+    scope: in_scope
+    subject_prefixes:
+      - hippocampus
+      - hippocampal
+      - hippocampal_module
+      - hippocampal_proposer
+    svg_path_ids:
+      - region_hippocampus
+    ree_core_paths:
+      - hippocampal
+    primary_docs:
+      - docs/architecture/hippocampal_systems.md
+      - docs/architecture/valenced_hippocampal_map.md
+      - docs/architecture/hippocampal_braid.md
+    notes: Rollouts, path memory, terrain / residue navigation.
+
+  - id: amygdala
+    label: Amygdala (BLA / CeA analog)
+    scope: in_scope
+    subject_prefixes:
+      - amygdala
+    svg_path_ids:
+      - region_amygdala
+    ree_core_paths:
+      - amygdala
+    primary_docs:
+      - docs/architecture/sd_035_amygdala_analog.md
+    notes: Encoding gain, retrieval bias, fast subcortical priming.
+
+  - id: pfc
+    label: Prefrontal cortex
+    scope: partial
+    subject_prefixes:
+      - pfc
+      - vmPFC
+    svg_path_ids:
+      - region_pfc
+    ree_core_paths:
+      - pfc
+    functional_analogs:
+      - residue/field.py
+      - safety/conditioned_safety_store.py
+    primary_docs:
+      - docs/architecture/sd_033_pfc_subdivision_architecture.md
+      - docs/architecture/vmPFC.md
+    notes: Lateral PFC, OFC, frontopolar analogs; vmPFC partly distributed.
+
+  - id: cingulate
+    label: Cingulate / salience
+    scope: in_scope
+    subject_prefixes:
+      - cingulate
+      - dacc
+    svg_path_ids:
+      - region_cingulate
+    ree_core_paths:
+      - cingulate
+    primary_docs:
+      - docs/architecture/sd_032_cingulate_integration_substrate.md
+    notes: AIC, dACC, pACC, PCC, salience coordinator.
+
+  - id: basal_ganglia
+    label: Basal ganglia (functional)
+    scope: partial
+    subject_prefixes:
+      - basal_ganglia
+    svg_path_ids:
+      - region_basal_ganglia
+    ree_core_paths: []
+    functional_analogs:
+      - policy/gated_policy.py
+      - policy/tonic_vigor.py
+      - heartbeat/beta_gate.py
+    primary_docs:
+      - docs/architecture/rule_apprehension_layer.md
+    notes: Three-gate candidacy; beta propagation -- not a named BG package.
+
+  - id: default_mode
+    label: Default mode (DMN)
+    scope: partial
+    subject_prefixes:
+      - default_mode
+    svg_path_ids:
+      - region_default_mode
+    ree_core_paths:
+      - regulators
+    functional_analogs:
+      - regulators/simulation_mode_rule_gate.py
+    primary_docs:
+      - docs/architecture/default_mode.md
+      - docs/architecture/modes_of_cognition.md
+    notes: Cross-cutting simulation / reflective mode.
+
+  - id: sleep
+    label: Sleep / consolidation
+    scope: in_scope
+    subject_prefixes:
+      - sleep
+      - sleep_phase
+    svg_path_ids:
+      - region_sleep
+    ree_core_paths:
+      - sleep
+    primary_docs:
+      - docs/architecture/sd_017_sleep_phase_architecture.md
+      - docs/architecture/sleep/offline_phases.md
+    notes: NREM/REM ordering, replay, offline aggregation.
+
+  - id: thalamus
+    label: Thalamus
+    scope: partial
+    subject_prefixes:
+      - thalamic
+    svg_path_ids:
+      - region_thalamus
+    ree_core_paths:
+      - sleep/routing_gate.py
+    primary_docs:
+      - docs/architecture/control_plane_signal_map.md
+    notes: HPC-PFC routing gate analog in sleep module.
+
+  - id: pag
+    label: PAG / brainstem freeze
+    scope: in_scope
+    subject_prefixes:
+      - pag
+      - lh_pag
+    svg_path_ids:
+      - region_pag
+    ree_core_paths:
+      - pag
+    primary_docs:
+      - docs/architecture/sd_017_sleep_phase_architecture.md
+    notes: Freeze gate, override projections.
+
+  - id: neuromodulation
+    label: Neuromodulation
+    scope: partial
+    subject_prefixes:
+      - serotonin
+      - dopamine
+      - neuromodulation
+    svg_path_ids:
+      - region_neuromodulation
+    ree_core_paths:
+      - neuromodulation
+    primary_docs:
+      - docs/architecture/serotonin.md
+    notes: Serotonin plane; dopamine as selection gain (claims).
+
+  - id: astrocyte
+    label: Astrocyte / R-field
+    scope: partial
+    subject_prefixes:
+      - astrocyte
+    svg_path_ids:
+      - region_astrocyte
+    ree_core_paths:
+      - residue
+    functional_analogs:
+      - residue/field.py
+    primary_docs:
+      - docs/architecture/astrocyte_regulatory_stack.md
+      - docs/architecture/residue_geometry.md
+    notes: Regulatory stack analog via residue field.
+
+  - id: harm_stream
+    label: Harm stream (parallel pathway)
+    scope: partial
+    subject_prefixes:
+      - harm_stream
+    svg_path_ids:
+      - region_harm_stream
+    ree_core_paths:
+      - predictors
+    primary_docs:
+      - docs/architecture/e3.md
+    notes: Parallel thalamic-style harm pathway in predictor stack.
+
+  - id: respiratory
+    label: Respiratory rhythm
+    scope: partial
+    subject_prefixes:
+      - respiratory
+    svg_path_ids:
+      - region_respiratory
+    ree_core_paths: []
+    primary_docs:
+      - docs/architecture/control_plane.md
+    notes: Plan-sweep oscillator claims; limited dedicated module.
+
+  - id: ghost_motor
+    label: Motor cortex
+    scope: out_of_scope
+    subject_prefixes: []
+    svg_path_ids:
+      - region_ghost_motor
+    ree_core_paths: []
+    primary_docs: []
+    notes: Not a REE design target in V3.
+
+  - id: ghost_cerebellum
+    label: Cerebellum
+    scope: out_of_scope
+    subject_prefixes: []
+    svg_path_ids:
+      - region_ghost_cerebellum
+    ree_core_paths: []
+    primary_docs: []
+    notes: E2 is cerebellum-like in docs but not this anatomical region.
+
+  - id: ghost_insula
+    label: Insula
+    scope: out_of_scope
+    subject_prefixes: []
+    svg_path_ids:
+      - region_ghost_insula
+    ree_core_paths: []
+    primary_docs: []
+    notes: Salience partially mapped to cingulate analog.
+
+  - id: ghost_language
+    label: Language cortex
+    scope: out_of_scope
+    subject_prefixes: []
+    svg_path_ids:
+      - region_ghost_language
+    ree_core_paths: []
+    primary_docs: []
+    notes: Language claims exist; no cortical language area model.
+
+engineering_nodes:
+  - id: e1
+    label: E1 predictive substrate
+    scope: engineering
+    subject_prefixes:
+      - e1
+      - E1
+    svg_path_ids:
+      - node_e1
+    ree_core_paths:
+      - predictors/e1_deep.py
+    primary_docs:
+      - docs/architecture/e1.md
+
+  - id: e2
+    label: E2 fast forward model
+    scope: engineering
+    subject_prefixes:
+      - e2
+      - E2
+      - e1_e2
+    svg_path_ids:
+      - node_e2
+    ree_core_paths:
+      - predictors/e2_fast.py
+    primary_docs:
+      - docs/architecture/e2.md
+
+  - id: e3
+    label: E3 trajectory commitment
+    scope: engineering
+    subject_prefixes:
+      - e3
+      - E3
+      - e1_e3
+    svg_path_ids:
+      - node_e3
+    ree_core_paths:
+      - predictors/e3_selector.py
+    primary_docs:
+      - docs/architecture/e3.md
+
+  - id: control_plane
+    label: Control plane
+    scope: engineering
+    subject_prefixes:
+      - control_plane
+      - precision
+      - cognitive_modes
+      - temporal
+    svg_path_ids:
+      - node_control_plane
+    ree_core_paths:
+      - heartbeat
+      - regulators
+    primary_docs:
+      - docs/architecture/control_plane.md
+      - docs/architecture/control_plane_signal_map.md
+
+  - id: latent_stack
+    label: L-space / latent stack
+    scope: engineering
+    subject_prefixes:
+      - latent_stack
+      - L_space
+      - residue
+    svg_path_ids:
+      - node_latent_stack
+    ree_core_paths:
+      - latent
+      - residue
+    primary_docs:
+      - docs/architecture/l_space.md
+
+  - id: policy_engineering
+    label: Policy / action selection
+    scope: engineering
+    subject_prefixes:
+      - policy
+    svg_path_ids:
+      - node_policy
+    ree_core_paths:
+      - policy
+    primary_docs:
+      - docs/architecture/trajectory_selection.md
+
+  - id: architecture_meta
+    label: Architecture (cross-cutting)
+    scope: engineering
+    subject_prefixes:
+      - architecture
+    svg_path_ids:
+      - node_architecture
+    ree_core_paths: []
+    primary_docs:
+      - docs/architecture/hippocampal_systems.md
+    notes: Theta-frontal-hippocampal coupling and similar cross-region claims.
+
+pathways:
+  - id: predictive_stack
+    label: Predictive stack
+    edges:
+      - [e1, e2]
+      - [e2, hippocampus]
+      - [hippocampus, e3]
+
+  - id: theta_frontal_hpc
+    label: Theta frontal-hippocampal
+    edges:
+      - [e1, hippocampus]
+      - [pfc, hippocampus]
+    claim_subjects:
+      - architecture.theta_frontal_hippocampal_goal
+
+  - id: affect_salience
+    label: Affect and salience
+    edges:
+      - [amygdala, hippocampus]
+      - [amygdala, cingulate]
+      - [cingulate, pfc]
+
+  - id: commitment_loop
+    label: Commitment loop
+    edges:
+      - [basal_ganglia, e3]
+      - [control_plane, basal_ganglia]
+
+  - id: offline_consolidation
+    label: Offline consolidation
+    edges:
+      - [sleep, hippocampus]
+      - [sleep, default_mode]

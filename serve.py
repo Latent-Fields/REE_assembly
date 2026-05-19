@@ -735,6 +735,297 @@ def _normalize_status(s: str | None) -> str:
     return s.replace("-", "_")
 
 
+BRAIN_REGION_MAP_FILE = SERVE_DIR / "docs" / "architecture" / "brain_region_map.yaml"
+BRAIN_MAP_SVG_FILE = SERVE_DIR / "docs" / "architecture" / "brain_map_sagittal.svg"
+REE_V3_CORE_DIR = SERVE_DIR.parent / "ree-v3" / "ree_core"
+CONFLICTS_DIR = SERVE_DIR / "docs" / "conflicts"
+
+
+def _brain_path_exists(rel_path: str) -> bool:
+    """True if rel_path exists under ree-v3/ree_core (file or directory)."""
+    if not rel_path:
+        return False
+    p = REE_V3_CORE_DIR / rel_path.replace("\\", "/")
+    return p.exists()
+
+
+def _brain_implementation_tier(
+    ree_core_paths: list,
+    functional_analogs: list,
+) -> str:
+    core_hits = sum(1 for p in (ree_core_paths or []) if _brain_path_exists(p))
+    analog_hits = sum(1 for p in (functional_analogs or []) if _brain_path_exists(p))
+    n_core = len(ree_core_paths or [])
+    n_analog = len(functional_analogs or [])
+    if n_core > 0 and core_hits == n_core:
+        return "full"
+    if core_hits > 0 or analog_hits > 0:
+        return "partial"
+    return "claim_only"
+
+
+def _brain_prefix_index(map_doc: dict) -> dict[str, str]:
+    """Map subject prefix -> region or engineering node id."""
+    out: dict[str, str] = {}
+    for bucket in ("regions", "engineering_nodes"):
+        for node in map_doc.get(bucket) or []:
+            nid = str(node.get("id") or "")
+            if not nid:
+                continue
+            for pref in node.get("subject_prefixes") or []:
+                out[str(pref)] = nid
+    return out
+
+
+def _brain_load_region_map() -> dict:
+    if not _YAML_OK or not BRAIN_REGION_MAP_FILE.exists():
+        return {}
+    try:
+        raw = _yaml.safe_load(BRAIN_REGION_MAP_FILE.read_text(encoding="utf-8"))
+        return raw if isinstance(raw, dict) else {}
+    except Exception:
+        return {}
+
+
+def _brain_load_claim_evidence() -> dict:
+    if not _TL_CLAIM_EVIDENCE.exists():
+        return {}
+    try:
+        data = json.loads(_TL_CLAIM_EVIDENCE.read_text(encoding="utf-8"))
+        return data.get("claims") or {}
+    except Exception:
+        return {}
+
+
+def _brain_queued_exqs() -> list[dict]:
+    qf = RUNNERS["v3"]["queue_file"]
+    if not qf.exists():
+        return []
+    try:
+        data = json.loads(qf.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    out = []
+    for item in data.get("items") or []:
+        if not isinstance(item, dict):
+            continue
+        status = str(item.get("status") or "pending").lower()
+        if status in ("done", "completed", "removed"):
+            continue
+        cids = []
+        if item.get("claim_id"):
+            cids.append(str(item["claim_id"]))
+        for c in item.get("claim_ids") or []:
+            if c:
+                cids.append(str(c))
+        out.append({
+            "queue_id": str(item.get("queue_id") or ""),
+            "title": str(item.get("title") or ""),
+            "status": status,
+            "claim_ids": cids,
+        })
+    return out
+
+
+def _brain_conflict_snippets(region_docs: list[str]) -> list[str]:
+    snippets: list[str] = []
+    if not CONFLICTS_DIR.exists():
+        return snippets
+    needles = [d.replace("\\", "/").lower() for d in (region_docs or []) if d]
+    if not needles:
+        return snippets
+    for md in CONFLICTS_DIR.glob("*.md"):
+        if md.name.upper() == "README.MD":
+            continue
+        try:
+            text = md.read_text(encoding="utf-8", errors="replace").lower()
+        except Exception:
+            continue
+        if any(n in text for n in needles):
+            snippets.append(md.stem)
+    return snippets[:8]
+
+
+def read_brain_map() -> dict:
+    """Aggregate brain-region stats for /api/brain-map."""
+    generated_at = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    map_doc = _brain_load_region_map()
+    if not map_doc:
+        return {
+            "schema_version": 1,
+            "generated_at": generated_at,
+            "error": "brain_region_map.yaml missing or unreadable",
+            "regions": [],
+            "engineering_nodes": [],
+            "pathways": [],
+        }
+
+    prefix_to_node = _brain_prefix_index(map_doc)
+    claims_list = _tl_load_claims()
+    evidence_by_id = _brain_load_claim_evidence()
+    queued = _brain_queued_exqs()
+    queued_claim_ids = {cid for q in queued for cid in q.get("claim_ids") or []}
+
+    claims_by_prefix: dict[str, list[dict]] = {}
+    for c in claims_list:
+        cid = str(c.get("id") or "")
+        sub = str(c.get("subject") or "")
+        pref = sub.split(".")[0] if sub else ""
+        if not pref:
+            continue
+        ev = evidence_by_id.get(cid) or {}
+        rec = {
+            "id": cid,
+            "title": str(c.get("title") or ""),
+            "subject": sub,
+            "status": str(c.get("status") or ""),
+            "v3_pending": bool(c.get("v3_pending")),
+            "genuine_exp_count": int(ev.get("genuine_exp_count") or 0),
+            "pass_runs": int(ev.get("pass_runs") or 0),
+            "fail_runs": int(ev.get("fail_runs") or 0),
+            "evidence_quadrant": str(ev.get("evidence_quadrant") or ""),
+            "overall_confidence": ev.get("overall_confidence"),
+        }
+        claims_by_prefix.setdefault(pref, []).append(rec)
+
+    def enrich_node(node: dict, bucket: str) -> dict:
+        nid = str(node.get("id") or "")
+        prefixes = [str(p) for p in (node.get("subject_prefixes") or [])]
+        matched: list[dict] = []
+        for pref in prefixes:
+            matched.extend(claims_by_prefix.get(pref) or [])
+        claim_ids = [m["id"] for m in matched]
+        v3_pending = [m["id"] for m in matched if m.get("v3_pending")]
+        exp_support = sum(m.get("genuine_exp_count") or 0 for m in matched)
+        pass_runs = sum(m.get("pass_runs") or 0 for m in matched)
+        fail_runs = sum(m.get("fail_runs") or 0 for m in matched)
+        queued_here = [q for q in queued if any(cid in claim_ids for cid in q.get("claim_ids") or [])]
+        conflict_hits = _brain_conflict_snippets(node.get("primary_docs") or [])
+        implementation = _brain_implementation_tier(
+            list(node.get("ree_core_paths") or []),
+            list(node.get("functional_analogs") or []),
+        )
+        leading_edge = bool(
+            v3_pending
+            or queued_here
+            or conflict_hits
+        )
+        scope = str(node.get("scope") or "in_scope")
+        if scope == "out_of_scope":
+            coverage_tier = "absent"
+        elif leading_edge and exp_support == 0 and scope != "engineering":
+            coverage_tier = "frontier"
+        elif implementation in ("full", "partial") and pass_runs > 0:
+            coverage_tier = "expressed"
+        elif matched:
+            coverage_tier = "claimed"
+        else:
+            coverage_tier = "absent" if scope == "out_of_scope" else "claimed"
+
+        quadrants: dict[str, int] = {}
+        for m in matched:
+            q = m.get("evidence_quadrant") or "unknown"
+            quadrants[q] = quadrants.get(q, 0) + 1
+
+        return {
+            "id": nid,
+            "label": str(node.get("label") or nid),
+            "bucket": bucket,
+            "scope": scope,
+            "subject_prefixes": prefixes,
+            "svg_path_ids": list(node.get("svg_path_ids") or []),
+            "ree_core_paths": list(node.get("ree_core_paths") or []),
+            "functional_analogs": list(node.get("functional_analogs") or []),
+            "primary_docs": list(node.get("primary_docs") or []),
+            "notes": str(node.get("notes") or ""),
+            "claim_count": len(matched),
+            "claim_ids": claim_ids,
+            "claims_sample": sorted(matched, key=lambda x: x["id"])[:12],
+            "implementation": implementation,
+            "evidence": {
+                "genuine_exp_count": exp_support,
+                "pass_runs": pass_runs,
+                "fail_runs": fail_runs,
+                "quadrant_counts": quadrants,
+            },
+            "v3_pending_count": len(v3_pending),
+            "v3_pending_ids": v3_pending[:20],
+            "leading_edge": leading_edge,
+            "queued_exqs": queued_here[:10],
+            "conflict_refs": conflict_hits,
+            "coverage_tier": coverage_tier,
+        }
+
+    regions = [enrich_node(n, "region") for n in (map_doc.get("regions") or [])]
+    engineering = [enrich_node(n, "engineering") for n in (map_doc.get("engineering_nodes") or [])]
+
+    # Centroids for pathway overlay (rough layout matching SVG viewBox)
+    _CENTROIDS = {
+        "hippocampus": [210, 305],
+        "amygdala": [170, 288],
+        "pfc": [190, 130],
+        "cingulate": [210, 200],
+        "basal_ganglia": [210, 245],
+        "default_mode": [210, 215],
+        "sleep": [210, 205],
+        "thalamus": [220, 250],
+        "pag": [220, 415],
+        "neuromodulation": [210, 218],
+        "astrocyte": [210, 268],
+        "harm_stream": [315, 225],
+        "respiratory": [220, 388],
+        "e1": [366, 58],
+        "e2": [366, 106],
+        "e3": [366, 154],
+        "control_plane": [366, 202],
+        "latent_stack": [366, 250],
+        "policy_engineering": [366, 298],
+        "architecture_meta": [366, 346],
+    }
+    all_nodes = {n["id"]: n for n in regions + engineering}
+
+    pathways_out = []
+    for pw in map_doc.get("pathways") or []:
+        pid = str(pw.get("id") or "")
+        edges = []
+        for edge in pw.get("edges") or []:
+            if not isinstance(edge, (list, tuple)) or len(edge) < 2:
+                continue
+            a, b = str(edge[0]), str(edge[1])
+            ca = _CENTROIDS.get(a)
+            cb = _CENTROIDS.get(b)
+            edges.append({
+                "from": a,
+                "to": b,
+                "from_xy": ca,
+                "to_xy": cb,
+            })
+        pathways_out.append({
+            "id": pid,
+            "label": str(pw.get("label") or pid),
+            "edges": edges,
+            "claim_subjects": list(pw.get("claim_subjects") or []),
+        })
+
+    unmapped_prefixes = []
+    known = set(map_doc.get("known_anatomy_prefixes") or [])
+    for pref in sorted(claims_by_prefix.keys()):
+        if pref in known and pref not in prefix_to_node:
+            unmapped_prefixes.append(pref)
+
+    return {
+        "schema_version": map_doc.get("schema_version", 1),
+        "generated_at": generated_at,
+        "disclaimer": str(map_doc.get("disclaimer") or ""),
+        "svg_url": "/docs/architecture/brain_map_sagittal.svg",
+        "regions": regions,
+        "engineering_nodes": engineering,
+        "pathways": pathways_out,
+        "unmapped_prefixes": unmapped_prefixes,
+        "prefix_to_node": prefix_to_node,
+    }
+
+
 def read_closure() -> dict:
     """Aggregate closure_plan frontmatter across planning/*_plan.md docs."""
     plans: list[dict] = []
@@ -1573,6 +1864,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.send_header("Cache-Control", "no-cache")
                 self.end_headers()
                 self.wfile.write(machines_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
+            return
+        if path == "/api/brain-map":
+            body = json.dumps(read_brain_map(), indent=2, default=str).encode()
+            self._json_response(body)
+            return
+        if path in ("/brain-map", "/brain-map.html"):
+            brain_page = SERVE_DIR / "brain_map.html"
+            if brain_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(brain_page.read_bytes())
             else:
                 self.send_response(404)
                 self.end_headers()

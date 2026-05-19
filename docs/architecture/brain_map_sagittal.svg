@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Stylized midsagittal silhouette for REE brain map. Fill colors set by brain_map.html from API. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" role="img" aria-label="REE brain map sagittal view">
+  <defs>
+    <pattern id="ghost_hatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#484f58" stroke-width="2"/>
+    </pattern>
+    <linearGradient id="silhouette_stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#a371f7" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer head / brain outline -->
+  <path id="silhouette_outline" fill="none" stroke="url(#silhouette_stroke)" stroke-width="2"
+    d="M 210 18 C 120 18 55 75 48 155 C 42 220 55 290 75 350 C 95 410 140 455 210 468
+       C 280 455 325 410 345 350 C 365 290 378 220 372 155 C 365 75 300 18 210 18 Z"/>
+
+  <!-- In-scope regions -->
+  <path id="region_pfc" class="brain-region" data-region="pfc"
+    d="M 95 95 C 130 55 250 55 285 95 C 300 120 295 155 270 175 C 200 185 120 175 95 155 Z"/>
+  <path id="region_cingulate" class="brain-region" data-region="cingulate"
+    d="M 115 175 C 160 155 260 155 305 175 C 315 195 300 215 260 225 C 160 230 120 215 115 195 Z"/>
+  <path id="region_hippocampus" class="brain-region" data-region="hippocampus"
+    d="M 175 255 C 155 235 145 285 160 320 C 175 355 200 365 220 350 C 245 320 250 280 235 255
+       C 215 240 190 242 175 255 Z"/>
+  <path id="region_amygdala" class="brain-region" data-region="amygdala"
+    d="M 155 265 C 145 275 148 295 165 305 C 180 300 188 285 180 270 Z"/>
+  <path id="region_basal_ganglia" class="brain-region" data-region="basal_ganglia"
+    d="M 140 230 C 175 215 245 215 280 230 C 275 250 240 262 210 262 C 175 262 145 250 140 230 Z"/>
+  <path id="region_thalamus" class="brain-region" data-region="thalamus"
+    d="M 185 235 C 210 225 235 225 260 235 C 265 255 240 268 215 268 C 190 268 180 252 185 235 Z"/>
+  <path id="region_default_mode" class="brain-region" data-region="default_mode"
+    d="M 130 200 C 170 188 250 188 290 200 C 285 218 250 228 210 228 C 165 228 135 218 130 200 Z"/>
+  <path id="region_sleep" class="brain-region" data-region="sleep"
+    d="M 175 195 C 195 185 225 185 245 195 C 248 210 225 218 200 218 C 180 218 172 208 175 195 Z"/>
+  <path id="region_neuromodulation" class="brain-region" data-region="neuromodulation"
+    d="M 165 210 C 185 200 235 200 255 210 C 258 225 235 232 200 232 C 175 232 162 222 165 210 Z"/>
+  <path id="region_astrocyte" class="brain-region" data-region="astrocyte"
+    d="M 120 250 C 150 240 270 240 300 250 C 305 275 270 290 210 290 C 150 290 115 275 120 250 Z" opacity="0.45"/>
+  <path id="region_harm_stream" class="brain-region" data-region="harm_stream"
+    d="M 300 200 C 320 195 335 220 330 245 C 315 255 295 248 300 220 Z" opacity="0.5"/>
+  <path id="region_respiratory" class="brain-region" data-region="respiratory"
+    d="M 198 380 C 212 372 228 372 242 380 C 242 392 212 395 198 388 Z"/>
+  <path id="region_pag" class="brain-region" data-region="pag"
+    d="M 185 395 C 210 385 240 385 265 395 C 268 420 240 435 210 435 C 180 435 182 410 185 395 Z"/>
+
+  <!-- Ghost / out-of-scope regions -->
+  <path id="region_ghost_motor" class="brain-region ghost" data-region="ghost_motor"
+    fill="url(#ghost_hatch)" fill-opacity="0.35" stroke="#6e7681" stroke-width="1"
+    d="M 300 75 C 340 70 360 110 355 150 C 330 165 300 140 300 100 Z"/>
+  <path id="region_ghost_language" class="brain-region ghost" data-region="ghost_language"
+    fill="url(#ghost_hatch)" fill-opacity="0.35" stroke="#6e7681" stroke-width="1"
+    d="M 70 110 C 95 85 125 90 135 120 C 125 145 90 150 70 130 Z"/>
+  <path id="region_ghost_cerebellum" class="brain-region ghost" data-region="ghost_cerebellum"
+    fill="url(#ghost_hatch)" fill-opacity="0.35" stroke="#6e7681" stroke-width="1"
+    d="M 310 360 C 350 350 375 390 365 430 C 335 445 305 420 310 380 Z"/>
+  <path id="region_ghost_insula" class="brain-region ghost" data-region="ghost_insula"
+    fill="url(#ghost_hatch)" fill-opacity="0.25" stroke="#6e7681" stroke-width="1" stroke-dasharray="4 3"
+    d="M 255 240 C 275 235 285 260 275 280 C 255 285 245 265 255 240 Z"/>
+
+  <!-- Engineering nodes (lateral strip, right side) -->
+  <g id="engineering_strip" transform="translate(330, 40)">
+    <rect id="node_e1" class="eng-node" data-region="e1" x="0" y="0" width="72" height="36" rx="6"/>
+    <text x="36" y="22" text-anchor="middle" class="eng-label" font-size="11" fill="#8b949e">E1</text>
+    <rect id="node_e2" class="eng-node" data-region="e2" x="0" y="48" width="72" height="36" rx="6"/>
+    <text x="36" y="70" text-anchor="middle" class="eng-label" font-size="11" fill="#8b949e">E2</text>
+    <rect id="node_e3" class="eng-node" data-region="e3" x="0" y="96" width="72" height="36" rx="6"/>
+    <text x="36" y="118" text-anchor="middle" class="eng-label" font-size="11" fill="#8b949e">E3</text>
+    <rect id="node_control_plane" class="eng-node" data-region="control_plane" x="0" y="144" width="72" height="36" rx="6"/>
+    <text x="36" y="162" text-anchor="middle" class="eng-label" font-size="9" fill="#8b949e">Control</text>
+    <text x="36" y="174" text-anchor="middle" class="eng-label" font-size="9" fill="#8b949e">plane</text>
+    <rect id="node_latent_stack" class="eng-node" data-region="latent_stack" x="0" y="192" width="72" height="36" rx="6"/>
+    <text x="36" y="214" text-anchor="middle" class="eng-label" font-size="10" fill="#8b949e">L-space</text>
+    <rect id="node_policy" class="eng-node" data-region="policy_engineering" x="0" y="240" width="72" height="36" rx="6"/>
+    <text x="36" y="262" text-anchor="middle" class="eng-label" font-size="10" fill="#8b949e">Policy</text>
+    <rect id="node_architecture" class="eng-node" data-region="architecture_meta" x="0" y="288" width="72" height="36" rx="6"/>
+    <text x="36" y="310" text-anchor="middle" class="eng-label" font-size="9" fill="#8b949e">Arch</text>
+  </g>
+
+  <!-- Pathway overlay layer (lines drawn by JS) -->
+  <g id="pathway_overlay" fill="none" stroke-width="2" pointer-events="none"/>
+</svg>
