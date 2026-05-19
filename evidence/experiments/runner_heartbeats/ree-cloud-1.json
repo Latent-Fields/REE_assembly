@@ -1,34 +1,32 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-19T03:02:51Z",
+  "last_tick_utc": "2026-05-19T03:03:34Z",
   "state": "running",
-  "current_exq": "V3-EXQ-588",
-  "current_exq_started_utc": "2026-05-19T01:39:58.379483+00:00",
-  "current_title": "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison (GAP-11)",
-  "current_claim_id": "MECH-189",
+  "current_exq": "V3-EXQ-590",
+  "current_exq_started_utc": "2026-05-19T03:03:29.217781+00:00",
+  "current_title": "EXQ-ISEF-004: novelty bonus Goldilocks calibration -- MECH-111 broadcast weight sweep (infant_substrate:GAP-13)",
+  "current_claim_id": "MECH-314",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_control",
+    "run_label": "Seed 42 / ARM_nbw01",
     "runs_done": 0,
-    "runs_total": 10,
-    "episodes_done": 300,
+    "runs_total": 15,
+    "episodes_done": 0,
     "episodes_total": 1000,
-    "overall_pct": 3.0
+    "overall_pct": 0.0
   },
-  "seconds_elapsed": 4973,
-  "seconds_remaining": 27543,
+  "seconds_elapsed": 5,
+  "seconds_remaining": 30000,
   "recent_lines": [
-    "dry_run=False seeds=[42, 43, 44, 45, 46] n_episodes=1000 steps=200 z_cross_thr=0.4",
-    "Seed 42 Condition ARM_0_control",
-    "[train] ARM_0_control seed=42 ep 100/1000 z_goal_norm=0.0000 contacts_ep=0",
-    "[train] ARM_0_control seed=42 ep 200/1000 z_goal_norm=0.0000 contacts_ep=0",
-    "[train] ARM_0_control seed=42 ep 300/1000 z_goal_norm=0.0000 contacts_ep=0"
+    "V3-EXQ-590: EXQ-ISEF-004 novelty bonus Goldilocks calibration",
+    "dry_run=False seeds=[42, 43, 44] n_episodes=1000 steps=200 novelty_weights=[0.1, 0.3, 0.5, 0.7, 1.0]",
+    "Seed 42 Condition ARM_nbw01"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
-  "runner_pid": 669,
+  "runner_pid": 840562,
   "runner_version": null,
   "gpu": {
     "available": false
