@@ -5,7 +5,10 @@ schema_version: 1
 disclaimer: >-
   Regions denote computational roles inspired by neuroscience naming in REE.
   Coverage reflects claims, substrate code, and experiment evidence -- not
-  biological completeness or anatomical accuracy.
+  biological completeness or anatomical accuracy. Layout intent (E1=cerebrum,
+  E2=cerebellum, E3=BG commitment) is documented in founder_ontology.md; the
+  current SVG may not yet match that layout.
+founder_ontology: docs/architecture/founder_ontology.md
 
 # Prefixes that must map to a region or engineering bucket (validate script).
 known_anatomy_prefixes:
@@ -251,14 +254,18 @@ regions:
     notes: Not a REE design target in V3.
 
   - id: ghost_cerebellum
-    label: Cerebellum
+    label: Cerebellum (anatomical placeholder)
     scope: out_of_scope
     subject_prefixes: []
     svg_path_ids:
       - region_ghost_cerebellum
     ree_core_paths: []
-    primary_docs: []
-    notes: E2 is cerebellum-like in docs but not this anatomical region.
+    primary_docs:
+      - docs/architecture/founder_ontology.md
+    notes: >-
+      MVP ghost only. Founder intent maps E2 (fast forward) to cerebellum;
+      see founder_ontology.md. v1.1 brain map should color this region from E2
+      evidence, not mark out of scope.
 
   - id: ghost_insula
     label: Insula
@@ -282,7 +289,7 @@ regions:
 
 engineering_nodes:
   - id: e1
-    label: E1 predictive substrate
+    label: E1 perception-association matrix
     scope: engineering
     subject_prefixes:
       - e1
@@ -293,9 +300,11 @@ engineering_nodes:
       - predictors/e1_deep.py
     primary_docs:
       - docs/architecture/e1.md
+      - docs/architecture/founder_ontology.md
+    notes: Founder cerebrum analog; v1.1 should occupy cortical SVG, not strip only.
 
   - id: e2
-    label: E2 fast forward model
+    label: E2 fast forward predictor
     scope: engineering
     subject_prefixes:
       - e2
@@ -307,9 +316,11 @@ engineering_nodes:
       - predictors/e2_fast.py
     primary_docs:
       - docs/architecture/e2.md
+      - docs/architecture/founder_ontology.md
+    notes: Founder cerebellum / fast cortical edge analog; v1.1 on cerebellum SVG.
 
   - id: e3
-    label: E3 trajectory commitment
+    label: E3 commitment and comparison
     scope: engineering
     subject_prefixes:
       - e3
@@ -321,6 +332,8 @@ engineering_nodes:
       - predictors/e3_selector.py
     primary_docs:
       - docs/architecture/e3.md
+      - docs/architecture/founder_ontology.md
+    notes: Founder experiment loop arbiter; partners with basal_ganglia region.
 
   - id: control_plane
     label: Control plane

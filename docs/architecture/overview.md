@@ -57,6 +57,11 @@ These functions are implemented by three major components:
 - **E2 — Fast Forward Predictor**
 - **E3 — Trajectory Selection and Commitment Engine**
 
+For the founder's intended reading (perception-association matrix, fast forward
+predictor, commitment/comparison as basal-ganglia-like experiment loop, and how
+that maps to biology vs module names), see
+[Founder ontology (E1 / E2 / E3)](founder_ontology.md).
+
 A fourth system — **precision control** — governs when and how these components engage.
 
 ---

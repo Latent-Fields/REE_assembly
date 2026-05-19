@@ -116,9 +116,11 @@ traditions can be read as derived stabilisations of the REE substrate
 
 **If you want the component architecture:**
 [Architecture overview](architecture/overview.md) — then
+[Founder ontology (E1/E2/E3 intent)](architecture/founder_ontology.md),
 [E1](architecture/e1.md), [E2](architecture/e2.md),
 [E3](architecture/e3.md), [Control Plane](architecture/control_plane.md),
-[Hippocampal Systems](architecture/hippocampal_systems.md)
+[Hippocampal Systems](architecture/hippocampal_systems.md),
+[Brain map](architecture/brain_map.md) (`/brain-map` in the explorer)
 
 **If you want later-version scaling needs:**
 [Architecture scaling needs](architecture/architecture_scaling_needs.md) --
