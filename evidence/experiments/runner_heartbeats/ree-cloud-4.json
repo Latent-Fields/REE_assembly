@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-19T04:37:32Z",
+  "last_tick_utc": "2026-05-19T04:38:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-543j",
   "current_exq_started_utc": "2026-05-19T01:56:02.265178+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 1 / ARM_10_gated_only_xtal_diff",
-    "runs_done": 22,
+    "run_label": "Seed 1 / ARM_11_both_xtal_diff",
+    "runs_done": 23,
     "runs_total": 36,
-    "episodes_done": 45,
+    "episodes_done": 0,
     "episodes_total": 108,
-    "overall_pct": 62.3
+    "overall_pct": 63.9
   },
-  "seconds_elapsed": 9690,
-  "seconds_remaining": 5746,
+  "seconds_elapsed": 9752,
+  "seconds_remaining": 5507,
   "recent_lines": [
-    "[crystallize] ARM_10_gated_only_xtal_diff P1 ep 30/60  gated_frozen=4467  expansion_params=1249  ewc_anchored=True  ewc_active_centers=0  (closure == InfantCurriculumScheduler.on_phase3_entry)",
-    "[probe] ARM_10_gated_only_xtal_diff P1 ep 35/60  applicable=True  mean_tv=0.0013  max_tv=0.0019  buf=248",
-    "[probe] ARM_10_gated_only_xtal_diff P1 ep 40/60  applicable=True  mean_tv=0.0013  max_tv=0.0019  buf=331",
-    "[train] ARM_10_gated_only_xtal_diff ep 80/108  phase=P1  rv=0.0003  ep_reward=-1.0121  baseline=-1.2106  buf=331  inert_gating=True",
-    "[probe] ARM_10_gated_only_xtal_diff P1 ep 45/60  applicable=True  mean_tv=0.0013  max_tv=0.0019  buf=435"
+    "seed=1 arm=ARM_10_gated_only_xtal_diff  reef_frac=0.613  rho=+0.191  forage_hr=1.0000  transit_hr=1.0000  ratio=1.000  inert_gating=True  outcome_buf=512",
+    "verdict: FAIL",
+    "Seed 1 Condition ARM_11_both_xtal_diff",
+    "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=True  differential_heads=True  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
