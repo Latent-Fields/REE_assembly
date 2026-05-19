@@ -1,0 +1,53 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_481b_vs_commit_release_20260519T012616Z_v3",
+  "experiment_type": "v3_exq_481b_vs_commit_release",
+  "queue_id": "V3-EXQ-481b",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260519T012616Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-269",
+    "MECH-090"
+  ],
+  "result": "PASS",
+  "outcome": "PASS",
+  "supersedes": "v3_exq_481_vs_commit_release",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-269": "supports",
+    "MECH-090": "supports"
+  },
+  "metrics": {
+    "UC1_vs_release_fires_on_anchor_invalidation": {
+      "anchor_present_before_commit": true,
+      "anchor_gone_after_k_ticks": true,
+      "beta_was_elevated": true,
+      "pre_release_count": 0,
+      "vs_commit_release_count": 1,
+      "release_fired": true,
+      "pass": true
+    },
+    "UC2_no_release_in_off_arm": {
+      "anchor_gone_after_k_ticks": true,
+      "beta_was_elevated": true,
+      "vs_commit_release_count": 0,
+      "release_fired": false,
+      "pass": true
+    },
+    "UC3_empty_snapshot_repopulation": {
+      "repop_tick_did_not_fire": true,
+      "snapshot_repopulated": true,
+      "anchor_gone_after_k_ticks": true,
+      "vs_commit_release_count": 1,
+      "release_fired": true,
+      "pass": true
+    }
+  },
+  "thresholds": {
+    "hysteresis_k": 3,
+    "reset_threshold": 0.9
+  },
+  "elapsed_seconds": 0.032227277755737305,
+  "notes": "V3-EXQ-481b re-issues V3-EXQ-481 with two root causes fixed. PRIMARY: EXQ-481 used natural variance-gate commitment (never crossed in short runs), so beta was never elevated and _committed_anchor_keys was never set. 481b uses forced commitment (beta_gate.elevate() + manual snapshot) matching EXQ-461 pattern. SECONDARY (empty-snapshot, agent.py fix 2026-05-17): commit entry with no active anchors left _committed_anchor_keys=set(); set().issubset(any) is vacuously True, so release predicate was always False. Fix: lazy re-population added to select_action(). UC1=ON arm fires; UC2=OFF arm stays silent; UC3=empty-snapshot re-population path verified. All three UCs required for PASS. GAP-5 Phase 6 closure for commitment_closure_plan.md."
+}

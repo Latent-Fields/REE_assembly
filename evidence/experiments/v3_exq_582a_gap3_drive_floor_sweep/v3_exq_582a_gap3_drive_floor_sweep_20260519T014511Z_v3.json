@@ -1,0 +1,464 @@
+{
+  "run_id": "v3_exq_582a_gap3_drive_floor_sweep_20260519T014511Z_v3",
+  "experiment_type": "v3_exq_582a_gap3_drive_floor_sweep",
+  "queue_id": "V3-EXQ-582a",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": [
+    "Substrate-readiness validation for goal_pipeline:GAP-3 Option 2 (SD-012 insatiability floor). claim_ids=[]; excluded from governance scoring. PASS = drive_floor=0.9 arm lifts effective_benefit at contact, seeding fires in >=2/3 seeds, z_goal activates, and OFF arm confirms the problem persists without a floor. MECH-306 sustained_drive_trace registration is the governance follow-on gated on this result (PASS on either Option 1 or Option 2)."
+  ],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "supersedes": "V3-EXQ-582",
+  "outcome": "PASS",
+  "timestamp_utc": "20260519T014511Z",
+  "acceptance": {
+    "A1_mean_eff_benefit_on_contact_gt_0.08": {
+      "value": 0.11492582021488083,
+      "threshold": 0.08,
+      "pass": true,
+      "floor_arm": 0.9
+    },
+    "A2_seeds_with_seeding_fired_ge_2": {
+      "value": 3,
+      "threshold": 2,
+      "pass": true,
+      "floor_arm": 0.9
+    },
+    "A3_z_goal_active_fraction_gt_0.05": {
+      "value": 0.08052536675076925,
+      "threshold": 0.05,
+      "pass": true,
+      "floor_arm": 0.9
+    },
+    "A4_off_arm_zero_seedings": {
+      "value": 0,
+      "threshold": 0,
+      "pass": true,
+      "floor_arm": 0.0,
+      "off_arm_seeds_with_seeding": 0
+    }
+  },
+  "by_floor": {
+    "0.0": {
+      "drive_floor": 0.0,
+      "n_seeds": 3,
+      "mean_effective_benefit_on_contact": 0.04370333930984032,
+      "seeds_with_seeding_fired": 0,
+      "total_seedings_fired": 0,
+      "mean_z_goal_active_fraction": 0.0,
+      "mean_n_contacts": 4.666666666666667,
+      "mean_benefit_exposure_on_contact": 0.041044935791028865
+    },
+    "0.3": {
+      "drive_floor": 0.3,
+      "n_seeds": 3,
+      "mean_effective_benefit_on_contact": 0.0667003972889218,
+      "seeds_with_seeding_fired": 2,
+      "total_seedings_fired": 2,
+      "mean_z_goal_active_fraction": 0.02065917450532835,
+      "mean_n_contacts": 4.666666666666667,
+      "mean_benefit_exposure_on_contact": 0.041044935791028865
+    },
+    "0.6": {
+      "drive_floor": 0.6,
+      "n_seeds": 3,
+      "mean_effective_benefit_on_contact": 0.09029885874026351,
+      "seeds_with_seeding_fired": 3,
+      "total_seedings_fired": 3,
+      "mean_z_goal_active_fraction": 0.021028314409351975,
+      "mean_n_contacts": 4.666666666666667,
+      "mean_benefit_exposure_on_contact": 0.041044935791028865
+    },
+    "0.9": {
+      "drive_floor": 0.9,
+      "n_seeds": 3,
+      "mean_effective_benefit_on_contact": 0.11492582021488083,
+      "seeds_with_seeding_fired": 3,
+      "total_seedings_fired": 7,
+      "mean_z_goal_active_fraction": 0.08052536675076925,
+      "mean_n_contacts": 4.666666666666667,
+      "mean_benefit_exposure_on_contact": 0.041044935791028865
+    },
+    "1.2": {
+      "drive_floor": 1.2,
+      "n_seeds": 3,
+      "mean_effective_benefit_on_contact": 0.13955278168949817,
+      "seeds_with_seeding_fired": 3,
+      "total_seedings_fired": 14,
+      "mean_z_goal_active_fraction": 0.1639550034004417,
+      "mean_n_contacts": 4.666666666666667,
+      "mean_benefit_exposure_on_contact": 0.041044935791028865
+    }
+  },
+  "per_run": [
+    {
+      "drive_floor": 0.0,
+      "seed": 0,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 338,
+      "n_contacts": 4,
+      "n_seedings_fired": 0,
+      "mean_effective_benefit_on_contact": 0.04306254733671011,
+      "max_effective_benefit_on_contact": 0.06394190020087898,
+      "mean_benefit_exposure_on_contact": 0.04263618588447571,
+      "mean_trace_on_contact": 0.004999995231628418,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.04306254733671011,
+        "min": 0.0360692438057697,
+        "max": 0.06394190020087898,
+        "p50": 0.03611952267009588,
+        "p90": 0.05560672967156846
+      },
+      "z_goal_active_fraction": 0.0
+    },
+    {
+      "drive_floor": 0.0,
+      "seed": 1,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 814,
+      "n_contacts": 4,
+      "n_seedings_fired": 0,
+      "mean_effective_benefit_on_contact": 0.042599445803095826,
+      "max_effective_benefit_on_contact": 0.0639033115581693,
+      "mean_benefit_exposure_on_contact": 0.042089685797691345,
+      "mean_trace_on_contact": 0.0062499940395355225,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.042599445803095826,
+        "min": 0.03455662243966362,
+        "max": 0.0639033115581693,
+        "p50": 0.03596892460727519,
+        "p90": 0.05560922663666777
+      },
+      "z_goal_active_fraction": 0.0
+    },
+    {
+      "drive_floor": 0.0,
+      "seed": 2,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 3612,
+      "n_contacts": 6,
+      "n_seedings_fired": 0,
+      "mean_effective_benefit_on_contact": 0.045448024789715026,
+      "max_effective_benefit_on_contact": 0.07659300010424852,
+      "mean_benefit_exposure_on_contact": 0.038408935690919556,
+      "mean_trace_on_contact": 0.09666666388511658,
+      "stat_eff_benefit_on_contact": {
+        "n": 6,
+        "mean": 0.045448024789715026,
+        "min": 0.03495306280034072,
+        "max": 0.07659300010424852,
+        "p50": 0.03585653030915603,
+        "p90": 0.06552376929925496
+      },
+      "z_goal_active_fraction": 0.0
+    },
+    {
+      "drive_floor": 0.3,
+      "seed": 0,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 338,
+      "n_contacts": 4,
+      "n_seedings_fired": 1,
+      "mean_effective_benefit_on_contact": 0.06821789741516113,
+      "max_effective_benefit_on_contact": 0.10129410028457642,
+      "mean_benefit_exposure_on_contact": 0.04263618588447571,
+      "mean_trace_on_contact": 0.3,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.06821789741516113,
+        "min": 0.05713939666748047,
+        "max": 0.10129410028457642,
+        "p50": 0.057219046354293826,
+        "p90": 0.08808986961841583
+      },
+      "z_goal_active_fraction": 0.01775147928994083
+    },
+    {
+      "drive_floor": 0.3,
+      "seed": 1,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 814,
+      "n_contacts": 4,
+      "n_seedings_fired": 1,
+      "mean_effective_benefit_on_contact": 0.06734349727630616,
+      "max_effective_benefit_on_contact": 0.10123296976089478,
+      "mean_benefit_exposure_on_contact": 0.042089685797691345,
+      "mean_trace_on_contact": 0.3,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.06734349727630616,
+        "min": 0.05474316477775574,
+        "max": 0.10123296976089478,
+        "p50": 0.05669892728328705,
+        "p90": 0.08792489647865297
+      },
+      "z_goal_active_fraction": 0.044226044226044224
+    },
+    {
+      "drive_floor": 0.3,
+      "seed": 2,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 3612,
+      "n_contacts": 6,
+      "n_seedings_fired": 0,
+      "mean_effective_benefit_on_contact": 0.06453979717529813,
+      "max_effective_benefit_on_contact": 0.08626461625099183,
+      "mean_benefit_exposure_on_contact": 0.038408935690919556,
+      "mean_trace_on_contact": 0.3425000011920929,
+      "stat_eff_benefit_on_contact": {
+        "n": 6,
+        "mean": 0.06453979717529813,
+        "min": 0.05537118911743164,
+        "max": 0.08626461625099183,
+        "p50": 0.05680242478847504,
+        "p90": 0.08142880817762017
+      },
+      "z_goal_active_fraction": 0.0
+    },
+    {
+      "drive_floor": 0.6,
+      "seed": 0,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 338,
+      "n_contacts": 4,
+      "n_seedings_fired": 1,
+      "mean_effective_benefit_on_contact": 0.09379960894584656,
+      "max_effective_benefit_on_contact": 0.13927938789129257,
+      "mean_benefit_exposure_on_contact": 0.04263618588447571,
+      "mean_trace_on_contact": 0.6,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.09379960894584656,
+        "min": 0.07856667041778564,
+        "max": 0.13927938789129257,
+        "p50": 0.07867618873715401,
+        "p90": 0.12112357072532179
+      },
+      "z_goal_active_fraction": 0.01775147928994083
+    },
+    {
+      "drive_floor": 0.6,
+      "seed": 1,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 814,
+      "n_contacts": 4,
+      "n_seedings_fired": 1,
+      "mean_effective_benefit_on_contact": 0.09259730875492096,
+      "max_effective_benefit_on_contact": 0.13919533342123033,
+      "mean_benefit_exposure_on_contact": 0.042089685797691345,
+      "mean_trace_on_contact": 0.6,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.09259730875492096,
+        "min": 0.07527185156941414,
+        "max": 0.13919533342123033,
+        "p50": 0.0779610250145197,
+        "p90": 0.12089673265814783
+      },
+      "z_goal_active_fraction": 0.044226044226044224
+    },
+    {
+      "drive_floor": 0.6,
+      "seed": 2,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 3612,
+      "n_contacts": 6,
+      "n_seedings_fired": 1,
+      "mean_effective_benefit_on_contact": 0.08449965852002304,
+      "max_effective_benefit_on_contact": 0.11861384734511377,
+      "mean_benefit_exposure_on_contact": 0.038408935690919556,
+      "mean_trace_on_contact": 0.6,
+      "stat_eff_benefit_on_contact": {
+        "n": 6,
+        "mean": 0.08449965852002304,
+        "min": 0.07613538503646851,
+        "max": 0.11861384734511377,
+        "p50": 0.07802999950945377,
+        "p90": 0.09931025803089143
+      },
+      "z_goal_active_fraction": 0.0011074197120708748
+    },
+    {
+      "drive_floor": 0.9,
+      "seed": 0,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 338,
+      "n_contacts": 4,
+      "n_seedings_fired": 3,
+      "mean_effective_benefit_on_contact": 0.11938132047653198,
+      "max_effective_benefit_on_contact": 0.17726467549800873,
+      "mean_benefit_exposure_on_contact": 0.04263618588447571,
+      "mean_trace_on_contact": 0.9,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.11938132047653198,
+        "min": 0.09999394416809082,
+        "max": 0.17726467549800873,
+        "p50": 0.10013333112001419,
+        "p90": 0.15415727183222772
+      },
+      "z_goal_active_fraction": 0.1242603550295858
+    },
+    {
+      "drive_floor": 0.9,
+      "seed": 1,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 814,
+      "n_contacts": 4,
+      "n_seedings_fired": 1,
+      "mean_effective_benefit_on_contact": 0.11785112023353576,
+      "max_effective_benefit_on_contact": 0.17715769708156584,
+      "mean_benefit_exposure_on_contact": 0.042089685797691345,
+      "mean_trace_on_contact": 0.9,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.11785112023353576,
+        "min": 0.09580053836107254,
+        "max": 0.17715769708156584,
+        "p50": 0.09922312274575233,
+        "p90": 0.15386856883764266
+      },
+      "z_goal_active_fraction": 0.044226044226044224
+    },
+    {
+      "drive_floor": 0.9,
+      "seed": 2,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 3612,
+      "n_contacts": 6,
+      "n_seedings_fired": 3,
+      "mean_effective_benefit_on_contact": 0.10754501993457476,
+      "max_effective_benefit_on_contact": 0.15096307843923568,
+      "mean_benefit_exposure_on_contact": 0.038408935690919556,
+      "mean_trace_on_contact": 0.9,
+      "stat_eff_benefit_on_contact": {
+        "n": 6,
+        "mean": 0.10754501993457476,
+        "min": 0.09689958095550537,
+        "max": 0.15096307843923568,
+        "p50": 0.09931090846657753,
+        "p90": 0.12639487385749815
+      },
+      "z_goal_active_fraction": 0.07308970099667775
+    },
+    {
+      "drive_floor": 1.2,
+      "seed": 0,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 338,
+      "n_contacts": 4,
+      "n_seedings_fired": 4,
+      "mean_effective_benefit_on_contact": 0.1449630320072174,
+      "max_effective_benefit_on_contact": 0.21524996310472488,
+      "mean_benefit_exposure_on_contact": 0.04263618588447571,
+      "mean_trace_on_contact": 1.2,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.1449630320072174,
+        "min": 0.121421217918396,
+        "max": 0.21524996310472488,
+        "p50": 0.12159047350287437,
+        "p90": 0.18719097293913367
+      },
+      "z_goal_active_fraction": 0.1301775147928994
+    },
+    {
+      "drive_floor": 1.2,
+      "seed": 1,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 814,
+      "n_contacts": 4,
+      "n_seedings_fired": 4,
+      "mean_effective_benefit_on_contact": 0.14310493171215058,
+      "max_effective_benefit_on_contact": 0.2151200607419014,
+      "mean_benefit_exposure_on_contact": 0.042089685797691345,
+      "mean_trace_on_contact": 1.2,
+      "stat_eff_benefit_on_contact": {
+        "n": 4,
+        "mean": 0.14310493171215058,
+        "min": 0.11632922515273093,
+        "max": 0.2151200607419014,
+        "p50": 0.12048522047698498,
+        "p90": 0.18684040501713756
+      },
+      "z_goal_active_fraction": 0.17813267813267813
+    },
+    {
+      "drive_floor": 1.2,
+      "seed": 2,
+      "benefit_threshold": 0.1,
+      "drive_weight": 2.0,
+      "seeding_gain": 1.0,
+      "n_steps": 3612,
+      "n_contacts": 6,
+      "n_seedings_fired": 6,
+      "mean_effective_benefit_on_contact": 0.1305903813491265,
+      "max_effective_benefit_on_contact": 0.18331230953335761,
+      "mean_benefit_exposure_on_contact": 0.038408935690919556,
+      "mean_trace_on_contact": 1.2,
+      "stat_eff_benefit_on_contact": {
+        "n": 6,
+        "mean": 0.1305903813491265,
+        "min": 0.11766377687454223,
+        "max": 0.18331230953335761,
+        "p50": 0.12059181742370129,
+        "p90": 0.1534794896841049
+      },
+      "z_goal_active_fraction": 0.18355481727574752
+    }
+  ],
+  "config": {
+    "floors": [
+      0.0,
+      0.3,
+      0.6,
+      0.9,
+      1.2
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "first_pass_floor": 0.9,
+    "drive_ema_alpha": 1.0,
+    "n_train_eps": 30,
+    "n_eval_eps": 20,
+    "n_steps": 200,
+    "grid_size": 12,
+    "dry_run": false
+  },
+  "elapsed_seconds": 1126.8019478321075,
+  "generated_utc": "2026-05-19T01:45:11.167656Z"
+}
