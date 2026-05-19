@@ -1,0 +1,91 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-05-19T01:13:33Z",
+ "scope": "single",
+ "status": "confirmed",
+ "discharges": "arc_062_rule_apprehension:GAP-B resume_condition step (1) -- explain the V3-EXQ-543i diff-OFF non-reproduction",
+ "targets": [
+  {
+   "run_id": "v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3",
+   "queue_id": "V3-EXQ-543i",
+   "claim_ids": ["ARC-062", "MECH-309", "INV-074", "MECH-334"],
+   "failed_criterion": "discrimination",
+   "diagnosis_summary": "Truncated-training artifact (~690 s vs full ~12386 s). No arm trained into the head-collapse attractor, so diff_off_reproduced_collapse=false is vacuous, not a sanity-baseline failure. Pre-registered Branch (c) correctly classified non_contributory / substrate-seed drift.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "non_contributory -- nothing trained",
+    "biological_reference": "n/a for this run",
+    "prerequisites": "n/a",
+    "implementation": "n/a -- run truncated",
+    "environment": "adequate",
+    "measurement": "adequate -- Branch-c logic caught the truncation",
+    "integration": "n/a",
+    "scale": "insufficient training budget executed (root of the two-run contradiction)"
+   },
+   "recommended_epistemic_category": "non_contributory",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-543i 20260518T063711Z is a truncated ~690 s run (full budget ~12386 s). diff_off_reproduced_collapse=false is vacuous (no arm trained into the collapse attractor). Pre-registered Branch (c): non_contributory / substrate-seed drift. Carries no scientific weight; does not gate GAP-B.",
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "The GAP-B-flagged diff-OFF non-reproduction is a truncated/aborted run, fully explained, not a substrate signal."
+   ],
+   "routing": "governance-demotion"
+  },
+  {
+   "run_id": "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3",
+   "queue_id": "V3-EXQ-543i",
+   "claim_ids": ["ARC-062", "MECH-309", "INV-074", "MECH-334", "MECH-333"],
+   "failed_criterion": "discrimination",
+   "diagnosis_summary": "Full-length valid single-variable test. diff_off_reproduced_collapse=true (543g signature -> valid baseline). All 4 diff-ON gated arms (8/9/10/11) 3/3 inert: the MECH-333 use_differential_heads structural non-equilibrium does NOT escape the MECH-309 monomodal-collapse equilibrium under full outcome-coupled REINFORCE. Pre-registered Branch (e).",
+   "four_layer_diagnosis": {
+    "claim_alignment": "ARC-062 weakened at V3 substrate level (NOT architecturally falsified); MECH-309 strengthened but NARROW (collapse is the only evidence, zero positive trained-policy evidence)",
+    "biological_reference": "present and rich (targeted_review_arc_062_rule_apprehension, 8 entries); failure matches a missing-dependency signature, NOT biology divergence",
+    "prerequisites": "missing -- GAP-C (discriminator->LateralPFC routing) / GAP-D (trainable rule-bias head in E3 optimiser) pre-positioned 2026-05-17 but never wired live",
+    "implementation": "partial / symbol-not-function -- heads+discriminator present, differentiation driver absent; MECH-333 structural fix falsified as sufficient",
+    "environment": "adequate -- diff-OFF collapse reproduced, env carries the pressure",
+    "measurement": "adequate -- matched-pair single-variable design",
+    "integration": "discriminator isolated -- no functional consumer of head divergence (GAP-C unvalidated)",
+    "scale": "adequate -- full budget executed"
+   },
+   "biological_reference": {
+    "closest_mechanism": "PFC rule-cells / mixed-selectivity / corticostriatal rule-gating",
+    "dependencies": ["per-context advantage or supervised discriminator signal", "corticostriatal gating routing (GAP-C)", "trainable rule-bias head in E3 optimiser (GAP-D)"],
+    "is_formal_import": false,
+    "divergence": "Not biology-divergence. Missing-dependency: shared-return REINFORCE lacks the differentiation/context-routing signal real PFC rule-cells depend on; structure substituted for that signal is insufficient.",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_direction_per_claim": {
+    "ARC-062": "weakens",
+    "MECH-309": "supports",
+    "INV-074": "non_contributory",
+    "MECH-334": "non_contributory",
+    "MECH-333": "weakens"
+   },
+   "provisional": true,
+   "provisional_gate": "V3-EXQ-543j cross-machine confirmation (queued, byte-identical, ree-cloud-4, priority 5). branch-e CONFIRMS -> ARC-062 weak-reading demotion + ARC-063/V4 escalation may proceed; branch-a CONTRADICTS -> 543i was a single-machine basin artifact, do NOT demote, escalate to >=2-machine matrix; branch-c -> drift non_contributory.",
+   "recommended_evidence_quality_note_ARC_062": "V3-EXQ-543i (full run 20260518T191052Z, Branch e) confirmed: the MECH-333 use_differential_heads structural non-equilibrium does NOT escape the MECH-309 monomodal-collapse equilibrium under full outcome-coupled REINFORCE (all 4 diff-ON gated arms 3/3 inert; diff-OFF reproduced the 543g collapse -> valid single-variable test). The companion 20260518T063711Z run was a truncated ~690 s artifact (Branch c, non_contributory); its diff-OFF non-reproduction is explained by truncated training, not a substrate signal (failure_autopsy_V3-EXQ-543i_2026-05-19). Diagnosis: substrate_ceiling / missing-dependency (no per-context differentiation signal; GAP-C/GAP-D routing never wired live), NOT architectural falsification -- biology supports the rule-gating class. ARC-062 weak-reading demotion + ARC-063/V4 escalation GATED on V3-EXQ-543j cross-machine confirmation. narrow_supports_flag + pending_retest_after_substrate retained.",
+   "recommended_evidence_quality_note_MECH_333": "V3-EXQ-543i (20260518T191052Z) falsifies use_differential_heads as a *sufficient* remedy for the MECH-309 head-collapse: delta_hat with candidate-axis L2 pinned to differential_bias_scale=0.1 does not prevent inert collapse under full outcome-coupled REINFORCE (all diff-ON arms 3/3 inert). Retained as partial/insufficient; the GAP-C/GAP-D differentiation/context-routing signal remains the unmet dependency.",
+   "recommended_substrate_queue_entry": {
+    "note": "No new substrate_queue entry created by this autopsy. The unmet dependency is the already-registered GAP-C/GAP-D routing (substrate pre-positioned 2026-05-17). Validation deferred until V3-EXQ-543j resolves the cross-machine provisionality, then a post-substrate retest on the GAP-C/GAP-D-wired substrate."
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": true,
+   "learning_extracted": [
+    "use_differential_heads (MECH-333) structural non-equilibrium does NOT escape MECH-309 monomodal collapse under full outcome-coupled REINFORCE.",
+    "Diagnosis is missing-dependency / symbol-not-function, NOT architectural falsification of ARC-062 and NOT biology-divergence.",
+    "Single-machine Branch-e is PROVISIONAL by pre-registration + governance rule; the 543g->h->i chain exists because of cross-machine bistability.",
+    "GAP-C/GAP-D (discriminator->LateralPFC routing + trainable rule-bias head) is the unwired dependency the structural fix tried and failed to bypass."
+   ],
+   "routing": "governance-demotion-gated-on-V3-EXQ-543j"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "negative-control / sanity baseline reproduces (543g collapse) but every discrimination criterion fails (all gated arms 3/3 inert) -- the substrate-ceiling fingerprint, now extended: a structural non-equilibrium fix (MECH-333) also fails to escape it",
+  "is_independent_bugs": false,
+  "structural_property": "The V3 gated-heads + sigmoid-discriminator substrate trained by byte-identical shared-return outcome-coupled REINFORCE has the wiring ARC-062 asserts but no training signal that maintains context-routed head differentiation; collapse to a single mode is the equilibrium MECH-309 predicts, and it survives a forced structural non-equilibrium.",
+  "readings": ["substrate_enrichment", "test_design_ceiling"],
+  "lineage": ["V3-EXQ-543g", "V3-EXQ-543h", "V3-EXQ-543i", "V3-EXQ-543j (pending cross-machine confirmation)"]
+ }
+}
