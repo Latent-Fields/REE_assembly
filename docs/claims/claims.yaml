@@ -23647,6 +23647,7 @@
     - MECH-230   # structured latent goal representation
     - MECH-292   # ghost-goal bank
     - MECH-293   # waking ghost-goal probes
+    - ARC-078    # parent: bank is a cue-addressed retrieval system (ARC-060 specializes into it)
   functional_restatement: >
     ARC-051 argues that REE can obtain a multi-level goal hierarchy from a single
     wanting landscape fed by contact, schema, and replay mechanisms. ARC-060 refines
@@ -33264,3 +33265,146 @@
     unresolved). The clinical mapping (personality disorders as lock failure modes) is
     REE's interpretation, flagged as a hypothesis -- NOT a claim that PD etiology is
     settled. Child of ARC-076; the falsification target for the cluster.
+
+- id: ARC-078
+  title: "The unresolved-goal bank is a content-addressed cue-addressed retrieval system: the current goal/context is the retrieval cue, the SD-039 payload is the stored trace, and rank_ghost_goals() is cued recall. A correct bank must satisfy three structural constraints -- outshining-gated composite cue, dissociable-additive channels, and a non-closeable recoverability term with an explicit-divergence abandon path."
+  claim_type: architecture_hypothesis
+  subject: goal.cue_addressed_unresolved_goal_retrieval
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-05-19
+  depends_on:
+    - SD-039     # preserved goal payload = the stored retrieval trace
+    - MECH-230   # structured z_goal latent = the cue content
+    - MECH-292   # ranked bank = the cued-recall step
+    - MECH-293   # awake probe = internally-triggered retrieval
+  functional_restatement: >
+    ARC-078 is the parent architectural framing the retrieval-cue reframe
+    establishes (docs/architecture/ghost_goal_search.md Section 0). The
+    ghost-goal bank is not, structurally, a priority queue of deferred goals;
+    it is a content-addressed cue -> target retrieval system. The current
+    z_goal/context is the retrieval cue; the SD-039 payload preserved on an
+    inactive anchor is the stored trace; rank_ghost_goals() is cued recall
+    (goal_match is the cue-to-trace match score, not a priority weight);
+    MECH-293's awake probe is internally-triggered retrieval. ARC-060's
+    continuous-field vs discrete-bank split is the recognition-vs-recall
+    distinction; ARC-060 specializes into ARC-078.
+
+    A correct cue-addressed bank must satisfy three structural constraints
+    (each grounded in the 2026-05-18 combined cue-system pull):
+
+    - C1 (outshining-gated composite cue, MECH-339): the cue is z_goal plus
+      a context channel built from the already-preserved SD-039 fields,
+      combined by an outshining rule so a strong direct match dominates.
+    - C2 (dissociable additive channels): wanting and goal_match are
+      anatomically separable channels with independent failure modes; the
+      additive ghost_priority already in the substrate is the correct form
+      (this constraint is borne by MECH-292; no separate claim).
+    - C3 (non-closeable recoverability + explicit-divergence abandon path):
+      recoverability must not be inhibition-only nor a cutoff that
+      integrates accumulated suppression evidence; rumination/intrusion is
+      the predicted equilibrium of an inhibition-only design. The explicit
+      abandon path is a deliberate divergence from biology (which has no
+      erase operation). The abandon MECHANISM is intentionally NOT
+      registered under ARC-078: it is gated behind a dedicated
+      goal-disengagement biology-before lit-pull (the disengagement
+      literature -- Wrosch/Scheier, Klinger, rumination/OCD as disengagement
+      failure -- is well developed; treating "abandon" as purely
+      non-biological would be the SD-003-class philosophy-right /
+      mechanism-wrong error).
+
+    Falsifiable: an agent whose bank satisfies C1-C3 recovers blocked/
+    deferred goals more flexibly than (a) a field-only agent (ARC-060
+    prediction) and (b) a bank that violates outshining or uses a
+    closeable recoverability cutoff; and the three dissociated failure
+    states of C2 are inducible.
+  notes: >
+    Registered 2026-05-19 from the retrieval-cue reframe of the
+    litpull-cue-system synthesis (user-gated). Parent of the cue-system
+    cluster; ARC-060 specializes into it (ARC-060.depends_on += ARC-078).
+    The abandon-path constraint (C3) is deliberately left as an open
+    structural element here -- the abandon mechanism + its trigger Q-claim
+    are gated behind a goal-disengagement biology-before pull and will be
+    registered in a later governed pass. Cross-reference: the abandon path
+    is the mirror image of the currently-unregistered interrupted-task /
+    Zeigarnik resumption gap (resume deferred work <-> retire it); the two
+    should be wired, not registered in parallel. No experiment queued; not
+    promoted; status candidate / v3_pending.
+  evidence_quality_note: >
+    Registered candidate. Literature support is the 2026-05-18 combined
+    cue-system pull in `targeted_review_ghost_goal_search/`: Nakazawa 2002
+    + Gelbard-Sagiv 2008 (partial-cue completion + internally-triggered
+    reinstatement -> the retrieval framing), Smith & Vela 2001 (outshining
+    -> C1), Flagel 2011 + Corbit & Balleine 2005/2011 (channel
+    dissociation -> C2), Bouton 2004/2014 + Maren/Phan/Liberzon 2013 +
+    Jasinska 2014 (preserve-don't-erase, non-closeable recoverability,
+    rumination equilibrium -> C3). lit_conf is a PARALLEL signal only and
+    is NOT blended into exp_conf (feedback_lit_exp_decoupled); exp_conf = 0
+    (no experiment yet) so this remains candidate / v3_pending. The
+    cue-system framing is REE's interpretive synthesis of that biology,
+    flagged as an architecture hypothesis, not a settled result.
+  literature_anchors:
+    - targeted_review_ghost_goal_search
+  location: docs/architecture/ghost_goal_search.md
+
+- id: MECH-339
+  title: "Composite retrieval cue: the ghost-bank cue is z_goal plus a context channel composed from the already-preserved-but-match-unused SD-039 payload fields (arousal_tag, last_vs, cause), combined by an outshining gate so a strong direct z_goal match suppresses the context channel. Context-cue retrieval is the conditional fallback regime, not an always-on additive term."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.composite_retrieval_cue_outshining_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-19
+  depends_on:
+    - ARC-078    # parent: bank is a cue-addressed retrieval system
+    - SD-039     # supplies the context-channel payload fields
+    - MECH-230   # structured z_goal = the direct-cue content
+    - MECH-292   # the bank/ranking whose goal_match this composes
+  functional_restatement: >
+    The landed bank matches the cue against the stored trace by z_goal
+    cosine only (`Anchor.goal_match`). MECH-339 asserts the retrieval cue
+    must be composite: z_goal PLUS a context channel composed from the
+    SD-039 payload fields that are already preserved but unused by the
+    match (arousal_tag, last_vs, cause). The two are combined by an
+    OUTSHINING gate -- a strong direct z_goal match suppresses / down-
+    weights the context channel -- rather than summed with fixed weight.
+    Encoding specificity (Smith & Vela 2001 meta-analysis; Tulving &
+    Thomson 1973) establishes that context-overlap retrieval is the weak
+    regime that matters precisely when a strong direct cue is absent, and
+    is outshone by a strong direct cue when one exists.
+
+    Falsifiable: (i) with a strong direct z_goal match present, enabling
+    the context channel must NOT change the top-ranked bank entry; (ii)
+    with the direct match weak/absent, enabling it MUST change the top
+    entry; (iii) a fixed-weight additive context term (no outshining gate)
+    degrades top-1 retrieval relative to z_goal-only whenever a clean
+    direct match exists.
+  notes: >
+    Registered 2026-05-19 from the retrieval-cue reframe, Constraint 1.
+    Distinct from MECH-292 (the ranking / cued-recall step) and SD-039
+    (the payload store): MECH-339 is the cue-composition + gating rule
+    that feeds goal_match. Not yet implemented -- SD-039 already preserves
+    the fields; the bank does not yet read them and there is no outshining
+    gate. NO experiment queued; not promoted; candidate / v3_pending. The
+    superseded product formula in the old ghost_goal_search.md sketch is
+    unrelated to this claim (that drift is C2 / MECH-292).
+  evidence_quality_note: >
+    Registered candidate. Literature support from
+    `targeted_review_ghost_goal_search/`: Smith & Vela 2001 (the
+    outshining / overshadowing moderator structure IS the design
+    constraint -- recorded mixed 0.60 precisely because it both supports
+    cue-context retrieval and bounds it), with Nakazawa 2002 (partial-cue
+    completion) and the encoding-specificity foundation (Tulving & Thomson
+    1973, present in `targeted_review_socially_scaffolded_rule_population/`)
+    as corroboration. lit_conf is a PARALLEL signal, NOT blended into
+    exp_conf (feedback_lit_exp_decoupled); exp_conf = 0, so candidate /
+    v3_pending. The exact outshining crossover curve for an artificial
+    bank is not given by the data and must be found empirically.
+  literature_anchors:
+    - targeted_review_ghost_goal_search
+  location: docs/architecture/ghost_goal_search.md

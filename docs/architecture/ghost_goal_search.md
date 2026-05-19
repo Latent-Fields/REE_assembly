@@ -147,8 +147,38 @@ design decision, not a documentation change, and is user-gated.
 | `ghost_priority` product formula (old Sections 4.2 / 6.2) | **SUPERSEDED** by the additive form already in the substrate |
 | Context channel from SD-039 payload fields | **new structural requirement** (Constraint 1); not yet implemented; not queued |
 | Three-state dissociation validation | **new falsifiable battery** (Constraint 2); not queued |
-| Explicit abandon path | **flagged open substrate-design question** (0.3); user-gated, not specified |
-| New claims / experiments / promotion | **none** -- pull-informed reframe only |
+| Explicit abandon path | **flagged open substrate-design question** (0.3); abandon mechanism gated behind a goal-disengagement biology-before pull |
+| New claims | **ARC-078 + MECH-339 registered 2026-05-19** (see 0.5); abandon MECH/Q deferred |
+| Experiments / promotion | **none** -- registration only, no experiment queued, no promotion |
+
+### 0.5 Claim cluster (registered 2026-05-19)
+
+The genuinely-new content of the reframe was registered as a small cluster
+(interpretive sharpening of the existing claims stayed in their reframe
+notes; see 0.4):
+
+- **ARC-078** (parent, architecture_hypothesis, candidate / v3_pending):
+  "the unresolved-goal bank is a content-addressed cue-addressed retrieval
+  system" satisfying C1-C3. **ARC-060 specializes into ARC-078**
+  (`ARC-060.depends_on += ARC-078`).
+- **MECH-339** (mechanism_hypothesis, candidate / v3_pending): the
+  composite cue + outshining gate of Constraint 1; `depends_on` ARC-078 /
+  SD-039 / MECH-230 / MECH-292. Not implemented; not queued.
+- **C2** carries no new claim -- it is MECH-292's ratified additive form.
+- **C3 abandon mechanism + its trigger Q-claim are deliberately NOT
+  registered.** They are gated behind a dedicated goal-disengagement
+  biology-before lit-pull (Wrosch/Scheier, Klinger, rumination/OCD as
+  disengagement failure), on the same logic that the cue-system pull
+  preceded this reframe -- "abandon" is philosophy-right but the
+  disengagement *mechanism* is a real, well-developed clinical literature,
+  and skipping it would risk the SD-003-class philosophy-right /
+  mechanism-wrong failure. The abandon path is the mirror image of the
+  unregistered interrupted-task / Zeigarnik resumption gap and must be
+  wired to it, not registered in parallel.
+
+Status/phase/confidence of ARC-060 / MECH-292 / MECH-293 / SD-039 remain
+unchanged; the cluster is candidate / v3_pending with `exp_conf = 0`
+(lit_conf is a parallel signal only, never blended).
 
 ---
 
