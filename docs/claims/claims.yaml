@@ -33315,6 +33315,16 @@
       failure -- is well developed; treating "abandon" as purely
       non-biological would be the SD-003-class philosophy-right /
       mechanism-wrong error).
+      [RESOLVED 2026-05-19 -> ARC-079 / MECH-340 / Q-053. The
+      goal-disengagement pull INVERTED this constraint: persistence is the
+      gated control/efficacy operation, disengagement is the ungated
+      default, and the SD-039 trace is preserved (no erase) -- which
+      MATCHES biology, weakening C3's original "deliberate divergence /
+      biology has no erase op" premise. The "abandon path" is reframed as
+      the persistence gate not firing -> MECH-292 rank decay -> the entry
+      ceases to be re-probed while the trace survives. Whether any explicit
+      hard-erase op is needed at all is now the open sub-question of
+      Q-053.]
 
     Falsifiable: an agent whose bank satisfies C1-C3 recovers blocked/
     deferred goals more flexibly than (a) a field-only agent (ARC-060
@@ -33325,10 +33335,12 @@
     Registered 2026-05-19 from the retrieval-cue reframe of the
     litpull-cue-system synthesis (user-gated). Parent of the cue-system
     cluster; ARC-060 specializes into it (ARC-060.depends_on += ARC-078).
-    The abandon-path constraint (C3) is deliberately left as an open
-    structural element here -- the abandon mechanism + its trigger Q-claim
-    are gated behind a goal-disengagement biology-before pull and will be
-    registered in a later governed pass. Cross-reference: the abandon path
+    The abandon-path constraint (C3) was the open structural element here;
+    it was RESOLVED 2026-05-19 by the goal-disengagement biology-before
+    pull and registered as ARC-079 (the persistence-is-gated /
+    disengagement-is-default inversion) + MECH-340 (the persistence/
+    efficacy gate) + Q-053 (the open licit-gate-signal question).
+    Cross-reference: the abandon path
     is the mirror image of the currently-unregistered interrupted-task /
     Zeigarnik resumption gap (resume deferred work <-> retire it); the two
     should be wired, not registered in parallel. No experiment queued; not
@@ -33406,5 +33418,221 @@
     v3_pending. The exact outshining crossover curve for an artificial
     bank is not given by the data and must be found empirically.
   literature_anchors:
+    - targeted_review_ghost_goal_search
+  location: docs/architecture/ghost_goal_search.md
+
+- id: ARC-079
+  title: "Persistence of an unresolved goal as an active re-probe target is a GATED control/efficacy-detection operation; disengagement is the ungated default. The trace is preserved (no erase -- this matches biology); 'abandonment' is the persistence gate failing to fire, after which the un-gated trace decays in rank and ceases to be re-probed. This RESOLVES ARC-078's C3 by inverting its 'add an explicit abandon path (deliberate divergence)' framing."
+  claim_type: architecture_hypothesis
+  subject: goal.gated_persistence_disengagement_default
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-05-19
+  depends_on:
+    - ARC-078    # parent: ARC-079 resolves ARC-078's C3 (the placeholder constraint)
+    - MECH-292   # the ranked bank whose re-probe persistence is gated
+    - MECH-293   # the awake re-probe consumer that the gate enables/withholds
+    - SD-039     # preserved trace -- never erased (the no-erase half)
+  functional_restatement: >
+    ARC-079 resolves the C3 placeholder of ARC-078 using the 2026-05-19
+    goal-disengagement biology-before pull (targeted_review_goal_disengagement),
+    and in doing so INVERTS C3's original framing. C3 assumed REE must add an
+    explicit abandon path as a deliberate divergence from biology (because
+    biology has no erase operation). The disengagement synthesis shows the
+    framing is backwards in two ways:
+
+    - Maier & Seligman 2016 (the load-bearing inversion): passivity /
+      disengagement is the unlearned DEFAULT; what is learned and gated is
+      CONTROL -- a vmPFC->DRN-type detector that inhibits the default.
+      Therefore persistence (continuing to treat a ghost-goal entry as an
+      active re-probe target) is the gated, evidence-requiring operation;
+      disengagement is what happens in the gate's absence.
+    - Bouton's no-erase result is about the TRACE, not about pursuit. The
+      SD-039 trace is preserved (no erase) -- which now MATCHES biology, so
+      the old C3 'deliberate divergence' premise is weakened: REE plausibly
+      does NOT need a non-biological hard-erase op at all. 'Abandonment' is
+      simply the persistence gate not firing, after which MECH-292 rank
+      decays and MECH-293 stops seeding from the entry; the trace survives,
+      un-re-probed, exactly as Bouton's preserved-but-inhibited memory.
+
+    Klinger 1975 / Wrosch 2003: the gate transition is an unattainability
+    APPRAISAL opening a brief reengagement-coupled disengagement STATE, not
+    a one-shot delete. Koster 2011 / Gillan 2021/2016: failure-to-disengage
+    is the ABSENCE of a separable gate, not over-strong persistence -- so
+    the gate must be an explicit, separable mechanism (MECH-340), not a
+    tuned MECH-292 recoverability weight. Husain & Roiser 2018 / Treadway
+    2012: the gate is bounded BELOW -- a gate keyed on repeated failure or
+    bare effort-cost reproduces apathy / learned helplessness.
+
+    Falsifiable: an agent with (gated persistence + default disengagement +
+    preserved trace) avoids BOTH (a) rumination/intrusion (the inhibition-
+    only / gate-stuck-on equilibrium ARC-078 C3 predicted) AND (b) apathy /
+    learned-helplessness (gate keyed on failure/effort-cost; passivity
+    generalises across goals). A design that instead bolts an abandon
+    trigger onto an action-default substrate and keys it on accumulated
+    failure will reproduce learned helplessness -- the inverted design does
+    not.
+  notes: >
+    Registered 2026-05-19 from the goal-disengagement biology-before pull.
+    Child of ARC-078; resolves its C3 (ARC-078 C3 prose updated to point
+    here). The unregistered interrupted-task / Zeigarnik resumption gap is
+    the MIRROR of ARC-079 (resume deferred work <-> cease re-probing it):
+    ARC-079 is the disengage half. They must be wired when the Zeigarnik
+    gap is registered -- which is itself gated behind its own biology-before
+    pull (see project memory; do NOT register Zeigarnik in parallel here).
+    No experiment queued; not promoted; candidate / v3_pending.
+  evidence_quality_note: >
+    Registered candidate. Literature support is the 2026-05-19 pull in
+    `targeted_review_goal_disengagement/`: Maier & Seligman 2016 (the
+    circuit-level default-disengage / gated-control inversion -- the single
+    most load-bearing entry), Klinger 1975 + Wrosch 2003 (appraisal trigger
+    + reengagement coupling), Koster 2011 + Gillan 2021/2016 (failure-to-
+    disengage = a missing separable op), Husain & Roiser 2018 + Treadway
+    2012 (the lower bound -- over-eager disengage = apathy/helplessness);
+    plus the C3 anchors carried from `targeted_review_ghost_goal_search/`
+    (Bouton 2004/2014, Maren 2013, Jasinska 2014). lit_conf is a PARALLEL
+    signal only, NOT blended into exp_conf (feedback_lit_exp_decoupled);
+    exp_conf = 0 so candidate / v3_pending. The inversion is REE's
+    interpretive synthesis of that biology, flagged as an architecture
+    hypothesis, not a settled result.
+  literature_anchors:
+    - targeted_review_goal_disengagement
+    - targeted_review_ghost_goal_search
+  location: docs/architecture/ghost_goal_search.md
+
+- id: MECH-340
+  title: "The persistence/efficacy gate: a control/efficacy-detection signal that maintains an unresolved-goal bank entry as an active MECH-293 re-probe target. Its ABSENCE is the default (the entry stops being re-probed and decays in MECH-292 rank; the SD-039 trace is NOT erased). It is gated ON by an unattainability-negative / control-positive appraisal, NOT by accumulated failure, repeated suppression, bare effort-cost, or staleness."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.persistence_efficacy_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-19
+  depends_on:
+    - ARC-079    # parent: the gated-persistence inversion MECH-340 instantiates
+    - MECH-292   # the ranked bank whose re-probe eligibility the gate modulates
+    - MECH-293   # the awake probe the gate enables/withholds per entry
+    - SD-039     # the preserved trace that survives gate-loss un-erased
+  functional_restatement: >
+    MECH-340 is the gate ARC-079 posits, made mechanistic. Per Maier &
+    Seligman 2016 the substrate default is disengagement and a control /
+    efficacy detector inhibits it. The REE analogue is a per-entry
+    persistence signal: when present it keeps a ghost-goal bank entry
+    eligible as a MECH-293 awake re-probe target; when absent the entry is
+    simply not re-probed and its MECH-292 rank decays -- no explicit erase,
+    the SD-039 trace persists (Bouton preserve-don't-erase).
+
+    The gate is held ON by an appraisal that the goal is still attainable /
+    under some control (Wrosch 2003 unattainability-negative; a control /
+    efficacy positive signal). Gate-loss opens a brief reengagement-coupled
+    disengagement STATE, not a one-shot delete (Klinger 1975 depression
+    phase; Brandstatter 2013 action crisis -- and within-crisis goal
+    devaluation is a SYMPTOM of the unresolved conflict, NOT the gate
+    signal, so the gate must not key on the entry's own dropped value).
+
+    Hard negative constraints (each load-bearing, each from the pull): the
+    gate is NOT a function of accumulated failure or repeated suppression
+    (Bouton: 36==4 sessions; Maier & Seligman: prolonged failure is exactly
+    what produces pathological default passivity), NOT a function of bare
+    effort-cost or instantaneous low value (Husain & Roiser 2018; Treadway
+    2012: that is the apathy/anhedonia phenotype, and the gate must be
+    conditioned on value-integration integrity), and NOT MECH-292 staleness
+    (Jasinska incubation can invert the staleness sign).
+
+    Falsifiable: (a) gate removed (pure default) -> premature give-up /
+    apathy signature; (b) gate stuck ON (inhibition-only) -> rumination /
+    intrusion; (c) gate keyed on failure or effort-cost -> learned-
+    helplessness signature with passivity generalising across unrelated
+    goals. The exact licit gate signal is the open question Q-053.
+  notes: >
+    Registered 2026-05-19 from the goal-disengagement pull. The
+    persistence-gate framing is the biology-faithful replacement for an
+    'abandon trigger'; it is not implemented (SD-039 / MECH-292 / MECH-293
+    substrate exists, the gate does not). Distinct from MECH-292 (ranking),
+    MECH-293 (the probe it gates), and MECH-339 (cue composition). The
+    precise gate signal is deliberately left to Q-053 -- do not pre-commit.
+    No experiment queued; not promoted; candidate / v3_pending.
+  evidence_quality_note: >
+    Registered candidate. Literature support in
+    `targeted_review_goal_disengagement/`: Maier & Seligman 2016 (the
+    circuit-level inversion that licenses 'gate persistence, default
+    disengage'), Klinger 1975 / Wrosch 2003 (appraisal trigger +
+    reengagement-coupled state), Koster 2011 / Gillan 2021/2016 (the gate
+    must be explicit and separable), Husain & Roiser 2018 / Treadway 2012
+    (the lower-bound negatives). lit_conf is PARALLEL only, NOT blended
+    into exp_conf; exp_conf = 0 so candidate / v3_pending. No substrate
+    implementation yet.
+  literature_anchors:
+    - targeted_review_goal_disengagement
+  location: docs/architecture/ghost_goal_search.md
+
+- id: Q-053
+  title: "What is the licit gate signal for goal persistence (the MECH-340 control/efficacy detector that holds a ghost-goal entry re-probe-eligible) -- and is any explicit hard trace-erase operation needed at all, or does ungated MECH-292 rank-decay of a preserved SD-039 trace suffice?"
+  claim_type: question
+  subject: goal.licit_persistence_gate_signal
+  polarity: open_question
+  status: open
+  confidence: 0.0
+  epistemic_category: substrate_conditional
+  registered_utc: "2026-05-19"
+  depends_on:
+    - ARC-079    # the inversion that frames the question
+    - MECH-340   # the gate whose signal Q-053 asks for
+    - MECH-292   # rank-decay is the candidate no-erase disengage path
+  functional_restatement: >
+    ARC-079 / MECH-340 establish THAT persistence is gated and disengagement
+    is the default; they deliberately do not commit the gate signal. Q-053
+    is that open question, with firm boundaries already fixed by the
+    goal-disengagement pull rather than left fully open:
+
+    Ruled OUT as the gate signal (each would reproduce a documented
+    pathology): accumulated failure / repeated suppression (learned
+    helplessness -- Maier & Seligman; non-closeable recoverability --
+    Bouton), bare effort-cost or instantaneous low value (apathy /
+    anhedonia -- Husain & Roiser, Treadway), MECH-292 staleness alone
+    (incubation sign-inversion -- Jasinska), and the entry's own
+    within-crisis devalued value (a symptom not a cause -- Brandstatter).
+
+    Candidate gate signals (open; not pre-committed): (i) an explicit
+    external/world invalidation signal that the goal is unattainable;
+    (ii) a one-shot unattainability appraisal crossed ONCE (not integrated)
+    that opens a brief reengagement-coupled disengagement state; (iii) a
+    control/efficacy-detection signal (a vmPFC->DRN analogue) gated on
+    value-integration integrity; (iv) a self-model obsolescence write that
+    marks the goal superseded. The reconciliation rule may itself be
+    context-dependent (procedural vs declarative goal content).
+
+    Open sub-question (lean: NO): does REE need ANY explicit hard
+    trace-erase / retire-from-bank operation, or is 'gate not firing ->
+    MECH-292 rank decays -> entry stops being re-probed while the SD-039
+    trace persists' the complete biology-faithful disengage path? The
+    disengagement pull leans toward sufficiency of ungated decay (it
+    matches Bouton preserve-don't-erase), making a non-biological hard-
+    erase op likely UNnecessary -- but this is not settled.
+  notes: >
+    Registered 2026-05-19 from the goal-disengagement pull, following the
+    project pattern of registering the genuinely-open trigger as a Q-claim
+    rather than pre-committing a mechanism. Mirror cross-reference: the
+    interrupted-task / Zeigarnik resumption gap is the inverse question
+    (when to RESUME a deferred goal); it is unregistered and gated behind
+    its own biology-before pull -- Q-053 and that future claim must be
+    reconciled (a goal cannot be simultaneously gated-for-resumption and
+    disengaged), but Zeigarnik is NOT registered here. Resolution path: a
+    substrate-design decision + a falsifier EXQ that induces the three
+    MECH-340 failure signatures; no experiment queued yet.
+  evidence_quality_note: >
+    Open question, confidence 0.0 by construction. The boundaries (ruled-out
+    signals) are firmly grounded in `targeted_review_goal_disengagement/`
+    and `targeted_review_ghost_goal_search/`; the candidate signals are not
+    yet evidenced and must not be treated as ranked. lit_conf is a PARALLEL
+    signal only and is NOT blended; this is an open question, not a
+    supported claim.
+  literature_anchors:
+    - targeted_review_goal_disengagement
     - targeted_review_ghost_goal_search
   location: docs/architecture/ghost_goal_search.md

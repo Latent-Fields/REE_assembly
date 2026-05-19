@@ -126,18 +126,36 @@ anchor".**
 
 ### 0.3 The deliberate divergence point
 
-Constraint 3 has a corollary the reframe states explicitly: **the explicit
-abandon path is where REE should deliberately DIVERGE from biology, not
-imitate it.** Nervous systems have no clean erase operation, and the price
-they pay is that rumination/intrusion is the structural equilibrium of the
-machinery. An artificial system *can* introduce an abandon path -- but
-Constraint 3 forbids justifying it by accumulated evidence of hopelessness.
-A licit abandon trigger is therefore an open design question (candidate
-forms: an explicit external invalidation signal; a hard recoverability
-floor crossed *once* rather than integrated; an orthogonal
-goal-obsolescence write from self-model). This is the single highest-value
-follow-on and is intentionally left unspecified here -- it is a substrate
-design decision, not a documentation change, and is user-gated.
+> **RESOLVED 2026-05-19 by the goal-disengagement biology-before pull
+> (`targeted_review_goal_disengagement/`). The framing below is INVERTED;
+> see ARC-079 / MECH-340 / Q-053.**
+
+The reframe originally stated this as a *deliberate divergence*: biology
+has no erase operation, rumination/intrusion is the structural price, and
+REE should add an explicit abandon path while forbidding any
+accumulated-hopelessness justification. The goal-disengagement pull shows
+that framing is backwards in two ways:
+
+1. **Maier & Seligman 2016 (load-bearing inversion):** passivity /
+   disengagement is the *unlearned default*; what is learned and gated is
+   *control*. So the gated, evidence-requiring operation is **persistence**
+   (continuing to treat an entry as an active re-probe target), not
+   abandonment. Disengagement is what happens when the persistence gate
+   does not fire.
+2. **Bouton's no-erase result is about the trace, not pursuit.** The
+   SD-039 trace is preserved (no erase) -- which *matches* biology, so the
+   "deliberate divergence" premise is weakened. "Abandonment" is just the
+   persistence gate not firing -> MECH-292 rank decays -> the entry stops
+   being re-probed while the trace survives, exactly like Bouton's
+   preserved-but-inhibited memory.
+
+Net: the right design **gates persistence** (a control/efficacy detector,
+MECH-340) rather than bolting on an abandon trigger; the gate must avoid
+keying on accumulated failure / bare effort-cost (that reproduces learned
+helplessness, the over-disengaged pole). Whether *any* explicit hard-erase
+op is needed at all -- vs. ungated rank-decay of a preserved trace being
+sufficient -- is the open sub-question of **Q-053** (current lean: not
+needed). The licit gate signal itself is the rest of Q-053.
 
 ### 0.4 What this reframe changes and does not change
 
@@ -147,8 +165,8 @@ design decision, not a documentation change, and is user-gated.
 | `ghost_priority` product formula (old Sections 4.2 / 6.2) | **SUPERSEDED** by the additive form already in the substrate |
 | Context channel from SD-039 payload fields | **new structural requirement** (Constraint 1); not yet implemented; not queued |
 | Three-state dissociation validation | **new falsifiable battery** (Constraint 2); not queued |
-| Explicit abandon path | **flagged open substrate-design question** (0.3); abandon mechanism gated behind a goal-disengagement biology-before pull |
-| New claims | **ARC-078 + MECH-339 registered 2026-05-19** (see 0.5); abandon MECH/Q deferred |
+| Explicit abandon path | **RESOLVED + INVERTED 2026-05-19** (0.3): persistence is gated, disengagement is the default, trace preserved; registered as ARC-079 / MECH-340 / Q-053 |
+| New claims | **ARC-078 + MECH-339** (cue-system, 2026-05-19) and **ARC-079 + MECH-340 + Q-053** (persistence-gate / C3 resolution, 2026-05-19); see 0.5 |
 | Experiments / promotion | **none** -- registration only, no experiment queued, no promotion |
 
 ### 0.5 Claim cluster (registered 2026-05-19)
@@ -165,16 +183,25 @@ notes; see 0.4):
   composite cue + outshining gate of Constraint 1; `depends_on` ARC-078 /
   SD-039 / MECH-230 / MECH-292. Not implemented; not queued.
 - **C2** carries no new claim -- it is MECH-292's ratified additive form.
-- **C3 abandon mechanism + its trigger Q-claim are deliberately NOT
-  registered.** They are gated behind a dedicated goal-disengagement
-  biology-before lit-pull (Wrosch/Scheier, Klinger, rumination/OCD as
-  disengagement failure), on the same logic that the cue-system pull
-  preceded this reframe -- "abandon" is philosophy-right but the
-  disengagement *mechanism* is a real, well-developed clinical literature,
-  and skipping it would risk the SD-003-class philosophy-right /
-  mechanism-wrong failure. The abandon path is the mirror image of the
-  unregistered interrupted-task / Zeigarnik resumption gap and must be
-  wired to it, not registered in parallel.
+- **C3 was resolved 2026-05-19** by the goal-disengagement biology-before
+  pull (`targeted_review_goal_disengagement/`: Maier & Seligman 2016,
+  Klinger 1975, Wrosch 2003, Koster 2011, Gillan 2021/2016, Husain &
+  Roiser 2018, Treadway 2012, Brandstatter 2013), which *inverted* the
+  framing (see 0.3) and registered:
+  - **ARC-079** (architecture_hypothesis, candidate / v3_pending): the
+    persistence-is-gated / disengagement-is-default inversion; child of
+    ARC-078, resolves its C3.
+  - **MECH-340** (mechanism_hypothesis, candidate / v3_pending): the
+    per-entry persistence/efficacy gate; absence = default disengagement
+    via MECH-292 rank decay (trace preserved, no erase).
+  - **Q-053** (question, open): the licit gate signal -- with the ruled-out
+    signals fixed (accumulated failure, bare effort-cost, staleness,
+    within-crisis devalued value) and the open sub-question of whether any
+    explicit hard-erase op is needed at all (lean: no).
+  The cluster is the mirror image of the unregistered interrupted-task /
+  Zeigarnik resumption gap (resume <-> disengage); Q-053 must be reconciled
+  with that gap when it is registered (after its own biology-before pull),
+  not in parallel.
 
 Status/phase/confidence of ARC-060 / MECH-292 / MECH-293 / SD-039 remain
 unchanged; the cluster is candidate / v3_pending with `exp_conf = 0`
