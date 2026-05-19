@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_effort_cost_treadway2012",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078"],
+  "source": {
+    "title": "Effort-based decision-making in major depressive disorder: a translational model of motivational anhedonia",
+    "authors": ["Michael T. Treadway", "Nicholas A. Bossaller", "Richard C. Shelton", "David H. Zald"],
+    "year": 2012,
+    "venue": "Journal of Abnormal Psychology",
+    "doi": "10.1037/a0028813",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22775583/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Quantified clinical pin on the exact effort-cost trigger: MDD patients are less willing to expend effort for reward AND less able to integrate magnitude/probability into the choice; the over-disengaged phenotype deepens with episode duration. Confirms the trigger 'cannot simply be effort-cost or repeated-failure' and must be conditioned on value-integration integrity. Modest-N single-task clinical case-control.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The agent systematically declines high-value goals whenever the effort estimate is high, even when expected reward clearly justifies the cost (shifted effort-cost trigger).",
+    "The agent fails to up-weight effort allocation as reward magnitude/probability rises -- the trigger ignores the value evidence that should suppress abandonment.",
+    "The over-disengagement phenotype intensifies with cumulative duration of low-reward/low-control experience (state-dependent drift of the trigger toward premature give-up)."
+  ],
+  "tags": ["arc-078", "goal_disengagement", "effort_cost", "anhedonia", "value_integration", "over_disengagement"],
+  "mapping": {
+    "source_claim_statement": "MDD patients show reduced willingness to expend effort for reward on the EEfRT and impaired integration of reward magnitude and probability into effort allocation; longer current-episode duration predicts worse effort allocation -- isolating motivational anhedonia to the effort-cost decision stage, not pleasure capacity.",
+    "ree_translation": "Empirical clinical pin for the ARC-078 C3 lower bound: a mis-set effort-cost trigger ALONE produces premature give-up, and the deficit is dual (shifted cost weight AND degraded value-integration). A REE abandon trigger must be conditioned on value-integration integrity, not effort cost alone -- an effort-cost cutoff cannot distinguish a rationally cost-sensitive agent from a pathologically disengaged one.",
+    "mapping_caveat": "Clinical case-control, modest N, single task (EEfRT); the dual deficit (cost weight + value-integration) means a scalar-effort-threshold model cannot capture the distinction the data require. Corroborated by Treadway et al. 2009 PLoS One (PMID 19672310) and Treadway & Zald 2013 Curr Dir Psychol Sci (PMID 24748727).",
+    "source_context": "Human case-control: MDD patients vs healthy controls; Effort Expenditure for Rewards Task (EEfRT); reward magnitude x probability manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.45,
+    "notes": "Clinical case-control, modest N, single task -- triangulated by the 2009 validation + 2013 review (medium-high source quality). Mapping fidelity moderate-high: it pins the exact trigger threshold and the value-integration condition. Transfer risk moderate."
+  }
+}

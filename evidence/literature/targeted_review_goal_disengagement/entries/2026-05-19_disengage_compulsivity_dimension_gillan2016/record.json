@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_compulsivity_dimension_gillan2016",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078"],
+  "source": {
+    "title": "Characterizing a psychiatric symptom dimension related to deficits in goal-directed control",
+    "authors": ["Claire M. Gillan", "Michal Kosinski", "Robert Whelan", "Elizabeth A. Phelps", "Nathaniel D. Daw"],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.11305",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26928075/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Large-N computational/dimensional evidence pinning failure-to-disengage to a precise, GRADED control parameter (model-based weight) selectively tied to a transdiagnostic compulsive/intrusive-thought dimension. Strong mechanistic sharpener of Gillan 2021. Correlational, non-clinical online samples -> licenses the existence and gradedness of the parameter, not a specific circuit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Action selection stops consulting the forward model of outcomes, so when a contingency/goal changes the agent keeps emitting the previously-cued response.",
+    "The deficit is a quantitative under-weighting (a dial turned down), producing graded perseveration that scales with compulsive/intrusive-thought symptom load.",
+    "Intrusive thoughts and compulsive acts co-load on one dimension -- the same disengage-control deficit yields both a thought-loop and an action-loop phenotype."
+  ],
+  "tags": ["arc-078", "goal_disengagement", "compulsivity", "model_based_control", "transdiagnostic", "failure_to_disengage"],
+  "mapping": {
+    "source_claim_statement": "Reduced model-based (goal-directed) control is selectively and dimensionally associated with a transdiagnostic symptom dimension of compulsive behaviour and intrusive thought, dissociable from impulsivity -- behaviour stops being re-derived from current goals/outcomes and defaults to inflexible cue-driven responding.",
+    "ree_translation": "Sharpens ARC-078 C3: failure-to-disengage is a GRADED control parameter (how much model-based re-evaluation is recruited), not a discrete on/off lesion. For REE this licenses treating the abandon/override pathway as a continuously-weighted recruitment of model-based re-evaluation whose under-weighting IS the pathology -- and shows the same deficit produces both rumination-like and compulsion-like phenotypes (one mechanism, two surface failures).",
+    "mapping_caveat": "Online general-population samples (Mechanical Turk), not diagnosed patients; correlational -- it identifies an association between a computational parameter and self-reported compulsivity, licensing the existence/gradedness of a disengage-relevant parameter, not its implementation or causal circuit.",
+    "source_context": "Two large general-population online samples; two-step model-based/model-free RL task; transdiagnostic self-report symptom dimensions."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.42,
+    "notes": "Rigorous large-N computational design, two independent samples, high specificity to the compulsive/intrusive dimension (high source quality). Mapping fidelity moderate-high (precise parameter; non-clinical sample). Transfer risk moderate (correlational)."
+  }
+}

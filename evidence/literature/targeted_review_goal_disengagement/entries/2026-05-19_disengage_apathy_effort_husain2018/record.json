@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_apathy_effort_husain2018",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078"],
+  "source": {
+    "title": "Neuroscience of apathy and anhedonia: a transdiagnostic approach",
+    "authors": ["Masud Husain", "Jonathan P. Roiser"],
+    "year": 2018,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-018-0029-9",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29946157/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Definitive transdiagnostic synthesis establishing that an over-eager effort-cost / blunted-reward computation reproduces clinical apathy -- so the REE abandon trigger must be BOUNDED BELOW, not just above, and cannot be a bare effort-cost threshold. High source quality (NRN), mechanism explicitly framed as effort-based decision failure; transfer risk is the static-vs-recomputed-cost gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An agent abandons attainable goals because an inflated effort-cost term makes every cost-benefit comparison fall below the act threshold, despite intact outcome valuation.",
+    "Blunted reward-anticipation drops goals at the initiation stage even when stored value is high (anticipatory, not consummatory, failure).",
+    "Disengagement generalises across goal domains simultaneously (transdiagnostic apathy) -- a shared upstream cost/value parameter, not goal-specific evidence."
+  ],
+  "tags": ["arc-078", "goal_disengagement", "apathy", "anhedonia", "effort_cost", "over_disengagement"],
+  "mapping": {
+    "source_claim_statement": "Apathy and anhedonia are disorders of motivated goal-directed action -- a breakdown in effort-based decision-making for reward (ventral striatum / vmPFC-ACC / mesolimbic dopamine), where blunted reward sensitivity or inflated effort-cost weighting biases the agent away from initiating/maintaining goals, dissociable from consummatory pleasure.",
+    "ree_translation": "Brackets ARC-078 C3 from the over-disengagement side: an abandon trigger keyed on a bare effort-cost (or low instantaneous value) threshold reproduces clinical apathy. The trigger must be bounded BELOW as well as above -- it cannot be 'effort got high / value got low', because that IS the apathy phenotype.",
+    "mapping_caveat": "The biological effort-cost computation is value-relative and continuously recomputed against fluctuating internal state (fatigue, dopamine tone); porting it as a static threshold into an artificial trigger risks instantiating the very pathological bias the review describes. Review synthesis across heterogeneous disorders.",
+    "source_context": "Transdiagnostic review (Parkinson's, depression, schizophrenia, stroke) of effort-based decision-making and its ventral-striatal / vmPFC-ACC / dopamine substrate."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Definitive NRN transdiagnostic synthesis (very high source quality). Mapping fidelity moderate-high: the over-disengagement bracket maps cleanly; static-vs-recomputed-cost is the transfer caveat."
+  }
+}

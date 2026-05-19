@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_incentive_cycle_klinger1975",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078"],
+  "source": {
+    "title": "Consequences of commitment to and disengagement from incentives",
+    "authors": ["Eric Klinger"],
+    "year": 1975,
+    "venue": "Psychological Review",
+    "doi": "10.1037/h0076171",
+    "url": "https://psycnet.apa.org/record/1975-08840-001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Canonical theory of the disengagement trigger: it is obstruction/non-attainment of a COMMITTED incentive, not an evidence tally -- supports the never-from-accumulated-hopelessness constraint. But the trigger expresses as a slow, stereotyped depression-like PHASE that does the disengaging, not a one-shot appraisal -- so it qualifies the 'one-shot flag' design. Foundational and central; the one-shot mapping is the uncertain part.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Too late / stuck in the invigoration phase: persistent value-inflation and effort escalation toward an unreachable incentive (perseverative striving; the current concern never offsets).",
+    "Too early: premature collapse of commitment before genuine obstruction -> under-persistence and abandonment of still-attainable goals.",
+    "Cycle arrest in the depression phase: concern released from the old goal but no reengagement -> clinical depression."
+  ],
+  "tags": ["arc-078", "goal_disengagement", "abandon_trigger", "incentive_disengagement", "current_concern", "klinger"],
+  "mapping": {
+    "source_claim_statement": "Commitment to an incentive creates a 'current concern' (onset = commitment, offset = consummation or disengagement) that biases cognition until released; obstruction of a committed incentive triggers a stereotyped cycle -- invigoration, then aggression/protest, then a functional depression-like phase that actively dissolves the commitment, then recovery/redirection.",
+    "ree_translation": "Directly informs ARC-078's C3 abandon-path: the biological disengagement trigger is an appraisal of obstruction of a COMMITTED goal, not accumulated-hopelessness evidence (consistent with the Bouton constraint). But Klinger models the trigger as an extended affective phase that performs the disengagement -- so a REE abandon trigger should open a brief disengagement STATE, not instantaneously delete the bank entry.",
+    "mapping_caveat": "The depression phase is a slow biological process, not an instantaneous switch; collapsing it into a single-timestep abandon flag discards the very stage Klinger says does the disengagement work. Also a 1975 integrative theory, not a direct neural mechanism.",
+    "source_context": "Integrative motivational theory synthesizing animal frustration and human incentive/motivation literature; no neural localization."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "Canonical and theory-central (high source quality for a theoretical anchor). Mapping fidelity moderate: the trigger-as-appraisal-of-committed-obstruction maps cleanly; the trigger-as-phase qualifies the one-shot design. Transfer risk moderate (1975 theory -> artificial bank)."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_ocd_habit_hypothesis_gillan2021",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078"],
+  "source": {
+    "title": "Recent Developments in the Habit Hypothesis of OCD and Compulsive Disorders",
+    "authors": ["Claire M. Gillan"],
+    "year": 2021,
+    "venue": "Current Topics in Behavioral Neurosciences",
+    "doi": "10.1007/7854_2020_199",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33547600/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Frames OCD compulsion as a CONSEQUENCE of a goal-directed (model-based) control deficit -- the override that would license stopping a no-longer-warranted action is impaired -- not a primary habit strengthening. Supports failure-to-disengage as a distinct mechanistic pathology located in the model-evaluation/override pathway. Mechanism is action-selection-level, not goal-bank-level, hence held at 0.72.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The agent keeps executing a stereotyped sequence (checking/washing) triggered by a cue even though its own outcome knowledge marks the action as unnecessary -- slips of action against devalued outcomes.",
+    "Behaviour is rigid and stimulus-bound: it cannot be flexibly halted by a change in goal value because the goal-directed controller that would halt it is impaired.",
+    "Subjective recognition that the action is senseless coexists with inability to desist -- a dissociation between explicit goal knowledge and behavioural control."
+  ],
+  "tags": ["arc-078", "goal_disengagement", "ocd", "compulsivity", "model_based_control", "failure_to_disengage"],
+  "mapping": {
+    "source_claim_statement": "Compulsions in OCD arise from an imbalance between goal-directed and habitual control in which enhanced habit expression is a CONSEQUENCE of a deficit in the goal-directed (model-based) control system -- specifically a failure to construct/consult an internal action-outcome model that would license re-evaluating and halting a no-longer-useful action.",
+    "ree_translation": "Supports ARC-078 C3: failure-to-disengage is a distinct pathology located in the model-evaluation/override pathway -- the agent cannot bring goal knowledge to bear to stop. For REE, the abandon mechanism should target the model-evaluation/override pathway (the thing that would license stopping), NOT add a habit-suppression term or merely strengthen persistence.",
+    "mapping_caveat": "The goal-directed/habit dichotomy is a model of action selection (model-based vs model-free RL); the review itself flags human habit assays are weak/contested. The defensible reading is 'the model that would justify abandoning the action is absent/not consulted', not literally 'habits override goals'. Review, not a single experiment.",
+    "source_context": "Mechanistic review synthesising cross-species, neuroimaging, and computational evidence in OCD / compulsive disorders."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.45,
+    "notes": "Authoritative review by the field's leading author (high source quality). Mapping fidelity moderate: failure-as-missing-override maps well; action-selection level vs goal-bank level adds a mapping qualifier. Transfer risk moderate."
+  }
+}

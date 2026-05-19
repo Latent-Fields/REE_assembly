@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_impaired_disengagement_koster2011",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078", "MECH-292"],
+  "source": {
+    "title": "Understanding depressive rumination from a cognitive science perspective: the impaired disengagement hypothesis",
+    "authors": ["Ernst H. W. Koster", "Evi De Lissnyder", "Nazanin Derakshan", "Rudi De Raedt"],
+    "year": 2011,
+    "venue": "Clinical Psychology Review",
+    "doi": "10.1016/j.cpr.2010.08.005",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20817334/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Canonical mechanistic statement that depressive rumination is a FAILURE of the disengage operation itself (impaired attentional disengagement / weak conflict-control), not an over-strong persistence drive. Strong support that failure-to-disengage is a distinct, separable pathology -> REE needs an explicit abandon trigger, not just tuned persistence weights. Held at 0.75 because the disengagement is attentional/working-memory level, not goal-commitment-level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Negative self-referential content enters the focus of processing and the system cannot relinquish it -> a self-sustaining re-elaboration loop with no terminating condition.",
+    "Attempts to switch to a neutral/goal-relevant task are repeatedly overridden by re-capture of attention by the negative content.",
+    "The loop persists DESPITE being recognised as unproductive -- the persistence is not endorsed by a higher controller; it reflects an ABSENT disengage signal, not strong goal value."
+  ],
+  "tags": ["arc-078", "mech-292", "goal_disengagement", "rumination", "impaired_disengagement", "failure_to_disengage"],
+  "mapping": {
+    "source_claim_statement": "Depressive rumination is not driven by an over-strong self-focus drive but by impaired disengagement: a failure of attentional/executive control to remove negative self-referent material from the focus of working memory and shift elsewhere once it has captured processing.",
+    "ree_translation": "Strong support for ARC-078 C3's premise that failure-to-disengage is a distinct mechanistic pathology -- the clinical failure is the ABSENCE of a dedicated disengage operation, not excessive goal value. This argues REE needs an explicit, separable abandon/disengage trigger rather than tuning MECH-292's recoverability/persistence weights; an inhibition-only or weight-tuned design reproduces exactly this failure.",
+    "mapping_caveat": "The disengagement here is ATTENTIONAL (working-memory focus shifting), not goal-level commitment revocation; the mapping is structural analogy (a disengage trigger whose absence is itself the pathology), not mechanistic identity. Integrative review, not a single empirical test.",
+    "source_context": "Cognitive-science integrative framework synthesising attentional-control and executive-function evidence in depressive rumination (human clinical/subclinical)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.42,
+    "notes": "Canonical, heavily-cited primary statement (high source quality). Mapping fidelity moderate-high for the structural claim (failure = missing trigger), lower for mechanistic identity (attentional vs goal-level). Transfer risk moderate."
+  }
+}

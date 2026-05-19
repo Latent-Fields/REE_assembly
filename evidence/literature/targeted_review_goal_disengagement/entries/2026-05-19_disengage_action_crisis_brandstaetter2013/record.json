@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_action_crisis_brandstaetter2013",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078"],
+  "source": {
+    "title": "The struggle of giving up personal goals: affective, physiological, and cognitive consequences of an action crisis",
+    "authors": ["Veronika Brandstatter", "Marcel Herrmann", "Julia Schuler"],
+    "year": 2013,
+    "venue": "Personality and Social Psychology Bulletin",
+    "doi": "10.1177/0146167213500151",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23976776/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "The most mechanistically instrumented paper in the strand: the pre-disengagement 'action crisis' is a measurable, affectively-signed, cortisol-elevating CONFLICT state with concurrent automatic goal-devaluation. Supports the appraisal-not-evidence-tally trigger but specifically WEAKENS the one-shot framing -- the trigger is an extended contested struggle, and goal-devaluation during the crisis is a symptom, not proof of unattainability.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Too late / unresolved crisis: prolonged intrapsychic conflict -> chronic cortisol elevation, performance decrement, well-being collapse (the rumination/persistence pole, physiologically instrumented).",
+    "Too early: premature crisis resolution toward disengagement -> goal devaluation and abandonment of a still-viable goal before genuine setback.",
+    "Devaluation-as-trigger error: cognitive goal-devaluation occurs DURING the crisis, so abandoning on the devaluation signal alone risks abandoning before the conflict is genuinely resolved."
+  ],
+  "tags": ["arc-078", "goal_disengagement", "abandon_trigger", "action_crisis", "goal_devaluation", "cortisol"],
+  "mapping": {
+    "source_claim_statement": "Disengagement is preceded by an 'action crisis' -- a critical phase of intrapsychic conflict between continued pursuit and abandonment, triggered when setbacks make disengagement a live option; it degrades well-being, elevates cortisol, impairs later performance, and is accompanied by automatic dampening of the cognitive evaluation of the goal itself. Disengagement is a process, not a discrete event.",
+    "ree_translation": "Sharpens ARC-078 C3: the abandon trigger is not a clean threshold crossing but a brief contested STATE with an affective/physiological signature and concurrent goal-devaluation. A REE abandon mechanism modelled as a costless one-shot flag discards the conflict-resolution dynamics the data show are the actual mechanism; and goal-devaluation must NOT be the abandon trigger (it is a within-crisis symptom).",
+    "mapping_caveat": "The action crisis is an effortful, metabolically costly struggle (cortisol) explicitly NOT a switch; mapping it onto a costless one-step flag is a category error. Field/longitudinal self-report + physiology, healthy goal-pursuit (students, marathon runners), not clinical.",
+    "source_context": "Two longitudinal field studies + a marathon-runner study; psychological well-being, salivary cortisol, subsequent race performance; personal-goal pursuit in healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.76,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.45,
+    "notes": "Strong for the strand (longitudinal + physiological instrumentation of the pre-disengagement state). Mapping fidelity moderate: directly characterises the trigger STATE but in healthy goal pursuit; the one-shot-flag contradiction is a high-value design finding. Transfer risk moderate."
+  }
+}

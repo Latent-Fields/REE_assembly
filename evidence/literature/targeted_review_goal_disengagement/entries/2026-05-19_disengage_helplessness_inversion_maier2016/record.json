@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_helplessness_inversion_maier2016",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078", "MECH-292"],
+  "source": {
+    "title": "Learned helplessness at fifty: insights from neuroscience",
+    "authors": ["Steven F. Maier", "Martin E. P. Seligman"],
+    "year": 2016,
+    "venue": "Psychological Review",
+    "doi": "10.1037/rev0000033",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27337390/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The single most architecturally load-bearing finding for the abandon-trigger question: passivity/disengagement is the UNLEARNED DEFAULT (dorsal raphe 5-HT), and CONTROL is the learned, gated override (vmPFC->DRN). Repeated failure / prolonged adversity is exactly the condition that yields pathological default passivity -- so a REE abandon trigger keyed on repeated-failure or raw effort-cost would directly instantiate learned helplessness. Inverts the naive design. Canonical Psychological Review circuit-level theory revision.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "With no active control-detection signal, the agent collapses to passive non-pursuit of all goals under sustained adversity (default passivity) even where instrumental options exist.",
+    "A weak/absent control-expectation circuit means prior success does not protect future persistence -- the agent re-defaults to giving up on each new stressor.",
+    "Helplessness generalises: passivity transfers to novel, controllable situations because the inhibitory control gate was never engaged -- NOT because failure evidence accumulated."
+  ],
+  "tags": ["arc-078", "mech-292", "goal_disengagement", "learned_helplessness", "default_passivity", "control_detection", "vmpfc_drn"],
+  "mapping": {
+    "source_claim_statement": "Passivity in the face of prolonged aversive events is the unlearned DEFAULT (dorsal raphe serotonergic neurons inhibiting active escape); what is learned is CONTROL -- a vmPFC/prelimbic act-outcome circuit detects controllability and inhibits the default passivity signal. Detection of uncontrollability is neither necessary nor sufficient for passivity; there is no circuit selectively turned on by lack of control, only one that turns the default off when control is present.",
+    "ree_translation": "Inverts the ARC-078 C3 design. The biologically faithful architecture is NOT 'add an abandon trigger to an action-default system'. It is: ABANDONMENT/disengagement is the default, and PERSISTENCE is the gated, evidence-requiring operation (an explicit control/efficacy-detection gate that inhibits the disengage default). A trigger keyed on repeated-failure or accumulated cost is exactly the prolonged-adversity condition that produces pathological default passivity -- doubly confirming the never-from-accumulated-hopelessness constraint and extending it to never-from-repeated-failure / raw-effort-cost.",
+    "mapping_caveat": "Rodent optogenetic/pharmacological circuit work generalised to a human theory; the polarity inversion (disengage = substrate default, engage = gated override) is the opposite of most engineered architectures, so the mapping is a structural reframe, not a circuit import. The 'default' is an aversive-context default; reward-context goal pursuit may not share the identical polarity.",
+    "source_context": "Circuit-level synthesis (dorsal raphe 5-HT; vmPFC/prelimbic -> DRN GABAergic gating; dorsomedial striatum act-outcome) plus the 50-year theory revision; rodent mechanism + human theory."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Canonical Psychological Review theory revision, mechanism charted at circuit level (high source quality). Mapping fidelity high for the structural inversion (it directly answers what the disengage default is and what gates it). Transfer risk moderate: rodent circuit -> architectural polarity; aversive-context default may not transfer wholesale to reward-context goal pursuit."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-05-19_disengage_unattainability_appraisal_wrosch2003",
+  "timestamp_utc": "2026-05-19T01:00:53Z",
+  "claim_ids_tested": ["ARC-078"],
+  "source": {
+    "title": "Adaptive self-regulation of unattainable goals: goal disengagement, goal reengagement, and subjective well-being",
+    "authors": ["Carsten Wrosch", "Michael F. Scheier", "Gregory E. Miller", "Richard Schulz", "Charles S. Carver"],
+    "year": 2003,
+    "venue": "Personality and Social Psychology Bulletin",
+    "doi": "10.1177/0146167203256921",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15018681/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Establishes that the adaptive-disengagement trigger is an unattainability APPRAISAL (not discouragement, not an evidence counter) and that disengagement is only adaptive when paired with reengagement. Directly supports the ARC-078 abandon-trigger design. Correlational individual-difference construct (Goal Adjustment Scale), so the trigger's computation is assumed-upstream, not modelled -- which is exactly the function REE must implement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Too late: difficulty disengaging from unattainable goals -> sustained distress, intrusive goal-related thought, lower well-being.",
+    "Too early / unconditional: disengaging from still-attainable goals -> loss of beneficial persistence.",
+    "Disengage-without-reengage: distress relieved but well-being not restored -- abandonment uncoupled from redirection leaves a purpose vacuum."
+  ],
+  "tags": ["arc-078", "goal_disengagement", "abandon_trigger", "unattainability_appraisal", "reengagement", "wrosch"],
+  "mapping": {
+    "source_claim_statement": "Goal disengagement (withdrawing effort/commitment from an unattainable goal) and goal reengagement (committing to new goals) are separable capacities both positively associated with subjective well-being; disengagement is adaptive specifically when a goal is appraised as unattainable, and is beneficial only when coupled with reengagement.",
+    "ree_translation": "The ARC-078 C3 abandon trigger should be gated by an unattainability APPRAISAL of the target goal, not by accumulated failure/effort. And abandonment must be architecturally coupled to redirection (a reengagement step), not implemented as a bare delete -- disengage-without-reengage is itself a documented failure mode.",
+    "mapping_caveat": "Unattainability is treated as a given upstream input -- the paper specifies THAT it triggers disengagement, not HOW the system computes it; that computation is precisely what a REE abandon trigger must supply, so this constrains the gate's input semantics but not its mechanism. Cross-sectional self-report.",
+    "source_context": "Three human samples (115 undergraduates; 120 young/older adults; 45 parents incl. parents of children with cancer); Goal Adjustment Scale; subjective well-being outcomes."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.40,
+    "notes": "Good source quality (multi-sample incl. a clinical-stress sample; widely-used construct). Mapping fidelity moderate-high: the unattainability-appraisal trigger and the disengage+reengage coupling map cleanly. Transfer risk moderate (correlational self-report -> architectural trigger)."
+  }
+}
