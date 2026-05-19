@@ -152,10 +152,21 @@ that framing is backwards in two ways:
 Net: the right design **gates persistence** (a control/efficacy detector,
 MECH-340) rather than bolting on an abandon trigger; the gate must avoid
 keying on accumulated failure / bare effort-cost (that reproduces learned
-helplessness, the over-disengaged pole). Whether *any* explicit hard-erase
-op is needed at all -- vs. ungated rank-decay of a preserved trace being
-sufficient -- is the open sub-question of **Q-053** (current lean: not
-needed). The licit gate signal itself is the rest of Q-053.
+helplessness, the over-disengaged pole). The goal-disengagement pull
+**narrows Q-053 without closing it**: the licit gate signal's *front-runner*
+is an internal control/efficacy *unattainability appraisal* (Wrosch input
+semantics + Maier form; vmPFC->DRN *not* imported); an external/world
+invalidation signal is demoted to an *input* to that appraisal, not the
+gate; a self-model-obsolescence write stays genuinely open. Whatever the
+signal, it opens or withholds a brief reengagement-coupled disengagement
+*state* (Klinger), never a one-shot flag, and the operation it triggers
+must itself be reengagement-coupled (Wrosch/Klinger: abandon-without-redirect
+is itself a pathology). The hard-erase sub-question is now **split**: the
+SD-039 *trace* needs no explicit erase (lean NO, Bouton -- ungated MECH-292
+rank-decay of a preserved trace suffices), but *disengagement itself*
+likely needs a dedicated operation distinct from tuning the MECH-292 knobs
+(lean YES, Koster). The computation of the appraisal remains the open core
+of Q-053.
 
 ### 0.4 What this reframe changes and does not change
 
@@ -198,10 +209,17 @@ notes; see 0.4):
   - **MECH-340** (mechanism_hypothesis, candidate / v3_pending): the
     per-entry persistence/efficacy gate; absence = default disengagement
     via MECH-292 rank decay (trace preserved, no erase).
-  - **Q-053** (question, open): the licit gate signal -- with the ruled-out
-    signals fixed (accumulated failure, bare effort-cost, staleness,
-    within-crisis devalued value) and the open sub-question of whether any
-    explicit hard-erase op is needed at all (lean: no).
+  - **Q-053** (question, open; **narrowed 2026-05-19** from the same pull):
+    the licit gate signal. Ruled-out signals fixed (accumulated failure,
+    bare effort-cost, staleness, within-crisis devalued value) plus a
+    ruled-out operation-shape (abandon without coupled reengagement).
+    Candidate set narrowed: front-runner = internal control/efficacy
+    unattainability *appraisal* (Wrosch+Maier, a structural collapse of two
+    prior candidates); external invalidation demoted to an input;
+    self-model-obsolescence still open. The single hard-erase sub-Q is
+    split -- trace-erase lean NO (Bouton), dedicated-disengage-op lean YES
+    (Koster). Narrowing is structural, not experimental; exp_conf 0.0, lit
+    parallel-only.
   The cluster is the mirror image of the unregistered interrupted-task /
   Zeigarnik resumption gap (resume <-> disengage); Q-053 must be reconciled
   with that gap when it is registered (after its own biology-before pull),

@@ -33626,51 +33626,100 @@
   functional_restatement: >
     ARC-079 / MECH-340 establish THAT persistence is gated and disengagement
     is the default; they deliberately do not commit the gate signal. Q-053
-    is that open question, with firm boundaries already fixed by the
-    goal-disengagement pull rather than left fully open:
+    is that open question. The goal-disengagement pull
+    (targeted_review_goal_disengagement/, 2026-05-19) does not answer it but
+    materially NARROWS it -- as structural constraints
+    (biology-before-formal-definitions), not as experimental ranking;
+    exp_conf stays 0.0.
 
-    Ruled OUT as the gate signal (each would reproduce a documented
-    pathology): accumulated failure / repeated suppression (learned
-    helplessness -- Maier & Seligman; non-closeable recoverability --
-    Bouton), bare effort-cost or instantaneous low value (apathy /
-    anhedonia -- Husain & Roiser, Treadway), MECH-292 staleness alone
-    (incubation sign-inversion -- Jasinska), and the entry's own
-    within-crisis devalued value (a symptom not a cause -- Brandstatter).
+    Ruled OUT as the gate signal (each reproduces a documented pathology):
+    accumulated failure / repeated suppression (learned helplessness --
+    Maier & Seligman 2016; non-closeable recoverability -- Bouton 2014),
+    bare effort-cost or instantaneous low value (apathy / anhedonia --
+    Husain & Roiser 2018, Treadway 2012), MECH-292 staleness alone
+    (incubation sign-inversion -- Jasinska 2014), and the entry's own
+    within-crisis devalued value (a symptom not a cause -- Brandstatter
+    2013). Ruled OUT as an operation SHAPE: a bare disengage with no
+    coupled reengagement step -- Wrosch 2003 and Klinger 1975 independently
+    show abandon-without-redirect reproduces a documented pathology (purpose
+    vacuum / arrest in the depression phase), so whatever the signal, the
+    operation it triggers must be reengagement-coupled.
 
-    Candidate gate signals (open; not pre-committed): (i) an explicit
-    external/world invalidation signal that the goal is unattainable;
-    (ii) a one-shot unattainability appraisal crossed ONCE (not integrated)
-    that opens a brief reengagement-coupled disengagement state; (iii) a
-    control/efficacy-detection signal (a vmPFC->DRN analogue) gated on
-    value-integration integrity; (iv) a self-model obsolescence write that
-    marks the goal superseded. The reconciliation rule may itself be
-    context-dependent (procedural vs declarative goal content).
+    Candidate gate signals, narrowed:
+    FRONT-RUNNER (this pull collapses two prior candidates into one): an
+    internal control/efficacy unattainability APPRAISAL, gated on
+    value-integration integrity. Wrosch 2003 fixes its input semantics (an
+    appraisal of unattainability, not an accumulated-evidence tally);
+    Maier & Seligman 2016 fixes its form (control/efficacy detection is the
+    gated operation, persistence is what it licenses). Same mechanism from
+    two sides. The vmPFC->DRN circuit is the biology but is NOT imported
+    (aversive-context default; reward-context goal pursuit may not share
+    polarity). DEMOTED (an input, not the gate): an explicit external/world
+    invalidation signal -- it can feed the appraisal but Wrosch/Maier both
+    place the licit gate internal, so it is not co-equal. GENUINELY OPEN,
+    untouched by this pull: a self-model obsolescence write that marks the
+    goal superseded -- neither supported nor ruled out here. Structural
+    constraint on ALL candidates (Klinger 1975): the gate firing /
+    not-firing is NOT a one-shot bit-flip; it opens or withholds a brief
+    affectively-signed, reengagement-coupled disengagement STATE.
+    Collapsing it to a single-step flag discards the stage that does the
+    work. The reconciliation rule may itself be context-dependent
+    (procedural vs declarative goal content).
 
-    Open sub-question (lean: NO): does REE need ANY explicit hard
-    trace-erase / retire-from-bank operation, or is 'gate not firing ->
-    MECH-292 rank decays -> entry stops being re-probed while the SD-039
-    trace persists' the complete biology-faithful disengage path? The
-    disengagement pull leans toward sufficiency of ungated decay (it
-    matches Bouton preserve-don't-erase), making a non-biological hard-
-    erase op likely UNnecessary -- but this is not settled.
+    Open sub-questions (the prior single sub-Q is now SPLIT; the halves
+    lean opposite ways): (a) Does the SD-039 TRACE need an explicit
+    hard-erase / retire-from-bank op? Lean: NO -- ungated MECH-292
+    rank-decay of a preserved trace matches Bouton's preserve-don't-erase.
+    Unchanged by this pull. (b) Does DISENGAGEMENT itself need a dedicated,
+    separable operation, distinct from tuning the MECH-292
+    persistence/recoverability knobs? Lean now: YES -- Koster 2011
+    (impaired-disengagement hypothesis) argues a design that gets
+    disengagement 'for free' by tuning those knobs reproduces the
+    rumination pathology; the disengage primitive must be its own thing.
+    (Caveat: Koster's disengagement is attentional, not
+    behavioural-commitment revocation -- transfer is structural shape, not
+    mechanism.) These two were previously conflated under one 'lean: no',
+    which made the sufficiency lean look stronger than the evidence
+    supports. They are jointly consistent: the trace is preserved (a, NO)
+    AND the gate is a dedicated op (b, YES).
   notes: >
-    Registered 2026-05-19 from the goal-disengagement pull, following the
-    project pattern of registering the genuinely-open trigger as a Q-claim
-    rather than pre-committing a mechanism. Mirror cross-reference: the
-    interrupted-task / Zeigarnik resumption gap is the inverse question
-    (when to RESUME a deferred goal); it is unregistered and gated behind
-    its own biology-before pull -- Q-053 and that future claim must be
-    reconciled (a goal cannot be simultaneously gated-for-resumption and
-    disengaged), but Zeigarnik is NOT registered here. Resolution path: a
-    substrate-design decision + a falsifier EXQ that induces the three
-    MECH-340 failure signatures; no experiment queued yet.
+    Registered 2026-05-19 from the goal-disengagement pull; NARROWED the
+    same day from that pull's own synthesis (the narrowing was already
+    implicit in targeted_review_goal_disengagement/ and is now reflected in
+    the claim body). The narrowing is STRUCTURAL
+    (biology-before-formal-definitions: divergences are constraints, not
+    caveats), not experimental ranking -- the candidate set is reshaped
+    exactly as the ruled-out set was, from biology; exp_conf remains 0.0
+    and lit_conf is a parallel signal that is never blended. Front-runner =
+    an internal control/efficacy unattainability appraisal (Wrosch input
+    semantics + Maier form); external invalidation demoted to an input;
+    self-model obsolescence remains genuinely open. The single hard-erase
+    sub-Q was split into trace-erase (lean NO, Bouton) vs
+    dedicated-disengage-op (lean YES, Koster). Following the project
+    pattern of registering the genuinely-open trigger as a Q-claim rather
+    than pre-committing a mechanism: the FORM is now constrained, the
+    COMPUTATION of the appraisal is still open (Wrosch establishes THAT an
+    appraisal triggers it, not HOW a system computes unattainability --
+    that computation is precisely the function MECH-340 must implement).
+    Mirror cross-reference: the interrupted-task / Zeigarnik resumption gap
+    is the inverse question (when to RESUME a deferred goal); it is
+    unregistered and gated behind its own biology-before pull -- Q-053 and
+    that future claim must be reconciled (a goal cannot be simultaneously
+    gated-for-resumption and disengaged), but Zeigarnik is NOT registered
+    here. Resolution path: a substrate-design decision + a falsifier EXQ
+    that induces the three MECH-340 failure signatures; no experiment
+    queued yet.
   evidence_quality_note: >
     Open question, confidence 0.0 by construction. The boundaries (ruled-out
-    signals) are firmly grounded in `targeted_review_goal_disengagement/`
-    and `targeted_review_ghost_goal_search/`; the candidate signals are not
-    yet evidenced and must not be treated as ranked. lit_conf is a PARALLEL
-    signal only and is NOT blended; this is an open question, not a
-    supported claim.
+    signals AND the ruled-out operation-shape) and the candidate-set
+    narrowing (front-runner / demoted / open) are firmly grounded in
+    `targeted_review_goal_disengagement/` and
+    `targeted_review_ghost_goal_search/`. The front-runner is a STRUCTURAL
+    collapse of two prior candidates, not an evidenced ranking: it is not
+    yet experimentally supported and must not be treated as confirmed. The
+    split sub-Q leans (a NO / b YES) are literature leans, not results.
+    lit_conf is a PARALLEL signal only and is NOT blended; this is an open
+    question, not a supported claim.
   literature_anchors:
     - targeted_review_goal_disengagement
     - targeted_review_ghost_goal_search
