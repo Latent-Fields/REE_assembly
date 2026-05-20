@@ -427,21 +427,62 @@ _DIR_RUN_CACHE: dict = {"built_at": 0.0, "map": {}}
 _DIR_RUN_TTL = 60.0
 
 
+_MANIFEST_INDEX_SKIP_FILES = {
+    "claim_evidence.v1.json",
+    "review_tracker.json",
+    "runner_status.json",
+    "substrate_status_snapshot.json",
+}
+_MANIFEST_INDEX_SKIP_DIRS = {
+    "runner_status",
+    "schemas",
+    "scripts",
+    "runner_commands",
+    "runner_heartbeats",
+    "runner_signals",
+    "_runner_signals",
+}
+
+
+def _manifest_dir_name_from_stem(stem: str) -> str:
+    """Collapse flat manifest filename to explorer dir_name (strip timestamp + .json)."""
+    return re.sub(r"_(?:v\d+_)?\d{8}T\d{6}Z?(?:_v\d+)?$", "", stem)
+
+
 def _build_dir_to_runs() -> dict:
     """Scan evidence/experiments/ and build {dir_name: {run_id, ...}}.
 
-    Reads manifest.json under each experiment dir (and any flat *.json files
-    with a run_id field) so that runs marked in reviewed_run_ids can be matched
-    back to their parent directory.
+    Reads manifest.json under each experiment dir, per-dir *.json, and flat
+    top-level *.json manifests so reviewed_run_ids map to explorer dir_names.
     """
     exp_root = SERVE_DIR / "evidence" / "experiments"
     result: dict = {}
     if not exp_root.is_dir():
         return result
+
+    def _add_runs(dir_name: str, run_ids: set) -> None:
+        if not dir_name or not run_ids:
+            return
+        result.setdefault(dir_name, set()).update(run_ids)
+
+    # Flat manifests at evidence/experiments/*.json (V3 runner default layout).
+    for j in exp_root.glob("*.json"):
+        if j.name in _MANIFEST_INDEX_SKIP_FILES:
+            continue
+        try:
+            data = json.loads(j.read_text())
+        except Exception:
+            continue
+        if not isinstance(data, dict):
+            continue
+        rid = data.get("run_id")
+        if rid:
+            _add_runs(_manifest_dir_name_from_stem(j.stem), {rid})
+
     for d in exp_root.iterdir():
         if not d.is_dir():
             continue
-        if d.name in ("runner_status", "schemas", "scripts"):
+        if d.name in _MANIFEST_INDEX_SKIP_DIRS:
             continue
         runs: set = set()
         for m in d.glob("**/manifest.json"):
@@ -462,7 +503,7 @@ def _build_dir_to_runs() -> dict:
             except Exception:
                 pass
         if runs:
-            result[d.name] = runs
+            _add_runs(d.name, runs)
     return result
 
 
@@ -575,6 +616,127 @@ def read_merged_runner_status() -> dict:
     return merged
 
 
+def _utc_age_seconds(iso: str, now) -> int | None:
+    """Seconds since an ISO-8601 UTC timestamp, or None if unparsable."""
+    from datetime import datetime, timezone
+    if not iso:
+        return None
+    try:
+        t = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+        if t.tzinfo is None:
+            t = t.replace(tzinfo=timezone.utc)
+        return int((now - t).total_seconds())
+    except Exception:
+        return None
+
+
+def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
+    """Live heartbeats from the Phase-1 coordinator (WireGuard).
+
+    Returns {machine: snapshot} or {} when unconfigured/unreachable.
+    Never raises -- /api/machines must stay available if the hub is down.
+    """
+    import urllib.error
+    import urllib.request
+
+    url = (cfg.get("COORDINATOR_URL") or "").rstrip("/")
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN") or ""
+    if not url or not tok:
+        return {}
+    try:
+        req = urllib.request.Request(
+            url + "/shadow/status",
+            headers={"Authorization": "Bearer " + tok},
+            method="GET",
+        )
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            st = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, OSError, json.JSONDecodeError, ValueError):
+        return {}
+    out: dict[str, dict] = {}
+    for m in st.get("machines") or []:
+        name = m.get("machine")
+        if not name:
+            continue
+        out[name] = {
+            "last_tick_utc": m.get("last_seen") or "",
+            "state": m.get("state") or "unknown",
+            "current_exq": m.get("current_exq"),
+            "progress": m.get("progress") or {},
+        }
+    return out
+
+
+def _coordinator_preferred(git_fresh: bool, git_age: int | None,
+                          coord_age: int | None,
+                          fresh_window: int) -> bool:
+    """True when coordinator telemetry should override stale git heartbeats."""
+    if coord_age is None or coord_age < 0 or coord_age > fresh_window:
+        return False
+    if not git_fresh:
+        return True
+    if git_age is None:
+        return True
+    return coord_age < git_age
+
+
+def _overlay_coordinator_heartbeat(entry: dict, snap: dict, now,
+                                   fresh_window: int) -> None:
+    """Mutate a /api/machines row with fresher coordinator fields."""
+    coord_age = _utc_age_seconds(snap.get("last_tick_utc") or "", now)
+    coord_fresh = (
+        coord_age is not None and 0 <= coord_age <= fresh_window)
+    if not _coordinator_preferred(
+            entry.get("fresh"), entry.get("age_seconds"),
+            coord_age, fresh_window):
+        return
+    entry["last_tick_utc"] = snap.get("last_tick_utc") or entry["last_tick_utc"]
+    entry["age_seconds"] = coord_age
+    entry["fresh"] = coord_fresh
+    entry["state"] = snap.get("state") or entry["state"]
+    entry["current_exq"] = snap.get("current_exq")
+    if snap.get("progress"):
+        entry["progress"] = snap["progress"]
+    entry["telemetry_source"] = "coordinator"
+
+
+def _entry_from_coordinator_snapshot(name: str, snap: dict, now,
+                                     fresh_window: int) -> dict:
+    """Build a /api/machines row for a host only visible on the coordinator."""
+    coord_age = _utc_age_seconds(snap.get("last_tick_utc") or "", now)
+    coord_fresh = (
+        coord_age is not None and 0 <= coord_age <= fresh_window)
+    return {
+        "machine": name,
+        "hostname": None,
+        "last_tick_utc": snap.get("last_tick_utc") or "",
+        "age_seconds": coord_age,
+        "fresh": coord_fresh,
+        "state": snap.get("state") or "unknown",
+        "current_exq": snap.get("current_exq"),
+        "current_exq_started_utc": None,
+        "current_title": None,
+        "current_claim_id": None,
+        "current_description": None,
+        "progress": snap.get("progress") or {},
+        "seconds_elapsed": None,
+        "seconds_remaining": None,
+        "recent_lines": [],
+        "queue_depth": None,
+        "queue_id_at_head": None,
+        "recent_completed": [],
+        "gpu": {},
+        "runner_pid": None,
+        "runner_version": None,
+        "status_idle": None,
+        "status_current": None,
+        "status_last_updated": None,
+        "has_heartbeat": False,
+        "has_status": False,
+        "telemetry_source": "coordinator",
+    }
+
+
 def read_machines() -> dict:
     """Aggregate per-machine heartbeats + status into a single view.
 
@@ -628,15 +790,10 @@ def read_machines() -> dict:
         st = statuses.get(name, {})
 
         last_tick = hb.get("last_tick_utc") or st.get("last_updated") or ""
-        age_seconds = None
-        fresh = False
-        if last_tick:
-            try:
-                t = datetime.fromisoformat(last_tick.replace("Z", "+00:00"))
-                age_seconds = int((now - t).total_seconds())
-                fresh = 0 <= age_seconds <= FRESH_WINDOW_SECONDS
-            except Exception:
-                pass
+        age_seconds = _utc_age_seconds(last_tick, now)
+        fresh = (
+            age_seconds is not None
+            and 0 <= age_seconds <= FRESH_WINDOW_SECONDS)
 
         entry = {
             "machine": name,
@@ -665,13 +822,32 @@ def read_machines() -> dict:
             "status_last_updated": st.get("last_updated"),
             "has_heartbeat": name in heartbeats,
             "has_status": name in statuses,
+            "telemetry_source": "git",
         }
         out_machines.append(entry)
+
+    # Phase-1 bridge: coordinator heartbeats are live over WireGuard while
+    # git-synced runner_heartbeats/*.json on this Mac may lag (branch drift,
+    # pull interval, push races). Prefer coordinator when fresher.
+    coord_snaps = _fetch_coordinator_machine_snapshots(_load_coordinator_cfg())
+    if coord_snaps:
+        by_name = {e["machine"]: e for e in out_machines}
+        for entry in out_machines:
+            snap = coord_snaps.get(entry["machine"])
+            if snap:
+                _overlay_coordinator_heartbeat(
+                    entry, snap, now, FRESH_WINDOW_SECONDS)
+        for name, snap in coord_snaps.items():
+            if name not in by_name:
+                out_machines.append(_entry_from_coordinator_snapshot(
+                    name, snap, now, FRESH_WINDOW_SECONDS))
+        out_machines.sort(key=lambda e: e["machine"])
 
     return {
         "schema_version": "v1",
         "now_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "fresh_window_seconds": FRESH_WINDOW_SECONDS,
+        "coordinator_overlay": bool(coord_snaps),
         "machines": out_machines,
     }
 
@@ -1353,11 +1529,93 @@ def _load_coordinator_cfg() -> dict:
     return cfg
 
 
+def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
+    """Plain-language phase + next actions for the explorer panel."""
+    st = st or {}
+    mode = st.get("mode") or "?"
+    div = st.get("adjusted_divergences",
+                 st.get("divergences_blocking", st.get("divergences", 0)))
+    raw_div = st.get("divergences", 0)
+    if verdict == "NOT_CONFIGURED":
+        return {
+            "phase": 0,
+            "phase_label": "Phase 0 -- setup",
+            "parallel": "Coordinator not wired on this Mac yet.",
+            "assess": "n/a",
+            "retire": "Do not change git claiming or heartbeats.",
+            "next": [
+                "Copy REE_assembly/coordinator.env.example to coordinator.env.",
+                "Set COORDINATOR_URL and COORDINATOR_LOCAL_TOKEN; use public "
+                "SSH IPs for cloud-2/3/4 (see coordinator/OPERATOR_GUIDE.md).",
+                "Restart serve.py, then open this panel again.",
+            ],
+        }
+    if verdict == "UNREACHABLE":
+        return {
+            "phase": 0,
+            "phase_label": "Phase 0 -- hub unreachable",
+            "parallel": "Cannot reach coordinator (WireGuard or ree-coordinator).",
+            "assess": "n/a",
+            "retire": "Do not change git claiming or heartbeats.",
+            "next": [
+                "On Mac: curl -s http://10.8.0.1:8787/health (expect ok:true).",
+                "On ree-cloud-1: systemctl status ree-coordinator wg-quick@wg0.",
+                "Fix network before starting a soak.",
+            ],
+        }
+    if verdict == "DIVERGENCE":
+        return {
+            "phase": 1,
+            "phase_label": "Phase 1 -- shadow soak (BLOCKED)",
+            "parallel": "Git claiming ON + coordinator watching (both active).",
+            "assess": ("FAIL -- unexplained divergence (blocking=%d, "
+                       "raw audit=%d)." % (div, raw_div)),
+            "retire": "Do NOT shut down git. Do NOT advance to Phase 2.",
+            "next": [
+                "Read recent_divergences in this panel or check_shadow.py output.",
+                "Classify each row (see ree-v3/coordinator/SOAK_LOG.md).",
+                "Fix harness/setup; wait for HEALTHY + div 0 before cutover.",
+            ],
+        }
+    if verdict == "NO_SIGNAL":
+        return {
+            "phase": 1,
+            "phase_label": "Phase 1 -- shadow soak (no traffic)",
+            "parallel": "Git claiming ON; coordinator sees no fresh shadow traffic.",
+            "assess": "Not running -- soak is not exercising anything.",
+            "retire": "Do not shut down git.",
+            "next": [
+                "Confirm each cloud has shadow.conf and ree-runner is active.",
+                "Click Start shadow soak (or restart runners) after clearing "
+                "stale stop commands on clouds.",
+                "Need FRESH heartbeats from Mac + all clouds in shadow mode.",
+            ],
+        }
+    # HEALTHY
+    return {
+        "phase": 1,
+        "phase_label": "Phase 1 -- shadow soak (assessing)",
+        "parallel": "TWO systems: git owns claims/results NOW; coordinator "
+                    "compares (mode=%s)." % mode,
+        "assess": "PASS so far -- claims seen, 0 unexplained divergence.",
+        "retire": "Do NOT shut down git claiming or heartbeat pushes yet. "
+                  "Retire git-MUTEX after multi-day HEALTHY, then Phase 2 "
+                  "drain + cutover (see OPERATOR_GUIDE.md).",
+        "next": [
+            "Keep runners in COORDINATION_MODE=shadow on all experiment hosts.",
+            "Run check_shadow.py daily; need days of HEALTHY at div 0.",
+            "When ready for Phase 2: drain fleet, flip to coordinator mode "
+            "everywhere at once (no mixed fleet).",
+        ],
+    }
+
+
 def _shadow_verdict(st: dict, stale_mins: float = 10.0) -> tuple:
     """Same logic as ree-v3/coordinator/check_shadow.py (kept in sync by
     hand -- the two live in different repos so duplication is deliberate)."""
     from datetime import datetime, timezone
-    ndiv = st.get("divergences", 0)
+    ndiv = st.get("adjusted_divergences",
+                  st.get("divergences_blocking", st.get("divergences", 0)))
     total = st.get("total_claims", 0)
     fresh = 0
     for m in st.get("machines", []):
@@ -1405,13 +1663,19 @@ def read_shadow_status() -> dict:
         return {"verdict": "UNREACHABLE", "color": "red",
                 "detail": repr(exc)}
     verdict, color = _shadow_verdict(st)
+    guide = _shadow_operator_guide(verdict, st)
     return {"verdict": verdict, "color": color,
             "mode": st.get("mode"),
             "total_claims": st.get("total_claims", 0),
             "divergences": st.get("divergences", 0),
+            "adjusted_divergences": st.get(
+                "adjusted_divergences",
+                st.get("divergences_blocking", st.get("divergences", 0))),
+            "divergences_explained": st.get("divergences_explained", 0),
             "experiments_in_mirror": st.get("experiments_in_mirror", 0),
             "machines": st.get("machines", []),
-            "recent_divergences": st.get("recent_divergences", [])}
+            "recent_divergences": st.get("recent_divergences", []),
+            "guide": guide}
 
 
 def _ssh(host: str, user: str, remote_cmd: str,

@@ -72,32 +72,62 @@ def load_tracker() -> tuple[set, set, str]:
     return reviewed, discussed, last_review
 
 
+def _manifest_pass_fail(d: dict) -> str | None:
+    """Resolve PASS/FAIL from V3 manifests (result, verdict, outcome, or metrics)."""
+    result = d.get("result") or d.get("verdict") or d.get("outcome")
+    if result in ("PASS", "FAIL"):
+        return result
+    metrics = d.get("metrics")
+    if isinstance(metrics, dict):
+        overall_pass = metrics.get("overall_pass")
+        if overall_pass is True:
+            return "PASS"
+        if overall_pass is False:
+            return "FAIL"
+    return None
+
+
+def _accumulate_pending_run(by_run: dict, e: dict, default_claim: str) -> None:
+    run_id = e["run_id"]
+    if run_id not in by_run:
+        by_run[run_id] = {
+            "run_id": run_id,
+            "timestamp_utc": e.get("timestamp_utc", ""),
+            "status": e.get("status", "?"),
+            "claims": [],
+            "failure_signatures": [],
+        }
+    claim = e.get("claim_id") or default_claim
+    if claim not in by_run[run_id]["claims"]:
+        by_run[run_id]["claims"].append(claim)
+    by_run[run_id]["failure_signatures"].extend(e.get("failure_signatures", []))
+
+
 def load_pending_entries(reviewed: set) -> list[dict]:
-    """Load PASS/FAIL entries from claim_evidence not yet in reviewed_run_ids."""
+    """Load PASS/FAIL from claim_evidence entries + unlinked_runs not yet reviewed."""
     if not CLAIM_EVIDENCE.exists():
         print("[error] claim_evidence.v1.json not found -- run build_experiment_indexes.py first",
               file=sys.stderr)
         sys.exit(1)
     with open(CLAIM_EVIDENCE) as f:
         data = json.load(f)
-    entries = [
-        e for e in data.get("entries", [])
-        if e.get("source_type") == "experimental"
-        and e.get("run_id") not in reviewed
-    ]
     by_run: dict[str, dict] = {}
-    for e in entries:
-        run_id = e["run_id"]
-        if run_id not in by_run:
-            by_run[run_id] = {
-                "run_id": run_id,
-                "timestamp_utc": e.get("timestamp_utc", ""),
-                "status": e.get("status", "?"),
-                "claims": [],
-                "failure_signatures": [],
-            }
-        by_run[run_id]["claims"].append(e.get("claim_id", "?"))
-        by_run[run_id]["failure_signatures"].extend(e.get("failure_signatures", []))
+    for e in data.get("entries", []):
+        if e.get("source_type") != "experimental":
+            continue
+        if e.get("run_id") in reviewed:
+            continue
+        if e.get("status") not in ("PASS", "FAIL"):
+            continue
+        _accumulate_pending_run(by_run, e, e.get("claim_id", "?"))
+    for e in data.get("unlinked_runs", []):
+        if e.get("source_type") != "experimental":
+            continue
+        if e.get("run_id") in reviewed:
+            continue
+        if e.get("status") not in ("PASS", "FAIL"):
+            continue
+        _accumulate_pending_run(by_run, e, "(no claim tags)")
     return sorted(by_run.values(), key=lambda r: r["timestamp_utc"])
 
 
@@ -242,12 +272,17 @@ def load_runner_status_undiscussed(reviewed: set, discussed: set,
 
 
 def load_indexed_run_ids() -> set:
-    """Return the set of run_ids present in claim_evidence (indexed experiments)."""
+    """Return run_ids known to claim_evidence (linked entries + unlinked_runs)."""
     if not CLAIM_EVIDENCE.exists():
         return set()
     with open(CLAIM_EVIDENCE) as f:
         data = json.load(f)
-    return {e["run_id"] for e in data.get("entries", []) if "run_id" in e}
+    ids = {e["run_id"] for e in data.get("entries", []) if "run_id" in e}
+    for e in data.get("unlinked_runs", []):
+        rid = e.get("run_id")
+        if rid:
+            ids.add(rid)
+    return ids
 
 
 # Top-level JSON files in EVIDENCE_DIR that are tracker/index artifacts, not manifests.
@@ -291,18 +326,9 @@ def load_unclaimed_manifests(reviewed: set, discussed: set,
         run_id = d.get("run_id")
         if not run_id:
             continue
-        # Resolve the manifest's pass/fail label. Some scripts write result/verdict
-        # directly; substrate-readiness diagnostics often only set metrics.overall_pass.
-        result = d.get("result") or d.get("verdict")
-        if result not in ("PASS", "FAIL"):
-            metrics = d.get("metrics")
-            overall_pass = metrics.get("overall_pass") if isinstance(metrics, dict) else None
-            if overall_pass is True:
-                result = "PASS"
-            elif overall_pass is False:
-                result = "FAIL"
-            else:
-                continue
+        result = _manifest_pass_fail(d)
+        if not result:
+            continue
         if run_id in indexed_run_ids:
             continue
         if run_id in reviewed:
@@ -632,8 +658,12 @@ def main():
     reviewed, discussed, last_review_utc = load_tracker()
     indexed_run_ids = load_indexed_run_ids()
     runs = load_pending_entries(reviewed)
+    pending_run_ids = {r["run_id"] for r in runs}
     runner_undiscussed = load_runner_status_undiscussed(reviewed, discussed, indexed_run_ids)
-    unclaimed = load_unclaimed_manifests(reviewed, discussed, indexed_run_ids)
+    unclaimed = [
+        u for u in load_unclaimed_manifests(reviewed, discussed, indexed_run_ids)
+        if u["run_id"] not in pending_run_ids
+    ]
     write_pending_review(runs, runner_undiscussed, unclaimed, last_review_utc)
     append_substrate_change_section()
 

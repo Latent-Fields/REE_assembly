@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-19.2 -->
+<!-- EXPLORER_VERSION: 2026-05-20.3 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9504,7 +9504,10 @@ END CONFLICT RESOLUTION`;
         const stale = ageSec != null && ageSec > 75
           ? ` <span style="color:var(--muted);font-weight:normal">(heartbeat ${ageSec}s old)</span>`
           : '';
-        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${stale}</div>`;
+        const live = m.telemetry_source === 'coordinator'
+          ? ` <span style="color:var(--muted);font-weight:normal">(coordinator)</span>`
+          : '';
+        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${live}${stale}</div>`;
       }
 
       if (cur || remoteRunning.length > 0 || isRunning) {
@@ -10430,7 +10433,7 @@ END CONFLICT RESOLUTION`;
       <div id="shadowVerdict" style="font-weight:600;">loading...</div>
       <div id="shadowMeta" style="color:#555;margin:3px 0 6px;"></div>
       <div id="shadowMachines" style="color:#555;font-size:11px;
-           max-height:120px;overflow:auto;"></div>
+           max-height:160px;overflow:auto;"></div>
       <div style="margin-top:8px;display:flex;gap:6px;">
         <button id="shadowStartBtn"
                 style="flex:1;padding:6px;cursor:pointer;">
@@ -10456,11 +10459,23 @@ END CONFLICT RESOLUTION`;
         $("shadowMachines").textContent = "";
         return;
       }
-      $("shadowMeta").textContent =
-        "mode=" + (s.mode||"?") + "  claims=" + (s.total_claims||0) +
-        "  divergences=" + (s.divergences||0) +
-        "  mirror=" + (s.experiments_in_mirror||0);
-      var now = Date.now(), rows = [];
+      if (s.guide) {
+        var g = s.guide;
+        var next = (g.next || []).map(function (x) {
+          return "<li>" + x + "</li>";
+        }).join("");
+        $("shadowMeta").innerHTML =
+          "<div><b>" + (g.phase_label || "") + "</b></div>" +
+          "<div style=\"margin:2px 0;\">" + (g.assess || "") + "</div>" +
+          "<div style=\"font-size:10px;\">" + (g.parallel || "") + "</div>" +
+          (next ? "<ul style=\"margin:4px 0 0 14px;padding:0;\">" + next + "</ul>" : "");
+      } else {
+        $("shadowMeta").textContent =
+          "mode=" + (s.mode||"?") + "  claims=" + (s.total_claims||0) +
+          "  divergences=" + (s.divergences||0) +
+          "  mirror=" + (s.experiments_in_mirror||0);
+      }
+      var now = Date.now(), html = "";
       (s.machines||[]).forEach(function (m) {
         var age = "?", tag = "NO-TS";
         if (m.last_seen) {
@@ -10471,11 +10486,27 @@ END CONFLICT RESOLUTION`;
             age = sec < 120 ? sec+"s" : Math.round(sec/60)+"m";
           }
         }
-        rows.push("[" + tag + "] " + m.machine + "  " + age +
-                  "  " + (m.state||"") + "  " + (m.current_exq||""));
+        var p = m.progress || {};
+        var pct = Math.min(100, Math.max(0, p.overall_pct || 0));
+        var runTxt = (p.runs_done != null && p.runs_total)
+          ? (" run " + p.runs_done + "/" + p.runs_total) : "";
+        var hasProgress = m.state === "running" && m.current_exq &&
+          (p.overall_pct != null || p.runs_total);
+        var bar = hasProgress
+          ? ('<div style="margin:3px 0 2px;height:5px;background:#e8e8e8;'
+             + 'border-radius:3px;overflow:hidden;">'
+             + '<div style="height:100%;width:' + pct.toFixed(1)
+             + '%;background:#2e7d32;"></div></div>'
+             + '<div style="font-size:10px;color:#666;">'
+             + pct.toFixed(1) + '%' + runTxt + '</div>')
+          : "";
+        html += '<div style="margin-bottom:6px;">'
+          + '<div>[' + tag + '] <b>' + (m.machine||"?") + '</b> '
+          + age + '  ' + (m.state||"") + '  '
+          + (m.current_exq||"(idle)") + '</div>' + bar + '</div>';
       });
-      $("shadowMachines").textContent = rows.join("\n") ||
-        "(no machines reporting)";
+      $("shadowMachines").innerHTML = html ||
+        '<span>(no machines reporting)</span>';
     }
     function poll() {
       fetch("/api/shadow/status?t=" + Date.now())

@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-19T21:27:25Z",
+  "last_updated_utc": "2026-05-20T20:57:36Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2179,8 +2179,8 @@
       "implementation_hint": "Three additions to CausalGridWorldV3 layered on top of SD-047 (which lands first): (1) Multiple resource identities (default n_resource_types=3: food/water/novelty) with identity tags in obs_dict + type-specific spawn distribution + type-specific benefit_curve (sigmoidal_saturating / sharp_saturation / novelty_decay). (2) Per-axis homeostatic drive system replacing SD-012's single drive_weight scalar -- per-axis depletion + per-axis weight + configurable combiner (sum/max/learned). (3) curriculum-introduction hook (resource_introduction_schedule: dict[str, int]). All bit-identical OFF when master switch disabled; per-resource-type bit-identical OFF for ablation studies. Validation experiment: 4-arm noise sweep (ARM_0 OFF / ARM_1 2-type homeostatic / ARM_2 3-type default / ARM_3 5-type overshoot) with explicit interpretation grid mapping outcomes to architectural conclusions including a Woo/Spelke-style falsifier branch routing MECH-229 to substrate_conditional with V4 dependency. Module surface: CausalGridWorldV3 in ree_core/environment/causal_grid_world.py + per-axis drive cascade through encoder + E3 evaluation + downstream goal-conditioning pathway. Triggers pending_substrate_reconfirmation on SD-012-emergent invariants per invariant-types governance rule.",
       "priority": 1,
       "added_session": "draft-sd049-multi-resource-heterogeneity-2026-05-03T0947Z",
-      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
-      "validation_note": "V3-EXQ-513 PASS 13/13 2026-05-03: Phase 1 substrate confirmed. All curriculum checks pass. Phase 2 (encoder + EXQ-514 behavioural) still pending."
+      "last_seen_session": "governance-20260520T205736Z",
+      "validation_note": "V3-EXQ-513 PASS 13/13 2026-05-03: Phase 1 substrate confirmed. goal_pipeline:GAP-2 in-progress; V3-EXQ-514j queued 2026-05-20 (514f reef + MECH-307 + drive_floor=0.9 + SP-CEM)."
     },
     {
       "sd_id": "SD-049-PHASE-2",
@@ -2552,7 +2552,8 @@
       "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4). || NEXT SUBSTRATE STEP (post V3-EXQ-543e autopsy, user-gated 2026-05-17): autopsy 'option 2' head-input first-action one-hot augmentation -- feed the gated-policy scoring heads the first-action category directly (z_world alone is starved: E2 world-forward compresses SP-CEM's ~5 first-action classes to ~0.22% of z_world magnitude). Phase-1 module/contract is implemented and SP-CEM (ARC-065) is now the main-path default; the head-input contract is the remaining substrate bottleneck. The falsifier re-issue V3-EXQ-543f must ALSO set dacc_weight>0 + a pre-flight non-degeneracy assertion (the 543d/543e dACC factorial axis was never live on any substrate due to the dacc_weight=0.0 DACCtoE3Adapter zero-return path).",
       "priority": 1,
       "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
-      "last_seen_session": "governance-2026-05-19T211406Z"
+      "last_seen_session": "governance-20260520T205736Z",
+      "last_seen_note": "2026-05-20: GAP-B mode_separation_floor substrate landed; V3-EXQ-543k queued (supersedes 543i). GAP-C/D plan-closed at substrate; evidence gates 543k + V3-EXQ-598. No new indexed pending_review items this cycle."
     },
     {
       "sd_id": "ARC-064",
