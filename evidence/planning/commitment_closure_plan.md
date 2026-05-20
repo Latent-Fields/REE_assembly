@@ -11,17 +11,18 @@ closure_plan:
       phase: 1
       status: in-progress
       severity: load-bearing
-      owner_exq: TBD
+      owner_exq: V3-EXQ-598
       unblocks_claims: [SD-033a, MECH-262, SD-034]
-      depends_on: []
+      depends_on: ["arc_062_rule_apprehension:GAP-B"]
       cross_plan_link:
         - "arc_062_rule_apprehension:GAP-A"
         - "arc_062_rule_apprehension:GAP-B"
         - "arc_062_rule_apprehension:GAP-C"
         - "arc_062_rule_apprehension:GAP-D"
       blocking_external: []
-      last_updated: 2026-05-17
-      substrate_note: "GAP-C + GAP-D substrate implemented 2026-05-17: discriminator_proj routing and train_rule_bias_head flag landed; bias_head_parameters() method exposed. Substrate is ready for the validation EXQ (2-arm ablation: frozen-zero vs trainable head on ARC-062+SD-054 stack). Validation EXQ deferred until V3-EXQ-543f returns a contributory result (GAP-B scientific gate). Status blocked -> substrate_ready."
+      last_updated: 2026-05-20
+      resume_condition: "GAP-1 closes on V3-EXQ-598 PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543k contributory PASS (arc_062 GAP-B retest); EXQ-598 queued at priority 4 so it runs after 543k (priority 5)."
+      substrate_note: "GAP-C + GAP-D substrate implemented 2026-05-17 (discriminator_proj + train_rule_bias_head + bias_head_parameters). V3-EXQ-598 queued 2026-05-20: frozen vs trainable bias head on ARC-062+SD-054 stack (SP-CEM, differential heads, mode_separation_floor). Dry-run: C1 frozen silent PASS; C2 trainable nonzero PASS; C3 reef split FAIL on tiny schedule (expected). Full run pending."
     - id: "commitment_closure:GAP-2"
       title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence PASS"
       phase: 2
@@ -472,7 +473,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | in-progress | arc_062_rule_apprehension GAP-B in-progress (V3-EXQ-543g is the live falsifier; substrate GAP-C/D implemented 2026-05-17) | Track via [arc_062_rule_apprehension_plan.md](./arc_062_rule_apprehension_plan.md) GAP-A/B/C/D; closes when 543g returns contributory PASS -> GAP-C/D validation EXQ (2-arm ablation) queued | TBD | 2026-05-17 |
+| GAP-1 | 1 | in-progress | arc_062 GAP-B retest V3-EXQ-543k (priority 5); interpret EXQ-598 only after 543k contributory PASS | V3-EXQ-598 queued (2-arm frozen vs trainable bias head; priority 4). Substrate GAP-C/D done 2026-05-17. Closes on 598 PASS. | V3-EXQ-598 | 2026-05-20 |
 | GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
 | GAP-3 | 3 | done | (none) | DONE 2026-05-17: env extensions primitives 1-3 IMPLEMENTED; 14/14 contract tests PASS + 434/434 regression. Deliverable 4 (phased curriculum) is GAP-11 (separate). Unblocks GAP-8. | env infra (no EXQ) | 2026-05-17 |
 | GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
@@ -582,6 +583,17 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-20 - GAP-1 validation EXQ V3-EXQ-598 queued; plan reconciled to 543k gate
+
+Status table was stale (still referenced V3-EXQ-543g as live falsifier). Reconciled:
+arc_062 GAP-B owner is V3-EXQ-543k (mode_separation_floor post-543i autopsy); GAP-1
+validation is V3-EXQ-598 (2-arm `lateral_pfc_train_rule_bias_head` OFF vs ON on the
+ARC-062 + SD-054 bipartite stack with SP-CEM + differential heads). Queue priority 4
+(runs after 543k at 5). `depends_on` arc_062:GAP-B added to GAP-1 YAML node.
+Interpretation gate: treat 598 as closure evidence only after 543k contributory PASS.
+Dry-run smoke: frozen bias silent (C1 PASS); trainable bias moves (C2 PASS); reef
+split criterion not met on 3+4+2 ep schedule (C3 FAIL -- full run required).
 
 ### 2026-05-17 - GAP-10 DONE: StepHarness write-path audit complete
 
