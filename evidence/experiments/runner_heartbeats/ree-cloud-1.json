@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-20T06:37:40Z",
+  "last_tick_utc": "2026-05-20T06:38:42Z",
   "state": "running",
   "current_exq": "V3-EXQ-597",
   "current_exq_started_utc": "2026-05-20T06:33:26.973003+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-258",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / PE_FORWARD",
-    "runs_done": 0,
+    "run_label": "Seed 42 / RAW_NORM_ABLATION",
+    "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 200,
+    "episodes_done": 0,
     "episodes_total": 280,
-    "overall_pct": 11.9
+    "overall_pct": 16.7
   },
-  "seconds_elapsed": 254,
-  "seconds_remaining": 5388,
+  "seconds_elapsed": 316,
+  "seconds_remaining": 1521,
   "recent_lines": [
-    "Seed 42 Condition PE_FORWARD",
-    "[train] PE_FORWARD seed=42 ep 50/250",
-    "[train] PE_FORWARD seed=42 ep 100/250",
-    "[train] PE_FORWARD seed=42 ep 150/250",
-    "[train] PE_FORWARD seed=42 ep 200/250"
+    "[train] PE_FORWARD seed=42 ep 200/250",
+    "[train] PE_FORWARD seed=42 ep 250/250",
+    "[seed=42 PE_FORWARD] r2=0.563 ent=1.200 corr_pe=nan corr_raw=nan delta=nan",
+    "verdict: PASS",
+    "Seed 42 Condition RAW_NORM_ABLATION"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
