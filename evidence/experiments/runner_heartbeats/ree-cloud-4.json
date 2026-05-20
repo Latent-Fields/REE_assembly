@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-20T20:51:08Z",
+  "last_tick_utc": "2026-05-20T20:52:10Z",
   "state": "running",
   "current_exq": "V3-EXQ-588b",
   "current_exq_started_utc": "2026-05-20T19:41:49.839763+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_OFF",
-    "runs_done": 0,
+    "run_label": "Seed 43 / ARM_OFF",
+    "runs_done": 1,
     "runs_total": 9,
-    "episodes_done": 200,
+    "episodes_done": 0,
     "episodes_total": 300,
-    "overall_pct": 7.4
+    "overall_pct": 11.1
   },
-  "seconds_elapsed": 4159,
-  "seconds_remaining": 19470,
+  "seconds_elapsed": 4221,
+  "seconds_remaining": 33647,
   "recent_lines": [
-    "V3-EXQ-588b: goal-seeding pipeline diagnostic",
-    "dry_run=False seeds=[42, 43, 44] n_episodes=300 warmup=50",
-    "Seed 42 Condition ARM_OFF",
     "[train] ARM_OFF seed=42 ep 100/300 z_goal_norm=0.0000 seedings_pw=1",
-    "[train] ARM_OFF seed=42 ep 200/300 z_goal_norm=0.0000 seedings_pw=4"
+    "[train] ARM_OFF seed=42 ep 200/300 z_goal_norm=0.0000 seedings_pw=4",
+    "[train] ARM_OFF seed=42 ep 300/300 z_goal_norm=0.0000 seedings_pw=8",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
