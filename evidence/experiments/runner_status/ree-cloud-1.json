@@ -1,11 +1,22 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-19T22:09:34.760409+00:00",
-  "last_updated": "2026-05-20T04:16:07.967074+00:00",
-  "idle": true,
+  "runner_pid": 1111607,
+  "runner_started_at": "2026-05-20T04:16:13.757728+00:00",
+  "last_updated": "2026-05-20T04:16:18.243575+00:00",
+  "idle": false,
   "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-596",
+      "backlog_id": "",
+      "claim_id": "MECH-204",
+      "title": "MECH-204 closure: sleep cluster + StepHarness integration validation",
+      "description": "",
+      "estimated_minutes": 9.6,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-592",
       "backlog_id": "",
@@ -18,6 +29,28 @@
       "ree_version": "v3"
     },
     {
+      "queue_id": "V3-EXQ-595",
+      "backlog_id": "",
+      "claim_id": "ARC-058",
+      "title": "Post-SP-CEM three-arm ARC-033 vs ARC-058 harm-trunk arbitration (self_attribution:GAP-1)",
+      "description": "",
+      "estimated_minutes": 216.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-597",
+      "backlog_id": "",
+      "claim_id": "MECH-258",
+      "title": "MECH-258 precision-weighted PE vs raw magnitude (post-SP-CEM revalidation)",
+      "description": "",
+      "estimated_minutes": 224.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
       "queue_id": "V3-EXQ-591",
       "backlog_id": "",
       "claim_id": "ARC-046",
@@ -25,6 +58,17 @@
       "description": "",
       "estimated_minutes": 4000.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-588b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Goal-seeding pipeline diagnostic: drive_floor x transient patches (post EXQ-588 autopsy)",
+      "description": "",
+      "estimated_minutes": 360.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3089,7 +3133,20 @@
       "output_file": "",
       "completed_by": "ree-cloud-1",
       "actual_secs": 21986.6
+    },
+    {
+      "queue_id": "V3-EXQ-542a",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 Phase 1 substrate-readiness refresh (one-hot head input UC6)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-542a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-542a.json",
+      "started_at": "2026-05-20T04:16:15.457435+00:00",
+      "completed_at": "2026-05-20T04:16:18.243010+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 2.8
     }
-  ],
-  "draining": false
+  ]
 }
