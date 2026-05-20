@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-20T05:09:08Z",
+  "last_tick_utc": "2026-05-20T05:10:10Z",
   "state": "running",
   "current_exq": "V3-EXQ-595",
   "current_exq_started_utc": "2026-05-20T04:41:54.914842+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-058",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ON_SHARED",
-    "runs_done": 2,
+    "run_label": "Seed 7 / OFF",
+    "runs_done": 3,
     "runs_total": 9,
-    "episodes_done": 150,
+    "episodes_done": 0,
     "episodes_total": 180,
-    "overall_pct": 31.5
+    "overall_pct": 33.3
   },
-  "seconds_elapsed": 1634,
-  "seconds_remaining": 3510,
+  "seconds_elapsed": 1696,
+  "seconds_remaining": 3372,
   "recent_lines": [
+    "[train] seed=42 ON_SHARED ep 150/180",
+    "[seed=42 ON_SHARED] r2=0.9665 entropy=0.920 agent_harm_p2=0 body_noise_p2=0",
     "verdict: PASS",
-    "Seed 42 Condition ON_SHARED",
-    "[train] seed=42 ON_SHARED ep 50/180",
-    "[train] seed=42 ON_SHARED ep 100/180",
-    "[train] seed=42 ON_SHARED ep 150/180"
+    "Seed 7",
+    "Seed 7 Condition OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
