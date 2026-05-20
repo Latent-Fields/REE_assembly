@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-20T06:54:14Z",
+  "last_tick_utc": "2026-05-20T06:55:17Z",
   "state": "running",
   "current_exq": "V3-EXQ-597",
   "current_exq_started_utc": "2026-05-20T06:33:26.973003+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 7 / RAW_NORM_ABLATION",
     "runs_done": 3,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 50,
     "episodes_total": 280,
-    "overall_pct": 50.0
+    "overall_pct": 53.0
   },
-  "seconds_elapsed": 1248,
-  "seconds_remaining": 1178,
+  "seconds_elapsed": 1310,
+  "seconds_remaining": 1108,
   "recent_lines": [
-    "[train] PE_FORWARD seed=7 ep 200/250",
     "[train] PE_FORWARD seed=7 ep 250/250",
     "[seed=7 PE_FORWARD] r2=0.844 ent=0.088 corr_pe=nan corr_raw=nan delta=nan",
     "verdict: PASS",
-    "Seed 7 Condition RAW_NORM_ABLATION"
+    "Seed 7 Condition RAW_NORM_ABLATION",
+    "[train] RAW_NORM_ABLATION seed=7 ep 50/250"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
