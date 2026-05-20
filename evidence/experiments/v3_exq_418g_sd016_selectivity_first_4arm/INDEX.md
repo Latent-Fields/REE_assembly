@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_418g_sd016_selectivity_first_4arm
 
-Generated: `2026-05-18T16:32:24.860090Z`
+Generated: `2026-05-20T06:04:58.578519Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -3,7 +3,7 @@ closure_plan:
   id: goal_pipeline
   title: "Goal Pipeline (wanting / liking / drive cascade)"
   registered: 2026-05-08
-  scope_claims: [SD-012, SD-014, SD-015, SD-018, SD-049, MECH-117, MECH-216, MECH-229, MECH-230, MECH-295, MECH-307, ARC-030, ARC-032, ARC-036, ARC-051]
+  scope_claims: [SD-012, SD-014, SD-015, SD-018, SD-049, MECH-117, MECH-216, MECH-229, MECH-230, MECH-295, MECH-306, MECH-307, ARC-030, ARC-032, ARC-036, ARC-051]
   nodes:
     - id: "goal_pipeline:GAP-1"
       title: "MECH-307 anticipatory-affect conjunction architecture"
@@ -26,25 +26,25 @@ closure_plan:
       last_updated: 2026-05-16
       resume_condition: "Monostrategy root cause has a validated substrate fix (V3-EXQ-567 PASS, supports ARC-065: SP-CEM lifts natural action entropy 0.012->0.497, candidate support 1.007->2.810). V3-EXQ-550 settled that the blocker is NOT z_goal wiring. Retest unblockable once SP-CEM lands in the main agent action path; re-issue the SD-049 Phase 2 behavioural validation via /queue-experiment then. See 2026-05-16 decision-log entry."
     - id: "goal_pipeline:GAP-3"
-      title: "SD-012 sustained-drive EMA amendment"
+      title: "SD-012 sustained-drive amendment (EMA Option 1 + drive_floor Option 2)"
       phase: 3
-      status: in-progress
+      status: done
       severity: high
       owner_exq: V3-EXQ-582a
-      unblocks_claims: [SD-012, MECH-216, ARC-051]
+      unblocks_claims: [SD-012, MECH-216, MECH-306, ARC-051]
       depends_on: []
-      last_updated: 2026-05-17
-      resume_condition: "Option 1 substrate landed 2026-05-17 (drive_ema_alpha). V3-EXQ-582 FAILED: diagnostic grid row 'No arm clears A1 (incl. 0.01)' -> Escalate to Option 2. Root cause: drive_level near-zero throughout episodes (agent well-fed); EMA cannot help when input is consistently low. Post_warmup_cut=100 masked the contacts (all contacts before step 100). Option 2 substrate landed 2026-05-17T13:03Z: GoalConfig.drive_floor (default 0.0 bit-identical); GoalState.update() drive_level_floored=max(drive_level,drive_floor) fed into EMA; contract test_drive_floor_gap3_opt2.py 7/7; full suite 484/484. V3-EXQ-582a queued 2026-05-17T13:03Z (priority 1, any machine): sweeps drive_floor {0.0,0.3,0.6,0.9,1.2} x 3 seeds, drive_ema_alpha=1.0 (Option 1 OFF), no post_warmup_cut. Dry-run confirms floor scaling: mean_eff_benefit_on_contact 0.035->0.098->0.119 across floors. GAP-3 done when V3-EXQ-582a PASSes (A1-A4); on PASS register MECH-306 + mark GAP-3 done. On FAIL follow 582a diagnostic grid (see script docstring)."
+      last_updated: 2026-05-20
+      completion_note: "V3-EXQ-582a PASS 2026-05-19T01:45Z (drive_floor sweep; floor=0.9 first-PASS arm A1-A4). Option 1 (drive_ema_alpha) substrate landed but V3-EXQ-582 FAIL (drive near-zero all episode). Option 2 (drive_floor) validated. MECH-306 registered 2026-05-20. Operating recommendation for downstream EXQs: drive_floor=0.9 with drive_ema_alpha=1.0 unless a combined arm is pre-registered."
     - id: "goal_pipeline:GAP-4"
       title: "MECH-295 drive->liking->approach cascade Tier-1 retest cohort"
       phase: 4
-      status: blocked
+      status: in-progress
       severity: high
       owner_exq: V3-EXQ-490g
       unblocks_claims: [MECH-295, ARC-030, MECH-117, Q-040]
       depends_on: ["goal_pipeline:GAP-1", "goal_pipeline:GAP-3"]
-      last_updated: 2026-05-16
-      resume_condition: "Same monostrategy gate as GAP-2 -- validated substrate fix is V3-EXQ-567 (ARC-065 SP-CEM). Also depends on GAP-3: as of 2026-05-17 the GAP-3 Q2 EMA decision is RESOLVED and the SD-012 sustained-drive EMA substrate has landed; GAP-3 is now in-progress with V3-EXQ-582 (discriminative sweep) queued. GAP-4 retest unblockable once SP-CEM lands AND V3-EXQ-582 PASSes (GAP-3 done). See 2026-05-16 and 2026-05-17 decision-log entries."
+      last_updated: 2026-05-20
+      resume_condition: "GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 483c / 524a) unblocked for /queue-experiment with drive_floor enabled on the sustained-drive path. MECH-307 4-arm discriminative pair still pending but GAP-1 substrate is landed."
     - id: "goal_pipeline:GAP-5"
       title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
       phase: 5
@@ -369,8 +369,8 @@ See [Resume ritual](#resume-ritual) below.
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (substrate landed 2026-05-11; 4-arm validation pending separate session) | Queue 4-arm discriminative pair via /queue-experiment under master flag use_mech307_conjunction=True. **NOTE 2026-05-11 (EXQ-550 review):** V3-EXQ-550 FAIL sustains MECH-269 V_s monostrategy substrate-level reading at no-training depth; same run surfaced wired-but-inert z_goal pipeline (1200/1200 update_z_goal calls, z_goal_norm_peak=0.0) -- see decision-log 2026-05-11 entry. V3-EXQ-551 (pipeline-entropy diagnostic) + V3-EXQ-552 (forced-exploration warmup) queued by parallel sessions to narrow mechanism before trained-z_goal follow-up. | TBD (4-arm discriminative pair) | 2026-05-11 |
 | GAP-2 | 2 | blocked | Phase 1 PASS | Re-queue V3-EXQ-514 successor with phased training under MECH-307-fixed substrate | V3-EXQ-514g (TBD) | 2026-05-08 |
-| GAP-3 | 3 | in-progress | V3-EXQ-582a result | Option 1 (EMA) substrate landed + EXQ-582 FAILED 2026-05-17 (no arm cleared A1; drive near-zero all episode). Option 2 (drive_floor) substrate landed 2026-05-17T13:03Z (GoalConfig.drive_floor, 7/7 contracts, 484/484 suite). EXQ-582a queued (priority 1, floor sweep {0.0,0.3,0.6,0.9,1.2} x 3 seeds, no warmup_cut). On 582a PASS: GAP-3 done + register MECH-306. On FAIL: follow 582a diagnostic grid. | V3-EXQ-582a | 2026-05-17 |
-| GAP-4 | 4 | blocked | Phase 1 + Phase 3 PASS | Re-queue Tier-1 cohort under StepHarness with Phase 1 + Phase 3 landed | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-08 |
+| GAP-3 | 3 | done | (none) | Closed 2026-05-20: V3-EXQ-582a PASS (floor=0.9); MECH-306 registered; Option 1 EMA not discriminative winner (582 FAIL). | V3-EXQ-582a | 2026-05-20 |
+| GAP-4 | 4 | in-progress | /queue-experiment Tier-1 cohort | GAP-3 + SP-CEM prerequisites satisfied. Queue 490g/471a/475a/483c/524a successors with drive_floor=0.9 + StepHarness + MECH-307 flags as pre-registered. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-20 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
 
@@ -403,7 +403,8 @@ letter at write time.
 
 | EXQ | Subject | Acceptance | Status |
 |---|---|---|---|
-| TBD | SD-012 drive_ema_alpha sweep discriminative pair | max_effective_benefit > benefit_threshold at contact; persistent attractor seeds on corrected substrate; monotone seeding-rate vs alpha | not queued |
+| V3-EXQ-582 | Option 1 drive_ema_alpha sweep {0.01,0.02,0.2,1.0} | A1-A4 on alpha=0.02 arm | FAIL 2026-05-17 (escalate Option 2) |
+| V3-EXQ-582a | Option 2 drive_floor sweep {0.0,0.3,0.6,0.9,1.2} | A1-A4 on floor=0.9 arm | PASS 2026-05-19 (GAP-3 done) |
 
 ### Phase 4 cohort (Tier-1 StepHarness + Q-040 cascade retest)
 
@@ -440,7 +441,7 @@ PASS, per the 2026-05-08 governance redirect.
 |---|---|---|---|
 | GAP-1 / Phase 1 | MECH-307 (priority=1) | MECH-307; SD-014 (fallback amendment) | anticipatory_affect_conjunction_vs_dual_channel.md |
 | GAP-2 / Phase 2 | SD-049-PHASE-2 | SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 | sd_049_multi_resource_heterogeneity.md |
-| GAP-3 / Phase 3 | SD-012 (registry-only; no queue entry yet) | SD-012, MECH-216, ARC-051 | sustained_drive_anticipatory_wanting.md |
+| GAP-3 / Phase 3 | SD-012 + MECH-306 (drive_floor validated) | SD-012, MECH-306, MECH-216, ARC-051 | sustained_drive_anticipatory_wanting.md |
 | GAP-4 / Phase 4 | MECH-295 (priority=1) | MECH-295, ARC-030, MECH-117, Q-040 | mech_295_drive_liking_approach_bridge.md |
 | GAP-5 / Phase 5 | SD-049-PHASE-3 (priority=3, deferred) | SD-032b (read-side fidelity); no acceptance gate | sd_049_multi_resource_heterogeneity.md |
 | GAP-6 / Phase 6 | MECH-269b-followup-A (priority=1) | MECH-269b | v_s_invalidation_runtime.md |
@@ -481,6 +482,40 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-20 - GAP-3 DONE: V3-EXQ-582a PASS + MECH-306 registered
+
+**Closure.**
+
+V3-EXQ-582a (`v3_exq_582a_gap3_drive_floor_sweep_20260519T014511Z_v3`) PASS on all
+pre-registered criteria at `drive_floor=0.9`:
+
+| Criterion | Result |
+|-----------|--------|
+| A1 mean effective benefit at contact > 0.08 | 0.115 |
+| A2 >= 2/3 seeds with seeding fired | 3/3 |
+| A3 z_goal active fraction > 0.05 | 0.081 |
+| A4 OFF arm zero seedings | 0 (falsifier holds) |
+
+**Option adjudication:** Option 1 (`drive_ema_alpha` sweep, V3-EXQ-582) FAIL -- drive
+input near-zero throughout episodes; EMA cannot lift a flat input. Option 2
+(`drive_floor`) is the validated sustained-drive path for goal seeding in the
+EXQ-536a/582 anchor regime.
+
+**Governance:**
+
+- **MECH-306** `sustained_drive_trace` registered (`candidate_substrate_landed`,
+  `v3_pending: true` until GAP-4 cascade retests).
+- SD-012 `evidence_quality_note` extended with GAP-3 closure summary.
+- Experiment classified non_contributory at manifest level (substrate-readiness
+  diagnostic; `claim_ids=[]`); MECH-306 carries the mechanism registration.
+
+**GAP-4 impact:** prerequisite `goal_pipeline:GAP-3` satisfied. Tier-1 MECH-295
+cascade retest cohort (490g / 471a / 475a / 483c / 524a) is unblocked for
+`/queue-experiment` with `drive_floor=0.9` (and SP-CEM defaults). V3-EXQ-588b
+(infant persistent-agent floor diagnostic) remains queued independently.
+
+**Status transitions:** GAP-3 `in-progress` -> `done`; GAP-4 `blocked` -> `in-progress`.
 
 ### 2026-05-17 - GAP-6 DONE: MECH-269b staleness-corrected V_s consumer migration closed
 

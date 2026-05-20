@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_585_gap8_z_goal_retention_validation
 
-Generated: `2026-05-18T16:32:24.860090Z`
+Generated: `2026-05-20T06:04:58.578519Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,5 @@ Generated: `2026-05-18T16:32:24.860090Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
+| `v3_exq_585_gap8_z_goal_retention_validation_20260518T222509Z_v3` | `2026-05-18T22:25:09Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_585_gap8_z_goal_retention_validation_20260518T222509Z_v3/summary.md) / [`manifest`](runs/v3_exq_585_gap8_z_goal_retention_validation_20260518T222509Z_v3/manifest.json) / [`metrics`](runs/v3_exq_585_gap8_z_goal_retention_validation_20260518T222509Z_v3/metrics.json) |
 | `v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3` | `2026-05-17T14:03:34Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3/summary.md) / [`manifest`](runs/v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3/manifest.json) / [`metrics`](runs/v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3/metrics.json) |

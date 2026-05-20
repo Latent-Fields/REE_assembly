@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-20T04:57:30Z",
+  "last_review_utc": "2026-05-20T06:01:50Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-562",
     "V3-EXQ-449c",
@@ -328,6 +328,7 @@
     "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z"
   ],
   "reviewed_run_ids": [
+    "v3_exq_582a_gap3_drive_floor_sweep_20260519T014511Z_v3",
     "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
     "2026-02-13T060000Z_dummy-pass",
     "2026-02-13T070000Z_dummy-fail",
@@ -2738,6 +2739,18 @@
         "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z"
       ],
       "subject": "Governance cycle 2026-05-20T04:49Z. V3-EXQ-588: failure_autopsy applied, non_contributory MECH-189. V3-EXQ-542a x3 diagnostic non_contributory ARC-062/MECH-309. Holds unchanged."
+    },
+    {
+      "id": "2026-05-20T06:05:34Z_goal_pipeline_gap3_close",
+      "session_label": "goal-pipeline-gap3-close-20260520T060150Z",
+      "reviewed_run_ids": [
+        "v3_exq_582a_gap3_drive_floor_sweep_20260519T014511Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-582a",
+        "v3_exq_582a_gap3_drive_floor_sweep"
+      ],
+      "subject": "goal_pipeline:GAP-3 closure. V3-EXQ-582a PASS (drive_floor=0.9, A1-A4 all hold; OFF arm 0 seedings). Option 2 validated over Option 1 (582 FAIL). MECH-306 sustained_drive_trace registered candidate_substrate_landed. GAP-3 marked done; GAP-4 in-progress (Tier-1 cascade retests unblocked with drive_floor)."
     }
   ]
 }

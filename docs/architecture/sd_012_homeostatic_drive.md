@@ -183,12 +183,16 @@ effective_benefit = benefit_exposure * z_goal_seeding_gain
 `sustained_drive_anticipatory_wanting.md` used `alpha_drive_trace`; that name is
 superseded — same semantics, default 1.0 = OFF.
 
-**Validation:** discriminative `drive_ema_alpha` sweep {0.01, 0.02, 0.2, 1.0} (first-PASS
-arm 0.02, 1.0 = OFF parity) queued via `/queue-experiment` — see `goal_pipeline_plan.md`
-GAP-3. **claims.yaml is not modified by this implementation**: registering
-**MECH-306 sustained_drive_trace** (mechanism_hypothesis, EXQ-536a empirical anchor, lit
-anchors per the wanting/liking synthesis) is the governance follow-on, gated on the sweep
-result.
+**Option 2 (insatiability floor) IMPLEMENTED 2026-05-17.** `GoalConfig.drive_floor`
+(default 0.0 = OFF). `GoalState.update()` applies `drive_level_floored =
+max(drive_level, drive_floor)` before the EMA/multiplier. Validated by V3-EXQ-582a PASS
+(2026-05-19, floor=0.9 arm). Contract `test_drive_floor_gap3_opt2.py` 7/7.
+
+**Validation outcome (goal_pipeline:GAP-3 closed 2026-05-20):** V3-EXQ-582 Option-1 EMA
+sweep FAIL; V3-EXQ-582a Option-2 floor sweep PASS. **MECH-306 sustained_drive_trace**
+registered in claims.yaml. Operating recommendation for downstream cascade retests:
+`drive_floor=0.9`, `drive_ema_alpha=1.0` unless a combined arm is pre-registered. See
+`goal_pipeline_plan.md` GAP-3 decision log 2026-05-20.
 
 ---
 

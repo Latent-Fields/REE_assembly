@@ -3,9 +3,13 @@
 **Created:** 2026-05-08
 **Trigger:** EXQ-536a (`H_b_threshold_never_crossed: true`, `mean drive on contact:
 0.005`, `n_contact_events: 2 across 4000 steps`).
-**Status:** Option 1 IMPLEMENTED 2026-05-17 (goal_pipeline:GAP-3 Phase 3).
-Options 2-3 gated on the Option 1 discriminative sweep outcome. Lit-pull
-companion landed (`evidence/literature/wanting_liking_sleep_consolidation_synthesis.md`).
+**Status:** goal_pipeline:GAP-3 **DONE** 2026-05-20. Option 1 (`drive_ema_alpha`)
+IMPLEMENTED 2026-05-17 but V3-EXQ-582 FAIL (drive near-zero all episode). Option 2
+(`drive_floor`) IMPLEMENTED 2026-05-17; **validated** by V3-EXQ-582a PASS
+(2026-05-19, floor=0.9). MECH-306 registered. Option 3 (MECH-216 schema-driven
+wanting) remains escalation for regimes where floor alone is insufficient (e.g.
+infant persistent agent). Lit-pull companion landed
+(`evidence/literature/wanting_liking_sleep_consolidation_synthesis.md`).
 
 > **Knob name reconciliation (2026-05-17):** the canonical config knob is
 > **`drive_ema_alpha`** (the operative `goal_pipeline_plan.md` / Q2 term),

@@ -8779,6 +8779,14 @@
 
     [2026-05-08 governance]: EXQ-536a/b diagnostic non_contributory; same crossed-wiring read as ARC-030 sibling.
 
+    [goal_pipeline:GAP-3 closure 2026-05-20]: V3-EXQ-582 Option-1 EMA sweep FAIL (drive
+    near-zero all episode; EMA cannot help). V3-EXQ-582a Option-2 drive_floor PASS at
+    floor=0.9 (effective_benefit at contact 0.115, seeding 3/3 seeds, OFF arm 0).
+    MECH-306 registered as the sustained-drive mechanism; validated substrate path is
+    drive_floor (default OFF). Option-1 EMA remains landed but not the discriminative
+    winner. GAP-4 Tier-1 cascade retests should enable drive_floor unless pre-registered
+    otherwise.
+
 - id: SD-013
   title: "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states."
   claim_type: design_decision
@@ -25757,6 +25765,69 @@
     for inescapability (Maier & Watkins) and pain prediction error (Fazeli & Buchel) before
     V3 implementation.
   location: evidence/literature/targeted_review_q_036/
+
+- id: MECH-306
+  title: "z_goal seeding under SD-012 requires sustained drive at contact, not instantaneous homeostatic drive alone: when the agent is well-fed, drive_level collapses at consumption and anti-correlates with benefit_exposure, so effective_benefit cannot cross the seeding threshold unless drive is floored or slow-traced."
+  claim_type: mechanism_hypothesis
+  subject: goal_seeding.sustained_drive_trace
+  polarity: asserts
+  status: candidate_substrate_landed
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-05-20
+  depends_on:
+    - SD-012
+    - MECH-216
+  functional_restatement: >
+    SD-012 modulates z_goal seeding via effective_benefit = benefit_exposure *
+    (1 + drive_weight * drive_signal). The pre-amendment form used instantaneous
+    drive_level = 1 - agent_energy, which collapses toward zero the step a resource
+    is consumed (energy resets). That forces drive and benefit to anti-correlate
+    at exactly the contact events where seeding must fire (EXQ-536a: mean drive on
+    contact ~0.005, multiplier ~1.01, max_effective_benefit < benefit_threshold).
+
+    MECH-306 names the sustained-drive substrate fix: drive_signal must integrate
+    or floor above a minimum tonic wanting level independent of the consummatory
+    pulse. Two landed implementations in GoalState.update() (goal_pipeline:GAP-3):
+    (1) drive_ema_alpha < 1.0 slow trace on drive_level (Option 1); (2)
+    drive_floor = max(drive_level, floor) before the trace/multiplier (Option 2,
+    insatiability floor per Berridge sustained wanting). Default OFF preserves
+    bit-identical pre-amendment behaviour (drive_ema_alpha=1.0, drive_floor=0.0).
+
+    Discriminative outcome (2026-05-17/19): V3-EXQ-582 Option-1 EMA sweep FAIL
+    (all alphas incl. 0.01: drive input near-zero throughout episode). V3-EXQ-582a
+    Option-2 floor sweep PASS at drive_floor=0.9 (A1-A4): mean effective benefit
+    at contact 0.115 > 0.08; 3/3 seeds fire seeding; z_goal active fraction 0.081;
+    OFF arm zero seedings (falsifier holds). Option 2 is the validated path for
+    goal-pipeline GAP-3 closure; cascade behavioural retests (GAP-4) should enable
+    drive_floor in the StepHarness cohort unless a combined floor+EMA arm is
+    explicitly pre-registered.
+  notes: >
+    Registered 2026-05-20 on goal_pipeline:GAP-3 closure (V3-EXQ-582a PASS).
+    Empirical anchor: EXQ-536a (H_b_threshold_never_crossed under instantaneous
+    drive). Design memos: sustained_drive_anticipatory_wanting.md,
+    goal_pipeline_plan.md Phase 3. Lit anchors per
+    wanting_liking_sleep_consolidation_synthesis.md (Berridge/Robinson sustained
+    anticipatory wanting; Schultz/Aponte/Livneh slow hunger drive; aggregate
+    lit_conf ~0.78 on the SD-012 sustained-drive direction). Does not promote
+    SD-012 or MECH-295 -- substrate-readiness for the drive-multiplier site only.
+    MECH-216 schema-driven anticipatory wanting (Option 3) remains the escalation
+    if floor+EMA fail in future regimes (e.g. infant persistent agent EXQ-588b).
+  evidence_quality_note: |
+    [goal_pipeline:GAP-3 closure 2026-05-20] EXQ-536a diagnostic anchor: drive x
+    benefit anti-correlation at contact (mean drive ~0.005, seeding never crosses
+    threshold). V3-EXQ-582 FAIL (Option 1 EMA, all 12 runs): drive_trace_at_contact
+    ~0.0002-0.005; EMA cannot lift a consistently low input; post_warmup_cut=100
+    had zero contacts. V3-EXQ-582a PASS (Option 2 drive_floor, 2026-05-19T01:45Z,
+    non_contributory diagnostic, claim_ids=[]): floor=0.9 arm mean_eff_benefit=0.115,
+    3/3 seeds n_seedings>0, z_goal_active_fraction=0.081; OFF arm 0 seedings.
+    Monotone floor sweep 0.0->1.2. Substrate: GoalConfig.drive_ema_alpha +
+    GoalConfig.drive_floor in ree_core/goal.py; contracts test_sustained_drive_ema_gap3.py
+    and test_drive_floor_gap3_opt2.py. Behavioural cascade (MECH-295 / GAP-4 Tier-1)
+    not yet re-run with floor enabled -- v3_pending retained.
+  location: docs/architecture/sustained_drive_anticipatory_wanting.md
+  suggested_experiment_type: diagnostic
 
 - id: MECH-307
   title: "Anticipatory positive affect (excitement) and anticipatory negative affect (dread) emerge as derived states from the conjunction of (a) signed VALENCE_SURPRISE, (b) MECH-216 schema readout coupled to z_beta arousal, (c) anticipatory VALENCE_LIKING write at predicted-imminent-positive-event locations, and (d) MECH-216 writes at predicted rather than current location. Four-gap substrate amendment to MECH-216 + MECH-205 + the residue valence buffer, NOT a new VALENCE channel."
