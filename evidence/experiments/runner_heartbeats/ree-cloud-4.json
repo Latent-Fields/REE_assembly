@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-20T19:40:15Z",
+  "last_tick_utc": "2026-05-20T19:41:18Z",
   "state": "running",
   "current_exq": "V3-EXQ-588b",
   "current_exq_started_utc": "2026-05-20T19:13:13.042971+00:00",
@@ -12,16 +12,17 @@
     "run_label": "Seed 42 / ARM_OFF",
     "runs_done": 0,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 100,
     "episodes_total": 300,
-    "overall_pct": 0.0
+    "overall_pct": 3.7
   },
-  "seconds_elapsed": 1623,
-  "seconds_remaining": 4500,
+  "seconds_elapsed": 1685,
+  "seconds_remaining": 10408,
   "recent_lines": [
     "V3-EXQ-588b: goal-seeding pipeline diagnostic",
     "dry_run=False seeds=[42, 43, 44] n_episodes=300 warmup=50",
-    "Seed 42 Condition ARM_OFF"
+    "Seed 42 Condition ARM_OFF",
+    "[train] ARM_OFF seed=42 ep 100/300 z_goal_norm=0.0000 seedings_pw=1"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
