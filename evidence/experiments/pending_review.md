@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-05-19T21:33:04Z`  
-Last review: `2026-05-19T21:27:25Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-20T04:56:51Z`  
+Last review: `2026-05-20T04:57:30Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_588_isef002_transient_benefit_zgoal_seeding_20260518T222457Z_v3` | 2026-05-18T22:24 | MECH-189 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-19T21:27:25Z",
+  "last_review_utc": "2026-05-20T04:57:30Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-562",
     "V3-EXQ-449c",
@@ -321,7 +321,11 @@
     "V3-EXQ-581",
     "v3_exq_575a_isef001_harm_gradient_baseline",
     "v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3",
-    "V3-EXQ-585"
+    "V3-EXQ-585",
+    "V3-EXQ-542a",
+    "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002616Z",
+    "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002633Z",
+    "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z"
   ],
   "reviewed_run_ids": [
     "v3_exq_461_mech090_sd033a_delayed_reward_persistence_20260512T180425Z_v3",
@@ -2418,7 +2422,8 @@
     "v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3",
     "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3",
     "v3_exq_481b_vs_commit_release_20260519T012616Z_v3",
-    "v3_exq_594_mech339_composite_cue_outshining_validation_20260519T183917Z_v3"
+    "v3_exq_594_mech339_composite_cue_outshining_validation_20260519T183917Z_v3",
+    "v3_exq_588_isef002_transient_benefit_zgoal_seeding_20260518T222457Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2719,6 +2724,20 @@
         "v3_exq_594_mech339_composite_cue_outshining_validation_20260519T183917Z_v3"
       ],
       "subject": "Governance cycle 2026-05-19T21:14Z. 543g cloud-3 (_191536Z): already non_contributory, mark reviewed. 543i 063711Z: already non_contributory (branch-c all-escape, no collapse baseline), mark reviewed. 543i 191052Z: failure_autopsy_543i_2026-05-19 confirmed; manifest corrected mixed -> non_contributory all claims (ARC-062/MECH-309/INV-074/MECH-334); byte-identical runs landed opposite basins, basin selection nondeterministic, NOT controlled by use_differential_heads. ARC-062/MECH-309 zero reliable contributory trained-policy evidence. 481b (diagnostic PASS, MECH-269/MECH-090): classified diagnostic only, no evidence weight applied. 594 (diagnostic PASS, MECH-339 Constraint 1 substrate validation): classified diagnostic only, no evidence weight applied. v3_exq_588 (MECH-189, FAIL, does_not_support, unexplained): flagged for /failure-autopsy, NOT marked reviewed, stays pending. 9 promotion/demotion holds applied: ARC-063/077/078 + MECH-332/334/337/338 (hold_pending_v3_substrate); INV-074/MECH-189 (hold_candidate_resolve_conflict). claims.yaml evidence_quality_note updated: MECH-309/ARC-062/INV-074/MECH-334 with 543i autopsy confirmed note. decision_log.v1.jsonl: 9 entries appended."
+    },
+    {
+      "id": "2026-05-20T04:57:30Z_governance",
+      "session_label": "governance-20260520T044941Z",
+      "reviewed_run_ids": [
+        "v3_exq_588_isef002_transient_benefit_zgoal_seeding_20260518T222457Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-542a",
+        "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002616Z",
+        "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T002633Z",
+        "v3_exq_542a_arc062_gated_policy_substrate_readiness_onehot_v3_20260520T041617Z"
+      ],
+      "subject": "Governance cycle 2026-05-20T04:49Z. V3-EXQ-588: failure_autopsy applied, non_contributory MECH-189. V3-EXQ-542a x3 diagnostic non_contributory ARC-062/MECH-309. Holds unchanged."
     }
   ]
 }
