@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-20T19:39:56Z",
+  "last_tick_utc": "2026-05-20T19:40:58Z",
   "state": "running",
   "current_exq": "V3-EXQ-514j",
   "current_exq_started_utc": "2026-05-20T19:11:41.395393+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_1_2type",
-    "runs_done": 1,
+    "run_label": "Seed 42 / ARM_2_3type",
+    "runs_done": 2,
     "runs_total": 12,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 55,
-    "overall_pct": 12.9
+    "overall_pct": 16.7
   },
-  "seconds_elapsed": 1695,
-  "seconds_remaining": 16483,
+  "seconds_elapsed": 1757,
+  "seconds_remaining": 8680,
   "recent_lines": [
-    "[train] completed unit 1/12 ep_budget=55",
-    "Seed 42 Condition ARM_1_2type",
-    "[train] P0 ep 10/30",
-    "[train] P0 ep 20/30",
-    "[train] P0 ep 30/30"
+    "[train] P0 ep 30/30",
+    "seed=42 arm=ARM_1_2type    obs_dim=350 mech307=True drive_floor=0.9 reef=True probe_neigh=0.614 goal_r=1.000 wl_frac=0.000 probe_cons=0.600 elapsed=159.5s",
+    "verdict: PASS",
+    "[train] completed unit 2/12 ep_budget=55",
+    "Seed 42 Condition ARM_2_3type"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
