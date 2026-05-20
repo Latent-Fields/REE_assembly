@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-20T22:52:06Z",
+  "last_tick_utc": "2026-05-20T22:53:08Z",
   "state": "running",
   "current_exq": "V3-EXQ-543k",
   "current_exq_started_utc": "2026-05-20T21:54:59.773712+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_0_baseline",
     "runs_done": 12,
     "runs_total": 36,
-    "episodes_done": 20,
+    "episodes_done": 5,
     "episodes_total": 108,
-    "overall_pct": 33.8
+    "overall_pct": 33.5
   },
-  "seconds_elapsed": 3427,
-  "seconds_remaining": 6558,
+  "seconds_elapsed": 3489,
+  "seconds_remaining": 6596,
   "recent_lines": [
-    "Seed 1 Condition ARM_0_baseline",
-    "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=False  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
     "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.1490",
-    "[train] ARM_0_baseline ep 20/108  phase=P0  rv=0.0005  ep_reward=-1.3563"
+    "[train] ARM_0_baseline ep 20/108  phase=P0  rv=0.0005  ep_reward=-1.3563",
+    "[train] ARM_0_baseline ep 30/108  phase=P0  rv=0.0005  ep_reward=-1.2887",
+    "[train] ARM_0_baseline ep 40/108  phase=P0  rv=0.0004  ep_reward=-1.2232",
+    "[probe] ARM_0_baseline P1 ep 5/60  applicable=False  mean_tv=0.0000  max_tv=0.0000  buf=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
