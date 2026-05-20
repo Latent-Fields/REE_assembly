@@ -1,34 +1,33 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-19T03:19:01Z",
+  "last_tick_utc": "2026-05-20T19:31:42Z",
   "state": "running",
-  "current_exq": "V3-EXQ-590",
-  "current_exq_started_utc": "2026-05-17T19:15:41.461665+00:00",
-  "current_title": "EXQ-ISEF-004: novelty bonus Goldilocks calibration -- MECH-111 broadcast weight sweep (infant_substrate:GAP-13)",
+  "current_exq": "V3-EXQ-590a",
+  "current_exq_started_utc": "2026-05-20T19:31:37.916585+00:00",
+  "current_title": "EXQ-ISEF-004 rerun: novelty bonus Goldilocks calibration with checkpoint/resume",
   "current_claim_id": "MECH-314",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_nbw03",
-    "runs_done": 4,
+    "run_label": "Seed 42 / ARM_nbw01",
+    "runs_done": 0,
     "runs_total": 15,
-    "episodes_done": 800,
+    "episodes_done": 0,
     "episodes_total": 1000,
-    "overall_pct": 32.0
+    "overall_pct": 0.0
   },
-  "seconds_elapsed": 115400,
-  "seconds_remaining": 250697,
+  "seconds_elapsed": 5,
+  "seconds_remaining": 30000,
   "recent_lines": [
-    "[train] ARM_nbw03 seed=43 ep 400/1000 H_pos=0.000 coverage=1.000 novelty_ema=0.01076",
-    "[train] ARM_nbw03 seed=43 ep 500/1000 H_pos=0.724 coverage=1.000 novelty_ema=0.01089",
-    "[train] ARM_nbw03 seed=43 ep 600/1000 H_pos=0.000 coverage=1.000 novelty_ema=0.01076",
-    "[train] ARM_nbw03 seed=43 ep 700/1000 H_pos=0.673 coverage=1.000 novelty_ema=0.01078",
-    "[train] ARM_nbw03 seed=43 ep 800/1000 H_pos=0.000 coverage=1.000 novelty_ema=0.01073"
+    "V3-EXQ-590a: EXQ-ISEF-004 novelty bonus Goldilocks calibration",
+    "dry_run=False seeds=[42, 43, 44] n_episodes=1000 steps=200 novelty_weights=[0.1, 0.3, 0.5, 0.7, 1.0]",
+    "checkpoint=/home/ree/REE_Working/REE_assembly/evidence/experiments/_partial/v3_exq_590_isef004_novelty_bonus_goldilocks/V3-EXQ-590a.json resume=True",
+    "Seed 42 Condition ARM_nbw01"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
-  "runner_pid": 3213,
+  "runner_pid": 20945,
   "runner_version": null,
   "gpu": {
     "available": false
