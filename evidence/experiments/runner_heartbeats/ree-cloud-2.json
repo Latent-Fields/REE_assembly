@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-20T22:48:57Z",
+  "last_tick_utc": "2026-05-20T22:50:00Z",
   "state": "running",
   "current_exq": "V3-EXQ-543k",
   "current_exq_started_utc": "2026-05-20T21:54:59.773712+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_11_both_xtal_diff",
     "runs_done": 11,
     "runs_total": 36,
-    "episodes_done": 35,
+    "episodes_done": 104,
     "episodes_total": 108,
-    "overall_pct": 31.5
+    "overall_pct": 33.2
   },
-  "seconds_elapsed": 3237,
-  "seconds_remaining": 6785,
+  "seconds_elapsed": 3301,
+  "seconds_remaining": 6609,
   "recent_lines": [
-    "[probe] ARM_11_both_xtal_diff P1 ep 30/60  applicable=True  mean_tv=0.0012  max_tv=0.0017  buf=187",
-    "[probe] ARM_11_both_xtal_diff INERT-GATING at P1 ep 30: mean_tv=0.0012 < 0.05 (REINFORCE outcome-coupling active)",
-    "[train] ARM_11_both_xtal_diff ep 70/108  phase=P1  rv=0.0024  ep_reward=-1.3280  baseline=-1.1709  buf=187  inert_gating=True",
-    "[crystallize] ARM_11_both_xtal_diff P1 ep 30/60  gated_frozen=4467  expansion_params=1249  ewc_anchored=True  ewc_active_centers=0  (closure == InfantCurriculumScheduler.on_phase3_entry)",
-    "[probe] ARM_11_both_xtal_diff P1 ep 35/60  applicable=True  mean_tv=0.0012  max_tv=0.0017  buf=231"
+    "[train] ARM_11_both_xtal_diff ep 90/108  phase=P1  rv=0.0020  ep_reward=-1.0618  baseline=-1.1749  buf=328  inert_gating=True",
+    "[probe] ARM_11_both_xtal_diff P1 ep 55/60  applicable=True  mean_tv=0.0012  max_tv=0.0018  buf=360",
+    "[probe] ARM_11_both_xtal_diff P1 ep 60/60  applicable=True  mean_tv=0.0012  max_tv=0.0018  buf=396",
+    "[train] ARM_11_both_xtal_diff ep 100/108  phase=P1  rv=0.0019  ep_reward=-0.5058  baseline=-1.0402  buf=396  inert_gating=True",
+    "[train] ARM_11_both_xtal_diff ep 104/108  phase=P2  reef_frac=0.000  steps=12"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
