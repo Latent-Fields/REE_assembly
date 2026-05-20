@@ -1,0 +1,364 @@
+{
+  "run_id": "v3_exq_587_isef001_harm_gradient_enabled_20260519T013956Z_v3",
+  "queue_id": "V3-EXQ-587",
+  "experiment_type": "v3_exq_587_isef001_harm_gradient_enabled",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "timestamp_utc": "20260519T013956Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 1000,
+    "steps_per_episode": 200,
+    "snapshot_episodes": [
+      99,
+      499,
+      999
+    ],
+    "arm_configs": {
+      "ARM_0_binary_contact": {
+        "harm_gradient_enabled": false
+      },
+      "ARM_1_harm_gradient": {
+        "harm_gradient_enabled": true,
+        "harm_gradient_scale": 0.3
+      }
+    },
+    "metric_primary": "mean_weight_ratio (ARM_1/ARM_0 at final episode)",
+    "metric_secondary": [
+      "residue_coverage_pct_ep100",
+      "harm_total_final"
+    ]
+  },
+  "acceptance_criteria": {
+    "C1_gate": "ARM_1 final mean_weight > 2.0x ARM_0 in >= 4/5 seeds",
+    "C2_advisory": "ARM_1 residue_coverage_pct at ep100 > ARM_0",
+    "C3_advisory": "ARM_1 final harm_total > ARM_0 final harm_total"
+  },
+  "criteria_results": {
+    "C1_pass": false,
+    "seeds_passing_c1": 0,
+    "C2_arm1_early_exceeds_arm0_advisory": false,
+    "C3_arm1_harm_exceeds_arm0_advisory": false
+  },
+  "metrics": {
+    "mean_arm0_ep100_coverage": 1.0,
+    "mean_arm1_ep100_coverage": 1.0,
+    "mean_arm0_final_harm_total": 1117.701123046875,
+    "mean_arm1_final_harm_total": 1101.3321472167968
+  },
+  "per_seed_c1_results": [
+    {
+      "seed": 42,
+      "arm0_final_mean_weight": 30.121259689331055,
+      "arm1_final_mean_weight": 29.76443099975586,
+      "ratio": 0.9881535934002925,
+      "c1_pass": false
+    },
+    {
+      "seed": 43,
+      "arm0_final_mean_weight": 13.302567481994629,
+      "arm1_final_mean_weight": 13.36754322052002,
+      "ratio": 1.0048844509613153,
+      "c1_pass": false
+    },
+    {
+      "seed": 44,
+      "arm0_final_mean_weight": 63.61319351196289,
+      "arm1_final_mean_weight": 63.45848846435547,
+      "ratio": 0.997568035197316,
+      "c1_pass": false
+    },
+    {
+      "seed": 45,
+      "arm0_final_mean_weight": 20.428762435913086,
+      "arm1_final_mean_weight": 20.373504638671875,
+      "ratio": 0.997295098153177,
+      "c1_pass": false
+    },
+    {
+      "seed": 46,
+      "arm0_final_mean_weight": 47.1937255859375,
+      "arm1_final_mean_weight": 45.137420654296875,
+      "ratio": 0.9564284254715981,
+      "c1_pass": false
+    }
+  ],
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "arm_results": {
+        "ARM_0_binary_contact": {
+          "arm": "ARM_0_binary_contact",
+          "final_mean_weight": 30.121259689331055,
+          "final_coverage": 1.0,
+          "final_harm_total": 963.79248046875,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 253.62081909179688,
+              "mean_weight": 7.925470352172852
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 605.1276245117188,
+              "mean_weight": 18.91031837463379
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 963.79248046875,
+              "mean_weight": 30.121259689331055
+            }
+          }
+        },
+        "ARM_1_harm_gradient": {
+          "arm": "ARM_1_harm_gradient",
+          "final_mean_weight": 29.76443099975586,
+          "final_coverage": 1.0,
+          "final_harm_total": 952.3738403320312,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 242.2571258544922,
+              "mean_weight": 7.570375919342041
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 594.4188232421875,
+              "mean_weight": 18.575613021850586
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 952.3738403320312,
+              "mean_weight": 29.76443099975586
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "arm_results": {
+        "ARM_0_binary_contact": {
+          "arm": "ARM_0_binary_contact",
+          "final_mean_weight": 13.302567481994629,
+          "final_coverage": 1.0,
+          "final_harm_total": 425.697509765625,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 39.209938049316406,
+              "mean_weight": 1.2253113985061646
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 210.42742919921875,
+              "mean_weight": 6.575736999511719
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 425.697509765625,
+              "mean_weight": 13.302567481994629
+            }
+          }
+        },
+        "ARM_1_harm_gradient": {
+          "arm": "ARM_1_harm_gradient",
+          "final_mean_weight": 13.36754322052002,
+          "final_coverage": 1.0,
+          "final_harm_total": 427.7761535644531,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 43.35030746459961,
+              "mean_weight": 1.3547008037567139
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 211.26785278320312,
+              "mean_weight": 6.602015972137451
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 427.7761535644531,
+              "mean_weight": 13.36754322052002
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "arm_results": {
+        "ARM_0_binary_contact": {
+          "arm": "ARM_0_binary_contact",
+          "final_mean_weight": 63.61319351196289,
+          "final_coverage": 1.0,
+          "final_harm_total": 2035.31494140625,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 133.41246032714844,
+              "mean_weight": 4.169164657592773
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 1000.1287841796875,
+              "mean_weight": 31.257057189941406
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 2035.31494140625,
+              "mean_weight": 63.61319351196289
+            }
+          }
+        },
+        "ARM_1_harm_gradient": {
+          "arm": "ARM_1_harm_gradient",
+          "final_mean_weight": 63.45848846435547,
+          "final_coverage": 1.0,
+          "final_harm_total": 2030.36181640625,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 190.2332305908203,
+              "mean_weight": 5.944718837738037
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 1030.804931640625,
+              "mean_weight": 32.215972900390625
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 2030.36181640625,
+              "mean_weight": 63.45848846435547
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "arm_results": {
+        "ARM_0_binary_contact": {
+          "arm": "ARM_0_binary_contact",
+          "final_mean_weight": 20.428762435913086,
+          "final_coverage": 1.0,
+          "final_harm_total": 653.7061767578125,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 60.515682220458984,
+              "mean_weight": 1.8911255598068237
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 322.93768310546875,
+              "mean_weight": 10.091495513916016
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 653.7061767578125,
+              "mean_weight": 20.428762435913086
+            }
+          }
+        },
+        "ARM_1_harm_gradient": {
+          "arm": "ARM_1_harm_gradient",
+          "final_mean_weight": 20.373504638671875,
+          "final_coverage": 1.0,
+          "final_harm_total": 651.9381103515625,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 62.08115005493164,
+              "mean_weight": 1.9400479793548584
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 330.34442138671875,
+              "mean_weight": 10.322957992553711
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 651.9381103515625,
+              "mean_weight": 20.373504638671875
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "arm_results": {
+        "ARM_0_binary_contact": {
+          "arm": "ARM_0_binary_contact",
+          "final_mean_weight": 47.1937255859375,
+          "final_coverage": 1.0,
+          "final_harm_total": 1509.9945068359375,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 28.034826278686523,
+              "mean_weight": 0.8760863542556763
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 223.68307495117188,
+              "mean_weight": 6.989964008331299
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 1509.9945068359375,
+              "mean_weight": 47.1937255859375
+            }
+          }
+        },
+        "ARM_1_harm_gradient": {
+          "arm": "ARM_1_harm_gradient",
+          "final_mean_weight": 45.137420654296875,
+          "final_coverage": 1.0,
+          "final_harm_total": 1444.2108154296875,
+          "ep100_coverage": 1.0,
+          "snapshots": {
+            "99": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 22.034088134765625,
+              "mean_weight": 0.688563883304596
+            },
+            "499": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 212.55209350585938,
+              "mean_weight": 6.642143249511719
+            },
+            "999": {
+              "residue_coverage_pct": 1.0,
+              "harm_total": 1444.2108154296875,
+              "mean_weight": 45.137420654296875
+            }
+          }
+        }
+      }
+    }
+  ],
+  "notes": "EXQ-ISEF-001 proper (infant_substrate:GAP-10). V3-EXQ-575/575a tested proximity_harm_scale variation (different knob). This experiment isolates harm_gradient_enabled True vs False. Primary criterion: final mean_weight ratio >= 2x in >= 4/5 seeds. Threshold pre-registered from 575a C3 informational (arm0=1.48, arm1=2.84). Coverage saturates at 1.0 for both arms (575a finding) -- mean_weight is the correct discriminating metric. PASS closes GAP-10 and unblocks ARC-013, DEV-NEED-004."
+}
