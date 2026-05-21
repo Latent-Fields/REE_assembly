@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 340361,
   "runner_started_at": "2026-05-21T13:17:26.449688+00:00",
-  "last_updated": "2026-05-21T13:17:42.508647+00:00",
+  "last_updated": "2026-05-21T13:17:50.028457+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -13,17 +13,6 @@
       "title": "EXQ-ISEF-004 rerun: novelty bonus Goldilocks calibration with checkpoint/resume",
       "description": "",
       "estimated_minutes": 2000.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-607",
-      "backlog_id": "",
-      "claim_id": "MECH-340",
-      "title": "MECH-340 persistence/efficacy gate substrate validation",
-      "description": "",
-      "estimated_minutes": 17.3,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2271,6 +2260,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_600a_mech282_lpb_interoceptive_routing_diag/v3_exq_600a_mech282_lpb_interoceptive_routing_diag_20260521T131742Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 9.8
+    },
+    {
+      "queue_id": "V3-EXQ-607",
+      "backlog_id": "",
+      "claim_id": "MECH-340",
+      "title": "MECH-340 persistence/efficacy gate substrate validation",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "T5_stuck_on_excludes: PASS  {'pass': True, 'n_entries': 0, 'persistence_license': 0.0} | [v3_exq_607] overall: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-607 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-607.json",
+      "started_at": "2026-05-21T13:17:48.826401+00:00",
+      "completed_at": "2026-05-21T13:17:50.027456+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_607_mech340_persistence_efficacy_gate_validation/v3_exq_607_mech340_persistence_efficacy_gate_validation_20260521T131749Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1.2
     }
   ]
 }
