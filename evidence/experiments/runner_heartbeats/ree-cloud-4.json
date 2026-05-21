@@ -1,47 +1,34 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-21T14:34:47Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-590a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-588b",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T05:37:58.598953+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-524a",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T06:02:20.835477+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-595",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T07:47:14.169641+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-543k",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T08:31:27.425090+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490g",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T09:51:43.443844+00:00"
-    }
+  "last_tick_utc": "2026-05-21T15:16:42Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-543k",
+  "current_exq_started_utc": "2026-05-21T14:36:03.250213+00:00",
+  "current_title": "ARC-062 GAP-B mode-separation floor falsifier (post-543i substrate)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / ARM_3_both",
+    "runs_done": 9,
+    "runs_total": 36,
+    "episodes_done": 20,
+    "episodes_total": 108,
+    "overall_pct": 25.5
+  },
+  "seconds_elapsed": 2439,
+  "seconds_remaining": 7055,
+  "recent_lines": [
+    "Seed 0 Condition ARM_3_both",
+    "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=False  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)",
+    "[train] ARM_3_both ep 10/108  phase=P0  rv=0.0021  ep_reward=-1.0573",
+    "[train] ARM_3_both ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.0882"
   ],
-  "runner_pid": 1540367,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 1541120,
   "runner_version": null,
   "gpu": {
     "available": false
