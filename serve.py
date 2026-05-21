@@ -878,6 +878,11 @@ CLOSURE_STATUS_WEIGHTS = {
     "deferred V4": None,
 }
 
+PENDING_REVIEW_FILE = SERVE_DIR / "evidence" / "experiments" / "pending_review.md"
+REE_V3_QUEUE_FILE = SERVE_DIR.parent / "ree-v3" / "experiment_queue.json"
+SUBSTRATE_QUEUE_FILE = PLANNING_DIR / "substrate_queue.json"
+_EXQ_ID_RE = re.compile(r"V3-EXQ-\d+[a-z]?", re.IGNORECASE)
+
 
 def _parse_plan_frontmatter(path: Path) -> dict | None:
     """Return the closure_plan dict from a plan doc's YAML frontmatter, or None."""
@@ -1203,6 +1208,274 @@ def read_brain_map() -> dict:
     }
 
 
+def _closure_pending_review_count() -> int:
+    try:
+        text = PENDING_REVIEW_FILE.read_text(encoding="utf-8")
+    except Exception:
+        return 0
+    m = re.search(r"Pending:\s*\*\*(\d+)\*\*", text)
+    return int(m.group(1)) if m else 0
+
+
+def _closure_roadmap_snippet(max_len: int = 900) -> str:
+    path = SERVE_DIR / "docs" / "roadmap.md"
+    try:
+        text = path.read_text(encoding="utf-8")
+    except Exception:
+        return ""
+    m = re.search(
+        r"(### Immediate Work Queue.*?\n(?:\d+\.\s+.*\n)+)",
+        text,
+        re.DOTALL,
+    )
+    snippet = (m.group(1) if m else text[:max_len]).strip()
+    if len(snippet) > max_len:
+        snippet = snippet[: max_len - 3] + "..."
+    return snippet
+
+
+def _closure_queue_claimed() -> list[dict]:
+    try:
+        data = json.loads(REE_V3_QUEUE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    out: list[dict] = []
+    for item in data.get("items") or []:
+        if not isinstance(item, dict):
+            continue
+        cb = item.get("claimed_by")
+        if not isinstance(cb, dict) or not cb.get("machine"):
+            continue
+        out.append({
+            "queue_id": item.get("queue_id"),
+            "machine": cb.get("machine"),
+            "claimed_at": cb.get("claimed_at"),
+            "title": item.get("title") or "",
+            "priority": item.get("priority"),
+        })
+    return out
+
+
+def _closure_claim_ids_by_flag(flag_substr: str) -> set[str]:
+    """Scan claims.yaml list items for a boolean flag or note substring."""
+    try:
+        text = _TL_CLAIMS_YAML.read_text(encoding="utf-8")
+    except Exception:
+        return set()
+    out: set[str] = set()
+    current_id: str | None = None
+    for line in text.splitlines():
+        m = re.match(r"^- id:\s*(\S+)", line)
+        if m:
+            current_id = m.group(1)
+            continue
+        if current_id and flag_substr in line:
+            if re.search(
+                rf"{re.escape(flag_substr)}:\s*true",
+                line,
+            ) or flag_substr in line:
+                out.add(current_id)
+    return out
+
+
+def _closure_is_ready_gap(node: dict, nodes_by_id: dict[str, dict]) -> bool:
+    if node.get("status") != "open":
+        return False
+    if node.get("severity") not in ("load-bearing", "high", "medium"):
+        return False
+    for dep in node.get("depends_on") or []:
+        dep_n = nodes_by_id.get(str(dep))
+        if not dep_n or dep_n.get("status") not in (
+            "done", "deferred", "deferred_v4",
+        ):
+            return False
+    return True
+
+
+def _closure_active_blocker_short(
+    node: dict,
+    nodes_by_id: dict[str, dict],
+) -> str:
+    for dep in node.get("depends_on") or []:
+        dep_n = nodes_by_id.get(str(dep))
+        if dep_n and dep_n.get("status") not in (
+            "done", "deferred", "deferred_v4",
+        ):
+            return f"{dep} [{dep_n.get('status')}]"
+    ext = node.get("blocking_external") or []
+    if ext:
+        return str(ext[0])[:96]
+    if node.get("status") == "blocked" and node.get("owner_exq"):
+        return f"awaiting {node.get('owner_exq')}"
+    return ""
+
+
+def _closure_dual_progress(nodes: list[dict]) -> dict:
+    impl_done = impl_total = 0.0
+    ev_done = ev_total = 0.0
+    for n in nodes:
+        sev = n.get("severity") or ""
+        if sev in ("load-bearing", "high"):
+            w = CLOSURE_STATUS_WEIGHTS.get(n.get("status") or "open", 0.0)
+            if w is not None:
+                impl_total += 1.0
+                impl_done += w
+        owner = n.get("owner_exq")
+        if owner and str(owner).strip().lower() not in ("null", "tbd", ""):
+            ev_total += 1.0
+            w = CLOSURE_STATUS_WEIGHTS.get(n.get("status") or "open", 0.0)
+            if w is not None:
+                ev_done += w
+    def _pct(done: float, total: float) -> float:
+        return round(done / total, 4) if total > 0 else 0.0
+    return {
+        "implementation": {
+            "done_weighted": round(impl_done, 4),
+            "node_total": int(impl_total),
+            "progress": _pct(impl_done, impl_total),
+        },
+        "evidence": {
+            "done_weighted": round(ev_done, 4),
+            "node_total": int(ev_total),
+            "progress": _pct(ev_done, ev_total),
+        },
+    }
+
+
+def _enrich_closure_v2(data: dict) -> dict:
+    """Add closure/v2 orientation, live EXQ, cusp rail, per-node flags."""
+    nodes = data.get("nodes") or []
+    nodes_by_id = {n["id"]: n for n in nodes if n.get("id")}
+    live_exq_ids: set[str] = set()
+
+    machines_view = read_machines()
+    running_rows: list[dict] = []
+    for m in machines_view.get("machines") or []:
+        exq = m.get("current_exq")
+        if exq and m.get("fresh"):
+            live_exq_ids.add(str(exq))
+            running_rows.append({
+                "queue_id": exq,
+                "machine": m.get("machine"),
+                "progress": m.get("progress") or {},
+                "state": m.get("state"),
+            })
+
+    queue_claimed = _closure_queue_claimed()
+    for row in queue_claimed:
+        qid = row.get("queue_id")
+        if qid:
+            live_exq_ids.add(str(qid))
+
+    retest_ids = _closure_claim_ids_by_flag("pending_retest_after_substrate")
+    ceil_ids = _closure_claim_ids_by_flag("epistemic_category: substrate_ceiling")
+
+    cusp_items: list[dict] = []
+    for n in nodes:
+        if _closure_is_ready_gap(n, nodes_by_id):
+            cusp_items.append({
+                "kind": "ready_gap",
+                "label": n["id"],
+                "gap_id": n["id"],
+                "plan_id": n.get("plan_id"),
+            })
+    try:
+        sq = json.loads(SUBSTRATE_QUEUE_FILE.read_text(encoding="utf-8"))
+        for item in sq.get("queue") or []:
+            if not isinstance(item, dict) or not item.get("ready"):
+                continue
+            impl = (item.get("implementation_status") or "").lower()
+            if impl in ("implemented", "done", "complete"):
+                continue
+            cusp_items.append({
+                "kind": "substrate_ready",
+                "label": item.get("sd_id") or item.get("title") or "?",
+                "sd_id": item.get("sd_id"),
+            })
+    except Exception:
+        pass
+    for cid in sorted(retest_ids)[:12]:
+        cusp_items.append({
+            "kind": "pending_retest",
+            "label": cid,
+            "claim_id": cid,
+        })
+
+    contributory: set[str] = set()
+    for n in nodes:
+        for m in _EXQ_ID_RE.finditer(str(n.get("owner_exq") or "")):
+            contributory.add(m.group(0).upper().replace("v3-exq", "V3-EXQ"))
+
+    for n in nodes:
+        badges: list[str] = []
+        flags: list[str] = []
+        owner = str(n.get("owner_exq") or "")
+        exq_m = _EXQ_ID_RE.search(owner)
+        if exq_m:
+            badges.append("EXQ")
+            qid = exq_m.group(0).upper().replace("v3-exq", "V3-EXQ")
+            n["exq_live"] = qid in live_exq_ids
+        for cid in n.get("unblocks_claims") or []:
+            if cid in retest_ids:
+                flags.append("pending_retest")
+                if "RETEST" not in badges:
+                    badges.append("RETEST")
+            if cid in ceil_ids:
+                if "CEIL" not in badges:
+                    badges.append("CEIL")
+        n["claim_flags"] = flags
+        n["badges"] = badges
+        n["active_blocker_short"] = _closure_active_blocker_short(
+            n, nodes_by_id)
+
+    for p in data.get("plans") or []:
+        plan_nodes = [n for n in nodes if n.get("plan_id") == p.get("id")]
+        p["blocked_load_bearing"] = sum(
+            1 for n in plan_nodes
+            if n.get("status") == "blocked"
+            and n.get("severity") == "load-bearing"
+        )
+        run_exqs: set[str] = set()
+        for n in plan_nodes:
+            for m in _EXQ_ID_RE.finditer(str(n.get("owner_exq") or "")):
+                qid = m.group(0).upper().replace("v3-exq", "V3-EXQ")
+                if qid in live_exq_ids:
+                    run_exqs.add(qid)
+        p["running_exqs"] = sorted(run_exqs)
+
+    n_fresh = sum(
+        1 for m in machines_view.get("machines") or [] if m.get("fresh"))
+    runner_bits: list[str] = []
+    if running_rows:
+        runner_bits.append(
+            ", ".join(
+                f"{r['machine']}:{r['queue_id']}"
+                for r in running_rows[:5]
+            )
+        )
+    runner_summary = (
+        f"{len(running_rows)} running / {n_fresh} fresh machines"
+        + (": " + "; ".join(runner_bits) if runner_bits else "")
+    )
+
+    data["schema_version"] = "closure/v2"
+    data["orientation"] = {
+        "roadmap_snippet": _closure_roadmap_snippet(),
+        "pending_review_count": _closure_pending_review_count(),
+        "runner_summary": runner_summary,
+        "any_runner_active": bool(running_rows),
+    }
+    data["progress"] = _closure_dual_progress(nodes)
+    data["exq_live"] = {
+        "running": running_rows,
+        "queue_claimed": queue_claimed,
+    }
+    data["cusp_items"] = cusp_items[:30]
+    data["contributory_exq_ids"] = sorted(contributory)
+    return data
+
+
+
 def read_closure() -> dict:
     """Aggregate closure_plan frontmatter across planning/*_plan.md docs."""
     plans: list[dict] = []
@@ -1313,7 +1586,7 @@ def read_closure() -> dict:
             overall_done += w
     overall_progress = (overall_done / overall_total) if overall_total > 0 else 0.0
 
-    return {
+    return _enrich_closure_v2({
         "schema_version": "closure/v1",
         "generated_at": datetime.datetime.utcnow().isoformat() + "Z",
         "plans": plans,
@@ -1323,7 +1596,7 @@ def read_closure() -> dict:
         "overall_progress": round(overall_progress, 4),
         "node_total": int(overall_total),
         "node_done_weighted": round(overall_done, 4),
-    }
+    })
 
 
 def read_workset() -> dict:

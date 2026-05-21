@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-05-17.4 -->
+<!-- CLOSURE_VERSION: 2026-05-21.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -80,6 +80,90 @@
   .overall .meter .ticks span {
     position: absolute; top: 0; bottom: 0; width: 1px;
     background: rgba(255,255,255,0.12);
+  }
+
+  .orientation {
+    padding: 10px 18px;
+    background: var(--bg-1);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .orientation .ori-title {
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+  .orientation .ori-run { color: var(--st-progress); }
+  .orientation .ori-pending { color: var(--st-partial); }
+
+  .progress-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 10px 18px;
+    background: var(--bg-0);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (max-width: 720px) {
+    .progress-dual { grid-template-columns: 1fr; }
+  }
+  .progress-dual .meter-block .label {
+    display: flex; justify-content: space-between;
+    margin-bottom: 5px; font-size: 12px;
+  }
+  .progress-dual .meter-block .label .title { font-weight: 600; }
+  .progress-dual .meter-block .label .pct { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .progress-dual .meter-block .meter {
+    height: 10px; background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 5px; overflow: hidden;
+  }
+  .progress-dual .meter-block .meter .fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
+  .progress-dual .impl .fill { background: var(--st-progress); }
+  .progress-dual .evidence .fill { background: var(--st-partial); }
+
+  .cusp-rail {
+    padding: 8px 18px 10px;
+    background: var(--bg-1);
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  .cusp-rail .cusp-label {
+    font-size: 10px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.04em; margin-right: 4px;
+  }
+  .cusp-chip {
+    font-size: 10px; padding: 3px 8px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--bg-2);
+    color: var(--text); cursor: pointer;
+  }
+  .cusp-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .cusp-chip.ready_gap { border-color: var(--st-done); }
+  .cusp-chip.substrate_ready { border-color: var(--st-partial); }
+  .cusp-chip.pending_retest { border-color: #a371f7; }
+
+  .filter-bar {
+    padding: 6px 18px;
+    background: var(--bg-0);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    font-size: 11px;
+  }
+  .filter-bar button {
+    background: var(--bg-3); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 3px 8px; cursor: pointer;
+  }
+  .filter-bar button.active {
+    background: var(--accent); color: #0d1117; border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  .node-badge {
+    font-size: 8px; font-weight: 700; fill: #0d1117;
+    pointer-events: none;
   }
 
   .plans-row {
@@ -330,6 +414,21 @@
   </span>
 </header>
 
+<section class="orientation" id="orientation-strip" hidden></section>
+
+<section class="progress-dual" id="progress-dual" hidden>
+  <div class="meter-block impl">
+    <div class="label"><span class="title">Implementation (load-bearing / high)</span><span class="pct" id="impl-pct">0%</span></div>
+    <div class="meter"><div class="fill" id="impl-fill" style="width:0%"></div></div>
+  </div>
+  <div class="meter-block evidence">
+    <div class="label"><span class="title">Evidence (owner EXQ nodes)</span><span class="pct" id="ev-pct">0%</span></div>
+    <div class="meter"><div class="fill" id="ev-fill" style="width:0%"></div></div>
+  </div>
+</section>
+
+<section class="cusp-rail" id="cusp-rail" hidden></section>
+
 <section class="overall">
   <div class="label">
     <span class="title">Overall ree-v3 closure</span>
@@ -344,6 +443,14 @@
 </section>
 
 <div class="plans-row" id="plans-row"></div>
+
+<div class="filter-bar" id="filter-bar">
+  <span style="color:var(--muted);margin-right:4px;">filter</span>
+  <button type="button" data-filter="all" class="active">all</button>
+  <button type="button" data-filter="blocked">blocked</button>
+  <button type="button" data-filter="in_progress">in-progress</button>
+  <button type="button" data-filter="live_exq">live EXQ</button>
+</div>
 
 <div class="legend">
   <span class="lg"><span class="dot" style="background:var(--st-done)"></span>done</span>
@@ -390,6 +497,7 @@ let TITLE_CLICKS = 0;
 let SELECTED_NODE_ID = null;
 // #5 ready-to-work filter state
 let READY_FILTER_ACTIVE = false;
+let STATUS_FILTER = 'all';
 // derived sets (recomputed on render or when state changes)
 let NODES_BY_ID = {};
 let NEIGHBOURS_OF = {};   // id -> Set of directly-connected ids (any edge type)
@@ -399,14 +507,119 @@ async function load() {
   const r = await fetch('/api/closure');
   CLOSURE = await r.json();
   document.getElementById('gen').textContent =
-    'generated ' + (CLOSURE.generated_at || '?') +
+    (CLOSURE.schema_version || 'closure/v1') + ' ; generated ' +
+    (CLOSURE.generated_at || '?') +
     ' ; ' + CLOSURE.nodes.length + ' nodes across ' + CLOSURE.plans.length + ' plans';
   computeDerivedSets();
+  renderOrientation();
+  renderDualProgress();
+  renderCuspRail();
   renderOverall();
   renderPlans();
   renderGraph();
   wireReadyToggle();
+  wireStatusFilter();
+  applyHighlightFromUrl();
   scheduleEasterEggs();
+}
+
+function renderOrientation() {
+  const el = document.getElementById('orientation-strip');
+  const o = CLOSURE.orientation;
+  if (!o) { el.hidden = true; return; }
+  el.hidden = false;
+  const pending = o.pending_review_count != null ? o.pending_review_count : '?';
+  const runCls = o.any_runner_active ? 'ori-run' : '';
+  let html = '<div class="ori-title">Orientation</div>';
+  html += '<div class="' + runCls + '">Runner: ' + escapeHtml(o.runner_summary || '') + '</div>';
+  html += '<div class="ori-pending">Pending review: ' + pending + '</div>';
+  if (o.roadmap_snippet) {
+    html += '<pre style="margin:6px 0 0;white-space:pre-wrap;font-family:inherit;font-size:10px;color:var(--muted);max-height:72px;overflow:auto;">' +
+      escapeHtml(o.roadmap_snippet) + '</pre>';
+  }
+  el.innerHTML = html;
+}
+
+function renderDualProgress() {
+  const wrap = document.getElementById('progress-dual');
+  const p = CLOSURE.progress;
+  if (!p) { wrap.hidden = true; return; }
+  wrap.hidden = false;
+  const impl = p.implementation || {};
+  const ev = p.evidence || {};
+  const implPct = Math.round((impl.progress || 0) * 100);
+  const evPct = Math.round((ev.progress || 0) * 100);
+  document.getElementById('impl-pct').textContent =
+    implPct + '% (' + (impl.done_weighted || 0) + '/' + (impl.node_total || 0) + ')';
+  document.getElementById('ev-pct').textContent =
+    evPct + '% (' + (ev.done_weighted || 0) + '/' + (ev.node_total || 0) + ')';
+  setTimeout(() => {
+    document.getElementById('impl-fill').style.width = implPct + '%';
+    document.getElementById('ev-fill').style.width = evPct + '%';
+  }, 80);
+}
+
+function renderCuspRail() {
+  const el = document.getElementById('cusp-rail');
+  const items = CLOSURE.cusp_items || [];
+  if (!items.length) { el.hidden = true; return; }
+  el.hidden = false;
+  let html = '<span class="cusp-label">cusp</span>';
+  for (const it of items.slice(0, 24)) {
+    const kind = it.kind || 'item';
+    const label = escapeHtml(it.label || '?');
+    const gap = it.gap_id ? ' data-gap="' + escapeHtml(it.gap_id) + '"' : '';
+    html += '<span class="cusp-chip ' + kind + '"' + gap + ' title="' + kind + '">' + label + '</span>';
+  }
+  el.innerHTML = html;
+  el.querySelectorAll('.cusp-chip[data-gap]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const gid = chip.getAttribute('data-gap');
+      if (gid) highlightNode(gid);
+    });
+  });
+}
+
+function wireStatusFilter() {
+  const bar = document.getElementById('filter-bar');
+  if (!bar) return;
+  bar.querySelectorAll('button[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      STATUS_FILTER = btn.getAttribute('data-filter') || 'all';
+      bar.querySelectorAll('button[data-filter]').forEach(b =>
+        b.classList.toggle('active', b === btn));
+      applyStatusFilter();
+    });
+  });
+}
+
+function applyStatusFilter() {
+  const svg = document.getElementById('graph');
+  if (!svg || !CLOSURE) return;
+  for (const g of svg.querySelectorAll('.node')) {
+    const nid = g.getAttribute('data-node-id');
+    const n = NODES_BY_ID[nid];
+    let show = true;
+    if (STATUS_FILTER === 'blocked') show = n && n.status === 'blocked';
+    else if (STATUS_FILTER === 'in_progress') show = n && n.status === 'in_progress';
+    else if (STATUS_FILTER === 'live_exq') show = n && n.exq_live;
+    g.style.display = show ? '' : 'none';
+  }
+}
+
+function applyHighlightFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const h = params.get('highlight');
+  if (h) highlightNode(h);
+}
+
+function highlightNode(nodeId) {
+  if (!NODES_BY_ID[nodeId]) return;
+  SELECTED_NODE_ID = nodeId;
+  applySelectionStyling();
+  const svg = document.getElementById('graph');
+  const g = svg && svg.querySelector('.node[data-node-id="' + nodeId + '"]');
+  if (g) g.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
 }
 
 function computeDerivedSets() {
@@ -534,10 +747,19 @@ function renderPlans() {
         counts += '<span class="pc"><span class="dot" style="background:'+col+'"></span>'+n+' '+s+'</span>';
       }
     }
+    let live = '';
+    if (p.running_exqs && p.running_exqs.length) {
+      live = '<span class="pc" style="color:var(--st-progress)">live ' +
+        p.running_exqs.map(escapeHtml).join(', ') + '</span>';
+    }
+    if (p.blocked_load_bearing) {
+      live += '<span class="pc" style="color:var(--st-blocked)">' +
+        p.blocked_load_bearing + ' blocked LB</span>';
+    }
     card.innerHTML =
       '<div class="pname"><span>'+escapeHtml(p.title)+'</span><span class="pct">'+pct+'%</span></div>' +
       '<div class="pmeter"><div class="pfill" style="width:0%"></div></div>' +
-      '<div class="pcounts">'+counts+(p.frontmatter_pending ? '<span class="pc" style="color:var(--st-partial)">frontmatter pending</span>' : '')+'</div>';
+      '<div class="pcounts">'+counts+live+(p.frontmatter_pending ? '<span class="pc" style="color:var(--st-partial)">frontmatter pending</span>' : '')+'</div>';
     row.appendChild(card);
     setTimeout(() => {
       card.querySelector('.pfill').style.width = pct + '%';
@@ -687,9 +909,34 @@ function renderGraph() {
     meta.setAttribute('class', 'node-sub');
     meta.setAttribute('x', 10);
     meta.setAttribute('y', 48);
-    const ownerStr = n.owner_exq ? n.owner_exq : '—';
-    meta.textContent = 'phase ' + (n.phase==null?'?':n.phase) + ' · ' + ownerStr;
+    const ownerStr = n.owner_exq ? n.owner_exq : '-';
+    let metaLine = 'phase ' + (n.phase==null?'?':n.phase) + ' | ' + ownerStr;
+    if (n.exq_live) metaLine += ' [LIVE]';
+    meta.textContent = metaLine.length > 42 ? metaLine.slice(0, 40) + '..' : metaLine;
     g.appendChild(meta);
+
+    const badges = n.badges || [];
+    let bx = 8;
+    for (const b of badges) {
+      const bw = b.length * 5 + 10;
+      const bg = el('rect');
+      bg.setAttribute('x', bx);
+      bg.setAttribute('y', 4);
+      bg.setAttribute('width', bw);
+      bg.setAttribute('height', 12);
+      bg.setAttribute('rx', 4);
+      const col = b === 'RETEST' ? '#a371f7' : (b === 'CEIL' ? '#f85149' : '#58a6ff');
+      bg.setAttribute('fill', col);
+      g.appendChild(bg);
+      const bt = el('text');
+      bt.setAttribute('class', 'node-badge');
+      bt.setAttribute('x', bx + bw / 2);
+      bt.setAttribute('y', 13);
+      bt.setAttribute('text-anchor', 'middle');
+      bt.textContent = b;
+      g.appendChild(bt);
+      bx += bw + 4;
+    }
 
     g.addEventListener('mouseenter', (ev) => showTip(ev, n));
     g.addEventListener('mousemove', (ev) => moveTip(ev));
@@ -804,7 +1051,10 @@ function showTip(ev, n) {
   }
   html += '<dt>phase</dt><dd>' + escapeHtml(String(n.phase==null?'?':n.phase)) + '</dd>';
   html += '<dt>severity</dt><dd>' + escapeHtml(n.severity || '') + '</dd>';
-  if (n.owner_exq) html += '<dt>owner_exq</dt><dd>' + escapeHtml(n.owner_exq) + '</dd>';
+  if (n.owner_exq) html += '<dt>owner_exq</dt><dd>' + escapeHtml(n.owner_exq) + (n.exq_live ? ' [LIVE]' : '') + '</dd>';
+  if (n.active_blocker_short) html += '<dt>blocker</dt><dd>' + escapeHtml(n.active_blocker_short) + '</dd>';
+  if (n.badges && n.badges.length) html += '<dt>badges</dt><dd>' + n.badges.map(escapeHtml).join(', ') + '</dd>';
+  if (n.claim_flags && n.claim_flags.length) html += '<dt>claim_flags</dt><dd>' + n.claim_flags.map(escapeHtml).join(', ') + '</dd>';
   if (n.unblocks_claims && n.unblocks_claims.length) html += '<dt>unblocks</dt><dd>' + n.unblocks_claims.map(escapeHtml).join(', ') + '</dd>';
   if (n.depends_on && n.depends_on.length) {
     // Annotate each lineage target with its status so done predecessors are
