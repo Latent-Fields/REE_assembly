@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-21T17:16:56Z",
+  "last_tick_utc": "2026-05-21T17:17:58Z",
   "state": "running",
   "current_exq": "V3-EXQ-543k",
   "current_exq_started_utc": "2026-05-21T14:36:03.250213+00:00",
@@ -10,20 +10,20 @@
   "current_description": "",
   "progress": {
     "run_label": "Seed 0 / ARM_11_both_xtal_diff",
-    "runs_done": 34,
+    "runs_done": 35,
     "runs_total": 36,
-    "episodes_done": 80,
+    "episodes_done": 0,
     "episodes_total": 108,
-    "overall_pct": 96.5
+    "overall_pct": 97.2
   },
-  "seconds_elapsed": 9653,
-  "seconds_remaining": 349,
+  "seconds_elapsed": 9715,
+  "seconds_remaining": 277,
   "recent_lines": [
-    "[train] ARM_11_both_xtal_diff ep 70/108  phase=P1  rv=0.0019  ep_reward=-1.0485  baseline=-1.1296  buf=184  inert_gating=True",
-    "[crystallize] ARM_11_both_xtal_diff P1 ep 30/60  gated_frozen=4467  expansion_params=1249  ewc_anchored=True  ewc_active_centers=0  (closure == InfantCurriculumScheduler.on_phase3_entry)",
-    "[probe] ARM_11_both_xtal_diff P1 ep 35/60  applicable=True  mean_tv=0.0013  max_tv=0.0021  buf=213",
-    "[probe] ARM_11_both_xtal_diff P1 ep 40/60  applicable=True  mean_tv=0.0013  max_tv=0.0021  buf=236",
-    "[train] ARM_11_both_xtal_diff ep 80/108  phase=P1  rv=0.0021  ep_reward=-1.0555  baseline=-1.1242  buf=236  inert_gating=True"
+    "seed=0 arm=ARM_11_both_xtal_diff  reef_frac=0.208  rho=+0.078  forage_hr=0.4327  transit_hr=1.0000  ratio=0.433  inert_gating=True  outcome_buf=395",
+    "verdict: FAIL",
+    "Seed 0 Condition ARM_11_both_xtal_diff",
+    "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=True  differential_heads=True  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
