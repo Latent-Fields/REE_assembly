@@ -1,0 +1,139 @@
+{
+  "run_id": "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T142648Z_v3",
+  "queue_id": "V3-EXQ-603",
+  "experiment_type": "v3_exq_603_q045_mech313_mech260_four_arm_ablation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260521T142648Z",
+  "outcome": "FAIL",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ],
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "Q-045": "mixed",
+    "MECH-313": "supports",
+    "MECH-260": "weakens"
+  },
+  "dry_run": false,
+  "acceptance_criteria": {
+    "entropy_ARM_0": 0.244051,
+    "entropy_ARM_1": 0.292153,
+    "entropy_ARM_2": 0.244051,
+    "entropy_ARM_3": 0.292153,
+    "c1_both_beats_off": false,
+    "c2_mutually_load_bearing": false,
+    "c3_each_alone_beats_off": false,
+    "overall_pass": false
+  },
+  "summary": {
+    "entropy_ARM_0": 0.244051,
+    "entropy_ARM_1": 0.292153,
+    "entropy_ARM_2": 0.244051,
+    "entropy_ARM_3": 0.292153,
+    "c1_both_beats_off": false,
+    "c2_mutually_load_bearing": false,
+    "c3_each_alone_beats_off": false,
+    "overall_pass": false
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_both_off",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805,
+      "unique_actions": 1
+    },
+    {
+      "arm": "ARM_0_both_off",
+      "seed": 43,
+      "selected_action_entropy": 0.405813,
+      "reef_fraction": 0.0,
+      "total_steps": 1495,
+      "unique_actions": 2
+    },
+    {
+      "arm": "ARM_0_both_off",
+      "seed": 44,
+      "selected_action_entropy": 0.326341,
+      "reef_fraction": 0.836348,
+      "total_steps": 2267,
+      "unique_actions": 2
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805,
+      "unique_actions": 1
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 43,
+      "selected_action_entropy": 0.480997,
+      "reef_fraction": 0.0,
+      "total_steps": 1046,
+      "unique_actions": 2
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 44,
+      "selected_action_entropy": 0.395461,
+      "reef_fraction": 0.862389,
+      "total_steps": 2260,
+      "unique_actions": 3
+    },
+    {
+      "arm": "ARM_2_mech260_only",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805,
+      "unique_actions": 1
+    },
+    {
+      "arm": "ARM_2_mech260_only",
+      "seed": 43,
+      "selected_action_entropy": 0.405813,
+      "reef_fraction": 0.0,
+      "total_steps": 1495,
+      "unique_actions": 2
+    },
+    {
+      "arm": "ARM_2_mech260_only",
+      "seed": 44,
+      "selected_action_entropy": 0.326341,
+      "reef_fraction": 0.836348,
+      "total_steps": 2267,
+      "unique_actions": 2
+    },
+    {
+      "arm": "ARM_3_both_on",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805,
+      "unique_actions": 1
+    },
+    {
+      "arm": "ARM_3_both_on",
+      "seed": 43,
+      "selected_action_entropy": 0.480997,
+      "reef_fraction": 0.0,
+      "total_steps": 1046,
+      "unique_actions": 2
+    },
+    {
+      "arm": "ARM_3_both_on",
+      "seed": 44,
+      "selected_action_entropy": 0.395461,
+      "reef_fraction": 0.862389,
+      "total_steps": 2260,
+      "unique_actions": 3
+    }
+  ]
+}
