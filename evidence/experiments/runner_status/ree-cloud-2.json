@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
-  "runner_pid": 305734,
-  "runner_started_at": "2026-05-21T09:51:54.509116+00:00",
-  "last_updated": "2026-05-21T12:02:49.607673+00:00",
+  "runner_pid": 340361,
+  "runner_started_at": "2026-05-21T13:17:26.449688+00:00",
+  "last_updated": "2026-05-21T13:17:27.742325+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -18,12 +18,34 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-605",
-      "backlog_id": "EVB-0229",
+      "queue_id": "V3-EXQ-600a",
+      "backlog_id": "",
       "claim_id": "",
-      "title": "Q-043 MECH-313 vs MECH-314 weight calibration sweep",
+      "title": "MECH-282 LPB interoceptive routing diagnostic (emit_outcome fix)",
       "description": "",
-      "estimated_minutes": 108.0,
+      "estimated_minutes": 0.4,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-607",
+      "backlog_id": "",
+      "claim_id": "MECH-340",
+      "title": "MECH-340 persistence/efficacy gate substrate validation",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-597b",
+      "backlog_id": "",
+      "claim_id": "MECH-258",
+      "title": "MECH-258 PE vs raw (597b: pre-clip bias telemetry for C2)",
+      "description": "",
+      "estimated_minutes": 224.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2232,6 +2254,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_601_mech269b_followup_a_staleness_gate/v3_exq_601_mech269b_followup_a_staleness_gate_20260521T120249Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 2372.7
+    },
+    {
+      "queue_id": "V3-EXQ-599a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-286 sleep-onset gate validation (emit_outcome fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "ARM_2_gate_on_hyperarousal_cycle: PASS | ARM_2_gate_on_hyperarousal_permitted: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-599a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-599a.json",
+      "started_at": "2026-05-21T13:17:26.458849+00:00",
+      "completed_at": "2026-05-21T13:17:27.741022+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_599a_mech286_sleep_onset_gate_validation/v3_exq_599a_mech286_sleep_onset_gate_validation_20260521T131727Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1.3
     }
   ]
 }
