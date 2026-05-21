@@ -1,0 +1,46 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-21T12:59:23Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_597_mech258_pe_vs_raw_post_spcem_20260520T063328Z_v3",
+      "queue_id": "V3-EXQ-597",
+      "claim_ids": ["MECH-258"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "could-not-express -- C2 PE-vs-raw correlation never computed (all corr null)",
+        "biological_reference": "clear -- affective PE vs raw magnitude in dACC-like arbitration is biologically grounded; no divergence",
+        "prerequisites": "present -- post-SP-CEM main path, E2_harm_a trained in P1 for PE_FORWARD",
+        "implementation": "partial -- script hardcodes dacc_bias_max_abs=2.0 with weights that saturate the clip",
+        "environment": "adequate -- reef env, C0/C1 pass on PE_FORWARD",
+        "measurement": "misleading -- |bias| constant 2.0 every seed/condition -> zero variance -> Pearson undefined",
+        "integration": "coupled -- dACC bias path active but discriminator signal collapsed by clip",
+        "scale": "adequate -- 3 seeds, phased schedule matches 445h"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dACC/aIC precision-weighted prediction error vs raw harm magnitude for action biasing",
+        "dependencies": ["E2_harm_a forward model", "SP-CEM main-path wiring (ARC-065)"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-258": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-597 non_contributory for MECH-258 (failure autopsy 2026-05-21). C0/C1 pass on PE_FORWARD (entropy + forward_r2) but pre-registered C2 failed vacuously: mean |dACC score_bias| == 2.0 on every seed (script sets dacc_bias_max_abs=2.0 with interaction/suppression weights that saturate the clip), so corr(|bias|, model_pe) and corr(|bias|, raw_norm) are null (zero variance). The PE-vs-raw discriminant was therefore untestable -- not evidence against precision-weighted PE routing. Retest after EXQ-597b (or equivalent) logs pre-clip bias or uses a non-saturating clip so C2 can vary across steps.",
+      "recommended_substrate_queue_entry": null,
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Hardcoded dacc_bias_max_abs=2.0 in the 597 script can fully saturate |score_bias|, voiding a correlation-based C2",
+        "C1 forward_r2 can pass while C2 is vacuous -- do not treat as mixed MECH-258 evidence",
+        "597b should measure pre-clip bias or lower max_abs / weights before re-running the discriminant"
+      ],
+      "routing": "queue-experiment"
+    }
+  ]
+}

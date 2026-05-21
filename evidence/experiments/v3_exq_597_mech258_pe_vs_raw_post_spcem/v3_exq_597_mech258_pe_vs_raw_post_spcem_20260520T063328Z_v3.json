@@ -10,9 +10,9 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260520T063328Z",
   "outcome": "FAIL",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-258": "mixed"
+    "MECH-258": "non_contributory"
   },
   "pass_criteria_summary": {
     "c0_policy_entropy": {
@@ -147,5 +147,7 @@
     "sp_cem_defaults": true,
     "env_size": 14,
     "reef_enabled": true
-  }
+  },
+  "evidence_direction_note": "V3-EXQ-597 non_contributory for MECH-258 (failure_autopsy_V3-EXQ-597_2026-05-21). C0/C1 pass but C2 vacuous: |dACC score_bias| saturated at 2.0 (script dacc_bias_max_abs=2.0), all PE-vs-raw correlations null. Retest via 597b with non-saturating bias telemetry.",
+  "epistemic_category": "measurement_gap"
 }

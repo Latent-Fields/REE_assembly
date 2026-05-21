@@ -11,9 +11,9 @@
   "claim_ids": [
     "SD-033a"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-033a": "mixed"
+    "SD-033a": "non_contributory"
   },
   "outcome": "FAIL",
   "dry_run": false,
@@ -83,5 +83,7 @@
         "seed_pass": false
       }
     ]
-  }
+  },
+  "evidence_direction_note": "Governance 2026-05-21: premature GAP-1 probe (gates_on 543k). C1/C2 pass (frozen silent, trainable nonzero) but C3 fail -- trainable bias moves yet P2 reef remains monomodal (0.0 on 2/3 seeds). Substrate_ceiling / ordering: bias-head trainability alone does not break collapse before GAP-B resolved.",
+  "epistemic_category": "substrate_ceiling"
 }

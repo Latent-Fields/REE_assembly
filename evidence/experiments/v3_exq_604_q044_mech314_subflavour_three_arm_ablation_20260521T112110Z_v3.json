@@ -13,13 +13,13 @@
     "MECH-314b",
     "MECH-314c"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-044": "weakens",
-    "MECH-314": "weakens",
-    "MECH-314a": "mixed",
-    "MECH-314b": "mixed",
-    "MECH-314c": "mixed"
+    "Q-044": "non_contributory",
+    "MECH-314": "non_contributory",
+    "MECH-314a": "non_contributory",
+    "MECH-314b": "non_contributory",
+    "MECH-314c": "non_contributory"
   },
   "dry_run": false,
   "acceptance_criteria": {
@@ -125,5 +125,7 @@
       "total_steps": 2267,
       "unique_actions": 2
     }
-  ]
+  ],
+  "evidence_direction_note": "Governance 2026-05-21: substrate_ceiling. All four arms identical selected_action_entropy (0.244051) and monomodal collapse (seed 42 unique_actions=1) -- MECH-314 sub-flavour ablations exert no discriminable signal. Do not weaken Q-044/MECH-314; retest after structured-curiosity substrate carries information at action-selection.",
+  "epistemic_category": "substrate_ceiling"
 }

@@ -12,12 +12,12 @@
     "MECH-313",
     "MECH-314"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-043": "weakens",
-    "ARC-065": "weakens",
-    "MECH-313": "weakens",
-    "MECH-314": "weakens"
+    "Q-043": "non_contributory",
+    "ARC-065": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-314": "non_contributory"
   },
   "dry_run": false,
   "grid": {
@@ -374,5 +374,7 @@
       "reef_fraction": 0.853086,
       "total_steps": 1831
     }
-  ]
+  ],
+  "evidence_direction_note": "Governance 2026-05-21: substrate_ceiling / measurement. Curiosity_scale (1x/5x/10x) and noise_alpha sweeps produce identical per-cell entropy and reef_fraction within each alpha row (e.g. all a0.1 arms 0.259/0.289). p1_any_calibration_zone false. Q-043 calibration grid untestable until curiosity/noise paths modulate behavior.",
+  "epistemic_category": "substrate_ceiling"
 }
