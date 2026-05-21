@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-21T09:00:40Z",
+  "last_tick_utc": "2026-05-21T09:01:42Z",
   "state": "running",
   "current_exq": "V3-EXQ-606",
   "current_exq_started_utc": "2026-05-21T08:35:37.198536+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 17 / ARM_0_cluster_off",
-    "runs_done": 6,
+    "run_label": "Seed 17 / ARM_1_single_regime",
+    "runs_done": 7,
     "runs_total": 9,
     "episodes_done": 30,
     "episodes_total": 76,
-    "overall_pct": 71.1
+    "overall_pct": 82.2
   },
-  "seconds_elapsed": 1503,
-  "seconds_remaining": 623,
+  "seconds_elapsed": 1566,
+  "seconds_remaining": 347,
   "recent_lines": [
-    "verdict: FAIL  reef_H=0.000  reef_V=0.000  cross_delta=0.000",
-    "Seed 17 Condition ARM_0_cluster_off cluster_on=False multi_rule=False",
-    "[train] ARM_0_cluster_off ep 15/76  phase=enc  reward=-0.105",
-    "[train] ARM_0_cluster_off ep 15/76  phase=P1  axis=horizontal  rule_norm=0.00000",
-    "[train] ARM_0_cluster_off ep 30/76  phase=P1  axis=horizontal  rule_norm=0.00000"
+    "verdict: PASS  reef_H=0.000  reef_V=0.000  cross_delta=0.000",
+    "Seed 17 Condition ARM_1_single_regime cluster_on=True multi_rule=False",
+    "[train] ARM_1_single_regime ep 15/76  phase=enc  reward=-0.826",
+    "[train] ARM_1_single_regime ep 15/76  phase=P1  axis=horizontal  rule_norm=0.04221",
+    "[train] ARM_1_single_regime ep 30/76  phase=P1  axis=horizontal  rule_norm=0.08061"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
