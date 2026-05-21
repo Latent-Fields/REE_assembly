@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T00:03:49Z",
+  "last_updated_utc": "2026-05-21T02:16:03Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1119,12 +1119,14 @@
     {
       "sd_id": "SD-037",
       "title": "broadcast.override_regulator",
-      "ready": true,
+      "ready": false,
       "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-280",
-        "MECH-281",
+        "MECH-281"
+      ],
+      "unblocks_claims_deferred": [
         "MECH-282",
         "MECH-286"
       ],
@@ -1142,14 +1144,48 @@
           "target": "approach_commit > 0 in the SD-036-only ON_OFF baseline so the falsifiable PWS-hyperphagia / narcolepsy-cataplexy phenotypes can be discriminated. Likely a policy-layer / cue-side bridge issue (MECH-295 candidate) -- not solvable by tuning warmup alone. Future validation requires either (i) a benefit task tuned so baseline drives non-zero approach, or (ii) explicit liking-bridge intervention test (MECH-295 falsifiable primary)."
         }
       ],
-      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Two validation runs (EXQ-483, EXQ-483a) confirmed substrate is wired correctly (override_signal accumulates, PAG threshold scales) but baseline approach_commit remains 0.0 even at 200-ep warmup, so the falsifiable behavioural phenotypes (PWS-hyperphagia, narcolepsy/cataplexy) cannot be discriminated. Promotion blocked on policy-layer translation gap that affects EXQ-471 / 478 / 480 / 483 / 483a uniformly -- likely a drive->liking->approach bridge defect (MECH-295 territory). Suggested next step: either tune benefit task so baseline yields non-zero approach, or run a MECH-295-style liking-bridge intervention test independent of SD-037.",
+      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Substrate-readiness closed IGW-20260521-020: V3-EXQ-483b PASS (2026-05-08, substrate-readiness fallback; override_mean>0.30, PAG ratio 1.875x). MECH-280/281 landed with SD-037; MECH-282 (LPB interoceptive channel) and MECH-286 (override-gated sleep entry) are NOT in this landing -- separate substrate items. Tier-1 behavioural evidence: V3-EXQ-483c queued (goal_pipeline GAP-4 fishtank). Behavioural PWS/narcolepsy ratios on standard grid still blocked by approach_commit=0 (MECH-295 / goal-seeding bridge territory).",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
-      "last_seen_session": "governance-2026-04-26T15:39",
-      "implementation_status": "implemented_but_failing_validation",
+      "last_seen_session": "igw-sd037-substrate-ready-20260521T021603Z",
+      "implementation_status": "implemented",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "validation_experiment": "V3-EXQ-483",
-      "implemented_session": "implement-sd037-orexin-2026-04-25"
+      "validation_experiment": "V3-EXQ-483b",
+      "implemented_session": "implement-sd037-orexin-2026-04-25",
+      "metric_trajectory": {
+        "primary_metric": "substrate_readiness.override_mean_and_pag_release_ratio",
+        "primary_metric_description": "SD-037 override_signal mean in ON arms and PAG freeze-gate release ratio ON_ON/ON_OFF; behavioural PWS/narcolepsy ratios require non-zero approach_commit baseline.",
+        "direction": "higher_is_better",
+        "target": "override_mean > 0.30 AND pag_release_ratio ON_ON/ON_OFF > 1.30 (substrate-readiness); behavioural path requires approach_commit>0 in ON_OFF baseline",
+        "observations": [
+          {
+            "run_id": "v3_exq_483_sd037_broadcast_override_4arm_20260425T204829Z_v3",
+            "experiment_type": "v3_exq_483_sd037_broadcast_override_4arm",
+            "date_utc": "2026-04-25",
+            "substrate_state": "SD-037 landed 2026-04-25",
+            "metric_value": "FAIL behavioural; substrate signature OK",
+            "metric_notes": "override_mean~0.56; approach_commit=0 all arms"
+          },
+          {
+            "run_id": "v3_exq_483a_sd037_broadcast_override_4arm_20260426T150012Z_v3",
+            "experiment_type": "v3_exq_483a_sd037_broadcast_override_4arm",
+            "date_utc": "2026-04-26",
+            "substrate_state": "warmup 200",
+            "metric_value": "PASS substrate-readiness fallback",
+            "metric_notes": "PAG ratio 1.69; approach_commit still 0"
+          },
+          {
+            "run_id": "v3_exq_483b_sd037_broadcast_override_4arm_20260508T135329Z_v3",
+            "experiment_type": "v3_exq_483b_sd037_broadcast_override_4arm",
+            "date_utc": "2026-05-08",
+            "substrate_state": "post Bug-1 breath_period fix",
+            "metric_value": "PASS substrate-readiness (canonical)",
+            "metric_notes": "supports SD-037/MECH-280/MECH-281; PAG ratio 1.875x; approach_commit=0 (behavioural path N/A)"
+          }
+        ],
+        "current_blocker": "Policy-layer approach_commit=0 on standard CausalGridWorldV2 benefit task; MECH-282/MECH-286 not implemented. Evidence closure via V3-EXQ-483c under GAP-4 operating substrate.",
+        "prediction": "V3-EXQ-483c Tier-1 may show cue_fires/approach_commit lift ON_ON vs OFF_OFF under fishtank+goal_stream; if still flat, blocker is upstream of SD-037 (MECH-295 bridge), not override wiring."
+      }
     },
     {
       "sd_id": "SD-038",

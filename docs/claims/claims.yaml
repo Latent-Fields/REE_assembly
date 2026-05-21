@@ -22142,6 +22142,13 @@
     broken substrate without depending on a behavioural readout the
     policy layer cannot yet produce). Strong literature basis retained
     (lit-pull synthesis at literature_confidence ~0.78 across 13 papers).
+
+    [IGW-20260521-020 substrate-ready close]: Substrate-readiness canonical
+    PASS V3-EXQ-483b (2026-05-08). SD-037 landing scope = BroadcastOverrideRegulator
+    + MECH-280/281 consumer sites only; MECH-282 (LPB channel) and MECH-286
+    (sleep-onset gating) explicitly deferred. Tier-1 evidence V3-EXQ-483c
+    queued (goal_pipeline GAP-4). v3_pending retained until behavioural
+    phenotypes or 483c contributory evidence; no promotion.
   pharmacological_predictions:
     - PHARM-001  # DORA-class (suvorexant/lemborexant) substrate intervention for hyperarousal-insomnia
     - PHARM-002  # modafinil / sodium oxybate (MECH-286 axis, narcolepsy sleep-state)
@@ -22208,6 +22215,8 @@
     [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
 
     [2026-05-08 governance]: EXQ-483b supports. PAG release ratio 1.875x (>1.30 threshold). Substrate-level mechanism validated in isolation; integration test pending MECH-307.
+
+    [IGW-20260521-020]: SD-037 substrate-ready closed; MECH-280 wired path confirmed by 483b. Behavioural freeze->foraging transition still blocked by approach_commit=0 on standard grid.
   title: "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys."
   claim_type: mechanism_hypothesis
   subject: lh_pag.override_projection
@@ -22215,7 +22224,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
-  implementation_note: "IMPLEMENTED 2026-04-25 as part of SD-037 landing. PAGFreezeGateConfig.alpha_override (default 0.0) accepts the override_signal scaling; PAGFreezeGate.tick() now takes override_signal arg per cycle: exit_threshold = theta_freeze * (1 + alpha_override * override_signal) * gaba_tone. REEAgent wires override_alpha_pag (default 0.5) into PAG config when both use_broadcast_override and use_pag_freeze_gate are True. Validation: V3-EXQ-483 4-arm factorial."
+  implementation_note: "IMPLEMENTED 2026-04-25 as part of SD-037 landing. PAGFreezeGateConfig.alpha_override (default 0.0) accepts the override_signal scaling; PAGFreezeGate.tick() now takes override_signal arg per cycle: exit_threshold = theta_freeze * (1 + alpha_override * override_signal) * gaba_tone. REEAgent wires override_alpha_pag (default 0.5) into PAG config when both use_broadcast_override and use_pag_freeze_gate are True. Substrate-readiness validation: V3-EXQ-483b PASS (2026-05-08)."
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
@@ -22258,6 +22267,8 @@
     [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
 
     [2026-05-08 governance]: EXQ-483b supports. Entropy amplification confirmed. Substrate-level mechanism validated in isolation; integration test pending MECH-307.
+
+    [IGW-20260521-020]: Partial landing (GoalState seeding + SalienceCoordinator) substrate-ready per 483b; PFC/BLA/beta-gate consumers deferred. Cataplexy/PWS behavioural tests still N/A (approach_commit=0).
   title: "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy)."
   claim_type: mechanism_hypothesis
   subject: orexin.drive_arousal_coupling
@@ -22671,7 +22682,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
-  implementation_note: "PARTIAL 2026-04-25: SD-037 override_signal source IMPLEMENTED (broadcast_override.py). MECH-286 sleep-onset gating (override_signal < theta_sleep_permit AND MECH-284 staleness > theta_sleep_recruit AND permissive threat context) NOT YET wired -- sleep-mode entry path remains as enter_offline_mode without these conditions. Stays v3_pending; substrate landing requires offline-state-machine work that is downstream of MECH-285 (deferred)."
+  implementation_note: "PARTIAL 2026-04-25: SD-037 override_signal source IMPLEMENTED (broadcast_override.py). MECH-286 sleep-onset gating (override_signal < theta_sleep_permit AND MECH-284 staleness > theta_sleep_recruit AND permissive threat context) NOT YET wired -- sleep-mode entry path remains as enter_offline_mode without these conditions. Stays v3_pending; NOT in SD-037 IGW-20260521-020 landing scope (separate /implement-substrate item). Substrate landing requires offline-state-machine work downstream of MECH-285."
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:

@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T01:21:21Z`
+Generated: `2026-05-21T02:24:33Z`
 Schema: `inter_governance_workset/v1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,7 +9,7 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **56** (ready 37, in_flight 1, blocked 7)
+- Items: **56** (ready 37, in_flight 1, blocked 6)
 - Pending review: **0**
 - Queue pending (unclaimed): **7**
 
@@ -17,29 +17,7 @@ UI: http://localhost:8000/workset
 
 ## Work packages
 
-### IGW-20260521-020 -- Substrate ready: SD-037
-
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
-- **Why now:** IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Two vali
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260521-020
-Title: Substrate ready: SD-037
-Lane: substrate | Skill: /implement-substrate
-Status: ready
-Claims: MECH-280, MECH-281, MECH-282, MECH-286
-Why now: IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Two vali
-
-Instructions:
-- Use /implement-substrate for the SD/MECH named in title.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260521-021 -- Substrate ready: MECH-269b
+### IGW-20260521-020 -- Substrate ready: MECH-269b
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
 - **Why now:** Substrate landed in regulators/vs_rollout_gate.py 2026-04-26. /diagnose-errors 2026-04-27 root-cause: VsRolloutGate hold trigger (V_s < 0.4) is unreachable under typical Phase 1 V_s dynamics. Phase 1 
@@ -47,7 +25,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260521-021
+REE inter-governance work item: IGW-20260521-020
 Title: Substrate ready: MECH-269b
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -61,7 +39,7 @@ Instructions:
 
 </details>
 
-### IGW-20260521-022 -- Substrate ready: MECH-269b-followup-A
+### IGW-20260521-021 -- Substrate ready: MECH-269b-followup-A
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
 - **Why now:** Smaller substrate change than the Phase 2 T2 path. Mirrors the existing MECH-269 anchor hysteresis pattern: AnchorSet.tick_hysteresis already consumes staleness_lookup when use_mech284_hysteresis is T
@@ -69,7 +47,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260521-022
+REE inter-governance work item: IGW-20260521-021
 Title: Substrate ready: MECH-269b-followup-A
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -83,7 +61,7 @@ Instructions:
 
 </details>
 
-### IGW-20260521-023 -- Substrate ready: MECH-204
+### IGW-20260521-022 -- Substrate ready: MECH-204
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
 - **Why now:** Sleep loop with REM-phase serotonergic withdrawal that actively recalibrates the waking precision setpoint. Pairs with SD-049 sleep loop and SD-017 cluster. Per 2026-05-08 governance: TOP-PRIORITY UNB
@@ -91,7 +69,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260521-023
+REE inter-governance work item: IGW-20260521-022
 Title: Substrate ready: MECH-204
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -105,7 +83,7 @@ Instructions:
 
 </details>
 
-### IGW-20260521-024 -- Substrate ready: MECH-307
+### IGW-20260521-023 -- Substrate ready: MECH-307
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
 - **Why now:** Four-gap conjunction fix to existing channels: (1) signed VALENCE_SURPRISE (negative for harm-paired surprise, positive for reward-paired); (2) MECH-216 z_beta coupling so arousal pulse fires on VALEN
@@ -113,7 +91,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260521-024
+REE inter-governance work item: IGW-20260521-023
 Title: Substrate ready: MECH-307
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -127,7 +105,7 @@ Instructions:
 
 </details>
 
-### IGW-20260521-025 -- Substrate ready: ARC-062
+### IGW-20260521-024 -- Substrate ready: ARC-062
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
 - **Why now:** Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid outp
@@ -135,7 +113,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260521-025
+REE inter-governance work item: IGW-20260521-024
 Title: Substrate ready: ARC-062
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -149,7 +127,7 @@ Instructions:
 
 </details>
 
-### IGW-20260521-026 -- Substrate ready: SD-055
+### IGW-20260521-025 -- Substrate ready: SD-055
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
 - **Why now:** Code is already in ree-v3/ree_core/hippocampal/module.py (use_differentiable_cem flag, softmax-weighted ao_mean path). EXQ-568 confirmed gradient flow (grad_max=372). ree-v3/CLAUDE.md documentation up
@@ -157,7 +135,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260521-026
+REE inter-governance work item: IGW-20260521-025
 Title: Substrate ready: SD-055
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -171,7 +149,7 @@ Instructions:
 
 </details>
 
-### IGW-20260521-027 -- Substrate ready: INF-ENV-001
+### IGW-20260521-026 -- Substrate ready: INF-ENV-001
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
 - **Why now:** Add harm_gradient_* params to CausalGridWorldV2.__init__. In step(): compute d = min distance to nearest hazard; if d < outer_radius: apply -hazard_harm * (1-d/outer_radius)^2 * harm_gradient_scale to
@@ -179,12 +157,34 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260521-027
+REE inter-governance work item: IGW-20260521-026
 Title: Substrate ready: INF-ENV-001
 Lane: substrate | Skill: /implement-substrate
 Status: ready
 Claims: DEV-NEED-004, ARC-013
 Why now: Add harm_gradient_* params to CausalGridWorldV2.__init__. In step(): compute d = min distance to nearest hazard; if d < outer_radius: apply -hazard_harm * (1-d/outer_radius)^2 * harm_gradient_scale to
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260521-027 -- Substrate ready: INF-ENV-003
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
+- **Why now:** Add transient_benefit_* params to CausalGridWorldV2. In step(): with prob transient_benefit_prob, add patch at zone-weighted random cell (zone A: 40%, B: 20%, C: 30%, border: 10%). Track active patche
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260521-027
+Title: Substrate ready: INF-ENV-003
+Lane: substrate | Skill: /implement-substrate
+Status: ready
+Claims: DEV-NEED-006, MECH-189
+Why now: Add transient_benefit_* params to CausalGridWorldV2. In step(): with prob transient_benefit_prob, add patch at zone-weighted random cell (zone A: 40%, B: 20%, C: 30%, border: 10%). Track active patche
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -281,12 +281,39 @@ Instructions:
 
 </details>
 
+### IGW-20260521-001 -- MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
+- **Gap(s):** arc_062_rule_apprehension:GAP-B
+- **Owner EXQ:** V3-EXQ-543k
+- **Why now:** BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260521-001
+Title: MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
+Lane: experiment | Skill: /queue-experiment
+Status: in_progress
+Gap(s): arc_062_rule_apprehension:GAP-B
+Owner EXQ: V3-EXQ-543k
+Claims: MECH-309, ARC-062
+Why now: BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260521-007 -- SD-033a bias head untrained (Go-side mechanically silent)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
 - **Gap(s):** commitment_closure:GAP-1
 - **Owner EXQ:** V3-EXQ-598
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
 - **Why now:** GAP-1 closes on V3-EXQ-598 PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543k contributory PASS (arc_062 GAP-B retest); EXQ-598 queued at priority 4 so it runs after 543k (priority 5).
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -299,7 +326,7 @@ Status: in_progress
 Gap(s): commitment_closure:GAP-1
 Owner EXQ: V3-EXQ-598
 Claims: SD-033a, MECH-262, SD-034
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
 Why now: GAP-1 closes on V3-EXQ-598 PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543k contributory PASS (arc_062 GAP-B retest); EXQ-598 queued at priority 4 so it runs after 543k (priority 5).
 
 Instructions:
@@ -770,39 +797,12 @@ Instructions:
 
 </details>
 
-### IGW-20260521-001 -- MECH-309 falsifier cluster (543f/543g/543h) non_contributory -- epistemic_category substrate_ceiling; 543g supersession 
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 38
-- **Gap(s):** arc_062_rule_apprehension:GAP-B
-- **Owner EXQ:** V3-EXQ-543k
-- **Why now:** BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260521-001
-Title: MECH-309 falsifier cluster (543f/543g/543h) non_contributory -- epistemic_category substrate_ceiling; 543g supersession 
-Lane: experiment | Skill: /queue-experiment
-Status: blocked
-Gap(s): arc_062_rule_apprehension:GAP-B
-Owner EXQ: V3-EXQ-543k
-Claims: MECH-309, ARC-062
-Why now: BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
 ### IGW-20260521-002 -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** arc_062_rule_apprehension:GAP-D
 - **Owner EXQ:** V3-EXQ-598
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
 - **Why now:** Plan gap in_progress on arc_062_rule_apprehension.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -815,7 +815,7 @@ Status: in_progress
 Gap(s): arc_062_rule_apprehension:GAP-D
 Owner EXQ: V3-EXQ-598
 Claims: SD-033a, MECH-262
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
 Why now: Plan gap in_progress on arc_062_rule_apprehension.
 
 Instructions:
@@ -1099,7 +1099,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-H
 - **Owner EXQ:** V3-EXQ-544 + V3-EXQ-545 (done); Q-043 / Q-044 / Q-045 TBD
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
 - **Why now:** Plan gap partial on arc_062_rule_apprehension.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1112,7 +1112,7 @@ Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-H
 Owner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); Q-043 / Q-044 / Q-045 TBD
 Claims: ARC-065, Q-043, Q-044, Q-045
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
 Why now: Plan gap partial on arc_062_rule_apprehension.
 
 Instructions:
@@ -1128,7 +1128,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-I
 - **Owner EXQ:** TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C)
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
 - **Why now:** Plan gap partial on arc_062_rule_apprehension.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1141,7 +1141,7 @@ Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-I
 Owner EXQ: TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C)
 Claims: ARC-064, MECH-316, MECH-317, MECH-318
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
 Why now: Plan gap partial on arc_062_rule_apprehension.
 
 Instructions:
@@ -1157,7 +1157,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-K
 - **Owner EXQ:** V3-EXQ-546 (done); V3-EXQ-543c-successor TBD
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
 - **Why now:** Plan gap in_progress on arc_062_rule_apprehension.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1170,7 +1170,7 @@ Status: in_progress
 Gap(s): arc_062_rule_apprehension:GAP-K
 Owner EXQ: V3-EXQ-546 (done); V3-EXQ-543c-successor TBD
 Claims: MECH-319
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
+Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
 Why now: Plan gap in_progress on arc_062_rule_apprehension.
 
 Instructions:
@@ -1293,7 +1293,7 @@ Instructions:
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58
 - **Gap(s):** arc_062_rule_apprehension:GAP-J
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
 - **Why now:** Plan gap blocked on arc_062_rule_apprehension.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1305,7 +1305,7 @@ Lane: plan | Skill: (plan reconcile)
 Status: blocked
 Gap(s): arc_062_rule_apprehension:GAP-J
 Claims: MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
 Why now: Plan gap blocked on arc_062_rule_apprehension.
 
 Instructions:
