@@ -1,0 +1,784 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260520T044151Z_v3",
+  "experiment_type": "v3_exq_596_mech204_sleep_cluster_stepharness_integration",
+  "queue_id": "V3-EXQ-596",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260520T044151Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-204"
+  ],
+  "backlog_id": "EXP-0171",
+  "confirms": "V3-EXQ-541c",
+  "outcome": "FAIL",
+  "result": "FAIL",
+  "evidence_direction": "weakens",
+  "sleep_driver_pattern": "K=1 single-fire (SleepLoopManager, sleep_loop_episodes_K=1, fires every episode)",
+  "criteria": {
+    "n_seeds": 3,
+    "c1_pass": true,
+    "c1_seeds_fired_all": 3,
+    "c2_pass": false,
+    "c2_seeds_cluster_live": 0,
+    "c3_pass": true,
+    "c3_seeds_diverged": 3,
+    "per_seed_relative_divergence": [
+      0.10165396549631917,
+      0.165587932212893,
+      0.10275801240809036
+    ],
+    "overall_pass": false
+  },
+  "registered_thresholds": {
+    "C1_MIN_SEEDS": 2,
+    "C2_MIN_SEEDS": 2,
+    "C3_REL_DIVERGENCE_MIN": 0.03,
+    "ACTIVE_STEP": 0.25,
+    "PRECISION_ZERO_POINT_EMA_ALPHA": 0.1
+  },
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      {
+        "label": "ARM_0_off",
+        "step": 0.0
+      },
+      {
+        "label": "ARM_1_step_0_25",
+        "step": 0.25
+      }
+    ],
+    "episodes_per_run": 12,
+    "steps_per_episode": 150,
+    "sleep_loop_K": 1,
+    "use_sleep_aggregation_cluster": true,
+    "stepharness_waking": true
+  },
+  "seed_results": {
+    "ARM_0_off": [
+      {
+        "arm": "ARM_0_off",
+        "step": 0.0,
+        "seed": 42,
+        "n_cycles": 12,
+        "fired_all_cycles": true,
+        "cluster_live_frac_post_warmup": 0.09090909090909091,
+        "mean_rv_post_later_cycles": 0.0038900591162954147,
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.0041012956394047935,
+            "rv_post_cycle": 0.0041012956394047935,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 2,
+            "rv_pre_cycle": 0.003889971482884873,
+            "rv_post_cycle": 0.003889971482884873,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 8.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 0.6
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.003907953019486944,
+            "rv_post_cycle": 0.003907953019486944,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 4,
+            "rv_pre_cycle": 0.003864692858598264,
+            "rv_post_cycle": 0.003864692858598264,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.0039277977606443585,
+            "rv_post_cycle": 0.0039277977606443585,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 6,
+            "rv_pre_cycle": 0.0038612019244584615,
+            "rv_post_cycle": 0.0038612019244584615,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.0038826373375677983,
+            "rv_post_cycle": 0.0038826373375677983,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 8,
+            "rv_pre_cycle": 0.0039011136885536216,
+            "rv_post_cycle": 0.0039011136885536216,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 9,
+            "rv_pre_cycle": 0.0038801973730930263,
+            "rv_post_cycle": 0.0038801973730930263,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 10,
+            "rv_pre_cycle": 0.0039058023273987573,
+            "rv_post_cycle": 0.0039058023273987573,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 11,
+            "rv_pre_cycle": 0.003887162693414978,
+            "rv_post_cycle": 0.003887162693414978,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 12,
+            "rv_pre_cycle": 0.0038821198131484755,
+            "rv_post_cycle": 0.0038821198131484755,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          }
+        ]
+      },
+      {
+        "arm": "ARM_0_off",
+        "step": 0.0,
+        "seed": 43,
+        "n_cycles": 12,
+        "fired_all_cycles": true,
+        "cluster_live_frac_post_warmup": 0.09090909090909091,
+        "mean_rv_post_later_cycles": 0.004735965654766795,
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.004980636401000806,
+            "rv_post_cycle": 0.004980636401000806,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 2,
+            "rv_pre_cycle": 0.004691861810086652,
+            "rv_post_cycle": 0.004691861810086652,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 8.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 0.6
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.004734283829449299,
+            "rv_post_cycle": 0.004734283829449299,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 4,
+            "rv_pre_cycle": 0.004774391041926131,
+            "rv_post_cycle": 0.004774391041926131,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.004793764236650518,
+            "rv_post_cycle": 0.004793764236650518,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 6,
+            "rv_pre_cycle": 0.004689487785328236,
+            "rv_post_cycle": 0.004689487785328236,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.0048285149984688925,
+            "rv_post_cycle": 0.0048285149984688925,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 8,
+            "rv_pre_cycle": 0.004829704986625571,
+            "rv_post_cycle": 0.004829704986625571,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 9,
+            "rv_pre_cycle": 0.0046263167877417175,
+            "rv_post_cycle": 0.0046263167877417175,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 10,
+            "rv_pre_cycle": 0.00473254466996178,
+            "rv_post_cycle": 0.00473254466996178,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 11,
+            "rv_pre_cycle": 0.004774431326517583,
+            "rv_post_cycle": 0.004774431326517583,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 12,
+            "rv_pre_cycle": 0.00462032072967837,
+            "rv_post_cycle": 0.00462032072967837,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          }
+        ]
+      },
+      {
+        "arm": "ARM_0_off",
+        "step": 0.0,
+        "seed": 44,
+        "n_cycles": 12,
+        "fired_all_cycles": true,
+        "cluster_live_frac_post_warmup": 0.09090909090909091,
+        "mean_rv_post_later_cycles": 0.006306126452250985,
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.006586185356782482,
+            "rv_post_cycle": 0.006586185356782482,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 2,
+            "rv_pre_cycle": 0.006284943095048695,
+            "rv_post_cycle": 0.006284943095048695,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 8.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 0.6
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.006175503578280626,
+            "rv_post_cycle": 0.006175503578280626,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 4,
+            "rv_pre_cycle": 0.006444161453710611,
+            "rv_post_cycle": 0.006444161453710611,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.00632525236169954,
+            "rv_post_cycle": 0.00632525236169954,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 6,
+            "rv_pre_cycle": 0.0063277265591793145,
+            "rv_post_cycle": 0.0063277265591793145,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.006270843870514615,
+            "rv_post_cycle": 0.006270843870514615,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 8,
+            "rv_pre_cycle": 0.006246686697921476,
+            "rv_post_cycle": 0.006246686697921476,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 9,
+            "rv_pre_cycle": 0.006266690840955206,
+            "rv_post_cycle": 0.006266690840955206,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 10,
+            "rv_pre_cycle": 0.006292209960554076,
+            "rv_post_cycle": 0.006292209960554076,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 11,
+            "rv_pre_cycle": 0.00640060048641156,
+            "rv_post_cycle": 0.00640060048641156,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 12,
+            "rv_pre_cycle": 0.0063327720704851225,
+            "rv_post_cycle": 0.0063327720704851225,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          }
+        ]
+      }
+    ],
+    "ARM_1_step_0_25": [
+      {
+        "arm": "ARM_1_step_0_25",
+        "step": 0.25,
+        "seed": 42,
+        "n_cycles": 12,
+        "fired_all_cycles": true,
+        "cluster_live_frac_post_warmup": 0.09090909090909091,
+        "mean_rv_post_later_cycles": 0.0042854990514819506,
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.023523346498907822,
+            "rv_post_cycle": 0.03068969641644192,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 2,
+            "rv_pre_cycle": 0.007042021817934829,
+            "rv_post_cycle": 0.007361753213128645,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 8.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 0.6
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.00443064002142396,
+            "rv_post_cycle": 0.0044977594510546585,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 4,
+            "rv_pre_cycle": 0.004017591013369841,
+            "rv_post_cycle": 0.004024392803153979,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.003917078944533945,
+            "rv_post_cycle": 0.0039211317110069005,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 6,
+            "rv_pre_cycle": 0.003883655781029887,
+            "rv_post_cycle": 0.0038868420645547497,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.0038947251617391125,
+            "rv_post_cycle": 0.003895418862771335,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 8,
+            "rv_pre_cycle": 0.003906433855162913,
+            "rv_post_cycle": 0.003909675219332297,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 9,
+            "rv_pre_cycle": 0.003884219186640027,
+            "rv_post_cycle": 0.0038899177420983503,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 10,
+            "rv_pre_cycle": 0.0038858625213154035,
+            "rv_post_cycle": 0.003886691299692697,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 11,
+            "rv_pre_cycle": 0.003929221041114983,
+            "rv_post_cycle": 0.003922077579794951,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 12,
+            "rv_pre_cycle": 0.003952534812294112,
+            "rv_post_cycle": 0.003944829619712896,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          }
+        ]
+      },
+      {
+        "arm": "ARM_1_step_0_25",
+        "step": 0.25,
+        "seed": 43,
+        "n_cycles": 12,
+        "fired_all_cycles": true,
+        "cluster_live_frac_post_warmup": 0.09090909090909091,
+        "mean_rv_post_later_cycles": 0.005520184414570908,
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.005553640699116311,
+            "rv_post_cycle": 0.013889808579850251,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 2,
+            "rv_pre_cycle": 0.004695920427791257,
+            "rv_post_cycle": 0.00914904809484185,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 8.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 0.6
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.005307182325802609,
+            "rv_post_cycle": 0.006516464014295365,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 4,
+            "rv_pre_cycle": 0.004783110029207874,
+            "rv_post_cycle": 0.0055329132629882306,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.004848517469408453,
+            "rv_post_cycle": 0.005233388110235916,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 6,
+            "rv_pre_cycle": 0.005132066319147325,
+            "rv_post_cycle": 0.005287098615829825,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.0048287872430555325,
+            "rv_post_cycle": 0.005032689681767521,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 8,
+            "rv_pre_cycle": 0.004845675834836201,
+            "rv_post_cycle": 0.004956839560543891,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 9,
+            "rv_pre_cycle": 0.004691421375667342,
+            "rv_post_cycle": 0.0047724144012651955,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 10,
+            "rv_pre_cycle": 0.004749832720634023,
+            "rv_post_cycle": 0.0047732559609221965,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 11,
+            "rv_pre_cycle": 0.004774449872748695,
+            "rv_post_cycle": 0.004789995125246891,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 12,
+            "rv_pre_cycle": 0.004644534384283049,
+            "rv_post_cycle": 0.004677921732343106,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          }
+        ]
+      },
+      {
+        "arm": "ARM_1_step_0_25",
+        "step": 0.25,
+        "seed": 44,
+        "n_cycles": 12,
+        "fired_all_cycles": true,
+        "cluster_live_frac_post_warmup": 0.09090909090909091,
+        "mean_rv_post_later_cycles": 0.006954131472478379,
+        "cycle_records": [
+          {
+            "episode": 1,
+            "rv_pre_cycle": 0.02677202363218087,
+            "rv_post_cycle": 0.0302824924994001,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 2,
+            "rv_pre_cycle": 0.008384678590185123,
+            "rv_post_cycle": 0.010005283379904945,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 8.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 0.6
+          },
+          {
+            "episode": 3,
+            "rv_pre_cycle": 0.0074251364142345145,
+            "rv_post_cycle": 0.007990211397980883,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 4,
+            "rv_pre_cycle": 0.006349471981714312,
+            "rv_post_cycle": 0.006932727187734748,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 5,
+            "rv_pre_cycle": 0.006819806821451035,
+            "rv_post_cycle": 0.006950746330658574,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 6,
+            "rv_pre_cycle": 0.006384868052324591,
+            "rv_post_cycle": 0.006512485805602139,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 7,
+            "rv_pre_cycle": 0.006479333822875901,
+            "rv_post_cycle": 0.006509254110344274,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 8,
+            "rv_pre_cycle": 0.006396529445003639,
+            "rv_post_cycle": 0.00641784025732493,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 9,
+            "rv_pre_cycle": 0.006389581054352058,
+            "rv_post_cycle": 0.0064056597814119345,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 10,
+            "rv_pre_cycle": 0.0062608366617638135,
+            "rv_post_cycle": 0.0062861779372824856,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 11,
+            "rv_pre_cycle": 0.006237999228921845,
+            "rv_post_cycle": 0.006248619789159221,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          },
+          {
+            "episode": 12,
+            "rv_pre_cycle": 0.006220591588499214,
+            "rv_post_cycle": 0.006236440219858051,
+            "mech204_recalibration_fired": 1.0,
+            "mech285_n_draws": 0.0,
+            "sws_n_writes": 5.0,
+            "sws_anchor_weight_applied": 1.0
+          }
+        ]
+      }
+    ]
+  },
+  "elapsed_seconds": 1525.7861034870148,
+  "notes": "Closure-handoff contributory validation for MECH-204 substrate_ready. Combines V3-EXQ-541c F1 consumer (step=0.25) with GAP-3 unified sleep aggregation cluster and StepHarness canonical waking path. Does not test behavioral downstream proxies (deferred V3-EXQ-593 until ARC-065 / MECH-269 diversity)."
+}

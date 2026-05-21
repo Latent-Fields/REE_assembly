@@ -1,0 +1,225 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm",
+  "run_id": "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm_20260520T063323Z_v3",
+  "timestamp_utc": "2026-05-20T06:33:23Z",
+  "claim_ids": [
+    "ARC-033",
+    "ARC-058"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-033": "non_contributory",
+    "ARC-058": "non_contributory"
+  },
+  "evidence_direction_note": "substrate_ceiling: balanced harm-event gate failed",
+  "pass_criteria_summary": {
+    "c0_policy_diversity": {
+      "indep_pass_count": 3,
+      "shared_pass_count": 3,
+      "min_entropy": 0.1,
+      "pass": true
+    },
+    "c1_balanced_harm_events": {
+      "indep_pass_count": 0,
+      "shared_pass_count": 0,
+      "min_tagged_steps": 10,
+      "pass": false
+    },
+    "c2_forward_r2_learnable": {
+      "indep_pass_count": 3,
+      "shared_pass_count": 3,
+      "threshold_r2": 0.3,
+      "pass": true
+    },
+    "c3_cross_arm_discrimination": {
+      "discriminating_seeds": 0,
+      "r2_abs_eps": 1e-05,
+      "r2_rel_eps": 0.01,
+      "pass": false
+    },
+    "c4_arbitration_diagnostic": {
+      "mean_r2_independent": 0.9596273839682375,
+      "mean_r2_shared": 0.9596273839682375,
+      "winner_suggested": "ARC-058_shared",
+      "degradation_frac": 0.05
+    },
+    "off_arm_entropy_mean": 0.8586251026592255,
+    "evidence_direction_note": "substrate_ceiling: balanced harm-event gate failed"
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.897264429497703,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "2": 370,
+        "1": 812,
+        "0": 50,
+        "4": 48
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 42,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9665340743813531,
+      "action_class_entropy": 0.9198685975570866,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "2": 309,
+        "0": 38,
+        "1": 691,
+        "4": 58
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 42,
+      "condition": "ON_SHARED",
+      "harm_a_forward_r2": 0.9665340743813531,
+      "action_class_entropy": 0.9198685975570866,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "2": 309,
+        "0": 38,
+        "1": 691,
+        "4": 58
+      },
+      "use_shared_harm_trunk": true,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 7,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.6999747564230588,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 1023,
+        "2": 1247,
+        "4": 4
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 7,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9615818144766632,
+      "action_class_entropy": 0.7020118366627777,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 1115,
+        "2": 1396,
+        "3": 6
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 7,
+      "condition": "ON_SHARED",
+      "harm_a_forward_r2": 0.9615818144766632,
+      "action_class_entropy": 0.7020118366627777,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 1115,
+        "2": 1396,
+        "3": 6
+      },
+      "use_shared_harm_trunk": true,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 13,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.9786361220569145,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "4": 56,
+        "3": 205,
+        "0": 523,
+        "2": 46
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 13,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9507662630466962,
+      "action_class_entropy": 0.8379421540880504,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 574,
+        "3": 238,
+        "4": 57,
+        "2": 5
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 13,
+      "condition": "ON_SHARED",
+      "harm_a_forward_r2": 0.9507662630466962,
+      "action_class_entropy": 0.8379421540880504,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 574,
+        "3": 238,
+        "4": 57,
+        "2": 5
+      },
+      "use_shared_harm_trunk": true,
+      "sp_cem_main_path_defaults": true
+    }
+  ],
+  "config": {
+    "queue_id": "V3-EXQ-595",
+    "conditions": [
+      "OFF",
+      "ON_INDEPENDENT",
+      "ON_SHARED"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 50,
+    "p1_eps": 100,
+    "p2_eps": 30,
+    "steps_per_ep": 120,
+    "sp_cem_main_path_defaults": true,
+    "supersedes_note": "Fresh three-arm post-SP-CEM arbitration; supersedes the inconclusive 445/445b monostrategy reads and the two-arm 445h template for self_attribution:GAP-1."
+  },
+  "dry_run": false
+}
