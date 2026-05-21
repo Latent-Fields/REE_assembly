@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T02:16:03Z",
+  "last_updated_utc": "2026-05-21T03:46:30Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1425,8 +1425,8 @@
     {
       "sd_id": "MECH-269b-followup-A",
       "title": "Staleness-corrected V_s in VsRolloutGate.gate() (alternative to Phase 2 T2)",
-      "ready": true,
-      "status": "proposed",
+      "ready": false,
+      "status": "implemented",
       "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -1451,7 +1451,11 @@
       "implementation_hint": "Smaller substrate change than the Phase 2 T2 path. Mirrors the existing MECH-269 anchor hysteresis pattern: AnchorSet.tick_hysteresis already consumes staleness_lookup when use_mech284_hysteresis is True. Apply the same lookup at the rollout-gate read site. New flag use_vs_rollout_gating_staleness_lookup (default False) on HippocampalConfig. When ON, VsRolloutGate.gate() and gate_stream() lookup staleness for the stream's parent (scale, segment_id) region (or per-stream aggregate when no region key is in scope) and subtract from V_s before threshold comparison. Requires one of: a per-stream-to-region mapping (cleanest -- align with the per_region_vs partition); or a per-stream max-across-regions aggregate (matches the SD-039 build_goal_payload pattern). Does NOT require Phase 2 T2's per-stream forward-predictor router. Does NOT redefine V_s. Trade-off: the gate now responds to true staleness but only AT staleness-active regions; healthy streams in low-staleness regions still see Phase 1 V_s as the substrate-readiness signal. Composes cleanly with Phase 2 T2 if both land. Behavioural-sufficiency validation EXQ unblocks Q-040b on the narrow reading.",
       "priority": 1,
       "added_session": "diagnose-errors-2026-04-27T14:42",
-      "last_seen_session": "governance-cycle-friday-pm-2026-05-08"
+      "last_seen_session": "governance-cycle-friday-pm-2026-05-08",
+      "implementation_status": "implemented",
+      "implemented_session": "igw-mech269b-followup-a-20260521T034356Z",
+      "implemented_utc": "2026-04-29T06:03:00Z",
+      "validation_experiment": "V3-EXQ-601"
     },
     {
       "sd_id": "SD-034",

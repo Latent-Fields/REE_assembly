@@ -23996,6 +23996,13 @@
     seeded at 1.0, gate fires zero times. Validation experiment
     V3-EXQ-490 queued (Q-040 factorial; 3 seeds, 80 warmup x 5 eval
     x 200 steps). v3_pending remains true pending validation.
+
+    MECH-269b-followup-A (staleness into VsRolloutGate) IMPLEMENTED
+    2026-04-29: HippocampalConfig.use_vs_gate_staleness_lookup (default
+    False) wires MECH-284 per_stream_staleness into gate threshold via
+    effective_vs = raw_vs - staleness[s]; mirrors AnchorSet.tick_hysteresis
+    staleness_lookup. Substrate validation V3-EXQ-601 queued 2026-05-21
+    (IGW-20260521-021).
   evidence_quality_note: >
     Literature support is asymmetric across the claim's two
     architectural halves. Cortex-side per-stream precision/reliability

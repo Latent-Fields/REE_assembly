@@ -297,8 +297,8 @@ False) turns the wiring on. When True, agent build raises ValueError unless
 has nothing to walk otherwise. The legacy raw-V_s path (default-OFF) is
 retained byte-for-byte for backward compatibility with EXQ-490 / 490b / 490c.
 
-**Q-040b acceptance.** With this wiring, V3-EXQ-490d (the 490c successor) can
-run without smoke threshold overrides: under sustained MECH-287 broadcast
+**Q-040b acceptance.** With this wiring, V3-EXQ-601 (MECH-269b-followup-A
+validation, queued 2026-05-21) can run without smoke threshold overrides: under sustained MECH-287 broadcast
 activity the staleness on stale-region anchors climbs, per-stream staleness
 follows, effective_vs falls below the realistic 0.4 threshold, and the hold
 path fires. C1 (gate fires) becomes a non-trivial measurement; C4 (severance:
@@ -380,7 +380,7 @@ B. **Per-region cortical gate** -- consume `hippocampal.per_region_vs` instead o
 C. **Streak-counter hysteresis** -- like MECH-269 anchor-set's `hysteresis_k`, require
    k consecutive below-threshold ticks before holding. Would smooth out single-tick
    oscillations at the cost of a slower response. Deferred to a follow-up
-   refinement-pass after V3-EXQ-490 lands data on the raw threshold gate.
+   refinement-pass after V3-EXQ-601 lands data on the raw threshold gate.
 
 D. **Trainable per-stream gain head** -- replace scalar V_s with a learned head off
    `[per_stream_vs vector + tick_context]`. Substantively different claim
