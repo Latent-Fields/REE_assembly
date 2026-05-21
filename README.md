@@ -14,6 +14,14 @@ REE is an attempt to build the kind of architecture where ethics does not need t
 
 ---
 
+## How REE is developed
+
+REE is not being developed as a normal codebase. It is being developed as a **claim-governed experimental system**: claims generate experiments; experiments generate evidence; evidence modifies claims; governance prevents silent collapse.
+
+**Start here:** [docs/START_HERE_HOW_REE_DEVELOPS.md](docs/START_HERE_HOW_REE_DEVELOPS.md) -- the operating loop, key files, Explorer-first orientation, and vocabulary for newcomers and agents.
+
+---
+
 ## Eight axioms
 
 REE begins from eight commitments. They are not design choices. They are the minimum that cannot be abandoned without thought itself becoming incoherent. They are, for the author, articles of faith. The ordering is a dependency chain: each axiom depends on those above it. None is derivable from the others.
@@ -139,7 +147,7 @@ These are not metaphors. They are architectural predictions, testable against cl
 
 ## Current state
 
-REE is an independent research programme developed so far by a single researcher.
+REE is an independent research programme developed so far by a single researcher. Development follows the closed epistemic loop above (claims, experiments, evidence, governance) -- not feature shipping alone.
 
 REE is implemented across several repositories:
 
@@ -186,6 +194,7 @@ Humans are on the cusp. We have the mechanism -- we model others as self-like. W
 
 ## Go deeper
 
+- [How REE develops (start here)](docs/START_HERE_HOW_REE_DEVELOPS.md) -- operational loop, repos, key files, Explorer path
 - [Architecture overview](docs/REE_overview.md) -- the full conceptual stack
 - [Eight axioms and derivations](docs/architecture/five_axioms_foundations.md) -- formal grounding
 - [Established ethical systems](docs/architecture/established_ethical_systems.md) -- how autonomy, justice, rights, care, sustainability, and related traditions derive from the REE substrate

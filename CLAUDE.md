@@ -1,5 +1,7 @@
 # REE_assembly
 
+**Orientation:** [docs/START_HERE_HOW_REE_DEVELOPS.md](docs/START_HERE_HOW_REE_DEVELOPS.md) -- claim/experiment/evidence/governance loop, key files, Explorer-first path. Agents at umbrella root: [NEW_AGENT_START_HERE.md](../NEW_AGENT_START_HERE.md).
+
 ## Git Workflow
 
 Push directly to `master`: `git push origin HEAD:master`

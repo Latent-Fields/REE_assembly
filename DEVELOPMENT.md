@@ -6,19 +6,33 @@
 It is documentation-first and decision-first: architecture, claims, evidence, and promotion decisions live here.
 Implementation code and stress testing run in companion repositories, then feed evidence back here. 
 
-**Quickest orientation:** run `caffeinate -i python3 serve.py` from repo root, then open [`http://localhost:8000/explorer`](http://localhost:8000/explorer) — the Explorer gives you a live, navigable view of all claims, conflicts, and governance state. Use `View → Triple View` for synchronized architecture diagrams and `View → Governance` for the decision inbox.
+## Start here (Explorer-first)
 
-**Human start:** `docs/roadmap.md`
+1. Run `caffeinate -i python3 serve.py` from this repo root (active tree: `~/REE_Working/REE_assembly`, not the stale iCloud path).
+2. Open [`http://localhost:8000/explorer`](http://localhost:8000/explorer).
+3. **Docs** view -> **Start here** -> [START_HERE_HOW_REE_DEVELOPS.md](docs/START_HERE_HOW_REE_DEVELOPS.md) and [roadmap.md](docs/roadmap.md).
+4. **Governance** view -> decision inbox and pending recommendations; cross-check [pending_review.md](evidence/experiments/pending_review.md).
+5. **List** / **Graph** -> claims; **Experiments** -> queue and runner status.
+6. Touch code only after the above (agents: [NEW_AGENT_START_HERE.md](../NEW_AGENT_START_HERE.md) at the umbrella root).
+
+**Quickest live orientation:** Explorer = live governance cockpit. Use `View → Triple View` for architecture diagrams and `View → Governance` for the decision inbox.
+
+**Canonical story (read once):** [docs/START_HERE_HOW_REE_DEVELOPS.md](docs/START_HERE_HOW_REE_DEVELOPS.md) -- epistemic loop, vocabulary table, failure modes.
+
+**Human start:** `docs/roadmap.md` (after START_HERE)
 **Agent-maintenance start:** `docs/README.md`
 
 ## If You Are New (Read In This Order)
 
-1. `docs/roadmap.md` - current phase plan, repository roles, and immediate queue.
-2. `docs/REE_overview.md` - high-level REE architecture orientation.
-3. `docs/glossary.md` - canonical REE term definitions and minimal JEPA-to-REE interface translations.
-4. `docs/architecture/e3.md` and `docs/architecture/control_plane.md` - commitment and control semantics.
-5. `evidence/planning/REE_CONVERGENCE_INTERFACE.md` - how external knowledge enters REE.
-6. `evidence/experiments/CROSS_REPO_SYNC_POLICY.md` - how implementation repos stay contract-aligned.
+1. [docs/START_HERE_HOW_REE_DEVELOPS.md](docs/START_HERE_HOW_REE_DEVELOPS.md) - how the development system works end-to-end.
+2. `docs/roadmap.md` - current phase plan, repository roles, and immediate queue.
+3. `docs/REE_overview.md` - high-level REE architecture orientation.
+4. `docs/glossary.md` - canonical REE term definitions and minimal JEPA-to-REE interface translations.
+5. `docs/architecture/e3.md` and `docs/architecture/control_plane.md` - commitment and control semantics.
+6. `evidence/planning/REE_CONVERGENCE_INTERFACE.md` - how external knowledge enters REE.
+7. `evidence/experiments/CROSS_REPO_SYNC_POLICY.md` - how implementation repos stay contract-aligned.
+
+Public labels for paths and files: see START_HERE **Vocabulary** section.
 
 If you are operating Codex/automation against this repo, also read `docs/README.md`.
 

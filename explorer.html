@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-20.3 -->
+<!-- EXPLORER_VERSION: 2026-05-21.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2587,10 +2587,17 @@
     <div class="header-top">
       <h1>REE Claims Explorer</h1>
       <details class="header-info">
-        <summary>Browse claims, dependencies, and conflicts. Generate intake and resolution drafts.</summary>
+        <summary>REE develops claims into experiments, evidence into governance -- start here.</summary>
         <div class="header-info-body">
-          <div class="subtitle">Auto-updates require a local server (not <code>file://</code>). From repo root:<br>
-            <code>cd ~/Documents/GitHub/REE_Working/REE_assembly &amp;&amp; caffeinate -i python3 serve.py</code><br>
+          <div class="subtitle" style="margin-bottom:6px;">
+            <strong>Loop:</strong> claims &rarr; experiment proposals &rarr; queue &rarr; runner &rarr; evidence &rarr; review &rarr; governance &rarr; implementation.
+            Full story: <strong>Docs &rarr; Start here &rarr; How REE develops</strong>.
+          </div>
+          <div class="subtitle" style="margin-bottom:6px;">
+            <strong>Explorer path:</strong> Governance (inbox) &rarr; Experiments (queue) &rarr; List/Graph (claims) &rarr; Triple View (architecture).
+          </div>
+          <div class="subtitle">Server required (not <code>file://</code>). From active tree:<br>
+            <code>cd ~/REE_Working/REE_assembly &amp;&amp; caffeinate -i python3 serve.py</code><br>
             Then open: <code>http://localhost:8000/explorer</code>
           </div>
           <div class="subtitle" id="refreshStatus" style="margin-top:4px;">Last refreshed: --</div>
@@ -3166,6 +3173,15 @@ Resolution decision (free text):
 END CONFLICT RESOLUTION`;
 
     const DOC_GROUPS = [
+      {
+        label: 'Start here',
+        docs: [
+          { title: 'How REE develops', path: 'docs/START_HERE_HOW_REE_DEVELOPS.md' },
+          { title: 'Roadmap', path: 'docs/roadmap.md' },
+          { title: 'Development guide', path: 'DEVELOPMENT.md' },
+          { title: 'Pending review (inbox)', path: 'evidence/experiments/pending_review.md' },
+        ],
+      },
       {
         label: 'Architecture',
         docs: [
