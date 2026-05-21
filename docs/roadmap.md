@@ -14,6 +14,35 @@ nav_order: 6
 
 ---
 
+## Status Snapshot (2026-05-21T12:39Z -- roadmap Immediate Work Queue refresh; coordinator Phase-2 cutover + fleet pause; V3-EXQ-590a partial rescue; V3-EXQ-543j governance-closed non_contributory; goal_pipeline:GAP-3 done; pending_review 8)
+
+- **Coordination / fleet since the 2026-05-19T01:10Z snapshot:**
+  - **Coordinator Phase-2 cutover** 2026-05-21 -- hub `COORDINATOR_MODE=coordinator` + `SYNC_MODE=coordinator`; Mac + ree-cloud-1..4 on coordinator claims; explorer panel Phase 2 live.
+  - **Fleet pause + runner checkpoint/suspend** 2026-05-21 -- `suspend_run` / `resume_run` + `runner_checkpoint.py` for `checkpoint_resumable` EXQs; fleet pause queued via `scripts/fleet_pause_runners.py` (runners need per-host restart to load new code; pause holds queue after current run ends).
+  - **V3-EXQ-590a partial rescue** 2026-05-21 -- only checkpoint on ree-cloud-3 (1/15 runs, ARM_nbw01); affinity pinned `ree-cloud-3`, priority 100; supersedes V3-EXQ-590 (stdout false PASS, no manifest). Duplicate 590/590a on other hosts stopped.
+  - **V3-EXQ-543j governance closure** 2026-05-21T00:03Z -- classified **non_contributory** (failure_autopsy_543i); removes the 2026-05-19 load-bearing cross-machine adjudication item from the active queue.
+- **Plan-of-record / substrate closures since 2026-05-19:**
+  - **goal_pipeline:GAP-3 DONE** 2026-05-20 -- V3-EXQ-582a PASS (drive_floor=0.9); MECH-306 sustained_drive_trace registered.
+  - **EXQ-ISEF-001 PASS** 2026-05-19 -- V3-EXQ-587 harm-gradient curriculum; Rank-1 warm-start gate met at experiment level.
+  - **IGW substrate-ready wave** 2026-05-21 -- MECH-204, MECH-307, SD-037, INF-ENV-001/004, ARC-062 Phase 1 reconciled in substrate_queue; V3-EXQ-602/601/606 and Q-043/044/045 EXQs 603-605 queued and partially executed (604/605 FAIL manifests on disk, pending governance).
+- **Runner activity since the 2026-05-19T01:10Z snapshot:** central `evidence/experiments/runner_status.json` reports 723 -> **736 cumulative completions (+13)**; all-time breakdown 166 -> **172 PASS (+6)** / 287 -> **294 FAIL (+7)** / **77 ERROR** / **193 UNKNOWN** (unchanged); last_updated 2026-05-21T08:35:34Z (central file lags per-machine writes).
+- **Queue depth:** 6 -> **2 items**. **V3-EXQ-590a** (ISEF-004 novelty Goldilocks checkpoint resume, MECH-314, pinned ree-cloud-3, priority 100, unclaimed at snapshot) + **V3-EXQ-591** (ISEF-005 curriculum-vs-flat, ARC-046, pending, full rerun). Drained since 2026-05-19: 543j, 582a, 592, 481b, and the ISEF-002/003 slots; Q-043/044/045 EXQs 603-605 ran off-queue (manifests await review).
+- **Pending review:** 1 -> **8 items** (pending_review.md regenerated 2026-05-21T12:30:03Z; last review 2026-05-21T09:55:30Z). FAIL: V3-EXQ-597 (MECH-258, held for /failure-autopsy), V3-EXQ-595. Unclaimed FAIL manifests: 543i, 598, 604, 605. Runner-only ERROR: 599, 600.
+- **Bottleneck note (shift):** **EXQ-ISEF-004/005 completion (590a + 591)** is now the parallel load-bearing developmental gate for ARC-065 warm-start narrative and deferred Q-043/044/045 + INV-049 retests. **ARC-062 / MECH-309** remains substrate_ceiling-framed (543i/598/543k) but **543j is closed** -- no longer blocking on cross-machine byte-identical confirmation. **Coordinator Phase-2** operational hygiene (fleet pause, single-host 590a, claim release) is the immediate coordination risk.
+
+### Immediate Work Queue (This Cycle, 2026-05-21)
+
+1. **V3-EXQ-590a outcome watch (ISEF-004, load-bearing)** -- novelty Goldilocks weight sweep with checkpoint/resume; **ree-cloud-3 only** (partial 1/15 runs saved, ARM_nbw01); supersedes V3-EXQ-590 false PASS (no manifest). Priority 100. Do not run on other hosts. Resume after fleet pause clears and runners restart with checkpoint/suspend code.
+2. **V3-EXQ-591 outcome watch (ISEF-005)** -- 4-phase infant curriculum vs flat baselines (GAP-14); pending unclaimed; full rerun (~120 min, no _partial checkpoint). PASS gates ARC-046 and DEV-NEED-008.
+3. **Coordinator Phase-2 + fleet pause** -- hub coordinator claims authoritative; fleet pause issued for rollout; per-host runner restart needed for suspend/resume_run + heartbeat time fields. Monitor coordinator panel; release orphaned claims; keep 590a single-host.
+4. **Governance walk (8 pending)** -- absorb V3-EXQ-543j as non_contributory (2026-05-21T00:03Z); review V3-EXQ-597 (/failure-autopsy), 595 FAIL, unclaimed 543i/598/604/605 FAIL manifests, runner-only 599/600 ERROR. Re-run `generate_pending_review.py` to confirm clear.
+5. **ARC-062 / MECH-309 cluster** -- V3-EXQ-543k still in_flight; 543i + 598 on disk pending review. Substrate_ceiling framing holds; no further 543j cross-machine watch.
+6. **goal_pipeline:GAP-2** -- V3-EXQ-514j interpretation_branch grid landed on main; queue/run V3-EXQ-514k successor (reef + MECH-307 + drive_floor=0.9) when fleet unpauses.
+7. **goal-disengagement biology-before lit-pull** -- prerequisite for deferred ARC-078 C3 abandon mechanism + trigger-Q registration (carry forward).
+8. **Shadow-coordinator go/no-go** -- Phase-2 live; git fallback remains; watch `/shadow/divergence` under real coordinator load before further cutover.
+
+---
+
 ## Status Snapshot (2026-05-19T01:10Z -- nightly docs sync; ARC-062 GatedPolicy differential-heads robustness fix landed; 2026-05-18 governance cycle superseded the 543f/g/h crystallization-falsifier cluster -> 543i, epistemic_category=substrate_ceiling; retrieval-cue reframe + ARC-078/MECH-339 registered (650 claims); GAP-L socially-scaffolded rule-population lit-pull discharged; Phase 0-1 shadow experiment-coordinator built; heartbeat-autostash governance regen recovered; pending_review 1)
 
 - **SDs / MECHs / claim landings since the 2026-05-18T01:10Z nightly:**
