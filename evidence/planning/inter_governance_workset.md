@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T14:41:10Z`
+Generated: `2026-05-21T14:45:21Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,9 +9,9 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **48** (ready 29, in_flight 2, blocked 6)
+- Items: **48** (ready 26, in_flight 7, blocked 6)
 - Pending review: **0**
-- Queue pending (unclaimed): **6**
+- Queue pending (unclaimed): **5**
 
 - Live EXQs: V3-EXQ-590a, V3-EXQ-591, V3-EXQ-592
 
@@ -19,21 +19,23 @@ UI: http://localhost:8000/workset
 
 ### IGW-20260521-040 -- Retest after substrate: ARC-062
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 28
+- **Owner EXQ:** V3-EXQ-543k
+- **Why now:** ARC-062 retest is V3-EXQ-543k (queued prio 5). Prior FAIL was misrun (543i manifest). Monitor 543k; do not open a separate ARC-062 retest until contributory PASS/FAIL.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-040
 Title: Retest after substrate: ARC-062
-Lane: experiment | Skill: /queue-experiment
-Status: ready
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Owner EXQ: V3-EXQ-543k
 Claims: ARC-062
-Why now: claims.yaml pending_retest_after_substrate=true.
+Why now: ARC-062 retest is V3-EXQ-543k (queued prio 5). Prior FAIL was misrun (543i manifest). Monitor 543k; do not open a separate ARC-062 retest until contributory PASS/FAIL.
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Workset: http://localhost:8000/workset
 ```
 
@@ -41,21 +43,23 @@ Instructions:
 
 ### IGW-20260521-041 -- Retest after substrate: INV-074
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 28
+- **Owner EXQ:** V3-EXQ-543k
+- **Why now:** INV-074 is in the V3-EXQ-543k claim bundle (queued prio 5). Monitor 543k; defer separate INV-074 retest until 543k adjudicated.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-041
 Title: Retest after substrate: INV-074
-Lane: experiment | Skill: /queue-experiment
-Status: ready
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Owner EXQ: V3-EXQ-543k
 Claims: INV-074
-Why now: claims.yaml pending_retest_after_substrate=true.
+Why now: INV-074 is in the V3-EXQ-543k claim bundle (queued prio 5). Monitor 543k; defer separate INV-074 retest until 543k adjudicated.
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Workset: http://localhost:8000/workset
 ```
 
@@ -63,21 +67,23 @@ Instructions:
 
 ### IGW-20260521-042 -- Retest after substrate: MECH-309
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 28
+- **Owner EXQ:** V3-EXQ-543k
+- **Why now:** MECH-309 retest is V3-EXQ-543k GAP-B falsifier (queued prio 5). Monitor 543k; do not queue a parallel MECH-309 retest.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-042
 Title: Retest after substrate: MECH-309
-Lane: experiment | Skill: /queue-experiment
-Status: ready
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Owner EXQ: V3-EXQ-543k
 Claims: MECH-309
-Why now: claims.yaml pending_retest_after_substrate=true.
+Why now: MECH-309 retest is V3-EXQ-543k GAP-B falsifier (queued prio 5). Monitor 543k; do not queue a parallel MECH-309 retest.
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Workset: http://localhost:8000/workset
 ```
 
@@ -85,21 +91,23 @@ Instructions:
 
 ### IGW-20260521-043 -- Retest after substrate: MECH-334
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 28
+- **Owner EXQ:** V3-EXQ-543k
+- **Why now:** MECH-334 is in the V3-EXQ-543k claim bundle (queued prio 5). Monitor 543k; defer separate MECH-334 retest until 543k adjudicated.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-043
 Title: Retest after substrate: MECH-334
-Lane: experiment | Skill: /queue-experiment
-Status: ready
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Owner EXQ: V3-EXQ-543k
 Claims: MECH-334
-Why now: claims.yaml pending_retest_after_substrate=true.
+Why now: MECH-334 is in the V3-EXQ-543k claim bundle (queued prio 5). Monitor 543k; defer separate MECH-334 retest until 543k adjudicated.
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Workset: http://localhost:8000/workset
 ```
 
@@ -107,25 +115,25 @@ Instructions:
 
 ### IGW-20260521-001 -- MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 30
 - **Gap(s):** arc_062_rule_apprehension:GAP-B
 - **Owner EXQ:** V3-EXQ-543k
-- **Why now:** BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
+- **Why now:** V3-EXQ-543k re-queued 2026-05-21 (force_rerun). Prior slot FAIL was misrun (543i manifest, failure_autopsy_V3-EXQ-543k). Queued prio 5; gates 598/606a. Monitor fleet -- do not re-queue.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-001
 Title: MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
-Lane: experiment | Skill: /queue-experiment
-Status: in_progress
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
 Gap(s): arc_062_rule_apprehension:GAP-B
 Owner EXQ: V3-EXQ-543k
 Claims: MECH-309, ARC-062
-Why now: BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
+Why now: V3-EXQ-543k re-queued 2026-05-21 (force_rerun). Prior slot FAIL was misrun (543i manifest, failure_autopsy_V3-EXQ-543k). Queued prio 5; gates 598/606a. Monitor fleet -- do not re-queue.
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
 - Workset: http://localhost:8000/workset
 ```
@@ -134,11 +142,11 @@ Instructions:
 
 ### IGW-20260521-007 -- SD-033a bias head untrained (Go-side mechanically silent)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 30
 - **Gap(s):** commitment_closure:GAP-1
 - **Owner EXQ:** V3-EXQ-598
 - **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
-- **Why now:** GAP-1 closes on V3-EXQ-598 PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543k contributory PASS (arc_062 GAP-B retest); EXQ-598 queued at priority 4 so it runs after 543k (priority 5).
+- **Why now:** V3-EXQ-598 governance NC 2026-05-21; not currently in queue. Re-queue via /queue-experiment after V3-EXQ-543k contributory PASS (runtime gate). GAP-1 closes on 598 PASS.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -146,12 +154,12 @@ Instructions:
 REE inter-governance work item: IGW-20260521-007
 Title: SD-033a bias head untrained (Go-side mechanically silent)
 Lane: experiment | Skill: /queue-experiment
-Status: in_progress
+Status: ready
 Gap(s): commitment_closure:GAP-1
 Owner EXQ: V3-EXQ-598
 Claims: SD-033a, MECH-262, SD-034
 Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
-Why now: GAP-1 closes on V3-EXQ-598 PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543k contributory PASS (arc_062 GAP-B retest); EXQ-598 queued at priority 4 so it runs after 543k (priority 5).
+Why now: V3-EXQ-598 governance NC 2026-05-21; not currently in queue. Re-queue via /queue-experiment after V3-EXQ-543k contributory PASS (runtime gate). GAP-1 closes on 598 PASS.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
