@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T03:56:12Z",
+  "last_updated_utc": "2026-05-21T04:00:19Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2332,7 +2332,7 @@
       "sd_id": "MECH-204",
       "title": "Serotonergic withdrawal during REM actively defines the precision setpoint for waking attention; provides the sleep-mediated writeback path REE explicitly lacks.",
       "status": "candidate_v3_pending",
-      "ready": true,
+      "ready": false,
       "ready_blocked_by": null,
       "design_doc": "evidence/planning/sleep_substrate_plan.md",
       "depends_on_unresolved": [],
@@ -2345,11 +2345,23 @@
         "MECH-111",
         "SD-049"
       ],
-      "failure_record": [],
-      "implementation_hint": "Sleep loop with REM-phase serotonergic withdrawal that actively recalibrates the waking precision setpoint. Pairs with SD-049 sleep loop and SD-017 cluster. Per 2026-05-08 governance: TOP-PRIORITY UNBLOCKER -- multiple downstream claims (SD-029 single-pass comparator, MECH-111 novelty drive, Q-041 unified threshold supervisor, Q-042 dual-read precision) are all gated on this. Implementation should integrate with the StepHarness landed 2026-05-08 (canonical sense/update_z_goal/update_residue sequence) so that sleep-period writes hit the same canonical substrate as wake-time updates.",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_541a_mech204_precision_recalibration_f1_20260509T120116Z_v3",
+          "experiment_type": "v3_exq_541a_mech204_precision_recalibration_f1",
+          "metric": "C4 rv divergence < 5% at 4 sleep cycles (timescale mismatch; mechanism fires C1/C2 PASS)",
+          "target": "Reclassified inconclusive_timescale per failure_autopsy 2026-05-17; V3-EXQ-541c PASS at 16 cycles confirms F1-sufficient."
+        }
+      ],
+      "implementation_hint": "IMPLEMENTED (sleep_substrate_plan GAP-1). SerotoninModule.compute_recalibration_target() + E3.recalibrate_precision_to() in SleepLoopManager WRITEBACK; use_rem_precision_recalibration default False. Canonical validation V3-EXQ-541c PASS 2026-05-09. Contributory integration V3-EXQ-602 queued (StepHarness + use_sleep_aggregation_cluster).",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-05-08T00:00:00Z",
+      "implemented_session": "implement-substrate-mech204-gap1-2026-05-08",
+      "validation_experiment": "V3-EXQ-541c",
+      "implementation_note": "GAP-1 precision recalibration consumer (Option A F1). Config: REEConfig.use_rem_precision_recalibration (default False); rem_precision_recalibration_step default 0.25 post-541c. Contracts test_mech204_precision_recalibration.py 13/13. IGW-20260521-022 substrate-ready reconciled.",
       "priority": 1,
       "added_session": "governance-cycle-friday-pm-2026-05-08",
-      "last_seen_session": "governance-cycle-friday-pm-2026-05-08"
+      "last_seen_session": "igw-mech204-substrate-ready-land-20260521T040019Z"
     },
     {
       "sd_id": "MECH-307",
@@ -2417,12 +2429,10 @@
       "title": "Self-attribution = single-pass forward-model comparator: residual = z_x_observed - E2_x(z_x_{t-1}, a_actual). Stream-agnostic mechanism over any reafferent latent z_x with an efference-copy-driven forward model.",
       "status": "candidate_v3_pending",
       "ready": false,
-      "ready_blocked_by": "MECH-204 sleep recalibration + MECH-269 V_s landing + MECH-307 conjunction architecture must close before C2/C3 are measurable on z_harm_s",
+      "ready_blocked_by": "MECH-269 V_s landing must close before C2/C3 are measurable on z_harm_s (MECH-204 IMPLEMENTED 2026-05-08; MECH-307 IMPLEMENTED 2026-05-11)",
       "design_doc": "evidence/planning/self_attribution_plan.md",
       "depends_on_unresolved": [
-        "MECH-204",
-        "MECH-269",
-        "MECH-307"
+        "MECH-269"
       ],
       "unblocks_claims": [
         "SD-029",

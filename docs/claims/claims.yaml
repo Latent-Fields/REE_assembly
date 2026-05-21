@@ -13725,6 +13725,15 @@
   polarity: positive
   status: candidate
   implementation_phase: v3
+  evidence_quality_note: |
+    Substrate IMPLEMENTED 2026-05-08: SleepLoopManager WRITEBACK consumer
+    (compute_recalibration_target + e3.recalibrate_precision_to); F1 cross-cycle
+    persistent zero-point EMA. Config use_rem_precision_recalibration default False;
+    rem_precision_recalibration_step 0.25 after V3-EXQ-541c PASS 2026-05-09.
+    V3-EXQ-541a/541b inconclusive_timescale (failure_autopsy 2026-05-17); 541c
+    confirms mechanism at 16 cycles. substrate_queue substrate-ready IGW-20260521-022;
+    V3-EXQ-602 queued (StepHarness + sleep aggregation cluster integration).
+    Phase 7 Option B deferred V4. No promotion from substrate closure alone.
   depends_on:
     - MECH-123
     - MECH-186
@@ -16571,7 +16580,7 @@
     - SD-032d         # PCC-analog stability scalar (modulates SD-032a switch threshold)
     - SD-032e         # pACC drive bias EMA (slow setpoint drift, ~347-step half-life)
     - MECH-040        # safety baseline / volatility (provisional, never validated)
-    - MECH-204        # serotonergic REM gate zero-point (snapshot exists; writeback absent)
+    - MECH-204        # serotonergic REM gate zero-point (GAP-1 writeback IMPLEMENTED 2026-05-08; 541c PASS)
     - MECH-258        # precision-weighted PE (the variable a Behrens-style volatility tracker would integrate)
     - INV-049         # sleep necessity (the offline phase a recalibration writeback would land in)
   notes: >
