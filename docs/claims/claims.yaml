@@ -33819,8 +33819,10 @@
     (default False), persistence_floor (0.05),
     persistence_default_when_appraisal_missing (1.0). HippocampalModule
     rank_ghost_goals / MECH-293 _propose_ghost_seeded thread optional
-    persistence_appraisal; agent loop wiring of the appraisal computation
-    is deferred (Q-053). Reengagement-coupled disengagement STATE
+    persistence_appraisal. Q-053 agent wiring landed 2026-05-21:
+    REEAgent._compute_persistence_appraisal() (completion + commitment ->
+    control_efficacy; 1-goal_proximity -> goal_unattainability).
+    Reengagement-coupled disengagement STATE
     (Klinger) deferred -- this step is the separable gate primitive only.
     Verified: contracts 4/4 + V3-EXQ-607 --dry-run PASS. ree-v3/CLAUDE.md
     "MECH-340 Persistence Gate" is the implementation-status source of truth.
