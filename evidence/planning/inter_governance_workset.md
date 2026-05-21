@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T13:37:35Z`
+Generated: `2026-05-21T13:39:47Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **50** (ready 31, in_flight 1, blocked 6)
 - Pending review: **0**
-- Queue pending (unclaimed): **5**
+- Queue pending (unclaimed): **6**
 
 - Live EXQs: V3-EXQ-590a, V3-EXQ-591, V3-EXQ-597b
 
@@ -997,9 +997,9 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-I
-- **Owner EXQ:** V3-EXQ-606
+- **Owner EXQ:** V3-EXQ-606a
 - **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
-- **Why now:** V3-EXQ-606 queued 2026-05-21 (IGW-004): episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. Interpret after V3-EXQ-543k contributory PASS. MECH-316/317 absorption checks remain doc-only (no V3 modules).
+- **Why now:** V3-EXQ-606 ran 20260521T090253Z FAIL non_contributory (premature: before 543k PASS; C3 wiring PASS, C1/C2 behavioral FAIL). V3-EXQ-606a re-queued 2026-05-21 with hard 543k contributory-PASS startup gate. Episode-boundary multi-rule via alte
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -1009,10 +1009,10 @@ Title: ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 
 Lane: experiment | Skill: /queue-experiment
 Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-I
-Owner EXQ: V3-EXQ-606
+Owner EXQ: V3-EXQ-606a
 Claims: ARC-064, MECH-316, MECH-317, MECH-318
 Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
-Why now: V3-EXQ-606 queued 2026-05-21 (IGW-004): episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. Interpret after V3-EXQ-543k contributory PASS. MECH-316/317 absorption checks remain doc-only (no V3 modules).
+Why now: V3-EXQ-606 ran 20260521T090253Z FAIL non_contributory (premature: before 543k PASS; C3 wiring PASS, C1/C2 behavioral FAIL). V3-EXQ-606a re-queued 2026-05-21 with hard 543k contributory-PASS startup gate. Episode-boundary multi-rule via alte
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
