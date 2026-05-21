@@ -22,7 +22,7 @@
     "MECH-230": "non_contributory",
     "MECH-307": "non_contributory"
   },
-  "evidence_direction_note": "goal_pipeline GAP-2: C2b probe_neighborhood 0.52<0.6, C2c consumption samples 20<30, C5/C6 fail. Reef/obs-dim checks pass. interpretation_branch stuck at pass when no diagnostic row matches (script bug) -- /failure-autopsy recommended before any 514k successor. Supersedes V3-EXQ-514f.",
+  "evidence_direction_note": "goal_pipeline GAP-2: C2b probe_neighborhood 0.52<0.6, C2c consumption samples 20<30, C5/C6 fail. Reef/obs-dim checks pass. interpretation_branch row1b_joint_identity_probe_weak (C2b+C2c both fail; script grid fixed 2026-05-21, branch backfilled on manifest). Supersedes V3-EXQ-514f.",
   "gap2_operating_substrate": {
     "use_mech307_conjunction": true,
     "drive_floor_active": 0.9,
@@ -487,7 +487,7 @@
     "C4_arm2_goal_resource_r": true,
     "C5_arm2_goal_resource_r_lift": false,
     "C6_arm2_wanting_liking_dissoc": false,
-    "interpretation_branch": "pass",
+    "interpretation_branch": "row1b_joint_identity_probe_weak",
     "all_pass": false
   },
   "thresholds": {
@@ -499,5 +499,5 @@
     "C5_goal_resource_r_lift": 0.4,
     "C6_wl_trajectory_frac": 0.6
   },
-  "supersedes_note": "goal_pipeline:GAP-2 retest. Supersedes V3-EXQ-514f (pre-MECH-307 / pre-SP-CEM). Operating stack: MECH-307 conjunction + drive_floor=0.9 + main-path SP-CEM. interpretation_branch=pass"
+  "supersedes_note": "goal_pipeline:GAP-2 retest. Supersedes V3-EXQ-514f (pre-MECH-307 / pre-SP-CEM). Operating stack: MECH-307 conjunction + drive_floor=0.9 + main-path SP-CEM. interpretation_branch=row1b_joint_identity_probe_weak"
 }
