@@ -1,30 +1,33 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-05-21T08:35:08Z",
+  "last_tick_utc": "2026-05-21T08:35:40Z",
   "state": "running",
-  "current_exq": "V3-EXQ-603",
-  "current_exq_started_utc": "2026-05-21T08:35:03.554384+00:00",
-  "current_title": "Q-045 MECH-313 vs MECH-260 four-arm anti-monostrategy ablation",
-  "current_claim_id": "",
+  "current_exq": "V3-EXQ-590a",
+  "current_exq_started_utc": "2026-05-21T08:35:35.207698+00:00",
+  "current_title": "EXQ-ISEF-004 rerun: novelty bonus Goldilocks calibration with checkpoint/resume",
+  "current_claim_id": "MECH-314",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_both_off",
+    "run_label": "Seed 42 / ARM_nbw01",
     "runs_done": 0,
-    "runs_total": 12,
+    "runs_total": 15,
     "episodes_done": 0,
-    "episodes_total": 30,
+    "episodes_total": 1000,
     "overall_pct": 0.0
   },
   "seconds_elapsed": 5,
-  "seconds_remaining": 10800,
+  "seconds_remaining": 30000,
   "recent_lines": [
-    "Seed 42 Condition ARM_0_both_off"
+    "V3-EXQ-590a: EXQ-ISEF-004 novelty bonus Goldilocks calibration",
+    "dry_run=False seeds=[42, 43, 44] n_episodes=1000 steps=200 novelty_weights=[0.1, 0.3, 0.5, 0.7, 1.0]",
+    "checkpoint=/home/ree/REE_Working/REE_assembly/evidence/experiments/_partial/v3_exq_590_isef004_novelty_bonus_goldilocks/V3-EXQ-590a.json resume=True",
+    "Seed 42 Condition ARM_nbw01"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
-  "runner_pid": 1512846,
+  "runner_pid": 1513395,
   "runner_version": null,
   "gpu": {
     "available": false
