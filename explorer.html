@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-21.1 -->
+<!-- EXPLORER_VERSION: 2026-05-21.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9229,6 +9229,22 @@ END CONFLICT RESOLUTION`;
       return `<span class="exp-badge ${cls}">${escapeHtml(label)}</span>`;
     }
 
+    function expTimingFromProgress(cur, p) {
+      let elapsed = cur.seconds_elapsed || 0;
+      let remaining = cur.seconds_remaining || 0;
+      if (!elapsed && cur.started_at) {
+        const t = Date.parse(String(cur.started_at).replace('Z', '+00:00'));
+        if (!isNaN(t)) {
+          elapsed = Math.max(0, Math.round((Date.now() - t) / 1000));
+        }
+      }
+      const pct = p.overall_pct || 0;
+      if (!remaining && elapsed > 0 && pct > 0 && pct < 100) {
+        remaining = Math.max(0, Math.round(elapsed * (100 / pct - 1)));
+      }
+      return { elapsed, remaining };
+    }
+
     function expCurrentHtml(cur) {
       const p = cur.progress || {};
       const rawPct = p.overall_pct || 0;
@@ -9239,8 +9255,9 @@ END CONFLICT RESOLUTION`;
       const runsTotal = p.runs_total || '?';
       const epDone = p.episodes_done || 0;
       const epTotal = p.episodes_total || '?';
-      const elapsed = cur.seconds_elapsed || 0;
-      const remaining = cur.seconds_remaining || 0;
+      const timing = expTimingFromProgress(cur, p);
+      const elapsed = timing.elapsed;
+      const remaining = timing.remaining;
       const lines = (cur.recent_lines || []).join('\n');
       const pctLabel = overrun
         ? `ep ${epDone} (est. was ${epTotal})`
@@ -9426,7 +9443,7 @@ END CONFLICT RESOLUTION`;
       });
 
       const isRunning = !!(status && !status.idle && status.runner_pid);
-      const cur = status && status.current;
+      let cur = status && status.current;
       // Use queue from files (always up-to-date) rather than runner_status.json
       const queue = queueFromFiles;
       const completed = [...((status && status.completed) || [])].reverse();
@@ -9491,6 +9508,23 @@ END CONFLICT RESOLUTION`;
       // heartbeats (~5s local write, ~60s git push, so up to ~1 min stale
       // on the explorer relative to the cloud runner's actual state).
       const machineEntries = (machinesPayload && machinesPayload.machines) || [];
+      // Phase 2: coordinator heartbeats are fresher than local runner_status
+      // for the same machine; merge live progress + time estimates into cur.
+      if (cur && cur.queue_id) {
+        const coordLocal = machineEntries.find(m =>
+          m.telemetry_source === 'coordinator' && m.fresh &&
+          m.state === 'running' && m.current_exq === cur.queue_id);
+        if (coordLocal) {
+          cur = Object.assign({}, cur, {
+            progress: (coordLocal.progress && Object.keys(coordLocal.progress).length)
+              ? coordLocal.progress : (cur.progress || {}),
+            seconds_elapsed: coordLocal.seconds_elapsed != null
+              ? coordLocal.seconds_elapsed : cur.seconds_elapsed,
+            seconds_remaining: coordLocal.seconds_remaining != null
+              ? coordLocal.seconds_remaining : cur.seconds_remaining,
+          });
+        }
+      }
       const localCurExq = cur && cur.queue_id;
       const remoteRunning = machineEntries.filter(m => {
         if (!m.fresh) return false;
@@ -9511,8 +9545,8 @@ END CONFLICT RESOLUTION`;
           title: m.current_title || '',
           description: m.current_description || '',
           progress: m.progress || {},
-          seconds_elapsed: m.seconds_elapsed || 0,
-          seconds_remaining: m.seconds_remaining || 0,
+          seconds_elapsed: m.seconds_elapsed != null ? m.seconds_elapsed : 0,
+          seconds_remaining: m.seconds_remaining != null ? m.seconds_remaining : 0,
           recent_lines: m.recent_lines || [],
         };
       }
@@ -10509,13 +10543,22 @@ END CONFLICT RESOLUTION`;
           ? (" run " + p.runs_done + "/" + p.runs_total) : "";
         var hasProgress = m.state === "running" && m.current_exq &&
           (p.overall_pct != null || p.runs_total);
+        var elapsed = m.seconds_elapsed || 0;
+        var remaining = m.seconds_remaining || 0;
+        if (!remaining && elapsed > 0 && pct > 0 && pct < 100) {
+          remaining = Math.max(0, Math.round(elapsed * (100 / pct - 1)));
+        }
+        var timeTxt = (elapsed || remaining)
+          ? (' &mdash; ' + (elapsed ? (elapsed < 120 ? elapsed + 's' : Math.round(elapsed / 60) + 'm') + ' elapsed' : '')
+             + (remaining ? (' ~' + (remaining < 120 ? remaining + 's' : Math.round(remaining / 60) + 'm') + ' left') : ''))
+          : '';
         var bar = hasProgress
           ? ('<div style="margin:3px 0 2px;height:5px;background:#e8e8e8;'
              + 'border-radius:3px;overflow:hidden;">'
              + '<div style="height:100%;width:' + pct.toFixed(1)
              + '%;background:#2e7d32;"></div></div>'
              + '<div style="font-size:10px;color:#666;">'
-             + pct.toFixed(1) + '%' + runTxt + '</div>')
+             + pct.toFixed(1) + '%' + runTxt + timeTxt + '</div>')
           : "";
         html += '<div style="margin-bottom:6px;">'
           + '<div>[' + tag + '] <b>' + (m.machine||"?") + '</b> '

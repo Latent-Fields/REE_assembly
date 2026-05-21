@@ -66,7 +66,8 @@ WORKSET_JSON_FILE = PLANNING_DIR / "inter_governance_workset.v1.json"
 
 # Command kinds the runner accepts (mirrors ree-v3/runner_remote_control.VALID_COMMAND_KINDS)
 VALID_REMOTE_COMMAND_KINDS = (
-    "stop", "force_stop", "pause", "resume", "kick", "release_claim",
+    "stop", "force_stop", "pause", "resume", "suspend", "resume_run",
+    "kick", "release_claim",
 )
 MAX_REMOTE_COMMAND_HISTORY = 50
 REVIEW_TRACKER_FILE = SERVE_DIR / "evidence" / "experiments" / "review_tracker.json"
@@ -664,6 +665,8 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
             "state": m.get("state") or "unknown",
             "current_exq": m.get("current_exq"),
             "progress": m.get("progress") or {},
+            "seconds_elapsed": m.get("seconds_elapsed"),
+            "seconds_remaining": m.get("seconds_remaining"),
         }
     return out
 
@@ -698,6 +701,10 @@ def _overlay_coordinator_heartbeat(entry: dict, snap: dict, now,
     entry["current_exq"] = snap.get("current_exq")
     if snap.get("progress"):
         entry["progress"] = snap["progress"]
+    if snap.get("seconds_elapsed") is not None:
+        entry["seconds_elapsed"] = snap["seconds_elapsed"]
+    if snap.get("seconds_remaining") is not None:
+        entry["seconds_remaining"] = snap["seconds_remaining"]
     entry["telemetry_source"] = "coordinator"
 
 
@@ -720,8 +727,8 @@ def _entry_from_coordinator_snapshot(name: str, snap: dict, now,
         "current_claim_id": None,
         "current_description": None,
         "progress": snap.get("progress") or {},
-        "seconds_elapsed": None,
-        "seconds_remaining": None,
+        "seconds_elapsed": snap.get("seconds_elapsed"),
+        "seconds_remaining": snap.get("seconds_remaining"),
         "recent_lines": [],
         "queue_depth": None,
         "queue_id_at_head": None,
