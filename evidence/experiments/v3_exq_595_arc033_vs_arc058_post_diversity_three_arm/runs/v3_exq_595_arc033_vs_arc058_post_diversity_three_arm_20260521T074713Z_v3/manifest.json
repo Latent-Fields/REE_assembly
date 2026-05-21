@@ -1,0 +1,226 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm",
+  "run_id": "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm_20260521T074713Z_v3",
+  "timestamp_utc": "2026-05-21T07:47:13Z",
+  "claim_ids": [
+    "ARC-033",
+    "ARC-058"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-033": "non_contributory",
+    "ARC-058": "non_contributory"
+  },
+  "evidence_direction_note": "substrate_ceiling: balanced harm-event gate failed",
+  "pass_criteria_summary": {
+    "c0_policy_diversity": {
+      "indep_pass_count": 3,
+      "shared_pass_count": 3,
+      "min_entropy": 0.1,
+      "pass": true
+    },
+    "c1_balanced_harm_events": {
+      "indep_pass_count": 0,
+      "shared_pass_count": 0,
+      "min_tagged_steps": 10,
+      "pass": false
+    },
+    "c2_forward_r2_learnable": {
+      "indep_pass_count": 3,
+      "shared_pass_count": 3,
+      "threshold_r2": 0.3,
+      "pass": true
+    },
+    "c3_cross_arm_discrimination": {
+      "discriminating_seeds": 0,
+      "r2_abs_eps": 1e-05,
+      "r2_rel_eps": 0.01,
+      "pass": false
+    },
+    "c4_arbitration_diagnostic": {
+      "mean_r2_independent": 0.9329065669385616,
+      "mean_r2_shared": 0.9329065669385616,
+      "winner_suggested": "ARC-058_shared",
+      "degradation_frac": 0.05
+    },
+    "off_arm_entropy_mean": 0.830822846650861,
+    "evidence_direction_note": "substrate_ceiling: balanced harm-event gate failed"
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.9676445384919362,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "1": 598,
+        "2": 260,
+        "0": 60,
+        "4": 46
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 42,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.8991467515342368,
+      "action_class_entropy": 1.0686064364796302,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "1": 307,
+        "2": 268,
+        "0": 56,
+        "4": 29
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 42,
+      "condition": "ON_SHARED",
+      "harm_a_forward_r2": 0.8991467515342368,
+      "action_class_entropy": 1.0686064364796302,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "1": 307,
+        "2": 268,
+        "0": 56,
+        "4": 29
+      },
+      "use_shared_harm_trunk": true,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 7,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.6598509655990352,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 801,
+        "2": 1354
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 7,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9326538597509748,
+      "action_class_entropy": 0.7654047241200134,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "2": 854,
+        "0": 1088,
+        "3": 22,
+        "1": 9
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 7,
+      "condition": "ON_SHARED",
+      "harm_a_forward_r2": 0.9326538597509748,
+      "action_class_entropy": 0.7654047241200134,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "2": 854,
+        "0": 1088,
+        "3": 22,
+        "1": 9
+      },
+      "use_shared_harm_trunk": true,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 13,
+      "condition": "OFF",
+      "harm_a_forward_r2": null,
+      "action_class_entropy": 0.8649730358616119,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "3": 226,
+        "0": 751,
+        "4": 75,
+        "2": 30
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 13,
+      "condition": "ON_INDEPENDENT",
+      "harm_a_forward_r2": 0.9669190895304731,
+      "action_class_entropy": 0.9747365113113643,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 475,
+        "3": 151,
+        "2": 38,
+        "4": 65
+      },
+      "use_shared_harm_trunk": false,
+      "sp_cem_main_path_defaults": true
+    },
+    {
+      "seed": 13,
+      "condition": "ON_SHARED",
+      "harm_a_forward_r2": 0.9669190895304731,
+      "action_class_entropy": 0.9747365113113643,
+      "n_agent_caused_harm_p2": 0,
+      "n_body_noise_p2": 0,
+      "n_tagged_harm_p2": 0,
+      "action_counts": {
+        "0": 475,
+        "3": 151,
+        "2": 38,
+        "4": 65
+      },
+      "use_shared_harm_trunk": true,
+      "sp_cem_main_path_defaults": true
+    }
+  ],
+  "config": {
+    "queue_id": "V3-EXQ-595",
+    "conditions": [
+      "OFF",
+      "ON_INDEPENDENT",
+      "ON_SHARED"
+    ],
+    "seeds": [
+      42,
+      7,
+      13
+    ],
+    "p0_eps": 50,
+    "p1_eps": 100,
+    "p2_eps": 30,
+    "steps_per_ep": 120,
+    "sp_cem_main_path_defaults": true,
+    "supersedes_note": "Fresh three-arm post-SP-CEM arbitration; supersedes the inconclusive 445/445b monostrategy reads and the two-arm 445h template for self_attribution:GAP-1."
+  },
+  "dry_run": false
+}
