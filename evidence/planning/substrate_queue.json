@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T09:55:30Z",
+  "last_updated_utc": "2026-05-21T13:46:03Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1349,8 +1349,8 @@
     {
       "sd_id": "MECH-269b",
       "title": "Symmetric V_s gating on E1 sensory predictor and E2 forward models",
-      "ready": true,
-      "status": "implemented_but_architectural_mismatch",
+      "ready": false,
+      "status": "implemented",
       "design_doc": "docs/architecture/mech_269b_vs_rollout_gating.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -1375,10 +1375,10 @@
       "implementation_hint": "Substrate landed in regulators/vs_rollout_gate.py 2026-04-26. /diagnose-errors 2026-04-27 root-cause: VsRolloutGate hold trigger (V_s < 0.4) is unreachable under typical Phase 1 V_s dynamics. Phase 1 V_s is an identity-prediction proxy (1 - normalized_step_delta) that stays near 0.9-1.0 under aligned latents; reaching 0.4 needs ~9 consecutive ticks of fully misaligned latent (doesn't happen at smoke scale). Architectural mismatch: gate reads velocity-based per_stream_vs but MECH-269b's intent is to gate on staleness-based V_s. The substrate is wired but reads the wrong signal. Two architectural follow-up paths are recorded as separate substrate_queue entries (MECH-269b-followup-A: staleness-corrected V_s in VsRolloutGate.gate; MECH-269b-followup-B: Phase 2 T2 forward-predictor V_s routing). V3-EXQ-490b queued as smoke-only substrate-readiness probe with thresholds raised to 0.85/0.95 to confirm gate-firing precondition (Q-040a) is operational, but Q-040b behavioural sufficiency is gated on one of the two follow-up paths.",
       "priority": 1,
       "added_session": "governance-2026-04-27T14:11",
-      "last_seen_session": "governance-2026-04-28T2156Z",
-      "implementation_status": "implemented_but_failing_validation",
+      "last_seen_session": "igw-mech269b-substrate-ready-20260521T134603Z",
+      "implementation_status": "implemented",
       "implemented_utc": "2026-04-26T18:39:00Z",
-      "validation_experiment": "V3-EXQ-490b",
+      "validation_experiment": "V3-EXQ-601",
       "implemented_session": "implement-mech269b-vs-rollout-gating-2026-04-26",
       "metric_trajectory": {
         "primary_metric": "c1_on_total_held / c2_approach_commit / c3_dacc_bias",
@@ -1393,9 +1393,19 @@
             "substrate_state": "MECH-269b substrate landed; smoke-threshold-override path queued by /diagnose-errors 2026-04-27T14:55Z.",
             "metric_value": "FAIL (evidence_direction=inconclusive, experiment_purpose=diagnostic)",
             "metric_notes": "C1 PASS (gate fires under threshold-override -- Q-040a effectively answered). C2+C3 FAIL: zero approach_commit AND zero dACC score-bias across all seeds. Architectural reading: MECH-269b necessary but not sufficient; MECH-295 liking-bridge is dominant remaining blocker; successor should run both ON together."
+          },
+          {
+            "run_id": "v3_exq_601_mech269b_followup_a_staleness_gate_20260521T120249Z_v3",
+            "experiment_type": "v3_exq_601_mech269b_followup_a_staleness_gate",
+            "date_utc": "2026-05-21",
+            "substrate_state": "MECH-269b + use_vs_gate_staleness_lookup at default thresholds",
+            "metric_value": "PASS (c1_staleness_lookup_calls_on + c2_on_held_gt_off in 2/3 seeds)",
+            "metric_notes": "Canonical substrate validation; closes architectural_mismatch status."
           }
-        ]
-      }
+        ],
+        "current_blocker": null
+      },
+      "implementation_note_update": "IGW-20260521-020 substrate-ready 2026-05-21: base VsRolloutGate landed 2026-04-26; 2026-04-27 diagnose-errors architectural mismatch (raw V_s hold at 0.4 unreachable) resolved by MECH-269b-followup-A staleness wiring 2026-04-29. Canonical validation V3-EXQ-601 PASS 20260521T120249Z (C1+C2 at default 0.4/0.5 thresholds). V3-EXQ-490b remains smoke-threshold C1-only record. Q-040b behavioural sufficiency still open (MECH-295 / StepHarness cohort)."
     },
     {
       "sd_id": "MECH-269b-followup-B",

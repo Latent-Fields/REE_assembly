@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim ID:** MECH-269b
 **Subject:** cortical_world_model.regional_verisimilitude_rollout_gating
-**Status:** IMPLEMENTED 2026-04-26
+**Status:** IMPLEMENTED 2026-04-26; SUBSTRATE-VALIDATED 2026-05-21 (V3-EXQ-601 PASS)
 **Registered:** 2026-04-26
 **Instantiates:** MECH-269 (V_s anchor selection on the hippocampal proposer)
 **Depends on:** MECH-269, MECH-284, SD-005, SD-010, SD-011, ARC-033
@@ -298,7 +298,7 @@ has nothing to walk otherwise. The legacy raw-V_s path (default-OFF) is
 retained byte-for-byte for backward compatibility with EXQ-490 / 490b / 490c.
 
 **Q-040b acceptance.** With this wiring, V3-EXQ-601 (MECH-269b-followup-A
-validation, queued 2026-05-21) can run without smoke threshold overrides: under sustained MECH-287 broadcast
+validation, PASS 2026-05-21) ran without smoke threshold overrides: under sustained MECH-287 broadcast
 activity the staleness on stale-region anchors climbs, per-stream staleness
 follows, effective_vs falls below the realistic 0.4 threshold, and the hold
 path fires. C1 (gate fires) becomes a non-trivial measurement; C4 (severance:

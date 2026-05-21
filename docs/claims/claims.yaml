@@ -24026,8 +24026,11 @@
     2026-04-29: HippocampalConfig.use_vs_gate_staleness_lookup (default
     False) wires MECH-284 per_stream_staleness into gate threshold via
     effective_vs = raw_vs - staleness[s]; mirrors AnchorSet.tick_hysteresis
-    staleness_lookup. Substrate validation V3-EXQ-601 queued 2026-05-21
-    (IGW-20260521-021).
+    staleness_lookup. Substrate validation V3-EXQ-601 PASS 2026-05-21
+    (IGW-20260521-020/021): C1+C2 at default 0.4/0.5 thresholds without
+    smoke overrides; resolves 2026-04-27 architectural_mismatch (raw V_s
+    hold unreachable). v3_pending remains true until Q-040b behavioural
+    factorial (approach_commit + dACC) on StepHarness cohort.
   evidence_quality_note: >
     Literature support is asymmetric across the claim's two
     architectural halves. Cortex-side per-stream precision/reliability
