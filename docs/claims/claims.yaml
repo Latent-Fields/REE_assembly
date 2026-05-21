@@ -26647,8 +26647,18 @@
     collapses -> MECH-309 strong confirmation -> ARC-063/V4. A separate
     MECH-309-support reading of the 543 cluster (cross-machine collapse =
     positive evidence for MECH-309) is a parked governance follow-on, not
-    applied this session. See ree-v3/CLAUDE.md "ARC-062 GatedPolicy
+    applied this session.     See ree-v3/CLAUDE.md "ARC-062 GatedPolicy
     differential-heads robustness fix (2026-05-18)".
+
+    2026-05-21 (implement-substrate GAP-B, NO confidence/promotion change --
+    governance gated on V3-EXQ-543k). mode_separation_floor on composed
+    gated bias (default 0.0 OFF) plus p1_w_deviation_aux_weight (default 0)
+    landed in gated_policy.py + REEConfig passthrough. Motivated by
+    failure_autopsy_543i: at w~0.5 differential heads cancel in composed
+    output; floor injects non-cancelable contrast; P1 aux penalizes flat w.
+    Validation EXQ V3-EXQ-543k (supersedes 543i): floor=0.25, aux=0.1 on gated
+    arms, K_IDENTICAL_RUNS=3 basin-stability gate, manifest hostname.
+    See ree-v3/CLAUDE.md "ARC-062 GAP-B mode-separation floor (2026-05-20)".
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   heterogeneity_note: >
