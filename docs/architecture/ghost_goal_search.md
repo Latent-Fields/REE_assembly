@@ -176,7 +176,7 @@ of Q-053.
 | `ghost_priority` product formula (old Sections 4.2 / 6.2) | **SUPERSEDED** by the additive form already in the substrate |
 | Context channel from SD-039 payload fields | **IMPLEMENTED 2026-05-19** (Constraint 1 / MECH-339): smallest substrate step -- arousal_tag context channel gated by goal_match in `ghost_goal_bank.py` (`use_composite_cue_outshining`, default off); `last_vs`/`cause` deferred. Diagnostic validation V3-EXQ-594 queued. See ree-v3/CLAUDE.md "MECH-339 C1". |
 | Three-state dissociation validation | **new falsifiable battery** (Constraint 2); not queued |
-| Explicit abandon path | **RESOLVED + INVERTED 2026-05-19** (0.3): persistence is gated, disengagement is the default, trace preserved; registered as ARC-079 / MECH-340 / Q-053 |
+| Explicit abandon path | **RESOLVED + INVERTED 2026-05-19** (0.3): persistence is gated, disengagement is the default, trace preserved; registered as ARC-079 / MECH-340 / Q-053. **MECH-340 gate IMPLEMENTED 2026-05-21** (default off; V3-EXQ-607 diagnostic) |
 | New claims | **ARC-078 + MECH-339** (cue-system, 2026-05-19) and **ARC-079 + MECH-340 + Q-053** (persistence-gate / C3 resolution, 2026-05-19); see 0.5 |
 | Experiments / promotion | **none** -- registration only, no experiment queued, no promotion |
 
@@ -208,7 +208,9 @@ notes; see 0.4):
     ARC-078, resolves its C3.
   - **MECH-340** (mechanism_hypothesis, candidate / v3_pending): the
     per-entry persistence/efficacy gate; absence = default disengagement
-    via MECH-292 rank decay (trace preserved, no erase).
+    via MECH-292 rank decay (trace preserved, no erase). **Substrate
+    IMPLEMENTED 2026-05-21** (global PersistenceAppraisal in
+    ghost_goal_bank.py, default off; V3-EXQ-607 diagnostic).
   - **Q-053** (question, open; **narrowed 2026-05-19** from the same pull):
     the licit gate signal. Ruled-out signals fixed (accumulated failure,
     bare effort-cost, staleness, within-crisis devalued value) plus a

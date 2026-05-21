@@ -33548,7 +33548,8 @@
     bank (smallest substrate step: arousal_tag context channel gated by
     goal_match; see MECH-339.implementation_note and the ree-v3/CLAUDE.md
     "MECH-339 C1" entry). C2 remains MECH-292's ratified additive form and
-    C3's abandon mechanism remains deferred. ARC-078 itself stays candidate
+    C3 persistence gate (MECH-340) substrate landed 2026-05-21 (default off;
+    appraisal wiring deferred per Q-053). ARC-078 itself stays candidate
     / v3_pending and unpromoted -- one child substrate landing is not
     evidence for the parent architectural claim.
   evidence_quality_note: >
@@ -33802,8 +33803,27 @@
     reengagement-coupled state), Koster 2011 / Gillan 2021/2016 (the gate
     must be explicit and separable), Husain & Roiser 2018 / Treadway 2012
     (the lower-bound negatives). lit_conf is PARALLEL only, NOT blended
-    into exp_conf; exp_conf = 0 so candidate / v3_pending. No substrate
-    implementation yet.
+    into exp_conf; exp_conf = 0 so candidate / v3_pending. Substrate landed
+    2026-05-21 (see implementation_note); status stays candidate /
+    v3_pending -- implementation is not evidence (exp_conf still 0).
+  implementation_note: >
+    IMPLEMENTED 2026-05-21 (smallest substrate step) in
+    ree-v3/ree_core/hippocampal/ghost_goal_bank.py: global
+    PersistenceAppraisal (control_efficacy, goal_unattainability in [0,1])
+    passed into GhostGoalBank.rank(); license =
+    clip(control)*(1-clip(unattainability)); anchors with license <
+    persistence_floor are excluded (disengaged, trace preserved per
+    Bouton). Hard negatives enforced by API shape: the gate reads ONLY
+    the appraisal struct, NOT recoverability/staleness/wanting/failure
+    tallies. Config: GhostGoalBankConfig.use_persistence_efficacy_gate
+    (default False), persistence_floor (0.05),
+    persistence_default_when_appraisal_missing (1.0). HippocampalModule
+    rank_ghost_goals / MECH-293 _propose_ghost_seeded thread optional
+    persistence_appraisal; agent loop wiring of the appraisal computation
+    is deferred (Q-053). Reengagement-coupled disengagement STATE
+    (Klinger) deferred -- this step is the separable gate primitive only.
+    Verified: contracts 4/4 + V3-EXQ-607 --dry-run PASS. ree-v3/CLAUDE.md
+    "MECH-340 Persistence Gate" is the implementation-status source of truth.
   literature_anchors:
     - targeted_review_goal_disengagement
   location: docs/architecture/ghost_goal_search.md
