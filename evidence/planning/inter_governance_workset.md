@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T04:31:03Z`
+Generated: `2026-05-21T07:44:07Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,11 +9,11 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **52** (ready 33, in_flight 2, blocked 6)
+- Items: **52** (ready 33, in_flight 1, blocked 6)
 - Pending review: **0**
-- Queue pending (unclaimed): **10**
+- Queue pending (unclaimed): **8**
 
-- Live EXQs: V3-EXQ-483c, V3-EXQ-587, V3-EXQ-588b, V3-EXQ-590a, V3-EXQ-591
+- Live EXQs: V3-EXQ-475a, V3-EXQ-587, V3-EXQ-590a, V3-EXQ-591, V3-EXQ-595
 
 ## Work packages
 
@@ -1093,6 +1093,33 @@ Instructions:
 
 </details>
 
+### IGW-20260521-012 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
+- **Gap(s):** infant_substrate:GAP-11
+- **Owner EXQ:** V3-EXQ-588b
+- **Why now:** V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260521-012
+Title: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
+Lane: experiment | Skill: /queue-experiment
+Status: in_progress
+Gap(s): infant_substrate:GAP-11
+Owner EXQ: V3-EXQ-588b
+Claims: DEV-NEED-006, MECH-189
+Why now: V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260521-013 -- EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
@@ -1141,33 +1168,6 @@ Why now: Plan gap in_progress on infant_substrate.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260521-012 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
-
-- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 53
-- **Gap(s):** infant_substrate:GAP-11
-- **Owner EXQ:** V3-EXQ-588b
-- **Why now:** V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260521-012
-Title: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
-Lane: experiment | Skill: (monitor -- do not re-queue)
-Status: in_flight
-Gap(s): infant_substrate:GAP-11
-Owner EXQ: V3-EXQ-588b
-Claims: DEV-NEED-006, MECH-189
-Why now: V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
-
-Instructions:
-- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
 - Workset: http://localhost:8000/workset
 ```
