@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-21T10:45:57Z",
+  "last_tick_utc": "2026-05-21T10:47:00Z",
   "state": "running",
   "current_exq": "V3-EXQ-592",
   "current_exq_started_utc": "2026-05-21T09:02:58.534777+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / FORCED_RV",
-    "runs_done": 7,
+    "run_label": "Seed 44 / STARVED",
+    "runs_done": 8,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 8,
     "episodes_total": 400,
-    "overall_pct": 77.8
+    "overall_pct": 89.1
   },
-  "seconds_elapsed": 6179,
-  "seconds_remaining": 1709,
+  "seconds_elapsed": 6242,
+  "seconds_remaining": 761,
   "recent_lines": [
-    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[seed=44] P0 EMERGENT: converged=True aborted=False final_rv=0.00001 n_eps=120",
-    "[seed=44] EMERGENT P2: mean_committed/ep=151.5 hold_rate=1.000 C1=PASS",
     "verdict: PASS",
-    "Seed 44 Condition FORCED_RV"
+    "Seed 44 Condition STARVED",
+    "[P0 probe] ep 4/20  rv=0.00003  threshold=0.0001  converging=True",
+    "[P0 probe] ep 8/20  rv=0.00003  threshold=0.0001  converging=True",
+    "[P0 train] ep 8/20  rv=0.00003  reward=-1.1445"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
