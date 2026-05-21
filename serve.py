@@ -1908,6 +1908,21 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
             ],
         }
     # HEALTHY
+    if mode == "coordinator":
+        return {
+            "phase": 2,
+            "phase_label": "Phase 2 -- claim cutover (live)",
+            "parallel": "Coordinator owns claims; git still carries results, "
+                        "status, and queue commits.",
+            "assess": "Phase-2 active -- claims via POST /claim (div 0).",
+            "retire": "Git claim pushes are retired for mutex. Heartbeats and "
+                      "result git pushes remain until Phase 3.",
+            "next": [
+                "Watch /api/machines and coordinator logs for claim errors.",
+                "Do not flip any host back to git/shadow without draining.",
+                "Phase 3 (sync_daemon sole git writer) is a separate step.",
+            ],
+        }
     return {
         "phase": 1,
         "phase_label": "Phase 1 -- shadow soak (assessing)",
@@ -2054,6 +2069,66 @@ def start_shadow() -> dict:
     return {"status": "ok", "coordinator_url": url,
             "local_mac_runner": local, "cloud_hosts": hosts,
             "manual_hosts": manual}
+
+
+def start_coordinator() -> dict:
+    """Phase-2 claim cutover: hub coordinator+sync modes, workers in
+    coordinator mode, Mac runner via start_runner(extra_env). Caller must
+    have drained the fleet first (no mixed git/shadow/coordinator claims)."""
+    cfg = _load_coordinator_cfg()
+    url = cfg.get("COORDINATOR_URL")
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
+    if not url or not tok:
+        return {"status": "error",
+                "message": "coordinator.env not configured "
+                           "(COORDINATOR_URL / COORDINATOR_LOCAL_TOKEN). "
+                           "See coordinator.env.example."}
+    ssh_user = cfg.get("COORDINATOR_SSH_USER", "ree")
+
+    hub_flip = (
+        "sudo sed -i 's/^COORDINATOR_MODE=.*/COORDINATOR_MODE=coordinator/' "
+        "/etc/ree-coordinator.env && "
+        "sudo sed -i 's/^SYNC_MODE=.*/SYNC_MODE=coordinator/' "
+        "/etc/ree-coordinator.env && "
+        "sudo systemctl restart ree-coordinator ree-sync-daemon && "
+        "sleep 2 && curl -sf http://10.8.0.1:8787/health"
+    )
+    worker_flip = (
+        "sudo sed -i 's/COORDINATION_MODE=shadow/COORDINATION_MODE=coordinator/' "
+        "/etc/systemd/system/ree-runner.service.d/shadow.conf && "
+        "sudo systemctl daemon-reload && sudo systemctl restart ree-runner"
+    )
+
+    local = start_runner("v3", extra_env={
+        "COORDINATION_MODE": "coordinator",
+        "COORDINATOR_URL": url,
+        "COORDINATOR_TOKEN": tok,
+        "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
+    })
+
+    hosts = {}
+    for h in _SHADOW_CLOUD_HOSTS:
+        target = cfg.get("SHADOW_SSH_HOST_" + h, h)
+        if h == "ree-cloud-1":
+            hosts[h] = _ssh(target, ssh_user, hub_flip + " && " + worker_flip)
+        else:
+            hosts[h] = _ssh(target, ssh_user, worker_flip)
+
+    manual = {h: {"status": "manual",
+                  "note": "flip shadow.conf to COORDINATION_MODE=coordinator "
+                           "and restart runner"}
+              for h in _SHADOW_MANUAL_HOSTS}
+
+    health = None
+    try:
+        with urllib.request.urlopen(url.rstrip("/") + "/health", timeout=8) as resp:
+            health = json.loads(resp.read().decode())
+    except Exception:
+        pass
+
+    return {"status": "ok", "phase": 2, "coordinator_url": url,
+            "hub_health": health, "local_mac_runner": local,
+            "cloud_hosts": hosts, "manual_hosts": manual}
 
 
 def stop_runner(ver: str | None = None) -> dict:
@@ -2613,6 +2688,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             result = force_stop_runner()  # force-stop any
         elif path == "/api/shadow/start":
             result = start_shadow()
+        elif path == "/api/coordinator/start":
+            result = start_coordinator()
         elif path == "/api/run":
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length) or b'{}')
