@@ -1,0 +1,378 @@
+{
+  "run_id": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep_20260521T115421Z_v3",
+  "queue_id": "V3-EXQ-605",
+  "experiment_type": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260521T115421Z",
+  "outcome": "FAIL",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "Q-043",
+    "ARC-065",
+    "MECH-313",
+    "MECH-314"
+  ],
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "Q-043": "weakens",
+    "ARC-065": "weakens",
+    "MECH-313": "weakens",
+    "MECH-314": "weakens"
+  },
+  "dry_run": false,
+  "grid": {
+    "noise_alphas": [
+      0.1,
+      0.5,
+      1.0
+    ],
+    "curiosity_scales": [
+      1.0,
+      5.0,
+      10.0
+    ]
+  },
+  "acceptance_criteria": {
+    "baseline_arm": "ARM_a0.1_c1x",
+    "baseline_entropy": 0.259243,
+    "baseline_reef_fraction": 0.289186,
+    "p1_calibration_cells": [],
+    "p1_any_calibration_zone": false,
+    "p2_entropy_reef_tradeoff": true,
+    "best_entropy_arm": "ARM_a1.0_c1x",
+    "best_reef_arm": "ARM_a0.1_c1x",
+    "overall_pass": false,
+    "cell_means": {
+      "ARM_a0.1_c1x": {
+        "entropy": 0.259243,
+        "reef_fraction": 0.289186
+      },
+      "ARM_a0.1_c5x": {
+        "entropy": 0.259243,
+        "reef_fraction": 0.289186
+      },
+      "ARM_a0.1_c10x": {
+        "entropy": 0.259243,
+        "reef_fraction": 0.289186
+      },
+      "ARM_a0.5_c1x": {
+        "entropy": 0.292153,
+        "reef_fraction": 0.287463
+      },
+      "ARM_a0.5_c5x": {
+        "entropy": 0.292153,
+        "reef_fraction": 0.287463
+      },
+      "ARM_a0.5_c10x": {
+        "entropy": 0.292153,
+        "reef_fraction": 0.287463
+      },
+      "ARM_a1.0_c1x": {
+        "entropy": 0.305339,
+        "reef_fraction": 0.284362
+      },
+      "ARM_a1.0_c5x": {
+        "entropy": 0.305339,
+        "reef_fraction": 0.284362
+      },
+      "ARM_a1.0_c10x": {
+        "entropy": 0.305339,
+        "reef_fraction": 0.284362
+      }
+    }
+  },
+  "summary": {
+    "baseline_arm": "ARM_a0.1_c1x",
+    "baseline_entropy": 0.259243,
+    "baseline_reef_fraction": 0.289186,
+    "p1_calibration_cells": [],
+    "p1_any_calibration_zone": false,
+    "p2_entropy_reef_tradeoff": true,
+    "best_entropy_arm": "ARM_a1.0_c1x",
+    "best_reef_arm": "ARM_a0.1_c1x",
+    "overall_pass": false,
+    "cell_means": {
+      "ARM_a0.1_c1x": {
+        "entropy": 0.259243,
+        "reef_fraction": 0.289186
+      },
+      "ARM_a0.1_c5x": {
+        "entropy": 0.259243,
+        "reef_fraction": 0.289186
+      },
+      "ARM_a0.1_c10x": {
+        "entropy": 0.259243,
+        "reef_fraction": 0.289186
+      },
+      "ARM_a0.5_c1x": {
+        "entropy": 0.292153,
+        "reef_fraction": 0.287463
+      },
+      "ARM_a0.5_c5x": {
+        "entropy": 0.292153,
+        "reef_fraction": 0.287463
+      },
+      "ARM_a0.5_c10x": {
+        "entropy": 0.292153,
+        "reef_fraction": 0.287463
+      },
+      "ARM_a1.0_c1x": {
+        "entropy": 0.305339,
+        "reef_fraction": 0.284362
+      },
+      "ARM_a1.0_c5x": {
+        "entropy": 0.305339,
+        "reef_fraction": 0.284362
+      },
+      "ARM_a1.0_c10x": {
+        "entropy": 0.305339,
+        "reef_fraction": 0.284362
+      }
+    }
+  },
+  "cell_results": [
+    {
+      "arm": "ARM_a0.1_c1x",
+      "seed": 42,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a0.1_c1x",
+      "seed": 43,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.405813,
+      "reef_fraction": 0.0,
+      "total_steps": 1495
+    },
+    {
+      "arm": "ARM_a0.1_c1x",
+      "seed": 44,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.371915,
+      "reef_fraction": 0.867558,
+      "total_steps": 2318
+    },
+    {
+      "arm": "ARM_a0.1_c5x",
+      "seed": 42,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a0.1_c5x",
+      "seed": 43,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.405813,
+      "reef_fraction": 0.0,
+      "total_steps": 1495
+    },
+    {
+      "arm": "ARM_a0.1_c5x",
+      "seed": 44,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.371915,
+      "reef_fraction": 0.867558,
+      "total_steps": 2318
+    },
+    {
+      "arm": "ARM_a0.1_c10x",
+      "seed": 42,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a0.1_c10x",
+      "seed": 43,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.405813,
+      "reef_fraction": 0.0,
+      "total_steps": 1495
+    },
+    {
+      "arm": "ARM_a0.1_c10x",
+      "seed": 44,
+      "noise_floor_alpha": 0.1,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.371915,
+      "reef_fraction": 0.867558,
+      "total_steps": 2318
+    },
+    {
+      "arm": "ARM_a0.5_c1x",
+      "seed": 42,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a0.5_c1x",
+      "seed": 43,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.480997,
+      "reef_fraction": 0.0,
+      "total_steps": 1046
+    },
+    {
+      "arm": "ARM_a0.5_c1x",
+      "seed": 44,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.395461,
+      "reef_fraction": 0.862389,
+      "total_steps": 2260
+    },
+    {
+      "arm": "ARM_a0.5_c5x",
+      "seed": 42,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a0.5_c5x",
+      "seed": 43,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.480997,
+      "reef_fraction": 0.0,
+      "total_steps": 1046
+    },
+    {
+      "arm": "ARM_a0.5_c5x",
+      "seed": 44,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.395461,
+      "reef_fraction": 0.862389,
+      "total_steps": 2260
+    },
+    {
+      "arm": "ARM_a0.5_c10x",
+      "seed": 42,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a0.5_c10x",
+      "seed": 43,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.480997,
+      "reef_fraction": 0.0,
+      "total_steps": 1046
+    },
+    {
+      "arm": "ARM_a0.5_c10x",
+      "seed": 44,
+      "noise_floor_alpha": 0.5,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.395461,
+      "reef_fraction": 0.862389,
+      "total_steps": 2260
+    },
+    {
+      "arm": "ARM_a1.0_c1x",
+      "seed": 42,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a1.0_c1x",
+      "seed": 43,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.497939,
+      "reef_fraction": 0.0,
+      "total_steps": 1130
+    },
+    {
+      "arm": "ARM_a1.0_c1x",
+      "seed": 44,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 1.0,
+      "selected_action_entropy": 0.418078,
+      "reef_fraction": 0.853086,
+      "total_steps": 1831
+    },
+    {
+      "arm": "ARM_a1.0_c5x",
+      "seed": 42,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a1.0_c5x",
+      "seed": 43,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.497939,
+      "reef_fraction": 0.0,
+      "total_steps": 1130
+    },
+    {
+      "arm": "ARM_a1.0_c5x",
+      "seed": 44,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 5.0,
+      "selected_action_entropy": 0.418078,
+      "reef_fraction": 0.853086,
+      "total_steps": 1831
+    },
+    {
+      "arm": "ARM_a1.0_c10x",
+      "seed": 42,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 5805
+    },
+    {
+      "arm": "ARM_a1.0_c10x",
+      "seed": 43,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.497939,
+      "reef_fraction": 0.0,
+      "total_steps": 1130
+    },
+    {
+      "arm": "ARM_a1.0_c10x",
+      "seed": 44,
+      "noise_floor_alpha": 1.0,
+      "curiosity_scale": 10.0,
+      "selected_action_entropy": 0.418078,
+      "reef_fraction": 0.853086,
+      "total_steps": 1831
+    }
+  ]
+}
