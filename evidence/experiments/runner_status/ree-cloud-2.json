@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 340361,
   "runner_started_at": "2026-05-21T13:17:26.449688+00:00",
-  "last_updated": "2026-05-21T13:17:27.742325+00:00",
+  "last_updated": "2026-05-21T13:17:42.508647+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -13,17 +13,6 @@
       "title": "EXQ-ISEF-004 rerun: novelty bonus Goldilocks calibration with checkpoint/resume",
       "description": "",
       "estimated_minutes": 2000.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-600a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-282 LPB interoceptive routing diagnostic (emit_outcome fix)",
-      "description": "",
-      "estimated_minutes": 0.4,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2268,6 +2257,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_599a_mech286_sleep_onset_gate_validation/v3_exq_599a_mech286_sleep_onset_gate_validation_20260521T131727Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 1.3
+    },
+    {
+      "queue_id": "V3-EXQ-600a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-282 LPB interoceptive routing diagnostic (emit_outcome fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | acceptance: {'c1_z_harm_intero_populated': True, 'c2_intero_override_gt_external': True, 'c3_external_freeze_gte_intero': True, 'verdict': 'PASS'} | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-600a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-600a.json",
+      "started_at": "2026-05-21T13:17:32.683169+00:00",
+      "completed_at": "2026-05-21T13:17:42.508137+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_600a_mech282_lpb_interoceptive_routing_diag/v3_exq_600a_mech282_lpb_interoceptive_routing_diag_20260521T131742Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 9.8
     }
   ]
 }
