@@ -1,0 +1,87 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-21T14:16:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "user_confirmation_utc": "2026-05-21T14:16:03Z",
+  "targets": [
+    {
+      "run_id": "v3_exq_543i_arc062_differential_heads_falsifier_20260521T035802Z_v3",
+      "queue_id": "V3-EXQ-543k",
+      "queue_id_intended": "V3-EXQ-543k",
+      "manifest_queue_id_actual": "V3-EXQ-543i",
+      "misrun": true,
+      "claim_ids": ["ARC-062", "MECH-309", "INV-074", "MECH-334"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "Discrimination criteria failed on 543i metrics (diff_on_escape=false, c2c3_on_pass=false) but GAP-B criteria (basin_stable, mode_separation_floor in manifest) were never executed -- primary failure is wrong experiment identity under the 543k queue slot.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "non_contributory -- GAP-B test not evidenced",
+        "biological_reference": "present (543i lineage); not load-bearing for misrun",
+        "prerequisites": "missing on worker -- 543k manifest fields and floor config absent from artifact",
+        "implementation": "partial -- floor landed on origin/main; run published 543i identity",
+        "environment": "adequate",
+        "measurement": "misleading -- duplicate of V3-EXQ-543j metrics under wrong queue_id",
+        "integration": "isolated -- GAP-C/D not in loop",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PFC rule-cells / mixed-selectivity / corticostriatal action gating",
+        "dependencies": [
+          "per-context advantage or supervised discriminator routing (GAP-C)",
+          "trainable rule-bias head in E3 optimiser (GAP-D)",
+          "mode_separation_floor (GAP-B, necessary not sufficient)"
+        ],
+        "is_formal_import": false,
+        "divergence": "Not biology-divergence. Missing-dependency: shared-return REINFORCE lacks routing consumer; 543k floor addresses w~0.5 cancellation only.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "File already stamped substrate_ceiling from 543j equivalence; governance should apply misrun non_contributory overlay (experiment-identity) per user confirmation.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-062": "non_contributory",
+        "MECH-309": "non_contributory",
+        "INV-074": "non_contributory",
+        "MECH-334": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-543k queue slot FAIL 20260521T035802Z is a misrun: manifest is v3_exq_543i_* (experiment_type and queue_id 543i; no mode_separation_floor, basin_stable, or k_identical_runs). Runner signal cites 543k script but manifest path is 543i. Metrics byte-identical to V3-EXQ-543j (branch-e, all diff-ON gated arms 3/3 inert; diff-OFF collapse reproduced). non_contributory for ARC-062, MECH-309, INV-074, MECH-334 -- does not test GAP-B. failure_autopsy_V3-EXQ-543k_2026-05-21. pending_retest_after_substrate: true (real 543k with verified manifest, then V3-EXQ-598 GAP-C/D before any 543l floor ablation).",
+      "recommended_substrate_queue_entry": {
+        "note": "Extend ARC-062 substrate_queue failure_record: 543k-slot misrun 20260521T035802Z; require manifest experiment_type v3_exq_543k_* and mode_separation_floor=0.25 before counting GAP-B evidence. No new implementation commission until 598 (GAP-C/D) result."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "543k queue slot produced 543i manifest -- fleet must git pull ree-v3 main and verify manifest identity before GAP-B counts.",
+        "035802Z adds no science beyond V3-EXQ-543j; branch-e collapse already autopsied in failure_autopsy_V3-EXQ-543i_2026-05-19.",
+        "User priority: V3-EXQ-598 (GAP-C/D) before V3-EXQ-543l floor/aux/C/D ablations.",
+        "If real 543k FAILs branch-e, floor+aux insufficient without discriminator->PFC routing (GAP-C) and trainable bias head (GAP-D)."
+      ],
+      "routing": "governance-stamp-misrun-then-retest-543k-then-598",
+      "retest_sequence": [
+        "V3-EXQ-543k force_rerun with verified v3_exq_543k manifest fields",
+        "V3-EXQ-598 GAP-C/D ablation (gates_on 543k contributory PASS)",
+        "V3-EXQ-543l optional factorial (floor vs aux vs C/D) only if 598 insufficient"
+      ]
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control / sanity reproduces (diff_off collapse) but every discrimination criterion fails (diff_on 3/3 inert) -- substrate-ceiling fingerprint across 543g-543j; 543k-slot misrun duplicates 543j without testing floor",
+    "is_independent_bugs": false,
+    "structural_property": "Outcome-coupled REINFORCE on gated heads collapses to inert monomodal equilibrium; MECH-333 differential structure and GAP-B floor (when run) do not supply the missing context-routing training signal that GAP-C/D wire.",
+    "readings": ["substrate_enrichment_Gap_C_D_first", "test_design_ceiling"],
+    "lineage": ["V3-EXQ-543g", "V3-EXQ-543h", "V3-EXQ-543i", "V3-EXQ-543j", "V3-EXQ-543k-misrun-035802Z"]
+  },
+  "anticipated_real_543k_fail": {
+    "if_branch_e": {
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-062": "weakens",
+        "MECH-309": "supports",
+        "INV-074": "non_contributory",
+        "MECH-334": "non_contributory"
+      },
+      "routing": "do-not-demote-until-598; queue-experiment-543l-deferred",
+      "draft_evidence_quality_note": "V3-EXQ-543k (valid manifest) FAIL branch-e: mode_separation_floor + P1 w-deviation aux did not escape MECH-309 collapse. Extends failure_autopsy_V3-EXQ-543i. Prioritize V3-EXQ-598 GAP-C/D before 543l ablations. pending_retest_after_substrate through 598."
+    }
+  }
+}
