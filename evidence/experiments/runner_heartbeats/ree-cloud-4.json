@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-21T16:20:37Z",
+  "last_tick_utc": "2026-05-21T16:21:39Z",
   "state": "running",
   "current_exq": "V3-EXQ-543k",
   "current_exq_started_utc": "2026-05-21T14:36:03.250213+00:00",
@@ -10,20 +10,20 @@
   "current_description": "",
   "progress": {
     "run_label": "Seed 0 / ARM_7_both_xtal",
-    "runs_done": 22,
+    "runs_done": 23,
     "runs_total": 36,
-    "episodes_done": 55,
+    "episodes_done": 10,
     "episodes_total": 108,
-    "overall_pct": 62.5
+    "overall_pct": 64.1
   },
-  "seconds_elapsed": 6274,
-  "seconds_remaining": 3686,
+  "seconds_elapsed": 6337,
+  "seconds_remaining": 3533,
   "recent_lines": [
-    "[train] ARM_7_both_xtal ep 80/108  phase=P1  rv=0.0019  ep_reward=-1.0165  baseline=-1.2351  buf=265  inert_gating=True",
-    "[probe] ARM_7_both_xtal P1 ep 45/60  applicable=True  mean_tv=0.0010  max_tv=0.0015  buf=294",
-    "[probe] ARM_7_both_xtal P1 ep 50/60  applicable=True  mean_tv=0.0010  max_tv=0.0015  buf=328",
-    "[train] ARM_7_both_xtal ep 90/108  phase=P1  rv=0.0020  ep_reward=-1.0618  baseline=-1.1749  buf=328  inert_gating=True",
-    "[probe] ARM_7_both_xtal P1 ep 55/60  applicable=True  mean_tv=0.0010  max_tv=0.0015  buf=360"
+    "verdict: FAIL",
+    "Seed 0 Condition ARM_7_both_xtal",
+    "use_gated_policy=True  use_dacc=True  dacc_weight=1.0  dacc_suppression_weight=0.5  first_action_onehot=True  crystallize=True  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)",
+    "[train] ARM_7_both_xtal ep 10/108  phase=P0  rv=0.0021  ep_reward=-1.0573"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
