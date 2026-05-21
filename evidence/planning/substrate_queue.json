@@ -2391,10 +2391,26 @@
           "target": "EXQ-540 (3-arm gap decomposition with MECH295LikingBridge.compute_conjunction_score_bias() consumer ON in all arms, queued same-day) is the discriminative validation. PASS = approach_commit_rate ARM_2 >= ARM_0 + 0.10 in 2/3 seeds AND ARM_2 > ARM_1; conjunction-fire rate >= 0.10 in ARM_2 only."
         }
       ],
-      "implementation_hint": "Four-gap conjunction fix to existing channels: (1) signed VALENCE_SURPRISE (negative for harm-paired surprise, positive for reward-paired); (2) MECH-216 z_beta coupling so arousal pulse fires on VALENCE_SURPRISE write; (3) anticipatory VALENCE_LIKING write at the predicted future location (not the current one); (4) write-at-predicted-z_world via the cached e1_prior, not at current_z_world. All four must fire conjunctively to generate excitement/dread; missing any one yields the wired-but-inert pattern observed in EXQ-490f, 514f, 536b, etc. ~40 lines of code per the 2026-05-08 design doc. SD-014 6-channel amendment (add VALENCE_EXCITEMENT + VALENCE_DREAD as discrete channels) is the fallback architectural option if MECH-307 conjunction does not produce the expected derived states.",
+      "implementation_hint": "IMPLEMENTED 2026-05-08/11 (goal_pipeline:GAP-1). Four-gap conjunction: Gap 1 Option-b split VALENCE_POSITIVE/NEGATIVE_SURPRISE (2026-05-11); Gaps 2-4 schema multichannel + z_beta pulse + predicted-location write (2026-05-08). Master flag use_mech307_conjunction; consumer read use_mech307_consumer_conjunction_read. Canonical substrate-readiness V3-EXQ-540g PASS 2026-05-15 (C1 substrate dissociation + C2 conjunction fires; C3 approach_commit ceiling). Default recalibration mech295_min_drive_to_fire 0.01 + mech307_conjunction_z_beta_threshold 0.3 (2026-05-12). Contracts test_mech307_* 26/26 PASS 2026-05-21. Tier-1 behavioural retests (514j SD-049 Phase 2, 490g GAP-4) remain queued separately. SD-014 6-channel amendment retained as fallback if conjunction behavioural validation fails.",
       "priority": 1,
       "added_session": "governance-cycle-friday-pm-2026-05-08",
-      "last_seen_session": "governance-cycle-2026-05-16T174522Z"
+      "last_seen_session": "igw-mech307-substrate-ready-20260521T035610Z",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-05-11T18:00:00Z",
+      "validation_experiment": "V3-EXQ-540g",
+      "implemented_session": "implement-substrate-mech307-gap1-optionb-2026-05-11",
+      "unblocks_claims_deferred": [
+        "Q-040",
+        "SD-049",
+        "SD-015",
+        "MECH-111",
+        "SD-032b",
+        "ARC-030",
+        "MECH-112",
+        "SD-018",
+        "MECH-295"
+      ],
+      "implementation_note": "IGW-20260521-023 substrate-ready closed. No new ree_core code this session; reconciled queue/docs against landed substrate + 540g PASS."
     },
     {
       "sd_id": "MECH-256",

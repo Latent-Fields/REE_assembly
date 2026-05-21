@@ -198,6 +198,9 @@ which types are active targets, which are excluded, and why.
 
 ### 5.1 Graduated Harm Zones (Non-Terminal Hazard Gradients)
 
+**Status:** IMPLEMENTED 2026-05-16 (`infant_substrate:GAP-1` / `INF-ENV-001`). Validation:
+V3-EXQ-576 PASS (substrate-readiness diagnostic). See `ree_core/environment/causal_grid_world.py`.
+
 **Proposal:** Introduce `harm_gradient_enabled` mode where cells within radius r_outer of a hazard
 exert mild negative reward (0.05–0.15) proportional to distance, without terminal contact until
 radius r_inner. Terminal contact only at r_inner (existing behaviour).
