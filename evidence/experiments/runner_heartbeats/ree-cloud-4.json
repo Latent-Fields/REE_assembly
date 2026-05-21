@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-21T19:37:41Z",
+  "last_tick_utc": "2026-05-21T19:39:44Z",
   "state": "running",
   "current_exq": "V3-EXQ-543k",
   "current_exq_started_utc": "2026-05-21T14:36:03.250213+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_4_baseline_xtal",
     "runs_done": 49,
     "runs_total": 36,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 108,
-    "overall_pct": 136.1
+    "overall_pct": 136.9
   },
-  "seconds_elapsed": 18098,
+  "seconds_elapsed": 18221,
   "seconds_remaining": 0,
   "recent_lines": [
-    "seed=1 arm=ARM_4_baseline_xtal  reef_frac=0.588  rho=-0.556  forage_hr=0.1211  transit_hr=1.0000  ratio=0.121  inert_gating=False  outcome_buf=0",
-    "verdict: PASS",
-    "Seed 1 Condition ARM_4_baseline_xtal",
     "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=True  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
+    "[train] ARM_4_baseline_xtal ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.1490",
+    "[train] ARM_4_baseline_xtal ep 20/108  phase=P0  rv=0.0005  ep_reward=-1.3563",
+    "[train] ARM_4_baseline_xtal ep 30/108  phase=P0  rv=0.0005  ep_reward=-1.2887"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
