@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-21T14:33:28Z",
+  "last_tick_utc": "2026-05-21T14:34:32Z",
   "state": "running",
   "current_exq": "V3-EXQ-592",
   "current_exq_started_utc": "2026-05-21T14:27:06.099342+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 42 / STARVED",
     "runs_done": 2,
     "runs_total": 9,
-    "episodes_done": 4,
+    "episodes_done": 12,
     "episodes_total": 400,
-    "overall_pct": 22.3
+    "overall_pct": 22.6
   },
-  "seconds_elapsed": 382,
-  "seconds_remaining": 1090,
+  "seconds_elapsed": 447,
+  "seconds_remaining": 1087,
   "recent_lines": [
-    "Seed 42 Condition FORCED_RV",
-    "[seed=42] FORCED_RV P2: mean_committed/ep=21.7 hold_rate=1.000 C2=FAIL",
-    "verdict: FAIL",
     "Seed 42 Condition STARVED",
-    "[P0 probe] ep 4/20  rv=0.00001  threshold=0.0001  converging=True"
+    "[P0 probe] ep 4/20  rv=0.00001  threshold=0.0001  converging=True",
+    "[P0 probe] ep 8/20  rv=0.00001  threshold=0.0001  converging=True",
+    "[P0 train] ep 8/20  rv=0.00001  reward=-0.4842",
+    "[P0 probe] ep 12/20  rv=0.00001  threshold=0.0001  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
