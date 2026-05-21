@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-21T17:30:26Z",
+  "last_tick_utc": "2026-05-21T17:31:28Z",
   "state": "running",
   "current_exq": "V3-EXQ-543k",
   "current_exq_started_utc": "2026-05-21T14:36:03.250213+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_0_baseline",
     "runs_done": 37,
     "runs_total": 36,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 108,
-    "overall_pct": 102.8
+    "overall_pct": 103.0
   },
-  "seconds_elapsed": 10463,
+  "seconds_elapsed": 10525,
   "seconds_remaining": 0,
   "recent_lines": [
-    "seed=1 arm=ARM_0_baseline  reef_frac=0.588  rho=-0.556  forage_hr=0.1211  transit_hr=1.0000  ratio=0.121  inert_gating=False  outcome_buf=0",
     "verdict: PASS",
     "Seed 1 Condition ARM_0_baseline",
     "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=False  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
+    "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.1490"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
