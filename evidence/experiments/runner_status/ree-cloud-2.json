@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 340361,
   "runner_started_at": "2026-05-21T13:17:26.449688+00:00",
-  "last_updated": "2026-05-21T13:17:50.028457+00:00",
+  "last_updated": "2026-05-21T14:43:23.496181+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -18,13 +18,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-597b",
+      "queue_id": "V3-EXQ-592",
       "backlog_id": "",
-      "claim_id": "MECH-258",
-      "title": "MECH-258 PE vs raw (597b: pre-clip bias telemetry for C2)",
+      "claim_id": "MECH-090",
+      "title": "GAP-11 pilot: committed-mode curriculum harness validation (EXP-0157)",
       "description": "",
-      "estimated_minutes": 224.0,
-      "status": "pending",
+      "estimated_minutes": 480.0,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -2274,6 +2274,62 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_607_mech340_persistence_efficacy_gate_validation/v3_exq_607_mech340_persistence_efficacy_gate_validation_20260521T131749Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 1.2
+    },
+    {
+      "queue_id": "V3-EXQ-597b",
+      "backlog_id": "",
+      "claim_id": "MECH-258",
+      "title": "MECH-258 PE vs raw (597b: pre-clip bias telemetry for C2)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Outcome: FAIL | c2_pe_beats_raw_corr: {'wins': 1, 'pass': False, 'threshold_delta': 0.05} | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-597b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-597b.json",
+      "started_at": "2026-05-21T13:17:55.080858+00:00",
+      "completed_at": "2026-05-21T13:55:51.384903+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_597b_mech258_pe_vs_raw_post_spcem/v3_exq_597b_mech258_pe_vs_raw_post_spcem_20260521T131756Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2276.3
+    },
+    {
+      "queue_id": "V3-EXQ-603",
+      "backlog_id": "EVB-0231",
+      "claim_id": "",
+      "title": "Q-045 MECH-313 vs MECH-260 four-arm anti-monostrategy ablation",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-603 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-603.json",
+      "started_at": "2026-05-21T13:58:01.865865+00:00",
+      "completed_at": "2026-05-21T14:26:48.699517+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T142648Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1726.8
+    },
+    {
+      "queue_id": "V3-EXQ-606a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-064 GAP-I MECH-318 empirical gate (543k-gated rerun)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1; no runner sentinel and no stdout verdict",
+      "started_at": "2026-05-21T14:26:50.630050+00:00",
+      "completed_at": "2026-05-21T14:26:52.176247+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1.5
+    },
+    {
+      "queue_id": "V3-EXQ-598",
+      "backlog_id": "",
+      "claim_id": "SD-033a",
+      "title": "GAP-1 SD-033a bias-head trainable ablation (GAP-C/D validation)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1; no runner sentinel and no stdout verdict",
+      "started_at": "2026-05-21T14:43:22.165167+00:00",
+      "completed_at": "2026-05-21T14:43:23.496021+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1.3
     }
   ]
 }
