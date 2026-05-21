@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-21T04:27:54Z`  
-Last review: `2026-05-21T00:03:49Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-21T09:56:33Z`  
+Last review: `2026-05-21T09:55:30Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_597_mech258_pe_vs_raw_post_spcem_20260520T063328Z_v3` | 2026-05-20T06:33 | MECH-258 | — |
 
 ---
 

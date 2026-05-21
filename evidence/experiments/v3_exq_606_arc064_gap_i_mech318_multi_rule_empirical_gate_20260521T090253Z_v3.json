@@ -1,0 +1,136 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate_20260521T090253Z_v3",
+  "experiment_type": "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate",
+  "queue_id": "V3-EXQ-606",
+  "gates_on_exq": "V3-EXQ-543k",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-21T09:02:53.967010Z",
+  "executing_hostname": "DLAPTOP-4.local",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-318"
+  ],
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-318": "non_contributory"
+  },
+  "evidence_direction_note": "Premature GAP-I gate: run before V3-EXQ-543k contributory PASS (plan resume_condition). C3 rule_state_active PASS (wiring live); C1/C2 behavioral cross-regime failed (1/3 seeds only). Re-queue after GAP-B closure.",
+  "outcome": "FAIL",
+  "dry_run": false,
+  "elapsed_sec": 1635.0570831298828,
+  "acceptance": {
+    "C1_cross_regime": false,
+    "C2_cluster_advantage": false,
+    "C3_rule_state_active": true,
+    "pass": false
+  },
+  "arm_results": {
+    "ARM_0_cluster_off": [
+      {
+        "arm": "ARM_0_cluster_off",
+        "seed": 42,
+        "cluster_on": false,
+        "multi_rule": false,
+        "p1_mean_rule_state_norm": 0.0,
+        "p1_max_rule_state_norm": 0.0,
+        "reef_frac_eval_horizontal": 0.1638655462184874,
+        "reef_frac_eval_vertical": 0.1638655462184874,
+        "cross_regime_delta": 0.0
+      },
+      {
+        "arm": "ARM_0_cluster_off",
+        "seed": 7,
+        "cluster_on": false,
+        "multi_rule": false,
+        "p1_mean_rule_state_norm": 0.0,
+        "p1_max_rule_state_norm": 0.0,
+        "reef_frac_eval_horizontal": 0.0,
+        "reef_frac_eval_vertical": 0.0,
+        "cross_regime_delta": 0.0
+      },
+      {
+        "arm": "ARM_0_cluster_off",
+        "seed": 17,
+        "cluster_on": false,
+        "multi_rule": false,
+        "p1_mean_rule_state_norm": 0.0,
+        "p1_max_rule_state_norm": 0.0,
+        "reef_frac_eval_horizontal": 0.0,
+        "reef_frac_eval_vertical": 0.0,
+        "cross_regime_delta": 0.0
+      }
+    ],
+    "ARM_1_single_regime": [
+      {
+        "arm": "ARM_1_single_regime",
+        "seed": 42,
+        "cluster_on": true,
+        "multi_rule": false,
+        "p1_mean_rule_state_norm": 0.12451713904738426,
+        "p1_max_rule_state_norm": 0.3325892686843872,
+        "reef_frac_eval_horizontal": 0.325,
+        "reef_frac_eval_vertical": 0.325,
+        "cross_regime_delta": 0.0
+      },
+      {
+        "arm": "ARM_1_single_regime",
+        "seed": 7,
+        "cluster_on": true,
+        "multi_rule": false,
+        "p1_mean_rule_state_norm": 0.2818107374943793,
+        "p1_max_rule_state_norm": 0.41922318935394287,
+        "reef_frac_eval_horizontal": 0.0,
+        "reef_frac_eval_vertical": 0.0,
+        "cross_regime_delta": 0.0
+      },
+      {
+        "arm": "ARM_1_single_regime",
+        "seed": 17,
+        "cluster_on": true,
+        "multi_rule": false,
+        "p1_mean_rule_state_norm": 0.06420292947441339,
+        "p1_max_rule_state_norm": 0.080729179084301,
+        "reef_frac_eval_horizontal": 0.0,
+        "reef_frac_eval_vertical": 0.0,
+        "cross_regime_delta": 0.0
+      }
+    ],
+    "ARM_2_multi_rule": [
+      {
+        "arm": "ARM_2_multi_rule",
+        "seed": 42,
+        "cluster_on": true,
+        "multi_rule": true,
+        "p1_mean_rule_state_norm": 0.10985665488988161,
+        "p1_max_rule_state_norm": 0.20497563481330872,
+        "reef_frac_eval_horizontal": 0.2403846153846154,
+        "reef_frac_eval_vertical": 0.05434782608695652,
+        "cross_regime_delta": 0.18603678929765888
+      },
+      {
+        "arm": "ARM_2_multi_rule",
+        "seed": 7,
+        "cluster_on": true,
+        "multi_rule": true,
+        "p1_mean_rule_state_norm": 0.26515094833448527,
+        "p1_max_rule_state_norm": 0.41868647933006287,
+        "reef_frac_eval_horizontal": 0.0,
+        "reef_frac_eval_vertical": 0.0,
+        "cross_regime_delta": 0.0
+      },
+      {
+        "arm": "ARM_2_multi_rule",
+        "seed": 17,
+        "cluster_on": true,
+        "multi_rule": true,
+        "p1_mean_rule_state_norm": 0.07345519987866282,
+        "p1_max_rule_state_norm": 0.11706110090017319,
+        "reef_frac_eval_horizontal": 0.0,
+        "reef_frac_eval_vertical": 0.0,
+        "cross_regime_delta": 0.0
+      }
+    ]
+  },
+  "note": "Episode-boundary multi-rule via alternating bipartite axis; not within-step rule switch. MECH-316/317 not tested (no V3 modules). Interpret after V3-EXQ-543k contributory PASS."
+}

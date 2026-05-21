@@ -14,14 +14,15 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "started_utc": "2026-05-20T22:36:12.732121Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-049": "weakens",
-    "SD-015": "weakens",
+    "SD-049": "non_contributory",
+    "SD-015": "non_contributory",
     "MECH-229": "non_contributory",
     "MECH-230": "non_contributory",
-    "MECH-307": "mixed"
+    "MECH-307": "non_contributory"
   },
+  "evidence_direction_note": "goal_pipeline GAP-2: C2b probe_neighborhood 0.52<0.6, C2c consumption samples 20<30, C5/C6 fail. Reef/obs-dim checks pass. interpretation_branch stuck at pass when no diagnostic row matches (script bug) -- /failure-autopsy recommended before any 514k successor. Supersedes V3-EXQ-514f.",
   "gap2_operating_substrate": {
     "use_mech307_conjunction": true,
     "drive_floor_active": 0.9,

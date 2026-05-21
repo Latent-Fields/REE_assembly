@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T04:00:19Z",
+  "last_updated_utc": "2026-05-21T09:55:30Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2214,6 +2214,12 @@
           "experiment_type": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation",
           "metric": "Reclassified non_contributory: pre-MECH-307 affect-stream mixed harm+benefit surprise -- classifier_loss 0.015-0.023 vs target <0.005; probe_acc 0.48-0.53 vs target >0.70",
           "target": "Post-MECH-307 retest must show classifier_loss <0.005 and probe_acc >0.70 in 3-arm reef substrate."
+        },
+        {
+          "run_id": "v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3",
+          "experiment_type": "v3_exq_514j_sd049_phase2_reef_mech307_spcem",
+          "metric": "GAP-2 retest: probe_acc_neighborhood 0.52<0.6; consumption identity samples 20<30; interpretation_branch script bug",
+          "target": "514k successor: probe_acc_neighborhood >=0.6, n_identity_samples_consumption >=30, fix evaluate_acceptance branch fallback."
         }
       ],
       "implementation_hint": "Three additions to CausalGridWorldV3 layered on top of SD-047 (which lands first): (1) Multiple resource identities (default n_resource_types=3: food/water/novelty) with identity tags in obs_dict + type-specific spawn distribution + type-specific benefit_curve (sigmoidal_saturating / sharp_saturation / novelty_decay). (2) Per-axis homeostatic drive system replacing SD-012's single drive_weight scalar -- per-axis depletion + per-axis weight + configurable combiner (sum/max/learned). (3) curriculum-introduction hook (resource_introduction_schedule: dict[str, int]). All bit-identical OFF when master switch disabled; per-resource-type bit-identical OFF for ablation studies. Validation experiment: 4-arm noise sweep (ARM_0 OFF / ARM_1 2-type homeostatic / ARM_2 3-type default / ARM_3 5-type overshoot) with explicit interpretation grid mapping outcomes to architectural conclusions including a Woo/Spelke-style falsifier branch routing MECH-229 to substrate_conditional with V4 dependency. Module surface: CausalGridWorldV3 in ree_core/environment/causal_grid_world.py + per-axis drive cascade through encoder + E3 evaluation + downstream goal-conditioning pathway. Triggers pending_substrate_reconfirmation on SD-012-emergent invariants per invariant-types governance rule.",
@@ -2351,9 +2357,15 @@
           "experiment_type": "v3_exq_541a_mech204_precision_recalibration_f1",
           "metric": "C4 rv divergence < 5% at 4 sleep cycles (timescale mismatch; mechanism fires C1/C2 PASS)",
           "target": "Reclassified inconclusive_timescale per failure_autopsy 2026-05-17; V3-EXQ-541c PASS at 16 cycles confirms F1-sufficient."
+        },
+        {
+          "run_id": "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260521T085838Z_v3",
+          "experiment_type": "v3_exq_596_mech204_sleep_cluster_stepharness_integration",
+          "metric": "Integration C2 cluster_live_frac: 0/3 seeds meet threshold (~9% post-warmup cycles only); C1+C3 pass",
+          "target": "Contributory integration must show cluster_live in >=2/3 seeds under StepHarness+aggregation cluster, or acceptance criteria revised for K=1 driver."
         }
       ],
-      "implementation_hint": "IMPLEMENTED (sleep_substrate_plan GAP-1). SerotoninModule.compute_recalibration_target() + E3.recalibrate_precision_to() in SleepLoopManager WRITEBACK; use_rem_precision_recalibration default False. Canonical validation V3-EXQ-541c PASS 2026-05-09. Contributory integration V3-EXQ-602 queued (StepHarness + use_sleep_aggregation_cluster).",
+      "implementation_hint": "IMPLEMENTED (sleep_substrate_plan GAP-1). SerotoninModule.compute_recalibration_target() + E3.recalibrate_precision_to() in SleepLoopManager WRITEBACK; use_rem_precision_recalibration default False. Canonical validation V3-EXQ-541c PASS 2026-05-09. V3-EXQ-602 integration runs 2026-05-20/21 non_contributory (C2 only); 541c stands.",
       "implementation_status": "implemented",
       "implemented_utc": "2026-05-08T00:00:00Z",
       "implemented_session": "implement-substrate-mech204-gap1-2026-05-08",
@@ -2361,7 +2373,7 @@
       "implementation_note": "GAP-1 precision recalibration consumer (Option A F1). Config: REEConfig.use_rem_precision_recalibration (default False); rem_precision_recalibration_step default 0.25 post-541c. Contracts test_mech204_precision_recalibration.py 13/13. IGW-20260521-022 substrate-ready reconciled.",
       "priority": 1,
       "added_session": "governance-cycle-friday-pm-2026-05-08",
-      "last_seen_session": "igw-mech204-substrate-ready-land-20260521T040019Z"
+      "last_seen_session": "governance-20260521T094514Z"
     },
     {
       "sd_id": "MECH-307",
@@ -2796,11 +2808,18 @@
       "unblocks_claims": [
         "MECH-318"
       ],
-      "failure_record": [],
-      "implementation_hint": "Absorption check 2026-05-10 verdict B PARTIALLY ABSORBED. W1+W3+W4 borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy multi-stream context discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) NOT ABSORBED -- blocked on multi-rule-context substrate. W5 (cross-episode hidden-state continuity) NOT ABSORBED -- likely V4-scope. NO NEW V3 SUBSTRATE COMMISSIONED.",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate_20260521T090253Z_v3",
+          "experiment_type": "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate",
+          "metric": "Premature GAP-I: C1/C2 failed (cross_regime in 1/3 seeds); C3 rule_state_active pass. gates_on V3-EXQ-543k still in-progress.",
+          "target": "Re-run after 543k contributory PASS: C1 cross_regime >=0.12 in >=2 seeds; C2 cluster advantage over ARM_0."
+        }
+      ],
+      "implementation_hint": "Absorption check 2026-05-10 verdict B PARTIALLY ABSORBED. W1+W3+W4 borne by SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 gated_policy multi-stream context discriminator + ARC-062 Phase 3 GAP-C planned wiring. W2 (multi-task training) NOT ABSORBED -- blocked on multi-rule-context substrate. W5 (cross-episode hidden-state continuity) NOT ABSORBED -- likely V4-scope. NO NEW V3 SUBSTRATE COMMISSIONED. V3-EXQ-606 non_contributory (premature vs 543k gate).",
       "priority": 3,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-cycle-2026-05-10T1224Z"
+      "last_seen_session": "governance-20260521T094514Z"
     },
     {
       "sd_id": "MECH-319",

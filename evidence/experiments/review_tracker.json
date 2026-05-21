@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-21T00:03:49Z",
+  "last_review_utc": "2026-05-21T09:55:30Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -360,7 +360,11 @@
     "v3_exq_585_gap8_z_goal_retention_validation_20260517T140334Z_v3",
     "v3_exq_586_gap9_curriculum_validation",
     "v3_exq_587_isef001_harm_gradient_enabled",
-    "v3_onboard_smoke_Daniel_PC"
+    "v3_onboard_smoke_Daniel_PC",
+    "v3_exq_596_mech204_sleep_cluster_stepharness_integration",
+    "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm",
+    "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate",
+    "v3_exq_514j_sd049_phase2_reef_mech307_spcem"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2492,7 +2496,12 @@
     "v3_onboard_smoke_Daniel_PC_20260322T114824Z_v3",
     "v3_onboard_smoke_Daniel_PC_20260322T124604Z_v3",
     "v3_onboard_smoke_ree_cloud_1_20260409T081904Z_v3",
-    "v3_scale_benchmark_20260323T145635Z_v3"
+    "v3_scale_benchmark_20260323T145635Z_v3",
+    "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260520T044151Z_v3",
+    "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260521T085838Z_v3",
+    "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm_20260520T063323Z_v3",
+    "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate_20260521T090253Z_v3",
+    "v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -2908,6 +2917,26 @@
         "v3_exq_587_isef001_harm_gradient_enabled"
       ],
       "subject": "Governance 2026-05-21 accept-all: 543j autopsy non_contributory; 36 indexed + 324b unclaimed cleared; bulk diagnostic/instrumentation batches."
+    }
+  ],
+  "review_batches": [
+    {
+      "reviewed_at_utc": "2026-05-21T09:55:30Z",
+      "session_id": "governance-20260521T094514Z",
+      "reviewed_run_ids": [
+        "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260520T044151Z_v3",
+        "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260521T085838Z_v3",
+        "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm_20260520T063323Z_v3",
+        "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate_20260521T090253Z_v3",
+        "v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_596_mech204_sleep_cluster_stepharness_integration",
+        "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm",
+        "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate",
+        "v3_exq_514j_sd049_phase2_reef_mech307_spcem"
+      ],
+      "subject": "Governance 2026-05-21: 596/602 MECH-204 integration non_contributory; 595 harm-event ceiling NC; 606 MECH-318 premature NC; 514j GAP-2 NC + autopsy flag for branch bug. V3-EXQ-597 left pending for /failure-autopsy (C2 corr null, |bias|=2.0 constant)."
     }
   ]
 }
