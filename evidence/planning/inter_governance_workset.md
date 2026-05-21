@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T02:44:50Z`
+Generated: `2026-05-21T03:08:34Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,7 +9,7 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **56** (ready 37, in_flight 1, blocked 6)
+- Items: **56** (ready 37, in_flight 3, blocked 6)
 - Pending review: **0**
 - Queue pending (unclaimed): **9**
 
@@ -171,20 +171,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-027 -- Substrate ready: INF-ENV-003
+### IGW-20260521-027 -- Substrate ready: INF-ENV-004
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
-- **Why now:** Add transient_benefit_* params to CausalGridWorldV2. In step(): with prob transient_benefit_prob, add patch at zone-weighted random cell (zone A: 40%, B: 20%, C: 30%, border: 10%). Track active patche
+- **Why now:** Code-read only. Find all random.random()/torch.randn() calls in causal_grid_world.py step() and reset(). Classify each: (a) Markovian/predictable-stochastic (OK for curiosity), (b) irreducibly random 
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-027
-Title: Substrate ready: INF-ENV-003
+Title: Substrate ready: INF-ENV-004
 Lane: substrate | Skill: /implement-substrate
 Status: ready
-Claims: DEV-NEED-006, MECH-189
-Why now: Add transient_benefit_* params to CausalGridWorldV2. In step(): with prob transient_benefit_prob, add patch at zone-weighted random cell (zone A: 40%, B: 20%, C: 30%, border: 10%). Track active patche
+Claims: DEV-NEED-003, MECH-314
+Why now: Code-read only. Find all random.random()/torch.randn() calls in causal_grid_world.py step() and reset(). Classify each: (a) Markovian/predictable-stochastic (OK for curiosity), (b) irreducibly random 
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -276,33 +276,6 @@ Why now: claims.yaml pending_retest_after_substrate=true.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260521-001 -- MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
-- **Gap(s):** arc_062_rule_apprehension:GAP-B
-- **Owner EXQ:** V3-EXQ-543k
-- **Why now:** BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260521-001
-Title: MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
-Lane: experiment | Skill: /queue-experiment
-Status: in_progress
-Gap(s): arc_062_rule_apprehension:GAP-B
-Owner EXQ: V3-EXQ-543k
-Claims: MECH-309, ARC-062
-Why now: BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
@@ -797,6 +770,33 @@ Instructions:
 
 </details>
 
+### IGW-20260521-001 -- MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
+
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 33
+- **Gap(s):** arc_062_rule_apprehension:GAP-B
+- **Owner EXQ:** V3-EXQ-543k
+- **Why now:** BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260521-001
+Title: MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Gap(s): arc_062_rule_apprehension:GAP-B
+Owner EXQ: V3-EXQ-543k
+Claims: MECH-309, ARC-062
+Why now: BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl
+
+Instructions:
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
+- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260521-002 -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
@@ -1181,33 +1181,6 @@ Instructions:
 
 </details>
 
-### IGW-20260521-012 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
-- **Gap(s):** infant_substrate:GAP-11
-- **Owner EXQ:** V3-EXQ-588
-- **Why now:** Plan gap in_progress on infant_substrate.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260521-012
-Title: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
-Lane: experiment | Skill: /queue-experiment
-Status: in_progress
-Gap(s): infant_substrate:GAP-11
-Owner EXQ: V3-EXQ-588
-Claims: DEV-NEED-006, MECH-189
-Why now: Plan gap in_progress on infant_substrate.
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
 ### IGW-20260521-013 -- EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
@@ -1256,6 +1229,33 @@ Why now: Plan gap in_progress on infant_substrate.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260521-012 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
+
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 53
+- **Gap(s):** infant_substrate:GAP-11
+- **Owner EXQ:** V3-EXQ-588b
+- **Why now:** V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260521-012
+Title: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Gap(s): infant_substrate:GAP-11
+Owner EXQ: V3-EXQ-588b
+Claims: DEV-NEED-006, MECH-189
+Why now: V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
+
+Instructions:
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
 - Workset: http://localhost:8000/workset
 ```

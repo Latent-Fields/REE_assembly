@@ -426,7 +426,7 @@ def _gap_blocked_by(gap: dict, by_id: dict[str, dict]) -> list[str]:
 def _infer_lane(gap: dict, live: dict[str, str]) -> tuple[str, str, str]:
     owner = str(gap.get("owner_exq") or "")
     exq_m = _EXQ_RE.search(owner)
-    exq = exq_m.group(0).upper().replace("v3-exq", "V3-EXQ") if exq_m else None
+    exq = re.sub(r"^v3-exq", "V3-EXQ", exq_m.group(0), count=1, flags=re.IGNORECASE) if exq_m else None
     if exq and exq in live:
         return "monitor", _LANE_SKILLS["monitor"], "in_flight"
     if exq:
