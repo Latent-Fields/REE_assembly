@@ -24,6 +24,7 @@ API (POST, called by the Experiments tab in the explorer):
     /api/review/tracker        -- GET: reviewed/discussed state from review_tracker.json
     /api/review/discuss        -- POST {dir_name, discussed}: toggle discussed_experiment_dirs
     /api/regression/preflight  -- GET: ree-v3 preflight suite result (cached 60s)
+    /api/coordinator/phase3/preflight  -- GET: Phase 3 cutover pre-checks (cached 60s)
 
 The runners write progress to evidence/experiments/runner_status.json,
 which the explorer polls automatically when the Experiments tab is open.
@@ -148,6 +149,61 @@ _PREFLIGHT_TTL = 60
 _preflight_cache: dict | None = None
 _preflight_cache_at: float = 0.0
 _preflight_lock = threading.Lock()
+
+_phase3_preflight_cache: dict | None = None
+_phase3_preflight_cache_at: float = 0.0
+_phase3_preflight_lock = threading.Lock()
+_PHASE3_PREFLIGHT_TTL = 60.0
+
+
+def run_phase3_preflight_summary() -> dict:
+    """Run coordinator phase3_preflight (dry-run: no SSH). Cached 60s."""
+    global _phase3_preflight_cache, _phase3_preflight_cache_at
+    with _phase3_preflight_lock:
+        now = time.time()
+        if (_phase3_preflight_cache is not None
+                and (now - _phase3_preflight_cache_at) < _PHASE3_PREFLIGHT_TTL):
+            return _phase3_preflight_cache
+        ree_v3 = SERVE_DIR.parent / "ree-v3"
+        script = ree_v3 / "coordinator" / "phase3_preflight.py"
+        env_file = SERVE_DIR / "coordinator.env"
+        if not script.exists():
+            result = {
+                "ok": False,
+                "error": "phase3_preflight.py missing",
+                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+            }
+            _phase3_preflight_cache = result
+            _phase3_preflight_cache_at = now
+            return result
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(
+                "phase3_preflight", script)
+            mod = importlib.util.module_from_spec(spec)
+            assert spec.loader is not None
+            spec.loader.exec_module(mod)
+            summary = mod.run_preflight(
+                env_file=env_file,
+                dry_run=True,
+                mock=False,
+                quiet=True,
+            )
+            summary["cached_at"] = (
+                datetime.datetime.utcnow().isoformat() + "Z")
+            summary["dry_run"] = True
+            summary["note"] = (
+                "Explorer summary uses dry-run (no SSH). "
+                "Run phase3_preflight.py on Mac for full fleet probes.")
+        except Exception as exc:
+            summary = {
+                "ok": False,
+                "error": "%s: %s" % (type(exc).__name__, exc),
+                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+            }
+        _phase3_preflight_cache = summary
+        _phase3_preflight_cache_at = now
+        return summary
 
 
 def run_preflight_suite() -> dict:
@@ -2504,6 +2560,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/regression/preflight":
             body = json.dumps(run_preflight_suite()).encode()
+            self._json_response(body)
+            return
+        if path == "/api/coordinator/phase3/preflight":
+            body = json.dumps(run_phase3_preflight_summary()).encode()
             self._json_response(body)
             return
         if path == "/api/machines":
