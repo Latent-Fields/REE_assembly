@@ -1,0 +1,79 @@
+{
+  "acceptance": {
+    "c1_hits": 2,
+    "c1_staleness_lookup_calls_on": true,
+    "c2_hits": 2,
+    "c2_on_held_gt_off": true,
+    "n_seeds": 3,
+    "pass": true
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "arms": [
+    "LOOKUP_OFF",
+    "LOOKUP_ON"
+  ],
+  "claim_ids": [
+    "MECH-269b"
+  ],
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-269b": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_601_mech269b_followup_a_staleness_gate",
+  "note": "MECH-269b-followup-A substrate validation at default gate thresholds (0.4 hold / 0.5 refresh). Does not test Q-040b behavioural sufficiency.",
+  "outcome": "PASS",
+  "per_seed": [
+    {
+      "LOOKUP_OFF": {
+        "vs_gate_max_staleness_z_world": 0.0,
+        "vs_gate_staleness_lookup_calls": 0,
+        "vs_gate_total_held": 0,
+        "vs_gate_total_held_e1": 0,
+        "vs_gate_total_held_e2": 0
+      },
+      "LOOKUP_ON": {
+        "vs_gate_max_staleness_z_world": 0.5986311019049587,
+        "vs_gate_staleness_lookup_calls": 408,
+        "vs_gate_total_held": 18,
+        "vs_gate_total_held_e1": 18,
+        "vs_gate_total_held_e2": 0
+      }
+    },
+    {
+      "LOOKUP_OFF": {
+        "vs_gate_max_staleness_z_world": 0.0,
+        "vs_gate_staleness_lookup_calls": 0,
+        "vs_gate_total_held": 0,
+        "vs_gate_total_held_e1": 0,
+        "vs_gate_total_held_e2": 0
+      },
+      "LOOKUP_ON": {
+        "vs_gate_max_staleness_z_world": 0.7431700022662137,
+        "vs_gate_staleness_lookup_calls": 15,
+        "vs_gate_total_held": 15,
+        "vs_gate_total_held_e1": 15,
+        "vs_gate_total_held_e2": 0
+      }
+    },
+    {
+      "LOOKUP_OFF": {
+        "vs_gate_max_staleness_z_world": 0.0,
+        "vs_gate_staleness_lookup_calls": 0,
+        "vs_gate_total_held": 0,
+        "vs_gate_total_held_e1": 0,
+        "vs_gate_total_held_e2": 0
+      },
+      "LOOKUP_ON": {
+        "vs_gate_max_staleness_z_world": 0.0,
+        "vs_gate_staleness_lookup_calls": 0,
+        "vs_gate_total_held": 0,
+        "vs_gate_total_held_e1": 0,
+        "vs_gate_total_held_e2": 0
+      }
+    }
+  ],
+  "queue_id": "V3-EXQ-601",
+  "run_id": "v3_exq_601_mech269b_followup_a_staleness_gate_20260521T114753Z_v3",
+  "timestamp_utc": "20260521T114753Z"
+}
