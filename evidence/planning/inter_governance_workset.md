@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T07:47:46Z`
+Generated: `2026-05-21T08:19:25Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **51** (ready 32, in_flight 2, blocked 6)
 - Pending review: **0**
-- Queue pending (unclaimed): **8**
+- Queue pending (unclaimed): **12**
 
 - Live EXQs: V3-EXQ-475a, V3-EXQ-543k, V3-EXQ-587, V3-EXQ-590a, V3-EXQ-591
 
@@ -718,26 +718,25 @@ Instructions:
 
 ### IGW-20260521-008 -- OCD battery completeness (V3-EXQ-460..468)
 
-- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 40
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 40
 - **Gap(s):** commitment_closure:GAP-4
 - **Owner EXQ:** V3-EXQ-592
-- **Why now:** Phase 2 substrate battery DONE (460..468 PASS). GAP-4 stays partial until V3-EXQ-592 PASS gates Phase 4/5 behavioural *b cohort.
+- **Why now:** Phase 2 substrate battery DONE (all nine scripts authored; latest manifests PASS 2026-04-21..2026-05-12). GAP-4 closes to done after V3-EXQ-592 PASS (GAP-11 committed-mode pilot) and Phase 4/5 behavioural cohort (460b/461 full/463b/464b/466
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-008
 Title: OCD battery completeness (V3-EXQ-460..468)
-Lane: plan | Skill: (plan reconcile)
-Status: partial (Phase 2 done; monitor 592)
+Lane: experiment | Skill: /queue-experiment
+Status: partial
 Gap(s): commitment_closure:GAP-4
 Owner EXQ: V3-EXQ-592
 Claims: SD-034, MECH-266, MECH-267, MECH-268
-Why now: Phase 2 substrate battery DONE (460..468 PASS). GAP-4 closes after V3-EXQ-592 PASS + Phase 4/5 *b cohort queued.
+Why now: Phase 2 substrate battery DONE (all nine scripts authored; latest manifests PASS 2026-04-21..2026-05-12). GAP-4 closes to done after V3-EXQ-592 PASS (GAP-11 committed-mode pilot) and Phase 4/5 behavioural cohort (460b/461 full/463b/464b/466
 
 Instructions:
-- Plan reconciled 2026-05-21. Monitor V3-EXQ-592; do not re-queue 460..468 substrate runs.
-- Next: /queue-experiment Phase 4/5 behavioural arms after 592 PASS.
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
 - Workset: http://localhost:8000/workset
 ```
@@ -991,7 +990,7 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-H
-- **Owner EXQ:** V3-EXQ-544 + V3-EXQ-545 (done); Q-043 / Q-044 / Q-045 TBD
+- **Owner EXQ:** V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-603 (Q-045) + V3-EXQ-604 (Q-044) + V3-EXQ-605 (Q-043) queued
 - **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
 - **Why now:** Plan gap partial on arc_062_rule_apprehension.
 
@@ -1003,7 +1002,7 @@ Title: ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates land
 Lane: experiment | Skill: /queue-experiment
 Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-H
-Owner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); Q-043 / Q-044 / Q-045 TBD
+Owner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-603 (Q-045) + V3-EXQ-604 (Q-044) + V3-EXQ-605 (Q-043) queued
 Claims: ARC-065, Q-043, Q-044, Q-045
 Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
 Why now: Plan gap partial on arc_062_rule_apprehension.
@@ -1020,9 +1019,9 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-I
-- **Owner EXQ:** TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C)
+- **Owner EXQ:** V3-EXQ-606
 - **Blocked by:** arc_062_rule_apprehension:GAP-B [in_progress]
-- **Why now:** Plan gap partial on arc_062_rule_apprehension.
+- **Why now:** V3-EXQ-606 queued 2026-05-21 (IGW-004): episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. Interpret after V3-EXQ-543k contributory PASS. MECH-316/317 absorption checks remain doc-only (no V3 modules).
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -1032,10 +1031,10 @@ Title: ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 
 Lane: experiment | Skill: /queue-experiment
 Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-I
-Owner EXQ: TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C)
+Owner EXQ: V3-EXQ-606
 Claims: ARC-064, MECH-316, MECH-317, MECH-318
 Blocked by: arc_062_rule_apprehension:GAP-B [in_progress]
-Why now: Plan gap partial on arc_062_rule_apprehension.
+Why now: V3-EXQ-606 queued 2026-05-21 (IGW-004): episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. Interpret after V3-EXQ-543k contributory PASS. MECH-316/317 absorption checks remain doc-only (no V3 modules).
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.

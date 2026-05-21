@@ -10,11 +10,11 @@ closure_plan:
       phase: 1
       status: done
       severity: load-bearing
-      owner_exq: TBD (4-arm discriminative pair pending)
+      owner_exq: V3-EXQ-540g
       unblocks_claims: [MECH-307, SD-014]
       depends_on: []
-      last_updated: 2026-05-11
-      completion_note: "Substrate landed 2026-05-11. Gap 1 implemented as Option-b (split channels VALENCE_POSITIVE_SURPRISE + VALENCE_NEGATIVE_SURPRISE) per user override; Gaps 2/3/4 substrate-landed 2026-05-08. Master flag use_mech307_conjunction propagates to three sub-flags. 309/309 contracts + 7/7 preflight PASS with master OFF. 4-arm discriminative validation deferred to a /queue-experiment session per the 'substrate only first' directive."
+      last_updated: 2026-05-21
+      completion_note: "Substrate landed 2026-05-11. Gap 1 Option-b split channels; Gaps 2/3/4 2026-05-08. Canonical substrate-readiness V3-EXQ-540g PASS 2026-05-15. substrate_queue closed IGW-20260521-023 2026-05-21. GAP-2/GAP-4 behavioural retests are downstream queue items."
     - id: "goal_pipeline:GAP-2"
       title: "SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)"
       phase: 2

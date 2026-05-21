@@ -1,6 +1,6 @@
 {
   "schema_version": "inter_governance_workset/v1.1",
-  "generated_at": "2026-05-21T07:47:46Z",
+  "generated_at": "2026-05-21T08:19:25Z",
   "generator": "scripts/generate_inter_governance_workset.py",
   "summary": {
     "total": 51,
@@ -8,7 +8,7 @@
     "in_flight": 2,
     "blocked": 6,
     "pending_review_count": 0,
-    "queue_pending": 8,
+    "queue_pending": 12,
     "live_exqs": [
       "V3-EXQ-475a",
       "V3-EXQ-543k",
@@ -274,7 +274,7 @@
         "Q-040",
         "SD-032b (potentially)"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-020",
       "agent_brief": "REE inter-governance work item: IGW-20260521-020\nTitle: Substrate ready: MECH-269b\nLane: substrate | Skill: /implement-substrate\nStatus: ready\nClaims: Q-040, SD-032b (potentially)\nWhy now: Substrate landed in regulators/vs_rollout_gate.py 2026-04-26. /diagnose-errors 2026-04-27 root-cause: VsRolloutGate hold trigger (V_s < 0.4) is unreachable under typical Phase 1 V_s dynamics. Phase 1 \n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 2,
@@ -299,7 +299,7 @@
         "ARC-072",
         "MECH-326"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-021",
       "agent_brief": "REE inter-governance work item: IGW-20260521-021\nTitle: Substrate ready: SD-055\nLane: substrate | Skill: /implement-substrate\nStatus: ready\nClaims: ARC-072, MECH-326\nWhy now: Code is already in ree-v3/ree_core/hippocampal/module.py (use_differentiable_cem flag, softmax-weighted ao_mean path). EXQ-568 confirmed gradient flow (grad_max=372). ree-v3/CLAUDE.md documentation up\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 2,
@@ -324,7 +324,7 @@
         "DEV-NEED-003",
         "MECH-314"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-022",
       "agent_brief": "REE inter-governance work item: IGW-20260521-022\nTitle: Substrate ready: INF-ENV-004\nLane: substrate | Skill: /implement-substrate\nStatus: ready\nClaims: DEV-NEED-003, MECH-314\nWhy now: Code-read only. Find all random.random()/torch.randn() calls in causal_grid_world.py step() and reset(). Classify each: (a) Markovian/predictable-stochastic (OK for curiosity), (b) irreducibly random \n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 2,
@@ -352,7 +352,7 @@
       "unblocks": [
         "ARC-062"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-043",
       "agent_brief": "REE inter-governance work item: IGW-20260521-043\nTitle: Retest after substrate: ARC-062\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: ARC-062\nWhy now: claims.yaml pending_retest_after_substrate=true.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -379,7 +379,7 @@
       "unblocks": [
         "INV-074"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-044",
       "agent_brief": "REE inter-governance work item: IGW-20260521-044\nTitle: Retest after substrate: INV-074\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: INV-074\nWhy now: claims.yaml pending_retest_after_substrate=true.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -404,7 +404,7 @@
       "unblocks": [
         "MECH-309"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-045",
       "agent_brief": "REE inter-governance work item: IGW-20260521-045\nTitle: Retest after substrate: MECH-309\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-309\nWhy now: claims.yaml pending_retest_after_substrate=true.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -431,7 +431,7 @@
       "unblocks": [
         "MECH-334"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-046",
       "agent_brief": "REE inter-governance work item: IGW-20260521-046\nTitle: Retest after substrate: MECH-334\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-334\nWhy now: claims.yaml pending_retest_after_substrate=true.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -466,7 +466,7 @@
         "MECH-262",
         "SD-034"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-007",
       "agent_brief": "REE inter-governance work item: IGW-20260521-007\nTitle: SD-033a bias head untrained (Go-side mechanically silent)\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): commitment_closure:GAP-1\nOwner EXQ: V3-EXQ-598\nClaims: SD-033a, MECH-262, SD-034\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: GAP-1 closes on V3-EXQ-598 PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543k contributory PASS (arc_062 GAP-B retest); EXQ-598 queued at priority 4 so it runs after 543k (priority 5).\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -491,7 +491,7 @@
       "owner_exq": "V3-EXQ-008",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-023",
       "agent_brief": "REE inter-governance work item: IGW-20260521-023\nTitle: Diagnose ERROR: V3-EXQ-008\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-008\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -510,7 +510,7 @@
       "owner_exq": "V3-EXQ-038",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-024",
       "agent_brief": "REE inter-governance work item: IGW-20260521-024\nTitle: Diagnose ERROR: V3-EXQ-038\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-038\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -529,7 +529,7 @@
       "owner_exq": "V3-EXQ-046",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-025",
       "agent_brief": "REE inter-governance work item: IGW-20260521-025\nTitle: Diagnose ERROR: V3-EXQ-046\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-046\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -548,7 +548,7 @@
       "owner_exq": "V3-EXQ-057",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-026",
       "agent_brief": "REE inter-governance work item: IGW-20260521-026\nTitle: Diagnose ERROR: V3-EXQ-057\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-057\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -567,7 +567,7 @@
       "owner_exq": "V3-EXQ-046b",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-027",
       "agent_brief": "REE inter-governance work item: IGW-20260521-027\nTitle: Diagnose ERROR: V3-EXQ-046b\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-046b\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -586,7 +586,7 @@
       "owner_exq": "V3-EXQ-051b",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-028",
       "agent_brief": "REE inter-governance work item: IGW-20260521-028\nTitle: Diagnose ERROR: V3-EXQ-051b\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-051b\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -605,7 +605,7 @@
       "owner_exq": "V3-EXQ-072",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-029",
       "agent_brief": "REE inter-governance work item: IGW-20260521-029\nTitle: Diagnose ERROR: V3-EXQ-072\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-072\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -624,7 +624,7 @@
       "owner_exq": "V3-EXQ-073",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-030",
       "agent_brief": "REE inter-governance work item: IGW-20260521-030\nTitle: Diagnose ERROR: V3-EXQ-073\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-073\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -643,7 +643,7 @@
       "owner_exq": "V3-EXQ-074",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-031",
       "agent_brief": "REE inter-governance work item: IGW-20260521-031\nTitle: Diagnose ERROR: V3-EXQ-074\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-074\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -662,7 +662,7 @@
       "owner_exq": "V3-EXQ-075",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-032",
       "agent_brief": "REE inter-governance work item: IGW-20260521-032\nTitle: Diagnose ERROR: V3-EXQ-075\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-075\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -681,7 +681,7 @@
       "owner_exq": "V3-EXQ-071b",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-033",
       "agent_brief": "REE inter-governance work item: IGW-20260521-033\nTitle: Diagnose ERROR: V3-EXQ-071b\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-071b\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -700,7 +700,7 @@
       "owner_exq": "V3-EXQ-074b",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-034",
       "agent_brief": "REE inter-governance work item: IGW-20260521-034\nTitle: Diagnose ERROR: V3-EXQ-074b\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-074b\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -719,7 +719,7 @@
       "owner_exq": "V3-EXQ-076",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-035",
       "agent_brief": "REE inter-governance work item: IGW-20260521-035\nTitle: Diagnose ERROR: V3-EXQ-076\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-076\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -738,7 +738,7 @@
       "owner_exq": "V3-EXQ-084",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-036",
       "agent_brief": "REE inter-governance work item: IGW-20260521-036\nTitle: Diagnose ERROR: V3-EXQ-084\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-084\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -757,7 +757,7 @@
       "owner_exq": "V3-EXQ-074c",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-037",
       "agent_brief": "REE inter-governance work item: IGW-20260521-037\nTitle: Diagnose ERROR: V3-EXQ-074c\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-074c\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -776,7 +776,7 @@
       "owner_exq": "V3-EXQ-075b",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-038",
       "agent_brief": "REE inter-governance work item: IGW-20260521-038\nTitle: Diagnose ERROR: V3-EXQ-075b\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-075b\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -795,7 +795,7 @@
       "owner_exq": "V3-EXQ-076b",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-039",
       "agent_brief": "REE inter-governance work item: IGW-20260521-039\nTitle: Diagnose ERROR: V3-EXQ-076b\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-076b\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -814,7 +814,7 @@
       "owner_exq": "V3-EXQ-084b",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-040",
       "agent_brief": "REE inter-governance work item: IGW-20260521-040\nTitle: Diagnose ERROR: V3-EXQ-084b\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-084b\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -833,7 +833,7 @@
       "owner_exq": "V3-EXQ-074d",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-041",
       "agent_brief": "REE inter-governance work item: IGW-20260521-041\nTitle: Diagnose ERROR: V3-EXQ-074d\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-074d\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -852,7 +852,7 @@
       "owner_exq": "V3-EXQ-075c",
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-042",
       "agent_brief": "REE inter-governance work item: IGW-20260521-042\nTitle: Diagnose ERROR: V3-EXQ-075c\nLane: experiment | Skill: /diagnose-errors\nStatus: ready\nOwner EXQ: V3-EXQ-075c\nWhy now: Runner ERROR with no queued successor ().\n\nInstructions:\n- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -881,7 +881,7 @@
         "MECH-309",
         "ARC-062"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-001",
       "agent_brief": "REE inter-governance work item: IGW-20260521-001\nTitle: MECH-309/ARC-062 post-543i retest: mode_separation_floor + basin-stability (V3-EXQ-543k)\nLane: experiment | Skill: (monitor -- do not re-queue)\nStatus: in_flight\nGap(s): arc_062_rule_apprehension:GAP-B\nOwner EXQ: V3-EXQ-543k\nClaims: MECH-309, ARC-062\nWhy now: BLOCKED 2026-05-18 (governance: confirmed failure_autopsy_V3-EXQ-543h). The whole 543f/543g/543h MECH-309/ARC-062 falsifier cluster is non_contributory, epistemic_category=substrate_ceiling: GatedPolicy head-differentiation does not robustl\n\nInstructions:\n- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -920,7 +920,7 @@
         "SD-033a",
         "MECH-262"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-002",
       "agent_brief": "REE inter-governance work item: IGW-20260521-002\nTitle: E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): arc_062_rule_apprehension:GAP-D\nOwner EXQ: V3-EXQ-598\nClaims: SD-033a, MECH-262\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: Plan gap in_progress on arc_062_rule_apprehension.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -936,13 +936,13 @@
       ]
     },
     {
-      "lane": "plan",
-      "skill": "(plan reconcile)",
+      "lane": "experiment",
+      "skill": "/queue-experiment",
       "status": "partial",
       "priority": 40,
       "severity": "high",
       "title": "OCD battery completeness (V3-EXQ-460..468)",
-      "why_now": "Phase 2 substrate battery DONE (460..468 PASS). GAP-4 stays partial until V3-EXQ-592 PASS gates Phase 4/5 behavioural *b cohort.",
+      "why_now": "Phase 2 substrate battery DONE (all nine scripts authored; latest manifests PASS 2026-04-21..2026-05-12). GAP-4 closes to done after V3-EXQ-592 PASS (GAP-11 committed-mode pilot) and Phase 4/5 behavioural cohort (460b/461 full/463b/464b/466",
       "gap_ids": [
         "commitment_closure:GAP-4"
       ],
@@ -962,9 +962,9 @@
         "MECH-267",
         "MECH-268"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-008",
-      "agent_brief": "REE inter-governance work item: IGW-20260521-008\nTitle: OCD battery completeness (V3-EXQ-460..468)\nLane: plan | Skill: (plan reconcile)\nStatus: partial (Phase 2 done; monitor 592)\nGap(s): commitment_closure:GAP-4\nOwner EXQ: V3-EXQ-592\nClaims: SD-034, MECH-266, MECH-267, MECH-268\nWhy now: Phase 2 substrate battery DONE (460..468 PASS). GAP-4 closes after V3-EXQ-592 PASS + Phase 4/5 *b cohort queued.\n\nInstructions:\n- Plan reconciled 2026-05-21. Monitor V3-EXQ-592; do not re-queue 460..468 substrate runs.\n- Next: /queue-experiment Phase 4/5 behavioural arms after 592 PASS.\n- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md\n- Workset: http://localhost:8000/workset",
+      "agent_brief": "REE inter-governance work item: IGW-20260521-008\nTitle: OCD battery completeness (V3-EXQ-460..468)\nLane: experiment | Skill: /queue-experiment\nStatus: partial\nGap(s): commitment_closure:GAP-4\nOwner EXQ: V3-EXQ-592\nClaims: SD-034, MECH-266, MECH-267, MECH-268\nWhy now: Phase 2 substrate battery DONE (all nine scripts authored; latest manifests PASS 2026-04-21..2026-05-12). GAP-4 closes to done after V3-EXQ-592 PASS (GAP-11 committed-mode pilot) and Phase 4/5 behavioural cohort (460b/461 full/463b/464b/466\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
         "/closure?highlight=commitment_closure%3AGAP-4"
       ],
@@ -1001,7 +1001,7 @@
         "MECH-117",
         "Q-040"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-011",
       "agent_brief": "REE inter-governance work item: IGW-20260521-011\nTitle: MECH-295 drive->liking->approach cascade Tier-1 retest cohort\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): goal_pipeline:GAP-4\nOwner EXQ: V3-EXQ-490g\nClaims: MECH-295, ARC-030, MECH-117, Q-040\nWhy now: GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 483c / 524a) unblocked for /queue-experiment with drive_floor enabled on the sust\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/goal_pipeline_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1042,7 +1042,7 @@
         "ARC-045",
         "MECH-166"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-019",
       "agent_brief": "REE inter-governance work item: IGW-20260521-019\nTitle: SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A\nLane: experiment | Skill: /queue-experiment\nStatus: upstream_blocked\nGap(s): sleep_substrate:GAP-2\nOwner EXQ: V3-EXQ-265a\nClaims: SD-017, ARC-045, MECH-166\nWhy now: V3-EXQ-543b/c PASS demonstrating non-degenerate cross-seed behavioural diversity in waking phase under ARC-065 substrate, then re-queue 418m + 436b under the diversity-substrate stack.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/sleep_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1075,7 +1075,7 @@
       "unblocks": [
         "MECH-334"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-047",
       "agent_brief": "REE inter-governance work item: IGW-20260521-047\nTitle: Proposal EXP-0011 (MECH-334)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-334\nWhy now: active_conflict; directional_conflict_alert; low_exp_conf; mandatory_decision_checkpoint\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1100,7 +1100,7 @@
       "unblocks": [
         "MECH-302"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-048",
       "agent_brief": "REE inter-governance work item: IGW-20260521-048\nTitle: Proposal EXP-0027 (MECH-302)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-302\nWhy now: active_conflict; directional_conflict_alert\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1123,7 +1123,7 @@
       "unblocks": [
         "INV-074"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-049",
       "agent_brief": "REE inter-governance work item: IGW-20260521-049\nTitle: Proposal EXP-0030 (INV-074)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: INV-074\nWhy now: active_conflict; directional_conflict_alert; low_exp_conf\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1148,7 +1148,7 @@
       "unblocks": [
         "MECH-295"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-050",
       "agent_brief": "REE inter-governance work item: IGW-20260521-050\nTitle: Proposal EXP-0035 (MECH-295)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-295\nWhy now: directional_conflict_alert\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1173,7 +1173,7 @@
       "unblocks": [
         "MECH-320"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-051",
       "agent_brief": "REE inter-governance work item: IGW-20260521-051\nTitle: Proposal EXP-0037 (MECH-320)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-320\nWhy now: active_conflict; directional_conflict_alert\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1216,7 +1216,7 @@
         "ARC-032",
         "Q-030"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-010",
       "agent_brief": "REE inter-governance work item: IGW-20260521-010\nTitle: SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nGap(s): goal_pipeline:GAP-2\nOwner EXQ: V3-EXQ-514g\nClaims: SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030\nWhy now: Monostrategy root cause has a validated substrate fix (V3-EXQ-567 PASS, supports ARC-065: SP-CEM lifts natural action entropy 0.012->0.497, candidate support 1.007->2.810). V3-EXQ-550 settled that the blocker is NOT z_goal wiring. Retest un\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/goal_pipeline_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1259,7 +1259,7 @@
         "MECH-258",
         "MECH-260"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-016",
       "agent_brief": "REE inter-governance work item: IGW-20260521-016\nTitle: ARC-033 vs ARC-058 path arbitration (forensic 445h read)\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nGap(s): self_attribution:GAP-1\nOwner EXQ: V3-EXQ-445h\nClaims: ARC-033, ARC-058, MECH-258, MECH-260\nWhy now: Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that (a) EXQ-445h dropped the ON_SHARED arm (CONDITIONS=[OFF, ON_INDEPENDENT] only); (b) the earlier three-arm EXQ-445 and EXQ-445b runs that did include \n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/self_attribution_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1299,7 +1299,7 @@
         "ARC-033",
         "SD-013"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-017",
       "agent_brief": "REE inter-governance work item: IGW-20260521-017\nTitle: SD-029 / MECH-256 retest under full substrate stack\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_attribution:GAP-2\nClaims: SD-029, MECH-256, ARC-033, SD-013\nWhy now: Monostrategy gate now has a concrete satisfier: V3-EXQ-567 PASS (supports ARC-065) -- SP-CEM lifts natural action entropy 0.012->0.497, producing the policy diversity needed for balanced agent-vs-env event distributions (the SD-029 C2/C3 me\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_attribution_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1335,7 +1335,7 @@
         "Q-044",
         "Q-045"
       ],
-      "owner_exq": "V3-EXQ-544 + V3-EXQ-545 (done); Q-043 / Q-044 / Q-045 TBD",
+      "owner_exq": "V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-603 (Q-045) + V3-EXQ-604 (Q-044) + V3-EXQ-605 (Q-043) queued",
       "blocked_by": [
         "arc_062_rule_apprehension:GAP-B [in_progress]"
       ],
@@ -1345,9 +1345,9 @@
         "Q-044",
         "Q-045"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-003",
-      "agent_brief": "REE inter-governance work item: IGW-20260521-003\nTitle: ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending\nLane: experiment | Skill: /queue-experiment\nStatus: partial\nGap(s): arc_062_rule_apprehension:GAP-H\nOwner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); Q-043 / Q-044 / Q-045 TBD\nClaims: ARC-065, Q-043, Q-044, Q-045\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: Plan gap partial on arc_062_rule_apprehension.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
+      "agent_brief": "REE inter-governance work item: IGW-20260521-003\nTitle: ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending\nLane: experiment | Skill: /queue-experiment\nStatus: partial\nGap(s): arc_062_rule_apprehension:GAP-H\nOwner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-603 (Q-045) + V3-EXQ-604 (Q-044) + V3-EXQ-605 (Q-043) queued\nClaims: ARC-065, Q-043, Q-044, Q-045\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: Plan gap partial on arc_062_rule_apprehension.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
         "/closure?highlight=arc_062_rule_apprehension%3AGAP-H"
       ],
@@ -1367,7 +1367,7 @@
       "priority": 50,
       "severity": "medium",
       "title": "ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending",
-      "why_now": "Plan gap partial on arc_062_rule_apprehension.",
+      "why_now": "V3-EXQ-606 queued 2026-05-21 (IGW-004): episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. Interpret after V3-EXQ-543k contributory PASS. MECH-316/317 absorption checks remain doc-only (no V3 modules).",
       "gap_ids": [
         "arc_062_rule_apprehension:GAP-I"
       ],
@@ -1379,7 +1379,7 @@
         "MECH-317",
         "MECH-318"
       ],
-      "owner_exq": "TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C)",
+      "owner_exq": "V3-EXQ-606",
       "blocked_by": [
         "arc_062_rule_apprehension:GAP-B [in_progress]"
       ],
@@ -1389,9 +1389,9 @@
         "MECH-317",
         "MECH-318"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-004",
-      "agent_brief": "REE inter-governance work item: IGW-20260521-004\nTitle: ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending\nLane: experiment | Skill: /queue-experiment\nStatus: partial\nGap(s): arc_062_rule_apprehension:GAP-I\nOwner EXQ: TBD (V3-EXQ-543c-successor; gated on GAP-B + GAP-C)\nClaims: ARC-064, MECH-316, MECH-317, MECH-318\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: Plan gap partial on arc_062_rule_apprehension.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
+      "agent_brief": "REE inter-governance work item: IGW-20260521-004\nTitle: ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending\nLane: experiment | Skill: /queue-experiment\nStatus: partial\nGap(s): arc_062_rule_apprehension:GAP-I\nOwner EXQ: V3-EXQ-606\nClaims: ARC-064, MECH-316, MECH-317, MECH-318\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: V3-EXQ-606 queued 2026-05-21 (IGW-004): episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. Interpret after V3-EXQ-543k contributory PASS. MECH-316/317 absorption checks remain doc-only (no V3 modules).\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
         "/closure?highlight=arc_062_rule_apprehension%3AGAP-I"
       ],
@@ -1428,7 +1428,7 @@
       "unblocks": [
         "MECH-319"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-006",
       "agent_brief": "REE inter-governance work item: IGW-20260521-006\nTitle: MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-543c-successor falsifier pending\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): arc_062_rule_apprehension:GAP-K\nOwner EXQ: V3-EXQ-546 (done); V3-EXQ-543c-successor TBD\nClaims: MECH-319\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]\nWhy now: Plan gap in_progress on arc_062_rule_apprehension.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1465,7 +1465,7 @@
         "DEV-NEED-006",
         "MECH-189"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-012",
       "agent_brief": "REE inter-governance work item: IGW-20260521-012\nTitle: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): infant_substrate:GAP-11\nOwner EXQ: V3-EXQ-588b\nClaims: DEV-NEED-006, MECH-189\nWhy now: V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1503,7 +1503,7 @@
         "DEV-NEED-007",
         "ARC-065"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-013",
       "agent_brief": "REE inter-governance work item: IGW-20260521-013\nTitle: EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): infant_substrate:GAP-12\nOwner EXQ: V3-EXQ-589\nClaims: DEV-NEED-001, DEV-NEED-007, ARC-065\nWhy now: Plan gap in_progress on infant_substrate.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1541,7 +1541,7 @@
         "DEV-NEED-003",
         "MECH-314"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-014",
       "agent_brief": "REE inter-governance work item: IGW-20260521-014\nTitle: EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): infant_substrate:GAP-13\nOwner EXQ: V3-EXQ-590\nClaims: DEV-NEED-003, MECH-314\nWhy now: Plan gap in_progress on infant_substrate.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1579,7 +1579,7 @@
         "DEV-NEED-008",
         "ARC-046"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-015",
       "agent_brief": "REE inter-governance work item: IGW-20260521-015\nTitle: EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)\nLane: experiment | Skill: (monitor -- do not re-queue)\nStatus: in_flight\nGap(s): infant_substrate:GAP-14\nOwner EXQ: V3-EXQ-591\nClaims: DEV-NEED-008, ARC-046\nWhy now: Plan gap in_progress on infant_substrate.\n\nInstructions:\n- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.\n- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1623,7 +1623,7 @@
         "MECH-312c",
         "MECH-312d"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-005",
       "agent_brief": "REE inter-governance work item: IGW-20260521-005\nTitle: MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): arc_062_rule_apprehension:GAP-J\nClaims: MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: Plan gap blocked on arc_062_rule_apprehension.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1660,7 +1660,7 @@
         "SD-033b",
         "MECH-263"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-009",
       "agent_brief": "REE inter-governance work item: IGW-20260521-009\nTitle: SD-033b behavioural validation (devaluation + perceptual discrimination)\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nGap(s): commitment_closure:GAP-8\nOwner EXQ: V3-EXQ-485b\nClaims: SD-033b, MECH-263\nWhy now: Plan gap blocked on commitment_closure.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1698,7 +1698,7 @@
         "MECH-257",
         "MECH-094"
       ],
-      "generated_at": "2026-05-21T07:47:46Z",
+      "generated_at": "2026-05-21T08:19:25Z",
       "id": "IGW-20260521-018",
       "agent_brief": "REE inter-governance work item: IGW-20260521-018\nTitle: MECH-257 dual-function 3-arm ablation re-queue\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_attribution:GAP-3\nClaims: MECH-257, MECH-094\nBlocked by: self_attribution:GAP-1 [blocked]; self_attribution:GAP-2 [blocked]\nWhy now: Plan gap blocked on self_attribution.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_attribution_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
