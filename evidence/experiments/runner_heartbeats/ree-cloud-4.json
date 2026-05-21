@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-21T18:59:52Z",
+  "last_tick_utc": "2026-05-21T19:00:54Z",
   "state": "running",
   "current_exq": "V3-EXQ-543k",
   "current_exq_started_utc": "2026-05-21T14:36:03.250213+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 1 / ARM_3_both",
     "runs_done": 45,
     "runs_total": 36,
-    "episodes_done": 40,
+    "episodes_done": 15,
     "episodes_total": 108,
-    "overall_pct": 126.0
+    "overall_pct": 125.4
   },
-  "seconds_elapsed": 15829,
+  "seconds_elapsed": 15891,
   "seconds_remaining": 0,
   "recent_lines": [
-    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=on(dw=1.0,sw=0.5)",
-    "[train] ARM_3_both ep 10/108  phase=P0  rv=0.0001  ep_reward=-1.1374",
-    "[train] ARM_3_both ep 20/108  phase=P0  rv=0.0002  ep_reward=-1.3414",
-    "[train] ARM_3_both ep 30/108  phase=P0  rv=0.0002  ep_reward=-1.1149",
-    "[train] ARM_3_both ep 40/108  phase=P0  rv=0.0003  ep_reward=-1.2339"
+    "[train] ARM_3_both ep 40/108  phase=P0  rv=0.0003  ep_reward=-1.2339",
+    "[probe] ARM_3_both P1 ep 5/60  applicable=True  mean_tv=0.0010  max_tv=0.0018  buf=35",
+    "[probe] ARM_3_both P1 ep 10/60  applicable=True  mean_tv=0.0011  max_tv=0.0019  buf=141",
+    "[train] ARM_3_both ep 50/108  phase=P1  rv=0.0001  ep_reward=-1.2276  baseline=-1.1489  buf=141  inert_gating=False",
+    "[probe] ARM_3_both P1 ep 15/60  applicable=True  mean_tv=0.0011  max_tv=0.0019  buf=217"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
