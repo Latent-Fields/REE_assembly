@@ -30381,6 +30381,11 @@
       - Combined gap: the agent learns one thing in one context
         and cannot adapt in any other context -- the null-diversity
         pole.
+  implementation_note: >
+    SD-055 substrate-ready 2026-05-21 (IGW-20260521-021): differentiable CEM path
+    landed 2026-05-15; V3-EXQ-568 PASS (grad_max=372, UC1-UC5). Closes EXP-0155
+    zero-gradient barrier when use_differentiable_cem=True. Gap 1 (bootstrapping
+    epoch / trajectory library) unchanged; gap 2 behavioural validation still open.
   location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
 
 - id: MECH-320
@@ -31994,6 +31999,11 @@
     the agent proposes the same candidate set regardless of what
     goal it is currently pursuing. This is the situation diagnosed
     by EXP-0155 and the EXQ-561 cluster.
+  implementation_note: >
+    SD-055 V3 staging substrate-ready 2026-05-21: softmax-weighted CEM ao_mean restores
+    gradient to cue_action_proj when use_differentiable_cem=True (V3-EXQ-568 PASS).
+    v3_pending retained: MECH-325 trajectory library and full context-sensitive retrieval
+    gate not implemented. Behavioural cue-divergence experiment still required.
   location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
 
 # Play substrate follow-on claims -- registered 2026-05-16 (play substrate follow-on pass)

@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T13:46:03Z",
+  "last_updated_utc": "2026-05-21T13:48:50Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2915,8 +2915,8 @@
     {
       "sd_id": "SD-055",
       "title": "Differentiable CEM selection approximation -- softmax-weighted candidate mean replaces argsort elite-selection in HippocampalModule, restoring gradient to SD-016 cue_action_proj",
-      "ready": true,
-      "design_doc": null,
+      "ready": false,
+      "design_doc": "docs/architecture/sd_055_differentiable_cem_selection.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "ARC-072",
@@ -2930,11 +2930,32 @@
           "target": "gradient flows through softmax-weighted ao_mean to cue_action_proj.weight"
         }
       ],
-      "implementation_hint": "Code is already in ree-v3/ree_core/hippocampal/module.py (use_differentiable_cem flag, softmax-weighted ao_mean path). EXQ-568 confirmed gradient flow (grad_max=372). ree-v3/CLAUDE.md documentation update pending; behavioral validation requires trained-policy cue-conditioned divergence experiment on goal-rich env.",
+      "implementation_hint": "Substrate landed 2026-05-15 in hippocampal/module.py (use_differentiable_cem, softmax-weighted ao_mean). Canonical validation V3-EXQ-568 PASS 20260515T204931Z (grad_max=372, UC1-UC5). smoke_sd055_differentiable_cem.py 4/4 PASS. Behavioural cue-conditioned divergence on goal-rich env still deferred (ARC-072 gap 2 staging only).",
       "priority": 2,
       "added_session": "governance-cycle-2026-05-15T205941Z",
-      "last_seen_session": "governance-cycle-2026-05-15T205941Z",
-      "status": "substrate_implemented_pending_validation"
+      "last_seen_session": "igw-sd055-substrate-ready-20260521T134850Z",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-05-15T20:54:00Z",
+      "validation_experiment": "V3-EXQ-568",
+      "implemented_session": "sd-diff-cem-approx-2026-05-15T202939Z",
+      "metric_trajectory": {
+        "primary_metric": "cue_action_proj_grad_max / UC4 gradient non-zero",
+        "primary_metric_description": "Substrate-readiness: with use_differentiable_cem=True and non-detached action_bias, backward from ao_mean loss must reach action_bias with grad_max > 0. Does not measure behavioural action_bias_divergence.",
+        "direction": "higher_is_better",
+        "target": "UC4 PASS with grad_max > 0 in substrate diagnostic",
+        "observations": [
+          {
+            "run_id": "v3_exq_568_sd055_differentiable_cem_substrate_readiness_20260515T204931Z_v3",
+            "experiment_type": "v3_exq_568_sd055_differentiable_cem_substrate_readiness",
+            "date_utc": "2026-05-15",
+            "substrate_state": "SD-055 differentiable CEM path enabled",
+            "metric_value": 372.064,
+            "metric_notes": "PASS 5/5 UC; evidence_direction=non_contributory (diagnostic). Closes EXP-0155 zero-gradient barrier at substrate layer when flag ON."
+          }
+        ],
+        "current_blocker": "Behavioural validation: trained-policy cue-conditioned candidate divergence on goal-rich env (not substrate-readiness scope)."
+      },
+      "implementation_note_update": "IGW-20260521-021 substrate-ready 2026-05-21: code landed 2026-05-15; V3-EXQ-568 canonical PASS; smoke 4/4. ARC-072 gap 2 V3 staging path open; gap 1 bootstrapping epoch still unresolved. MECH-326 full library routing still v4_pending."
     },
     {
       "sd_id": "INF-ENV-001",
