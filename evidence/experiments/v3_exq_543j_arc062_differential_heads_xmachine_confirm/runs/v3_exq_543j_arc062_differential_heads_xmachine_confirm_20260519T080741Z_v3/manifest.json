@@ -1,0 +1,54 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_543j_arc062_differential_heads_xmachine_confirm",
+  "run_id": "v3_exq_543j_arc062_differential_heads_xmachine_confirm_20260519T080741Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-19T08:07:41.044781Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-062",
+    "MECH-309",
+    "INV-074",
+    "MECH-334"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Governance 2026-05-21: V3-EXQ-543j cross-machine confirm (ree-cloud-4) landed branch-e (same as 543i 19:10Z). failure_autopsy_543i_2026-05-19 confirmed: basin selection nondeterministic; use_differential_heads insufficient; per-claim weakens/supports are single-basin artifacts. non_contributory all claims; pending_retest_after_substrate.",
+  "evidence_direction_per_claim": {
+    "ARC-062": "non_contributory",
+    "MECH-309": "non_contributory",
+    "INV-074": "non_contributory",
+    "MECH-334": "non_contributory"
+  },
+  "epistemic_category": "substrate_ceiling",
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}
