@@ -720,7 +720,8 @@ Instructions:
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 40
 - **Gap(s):** commitment_closure:GAP-4
-- **Why now:** Plan gap partial on commitment_closure.
+- **Owner EXQ:** V3-EXQ-592
+- **Why now:** Phase 2 substrate battery DONE (460..468 PASS). GAP-4 stays partial until V3-EXQ-592 PASS gates Phase 4/5 behavioural *b cohort.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -728,13 +729,15 @@ Instructions:
 REE inter-governance work item: IGW-20260521-008
 Title: OCD battery completeness (V3-EXQ-460..468)
 Lane: plan | Skill: (plan reconcile)
-Status: partial
+Status: partial (Phase 2 done; monitor 592)
 Gap(s): commitment_closure:GAP-4
+Owner EXQ: V3-EXQ-592
 Claims: SD-034, MECH-266, MECH-267, MECH-268
-Why now: Plan gap partial on commitment_closure.
+Why now: Phase 2 substrate battery DONE (460..468 PASS). GAP-4 closes after V3-EXQ-592 PASS + Phase 4/5 *b cohort queued.
 
 Instructions:
-- Update plan-of-record doc and closure frontmatter when complete.
+- Plan reconciled 2026-05-21. Monitor V3-EXQ-592; do not re-queue 460..468 substrate runs.
+- Next: /queue-experiment Phase 4/5 behavioural arms after 592 PASS.
 - Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
 - Workset: http://localhost:8000/workset
 ```

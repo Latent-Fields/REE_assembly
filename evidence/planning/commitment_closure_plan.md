@@ -49,11 +49,13 @@ closure_plan:
       phase: 2
       status: partial
       severity: high
-      owner_exq: null
+      owner_exq: V3-EXQ-592
       unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268]
       depends_on: ["commitment_closure:GAP-2"]
       cross_plan_link: ["sd033_governance:CHK-EXP_PROPOSALS"]
-      last_updated: 2026-05-08
+      last_updated: 2026-05-21
+      resume_condition: "Phase 2 substrate battery DONE (all nine scripts authored; latest manifests PASS 2026-04-21..2026-05-12). GAP-4 closes to done after V3-EXQ-592 PASS (GAP-11 committed-mode pilot) and Phase 4/5 behavioural cohort (460b/461 full/463b/464b/466b/467b/468b) queued via /queue-experiment on GAP-3 env + committed_mode_curriculum harness."
+      completion_note: "Phase 2 DONE 2026-05-21 reconcile: V3-EXQ-460..468 scripts in ree-v3/experiments/; substrate-readiness PASS on all nine (460/466 x2, 461 reviewed 2026-05-12, 462/465 executed 2026-04-21, 463/464/467/468 authored+PASS 2026-04-21). Queue slots consumed post-run (not re-queued). Phase 4/5 behavioural arms blocked on V3-EXQ-592 (priority 3, pending, DLAPTOP-4.local)."
     - id: "commitment_closure:GAP-5"
       title: "MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)"
       phase: 6
@@ -148,10 +150,10 @@ condition.
 
 > The Hold latch, the No-Go suppressor, the asymmetric mode register, the
 > mode-conditioned proposer, the conflict-saturation cap, and the closure
-> operator have all landed. The Go-side bias pathway is untrained, the
-> behavioural env that exercises the loop end-to-end is not built, and the
-> battery that would falsify the cluster is mostly script_authored but
-> unqueued.
+> operator have all landed. The Go-side bias pathway is still untrained
+> (GAP-1). CausalGridWorldV2 env extensions and the committed-mode curriculum
+> harness are landed (GAP-3, GAP-11). The OCD substrate-readiness battery
+> (V3-EXQ-460..468) is complete; behavioural re-runs wait on V3-EXQ-592.
 
 The control-plane substrate matured fast between 2026-04-10 and 2026-04-21:
 MECH-090 bistable BetaGate (2026-04-10), MECH-260 FIFO action-class
@@ -226,7 +228,7 @@ Ten gaps, ordered by leverage. Each is the basis for one row of the
 | **GAP-1** | SD-033a bias head untrained: frozen-random with last Linear zeroed -> initial bias = 0; Go-side pathway is mechanically silent until a training protocol lands | load-bearing | MECH-262 rule-selective persistence; SD-034 mode-conditioning gate firing from a real rule_state; full-loop OCD-battery interpretability |
 | **GAP-2** | V3-EXQ-461 (EXP-0157 delayed-reward persistence / Hold-axis falsifier) substrate-readiness PASS reviewed; full behavioural successor remains GAP-3 env-infra work | high | OCD battery completeness; SD-033a + MECH-090 + SD-034 Hold-axis evidence |
 | **GAP-3** | CausalGridWorldV2 env extensions not built: tolerance-band completion, counter-evidence injection, dual simultaneously-active resource cue, phased rule_state training curriculum | high | SD-034 + MECH-266 + MECH-268 behavioural arms (currently smoke / sub-test only); EXP-0156/0157/0160/0162/0163/0164 full-loop runs |
-| **GAP-4** | OCD battery mostly script_authored but unqueued: 460/463/464/466/467/468 authored not queued; 462/465 already executed; 461 unauthored | high | First end-to-end battery run on substrate-as-landed; baseline before behavioural arms land |
+| **GAP-4** | OCD battery Phase 2 DONE (460..468 substrate-readiness PASS); Phase 4/5 behavioural arms (*b cohort) blocked on V3-EXQ-592 PASS + /queue-experiment | high | First end-to-end behavioural battery on env extensions + committed_mode_curriculum; SD-034 / MECH-266 / MECH-267 / MECH-268 promotion path |
 | **GAP-5** | MECH-090 V_s -> commit-release pathway substrate-readiness FAIL: V3-EXQ-481 vs_commit_release_count=0 in BOTH ON and OFF arms; release predicate never matches; anchor resets fire (63/31 per seed) but release threshold never met | medium | MECH-090 release-via-V_s pathway empirical validation; tighter coupling between hippocampal anchor invalidation (MECH-269 / MECH-284) and BG beta release |
 | **GAP-6** | MECH-260 vs SD-034 No-Go pulse boundary unclear: lit-pull 2026-04-27 recommended routing post-completion negative bias through SD-033a per-candidate bias projection rather than only via MECH-260 action-class FIFO; current implementation does both, with overlapping function | medium (V4 flag) | Cleaner mode-governance separation in V4; not urgent for V3 |
 | **GAP-7** | MECH-091 salient-event phase-reset held on SD-006 phase 2 async heartbeat (V3-EXQ-133 reclassified non_contributory 2026-04-22) | low (V4 deferred) | MECH-091 empirical validation; deferred to V4 unless SD-006 phase 2 lands earlier |
@@ -476,7 +478,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-1 | 1 | in-progress | arc_062 GAP-B retest V3-EXQ-543k (priority 5); interpret EXQ-598 only after 543k contributory PASS | V3-EXQ-598 queued (2-arm frozen vs trainable bias head; priority 4). Substrate GAP-C/D done 2026-05-17. Closes on 598 PASS. | V3-EXQ-598 | 2026-05-20 |
 | GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
 | GAP-3 | 3 | done | (none) | DONE 2026-05-17: env extensions primitives 1-3 IMPLEMENTED; 14/14 contract tests PASS + 434/434 regression. Deliverable 4 (phased curriculum) is GAP-11 (separate). Unblocks GAP-8. | env infra (no EXQ) | 2026-05-17 |
-| GAP-4 | 2, 4, 5 | partial | tracked under Phase 2 / 4 / 5 | Phase 2 closes battery completeness; Phase 4 / 5 cover behavioural arms | per-phase EXQs | 2026-05-08 |
+| GAP-4 | 2, 4, 5 | partial | V3-EXQ-592 PASS (GAP-11 pilot); then queue 460b/461/463b/464b/466b/467b/468b | Phase 2 DONE (460..468 substrate PASS). Monitor 592; /queue-experiment Phase 4/5 cohort after 592 PASS. | V3-EXQ-592 | 2026-05-21 |
 | GAP-5 | 6 | done | (none) | Two root causes fixed: (1) forced commitment pattern for 481b; (2) empty-snapshot re-population in agent.py. V3-EXQ-481b queued 2026-05-17; dry-run UC1/UC2/UC3 PASS. | V3-EXQ-481b | 2026-05-17 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
 | GAP-7 | 8 | deferred V4 | SD-006 phase 2 async heartbeat | none in V3 unless SD-006 phase 2 lands | n/a | 2026-05-08 |
@@ -499,23 +501,30 @@ primary falsification cohort for this plan. Sub-plan: that document
 remains the canonical OCD-axis breakdown. This plan tracks battery
 completeness as a status concern.
 
-### Battery state (2026-05-12)
+### Battery state (2026-05-21)
 
-| Reserved EXQ | Proposal | Subject | Status (proposal) | Status (script) |
+| Reserved EXQ | Proposal | Subject | Status (proposal) | Status (script / evidence) |
 |---|---|---|---|---|
-| V3-EXQ-460 | EXP-0156 | SD-034 verified-but-not-released | script_authored | substrate-readiness PASS x2 (sub-tests) |
-| V3-EXQ-461 | EXP-0157 | MECH-090 + SD-033a + SD-034 delayed-reward persistence | executed; reserved_queue_id=V3-EXQ-461 | substrate-readiness PASS reviewed |
-| V3-EXQ-462 | EXP-0158 | MECH-267 rule binding | executed | substrate-readiness PASS (sub-tests) |
-| V3-EXQ-463 | EXP-0159 | MECH-268 dACC conflict saturation | script_authored | substrate-readiness PASS (sub-tests) |
-| V3-EXQ-464 | EXP-0160 | MECH-266 competing goals | script_authored | substrate-readiness PASS (sub-tests) |
-| V3-EXQ-465 | EXP-0161 | MECH-267 intrusive simulation filtering | executed | substrate-readiness PASS (sub-tests) |
-| V3-EXQ-466 | EXP-0162 | SD-034 satisficing / residue discharge | script_authored | substrate-readiness PASS x2 (sub-tests) |
-| V3-EXQ-467 | EXP-0163 | MECH-266 mode stickiness | script_authored | substrate-readiness PASS (5-arm sweep sub-tests) |
-| V3-EXQ-468 | EXP-0164 | SD-034 + MECH-268 commitment vs contradiction | script_authored | substrate-readiness PASS (sub-tests) |
+| V3-EXQ-460 | EXP-0156 | SD-034 verified-but-not-released | executed (sd033 CHK-SD034) | script + PASS x2 (2026-04-21); queue consumed |
+| V3-EXQ-461 | EXP-0157 | MECH-090 + SD-033a + SD-034 delayed-reward persistence | executed | script + PASS reviewed 2026-05-12; queue consumed |
+| V3-EXQ-462 | EXP-0158 | MECH-267 rule binding | executed | script + PASS (2026-04-21); queue consumed |
+| V3-EXQ-463 | EXP-0159 | MECH-268 dACC conflict saturation | executed (substrate landing) | script + PASS (2026-04-21); queue consumed |
+| V3-EXQ-464 | EXP-0160 | MECH-266 competing goals | executed (substrate landing) | script + PASS (2026-04-21); queue consumed |
+| V3-EXQ-465 | EXP-0161 | MECH-267 intrusive simulation filtering | executed | script + PASS (2026-04-21); queue consumed |
+| V3-EXQ-466 | EXP-0162 | SD-034 satisficing / residue discharge | executed (substrate landing) | script + PASS x2 (2026-04-21); queue consumed |
+| V3-EXQ-467 | EXP-0163 | MECH-266 mode stickiness | executed (substrate landing) | script + PASS (2026-04-21); queue consumed |
+| V3-EXQ-468 | EXP-0164 | SD-034 + MECH-268 commitment vs contradiction | executed (substrate landing) | script + PASS (2026-04-21); queue consumed |
 
-Battery acceptance: all nine reserved EXQs script_authored and queued, all
-substrate-readiness sub-tests PASS, and Phase 4 / 5 behavioural arms PASS
-on Phase 3 env extensions.
+**Phase 2 acceptance (substrate battery):** met 2026-05-21 -- all nine scripts
+authored; all latest manifests `result: PASS` at substrate-readiness level.
+
+**Phase 4/5 gate:** V3-EXQ-592 (GAP-11 committed-mode curriculum pilot) queued
+priority 3, `machine_affinity: DLAPTOP-4.local`, status pending. PASS unblocks
+/queue-experiment for behavioural arms: 460b, 461 (full), 463b, 464b, 466b,
+467b, 468b (require GAP-3 env primitives + `committed_mode_curriculum.py`).
+
+**Full GAP-4 closure:** Phase 2 + 592 PASS + Phase 4/5 behavioural PASS on env
+extensions.
 
 ### Other relevant EXQs
 
@@ -583,6 +592,27 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-21 - GAP-4 Phase 2 DONE: OCD substrate battery reconciled (IGW-20260521-008)
+
+Plan-of-record reconcile against repo state (not runner queue -- completed EXQs
+are removed from `experiment_queue.json` per queue-completion policy):
+
+- **Scripts:** all nine `ree-v3/experiments/v3_exq_46{0..8}_*.py` present.
+- **Evidence:** latest manifest per type `result: PASS` (460/466 diagnostic;
+  461 supports MECH-090/SD-033a/SD-034 reviewed 2026-05-12; 462..468
+  substrate-landing diagnostics 2026-04-21).
+- **Queue:** no V3-EXQ-460..468 entries remain (expected after PASS + auto-sync).
+- **Owner:** GAP-4 `owner_exq` -> V3-EXQ-592 (GAP-11 pilot); status stays
+  `partial` until 592 PASS and Phase 4/5 *b behavioural cohort is queued.
+
+Staleness corrected: gap inventory still said "unqueued / 461 unauthored";
+battery table frozen at 2026-05-12. Phase 2 substrate completeness is now
+explicit in YAML `completion_note`, status table, and battery state table.
+
+Next action: monitor V3-EXQ-592 on DLAPTOP-4.local; on PASS, run
+`/queue-experiment` for Phase 4/5 behavioural arms (460b, 461 full, 463b,
+464b, 466b, 467b, 468b).
 
 ### 2026-05-20 - GAP-1 validation EXQ V3-EXQ-598 queued; plan reconciled to 543k gate
 
