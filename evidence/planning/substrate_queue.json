@@ -2981,10 +2981,11 @@
       "implementation_hint": "Code-read only. Find all random.random()/torch.randn() calls in causal_grid_world.py step() and reset(). Classify each: (a) Markovian/predictable-stochastic (OK for curiosity), (b) irreducibly random (must be excluded from novelty signal). Primary suspect: SD-048 interoceptive_noise_scale. Flag SD-047 hazard drift direction for inspection. Document findings in a code comment block at top of CausalGridWorldV2. No new implementation required unless a problematic element is found. See Section 5.6 of infant_substrate_expansion.md.",
       "priority": 2,
       "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
-      "last_seen_session": "infant-substrate-expansion-2026-05-16T111412Z",
-      "status": "open",
-      "closure_plan_gap": "infant_substrate:GAP-4"
+      "last_seen_session": "igw-027-inf-env-004-audit-20260521T034309Z",
+      "status": "implemented",
+      "closure_plan_gap": "infant_substrate:GAP-4",
+      "implementation_note": "2026-05-21 IGW-027 code-read refresh: no random.random/torch.randn; numpy self._rng only. PRIMARY irreducible attractor SD-048 autonomic i.i.d. on harm_obs_a (:3507); secondary SD-048 sensitisation Poisson (:3485), fatigue innovation (:3466), SD-047 weather (:3275) + transient Poisson (:3311/:3336). All reset/spawn/drift learnable-stochastic (a). Audit block in CausalGridWorldV2() docstring causal_grid_world.py."
     }
   ],
-  "last_seen_session": "arc062-plan-doc-registration-2026-05-09T1939Z"
+  "last_seen_session": "igw-027-inf-env-004-audit-20260521T034309Z"
 }

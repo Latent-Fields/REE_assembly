@@ -363,24 +363,29 @@ infant stage, audit CausalGridWorldV2 for all stochastic attractors. Per Burda (
 (2017), any irreducibly random element with accessible variance will permanently capture a
 prediction-error / novelty curiosity signal (the "noisy-TV" failure).
 
-**Audit completed 2026-05-16 (GAP-4, code-read only).** One seeded master RNG
-(`self._rng = np.random.default_rng(seed)`, `causal_grid_world.py:607`) makes every run
-reproducible across machines; the attractor concern is *not* reproducibility but
-*within-episode irreducible* entropy that a curiosity signal cannot predict away.
+**Audit completed 2026-05-16 (GAP-4); line numbers refreshed 2026-05-21 (IGW-027 /
+INF-ENV-004, code-read only).** No `random.random()` or `torch.randn()` in
+`causal_grid_world.py`; env RNG is `self._rng = np.random.default_rng(seed)` at
+`:855` (reproducible across runs). Attractor concern is *within-episode
+irreducible* entropy in encoded channels, not cross-run nondeterminism.
 
-Enumeration and classification of every RNG call site in `reset()` / `step()`:
+Enumeration and classification of every RNG call site in `reset()` / `step()`
+(plus callees invoked only from those paths):
 
 | Site (causal_grid_world.py) | Source | Class | Attractor risk |
 |---|---|---|---|
-| :696, :2243-44, :2087, :2354/:2379 | reset-time placement / GAP-2 Voronoi seed / SD-054 pool shuffles / drift seed + initial velocity | learnable-stochastic (per-episode layout; stationary generative rule) | none |
-| :804, :1845, :2167 | SD-049 resource-type + spawn weighted draws | learnable-stochastic (stationary distribution) | none |
-| :2718, :2805 | SD-029 hazard-injection target, resource respawn | learnable-stochastic (fixed rate, observable) | none |
-| :2751/:2768, :2364 | hazard random-walk drift step / drift velocity | bounded; hazard position fully observable | low |
-| :2399 | SD-047 weather AR(1) Gaussian innovation -> hazard_field | partial: AR(1) learnable, innovation irreducible | moderate (OFF by default) |
-| :2415 | SD-047 transient-event Poisson appear/disappear | cell-level irreducible, rate learnable | moderate (OFF by default) |
-| :2575 | SD-048 fatigue AR(1) innovation on harm_obs_a | partial: irreducible innovation | moderate |
-| :2609 | SD-048 sensitisation Poisson onset (harm_obs_a) | memoryless onset -> irreducible | high |
-| :2631 | SD-048 autonomic i.i.d. Gaussian on harm_obs_a, every tick | zero autocorrelation, injected straight into the encoded observation | **PRIMARY ATTRACTOR** (textbook noisy-TV) |
+| :944, :2964, :3058, :3134-3135 | reset placement shuffle / GAP-2 Voronoi seeds / zone-weighted spawn / SD-054 pool shuffles | (a) learnable-stochastic | none |
+| :1065, :1184-1186 (:2668, :2690-2713) | SD-049 type draw / SD-023 landmark placement | (a) learnable-stochastic | none |
+| :3245, :3255 | SD-047 `_init_multi_source_state` drift pool + initial velocity | (a) learnable-stochastic | none |
+| :1728, :1871/:3594, :1914, :1967/:3661-3678, :3715, :3780 | SD-022 limb failure / SD-029 external hazard / counter-evidence / env+reef hazard drift / respawn shuffles | (a) learnable-stochastic (rates + observable state) | none |
+| :2008/:3757 | infant GAP-3 transient benefit spawn | (a) learnable-stochastic | none |
+| :3365-3378 | SD-047 background drift move (hazard grid position observable) | (a) learnable-stochastic | low |
+| :3275 | SD-047 weather AR(1) Gaussian innovation -> hazard_field | (b) partial: AR(1) learnable, innovation irreducible | moderate (OFF by default) |
+| :3311, :3336 | SD-047 transient-event Poisson appear/disappear | (b) partial | moderate (OFF by default) |
+| :3466 | SD-048 fatigue AR(1) innovation on harm_obs_a | (b) partial | moderate |
+| :3485 | SD-048 sensitisation Poisson onset (harm_obs_a) | (b) irreducible | high |
+| :3507 | SD-048 autonomic i.i.d. Gaussian on harm_obs_a, every tick | (b) irreducible | **PRIMARY** (noisy-TV) |
+| :2368 (`_traj_pair_rng`) | GAP-7 trajectory pair sampling (telemetry only) | out of obs path | none |
 
 **Verdict:** SD-048 interoceptive noise is the primary irreducible stochastic attractor --
 chiefly Source 1 autonomic i.i.d. Gaussian (`:2631`) and the Poisson sensitisation onset
