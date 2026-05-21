@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T03:46:30Z",
+  "last_updated_utc": "2026-05-21T03:56:12Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2896,7 +2896,7 @@
     {
       "sd_id": "INF-ENV-001",
       "title": "Harm gradient zones -- graduated harm proximity signal in CausalGridWorldV2 (harm_gradient_enabled, harm_gradient_outer_radius, harm_gradient_inner_radius, harm_gradient_scale)",
-      "ready": true,
+      "ready": false,
       "design_doc": "docs/architecture/infant_substrate_expansion.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -2904,11 +2904,15 @@
         "ARC-013"
       ],
       "failure_record": [],
-      "implementation_hint": "Add harm_gradient_* params to CausalGridWorldV2.__init__. In step(): compute d = min distance to nearest hazard; if d < outer_radius: apply -hazard_harm * (1-d/outer_radius)^2 * harm_gradient_scale to reward. Terminal contact unchanged (r_inner = existing contact boundary). Default all flags False. See Section 5.1 of infant_substrate_expansion.md.",
+      "implementation_hint": "IMPLEMENTED 2026-05-16 in ree_core/environment/causal_grid_world.py (infant_substrate:GAP-1). step(): min Euclidean distance to nearest hazard; when r_in < d <= r_out apply -hazard_harm*(1-d/r_out)^2*scale to harm_signal (transition_type harm_gradient); terminal contact unchanged. Env-only kwargs default OFF. Substrate-readiness V3-EXQ-576 PASS 2026-05-16 (diagnostic, non_contributory). Tier-1 residue-geography evidence: V3-EXQ-587 (GAP-10). contracts test_harm_gradient_gap1.py 10/10.",
       "priority": 2,
       "added_session": "infant-substrate-expansion-2026-05-16T111412Z",
-      "last_seen_session": "infant-substrate-expansion-2026-05-16T111412Z",
-      "status": "open",
+      "last_seen_session": "igw-inf-env-001-20260521T034429Z",
+      "status": "implemented",
+      "implementation_status": "implemented",
+      "implemented_session": "infant-substrate-gap1-2026-05-16T183739Z",
+      "implemented_utc": "2026-05-16T19:11:00Z",
+      "validation_experiment": "V3-EXQ-576",
       "closure_plan_gap": "infant_substrate:GAP-1"
     },
     {
