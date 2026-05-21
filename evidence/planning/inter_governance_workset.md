@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T13:54:03Z`
+Generated: `2026-05-21T14:41:10Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,11 +9,11 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **48** (ready 29, in_flight 1, blocked 6)
+- Items: **48** (ready 29, in_flight 2, blocked 6)
 - Pending review: **0**
 - Queue pending (unclaimed): **6**
 
-- Live EXQs: V3-EXQ-590a, V3-EXQ-591, V3-EXQ-597b
+- Live EXQs: V3-EXQ-590a, V3-EXQ-591, V3-EXQ-592
 
 ## Work packages
 
@@ -161,20 +161,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-020 -- Diagnose ERROR: V3-EXQ-008
+### IGW-20260521-020 -- Diagnose ERROR: V3-EXQ-263
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-008
+- **Owner EXQ:** V3-EXQ-263
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-020
-Title: Diagnose ERROR: V3-EXQ-008
+Title: Diagnose ERROR: V3-EXQ-263
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-008
+Owner EXQ: V3-EXQ-263
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -184,20 +184,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-021 -- Diagnose ERROR: V3-EXQ-038
+### IGW-20260521-021 -- Diagnose ERROR: V3-EXQ-445d
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-038
+- **Owner EXQ:** V3-EXQ-445d
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-021
-Title: Diagnose ERROR: V3-EXQ-038
+Title: Diagnose ERROR: V3-EXQ-445d
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-038
+Owner EXQ: V3-EXQ-445d
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -207,20 +207,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-022 -- Diagnose ERROR: V3-EXQ-046
+### IGW-20260521-022 -- Diagnose ERROR: V3-EXQ-455a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-046
+- **Owner EXQ:** V3-EXQ-455a
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-022
-Title: Diagnose ERROR: V3-EXQ-046
+Title: Diagnose ERROR: V3-EXQ-455a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-046
+Owner EXQ: V3-EXQ-455a
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -230,20 +230,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-023 -- Diagnose ERROR: V3-EXQ-057
+### IGW-20260521-023 -- Diagnose ERROR: V3-EXQ-449c
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-057
+- **Owner EXQ:** V3-EXQ-449c
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-023
-Title: Diagnose ERROR: V3-EXQ-057
+Title: Diagnose ERROR: V3-EXQ-449c
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-057
+Owner EXQ: V3-EXQ-449c
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -253,20 +253,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-024 -- Diagnose ERROR: V3-EXQ-046b
+### IGW-20260521-024 -- Diagnose ERROR: V3-EXQ-476
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-046b
+- **Owner EXQ:** V3-EXQ-476
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-024
-Title: Diagnose ERROR: V3-EXQ-046b
+Title: Diagnose ERROR: V3-EXQ-476
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-046b
+Owner EXQ: V3-EXQ-476
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -276,20 +276,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-025 -- Diagnose ERROR: V3-EXQ-051b
+### IGW-20260521-025 -- Diagnose ERROR: V3-EXQ-544
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-051b
+- **Owner EXQ:** V3-EXQ-544
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-025
-Title: Diagnose ERROR: V3-EXQ-051b
+Title: Diagnose ERROR: V3-EXQ-544
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-051b
+Owner EXQ: V3-EXQ-544
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -299,20 +299,18 @@ Instructions:
 
 </details>
 
-### IGW-20260521-026 -- Diagnose ERROR: V3-EXQ-072
+### IGW-20260521-026 -- Diagnose ERROR: V3-ONBOARD-smoke-EWIN-PC
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-072
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-026
-Title: Diagnose ERROR: V3-EXQ-072
+Title: Diagnose ERROR: V3-ONBOARD-smoke-EWIN-PC
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-072
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -322,20 +320,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-027 -- Diagnose ERROR: V3-EXQ-073
+### IGW-20260521-027 -- Diagnose ERROR: V3-EXQ-375
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-073
+- **Owner EXQ:** V3-EXQ-375
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-027
-Title: Diagnose ERROR: V3-EXQ-073
+Title: Diagnose ERROR: V3-EXQ-375
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-073
+Owner EXQ: V3-EXQ-375
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -345,20 +343,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-028 -- Diagnose ERROR: V3-EXQ-074
+### IGW-20260521-028 -- Diagnose ERROR: V3-EXQ-385a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-074
+- **Owner EXQ:** V3-EXQ-385a
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-028
-Title: Diagnose ERROR: V3-EXQ-074
+Title: Diagnose ERROR: V3-EXQ-385a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-074
+Owner EXQ: V3-EXQ-385a
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -368,20 +366,18 @@ Instructions:
 
 </details>
 
-### IGW-20260521-029 -- Diagnose ERROR: V3-EXQ-075
+### IGW-20260521-029 -- Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-075
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-029
-Title: Diagnose ERROR: V3-EXQ-075
+Title: Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-075
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -391,20 +387,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-030 -- Diagnose ERROR: V3-EXQ-074b
+### IGW-20260521-030 -- Diagnose ERROR: V3-EXQ-250a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-074b
+- **Owner EXQ:** V3-EXQ-250a
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-030
-Title: Diagnose ERROR: V3-EXQ-074b
+Title: Diagnose ERROR: V3-EXQ-250a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-074b
+Owner EXQ: V3-EXQ-250a
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -414,20 +410,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-031 -- Diagnose ERROR: V3-EXQ-076
+### IGW-20260521-031 -- Diagnose ERROR: V3-EXQ-495
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-076
+- **Owner EXQ:** V3-EXQ-495
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-031
-Title: Diagnose ERROR: V3-EXQ-076
+Title: Diagnose ERROR: V3-EXQ-495
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-076
+Owner EXQ: V3-EXQ-495
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -437,20 +433,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-032 -- Diagnose ERROR: V3-EXQ-084
+### IGW-20260521-032 -- Diagnose ERROR: V3-EXQ-538
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-084
+- **Owner EXQ:** V3-EXQ-538
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-032
-Title: Diagnose ERROR: V3-EXQ-084
+Title: Diagnose ERROR: V3-EXQ-538
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-084
+Owner EXQ: V3-EXQ-538
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -460,20 +456,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-033 -- Diagnose ERROR: V3-EXQ-074c
+### IGW-20260521-033 -- Diagnose ERROR: V3-EXQ-244a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-074c
+- **Owner EXQ:** V3-EXQ-244a
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-033
-Title: Diagnose ERROR: V3-EXQ-074c
+Title: Diagnose ERROR: V3-EXQ-244a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-074c
+Owner EXQ: V3-EXQ-244a
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -483,20 +479,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-034 -- Diagnose ERROR: V3-EXQ-075b
+### IGW-20260521-034 -- Diagnose ERROR: V3-EXQ-321b
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-075b
+- **Owner EXQ:** V3-EXQ-321b
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-034
-Title: Diagnose ERROR: V3-EXQ-075b
+Title: Diagnose ERROR: V3-EXQ-321b
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-075b
+Owner EXQ: V3-EXQ-321b
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -506,20 +502,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-035 -- Diagnose ERROR: V3-EXQ-076b
+### IGW-20260521-035 -- Diagnose ERROR: V3-EXQ-250
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-076b
+- **Owner EXQ:** V3-EXQ-250
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-035
-Title: Diagnose ERROR: V3-EXQ-076b
+Title: Diagnose ERROR: V3-EXQ-250
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-076b
+Owner EXQ: V3-EXQ-250
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -529,20 +525,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-036 -- Diagnose ERROR: V3-EXQ-084b
+### IGW-20260521-036 -- Diagnose ERROR: V3-EXQ-247
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-084b
+- **Owner EXQ:** V3-EXQ-247
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-036
-Title: Diagnose ERROR: V3-EXQ-084b
+Title: Diagnose ERROR: V3-EXQ-247
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-084b
+Owner EXQ: V3-EXQ-247
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -552,20 +548,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-037 -- Diagnose ERROR: V3-EXQ-074d
+### IGW-20260521-037 -- Diagnose ERROR: V3-EXQ-267
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-074d
+- **Owner EXQ:** V3-EXQ-267
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-037
-Title: Diagnose ERROR: V3-EXQ-074d
+Title: Diagnose ERROR: V3-EXQ-267
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-074d
+Owner EXQ: V3-EXQ-267
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -575,20 +571,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-038 -- Diagnose ERROR: V3-EXQ-075c
+### IGW-20260521-038 -- Diagnose ERROR: V3-EXQ-432
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-075c
+- **Owner EXQ:** V3-EXQ-432
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-038
-Title: Diagnose ERROR: V3-EXQ-075c
+Title: Diagnose ERROR: V3-EXQ-432
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-075c
+Owner EXQ: V3-EXQ-432
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -598,20 +594,20 @@ Instructions:
 
 </details>
 
-### IGW-20260521-039 -- Diagnose ERROR: V3-EXQ-076c
+### IGW-20260521-039 -- Diagnose ERROR: V3-EXQ-498
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-076c
+- **Owner EXQ:** V3-EXQ-498
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260521-039
-Title: Diagnose ERROR: V3-EXQ-076c
+Title: Diagnose ERROR: V3-EXQ-498
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
-Owner EXQ: V3-EXQ-076c
+Owner EXQ: V3-EXQ-498
 Why now: Runner ERROR with no queued successor ().
 
 Instructions:
@@ -645,33 +641,6 @@ Why now: Plan gap in_progress on arc_062_rule_apprehension.
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260521-008 -- OCD battery completeness (V3-EXQ-460..468)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 40
-- **Gap(s):** commitment_closure:GAP-4
-- **Owner EXQ:** V3-EXQ-592
-- **Why now:** Phase 2 DONE. V3-EXQ-592 re-queued 2026-05-21 (was dequeued without run). Monitor 592 on DLAPTOP-4.local; on PASS /queue-experiment Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b).
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260521-008
-Title: OCD battery completeness (V3-EXQ-460..468)
-Lane: experiment | Skill: /queue-experiment
-Status: partial
-Gap(s): commitment_closure:GAP-4
-Owner EXQ: V3-EXQ-592
-Claims: SD-034, MECH-266, MECH-267, MECH-268
-Why now: Phase 2 DONE. V3-EXQ-592 re-queued 2026-05-21 (was dequeued without run). Monitor 592 on DLAPTOP-4.local; on PASS /queue-experiment Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b).
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
@@ -836,6 +805,33 @@ Why now: active_conflict; directional_conflict_alert
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260521-008 -- OCD battery completeness (V3-EXQ-460..468)
+
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 43
+- **Gap(s):** commitment_closure:GAP-4
+- **Owner EXQ:** V3-EXQ-592
+- **Why now:** Phase 2 DONE. V3-EXQ-592 re-queued 2026-05-21 (was dequeued without run). Monitor 592 on DLAPTOP-4.local; on PASS /queue-experiment Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b).
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260521-008
+Title: OCD battery completeness (V3-EXQ-460..468)
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Gap(s): commitment_closure:GAP-4
+Owner EXQ: V3-EXQ-592
+Claims: SD-034, MECH-266, MECH-267, MECH-268
+Why now: Phase 2 DONE. V3-EXQ-592 re-queued 2026-05-21 (was dequeued without run). Monitor 592 on DLAPTOP-4.local; on PASS /queue-experiment Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b).
+
+Instructions:
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
+- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
 - Workset: http://localhost:8000/workset
 ```
 

@@ -242,6 +242,37 @@ def _proposed_experiments() -> list[dict]:
     ][:15]
 
 
+_EXQ_BASE_RE = re.compile(r"^(V3-EXQ-\d+)", re.IGNORECASE)
+
+
+def _exq_successor_of(base: str, qid: str) -> bool:
+    """True if qid is a lettered or rN suffix iteration of base (e.g. 008 -> 008r2, 008a)."""
+    if not qid or qid.upper() == base.upper():
+        return False
+    q = qid.upper()
+    b = base.upper()
+    if not q.startswith(b):
+        return False
+    suffix = q[len(b) :]
+    if not suffix:
+        return False
+    return bool(re.match(r"^[A-Z]+$", suffix)) or bool(re.match(r"^R\d+$", suffix))
+
+
+def _has_completed_successor(qid: str, completed_by_qid: dict[str, dict]) -> bool:
+    """True when a successor ran to PASS/FAIL (infra fix or scientific completion)."""
+    m = _EXQ_BASE_RE.match(str(qid))
+    if not m:
+        return False
+    base = m.group(1)
+    for other_qid, entry in completed_by_qid.items():
+        if not _exq_successor_of(base, other_qid):
+            continue
+        if entry.get("result") in ("PASS", "FAIL"):
+            return True
+    return False
+
+
 def _undiagnosed_errors(queue_items: list[dict]) -> list[dict]:
     queued_types = {
         (it.get("experiment_type") or "").lower()
@@ -253,6 +284,20 @@ def _undiagnosed_errors(queue_items: list[dict]) -> list[dict]:
         paths.append(RUNNER_STATUS)
     if RUNNER_STATUS_DIR.is_dir():
         paths.extend(sorted(RUNNER_STATUS_DIR.glob("*.json")))
+    completed_by_qid: dict[str, dict] = {}
+    for path in paths:
+        try:
+            st = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for entry in st.get("completed") or []:
+            if not isinstance(entry, dict):
+                continue
+            qid = entry.get("queue_id") or ""
+            if qid and qid not in completed_by_qid:
+                completed_by_qid[qid] = entry
+            elif qid and entry.get("result") != "ERROR":
+                completed_by_qid[qid] = entry
     seen: set[str] = set()
     for path in paths:
         try:
@@ -271,6 +316,8 @@ def _undiagnosed_errors(queue_items: list[dict]) -> list[dict]:
                 continue
             seen.add(key)
             if et in queued_types:
+                continue
+            if qid and _has_completed_successor(qid, completed_by_qid):
                 continue
             errors.append(entry)
     return errors[:20]
