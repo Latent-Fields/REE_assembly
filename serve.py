@@ -62,6 +62,7 @@ HEARTBEAT_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_heartbeats"  # 
 COMMANDS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_commands"     # per-machine command queues
 RUNNER_LOG = SERVE_DIR / "runner.log"
 PLANNING_DIR = SERVE_DIR / "evidence" / "planning"
+WORKSET_JSON_FILE = PLANNING_DIR / "inter_governance_workset.v1.json"
 
 # Command kinds the runner accepts (mirrors ree-v3/runner_remote_control.VALID_COMMAND_KINDS)
 VALID_REMOTE_COMMAND_KINDS = (
@@ -1325,6 +1326,45 @@ def read_closure() -> dict:
     }
 
 
+def read_workset() -> dict:
+    """Load inter-governance workset from generate_inter_governance_workset.py."""
+    empty = {
+        "schema_version": "inter_governance_workset/v1",
+        "generated_at": None,
+        "generator": "scripts/generate_inter_governance_workset.py",
+        "summary": {
+            "total": 0,
+            "ready": 0,
+            "in_flight": 0,
+            "blocked": 0,
+            "pending_review_count": 0,
+            "queue_pending": 0,
+            "live_exqs": [],
+        },
+        "items": [],
+        "references": {
+            "closure_v3": "/closure",
+            "workset_page": "/workset",
+            "machines": "/machines",
+            "explorer": "/explorer.html",
+        },
+        "empty_note": (
+            "No workset yet. Run /inter-governance-brief or "
+            "python scripts/generate_inter_governance_workset.py"
+        ),
+    }
+    if not WORKSET_JSON_FILE.exists():
+        return empty
+    try:
+        data = json.loads(WORKSET_JSON_FILE.read_text(encoding="utf-8"))
+        if isinstance(data, dict) and isinstance(data.get("items"), list):
+            return data
+    except Exception:
+        pass
+    empty["empty_note"] = "Workset file unreadable."
+    return empty
+
+
 def _machine_safe_filename(machine: str) -> str:
     keep = "-_."
     return "".join(c if (c.isalnum() or c in keep) else "_" for c in machine)
@@ -2148,9 +2188,25 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.send_response(404)
                 self.end_headers()
             return
+        if path == "/api/workset":
+            body = json.dumps(read_workset(), indent=2, default=str).encode()
+            self._json_response(body)
+            return
         if path == "/api/closure":
             body = json.dumps(read_closure(), indent=2, default=str).encode()
             self._json_response(body)
+            return
+        if path in ("/workset", "/workset.html"):
+            workset_page = SERVE_DIR / "workset.html"
+            if workset_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(workset_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
             return
         if path in ("/closure", "/closure.html"):
             closure_page = SERVE_DIR / "closure.html"

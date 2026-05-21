@@ -1,0 +1,272 @@
+<!doctype html>
+<!-- WORKSET_VERSION: 2026-05-21.1 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>REE Inter-Governance Workset</title>
+<style>
+  :root {
+    --bg-0: #0d1117;
+    --bg-1: #161b22;
+    --bg-2: #1c2128;
+    --bg-3: #22272e;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --st-ready: #2ea043;
+    --st-flight: #58a6ff;
+    --st-blocked: #f85149;
+    --st-partial: #d29922;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg-0); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+  }
+  header.bar {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 10px 18px; background: var(--bg-1);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+  }
+  header.bar h1 { margin: 0; font-size: 15px; font-weight: 600; }
+  header.bar .meta { color: var(--muted); font-size: 11px; }
+  header.bar .links { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+  header.bar .links a {
+    color: var(--muted); text-decoration: none; font-size: 12px;
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  header.bar .links a:hover { color: var(--text); border-color: var(--accent); }
+  .summary {
+    padding: 12px 18px; background: var(--bg-1);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px;
+  }
+  .summary .chip {
+    padding: 4px 10px; border-radius: 12px; background: var(--bg-2);
+    border: 1px solid var(--border);
+  }
+  .toolbar {
+    padding: 8px 18px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .toolbar button, .toolbar select {
+    background: var(--bg-3); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 4px 10px; font-size: 11px; cursor: pointer;
+  }
+  .toolbar button.active { background: var(--accent); color: #0d1117; font-weight: 600; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px; padding: 14px 18px 40px;
+  }
+  .card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .card.hidden { display: none; }
+  .card .top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+  .card h2 { margin: 0; font-size: 13px; font-weight: 600; line-height: 1.35; }
+  .card .id { font-size: 10px; color: var(--muted); font-family: ui-monospace, monospace; }
+  .badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .badge {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 8px; letter-spacing: 0.03em;
+  }
+  .badge.lane { background: #388bfd33; color: #79c0ff; }
+  .badge.status-ready { background: #2ea04333; color: #56d364; }
+  .badge.status-in_flight { background: #58a6ff33; color: #79c0ff; }
+  .badge.status-blocked { background: #f8514933; color: #ff7b72; }
+  .badge.status-partial, .badge.status-in_progress { background: #d2992233; color: #e3b341; }
+  .why { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .meta-row { font-size: 10px; color: var(--muted); }
+  .actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .actions button, .actions a {
+    font-size: 10px; padding: 4px 8px; border-radius: 4px;
+    border: 1px solid var(--border); background: var(--bg-3);
+    color: var(--text); cursor: pointer; text-decoration: none;
+  }
+  .actions button:hover, .actions a:hover { border-color: var(--accent); }
+  .actions button.copied { border-color: var(--st-ready); color: var(--st-ready); }
+  details.brief summary { cursor: pointer; font-size: 11px; color: var(--accent); }
+  details.brief pre {
+    margin: 8px 0 0; padding: 8px; background: var(--bg-0);
+    border: 1px solid var(--border); border-radius: 4px;
+    font-size: 10px; white-space: pre-wrap; max-height: 200px; overflow: auto;
+  }
+  .empty {
+    padding: 40px 18px; text-align: center; color: var(--muted);
+  }
+  #toast {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: var(--bg-3); border: 1px solid var(--st-ready);
+    padding: 8px 16px; border-radius: 20px; font-size: 12px;
+    opacity: 0; transition: opacity 0.25s; pointer-events: none; z-index: 20;
+  }
+  #toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <h1>Inter-Governance Workset</h1>
+  <span class="meta" id="hdr-meta">loading...</span>
+  <nav class="links">
+    <a href="/explorer.html">Explorer</a>
+    <a href="/closure">Closure (V3)</a>
+    <a href="/machines">Machines</a>
+    <a href="/brain-map">Brain Map</a>
+  </nav>
+</header>
+
+<section class="summary" id="summary-bar"></section>
+
+<div class="toolbar" id="toolbar">
+  <span style="color:var(--muted);font-size:11px;">Filter</span>
+  <button type="button" data-f="all" class="active">all</button>
+  <button type="button" data-f="ready">ready</button>
+  <button type="button" data-f="in_flight">in flight</button>
+  <button type="button" data-f="blocked">blocked</button>
+  <button type="button" data-f="governance">governance</button>
+  <button type="button" data-f="experiment">experiment</button>
+  <button type="button" data-f="substrate">substrate</button>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" hidden></div>
+<div id="toast"></div>
+
+<script>
+'use strict';
+
+let WS = null;
+let FILTER = 'all';
+
+async function load() {
+  const r = await fetch('/api/workset');
+  WS = await r.json();
+  const gen = WS.generated_at || 'never';
+  document.getElementById('hdr-meta').textContent =
+    (WS.schema_version || '?') + ' | generated ' + gen +
+    ' | ' + (WS.items || []).length + ' packages';
+  renderSummary();
+  renderCards();
+}
+
+function renderSummary() {
+  const s = WS.summary || {};
+  const el = document.getElementById('summary-bar');
+  el.innerHTML =
+    '<span class="chip">total <b>' + (s.total || 0) + '</b></span>' +
+    '<span class="chip">ready <b>' + (s.ready || 0) + '</b></span>' +
+    '<span class="chip">in flight <b>' + (s.in_flight || 0) + '</b></span>' +
+    '<span class="chip">blocked <b>' + (s.blocked || 0) + '</b></span>' +
+    '<span class="chip">pending review <b>' + (s.pending_review_count || 0) + '</b></span>' +
+    '<span class="chip">queue pending <b>' + (s.queue_pending || 0) + '</b></span>' +
+    (s.live_exqs && s.live_exqs.length
+      ? '<span class="chip">live: ' + s.live_exqs.map(escapeHtml).join(', ') + '</span>'
+      : '');
+}
+
+function matchFilter(it) {
+  if (FILTER === 'all') return true;
+  if (FILTER === 'ready' || FILTER === 'in_flight' || FILTER === 'blocked') {
+    return it.status === FILTER;
+  }
+  return it.lane === FILTER;
+}
+
+function renderCards() {
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  grid.innerHTML = '';
+  const items = (WS.items || []).filter(matchFilter);
+  if (!items.length) {
+    empty.hidden = false;
+    empty.textContent = WS.empty_note ||
+      'No work packages match this filter. Run /inter-governance-brief to regenerate.';
+    return;
+  }
+  empty.hidden = true;
+  for (const it of items) {
+    const card = document.createElement('article');
+    card.className = 'card';
+    const stCls = 'status-' + (it.status || 'ready').replace(/-/g, '_');
+    let badges =
+      '<span class="badge lane">' + escapeHtml(it.lane || '?') + '</span>' +
+      '<span class="badge ' + stCls + '">' + escapeHtml(it.status || '?') + '</span>' +
+      '<span class="badge">P' + escapeHtml(String(it.priority != null ? it.priority : '?')) + '</span>';
+    if (it.severity) {
+      badges += '<span class="badge">' + escapeHtml(it.severity) + '</span>';
+    }
+    let meta = '';
+    if (it.owner_exq) meta += 'EXQ: ' + escapeHtml(it.owner_exq) + ' | ';
+    if (it.gap_ids && it.gap_ids.length) meta += 'gap: ' + escapeHtml(it.gap_ids.join(', '));
+    if (it.blocked_by && it.blocked_by.length) {
+      meta += (meta ? ' | ' : '') + 'blocked: ' + escapeHtml(it.blocked_by.join('; '));
+    }
+    const links = (it.closure_links || []).map((u, i) =>
+      '<a href="' + escapeHtml(u) + '" target="_blank" rel="noopener">closure' +
+      (it.gap_ids && it.gap_ids[i] ? ' ' + escapeHtml(it.gap_ids[i].split(':').pop()) : '') + '</a>'
+    ).join(' ');
+    card.innerHTML =
+      '<div class="top"><div><div class="id">' + escapeHtml(it.id || '') + '</div>' +
+      '<h2>' + escapeHtml(it.title || '') + '</h2></div></div>' +
+      '<div class="badges">' + badges + '</div>' +
+      '<div class="why">' + escapeHtml(it.why_now || '') + '</div>' +
+      '<div class="meta-row">Skill: <code>' + escapeHtml(it.skill || '') + '</code>' +
+      (meta ? ' | ' + meta : '') + '</div>' +
+      '<details class="brief"><summary>Agent brief</summary><pre>' +
+      escapeHtml(it.agent_brief || '') + '</pre></details>' +
+      '<div class="actions">' +
+      '<button type="button" data-copy="' + escapeAttr(it.agent_brief || '') + '">Copy brief</button>' +
+      links +
+      '</div>';
+    grid.appendChild(card);
+  }
+  grid.querySelectorAll('button[data-copy]').forEach(btn => {
+    btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy'), btn));
+  });
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text || '').then(() => {
+    btn.classList.add('copied');
+    btn.textContent = 'Copied';
+    toast('Brief copied to clipboard');
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy brief'; }, 1500);
+  }).catch(() => toast('Copy failed -- select text in brief panel'));
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function escapeAttr(s) {
+  return escapeHtml(s).replace(/`/g, '&#96;');
+}
+
+document.getElementById('toolbar').querySelectorAll('button[data-f]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    FILTER = btn.getAttribute('data-f') || 'all';
+    document.querySelectorAll('#toolbar button[data-f]').forEach(b =>
+      b.classList.toggle('active', b === btn));
+    renderCards();
+  });
+});
+
+load();
+</script>
+</body>
+</html>
