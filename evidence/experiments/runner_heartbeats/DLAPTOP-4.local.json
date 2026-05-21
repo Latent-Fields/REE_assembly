@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-21T09:44:46Z",
+  "last_tick_utc": "2026-05-21T10:21:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-592",
   "current_exq_started_utc": "2026-05-21T09:02:58.534777+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / EMERGENT",
-    "runs_done": 3,
+    "run_label": "Seed 44 / EMERGENT",
+    "runs_done": 6,
     "runs_total": 9,
-    "episodes_done": 80,
+    "episodes_done": 40,
     "episodes_total": 400,
-    "overall_pct": 35.6
+    "overall_pct": 67.8
   },
-  "seconds_elapsed": 2508,
-  "seconds_remaining": 1282,
+  "seconds_elapsed": 4733,
+  "seconds_remaining": 1806,
   "recent_lines": [
-    "[seed=42] C1=FAIL C2=FAIL C3=FAIL => FAIL",
-    "Seed 43 Condition EMERGENT",
-    "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/400  rv=0.00000  reward=-0.1832"
+    "[seed=43] STARVED P0: aborted=False reason='' final_rv=0.00000 C3=FAIL",
+    "verdict: FAIL",
+    "[seed=43] C1=PASS C2=PASS C3=FAIL => FAIL",
+    "Seed 44 Condition EMERGENT",
+    "[P0 probe] ep 40/400  rv=0.00001  threshold=0.4  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
