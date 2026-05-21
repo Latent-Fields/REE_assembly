@@ -1,0 +1,218 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_592_gap11_pilot_committed_mode_curriculum_20260521T104724Z_v3",
+  "queue_id": "V3-EXQ-592",
+  "experiment_type": "v3_exq_592_gap11_pilot_committed_mode_curriculum",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260521T104724Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "MECH-090": "does_not_support"
+  },
+  "supersedes": "v3_exq_461_mech090_sd033a_delayed_reward_persistence",
+  "thresholds": {
+    "C1_committed_steps_floor": 100,
+    "C2_committed_steps_floor": 100,
+    "C3_abort_gate_required": true,
+    "pass_seeds_required": 2,
+    "p0_budget": 400,
+    "p0_mid_probe_frac": 0.6
+  },
+  "aggregate": {
+    "seeds_passing": 0,
+    "c1_emergent_mean_per_ep_by_seed": [
+      19.14,
+      196.28,
+      151.46
+    ],
+    "c1_emergent_median": 151.46,
+    "c2_forced_mean_per_ep_by_seed": [
+      21.7,
+      200.0,
+      143.46
+    ],
+    "c3_starved_abort_all_seeds": false
+  },
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "seed_pass": false,
+      "p0_emergent": {
+        "converged": true,
+        "aborted": false,
+        "abort_reason": "",
+        "n_episodes": 120,
+        "final_rv": 2.7516621426759737e-05,
+        "commit_threshold_used": 0.4,
+        "probe_log": [
+          {
+            "episode": 40,
+            "running_variance": 2.820378116353808e-05,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          },
+          {
+            "episode": 80,
+            "running_variance": 2.9570263179944183e-05,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          },
+          {
+            "episode": 120,
+            "running_variance": 2.7516621426759737e-05,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          }
+        ]
+      },
+      "p2_emergent": {
+        "total_committed_steps": 957,
+        "mean_committed_steps_per_ep": 19.14,
+        "hold_rate": 1.0,
+        "rule_state_norm": 0.0,
+        "n_eval_episodes": 50
+      },
+      "p2_forced": {
+        "total_committed_steps": 1085,
+        "mean_committed_steps_per_ep": 21.7,
+        "hold_rate": 1.0,
+        "rule_state_norm": 0.0,
+        "n_eval_episodes": 50
+      },
+      "p0_starved": {
+        "aborted": false,
+        "abort_reason": "",
+        "n_episodes": 20,
+        "final_rv": 9.737231669128302e-06
+      },
+      "c1_emergent_committed_floor": false,
+      "c2_forced_committed_floor": false,
+      "c3_starved_abort_gate": false
+    },
+    {
+      "seed": 43,
+      "seed_pass": false,
+      "p0_emergent": {
+        "converged": true,
+        "aborted": false,
+        "abort_reason": "",
+        "n_episodes": 120,
+        "final_rv": 2.0453425838950065e-06,
+        "commit_threshold_used": 0.4,
+        "probe_log": [
+          {
+            "episode": 40,
+            "running_variance": 1.7992195249684079e-06,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          },
+          {
+            "episode": 80,
+            "running_variance": 1.3268943662792467e-06,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          },
+          {
+            "episode": 120,
+            "running_variance": 2.0453425838950065e-06,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          }
+        ]
+      },
+      "p2_emergent": {
+        "total_committed_steps": 9814,
+        "mean_committed_steps_per_ep": 196.28,
+        "hold_rate": 1.0,
+        "rule_state_norm": 0.0,
+        "n_eval_episodes": 50
+      },
+      "p2_forced": {
+        "total_committed_steps": 10000,
+        "mean_committed_steps_per_ep": 200.0,
+        "hold_rate": 1.0,
+        "rule_state_norm": 0.0,
+        "n_eval_episodes": 50
+      },
+      "p0_starved": {
+        "aborted": false,
+        "abort_reason": "",
+        "n_episodes": 20,
+        "final_rv": 1.4698217826358013e-06
+      },
+      "c1_emergent_committed_floor": true,
+      "c2_forced_committed_floor": true,
+      "c3_starved_abort_gate": false
+    },
+    {
+      "seed": 44,
+      "seed_pass": false,
+      "p0_emergent": {
+        "converged": true,
+        "aborted": false,
+        "abort_reason": "",
+        "n_episodes": 120,
+        "final_rv": 5.325314854791386e-06,
+        "commit_threshold_used": 0.4,
+        "probe_log": [
+          {
+            "episode": 40,
+            "running_variance": 7.393386818257834e-06,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          },
+          {
+            "episode": 80,
+            "running_variance": 3.7214479581376117e-06,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          },
+          {
+            "episode": 120,
+            "running_variance": 5.325314854791386e-06,
+            "effective_threshold": 0.4,
+            "converging": true,
+            "nav_competence": 0.0
+          }
+        ]
+      },
+      "p2_emergent": {
+        "total_committed_steps": 7573,
+        "mean_committed_steps_per_ep": 151.46,
+        "hold_rate": 1.0,
+        "rule_state_norm": 0.0,
+        "n_eval_episodes": 50
+      },
+      "p2_forced": {
+        "total_committed_steps": 7173,
+        "mean_committed_steps_per_ep": 143.46,
+        "hold_rate": 1.0,
+        "rule_state_norm": 0.0,
+        "n_eval_episodes": 50
+      },
+      "p0_starved": {
+        "aborted": false,
+        "abort_reason": "",
+        "n_episodes": 20,
+        "final_rv": 4.1092897134830114e-05
+      },
+      "c1_emergent_committed_floor": true,
+      "c2_forced_committed_floor": true,
+      "c3_starved_abort_gate": false
+    }
+  ],
+  "notes": "GAP-11 pilot: validates committed_mode_curriculum.py harness. EMERGENT arm uses run_p0_warmup + run_p2_eval (no scripted rv). FORCED_RV arm (O-2 contrast) uses clone_trained_agent + forced rv=0.001. STARVED arm validates abort gate (R1 escalation). On PASS: queue V3-EXQ-460b/463b/464b/466b/467b/468b governance arms."
+}
