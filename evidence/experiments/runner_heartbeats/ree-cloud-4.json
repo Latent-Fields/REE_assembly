@@ -1,46 +1,29 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-21T10:49:20Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 8,
-  "queue_id_at_head": "V3-EXQ-599",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-588b",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T05:37:58.598953+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-524a",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T06:02:20.835477+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-595",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T07:47:14.169641+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-543k",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T08:31:27.425090+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490g",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T09:51:43.443844+00:00"
-    }
+  "last_tick_utc": "2026-05-21T10:51:28Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-605",
+  "current_exq_started_utc": "2026-05-21T10:51:23.687740+00:00",
+  "current_title": "Q-043 MECH-313 vs MECH-314 weight calibration sweep",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_a0",
+    "runs_done": 0,
+    "runs_total": 27,
+    "episodes_done": 0,
+    "episodes_total": 30,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 14400,
+  "recent_lines": [
+    "Seed 42 Condition ARM_a0.1_c1x"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1503550,
   "runner_version": null,
   "gpu": {
