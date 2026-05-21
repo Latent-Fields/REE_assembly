@@ -1,0 +1,44 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_607_mech340_persistence_efficacy_gate_validation_20260521T131749Z_v3",
+  "experiment_type": "v3_exq_607_mech340_persistence_efficacy_gate_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-21T13:17:49.723137Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-340"
+  ],
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-340": "supports"
+  },
+  "evidence_direction_note": "MECH-340 persistence/efficacy gate substrate validation (diagnostic; NOT governance evidence). Confirms gate-off is bit-identical, licensed appraisal admits, disengaged appraisal excludes, recoverability does not drive the gate, and unattainability=1 with license below floor excludes (stuck-on failure signature). Agent appraisal wiring deferred.",
+  "outcome": "PASS",
+  "metrics": {
+    "T1_backward_compat_gate_off": {
+      "pass": true,
+      "n_base": 1,
+      "n_stressed": 1
+    },
+    "T2_persistence_licensed_admits": {
+      "pass": true,
+      "n_entries": 1,
+      "license": 1.0
+    },
+    "T3_disengaged_excludes": {
+      "pass": true,
+      "n_entries": 0,
+      "n_below_persistence": 1
+    },
+    "T4_recoverability_invariant": {
+      "pass": true,
+      "n_entries": 0
+    },
+    "T5_stuck_on_excludes": {
+      "pass": true,
+      "n_entries": 0,
+      "persistence_license": 0.0
+    }
+  },
+  "dry_run": false
+}
