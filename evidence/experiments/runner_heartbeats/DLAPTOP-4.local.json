@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-21T15:49:07Z",
+  "last_tick_utc": "2026-05-21T15:50:10Z",
   "state": "running",
   "current_exq": "V3-EXQ-592",
   "current_exq_started_utc": "2026-05-21T14:27:06.099342+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / FORCED_RV",
-    "runs_done": 7,
+    "run_label": "Seed 44 / STARVED",
+    "runs_done": 8,
     "runs_total": 9,
     "episodes_done": 0,
     "episodes_total": 400,
-    "overall_pct": 77.8
+    "overall_pct": 88.9
   },
-  "seconds_elapsed": 4581,
-  "seconds_remaining": 1262,
+  "seconds_elapsed": 4644,
+  "seconds_remaining": 580,
   "recent_lines": [
-    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[seed=44] P0 EMERGENT: converged=True aborted=False final_rv=0.00001 n_eps=120",
-    "[seed=44] EMERGENT P2: mean_committed/ep=151.5 hold_rate=1.000 C1=PASS",
     "verdict: PASS",
-    "Seed 44 Condition FORCED_RV"
+    "Seed 44 Condition FORCED_RV",
+    "[seed=44] FORCED_RV P2: mean_committed/ep=143.5 hold_rate=1.000 C2=PASS",
+    "verdict: PASS",
+    "Seed 44 Condition STARVED"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
