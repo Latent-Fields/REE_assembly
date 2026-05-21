@@ -1,34 +1,47 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-21T10:47:00Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-592",
-  "current_exq_started_utc": "2026-05-21T09:02:58.534777+00:00",
-  "current_title": "GAP-11 pilot: committed-mode curriculum harness validation (EXP-0157)",
-  "current_claim_id": "MECH-090",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / STARVED",
-    "runs_done": 8,
-    "runs_total": 9,
-    "episodes_done": 8,
-    "episodes_total": 400,
-    "overall_pct": 89.1
-  },
-  "seconds_elapsed": 6242,
-  "seconds_remaining": 761,
-  "recent_lines": [
-    "verdict: PASS",
-    "Seed 44 Condition STARVED",
-    "[P0 probe] ep 4/20  rv=0.00003  threshold=0.0001  converging=True",
-    "[P0 probe] ep 8/20  rv=0.00003  threshold=0.0001  converging=True",
-    "[P0 train] ep 8/20  rv=0.00003  reward=-1.1445"
+  "last_tick_utc": "2026-05-21T13:24:14Z",
+  "state": "paused",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 4,
+  "queue_id_at_head": "V3-EXQ-590a",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-577a",
+      "result": "PASS",
+      "completed_at": "2026-05-16T23:08:05.215070+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-543e",
+      "result": "FAIL",
+      "completed_at": "2026-05-17T01:02:03.306065+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-543f",
+      "result": "FAIL",
+      "completed_at": "2026-05-17T14:03:20.677794+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-585",
+      "result": "PASS",
+      "completed_at": "2026-05-17T14:03:34.757637+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-589",
+      "result": "PASS",
+      "completed_at": "2026-05-18T13:49:05.739486+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
-  "runner_pid": 57658,
+  "runner_pid": 42939,
   "runner_version": null,
   "gpu": {
     "available": false
