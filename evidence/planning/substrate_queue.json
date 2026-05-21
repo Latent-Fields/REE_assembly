@@ -2571,8 +2571,8 @@
     {
       "sd_id": "ARC-062",
       "title": "Rule-apprehension architectural slot, weak reading: gated-policy heads + learned context discriminator. V3 instantiation of the rule-creating substrate MECH-309 identifies as logically necessary.",
-      "status": "gap_b_mode_separation_floor_landed_pending_v3_exq_543k_evidence",
-      "ready": true,
+      "status": "phase_1_implemented_evidence_gated_543k_598",
+      "ready": false,
       "ready_blocked_by": null,
       "design_doc": "evidence/planning/arc_062_rule_apprehension_plan.md",
       "depends_on_unresolved": [],
@@ -2624,8 +2624,12 @@
       "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4). || NEXT SUBSTRATE STEP (post V3-EXQ-543e autopsy, user-gated 2026-05-17): autopsy 'option 2' head-input first-action one-hot augmentation -- feed the gated-policy scoring heads the first-action category directly (z_world alone is starved: E2 world-forward compresses SP-CEM's ~5 first-action classes to ~0.22% of z_world magnitude). Phase-1 module/contract is implemented and SP-CEM (ARC-065) is now the main-path default; the head-input contract is the remaining substrate bottleneck. The falsifier re-issue V3-EXQ-543f must ALSO set dacc_weight>0 + a pre-flight non-degeneracy assertion (the 543d/543e dACC factorial axis was never live on any substrate due to the dacc_weight=0.0 DACCtoE3Adapter zero-return path).",
       "priority": 1,
       "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
-      "last_seen_session": "governance-20260520T222744Z",
-      "last_seen_note": "2026-05-20: GAP-B mode_separation_floor substrate landed; V3-EXQ-543k queued (supersedes 543i). GAP-C/D plan-closed at substrate; evidence gates 543k + V3-EXQ-598. No new indexed pending_review items this cycle."
+      "last_seen_session": "igw-024-arc062-substrate-ready-land-20260521T074615Z",
+      "last_seen_note": "IGW-024 landed: Phase 1 (GAP-A) substrate-ready. gated_policy.py on ree-v3 main; V3-EXQ-542a PASS. ready=false; evidence gated 543k+598.",
+      "implementation_status": "implemented",
+      "validation_experiment": "V3-EXQ-542a",
+      "implemented_session": "arc062-gap-a-phase1-20260509",
+      "implemented_utc": "2026-05-09T20:22:11Z"
     },
     {
       "sd_id": "ARC-064",

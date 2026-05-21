@@ -26609,10 +26609,11 @@
   evidence_quality_note: >
     Registered 2026-05-08 as the V3 architectural slot for the rule-
     apprehension layer the MECH-309 / SD-054 substrate-purpose-validation
-    discussion identifies as logically necessary. Not yet implemented.
-    Implementation cost estimate: ~150-300 lines across ree_core/agent.py
-    or a new ree_core/policy/gated_policy.py module + REEConfig flag +
-    an experiment script. Validation: discriminative-pair experiment
+    discussion identifies as logically necessary. Phase 1 substrate IMPLEMENTED
+    2026-05-09 (gated_policy.py + agent wiring); substrate-readiness V3-EXQ-542a
+    PASS 2026-05-20 (UC1-UC6). Trained-policy behavioural validation remains
+    gated on V3-EXQ-543k + V3-EXQ-598. Original cost estimate (~150-300 lines)
+    superseded by landed module. Validation: discriminative-pair experiment
     (ARM_0 single-head E3 vs ARM_1 gated heads with learned context
     discriminator, both on SD-054 reef + food_attraction substrate);
     proposal in evidence/planning/experiment_proposals.v1.json.
@@ -26678,6 +26679,15 @@
     corrected: evidence_direction 'mixed' -> non_contributory all
     claims. pending_retest_after_substrate.
   implementation_note: >
+    2026-05-21 IGW-024 substrate-ready reconcile: Phase 1 (GAP-A) IMPLEMENTED
+    2026-05-09 -- ree_core/policy/gated_policy.py (two heads + 3-stream
+    discriminator, REEConfig.use_gated_policy default OFF, contracts 7/7).
+    Canonical substrate-readiness V3-EXQ-542a PASS UC1-UC6 (2026-05-20 manifest;
+    dry-run re-verified 2026-05-21). substrate_queue ready=false;
+    v3_pending unchanged (trained-policy evidence still gated on V3-EXQ-543k
+    + V3-EXQ-598). Follow-ons on main: first-action onehot, differential heads,
+    mode_separation_floor (see entries below).
+
     2026-05-18 (implement-substrate, NO confidence/promotion/flag change --
     governance gated on V3-EXQ-543i). GatedPolicy two-head reparameterization
     landed in ree-v3/ree_core/policy/gated_policy.py behind
