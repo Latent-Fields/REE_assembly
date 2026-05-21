@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-21T15:45:56Z",
+  "last_tick_utc": "2026-05-21T15:47:00Z",
   "state": "running",
   "current_exq": "V3-EXQ-592",
   "current_exq_started_utc": "2026-05-21T14:27:06.099342+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / EMERGENT",
-    "runs_done": 6,
+    "run_label": "Seed 44 / FORCED_RV",
+    "runs_done": 7,
     "runs_total": 9,
-    "episodes_done": 120,
+    "episodes_done": 0,
     "episodes_total": 400,
-    "overall_pct": 70.0
+    "overall_pct": 77.8
   },
-  "seconds_elapsed": 4390,
-  "seconds_remaining": 1247,
+  "seconds_elapsed": 4454,
+  "seconds_remaining": 1262,
   "recent_lines": [
-    "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/400  rv=0.00000  reward=-0.7905",
-    "[P0 probe] ep 120/400  rv=0.00001  threshold=0.4  converging=True",
     "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[seed=44] P0 EMERGENT: converged=True aborted=False final_rv=0.00001 n_eps=120"
+    "[seed=44] P0 EMERGENT: converged=True aborted=False final_rv=0.00001 n_eps=120",
+    "[seed=44] EMERGENT P2: mean_committed/ep=151.5 hold_rate=1.000 C1=PASS",
+    "verdict: PASS",
+    "Seed 44 Condition FORCED_RV"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
