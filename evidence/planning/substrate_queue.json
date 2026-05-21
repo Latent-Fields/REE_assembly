@@ -1144,7 +1144,7 @@
           "target": "approach_commit > 0 in the SD-036-only ON_OFF baseline so the falsifiable PWS-hyperphagia / narcolepsy-cataplexy phenotypes can be discriminated. Likely a policy-layer / cue-side bridge issue (MECH-295 candidate) -- not solvable by tuning warmup alone. Future validation requires either (i) a benefit task tuned so baseline drives non-zero approach, or (ii) explicit liking-bridge intervention test (MECH-295 falsifiable primary)."
         }
       ],
-      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Substrate-readiness closed IGW-20260521-020: V3-EXQ-483b PASS (2026-05-08). MECH-286 override-gated sleep onset IMPLEMENTED 2026-05-21 (sleep_onset_gate.py + SleepLoopManager; V3-EXQ-599 validation queued). MECH-282 (LPB interoceptive channel) still separate. Tier-1 behavioural evidence: V3-EXQ-483c queued (goal_pipeline GAP-4 fishtank).",
+      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites). Substrate-readiness V3-EXQ-483b PASS. MECH-286 sleep onset IMPLEMENTED 2026-05-21 (V3-EXQ-599 queued). MECH-282 LPB interoceptive routing IMPLEMENTED 2026-05-21 (lpb_interoceptive_routing.py + SD-037 split recruitment; V3-EXQ-600 substrate diagnostic queued). Tier-1 behavioural evidence: V3-EXQ-483c queued.",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
       "last_seen_session": "igw-sd037-substrate-ready-20260521T021603Z",
@@ -1183,7 +1183,7 @@
             "metric_notes": "supports SD-037/MECH-280/MECH-281; PAG ratio 1.875x; approach_commit=0 (behavioural path N/A)"
           }
         ],
-        "current_blocker": "Policy-layer approach_commit=0 on standard CausalGridWorldV2 benefit task; MECH-282/MECH-286 not implemented. Evidence closure via V3-EXQ-483c under GAP-4 operating substrate.",
+        "current_blocker": "Policy-layer approach_commit=0 on standard CausalGridWorldV2 benefit task. MECH-282/MECH-286 substrate landed; behavioural dissociation via V3-EXQ-600/483c. Evidence closure via V3-EXQ-483c under GAP-4 operating substrate.",
         "prediction": "V3-EXQ-483c Tier-1 may show cue_fires/approach_commit lift ON_ON vs OFF_OFF under fishtank+goal_stream; if still flat, blocker is upstream of SD-037 (MECH-295 bridge), not override wiring."
       }
     },

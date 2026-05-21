@@ -146,6 +146,15 @@ test: setting override_signal near zero should produce uncontrolled sleep intrus
 (narcolepsy phenotype, distinct from MECH-281 cataplexy but produced by the same lesion —
 predicting clinical co-occurrence).
 
+**Substrate implementation (MECH-286):** IMPLEMENTED 2026-05-21.
+`ree_core/sleep/sleep_onset_gate.py` (`evaluate_sleep_onset_permit`) wired into
+`SleepLoopManager._run_cycle` before `run_sleep_cycle`. Config:
+`REEConfig.use_mech286_sleep_onset_gate` (default False),
+`mech286_theta_sleep_permit` (0.5), `mech286_theta_sleep_recruit` (0.3),
+`mech286_threat_tonic_threshold` (0.4). Diagnostics on blocked or completed cycles:
+`mech286_sleep_permitted`, `mech286_override_signal`, `mech286_staleness_max`,
+`mech286_z_harm_a_norm`. Validation: V3-EXQ-599 queued.
+
 **Tertiary prediction (schema-repair starvation):** chronic hyperarousal sustained over
 many cycles should produce stable accumulation of MECH-284 staleness with no clearance,
 observable as deteriorating schema fit on novel inputs even with intact waking computation.
@@ -162,6 +171,8 @@ deprivation as established psychosis precipitant; orexin-receptor antagonist cli
 in chronic insomnia (suvorexant, lemborexant).
 
 ### MECH-282: LPB interoceptive routing into harm-arbitration
+
+**Status:** IMPLEMENTED 2026-05-21 (substrate; validation V3-EXQ-600 queued).
 
 **Statement:** A lateral-parabrachial-nucleus analog (LPB) routes interoceptive
 distress signals (visceral malaise, taste-aversion analogs, hypoxia, hypoglycemia) into

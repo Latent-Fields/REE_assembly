@@ -22362,9 +22362,14 @@
     Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
     section "MECH-282: LPB interoceptive routing into harm-arbitration".
   evidence_quality_note: >
-    Substrate not implemented. Strong biological evidence (PBN-CGRP
-    literature on interoceptive distress). Promotion requires substrate
-    implementation and the dissociation + lesion tests above.
+    Substrate IMPLEMENTED 2026-05-21 in ree_core/regulators/lpb_interoceptive_routing.py
+    (LPBInteroceptiveRouter). Master switch REEConfig.use_lpb_interoceptive_routing
+    (default False). Masks resource-field channels from harm_obs before HarmEncoder
+    (external threat in z_harm); populates LatentState.z_harm_intero from drive_level
+    + harm_obs_a resource slice. When coupled with use_broadcast_override=True,
+    override recruitment uses intero magnitude (MECH-282 split); PAG freeze duration
+    uses external magnitude. Substrate-readiness diagnostic V3-EXQ-600 queued.
+    Promotion still requires full dissociation + lesion behavioural evidence.
   location: docs/architecture/sd_037_broadcast_override_regulator.md
 
 - id: MECH-283
@@ -22681,10 +22686,10 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
-  implementation_note: "PARTIAL 2026-04-25: SD-037 override_signal source IMPLEMENTED (broadcast_override.py). MECH-286 sleep-onset gating (override_signal < theta_sleep_permit AND MECH-284 staleness > theta_sleep_recruit AND permissive threat context) NOT YET wired -- sleep-mode entry path remains as enter_offline_mode without these conditions. Stays v3_pending; NOT in SD-037 IGW-20260521-020 landing scope (separate /implement-substrate item). Substrate landing requires offline-state-machine work downstream of MECH-285."
+  implementation_note: "IMPLEMENTED 2026-05-21: ree_core/sleep/sleep_onset_gate.py + SleepLoopManager._run_cycle gate (override < mech286_theta_sleep_permit, max MECH-284 staleness > mech286_theta_sleep_recruit, z_harm_a tonic < mech286_threat_tonic_threshold). REEConfig.use_mech286_sleep_onset_gate default False. Validation V3-EXQ-599 queued. Evidence still pending."
   claim_level: mechanistic
   registered_utc: 2026-04-22
+  v3_pending: false
   depends_on:
     - SD-037    # parent: provides override_signal which gates the transition
     - MECH-284  # accumulates the staleness demand that motivates offline entry
