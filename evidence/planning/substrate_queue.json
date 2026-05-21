@@ -1144,7 +1144,7 @@
           "target": "approach_commit > 0 in the SD-036-only ON_OFF baseline so the falsifiable PWS-hyperphagia / narcolepsy-cataplexy phenotypes can be discriminated. Likely a policy-layer / cue-side bridge issue (MECH-295 candidate) -- not solvable by tuning warmup alone. Future validation requires either (i) a benefit task tuned so baseline drives non-zero approach, or (ii) explicit liking-bridge intervention test (MECH-295 falsifiable primary)."
         }
       ],
-      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Substrate-readiness closed IGW-20260521-020: V3-EXQ-483b PASS (2026-05-08, substrate-readiness fallback; override_mean>0.30, PAG ratio 1.875x). MECH-280/281 landed with SD-037; MECH-282 (LPB interoceptive channel) and MECH-286 (override-gated sleep entry) are NOT in this landing -- separate substrate items. Tier-1 behavioural evidence: V3-EXQ-483c queued (goal_pipeline GAP-4 fishtank). Behavioural PWS/narcolepsy ratios on standard grid still blocked by approach_commit=0 (MECH-295 / goal-seeding bridge territory).",
+      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites: PAG freeze-gate exit_threshold scaling, SalienceCoordinator external_task affinity bias, GoalState drive amplification). Substrate-readiness closed IGW-20260521-020: V3-EXQ-483b PASS (2026-05-08). MECH-286 override-gated sleep onset IMPLEMENTED 2026-05-21 (sleep_onset_gate.py + SleepLoopManager; V3-EXQ-599 validation queued). MECH-282 (LPB interoceptive channel) still separate. Tier-1 behavioural evidence: V3-EXQ-483c queued (goal_pipeline GAP-4 fishtank).",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
       "last_seen_session": "igw-sd037-substrate-ready-20260521T021603Z",
@@ -2541,7 +2541,7 @@
     {
       "sd_id": "ARC-062",
       "title": "Rule-apprehension architectural slot, weak reading: gated-policy heads + learned context discriminator. V3 instantiation of the rule-creating substrate MECH-309 identifies as logically necessary.",
-      "status": "phase_1_diffheads_insufficient_pending_strong_attractor_implementation",
+      "status": "gap_b_mode_separation_floor_landed_pending_v3_exq_543k_evidence",
       "ready": true,
       "ready_blocked_by": null,
       "design_doc": "evidence/planning/arc_062_rule_apprehension_plan.md",
