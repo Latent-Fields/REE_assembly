@@ -1,19 +1,41 @@
 {
   "schema_version": "v1",
-  "runner_pid": 670,
-  "runner_started_at": "2026-05-17T10:52:16.374621+00:00",
-  "last_updated": "2026-05-18T22:25:22.811508+00:00",
+  "runner_pid": 305734,
+  "runner_started_at": "2026-05-21T09:51:54.509116+00:00",
+  "last_updated": "2026-05-21T12:02:49.607673+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-587",
+      "queue_id": "V3-EXQ-590a",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "EXQ-ISEF-001: harm_gradient_enabled vs binary-contact residue geography formation (GAP-10)",
+      "claim_id": "MECH-314",
+      "title": "EXQ-ISEF-004 rerun: novelty bonus Goldilocks calibration with checkpoint/resume",
       "description": "",
-      "estimated_minutes": 1333.3,
-      "status": "claimed",
+      "estimated_minutes": 2000.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-605",
+      "backlog_id": "EVB-0229",
+      "claim_id": "",
+      "title": "Q-043 MECH-313 vs MECH-314 weight calibration sweep",
+      "description": "",
+      "estimated_minutes": 108.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-591",
+      "backlog_id": "",
+      "claim_id": "ARC-046",
+      "title": "EXQ-ISEF-005: 4-phase infant curriculum vs flat parameter baselines (GAP-14)",
+      "description": "",
+      "estimated_minutes": 4000.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2182,6 +2204,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_584_gap7_traj_cosine_validation_20260518T222522Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 1.6
+    },
+    {
+      "queue_id": "V3-EXQ-604",
+      "backlog_id": "EVB-0230",
+      "claim_id": "",
+      "title": "Q-044 MECH-314a/b/c sub-flavour independence ablation",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-604 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-604.json",
+      "started_at": "2026-05-21T10:51:21.208604+00:00",
+      "completed_at": "2026-05-21T11:21:11.359790+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_604_q044_mech314_subflavour_three_arm_ablation_20260521T112110Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1790.2
+    },
+    {
+      "queue_id": "V3-EXQ-601",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-269b-followup-A staleness-into-VsRolloutGate substrate validation",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_601_mech269b_followup_a_staleness_gate] acceptance={'c1_staleness_lookup_calls_on': True, 'c2_on_held_gt_off': True, 'c1_hits': 2, 'c2_hits': 2, 'n_seeds': 3, 'pass': True} outcome=PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-601 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-601.json",
+      "started_at": "2026-05-21T11:23:16.859961+00:00",
+      "completed_at": "2026-05-21T12:02:49.607149+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_601_mech269b_followup_a_staleness_gate/v3_exq_601_mech269b_followup_a_staleness_gate_20260521T120249Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2372.7
     }
   ]
 }

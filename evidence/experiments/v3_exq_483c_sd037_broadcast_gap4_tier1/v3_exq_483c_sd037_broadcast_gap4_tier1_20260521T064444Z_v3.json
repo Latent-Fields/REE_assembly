@@ -1,0 +1,363 @@
+{
+  "acceptance": {
+    "C1_cue_fires": true,
+    "C2_dacc_bias": false,
+    "C3_approach_commit": true,
+    "C3_lift_vs_baseline": false,
+    "C4_goal_active": true,
+    "baseline_arm_id": "OFF_OFF",
+    "gap4_arm_id": "ON_ON",
+    "pass": false
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-037",
+    "MECH-280",
+    "MECH-281"
+  ],
+  "elapsed_seconds": 9998.651372671127,
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-280": "unknown",
+    "MECH-281": "unknown",
+    "SD-037": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "experiment_type": "v3_exq_483c_sd037_broadcast_gap4_tier1",
+  "outcome": "FAIL",
+  "per_run": [
+    {
+      "action_counts": {
+        "0": 6,
+        "1": 681,
+        "2": 5,
+        "3": 1018,
+        "4": 4
+      },
+      "action_entropy": 0.7271307438670059,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1714,
+      "arm": "OFF_OFF",
+      "bridge_cue_fires": 26,
+      "bridge_write_fires": 197,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1714,
+      "goal_norm_peak": 0.19300977885723114,
+      "resource_contacts": 5,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1714
+    },
+    {
+      "action_counts": {
+        "0": 5,
+        "1": 489,
+        "2": 3,
+        "3": 1338,
+        "4": 14
+      },
+      "action_entropy": 0.6492119747961149,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1849,
+      "arm": "ON_OFF",
+      "bridge_cue_fires": 29,
+      "bridge_write_fires": 197,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1849,
+      "goal_norm_peak": 0.18902383744716644,
+      "resource_contacts": 7,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1849
+    },
+    {
+      "action_counts": {
+        "0": 6,
+        "1": 681,
+        "2": 5,
+        "3": 1018,
+        "4": 4
+      },
+      "action_entropy": 0.7271307438670059,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1714,
+      "arm": "OFF_ON",
+      "bridge_cue_fires": 26,
+      "bridge_write_fires": 199,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1714,
+      "goal_norm_peak": 0.19300977885723114,
+      "resource_contacts": 5,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1714
+    },
+    {
+      "action_counts": {
+        "0": 5,
+        "1": 489,
+        "2": 3,
+        "3": 1338,
+        "4": 14
+      },
+      "action_entropy": 0.6492119747961149,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1849,
+      "arm": "ON_ON",
+      "bridge_cue_fires": 29,
+      "bridge_write_fires": 198,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1849,
+      "goal_norm_peak": 0.18902383744716644,
+      "resource_contacts": 7,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1849
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 58
+      },
+      "action_entropy": 0.08591550133466311,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "OFF_OFF",
+      "bridge_cue_fires": 4,
+      "bridge_write_fires": 4,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192165732383728,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "4": 58
+      },
+      "action_entropy": 0.08591550133466311,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "ON_OFF",
+      "bridge_cue_fires": 3,
+      "bridge_write_fires": 3,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192165732383728,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 58
+      },
+      "action_entropy": 0.08591550133466311,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "OFF_ON",
+      "bridge_cue_fires": 4,
+      "bridge_write_fires": 5,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192165732383728,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "4": 58
+      },
+      "action_entropy": 0.08591550133466311,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "ON_ON",
+      "bridge_cue_fires": 3,
+      "bridge_write_fires": 4,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192165732383728,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "0": 303,
+        "2": 456,
+        "4": 34
+      },
+      "action_entropy": 0.8208244586526936,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 793,
+      "arm": "OFF_OFF",
+      "bridge_cue_fires": 12,
+      "bridge_write_fires": 40,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 793,
+      "goal_norm_peak": 0.29584240913391113,
+      "resource_contacts": 2,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 793
+    },
+    {
+      "action_counts": {
+        "0": 346,
+        "2": 770,
+        "3": 1,
+        "4": 37
+      },
+      "action_entropy": 0.7475297630380963,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1154,
+      "arm": "ON_OFF",
+      "bridge_cue_fires": 29,
+      "bridge_write_fires": 198,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1154,
+      "goal_norm_peak": 0.3095659613609314,
+      "resource_contacts": 5,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1154
+    },
+    {
+      "action_counts": {
+        "0": 303,
+        "2": 456,
+        "4": 34
+      },
+      "action_entropy": 0.8208244586526936,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 793,
+      "arm": "OFF_ON",
+      "bridge_cue_fires": 12,
+      "bridge_write_fires": 41,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 793,
+      "goal_norm_peak": 0.29584240913391113,
+      "resource_contacts": 2,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 793
+    },
+    {
+      "action_counts": {
+        "0": 346,
+        "2": 770,
+        "3": 1,
+        "4": 37
+      },
+      "action_entropy": 0.7475297630380963,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1154,
+      "arm": "ON_ON",
+      "bridge_cue_fires": 29,
+      "bridge_write_fires": 199,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1154,
+      "goal_norm_peak": 0.3095659613609314,
+      "resource_contacts": 5,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1154
+    }
+  ],
+  "queue_id": "V3-EXQ-483c",
+  "run_id": "v3_exq_483c_sd037_broadcast_gap4_tier1_20260521T064444Z_v3",
+  "timestamp_utc": "20260521T064444Z"
+}

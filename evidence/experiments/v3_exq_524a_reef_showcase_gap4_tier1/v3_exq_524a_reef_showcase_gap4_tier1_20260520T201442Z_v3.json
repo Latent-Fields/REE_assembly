@@ -1,0 +1,123 @@
+{
+  "acceptance": {
+    "pass": false,
+    "per_seed_checks": [
+      {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      }
+    ],
+    "seeds_passing_all_tier1": 0
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "elapsed_seconds": 1395.9081192016602,
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Reef fishtank diagnostic under GAP-4 operating substrate. Tier-1 cascade thresholds only; no claim_ids.",
+  "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_524a_reef_showcase_gap4_tier1",
+  "outcome": "FAIL",
+  "per_run": [
+    {
+      "action_counts": {
+        "1": 98,
+        "2": 50,
+        "3": 62,
+        "4": 1
+      },
+      "action_entropy": 1.0826150289551233,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 211,
+      "arm": "ARM_gap4_reef",
+      "bridge_cue_fires": 10,
+      "bridge_write_fires": 16,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 211,
+      "goal_norm_peak": 0.35607847571372986,
+      "resource_contacts": 6,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 211
+    },
+    {
+      "action_counts": {
+        "0": 737,
+        "1": 30,
+        "2": 2,
+        "3": 55
+      },
+      "action_entropy": 0.41570837269792854,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 824,
+      "arm": "ARM_gap4_reef",
+      "bridge_cue_fires": 34,
+      "bridge_write_fires": 198,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 824,
+      "goal_norm_peak": 0.23426108062267303,
+      "resource_contacts": 3,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 824
+    },
+    {
+      "action_counts": {
+        "0": 17,
+        "2": 59,
+        "3": 192,
+        "4": 8
+      },
+      "action_entropy": 0.8565820983179983,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 276,
+      "arm": "ARM_gap4_reef",
+      "bridge_cue_fires": 4,
+      "bridge_write_fires": 4,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 276,
+      "goal_norm_peak": 0.2610355615615845,
+      "resource_contacts": 4,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 276
+    }
+  ],
+  "queue_id": "V3-EXQ-524a",
+  "run_id": "v3_exq_524a_reef_showcase_gap4_tier1_20260520T201442Z_v3",
+  "timestamp_utc": "20260520T201442Z"
+}

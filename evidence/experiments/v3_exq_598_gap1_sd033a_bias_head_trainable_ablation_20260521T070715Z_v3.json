@@ -1,0 +1,87 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation_20260521T070715Z_v3",
+  "experiment_type": "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation",
+  "queue_id": "V3-EXQ-598",
+  "gates_on_exq": "V3-EXQ-543k",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-21T07:07:15.435000Z",
+  "executing_hostname": "ree-cloud-2",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-033a"
+  ],
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "SD-033a": "mixed"
+  },
+  "outcome": "FAIL",
+  "dry_run": false,
+  "elapsed_sec": 1346.6178793907166,
+  "acceptance": {
+    "C1_frozen_silent": true,
+    "C2_trainable_nonzero": true,
+    "C3_trainable_not_monomodal": false,
+    "pass": false
+  },
+  "arm_results": {
+    "ARM_0_frozen_bias": [
+      {
+        "arm": "ARM_0_frozen_bias",
+        "seed": 0,
+        "train_rule_bias_head": false,
+        "p1_mean_abs_lpfc_bias": 0.0,
+        "p1_max_abs_lpfc_bias": 0.0,
+        "p2_reef_visit_fraction": 0.0963855421686747,
+        "seed_pass": true
+      },
+      {
+        "arm": "ARM_0_frozen_bias",
+        "seed": 1,
+        "train_rule_bias_head": false,
+        "p1_mean_abs_lpfc_bias": 0.0,
+        "p1_max_abs_lpfc_bias": 0.0,
+        "p2_reef_visit_fraction": 0.059782608695652176,
+        "seed_pass": true
+      },
+      {
+        "arm": "ARM_0_frozen_bias",
+        "seed": 2,
+        "train_rule_bias_head": false,
+        "p1_mean_abs_lpfc_bias": 0.0,
+        "p1_max_abs_lpfc_bias": 0.0,
+        "p2_reef_visit_fraction": 0.0,
+        "seed_pass": true
+      }
+    ],
+    "ARM_1_trainable_bias": [
+      {
+        "arm": "ARM_1_trainable_bias",
+        "seed": 0,
+        "train_rule_bias_head": true,
+        "p1_mean_abs_lpfc_bias": 0.10000000894069672,
+        "p1_max_abs_lpfc_bias": 0.10000000894069672,
+        "p2_reef_visit_fraction": 0.0963855421686747,
+        "seed_pass": false
+      },
+      {
+        "arm": "ARM_1_trainable_bias",
+        "seed": 1,
+        "train_rule_bias_head": true,
+        "p1_mean_abs_lpfc_bias": 0.0518355411363811,
+        "p1_max_abs_lpfc_bias": 0.06546872109174728,
+        "p2_reef_visit_fraction": 0.028901734104046242,
+        "seed_pass": false
+      },
+      {
+        "arm": "ARM_1_trainable_bias",
+        "seed": 2,
+        "train_rule_bias_head": true,
+        "p1_mean_abs_lpfc_bias": 0.03437577524997351,
+        "p1_max_abs_lpfc_bias": 0.04375624656677246,
+        "p2_reef_visit_fraction": 0.0,
+        "seed_pass": false
+      }
+    ]
+  }
+}
