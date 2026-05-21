@@ -1,44 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-21T09:01:05.785928+00:00",
-  "last_updated": "2026-05-21T09:01:07.702826+00:00",
-  "idle": true,
+  "runner_pid": 319558,
+  "runner_started_at": "2026-05-21T10:49:44.860484+00:00",
+  "last_updated": "2026-05-21T11:47:54.625957+00:00",
+  "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-599",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-286 override-gated sleep-onset substrate validation",
-      "description": "",
-      "estimated_minutes": 0.4,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-600",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-282 LPB interoceptive harm routing substrate diagnostic",
-      "description": "",
-      "estimated_minutes": 0.4,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-601",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-269b-followup-A staleness-into-VsRolloutGate substrate validation",
-      "description": "",
-      "estimated_minutes": 34.4,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-603",
       "backlog_id": "EVB-0231",
@@ -73,17 +40,6 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-606",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-064 GAP-I MECH-318 empirical gate (multi-rule bipartite axis alternation)",
-      "description": "",
-      "estimated_minutes": 91.2,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-591",
       "backlog_id": "",
       "claim_id": "ARC-046",
@@ -91,28 +47,6 @@
       "description": "",
       "estimated_minutes": 4000.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-592",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "GAP-11 pilot: committed-mode curriculum harness validation (EXP-0157)",
-      "description": "",
-      "estimated_minutes": 480.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-490g",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-295 cascade Tier-1 retest under GAP-4 operating substrate (goal_pipeline:GAP-4)",
-      "description": "",
-      "estimated_minutes": 48.0,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -1746,7 +1680,48 @@
       "output_file": "",
       "completed_by": "ree-cloud-3",
       "actual_secs": 1419.0
+    },
+    {
+      "queue_id": "V3-EXQ-599",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-286 override-gated sleep-onset substrate validation",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1; no runner sentinel and no stdout verdict",
+      "started_at": "2026-05-21T10:49:44.918347+00:00",
+      "completed_at": "2026-05-21T10:49:46.679681+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 1.8
+    },
+    {
+      "queue_id": "V3-EXQ-600",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-282 LPB interoceptive harm routing substrate diagnostic",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1; no runner sentinel and no stdout verdict",
+      "started_at": "2026-05-21T10:49:48.374928+00:00",
+      "completed_at": "2026-05-21T10:50:05.557207+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 17.2
+    },
+    {
+      "queue_id": "V3-EXQ-601",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-269b-followup-A staleness-into-VsRolloutGate substrate validation",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_601_mech269b_followup_a_staleness_gate] acceptance={'c1_staleness_lookup_calls_on': True, 'c2_on_held_gt_off': True, 'c1_hits': 2, 'c2_hits': 2, 'n_seeds': 3, 'pass': True} outcome=PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-601 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-601.json",
+      "started_at": "2026-05-21T10:50:07.166119+00:00",
+      "completed_at": "2026-05-21T11:47:54.625196+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_601_mech269b_followup_a_staleness_gate/v3_exq_601_mech269b_followup_a_staleness_gate_20260521T114753Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 3467.5
     }
-  ],
-  "draining": false
+  ]
 }
