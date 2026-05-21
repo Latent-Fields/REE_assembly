@@ -54,7 +54,7 @@ closure_plan:
       depends_on: ["commitment_closure:GAP-2"]
       cross_plan_link: ["sd033_governance:CHK-EXP_PROPOSALS"]
       last_updated: 2026-05-21
-      resume_condition: "Phase 2 substrate battery DONE (all nine scripts authored; latest manifests PASS 2026-04-21..2026-05-12). GAP-4 closes to done after V3-EXQ-592 PASS (GAP-11 committed-mode pilot) and Phase 4/5 behavioural cohort (460b/461 full/463b/464b/466b/467b/468b) queued via /queue-experiment on GAP-3 env + committed_mode_curriculum harness."
+      resume_condition: "Phase 2 DONE. V3-EXQ-592 re-queued 2026-05-21 (was dequeued without run). Monitor 592 on DLAPTOP-4.local; on PASS /queue-experiment Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b)."
       completion_note: "Phase 2 DONE 2026-05-21 reconcile: V3-EXQ-460..468 scripts in ree-v3/experiments/; substrate-readiness PASS on all nine (460/466 x2, 461 reviewed 2026-05-12, 462/465 executed 2026-04-21, 463/464/467/468 authored+PASS 2026-04-21). Queue slots consumed post-run (not re-queued). Phase 4/5 behavioural arms blocked on V3-EXQ-592 (priority 3, pending, DLAPTOP-4.local)."
     - id: "commitment_closure:GAP-5"
       title: "MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)"
@@ -592,6 +592,19 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-21 - V3-EXQ-592 re-queued after accidental dequeue (IGW-20260521-008)
+
+Audit: `V3-EXQ-592` was appended 2026-05-17 (`717d1c3`) then removed by cloud
+`queue: remove completed/failed items` (`916d0ef`, 2026-05-21) with **no**
+`runner_status.json` entry and **no** manifest under
+`evidence/experiments/v3_exq_592_gap11_pilot_committed_mode_curriculum/`. Script
+and `validate_experiments` contract OK; dry-run smoke exit 0 (2026-05-21).
+
+Re-queued on `ree-v3/main` with `priority: 3`, `machine_affinity:
+DLAPTOP-4.local` (per battery gate). Phase 2 substrate battery unchanged
+(V3-EXQ-460..468 latest manifests PASS). GAP-4 remains `partial` until 592
+runner PASS + Phase 4/5 *b cohort `/queue-experiment`.
 
 ### 2026-05-21 - GAP-4 Phase 2 DONE: OCD substrate battery reconciled (IGW-20260521-008)
 
