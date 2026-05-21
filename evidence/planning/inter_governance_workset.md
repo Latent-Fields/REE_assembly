@@ -1,7 +1,7 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-21T02:24:33Z`
-Schema: `inter_governance_workset/v1`
+Generated: `2026-05-21T02:44:50Z`
+Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
 
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **56** (ready 37, in_flight 1, blocked 6)
 - Pending review: **0**
-- Queue pending (unclaimed): **7**
+- Queue pending (unclaimed): **9**
 
 - Live EXQs: V3-EXQ-543k, V3-EXQ-587, V3-EXQ-588b, V3-EXQ-590a, V3-EXQ-591
 

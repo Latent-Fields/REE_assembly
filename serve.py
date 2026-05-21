@@ -1602,7 +1602,7 @@ def read_closure() -> dict:
 def read_workset() -> dict:
     """Load inter-governance workset from generate_inter_governance_workset.py."""
     empty = {
-        "schema_version": "inter_governance_workset/v1",
+        "schema_version": "inter_governance_workset/v1.1",
         "generated_at": None,
         "generator": "scripts/generate_inter_governance_workset.py",
         "summary": {
@@ -1614,6 +1614,9 @@ def read_workset() -> dict:
             "queue_pending": 0,
             "live_exqs": [],
         },
+        "lenses": {},
+        "indexes": {"by_plan": {}},
+        "plans": {},
         "items": [],
         "references": {
             "closure_v3": "/closure",

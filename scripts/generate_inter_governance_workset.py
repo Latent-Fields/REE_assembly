@@ -40,6 +40,70 @@ OUTPUT_JSON = PLANNING / "inter_governance_workset.v1.json"
 OUTPUT_MD = PLANNING / "inter_governance_workset.md"
 
 _EXQ_RE = re.compile(r"V3-EXQ-\d+[a-z]?", re.IGNORECASE)
+_CLAIM_TOKEN_RE = re.compile(
+    r"\b(?:ARC|INV|MECH|Q|SD|IMPL|DEV)-[\w-]+\b", re.IGNORECASE
+)
+# Curated outcome lenses for /workset UI (claim search + grouping).
+OUTCOME_LENSES: dict[str, dict] = {
+    "ARC-065": {
+        "label": "Behavioural diversity (ARC-065)",
+        "anchor_claims": [
+            "ARC-065", "Q-043", "Q-044", "Q-045",
+            "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c",
+        ],
+        "plan_ids": ["arc_062_rule_apprehension", "infant_substrate"],
+    },
+    "ARC-062": {
+        "label": "Rule apprehension (ARC-062 / MECH-309)",
+        "anchor_claims": [
+            "ARC-062", "MECH-309", "INV-074", "MECH-333", "MECH-334",
+            "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d",
+        ],
+        "plan_ids": ["arc_062_rule_apprehension"],
+    },
+    "ARC-064": {
+        "label": "Bottom-up rule discovery (ARC-064)",
+        "anchor_claims": ["ARC-064", "MECH-316", "MECH-317", "MECH-318", "MECH-319"],
+        "plan_ids": ["arc_062_rule_apprehension"],
+    },
+    "sleep_sd017": {
+        "label": "Sleep substrate (SD-017 cluster)",
+        "anchor_claims": [
+            "SD-017", "MECH-204", "MECH-205", "INV-049", "Q-041", "Q-042",
+            "ARC-045", "MECH-166", "MECH-111",
+        ],
+        "plan_ids": ["sleep_substrate"],
+    },
+    "self_attribution": {
+        "label": "Self-attribution (SD-029 / MECH-256)",
+        "anchor_claims": [
+            "SD-029", "MECH-256", "MECH-257", "MECH-258", "ARC-033", "SD-013",
+        ],
+        "plan_ids": ["self_attribution"],
+    },
+    "goal_pipeline": {
+        "label": "Goal pipeline / monostrategy",
+        "anchor_claims": [
+            "SD-049", "SD-015", "MECH-295", "MECH-306", "MECH-117", "ARC-030",
+            "ARC-032", "MECH-229", "MECH-230",
+        ],
+        "plan_ids": ["goal_pipeline"],
+    },
+    "infant_substrate": {
+        "label": "Infant substrate / ISEF",
+        "anchor_claims": [
+            "DEV-NEED-001", "DEV-NEED-007", "INV-073", "INV-055", "ARC-046",
+        ],
+        "plan_ids": ["infant_substrate"],
+    },
+    "commitment_closure": {
+        "label": "Commitment / closure governance",
+        "anchor_claims": [
+            "SD-033a", "SD-033b", "SD-034", "MECH-260", "MECH-262", "MECH-263",
+        ],
+        "plan_ids": ["commitment_closure", "sd033_governance"],
+    },
+}
 _LANE_SKILLS = {
     "governance": "/governance",
     "experiment": "/queue-experiment",
@@ -210,6 +274,111 @@ def _undiagnosed_errors(queue_items: list[dict]) -> list[dict]:
                 continue
             errors.append(entry)
     return errors[:20]
+
+
+def _extract_claim_tokens(*parts: str | list | None) -> set[str]:
+    out: set[str] = set()
+    for part in parts:
+        if part is None:
+            continue
+        if isinstance(part, list):
+            for x in part:
+                if x is not None:
+                    for m in _CLAIM_TOKEN_RE.finditer(str(x)):
+                        out.add(m.group(0).upper())
+            continue
+        for m in _CLAIM_TOKEN_RE.finditer(str(part)):
+            out.add(m.group(0).upper())
+    return out
+
+
+def _load_plan_registry() -> dict[str, dict]:
+    """plan_id -> {title, scope_claims} from *_plan.md frontmatter."""
+    reg: dict[str, dict] = {}
+    if not PLANNING.exists():
+        return reg
+    for path in sorted(PLANNING.glob("*_plan.md")):
+        plan = _parse_plan_frontmatter(path)
+        if not plan:
+            continue
+        plan_id = str(plan.get("id") or path.stem.replace("_plan", ""))
+        scope = []
+        for c in plan.get("scope_claims") or []:
+            for m in _CLAIM_TOKEN_RE.finditer(str(c)):
+                scope.append(m.group(0).upper())
+        reg[plan_id] = {
+            "title": str(plan.get("title") or plan_id.replace("_", " ").title()),
+            "scope_claims": sorted(set(scope)),
+        }
+    return reg
+
+
+def _lens_token_sets(plan_reg: dict[str, dict]) -> dict[str, set[str]]:
+    """lens_id -> expanded claim/gap tokens for matching."""
+    out: dict[str, set[str]] = {}
+    for lid, spec in OUTCOME_LENSES.items():
+        tokens = _extract_claim_tokens(spec.get("anchor_claims") or [])
+        for pid in spec.get("plan_ids") or []:
+            pinfo = plan_reg.get(str(pid)) or {}
+            tokens |= set(pinfo.get("scope_claims") or [])
+            tokens.add(str(pid).upper())
+        out[lid] = tokens
+    return out
+
+
+def _item_match_tokens(item: dict) -> set[str]:
+    tokens = _extract_claim_tokens(
+        item.get("claim_ids"),
+        item.get("unblocks"),
+        item.get("title"),
+        item.get("why_now"),
+    )
+    for gid in item.get("gap_ids") or []:
+        tokens |= _extract_claim_tokens(str(gid))
+        if ":" in str(gid):
+            tokens.add(str(gid).split(":", 1)[0].upper())
+    if item.get("plan_id"):
+        tokens.add(str(item["plan_id"]).upper())
+    return tokens
+
+
+def _matched_lenses(item: dict, lens_tokens: dict[str, set[str]]) -> list[str]:
+    itoks = _item_match_tokens(item)
+    hits = []
+    for lid, ltoks in lens_tokens.items():
+        if itoks & ltoks:
+            hits.append(lid)
+    return sorted(hits)
+
+
+def _enrich_workset_items(items: list[dict], plan_reg: dict[str, dict]) -> tuple[dict, dict]:
+    lens_tokens = _lens_token_sets(plan_reg)
+    by_plan: dict[str, list[str]] = {}
+    lens_counts: dict[str, int] = {lid: 0 for lid in OUTCOME_LENSES}
+
+    for it in items:
+        unblocks = it.get("unblocks") or []
+        it["unblock_count"] = len(unblocks)
+        pid = it.get("plan_id")
+        if pid:
+            pinfo = plan_reg.get(str(pid)) or {}
+            it["plan_title"] = pinfo.get("title") or str(pid).replace("_", " ").title()
+            by_plan.setdefault(str(pid), []).append(it["id"])
+        matched = _matched_lenses(it, lens_tokens)
+        it["matched_lenses"] = matched
+        for lid in matched:
+            lens_counts[lid] = lens_counts.get(lid, 0) + 1
+
+    lenses_meta = {
+        lid: {
+            "label": spec["label"],
+            "item_count": lens_counts.get(lid, 0),
+            "plan_ids": list(spec.get("plan_ids") or []),
+        }
+        for lid, spec in OUTCOME_LENSES.items()
+    }
+    indexes = {"by_plan": {k: sorted(v) for k, v in sorted(by_plan.items())}}
+    return lenses_meta, indexes
 
 
 def _plan_gap_items() -> list[dict]:
@@ -500,6 +669,9 @@ def build_workset() -> dict:
 
     items.sort(key=lambda x: (x.get("priority", 99), x.get("id", "")))
 
+    plan_reg = _load_plan_registry()
+    lenses_meta, indexes = _enrich_workset_items(items, plan_reg)
+
     summary = {
         "total": len(items),
         "ready": sum(1 for x in items if x.get("status") == "ready"),
@@ -511,10 +683,16 @@ def build_workset() -> dict:
     }
 
     return {
-        "schema_version": "inter_governance_workset/v1",
+        "schema_version": "inter_governance_workset/v1.1",
         "generated_at": generated,
         "generator": "scripts/generate_inter_governance_workset.py",
         "summary": summary,
+        "lenses": lenses_meta,
+        "indexes": indexes,
+        "plans": {
+            pid: {"title": info["title"], "scope_claims": info["scope_claims"]}
+            for pid, info in sorted(plan_reg.items())
+        },
         "items": items,
         "references": {
             "closure_v3": "/closure",

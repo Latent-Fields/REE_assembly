@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-05-21.1 -->
+<!-- WORKSET_VERSION: 2026-05-21.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -18,6 +18,7 @@
     --st-flight: #58a6ff;
     --st-blocked: #f85149;
     --st-partial: #d29922;
+    --leverage: #a371f7;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -49,29 +50,68 @@
     padding: 4px 10px; border-radius: 12px; background: var(--bg-2);
     border: 1px solid var(--border);
   }
+  .leverage-rail {
+    padding: 8px 18px 10px;
+    background: var(--bg-1);
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  .leverage-rail .rail-label {
+    font-size: 10px; font-weight: 700; color: var(--leverage);
+    text-transform: uppercase; letter-spacing: 0.04em; margin-right: 4px;
+  }
+  .leverage-chip {
+    font-size: 10px; padding: 4px 10px; border-radius: 10px;
+    border: 1px solid var(--leverage); background: #a371f722;
+    color: var(--text); cursor: pointer; max-width: 220px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .leverage-chip:hover { background: #a371f744; }
+  .leverage-chip .cnt {
+    margin-left: 4px; color: var(--leverage); font-weight: 700;
+  }
   .toolbar {
     padding: 8px 18px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border); background: var(--bg-0);
   }
-  .toolbar button, .toolbar select {
+  .toolbar label { font-size: 10px; color: var(--muted); margin-right: 2px; }
+  .toolbar button, .toolbar select, .toolbar input {
     background: var(--bg-3); color: var(--text);
     border: 1px solid var(--border); border-radius: 4px;
-    padding: 4px 10px; font-size: 11px; cursor: pointer;
+    padding: 4px 10px; font-size: 11px;
   }
+  .toolbar button { cursor: pointer; }
   .toolbar button.active { background: var(--accent); color: #0d1117; font-weight: 600; }
+  .toolbar input[type="search"] { min-width: 140px; }
+  .toolbar .sep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+  .sections { padding: 0 18px 40px; }
+  .section { margin-top: 16px; }
+  .section-head {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    padding: 8px 0 10px; border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+  .section-head h2 { margin: 0; font-size: 14px; font-weight: 600; }
+  .section-head .sub { font-size: 11px; color: var(--muted); font-family: ui-monospace, monospace; }
+  .section-head .counts { font-size: 11px; color: var(--muted); margin-left: auto; }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 12px; padding: 14px 18px 40px;
+    gap: 12px;
   }
   .card {
     background: var(--bg-2); border: 1px solid var(--border);
     border-radius: 8px; padding: 12px 14px;
     display: flex; flex-direction: column; gap: 8px;
+    scroll-margin-top: 72px;
   }
-  .card.hidden { display: none; }
+  .card.pulse { animation: card-pulse 1.2s ease; }
+  @keyframes card-pulse {
+    0%, 100% { box-shadow: none; }
+    40% { box-shadow: 0 0 0 2px var(--accent); }
+  }
   .card .top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
-  .card h2 { margin: 0; font-size: 13px; font-weight: 600; line-height: 1.35; }
+  .card h3 { margin: 0; font-size: 13px; font-weight: 600; line-height: 1.35; }
   .card .id { font-size: 10px; color: var(--muted); font-family: ui-monospace, monospace; }
   .badges { display: flex; gap: 5px; flex-wrap: wrap; }
   .badge {
@@ -81,9 +121,25 @@
   .badge.lane { background: #388bfd33; color: #79c0ff; }
   .badge.status-ready { background: #2ea04333; color: #56d364; }
   .badge.status-in_flight { background: #58a6ff33; color: #79c0ff; }
-  .badge.status-blocked { background: #f8514933; color: #ff7b72; }
+  .badge.status-blocked, .badge.status-upstream_blocked { background: #f8514933; color: #ff7b72; }
   .badge.status-partial, .badge.status-in_progress { background: #d2992233; color: #e3b341; }
+  .badge.leverage { background: #a371f733; color: #d2a8ff; }
+  .badge.plan-pill {
+    background: var(--bg-3); color: var(--muted); text-transform: none;
+    font-weight: 500; cursor: pointer;
+  }
+  .badge.plan-pill:hover { color: var(--accent); border-color: var(--accent); }
   .why { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .claim-row { font-size: 10px; line-height: 1.5; }
+  .claim-row .lbl { color: var(--muted); margin-right: 4px; }
+  .claim-chip {
+    display: inline-block; font-family: ui-monospace, monospace;
+    padding: 1px 5px; margin: 1px 3px 1px 0;
+    background: var(--bg-0); border: 1px solid var(--border); border-radius: 3px;
+    font-size: 9px;
+  }
+  .claim-row.blocked-row .claim-chip { border-color: #f8514966; color: #ff7b72; }
+  .claim-row.unblocks-row .claim-chip { border-color: #2ea04355; }
   .meta-row { font-size: 10px; color: var(--muted); }
   .actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
   .actions button, .actions a {
@@ -91,6 +147,7 @@
     border: 1px solid var(--border); background: var(--bg-3);
     color: var(--text); cursor: pointer; text-decoration: none;
   }
+  .actions a.primary { border-color: var(--accent); color: var(--accent); }
   .actions button:hover, .actions a:hover { border-color: var(--accent); }
   .actions button.copied { border-color: var(--st-ready); color: var(--st-ready); }
   details.brief summary { cursor: pointer; font-size: 11px; color: var(--accent); }
@@ -124,19 +181,29 @@
 </header>
 
 <section class="summary" id="summary-bar"></section>
+<section class="leverage-rail" id="leverage-rail" hidden></section>
 
 <div class="toolbar" id="toolbar">
-  <span style="color:var(--muted);font-size:11px;">Filter</span>
+  <span style="color:var(--muted);font-size:11px;">Status</span>
   <button type="button" data-f="all" class="active">all</button>
   <button type="button" data-f="ready">ready</button>
   <button type="button" data-f="in_flight">in flight</button>
   <button type="button" data-f="blocked">blocked</button>
-  <button type="button" data-f="governance">governance</button>
-  <button type="button" data-f="experiment">experiment</button>
-  <button type="button" data-f="substrate">substrate</button>
+  <span class="sep"></span>
+  <label for="group-by">Group</label>
+  <select id="group-by">
+    <option value="priority">Priority</option>
+    <option value="plan">Plan</option>
+    <option value="lane">Lane</option>
+  </select>
+  <label for="plan-filter">Plan</label>
+  <select id="plan-filter"><option value="">All plans</option></select>
+  <label for="lens-filter">Outcome</label>
+  <select id="lens-filter"><option value="">All outcomes</option></select>
+  <input type="search" id="claim-search" placeholder="Claim search (ARC-065)" autocomplete="off">
 </div>
 
-<div class="grid" id="grid"></div>
+<div class="sections" id="sections"></div>
 <div class="empty" id="empty" hidden></div>
 <div id="toast"></div>
 
@@ -144,17 +211,145 @@
 'use strict';
 
 let WS = null;
-let FILTER = 'all';
+let CLOSURE = null;
+let STATUS_FILTER = 'all';
+let GROUP_BY = 'priority';
+let PLAN_FILTER = '';
+let LENS_FILTER = '';
+let CLAIM_SEARCH = '';
+
+const LANE_ORDER = ['governance', 'experiment', 'substrate', 'plan', 'lit', 'ops'];
 
 async function load() {
-  const r = await fetch('/api/workset');
-  WS = await r.json();
-  const gen = WS.generated_at || 'never';
+  const [wsRes, clRes] = await Promise.all([
+    fetch('/api/workset'),
+    fetch('/api/closure').catch(() => null),
+  ]);
+  WS = await wsRes.json();
+  if (clRes && clRes.ok) {
+    try { CLOSURE = await clRes.json(); } catch (_) { CLOSURE = null; }
+  }
+  applyUrlParams();
+  populateFilters();
   document.getElementById('hdr-meta').textContent =
-    (WS.schema_version || '?') + ' | generated ' + gen +
+    (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
     ' | ' + (WS.items || []).length + ' packages';
   renderSummary();
-  renderCards();
+  renderLeverageRail();
+  renderAll();
+  syncUrl();
+}
+
+function applyUrlParams() {
+  const p = new URLSearchParams(location.search);
+  const g = p.get('group');
+  if (g === 'plan' || g === 'lane' || g === 'priority') GROUP_BY = g;
+  const plan = p.get('plan');
+  if (plan) PLAN_FILTER = plan;
+  const lens = p.get('lens');
+  if (lens) LENS_FILTER = lens;
+  const q = p.get('q');
+  if (q) CLAIM_SEARCH = q;
+  const f = p.get('status');
+  if (f) STATUS_FILTER = f;
+}
+
+function syncUrl() {
+  const p = new URLSearchParams();
+  if (GROUP_BY !== 'priority') p.set('group', GROUP_BY);
+  if (PLAN_FILTER) p.set('plan', PLAN_FILTER);
+  if (LENS_FILTER) p.set('lens', LENS_FILTER);
+  if (CLAIM_SEARCH.trim()) p.set('q', CLAIM_SEARCH.trim());
+  if (STATUS_FILTER !== 'all') p.set('status', STATUS_FILTER);
+  const qs = p.toString();
+  const url = qs ? '?' + qs : location.pathname;
+  history.replaceState(null, '', url);
+}
+
+function populateFilters() {
+  const groupSel = document.getElementById('group-by');
+  groupSel.value = GROUP_BY;
+  groupSel.addEventListener('change', () => {
+    GROUP_BY = groupSel.value;
+    renderAll();
+    syncUrl();
+  });
+
+  const planSel = document.getElementById('plan-filter');
+  const plans = new Map();
+  if (WS.plans) {
+    for (const [pid, info] of Object.entries(WS.plans)) {
+      plans.set(pid, info.title || pid);
+    }
+  }
+  if (CLOSURE && CLOSURE.plans) {
+    for (const pl of CLOSURE.plans) {
+      if (!plans.has(pl.id)) plans.set(pl.id, pl.title || pl.id);
+    }
+  }
+  for (const it of WS.items || []) {
+    if (it.plan_id) {
+      plans.set(it.plan_id, it.plan_title || plans.get(it.plan_id) || it.plan_id);
+    }
+  }
+  for (const [pid, title] of [...plans.entries()].sort((a, b) => a[1].localeCompare(b[1]))) {
+    const opt = document.createElement('option');
+    opt.value = pid;
+    opt.textContent = title;
+    planSel.appendChild(opt);
+  }
+  if (PLAN_FILTER) planSel.value = PLAN_FILTER;
+  planSel.addEventListener('change', () => {
+    PLAN_FILTER = planSel.value;
+    renderAll();
+    syncUrl();
+  });
+
+  const lensSel = document.getElementById('lens-filter');
+  const lenses = WS.lenses || {};
+  for (const [lid, meta] of Object.entries(lenses).sort((a, b) =>
+    (a[1].label || a[0]).localeCompare(b[1].label || b[0]))) {
+    const opt = document.createElement('option');
+    opt.value = lid;
+    const cnt = meta.item_count != null ? ' (' + meta.item_count + ')' : '';
+    opt.textContent = (meta.label || lid) + cnt;
+    lensSel.appendChild(opt);
+  }
+  if (LENS_FILTER) lensSel.value = LENS_FILTER;
+  lensSel.addEventListener('change', () => {
+    LENS_FILTER = lensSel.value;
+    renderAll();
+    syncUrl();
+  });
+
+  const search = document.getElementById('claim-search');
+  search.value = CLAIM_SEARCH;
+  let searchTimer = null;
+  search.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      CLAIM_SEARCH = search.value;
+      renderAll();
+      syncUrl();
+    }, 200);
+  });
+
+  document.getElementById('toolbar').querySelectorAll('button[data-f]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      STATUS_FILTER = btn.getAttribute('data-f') || 'all';
+      document.querySelectorAll('#toolbar button[data-f]').forEach(b =>
+        b.classList.toggle('active', b === btn));
+      renderAll();
+      syncUrl();
+    });
+    if (btn.getAttribute('data-f') === STATUS_FILTER) btn.classList.add('active');
+    else if (STATUS_FILTER !== 'all') btn.classList.remove('active');
+  });
+  if (STATUS_FILTER !== 'all') {
+    document.querySelector('#toolbar button[data-f="all"]').classList.remove('active');
+    const active = document.querySelector('#toolbar button[data-f="' + STATUS_FILTER + '"]');
+    if (active) active.classList.add('active');
+  }
 }
 
 function renderSummary() {
@@ -172,65 +367,282 @@ function renderSummary() {
       : '');
 }
 
-function matchFilter(it) {
-  if (FILTER === 'all') return true;
-  if (FILTER === 'ready' || FILTER === 'in_flight' || FILTER === 'blocked') {
-    return it.status === FILTER;
-  }
-  return it.lane === FILTER;
+function isBlockedStatus(st) {
+  return st === 'blocked' || st === 'upstream_blocked';
 }
 
-function renderCards() {
-  const grid = document.getElementById('grid');
+function matchStatusFilter(it) {
+  if (STATUS_FILTER === 'all') return true;
+  if (STATUS_FILTER === 'blocked') return isBlockedStatus(it.status);
+  return it.status === STATUS_FILTER;
+}
+
+function matchLensFilter(it) {
+  if (!LENS_FILTER) return true;
+  const ml = it.matched_lenses || [];
+  return ml.indexOf(LENS_FILTER) >= 0;
+}
+
+function matchPlanFilter(it) {
+  if (!PLAN_FILTER) return true;
+  return it.plan_id === PLAN_FILTER;
+}
+
+function matchClaimSearch(it) {
+  const q = CLAIM_SEARCH.trim().toUpperCase();
+  if (!q) return true;
+  const blob = [
+    it.title, it.why_now,
+    (it.claim_ids || []).join(' '),
+    (it.unblocks || []).join(' '),
+    (it.gap_ids || []).join(' '),
+    it.plan_id,
+  ].join(' ').toUpperCase();
+  return blob.indexOf(q) >= 0;
+}
+
+function filterItems() {
+  return (WS.items || []).filter(it =>
+    matchStatusFilter(it) && matchLensFilter(it) &&
+    matchPlanFilter(it) && matchClaimSearch(it));
+}
+
+function isHighLeverage(it) {
+  const st = it.status;
+  if (st !== 'ready' && st !== 'partial') return false;
+  const uc = it.unblock_count != null ? it.unblock_count : (it.unblocks || []).length;
+  return uc >= 3 || it.severity === 'load-bearing';
+}
+
+function renderLeverageRail() {
+  const el = document.getElementById('leverage-rail');
+  const items = (WS.items || [])
+    .filter(isHighLeverage)
+    .sort((a, b) => {
+      const ua = a.unblock_count != null ? a.unblock_count : (a.unblocks || []).length;
+      const ub = b.unblock_count != null ? b.unblock_count : (b.unblocks || []).length;
+      if (ub !== ua) return ub - ua;
+      return (a.priority || 99) - (b.priority || 99);
+    })
+    .slice(0, 10);
+  if (!items.length) { el.hidden = true; return; }
+  el.hidden = false;
+  let html = '<span class="rail-label">Unblocks most</span>';
+  for (const it of items) {
+    const uc = it.unblock_count != null ? it.unblock_count : (it.unblocks || []).length;
+    const short = (it.title || it.id || '').slice(0, 48);
+    html += '<span class="leverage-chip" data-scroll="' + escapeAttr(it.id) + '" title="' +
+      escapeAttr(it.title || '') + '">' + escapeHtml(short) +
+      '<span class="cnt">' + uc + '</span></span>';
+  }
+  el.innerHTML = html;
+  el.querySelectorAll('.leverage-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const id = chip.getAttribute('data-scroll');
+      const card = document.getElementById('card-' + id);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('pulse');
+        setTimeout(() => card.classList.remove('pulse'), 1200);
+      }
+    });
+  });
+}
+
+function statusSortKey(st) {
+  const order = { ready: 0, partial: 1, in_progress: 2, in_flight: 3, blocked: 4, upstream_blocked: 5 };
+  return order[st] != null ? order[st] : 6;
+}
+
+function sortItems(items) {
+  return items.slice().sort((a, b) => {
+    const sa = statusSortKey(a.status);
+    const sb = statusSortKey(b.status);
+    if (sa !== sb) return sa - sb;
+    return (a.priority || 99) - (b.priority || 99);
+  });
+}
+
+function planTitle(pid) {
+  if (!pid) return 'Other queues';
+  const it = (WS.items || []).find(x => x.plan_id === pid && x.plan_title);
+  if (it && it.plan_title) return it.plan_title;
+  if (WS.plans && WS.plans[pid]) return WS.plans[pid].title || pid;
+  if (CLOSURE && CLOSURE.plans) {
+    const pl = CLOSURE.plans.find(p => p.id === pid);
+    if (pl) return pl.title || pid;
+  }
+  return pid.replace(/_/g, ' ');
+}
+
+function sectionCounts(items) {
+  const c = { ready: 0, blocked: 0, other: 0 };
+  for (const it of items) {
+    if (it.status === 'ready') c.ready++;
+    else if (isBlockedStatus(it.status)) c.blocked++;
+    else c.other++;
+  }
+  const parts = [];
+  if (c.ready) parts.push(c.ready + ' ready');
+  if (c.blocked) parts.push(c.blocked + ' blocked');
+  if (c.other) parts.push(c.other + ' other');
+  return parts.join(', ') || '0 items';
+}
+
+function buildSections(items) {
+  const sorted = sortItems(items);
+  if (GROUP_BY === 'priority') {
+    return [{ key: '_flat', title: null, items: sorted }];
+  }
+  if (GROUP_BY === 'lane') {
+    const byLane = {};
+    for (const it of sorted) {
+      const lane = it.lane || 'other';
+      (byLane[lane] = byLane[lane] || []).push(it);
+    }
+    return LANE_ORDER.concat(Object.keys(byLane))
+      .filter((v, i, a) => a.indexOf(v) === i && byLane[v])
+      .map(lane => ({
+        key: lane,
+        title: lane,
+        subtitle: 'lane',
+        items: byLane[lane],
+      }));
+  }
+  const byPlan = {};
+  const other = [];
+  for (const it of sorted) {
+    if (it.plan_id) {
+      (byPlan[it.plan_id] = byPlan[it.plan_id] || []).push(it);
+    } else {
+      other.push(it);
+    }
+  }
+  const sections = Object.keys(byPlan).sort((a, b) =>
+    planTitle(a).localeCompare(planTitle(b))).map(pid => ({
+    key: pid,
+    title: planTitle(pid),
+    subtitle: pid,
+    items: byPlan[pid],
+  }));
+  if (other.length) {
+    sections.push({ key: '_other', title: 'Other queues', subtitle: 'substrate, governance, ops', items: other });
+  }
+  return sections;
+}
+
+function renderCard(it) {
+  const stCls = 'status-' + (it.status || 'ready').replace(/-/g, '_');
+  let badges =
+    '<span class="badge lane">' + escapeHtml(it.lane || '?') + '</span>' +
+    '<span class="badge ' + stCls + '">' + escapeHtml(it.status || '?') + '</span>' +
+    '<span class="badge">P' + escapeHtml(String(it.priority != null ? it.priority : '?')) + '</span>';
+  const uc = it.unblock_count != null ? it.unblock_count : (it.unblocks || []).length;
+  if (uc >= 3 && it.status === 'ready') {
+    badges += '<span class="badge leverage">HIGH</span>';
+  }
+  if (it.severity) {
+    badges += '<span class="badge">' + escapeHtml(it.severity) + '</span>';
+  }
+  if (it.plan_id) {
+    badges += '<span class="badge plan-pill" data-plan="' + escapeAttr(it.plan_id) + '">' +
+      escapeHtml(it.plan_title || it.plan_id) + '</span>';
+  }
+
+  let unblocksHtml = '';
+  const ub = it.unblocks || [];
+  if (ub.length) {
+    const show = ub.slice(0, 6);
+    const more = ub.length > 6 ? ' +' + (ub.length - 6) : '';
+    unblocksHtml = '<div class="claim-row unblocks-row"><span class="lbl">Unblocks:</span>' +
+      show.map(c => '<span class="claim-chip">' + escapeHtml(c) + '</span>').join('') +
+      (more ? '<span class="claim-chip">' + escapeHtml(more) + '</span>' : '') + '</div>';
+  }
+
+  let blockedHtml = '';
+  if (it.blocked_by && it.blocked_by.length) {
+    blockedHtml = '<div class="claim-row blocked-row"><span class="lbl">Blocked by:</span>' +
+      it.blocked_by.map(b => '<span class="claim-chip">' + escapeHtml(b) + '</span>').join('') +
+      '</div>';
+  }
+
+  let meta = '';
+  if (it.owner_exq) meta += 'EXQ: ' + escapeHtml(it.owner_exq) + ' | ';
+  if (it.gap_ids && it.gap_ids.length) meta += 'gap: ' + escapeHtml(it.gap_ids.join(', '));
+
+  const closureHref = (it.closure_links && it.closure_links[0]) ? it.closure_links[0] : '';
+  const actions =
+    '<button type="button" data-copy="' + escapeAttr(it.agent_brief || '') + '">Copy brief</button>' +
+    (closureHref
+      ? '<a class="primary" href="' + escapeHtml(closureHref) + '" target="_blank" rel="noopener">Closure map</a>'
+      : '');
+
+  return '<article class="card" id="card-' + escapeAttr(it.id) + '">' +
+    '<div class="top"><div><div class="id">' + escapeHtml(it.id || '') + '</div>' +
+    '<h3>' + escapeHtml(it.title || '') + '</h3></div></div>' +
+    '<div class="badges">' + badges + '</div>' +
+    '<div class="why">' + escapeHtml(it.why_now || '') + '</div>' +
+    unblocksHtml + blockedHtml +
+    '<div class="meta-row">Skill: <code>' + escapeHtml(it.skill || '') + '</code>' +
+    (meta ? ' | ' + meta : '') + '</div>' +
+    '<details class="brief"><summary>Agent brief</summary><pre>' +
+    escapeHtml(it.agent_brief || '') + '</pre></details>' +
+    '<div class="actions">' + actions + '</div></article>';
+}
+
+function renderAll() {
+  const items = filterItems();
+  const sections = buildSections(items);
+  const root = document.getElementById('sections');
   const empty = document.getElementById('empty');
-  grid.innerHTML = '';
-  const items = (WS.items || []).filter(matchFilter);
+  root.innerHTML = '';
+
   if (!items.length) {
     empty.hidden = false;
     empty.textContent = WS.empty_note ||
-      'No work packages match this filter. Run /inter-governance-brief to regenerate.';
+      'No work packages match these filters. Run /inter-governance-brief to regenerate.';
     return;
   }
   empty.hidden = true;
-  for (const it of items) {
-    const card = document.createElement('article');
-    card.className = 'card';
-    const stCls = 'status-' + (it.status || 'ready').replace(/-/g, '_');
-    let badges =
-      '<span class="badge lane">' + escapeHtml(it.lane || '?') + '</span>' +
-      '<span class="badge ' + stCls + '">' + escapeHtml(it.status || '?') + '</span>' +
-      '<span class="badge">P' + escapeHtml(String(it.priority != null ? it.priority : '?')) + '</span>';
-    if (it.severity) {
-      badges += '<span class="badge">' + escapeHtml(it.severity) + '</span>';
+
+  for (const sec of sections) {
+    const wrap = document.createElement('div');
+    wrap.className = 'section';
+    if (sec.key !== '_flat') {
+      const head = document.createElement('div');
+      head.className = 'section-head';
+      head.innerHTML =
+        '<h2>' + escapeHtml(sec.title || sec.key) + '</h2>' +
+        (sec.subtitle ? '<span class="sub">' + escapeHtml(sec.subtitle) + '</span>' : '') +
+        '<span class="counts">' + escapeHtml(sectionCounts(sec.items)) + '</span>';
+      wrap.appendChild(head);
     }
-    let meta = '';
-    if (it.owner_exq) meta += 'EXQ: ' + escapeHtml(it.owner_exq) + ' | ';
-    if (it.gap_ids && it.gap_ids.length) meta += 'gap: ' + escapeHtml(it.gap_ids.join(', '));
-    if (it.blocked_by && it.blocked_by.length) {
-      meta += (meta ? ' | ' : '') + 'blocked: ' + escapeHtml(it.blocked_by.join('; '));
-    }
-    const links = (it.closure_links || []).map((u, i) =>
-      '<a href="' + escapeHtml(u) + '" target="_blank" rel="noopener">closure' +
-      (it.gap_ids && it.gap_ids[i] ? ' ' + escapeHtml(it.gap_ids[i].split(':').pop()) : '') + '</a>'
-    ).join(' ');
-    card.innerHTML =
-      '<div class="top"><div><div class="id">' + escapeHtml(it.id || '') + '</div>' +
-      '<h2>' + escapeHtml(it.title || '') + '</h2></div></div>' +
-      '<div class="badges">' + badges + '</div>' +
-      '<div class="why">' + escapeHtml(it.why_now || '') + '</div>' +
-      '<div class="meta-row">Skill: <code>' + escapeHtml(it.skill || '') + '</code>' +
-      (meta ? ' | ' + meta : '') + '</div>' +
-      '<details class="brief"><summary>Agent brief</summary><pre>' +
-      escapeHtml(it.agent_brief || '') + '</pre></details>' +
-      '<div class="actions">' +
-      '<button type="button" data-copy="' + escapeAttr(it.agent_brief || '') + '">Copy brief</button>' +
-      links +
-      '</div>';
-    grid.appendChild(card);
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    grid.innerHTML = sec.items.map(renderCard).join('');
+    wrap.appendChild(grid);
+    root.appendChild(wrap);
   }
-  grid.querySelectorAll('button[data-copy]').forEach(btn => {
+
+  root.querySelectorAll('button[data-copy]').forEach(btn => {
     btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy'), btn));
   });
+  root.querySelectorAll('.plan-pill').forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      PLAN_FILTER = pill.getAttribute('data-plan') || '';
+      GROUP_BY = 'plan';
+      document.getElementById('plan-filter').value = PLAN_FILTER;
+      document.getElementById('group-by').value = GROUP_BY;
+      renderAll();
+      syncUrl();
+    });
+  });
+
+  if (LENS_FILTER || PLAN_FILTER || CLAIM_SEARCH.trim()) {
+    const first = root.querySelector('.card');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function copyText(text, btn) {
@@ -256,15 +668,6 @@ function escapeHtml(s) {
 function escapeAttr(s) {
   return escapeHtml(s).replace(/`/g, '&#96;');
 }
-
-document.getElementById('toolbar').querySelectorAll('button[data-f]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    FILTER = btn.getAttribute('data-f') || 'all';
-    document.querySelectorAll('#toolbar button[data-f]').forEach(b =>
-      b.classList.toggle('active', b === btn));
-    renderCards();
-  });
-});
 
 load();
 </script>
