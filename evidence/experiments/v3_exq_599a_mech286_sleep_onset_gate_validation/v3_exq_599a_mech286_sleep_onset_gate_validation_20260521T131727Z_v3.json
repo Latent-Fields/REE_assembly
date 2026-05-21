@@ -1,0 +1,63 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_599a_mech286_sleep_onset_gate_validation_20260521T131727Z_v3",
+  "experiment_type": "v3_exq_599a_mech286_sleep_onset_gate_validation",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-05-21T13:17:27Z",
+  "experiment_purpose": "diagnostic",
+  "claim_ids": [
+    "MECH-286"
+  ],
+  "supersedes": "V3-EXQ-599",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-286": "supports"
+  },
+  "evidence_direction_note": "MECH-286 sleep-onset gate substrate validation (diagnostic). Fix for V3-EXQ-599 emit_outcome API mismatch only; same arms.",
+  "outcome": "PASS",
+  "metrics": {
+    "arm_results": [
+      {
+        "arm": "ARM_0_gate_off",
+        "seed": 42,
+        "cycle_index_before": 0,
+        "cycle_index_after": 1,
+        "cycle_fired": true,
+        "mech286_sleep_permitted": 1.0,
+        "override_signal": 0.0,
+        "staleness_max": 0.0
+      },
+      {
+        "arm": "ARM_1_gate_on_permit",
+        "seed": 42,
+        "cycle_index_before": 0,
+        "cycle_index_after": 1,
+        "cycle_fired": true,
+        "mech286_sleep_permitted": 1.0,
+        "override_signal": 0.0,
+        "staleness_max": 0.8
+      },
+      {
+        "arm": "ARM_2_gate_on_hyperarousal",
+        "seed": 42,
+        "cycle_index_before": 0,
+        "cycle_index_after": 0,
+        "cycle_fired": false,
+        "mech286_sleep_permitted": 0.0,
+        "override_signal": 0.7476731245075579,
+        "staleness_max": 0.9
+      }
+    ],
+    "verdict": {
+      "checks": {
+        "ARM_0_gate_off_cycle": true,
+        "ARM_1_gate_on_permit_cycle": true,
+        "ARM_1_gate_on_permit_permitted": true,
+        "ARM_2_gate_on_hyperarousal_cycle": true,
+        "ARM_2_gate_on_hyperarousal_permitted": true
+      },
+      "passed": true
+    }
+  },
+  "dry_run": false
+}
