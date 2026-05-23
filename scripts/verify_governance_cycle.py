@@ -315,9 +315,19 @@ def check_heartbeat_status_divergence(repo_root, findings):
             continue
 
         status_idle = status.get("idle", None)
-        status_current = status.get("current")
+        status_last_updated = parse_iso_timestamp(status.get("last_updated", ""))
+        hb_run_started = parse_iso_timestamp(hb.get("current_exq_started_utc", ""))
 
-        if hb_state == "running" and hb_exq and status_idle:
+        # Only flag if status file was written AFTER the current run started.
+        # If the status predates the run start, it is a stale snapshot from a previous
+        # runner startup and the heartbeat is the authoritative live signal.
+        status_is_current = (
+            status_last_updated is not None
+            and hb_run_started is not None
+            and status_last_updated >= hb_run_started
+        )
+
+        if hb_state == "running" and hb_exq and status_idle and status_is_current:
             findings.append(make_finding(
                 "warn", "HEARTBEAT_STATUS_DIVERGENCE",
                 (
