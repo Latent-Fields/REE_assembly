@@ -907,10 +907,24 @@ def read_machines() -> dict:
                     name, snap, now, FRESH_WINDOW_SECONDS))
         out_machines.sort(key=lambda e: e["machine"])
 
+    # Exclude machines whose last heartbeat is older than the stale TTL.
+    # Default 6h matches the claim stale-cutoff; override with
+    # MACHINE_STALE_EXCLUDE_HOURS env var.  age_seconds=None (no timestamp
+    # recorded) is kept so newly-provisioned machines are still visible.
+    STALE_EXCLUDE_SECONDS = (
+        float(os.environ.get("MACHINE_STALE_EXCLUDE_HOURS", "6")) * 3600
+    )
+    out_machines = [
+        m for m in out_machines
+        if m.get("age_seconds") is None
+        or m["age_seconds"] <= STALE_EXCLUDE_SECONDS
+    ]
+
     return {
         "schema_version": "v1",
         "now_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "fresh_window_seconds": FRESH_WINDOW_SECONDS,
+        "stale_exclude_seconds": STALE_EXCLUDE_SECONDS,
         "coordinator_overlay": bool(coord_snaps),
         "machines": out_machines,
     }
@@ -2056,8 +2070,35 @@ def read_shadow_status() -> dict:
     except Exception as exc:  # noqa: BLE001 -- must not crash the request
         return {"verdict": "UNREACHABLE", "color": "red",
                 "detail": repr(exc)}
-    verdict, color = _shadow_verdict(st)
-    guide = _shadow_operator_guide(verdict, st)
+    # Filter stale machines from the coordinator response before returning.
+    # Uses the same TTL as read_machines() so both views are consistent.
+    from datetime import timezone as _tz
+    _stale_exclude_s = (
+        float(os.environ.get("MACHINE_STALE_EXCLUDE_HOURS", "6")) * 3600
+    )
+    _now_utc = datetime.now(_tz.utc)
+
+    def _shadow_machine_fresh(m: dict) -> bool:
+        ls = m.get("last_seen") or ""
+        if not ls:
+            return True  # no timestamp -> keep (may be newly provisioned)
+        try:
+            dt = datetime.fromisoformat(ls.replace("Z", "+00:00"))
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=_tz.utc)
+            return (_now_utc - dt).total_seconds() <= _stale_exclude_s
+        except ValueError:
+            return True
+
+    fresh_machines = [m for m in st.get("machines", [])
+                      if _shadow_machine_fresh(m)]
+
+    # Recompute verdict on the filtered machines list so the status card
+    # reflects the same set the caller will see.
+    st_filtered = dict(st)
+    st_filtered["machines"] = fresh_machines
+    verdict, color = _shadow_verdict(st_filtered)
+    guide = _shadow_operator_guide(verdict, st_filtered)
     return {"verdict": verdict, "color": color,
             "mode": st.get("mode"),
             "total_claims": st.get("total_claims", 0),
@@ -2067,7 +2108,7 @@ def read_shadow_status() -> dict:
                 st.get("divergences_blocking", st.get("divergences", 0))),
             "divergences_explained": st.get("divergences_explained", 0),
             "experiments_in_mirror": st.get("experiments_in_mirror", 0),
-            "machines": st.get("machines", []),
+            "machines": fresh_machines,
             "recent_divergences": st.get("recent_divergences", []),
             "guide": guide}
 
