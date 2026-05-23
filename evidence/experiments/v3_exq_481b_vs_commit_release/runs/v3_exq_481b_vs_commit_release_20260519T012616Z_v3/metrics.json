@@ -1,0 +1,29 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "UC1_vs_release_fires_on_anchor_invalidation": {
+      "anchor_present_before_commit": true,
+      "anchor_gone_after_k_ticks": true,
+      "beta_was_elevated": true,
+      "pre_release_count": 0,
+      "vs_commit_release_count": 1,
+      "release_fired": true,
+      "pass": true
+    },
+    "UC2_no_release_in_off_arm": {
+      "anchor_gone_after_k_ticks": true,
+      "beta_was_elevated": true,
+      "vs_commit_release_count": 0,
+      "release_fired": false,
+      "pass": true
+    },
+    "UC3_empty_snapshot_repopulation": {
+      "repop_tick_did_not_fire": true,
+      "snapshot_repopulated": true,
+      "anchor_gone_after_k_ticks": true,
+      "vs_commit_release_count": 1,
+      "release_fired": true,
+      "pass": true
+    }
+  }
+}

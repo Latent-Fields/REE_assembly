@@ -26681,6 +26681,14 @@
     fair tests -- 543i does not resolve the substrate gap. Manifest
     corrected: evidence_direction 'mixed' -> non_contributory all
     claims. pending_retest_after_substrate.
+
+    2026-05-23 governance (failure_autopsy_V3-EXQ-543k_2026-05-21,
+    confirmed): V3-EXQ-543k (20260522T091714Z) FAIL branch-e --
+    mode_separation_floor + P1 w-deviation aux did not escape MECH-309
+    collapse. Extends failure_autopsy_V3-EXQ-543i. ARC-062=weakens,
+    MECH-309=supports per autopsy verdict. Routing: do-not-demote
+    ARC-062 until V3-EXQ-598 GAP-C/D completes; V3-EXQ-543l deferred.
+    pending_retest_after_substrate through V3-EXQ-598.
   implementation_note: >
     2026-05-21 IGW-024 substrate-ready reconcile: Phase 1 (GAP-A) IMPLEMENTED
     2026-05-09 -- ree_core/policy/gated_policy.py (two heads + 3-stream

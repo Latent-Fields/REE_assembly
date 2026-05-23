@@ -1,77 +1,36 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-21T08:33:52.087428+00:00",
-  "last_updated": "2026-05-21T08:33:57.325242+00:00",
-  "idle": true,
-  "current": null,
+  "runner_pid": 35234,
+  "runner_started_at": "2026-05-23T21:06:24.320510+00:00",
+  "last_updated": "2026-05-23T22:05:47.253789+00:00",
+  "idle": false,
+  "current": {
+    "queue_id": "V3-EXQ-591",
+    "backlog_id": "",
+    "claim_id": "ARC-046",
+    "title": "EXQ-ISEF-005: 4-phase infant curriculum vs flat parameter baselines (GAP-14)",
+    "description": "",
+    "script": "experiments/v3_exq_591_isef005_curriculum_vs_flat_v3.py",
+    "started_at": "2026-05-23T21:06:26.180828+00:00",
+    "progress": {
+      "run_label": "Seed 42 / ARM_0_ctrl_a",
+      "runs_done": 0,
+      "runs_total": 15,
+      "episodes_done": 200,
+      "episodes_total": 2000,
+      "overall_pct": 0.7
+    },
+    "seconds_elapsed": 3561,
+    "seconds_remaining": 21192,
+    "recent_lines": [
+      "V3-EXQ-591: EXQ-ISEF-005 curriculum vs flat parameter baselines",
+      "dry_run=False seeds=[42, 43, 44, 45, 46] n_episodes=2000 steps=200",
+      "Seed 42 Condition ARM_0_ctrl_a",
+      "[train] ARM_0_ctrl_a seed=42 ep 200/2000 z_goal=0.0000 cov=1.000 h_pos=0.386"
+    ],
+    "ree_version": "v3"
+  },
   "queue": [
-    {
-      "queue_id": "V3-EXQ-599",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-286 override-gated sleep-onset substrate validation",
-      "description": "",
-      "estimated_minutes": 0.4,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-600",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-282 LPB interoceptive harm routing substrate diagnostic",
-      "description": "",
-      "estimated_minutes": 0.4,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-601",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-269b-followup-A staleness-into-VsRolloutGate substrate validation",
-      "description": "",
-      "estimated_minutes": 34.4,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-603",
-      "backlog_id": "EVB-0231",
-      "claim_id": "",
-      "title": "Q-045 MECH-313 vs MECH-260 four-arm anti-monostrategy ablation",
-      "description": "",
-      "estimated_minutes": 48.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-604",
-      "backlog_id": "EVB-0230",
-      "claim_id": "",
-      "title": "Q-044 MECH-314a/b/c sub-flavour independence ablation",
-      "description": "",
-      "estimated_minutes": 48.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-605",
-      "backlog_id": "EVB-0229",
-      "claim_id": "",
-      "title": "Q-043 MECH-313 vs MECH-314 weight calibration sweep",
-      "description": "",
-      "estimated_minutes": 108.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-590a",
       "backlog_id": "",
@@ -84,68 +43,13 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-602",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-204 sleep-cluster StepHarness integration closure",
-      "description": "",
-      "estimated_minutes": 9.6,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-606",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-064 GAP-I MECH-318 empirical gate (multi-rule bipartite axis alternation)",
-      "description": "",
-      "estimated_minutes": 91.2,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-591",
       "backlog_id": "",
       "claim_id": "ARC-046",
       "title": "EXQ-ISEF-005: 4-phase infant curriculum vs flat parameter baselines (GAP-14)",
       "description": "",
       "estimated_minutes": 4000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-592",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "GAP-11 pilot: committed-mode curriculum harness validation (EXP-0157)",
-      "description": "",
-      "estimated_minutes": 480.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-471a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "EXQ-471 catatonic-lock Tier-1 retest under GAP-4 substrate",
-      "description": "",
-      "estimated_minutes": 48.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-490g",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-295 cascade Tier-1 retest under GAP-4 operating substrate (goal_pipeline:GAP-4)",
-      "description": "",
-      "estimated_minutes": 48.0,
-      "status": "pending",
+      "status": "running",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -8153,6 +8057,5 @@
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 85008.9
     }
-  ],
-  "draining": false
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-21T13:48:50Z",
+  "last_updated_utc": "2026-05-23T21:57:44Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1147,7 +1147,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites). Substrate-readiness V3-EXQ-483b PASS. MECH-286 sleep onset IMPLEMENTED 2026-05-21 (V3-EXQ-599 queued). MECH-282 LPB interoceptive routing IMPLEMENTED 2026-05-21 (lpb_interoceptive_routing.py + SD-037 split recruitment; V3-EXQ-600 substrate diagnostic queued). Tier-1 behavioural evidence: V3-EXQ-483c queued.",
       "priority": 2,
       "added_session": "governance-2026-04-24T08:10",
-      "last_seen_session": "igw-sd037-substrate-ready-20260521T021603Z",
+      "last_seen_session": "governance-20260523T212737Z",
       "implementation_status": "implemented",
       "implemented_utc": "2026-04-25T00:00:00Z",
       "validation_experiment": "V3-EXQ-483b",
@@ -1375,7 +1375,7 @@
       "implementation_hint": "Substrate landed in regulators/vs_rollout_gate.py 2026-04-26. /diagnose-errors 2026-04-27 root-cause: VsRolloutGate hold trigger (V_s < 0.4) is unreachable under typical Phase 1 V_s dynamics. Phase 1 V_s is an identity-prediction proxy (1 - normalized_step_delta) that stays near 0.9-1.0 under aligned latents; reaching 0.4 needs ~9 consecutive ticks of fully misaligned latent (doesn't happen at smoke scale). Architectural mismatch: gate reads velocity-based per_stream_vs but MECH-269b's intent is to gate on staleness-based V_s. The substrate is wired but reads the wrong signal. Two architectural follow-up paths are recorded as separate substrate_queue entries (MECH-269b-followup-A: staleness-corrected V_s in VsRolloutGate.gate; MECH-269b-followup-B: Phase 2 T2 forward-predictor V_s routing). V3-EXQ-490b queued as smoke-only substrate-readiness probe with thresholds raised to 0.85/0.95 to confirm gate-firing precondition (Q-040a) is operational, but Q-040b behavioural sufficiency is gated on one of the two follow-up paths.",
       "priority": 1,
       "added_session": "governance-2026-04-27T14:11",
-      "last_seen_session": "igw-mech269b-substrate-ready-20260521T134603Z",
+      "last_seen_session": "governance-20260523T212737Z",
       "implementation_status": "implemented",
       "implemented_utc": "2026-04-26T18:39:00Z",
       "validation_experiment": "V3-EXQ-601",
@@ -2565,7 +2565,7 @@
       "implementation_hint": "IMPLEMENTED 2026-04-19 (E2HarmAForward in ree_core/predictors/e2_harm_a.py; precision weighting in cingulate/dacc.py). Owned by self_attribution_plan.md Phase 1 from the comparator-output side; cross-link to commitment_closure_plan.md for the consumer-side dACC bundle sequencing (MECH-258 is the input channel feeding the commit-chain decisions). Phase 1 forensic read of EXQ-445h compares ARC-033 path vs ARC-058 shared-trunk path.",
       "priority": 1,
       "added_session": "self-attribution-plan-doc-2026-05-08",
-      "last_seen_session": "self-attribution-plan-doc-2026-05-08",
+      "last_seen_session": "governance-20260523T212737Z",
       "implementation_status": "implemented",
       "implemented_session": "2026-04-19-cingulate-cluster-implementation",
       "implemented_utc": "2026-04-19T00:00:00Z",
@@ -2641,12 +2641,18 @@
           "experiment_type": "v3_exq_543j_arc062_differential_heads_xmachine_confirm",
           "metric": "ree-cloud-4 branch-e: diff-OFF 3/3 inert + diff-ON 3/3 inert (repro_543g_signature); interpretation_branch=e; manifest mixed corrected to non_contributory",
           "target": "n_inert_gating_seeds==0 on ALL gated arms across K>=3 same-machine runs AND >=2 machines; mean_tv_distance>=0.05; basin deterministic w.r.t. init RNG"
+        },
+        {
+          "run_id": "v3_exq_543k_arc062_mode_separation_gap_b_falsifier_20260522T091714Z_v3",
+          "experiment_type": "v3_exq_543k_arc062_mode_separation_gap_b_falsifier",
+          "metric": "branch-e: mode_separation_floor=0.25 + P1 w-deviation aux=0.1 did not escape MECH-309 collapse. All diff-ON gated arms 3/3 inert. reef_occupancy_coeff=1.0 (monomodal). ARC-062=weakens, MECH-309=supports per confirmed autopsy. Routing: do-not-demote until V3-EXQ-598 GAP-C/D completes.",
+          "target": "reef_occupancy_coeff < 0.5 on >=2/3 seeds in diff-ON arms; OR tv_distance > 0.3 between ARM_0 and ARM_1 on SD-054 substrate"
         }
       ],
       "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4). || NEXT SUBSTRATE STEP (post V3-EXQ-543e autopsy, user-gated 2026-05-17): autopsy 'option 2' head-input first-action one-hot augmentation -- feed the gated-policy scoring heads the first-action category directly (z_world alone is starved: E2 world-forward compresses SP-CEM's ~5 first-action classes to ~0.22% of z_world magnitude). Phase-1 module/contract is implemented and SP-CEM (ARC-065) is now the main-path default; the head-input contract is the remaining substrate bottleneck. The falsifier re-issue V3-EXQ-543f must ALSO set dacc_weight>0 + a pre-flight non-degeneracy assertion (the 543d/543e dACC factorial axis was never live on any substrate due to the dacc_weight=0.0 DACCtoE3Adapter zero-return path).",
       "priority": 1,
       "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
-      "last_seen_session": "igw-024-arc062-substrate-ready-land-20260521T074615Z",
+      "last_seen_session": "governance-20260523T212737Z",
       "last_seen_note": "IGW-024 landed: Phase 1 (GAP-A) substrate-ready. gated_policy.py on ree-v3 main; V3-EXQ-542a PASS. ready=false; evidence gated 543k+598.",
       "implementation_status": "implemented",
       "validation_experiment": "V3-EXQ-542a",
