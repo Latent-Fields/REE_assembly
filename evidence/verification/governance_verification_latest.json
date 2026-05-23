@@ -1,0 +1,41 @@
+{
+  "generated_at_utc": "2026-05-23T20:37:19.182755+00:00",
+  "repo_root": "/Users/dgolden/REE_Working/REE_assembly",
+  "git_head": "c97272cf51027c61d24f12d59e29ac18b07520a7",
+  "status": "fail",
+  "findings": [
+    {
+      "severity": "warn",
+      "code": "CENTRAL_RUNNER_STATUS_STALE",
+      "message": "evidence/experiments/runner_status.json last_updated 2026-05-21T14:26:59.490765+00:00 is 54.2h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runner_status.json"
+      ],
+      "suggested_next_action": "Check whether coordinator->central-status merge has wedged. If Phase-2 coordinator is active, per-machine files are authoritative."
+    },
+    {
+      "severity": "warn",
+      "code": "HEARTBEAT_STATUS_DIVERGENCE",
+      "message": "Machine ree-cloud-1: heartbeat says state=running current_exq=V3-EXQ-591, but runner_status says idle=True current=null. Runner may have stopped mid-experiment.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runner_heartbeats/ree-cloud-1.json",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runner_status/ree-cloud-1.json"
+      ],
+      "suggested_next_action": "Check ree-cloud-1 runner process. If stopped, decide whether V3-EXQ-591 needs to be re-queued or has a manifest."
+    },
+    {
+      "severity": "block",
+      "code": "EXQ_DRAINED_WITHOUT_MANIFEST_OR_DISPOSITION",
+      "message": "V3-EXQ-543k is mentioned as drained in the roadmap Status Snapshot but no manifest was found in evidence/experiments/. Roadmap context: 'V3-EXQ-543k drained this window -- the 2026-05-21T14:13Z force_rerun re-queue is no longer in the queue, but no fresh 54'",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/docs/roadmap.md"
+      ],
+      "suggested_next_action": "Determine V3-EXQ-543k's fate: check per-machine runner_status files and coordinator panel. If manifest is on a remote machine, wait for sync. If the run was pruned or never ran, add an explicit disposition note in roadmap.md. Then re-queue if needed."
+    }
+  ],
+  "summary": {
+    "block_count": 1,
+    "warn_count": 2,
+    "info_count": 0
+  }
+}
