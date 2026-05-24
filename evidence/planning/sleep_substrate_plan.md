@@ -26,8 +26,8 @@ closure_plan:
       unblocks_claims: [SD-017, ARC-045, MECH-166]
       depends_on: ["arc_062_rule_apprehension:ARC-065-substrate"]
       upstream_block_reason: "ARC-065 (behavioral-diversity-generation pathway) registered 2026-05-10. V3-EXQ-418l + 436a returned bit-identical sleep-vs-waking metrics across all seeds because the agent's waking phase produces no behavioural variation for sleep to refine. Sleep refinement experiments cannot register signal until the agent has waking diversity to refine. See arc_062_rule_apprehension_plan.md decision log 2026-05-10 entry."
-      resume_condition: "V3-EXQ-543b/c PASS demonstrating non-degenerate cross-seed behavioural diversity in waking phase under ARC-065 substrate, then re-queue 418m + 436b under the diversity-substrate stack."
-      last_updated: 2026-05-10
+      resume_condition: "V3-EXQ-543l (queued 2026-05-24; escalated MODE_SEPARATION_FLOOR 0.5 + P1_W_DEVIATION_AUX_WEIGHT 0.3; supersedes 543k which FAIL/mixed 20260522T091714Z) is the active ARC-065 substrate gate. On 543l contributory PASS, re-queue 418m + 436b under the diversity-substrate stack. PRIOR: 543b/c/d/e/f/g/h all non_contributory (see arc_062 GAP-B history); 543i/j/k each addressed a distinct substrate defect but none achieved a contributory falsifier result."
+      last_updated: 2026-05-24
     - id: "sleep_substrate:GAP-3"
       title: "Phase B-E master flags default-False (cluster silent) -- unified use_sleep_aggregation_cluster master flag landed 2026-05-16"
       phase: 3

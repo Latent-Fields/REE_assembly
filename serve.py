@@ -936,7 +936,9 @@ def read_machines() -> dict:
 # placeholder cards in the Closure tab so the user knows they exist but
 # haven't been retrofitted yet.
 CLOSURE_KNOWN_PLANS = [
+    "arc_062_rule_apprehension_plan.md",
     "commitment_closure_plan.md",
+    "infant_substrate_plan.md",
     "goal_pipeline_plan.md",
     "self_attribution_plan.md",
     "sd033_governance_plan.md",

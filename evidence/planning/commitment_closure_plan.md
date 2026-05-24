@@ -11,7 +11,7 @@ closure_plan:
       phase: 1
       status: in-progress
       severity: load-bearing
-      owner_exq: V3-EXQ-598
+      owner_exq: V3-EXQ-598b
       unblocks_claims: [SD-033a, MECH-262, SD-034]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       cross_plan_link:
@@ -20,9 +20,9 @@ closure_plan:
         - "arc_062_rule_apprehension:GAP-C"
         - "arc_062_rule_apprehension:GAP-D"
       blocking_external: []
-      last_updated: 2026-05-20
-      resume_condition: "GAP-1 closes on V3-EXQ-598 PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543k contributory PASS (arc_062 GAP-B retest); EXQ-598 queued at priority 4 so it runs after 543k (priority 5)."
-      substrate_note: "GAP-C + GAP-D substrate implemented 2026-05-17 (discriminator_proj + train_rule_bias_head + bias_head_parameters). V3-EXQ-598 queued 2026-05-20: frozen vs trainable bias head on ARC-062+SD-054 stack (SP-CEM, differential heads, mode_separation_floor). Dry-run: C1 frozen silent PASS; C2 trainable nonzero PASS; C3 reef split FAIL on tiny schedule (expected). Full run pending."
+      last_updated: 2026-05-24
+      resume_condition: "GAP-1 closes on V3-EXQ-598b PASS (2-arm ablation). Scientific interpretation gated on V3-EXQ-543l contributory PASS (arc_062 GAP-B retest); 598b has hard startup gate on 543l so it runs only after GAP-B clears."
+      substrate_note: "GAP-C + GAP-D substrate implemented 2026-05-17 (discriminator_proj + train_rule_bias_head + bias_head_parameters). V3-EXQ-598b queued 2026-05-24 (supersedes 598a; GATES_ON_EXQ=V3-EXQ-543l; priority 4): frozen vs trainable bias head on ARC-062+SD-054 stack (SP-CEM, differential heads, mode_separation_floor). Dry-run (on 598a script): C1 frozen silent PASS; C2 trainable nonzero PASS; C3 reef split FAIL on tiny schedule (expected). Full run pending 543l."
     - id: "commitment_closure:GAP-2"
       title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence PASS"
       phase: 2
