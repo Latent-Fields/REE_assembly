@@ -1451,30 +1451,30 @@
     },
     "Q-043": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "decision_needed": "Question narrowing review",
       "decision_status": "applied",
-      "rationale": "Calibration question: relative weights of MECH-313 (stochastic noise floor / LC-NE tonic) vs MECH-314 (structured curiosity bonus / frontopolar). Resolution path: parametric sweep on SD-054 reef substrate + ARC-062 gated-policy; Pareto frontier identifies calibration zone. Substrate modules exist but bias_scale=1x is underpowered (EXQ-571 result). Hold pending bias_scale calibration (EXQ-573) and then parametric sweep.",
-      "recommendation": "hold_pending_v3_substrate",
+      "rationale": "Calibration question (MECH-313 vs MECH-314 relative weights) still gated on SD-054 reef substrate readiness + ARC-062 gated-policy landing. EXQ-605 NC this cycle confirms substrate not ready. Hold pending bias_scale calibration (EXQ-573) and ARC-062 GAP-C/D substrate landing.",
+      "recommendation": "narrow_open_question",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-16T19:08:31Z"
+      "timestamp_utc": "2026-05-23T21:57:44Z"
     },
     "Q-044": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "decision_needed": "Question narrowing review",
       "decision_status": "applied",
-      "rationale": "Independence question: are MECH-314a/b/c (striatal novelty / frontopolar uncertainty / learning-progress) distinct substrates or one mechanism with different upstream inputs? Resolution path: three-arm ablation with each sub-flavour independently OFF. Hold pending bias_scale calibration (EXQ-573) and confirmation that MECH-314 placement has not migrated from Phase-1 separate-module to GatedPolicy per-head (placement migration changes the ablation surface).",
-      "recommendation": "hold_pending_v3_substrate",
+      "rationale": "Independence question (MECH-314a/b/c subflavours) still gated on MECH-314 placement confirmation -- placement may migrate from Phase-1 separate-module to GatedPolicy per-head, which changes the ablation surface. EXQ-604 NC this cycle confirms substrate not ready. Hold pending bias_scale calibration and placement confirmation.",
+      "recommendation": "narrow_open_question",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-16T19:08:31Z"
+      "timestamp_utc": "2026-05-23T21:57:44Z"
     },
     "Q-045": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "decision_needed": "Question narrowing review",
       "decision_status": "applied",
-      "rationale": "Substrate-independence question: MECH-313 (state-independent LC-NE noise floor) vs MECH-260 (state-dependent dACC anti-recency penalty) -- independent or collapsing? Resolution path: 4-arm ablation (both-OFF / 313-only / 260-only / both-ON) on SD-054 + ARC-062. Also a gate in sleep substrate plan: SD-017 retest cohort (GAP-2) is blocked on ARC-065/diversity substrate landing. Hold pending bias_scale calibration and SD-054 reef substrate readiness.",
-      "recommendation": "hold_pending_v3_substrate",
+      "rationale": "Substrate-independence question (MECH-313 vs MECH-260) -- EXQ-603 (x2 runs) produced MECH-260 weakens signal but these runs are flagged for /failure-autopsy before any evidence stamp. Hold pending: (1) MECH-260 autopsy resolution, (2) SD-054 reef substrate readiness for multi-trial outcome dependencies (Kennerley-style integration), (3) ARC-065 diversity substrate landing for sleep-plan GAP-2.",
+      "recommendation": "narrow_open_question",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-16T19:08:31Z"
+      "timestamp_utc": "2026-05-23T21:57:44Z"
     },
     "SD-008": {
       "actor": "user",
@@ -1693,7 +1693,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-23T21:28:34.626199Z",
+  "generated_at_utc": "2026-05-24T18:15:36.657590Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

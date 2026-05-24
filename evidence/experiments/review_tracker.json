@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-23T21:57:44Z",
+  "last_review_utc": "2026-05-24T18:16:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -383,7 +383,13 @@
     "v3_exq_599a_mech286_sleep_onset_gate_validation",
     "v3_exq_600a_mech282_lpb_interoceptive_routing_diag",
     "v3_exq_607_mech340_persistence_efficacy_gate_validation",
-    "v3_exq_543k_arc062_mode_separation_gap_b_falsifier"
+    "v3_exq_543k_arc062_mode_separation_gap_b_falsifier",
+    "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation_20260523T221552Z_v3",
+    "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260523T223001Z_v3",
+    "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260523T223116Z_v3",
+    "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260524T100641Z_v3",
+    "V3-EXQ-606a",
+    "V3-EXQ-598"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2538,7 +2544,17 @@
     "v3_exq_600a_mech282_lpb_interoceptive_routing_diag_20260521T131742Z_v3",
     "v3_exq_607_mech340_persistence_efficacy_gate_validation_20260521T131749Z_v3",
     "v3_exq_592_gap11_pilot_committed_mode_curriculum_20260521T155058Z_v3",
-    "v3_exq_543k_arc062_mode_separation_gap_b_falsifier_20260522T091714Z_v3"
+    "v3_exq_543k_arc062_mode_separation_gap_b_falsifier_20260522T091714Z_v3",
+    "v3_exq_483c_sd037_broadcast_gap4_tier1_20260521T064444Z_v3",
+    "v3_exq_597b_mech258_pe_vs_raw_post_spcem_20260521T131756Z_v3",
+    "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T142648Z_v3",
+    "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T204222Z_v3",
+    "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation_20260523T221552Z_v3",
+    "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260523T223001Z_v3",
+    "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260523T223116Z_v3",
+    "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260524T100641Z_v3",
+    "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260524T101048Z_v3",
+    "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3030,6 +3046,39 @@
         "v3_exq_543k_arc062_mode_separation_gap_b_falsifier"
       ],
       "subject": "Governance 2026-05-23: 16 indexed runs closed. Group A NC/diagnostic (524a x2, 595 215456Z, 543i 035802Z misrun, 588b, 598 070715Z, 604, 605). Group B PASS substrate gates (601 x2 MECH-269b, 599a MECH-286, 600a MECH-282/SD-037, 607 MECH-340). 592 run1 manifest fixed: does_not_support->non_contributory. 592 run2 NC. 543k real (091714Z): accept autopsy routing, ARC-062 weakens/MECH-309 supports, do-not-demote pending EXQ-598. ARC-062 evidence_quality_note updated per failure_autopsy_V3-EXQ-543k_2026-05-21. Q-043/044/045 reaffirm hold (decision_log updated). PENDING /failure-autopsy: 483c SD-037, 597b MECH-258, 603 x2 MECH-260. PENDING /diagnose-errors: V3-EXQ-606a ERROR, V3-EXQ-598 runner ERROR."
+    },
+    {
+      "reviewed_at_utc": "2026-05-24T18:10:04Z",
+      "session_id": "pending-review-20260524T181004Z",
+      "reviewed_run_ids": [
+        "v3_exq_483c_sd037_broadcast_gap4_tier1_20260521T064444Z_v3",
+        "v3_exq_597b_mech258_pe_vs_raw_post_spcem_20260521T131756Z_v3",
+        "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T142648Z_v3",
+        "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T204222Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation_20260523T221552Z_v3",
+        "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260523T223001Z_v3",
+        "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260523T223116Z_v3",
+        "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260524T100641Z_v3",
+        "V3-EXQ-606a",
+        "V3-EXQ-598"
+      ],
+      "subject": "Post-autopsy review closure: 483c SD-037 (measurement_gap: use_dacc omitted, non_contributory); 597b MECH-258 (measurement_gap: dacc_suppression_weight=4.0 dilutes PE, mixed); 603 x2 MECH-260/313/Q-045 (measurement_gap: act_with_split_obs bypasses dacc.record_action, non_contributory). Unclaimed manifests: 598/598a FAILs (commitment_closure gate ablation); 606b FAIL (multi-rule empirical gate). ERRORs: V3-EXQ-606a (git-sync gap, fixed as 606b); V3-EXQ-598 (runner ERROR, fixed as 598a). Fix experiments queued: 483d (PAG override_signal C2), 597c (dacc_bias_max_abs=20), 603a (call-path fix). 598b pending gate on 543l successor."
+    },
+    {
+      "reviewed_at_utc": "2026-05-24T18:16:00Z",
+      "session_id": "pending-review-20260524T181004Z",
+      "reviewed_run_ids": [
+        "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation_20260523T221552Z_v3",
+        "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260523T223001Z_v3",
+        "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260523T223116Z_v3",
+        "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260524T100641Z_v3",
+        "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260524T101048Z_v3",
+        "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [],
+      "subject": "Post-sync review of 6 newly-indexed claim-tagged FAIL runs: 598 (221552Z) SD-033a FAIL -- gated on 543l successor; 606b (223001Z) MECH-318 FAIL weakens -- multi-rule gate does not hold; 598a (223116Z, 100641Z) SD-033a FAIL mixed -- gated runs; 606b (101048Z) MECH-318 FAIL weakens -- second run same result; 603a (170349Z) Q-045/MECH-313/MECH-260 FAIL weakens all -- call-path fix confirmed operative (mech260_operative_all_seeds=True) but fifo_temporal_gate_ok_all=False; genuine weakening signal not measurement gap. Successor needed: explore FIFO gate configuration or revised hypothesis."
     }
   ]
 }
