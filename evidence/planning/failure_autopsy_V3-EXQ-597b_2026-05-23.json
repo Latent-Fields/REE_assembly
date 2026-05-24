@@ -1,0 +1,60 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-24T05:51:35Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_597b_mech258_pe_vs_raw_post_spcem_20260521T131756Z_v3",
+      "queue_id": "V3-EXQ-597b",
+      "claim_ids": ["MECH-258"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- post-clip constant at 2.0 eliminated behavioral contrast; claim never fairly tested",
+        "biological_reference": "clear -- Seymour 2019 Neuron precision-weighted pain PE; Horing 2022 unsigned/signed PE decomposition; Song 2021 biophysical ACC-S1 model; two targeted reviews present",
+        "prerequisites": "present -- SD-020, E2_harm_a (C1 PASS 2/3 R2=0.91-0.94), SD-032b, SP-CEM all active",
+        "implementation": "partial -- wiring correct; weight config (suppression_weight=4.0) dominates pre-clip bias ~5x over PE term (dacc_weight=0.5); clip (2.0) incompatible with suppression scale",
+        "environment": "unknown -- not the primary issue; CausalGridWorldV3 may be sparse but this is secondary to the measurement gap",
+        "measurement": "inadequate -- C2 measures corr(total_pre_clip_bias, model_pe); suppression term (~80% of total) is orthogonal to PE vs raw condition; PE signal diluted below detectability",
+        "integration": "absent -- post_clip constant at 2.0 in all steps; E3 never receives varying dACC signal; behavioral integration impossible during P2 eval",
+        "scale": "adequate -- E2_harm_a R2=0.91-0.94 in working seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Seymour 2019 Neuron pain-as-precision-weighted-control-signal; dACC/aMCC reads z_harm_a as precision-weighted PE against pain forward model",
+        "dependencies": [
+          "pain forward model in anterior insula (Horing 2022 unsigned PE; pain-specific signed PE in dorsal posterior insula)",
+          "dACC integration of PE + cognitive conflict + control demand -> behavioral-adjustment magnitude (Shackman 2011)",
+          "ACC-NAc coupling for striatal-analog action-value write (Baliki 2010; learnable weight)",
+          "Song 2021 biophysical S1+ACC coupled-population model"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- MECH-258 is a faithful biological translation; no formal-definition mismatch",
+        "lit_status": "present -- targeted_review_pain_predictive_coding_substrate (2026-04-19, 9 entries) and targeted_review_cingulate_integration_substrate (2026-04-19, 9 entries)"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "EXQ-597b pre-clip telemetry fix resolved 597's undefined-Pearson problem but revealed a deeper confound: dacc_suppression_weight=4.0 drives pre-clip bias ~10-12 (5-6x above dacc_bias_max_abs=2.0), making post-clip output a constant 2.0 in all seeds and conditions. C2 measures corr(total_pre_clip_bias, model_pe), but the suppression term (~80% of total) is independent of both PE and raw norm, diluting any discrimination signal below detectability. The sole C2 win (seed13) is a degenerate-regime artifact (C1 R2=-1.624, 170 samples, action-skewed). Diagnosis: measurement_gap -- C2 cannot distinguish PE from raw when suppression dominates. MECH-258 not weakened; claim was not fairly tested (post-clip constant eliminated behavioral contrast). Recommend: EXQ-597c with per-component telemetry isolating PE contribution and dacc_bias_max_abs raised to 20.0.",
+      "recommended_substrate_queue_entry": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Suppression term (weight=4.0) must be separated from PE term (dacc_weight=0.5) in C2 telemetry; record pe_component and raw_component before summing with suppression/interaction/foraging",
+        "dacc_bias_max_abs=2.0 is incompatible with dacc_suppression_weight=4.0; clip must be raised to 15-20 (matching observed pre-clip magnitude range)",
+        "Post-clip constant at 2.0 means E3 receives no varying dACC signal; future iterations must confirm bias_clip_saturation_frac < 0.1 as C2 pre-condition",
+        "Per-seed C1 gate: if C1 R2 < 0.3, exclude seed from C2 win count (degenerate forward model produces noise PE signal)",
+        "597 (post-clip undefined Pearson) + 597b (suppression-dominated pre-clip) show that dACC PE vs raw tests need direct access to the PE-term contribution, not total bias"
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "next_queue_id": "V3-EXQ-597c",
+        "redesign_spec": {
+          "fix1": "raise dacc_bias_max_abs to 20.0 to prevent post-clip saturation",
+          "fix2": "record pe_component = dacc_weight * mode_ev (PE_FORWARD arm) separately from suppression/interaction/foraging before summing; run C2 on component not total",
+          "c2_criterion_revised": "corr(pe_component, model_pe) > corr(raw_component, model_pe) + 0.05 in >=2/3 seeds with C1 R2 > 0.3",
+          "guard": "assert bias_clip_saturation_frac < 0.1 per seed before scoring C2; flag inconclusive for saturating seeds"
+        }
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
