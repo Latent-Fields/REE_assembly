@@ -1,9 +1,11 @@
 {
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-05-24T05:57:54Z",
+  "interactive_gate_confirmed_utc": "2026-05-24T19:05:00Z",
   "scope": "single",
   "status": "confirmed",
   "session_id": "failure-autopsy-603-20260523T222253Z",
+  "interactive_gate_session_id": "failure-autopsy-603-interactive-gate-20260524T190342Z",
   "targets": [
     {
       "run_id": "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T204222Z_v3",
@@ -91,5 +93,17 @@
       "design_gate_flag": "Q-045 evidence_quality_note (2026-05-11) pre-flagged design as insufficient and required SD-054 substrate-readiness verification before authorization; this gate was not enforced"
     }
   ],
-  "cluster_pattern": null
+  "cluster_pattern": null,
+  "governance_disposition": {
+    "confirmed_utc": "2026-05-24T19:05:00Z",
+    "user_verdict": "non_contributory all three claims (MECH-260, MECH-313, Q-045) for both V3-EXQ-603 runs",
+    "apply_manifest_overrides": "next /governance cycle",
+    "apply_claims_yaml_notes": "next /governance cycle",
+    "routing_executed": "V3-EXQ-603a queued 2026-05-24T16:03:09Z",
+    "mech260_valid_evidence_confirmed": "EXQ-445h (C3 3/3 seeds, select_action path) unaffected",
+    "both_run_ids": [
+      "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T142648Z_v3",
+      "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T204222Z_v3"
+    ]
+  }
 }

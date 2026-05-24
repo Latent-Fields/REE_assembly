@@ -246,6 +246,16 @@ Pending retest: 603a with call path repaired and temporal horizon verified.
 
 ## 10. Confirmed Routing
 
-**User judgment (2026-05-24)**: Confirmed -- write artifacts and queue 603a.
+**User judgment (initial, 2026-05-24T06Z)**: Confirmed -- write artifacts and queue 603a.
 
-**Routing**: /queue-experiment for V3-EXQ-603a (call-path fix + temporal horizon verification)
+**User judgment (interactive gate, 2026-05-24T19:05Z)**: Confirmed -- all three claims
+(MECH-260, MECH-313, Q-045) non_contributory for both V3-EXQ-603 runs. Manifest overrides
+to be applied via next /governance cycle (not immediately). MECH-260 'weakens' must not
+enter governance scoring. EXQ-445h remains the valid MECH-260 support.
+
+**Routing**:
+- V3-EXQ-603a: QUEUED (call-path fix + temporal horizon verification) -- DONE.
+- Manifest overrides (evidence_direction -> non_contributory, epistemic_category ->
+  measurement_gap, evidence_direction_notes): apply during next /governance walk.
+- claims.yaml evidence_quality_notes for MECH-260, MECH-313, Q-045: apply during
+  next /governance walk. Draft text in Section 9 above.
