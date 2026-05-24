@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-24T09:48:46Z",
+  "scope": "single",
+  "status": "confirmed",
+  "autopsy_session": "failure-autopsy-483c-20260523T221919Z",
+  "targets": [
+    {
+      "run_id": "v3_exq_483c_sd037_broadcast_gap4_tier1_20260521T064444Z_v3",
+      "queue_id": "V3-EXQ-483c",
+      "claim_ids": ["SD-037", "MECH-280", "MECH-281"],
+      "failed_criteria": ["C2_dacc_bias", "C3_lift_vs_baseline"],
+      "criterion_types": {
+        "C2_dacc_bias": "discrimination",
+        "C3_lift_vs_baseline": "discrimination"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- C2 requires substrate not enabled; SD-037 primary pathway not captured by any criterion",
+        "biological_reference": "partial -- orexin->PAG pathway strong (2 lit-pulls, 13 papers); orexin->dACC coupling weaker; C2 not testing primary pathway",
+        "prerequisites": "missing -- SD-032b not in SD-037 depends_on; not enabled in any arm; identified as dependency gap",
+        "implementation": "complete -- SD-037 implemented 2026-04-25; PAG wiring confirmed EXQ-483b (1.875x release ratio)",
+        "environment": "adequate -- drive_floor=0.9 + goal_stream appropriate; C3_lift issue is policy ceiling",
+        "measurement": "misleading -- C2 measures disabled substrate; C3_lift measures ceiling behavior; neither captures SD-037 signature",
+        "integration": "partial -- SD-037 wired to PAG/SalienceCoordinator/GoalState; dACC integration not wired or tested",
+        "scale": "adequate -- seeds 42/19 run 793-1849 steps; adequate if metrics measuring the right thing"
+      },
+      "root_cause": {
+        "C2_dacc_bias": "use_dacc=True omitted from all 4 arm configs; agent.dacc is None in every run; _dacc_bias_norm() returns 0.0 immediately; counter cannot fire regardless of SD-037 state",
+        "C3_lift_vs_baseline": "approach_commit_rate=1.0 in OFF_OFF baseline arm (policy ceiling); no headroom for lift measurement"
+      },
+      "biological_reference": {
+        "closest_mechanism": "orexin arousal override system (lateral hypothalamus -> PAG, LC, dorsal raphe)",
+        "dependencies": [
+          "PAG freeze-gate (MECH-279)",
+          "homeostatic drive signal (SD-012)",
+          "salience coordination (SD-032a)",
+          "dACC conflict monitoring as secondary coupling (SD-032b)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- SD-037 is a biological translation, not a formal-definition import; orexin analog biology confirmed by 2 lit-pulls",
+        "lit_status": "present",
+        "lit_files": [
+          "evidence/literature/targeted_review_sd_037_orexin_kinetics/synthesis.md",
+          "evidence/literature/targeted_review_homeostatic_override"
+        ],
+        "primary_pathway_lit_support": "strong (orexin->PAG arousal override)",
+        "secondary_pathway_lit_support": "moderate (orexin->dACC conflict monitoring modulation)",
+        "note": "No dACC-specific lit-pull (targeted_review_dacc_conflict_monitor) exists; flag for commission if dACC-coupled SD-037 behavior is later targeted"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": {
+        "SD-037": "non_contributory",
+        "MECH-280": "unknown",
+        "MECH-281": "unknown"
+      },
+      "recommended_evidence_quality_note": {
+        "SD-037": "V3-EXQ-483c: C2_dacc_bias=0 across all 12 runs (3 seeds x 4 arms) because use_dacc=True was omitted from all arm configs -- agent.dacc is None in every run, _dacc_bias_norm() returns 0.0 immediately regardless of SD-037 state. C3_lift_vs_baseline=false because approach_commit_rate=1.0 in the OFF_OFF baseline arm (policy ceiling, not SD-037 suppression). Both failures are configuration/measurement gaps; 'weakens' tag is algorithm-generated from binary FAIL and carries no scientific signal here. SD-037 implementation confirmed functional (EXQ-483b: PAG release ratio 1.875x). Cluster: 5 GAP-4 tier-1 experiments share this gap -- single structural property of tier-1 library. evidence_direction revised to non_contributory. Pending retest: V3-EXQ-483d with PAG/override_signal as primary C2 criterion + use_dacc=True cluster fix. SD-032b dependency gap flagged for depends_on audit.",
+        "MECH-280": "V3-EXQ-483c: evidence_direction=unknown retained. PAG wiring confirmed by EXQ-483b (1.875x release ratio). C2/C3 failures in 483c were configuration/measurement gaps not diagnostic of MECH-280 behavior. Pending purposeful retest via 483d.",
+        "MECH-281": "V3-EXQ-483c: evidence_direction=unknown retained. C2/C3 failures in 483c were configuration/measurement gaps not diagnostic of MECH-281 behavior. Pending purposeful retest via 483d."
+      },
+      "pending_retest_after_substrate": true,
+      "retest_experiment_id": "V3-EXQ-483d",
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "GAP-4 tier-1 template missing use_dacc=True -> C2_dacc_bias permanently 0 across 5 experiments (cluster, single structural property)",
+        "SD-037 depends_on in claims.yaml omits SD-032b -- should be audited if dACC-coupled behavior is a claimed signature",
+        "'weakens' tag is auto-generated from binary FAIL; carries no scientific signal when failure mode is a configuration omission",
+        "C3_lift_vs_baseline requires non-trivial baseline; drive_floor=0.9 + fishtank produces ceiling commitment in baseline arm",
+        "SD-037 primary PAG pathway well-confirmed (EXQ-483b 1.875x); C2_dacc_bias not the right discriminator for SD-037 experiments",
+        "No lit-pull for dACC substrate (SD-032b) specifically -- commission targeted_review_dacc_conflict_monitor if dACC-coupled SD-037 behavior is later targeted"
+      ],
+      "routing": "queue-experiment",
+      "redesign_spec": {
+        "new_queue_id": "V3-EXQ-483d",
+        "label_rule": "alphabetic suffix -- same scientific question, implementation fix",
+        "primary_criterion_change": "Replace C2_dacc_bias with PAG/override_signal metric: override_signal_nonzero_steps (steps where broadcast_override.override_signal > 1e-3 in ON arms vs OFF baseline) or PAG freeze-gate suppression rate delta",
+        "arm_config_fix": "Add use_dacc=True to all 4 arm configs",
+        "library_fix": "Update goal_pipeline_tier1.py ENV_FISHTANK_KWARGS or shared arm-spec factory to include use_dacc=True as GAP-4 default; affects 5 cluster experiments",
+        "c3_lift_fix": "Consider metric with headroom: override_signal magnitude at first threat encounter, or goal_norm_peak delta vs baseline, instead of approach_commit_rate lift",
+        "cluster_fix_scope": "Include tier-1 library fix in 483d; other 4 cluster experiments (471a, 475a, 490g, 524a) need separate /governance retest decisions"
+      },
+      "governance_flags": [
+        "SD-032b missing from SD-037 depends_on in claims.yaml -- flag for depends_on audit",
+        "MECH-280 has duplicate evidence_quality_note YAML keys in claims.yaml -- stale 'Substrate not implemented' block predates 2026-04-25 implementation; governance to resolve",
+        "Cluster: 5 GAP-4 tier-1 experiments share measurement_gap; review as unit before individual retest decisions"
+      ]
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "C2_dacc_bias=0 in all runs across all arms including baseline; approach_commit_rate=1.0 in baseline (policy ceiling)",
+    "experiments_in_cluster": [
+      "V3-EXQ-471a",
+      "V3-EXQ-475a",
+      "V3-EXQ-483c",
+      "V3-EXQ-490g",
+      "V3-EXQ-524a"
+    ],
+    "is_independent_bugs": false,
+    "structural_property": "evaluate_tier1_cohort includes C2_dacc_bias as mandatory criterion, but GAP-4 arm spec template (ENV_FISHTANK_KWARGS + ArmSpec) does not include use_dacc=True; all 5 experiments inherit this gap",
+    "readings": [
+      "measurement_gap -- C2 cannot fire without use_dacc=True; all 5 experiments untestable for C2 as currently configured",
+      "policy_ceiling -- approach_commit_rate=1.0 in fishtank baseline with drive_floor=0.9; C3_lift structurally unmeasurable without a non-trivial baseline arm"
+    ],
+    "cluster_fix_required_before_retest": true
+  }
+}
