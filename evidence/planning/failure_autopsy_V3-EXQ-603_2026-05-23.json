@@ -1,0 +1,95 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-24T05:57:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-603-20260523T222253Z",
+  "targets": [
+    {
+      "run_id": "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T204222Z_v3",
+      "queue_id": "V3-EXQ-603",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "failed_criterion": "discrimination",
+      "failure_shape": "ARM_2==ARM_0 and ARM_3==ARM_1 to 6 d.p. across all seeds+step counts; two independent runs confirm structural",
+      "root_cause": "act_with_split_obs() bypasses select_action() where dacc.record_action() is called; FIFO permanently empty; MECH-260 fully non-operative in inference-only context",
+      "four_layer_diagnosis": {
+        "claim_alignment": "measurement_gap -- MECH-260 blocked from expressing; MECH-313 operative but sub-threshold",
+        "biological_reference": "clear -- both mechanisms well-grounded; failure matches missing-prerequisite (history never accumulated)",
+        "prerequisites": "missing -- MECH-260 requires per-step call through select_action(); act_with_split_obs() bypasses it",
+        "implementation": "partial -- MECH-313 operative; MECH-260 module exists but inference call-path broken",
+        "environment": "likely_insufficient -- SD-054 temporal-horizon requirement for Kennerley-style history not verified",
+        "measurement": "misleading -- entropy metric correct in principle; evidence_direction assigned via wrong-arm comparison in script",
+        "integration": "broken_for_mech260 -- select_action()/act_with_split_obs() split creates inference-vs-training gap",
+        "scale": "unknown -- zero training steps; temporal horizon for MECH-260 history accumulation unverified"
+      },
+      "biological_reference": {
+        "mech260": {
+          "closest_mechanism": "dACC action-outcome history integration across trials",
+          "dependencies": ["multi-step experience accumulation", "action-outcome binding", "FIFO or rolling history substrate"],
+          "is_formal_import": false,
+          "divergence": "none -- call-path failure is implementation detail, not biological divergence",
+          "lit_status": "present",
+          "key_papers": ["Scholl & Kolling 2015", "Kennerley 2006 (DOI 10.1038/nn1724)"]
+        },
+        "mech313": {
+          "closest_mechanism": "locus coeruleus tonic norepinephrine as stochastic background",
+          "dependencies": ["LC tonic activity baseline", "temperature-equivalent neuromodulatory gain"],
+          "is_formal_import": false,
+          "divergence": "moderate -- temperature floor is simplified proxy for LC tonic NE; state-independent design appropriate for tonic",
+          "lit_status": "present",
+          "key_papers": ["Aston-Jones & Cohen 2005", "Haarnoja 2018", "Faisal 2008"]
+        },
+        "q045": {
+          "closest_mechanism": "LC-NE -> dACC stochastic-mode switching (Tervo et al. 2014)",
+          "dependencies": ["both MECH-260 and MECH-313 operative", "sufficient temporal horizon for history accumulation"],
+          "is_formal_import": false,
+          "divergence": "none -- biology is COUPLED-NOT-COLLAPSED; experiment design failed to instantiate both mechanisms",
+          "lit_status": "present",
+          "lit_conf": 0.9,
+          "key_papers": ["Tervo et al. 2014 (Cell, DOI 10.1016/j.cell.2014.08.037)", "Scholl 2015", "Kennerley 2006", "Yu & Dayan 2005"]
+        }
+      },
+      "manifest_direction_assessment": {
+        "mech260_weakens": "artifact -- script compares ARM_2 vs ARM_1 (not baseline); MECH-260 non-operative; no genuine weakening signal",
+        "mech313_supports": "overstated -- +0.048 lift is real but below 0.05 threshold; non-contributory for governance",
+        "q045_mixed": "misleading -- untestable when MECH-260 non-operative"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-260": "non_contributory",
+        "MECH-313": "non_contributory",
+        "Q-045": "non_contributory"
+      },
+      "recommended_evidence_quality_note_mech260": "[2026-05-23 autopsy V3-EXQ-603]: MEASUREMENT GAP -- act_with_split_obs() bypasses select_action() where dacc.record_action() is called; FIFO permanently empty, suppression zero throughout. ARM_2==ARM_0 to 6 d.p. across all seeds+step counts (2 independent runs confirm structural). 'weakens' direction in manifest is a script logic artifact (wrong-arm comparison). EXQ-445h (C3 3/3 seeds) remains valid evidence. Pending retest: 603a with call path repaired.",
+      "recommended_evidence_quality_note_mech313": "[2026-05-23 autopsy V3-EXQ-603]: MEASUREMENT GAP -- +0.048 entropy lift above control (below 0.05 threshold), directionally consistent with noise-floor hypothesis but sub-threshold and confounded by MECH-260 non-operativeness. 'supports' in manifest overstates. Non-contributory pending 603a retest under valid MECH-260 conditions.",
+      "recommended_evidence_quality_note_q045": "[2026-05-23 autopsy V3-EXQ-603]: NON-CONTRIBUTORY -- MECH-260 non-operative (inference call-path bypass); substrate-independence question untestable. Lit-pull R5 flag (Kennerley temporal-horizon, design-gate) also unresolved. Pending retest: 603a with call path repaired and temporal horizon verified.",
+      "recommended_manifest_overrides": {
+        "evidence_direction": "non_contributory",
+        "evidence_direction_per_claim": {"Q-045": "non_contributory", "MECH-313": "non_contributory", "MECH-260": "non_contributory"},
+        "epistemic_category": "measurement_gap"
+      },
+      "pending_retest_after_fix": true,
+      "narrow_supports_flag": false,
+      "mech260_prior_evidence_unaffected": true,
+      "mech260_valid_evidence_run_id": "EXQ-445h",
+      "learning_extracted": [
+        "act_with_split_obs() bypasses select_action(); any history-dependent mechanism must be audited before using inference-only mode",
+        "Q-045 lit-pull (2026-05-11) pre-authorized a design-gate warning that was not enforced before queuing",
+        "MECH-313 produces a real sub-threshold +0.048 signal; NC for governance but directionally non-zero",
+        "evidence_direction assignment logic bug: script compares ARM_2 vs ARM_1 instead of ARM_2 vs ARM_0",
+        "Both manifests (two runs) must be overridden to non_contributory to prevent governance contamination"
+      ],
+      "routing": "queue-experiment",
+      "routing_target": "V3-EXQ-603a",
+      "routing_requirements": [
+        "Fix 1 (mandatory): ensure dacc.record_action(action) is called for MECH-260 arms -- prefer training run via select_action(), or add record_action() in act_with_split_obs() as experiment scaffolding",
+        "Fix 2 (required): verify SD-054 temporal horizon; FIFO must accumulate sufficient steps (>=2x dacc_suppression_memory=16, likely 50-100+)",
+        "Fix 3 (recommended): fix evidence_direction assignment logic to compare each arm vs ARM_0 baseline",
+        "Future 603b: 8-cell design (4 arms x 2 LC amplitudes) per lit-pull R4 recommendation"
+      ],
+      "design_gate_flag": "Q-045 evidence_quality_note (2026-05-11) pre-flagged design as insufficient and required SD-054 substrate-readiness verification before authorization; this gate was not enforced"
+    }
+  ],
+  "cluster_pattern": null
+}
