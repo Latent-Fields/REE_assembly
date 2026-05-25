@@ -1,0 +1,210 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-25T04:36:40Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-455a-igw022-20260525T043640Z",
+  "skill_applicability_caveat": "V3-EXQ-455a result is ERROR (NotImplementedError raise), not FAIL. Treated as design autopsy of the architectural-reassessment question per user routing from /diagnose-errors Step 7 gate 2026-05-25T03:33Z. Format is autopsy because the substantive output is governance-targeted EQN recommendations on the SD-032 cluster.",
+  "igw_id": "IGW-20260521-022",
+  "user_gate_step8_selection": "Recommend cluster-wide SD-032 audit",
+  "related_artifacts": [
+    "REE_assembly/evidence/planning/2026-05-25_sd_032_baseline_contamination_cluster.md",
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-455a_2026-05-25.md"
+  ],
+  "targets": [
+    {
+      "claim_id": "SD-032a",
+      "lead_run_id": "v3_exq_455_sd032a_salience_behavioral_20260420T223056Z_v3",
+      "lead_queue_id": "V3-EXQ-455",
+      "current_status": "stable",
+      "current_v3_pending": false,
+      "evidence_quality_issue": "baseline_contamination",
+      "baseline_metric_observed": {"action_class_entropy": 0.0, "n_seeds": 3, "n_actions_class_1_of_total": "5542/5542 per seed"},
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present_at_time_new_upstream_substrate_since",
+        "implementation": "complete",
+        "environment": "ambiguous_post_sp_cem",
+        "measurement": "misleading_post_sp_cem",
+        "integration": "incomplete_against_current_main_path",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "anterior_salience_network_menon_uddin_2010",
+        "dependencies": ["sd_032b", "sd_032c", "sd_032d"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present",
+        "compositionality_with_arc_065": "biology_supports_additive_composition_at_distinct_layers"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "unchanged_supports_with_caveat",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: V3-EXQ-455 PASS (2026-04-20) measured COORD_ON vs COORD_OFF on a CausalGridWorldV2 configuration where the COORD_OFF baseline produced action_class_entropy = 0.0 across all 3 seeds (5542/5542 actions = class 1). This is the monostrategy failure mode ARC-065 SP-CEM (main-path landed 2026-05-17) was designed to address at the candidate-generation layer. The supports tag is therefore 'supports vs monostrategy-locked baseline,' not 'supports vs SP-CEM-diverse baseline.' Behavioral-value question is untested against the post-2026-05-17 main-path substrate stack. pending_retest_after_substrate: ARC-065.",
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "baseline_shift_contamination_distinct_from_substrate_ceiling",
+        "fail_only_substrate_caveat_application_is_governance_process_gap"
+      ],
+      "routing": "governance"
+    },
+    {
+      "claim_id": "MECH-259",
+      "lead_run_id": "v3_exq_455_sd032a_salience_behavioral_20260420T223056Z_v3",
+      "supporting_run_id": "v3_exq_447_sd032d_pcc_stability_20260423T204632Z_v3",
+      "current_status": "stable",
+      "current_v3_pending": false,
+      "evidence_quality_issue": "baseline_contamination",
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "unchanged_supports_with_caveat",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: Both supporting experiments (V3-EXQ-455 PASS 2026-04-20, V3-EXQ-447 PASS 2026-04-23) ran on CausalGridWorldV2 pre-SP-CEM main-path. V3-EXQ-455 OFF-arm action_class_entropy = 0.0 confirmed empirically; V3-EXQ-447 OFF-arm entropy not captured but ran on the same substrate config. Trigger / mode-entropy / gate-modulation metrics measure direct coordinator outputs and will fire under SP-CEM too; the behavioral differential is the untested question. pending_retest_after_substrate: ARC-065.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "MECH-261",
+      "lead_run_id": "v3_exq_455_sd032a_salience_behavioral_20260420T223056Z_v3",
+      "current_status": "stable",
+      "current_v3_pending": false,
+      "evidence_quality_issue": "baseline_contamination",
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "unchanged_supports_with_caveat",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: V3-EXQ-455 PASS supports tag inherits the SD-032 cluster baseline-contamination pattern (see evidence/planning/2026-05-25_sd_032_baseline_contamination_cluster.md). MECH-261 biology lit-confidence (0.883) is unaffected; the V3 experimental tag specifically needs pending_retest_after_substrate: ARC-065.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "SD-032d",
+      "lead_run_id": "v3_exq_447_sd032d_pcc_stability_20260423T204632Z_v3",
+      "current_status": "candidate",
+      "current_v3_pending": true,
+      "evidence_quality_issue": "baseline_contamination",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: V3-EXQ-447 PASS inherits SD-032 cluster baseline-contamination pattern (see evidence/planning/2026-05-25_sd_032_baseline_contamination_cluster.md). pending_retest_after_substrate: ARC-065.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "SD-032e",
+      "lead_run_id": "v3_exq_448_sd032e_pacc_autonomic_20260419T212521Z_v3",
+      "current_status": "stable",
+      "current_v3_pending": false,
+      "evidence_quality_issue": "baseline_contamination",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: V3-EXQ-448 PASS inherits SD-032 cluster baseline-contamination pattern. pending_retest_after_substrate: ARC-065.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "MECH-094",
+      "lead_run_id": "v3_exq_448_sd032e_pacc_autonomic_20260419T212521Z_v3",
+      "current_status": "stable",
+      "evidence_quality_issue": "baseline_contamination_partial",
+      "scope_note": "MECH-094 has multiple supporting experiments beyond SD-032 cluster; this autopsy only flags the V3-EXQ-448-derived tag, not the claim broadly.",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: V3-EXQ-448 PASS supports tag for MECH-094 inherits SD-032 cluster baseline-contamination pattern. Other MECH-094 supporting evidence is unaffected. pending_retest_after_substrate: ARC-065 applies to the V3-EXQ-448-derived tag only.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "SD-032b",
+      "lead_run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T063313Z_v3",
+      "current_status": "candidate",
+      "current_v3_pending": true,
+      "evidence_quality_issue": "free_text_caveat_present_structured_field_missing",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: Existing free-text V_s-monostrategy substrate caveat (2026-04-22 governance) is confirmed and aligns with the cluster baseline-contamination pattern. Promote free-text to the structured pending_retest_after_substrate: ARC-065 field. Free-text retained for audit trail.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "SD-032c",
+      "lead_run_id": "v3_exq_325d_sd032c_aic_descending_modulation_20260420T160057Z_v3",
+      "current_status": "candidate",
+      "current_v3_pending": true,
+      "evidence_quality_issue": "free_text_caveat_present_structured_field_missing",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: Same as SD-032b -- promote existing free-text V_s-monostrategy caveat to structured pending_retest_after_substrate: ARC-065.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "MECH-258",
+      "lead_run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T063313Z_v3",
+      "current_status": "candidate",
+      "current_v3_pending": true,
+      "evidence_quality_issue": "baseline_contamination_partial",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: V3-EXQ-445h partial-supports tag inherits SD-032 cluster baseline-contamination pattern. The MECH-258 forward-model R2 metric (0.94-0.99) is robust to baseline diversity, but the downstream behavioral implication is not. pending_retest_after_substrate: ARC-065.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "claim_id": "MECH-260",
+      "lead_run_ids": ["v3_exq_445h_sd032b_dacc_reef_20260508T063313Z_v3", "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T142648Z_v3"],
+      "current_status": "candidate",
+      "current_v3_pending": true,
+      "evidence_quality_issue": "baseline_contamination_partial_atop_existing_measurement_gap_caveats",
+      "recommended_pending_retest_after_substrate": "ARC-065",
+      "recommended_evidence_quality_note": "[2026-05-25 autopsy]: V3-EXQ-445h support tag inherits SD-032 cluster baseline-contamination pattern. Existing 2026-05-24/25 measurement-gap caveats (V3-EXQ-603 call-path bypass + 603a FIFO warmup) are independent and stand. pending_retest_after_substrate: ARC-065 applies to the V3-EXQ-445h-derived tag.",
+      "pending_retest_after_substrate": true,
+      "routing": "governance"
+    },
+    {
+      "queue_id": "V3-EXQ-455a",
+      "target_kind": "script_hygiene",
+      "current_status": "ERROR_completed_runner_skipped",
+      "issue": "stale_NotImplementedError_stub_gating_logic_correct_gating_condition_now_wrong",
+      "recommended_action": "mark_non_runnable_via_docstring_no_queue_change_needed",
+      "recommended_docstring_block": "[SUPERSEDED 2026-05-25 by ARC-065 SP-CEM main-path landing 2026-05-17. The 'V_s cascade gate' this stub was waiting on (EXQ-476a/476b) did not land via that pathway. The substrate condition the stub was protecting against (monostrategy-locked baseline) is now addressed at the candidate-generation layer by SP-CEM. The scientific question this stub framed (does the SD-032a salience coordinator add value with V_s diversity ON?) is now sharper than ever, but should be queued as a NEW EXQ (not 455b) because the substrate stack has changed materially. See evidence/planning/failure_autopsy_V3-EXQ-455a_2026-05-25.md for the routing.]",
+      "queue_change_needed": false,
+      "runner_change_needed": false,
+      "routing": "low_touch_script_hygiene"
+    },
+    {
+      "queue_id": "NEW-V3-EXQ-TBD",
+      "target_kind": "commission_new_experiment",
+      "scientific_question": "Does the SD-032a salience coordinator + MECH-259 + MECH-261 produce a behavioral differential on top of an SP-CEM-diverse COORD_OFF baseline?",
+      "recommended_design": {
+        "arms": ["COORD_OFF + SP-CEM ON (NEW baseline)", "COORD_ON + SP-CEM ON"],
+        "metrics_inherited_from_v3_exq_455": ["trigger_count_natural", "mean_operating_mode_entropy", "write_gate_e3_policy_std", "action_class_entropy"],
+        "new_metric": "C5_behavioral_differential -- some measure (mode-appropriate action selection? task-mode-conditioned write-gating? exact metric TBD by /queue-experiment) that is NOT already satisfied by SP-CEM-supplied diversity at large.",
+        "phased_training": "same P0/P1/P2 structure as V3-EXQ-455",
+        "seeds": 3,
+        "claim_ids_re_evaluation_required": true,
+        "likely_new_claim_ids": ["ARC-065", "MECH-326"],
+        "supersedes_relationship": "SUPERSEDES V3-EXQ-455 only in the sense that the differential is now against an SP-CEM baseline. The V3-EXQ-455 PASS evidence is retained (with EQN caveat) -- the new EXQ answers a different scientific question, not the same question better."
+      },
+      "deferral_note": "Not blocking anything time-critical. Queue when user has experimental budget; the cluster claims will sit in pending_retest_after_substrate: ARC-065 until then.",
+      "routing": "queue_experiment_deferred"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "pre_sp_cem_baseline_contamination_across_sd_032_cluster",
+    "is_independent_bugs": false,
+    "structural_property": "Every SD-032 cluster experiment with recorded baseline-arm action_class_entropy shows 0.0 (5542/5542 actions = class 1 at COORD_OFF / ARM_0). All 5 cluster lead experiments ran before ARC-065 SP-CEM main-path landing (2026-05-17). Governance has applied substrate caveats to FAIL outcomes (SD-032b, SD-032c, partial on MECH-258/260) but not to PASS outcomes (SD-032a, SD-032d, SD-032e, MECH-094, MECH-259, MECH-261). The asymmetry is structurally inconsistent and worth a governance-process correction.",
+    "readings": [
+      "compositional_brains_are_existence_proof_default_retest_preserves_supports_with_sharper_differential",
+      "sp_cem_subsumes_diversity_objective_retest_softens_supports_to_baseline_relative_and_re_grounds_pass_criteria"
+    ],
+    "discriminating_test": "NEW V3-EXQ (NOT 455b) with COORD_OFF+SP-CEM vs COORD_ON+SP-CEM differential, plus a behavioral-differential criterion the original 455 pass criteria did not carry."
+  },
+  "governance_process_finding": {
+    "issue": "fail_only_substrate_caveat_application",
+    "description": "When a governance cycle applies a substrate caveat to a FAIL in a multi-experiment cluster, sibling PASSes from the same substrate condition should be audited concurrently. The current asymmetric application leaves substrate-baseline-contaminated PASSes uncaveated.",
+    "recommended_check": "When a substrate caveat is applied to any experiment in a cluster, scan all sibling experiments in the cluster for shared substrate conditions and apply parallel caveats / pending_retest flags where applicable."
+  },
+  "no_edits_made_to": [
+    "REE_assembly/docs/claims/claims.yaml",
+    "REE_assembly/evidence/experiments/*/manifest.json",
+    "REE_assembly/evidence/experiments/*/runs/*/manifest.json",
+    "REE_assembly/evidence/experiments/review_tracker.json",
+    "REE_assembly/evidence/planning/substrate_queue.json",
+    "ree-v3/experiment_queue.json",
+    "ree-v3/experiments/v3_exq_455a_sd032a_salience_with_vs.py"
+  ]
+}
