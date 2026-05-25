@@ -256,6 +256,29 @@ enter governance scoring. EXQ-445h remains the valid MECH-260 support.
 **Routing**:
 - V3-EXQ-603a: QUEUED (call-path fix + temporal horizon verification) -- DONE.
 - Manifest overrides (evidence_direction -> non_contributory, epistemic_category ->
-  measurement_gap, evidence_direction_notes): apply during next /governance walk.
-- claims.yaml evidence_quality_notes for MECH-260, MECH-313, Q-045: apply during
-  next /governance walk. Draft text in Section 9 above.
+  measurement_gap, evidence_direction_notes): APPLIED 2026-05-25 (commit 1c5d7030a8).
+- claims.yaml evidence_quality_notes for MECH-260, MECH-313, Q-045: APPLIED 2026-05-25.
+
+---
+
+## 11. V3-EXQ-603b Retest Spec (added 2026-05-25)
+
+603a ran with the call-path fixed (`mech260_operative_all_seeds=true`) but
+`fifo_temporal_gate_ok_all=False`. Root cause: 2 of 3 seeds (42, 44) had episodes
+averaging ~14 steps, well below the 75-step FIFO warmup. `measured_steps=0` for
+those seeds; only seed 43 produced data.
+
+**The 603b fix is episode length, not warmup size.** Do not lower
+`FIFO_WARMUP_STEPS` (75 is the correct Kennerley minimum); raise
+`STEPS_PER_EPISODE` from 200 to 500. This gives even the shortest-episode seeds
+headroom to complete the warmup and accumulate measurement steps.
+
+**603b build instructions for /queue-experiment:**
+- Base script: `ree-v3/experiments/v3_exq_603a_q045_mech313_mech260_four_arm_ablation.py`
+- Change: `STEPS_PER_EPISODE = 200` -> `STEPS_PER_EPISODE = 500`
+- Keep: `FIFO_WARMUP_STEPS = 75`, all four arms, ARM-vs-ARM_0 comparison logic
+- Supersedes: V3-EXQ-603a
+- Claims: MECH-260, MECH-313, Q-045 (unchanged)
+- NOTE: the "8-cell design" reference elsewhere in this artifact is a different
+  future extension (603b was reserved for it before the temporal-gate failure
+  was discovered). Ignore it -- the temporal-gate fix takes priority.

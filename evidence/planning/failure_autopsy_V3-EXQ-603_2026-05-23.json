@@ -104,6 +104,16 @@
     "both_run_ids": [
       "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T142648Z_v3",
       "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T204222Z_v3"
-    ]
+    ],
+    "retest_spec_603b": {
+      "added_utc": "2026-05-25T05:47:24Z",
+      "context": "603a confirmed mech260_operative_all_seeds=true (call-path fixed) but fifo_temporal_gate_ok_all=False -- 2 of 3 seeds (42, 44) had episodes averaging ~14 steps, below 75-step FIFO warmup; measured_steps=0 for those seeds",
+      "fix": "raise STEPS_PER_EPISODE from 200 to 500; do NOT lower FIFO_WARMUP_STEPS (75 is the correct Kennerley minimum)",
+      "base_script": "ree-v3/experiments/v3_exq_603a_q045_mech313_mech260_four_arm_ablation.py",
+      "keep_unchanged": ["FIFO_WARMUP_STEPS = 75", "all four arms", "ARM-vs-ARM_0 comparison logic"],
+      "supersedes": "V3-EXQ-603a",
+      "claim_ids": ["MECH-260", "MECH-313", "Q-045"],
+      "naming_note": "The '8-cell design (4 arms x 2 LC amplitudes)' reference in routing_requirements[3] is a different future extension; 603b label was reserved for it before the temporal-gate failure was discovered. The temporal-gate fix takes priority over the 8-cell design."
+    }
   }
 }
