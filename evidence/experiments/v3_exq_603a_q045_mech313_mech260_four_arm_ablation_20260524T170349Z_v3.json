@@ -11,11 +11,11 @@
     "MECH-313",
     "MECH-260"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-045": "weakens",
-    "MECH-313": "weakens",
-    "MECH-260": "weakens"
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
   },
   "supersedes": "V3-EXQ-603",
   "dry_run": false,
@@ -218,5 +218,7 @@
     "Fix1: select_action() path with obs_harm_a + use_affective_harm_stream",
     "Fix2: FIFO_WARMUP_STEPS=75 before entropy measurement",
     "Fix3: evidence_direction_per_claim vs ARM_0 baseline"
-  ]
+  ],
+  "evidence_direction_note": "MEASUREMENT GAP (2026-05-25): MECH-260 now operative (call-path fix confirmed: mech260_operative_all_seeds=true) but fifo_temporal_gate_ok_all=False -- 2 of 3 seeds (42, 44) had measured_steps=0 because episodes ended before the 75-step FIFO warmup. Mean entropy driven by zeros from those seeds; only seed 43 produced real data (ARM_2=0.442 < ARM_0=0.481; ARM_1=0.496 > ARM_0). With N=1 effective seed the 'weakens' direction for MECH-260 is not interpretable evidence. Non-contributory pending temporal-gate fix (longer episodes or reduced FIFO warmup).",
+  "epistemic_category": "measurement_gap"
 }

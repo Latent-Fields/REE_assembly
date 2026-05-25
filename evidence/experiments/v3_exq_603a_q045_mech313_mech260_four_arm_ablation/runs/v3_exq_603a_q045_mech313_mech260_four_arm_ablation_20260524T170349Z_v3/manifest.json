@@ -1,0 +1,52 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603a_q045_mech313_mech260_four_arm_ablation",
+  "run_id": "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-24T17:03:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
+  },
+  "evidence_direction_note": "MEASUREMENT GAP (2026-05-25): MECH-260 now operative (call-path fix confirmed: mech260_operative_all_seeds=true) but fifo_temporal_gate_ok_all=False -- 2 of 3 seeds (42, 44) had measured_steps=0 because episodes ended before the 75-step FIFO warmup. Mean entropy driven by zeros from those seeds; only seed 43 produced real data (ARM_2=0.442 < ARM_0=0.481; ARM_1=0.496 > ARM_0). With N=1 effective seed the 'weakens' direction for MECH-260 is not interpretable evidence. Non-contributory pending temporal-gate fix (longer episodes or reduced FIFO warmup). Retest: V3-EXQ-603b.",
+  "epistemic_category": "measurement_gap",
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": []
+}

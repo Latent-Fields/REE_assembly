@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-25T04:18:45.428948Z`
+Generated: `2026-05-25T04:43:07.002912Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -110,6 +110,7 @@ Use this as the human-in-the-loop review queue.
 | `Q-042` | `candidate_resolved` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-043` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-044` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
+| `Q-045` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `SD-015` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-021` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-023` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -168,7 +169,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-038
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.295, conflict_ratio=0.571, exp_entries=2, lit_entries=5; directions supports=5, weakens=2, mixed=0, unknown=0, conflict_ratio=0.571
+- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.294, conflict_ratio=0.571, exp_entries=2, lit_entries=5; directions supports=5, weakens=2, mixed=0, unknown=0, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -981,7 +982,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-260
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=11, weakens=1, mixed=0, unknown=0, conflict_ratio=0.167
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=11, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1503,7 +1504,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-313
 - Current status: `candidate_substrate_landed`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -1958,6 +1959,25 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: Independence question (MECH-314a/b/c subflavours) still gated on MECH-314 placement confirmation -- placement may migrate from Phase-1 separate-module to GatedPolicy per-head, which changes the ablation surface. EXQ-604 NC this cycle confirms substrate not ready. Hold pending bias_scale calibration and placement confirmation.
 
+### Q-045
+- Current status: `open`
+- Decision needed: Question narrowing review
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=5; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Evidence quality note: >
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-23T21:57:44Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: Substrate-independence question (MECH-313 vs MECH-260) -- EXQ-603 (x2 runs) produced MECH-260 weakens signal but these runs are flagged for /failure-autopsy before any evidence stamp. Hold pending: (1) MECH-260 autopsy resolution, (2) SD-054 reef substrate readiness for multi-trial outcome dependencies (Kennerley-style integration), (3) ARC-065 diversity substrate landing for sleep-plan GAP-2.
+
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
@@ -2226,7 +2246,6 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `SD-015` | `candidate` | 0.857 |
 | `MECH-111` | `candidate` | 0.8 |
 | `MECH-186` | `candidate` | 0.8 |
-| `MECH-313` | `candidate_substrate_landed` | 0.8 |
 | `MECH-320` | `candidate_substrate_landed` | 0.8 |
 | `MECH-334` | `candidate` | 0.8 |
 | `Q-002` | `active` | 0.8 |
@@ -2259,6 +2278,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-165` | `candidate` | 0.5 |
 | `MECH-188` | `candidate` | 0.5 |
 | `MECH-256` | `candidate` | 0.5 |
+| `MECH-313` | `candidate_substrate_landed` | 0.5 |
 | `SD-021` | `candidate` | 0.5 |
 | `SD-029` | `candidate` | 0.5 |
 | `SD-032c` | `candidate` | 0.5 |
@@ -2272,7 +2292,6 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-166` | `candidate` | 0.4 |
 | `MECH-220` | `candidate` | 0.4 |
 | `Q-020` | `resolved` | 0.4 |
-| `Q-045` | `open` | 0.4 |
 | `SD-023` | `candidate` | 0.4 |
 | `SD-032b` | `candidate` | 0.4 |
 | `SD-047` | `provisional` | 0.4 |
@@ -2284,7 +2303,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-314` | `candidate_substrate_landed` | 0.333 |
 | `MECH-120` | `candidate` | 0.308 |
 
-WARNING: 64 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
+WARNING: 63 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
 
 ## Substrate changes with dependent invariants
 

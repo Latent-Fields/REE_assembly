@@ -11,11 +11,11 @@
     "MECH-313",
     "MECH-260"
   ],
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-045": "mixed",
-    "MECH-313": "supports",
-    "MECH-260": "weakens"
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
   },
   "dry_run": false,
   "acceptance_criteria": {
@@ -135,5 +135,7 @@
       "total_steps": 2260,
       "unique_actions": 3
     }
-  ]
+  ],
+  "evidence_direction_note": "MEASUREMENT GAP (autopsy 2026-05-24): act_with_split_obs() bypasses select_action() where dacc.record_action() is called; FIFO permanently empty throughout. ARM_2==ARM_0 and ARM_3==ARM_1 to 6 d.p. across all seeds+step counts (structural, confirmed by 2 independent runs). MECH-260 was never operative. 'weakens' and 'supports' directions written by script are artifacts of the broken call path and wrong-arm comparison logic. EXQ-445h (select_action path, C3 3/3 seeds) remains valid MECH-260 evidence. Autopsy: evidence/planning/failure_autopsy_V3-EXQ-603_2026-05-23.{md,json}. Retest: V3-EXQ-603a.",
+  "epistemic_category": "measurement_gap"
 }

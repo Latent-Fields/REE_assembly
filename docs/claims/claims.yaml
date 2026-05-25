@@ -19487,6 +19487,17 @@
     in this cluster. See SD-032 parent.
 
     [2026-05-08 governance]: EXQ-445h supports (C3 wins=3/3 seeds). harm forward R2=0.94-0.99. First clean supporting evidence on dACC reef substrate.
+
+    [2026-05-24 autopsy V3-EXQ-603]: MEASUREMENT GAP -- act_with_split_obs() bypasses
+    select_action() where dacc.record_action() is called; FIFO permanently empty,
+    suppression zero throughout. ARM_2==ARM_0 to 6 d.p. across all seeds+step counts
+    (2 independent runs confirm structural). 'weakens' direction in manifest is a
+    script logic artifact (wrong-arm comparison vs ARM_1 not baseline). Both V3-EXQ-603
+    manifests overridden to non_contributory. EXQ-445h (C3 3/3 seeds, select_action
+    path) remains valid evidence. [2026-05-25] V3-EXQ-603a: call-path fixed
+    (mech260_operative_all_seeds=true) but 2/3 seeds measured_steps=0 (episodes <75
+    FIFO warmup steps); 603a also overridden to non_contributory pending temporal-gate
+    fix. Pending retest: V3-EXQ-603b.
   implementation_note: >
     IMPLEMENTED 2026-04-19. DACCAdaptiveControl
     (ree_core/cingulate/dacc.py) maintains a FIFO action-class history
@@ -27512,6 +27523,16 @@
     Not yet experimentally tested. Falsifying experiment is V3-EXQ-543b
     4-arm sub-design or its split V3-EXQ-543b (noise floor / gating)
     arm-class.
+
+    [2026-05-24 autopsy V3-EXQ-603]: MEASUREMENT GAP -- real +0.048 entropy lift
+    above ARM_0 (below 0.05 margin), directionally consistent with the noise-floor
+    hypothesis but sub-threshold. Confounded by MECH-260 being non-operative (FIFO
+    empty; act_with_split_obs() call-path). 'supports' in manifest overstates.
+    V3-EXQ-603 overridden to non_contributory. [2026-05-25] V3-EXQ-603a: seed 43
+    (only operative seed) shows ARM_1 (MECH-313) +0.015 above ARM_0 -- directionally
+    consistent, sub-threshold. 603a also overridden to non_contributory (2/3 seeds
+    measured_steps=0; temporal gate failure). Pending: V3-EXQ-603b with episode
+    length fixed.
   notes: >
     Pull 4 R4 verdict assigned MECH-313 to HYBRID-naming because the
     REE-internal stochastic_noise_floor name and the literature anchor
@@ -28056,6 +28077,16 @@
     three originally registered (mutually load-bearing / 313-dominant /
     260-dominant).
     See: evidence/literature/targeted_review_q_045/synthesis.md]
+
+    [2026-05-24 autopsy V3-EXQ-603]: NON-CONTRIBUTORY -- MECH-260 non-operative
+    throughout (inference call-path bypass; dacc.record_action() never called;
+    FIFO permanently empty). Substrate-independence question untestable when one
+    mechanism is structurally absent. Lit-pull R5 design-gate (Kennerley temporal-
+    horizon, SD-054 substrate-readiness) also unresolved. [2026-05-25] V3-EXQ-603a:
+    MECH-260 now operative but 2/3 seeds had measured_steps=0 (episodes < 75-step
+    FIFO warmup); temporal gate failure makes result uninterpretable. All V3-EXQ-603
+    and V3-EXQ-603a runs overridden to non_contributory. Pending: V3-EXQ-603b
+    with call path repaired and temporal horizon verified.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: ARC-064
