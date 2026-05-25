@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-25T08:45:17Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-591",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-597b",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T13:55:51.384903+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T14:26:48.699517+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-606a",
-      "result": "ERROR",
-      "completed_at": "2026-05-21T14:26:52.176247+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598",
-      "result": "ERROR",
-      "completed_at": "2026-05-21T14:43:23.496021+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603b",
-      "result": "FAIL",
-      "completed_at": "2026-05-25T06:54:07.606173+00:00"
-    }
+  "last_tick_utc": "2026-05-25T08:47:24Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-543l",
+  "current_exq_started_utc": "2026-05-25T08:47:19.804177+00:00",
+  "current_title": "ARC-062 GAP-B mode-separation falsifier (escalated floor 0.5 / aux 0.3)",
+  "current_claim_id": "ARC-062",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / ARM_0_baseline",
+    "runs_done": 0,
+    "runs_total": 36,
+    "episodes_done": 0,
+    "episodes_total": 108,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 72000,
+  "recent_lines": [
+    "Preflight non-degeneracy check PASS: dacc_weight=1.0 active, first_action_onehot=True (action_dim=5); crystallize factor arms gated.crystallize_enabled + residue.ewc without pre-firing; MECH-314 novelty-only on xtal arms; use_differential_heads wires (OFF=two-head, ON=base+delta).",
+    "[V3-EXQ-543l] ARC-062 differential-heads Falsifier (escalated floor=0.5 aux=0.3; 12-arm grid + REINFORCE P1 loss inherited from 543k; supersedes 543k)  seeds=[0, 1, 2]  dry_run=False",
+    "Seed 0 Condition ARM_0_baseline",
+    "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=False  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 667,
   "runner_version": null,
   "gpu": {
