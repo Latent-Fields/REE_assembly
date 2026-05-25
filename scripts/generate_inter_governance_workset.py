@@ -259,6 +259,26 @@ def _exq_successor_of(base: str, qid: str) -> bool:
     return bool(re.match(r"^[A-Z]+$", suffix)) or bool(re.match(r"^R\d+$", suffix))
 
 
+_OUTCOME_IN_SUMMARY_RE = re.compile(r"Outcome:\s*(PASS|FAIL)", re.IGNORECASE)
+
+
+def _effective_result(entry: dict) -> str:
+    """Return the entry's scientific result, recovering from UNKNOWN-result silent-drop.
+
+    The runner sometimes writes result='UNKNOWN' with result_summary embedding
+    'Outcome: PASS|FAIL'. Treat those as the actual outcome so successor
+    detection does not see them as 'still pending'.
+    """
+    res = (entry.get("result") or "").upper()
+    if res in ("PASS", "FAIL", "ERROR"):
+        return res
+    summary = entry.get("result_summary") or ""
+    m = _OUTCOME_IN_SUMMARY_RE.search(summary)
+    if m:
+        return m.group(1).upper()
+    return res
+
+
 def _has_completed_successor(qid: str, completed_by_qid: dict[str, dict]) -> bool:
     """True when a successor ran to PASS/FAIL (infra fix or scientific completion)."""
     m = _EXQ_BASE_RE.match(str(qid))
@@ -268,7 +288,7 @@ def _has_completed_successor(qid: str, completed_by_qid: dict[str, dict]) -> boo
     for other_qid, entry in completed_by_qid.items():
         if not _exq_successor_of(base, other_qid):
             continue
-        if entry.get("result") in ("PASS", "FAIL"):
+        if _effective_result(entry) in ("PASS", "FAIL"):
             return True
     return False
 
