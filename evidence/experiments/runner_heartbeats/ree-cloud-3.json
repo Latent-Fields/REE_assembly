@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-25T08:40:57Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-590a",
-  "current_exq_started_utc": "2026-05-21T11:47:59.853037+00:00",
-  "current_title": "EXQ-ISEF-004 rerun: novelty bonus Goldilocks calibration with checkpoint/resume",
-  "current_claim_id": "MECH-314",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_nbw10",
-    "runs_done": 14,
-    "runs_total": 15,
-    "episodes_done": 1000,
-    "episodes_total": 1000,
-    "overall_pct": 100.0
-  },
-  "seconds_elapsed": 334378,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "C2 (5/5 arms with coverage in >=2/3 seeds): PASS",
-    "Goldilocks arm: ARM_nbw01 (nbw=0.1) nonmonotone=False",
-    "Overall outcome: PASS",
-    "Result written to: /home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_590_isef004_novelty_bonus_goldilocks/v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3.json",
-    "[experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-590a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-590a.json"
+  "last_tick_utc": "2026-05-25T08:41:02Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 4,
+  "queue_id_at_head": "V3-EXQ-603",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-471a",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T08:59:18.517718+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-599",
+      "result": "ERROR",
+      "completed_at": "2026-05-21T10:49:46.679681+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-600",
+      "result": "ERROR",
+      "completed_at": "2026-05-21T10:50:05.557207+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-601",
+      "result": "PASS",
+      "completed_at": "2026-05-21T11:47:54.625196+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-590a",
+      "result": "PASS",
+      "completed_at": "2026-05-25T08:40:57.606321+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 319558,
   "runner_version": null,
   "gpu": {
