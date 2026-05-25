@@ -8,11 +8,14 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "pending_retest_after_substrate",
   "evidence_direction_per_claim": {
-    "MECH-314": "non_contributory"
+    "MECH-314": "non_contributory",
+    "MECH-111": "non_contributory"
   },
-  "evidence_direction_note": "GAP-13 calibrates MECH-111 (E3 broadcast novelty EMA from E1 prediction error in score_trajectory), NOT MECH-314 (StructuredCuriosity per-candidate score_bias). non_contributory to MECH-314 because the per-candidate curiosity pathway is not under test here. PASS = signal active (C1) + exploration confirmed (C2); Goldilocks weight adopted for infant curriculum Phase 1. If nonmonotone_detected=True: stochastic attractor boundary visible at high novelty_bonus_weight. MECH-314a (per-candidate RBF novelty) is the upgrade path when MECH-111 broadcast shows weak directional effect.",
+  "pending_substrate_reconfirmation": true,
+  "supersedes_outcome": "PASS_procedural_only",
+  "evidence_direction_note": "ANNOTATED 2026-05-25T17:23:52Z (post-hoc review under TASK_CLAIMS exq-590a-annotation-20260525T172352Z). Procedural PASS only: C1 (novelty EMA active) and C2 (>=3/5 arms cover map) both pass, but the Goldilocks calibration is vacuous. All 5 arms (weights 0.1/0.3/0.5/0.7/1.0) x 3 seeds produced BIT-IDENTICAL mean_h_pos (0.5077619937480481), mean_coverage (1.0), and mean_novelty_ema (0.011173535284321558), including per-seed ep_h_pos_last5 and ep_novelty_ema_last5 arrays. Goldilocks arm chosen by ordering tiebreak, not signal. ROOT CAUSE: MECH-111 broadcast novelty is mathematically null on trajectory selection by construction. ree-v3/ree_core/predictors/e3_selector.py:607-611: self._novelty_ema is a scalar; the line `score = score - weight * scalar` applies the same constant offset to every candidate in the trajectory batch, leaving argmax/argmin invariant. Wiring config -> agent.e3.config.novelty_bonus_weight -> score_trajectory is correct; the mechanism itself cannot differentiate weights. The behavioural-diversity gate (MECH-269 V_s monostrategy) does not rescue this because diversity acts on the candidate pool but MECH-111 contributes a constant regardless of pool shape; a per-candidate novelty term would still need diversity to calibrate against. ACTION: do NOT adopt goldilocks_weight=0.1 for infant curriculum Phase 1; the value is an artefact. Re-queue as EXQ-590b targeting MECH-314a (StructuredCuriosity per-candidate RBF novelty in score_bias) only AFTER (a) MECH-314a implementation lands so the bonus is per-candidate, AND (b) behavioural diversity lands (MECH-269 V_s or equivalent) so the per-candidate signal has non-degenerate inputs to weight against. Original note retained for history: 'GAP-13 calibrates MECH-111 (E3 broadcast novelty EMA from E1 prediction error in score_trajectory), NOT MECH-314 (StructuredCuriosity per-candidate score_bias). non_contributory to MECH-314 because the per-candidate curiosity pathway is not under test here. PASS = signal active (C1) + exploration confirmed (C2); Goldilocks weight adopted for infant curriculum Phase 1. If nonmonotone_detected=True: stochastic attractor boundary visible at high novelty_bonus_weight. MECH-314a (per-candidate RBF novelty) is the upgrade path when MECH-111 broadcast shows weak directional effect.'",
   "timestamp_utc": "20260525T084057Z",
   "dry_run": false,
   "config": {
