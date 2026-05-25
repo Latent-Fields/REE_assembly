@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-25T08:56:04Z",
+  "last_updated_utc": "2026-05-25T19:41:26Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2713,7 +2713,16 @@
       "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-cycle-2026-05-16T174522Z"
+      "last_seen_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
+      "pending_retests_downstream": [
+        {
+          "retest_queue_id_planned": "V3-EXQ-590b",
+          "owner_sd_id": "MECH-314",
+          "note": "EXQ-590b (MECH-314a per-candidate RBF novelty Goldilocks calibration) is gated on ARC-065 behavioural-diversity-generation landing in addition to MECH-314a propagation validation. See MECH-314 pending_retests for full spec.",
+          "added_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
+          "added_utc": "2026-05-25T19:41:26Z"
+        }
+      ]
     },
     {
       "sd_id": "MECH-313",
@@ -2763,12 +2772,50 @@
           "experiment_type": "v3_exq_571_e3_score_variance_decomp",
           "metric": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
           "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable"
+        },
+        {
+          "run_id": "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3",
+          "experiment_type": "v3_exq_590_isef004_novelty_bonus_goldilocks",
+          "queue_id": "V3-EXQ-590a",
+          "outcome_classification": "PASS_procedural_only_pending_retest_after_substrate",
+          "metric": "All 5 novelty_bonus_weight arms (0.1/0.3/0.5/0.7/1.0) x 3 seeds produced BIT-IDENTICAL mean_h_pos (0.5077619937480481), mean_coverage (1.0), and mean_novelty_ema (0.011173535284321558), including per-seed ep_h_pos_last5 and ep_novelty_ema_last5 arrays. Goldilocks arm chosen by ordering tiebreak, not signal.",
+          "target": "Goldilocks calibration must show monotone or single-peaked variation of joint_metric across novelty_bonus_weight arms; argmax weight must be selected by signal, not tiebreak.",
+          "root_cause": "ree-v3/ree_core/predictors/e3_selector.py:607-611 -- MECH-111 broadcast novelty applies score = score - weight * scalar_EMA uniformly across the trajectory batch, which is a constant offset that leaves argmax/argmin invariant by construction. Wiring (config -> e3.config.novelty_bonus_weight -> score_trajectory) is correct; the mechanism itself cannot differentiate weights. Same propagation pathology family as V3-EXQ-571 (bias channel present in substrate but not reaching E3 selection) -- there, the channel was wired but contributed 0.0 variance; here, the channel is wired but contributes a constant.",
+          "note": "Re-queue path is EXQ-590b targeting MECH-314a (per-candidate RBF novelty in score_bias). See pending_retests block."
         }
       ],
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-545 5/5 PASS. Single module + 3 independently-togglable sub-switches per Pull 1 R3 verdict. 314a is genuinely per-candidate; 314b/c are state-dependent global scalars broadcast across [K] in Phase 1 (per-candidate refinement deferred to Phase 2).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "governance-20260525T085604Z"
+      "last_seen_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
+      "pending_retests": [
+        {
+          "retest_queue_id_planned": "V3-EXQ-590b",
+          "planned_claim_ids": [
+            "MECH-314a"
+          ],
+          "supersedes": "V3-EXQ-590a",
+          "reason": "EXQ-590a was nominally a MECH-111 broadcast-novelty Goldilocks calibration but the broadcast mechanism is mathematically null on selection (constant offset across trajectory batch). Re-running EXQ-590a yields the same result; the question must be re-posed at MECH-314a (per-candidate RBF novelty score_bias).",
+          "gated_on": [
+            {
+              "gate": "MECH-314a per-candidate propagation validated",
+              "requires": "Q-044 three-arm ablation showing curiosity bias component variance fraction > 0.01 in E3 temporal variance decomposition (per V3-EXQ-571 failure_record threshold). Substrate landing is necessary but not sufficient -- the channel must demonstrably influence E3 selection, not just be present.",
+              "status": "pending"
+            },
+            {
+              "gate": "Behavioural diversity landed (ARC-065)",
+              "requires": "ARC-065 phase past phase_1_implemented to functional behavioural-diversity-generation. Even with MECH-314a per-candidate scoring correct, a monomodal candidate pool (MECH-269 V_s monostrategy or downstream collapse at CEM/E3-elite step) produces ~uniform per-candidate novelty contributions and the Goldilocks calibration remains degenerate. V3-EXQ-608 P2 (MECH-341 E3 score-collapse diagnostic, queued 2026-05-25 prio 250) is the upstream gate that routes this dependency.",
+              "status": "pending"
+            }
+          ],
+          "do_not_adopt_from_590a": {
+            "goldilocks_weight": 0.1,
+            "reason": "Value selected by ordering tiebreak among bit-identical arms; not a calibration result. Must not be adopted for infant curriculum Phase 1."
+          },
+          "added_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
+          "added_utc": "2026-05-25T19:41:26Z"
+        }
+      ]
     },
     {
       "sd_id": "MECH-316",
@@ -3043,5 +3090,5 @@
       "implementation_note": "2026-05-21 IGW-027 code-read refresh: no random.random/torch.randn; numpy self._rng only. PRIMARY irreducible attractor SD-048 autonomic i.i.d. on harm_obs_a (:3507); secondary SD-048 sensitisation Poisson (:3485), fatigue innovation (:3466), SD-047 weather (:3275) + transient Poisson (:3311/:3336). All reset/spawn/drift learnable-stochastic (a). Audit block in CausalGridWorldV2() docstring causal_grid_world.py."
     }
   ],
-  "last_seen_session": "igw-027-inf-env-004-audit-20260521T034309Z"
+  "last_seen_session": "substrate-queue-590a-pending-retest-20260525T194126Z"
 }
