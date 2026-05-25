@@ -33998,3 +33998,215 @@
     - targeted_review_goal_disengagement
     - targeted_review_ghost_goal_search
   location: docs/architecture/ghost_goal_search.md
+
+- id: MECH-341
+  title: "e3_scoring_preserves_trajectory_class_diversity. E3 score aggregation
+    over CEM-supplied candidates must preserve trajectory-class diversity rather
+    than collapse a diverse candidate pool onto a single deterministic ranking.
+    Without explicit diversity preservation at the scoring step, downstream
+    action selection becomes deterministic regardless of proposal-layer diversity
+    (ARC-065 SP-CEM child), making the whole distributed diversity pathway
+    rate-limited by Layer B. Mechanism options (not yet committed): (1) entropy
+    bonus over candidate first-action classes added to E3 score; (2) class-
+    stratified argmax with within-class proportional sampling; (3) jittered
+    tie-breaking when top-K E3 scores are within epsilon. Final design pending
+    diagnostic data on whether E3 collapse is near-tie or large-gap (see
+    behavioral_diversity_isolation_plan.md Phase P2)."
+  claim_type: mechanism_hypothesis
+  subject: ethics_engine_3.scoring_trajectory_class_diversity_preservation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-05-25"
+  depends_on:
+    - ARC-065    # parent diversity-generation pathway -- MECH-341 is the Layer-B child
+    - ARC-033    # E2_harm_s forward model -- the input to E3 scoring
+    - SD-003     # counterfactual evaluation -- consumes the preserved diversity at Layer B
+    - INV-076    # diversity as counterfactual prerequisite -- companion invariant
+  notes: >
+    Registered 2026-05-25 to close a claim-side gap exposed during the
+    behavioural-diversity isolation analysis: ARC-065's distributed pathway
+    commits the architecture to four substrate slots (LC-NE tonic noise,
+    frontopolar curiosity, striatal novelty, hippocampal trajectory sampling),
+    but the post-CEM scoring step at E3 has no corresponding diversity-
+    preservation mechanism. The acceptance-criteria doc names this as an FP-4
+    failure mode ("metric-only diversity / score collapse") but did not register
+    a positive claim asserting that E3 must preserve. MECH-341 closes that
+    asymmetry. Layer assignment: this is the Layer-B (scoring) claim in the
+    isolation plan's four-layer model (proposal / scoring / action-selection /
+    representation). Falsifier sequence: Phase P2 diagnostic (instrumentation-
+    only run logging pre-E3 candidate class count vs post-E3 selected class
+    count); P3 substrate work + B_only / ablate_B arms once a design option is
+    chosen. Substrate not yet implemented; theory remains untested at the
+    mechanism-design level.
+  evidence_quality_note: >
+    No experimental evidence yet. Architectural argument grounded in (a) the
+    ARC-065 distributed-pathway commitment, (b) the acceptance-criteria doc's
+    Rung 1 FP "diversity in candidates that collapses to one class after E3
+    scoring", and (c) the prior 2026-05-25 4-theory analysis identifying Layer B
+    as the highest-residual-leverage gap. Promotion path requires P2 diagnostic
+    confirming theory 2 (R2.a in isolation plan) plus P3 substrate landing plus
+    B_only or ablate_B arm differential.
+  literature_anchors:
+    - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
+       diverse trajectory contingencies; preservation across scoring layers is
+       required for downstream behavioural flexibility."
+    - "Padoa-Schioppa & Conen (2017) Neuron 96:736 -- OFC value comparison
+       preserves option-distinct value signals through the comparison stage;
+       collapse to single value rank is pathological."
+  location: evidence/planning/behavioral_diversity_isolation_plan.md
+
+- id: Q-054
+  title: "What is the minimum trajectory-class diversity floor (Rung 1
+    first_action_entropy threshold) required for the ARC-062 context
+    discriminator to learn a reliable discriminative cut between reef and
+    foraging contexts? Is the current SP-CEM entropy lift of 0.497 nats
+    sufficient, or is a higher floor required? (Was proposed 2026-05-15 as
+    Q-046 in behavioral_diversity_acceptance_criteria.md; never registered;
+    re-registered under next available Q-id.)"
+  claim_type: open_question
+  subject: policy.diversity_generation.arc062_minimum_diversity_floor
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-05-25"
+  depends_on:
+    - ARC-065
+    - ARC-062
+    - MECH-313
+    - MECH-314
+  notes: >
+    ARC-062 requires a diverse behavioural stream to find a discriminative cut.
+    The minimum entropy threshold for this is theoretically bounded below by the
+    mutual information between context (reef/forage) and action, but is
+    practically unknown for the V3 SD-054 substrate. Resolution path:
+    parametric entropy sweep (noise_floor_min_temperature,
+    curiosity_novelty_weight) measuring ARC-062 discriminator accuracy as a
+    function of upstream first_action_entropy. Expect a phase transition: below
+    some floor the discriminator cannot learn; above it accuracy rises
+    monotonically. Current evidence: V3-EXQ-567 ARM_1 SP-CEM = 0.497 nats;
+    whether this is above or below the ARC-062 threshold is unknown.
+    V3-EXQ-543b (Rung 2 experiment) will answer empirically.
+  evidence_quality_note: >
+    Open question, conf=0.0 by construction. Originally proposed 2026-05-15 in
+    behavioral_diversity_acceptance_criteria.md as Q-046; the ID was never
+    written into claims.yaml and the next available Q-id was used on
+    re-registration 2026-05-25. Scientific content unchanged from the original
+    proposal.
+  location: evidence/planning/behavioral_diversity_acceptance_criteria.md
+
+- id: Q-055
+  title: "Does sleep consolidation (SD-017 SWS phase) preserve the trajectory-
+    class diversity achieved by ARC-065 during waking, or does Hebbian winner-
+    take-all dynamics during replay erode it? Is sleep a net positive or net
+    negative for learned behavioural diversity? (Was proposed 2026-05-15 as
+    Q-047 in behavioral_diversity_acceptance_criteria.md; never registered;
+    re-registered under next available Q-id.)"
+  claim_type: open_question
+  subject: policy.sleep_consolidation.diversity_effect
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-05-25"
+  depends_on:
+    - ARC-065
+    - SD-017
+    - MECH-120
+    - INV-049
+  notes: >
+    MECH-120 predicts Hebbian reinforcement during sleep replay preferentially
+    strengthens the most-recently or most-heavily-weighted trajectories. If
+    ARC-065 diversity generation operates only during waking, sleep could
+    systematically undo it. Two candidate counter-mechanisms: (a) ARC-065
+    substrates re-seed diversity in waking periods between sleep cycles; (b)
+    sleep replay itself is DESIGNED to sample diverse trajectories (priority
+    sampling proportional to class distribution rather than top-reward).
+    Resolution path: Rung 3 experiment in the acceptance-criteria doc -- measure
+    TrajDiv and TV at three time points (post-waking-convergence, post-200-no-
+    exploration-episodes, post-5-sleep-cycles). Outcomes: preserves -> supports
+    SD-017 + INV-049; erodes -> falsifies MECH-120-as-mechanism, ARC-065 must
+    also operate during consolidation (new MECH); increases -> surprising,
+    indicates broader episodic-replay sampling.
+  evidence_quality_note: >
+    Open question, conf=0.0 by construction. Originally proposed 2026-05-15 in
+    behavioral_diversity_acceptance_criteria.md as Q-047; ID was never written
+    into claims.yaml. Re-registered under next available Q-id on 2026-05-25;
+    scientific content unchanged.
+  location: evidence/planning/behavioral_diversity_acceptance_criteria.md
+
+- id: INV-076
+  title: "Behavioural diversity is a structural prerequisite for ethical
+    counterfactual evaluation. A system with monomodal policy cannot instantiate
+    the counterfactual evaluation that ethical judgement requires, because the
+    'could have done otherwise' comparison demands that the agent's candidate
+    trajectory pool contain at least two distinct trajectory classes with
+    distinct harm profiles. The argument is mathematical-by-construction: if
+    P(a|s) is monomodal, the CEM elite pool contains only trajectories
+    beginning with a*, and SD-003's counterfactual E2(z_t, a_cf) for a_cf != a*
+    is never evaluated in the on-policy candidate distribution. (Was proposed
+    2026-05-15 as INV-074 in behavioral_diversity_acceptance_criteria.md but
+    never registered; the ID was subsequently taken 2026-05-17 by an unrelated
+    plasticity-crystallization invariant. Re-registered under INV-076 with
+    scientific content unchanged.)"
+  claim_type: invariant
+  invariant_type: universal
+  subject: ethics.diversity_prerequisite_for_counterfactual_evaluation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  claim_level: universal
+  registered_utc: "2026-05-25"
+  depends_on:
+    - ARC-065    # diversity generation pathway that instantiates the prerequisite
+    - SD-003     # counterfactual evaluation mechanism that requires diverse candidates
+    - ARC-033    # E2_harm_s forward model (the comparator SD-003 uses)
+    - MECH-341   # E3-scoring diversity preservation -- the substrate that makes the prerequisite operative downstream of CEM
+  notes: >
+    Distinct from the empirical claim that a monomodal agent is unsafe: the
+    claim is that a monomodal agent is CONSTITUTIVELY INCAPABLE of the
+    counterfactual comparison SD-003 requires. Safety could be coincidental (if
+    the monostrategy happens to be harmless), but genuine ethical reasoning
+    requires the agent CHOSE the harmless trajectory over alternatives, not
+    merely executed it. Invariant type: universal (holds across all substrates,
+    all environments, by construction). Falsification would require showing
+    SD-003 can produce ethical counterfactuals from a monomodal proposal pool,
+    which would require a different formulation of SD-003. Rung 4 acceptance
+    criteria operationalise this invariant: criterion 3
+    (cf_diverse_candidate_rate) directly tests whether SD-003 fires on a
+    diverse pool; criterion 4 (ARC-065 ablation reduces harm separation) tests
+    whether ARC-065 supplies that diversity. Cross-reference INV-034 (goal
+    maintenance necessary for ethical agency): INV-076 is the companion claim
+    on the DIVERSITY side. INV-034 is about sustaining the ethical GOAL across
+    time; INV-076 is about whether the CANDIDATE GENERATION process can produce
+    material for ethical comparison. Biology anchor: the 'could have done
+    otherwise' standard in moral philosophy (Fischer & Ravizza 1998 reasons-
+    responsiveness; Kane 1996 ultimate responsibility) maps directly to the
+    requirement that deliberation generates genuine alternatives. A policy with
+    deterministic monomodal output produces one action regardless of reasons;
+    it cannot be reasons-responsive.
+  evidence_quality_note: >
+    Mathematical / logical argument; no experimental evidence yet at the
+    invariant level (though Rung 4 acceptance criteria + V3-EXQ-TBD (Rung-4-
+    ethics) are the empirical side). Lit-pull recommended before promotion
+    beyond candidate. Originally proposed 2026-05-15 as INV-074 in
+    behavioral_diversity_acceptance_criteria.md; ID was never written into
+    claims.yaml and was subsequently taken 2026-05-17 by an unrelated claim
+    (plasticity-crystallization necessity). Re-registered under INV-076
+    2026-05-25; scientific content unchanged from original proposal.
+  literature_anchors:
+    - "Fischer & Ravizza (1998) Responsibility and Control -- reasons-
+       responsiveness account of moral responsibility; deliberation must
+       generate alternatives for moral agency."
+    - "Kane (1996) The Significance of Free Will -- ultimate responsibility
+       requires genuine alternative possibilities at the moment of choice."
+    - "Bratman (1987) Intention, Plans, and Practical Reason -- planning theory
+       of rational action; trajectory planning is the substrate of ethical
+       commitment."
+    - "Dennett (1984) Elbow Room -- philosophical review of counterfactual and
+       alternative-possibilities arguments; the computational analog of these
+       arguments is the SD-003 claim."
+  location: evidence/planning/behavioral_diversity_acceptance_criteria.md

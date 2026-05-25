@@ -1322,6 +1322,13 @@
     "title": "Signal-structure temporal decoupling: any signal that is BOTH self-extinguishing (its magnitude is coupled to its own success and therefore necessarily fades as what it bootstraps succeeds) AND load-bearing (the structure it establishes must persist after the signal fades) necessarily requires either a crystallization mechanism (LOCK -- the structure is rendered plasticity-resistant) or a handoff mechanism (a durable, non-extinguishing signal assumes maintenance of the structure before the establishing signal vanishes). Absent both, the structure decays and the acquisition is lost. The lock/handoff disjunction is exhaustive: no third resolution exists.",
     "type": "invariant"
   },
+  "INV-076": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "ethics.diversity_prerequisite_for_counterfactual_evaluation",
+    "title": "Behavioural diversity is a structural prerequisite for ethical counterfactual evaluation. A system with monomodal policy cannot instantiate the counterfactual evaluation that ethical judgement requires, because the 'could have done otherwise' comparison demands that the agent's candidate trajectory pool contain at least two distinct trajectory classes with distinct harm profiles. The argument is mathematical-by-construction: if P(a|s) is monomodal, the CEM elite pool contains only trajectories beginning with a*, and SD-003's counterfactual E2(z_t, a_cf) for a_cf != a* is never evaluated in the on-policy candidate distribution. (Was proposed 2026-05-15 as INV-074 in behavioral_diversity_acceptance_criteria.md but never registered; the ID was subsequently taken 2026-05-17 by an unrelated plasticity-crystallization invariant. Re-registered under INV-076 with scientific content unchanged.)",
+    "type": "invariant"
+  },
   "MECH-001": {
     "status": "candidate",
     "subject": "control_plane.astrocyte_regulatory_stack",
@@ -3422,6 +3429,12 @@
     "title": "The persistence/efficacy gate: a control/efficacy-detection signal that maintains an unresolved-goal bank entry as an active MECH-293 re-probe target. Its ABSENCE is the default (the entry stops being re-probed and decays in MECH-292 rank; the SD-039 trace is NOT erased). It is gated ON by an unattainability-negative / control-positive appraisal, NOT by accumulated failure, repeated suppression, bare effort-cost, or staleness.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-341": {
+    "status": "candidate",
+    "subject": "ethics_engine_3.scoring_trajectory_class_diversity_preservation",
+    "title": "e3_scoring_preserves_trajectory_class_diversity. E3 score aggregation over CEM-supplied candidates must preserve trajectory-class diversity rather than collapse a diverse candidate pool onto a single deterministic ranking. Without explicit diversity preservation at the scoring step, downstream action selection becomes deterministic regardless of proposal-layer diversity (ARC-065 SP-CEM child), making the whole distributed diversity pathway rate-limited by Layer B. Mechanism options (not yet committed): (1) entropy bonus over candidate first-action classes added to E3 score; (2) class- stratified argmax with within-class proportional sampling; (3) jittered tie-breaking when top-K E3 scores are within epsilon. Final design pending diagnostic data on whether E3 collapse is near-tie or large-gap (see behavioral_diversity_isolation_plan.md Phase P2).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3727,6 +3740,18 @@
     "subject": "goal.licit_persistence_gate_signal",
     "title": "What is the licit gate signal for goal persistence (the MECH-340 control/efficacy detector that holds a ghost-goal entry re-probe-eligible) -- and is any explicit hard trace-erase operation needed at all, or does ungated MECH-292 rank-decay of a preserved SD-039 trace suffice?",
     "type": "question"
+  },
+  "Q-054": {
+    "status": "open",
+    "subject": "policy.diversity_generation.arc062_minimum_diversity_floor",
+    "title": "What is the minimum trajectory-class diversity floor (Rung 1 first_action_entropy threshold) required for the ARC-062 context discriminator to learn a reliable discriminative cut between reef and foraging contexts? Is the current SP-CEM entropy lift of 0.497 nats sufficient, or is a higher floor required? (Was proposed 2026-05-15 as Q-046 in behavioral_diversity_acceptance_criteria.md; never registered; re-registered under next available Q-id.)",
+    "type": "open_question"
+  },
+  "Q-055": {
+    "status": "open",
+    "subject": "policy.sleep_consolidation.diversity_effect",
+    "title": "Does sleep consolidation (SD-017 SWS phase) preserve the trajectory- class diversity achieved by ARC-065 during waking, or does Hebbian winner- take-all dynamics during replay erode it? Is sleep a net positive or net negative for learned behavioural diversity? (Was proposed 2026-05-15 as Q-047 in behavioral_diversity_acceptance_criteria.md; never registered; re-registered under next available Q-id.)",
+    "type": "open_question"
   },
   "SD-001": {
     "status": "resolved",
