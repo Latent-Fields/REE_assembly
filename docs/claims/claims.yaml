@@ -6660,6 +6660,8 @@
     experimental entry.
 
     [2026-05-08 governance]: EXQ-141b weakens (substrate-corrected reef retest). C1/C2/C5 fail 0.0/0/0 across 3 seeds; novelty_ema alive (~1e-4) but does NOT propagate to E3 selection. Update-path is the next investigation lever (per 2026-05-08 review): EMA -> E3-selection routing is the probable break point. Reconsider after the update-path is traced.
+
+    [2026-05-25 governance]: V3-EXQ-590a Goldilocks calibration is degenerate -- across novelty_bonus_weight in {0.1, 0.3, 0.5, 0.7, 1.0} all five arms produce byte-identical mean_coverage=1.0, mean_h_pos=0.5077619937480481, mean_novelty_ema=0.01117353528432... (to 16 sig figs, 3 seeds). The PASS reflects C1+C2 preconditions (novelty signal active, coverage > 0.05) but the calibration result is null: weight has no effect on coverage / positional entropy / novelty_ema. Two non-exclusive readings: (a) env coverage saturates at 1.0 before any arm-difference can emerge in the eval window, (b) MECH-111 broadcast novelty does not propagate downstream to alter selection -- corroborates the 2026-05-08 EXQ-141b finding that the EMA -> E3-selection routing is broken. V3-EXQ-590a is non_contributory for MECH-314 (per the manifest's own per-claim override; GAP-13 actually calibrates MECH-111 not MECH-314 per-candidate). MECH-314a (per-candidate RBF) is the upgrade path. Tracing the broadcast-novelty -> E3-selection routing remains the live investigation lever.
   depends_on:
     - MECH-069
     - ARC-030

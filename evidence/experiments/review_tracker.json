@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-24T18:16:00Z",
+  "last_review_utc": "2026-05-25T08:56:04Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -2554,7 +2554,9 @@
     "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260523T223116Z_v3",
     "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260524T100641Z_v3",
     "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260524T101048Z_v3",
-    "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3"
+    "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3",
+    "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260525T065407Z_v3",
+    "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3079,6 +3081,19 @@
       ],
       "discussed_experiment_dirs_added": [],
       "subject": "Post-sync review of 6 newly-indexed claim-tagged FAIL runs: 598 (221552Z) SD-033a FAIL -- gated on 543l successor; 606b (223001Z) MECH-318 FAIL weakens -- multi-rule gate does not hold; 598a (223116Z, 100641Z) SD-033a FAIL mixed -- gated runs; 606b (101048Z) MECH-318 FAIL weakens -- second run same result; 603a (170349Z) Q-045/MECH-313/MECH-260 FAIL weakens all -- call-path fix confirmed operative (mech260_operative_all_seeds=True) but fifo_temporal_gate_ok_all=False; genuine weakening signal not measurement gap. Successor needed: explore FIFO gate configuration or revised hypothesis."
+    },
+    {
+      "reviewed_at_utc": "2026-05-25T08:56:04Z",
+      "session_id": "governance-20260525T085604Z",
+      "reviewed_run_ids": [
+        "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260525T065407Z_v3",
+        "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260525T065407Z_v3",
+        "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3"
+      ],
+      "subject": "Governance cycle 2026-05-25. (1) V3-EXQ-603b FAIL (Q-045/MECH-313/MECH-260): third iteration in 603-chain. Phase-3 Fix A (STEPS_PER_EPISODE 500) + Fix B (hazard_harm 0.05->0.02) restored 1/3 seeds (seed 43, ~355 steps/episode, ARM_1 entropy +0.015 over ARM_0) but seeds 42/44 still die before 75-step FIFO warmup (total_steps 421-475, measured_steps=0, unique_actions=0). New failure pattern not covered by existing failure_autopsy_V3-EXQ-603_2026-05-23 artifact. User decision: flag for /failure-autopsy on V3-EXQ-603b; do NOT apply inline evidence_direction this cycle; leave manifest evidence_direction='mixed' untouched (autopsy will recommend override). MECH-260/MECH-313/Q-045 not updated this cycle. (2) V3-EXQ-590a PASS (MECH-314): per-claim non_contributory (manifest correctly notes GAP-13 calibrates MECH-111 broadcast not MECH-314 per-candidate). Goldilocks calibration is degenerate across novelty_bonus_weight 0.1..1.0 (all 5 arms byte-identical mean_coverage=1.0, mean_h_pos, mean_novelty_ema to 16 sig figs). PASS reflects C1+C2 preconditions only. User decision: accept self-declared non_contributory + add evidence_quality_note to MECH-111 documenting the degenerate calibration corroborating prior 2026-05-08 EXQ-141b broadcast-novelty-> E3-selection routing break. No claims.yaml edits for MECH-314; one MECH-111 note added."
     }
   ]
 }
