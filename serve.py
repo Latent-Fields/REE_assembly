@@ -2653,6 +2653,19 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(read_workset(), indent=2, default=str).encode()
             self._json_response(body)
             return
+        if path == "/api/workset/assignments":
+            try:
+                sys.path.insert(0, str(SERVE_DIR / "scripts"))
+                import igw_assignments_lib as _ial  # noqa: WPS433
+                payload = {
+                    "active": _ial.active_entries(),
+                    "agent_kinds": sorted(_ial.VALID_AGENTS),
+                }
+            except Exception as exc:  # noqa: BLE001
+                payload = {"status": "error", "message": str(exc)}
+            body = json.dumps(payload, indent=2, default=str).encode()
+            self._json_response(body)
+            return
         if path == "/api/closure":
             body = json.dumps(read_closure(), indent=2, default=str).encode()
             self._json_response(body)
@@ -2820,6 +2833,87 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 result = {"status": "ok", "discussed_experiment_dirs": dirs}
             else:
                 result = {"status": "error", "message": "missing dir_name"}
+        elif path in ("/api/workset/assign", "/api/workset/release"):
+            length = int(self.headers.get("Content-Length", 0))
+            try:
+                payload = json.loads(self.rfile.read(length) or b"{}")
+            except Exception as exc:
+                body = json.dumps({"status": "error", "message": f"bad json: {exc}"}).encode()
+                self._json_response(body, status=400)
+                return
+            try:
+                sys.path.insert(0, str(SERVE_DIR / "scripts"))
+                import igw_assignments_lib as _ial  # noqa: WPS433
+            except Exception as exc:
+                body = json.dumps({"status": "error", "message": f"lib import failed: {exc}"}).encode()
+                self._json_response(body, status=500)
+                return
+            ws = read_workset()
+            items_by_id = {it.get("id"): it for it in ws.get("items", [])}
+            items_by_hash = {it.get("stable_hash"): it for it in ws.get("items", []) if it.get("stable_hash")}
+            agent = (payload.get("agent") or "").strip()
+            agent_label = payload.get("agent_label")
+            if path == "/api/workset/assign":
+                igw_id = (payload.get("igw_id") or "").strip()
+                item = items_by_id.get(igw_id)
+                if not item:
+                    body = json.dumps({"status": "error", "message": f"unknown igw_id {igw_id!r}"}).encode()
+                    self._json_response(body, status=404)
+                    return
+                # Guard: if this (item, agent, label) already has an active
+                # assignment, treat as idempotent no-op rather than double-write.
+                sh = _ial.stable_hash_item(item)
+                already = [
+                    e for e in _ial.active_entries()
+                    if e["stable_hash"] == sh
+                    and e["agent"] == agent
+                    and (e.get("agent_label") or "") == (agent_label or "")
+                ]
+                if already:
+                    result = {"status": "noop", "message": "already assigned", "entry": already[0]}
+                else:
+                    try:
+                        entry = _ial.assign(
+                            item,
+                            agent=agent,
+                            agent_label=agent_label,
+                            source=payload.get("source") or "manual_ui",
+                            note=payload.get("note"),
+                        )
+                        result = {"status": "ok", "entry": entry}
+                    except ValueError as exc:
+                        body = json.dumps({"status": "error", "message": str(exc)}).encode()
+                        self._json_response(body, status=400)
+                        return
+            else:  # /api/workset/release
+                stable_hash_val = (payload.get("stable_hash") or "").strip()
+                if not stable_hash_val and payload.get("igw_id"):
+                    item = items_by_id.get(payload["igw_id"])
+                    if item:
+                        stable_hash_val = _ial.stable_hash_item(item)
+                if not stable_hash_val:
+                    body = json.dumps({"status": "error", "message": "need stable_hash or igw_id"}).encode()
+                    self._json_response(body, status=400)
+                    return
+                try:
+                    entry = _ial.release(
+                        stable_hash_val,
+                        agent=agent,
+                        agent_label=agent_label,
+                        released_by=payload.get("released_by") or "manual_ui",
+                        reason=payload.get("reason"),
+                    )
+                except ValueError as exc:
+                    body = json.dumps({"status": "error", "message": str(exc)}).encode()
+                    self._json_response(body, status=400)
+                    return
+                if entry is None:
+                    result = {"status": "noop", "message": "no active assignment to release"}
+                else:
+                    result = {"status": "ok", "entry": entry}
+            body = json.dumps(result).encode()
+            self._json_response(body, status=200)
+            return
         elif (m := re.match(r"^/api/machines/([^/]+)/command$", path or "")):
             from urllib.parse import unquote
             host = unquote(m.group(1))

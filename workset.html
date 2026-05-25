@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-05-21.2 -->
+<!-- WORKSET_VERSION: 2026-05-25.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -139,6 +139,70 @@
     font-size: 9px;
   }
   .claim-row.blocked-row .claim-chip { border-color: #f8514966; color: #ff7b72; }
+  .assignments-row {
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+    margin-top: 6px; font-size: 11px;
+  }
+  .assignments-row .lbl { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .agent-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 6px 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-family: ui-monospace, monospace;
+    border: 1px solid;
+    cursor: default;
+  }
+  .agent-chip.agent-claude_local { background: #d2691e22; border-color: #d2691e88; color: #ffae6b; }
+  .agent-chip.agent-cursor       { background: #58a6ff22; border-color: #58a6ff88; color: #79c0ff; }
+  .agent-chip.agent-codex        { background: #56d36422; border-color: #56d36488; color: #7ee787; }
+  .agent-chip.agent-other        { background: #a371f722; border-color: #a371f788; color: #d2a8ff; }
+  .agent-chip .src { color: var(--muted); font-size: 10px; }
+  .agent-chip .release-x {
+    margin-left: 2px;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.5;
+    background: transparent;
+    border: none;
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .agent-chip .release-x:hover { opacity: 1; color: #ff7b72; }
+  .assign-btn {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px dashed #30363d;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .assign-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .assign-menu {
+    position: absolute;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px;
+    z-index: 100;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    font-size: 11px;
+    min-width: 160px;
+  }
+  .assign-menu button {
+    display: block; width: 100%; text-align: left;
+    background: transparent; border: none; color: var(--text);
+    padding: 5px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;
+  }
+  .assign-menu button:hover { background: #30363d; }
+  .assign-menu input {
+    width: 100%; box-sizing: border-box; margin: 4px 0;
+    background: #0d1117; border: 1px solid #30363d; border-radius: 4px;
+    color: var(--text); padding: 4px 6px; font-size: 11px;
+  }
+  .chip.assigned-pill { background: #d2691e33; color: #ffae6b; }
   .claim-row.unblocks-row .claim-chip { border-color: #2ea04355; }
   .meta-row { font-size: 10px; color: var(--muted); }
   .actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
@@ -360,6 +424,7 @@ function renderSummary() {
     '<span class="chip">ready <b>' + (s.ready || 0) + '</b></span>' +
     '<span class="chip">in flight <b>' + (s.in_flight || 0) + '</b></span>' +
     '<span class="chip">blocked <b>' + (s.blocked || 0) + '</b></span>' +
+    '<span class="chip assigned-pill" title="IGW packages currently handed to an agent (claude_local / cursor / codex / other). Source: evidence/planning/igw_assignments.json.">assigned <b>' + (s.assigned || 0) + '</b></span>' +
     '<span class="chip">pending review <b>' + (s.pending_review_count || 0) + '</b></span>' +
     '<span class="chip">queue pending <b>' + (s.queue_pending || 0) + '</b></span>' +
     (s.live_exqs && s.live_exqs.length
@@ -570,6 +635,32 @@ function renderCard(it) {
   if (it.owner_exq) meta += 'EXQ: ' + escapeHtml(it.owner_exq) + ' | ';
   if (it.gap_ids && it.gap_ids.length) meta += 'gap: ' + escapeHtml(it.gap_ids.join(', '));
 
+  // Active agent assignments (from evidence/planning/igw_assignments.json,
+  // merged onto each item by generate_inter_governance_workset.py).
+  const asgn = it.assignments || [];
+  let asgnHtml = '<div class="assignments-row"><span class="lbl">Agent:</span>';
+  if (asgn.length) {
+    asgnHtml += asgn.map(a => {
+      const label = a.agent === 'other' && a.agent_label ? a.agent_label : a.agent;
+      const srcTag = a.source === 'igw_routine_tick' ? 'auto' : 'manual';
+      const when = (a.assigned_at || '').replace('T', ' ').replace('Z', '');
+      const tooltip = 'agent=' + (a.agent || '?') +
+        (a.agent_label ? ' label=' + a.agent_label : '') +
+        ' source=' + (a.source || '?') +
+        ' assigned=' + (a.assigned_at || '?') +
+        (a.note ? '\nnote: ' + a.note : '');
+      return '<span class="agent-chip agent-' + escapeAttr(a.agent || 'other') + '" title="' + escapeAttr(tooltip) + '">' +
+        escapeHtml(label) + ' <span class="src">(' + srcTag + ')</span>' +
+        '<button class="release-x" data-release-stable="' + escapeAttr(it.stable_hash || '') + '"' +
+        ' data-release-agent="' + escapeAttr(a.agent || '') + '"' +
+        ' data-release-label="' + escapeAttr(a.agent_label || '') + '"' +
+        ' title="Release assignment">x</button>' +
+        '</span>';
+    }).join('');
+  }
+  asgnHtml += '<button class="assign-btn" data-assign-id="' + escapeAttr(it.id) + '">+ assign</button>' +
+    '</div>';
+
   const closureHref = (it.closure_links && it.closure_links[0]) ? it.closure_links[0] : '';
   const actions =
     '<button type="button" data-copy="' + escapeAttr(it.agent_brief || '') + '">Copy brief</button>' +
@@ -583,6 +674,7 @@ function renderCard(it) {
     '<div class="badges">' + badges + '</div>' +
     '<div class="why">' + escapeHtml(it.why_now || '') + '</div>' +
     unblocksHtml + blockedHtml +
+    asgnHtml +
     '<div class="meta-row">Skill: <code>' + escapeHtml(it.skill || '') + '</code>' +
     (meta ? ' | ' + meta : '') + '</div>' +
     '<details class="brief"><summary>Agent brief</summary><pre>' +
@@ -627,6 +719,22 @@ function renderAll() {
   root.querySelectorAll('button[data-copy]').forEach(btn => {
     btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy'), btn));
   });
+  root.querySelectorAll('button.release-x').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const stable = btn.getAttribute('data-release-stable');
+      const agent = btn.getAttribute('data-release-agent');
+      const label = btn.getAttribute('data-release-label') || null;
+      if (!stable || !agent) return;
+      releaseAssignment(stable, agent, label);
+    });
+  });
+  root.querySelectorAll('button.assign-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openAssignMenu(btn, btn.getAttribute('data-assign-id'));
+    });
+  });
   root.querySelectorAll('.plan-pill').forEach(pill => {
     pill.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -659,6 +767,118 @@ function toast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ---- Agent assignment menu (manual /api/workset/assign) ----
+
+const AGENT_KINDS = ['claude_local', 'cursor', 'codex', 'other'];
+
+function closeAssignMenu() {
+  document.querySelectorAll('.assign-menu').forEach(m => m.remove());
+}
+
+function openAssignMenu(anchorBtn, igwId) {
+  closeAssignMenu();
+  const menu = document.createElement('div');
+  menu.className = 'assign-menu';
+  // Position below the button.
+  const rect = anchorBtn.getBoundingClientRect();
+  menu.style.left = (window.scrollX + rect.left) + 'px';
+  menu.style.top = (window.scrollY + rect.bottom + 4) + 'px';
+
+  for (const kind of AGENT_KINDS) {
+    if (kind === 'other') continue;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = kind;
+    b.addEventListener('click', () => {
+      closeAssignMenu();
+      assignToAgent(igwId, kind, null);
+    });
+    menu.appendChild(b);
+  }
+  // "other" with free-text label.
+  const sep = document.createElement('div');
+  sep.style.cssText = 'border-top: 1px solid #30363d; margin: 4px 0;';
+  menu.appendChild(sep);
+  const lab = document.createElement('div');
+  lab.textContent = 'other:';
+  lab.style.cssText = 'font-size: 10px; color: var(--muted); padding: 2px 4px;';
+  menu.appendChild(lab);
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'agent label (e.g. aider, teammate)';
+  input.maxLength = 80;
+  menu.appendChild(input);
+  const okBtn = document.createElement('button');
+  okBtn.type = 'button';
+  okBtn.textContent = 'assign as other';
+  okBtn.addEventListener('click', () => {
+    const v = input.value.trim();
+    if (!v) { input.focus(); return; }
+    closeAssignMenu();
+    assignToAgent(igwId, 'other', v);
+  });
+  menu.appendChild(okBtn);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { okBtn.click(); }
+    else if (e.key === 'Escape') { closeAssignMenu(); }
+  });
+
+  document.body.appendChild(menu);
+  setTimeout(() => input.focus(), 0);
+
+  // Click-outside dismisses.
+  setTimeout(() => {
+    document.addEventListener('click', _outside, { once: true, capture: true });
+  }, 0);
+  function _outside(e) {
+    if (menu.contains(e.target)) {
+      document.addEventListener('click', _outside, { once: true, capture: true });
+    } else {
+      closeAssignMenu();
+    }
+  }
+}
+
+function assignToAgent(igwId, agent, agentLabel) {
+  fetch('/api/workset/assign', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      igw_id: igwId,
+      agent: agent,
+      agent_label: agentLabel,
+      source: 'manual_ui',
+    }),
+  }).then(r => r.json()).then(res => {
+    if (res.status === 'ok' || res.status === 'noop') {
+      toast(res.status === 'noop' ? 'Already assigned' : ('Assigned to ' + (agentLabel || agent)));
+      load();
+    } else {
+      toast('Assign failed: ' + (res.message || 'unknown'));
+    }
+  }).catch(err => toast('Assign failed: ' + err));
+}
+
+function releaseAssignment(stableHash, agent, agentLabel) {
+  fetch('/api/workset/release', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      stable_hash: stableHash,
+      agent: agent,
+      agent_label: agentLabel,
+      released_by: 'manual_ui',
+    }),
+  }).then(r => r.json()).then(res => {
+    if (res.status === 'ok' || res.status === 'noop') {
+      toast('Released');
+      load();
+    } else {
+      toast('Release failed: ' + (res.message || 'unknown'));
+    }
+  }).catch(err => toast('Release failed: ' + err));
 }
 
 function escapeHtml(s) {

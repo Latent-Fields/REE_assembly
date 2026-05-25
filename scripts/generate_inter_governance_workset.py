@@ -739,11 +739,35 @@ def build_workset() -> dict:
     plan_reg = _load_plan_registry()
     lenses_meta, indexes = _enrich_workset_items(items, plan_reg)
 
+    # Merge active agent assignments (sole source: evidence/planning/igw_assignments.json)
+    # onto each item. Keyed on stable_hash so it survives daily IGW ID rotation.
+    # See REE_assembly/scripts/igw_assignments_lib.py for the writer contract.
+    try:
+        from igw_assignments_lib import (
+            assignments_by_hash,
+            stable_hash_item,
+        )
+    except ImportError:
+        # Allow running before lib lands without crashing the generator.
+        assignments_by_hash = None
+        stable_hash_item = None
+    assigned_count = 0
+    if assignments_by_hash and stable_hash_item:
+        by_hash = assignments_by_hash()
+        for it in items:
+            sh = stable_hash_item(it)
+            asgn = by_hash.get(sh) or []
+            it["stable_hash"] = sh
+            it["assignments"] = asgn
+            if asgn:
+                assigned_count += 1
+
     summary = {
         "total": len(items),
         "ready": sum(1 for x in items if x.get("status") == "ready"),
         "in_flight": sum(1 for x in items if x.get("status") == "in_flight"),
         "blocked": sum(1 for x in items if x.get("status") == "blocked"),
+        "assigned": assigned_count,
         "pending_review_count": pr,
         "queue_pending": len(pending_q),
         "live_exqs": sorted(live.keys()),
