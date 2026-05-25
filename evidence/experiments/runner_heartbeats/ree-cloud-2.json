@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-25T08:47:24Z",
+  "last_tick_utc": "2026-05-25T08:48:27Z",
   "state": "running",
   "current_exq": "V3-EXQ-543l",
   "current_exq_started_utc": "2026-05-25T08:47:19.804177+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / ARM_0_baseline",
     "runs_done": 0,
     "runs_total": 36,
-    "episodes_done": 0,
+    "episodes_done": 20,
     "episodes_total": 108,
-    "overall_pct": 0.0
+    "overall_pct": 0.5
   },
-  "seconds_elapsed": 5,
-  "seconds_remaining": 72000,
+  "seconds_elapsed": 67,
+  "seconds_remaining": 70470,
   "recent_lines": [
-    "Preflight non-degeneracy check PASS: dacc_weight=1.0 active, first_action_onehot=True (action_dim=5); crystallize factor arms gated.crystallize_enabled + residue.ewc without pre-firing; MECH-314 novelty-only on xtal arms; use_differential_heads wires (OFF=two-head, ON=base+delta).",
-    "[V3-EXQ-543l] ARC-062 differential-heads Falsifier (escalated floor=0.5 aux=0.3; 12-arm grid + REINFORCE P1 loss inherited from 543k; supersedes 543k)  seeds=[0, 1, 2]  dry_run=False",
     "Seed 0 Condition ARM_0_baseline",
     "use_gated_policy=False  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=False  crystallize=False  differential_heads=False  P0=40  P1=60  P2=8  steps/ep=200",
-    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off"
+    "world_obs_dim=275  agent.gated_policy=off  agent.dacc=off",
+    "[train] ARM_0_baseline ep 10/108  phase=P0  rv=0.0007  ep_reward=-1.1214",
+    "[train] ARM_0_baseline ep 20/108  phase=P0  rv=0.0006  ep_reward=-1.2811"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
