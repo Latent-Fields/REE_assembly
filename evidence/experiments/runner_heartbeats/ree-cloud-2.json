@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-25T10:45:18Z",
+  "last_tick_utc": "2026-05-25T10:46:20Z",
   "state": "running",
   "current_exq": "V3-EXQ-543l",
   "current_exq_started_utc": "2026-05-25T08:47:19.804177+00:00",
@@ -10,20 +10,20 @@
   "current_description": "",
   "progress": {
     "run_label": "Seed 0 / ARM_8_gated_only_diff",
-    "runs_done": 25,
+    "runs_done": 26,
     "runs_total": 36,
-    "episodes_done": 55,
+    "episodes_done": 10,
     "episodes_total": 108,
-    "overall_pct": 70.9
+    "overall_pct": 72.5
   },
-  "seconds_elapsed": 7079,
-  "seconds_remaining": 2873,
+  "seconds_elapsed": 7141,
+  "seconds_remaining": 2703,
   "recent_lines": [
-    "[train] ARM_8_gated_only_diff ep 80/108  phase=P1  rv=0.0016  ep_reward=-1.0295  baseline=-1.1256  buf=194  inert_gating=True",
-    "[probe] ARM_8_gated_only_diff P1 ep 45/60  applicable=True  mean_tv=0.0033  max_tv=0.0110  buf=232",
-    "[probe] ARM_8_gated_only_diff P1 ep 50/60  applicable=True  mean_tv=0.0036  max_tv=0.0112  buf=252",
-    "[train] ARM_8_gated_only_diff ep 90/108  phase=P1  rv=0.0014  ep_reward=-1.1832  baseline=-1.0542  buf=252  inert_gating=True",
-    "[probe] ARM_8_gated_only_diff P1 ep 55/60  applicable=True  mean_tv=0.0036  max_tv=0.0112  buf=280"
+    "verdict: FAIL",
+    "Seed 0 Condition ARM_8_gated_only_diff",
+    "use_gated_policy=True  use_dacc=False  dacc_weight=0.0  dacc_suppression_weight=0.0  first_action_onehot=True  crystallize=False  differential_heads=True  P0=40  P1=60  P2=8  steps/ep=200",
+    "world_obs_dim=275  agent.gated_policy=on(fa_onehot=True,fa_dim=5)  agent.dacc=off",
+    "[train] ARM_8_gated_only_diff ep 10/108  phase=P0  rv=0.0006  ep_reward=-1.2200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
