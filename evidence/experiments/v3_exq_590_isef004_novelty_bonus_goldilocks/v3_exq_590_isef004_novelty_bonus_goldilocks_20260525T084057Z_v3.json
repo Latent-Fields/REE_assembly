@@ -1,9 +1,118 @@
 {
+  "run_id": "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3",
   "queue_id": "V3-EXQ-590a",
   "experiment_type": "v3_exq_590_isef004_novelty_bonus_goldilocks",
-  "updated_at_utc": "20260525T084057Z",
-  "complete": true,
-  "arm_results": {
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-314"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "PASS",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-314": "non_contributory"
+  },
+  "evidence_direction_note": "GAP-13 calibrates MECH-111 (E3 broadcast novelty EMA from E1 prediction error in score_trajectory), NOT MECH-314 (StructuredCuriosity per-candidate score_bias). non_contributory to MECH-314 because the per-candidate curiosity pathway is not under test here. PASS = signal active (C1) + exploration confirmed (C2); Goldilocks weight adopted for infant curriculum Phase 1. If nonmonotone_detected=True: stochastic attractor boundary visible at high novelty_bonus_weight. MECH-314a (per-candidate RBF novelty) is the upgrade path when MECH-111 broadcast shows weak directional effect.",
+  "timestamp_utc": "20260525T084057Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_episodes": 1000,
+    "steps_per_episode": 200,
+    "eval_window_episodes": 100,
+    "novelty_weights_swept": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "env_interoceptive_noise_enabled": true,
+    "env_microhabitat_enabled": true,
+    "env_harm_gradient_enabled": true,
+    "env_harm_gradient_scale": 0.3,
+    "env_resource_respawn_on_consume": true,
+    "agent_alpha_world": 0.9,
+    "novelty_ema_update": "per_step_via_compute_prediction_loss_no_grad"
+  },
+  "acceptance_criteria": {
+    "C1_signal_active": "any arm mean_novelty_ema > 0.001 in >=2/3 seeds",
+    "C2_exploration": ">=3/5 arms with mean_coverage > 0.05 in >=2/3 seeds",
+    "Goldilocks_calibration": "arm with highest joint_metric = (norm_coverage + norm_H_pos) / 2; always reported regardless of C1/C2 outcome"
+  },
+  "criteria_results": {
+    "C1_pass": true,
+    "C2_pass": true,
+    "c2_arms_passing": 5
+  },
+  "metrics": {
+    "goldilocks_arm": "ARM_nbw01",
+    "goldilocks_weight": 0.1,
+    "nonmonotone_detected": false,
+    "best_joint_metric": 1.0,
+    "arm_summary": {
+      "ARM_nbw01": {
+        "novelty_bonus_weight": 0.1,
+        "mean_h_pos_across_seeds": 0.5077619937480481,
+        "mean_coverage_across_seeds": 1.0,
+        "mean_novelty_ema_across_seeds": 0.011173535284321558,
+        "c1_seeds_passing": 3,
+        "c2_seeds_passing": 3,
+        "c1_arm_pass": true,
+        "c2_arm_pass": true,
+        "joint_metric": 1.0
+      },
+      "ARM_nbw03": {
+        "novelty_bonus_weight": 0.3,
+        "mean_h_pos_across_seeds": 0.5077619937480481,
+        "mean_coverage_across_seeds": 1.0,
+        "mean_novelty_ema_across_seeds": 0.011173535284321558,
+        "c1_seeds_passing": 3,
+        "c2_seeds_passing": 3,
+        "c1_arm_pass": true,
+        "c2_arm_pass": true,
+        "joint_metric": 1.0
+      },
+      "ARM_nbw05": {
+        "novelty_bonus_weight": 0.5,
+        "mean_h_pos_across_seeds": 0.5077619937480481,
+        "mean_coverage_across_seeds": 1.0,
+        "mean_novelty_ema_across_seeds": 0.011173535284321558,
+        "c1_seeds_passing": 3,
+        "c2_seeds_passing": 3,
+        "c1_arm_pass": true,
+        "c2_arm_pass": true,
+        "joint_metric": 1.0
+      },
+      "ARM_nbw07": {
+        "novelty_bonus_weight": 0.7,
+        "mean_h_pos_across_seeds": 0.5077619937480481,
+        "mean_coverage_across_seeds": 1.0,
+        "mean_novelty_ema_across_seeds": 0.011173535284321558,
+        "c1_seeds_passing": 3,
+        "c2_seeds_passing": 3,
+        "c1_arm_pass": true,
+        "c2_arm_pass": true,
+        "joint_metric": 1.0
+      },
+      "ARM_nbw10": {
+        "novelty_bonus_weight": 1.0,
+        "mean_h_pos_across_seeds": 0.5077619937480481,
+        "mean_coverage_across_seeds": 1.0,
+        "mean_novelty_ema_across_seeds": 0.011173535284321558,
+        "c1_seeds_passing": 3,
+        "c2_seeds_passing": 3,
+        "c1_arm_pass": true,
+        "c2_arm_pass": true,
+        "joint_metric": 1.0
+      }
+    }
+  },
+  "per_seed_results": {
     "ARM_nbw01": [
       {
         "arm": "ARM_nbw01",
@@ -479,5 +588,7 @@
         ]
       }
     ]
-  }
+  },
+  "checkpoint_path": "/home/ree/REE_Working/REE_assembly/evidence/experiments/_partial/v3_exq_590_isef004_novelty_bonus_goldilocks/V3-EXQ-590a.json",
+  "notes": "infant_substrate:GAP-13 closure. EXQ-ISEF-004 novelty bonus Goldilocks calibration. Sweeps E3 novelty_bonus_weight (MECH-111 broadcast mechanism) across [0.1, 0.3, 0.5, 0.7, 1.0] in the infant Phase 2 environment (interoceptive noise ON = stochastic attractor risk active, microhabitat ON, harm gradient 0.30). Novelty EMA updated per step from E1 prediction error (compute_prediction_loss, no backprop; returns 0.0 when buffer < 2). Primary outputs: (1) C1 signal-active confirmation, (2) C2 exploration quality confirmation, (3) Goldilocks weight for infant curriculum Phase 1. nonmonotone_detected=True signals that stochastic attractor boundary is visible (peak arm outperforms higher weights). MECH-314a per-candidate RBF novelty is the recommended upgrade path when MECH-111 broadcast shows weak directional exploration effect."
 }
