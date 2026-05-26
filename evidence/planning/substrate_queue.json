@@ -2706,14 +2706,18 @@
         {
           "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
           "experiment_type": "v3_exq_571_e3_score_variance_decomp",
-          "metric": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
-          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable"
+          "metric": "Bias channels (MECH-314a, MECH-320, MECH-295, SD-033a, SD-033b) are correctly composed into the score_bias kwarg of e3.select() and added to per-candidate scores at ree-v3/ree_core/predictors/e3_selector.py:737. Per-candidate spread is structurally zero because E2 world-forward compresses K diverse first-action candidates to identical first-step z_world (verified empirically 2026-05-25: cand_world_pairwise_dist=0.0000 across K=32 with 2-3 unique argmax action classes). Same root cause as the 2026-05-17 ARC-062 GAP-B autopsy; the GAP-B fix `use_first_action_onehot` was scoped only to GatedPolicy. Gate (a) per-candidate propagation cannot be cleared by a score_bias wiring change; requires either (i) extending the GAP-B first-action one-hot bypass to all bias-channel consumers of first-step z_world, or (ii) fixing the E2 world-forward predictor to preserve per-action z_world divergence, or (iii) sourcing per-candidate novelty from non-z_world signals. See evidence/planning/v3_exq_571_root_cause_2026-05-25.md.",
+          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable",
+          "corrected_by_session": "arc065-failure-record-correction-20260526T064946Z",
+          "corrected_utc": "2026-05-26T06:49:46Z",
+          "cross_ref": "evidence/planning/v3_exq_571_root_cause_2026-05-25.md (commit a79915151b on master)",
+          "superseded_metric_text": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection."
         }
       ],
       "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "exq590a-gate-correction-20260526T061037Z",
+      "last_seen_session": "arc065-failure-record-correction-20260526T064946Z",
       "pending_retests_downstream": [
         {
           "retest_queue_id_planned": "V3-EXQ-590b",
@@ -2773,8 +2777,12 @@
         {
           "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
           "experiment_type": "v3_exq_571_e3_score_variance_decomp",
-          "metric": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
-          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable"
+          "metric": "Bias channels (MECH-314a, MECH-320, MECH-295, SD-033a, SD-033b) are correctly composed into the score_bias kwarg of e3.select() and added to per-candidate scores at ree-v3/ree_core/predictors/e3_selector.py:737. Per-candidate spread is structurally zero because E2 world-forward compresses K diverse first-action candidates to identical first-step z_world (verified empirically 2026-05-25: cand_world_pairwise_dist=0.0000 across K=32 with 2-3 unique argmax action classes). Same root cause as the 2026-05-17 ARC-062 GAP-B autopsy; the GAP-B fix `use_first_action_onehot` was scoped only to GatedPolicy. Gate (a) per-candidate propagation cannot be cleared by a score_bias wiring change; requires either (i) extending the GAP-B first-action one-hot bypass to all bias-channel consumers of first-step z_world, or (ii) fixing the E2 world-forward predictor to preserve per-action z_world divergence, or (iii) sourcing per-candidate novelty from non-z_world signals. See evidence/planning/v3_exq_571_root_cause_2026-05-25.md.",
+          "target": "Each bias component must contribute > 0.01 variance fraction before functional evidence for MECH-313/314/320 is interpretable",
+          "corrected_by_session": "arc065-failure-record-correction-20260526T064946Z",
+          "corrected_utc": "2026-05-26T06:49:46Z",
+          "cross_ref": "evidence/planning/v3_exq_571_root_cause_2026-05-25.md (commit a79915151b on master)",
+          "superseded_metric_text": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection."
         },
         {
           "run_id": "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3",
@@ -2790,7 +2798,7 @@
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-545 5/5 PASS. Single module + 3 independently-togglable sub-switches per Pull 1 R3 verdict. 314a is genuinely per-candidate; 314b/c are state-dependent global scalars broadcast across [K] in Phase 1 (per-candidate refinement deferred to Phase 2).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "exq590a-gate-correction-20260526T061037Z",
+      "last_seen_session": "arc065-failure-record-correction-20260526T064946Z",
       "pending_retests": [
         {
           "retest_queue_id_planned": "V3-EXQ-590b",
