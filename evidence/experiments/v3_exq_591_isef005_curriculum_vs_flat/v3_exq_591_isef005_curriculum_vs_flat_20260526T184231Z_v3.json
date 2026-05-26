@@ -1,0 +1,418 @@
+{
+  "run_id": "v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3",
+  "queue_id": "V3-EXQ-591",
+  "experiment_type": "v3_exq_591_isef005_curriculum_vs_flat",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "ARC-046"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "ARC-046": "does_not_support"
+  },
+  "timestamp_utc": "20260526T184231Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 2000,
+    "steps_per_episode": 200,
+    "rolling_window": 100,
+    "grid_size": 12,
+    "gate_thresholds": {
+      "C1_z_goal_min": 0.4,
+      "C2_h_pos_threshold": 3.230379,
+      "C3_residue_cov_min": 0.15,
+      "C4_entropy_global_min": 1.098612,
+      "C4_kl_min": 0.05,
+      "C5_hb_ratio_min": 0.2,
+      "C5_hb_ratio_max": 5.0,
+      "C6_retention_min": 0.85,
+      "C7_traj_cosine_min": 0.3
+    },
+    "pass_thresholds": {
+      "treatment_criteria_min": 6,
+      "treatment_seeds_min": 4,
+      "control_criteria_max": 4,
+      "control_seeds_below": 3
+    },
+    "arm0_env_kwargs": {
+      "harm_gradient_enabled": true,
+      "harm_gradient_scale": 0.3,
+      "transient_benefit_enabled": true,
+      "microhabitat_enabled": true
+    },
+    "arm0_novelty": 0.7,
+    "arm1_env_kwargs": {},
+    "arm1_novelty": 0.5,
+    "arm2": "InfantCurriculumScheduler (experiments/infant_curriculum.py)"
+  },
+  "acceptance_criteria": {
+    "primary_gate": "ARM_2 (curriculum) passes >= 6/7 gate criteria in >= 4/5 seeds AND (ARM_0 OR ARM_1) passes <= 4/7 in >= 3/5 seeds"
+  },
+  "criteria_results": {
+    "treatment_condition_pass": false,
+    "ctrl_a_condition_pass": true,
+    "ctrl_b_condition_pass": true
+  },
+  "metrics": {
+    "arm0_ctrl_a_seed_criteria_counts": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "arm0_ctrl_a_mean_criteria": 1.0,
+    "arm0_ctrl_a_seeds_below_control": 5,
+    "arm1_ctrl_b_seed_criteria_counts": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "arm1_ctrl_b_mean_criteria": 1.0,
+    "arm1_ctrl_b_seeds_below_control": 5,
+    "arm2_curriculum_seed_criteria_counts": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "arm2_curriculum_mean_criteria": 1.0,
+    "arm2_curriculum_seeds_passing_treatment": 0
+  },
+  "per_seed_results": {
+    "ARM_0_ctrl_a": [
+      {
+        "seed": 42,
+        "arm": "ARM_0_ctrl_a",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 8.531847583981289e-08,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.4344139199244789,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 43,
+        "arm": "ARM_0_ctrl_a",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.3210531241528061,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 44,
+        "arm": "ARM_0_ctrl_a",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 1.5306190288746219e-15,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.9669588262227664,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 45,
+        "arm": "ARM_0_ctrl_a",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.03105984396927332,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 46,
+        "arm": "ARM_0_ctrl_a",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 9.437055155103735e-07,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 1.079664966681434,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      }
+    ],
+    "ARM_1_ctrl_b": [
+      {
+        "seed": 42,
+        "arm": "ARM_1_ctrl_b",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.38474135175975177,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 43,
+        "arm": "ARM_1_ctrl_b",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.28233192063278056,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 44,
+        "arm": "ARM_1_ctrl_b",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 5.438727512796504e-08,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.9905403340992973,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 45,
+        "arm": "ARM_1_ctrl_b",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.10742066845194759,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      },
+      {
+        "seed": 46,
+        "arm": "ARM_1_ctrl_b",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 1.1428714918881866e-10,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.9978677651536129,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": null
+      }
+    ],
+    "ARM_2_curriculum": [
+      {
+        "seed": 42,
+        "arm": "ARM_2_curriculum",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.38474135175975177,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": 0
+      },
+      {
+        "seed": 43,
+        "arm": "ARM_2_curriculum",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.28233192063278056,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": 0
+      },
+      {
+        "seed": 44,
+        "arm": "ARM_2_curriculum",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 5.438727512796504e-08,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.9905403340992973,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": 0
+      },
+      {
+        "seed": 45,
+        "arm": "ARM_2_curriculum",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 0.0,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.10742066845194759,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": 0
+      },
+      {
+        "seed": 46,
+        "arm": "ARM_2_curriculum",
+        "n_criteria_passing": 1,
+        "criteria": {
+          "C1_z_goal": false,
+          "C2_h_pos": false,
+          "C3_residue_cov": true,
+          "C4_action_zone_entropy": false,
+          "C5_harm_benefit": false,
+          "C6_sleep_retention": false,
+          "C7_traj_cosine": false
+        },
+        "final_z_goal_norm": 1.1428714918881866e-10,
+        "final_residue_cov": 1.0,
+        "final_harm_benefit_ratio": -1.0,
+        "final_traj_cosine": -1.0,
+        "rolling_h_pos_mean": 0.9978677651536129,
+        "post_sleep_retention": -1.0,
+        "curriculum_final_phase": 0
+      }
+    ]
+  },
+  "notes": "infant_substrate:GAP-14 closure. EXQ-ISEF-005 curriculum vs flat parameter comparison. ARM_2 (4-phase InfantCurriculumScheduler) vs ARM_0 (all features flat) vs ARM_1 (minimal flat). 7-criterion gate evaluated at ep 2000. PASS requires curriculum passes >= 6/7 criteria in >= 4/5 seeds while at least one control passes <= 4/7 in >= 3/5 seeds. PASS supports ARC-046 (phased residue accumulation via curriculum). Evidence for GAP-15 gate update (DEV-NEED-008)."
+}
