@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-25T19:41:26Z",
+  "last_updated_utc": "2026-05-26T06:10:37Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2713,14 +2713,17 @@
       "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
+      "last_seen_session": "exq590a-gate-correction-20260526T061037Z",
       "pending_retests_downstream": [
         {
           "retest_queue_id_planned": "V3-EXQ-590b",
           "owner_sd_id": "MECH-314",
-          "note": "EXQ-590b (MECH-314a per-candidate RBF novelty Goldilocks calibration) is gated on ARC-065 behavioural-diversity-generation landing in addition to MECH-314a propagation validation. See MECH-314 pending_retests for full spec.",
+          "note": "EXQ-590b (MECH-314a per-candidate RBF novelty Goldilocks calibration) is upstream-blocked by E2 world-forward z_world compression across K candidates (NOT score_bias propagation as originally feared). See MECH-314.pending_retests for corrected gate spec and three forward paths. Same root cause as 2026-05-17 ARC-062 GAP-B autopsy.",
           "added_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
-          "added_utc": "2026-05-25T19:41:26Z"
+          "added_utc": "2026-05-25T19:41:26Z",
+          "corrected_session": "exq590a-gate-correction-20260526T061037Z",
+          "corrected_utc": "2026-05-26T06:10:37Z",
+          "cross_ref": "evidence/planning/v3_exq_571_root_cause_2026-05-25.md"
         }
       ]
     },
@@ -2787,7 +2790,7 @@
       "implementation_hint": "Substrate landed 2026-05-10 V3-EXQ-545 5/5 PASS. Single module + 3 independently-togglable sub-switches per Pull 1 R3 verdict. 314a is genuinely per-candidate; 314b/c are state-dependent global scalars broadcast across [K] in Phase 1 (per-candidate refinement deferred to Phase 2).",
       "priority": 1,
       "added_session": "governance-cycle-2026-05-10T1224Z",
-      "last_seen_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
+      "last_seen_session": "exq590a-gate-correction-20260526T061037Z",
       "pending_retests": [
         {
           "retest_queue_id_planned": "V3-EXQ-590b",
@@ -2795,12 +2798,15 @@
             "MECH-314a"
           ],
           "supersedes": "V3-EXQ-590a",
-          "reason": "EXQ-590a was nominally a MECH-111 broadcast-novelty Goldilocks calibration but the broadcast mechanism is mathematically null on selection (constant offset across trajectory batch). Re-running EXQ-590a yields the same result; the question must be re-posed at MECH-314a (per-candidate RBF novelty score_bias).",
+          "reason": "EXQ-590a was nominally a MECH-111 broadcast-novelty Goldilocks calibration but the broadcast mechanism was mathematically null on selection (constant offset across trajectory batch; branch since deleted in ree-v3 099743e). Re-running EXQ-590a yields the same result. The question must be re-posed at MECH-314a (per-candidate RBF novelty score_bias), but per finding doc v3_exq_571_root_cause_2026-05-25.md (a79915151b) the per-candidate signal is upstream-blocked by E2 z_world compression across K candidates -- the Goldilocks calibration is meaningless until per-candidate spread is non-zero. Consider whether to retain the goldilocks-calibration framing once the upstream fix lands, or supersede it entirely with a fresh design.",
           "gated_on": [
             {
-              "gate": "MECH-314a per-candidate propagation validated",
-              "requires": "Q-044 three-arm ablation showing curiosity bias component variance fraction > 0.01 in E3 temporal variance decomposition (per V3-EXQ-571 failure_record threshold). Substrate landing is necessary but not sufficient -- the channel must demonstrably influence E3 selection, not just be present.",
-              "status": "pending"
+              "gate": "Per-candidate bias signal has non-zero spread across K (the actual unmeetable upstream identified post-590a)",
+              "requires": "Per evidence/planning/v3_exq_571_root_cause_2026-05-25.md (commit a79915151b), the original gate framing was wrong: MECH-314a IS correctly composed into the score_bias kwarg of e3.select() and added to per-candidate scores at e3_selector.py:737 -- propagation is fine. The structural blocker is upstream: E2 world-forward predictor compresses K diverse first-action candidates to IDENTICAL first-step z_world (verified cand_world_pairwise_dist=0.0000 across K=32 with 2-3 unique argmax classes), so MECH-314a._compute_novelty produces identical min_dists across all K. Same root cause as 2026-05-17 ARC-062 GAP-B autopsy; GAP-B fix use_first_action_onehot was scoped only to GatedPolicy. All bias channels reading first-step z_world (MECH-314a curiosity, MECH-320 tonic_vigor, MECH-295 liking, SD-033a lateral_pfc, SD-033b ofc) are doomed by the same E2 collapse. Three forward paths (any one suffices): (i) extend GAP-B first-action one-hot bypass to all bias-channel consumers of first-step z_world; (ii) fix the E2 world-forward predictor to preserve per-action z_world divergence; (iii) source per-candidate novelty from non-z_world signals (raw action one-hots, candidate-pool relative-rank, hippocampal anchor identity). Q-044 three-arm ablation cannot clear this gate by score_bias-wiring change alone.",
+              "status": "pending_upstream_substrate_fix",
+              "corrected_by_session": "exq590a-gate-correction-20260526T061037Z",
+              "corrected_utc": "2026-05-26T06:10:37Z",
+              "superseded_text": "MECH-314a per-candidate propagation validated -- Q-044 three-arm ablation showing curiosity bias component variance fraction > 0.01 in E3 temporal variance decomposition (per V3-EXQ-571 failure_record threshold). Substrate landing is necessary but not sufficient -- the channel must demonstrably influence E3 selection, not just be present."
             },
             {
               "gate": "Behavioural diversity landed (ARC-065)",
@@ -2813,7 +2819,9 @@
             "reason": "Value selected by ordering tiebreak among bit-identical arms; not a calibration result. Must not be adopted for infant curriculum Phase 1."
           },
           "added_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
-          "added_utc": "2026-05-25T19:41:26Z"
+          "added_utc": "2026-05-25T19:41:26Z",
+          "blocking_status": "blocked_until_upstream_e2_zworld_per_candidate_divergence",
+          "cross_ref": "evidence/planning/v3_exq_571_root_cause_2026-05-25.md (commit a79915151b on master)"
         }
       ]
     },
@@ -3090,5 +3098,5 @@
       "implementation_note": "2026-05-21 IGW-027 code-read refresh: no random.random/torch.randn; numpy self._rng only. PRIMARY irreducible attractor SD-048 autonomic i.i.d. on harm_obs_a (:3507); secondary SD-048 sensitisation Poisson (:3485), fatigue innovation (:3466), SD-047 weather (:3275) + transient Poisson (:3311/:3336). All reset/spawn/drift learnable-stochastic (a). Audit block in CausalGridWorldV2() docstring causal_grid_world.py."
     }
   ],
-  "last_seen_session": "substrate-queue-590a-pending-retest-20260525T194126Z"
+  "last_seen_session": "exq590a-gate-correction-20260526T061037Z"
 }
