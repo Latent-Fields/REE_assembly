@@ -1,6 +1,27 @@
 {
   "schema_version": "igw_routine_ledger/v1",
-  "entries": [],
+  "entries": [
+    {
+      "igw_id": "IGW-20260526-030",
+      "stable_hash": "bfbc5eb3356f",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 28,
+      "claim_ids": [
+        "ARC-062"
+      ],
+      "owner_exq": null,
+      "title": "Retest after substrate: ARC-062",
+      "worktree": ".claude/worktrees/igw-030-retest-after-substrate-arc-062",
+      "branch": "claude/igw-030-retest-after-substrate-arc-062",
+      "session_uuid": "f73f2681-9f38-4d88-871f-d6cedb3d42c5",
+      "pid": 78301,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-030-retest-after-substrate-arc-062 && claude --resume f73f2681-9f38-4d88-871f-d6cedb3d42c5",
+      "task_claim_session_id": "igw-auto-igw-030-retest-after-substrate-arc-062-20260526T171454Z",
+      "assigned_at": "2026-05-26T17:14:51Z",
+      "status": "spawned"
+    }
+  ],
   "dispositions": [
     {
       "stable_hash": "1233895f3a19",
@@ -25,6 +46,18 @@
       "decision": "RESOLVE",
       "note": "V3-EXQ-544 manifest PASS underneath phantom ERROR (sentinel-protocol-race 2026-05-08..10)",
       "noted_at": "2026-05-25T16:33:04Z"
+    },
+    {
+      "stable_hash": "6c3d37d0e560",
+      "igw_id_at_disposition": "IGW-20260526-021",
+      "owner_exq": "V3-EXQ-455a",
+      "claim_ids": [],
+      "gap_ids": [],
+      "skill": "/diagnose-errors",
+      "title": "Diagnose ERROR: V3-EXQ-455a",
+      "decision": "RESOLVE",
+      "note": "V3-EXQ-455a NO-FIX close (subsumed). V3-EXQ-608 P2 PASS 2026-05-26T02:58Z interpretation=R2a_e3_collapse_confirmed_large_gap routes SD-032a-isolation question to MECH-341 substrate-design work; planning stub does not need a 455b re-implementation. Mirrors yesterday's IGW-20260525-021 DEFER path-(a) forecast which fired. See WORKSPACE_STATE.md 17:17Z entry.",
+      "noted_at": "2026-05-26T17:18:44Z"
     }
   ]
 }
