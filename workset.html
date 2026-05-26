@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-05-25.1 -->
+<!-- WORKSET_VERSION: 2026-05-26.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -253,6 +253,9 @@
   <button type="button" data-f="ready">ready</button>
   <button type="button" data-f="in_flight">in flight</button>
   <button type="button" data-f="blocked">blocked</button>
+  <button type="button" data-f="assigned" title="Items currently handed to an agent (any kind: claude_local / cursor / codex / other). Matches the 'assigned' summary chip exactly.">assigned</button>
+  <button type="button" data-f="pending_review" title="Governance items inserted by the generator when there are experiments awaiting review (lane=governance, skill=/governance). Will be empty when the review backlog is 0.">pending review</button>
+  <button type="button" data-f="queue_pending" title="Items whose underlying EXQ is in the runner queue lifecycle but not currently executing on a runner (status=in_progress). The summary chip 'queue pending' counts queue entries directly, so the two counts can differ when a single queue entry spans multiple workset items or vice versa.">queue pending</button>
   <span class="sep"></span>
   <label for="group-by">Group</label>
   <select id="group-by">
@@ -439,6 +442,18 @@ function isBlockedStatus(st) {
 function matchStatusFilter(it) {
   if (STATUS_FILTER === 'all') return true;
   if (STATUS_FILTER === 'blocked') return isBlockedStatus(it.status);
+  if (STATUS_FILTER === 'assigned') return (it.assignments || []).length > 0;
+  if (STATUS_FILTER === 'pending_review') {
+    // Governance-lane items inserted by the generator when
+    // pending_review_count > 0. Both lane and skill are 'governance' /
+    // '/governance'; either match qualifies.
+    return it.lane === 'governance' || it.skill === '/governance';
+  }
+  if (STATUS_FILTER === 'queue_pending') {
+    // Workset-level expression of "the EXQ is in the queue but not
+    // currently running". in_flight is its own button (live on a runner).
+    return it.status === 'in_progress';
+  }
   return it.status === STATUS_FILTER;
 }
 
