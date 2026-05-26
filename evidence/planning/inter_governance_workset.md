@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-25T20:34:39Z`
+Generated: `2026-05-26T05:50:52Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,15 +9,15 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **45** (ready 26, in_flight 2, blocked 6)
+- Items: **46** (ready 27, in_flight 1, blocked 6)
 - Pending review: **0**
-- Queue pending (unclaimed): **3**
+- Queue pending (unclaimed): **1**
 
-- Live EXQs: V3-EXQ-543k, V3-EXQ-543l, V3-EXQ-591
+- Live EXQs: V3-EXQ-543k, V3-EXQ-591
 
 ## Work packages
 
-### IGW-20260525-037 -- Retest after substrate: ARC-062
+### IGW-20260526-038 -- Retest after substrate: ARC-062
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -25,7 +25,7 @@ UI: http://localhost:8000/workset
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-037
+REE inter-governance work item: IGW-20260526-038
 Title: Retest after substrate: ARC-062
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -39,7 +39,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-038 -- Retest after substrate: INV-074
+### IGW-20260526-039 -- Retest after substrate: INV-074
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -47,7 +47,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-038
+REE inter-governance work item: IGW-20260526-039
 Title: Retest after substrate: INV-074
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -61,7 +61,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-039 -- Retest after substrate: MECH-309
+### IGW-20260526-040 -- Retest after substrate: MECH-309
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -69,7 +69,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-039
+REE inter-governance work item: IGW-20260526-040
 Title: Retest after substrate: MECH-309
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -83,7 +83,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-040 -- Retest after substrate: MECH-334
+### IGW-20260526-041 -- Retest after substrate: MECH-334
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -91,7 +91,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-040
+REE inter-governance work item: IGW-20260526-041
 Title: Retest after substrate: MECH-334
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -105,7 +105,34 @@ Instructions:
 
 </details>
 
-### IGW-20260525-007 -- SD-033a bias head untrained (Go-side mechanically silent)
+### IGW-20260526-001 -- MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
+- **Gap(s):** arc_062_rule_apprehension:GAP-B
+- **Owner EXQ:** V3-EXQ-543l
+- **Why now:** V3-EXQ-543k ran 20260522T091714Z FAIL/mixed (mode_separation_score=0.483, below floor=0.5; basin stability criterion not met). Successor V3-EXQ-543l queued 2026-05-24: escalated MODE_SEPARATION_FLOOR 0.25->0.5 and P1_W_DEVIATION_AUX_WEIGHT 
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260526-001
+Title: MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
+Lane: experiment | Skill: /queue-experiment
+Status: in_progress
+Gap(s): arc_062_rule_apprehension:GAP-B
+Owner EXQ: V3-EXQ-543l
+Claims: MECH-309, ARC-062
+Why now: V3-EXQ-543k ran 20260522T091714Z FAIL/mixed (mode_separation_score=0.483, below floor=0.5; basin stability criterion not met). Successor V3-EXQ-543l queued 2026-05-24: escalated MODE_SEPARATION_FLOOR 0.25->0.5 and P1_W_DEVIATION_AUX_WEIGHT 
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260526-007 -- SD-033a bias head untrained (Go-side mechanically silent)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
 - **Gap(s):** commitment_closure:GAP-1
@@ -116,7 +143,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-007
+REE inter-governance work item: IGW-20260526-007
 Title: SD-033a bias head untrained (Go-side mechanically silent)
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -134,7 +161,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-020 -- Diagnose ERROR: V3-EXQ-455a
+### IGW-20260526-021 -- Diagnose ERROR: V3-EXQ-455a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-455a
@@ -143,7 +170,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-020
+REE inter-governance work item: IGW-20260526-021
 Title: Diagnose ERROR: V3-EXQ-455a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -157,7 +184,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-021 -- Diagnose ERROR: V3-EXQ-544
+### IGW-20260526-022 -- Diagnose ERROR: V3-EXQ-544
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-544
@@ -166,7 +193,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-021
+REE inter-governance work item: IGW-20260526-022
 Title: Diagnose ERROR: V3-EXQ-544
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -180,7 +207,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-022 -- Diagnose ERROR: V3-ONBOARD-smoke-EWIN-PC
+### IGW-20260526-023 -- Diagnose ERROR: V3-ONBOARD-smoke-EWIN-PC
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Why now:** Runner ERROR with no queued successor ().
@@ -188,7 +215,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-022
+REE inter-governance work item: IGW-20260526-023
 Title: Diagnose ERROR: V3-ONBOARD-smoke-EWIN-PC
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -201,7 +228,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-023 -- Diagnose ERROR: V3-EXQ-375
+### IGW-20260526-024 -- Diagnose ERROR: V3-EXQ-375
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-375
@@ -210,7 +237,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-023
+REE inter-governance work item: IGW-20260526-024
 Title: Diagnose ERROR: V3-EXQ-375
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -224,7 +251,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-024 -- Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
+### IGW-20260526-025 -- Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Why now:** Runner ERROR with no queued successor ().
@@ -232,7 +259,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-024
+REE inter-governance work item: IGW-20260526-025
 Title: Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -245,7 +272,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-025 -- Diagnose ERROR: V3-EXQ-250a
+### IGW-20260526-026 -- Diagnose ERROR: V3-EXQ-250a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-250a
@@ -254,7 +281,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-025
+REE inter-governance work item: IGW-20260526-026
 Title: Diagnose ERROR: V3-EXQ-250a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -268,7 +295,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-026 -- Diagnose ERROR: V3-EXQ-495
+### IGW-20260526-027 -- Diagnose ERROR: V3-EXQ-495
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-495
@@ -277,7 +304,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-026
+REE inter-governance work item: IGW-20260526-027
 Title: Diagnose ERROR: V3-EXQ-495
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -291,7 +318,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-027 -- Diagnose ERROR: V3-EXQ-538
+### IGW-20260526-028 -- Diagnose ERROR: V3-EXQ-538
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-538
@@ -300,7 +327,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-027
+REE inter-governance work item: IGW-20260526-028
 Title: Diagnose ERROR: V3-EXQ-538
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -314,7 +341,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-028 -- Diagnose ERROR: V3-EXQ-244a
+### IGW-20260526-029 -- Diagnose ERROR: V3-EXQ-244a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-244a
@@ -323,7 +350,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-028
+REE inter-governance work item: IGW-20260526-029
 Title: Diagnose ERROR: V3-EXQ-244a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -337,7 +364,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-029 -- Diagnose ERROR: V3-EXQ-606a
+### IGW-20260526-030 -- Diagnose ERROR: V3-EXQ-606a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-606a
@@ -346,7 +373,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-029
+REE inter-governance work item: IGW-20260526-030
 Title: Diagnose ERROR: V3-EXQ-606a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -360,7 +387,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-030 -- Diagnose ERROR: V3-EXQ-598
+### IGW-20260526-031 -- Diagnose ERROR: V3-EXQ-598
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-598
@@ -369,7 +396,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-030
+REE inter-governance work item: IGW-20260526-031
 Title: Diagnose ERROR: V3-EXQ-598
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -383,7 +410,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-031 -- Diagnose ERROR: V3-EXQ-321b
+### IGW-20260526-032 -- Diagnose ERROR: V3-EXQ-321b
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-321b
@@ -392,7 +419,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-031
+REE inter-governance work item: IGW-20260526-032
 Title: Diagnose ERROR: V3-EXQ-321b
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -406,7 +433,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-032 -- Diagnose ERROR: V3-EXQ-250
+### IGW-20260526-033 -- Diagnose ERROR: V3-EXQ-250
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-250
@@ -415,7 +442,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-032
+REE inter-governance work item: IGW-20260526-033
 Title: Diagnose ERROR: V3-EXQ-250
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -429,7 +456,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-033 -- Diagnose ERROR: V3-EXQ-247
+### IGW-20260526-034 -- Diagnose ERROR: V3-EXQ-247
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-247
@@ -438,7 +465,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-033
+REE inter-governance work item: IGW-20260526-034
 Title: Diagnose ERROR: V3-EXQ-247
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -452,7 +479,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-034 -- Diagnose ERROR: V3-EXQ-267
+### IGW-20260526-035 -- Diagnose ERROR: V3-EXQ-267
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-267
@@ -461,7 +488,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-034
+REE inter-governance work item: IGW-20260526-035
 Title: Diagnose ERROR: V3-EXQ-267
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -475,7 +502,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-035 -- Diagnose ERROR: V3-EXQ-432
+### IGW-20260526-036 -- Diagnose ERROR: V3-EXQ-432
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-432
@@ -484,7 +511,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-035
+REE inter-governance work item: IGW-20260526-036
 Title: Diagnose ERROR: V3-EXQ-432
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -498,7 +525,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-036 -- Diagnose ERROR: V3-EXQ-498
+### IGW-20260526-037 -- Diagnose ERROR: V3-EXQ-498
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-498
@@ -507,7 +534,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-036
+REE inter-governance work item: IGW-20260526-037
 Title: Diagnose ERROR: V3-EXQ-498
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -521,34 +548,28 @@ Instructions:
 
 </details>
 
-### IGW-20260525-001 -- MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
+### IGW-20260526-020 -- Queue depth low (1 pending)
 
-- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 33
-- **Gap(s):** arc_062_rule_apprehension:GAP-B
-- **Owner EXQ:** V3-EXQ-543l
-- **Why now:** V3-EXQ-543k ran 20260522T091714Z FAIL/mixed (mode_separation_score=0.483, below floor=0.5; basin stability criterion not met). Successor V3-EXQ-543l queued 2026-05-24: escalated MODE_SEPARATION_FLOOR 0.25->0.5 and P1_W_DEVIATION_AUX_WEIGHT 
+- **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
+- **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-001
-Title: MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
-Lane: experiment | Skill: (monitor -- do not re-queue)
-Status: in_flight
-Gap(s): arc_062_rule_apprehension:GAP-B
-Owner EXQ: V3-EXQ-543l
-Claims: MECH-309, ARC-062
-Why now: V3-EXQ-543k ran 20260522T091714Z FAIL/mixed (mode_separation_score=0.483, below floor=0.5; basin stability criterion not met). Successor V3-EXQ-543l queued 2026-05-24: escalated MODE_SEPARATION_FLOOR 0.25->0.5 and P1_W_DEVIATION_AUX_WEIGHT 
+REE inter-governance work item: IGW-20260526-020
+Title: Queue depth low (1 pending)
+Lane: ops | Skill: (manual)
+Status: ready
+Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
 
 Instructions:
-- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
-- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
+- Update plan-of-record doc and closure frontmatter when complete.
 - Workset: http://localhost:8000/workset
 ```
 
 </details>
 
-### IGW-20260525-002 -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)
+### IGW-20260526-002 -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** arc_062_rule_apprehension:GAP-D
@@ -559,7 +580,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-002
+REE inter-governance work item: IGW-20260526-002
 Title: E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -577,7 +598,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-008 -- OCD battery completeness (V3-EXQ-460..468)
+### IGW-20260526-008 -- OCD battery completeness (V3-EXQ-460..468)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 40
 - **Gap(s):** commitment_closure:GAP-4
@@ -587,7 +608,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-008
+REE inter-governance work item: IGW-20260526-008
 Title: OCD battery completeness (V3-EXQ-460..468)
 Lane: experiment | Skill: /queue-experiment
 Status: partial
@@ -604,7 +625,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-011 -- MECH-295 drive->liking->approach cascade Tier-1 retest cohort
+### IGW-20260526-011 -- MECH-295 drive->liking->approach cascade Tier-1 retest cohort
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** goal_pipeline:GAP-4
@@ -614,7 +635,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-011
+REE inter-governance work item: IGW-20260526-011
 Title: MECH-295 drive->liking->approach cascade Tier-1 retest cohort
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -631,7 +652,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-019 -- SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A
+### IGW-20260526-019 -- SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** upstream_blocked | **Priority:** 40
 - **Gap(s):** sleep_substrate:GAP-2
@@ -641,7 +662,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-019
+REE inter-governance work item: IGW-20260526-019
 Title: SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A
 Lane: experiment | Skill: /queue-experiment
 Status: upstream_blocked
@@ -658,7 +679,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-041 -- Proposal EXP-0007 (MECH-204)
+### IGW-20260526-042 -- Proposal EXP-0007 (MECH-204)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; mandatory_decision_checkpoint
@@ -666,7 +687,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-041
+REE inter-governance work item: IGW-20260526-042
 Title: Proposal EXP-0007 (MECH-204)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -680,7 +701,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-042 -- Proposal EXP-0010 (MECH-334)
+### IGW-20260526-043 -- Proposal EXP-0010 (MECH-334)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; low_exp_conf; mandatory_decision_checkpoint
@@ -688,7 +709,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-042
+REE inter-governance work item: IGW-20260526-043
 Title: Proposal EXP-0010 (MECH-334)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -702,7 +723,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-043 -- Proposal EXP-0029 (SD-049)
+### IGW-20260526-044 -- Proposal EXP-0029 (SD-049)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -710,7 +731,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-043
+REE inter-governance work item: IGW-20260526-044
 Title: Proposal EXP-0029 (SD-049)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -724,7 +745,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-044 -- Proposal EXP-0030 (MECH-302)
+### IGW-20260526-045 -- Proposal EXP-0030 (MECH-302)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -732,7 +753,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-044
+REE inter-governance work item: IGW-20260526-045
 Title: Proposal EXP-0030 (MECH-302)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -746,7 +767,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-045 -- Proposal EXP-0032 (INV-074)
+### IGW-20260526-046 -- Proposal EXP-0032 (INV-074)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; low_exp_conf
@@ -754,7 +775,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-045
+REE inter-governance work item: IGW-20260526-046
 Title: Proposal EXP-0032 (INV-074)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -768,7 +789,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-010 -- SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)
+### IGW-20260526-010 -- SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 48
 - **Gap(s):** goal_pipeline:GAP-2
@@ -778,7 +799,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-010
+REE inter-governance work item: IGW-20260526-010
 Title: SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -795,7 +816,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-016 -- ARC-033 vs ARC-058 path arbitration (forensic 445h read)
+### IGW-20260526-016 -- ARC-033 vs ARC-058 path arbitration (forensic 445h read)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 48
 - **Gap(s):** self_attribution:GAP-1
@@ -805,7 +826,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-016
+REE inter-governance work item: IGW-20260526-016
 Title: ARC-033 vs ARC-058 path arbitration (forensic 445h read)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -822,7 +843,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-017 -- SD-029 / MECH-256 retest under full substrate stack
+### IGW-20260526-017 -- SD-029 / MECH-256 retest under full substrate stack
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48
 - **Gap(s):** self_attribution:GAP-2
@@ -831,7 +852,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-017
+REE inter-governance work item: IGW-20260526-017
 Title: SD-029 / MECH-256 retest under full substrate stack
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -847,7 +868,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-003 -- ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending
+### IGW-20260526-003 -- ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-H
@@ -858,7 +879,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-003
+REE inter-governance work item: IGW-20260526-003
 Title: ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending
 Lane: experiment | Skill: /queue-experiment
 Status: partial
@@ -876,7 +897,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-004 -- ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending
+### IGW-20260526-004 -- ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-I
@@ -887,7 +908,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-004
+REE inter-governance work item: IGW-20260526-004
 Title: ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending
 Lane: experiment | Skill: /queue-experiment
 Status: partial
@@ -905,7 +926,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-006 -- MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-608 falsifier queued 2026-05-24
+### IGW-20260526-006 -- MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-608 falsifier queued 2026-05-24
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-K
@@ -916,7 +937,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-006
+REE inter-governance work item: IGW-20260526-006
 Title: MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-608 falsifier queued 2026-05-24
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -934,7 +955,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-012 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
+### IGW-20260526-012 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
 - **Gap(s):** infant_substrate:GAP-11
@@ -944,7 +965,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-012
+REE inter-governance work item: IGW-20260526-012
 Title: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -961,7 +982,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-013 -- EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)
+### IGW-20260526-013 -- EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
 - **Gap(s):** infant_substrate:GAP-12
@@ -971,7 +992,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-013
+REE inter-governance work item: IGW-20260526-013
 Title: EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -988,7 +1009,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-014 -- EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
+### IGW-20260526-014 -- EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
 - **Gap(s):** infant_substrate:GAP-13
@@ -998,7 +1019,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-014
+REE inter-governance work item: IGW-20260526-014
 Title: EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -1015,7 +1036,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-015 -- EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
+### IGW-20260526-015 -- EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
 
 - **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 53
 - **Gap(s):** infant_substrate:GAP-14
@@ -1025,7 +1046,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-015
+REE inter-governance work item: IGW-20260526-015
 Title: EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
 Lane: experiment | Skill: (monitor -- do not re-queue)
 Status: in_flight
@@ -1042,7 +1063,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-005 -- MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)
+### IGW-20260526-005 -- MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58
 - **Gap(s):** arc_062_rule_apprehension:GAP-J
@@ -1052,7 +1073,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-005
+REE inter-governance work item: IGW-20260526-005
 Title: MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1069,7 +1090,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-009 -- SD-033b behavioural validation (devaluation + perceptual discrimination)
+### IGW-20260526-009 -- SD-033b behavioural validation (devaluation + perceptual discrimination)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 58
 - **Gap(s):** commitment_closure:GAP-8
@@ -1079,7 +1100,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-009
+REE inter-governance work item: IGW-20260526-009
 Title: SD-033b behavioural validation (devaluation + perceptual discrimination)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -1096,7 +1117,7 @@ Instructions:
 
 </details>
 
-### IGW-20260525-018 -- MECH-257 dual-function 3-arm ablation re-queue
+### IGW-20260526-018 -- MECH-257 dual-function 3-arm ablation re-queue
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58
 - **Gap(s):** self_attribution:GAP-3
@@ -1106,7 +1127,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260525-018
+REE inter-governance work item: IGW-20260526-018
 Title: MECH-257 dual-function 3-arm ablation re-queue
 Lane: plan | Skill: (plan reconcile)
 Status: blocked

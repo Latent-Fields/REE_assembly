@@ -1713,6 +1713,23 @@ def read_workset() -> dict:
     try:
         data = json.loads(WORKSET_JSON_FILE.read_text(encoding="utf-8"))
         if isinstance(data, dict) and isinstance(data.get("items"), list):
+            # Re-merge live agent assignments at read time. The generator bakes
+            # `assignments` into the workset JSON, but assign/release POSTs only
+            # write to evidence/planning/igw_assignments.json -- without this
+            # merge, the UI shows stale assignments until the next generator run.
+            try:
+                sys.path.insert(0, str(SERVE_DIR / "scripts"))
+                from igw_assignments_lib import (  # noqa: WPS433
+                    assignments_by_hash,
+                    stable_hash_item,
+                )
+                by_hash = assignments_by_hash()
+                for it in data["items"]:
+                    sh = it.get("stable_hash") or stable_hash_item(it)
+                    it["stable_hash"] = sh
+                    it["assignments"] = by_hash.get(sh) or []
+            except Exception:
+                pass
             return data
     except Exception:
         pass
