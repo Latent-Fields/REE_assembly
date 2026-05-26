@@ -1,47 +1,30 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-25T08:41:02Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-603",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-471a",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T08:59:18.517718+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-599",
-      "result": "ERROR",
-      "completed_at": "2026-05-21T10:49:46.679681+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-600",
-      "result": "ERROR",
-      "completed_at": "2026-05-21T10:50:05.557207+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-601",
-      "result": "PASS",
-      "completed_at": "2026-05-21T11:47:54.625196+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-590a",
-      "result": "PASS",
-      "completed_at": "2026-05-25T08:40:57.606321+00:00"
-    }
+  "last_tick_utc": "2026-05-26T06:04:24Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603b",
+  "current_exq_started_utc": "2026-05-26T06:04:19.223716+00:00",
+  "current_title": "Q-045 MECH-313 vs MECH-260 four-arm ablation (500-step + reduced hazard_harm)",
+  "current_claim_id": "Q-045",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_both_off",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 0,
+    "episodes_total": 30,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 10800,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_both_off"
   ],
-  "runner_pid": 319558,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 2267785,
   "runner_version": null,
   "gpu": {
     "available": false
