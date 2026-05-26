@@ -468,6 +468,52 @@ def run_script(key: str) -> dict:
         return {"status": "error", "message": str(exc)}
 
 
+def _commit_and_push_assignments(message: str) -> dict:
+    """Commit + push igw_assignments.json to origin/master immediately.
+
+    Workaround for the heartbeat-reset race: ree-v3/runner_remote_control.py
+    push_heartbeat()->_push_telemetry_file() runs
+    `git checkout -f -B master origin/master` every ~6-13s. Uncommitted local
+    mods to tracked files in evidence/planning/ are silently wiped (TOCTOU
+    race with _hard_sync_is_safe). Pushing to origin immediately means the
+    heartbeat's reset target ALREADY contains the assignment, so the reset
+    preserves rather than wipes it.
+
+    Returns {"status": "ok"|"skipped"|"error", "message": ..., "sha": ...}.
+    Best-effort; never raises.
+    """
+    rel = "evidence/planning/igw_assignments.json"
+    out = {"status": "error", "message": "?", "sha": None}
+    try:
+        # Stage only the assignments file. NEVER `git add -A` or `git add .`
+        # -- the working tree may contain unrelated heartbeat-side files mid
+        # commit, and we must not absorb them.
+        add = subprocess.run(["git", "add", rel], cwd=str(SERVE_DIR),
+                             capture_output=True, text=True, timeout=10)
+        if add.returncode != 0:
+            return {"status": "error", "message": f"git add: {add.stderr.strip()[:200]}", "sha": None}
+        # Anything staged?
+        diff = subprocess.run(["git", "diff", "--cached", "--quiet"],
+                              cwd=str(SERVE_DIR), capture_output=True, text=True, timeout=10)
+        if diff.returncode == 0:
+            return {"status": "skipped", "message": "nothing staged", "sha": None}
+        commit = subprocess.run(
+            ["git", "commit", "-m", message, "--", rel],
+            cwd=str(SERVE_DIR), capture_output=True, text=True, timeout=15,
+        )
+        if commit.returncode != 0:
+            return {"status": "error", "message": f"git commit: {commit.stderr.strip()[:200]}", "sha": None}
+        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(SERVE_DIR),
+                             capture_output=True, text=True, timeout=5).stdout.strip()[:12]
+        push = subprocess.run(["git", "push", "origin", "HEAD:master"],
+                              cwd=str(SERVE_DIR), capture_output=True, text=True, timeout=30)
+        if push.returncode != 0:
+            return {"status": "error", "message": f"git push: {push.stderr.strip()[:200]}", "sha": sha}
+        return {"status": "ok", "message": "committed and pushed", "sha": sha}
+    except Exception as exc:
+        return {"status": "error", "message": f"exception: {exc}", "sha": None}
+
+
 def load_review_tracker() -> dict:
     if REVIEW_TRACKER_FILE.exists():
         return json.loads(REVIEW_TRACKER_FILE.read_text())
@@ -2897,7 +2943,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                             source=payload.get("source") or "manual_ui",
                             note=payload.get("note"),
                         )
-                        result = {"status": "ok", "entry": entry}
+                        # Commit + push immediately so the heartbeat's hourly
+                        # `git checkout -f -B master origin/master` resets the
+                        # working tree onto a copy of master that ALREADY
+                        # contains this assignment. Without this push the
+                        # in-flight uncommitted assign is wiped on the next
+                        # heartbeat tick.
+                        push_result = _commit_and_push_assignments(
+                            f"workset: assign IGW {igw_id} -> {agent}"
+                        )
+                        result = {"status": "ok", "entry": entry, "git": push_result}
                     except ValueError as exc:
                         body = json.dumps({"status": "error", "message": str(exc)}).encode()
                         self._json_response(body, status=400)
@@ -2927,7 +2982,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 if entry is None:
                     result = {"status": "noop", "message": "no active assignment to release"}
                 else:
-                    result = {"status": "ok", "entry": entry}
+                    # See assign-side comment: commit+push immediately so the
+                    # heartbeat reset can't wipe the release event.
+                    push_result = _commit_and_push_assignments(
+                        f"workset: release IGW assignment {stable_hash_val[:8]} -> {agent}"
+                    )
+                    result = {"status": "ok", "entry": entry, "git": push_result}
             body = json.dumps(result).encode()
             self._json_response(body, status=200)
             return
