@@ -55,18 +55,40 @@ fi
 echo ""
 
 # -- Pull latest code before starting ----------------------------------------
+# Hardening: GIT_HTTP_LOW_SPEED_* abort the fetch if transfer stalls below
+# 1000 B/s for 30 seconds. Without these git can hang forever when network
+# briefly drops, leaving a chain of orphan git-remote-https processes the
+# user can't see. Incident 2026-05-26 ~7:17AM: bare git fetch hung for
+# 9 minutes before being killed manually. The 2>&1 | tail -1 trims the
+# usual line spam but loses the original exit status, so we test the
+# pipeline status with PIPESTATUS instead of relying on the implicit $?.
 echo "Pulling latest code..."
-git pull --ff-only origin master 2>&1 | tail -1 || echo "  (REE_assembly pull skipped -- local changes present or offline)"
+GIT_HTTP_LOW_SPEED_LIMIT=1000 GIT_HTTP_LOW_SPEED_TIME=30 \
+    git pull --ff-only origin master 2>&1 | tail -1
+if [ "${PIPESTATUS[0]}" -ne 0 ]; then
+    echo "  (REE_assembly pull skipped -- local changes present, offline, or stalled)"
+fi
 if [ -d "../ree-v3/.git" ]; then
-    git -C ../ree-v3 pull --ff-only origin main 2>&1 | tail -1 || echo "  (ree-v3 pull skipped -- local changes present or offline)"
+    GIT_HTTP_LOW_SPEED_LIMIT=1000 GIT_HTTP_LOW_SPEED_TIME=30 \
+        git -C ../ree-v3 pull --ff-only origin main 2>&1 | tail -1
+    if [ "${PIPESTATUS[0]}" -ne 0 ]; then
+        echo "  (ree-v3 pull skipped -- local changes present, offline, or stalled)"
+    fi
 fi
 echo ""
 echo "NOTE: If experiment_runner.py was updated, stop and restart the runner"
 echo "      from the Explorer UI (Experiments tab) to pick up the new code."
 echo ""
 
-# Kill any existing serve.py on this port
-existing_pid=$(lsof -ti :$PORT 2>/dev/null)
+# Kill any existing serve.py on this port.
+#
+# NOTE: we used to run `lsof -ti :$PORT` here, but lsof probes every mount at
+# startup, and a dead Time Machine SMB mount under /Volumes/.timemachine/ can
+# put lsof into uninterruptible kernel IO wait (state U+ on macOS) that even
+# `kill -9` can't release. Once that happens the launcher wedges until reboot.
+# pgrep reads /proc-equivalent process tables only -- never touches mounts --
+# so it's immune to that failure mode. (Incident: 2026-05-26 ~7:17AM, ttys267.)
+existing_pid=$(pgrep -f "serve\.py.*--port $PORT" 2>/dev/null | head -1)
 if [ -n "$existing_pid" ]; then
     echo "Port $PORT in use (PID $existing_pid) -- stopping it first..."
     kill "$existing_pid" 2>/dev/null
