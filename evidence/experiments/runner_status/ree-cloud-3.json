@@ -1,22 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": null,
-  "runner_started_at": "2026-05-21T10:49:44.860484+00:00",
-  "last_updated": "2026-05-25T08:43:06.995873+00:00",
-  "idle": true,
+  "runner_pid": 2267785,
+  "runner_started_at": "2026-05-26T06:04:19.162994+00:00",
+  "last_updated": "2026-05-26T07:24:57.522361+00:00",
+  "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-603b",
-      "backlog_id": "",
-      "claim_id": "Q-045",
-      "title": "Q-045 MECH-313 vs MECH-260 four-arm ablation (500-step + reduced hazard_harm)",
-      "description": "",
-      "estimated_minutes": 48.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-591",
       "backlog_id": "",
@@ -1703,7 +1692,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_590_isef004_novelty_bonus_goldilocks/v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 334377.8
+    },
+    {
+      "queue_id": "V3-EXQ-603b",
+      "backlog_id": "",
+      "claim_id": "Q-045",
+      "title": "Q-045 MECH-313 vs MECH-260 four-arm ablation (500-step + reduced hazard_harm)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-603b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-603b.json",
+      "started_at": "2026-05-26T06:04:19.223716+00:00",
+      "completed_at": "2026-05-26T07:14:59.216957+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 4240.0
+    },
+    {
+      "queue_id": "V3-EXQ-609",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "V3-EXQ-609 E3 per-candidate bias spread decomp (EXQ-571 methodology fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-609 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-609.json",
+      "started_at": "2026-05-26T07:23:17.989546+00:00",
+      "completed_at": "2026-05-26T07:24:57.521687+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_609_e3_score_per_candidate_spread_decomp_20260526T072457Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 99.5
     }
-  ],
-  "draining": false
+  ]
 }
