@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-26T02:58:01Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-608",
-  "current_exq_started_utc": "2026-05-26T02:33:06.758100+00:00",
-  "current_title": "MECH-341 E3 score-collapse diagnostic (P2 of behavioral_diversity_isolation_plan)",
-  "current_claim_id": "MECH-341",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / main_path",
-    "runs_done": 2,
-    "runs_total": 3,
-    "episodes_done": 50,
-    "episodes_total": 100,
-    "overall_pct": 83.3
-  },
-  "seconds_elapsed": 1495,
-  "seconds_remaining": 364,
-  "recent_lines": [
-    "[train] seed=44 phase=P0 ep 10/100",
-    "[train] seed=44 phase=P0 ep 20/100",
-    "[train] seed=44 phase=P0 ep 30/100",
-    "[train] seed=44 phase=P0 ep 40/100",
-    "[train] seed=44 phase=P0 ep 50/100"
+  "last_tick_utc": "2026-05-26T02:58:38Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-591",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-606a",
+      "result": "ERROR",
+      "completed_at": "2026-05-21T14:26:52.176247+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-598",
+      "result": "ERROR",
+      "completed_at": "2026-05-21T14:43:23.496021+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603b",
+      "result": "FAIL",
+      "completed_at": "2026-05-25T06:54:07.606173+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-543l",
+      "result": "FAIL",
+      "completed_at": "2026-05-26T02:30:59.959596+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-608",
+      "result": "PASS",
+      "completed_at": "2026-05-26T02:58:32.361017+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 667,
   "runner_version": null,
   "gpu": {
