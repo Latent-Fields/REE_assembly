@@ -734,11 +734,22 @@ def _utc_age_seconds(iso: str, now) -> int | None:
         return None
 
 
+_COORD_SNAP_CACHE: dict = {"t": 0.0, "data": {}}
+_COORD_SNAP_LOCK = threading.Lock()
+_COORD_SNAP_TTL_SECONDS = 15.0
+_COORD_SNAP_TIMEOUT_SECONDS = 2.0
+
+
 def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
     """Live heartbeats from the Phase-1 coordinator (WireGuard).
 
     Returns {machine: snapshot} or {} when unconfigured/unreachable.
     Never raises -- /api/machines must stay available if the hub is down.
+
+    Cached for _COORD_SNAP_TTL_SECONDS so a slow WG hop can't stall every
+    request that touches machine telemetry. The cache stores both
+    successful results and empty-dict fallbacks; either way, subsequent
+    callers in the TTL window get an instant answer.
     """
     import urllib.error
     import urllib.request
@@ -747,30 +758,42 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
     tok = cfg.get("COORDINATOR_LOCAL_TOKEN") or ""
     if not url or not tok:
         return {}
+
+    now = time.monotonic()
+    with _COORD_SNAP_LOCK:
+        if now - _COORD_SNAP_CACHE["t"] < _COORD_SNAP_TTL_SECONDS:
+            return dict(_COORD_SNAP_CACHE["data"])
+
+    out: dict[str, dict] = {}
     try:
         req = urllib.request.Request(
             url + "/shadow/status",
             headers={"Authorization": "Bearer " + tok},
             method="GET",
         )
-        with urllib.request.urlopen(req, timeout=5) as resp:
+        with urllib.request.urlopen(
+                req, timeout=_COORD_SNAP_TIMEOUT_SECONDS) as resp:
             st = json.loads(resp.read().decode("utf-8"))
-    except (urllib.error.URLError, OSError, json.JSONDecodeError, ValueError):
-        return {}
-    out: dict[str, dict] = {}
-    for m in st.get("machines") or []:
-        name = m.get("machine")
-        if not name:
-            continue
-        out[name] = {
-            "last_tick_utc": m.get("last_seen") or "",
-            "state": m.get("state") or "unknown",
-            "current_exq": m.get("current_exq"),
-            "progress": m.get("progress") or {},
-            "seconds_elapsed": m.get("seconds_elapsed"),
-            "seconds_remaining": m.get("seconds_remaining"),
-        }
-    return out
+        for m in st.get("machines") or []:
+            name = m.get("machine")
+            if not name:
+                continue
+            out[name] = {
+                "last_tick_utc": m.get("last_seen") or "",
+                "state": m.get("state") or "unknown",
+                "current_exq": m.get("current_exq"),
+                "progress": m.get("progress") or {},
+                "seconds_elapsed": m.get("seconds_elapsed"),
+                "seconds_remaining": m.get("seconds_remaining"),
+            }
+    except (urllib.error.URLError, OSError,
+            json.JSONDecodeError, ValueError):
+        out = {}
+
+    with _COORD_SNAP_LOCK:
+        _COORD_SNAP_CACHE["t"] = time.monotonic()
+        _COORD_SNAP_CACHE["data"] = out
+    return dict(out)
 
 
 def _coordinator_preferred(git_fresh: bool, git_age: int | None,

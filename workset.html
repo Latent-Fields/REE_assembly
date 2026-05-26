@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-05-26.1 -->
+<!-- WORKSET_VERSION: 2026-05-26.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -288,14 +288,8 @@ let CLAIM_SEARCH = '';
 const LANE_ORDER = ['governance', 'experiment', 'substrate', 'plan', 'lit', 'ops'];
 
 async function load() {
-  const [wsRes, clRes] = await Promise.all([
-    fetch('/api/workset'),
-    fetch('/api/closure').catch(() => null),
-  ]);
+  const wsRes = await fetch('/api/workset');
   WS = await wsRes.json();
-  if (clRes && clRes.ok) {
-    try { CLOSURE = await clRes.json(); } catch (_) { CLOSURE = null; }
-  }
   applyUrlParams();
   populateFilters();
   document.getElementById('hdr-meta').textContent =
@@ -305,6 +299,41 @@ async function load() {
   renderLeverageRail();
   renderAll();
   syncUrl();
+  hydrateClosure();
+}
+
+function hydrateClosure() {
+  // CLOSURE is supplemental (plan-title enrichment for the filter dropdown).
+  // The /api/closure endpoint can be slow when the coordinator hop is flaky,
+  // so we fetch it after the main render and re-populate the plan dropdown
+  // once it arrives. AbortController gives us a hard client-side deadline.
+  const ctrl = new AbortController();
+  const deadline = setTimeout(() => ctrl.abort(), 8000);
+  fetch('/api/closure', { signal: ctrl.signal })
+    .then(r => (r && r.ok) ? r.json() : null)
+    .then(data => {
+      clearTimeout(deadline);
+      if (!data) return;
+      CLOSURE = data;
+      mergeClosurePlansIntoFilter();
+    })
+    .catch(() => { clearTimeout(deadline); });
+}
+
+function mergeClosurePlansIntoFilter() {
+  const planSel = document.getElementById('plan-filter');
+  if (!planSel || !CLOSURE || !CLOSURE.plans) return;
+  const existing = new Set(Array.from(planSel.options).map(o => o.value));
+  for (const pl of CLOSURE.plans) {
+    if (existing.has(pl.id)) continue;
+    const opt = document.createElement('option');
+    opt.value = pl.id;
+    opt.textContent = pl.title || pl.id;
+    planSel.appendChild(opt);
+  }
+  if (PLAN_FILTER && existing.size && planSel.value !== PLAN_FILTER) {
+    planSel.value = PLAN_FILTER;
+  }
 }
 
 function applyUrlParams() {
