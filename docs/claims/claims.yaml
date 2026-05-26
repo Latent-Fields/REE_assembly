@@ -27986,6 +27986,55 @@
     module before queuing this three-arm ablation; if 314 has
     migrated, the per-head ablation design supersedes the per-
     module one. See MECH-313 / MECH-314 notes fields.
+
+
+    [2026-05-26 BLOCKER annotation. Per-candidate vs broadcast-scalar
+    sub-flavour ablation is structurally untestable on the current
+    substrate. Sibling finding doc evidence/planning/v3_exq_571_root_cause_2026-05-25.md
+    (REE_assembly master a79915151b, finding session
+    mech314a-propagation-root-cause-20260525T205723Z) empirically verified
+    that MECH-314a per-candidate RBF novelty IS correctly composed into
+    score_bias and reaches per-candidate scoring at
+    ree-v3/ree_core/predictors/e3_selector.py:737, but emits a [K]-vector
+    with zero across-K spread because E2 world-forward predictor
+    compresses K diverse first-action candidates to identical first-step
+    z_world (cand_world_pairwise_dist=0.0000 across K=32 candidates with
+    2-3 unique argmax action classes). Under that upstream collapse,
+    MECH-314a's per-candidate output is mathematically broadcast-
+    equivalent (uniform across K), making it indistinguishable from the
+    314b/c broadcast-scalar arms that Q-044 was designed to isolate it
+    against. Running Q-044 now would yield the same null bit-identical
+    result V3-EXQ-590a produced -- not a scientific test of the
+    sub-flavour independence question. Same root cause as the
+    2026-05-17 ARC-062 GAP-B autopsy (SP-CEM delivers ~5 distinct
+    first-action classes but E2 world-forward compresses them to 0.22%
+    of z_world magnitude); the existing GAP-B fix
+    (use_first_action_onehot bypass) is scoped only to GatedPolicy and
+    does not reach the bias-channel consumers of first-step z_world.
+    Unblock when ANY of the following lands: (a) GAP-B first-action
+    one-hot bypass extended to all bias-channel consumers of first-step
+    z_world (MECH-314a curiosity, MECH-320 tonic_vigor, MECH-295 liking,
+    SD-033a lateral_pfc, SD-033b ofc); (b) E2 world-forward fixed to
+    preserve per-action z_world divergence at K=32 candidate scale;
+    (c) MECH-314a Phase-2 novelty source migrated from z_world to a
+    signal that varies per-candidate (e.g. action-conditioned z_self
+    delta, or candidate-trajectory hash). See
+    evidence/planning/substrate_queue.json MECH-314.pending_retests
+    [V3-EXQ-590b].gated_on for the dual gate that operationalises this.]
+  blocked_by:
+    - e2_world_forward_first_action_preservation
+  blocker_note: >
+    Per-candidate vs broadcast-scalar sub-flavour ablation is structurally
+    untestable while E2 world-forward compresses K diverse first-action
+    candidates to identical first-step z_world (verified 2026-05-25 --
+    cand_world_pairwise_dist=0.0000 across K=32). MECH-314a's per-candidate
+    output is mathematically broadcast-equivalent under upstream collapse,
+    indistinguishable from 314b/c arms. Same root cause as 2026-05-17
+    ARC-062 GAP-B autopsy. See evidence/planning/v3_exq_571_root_cause_2026-05-25.md.
+    Unblock when GAP-B first-action one-hot bypass extends to all
+    bias-channel consumers of first-step z_world, OR when E2 world-forward
+    is fixed to preserve per-action z_world divergence, OR when MECH-314a
+    Phase-2 sources novelty from non-z_world signals.
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3 (recommendation
     NOT to lock prematurely). Lit support: same anchors as
