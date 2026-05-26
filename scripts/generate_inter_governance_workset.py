@@ -259,28 +259,75 @@ def _exq_successor_of(base: str, qid: str) -> bool:
     return bool(re.match(r"^[A-Z]+$", suffix)) or bool(re.match(r"^R\d+$", suffix))
 
 
-_OUTCOME_IN_SUMMARY_RE = re.compile(r"Outcome:\s*(PASS|FAIL)", re.IGNORECASE)
+# Patterns that carry a decisive PASS/FAIL signal inside result_summary when
+# result='UNKNOWN'. Compensates for the runner's UNKNOWN-result silent-drop bug
+# at ree-v3/experiment_runner.py:1394. Order does not matter -- first match wins.
+# The verdict pattern requires PASS/FAIL as the next token so "verdict:
+# INCONCLUSIVE" and "verdict: auroc=0.5000" do not match.
+_OUTCOME_IN_SUMMARY_RES = [
+    re.compile(r"\bOutcome:\s*(PASS|FAIL)\b", re.IGNORECASE),
+    re.compile(r"=>\s*(PASS|FAIL)\b", re.IGNORECASE),
+    re.compile(r"===\s*[A-Z0-9._-]+\s+(PASS|FAIL)\s*===", re.IGNORECASE),
+    re.compile(r"\bExperiment:\s*(PASS|FAIL)\b", re.IGNORECASE),
+    re.compile(r"\bverdict:\s*(PASS|FAIL)\b", re.IGNORECASE),
+]
+
+# Successors whose result is UNKNOWN (no decisive PASS/FAIL signal) still count
+# as "completed" if they ran at least this many seconds without crashing. The
+# floor excludes startup crashes (typically 1-30s) but admits any successor that
+# meaningfully exercised the script. Long INCONCLUSIVE or numeric-verdict runs
+# prove the runtime issue is fixed; the remaining scientific evaluation belongs
+# in /governance or /failure-autopsy, not /diagnose-errors.
+_MIN_SUCCESSOR_RUNTIME_SECS = 300
 
 
 def _effective_result(entry: dict) -> str:
-    """Return the entry's scientific result, recovering from UNKNOWN-result silent-drop.
-
-    The runner sometimes writes result='UNKNOWN' with result_summary embedding
-    'Outcome: PASS|FAIL'. Treat those as the actual outcome so successor
-    detection does not see them as 'still pending'.
-    """
+    """Return the entry's scientific result, recovering from UNKNOWN-result silent-drop."""
     res = (entry.get("result") or "").upper()
     if res in ("PASS", "FAIL", "ERROR"):
         return res
     summary = entry.get("result_summary") or ""
-    m = _OUTCOME_IN_SUMMARY_RE.search(summary)
-    if m:
-        return m.group(1).upper()
+    for pat in _OUTCOME_IN_SUMMARY_RES:
+        m = pat.search(summary)
+        if m:
+            return m.group(1).upper()
     return res
 
 
+def _successor_counts_as_completed(entry: dict) -> bool:
+    """A successor counts as completed if it shows the script is no longer broken.
+
+    Two ways: (1) decisive PASS/FAIL via _effective_result, or (2) a non-ERROR
+    run that lasted at least _MIN_SUCCESSOR_RUNTIME_SECS.
+    """
+    res = _effective_result(entry)
+    if res in ("PASS", "FAIL"):
+        return True
+    if res == "ERROR":
+        return False
+    try:
+        secs = float(entry.get("actual_secs") or 0)
+    except (TypeError, ValueError):
+        secs = 0.0
+    return secs >= _MIN_SUCCESSOR_RUNTIME_SECS
+
+
 def _has_completed_successor(qid: str, completed_by_qid: dict[str, dict]) -> bool:
-    """True when a successor ran to PASS/FAIL (infra fix or scientific completion)."""
+    """True when a successor -- or a later non-ERROR self-run -- shows the script works.
+
+    Suppresses 'Diagnose ERROR' IGW items in three cases:
+      - A lettered or rN successor PASSed or FAILed decisively.
+      - A lettered or rN successor ran without crashing for at least the
+        runtime floor (proves runtime issue resolved even if science inconclusive).
+      - The same qid later ran without ERROR (self-succession via re-queue).
+    """
+    self_entry = completed_by_qid.get(qid)
+    if (
+        self_entry is not None
+        and (self_entry.get("result") or "").upper() != "ERROR"
+        and _successor_counts_as_completed(self_entry)
+    ):
+        return True
     m = _EXQ_BASE_RE.match(str(qid))
     if not m:
         return False
@@ -288,7 +335,7 @@ def _has_completed_successor(qid: str, completed_by_qid: dict[str, dict]) -> boo
     for other_qid, entry in completed_by_qid.items():
         if not _exq_successor_of(base, other_qid):
             continue
-        if _effective_result(entry) in ("PASS", "FAIL"):
+        if _successor_counts_as_completed(entry):
             return True
     return False
 

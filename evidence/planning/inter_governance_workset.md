@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-26T05:50:52Z`
+Generated: `2026-05-26T07:16:12Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,15 +9,15 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **46** (ready 27, in_flight 1, blocked 6)
+- Items: **38** (ready 19, in_flight 1, blocked 6)
 - Pending review: **0**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-543k, V3-EXQ-591
 
 ## Work packages
 
-### IGW-20260526-038 -- Retest after substrate: ARC-062
+### IGW-20260526-030 -- Retest after substrate: ARC-062
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -25,7 +25,7 @@ UI: http://localhost:8000/workset
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-038
+REE inter-governance work item: IGW-20260526-030
 Title: Retest after substrate: ARC-062
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -39,7 +39,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-039 -- Retest after substrate: INV-074
+### IGW-20260526-031 -- Retest after substrate: INV-074
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -47,7 +47,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-039
+REE inter-governance work item: IGW-20260526-031
 Title: Retest after substrate: INV-074
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -61,7 +61,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-040 -- Retest after substrate: MECH-309
+### IGW-20260526-032 -- Retest after substrate: MECH-309
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -69,7 +69,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-040
+REE inter-governance work item: IGW-20260526-032
 Title: Retest after substrate: MECH-309
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -83,7 +83,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-041 -- Retest after substrate: MECH-334
+### IGW-20260526-033 -- Retest after substrate: MECH-334
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -91,7 +91,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-041
+REE inter-governance work item: IGW-20260526-033
 Title: Retest after substrate: MECH-334
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -228,38 +228,15 @@ Instructions:
 
 </details>
 
-### IGW-20260526-024 -- Diagnose ERROR: V3-EXQ-375
+### IGW-20260526-024 -- Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-375
 - **Why now:** Runner ERROR with no queued successor ().
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260526-024
-Title: Diagnose ERROR: V3-EXQ-375
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-375
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-025 -- Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-025
 Title: Diagnose ERROR: V3-ONBOARD-smoke-ree-cloud-1
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -272,30 +249,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-026 -- Diagnose ERROR: V3-EXQ-250a
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-250a
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-026
-Title: Diagnose ERROR: V3-EXQ-250a
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-250a
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-027 -- Diagnose ERROR: V3-EXQ-495
+### IGW-20260526-025 -- Diagnose ERROR: V3-EXQ-495
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-495
@@ -304,7 +258,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-027
+REE inter-governance work item: IGW-20260526-025
 Title: Diagnose ERROR: V3-EXQ-495
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -318,7 +272,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-028 -- Diagnose ERROR: V3-EXQ-538
+### IGW-20260526-026 -- Diagnose ERROR: V3-EXQ-538
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-538
@@ -327,7 +281,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-028
+REE inter-governance work item: IGW-20260526-026
 Title: Diagnose ERROR: V3-EXQ-538
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -341,7 +295,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-029 -- Diagnose ERROR: V3-EXQ-244a
+### IGW-20260526-027 -- Diagnose ERROR: V3-EXQ-244a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-244a
@@ -350,7 +304,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-029
+REE inter-governance work item: IGW-20260526-027
 Title: Diagnose ERROR: V3-EXQ-244a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -364,7 +318,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-030 -- Diagnose ERROR: V3-EXQ-606a
+### IGW-20260526-028 -- Diagnose ERROR: V3-EXQ-606a
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-606a
@@ -373,7 +327,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-030
+REE inter-governance work item: IGW-20260526-028
 Title: Diagnose ERROR: V3-EXQ-606a
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -387,7 +341,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-031 -- Diagnose ERROR: V3-EXQ-598
+### IGW-20260526-029 -- Diagnose ERROR: V3-EXQ-598
 
 - **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
 - **Owner EXQ:** V3-EXQ-598
@@ -396,7 +350,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-031
+REE inter-governance work item: IGW-20260526-029
 Title: Diagnose ERROR: V3-EXQ-598
 Lane: experiment | Skill: /diagnose-errors
 Status: ready
@@ -410,145 +364,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-032 -- Diagnose ERROR: V3-EXQ-321b
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-321b
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-032
-Title: Diagnose ERROR: V3-EXQ-321b
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-321b
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-033 -- Diagnose ERROR: V3-EXQ-250
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-250
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-033
-Title: Diagnose ERROR: V3-EXQ-250
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-250
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-034 -- Diagnose ERROR: V3-EXQ-247
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-247
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-034
-Title: Diagnose ERROR: V3-EXQ-247
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-247
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-035 -- Diagnose ERROR: V3-EXQ-267
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-267
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-035
-Title: Diagnose ERROR: V3-EXQ-267
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-267
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-036 -- Diagnose ERROR: V3-EXQ-432
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-432
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-036
-Title: Diagnose ERROR: V3-EXQ-432
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-432
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-037 -- Diagnose ERROR: V3-EXQ-498
-
-- **Lane:** experiment | **Skill:** `/diagnose-errors` | **Status:** ready | **Priority:** 30
-- **Owner EXQ:** V3-EXQ-498
-- **Why now:** Runner ERROR with no queued successor ().
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260526-037
-Title: Diagnose ERROR: V3-EXQ-498
-Lane: experiment | Skill: /diagnose-errors
-Status: ready
-Owner EXQ: V3-EXQ-498
-Why now: Runner ERROR with no queued successor ().
-
-Instructions:
-- Use /diagnose-errors; re-queue via lettered EXQ if code fix needed.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260526-020 -- Queue depth low (1 pending)
+### IGW-20260526-020 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -557,7 +373,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260526-020
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -679,7 +495,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-042 -- Proposal EXP-0007 (MECH-204)
+### IGW-20260526-034 -- Proposal EXP-0007 (MECH-204)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; mandatory_decision_checkpoint
@@ -687,7 +503,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-042
+REE inter-governance work item: IGW-20260526-034
 Title: Proposal EXP-0007 (MECH-204)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -701,7 +517,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-043 -- Proposal EXP-0010 (MECH-334)
+### IGW-20260526-035 -- Proposal EXP-0010 (MECH-334)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; low_exp_conf; mandatory_decision_checkpoint
@@ -709,7 +525,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-043
+REE inter-governance work item: IGW-20260526-035
 Title: Proposal EXP-0010 (MECH-334)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -723,7 +539,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-044 -- Proposal EXP-0029 (SD-049)
+### IGW-20260526-036 -- Proposal EXP-0029 (SD-049)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -731,7 +547,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-044
+REE inter-governance work item: IGW-20260526-036
 Title: Proposal EXP-0029 (SD-049)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -745,7 +561,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-045 -- Proposal EXP-0030 (MECH-302)
+### IGW-20260526-037 -- Proposal EXP-0030 (MECH-302)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -753,7 +569,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-045
+REE inter-governance work item: IGW-20260526-037
 Title: Proposal EXP-0030 (MECH-302)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -767,7 +583,7 @@ Instructions:
 
 </details>
 
-### IGW-20260526-046 -- Proposal EXP-0032 (INV-074)
+### IGW-20260526-038 -- Proposal EXP-0032 (INV-074)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; low_exp_conf
@@ -775,7 +591,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260526-046
+REE inter-governance work item: IGW-20260526-038
 Title: Proposal EXP-0032 (INV-074)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
