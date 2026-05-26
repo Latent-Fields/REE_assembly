@@ -2752,6 +2752,30 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(payload, indent=2, default=str).encode()
             self._json_response(body)
             return
+        if path == "/api/workset/recent_activity":
+            # Released-assignment events within the last `hours` (default 24).
+            # Used by the workset "Recent activity" panel.
+            from urllib.parse import parse_qs
+            qs = parse_qs(urlparse(self.path).query)
+            try:
+                hours = float(qs.get("hours", ["24"])[0])
+            except (TypeError, ValueError):
+                hours = 24.0
+            hours = max(0.5, min(hours, 24 * 30))  # clamp 0.5h .. 30d
+            try:
+                sys.path.insert(0, str(SERVE_DIR / "scripts"))
+                import igw_assignments_lib as _ial  # noqa: WPS433
+                releases = _ial.recent_releases(hours=hours)
+                payload = {
+                    "hours": hours,
+                    "count": len(releases),
+                    "releases": releases,
+                }
+            except Exception as exc:  # noqa: BLE001
+                payload = {"status": "error", "message": str(exc)}
+            body = json.dumps(payload, indent=2, default=str).encode()
+            self._json_response(body)
+            return
         if path == "/api/closure":
             body = json.dumps(read_closure(), indent=2, default=str).encode()
             self._json_response(body)

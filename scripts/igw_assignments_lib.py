@@ -265,6 +265,42 @@ def has_any_active_assignment(stable_hash_val: str, data: Optional[dict] = None)
     return False
 
 
+def recent_releases(
+    hours: float = 24.0,
+    data: Optional[dict] = None,
+    now_iso: Optional[str] = None,
+) -> list[dict]:
+    """Release events whose released_at is within the last `hours`.
+
+    Used by the workset "Recent activity" panel. Returns release entries
+    (event_id starting "rel-") with released_at >= now - hours, sorted by
+    released_at descending. The corresponding assign event is preserved
+    in the ledger but not returned here -- the release entry's item_snapshot
+    + assigned_at field carry everything the UI needs to render a row.
+    """
+    if data is None:
+        data = load()
+    now_s = now_iso or _now_iso()
+    # ISO-8601 lexicographic comparison works for the strict UTC format we use.
+    # Compute cutoff by parsing then formatting back.
+    try:
+        now_dt = datetime.strptime(now_s.rstrip("Z"), "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+    except ValueError:
+        now_dt = datetime.now(timezone.utc).replace(microsecond=0)
+    from datetime import timedelta
+    cutoff = (now_dt - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    out = []
+    for ent in data.get("entries", []):
+        rel = ent.get("released_at")
+        if not rel:
+            continue
+        if rel < cutoff:
+            continue
+        out.append(ent)
+    out.sort(key=lambda e: e.get("released_at") or "", reverse=True)
+    return out
+
+
 if __name__ == "__main__":  # pragma: no cover (smoke)
     import sys
     cmd = sys.argv[1] if len(sys.argv) > 1 else "show"

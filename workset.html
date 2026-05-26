@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-05-26.2 -->
+<!-- WORKSET_VERSION: 2026-05-26.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -203,6 +203,66 @@
     color: var(--text); padding: 4px 6px; font-size: 11px;
   }
   .chip.assigned-pill { background: #d2691e33; color: #ffae6b; }
+  .chip.recent-pill { background: #58a6ff22; color: #79c0ff; cursor: pointer; }
+  .chip.recent-pill:hover { background: #58a6ff44; }
+  #recent-activity {
+    margin: 8px 0 14px 0;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: #0d111780;
+  }
+  #recent-activity summary {
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--muted);
+    user-select: none;
+  }
+  #recent-activity summary:hover { color: var(--text); }
+  #recent-activity[open] summary { border-bottom: 1px solid #30363d; }
+  #recent-activity .ra-list { padding: 6px 0; max-height: 320px; overflow-y: auto; }
+  #recent-activity .ra-row {
+    display: grid;
+    grid-template-columns: 110px 110px 70px 1fr 90px;
+    gap: 10px;
+    padding: 6px 12px;
+    font-size: 11px;
+    align-items: center;
+    border-bottom: 1px solid #21262d;
+  }
+  #recent-activity .ra-row:last-child { border-bottom: none; }
+  #recent-activity .ra-row:hover { background: #161b22; }
+  #recent-activity .ra-row .ra-igw {
+    font-family: ui-monospace, monospace;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  #recent-activity .ra-row .ra-igw.ra-igw-stale { color: var(--muted); cursor: default; }
+  #recent-activity .ra-row .ra-igw.ra-igw-stale:hover { text-decoration: none; }
+  #recent-activity .ra-row .ra-title { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #recent-activity .ra-row .ra-when { color: var(--muted); font-family: ui-monospace, monospace; }
+  #recent-activity .ra-row .ra-agent {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  #recent-activity .ra-row .ra-agent.agent-claude_local { background: #d2691e22; color: #ffae6b; }
+  #recent-activity .ra-row .ra-agent.agent-cursor       { background: #58a6ff22; color: #79c0ff; }
+  #recent-activity .ra-row .ra-agent.agent-codex        { background: #56d36422; color: #7ee787; }
+  #recent-activity .ra-row .ra-agent.agent-other        { background: #a371f722; color: #d2a8ff; }
+  #recent-activity .ra-row .ra-reason { color: var(--muted); font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #recent-activity .ra-empty { padding: 12px; font-size: 12px; color: var(--muted); }
+  #recent-activity .ra-controls {
+    padding: 6px 12px; display: flex; gap: 10px; align-items: center;
+    border-bottom: 1px solid #21262d; font-size: 11px;
+  }
+  #recent-activity .ra-controls select {
+    background: #0d1117; border: 1px solid #30363d; color: var(--text);
+    padding: 2px 6px; border-radius: 4px; font-size: 11px;
+  }
   .claim-row.unblocks-row .claim-chip { border-color: #2ea04355; }
   .meta-row { font-size: 10px; color: var(--muted); }
   .actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
@@ -245,6 +305,21 @@
 </header>
 
 <section class="summary" id="summary-bar"></section>
+<details id="recent-activity">
+  <summary>Recent activity (released assignments) -- <span id="ra-count">0</span></summary>
+  <div class="ra-controls">
+    <label for="ra-hours">Window</label>
+    <select id="ra-hours">
+      <option value="1">1h</option>
+      <option value="6">6h</option>
+      <option value="24" selected>24h</option>
+      <option value="72">3d</option>
+      <option value="168">7d</option>
+    </select>
+    <span style="color:var(--muted);font-size:10px;">Click an IGW id (when still in the workset) to scroll to its card.</span>
+  </div>
+  <div class="ra-list" id="ra-list"></div>
+</details>
 <section class="leverage-rail" id="leverage-rail" hidden></section>
 
 <div class="toolbar" id="toolbar">
@@ -284,6 +359,7 @@ let GROUP_BY = 'priority';
 let PLAN_FILTER = '';
 let LENS_FILTER = '';
 let CLAIM_SEARCH = '';
+let RA = { count: 0, releases: [], hours: 24 };  // recent activity (released assignments)
 
 const LANE_ORDER = ['governance', 'experiment', 'substrate', 'plan', 'lit', 'ops'];
 
@@ -295,11 +371,88 @@ async function load() {
   document.getElementById('hdr-meta').textContent =
     (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
     ' | ' + (WS.items || []).length + ' packages';
+  await loadRecentActivity();  // populate RA before summary so the chip count is right
   renderSummary();
   renderLeverageRail();
   renderAll();
   syncUrl();
   hydrateClosure();
+}
+
+async function loadRecentActivity() {
+  try {
+    const r = await fetch('/api/workset/recent_activity?hours=' + encodeURIComponent(RA.hours));
+    const data = await r.json();
+    RA.count = data.count || 0;
+    RA.releases = data.releases || [];
+  } catch (e) {
+    RA.count = 0; RA.releases = [];
+  }
+  renderRecentActivity();
+}
+
+function renderRecentActivity() {
+  const list = document.getElementById('ra-list');
+  const summary = document.querySelector('#recent-activity summary');
+  if (summary) {
+    const c = document.getElementById('ra-count');
+    if (c) c.textContent = String(RA.count) + (RA.hours !== 24 ? ' in last ' + RA.hours + 'h' : '');
+  }
+  if (!list) return;
+  if (!RA.releases.length) {
+    list.innerHTML = '<div class="ra-empty">No released assignments in this window. ' +
+      'Released entries appear here when a routine-spawned agent session ends or you click the X on a chip.</div>';
+    return;
+  }
+  // Build a set of IGW ids still present in the current workset for scroll-link styling.
+  const liveIds = new Set((WS && WS.items || []).map(it => it.id));
+  list.innerHTML = RA.releases.map(r => {
+    const snap = r.item_snapshot || {};
+    const igw = r.igw_id_at_assign || '?';
+    const live = liveIds.has(igw);
+    const igwHtml = live
+      ? '<a class="ra-igw" data-scroll="' + escapeAttr(igw) + '" href="#card-' + escapeAttr(igw) + '">' + escapeHtml(igw) + '</a>'
+      : '<span class="ra-igw ra-igw-stale" title="No longer in current workset (gap likely closed).">' + escapeHtml(igw) + '</span>';
+    const when = formatReleaseWindow(r.assigned_at, r.released_at);
+    const agentLabel = (r.agent === 'other' && r.agent_label) ? r.agent_label : (r.agent || '?');
+    return '<div class="ra-row">' +
+      igwHtml +
+      '<span class="ra-when" title="assigned ' + escapeAttr(r.assigned_at || '') +
+        '\nreleased ' + escapeAttr(r.released_at || '') + '">' + escapeHtml(when) + '</span>' +
+      '<span class="ra-agent agent-' + escapeAttr(r.agent || 'other') + '">' + escapeHtml(agentLabel) + '</span>' +
+      '<span class="ra-title" title="' + escapeAttr(snap.title || '') + '">' + escapeHtml(snap.title || '(no title in snapshot)') + '</span>' +
+      '<span class="ra-reason" title="' + escapeAttr(r.released_reason || '') +
+        ' (source: ' + escapeAttr(r.source || '?') + ')">' +
+        escapeHtml(r.released_reason || r.source || '') + '</span>' +
+      '</div>';
+  }).join('');
+  list.querySelectorAll('.ra-igw[data-scroll]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = a.getAttribute('data-scroll');
+      const card = document.getElementById('card-' + id);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('pulse');
+        setTimeout(() => card.classList.remove('pulse'), 1200);
+      }
+    });
+  });
+}
+
+function formatReleaseWindow(assignedAt, releasedAt) {
+  if (!releasedAt) return '?';
+  // "released Hh ago" relative or absolute UTC HH:MM
+  try {
+    const rel = new Date(releasedAt);
+    const now = new Date();
+    const minsAgo = Math.max(0, Math.round((now - rel) / 60000));
+    if (minsAgo < 60) return minsAgo + 'm ago';
+    if (minsAgo < 60 * 24) return Math.round(minsAgo / 60) + 'h ago';
+    return Math.round(minsAgo / (60 * 24)) + 'd ago';
+  } catch (e) {
+    return releasedAt.slice(11, 16) + 'Z';
+  }
 }
 
 function hydrateClosure() {
@@ -457,6 +610,7 @@ function renderSummary() {
     '<span class="chip">in flight <b>' + (s.in_flight || 0) + '</b></span>' +
     '<span class="chip">blocked <b>' + (s.blocked || 0) + '</b></span>' +
     '<span class="chip assigned-pill" title="IGW packages currently handed to an agent (claude_local / cursor / codex / other). Source: evidence/planning/igw_assignments.json.">assigned <b>' + (s.assigned || 0) + '</b></span>' +
+    '<span class="chip recent-pill" id="recent-summary-chip" title="Released assignments in the last 24h. Click to open the Recent activity panel.">recent <b>' + (RA.count || 0) + '</b></span>' +
     '<span class="chip">pending review <b>' + (s.pending_review_count || 0) + '</b></span>' +
     '<span class="chip">queue pending <b>' + (s.queue_pending || 0) + '</b></span>' +
     (s.live_exqs && s.live_exqs.length
@@ -932,6 +1086,28 @@ function escapeHtml(s) {
 function escapeAttr(s) {
   return escapeHtml(s).replace(/`/g, '&#96;');
 }
+
+// Wire the Recent activity hours dropdown + summary-chip click-through.
+const _raHoursSel = document.getElementById('ra-hours');
+if (_raHoursSel) {
+  _raHoursSel.addEventListener('change', () => {
+    const h = parseFloat(_raHoursSel.value);
+    if (!isNaN(h) && h > 0) {
+      RA.hours = h;
+      loadRecentActivity();
+    }
+  });
+}
+document.addEventListener('click', (e) => {
+  const chip = e.target.closest('#recent-summary-chip');
+  if (chip) {
+    const panel = document.getElementById('recent-activity');
+    if (panel) {
+      panel.open = true;
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+});
 
 load();
 </script>
