@@ -2091,18 +2091,18 @@ def read_shadow_status() -> dict:
                 "detail": repr(exc)}
     # Filter stale machines from the coordinator response before returning.
     # Uses the same TTL as read_machines() so both views are consistent.
-    from datetime import timezone as _tz
+    from datetime import datetime as _dt, timezone as _tz
     _stale_exclude_s = (
         float(os.environ.get("MACHINE_STALE_EXCLUDE_HOURS", "6")) * 3600
     )
-    _now_utc = datetime.now(_tz.utc)
+    _now_utc = _dt.now(_tz.utc)
 
     def _shadow_machine_fresh(m: dict) -> bool:
         ls = m.get("last_seen") or ""
         if not ls:
             return True  # no timestamp -> keep (may be newly provisioned)
         try:
-            dt = datetime.fromisoformat(ls.replace("Z", "+00:00"))
+            dt = _dt.fromisoformat(ls.replace("Z", "+00:00"))
             if dt.tzinfo is None:
                 dt = dt.replace(tzinfo=_tz.utc)
             return (_now_utc - dt).total_seconds() <= _stale_exclude_s
