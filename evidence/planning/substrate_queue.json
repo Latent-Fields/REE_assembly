@@ -2834,6 +2834,28 @@
       ]
     },
     {
+      "sd_id": "MECH-314a-Phase-2",
+      "title": "MECH-314a Phase 2 design question: which novelty source(s) should per-candidate curiosity bias use? Forward-looking architectural follow-on to the V3-EXQ-571 root-cause finding. Queue-the-question entry; full analysis in design doc.",
+      "ready": false,
+      "ready_blocked_by": "Governance design decision pending across four candidate novelty sources (see design doc). Should be considered alongside (NOT after) the E2 z_world per-candidate-divergence fix paths in MECH-314.pending_retests.gated_on (i)/(ii)/(iii), since candidates (c) first-step action one-hots and (d) candidate-pool relative rank structurally bypass the E2 bottleneck.",
+      "status": "design_question",
+      "design_doc": "evidence/planning/mech_314a_phase2_novelty_source_design.md",
+      "depends_on_unresolved": [
+        "Governance evaluation of four novelty-source candidates (see design doc Section 4)",
+        "E2 world-forward z_world per-candidate divergence fix paths in MECH-314.pending_retests (composes with but does not block this question)"
+      ],
+      "unblocks_claims": [
+        "MECH-314a"
+      ],
+      "failure_record": [],
+      "implementation_hint": "QUEUE-THE-QUESTION ENTRY, NOT A BUILD ENTRY. Captures governance disposition #5 from evidence/planning/v3_exq_571_root_cause_2026-05-25.md (commit a79915151b on master). Companion to the comprehensive design doc evidence/planning/mech_314a_phase2_novelty_source_design.md (landed 2026-05-26 by sibling session mech314a-phase2-novelty-source-design-20260526T065005Z, commit 5ec31e39c8). The question: which novelty source(s) should MECH-314a use in Phase 2? Four candidates: (a) ResidueField current -- degenerate by construction on harm-free / first-encounter episodes since residue_field.accumulate fires only on harm_occurred OR committed_trajectory. (b) Rolling z_world prototype buffer that always populates on waking ticks -- matches the original task-brief sketch ('distance to a buffer of recently-visited z_world points under an RBF kernel'); still routes through z_world so the E2 per-candidate compression blocker (cand_world_pairwise_dist=0.0000 across K=32) suppresses spread until upstream lands. (c) First-step action one-hots -- per-candidate by construction; structurally bypasses the E2 z_world bottleneck (same template as the 2026-05-17 ARC-062 GAP-B head-input first-action one-hot augmentation). (d) Candidate-pool relative rank -- per-candidate by construction; bypasses the E2 bottleneck; semantics shift toward diversity pressure rather than novelty-vs-history. The four candidates are not mutually exclusive (a Phase 2 design could combine (b)+(c)). Out of scope for this queue entry: implementation, experiment scripts, claim demotion of MECH-314a, edits to e3_selector.py / structured_curiosity.py. The governance decision is which one (or combination) to commission and at what priority relative to the E2 fix paths. See design doc for full empirical evidence (two driver verifications), per-candidate biological grounding, ML/AI risk analysis, and a recommended decision sequence.",
+      "cross_ref": "evidence/planning/v3_exq_571_root_cause_2026-05-25.md disposition #5 (commit a79915151b); evidence/planning/mech_314a_phase2_novelty_source_design.md (commit 5ec31e39c8)",
+      "priority": 2,
+      "added_session": "mech314a-phase2-novelty-source-design-question-20260526T070714Z",
+      "added_utc": "2026-05-26T07:07:14Z",
+      "last_seen_session": "mech314a-phase2-novelty-source-design-question-20260526T070714Z"
+    },
+    {
       "sd_id": "MECH-316",
       "title": "ARC-064 child claim, registered_provisional pending absorption check against meta-RL recurrent baselines.",
       "ready": false,
