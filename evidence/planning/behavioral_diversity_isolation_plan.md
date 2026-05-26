@@ -1,3 +1,97 @@
+---
+closure_plan:
+  id: behavioral_diversity_isolation
+  title: "Behavioural Diversity Isolation"
+  registered: 2026-05-25
+  scope_claims: [ARC-065, ARC-062, ARC-064, MECH-260, MECH-269, MECH-269b, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-320, MECH-341, SD-003, SD-017, SD-029, SD-054, Q-043, Q-044, Q-045, Q-054, Q-055, INV-074, INV-076]
+  sibling_plans: [arc_062_rule_apprehension, commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution]
+  nodes:
+    - id: "behavioral_diversity_isolation:GAP-A"
+      title: "Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM child)"
+      phase: "P1"
+      status: partial
+      severity: medium
+      owner_exq: "V3-EXQ-567 (done) + V3-EXQ-569 (queued, matched-noise control)"
+      unblocks_claims: [ARC-065]
+      depends_on: []
+      cross_plan_link: ["arc_062_rule_apprehension:GAP-H"]
+      last_updated: 2026-05-26
+      resume_condition: "V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path). V3-EXQ-569 matched-entropy control (FP-2: SP-CEM vs noise-matched comparator on entropy/coverage/trajectory_class_count) still pending -- this is the diversity-isolation falsifier. Apply R1.a (matched -> non_contributory, attention shifts to theories 2-4) or R1.b (SP-CEM > noise on trajectory_class_count -> theory 1 confirmed, advance to Rung 2) on 569 landing."
+    - id: "behavioral_diversity_isolation:GAP-B"
+      title: "Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)"
+      phase: "P2 done -> P3 substrate-design"
+      status: in_progress
+      severity: load-bearing
+      owner_exq: "V3-EXQ-608 (P2 PASS); P3 substrate + B-axis falsifier TBD"
+      unblocks_claims: [MECH-341, ARC-062, ARC-065]
+      depends_on: []
+      cross_plan_link: ["arc_062_rule_apprehension:GAP-B"]
+      last_updated: 2026-05-26
+      resume_condition: "Headline gap. V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS, cross_seed_interpretation majority=R2a_e3_collapse_confirmed_large_gap (2/3 seeds large-gap confirmed; 1/3 inconclusive_resample_heavier; non-unanimous but R2.a fired on majority rule). Theory 2 is confirmed as a real diversity-collapse site at Layer B; MECH-341 substrate work is now priority. P2 evidence_direction=non_contributory by design (diagnostic, not scoring evidence). NEXT: P3 -- pick one of three MECH-341 design options (entropy bonus over candidate classes / class-stratified argmax with within-class proportional sampling / jittered tie-breaking near top), justified by 608's per-tick E3 score distribution (large-gap result favours options 1 or 2 over option 3). Route via /implement-substrate, then queue B_only / ablate_B / ALL_ON 3-arm falsifier via /queue-experiment. Apply R2.c on landing: if B_only produces trajectory_class_count >= 2 with first_action_entropy > 0.3, MECH-341 provisional promotion. Cross-link: same Layer-B substrate is the upstream gate on arc_062_rule_apprehension:GAP-B (V3-EXQ-543l) per the substrate_queue MECH-341 entry."
+    - id: "behavioral_diversity_isolation:GAP-C"
+      title: "Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)"
+      phase: "P1"
+      status: in_progress
+      severity: medium
+      owner_exq: "V3-EXQ-544/545 (substrate landed); V3-EXQ-603a/603b FAIL; V3-EXQ-603c (training-phase fix) pending"
+      unblocks_claims: [MECH-313, MECH-260, Q-045]
+      depends_on: []
+      cross_plan_link: ["arc_062_rule_apprehension:GAP-H"]
+      last_updated: 2026-05-26
+      resume_condition: "MECH-313 + MECH-314 substrate landed 2026-05-10 (V3-EXQ-544/545 5/5 PASS). Q-045 4-arm ablation (313 OFF / 313 only / 260 only / both ON) is the empirical resolution path. V3-EXQ-603a/603b FAILed (last 603b 2026-05-26T07:14Z FAIL/mixed); failure_autopsy 2026-05-25 verdict: substrate is operative but design-blocked at training-phase config (call-path / FIFO warmup / obs_harm_a wiring). V3-EXQ-603c (training-phase fix successor) is the next contributory retest -- not yet queued. Apply R3.a / R3.b / R3.c on 603c landing; matched-entropy gate against MATCHED_NOISE arm is the FP-2 control."
+    - id: "behavioral_diversity_isolation:GAP-D"
+      title: "Theory 4 / Layer D: V_s regional verisimilitude staleness (MECH-269 / MECH-269b)"
+      phase: "P1"
+      status: in_progress
+      severity: medium
+      owner_exq: "V3-EXQ-550 (manifest landed FAIL/supports MECH-269); V3-EXQ-601 (MECH-269b validation PASS 2026-05-21); R4-rule application pending governance"
+      unblocks_claims: [MECH-269, MECH-269b, Q-040]
+      depends_on: []
+      cross_plan_link: ["arc_062_rule_apprehension:GAP-B"]
+      last_updated: 2026-05-26
+      resume_condition: "V3-EXQ-550 z_goal monostrategy falsifier landed 2026-05-11T20:18Z, outcome=FAIL, evidence_direction_per_claim={MECH-269: supports}. The doc's status-table row 268 still records '550 running' -- stale. Open governance question: which decision rule does the 550 result fire? R4.a (ARM_ON >> ARM_OFF -> z_goal config-default confound, theory 4 demoted) or R4.b (ARM_ON ~ ARM_OFF -> V_s pathology confirmed)? The supports-MECH-269 per-claim direction reads as R4.b, but the body-text status table should be updated against the actual 550 manifest before closing. V3-EXQ-601 (MECH-269b-followup-A staleness wiring) PASS 2026-05-21T12:02Z confirms the substrate path. Q-040b behavioural sufficiency still open (MECH-295 / StepHarness cohort) per substrate_queue."
+    - id: "behavioral_diversity_isolation:GAP-E"
+      title: "Theory 5 (deferred): proposal-distribution bias (re-enters candidate set on R_X.c)"
+      phase: "P4-extend"
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: ["behavioral_diversity_isolation:GAP-A", "behavioral_diversity_isolation:GAP-B", "behavioral_diversity_isolation:GAP-C", "behavioral_diversity_isolation:GAP-D"]
+      last_updated: 2026-05-25
+      resume_condition: "Re-enters candidate set only if R_X.c fires -- i.e. the full 4-substrate stack (Layers A+B+C+D ON) still fails Rung 1 at ALL_ON. Until then, retained as secondary candidate but no falsifier is owed."
+    - id: "behavioral_diversity_isolation:GAP-F"
+      title: "Theory 6 (deferred): MECH-260 anti-recency contribution to behavioural diversity"
+      phase: "P4-extend"
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: [MECH-260]
+      depends_on: ["behavioral_diversity_isolation:GAP-C"]
+      last_updated: 2026-05-25
+      resume_condition: "Partially covered by Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) under GAP-C's V3-EXQ-603c retest. Promote to non-deferred only if the 4-arm result needs a dedicated MECH-260-vs-MECH-313 redundancy follow-up per R_X.b."
+    - id: "behavioral_diversity_isolation:GAP-G"
+      title: "Theory 7 (deferred): MECH-314 curiosity weight (Goldilocks calibration)"
+      phase: "P4-extend"
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: [MECH-314, MECH-314a]
+      depends_on: ["behavioral_diversity_isolation:GAP-B"]
+      last_updated: 2026-05-25
+      resume_condition: "V3-EXQ-590a annotated pending_retest_after_substrate (MECH-111 broadcast novelty was scalar EMA -> argmax-invariant null on selection). Re-queue as V3-EXQ-590b is gated on MECH-314a per-candidate RBF novelty implementation AND behavioural diversity landing (i.e. resolution of GAP-B). Until both gates clear, theory 7 stays deferred and its falsifier is not queued."
+    - id: "behavioral_diversity_isolation:GAP-H"
+      title: "Theory 8 (deferred): z_goal config-default confound"
+      phase: "P4-extend"
+      status: deferred
+      severity: low
+      owner_exq: null
+      unblocks_claims: []
+      depends_on: ["behavioral_diversity_isolation:GAP-D"]
+      last_updated: 2026-05-25
+      resume_condition: "Confound check on V3-EXQ-550 (Theory 4). If GAP-D's R4-rule application surfaces an ARM_ON >> ARM_OFF asymmetry that maps to z_goal config-default rather than V_s substrate pathology (R4.a), this node becomes the dedicated re-run with z_goal matched across arms. Until GAP-D's R4 disposition lands in governance, theory 8 stays deferred."
+---
+
 # Behavioural Diversity Isolation Plan (REE-v3)
 
 **Created:** 2026-05-25T11:46:33Z
