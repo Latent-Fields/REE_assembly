@@ -2045,6 +2045,26 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
             ],
         }
     if verdict == "DIVERGENCE":
+        if mode == "coordinator":
+            return {
+                "phase": 2,
+                "phase_label": "Phase 2 -- claim cutover (DIVERGENCE)",
+                "parallel": "Coordinator owns claims; sync_daemon still "
+                            "reconciles a git mirror of the queue.",
+                "assess": ("FAIL -- unexplained divergence in Phase 2 "
+                           "(blocking=%d, raw audit=%d). Coordinator "
+                           "verdict disagreed with the git mirror after "
+                           "cutover." % (div, raw_div)),
+                "retire": "Do NOT advance to Phase 3 (sync_daemon sole "
+                          "writer) while blocking divergences are nonzero.",
+                "next": [
+                    "Read recent_divergences in this panel; classify per "
+                    "ree-v3/coordinator/SOAK_LOG.md.",
+                    "If a worker is still in git/shadow mode, drain it "
+                    "(do not run a mixed-authority fleet).",
+                    "Fix root cause before resuming workers.",
+                ],
+            }
         return {
             "phase": 1,
             "phase_label": "Phase 1 -- shadow soak (BLOCKED)",
@@ -2059,6 +2079,26 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
             ],
         }
     if verdict == "NO_SIGNAL":
+        if mode == "coordinator":
+            return {
+                "phase": 2,
+                "phase_label": "Phase 2 -- claim cutover (no fresh heartbeats)",
+                "parallel": "Coordinator owns claims; mutex is live. No "
+                            "worker has heartbeated inside the freshness "
+                            "window.",
+                "assess": ("Phase-2 mutex healthy (div=%d) but workers "
+                           "are not reporting -- runners may be down, "
+                           "paused, or wedged." % div),
+                "retire": "Phase 3 stays blocked until live heartbeats "
+                          "return; do not retire the git heartbeat path.",
+                "next": [
+                    "Check each runner: systemctl status ree-runner on "
+                    "clouds; ps/launchctl on the laptop.",
+                    "Clear stale stop commands and restart drained runners.",
+                    "Confirm COORDINATION_MODE=coordinator on every "
+                    "active worker (no mixed-authority fleet).",
+                ],
+            }
         return {
             "phase": 1,
             "phase_label": "Phase 1 -- shadow soak (no traffic)",
