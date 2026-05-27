@@ -1,0 +1,681 @@
+{
+  "run_id": "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3",
+  "experiment_type": "v3_exq_611_mech341_substrate_readiness_4arm",
+  "queue_id": "V3-EXQ-611",
+  "claim_ids": [
+    "MECH-341"
+  ],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260527T130213Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "experiment_purpose=diagnostic; substrate-readiness ablation, not behavioural evidence. Not weighted in confidence or conflict scoring per Phase-3 governance rules. PASS routes the next governance walk to queue B_only / ablate_B / ALL_ON behavioural successor; FAIL routes to substrate revisit (option-3 jitter or lambda tuning). See behavioral_diversity_isolation_plan.md R2.c rule.",
+  "dry_run": false,
+  "env_kwargs": {
+    "size": 12,
+    "num_hazards": 4,
+    "num_resources": 5,
+    "hazard_harm": 0.05,
+    "env_drift_interval": 5,
+    "env_drift_prob": 0.1,
+    "proximity_harm_scale": 0.1,
+    "proximity_benefit_scale": 0.05,
+    "proximity_approach_threshold": 0.2,
+    "hazard_field_decay": 0.5,
+    "resource_respawn_on_consume": true,
+    "toroidal": false,
+    "harm_history_len": 10,
+    "reef_enabled": true,
+    "n_reef_patches": 3,
+    "reef_patch_radius": 2,
+    "hazard_food_attraction": 0.7,
+    "reef_bipartite_layout": true,
+    "reef_bipartite_axis": "horizontal",
+    "reef_bipartite_agent_band_radius": 1
+  },
+  "config_summary": {
+    "use_support_preserving_cem": true,
+    "use_noise_floor": true,
+    "use_per_stream_vs": true,
+    "use_anchor_sets": true,
+    "z_goal_enabled": true,
+    "drive_weight": 2.0,
+    "alpha_world": 0.9,
+    "reef_enabled": true
+  },
+  "result": {
+    "outcome": "FAIL",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_arms": 4,
+    "total_seeds_attempted": 12,
+    "total_seeds_completed": 12,
+    "p0_episodes": 30,
+    "p1_episodes": 20,
+    "steps_per_episode": 200,
+    "decision_rule_thresholds": {
+      "pre_ge2_frac_gate": 0.5,
+      "e3_collapse_frac_gate": 0.8,
+      "e3_collapse_frac_floor": 0.5,
+      "near_tie_frac_gate": 0.2,
+      "score_gap_epsilon_range_frac": 0.05,
+      "selected_classes_ge_for_c3": 2,
+      "r2c_readiness_entropy_threshold": 0.3
+    },
+    "acceptance_criteria": {
+      "C1_substrate_fires_in_on_arms": false,
+      "C2_arm0_reproduces_exq608_r2a": true,
+      "C3_single_option_arm_produces_diversity": true,
+      "C4_arm0_le_arm2_entropy": true,
+      "C4_arm2_le_arm3_entropy": true,
+      "R2c_readiness": true
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_0_ALL_OFF",
+        "label": "all_off",
+        "cfg_overrides": {
+          "use_e3_score_diversity": false
+        },
+        "per_seed_results": [
+          {
+            "arm_id": "ARM_0_ALL_OFF",
+            "seed": 42,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 793,
+            "n_p1_ticks": 598,
+            "n_p1_logged": 598,
+            "n_p1_pre_ge2": 598,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.410817,
+            "score_gap_epsilon": 0.077834,
+            "frac_e3_collapse_above_eps": 0.842809,
+            "frac_near_tie_below_eps": 0.157191,
+            "selected_classes_p1_counts": {
+              "0": 351,
+              "1": 47,
+              "2": 13,
+              "3": 187
+            },
+            "committed_classes_p1_counts": {
+              "0": 284,
+              "1": 71,
+              "2": 32,
+              "3": 211
+            },
+            "n_unique_selected_classes": 4,
+            "selected_class_entropy_nats": 0.959386,
+            "committed_class_entropy_nats": 1.130874,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": null,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_0_ALL_OFF",
+            "seed": 43,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 5271,
+            "n_p1_ticks": 2955,
+            "n_p1_logged": 2955,
+            "n_p1_pre_ge2": 2955,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.280124,
+            "score_gap_epsilon": 0.028941,
+            "frac_e3_collapse_above_eps": 0.98308,
+            "frac_near_tie_below_eps": 0.01692,
+            "selected_classes_p1_counts": {
+              "1": 320,
+              "2": 2635
+            },
+            "committed_classes_p1_counts": {
+              "1": 1038,
+              "2": 1917
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.342927,
+            "committed_class_entropy_nats": 0.648229,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": null,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_0_ALL_OFF",
+            "seed": 44,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 224,
+            "n_p1_ticks": 139,
+            "n_p1_logged": 139,
+            "n_p1_pre_ge2": 139,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 1.96909,
+            "score_gap_epsilon": 1.329714,
+            "frac_e3_collapse_above_eps": 0.280576,
+            "frac_near_tie_below_eps": 0.719424,
+            "selected_classes_p1_counts": {
+              "2": 18,
+              "4": 121
+            },
+            "committed_classes_p1_counts": {
+              "0": 18,
+              "2": 10,
+              "4": 111
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.385428,
+            "committed_class_entropy_nats": 0.63368,
+            "interpretation_label": "R2b_e3_preserves_diversity",
+            "mech341_diagnostics": null,
+            "error_note": null
+          }
+        ],
+        "cross_seed_interpretation": {
+          "n_seeds_completed": 3,
+          "per_seed_labels": [
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2b_e3_preserves_diversity"
+          ],
+          "label_counts": {
+            "R2a_e3_collapse_confirmed_large_gap": 2,
+            "R2b_e3_preserves_diversity": 1
+          },
+          "majority_label": "R2a_e3_collapse_confirmed_large_gap",
+          "majority_n_of_total": [
+            2,
+            3
+          ],
+          "unanimous": false,
+          "n_seeds_with_ge2_selected_classes": 3,
+          "mean_selected_class_entropy_nats": 0.56258
+        }
+      },
+      {
+        "arm_id": "ARM_1_OPT1_ONLY",
+        "label": "opt1_entropy_bonus_only",
+        "cfg_overrides": {
+          "use_e3_score_diversity": true,
+          "use_e3_diversity_entropy_bonus": true,
+          "use_e3_diversity_stratified_select": false
+        },
+        "per_seed_results": [
+          {
+            "arm_id": "ARM_1_OPT1_ONLY",
+            "seed": 42,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 793,
+            "n_p1_ticks": 600,
+            "n_p1_logged": 600,
+            "n_p1_pre_ge2": 600,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.412481,
+            "score_gap_epsilon": 0.077849,
+            "frac_e3_collapse_above_eps": 0.83,
+            "frac_near_tie_below_eps": 0.17,
+            "selected_classes_p1_counts": {
+              "0": 344,
+              "1": 47,
+              "2": 21,
+              "3": 188
+            },
+            "committed_classes_p1_counts": {
+              "0": 276,
+              "1": 78,
+              "2": 33,
+              "3": 213
+            },
+            "n_unique_selected_classes": 4,
+            "selected_class_entropy_nats": 0.99939,
+            "committed_class_entropy_nats": 1.149606,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 4,
+              "mech341_last_entropy_bonus_fired": true,
+              "mech341_last_entropy_bonus_max_abs": 0.0234375,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 4,
+              "mech341_n_entropy_bonus_fired": 4,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_1_OPT1_ONLY",
+            "seed": 43,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 5271,
+            "n_p1_ticks": 2955,
+            "n_p1_logged": 2955,
+            "n_p1_pre_ge2": 2955,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.271459,
+            "score_gap_epsilon": 0.028791,
+            "frac_e3_collapse_above_eps": 0.98308,
+            "frac_near_tie_below_eps": 0.01692,
+            "selected_classes_p1_counts": {
+              "1": 350,
+              "2": 2605
+            },
+            "committed_classes_p1_counts": {
+              "1": 1038,
+              "2": 1917
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.363812,
+            "committed_class_entropy_nats": 0.648229,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 2,
+              "mech341_last_entropy_bonus_fired": true,
+              "mech341_last_entropy_bonus_max_abs": 0.03750000149011612,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 20,
+              "mech341_n_entropy_bonus_fired": 20,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_1_OPT1_ONLY",
+            "seed": 44,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 226,
+            "n_p1_ticks": 139,
+            "n_p1_logged": 139,
+            "n_p1_pre_ge2": 139,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 1.963098,
+            "score_gap_epsilon": 1.327818,
+            "frac_e3_collapse_above_eps": 0.280576,
+            "frac_near_tie_below_eps": 0.719424,
+            "selected_classes_p1_counts": {
+              "2": 18,
+              "4": 121
+            },
+            "committed_classes_p1_counts": {
+              "0": 18,
+              "2": 10,
+              "4": 111
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.385428,
+            "committed_class_entropy_nats": 0.63368,
+            "interpretation_label": "R2b_e3_preserves_diversity",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 3,
+              "mech341_last_entropy_bonus_fired": true,
+              "mech341_last_entropy_bonus_max_abs": 0.04374999925494194,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 1,
+              "mech341_n_entropy_bonus_fired": 1,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          }
+        ],
+        "cross_seed_interpretation": {
+          "n_seeds_completed": 3,
+          "per_seed_labels": [
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2b_e3_preserves_diversity"
+          ],
+          "label_counts": {
+            "R2a_e3_collapse_confirmed_large_gap": 2,
+            "R2b_e3_preserves_diversity": 1
+          },
+          "majority_label": "R2a_e3_collapse_confirmed_large_gap",
+          "majority_n_of_total": [
+            2,
+            3
+          ],
+          "unanimous": false,
+          "n_seeds_with_ge2_selected_classes": 3,
+          "mean_selected_class_entropy_nats": 0.582877
+        }
+      },
+      {
+        "arm_id": "ARM_2_OPT2_ONLY",
+        "label": "opt2_stratified_only",
+        "cfg_overrides": {
+          "use_e3_score_diversity": true,
+          "use_e3_diversity_entropy_bonus": false,
+          "use_e3_diversity_stratified_select": true
+        },
+        "per_seed_results": [
+          {
+            "arm_id": "ARM_2_OPT2_ONLY",
+            "seed": 42,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 793,
+            "n_p1_ticks": 598,
+            "n_p1_logged": 598,
+            "n_p1_pre_ge2": 598,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.410817,
+            "score_gap_epsilon": 0.077834,
+            "frac_e3_collapse_above_eps": 0.842809,
+            "frac_near_tie_below_eps": 0.157191,
+            "selected_classes_p1_counts": {
+              "0": 351,
+              "1": 47,
+              "2": 13,
+              "3": 187
+            },
+            "committed_classes_p1_counts": {
+              "0": 284,
+              "1": 71,
+              "2": 32,
+              "3": 211
+            },
+            "n_unique_selected_classes": 4,
+            "selected_class_entropy_nats": 0.959386,
+            "committed_class_entropy_nats": 1.130874,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 0,
+              "mech341_last_entropy_bonus_fired": false,
+              "mech341_last_entropy_bonus_max_abs": 0.0,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 2,
+              "mech341_n_entropy_bonus_fired": 0,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_2_OPT2_ONLY",
+            "seed": 43,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 5271,
+            "n_p1_ticks": 2955,
+            "n_p1_logged": 2955,
+            "n_p1_pre_ge2": 2955,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.280124,
+            "score_gap_epsilon": 0.028941,
+            "frac_e3_collapse_above_eps": 0.98308,
+            "frac_near_tie_below_eps": 0.01692,
+            "selected_classes_p1_counts": {
+              "1": 320,
+              "2": 2635
+            },
+            "committed_classes_p1_counts": {
+              "1": 1038,
+              "2": 1917
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.342927,
+            "committed_class_entropy_nats": 0.648229,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 0,
+              "mech341_last_entropy_bonus_fired": false,
+              "mech341_last_entropy_bonus_max_abs": 0.0,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 20,
+              "mech341_n_entropy_bonus_fired": 0,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_2_OPT2_ONLY",
+            "seed": 44,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 224,
+            "n_p1_ticks": 139,
+            "n_p1_logged": 139,
+            "n_p1_pre_ge2": 139,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 1.96909,
+            "score_gap_epsilon": 1.329714,
+            "frac_e3_collapse_above_eps": 0.280576,
+            "frac_near_tie_below_eps": 0.719424,
+            "selected_classes_p1_counts": {
+              "2": 18,
+              "4": 121
+            },
+            "committed_classes_p1_counts": {
+              "0": 18,
+              "2": 10,
+              "4": 111
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.385428,
+            "committed_class_entropy_nats": 0.63368,
+            "interpretation_label": "R2b_e3_preserves_diversity",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 0,
+              "mech341_last_entropy_bonus_fired": false,
+              "mech341_last_entropy_bonus_max_abs": 0.0,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 1,
+              "mech341_n_entropy_bonus_fired": 0,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          }
+        ],
+        "cross_seed_interpretation": {
+          "n_seeds_completed": 3,
+          "per_seed_labels": [
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2b_e3_preserves_diversity"
+          ],
+          "label_counts": {
+            "R2a_e3_collapse_confirmed_large_gap": 2,
+            "R2b_e3_preserves_diversity": 1
+          },
+          "majority_label": "R2a_e3_collapse_confirmed_large_gap",
+          "majority_n_of_total": [
+            2,
+            3
+          ],
+          "unanimous": false,
+          "n_seeds_with_ge2_selected_classes": 3,
+          "mean_selected_class_entropy_nats": 0.56258
+        }
+      },
+      {
+        "arm_id": "ARM_3_BOTH_ON",
+        "label": "both_on",
+        "cfg_overrides": {
+          "use_e3_score_diversity": true,
+          "use_e3_diversity_entropy_bonus": true,
+          "use_e3_diversity_stratified_select": true
+        },
+        "per_seed_results": [
+          {
+            "arm_id": "ARM_3_BOTH_ON",
+            "seed": 42,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 793,
+            "n_p1_ticks": 600,
+            "n_p1_logged": 600,
+            "n_p1_pre_ge2": 600,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.412481,
+            "score_gap_epsilon": 0.077849,
+            "frac_e3_collapse_above_eps": 0.83,
+            "frac_near_tie_below_eps": 0.17,
+            "selected_classes_p1_counts": {
+              "0": 344,
+              "1": 47,
+              "2": 21,
+              "3": 188
+            },
+            "committed_classes_p1_counts": {
+              "0": 276,
+              "1": 78,
+              "2": 33,
+              "3": 213
+            },
+            "n_unique_selected_classes": 4,
+            "selected_class_entropy_nats": 0.99939,
+            "committed_class_entropy_nats": 1.149606,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 4,
+              "mech341_last_entropy_bonus_fired": true,
+              "mech341_last_entropy_bonus_max_abs": 0.0234375,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 4,
+              "mech341_n_entropy_bonus_fired": 4,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_3_BOTH_ON",
+            "seed": 43,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 5271,
+            "n_p1_ticks": 2955,
+            "n_p1_logged": 2955,
+            "n_p1_pre_ge2": 2955,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.271459,
+            "score_gap_epsilon": 0.028791,
+            "frac_e3_collapse_above_eps": 0.98308,
+            "frac_near_tie_below_eps": 0.01692,
+            "selected_classes_p1_counts": {
+              "1": 350,
+              "2": 2605
+            },
+            "committed_classes_p1_counts": {
+              "1": 1038,
+              "2": 1917
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.363812,
+            "committed_class_entropy_nats": 0.648229,
+            "interpretation_label": "R2a_e3_collapse_confirmed_large_gap",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 2,
+              "mech341_last_entropy_bonus_fired": true,
+              "mech341_last_entropy_bonus_max_abs": 0.03750000149011612,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 20,
+              "mech341_n_entropy_bonus_fired": 20,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_3_BOTH_ON",
+            "seed": 44,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 20,
+            "n_p0_ticks": 226,
+            "n_p1_ticks": 139,
+            "n_p1_logged": 139,
+            "n_p1_pre_ge2": 139,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 1.963098,
+            "score_gap_epsilon": 1.327818,
+            "frac_e3_collapse_above_eps": 0.280576,
+            "frac_near_tie_below_eps": 0.719424,
+            "selected_classes_p1_counts": {
+              "2": 18,
+              "4": 121
+            },
+            "committed_classes_p1_counts": {
+              "0": 18,
+              "2": 10,
+              "4": 111
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.385428,
+            "committed_class_entropy_nats": 0.63368,
+            "interpretation_label": "R2b_e3_preserves_diversity",
+            "mech341_diagnostics": {
+              "mech341_last_n_candidates": 32,
+              "mech341_last_n_unique_classes": 3,
+              "mech341_last_entropy_bonus_fired": true,
+              "mech341_last_entropy_bonus_max_abs": 0.04374999925494194,
+              "mech341_last_stratified_fired": false,
+              "mech341_last_stratified_n_class_representatives": 0,
+              "mech341_n_calls_total": 1,
+              "mech341_n_entropy_bonus_fired": 1,
+              "mech341_n_stratified_fired": 0,
+              "mech341_n_simulation_skipped": 0
+            },
+            "error_note": null
+          }
+        ],
+        "cross_seed_interpretation": {
+          "n_seeds_completed": 3,
+          "per_seed_labels": [
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2a_e3_collapse_confirmed_large_gap",
+            "R2b_e3_preserves_diversity"
+          ],
+          "label_counts": {
+            "R2a_e3_collapse_confirmed_large_gap": 2,
+            "R2b_e3_preserves_diversity": 1
+          },
+          "majority_label": "R2a_e3_collapse_confirmed_large_gap",
+          "majority_n_of_total": [
+            2,
+            3
+          ],
+          "unanimous": false,
+          "n_seeds_with_ge2_selected_classes": 3,
+          "mean_selected_class_entropy_nats": 0.582877
+        }
+      }
+    ]
+  }
+}
