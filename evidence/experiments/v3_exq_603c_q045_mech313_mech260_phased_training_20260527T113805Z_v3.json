@@ -1,0 +1,515 @@
+{
+  "run_id": "v3_exq_603c_q045_mech313_mech260_phased_training_20260527T113805Z_v3",
+  "queue_id": "V3-EXQ-603c",
+  "experiment_type": "v3_exq_603c_q045_mech313_mech260_phased_training",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260527T113805Z",
+  "outcome": "FAIL",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ],
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
+  },
+  "supersedes": "V3-EXQ-603b",
+  "dry_run": false,
+  "acceptance_criteria": {
+    "entropy_ARM_0": 0.484369,
+    "entropy_ARM_1": 0.484369,
+    "entropy_ARM_2": 0.518913,
+    "entropy_ARM_3": 0.522052,
+    "c1_both_beats_off": false,
+    "c2_mutually_load_bearing": false,
+    "c3_each_alone_beats_off": false,
+    "mech260_operative_all_seeds": true,
+    "fifo_temporal_gate_ok_all": false,
+    "p2_cell_count": 4,
+    "aborted_cells": 8,
+    "overall_pass": false
+  },
+  "summary": {
+    "entropy_ARM_0": 0.484369,
+    "entropy_ARM_1": 0.484369,
+    "entropy_ARM_2": 0.518913,
+    "entropy_ARM_3": 0.522052,
+    "c1_both_beats_off": false,
+    "c2_mutually_load_bearing": false,
+    "c3_each_alone_beats_off": false,
+    "mech260_operative_all_seeds": true,
+    "fifo_temporal_gate_ok_all": false,
+    "p2_cell_count": 4,
+    "aborted_cells": 8,
+    "overall_pass": false
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_both_off",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.3e-05,
+          "final_median_ep_steps": 16.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 1.2e-05,
+          "final_median_ep_steps": 11.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_0_both_off",
+      "seed": 43,
+      "selected_action_entropy": 0.484369,
+      "reef_fraction": 0.01159,
+      "total_steps": 9577,
+      "measured_steps": 7807,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 260.23,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 3,
+      "p2_run": true,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 2e-06,
+          "final_median_ep_steps": 200.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1e-06,
+          "final_median_ep_steps": 200.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_0_both_off",
+      "seed": 44,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.3e-05,
+          "final_median_ep_steps": 11.5,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 1.2e-05,
+          "final_median_ep_steps": 6.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.2e-05,
+          "final_median_ep_steps": 17.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 1e-05,
+          "final_median_ep_steps": 9.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 43,
+      "selected_action_entropy": 0.484369,
+      "reef_fraction": 0.01159,
+      "total_steps": 9577,
+      "measured_steps": 7807,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 260.23,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 3,
+      "p2_run": true,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 2e-06,
+          "final_median_ep_steps": 200.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1e-06,
+          "final_median_ep_steps": 200.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_1_mech313_only",
+      "seed": 44,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.3e-05,
+          "final_median_ep_steps": 7.5,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 9e-06,
+          "final_median_ep_steps": 6.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_2_mech260_only",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "dacc_history_len_max": 0,
+      "dacc_forward_calls_max": 0,
+      "dacc_max_suppression": 0.0,
+      "mech260_operative": false,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.4e-05,
+          "final_median_ep_steps": 18.5,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 8e-06,
+          "final_median_ep_steps": 12.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_2_mech260_only",
+      "seed": 43,
+      "selected_action_entropy": 0.518913,
+      "reef_fraction": 0.01525,
+      "total_steps": 10492,
+      "measured_steps": 8568,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 285.6,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 3,
+      "p2_run": true,
+      "dacc_history_len_max": 8,
+      "dacc_forward_calls_max": 4791,
+      "dacc_max_suppression": 1.0,
+      "mech260_operative": true,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 2e-06,
+          "final_median_ep_steps": 200.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1e-06,
+          "final_median_ep_steps": 200.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_2_mech260_only",
+      "seed": 44,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "dacc_history_len_max": 0,
+      "dacc_forward_calls_max": 0,
+      "dacc_max_suppression": 0.0,
+      "mech260_operative": false,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.7e-05,
+          "final_median_ep_steps": 9.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 1.2e-05,
+          "final_median_ep_steps": 6.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_3_both_on",
+      "seed": 42,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "dacc_history_len_max": 0,
+      "dacc_forward_calls_max": 0,
+      "dacc_max_suppression": 0.0,
+      "mech260_operative": false,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.4e-05,
+          "final_median_ep_steps": 18.5,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 8e-06,
+          "final_median_ep_steps": 12.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_3_both_on",
+      "seed": 43,
+      "selected_action_entropy": 0.522052,
+      "reef_fraction": 0.015136,
+      "total_steps": 7994,
+      "measured_steps": 6399,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 213.3,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 3,
+      "p2_run": true,
+      "dacc_history_len_max": 8,
+      "dacc_forward_calls_max": 4496,
+      "dacc_max_suppression": 1.0,
+      "mech260_operative": true,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 2e-06,
+          "final_median_ep_steps": 200.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 2e-06,
+          "final_median_ep_steps": 200.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    },
+    {
+      "arm": "ARM_3_both_on",
+      "seed": 44,
+      "selected_action_entropy": 0.0,
+      "reef_fraction": 0.0,
+      "total_steps": 0,
+      "measured_steps": 0,
+      "fifo_warmup_steps": 75,
+      "steps_per_episode_measured_mean": 0.0,
+      "fifo_temporal_gate_ok": false,
+      "unique_actions": 0,
+      "p2_run": false,
+      "abort_phase": "P1",
+      "abort_reason": "p1_survival_gate_failed",
+      "dacc_history_len_max": 0,
+      "dacc_forward_calls_max": 0,
+      "dacc_max_suppression": 0.0,
+      "mech260_operative": false,
+      "cell_diagnostics": {
+        "p0": {
+          "n_episodes": 100,
+          "converged": true,
+          "aborted": false,
+          "abort_reason": "",
+          "final_rv": 1.7e-05,
+          "final_median_ep_steps": 9.0,
+          "probe_log_len": 5
+        },
+        "p1": {
+          "n_episodes": 50,
+          "converged": true,
+          "aborted": true,
+          "abort_reason": "p1_survival_gate_failed",
+          "final_rv": 1.2e-05,
+          "final_median_ep_steps": 6.0,
+          "p1_survival_gate_steps": 75,
+          "probe_log_len": 3
+        }
+      }
+    }
+  ],
+  "fifo_warmup_steps": 75,
+  "steps_per_episode_p2": 500,
+  "p0_budget": 100,
+  "p1_budget": 50,
+  "train_steps_per_episode": 200,
+  "p1_survival_gate_steps": 75,
+  "fixes_applied": [
+    "Fix C (new in 603c, autopsy section 9): P0 warmup on easy env (100 ep) + P1 consolidation on target env (50 ep) before P2 measurement. gated_policy is no longer at random init.",
+    "Fix D (new in 603c, autopsy section 9): pre-P2 survival gate -- abort cell at end of P1 if median ep length over last 10 episodes < 75.",
+    "Fix 1 (from 603a, retained): sense() threads obs_harm_a + obs_harm_history so z_harm_a is populated and dACC.record_action fires every tick.",
+    "Fix 2 (from 603a, retained): FIFO_WARMUP_STEPS=75 before P2 entropy measurement.",
+    "Fix 3 (from 603a, retained): evidence_direction_per_claim vs ARM_0 baseline.",
+    "Fix A (from 603b, retained): P2 STEPS_PER_EPISODE=500.",
+    "Fix B (from 603b, retained): hazard_harm=0.02 on target env. Latent harm signals (z_harm_s / z_harm_a) decoupled and unaffected."
+  ]
+}
