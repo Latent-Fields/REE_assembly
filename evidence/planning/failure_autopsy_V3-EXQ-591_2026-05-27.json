@@ -1,0 +1,116 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-27T05:23:41Z",
+  "session": "failure-autopsy-V3-EXQ-591-20260527T052341Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3",
+      "queue_id": "V3-EXQ-591",
+      "claim_ids": ["ARC-046"],
+      "experiment_purpose": "evidence",
+      "manifest_outcome": "FAIL",
+      "manifest_evidence_direction": "does_not_support",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "negative-control / absolute criterion (C3 residue_coverage) passes trivially (saturated to 1.0 every seed); all 6 discrimination criteria (C1 z_goal, C2 H_pos, C4 entropy/KL, C5 harm/benefit, C6 retention, C7 traj_cosine) fail across all 15 (3 arms x 5 seeds) runs. ARM_1 and ARM_2 produce per-seed-identical rolling H_pos because curriculum scheduler stuck in Phase 0 (Phase 0 env config equivalent to ARM_1 minimal config).",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "inadequate_for_discrimination",
+        "measurement": "under_instrumented",
+        "integration": "isolated",
+        "scale": "likely_insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Mammalian / primate developmental hazard-protection: long infant plasticity window with attenuated long-term consolidation, attachment-buffered nociception (Hofer / Sullivan; SD-011 / SD-035 cluster), INV-043 caregiver imperfect-protection function.",
+        "dependencies": ["INV-055", "ARC-019", "ARC-013", "SD-010", "SD-011"],
+        "is_formal_import": false,
+        "divergence": "none (faithful biological translation; not a formal-definition import)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-046": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-05-27 (V3-EXQ-591 failure_autopsy): Substrate-uniform FAIL -- all 3 arms hit only 1/7 gate criteria across all 5 seeds (only C3 residue_cov, which saturates to 1.0 trivially in every arm). Curriculum scheduler stuck in Phase 0 across all 5 seeds (advancement gate H_pos >= 0.70*ln(144) ~= 3.48 vs observed rolling-mean H_pos 0.03-1.08). z_goal collapses to ~1e-7 in every arm. C5 harm/benefit ratio, C6 post-sleep retention, C7 traj cosine all return -1.0 'no data' sentinels in every seed of every arm (3 of 4 advisory criteria carry no information). ARM_1 and ARM_2 produce per-seed-identical rolling H_pos because Phase-0 env config = ARM_1 minimal config. Convergent shape with V3-EXQ-540a/b/c/e (MECH-307 / MECH-295 default-value recalibration), V3-EXQ-603 / 603b (training-regime measurement_gap), V3-EXQ-590a (Goldilocks novelty no-op) -- one structural property across four structurally-different claims. evidence_direction overridden to non_contributory; pending_retest_after_substrate=true. Does NOT weaken ARC-046. Retest gated on (a) MECH-307 default-value recalibration validated (V3-EXQ-540e PASS), (b) goal-pipeline training regime producing non-trivial z_goal in default config (V3-EXQ-603c P0/P1 phased training), (c) InfantCurriculumScheduler Phase 0->1 advancement signal tuned to achievable H_pos magnitudes OR replaced with a z_goal-norm-based / residue-progression-based exit gate.",
+      "recommended_substrate_queue_entry": {
+        "title": "infant_substrate:GAP-14 retest: InfantCurriculumScheduler Phase 0 -> 1 advancement gate is structurally unreachable under current training",
+        "owner_run_id": "v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3",
+        "owner_exq": "V3-EXQ-591",
+        "failure_record": {
+          "experiment_type": "v3_exq_591_isef005_curriculum_vs_flat",
+          "metric": "ARM_2 curriculum_final_phase=0 across all 5 seeds; rolling_h_pos_mean peaks at 1.08 (max across all seeds across all arms) vs advancement gate 0.70*ln(144) ~= 3.48. ARM_1 and ARM_2 per-seed rolling H_pos byte-identical because Phase-0 env config = ARM_1 minimal config.",
+          "target": "(a) lower H_POS_FRAC_OF_MAX from 0.70 to a value the substrate can reach (probe data suggests ~0.20-0.30 of max), OR (b) replace H_pos gate with z_goal-norm-based / residue-coverage-progression-based exit gate. Acceptance: ARM_2 advances to Phase 1 by ep 500 in >= 3/5 seeds AND advances to Phase 2 by ep 1500 in >= 3/5 seeds."
+        },
+        "depends_on_unresolved": [
+          "MECH-307 default-value recalibration validated (V3-EXQ-540e PASS)",
+          "goal-pipeline training regime produces non-trivial z_goal in default config (V3-EXQ-603c P0/P1 phased training PASS)"
+        ],
+        "unblocks_claims": ["ARC-046", "DEV-NEED-008"]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "InfantCurriculumScheduler Phase 0 -> 1 advancement gate (H_pos >= 0.70 * ln(grid_cells) ~= 3.48) is structurally unreachable under random-policy 2000-episode training; rolling-mean H_pos saturates at ~1.08.",
+        "C3 (residue_coverage > 0.15) is degenerate as a discrimination criterion -- saturates to 1.0 trivially in every arm regardless of agent behaviour.",
+        "C5 / C6 / C7 carry no information at all -- 3 of 4 advisory criteria emit -1.0 'no data' sentinels in every seed of every arm. The full 7-criterion gate has only 3 potentially-discriminating criteria (C1, C2, C4), and all 3 depend on z_goal / H_pos developing.",
+        "ARM_1 minimal-flat and ARM_2 curriculum produce per-seed byte-identical rolling H_pos -- because ARM_2 never leaves Phase 0 and Phase 0 env config is the ARM_1 minimal config. The arm structure is degenerate under the current advancement gate.",
+        "V3 substrate at default config under standard random-policy training across 2000 episodes does not produce non-trivial z_goal -- same structural property observed in V3-EXQ-540a/b/c/e (MECH-307 / MECH-295), V3-EXQ-603 / 603b (training-regime), V3-EXQ-590a (Goldilocks no-op). One structural property across four structurally-different claims with four different downstream consumers."
+      ],
+      "routing": "implement-substrate",
+      "routing_detail": "Recommended /implement-substrate target: tune InfantCurriculumScheduler Phase 0 -> 1 advancement signal. Two options: (a) lower H_POS_FRAC_OF_MAX threshold to achievable substrate value (~0.20-0.30 of max), (b) replace H_pos exit gate with z_goal-norm-based or residue-coverage-progression-based gate. Brief substrate probe recommended before committing to (a) vs (b). Other two cluster prerequisites (MECH-307 default-value recalibration -> V3-EXQ-540e, training-regime P0/P1 -> V3-EXQ-603c) are already routed via in-flight substrate work and absorb this experiment's substrate dependency.",
+      "skill_handoff": {
+        "primary": "implement-substrate",
+        "primary_target": "InfantCurriculumScheduler Phase 0 -> 1 advancement signal (ree-v3/experiments/infant_curriculum.py PHASE_EP_MIN / H_POS_FRAC_OF_MAX or alternative exit-signal API)",
+        "secondary_dependencies": [
+          {"skill": "queue-experiment", "target": "V3-EXQ-540e (MECH-307 default-value recalibration validation)", "status": "already_queued"},
+          {"skill": "queue-experiment", "target": "V3-EXQ-603c (Q-045 P0/P1 phased training)", "status": "already_routed_2026-05-27"},
+          {"skill": "queue-experiment", "target": "V3-EXQ-591b (infant curriculum retest after substrate)", "status": "deferred_until_3_prereqs_clear"}
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "substrate-uniform FAIL across multiple structurally-different claims: negative-control / absolute criterion passes trivially; every discrimination criterion fails across every arm; downstream consumers across different claim families converge on the same upstream blocker (V3 substrate at default config does not produce non-trivial z_goal under standard random-policy training across 2000 episodes).",
+    "is_independent_bugs": false,
+    "structural_property": "The V3 substrate at default config under standard random-policy training across 2000 episodes does not produce non-trivial z_goal, non-trivial behavioural diversity, or non-trivial action-class differentiation. Different experiments measure different downstream consumers; all hit the same upstream blocker.",
+    "readings": ["substrate_enrichment", "test_design_ceiling"],
+    "favoured_reading": "substrate_enrichment",
+    "favoured_reading_rationale": "Convergent shape across four structurally-different claims (ARC-046 curriculum-vs-flat, MECH-307/MECH-295 conjunction architecture, Q-045 anti-monostrategy, MECH-314 Goldilocks novelty) with four different downstream consumers makes coincidental independent test-design errors implausible. The shared upstream blocker is the goal-pipeline substrate not producing z_goal in default config.",
+    "members": [
+      {
+        "queue_id_or_cluster": "V3-EXQ-540a/b/c/e",
+        "claim_layer": "MECH-307, MECH-295",
+        "negative_control_or_absolute": "bridge instantiates and wires; substrate present",
+        "discrimination_criterion": "conj_fire_rate=0 across all arms",
+        "read": "default config values sit above achievable substrate ceiling; default-value recalibration landed 2026-05-12; V3-EXQ-540e validation pending"
+      },
+      {
+        "queue_id_or_cluster": "V3-EXQ-603 / 603b",
+        "claim_layer": "Q-045, MECH-313, MECH-260",
+        "negative_control_or_absolute": "scripts complete; substrate landed",
+        "discrimination_criterion": "2 of 3 seeds die at 350-475 steps; effective N=1; non_contributory across all 3 claims",
+        "read": "training-regime measurement_gap; needs P0 (E1+E2 warmup) + P1 (consolidation) phased training; V3-EXQ-603c routed 2026-05-27"
+      },
+      {
+        "queue_id_or_cluster": "V3-EXQ-590a",
+        "claim_layer": "MECH-314 (Goldilocks novelty weight)",
+        "negative_control_or_absolute": "wiring intact; bridge composes into score_bias",
+        "discrimination_criterion": "per-candidate signal = 0 across all 5 weight arms x 3 seeds",
+        "read": "goldilocks_weight=0.1 is an artefact: MECH-111 broadcast branch is argmin-invariant; MECH-314a per-candidate signal is structurally zero under E2 z_world per-candidate collapse"
+      },
+      {
+        "queue_id_or_cluster": "V3-EXQ-591",
+        "claim_layer": "ARC-046 (curriculum-vs-flat infant hazard protection)",
+        "negative_control_or_absolute": "C3 residue_coverage saturates to 1.0 trivially in every arm",
+        "discrimination_criterion": "6 of 7 criteria fail every arm; curriculum scheduler stuck in Phase 0 across all 5 seeds",
+        "read": "z_goal collapses to ~1e-7; curriculum advancement gate (H_pos >= 0.70*ln(144) ~= 3.48) is structurally unreachable under current training (observed rolling-mean peaks at 1.08); ARM_1 and ARM_2 produce per-seed-identical results because Phase-0 env config = ARM_1 minimal config"
+      }
+    ],
+    "planning_decision": "Treat substrate fix as the unblocker for all four cluster members. Behavioural validation experiments resume once the substrate produces non-trivial z_goal in default config. Three substrate prerequisites collectively unblock the cluster: (1) MECH-307 default-value recalibration validated (V3-EXQ-540e); (2) goal-pipeline training regime produces non-trivial z_goal in default config (V3-EXQ-603c P0/P1 phased training); (3) InfantCurriculumScheduler Phase 0->1 advancement signal tuned to achievable H_pos magnitudes OR replaced with z_goal-norm-based / residue-progression-based exit gate. (1) and (2) absorb most of the cluster; (3) is the new V3-EXQ-591-specific substrate work."
+  }
+}
