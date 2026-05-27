@@ -1,0 +1,108 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-27T05:23:02Z",
+  "user_confirmation_utc": "2026-05-27T05:23:02Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_543l_arc062_mode_separation_gap_b_falsifier_20260526T023059Z_v3",
+      "queue_id": "V3-EXQ-543l",
+      "experiment_type": "v3_exq_543l_arc062_mode_separation_gap_b_falsifier",
+      "hostname": "ree-cloud-2",
+      "supersedes": "V3-EXQ-543k",
+      "supersedes_chain": ["V3-EXQ-543k", "V3-EXQ-543i", "V3-EXQ-543h", "V3-EXQ-543g"],
+      "claim_ids": ["ARC-062", "MECH-309", "INV-074", "MECH-334"],
+      "experiment_purpose": "evidence",
+      "outcome": "FAIL",
+      "interpretation_branch": "e_collapse_survives_structure_MECH309_strong_ARC063_required",
+      "basin_stable": true,
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "Substrate-ceiling fingerprint: diff_off_reproduced_collapse=true (sanity / negative-control PASSES, all 4 diff-OFF gated arms 3/3 inert) but every discrimination criterion FAILS (diff_on_escape=false with all 4 diff-ON gated arms 3/3 inert; c2c3_on_pass=false; D2_xtal_delta=0.008 essentially zero; D1/D3/D4 all fail). repro_543g_signature=true. ARM_0 single-head baseline mean_reef_fraction=0.650 confirms substrate carries diversity when ungated -- the floor/aux escalation (0.25->0.5 and 0.1->0.3) did not break collapse.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "ARC-062 weakens / MECH-309 supports / INV-074 + MECH-334 non_contributory -- claim test bed appropriate for ARC-062 + MECH-309; for INV-074 + MECH-334 the lock fired on heads that never differentiated before closure, missing prerequisite, not claim pressure",
+        "biological_reference": "present, well-anchored -- PFC rule-cells / mixed-selectivity / corticostriatal action gating; Pull A + Pull B discharged (16 entries, lit_conf 0.78-0.82). Not biology divergence; floor/aux is an implementation choice not a formal-definition import",
+        "prerequisites": "partial -- GAP-C (discriminator -> SD-033a rule_state source vector) and GAP-D (trainable rule_bias_head) substrate-landed 2026-05-17 but their behavioural validation (V3-EXQ-598b) has not run; floor/aux alone is necessary not sufficient",
+        "implementation": "complete for tested factors -- MODE_SEPARATION_FLOOR=0.5, P1_W_DEVIATION_AUX_WEIGHT=0.3, use_differential_heads, crystallize_at_phase3 all wired and exercised; 12-arm grid evaluated",
+        "environment": "adequate -- SD-054 reef + bipartite layout substrate; ARM_0 single-head baseline confirms env carries diversity",
+        "measurement": "adequate -- K_IDENTICAL_RUNS=3 basin-stability gate; basin_stable=true; per-arm 3 seeds; manifest hostname tagged; all acceptance thresholds clearly defined and triggered",
+        "integration": "isolated -- GAP-C/D context-routing training signal not in the loop for this run; shared-return outcome-coupled REINFORCE has no routing consumer at the gated heads",
+        "scale": "adequate -- 60 P1 episodes x 200 steps/ep x 3 seeds across 12 arms; consistent with full 543k design"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PFC rule-cells (Bongard & Nieder 2010) + mixed-selectivity (Rigotti et al. 2013) + corticostriatal action gating (Miller & Cohen 2001 top-down score_bias)",
+        "dependencies": [
+          "context discriminator output routed to a downstream rule-state consumer (GAP-C: discriminator -> SD-033a LateralPFCAnalog.update source vector)",
+          "trainable rule-bias head receiving E3-gradient (GAP-D: lateral_pfc.rule_bias_head in P1 optimizer)",
+          "mode_separation_floor on composed gated bias (GAP-B, necessary not sufficient -- this run tested escalated 0.5)",
+          "P1 w-deviation aux loss (GAP-B, necessary not sufficient -- this run tested escalated 0.3)"
+        ],
+        "is_formal_import": false,
+        "divergence": "Not biology divergence. The architecture is biology-grounded; the failure is a missing-dependency signature on the training-signal side, not a wrong-abstraction-level claim. Pull A + Pull B SYNTHESIS already discharged in evidence/literature/targeted_review_arc_062_rule_apprehension/ and targeted_review_arc_062_refuge_forage_ecology/.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "Already stamped substrate_ceiling on ARC-062 / MECH-309 / INV-074 / MECH-334 from prior 543h/i/k cluster autopsies. Confirmed for this run.",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-062": "weakens",
+        "MECH-309": "supports",
+        "INV-074": "non_contributory",
+        "MECH-334": "non_contributory"
+      },
+      "manifest_evidence_direction_per_claim_already_correct": true,
+      "manifest_evidence_direction_per_claim_match_note": "The 543l manifest already records the per-claim split matching the autopsy verdict (ARC-062 weakens / MECH-309 supports / INV-074 non_contributory / MECH-334 non_contributory). No manifest override needed. Governance applies the evidence_quality_note + pending_retest_after_substrate flag rather than rewriting evidence_direction.",
+      "recommended_evidence_quality_note": "V3-EXQ-543l (valid manifest, escalated GAP-B at floor=0.5 / aux=0.3) FAIL branch-e: mode_separation_floor + P1 w-deviation aux did not escape MECH-309 monomodal collapse. All four diff-ON gated arms 3/3 inert (diff_on_escape=false); all four diff-OFF gated arms 3/3 inert (diff_off_reproduced_collapse=true, valid sanity); D2_xtal_delta_arm7_minus_arm6=0.008 (crystallization did not rescue the gated-only arm); repro_543g_signature=true. Extends the failure_autopsy_V3-EXQ-543i / 543k substrate_ceiling cluster reading. ARC-062=weakens (narrow_supports_flag retained -- this is one contributory FAIL against a claim with zero contributory PASS evidence; cluster shape is one structural property not five independent bugs). MECH-309=supports (first contributory trained-policy support; collapse survives differential structure + crystallization + escalated floor + escalated aux, which is what MECH-309's strong reading predicts when no rule-creator is wired). INV-074=non_contributory (crystallization fired on head pair that never differentiated before closure; the PNN/Lynx1/NgR1-analog lock mechanism was never exercised -- missing prerequisite, not claim pressure). MECH-334=non_contributory (same prerequisite gap; closure froze an already-collapsed policy). Do NOT demote ARC-062 -- pending_retest_after_substrate through V3-EXQ-598b (GAP-C: discriminator -> SD-033a rule_state routing; GAP-D: trainable rule_bias_head in P1 optimizer; both substrate-landed 2026-05-17). epistemic_category=substrate_ceiling. failure_autopsy_V3-EXQ-543l_2026-05-27.",
+      "recommended_substrate_queue_entry": {
+        "note": "Extend ARC-062 substrate_queue failure_record: V3-EXQ-543l FAIL branch-e at escalated floor=0.5 / aux=0.3. Confirms GAP-B floor+aux alone insufficient. Gate GAP-B closure on V3-EXQ-598b contributory PASS (GAP-C/D substrate landed 2026-05-17; validation EXQ queued 2026-05-24). Further floor/aux ablations (notional V3-EXQ-543m) deferred pending V3-EXQ-598b result -- do not commission until 598b lands."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_flag_note": "ARC-062 has zero contributory PASS trained-policy evidence and now one contributory FAIL/weakens (the 543l run, the first fairly-tested falsifier in the substrate_ceiling lineage). Voiding the rest of the cluster as non_contributory leaves an asymmetric record -- narrow_supports_flag protects against treating that asymmetry as conflict-ratio movement. MECH-309 now has its first contributory support entry from a trained-policy substrate test; the support is single-pathway (collapse-equilibrium signature) and remains v3_pending pending V3-EXQ-598b corroboration.",
+      "learning_extracted": [
+        "Escalating MODE_SEPARATION_FLOOR (0.25 -> 0.5) and P1_W_DEVIATION_AUX_WEIGHT (0.1 -> 0.3) by 2x / 3x did not change the cluster shape -- the head-collapse equilibrium survives stronger floor + stronger aux, confirming the 543k autopsy's anticipated branch-e prediction.",
+        "Differential-head substrate (use_differential_heads, 543i landing) + Phase-3 crystallization (crystallize_at_phase3, 543h landing) + escalated GAP-B floor/aux (543k/l) are ALL necessary AND NONE sufficient to escape collapse without a context-routing training signal.",
+        "MECH-309's prediction is sharper than initially registered: collapse survives every implementation-side intervention that does not introduce a non-Bayesian routing consumer for the discriminator output. This is positive evidence for MECH-309's strong-reading scope (parametric-policy gradient descent does not invent the discriminative split).",
+        "The 543g cross-machine bistability (host-A active, cloud-3/4 inert) + 543i basin nondeterminism + 543k/l basin-stable collapse together form a single coherent failure shape: outcome-coupled REINFORCE on shared-return gated heads collapses to the smoothest single regime regardless of within-policy structural pressure.",
+        "Cluster pattern is one structural property, not N independent bugs. The two live readings (substrate-enrichment via GAP-C/D vs test-design ceiling via ARC-063 V4) make different predictions for V3-EXQ-598b -- that experiment is the discriminating test.",
+        "INV-074 / MECH-334 cannot be evaluated against this lineage until ARC-062 produces a differentiated gated policy at Phase-3 boundary; until then, every closure-arm result is non_contributory (the lock fires on heads that never differentiated)."
+      ],
+      "routing": "governance-stamp-then-retest-via-V3-EXQ-598b",
+      "user_decisions_recorded": {
+        "per_claim_overlay": "Confirm 4-claim split (ARC-062 weakens / MECH-309 supports / INV-074 + MECH-334 non_contributory) -- matches 543k autopsy pre-anticipation and 543l manifest",
+        "post_autopsy_routing": "Governance-stamp + retest via V3-EXQ-598b -- substrate-landed GAP-C/D need their behavioural validation before any further floor/aux ablation",
+        "cluster_reading": "Substrate-enrichment first -- shared-return REINFORCE on gated heads has no routing consumer; GAP-C/D wires that consumer; V3-EXQ-598b is the empirical test; ARC-063 V4 deferred until 598b lands"
+      },
+      "retest_sequence": [
+        "V3-EXQ-598b (GAP-C/D behavioural validation; supersedes V3-EXQ-598/598a; gates_on=V3-EXQ-543l; substrate landed 2026-05-17, validation queued 2026-05-24) -- contributory PASS closes GAP-B and unblocks downstream items (V3-EXQ-606b for ARC-064 GAP-I; commitment_closure GAP-1 SD-033a behavioural arms)",
+        "V3-EXQ-598b non_contributory -> /diagnose-errors session on what V3-EXQ-598b measured vs what GAP-C/D supplies; surface fork between substrate-enrichment vs test-design ceiling readings",
+        "V3-EXQ-598b FAIL/weakens at the GAP-C/D level -> escalate to ARC-063 V4 lit-pull + design session; treat 543 lineage as test-design ceiling evidence (REINFORCE on shared return structurally insufficient regardless of arm)",
+        "Further floor/aux ablations (notional V3-EXQ-543m) DEFERRED -- do not commission until V3-EXQ-598b lands"
+      ]
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Substrate-ceiling fingerprint: negative-control / sanity reproduces (diff_off collapse) but every discrimination criterion fails (diff_on 3/3 inert) -- repeated across V3-EXQ-543g/543h/543i/543k/543l despite floor escalation (0.0 -> 0.25 -> 0.5), aux escalation (0.0 -> 0.1 -> 0.3), differential-heads substrate landing (543i), and Phase-3 crystallization landing (543h).",
+    "is_independent_bugs": false,
+    "structural_property": "Outcome-coupled REINFORCE on shared-return gated heads collapses to inert monomodal equilibrium. MECH-333 differential structure (use_differential_heads) plus GAP-B mode_separation_floor + P1 w-deviation aux do NOT supply the missing context-routing training signal that GAP-C (discriminator -> SD-033a rule_state) and GAP-D (trainable rule_bias_head in P1 optimizer) wire.",
+    "readings": ["substrate_enrichment_via_GAP_C_D_first", "test_design_ceiling_REINFORCE_on_shared_return_insufficient"],
+    "user_confirmed_reading": "substrate_enrichment_via_GAP_C_D_first",
+    "discriminating_experiment": "V3-EXQ-598b -- GAP-C/D behavioural validation. Substrate-enrichment reading predicts contributory PASS (routing consumer rescues differentiation). Test-design-ceiling reading predicts FAIL/weakens at GAP-C/D level too (REINFORCE on shared return cannot route regardless of consumer).",
+    "lineage": [
+      "V3-EXQ-543g (cross-machine bistability: host-A active, cloud-3/4 inert; 543g _144716Z 'weakens' is a 1/3 minority-basin artifact)",
+      "V3-EXQ-543h (crystallization landing; resolved to branch-c no-repro -> substrate/seed drift)",
+      "V3-EXQ-543i (differential-heads substrate landing; basin-nondeterministic, byte-identical runs landed opposite basins)",
+      "V3-EXQ-543k 20260522T091714Z (FAIL/mixed at floor=0.25, aux=0.1; mode_separation_score=0.483 below floor=0.5; basin stability not met)",
+      "V3-EXQ-543l 20260526T023059Z (FAIL branch-e at escalated floor=0.5, aux=0.3; basin_stable=true; all diff-ON 3/3 inert; this autopsy)"
+    ],
+    "lit_status_for_cluster": "present (Pull A: lateral PFC rule-context modulation, 8 entries; Pull B: refuge/forage ecology, 6 entries; both discharged 2026-05-09)"
+  },
+  "preceding_autopsies": [
+    "failure_autopsy_EXQ-543e_2026-05-17.{md,json}",
+    "failure_autopsy_EXQ-543f_2026-05-17.{md,json}",
+    "failure_autopsy_V3-EXQ-543h_2026-05-18.{md,json}",
+    "failure_autopsy_543i_2026-05-19.{md,json}",
+    "failure_autopsy_V3-EXQ-543i_2026-05-19.{md,json}",
+    "failure_autopsy_V3-EXQ-543k_2026-05-21.{md,json}"
+  ]
+}
