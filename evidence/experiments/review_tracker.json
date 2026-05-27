@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-25T08:56:04Z",
+  "last_review_utc": "2026-05-26T23:08:08Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -389,7 +389,11 @@
     "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260523T223116Z_v3",
     "v3_exq_598a_gap1_sd033a_bias_head_trainable_ablation_20260524T100641Z_v3",
     "V3-EXQ-606a",
-    "V3-EXQ-598"
+    "V3-EXQ-598",
+    "v3_exq_608_mech341_e3_score_collapse_diagnostic_20260526T025832Z_v3",
+    "v3_exq_609_e3_score_per_candidate_spread_decomp_20260526T072457Z_v3",
+    "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T111759Z_v3",
+    "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2556,7 +2560,11 @@
     "v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate_20260524T101048Z_v3",
     "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3",
     "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260525T065407Z_v3",
-    "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3"
+    "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3",
+    "v3_exq_608_mech341_e3_score_collapse_diagnostic_20260526T025832Z_v3",
+    "v3_exq_609_e3_score_per_candidate_spread_decomp_20260526T072457Z_v3",
+    "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T111759Z_v3",
+    "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3094,6 +3102,23 @@
         "v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3"
       ],
       "subject": "Governance cycle 2026-05-25. (1) V3-EXQ-603b FAIL (Q-045/MECH-313/MECH-260): third iteration in 603-chain. Phase-3 Fix A (STEPS_PER_EPISODE 500) + Fix B (hazard_harm 0.05->0.02) restored 1/3 seeds (seed 43, ~355 steps/episode, ARM_1 entropy +0.015 over ARM_0) but seeds 42/44 still die before 75-step FIFO warmup (total_steps 421-475, measured_steps=0, unique_actions=0). New failure pattern not covered by existing failure_autopsy_V3-EXQ-603_2026-05-23 artifact. User decision: flag for /failure-autopsy on V3-EXQ-603b; do NOT apply inline evidence_direction this cycle; leave manifest evidence_direction='mixed' untouched (autopsy will recommend override). MECH-260/MECH-313/Q-045 not updated this cycle. (2) V3-EXQ-590a PASS (MECH-314): per-claim non_contributory (manifest correctly notes GAP-13 calibrates MECH-111 broadcast not MECH-314 per-candidate). Goldilocks calibration is degenerate across novelty_bonus_weight 0.1..1.0 (all 5 arms byte-identical mean_coverage=1.0, mean_h_pos, mean_novelty_ema to 16 sig figs). PASS reflects C1+C2 preconditions only. User decision: accept self-declared non_contributory + add evidence_quality_note to MECH-111 documenting the degenerate calibration corroborating prior 2026-05-08 EXQ-141b broadcast-novelty-> E3-selection routing break. No claims.yaml edits for MECH-314; one MECH-111 note added."
+    },
+    {
+      "reviewed_at_utc": "2026-05-26T23:08:08Z",
+      "session_id": "governance-20260526T230808Z",
+      "reviewed_run_ids": [
+        "v3_exq_608_mech341_e3_score_collapse_diagnostic_20260526T025832Z_v3",
+        "v3_exq_609_e3_score_per_candidate_spread_decomp_20260526T072457Z_v3",
+        "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T111759Z_v3",
+        "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_608_mech341_e3_score_collapse_diagnostic_20260526T025832Z_v3",
+        "v3_exq_609_e3_score_per_candidate_spread_decomp_20260526T072457Z_v3",
+        "v3_exq_603_q045_mech313_mech260_four_arm_ablation_20260521T111759Z_v3",
+        "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3"
+      ],
+      "subject": "Governance cycle 2026-05-26. (1) V3-EXQ-608 (MECH-341) PASS diagnostic: interpretation_label=R2a_e3_collapse_confirmed_large_gap across all 3 seeds (frac_pre_ge2=1.0, frac_e3_collapse_above_eps=0.858, mean_top2_class_gap=0.378). Diagnostic / non_contributory by design. Routes MECH-341 to substrate-design options 1/2 (entropy bonus / class-stratified argmax at E3 scoring) per behavioral_diversity_isolation_plan.md; option 3 (jittered tie-breaking) ruled out by large-gap reading. No claim edits. (2) V3-EXQ-609 PASS diagnostic methodology fork from EXQ-571 (no claim tags; per finding doc v3_exq_571_root_cause_2026-05-25.md disposition #3). Surfaces per-candidate spread (8 components: state_A_zero_emission / state_B_methodology_mismatch / state_C_per_candidate_signal); current substrate reads 0 state_C / 1 state_B / 7 state_A -- the headline diagnostic finding EXQ-571 mean-collapse metric obscured. No claim edits. (3) V3-EXQ-603 run 111759Z (Q-045/MECH-313/MECH-260) FAIL: third 2026-05-21 run (pre-Fix1/Fix2). User-confirmed apply 603 autopsy (failure_autopsy_V3-EXQ-603_2026-05-23.json, status=confirmed) across all three 2026-05-21 runs. Manifest overridden to non_contributory per-claim + epistemic_category=measurement_gap. (4) V3-EXQ-603b run 071458Z (Q-045/MECH-313/MECH-260) FAIL: post-Fix-B re-run on 2026-05-26 (Fix B hazard_harm 0.02 insufficient because proximity_harm_scale=0.1 untouched was the dominant kill channel; seeds 42/44 still died at 350-475 total_steps; only seed 43 survived). User-confirmed apply 603b autopsy (failure_autopsy_V3-EXQ-603b_2026-05-25.json, status=confirmed). Manifest overridden to non_contributory per-claim + epistemic_category=measurement_gap + pending_retest_after_redesign=true. Q-045/MECH-313/MECH-260 in claims.yaml: appended 2026-05-26 governance entry to evidence_quality_note; added pending_retest_after_redesign: true field. EXQ-445h (C3 3/3 seeds, select_action path) remains valid MECH-260 support. Route to V3-EXQ-603c with P0/P1 training phase via separate /queue-experiment session. NOT marked reviewed (pending /failure-autopsy): v3_exq_543l (head_0==head_1 collapse persists across 543h/i/k/l escalation chain; ARC-062/INV-074/MECH-309/MECH-334 cluster) and v3_exq_591_isef005 (substrate-uniform 1/7 failure across all arms; nothing converging; not a curriculum-vs-flat signal; ARC-046). 0 pending_user promotion/demotion recommendations."
     }
   ]
 }

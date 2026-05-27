@@ -11,11 +11,11 @@
     "MECH-313",
     "MECH-260"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-045": "weakens",
-    "MECH-313": "weakens",
-    "MECH-260": "weakens"
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
   },
   "dry_run": false,
   "acceptance_criteria": {
@@ -135,5 +135,7 @@
       "total_steps": 1871,
       "unique_actions": 2
     }
-  ]
+  ],
+  "epistemic_category": "measurement_gap",
+  "evidence_direction_note": "[2026-05-26 governance] Overridden non_contributory per failure_autopsy_V3-EXQ-603_2026-05-23.json (confirmed 2026-05-24T19:05Z). All three 2026-05-21 V3-EXQ-603 runs (111759Z/142648Z/204222Z) share the same pre-Fix1/Fix2 call-path / instrumentation defect that the autopsy diagnosed; the original verdict of \"weakens\" is N=measurement-broken noise. Pending retest via V3-EXQ-603a/603b/603c chain. EXQ-445h remains the valid MECH-260 support."
 }

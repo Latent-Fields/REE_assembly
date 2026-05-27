@@ -19451,6 +19451,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  pending_retest_after_redesign: true
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -19500,6 +19501,22 @@
     (mech260_operative_all_seeds=true) but 2/3 seeds measured_steps=0 (episodes <75
     FIFO warmup steps); 603a also overridden to non_contributory pending temporal-gate
     fix. Pending retest: V3-EXQ-603b.
+
+    [2026-05-26 governance applies V3-EXQ-603 autopsy to remaining 2026-05-21 run
+    (111759Z, pre-Fix1/Fix2) AND V3-EXQ-603b post-Fix-B autopsy (2026-05-25)]:
+    Third measurement_gap in the 603 chain. Substrate confirmed operative
+    (mech260_operative_all_seeds=true; dacc_forward_calls up to 1362; FIFO + suppression
+    both fire) but Fix B (hazard_harm 0.05 -> 0.02) was insufficient because
+    proximity_harm_scale=0.1 (untouched) was the dominant kill channel via
+    `agent_health -= abs(harm_signal)`. Seeds 42/44 still terminated at 350-475
+    total_steps despite STEPS_PER_EPISODE=500; only seed 43 survived. Effective N=1.
+    Seed-43-only deltas: ARM_2 +0.041 vs ARM_0, ARM_3 +0.045 -- directionally correct
+    but sub-threshold (entropy_margin=0.05). 603 (111759Z) + 603b (071458Z) both
+    overridden to non_contributory + epistemic_category=measurement_gap. EXQ-445h
+    remains the valid MECH-260 support. Pending retest: V3-EXQ-603c with P0/P1
+    training phase added (autopsy spec; user-confirmed gate 2026-05-25T09Z).
+    Chain halt condition: if 603c also produces <3/3-surviving-seed manifest at
+    P1 gate, halt 603 chain and route Q-045 to substrate_conditional.
   implementation_note: >
     IMPLEMENTED 2026-04-19. DACCAdaptiveControl
     (ree_core/cingulate/dacc.py) maintains a FIFO action-class history
@@ -27470,6 +27487,7 @@
   status: candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
+  pending_retest_after_redesign: true
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -27535,6 +27553,16 @@
     consistent, sub-threshold. 603a also overridden to non_contributory (2/3 seeds
     measured_steps=0; temporal gate failure). Pending: V3-EXQ-603b with episode
     length fixed.
+
+    [2026-05-26 governance applies V3-EXQ-603b post-Fix-B autopsy (2026-05-25) +
+    earlier 603 run 111759Z]: Third measurement_gap in 603 chain. NoiseFloor
+    substrate fires; seed 43 only: ARM_1 - ARM_0 = +0.011 entropy lift,
+    directionally correct but well below 0.05 ENTROPY_MARGIN. Fix B
+    (hazard_harm 0.02) insufficient -- proximity_harm_scale=0.1 dominant kill
+    channel; 2/3 seeds (42, 44) measured_steps=0. Effective N=1. Both 603
+    (111759Z) and 603b (071458Z) overridden to non_contributory +
+    epistemic_category=measurement_gap. Pending retest: V3-EXQ-603c with P0/P1
+    training phase added.
   notes: >
     Pull 4 R4 verdict assigned MECH-313 to HYBRID-naming because the
     REE-internal stochastic_noise_floor name and the literature anchor
@@ -28049,6 +28077,7 @@
   polarity: open
   status: open
   implementation_phase: v3
+  pending_retest_after_redesign: true
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -28138,6 +28167,19 @@
     FIFO warmup); temporal gate failure makes result uninterpretable. All V3-EXQ-603
     and V3-EXQ-603a runs overridden to non_contributory. Pending: V3-EXQ-603b
     with call path repaired and temporal horizon verified.
+
+    [2026-05-26 governance applies V3-EXQ-603b post-Fix-B autopsy (2026-05-25)
+    + remaining 603 run 111759Z]: NON-CONTRIBUTORY. Third measurement_gap in 603
+    chain. With effective N=1 (seeds 42/44 produced measured_steps=0 again under
+    Fix B hazard_harm 0.02; proximity_harm_scale=0.1 was the untouched dominant
+    kill channel), Q-045's MECH-313-vs-MECH-260 collapse question is structurally
+    untestable from these runs. Both mechanisms verified operative on the
+    surviving seed (seed 43); per-claim deltas all sub-threshold. 603 (111759Z) +
+    603b (071458Z) overridden to non_contributory + epistemic_category=measurement_gap.
+    Pending retest: V3-EXQ-603c with P0/P1 training phase. If 603c also produces a
+    1/3-survivor manifest, route Q-045 to epistemic_category=substrate_conditional
+    pending a V4 substrate that makes untrained-inference survival on SD-054
+    enrichment a clean prerequisite.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: ARC-064
