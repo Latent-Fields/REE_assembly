@@ -13250,11 +13250,15 @@
     property across four structurally-different claims with four
     different downstream consumers. ARC-046 NOT weakened.
     epistemic_category=substrate_ceiling.
-    pending_retest_after_substrate through three substrate prerequisites:
-    (a) MECH-307 default-value recalibration validated (V3-EXQ-540e
-    PASS); (b) goal-pipeline training regime produces non-trivial
-    z_goal in default config (V3-EXQ-603c P0/P1 phased training -- now
-    confirmed substrate_conditional pending V4); (c) InfantCurriculum
+    pending_retest_after_substrate through three V3 substrate prerequisites
+    (the 591 autopsy's favoured substrate_enrichment-within-V3 reading,
+    not V4 deferral): (a) MECH-307 default-value recalibration validated
+    (V3-EXQ-540e PASS); (b) goal-pipeline / training-regime substrate
+    enrichment so non-trivial z_goal develops in default V3 config
+    (V3-EXQ-603c P0/P1 phased training FAILed 2026-05-27; the fix is
+    V3 substrate work -- longer training budget, scaffolded SD-054
+    onboarding, or a trained-policy regime that is part of the test
+    bed by construction -- not a V4 prerequisite); (c) InfantCurriculum
     Scheduler Phase 0->1 advancement signal tuned to achievable H_pos
     magnitudes OR replaced with z_goal-norm-based / residue-progression
     -based exit gate (the new V3-EXQ-591-specific substrate work,
@@ -19552,14 +19556,21 @@
     supersedes 603b)]: NON-CONTRIBUTORY. Halt condition fired:
     p2_cell_count=4 / aborted_cells=8 (8 of 12 cells aborted the Fix D
     pre-P2 survival gate at end of P1). Even with P0 (E1+E2 warmup on
-    easy env) + P1 (consolidation on target env), untrained-inference
-    cannot survive SD-054 enrichment in 2/3 cell arms. Q-045 routed to
-    epistemic_category=substrate_conditional (see Q-045 entry).
-    MECH-260 inherits substrate_conditional via Q-045 dependency.
-    EXQ-445h remains the valid contributory MECH-260 support.
-    Cluster-absorbed into failure_autopsy_V3-EXQ-591_2026-05-27 substrate-
-    uniform z_goal-zero family.
-  epistemic_category: substrate_conditional
+    easy env) + P1 (consolidation on target env), the trained policy
+    does not survive SD-054 enrichment long enough in 2/3 cell arms to
+    sustain measurement. Q-045 routed to epistemic_category=
+    substrate_ceiling (see Q-045 entry; the claim's test bed (SD-054 +
+    ARC-062) is V3-scoped by design; the missing piece is V3 substrate
+    enrichment / training-regime work, not a V4 prerequisite). MECH-260
+    inherits substrate_ceiling via Q-045 dependency. EXQ-445h remains
+    the valid contributory MECH-260 support. Cluster-absorbed into
+    failure_autopsy_V3-EXQ-591_2026-05-27 substrate-uniform z_goal-zero
+    family. [2026-05-27 governance correction: prior cycle's plan-of-
+    record line had said route to substrate_conditional pending V4;
+    that was scope-deferral and is overridden -- the 591 autopsy's
+    favoured reading is substrate_enrichment-within-V3, not V4
+    deferral.]
+  epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   implementation_note: >
     IMPLEMENTED 2026-04-19. DACCAdaptiveControl
@@ -27650,14 +27661,19 @@
     [2026-05-27 governance applies V3-EXQ-603c (P0/P1 phased training,
     supersedes 603b)]: NON-CONTRIBUTORY. Halt condition fired:
     p2_cell_count=4 / aborted_cells=8 (8 of 12 cells aborted Fix D pre-P2
-    survival gate at end of P1). Even with P0+P1 phased training,
-    untrained-inference cannot survive SD-054 enrichment in 2/3 cell arms.
-    Q-045 routed to epistemic_category=substrate_conditional; MECH-313
-    inherits substrate_conditional via Q-045 dependency. Cluster-absorbed
-    into failure_autopsy_V3-EXQ-591_2026-05-27 substrate-uniform z_goal-zero
-    family. NoiseFloor substrate-readiness intact; behavioural-validation
-    pending V4 substrate (or trained-policy regime as part of test bed).
-  epistemic_category: substrate_conditional
+    survival gate at end of P1). Even with P0+P1 phased training, the
+    trained policy does not survive SD-054 enrichment long enough in 2/3
+    cell arms to sustain measurement. Q-045 routed to epistemic_category=
+    substrate_ceiling; MECH-313 inherits substrate_ceiling via Q-045
+    dependency. Cluster-absorbed into failure_autopsy_V3-EXQ-591_2026-05-27
+    substrate-uniform z_goal-zero family. NoiseFloor substrate-readiness
+    intact; behavioural-validation pending V3 substrate enrichment +
+    training-regime fix (the goal-pipeline substrate gap the 591 autopsy
+    cluster names). [2026-05-27 correction: prior cycle had routed to
+    substrate_conditional pending V4 -- overridden; the test bed
+    (SD-054 + ARC-062 + NoiseFloor) is V3-scoped by design; required
+    fix is V3 substrate enrichment, not V4 deferral.]
+  epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   notes: >
     Pull 4 R4 verdict assigned MECH-313 to HYBRID-naming because the
@@ -28281,18 +28297,33 @@
     603b)]: NON-CONTRIBUTORY across all three claims (Q-045 / MECH-313 / MECH-260).
     Summary: p2_cell_count=4, aborted_cells=8 (8 of 12 cells aborted Fix D pre-P2
     survival gate; median ep_length over last 10 P1 episodes < 75-step FIFO
-    warmup threshold). This is the documented substrate-conditional escape:
-    even with P0 (E1+E2 warmup on easy env) + P1 (consolidation on target env),
-    untrained-inference still cannot survive SD-054 enrichment in 2/3 cell
-    arms. Q-045 routed to epistemic_category=substrate_conditional per the
-    prior plan: a V4 substrate that makes untrained-inference survival on
-    SD-054 enrichment a clean prerequisite (or a trained-policy regime that
-    is part of the claim's test bed by construction) is the unblocker.
-    Cluster-absorbed into failure_autopsy_V3-EXQ-591_2026-05-27 (member 4 of
-    the substrate-uniform z_goal-zero family: V3-EXQ-540 / 603 chain / 590a /
-    591). pending_retest_after_substrate retained. Both MECH-313 and MECH-260
-    similarly substrate_conditional via Q-045's dependency.
-  epistemic_category: substrate_conditional
+    warmup threshold). Even with P0 (E1+E2 warmup on easy env) + P1
+    (consolidation on target env), the trained policy does not survive
+    SD-054 enrichment long enough in 2/3 cell arms to sustain measurement.
+    Q-045 routed to epistemic_category=substrate_ceiling. The claim's
+    test bed (SD-054 reef + ARC-062 gated-policy + the 4-arm anti-
+    monostrategy ablation) is V3-scoped by design; the missing piece is
+    V3 substrate enrichment + training-regime work (the goal-pipeline
+    substrate gap the 591 autopsy cluster names), not a V4 prerequisite.
+    Required unblocker is some combination of: (1) goal-pipeline
+    substrate enrichment so non-trivial z_goal develops under standard
+    V3 training; (2) a trained-policy regime that is part of the test
+    bed by construction (longer P1 budget, scaffolded curriculum that
+    survives the SD-054 enrichment proximity-harm-scale=0.1 kill channel,
+    or a phased SD-054 onboarding); (3) probable joint fix with the
+    ARC-046 InfantCurriculumScheduler exit-gate substrate fix already
+    in substrate_queue. Cluster-absorbed into failure_autopsy_V3-EXQ-591_
+    2026-05-27 (member 4 of substrate-uniform z_goal-zero family: V3-EXQ-
+    540 / 603 chain / 590a / 591). pending_retest_after_substrate
+    retained. Both MECH-313 and MECH-260 similarly substrate_ceiling
+    via Q-045's dependency. [2026-05-27 governance correction: prior
+    cycle's plan-of-record line had said route to substrate_conditional
+    pending V4 -- overridden. If the substrate fix the V3 cluster needs
+    is itself V3-scoped work (which the 591 autopsy's favoured
+    'substrate_enrichment' reading affirms), then by definition it is
+    V3 work, not V4 deferral; the correct category is substrate_ceiling
+    (V3-tractable in principle, substrate at default config too coarse).]
+  epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   location: docs/architecture/rule_apprehension_layer.md
 

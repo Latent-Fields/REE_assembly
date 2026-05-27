@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-27T17:45:00Z",
+  "last_updated_utc": "2026-05-27T17:52:00Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -3138,11 +3138,11 @@
       "title": "InfantCurriculumScheduler Phase 0->1 advancement signal substrate fix: tune H_POS_FRAC_OF_MAX from 0.70 to achievable substrate value (~0.20-0.30 of max) OR replace H_pos exit gate with z_goal-norm-based / residue-coverage-progression-based exit gate.",
       "status": "pending_implementation",
       "ready": false,
-      "ready_blocked_by": "cluster prerequisites: (a) MECH-307 default-value recalibration validated (V3-EXQ-540e); (b) goal-pipeline training regime produces non-trivial z_goal in default config (V3-EXQ-603c FAIL 2026-05-27 -- Q-045 routed to substrate_conditional; this prerequisite now needs V4 substrate or alternative)",
+      "ready_blocked_by": "V3 substrate prerequisites (NOT V4 deferral): (a) MECH-307 default-value recalibration validated (V3-EXQ-540e); (b) goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requires V3 substrate enrichment, not V4). Probable joint fix with this entrys exit-gate fix; cluster reading per failure_autopsy_V3-EXQ-591_2026-05-27.",
       "design_doc": "evidence/planning/infant_substrate_plan.md",
       "depends_on_unresolved": [
-        "MECH-307 default-value recalibration via V3-EXQ-540e",
-        "goal-pipeline training regime via V3-EXQ-603c (FAILed substrate_conditional)"
+        "MECH-307 default-value recalibration via V3-EXQ-540e (V3 substrate work)",
+        "goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4)"
       ],
       "unblocks_claims": [
         "ARC-046",
