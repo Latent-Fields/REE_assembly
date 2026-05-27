@@ -19,7 +19,8 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-030-retest-after-substrate-arc-062 && claude --resume f73f2681-9f38-4d88-871f-d6cedb3d42c5",
       "task_claim_session_id": "igw-auto-igw-030-retest-after-substrate-arc-062-20260526T171454Z",
       "assigned_at": "2026-05-26T17:14:51Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-05-27T05:55:44Z"
     }
   ],
   "dispositions": [
@@ -72,6 +73,18 @@
       "decision": "RESOLVE",
       "note": "Superseded by V3-EXQ-543l completion (evidence_direction=mixed, 2026-05-26T02:30:59Z). No new experiment needed; substrate changes post-543l (MECH-111 dead-branch + EXQ-571 instrumentation) do not affect ARC-062.",
       "noted_at": "2026-05-26T17:25:05Z"
+    },
+    {
+      "stable_hash": "085c3522a523",
+      "igw_id_at_disposition": "IGW-20260527-001",
+      "owner_exq": null,
+      "claim_ids": [],
+      "gap_ids": [],
+      "skill": "/governance",
+      "title": "Complete governance review (2 pending)",
+      "decision": "RESOLVE",
+      "note": "2 indexed pending in pending_review.md are intentionally held for /failure-autopsy per governance-skill rule (a FAIL flagged for autopsy but not yet autopsied receives no evidence_direction this cycle -- leave pending). v3_exq_543l (ARC-062/INV-074/MECH-309/MECH-334; third FAIL in 543h/i/k/l chain; structural head_0==head_1 collapse across escalation attempts) and v3_exq_591 (ARC-046; substrate-uniform 1/7 failure pattern across all arms; not a curriculum-vs-flat falsification signal) both need deep autopsy-level diagnosis before any evidence_direction can be applied. governance-20260526T230808Z (REE_assembly 4341f267d2) completed correctly: 6 -> 2 pending, the 2 remaining are held-for-autopsy by design. NEXT: separate /failure-autopsy sessions on 543l and 591; next /governance cycle applies their findings and drains the count to 0. Detector blind-spot noted: workset generator does not distinguish 'awaiting governance review' from 'held for autopsy follow-on'.",
+      "noted_at": "2026-05-27T06:11:46Z"
     }
   ]
 }
