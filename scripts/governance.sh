@@ -61,6 +61,9 @@ echo "--- Step 3b: Generating Option E shadow recommendations ---"
 echo "--- Step 3c: Closure-plan drift check (warn-only) ---"
 "$PYTHON" scripts/check_closure_drift.py
 
+echo "--- Step 3d: Brain region map drift check (warn-only) ---"
+"$PYTHON" scripts/validate_brain_region_map.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 

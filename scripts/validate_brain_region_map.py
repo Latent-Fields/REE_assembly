@@ -50,6 +50,7 @@ def main() -> int:
 
     map_doc = yaml.safe_load(MAP_FILE.read_text(encoding="utf-8")) or {}
     known = set(map_doc.get("known_anatomy_prefixes") or [])
+    non_anatomy = set(map_doc.get("non_anatomy_prefixes") or [])
     ids_in_svg = svg_ids()
 
     prefix_owner: dict[str, str] = {}
@@ -70,10 +71,23 @@ def main() -> int:
                 if str(pid) not in ids_in_svg:
                     errors.append(f"svg path id '{pid}' (region {nid}) not in SVG")
 
+    overlap = known & non_anatomy
+    for p in sorted(overlap):
+        errors.append(
+            f"prefix '{p}' is in BOTH known_anatomy_prefixes and non_anatomy_prefixes; pick one"
+        )
+
     claim_prefs = load_claim_prefixes()
     for pref in sorted(claim_prefs):
         if pref in known and pref not in prefix_owner:
             warnings.append(f"known anatomy prefix '{pref}' has no region mapping")
+        elif pref not in known and pref not in non_anatomy:
+            # Possibly a new anatomy prefix added to claims.yaml since the last
+            # brain map update. Surface so a human can decide where it belongs.
+            warnings.append(
+                f"claim prefix '{pref}' is in neither known_anatomy_prefixes nor "
+                f"non_anatomy_prefixes -- add to one of them in brain_region_map.yaml"
+            )
 
     orphan_svg = ids_in_svg - set(all_svg_refs) - {
         "silhouette_outline",

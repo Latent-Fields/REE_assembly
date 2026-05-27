@@ -45,10 +45,19 @@
   <path id="region_pag" class="brain-region" data-region="pag"
     d="M 185 395 C 210 385 240 385 265 395 C 268 420 240 435 210 435 C 180 435 182 410 185 395 Z"/>
 
-  <!-- Ghost / out-of-scope regions -->
-  <path id="region_ghost_motor" class="brain-region ghost" data-region="ghost_motor"
-    fill="url(#ghost_hatch)" fill-opacity="0.35" stroke="#6e7681" stroke-width="1"
+  <!-- Re-scoped 2026-05-27: motor cortex now in_scope (SD-044 motor primitive substrate). -->
+  <path id="region_motor" class="brain-region" data-region="motor"
     d="M 300 75 C 340 70 360 110 355 150 C 330 165 300 140 300 100 Z"/>
+
+  <!-- Newly mapped regions (claim-level only; no dedicated substrate module yet). -->
+  <ellipse id="region_tpj" class="brain-region" data-region="tpj"
+    cx="305" cy="172" rx="18" ry="11"/>
+  <ellipse id="region_peripersonal_space" class="brain-region" data-region="peripersonal_space"
+    cx="138" cy="305" rx="14" ry="10"/>
+  <ellipse id="region_visual_streams" class="brain-region" data-region="visual_streams"
+    cx="75" cy="275" rx="16" ry="22"/>
+
+  <!-- Ghost / out-of-scope regions -->
   <path id="region_ghost_language" class="brain-region ghost" data-region="ghost_language"
     fill="url(#ghost_hatch)" fill-opacity="0.35" stroke="#6e7681" stroke-width="1"
     d="M 70 110 C 95 85 125 90 135 120 C 125 145 90 150 70 130 Z"/>

@@ -22,18 +22,25 @@ known_anatomy_prefixes:
   - cingulate
   - dacc
   - basal_ganglia
+  - bg
   - default_mode
   - sleep
   - sleep_phase
   - thalamic
   - pag
   - lh_pag
+  - lpb
   - serotonin
   - dopamine
+  - acetylcholine
+  - noradrenaline
+  - orexin
+  - gabaergic
   - neuromodulation
   - astrocyte
   - respiratory
   - harm_stream
+  - homeostatic_accumulation
   - e1
   - e2
   - e3
@@ -43,11 +50,133 @@ known_anatomy_prefixes:
   - e1_e2
   - e1_e3
   - control_plane
+  - commit_gate
+  - hypothesis_tag
+  - broadcast
+  - theta_gamma
+  - salience
+  - cortical_world_model
+  - tpj
+  - motor
+  - peripersonal_space
+  - visual_streams
   - policy
   - architecture
   - residue
   - latent_stack
   - L_space
+
+# Prefixes that are intentionally NOT mapped to brain regions
+# (cross-cutting infrastructure, governance, philosophy, etc.).
+# Validator allows these to be missing from the region map.
+non_anatomy_prefixes:
+  - ethics
+  - ethics_engine_3
+  - ethical_agency
+  - love
+  - play
+  - social
+  - language
+  - development
+  - developmental
+  - developmental_ordering
+  - pharmacology
+  - psychiatric
+  - pathology
+  - dementia
+  - clinical
+  - llm
+  - meta
+  - learning
+  - entities
+  - agency
+  - environment
+  - drive
+  - drive_to_approach
+  - drive_directed
+  - goal
+  - goal_directed
+  - goal_directed_agency
+  - goal_representation
+  - goal_seeding
+  - commitment
+  - attention
+  - encoder
+  - observation_encoder
+  - perception
+  - self_attribution
+  - self
+  - self_model
+  - self_maintenance
+  - selfhood_personality_ethics
+  - other_model
+  - agent
+  - state
+  - state_abstraction
+  - action
+  - safety_prediction
+  - rule_apprehension
+  - rule_discovery
+  - precision
+  - coherence
+  - cognition
+  - cognitive_modes
+  - temporal
+  - examples
+  - representation
+  - latent_predictive_models
+  - uncertainty
+  - invariance
+  - diagrams
+  - integration
+  - interfaces
+  - epistemic
+  - epistemology
+  - multirate
+  - affective
+  - affect
+  - valence
+  - hedonic_valence_signed_pe_separation
+  - valence_vs_mu_kappa_overlays
+  - care_weights_override_other_harm_veto
+  - sensory_stream_tags
+  - provenance
+  - body
+  - relief
+  - design
+  - failure
+  - failure_modes
+  - spec
+  - overview
+  - migration
+  - refactor
+  - wiring
+  - trajectory
+  - conflicts
+  - claims
+  - responsibility
+  - emotion
+  - control
+  - consequence
+  - repo
+  - roadmap
+  - docs
+  - agentic_extension
+  - terminology
+  - world
+  - dream_phenomenology
+  - harm_representation
+  - forward_model
+  - governance
+  - regulators
+  - planning
+  - modes
+  - positioning
+  - neurochemistry
+  - testing
+  - curiosity
+  - wanting
+  - attribution
 
 regions:
   - id: hippocampus
@@ -83,7 +212,7 @@ regions:
 
   - id: pfc
     label: Prefrontal cortex
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - pfc
       - vmPFC
@@ -105,19 +234,21 @@ regions:
     subject_prefixes:
       - cingulate
       - dacc
+      - salience
     svg_path_ids:
       - region_cingulate
     ree_core_paths:
       - cingulate
     primary_docs:
       - docs/architecture/sd_032_cingulate_integration_substrate.md
-    notes: AIC, dACC, pACC, PCC, salience coordinator.
+    notes: AIC, dACC, pACC, PCC, salience coordinator (incl. SalienceCoordinator hysteresis, MECH-266).
 
   - id: basal_ganglia
     label: Basal ganglia (functional)
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - basal_ganglia
+      - bg
     svg_path_ids:
       - region_basal_ganglia
     ree_core_paths: []
@@ -127,11 +258,11 @@ regions:
       - heartbeat/beta_gate.py
     primary_docs:
       - docs/architecture/rule_apprehension_layer.md
-    notes: Three-gate candidacy; beta propagation -- not a named BG package.
+    notes: Three-gate candidacy; beta propagation; action-chunk cache (SD-045 dorsolateral loop). Not a named BG package.
 
   - id: default_mode
     label: Default mode (DMN)
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - default_mode
     svg_path_ids:
@@ -162,7 +293,7 @@ regions:
 
   - id: thalamus
     label: Thalamus
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - thalamic
     svg_path_ids:
@@ -189,10 +320,14 @@ regions:
 
   - id: neuromodulation
     label: Neuromodulation
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - serotonin
       - dopamine
+      - acetylcholine
+      - noradrenaline
+      - orexin
+      - gabaergic
       - neuromodulation
     svg_path_ids:
       - region_neuromodulation
@@ -200,11 +335,11 @@ regions:
       - neuromodulation
     primary_docs:
       - docs/architecture/serotonin.md
-    notes: Serotonin plane; dopamine as selection gain (claims).
+    notes: Serotonin plane; dopamine as selection gain; ACh meta-plasticity gain (MECH-083); NE attentional snap (MECH-084); orexin drive-arousal coupling (MECH-281); GABAergic cross-stream decay regulator (SD-036).
 
   - id: astrocyte
     label: Astrocyte / R-field
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - astrocyte
     svg_path_ids:
@@ -220,20 +355,23 @@ regions:
 
   - id: harm_stream
     label: Harm stream (parallel pathway)
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - harm_stream
+      - lpb
+      - homeostatic_accumulation
     svg_path_ids:
       - region_harm_stream
     ree_core_paths:
       - predictors
     primary_docs:
       - docs/architecture/e3.md
-    notes: Parallel thalamic-style harm pathway in predictor stack.
+      - docs/architecture/sd_011_dual_nociceptive_streams.md
+    notes: Parallel thalamic-style harm pathway in predictor stack; lateral parabrachial routing (MECH-282); homeostatic accumulation motif z_harm_a + drive_level (MECH-167); SD-011 dual nociceptive streams now provisional.
 
   - id: respiratory
     label: Respiratory rhythm
-    scope: partial
+    scope: in_scope
     subject_prefixes:
       - respiratory
     svg_path_ids:
@@ -243,15 +381,19 @@ regions:
       - docs/architecture/control_plane.md
     notes: Plan-sweep oscillator claims; limited dedicated module.
 
-  - id: ghost_motor
-    label: Motor cortex
-    scope: out_of_scope
-    subject_prefixes: []
+  - id: motor
+    label: Motor cortex (primitive substrate)
+    scope: in_scope
+    subject_prefixes:
+      - motor
     svg_path_ids:
-      - region_ghost_motor
+      - region_motor
     ree_core_paths: []
-    primary_docs: []
-    notes: Not a REE design target in V3.
+    functional_analogs:
+      - policy/gated_policy.py
+    primary_docs:
+      - docs/architecture/sd_044_motor_primitive_substrate.md
+    notes: Motor primitive substrate at the bottom of the action-representation stack (SD-044). Re-scoped 2026-05-27 from ghost; SVG still occupies the prior ghost_motor footprint.
 
   - id: ghost_cerebellum
     label: Cerebellum (anatomical placeholder)
@@ -287,6 +429,42 @@ regions:
     primary_docs: []
     notes: Language claims exist; no cortical language area model.
 
+  - id: tpj
+    label: Temporoparietal junction
+    scope: in_scope
+    subject_prefixes:
+      - tpj
+    svg_path_ids:
+      - region_tpj
+    ree_core_paths: []
+    primary_docs:
+      - docs/architecture/vmPFC.md
+    notes: TPJ as agency-detection comparator (MECH-095). No dedicated substrate module yet -- claim-level only.
+
+  - id: peripersonal_space
+    label: Peripersonal space
+    scope: in_scope
+    subject_prefixes:
+      - peripersonal_space
+    svg_path_ids:
+      - region_peripersonal_space
+    ree_core_paths: []
+    primary_docs:
+      - docs/architecture/e3.md
+    notes: Peripersonal-space geometry defines the commit locus (MECH-097). Claim-level only; geometry is encoded via downstream commit gate / E3 logic.
+
+  - id: visual_streams
+    label: Visual streams
+    scope: in_scope
+    subject_prefixes:
+      - visual_streams
+    svg_path_ids:
+      - region_visual_streams
+    ree_core_paths: []
+    primary_docs:
+      - docs/architecture/e1.md
+    notes: Three-pathway visual architecture -- ventral/dorsal/third stream (MECH-099). Currently subsumed by E1 perception; no dedicated module.
+
 engineering_nodes:
   - id: e1
     label: E1 perception-association matrix
@@ -294,6 +472,7 @@ engineering_nodes:
     subject_prefixes:
       - e1
       - E1
+      - cortical_world_model
     svg_path_ids:
       - node_e1
     ree_core_paths:
@@ -301,7 +480,7 @@ engineering_nodes:
     primary_docs:
       - docs/architecture/e1.md
       - docs/architecture/founder_ontology.md
-    notes: Founder cerebrum analog; v1.1 should occupy cortical SVG, not strip only.
+    notes: Founder cerebrum analog; cortical world model (incl. MECH-269b regional verisimilitude V_s rollout gating). v1.1 should occupy cortical SVG, not strip only.
 
   - id: e2
     label: E2 fast forward predictor
@@ -343,6 +522,10 @@ engineering_nodes:
       - precision
       - cognitive_modes
       - temporal
+      - commit_gate
+      - hypothesis_tag
+      - broadcast
+      - theta_gamma
     svg_path_ids:
       - node_control_plane
     ree_core_paths:
@@ -351,6 +534,7 @@ engineering_nodes:
     primary_docs:
       - docs/architecture/control_plane.md
       - docs/architecture/control_plane_signal_map.md
+    notes: Heartbeat, regulators, commit gate (MECH-114), hypothesis tag (MECH-094/115), broadcast override (SD-037), theta-gamma multi-content packet (MECH-294).
 
   - id: latent_stack
     label: L-space / latent stack
