@@ -1,6 +1,6 @@
 {
   "schema_version": "contributions/v1",
-  "last_updated": "2026-05-23T21:29:28Z",
+  "last_updated": "2026-05-27T17:30:15Z",
   "compute": {
     "cost_model": {
       "electricity_kwh_rate": 0.27,
@@ -107,12 +107,12 @@
         "hardware": "Unknown",
         "tdp_watts": 15,
         "gpu_watts": 0,
-        "total_cpu_hours": 6.649,
-        "total_experiments": 5,
+        "total_cpu_hours": 100.737,
+        "total_experiments": 8,
         "first_run": "2026-05-17T19:15:37.555048+00:00",
-        "last_run": "2026-05-21T10:50:05.557207+00:00",
-        "estimated_electricity_cost_eur": 0.0269,
-        "estimated_cloud_equivalent_cost_usd": 0.2766
+        "last_run": "2026-05-26T07:24:57.521687+00:00",
+        "estimated_electricity_cost_eur": 0.408,
+        "estimated_cloud_equivalent_cost_usd": 4.1907
       },
       "ree-cloud-4": {
         "display_name": "ree-cloud-4",
@@ -129,47 +129,47 @@
       }
     },
     "totals": {
-      "cpu_hours": 867.016,
-      "experiments": 748
+      "cpu_hours": 961.104,
+      "experiments": 751
     }
   },
   "decisions": {
-    "total_governance_decisions": 255,
+    "total_governance_decisions": 258,
     "contributors": {
       "user": {
         "actor_id": "user",
-        "decisions": 212,
-        "proportion": 0.8314
+        "decisions": 215,
+        "proportion": 0.8333
       },
       "governance-2026-04-25T15:15": {
         "actor_id": "governance-2026-04-25T15:15",
         "decisions": 30,
-        "proportion": 0.1176
+        "proportion": 0.1163
       },
       "Daniel Golden": {
         "actor_id": "dgolden",
         "decisions": 7,
-        "proportion": 0.0275
+        "proportion": 0.0271
       },
       "codex": {
         "actor_id": "codex",
         "decisions": 6,
-        "proportion": 0.0235
+        "proportion": 0.0233
       }
     },
     "source": "evidence/decisions/decision_log.v1.jsonl"
   },
   "coding": {
     "baseline_method": "git_co_authorship",
-    "baseline_date": "2026-05-23",
-    "total_lines_analyzed": 9364119,
-    "total_commits_analyzed": 37739,
+    "baseline_date": "2026-05-27",
+    "total_lines_analyzed": 9474568,
+    "total_commits_analyzed": 46226,
     "contributors": {
       "Claude (Anthropic)": {
-        "lines_added": 1994947,
-        "commits": 1612,
-        "proportion_by_lines": 0.213,
-        "proportion_by_commits": 0.0427,
+        "lines_added": 2058580,
+        "commits": 1665,
+        "proportion_by_lines": 0.2173,
+        "proportion_by_commits": 0.036,
         "basis": "git_history_co_authorship"
       },
       "Codex (OpenAI)": {
@@ -180,10 +180,10 @@
         "basis": "git_history_co_authorship"
       },
       "Daniel Golden": {
-        "lines_added": 7369172,
-        "commits": 36124,
-        "proportion_by_lines": 0.787,
-        "proportion_by_commits": 0.9572,
+        "lines_added": 7415988,
+        "commits": 44558,
+        "proportion_by_lines": 0.7827,
+        "proportion_by_commits": 0.9639,
         "basis": "git_history_co_authorship"
       }
     },

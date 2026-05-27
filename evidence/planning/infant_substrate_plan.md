@@ -3,6 +3,7 @@ closure_plan:
   id: infant_substrate
   title: "Infant Substrate Expansion"
   registered: 2026-05-16
+  last_updated: 2026-05-27
   scope_claims: [INV-055, INV-073, ARC-046, ARC-065, DEV-NEED-001, DEV-NEED-002, DEV-NEED-003, DEV-NEED-004, DEV-NEED-005, DEV-NEED-006, DEV-NEED-007, DEV-NEED-008, MECH-189, MECH-313, MECH-314]
   nodes:
     - id: "infant_substrate:GAP-1"
@@ -126,12 +127,13 @@ closure_plan:
     - id: "infant_substrate:GAP-14"
       title: "EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)"
       phase: 4
-      status: in-progress
+      status: blocked
       severity: medium
       owner_exq: V3-EXQ-591
       unblocks_claims: [DEV-NEED-008, ARC-046]
       depends_on: ["infant_substrate:GAP-9", "infant_substrate:GAP-5", "infant_substrate:GAP-6", "infant_substrate:GAP-7", "infant_substrate:GAP-8"]
-      last_updated: 2026-05-17
+      last_updated: 2026-05-27
+      resume_condition: "2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirmed) applied: manifest evidence_direction overridden to non_contributory; epistemic_category=substrate_ceiling; ARC-046 NOT weakened; pending_retest_after_substrate=true. Root finding: InfantCurriculumScheduler Phase 0->1 advancement gate (H_pos >= 0.70*ln(144) ~= 3.48) is structurally unreachable under random-policy 2000-episode training (observed rolling-mean H_pos peaks 0.03-1.08). z_goal collapses to ~1e-7 in every arm. Cluster pattern: fourth member of substrate-uniform z_goal-zero family (V3-EXQ-540 / 603 chain / 590a / 591). Status changed in-progress -> blocked: three substrate prerequisites must clear before V3-EXQ-591b can be queued: (a) MECH-307 default-value recalibration validated via V3-EXQ-540e; (b) goal-pipeline training regime produces non-trivial z_goal in default config via V3-EXQ-603c P0/P1 phased training (NOW FAIL 2026-05-27 -- Q-045 routed to substrate_conditional; this prerequisite needs V4 substrate or alternative resolution); (c) InfantCurriculumScheduler Phase 0->1 advancement signal tuned to achievable H_pos magnitudes OR replaced with z_goal-norm-based / residue-progression-based exit gate (routed to /implement-substrate)."
     - id: "infant_substrate:GAP-15"
       title: "Gate update: replace single z_goal.norm criterion in developmental_curriculum.md with 7-criterion table (3 blocking + 4 advisory) from infant_substrate_expansion.md Section 8"
       phase: 5

@@ -8,9 +8,9 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "FAIL",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-046": "does_not_support"
+    "ARC-046": "non_contributory"
   },
   "timestamp_utc": "20260526T184231Z",
   "dry_run": false,
@@ -414,5 +414,9 @@
       }
     ]
   },
-  "notes": "infant_substrate:GAP-14 closure. EXQ-ISEF-005 curriculum vs flat parameter comparison. ARM_2 (4-phase InfantCurriculumScheduler) vs ARM_0 (all features flat) vs ARM_1 (minimal flat). 7-criterion gate evaluated at ep 2000. PASS requires curriculum passes >= 6/7 criteria in >= 4/5 seeds while at least one control passes <= 4/7 in >= 3/5 seeds. PASS supports ARC-046 (phased residue accumulation via curriculum). Evidence for GAP-15 gate update (DEV-NEED-008)."
+  "notes": "infant_substrate:GAP-14 closure. EXQ-ISEF-005 curriculum vs flat parameter comparison. ARM_2 (4-phase InfantCurriculumScheduler) vs ARM_0 (all features flat) vs ARM_1 (minimal flat). 7-criterion gate evaluated at ep 2000. PASS requires curriculum passes >= 6/7 criteria in >= 4/5 seeds while at least one control passes <= 4/7 in >= 3/5 seeds. PASS supports ARC-046 (phased residue accumulation via curriculum). Evidence for GAP-15 gate update (DEV-NEED-008).",
+  "evidence_direction_note": "Governance override 2026-05-27 per failure_autopsy_V3-EXQ-591_2026-05-27.json (status: confirmed). Substrate-uniform FAIL across all 3 arms x 5 seeds; curriculum advancement gate (H_pos >= 0.70 * ln(144) ~= 3.48) structurally unreachable under current training (observed rolling-mean peaks at 1.08). z_goal collapses to ~1e-7 in every arm. C5/C6/C7 emit -1.0 sentinels every seed every arm. Cluster pattern with V3-EXQ-540 / 603 chain / 590a. epistemic_category=substrate_ceiling; pending_retest_after_substrate. ARC-046 NOT weakened.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true,
+  "evidence_quality_note": "2026-05-27 governance override: see ARC-046 evidence_quality_note 2026-05-27 entry and failure_autopsy_V3-EXQ-591_2026-05-27.{md,json}."
 }

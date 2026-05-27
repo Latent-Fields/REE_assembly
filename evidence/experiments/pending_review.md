@@ -1,15 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-27T06:36:30Z`  
-Last review: `2026-05-26T23:08:08Z`  
-Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-27T17:40:25Z`  
+Last review: `2026-05-27T17:35:00Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_543l_arc062_mode_separation_gap_b_falsifier_20260526T023059Z_v3` | 2026-05-26T02:30 | ARC-062, INV-074, MECH-309, MECH-334 | — |
-| `v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3` | 2026-05-26T18:42 | ARC-046 | — |
+| `v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3` | 2026-05-27T12:03 | MECH-262, SD-033a | — |
 
 ---
 

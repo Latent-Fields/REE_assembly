@@ -13231,6 +13231,36 @@
     modelling) requires multi-agent substrate (ARC-047). The protection mechanism is
     progressively removed as the agent transitions through childhood to adulthood,
     implementing the gradual responsibility expansion described in developmental_curriculum.md.
+  evidence_quality_note: >
+    2026-05-27 governance (failure_autopsy_V3-EXQ-591_2026-05-27, confirmed):
+    Substrate-uniform FAIL -- all 3 arms hit only 1/7 gate criteria across
+    all 5 seeds (only C3 residue_cov, which saturates trivially in every
+    arm). Curriculum scheduler stuck in Phase 0 across all 5 seeds
+    (advancement gate H_pos >= 0.70*ln(144) ~= 3.48 vs observed
+    rolling-mean H_pos 0.03-1.08). z_goal collapses to ~1e-7 in every
+    arm. C5 harm/benefit ratio, C6 post-sleep retention, C7 traj cosine
+    all return -1.0 'no data' sentinels in every seed of every arm.
+    ARM_1 and ARM_2 produce per-seed-identical rolling H_pos because
+    Phase-0 env config = ARM_1 minimal config. Manifest override:
+    evidence_direction `does_not_support` -> `non_contributory`
+    (per autopsy recommendation; the failure shape does NOT discriminate
+    against ARC-046's architectural commitment). Convergent shape with
+    V3-EXQ-540a/b/c/e (MECH-307/MECH-295), V3-EXQ-603/603b/603c
+    (training-regime), V3-EXQ-590a (Goldilocks no-op) -- one structural
+    property across four structurally-different claims with four
+    different downstream consumers. ARC-046 NOT weakened.
+    epistemic_category=substrate_ceiling.
+    pending_retest_after_substrate through three substrate prerequisites:
+    (a) MECH-307 default-value recalibration validated (V3-EXQ-540e
+    PASS); (b) goal-pipeline training regime produces non-trivial
+    z_goal in default config (V3-EXQ-603c P0/P1 phased training -- now
+    confirmed substrate_conditional pending V4); (c) InfantCurriculum
+    Scheduler Phase 0->1 advancement signal tuned to achievable H_pos
+    magnitudes OR replaced with z_goal-norm-based / residue-progression
+    -based exit gate (the new V3-EXQ-591-specific substrate work,
+    routed to /implement-substrate).
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
 
 - id: MECH-189
   title: "During the child phase, high-salience benefit contacts under high contextual complexity are written to persistent ContextMemory as super-ordinal goal anchors that bias adult z_goal seeding across novel episodes."
@@ -19517,6 +19547,20 @@
     training phase added (autopsy spec; user-confirmed gate 2026-05-25T09Z).
     Chain halt condition: if 603c also produces <3/3-surviving-seed manifest at
     P1 gate, halt 603 chain and route Q-045 to substrate_conditional.
+
+    [2026-05-27 governance applies V3-EXQ-603c (P0/P1 phased training,
+    supersedes 603b)]: NON-CONTRIBUTORY. Halt condition fired:
+    p2_cell_count=4 / aborted_cells=8 (8 of 12 cells aborted the Fix D
+    pre-P2 survival gate at end of P1). Even with P0 (E1+E2 warmup on
+    easy env) + P1 (consolidation on target env), untrained-inference
+    cannot survive SD-054 enrichment in 2/3 cell arms. Q-045 routed to
+    epistemic_category=substrate_conditional (see Q-045 entry).
+    MECH-260 inherits substrate_conditional via Q-045 dependency.
+    EXQ-445h remains the valid contributory MECH-260 support.
+    Cluster-absorbed into failure_autopsy_V3-EXQ-591_2026-05-27 substrate-
+    uniform z_goal-zero family.
+  epistemic_category: substrate_conditional
+  pending_retest_after_substrate: true
   implementation_note: >
     IMPLEMENTED 2026-04-19. DACCAdaptiveControl
     (ree_core/cingulate/dacc.py) maintains a FIFO action-class history
@@ -26562,6 +26606,22 @@
     collapse baseline (narrow/single-basin). Manifest corrected:
     evidence_direction 'mixed' -> non_contributory all claims.
     pending_retest_after_substrate.
+
+    2026-05-27 governance (failure_autopsy_V3-EXQ-543l_2026-05-27,
+    confirmed): MECH-309=supports per autopsy verdict. V3-EXQ-543l
+    FAIL branch-e at escalated floor=0.5 / aux=0.3 with basin_stable=true
+    -- collapse survives differential-head substrate + Phase-3
+    crystallization + escalated floor + escalated aux. First contributory
+    trained-policy support entry for MECH-309: the strong-reading
+    prediction (parametric-policy gradient descent does not invent the
+    discriminative split) is corroborated by the fact that every
+    implementation-side intervention that does not introduce a
+    non-Bayesian routing consumer fails to escape collapse. Support is
+    single-pathway (collapse-equilibrium signature from a single
+    discriminating-test) and remains v3_pending pending V3-EXQ-598b
+    corroboration with GAP-C/D routing consumer landed. narrow_supports_flag
+    retained (counterpart asymmetry on ARC-062 side). epistemic_category
+    substrate_ceiling (unchanged).
   notes: >
     Diagnostic claim, not a substrate or implementation claim. MECH-309
     explains why SD-054 (and any substrate alone) is insufficient to
@@ -26719,6 +26779,29 @@
     MECH-309=supports per autopsy verdict. Routing: do-not-demote
     ARC-062 until V3-EXQ-598 GAP-C/D completes; V3-EXQ-543l deferred.
     pending_retest_after_substrate through V3-EXQ-598.
+
+    2026-05-27 governance (failure_autopsy_V3-EXQ-543l_2026-05-27,
+    confirmed): V3-EXQ-543l (20260526T023059Z) FAIL branch-e at
+    escalated floor=0.5 / aux=0.3 -- basin_stable=true, all four
+    diff-ON gated arms 3/3 inert (diff_on_escape=false); all four
+    diff-OFF gated arms 3/3 inert (diff_off_reproduced_collapse=true,
+    valid sanity); D2_xtal_delta=0.008 (crystallization did not
+    rescue gated-only arm); repro_543g_signature=true. Confirms
+    GAP-B floor+aux alone insufficient -- the head-collapse equilibrium
+    survives 2x stronger floor and 3x stronger aux. ARC-062=weakens
+    (one contributory FAIL against zero contributory PASS evidence;
+    narrow_supports_flag retained -- cluster shape is one structural
+    property, not five independent bugs). Cluster pattern is one
+    structural property: outcome-coupled REINFORCE on shared-return
+    gated heads collapses to inert monomodal equilibrium regardless
+    of structural pressure (use_differential_heads, crystallize_at_phase3,
+    escalated floor+aux all necessary AND none sufficient). User-confirmed
+    reading: substrate-enrichment first via GAP-C/D (discriminator ->
+    SD-033a rule_state routing + trainable rule_bias_head, both
+    substrate-landed 2026-05-17). pending_retest_after_substrate
+    through V3-EXQ-598b. Do NOT demote. epistemic_category=substrate_ceiling
+    (unchanged). Further floor/aux ablations (notional V3-EXQ-543m)
+    deferred until V3-EXQ-598b lands.
   implementation_note: >
     2026-05-21 IGW-024 substrate-ready reconcile: Phase 1 (GAP-A) IMPLEMENTED
     2026-05-09 -- ree_core/policy/gated_policy.py (two heads + 3-stream
@@ -27563,6 +27646,19 @@
     (111759Z) and 603b (071458Z) overridden to non_contributory +
     epistemic_category=measurement_gap. Pending retest: V3-EXQ-603c with P0/P1
     training phase added.
+
+    [2026-05-27 governance applies V3-EXQ-603c (P0/P1 phased training,
+    supersedes 603b)]: NON-CONTRIBUTORY. Halt condition fired:
+    p2_cell_count=4 / aborted_cells=8 (8 of 12 cells aborted Fix D pre-P2
+    survival gate at end of P1). Even with P0+P1 phased training,
+    untrained-inference cannot survive SD-054 enrichment in 2/3 cell arms.
+    Q-045 routed to epistemic_category=substrate_conditional; MECH-313
+    inherits substrate_conditional via Q-045 dependency. Cluster-absorbed
+    into failure_autopsy_V3-EXQ-591_2026-05-27 substrate-uniform z_goal-zero
+    family. NoiseFloor substrate-readiness intact; behavioural-validation
+    pending V4 substrate (or trained-policy regime as part of test bed).
+  epistemic_category: substrate_conditional
+  pending_retest_after_substrate: true
   notes: >
     Pull 4 R4 verdict assigned MECH-313 to HYBRID-naming because the
     REE-internal stochastic_noise_floor name and the literature anchor
@@ -28180,6 +28276,24 @@
     1/3-survivor manifest, route Q-045 to epistemic_category=substrate_conditional
     pending a V4 substrate that makes untrained-inference survival on SD-054
     enrichment a clean prerequisite.
+
+    [2026-05-27 governance applies V3-EXQ-603c (P0/P1 phased training, supersedes
+    603b)]: NON-CONTRIBUTORY across all three claims (Q-045 / MECH-313 / MECH-260).
+    Summary: p2_cell_count=4, aborted_cells=8 (8 of 12 cells aborted Fix D pre-P2
+    survival gate; median ep_length over last 10 P1 episodes < 75-step FIFO
+    warmup threshold). This is the documented substrate-conditional escape:
+    even with P0 (E1+E2 warmup on easy env) + P1 (consolidation on target env),
+    untrained-inference still cannot survive SD-054 enrichment in 2/3 cell
+    arms. Q-045 routed to epistemic_category=substrate_conditional per the
+    prior plan: a V4 substrate that makes untrained-inference survival on
+    SD-054 enrichment a clean prerequisite (or a trained-policy regime that
+    is part of the claim's test bed by construction) is the unblocker.
+    Cluster-absorbed into failure_autopsy_V3-EXQ-591_2026-05-27 (member 4 of
+    the substrate-uniform z_goal-zero family: V3-EXQ-540 / 603 chain / 590a /
+    591). pending_retest_after_substrate retained. Both MECH-313 and MECH-260
+    similarly substrate_conditional via Q-045's dependency.
+  epistemic_category: substrate_conditional
+  pending_retest_after_substrate: true
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: ARC-064
@@ -32903,6 +33017,20 @@
     mechanism never exercised; missing prerequisite. Manifest corrected:
     evidence_direction -> non_contributory all claims.
     pending_retest_after_substrate.
+
+    2026-05-27 governance (failure_autopsy_V3-EXQ-543l_2026-05-27,
+    confirmed): INV-074=non_contributory per autopsy verdict. V3-EXQ-543l
+    crystallization fired at Phase-3 on a gated policy where head_0/head_1
+    never differentiated (diff_on_escape=false, all 4 diff-ON gated arms
+    3/3 inert at escalated floor=0.5 / aux=0.3). The PNN/Lynx1/NgR1-analog
+    plasticity-asymmetry lock mechanism cannot be evaluated against a
+    head pair that never separated -- missing prerequisite (functional
+    differentiated GatedPolicy via ARC-062 + GAP-C/D), not claim pressure.
+    pending_retest_after_substrate through V3-EXQ-598b (GAP-C/D
+    behavioural validation). epistemic_category=substrate_ceiling
+    (unchanged). INV-074 is the fourth member of a multi-experiment lineage
+    (543h/i/k/l) where every closure-arm result is non_contributory until
+    ARC-062 produces a differentiated gated policy at Phase-3 boundary.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
 
@@ -33117,6 +33245,21 @@
     never exercised; missing prerequisite (functional differentiated
     GatedPolicy). Manifest corrected: evidence_direction ->
     non_contributory all claims. pending_retest_after_substrate.
+
+    2026-05-27 governance (failure_autopsy_V3-EXQ-543l_2026-05-27,
+    confirmed): MECH-334=non_contributory per autopsy verdict. V3-EXQ-543l
+    crystallization fired at Phase-3 on a gated policy that never
+    differentiated (escalated floor=0.5 / aux=0.3; all 4 diff-ON gated
+    arms 3/3 inert; D2_xtal_delta=0.008 essentially zero). The three-brake
+    closure mechanism froze an already-collapsed policy -- the
+    PNN/Lynx1/NgR1-analog lock cannot be evaluated against heads that
+    never separated. Missing prerequisite (functional differentiated
+    GatedPolicy via ARC-062 + GAP-C/D), not claim pressure.
+    pending_retest_after_substrate through V3-EXQ-598b. Fourth member
+    of 543h/i/k/l lineage where every closure-arm result is
+    non_contributory until ARC-062 produces a differentiated gated
+    policy at Phase-3 boundary. epistemic_category=substrate_ceiling
+    (unchanged).
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   implementation_note: >

@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-26T23:08:08Z",
+  "last_updated_utc": "2026-05-27T17:45:00Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -2647,12 +2647,18 @@
           "experiment_type": "v3_exq_543k_arc062_mode_separation_gap_b_falsifier",
           "metric": "branch-e: mode_separation_floor=0.25 + P1 w-deviation aux=0.1 did not escape MECH-309 collapse. All diff-ON gated arms 3/3 inert. reef_occupancy_coeff=1.0 (monomodal). ARC-062=weakens, MECH-309=supports per confirmed autopsy. Routing: do-not-demote until V3-EXQ-598 GAP-C/D completes.",
           "target": "reef_occupancy_coeff < 0.5 on >=2/3 seeds in diff-ON arms; OR tv_distance > 0.3 between ARM_0 and ARM_1 on SD-054 substrate"
+        },
+        {
+          "run_id": "v3_exq_543l_arc062_mode_separation_gap_b_falsifier_20260526T023059Z_v3",
+          "experiment_type": "v3_exq_543l_arc062_mode_separation_gap_b_falsifier",
+          "metric": "FAIL branch-e at escalated MODE_SEPARATION_FLOOR=0.5 / P1_W_DEVIATION_AUX_WEIGHT=0.3 with basin_stable=true. All 4 diff-ON gated arms 3/3 inert (diff_on_escape=false); all 4 diff-OFF gated arms 3/3 inert (diff_off_reproduced_collapse=true, valid sanity); D2_xtal_delta=0.008 essentially zero; repro_543g_signature=true. Confirms GAP-B floor+aux alone insufficient. ARC-062=weakens, MECH-309=supports per failure_autopsy_V3-EXQ-543l_2026-05-27. Cluster pattern: outcome-coupled REINFORCE on shared-return gated heads collapses to inert monomodal equilibrium regardless of structural pressure (use_differential_heads, crystallize_at_phase3, escalated floor+aux all necessary AND none sufficient). User-confirmed reading: substrate-enrichment first via GAP-C/D.",
+          "target": "V3-EXQ-598b (GAP-C/D behavioural validation; discriminator -> SD-033a rule_state routing + trainable rule_bias_head, both substrate-landed 2026-05-17). Contributory PASS closes GAP-B + unblocks downstream items. 598b ran 20260527T120345Z FAIL/mixed (SD-033a supports / MECH-262 weakens) -- flagged for /failure-autopsy this cycle; GAP-B closure pending the 598b autopsy verdict. Further floor/aux ablations (notional V3-EXQ-543m) deferred until 598b autopsy lands."
         }
       ],
       "implementation_hint": "Phase 1 of arc_062_rule_apprehension_plan.md. New module ree_core/policy/gated_policy.py: two scoring heads sharing E3 encoder features + small context discriminator (~16-32 hidden units, sigmoid output over 2 heads, symmetry-broken init). Discriminator inputs = multi-stream (z_world, z_self, z_harm_a) per Pull A R1 verdict (Miller-Cohen 2001, Rigotti 2013, Mitchell 2016). REEConfig flag use_gated_policy (default False, bit-identical OFF). Per-knob defaults: gated_policy_n_heads=2 (substrate-constrained by SD-054 two-mode partition; Rigotti 2013 mixed-selectivity caveat held for Phase 4 multi-strategy scaling), gated_policy_disc_hidden=24, gated_policy_disc_init_scale=0.1. R3 default = score_bias level (option iii, current SD-033a substrate) for engineering reasons; falsification chain to (i) BG-side then (ii) hippocampal-preplay if Phase 2 FAIL. Contract tests: C1 default-off no-op, C2 backward-compat, C3 discriminator output in [0,1], C4 head differentiation under symmetry-broken init, C5 simulation-mode gating per MECH-094. Substrate-readiness diagnostic EXQ via /queue-experiment skill (UC1 forward-pass, UC2 master-OFF no-op, UC3 input-sensitivity, UC4 head differentiation, UC5 MECH-094 sim gate). Phase 2 falsifier (separate EXQ): 2-arm ARM_0 vs ARM_1 on SD-054 reef + food-attracted-hazard substrate, 4-criterion tolerance window per Pull B R4 verdict (PASS = at least 2 of 4 hold across seeds: density-tracking, state-dependence, risk-type dissociation, cross-seed variation). Phase 3 (closes commitment_closure GAP-1): wire discriminator output to LateralPFCAnalog.update() source vector + add bias head params to E3 optimiser. Lit anchors: Pull A targeted_review_arc_062_rule_apprehension/ 8 entries (R1+R2+R3); Pull B targeted_review_arc_062_refuge_forage_ecology/ 6 entries (R4). || NEXT SUBSTRATE STEP (post V3-EXQ-543e autopsy, user-gated 2026-05-17): autopsy 'option 2' head-input first-action one-hot augmentation -- feed the gated-policy scoring heads the first-action category directly (z_world alone is starved: E2 world-forward compresses SP-CEM's ~5 first-action classes to ~0.22% of z_world magnitude). Phase-1 module/contract is implemented and SP-CEM (ARC-065) is now the main-path default; the head-input contract is the remaining substrate bottleneck. The falsifier re-issue V3-EXQ-543f must ALSO set dacc_weight>0 + a pre-flight non-degeneracy assertion (the 543d/543e dACC factorial axis was never live on any substrate due to the dacc_weight=0.0 DACCtoE3Adapter zero-return path).",
       "priority": 1,
       "added_session": "arc062-plan-doc-registration-2026-05-09T1939Z",
-      "last_seen_session": "governance-20260523T212737Z",
+      "last_seen_session": "governance-20260527T172644Z",
       "last_seen_note": "IGW-024 landed: Phase 1 (GAP-A) substrate-ready. gated_policy.py on ree-v3 main; V3-EXQ-542a PASS. ready=false; evidence gated 543k+598.",
       "implementation_status": "implemented",
       "validation_experiment": "V3-EXQ-542a",
@@ -3126,6 +3132,58 @@
       "status": "implemented",
       "closure_plan_gap": "infant_substrate:GAP-4",
       "implementation_note": "2026-05-21 IGW-027 code-read refresh: no random.random/torch.randn; numpy self._rng only. PRIMARY irreducible attractor SD-048 autonomic i.i.d. on harm_obs_a (:3507); secondary SD-048 sensitisation Poisson (:3485), fatigue innovation (:3466), SD-047 weather (:3275) + transient Poisson (:3311/:3336). All reset/spawn/drift learnable-stochastic (a). Audit block in CausalGridWorldV2() docstring causal_grid_world.py."
+    },
+    {
+      "sd_id": "ARC-046",
+      "title": "InfantCurriculumScheduler Phase 0->1 advancement signal substrate fix: tune H_POS_FRAC_OF_MAX from 0.70 to achievable substrate value (~0.20-0.30 of max) OR replace H_pos exit gate with z_goal-norm-based / residue-coverage-progression-based exit gate.",
+      "status": "pending_implementation",
+      "ready": false,
+      "ready_blocked_by": "cluster prerequisites: (a) MECH-307 default-value recalibration validated (V3-EXQ-540e); (b) goal-pipeline training regime produces non-trivial z_goal in default config (V3-EXQ-603c FAIL 2026-05-27 -- Q-045 routed to substrate_conditional; this prerequisite now needs V4 substrate or alternative)",
+      "design_doc": "evidence/planning/infant_substrate_plan.md",
+      "depends_on_unresolved": [
+        "MECH-307 default-value recalibration via V3-EXQ-540e",
+        "goal-pipeline training regime via V3-EXQ-603c (FAILed substrate_conditional)"
+      ],
+      "unblocks_claims": [
+        "ARC-046",
+        "DEV-NEED-008"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3",
+          "experiment_type": "v3_exq_591_isef005_curriculum_vs_flat",
+          "metric": "ARM_2 curriculum_final_phase=0 across all 5 seeds; rolling_h_pos_mean peaks at 1.08 (max across all seeds across all arms) vs advancement gate 0.70*ln(144) ~= 3.48. ARM_1 and ARM_2 per-seed rolling H_pos byte-identical because Phase-0 env config = ARM_1 minimal config. z_goal collapses to ~1e-7 every arm. C5/C6/C7 emit -1.0 sentinels every seed every arm.",
+          "target": "(a) lower H_POS_FRAC_OF_MAX from 0.70 to a value the substrate can reach (probe data suggests ~0.20-0.30 of max), OR (b) replace H_pos gate with z_goal-norm-based / residue-coverage-progression-based exit gate. Acceptance: ARM_2 advances to Phase 1 by ep 500 in >= 3/5 seeds AND advances to Phase 2 by ep 1500 in >= 3/5 seeds."
+        }
+      ],
+      "implementation_hint": "InfantCurriculumScheduler in ree-v3/experiments/infant_curriculum.py: see PHASE_EP_MIN / H_POS_FRAC_OF_MAX or the equivalent exit-signal API. Brief substrate probe recommended before committing to threshold lower vs gate replacement.",
+      "priority": 2,
+      "added_session": "governance-20260527T172644Z",
+      "last_seen_session": "governance-20260527T172644Z"
+    },
+    {
+      "sd_id": "MECH-341",
+      "title": "E3 score diversity preservation retune: (a) entropy_bonus_scale too small relative to score gap range; (b) stratified_select trigger condition (min_classes_for_stratification) never reached in current substrate.",
+      "status": "pending_retune",
+      "ready": true,
+      "ready_blocked_by": null,
+      "design_doc": "docs/architecture/mech_341_e3_score_diversity_preservation.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-341"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3",
+          "experiment_type": "v3_exq_611_mech341_substrate_readiness_4arm",
+          "metric": "Substrate-readiness diagnostic FAIL: C1_substrate_fires_in_on_arms=False. ARM_1 (OPT1 entropy_bonus only): entropy_bonus_fired but max_abs ~0.023-0.044 across seeds, dwarfed by mean_top2_class_gap 0.27-1.96. ARM_2 (OPT2 stratified_select only): mech341_n_stratified_fired=0 across all 3 seeds because trigger condition (n_p1_pre_eq1>0 / collapse to 1 unique class pre-bias) never reached -- substrate ALWAYS has >=2 unique classes in pool. ARM_3 (BOTH_ON): same as ARM_1 -- entropy_bonus fires but no diversification effect. All 3 ON arms produce same R2a_e3_collapse_confirmed_large_gap interpretation as ARM_0 (ALL_OFF baseline). MECH-341 wires in but does not produce diversity at current parameter settings.",
+          "target": "(a) raise e3_diversity_entropy_bias_scale (currently 0.1) to be commensurate with observed score gap range (0.27-1.96 nats); proposed sweep 0.5 / 1.0 / 2.0. (b) revise stratified_select trigger condition: fire when n_unique_classes >= 2 (not only on full collapse), so substrate-natural pool diversity gets preserved through softmax-sample-across-class-representatives. (c) candidate V3-EXQ-611b: 4-arm ablation at scale=1.0 + revised trigger, on EXQ-608 env + metric stack."
+        }
+      ],
+      "implementation_hint": "See ree-v3/ree_core/predictors/e3_score_diversity.py + REEConfig.e3_diversity_entropy_bias_scale + REEConfig.e3_diversity_min_classes_for_stratification. The retune is parameter-only; module surface and config knobs already in place.",
+      "priority": 2,
+      "added_session": "governance-20260527T172644Z",
+      "last_seen_session": "governance-20260527T172644Z"
     }
   ],
   "last_seen_session": "exq590a-gate-correction-20260526T061037Z"
