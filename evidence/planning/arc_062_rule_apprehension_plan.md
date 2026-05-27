@@ -36,8 +36,8 @@ closure_plan:
       unblocks_claims: [SD-033a, MECH-262, SD-034]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       cross_plan_link: ["commitment_closure:GAP-1"]
-      last_updated: 2026-05-20
-      substrate_note: "Substrate DONE 2026-05-17. Validation V3-EXQ-598b queued 2026-05-24 (supersedes 598/598a; gates_on=V3-EXQ-543l; commitment_closure:GAP-1). Evidence closure (and downstream governance closure) remains gated on V3-EXQ-543l contributory PASS per GAP-B."
+      last_updated: 2026-05-27
+      substrate_note: "Substrate DONE 2026-05-17. Validation V3-EXQ-598b queued 2026-05-27 (ree-v3 main 94db78d; supersedes V3-EXQ-598a; gates_on=V3-EXQ-543l with PERMISSIVE semantic; priority 240; claim_ids=[SD-033a, MECH-262]). Per failure_autopsy_V3-EXQ-543l_2026-05-27 sections 7+9, V3-EXQ-598b is the DISCRIMINATOR between substrate-enrichment-first (predicted contributory PASS) and test-design-ceiling (predicted FAIL/weakens) readings. 543l FAIL/mixed (2026-05-26) does NOT block 598b; contributory PASS on 543l is NOT required (the autopsy explicitly routes substrate-enrichment-first regardless of 543l's branch-e verdict). Evidence closure path: contributory PASS -> ARC-062 weak-reading governance-stamped viable + commitment_closure:GAP-1 closes; FAIL/weakens -> ARC-063 V4 lit-pull + design session."
     - id: "arc_062_rule_apprehension:GAP-D"
       title: "E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)"
       phase: 3
@@ -47,8 +47,8 @@ closure_plan:
       unblocks_claims: [SD-033a, MECH-262]
       depends_on: ["arc_062_rule_apprehension:GAP-C", "arc_062_rule_apprehension:GAP-B"]
       cross_plan_link: ["commitment_closure:GAP-1"]
-      last_updated: 2026-05-20
-      substrate_note: "Substrate DONE 2026-05-17. Same validation EXQ as GAP-C: V3-EXQ-598b queued 2026-05-24. Gated on V3-EXQ-543l contributory PASS."
+      last_updated: 2026-05-27
+      substrate_note: "Substrate DONE 2026-05-17. Same validation EXQ as GAP-C: V3-EXQ-598b queued 2026-05-27 (ree-v3 main 94db78d). Gated on V3-EXQ-543l with PERMISSIVE semantic per failure_autopsy_V3-EXQ-543l_2026-05-27 routing -- requires only that 543l manifest exists with outcome in {PASS, FAIL} (clears against 543l's 2026-05-26 FAIL/mixed); contributory PASS on 543l NOT required (598b is the discriminator)."
     - id: "arc_062_rule_apprehension:GAP-E"
       title: "Multi-strategy scaling probe (>2 strategies) -- distinguishes ARC-062 weak from ARC-063 strong"
       phase: 4
