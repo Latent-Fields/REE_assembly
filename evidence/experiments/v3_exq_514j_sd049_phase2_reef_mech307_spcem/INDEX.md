@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_514j_sd049_phase2_reef_mech307_spcem
 
-Generated: `2026-05-23T21:28:34.626199Z`
+Generated: `2026-05-27T06:36:27.748735Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-05-23T21:28:34.626199Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3` | `2026-05-21T14:24:55.245179Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3/summary.md) / [`manifest`](runs/v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3/manifest.json) / [`metrics`](runs/v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3/metrics.json) |
+| `v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3` | `2026-05-23T22:06:32.628491Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3/summary.md) / [`manifest`](runs/v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3/manifest.json) / [`metrics`](runs/v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3/metrics.json) |

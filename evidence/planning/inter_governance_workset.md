@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-27T06:36:24Z`
+Generated: `2026-05-27T16:57:06Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,11 +9,11 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **33** (ready 10, in_flight 0, blocked 6)
+- Items: **34** (ready 11, in_flight 1, blocked 6)
 - Pending review: **2**
-- Queue pending (unclaimed): **4**
+- Queue pending (unclaimed): **1**
 
-- Live EXQs: V3-EXQ-543k, V3-EXQ-603c
+- Live EXQs: V3-EXQ-543k, V3-EXQ-591
 
 ## Work packages
 
@@ -38,7 +38,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-025 -- Retest after substrate: ARC-062
+### IGW-20260527-026 -- Retest after substrate: ARC-062
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -46,7 +46,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-025
+REE inter-governance work item: IGW-20260527-026
 Title: Retest after substrate: ARC-062
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -60,7 +60,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-026 -- Retest after substrate: INV-074
+### IGW-20260527-027 -- Retest after substrate: INV-074
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -68,7 +68,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-026
+REE inter-governance work item: IGW-20260527-027
 Title: Retest after substrate: INV-074
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -82,7 +82,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-027 -- Retest after substrate: MECH-309
+### IGW-20260527-028 -- Retest after substrate: MECH-309
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -90,7 +90,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-027
+REE inter-governance work item: IGW-20260527-028
 Title: Retest after substrate: MECH-309
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -104,7 +104,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-028 -- Retest after substrate: MECH-334
+### IGW-20260527-029 -- Retest after substrate: MECH-334
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -112,7 +112,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-028
+REE inter-governance work item: IGW-20260527-029
 Title: Retest after substrate: MECH-334
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -204,6 +204,27 @@ Why now: GAP-1 closes on V3-EXQ-598b PASS (2-arm ablation). Per failure_autopsy_
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260527-025 -- Queue depth low (1 pending)
+
+- **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
+- **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260527-025
+Title: Queue depth low (1 pending)
+Lane: ops | Skill: (manual)
+Status: ready
+Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
+
+Instructions:
+- Update plan-of-record doc and closure frontmatter when complete.
 - Workset: http://localhost:8000/workset
 ```
 
@@ -319,7 +340,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-029 -- Proposal EXP-0009 (MECH-334)
+### IGW-20260527-030 -- Proposal EXP-0009 (MECH-334)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; low_exp_conf; mandatory_decision_checkpoint
@@ -327,7 +348,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-029
+REE inter-governance work item: IGW-20260527-030
 Title: Proposal EXP-0009 (MECH-334)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -341,7 +362,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-030 -- Proposal EXP-0027 (SD-049)
+### IGW-20260527-031 -- Proposal EXP-0027 (SD-049)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -349,7 +370,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-030
+REE inter-governance work item: IGW-20260527-031
 Title: Proposal EXP-0027 (SD-049)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -363,7 +384,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-031 -- Proposal EXP-0028 (MECH-302)
+### IGW-20260527-032 -- Proposal EXP-0028 (MECH-302)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -371,7 +392,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-031
+REE inter-governance work item: IGW-20260527-032
 Title: Proposal EXP-0028 (MECH-302)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -385,7 +406,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-032 -- Proposal EXP-0029 (INV-074)
+### IGW-20260527-033 -- Proposal EXP-0029 (INV-074)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert; low_exp_conf
@@ -393,7 +414,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-032
+REE inter-governance work item: IGW-20260527-033
 Title: Proposal EXP-0029 (INV-074)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -407,7 +428,7 @@ Instructions:
 
 </details>
 
-### IGW-20260527-033 -- Proposal EXP-0036 (MECH-295)
+### IGW-20260527-034 -- Proposal EXP-0036 (MECH-295)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** directional_conflict_alert
@@ -415,7 +436,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260527-033
+REE inter-governance work item: IGW-20260527-034
 Title: Proposal EXP-0036 (MECH-295)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -759,7 +780,7 @@ Instructions:
 
 ### IGW-20260527-020 -- EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 53
 - **Gap(s):** infant_substrate:GAP-14
 - **Owner EXQ:** V3-EXQ-591
 - **Why now:** Plan gap in_progress on infant_substrate.
@@ -769,15 +790,15 @@ Instructions:
 ```
 REE inter-governance work item: IGW-20260527-020
 Title: EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
-Lane: experiment | Skill: /queue-experiment
-Status: in_progress
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
 Gap(s): infant_substrate:GAP-14
 Owner EXQ: V3-EXQ-591
 Claims: DEV-NEED-008, ARC-046
 Why now: Plan gap in_progress on infant_substrate.
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
 - Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
 - Workset: http://localhost:8000/workset
 ```

@@ -1,0 +1,40 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arms": [
+      {
+        "arm": "LPB_OFF",
+        "override_mean": 0.3850365628394904,
+        "intero_mean": 0.0,
+        "external_mean": 0.0,
+        "z_harm_intero_mean": 0.0,
+        "pag_freeze_commits": 8,
+        "lpb_enabled": false
+      },
+      {
+        "arm": "INTERO_HIGH",
+        "override_mean": 0.3850365628394904,
+        "intero_mean": 0.8500000238418579,
+        "external_mean": 0.02535859424365299,
+        "z_harm_intero_mean": 3.3999998569488525,
+        "pag_freeze_commits": 0,
+        "lpb_enabled": true
+      },
+      {
+        "arm": "EXT_HIGH",
+        "override_mean": 0.26019507228143735,
+        "intero_mean": 0.04999999701976776,
+        "external_mean": 0.4263262483434119,
+        "z_harm_intero_mean": 0.19999998807907104,
+        "pag_freeze_commits": 8,
+        "lpb_enabled": true
+      }
+    ],
+    "acceptance": {
+      "c1_z_harm_intero_populated": true,
+      "c2_intero_override_gt_external": true,
+      "c3_external_freeze_gte_intero": true,
+      "verdict": "PASS"
+    }
+  }
+}

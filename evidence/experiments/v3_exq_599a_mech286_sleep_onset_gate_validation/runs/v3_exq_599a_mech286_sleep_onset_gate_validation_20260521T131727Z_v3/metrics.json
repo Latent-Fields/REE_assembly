@@ -1,0 +1,47 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_results": [
+      {
+        "arm": "ARM_0_gate_off",
+        "seed": 42,
+        "cycle_index_before": 0,
+        "cycle_index_after": 1,
+        "cycle_fired": true,
+        "mech286_sleep_permitted": 1.0,
+        "override_signal": 0.0,
+        "staleness_max": 0.0
+      },
+      {
+        "arm": "ARM_1_gate_on_permit",
+        "seed": 42,
+        "cycle_index_before": 0,
+        "cycle_index_after": 1,
+        "cycle_fired": true,
+        "mech286_sleep_permitted": 1.0,
+        "override_signal": 0.0,
+        "staleness_max": 0.8
+      },
+      {
+        "arm": "ARM_2_gate_on_hyperarousal",
+        "seed": 42,
+        "cycle_index_before": 0,
+        "cycle_index_after": 0,
+        "cycle_fired": false,
+        "mech286_sleep_permitted": 0.0,
+        "override_signal": 0.7476731245075579,
+        "staleness_max": 0.9
+      }
+    ],
+    "verdict": {
+      "checks": {
+        "ARM_0_gate_off_cycle": true,
+        "ARM_1_gate_on_permit_cycle": true,
+        "ARM_1_gate_on_permit_permitted": true,
+        "ARM_2_gate_on_hyperarousal_cycle": true,
+        "ARM_2_gate_on_hyperarousal_permitted": true
+      },
+      "passed": true
+    }
+  }
+}
