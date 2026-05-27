@@ -19,15 +19,15 @@ closure_plan:
       resume_condition: "V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path). V3-EXQ-569 matched-entropy control (FP-2: SP-CEM vs noise-matched comparator on entropy/coverage/trajectory_class_count) still pending -- this is the diversity-isolation falsifier. Apply R1.a (matched -> non_contributory, attention shifts to theories 2-4) or R1.b (SP-CEM > noise on trajectory_class_count -> theory 1 confirmed, advance to Rung 2) on 569 landing."
     - id: "behavioral_diversity_isolation:GAP-B"
       title: "Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)"
-      phase: "P2 done -> P3 substrate-design"
+      phase: "P3 substrate landed -> readiness diagnostic"
       status: in_progress
       severity: load-bearing
-      owner_exq: "V3-EXQ-608 (P2 PASS); P3 substrate + B-axis falsifier TBD"
+      owner_exq: "V3-EXQ-608 (P2 PASS); V3-EXQ-611 (P3 substrate-readiness diagnostic queued); B_only / ablate_B / ALL_ON behavioural falsifier TBD"
       unblocks_claims: [MECH-341, ARC-062, ARC-065]
       depends_on: []
       cross_plan_link: ["arc_062_rule_apprehension:GAP-B"]
-      last_updated: 2026-05-26
-      resume_condition: "Headline gap. V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS, cross_seed_interpretation majority=R2a_e3_collapse_confirmed_large_gap (2/3 seeds large-gap confirmed; 1/3 inconclusive_resample_heavier; non-unanimous but R2.a fired on majority rule). Theory 2 is confirmed as a real diversity-collapse site at Layer B; MECH-341 substrate work is now priority. P2 evidence_direction=non_contributory by design (diagnostic, not scoring evidence). NEXT: P3 -- pick one of three MECH-341 design options (entropy bonus over candidate classes / class-stratified argmax with within-class proportional sampling / jittered tie-breaking near top), justified by 608's per-tick E3 score distribution (large-gap result favours options 1 or 2 over option 3). Route via /implement-substrate, then queue B_only / ablate_B / ALL_ON 3-arm falsifier via /queue-experiment. Apply R2.c on landing: if B_only produces trajectory_class_count >= 2 with first_action_entropy > 0.3, MECH-341 provisional promotion. Cross-link: same Layer-B substrate is the upstream gate on arc_062_rule_apprehension:GAP-B (V3-EXQ-543l) per the substrate_queue MECH-341 entry."
+      last_updated: 2026-05-27
+      resume_condition: "V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. Module ree-v3/ree_core/predictors/e3_score_diversity.py implements options 1 (entropy bonus) + 2 (class-stratified select) as togglable sub-flavours under one master (use_e3_score_diversity). Option 3 jittered tie-breaking REJECTED by 608's large-gap finding. Design doc REE_assembly/docs/architecture/mech_341_e3_score_diversity_preservation.md. claims.yaml MECH-341 implementation_note updated; 506/506 contracts + 7/7 preflight PASS with master OFF (bit-identical baseline). NEXT: (1) await V3-EXQ-611 (4-arm substrate-readiness diagnostic on EXQ-608 env: ALL_OFF / OPT1_ONLY / OPT2_ONLY / BOTH_ON); (2) post-611 PASS, queue B_only / ablate_B / ALL_ON behavioural falsifier on downstream env via /queue-experiment; (3) apply R2.c rule on landing: if B_only produces trajectory_class_count >= 2 with first_action_entropy > 0.3, MECH-341 provisional promotion. Cross-link: same Layer-B substrate unblocks arc_062_rule_apprehension:GAP-B (V3-EXQ-543l successor cohort)."
     - id: "behavioral_diversity_isolation:GAP-C"
       title: "Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)"
       phase: "P1"
@@ -357,7 +357,7 @@ score distribution data will tell us whether the collapse is happening at near-t
 | Theory | Layer | Claim | Substrate status | Falsifier | Result | Decision |
 |--------|-------|-------|------------------|-----------|--------|----------|
 | 1 CEM collapse | A | ARC-065 (SP-CEM child) | landed 2026-05-17 main-path | V3-EXQ-567 / V3-EXQ-569 | 567 PASS (entropy 0.012->0.497); 569 queued | matched-entropy gate pending |
-| 2 E3 scoring | B | **MECH-341** (registered 2026-05-25) | not implemented | P2 diagnostic TBD | -- | queue P2 next |
+| 2 E3 scoring | B | **MECH-341** (registered 2026-05-25) | **IMPLEMENTED 2026-05-27 (options 1+2 togglable)** | V3-EXQ-608 P2 (PASS R2a large-gap 2026-05-26); V3-EXQ-611 P3 substrate-readiness diagnostic queued | 608 majority R2a fired; substrate landed; readiness eval pending | apply R2.c on V3-EXQ-611 PASS + B_only / ablate_B successor |
 | 3 noise floor | C | MECH-313 | landed | V3-EXQ-543b ARM_MECH313 (pending Q-045 retest) | autopsy 603b: substrate operative but design-blocked | retest via 603c (training-phase fix) |
 | 4 V_s stale | D | MECH-269 / 269b | substrate-ready (IGW-021) | V3-EXQ-550 | running | apply R4.a / R4.b / R4.c on landing |
 
@@ -388,8 +388,13 @@ available IDs in their respective ranges.
 - **Does not redefine acceptance criteria.** The Rung 0-4 framework in the sibling
   acceptance-criteria doc is authoritative. This plan layers an isolation analysis on top of
   it.
-- **Does not commit to a MECH-341 implementation.** P2 diagnostic results determine which
-  of the three design options (Section "Substrate design options") to build.
+- ~~**Does not commit to a MECH-341 implementation.** P2 diagnostic results determine which
+  of the three design options (Section "Substrate design options") to build.~~ Superseded
+  2026-05-27: V3-EXQ-608 P2 majority `R2a_e3_collapse_confirmed_large_gap` (large-gap,
+  ruling out option 3 jittered tie-breaking) routed the substrate-design phase to options
+  1 + 2. Both landed as togglable sub-flavours under one master in
+  `ree-v3/ree_core/predictors/e3_score_diversity.py`. Design doc:
+  `REE_assembly/docs/architecture/mech_341_e3_score_diversity_preservation.md`.
 - **Does not address theories 5-8.** Those remain candidate mechanisms and re-enter the
   candidate set only if R_X.c fires (full 4-substrate stack insufficient).
 - **Does not queue experiments directly.** All EXQ entries flagged here go through

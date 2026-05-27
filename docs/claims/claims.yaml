@@ -34130,16 +34130,50 @@
     representation). Falsifier sequence: Phase P2 diagnostic (instrumentation-
     only run logging pre-E3 candidate class count vs post-E3 selected class
     count); P3 substrate work + B_only / ablate_B arms once a design option is
-    chosen. Substrate not yet implemented; theory remains untested at the
-    mechanism-design level.
+    chosen. Substrate IMPLEMENTED 2026-05-27 (options 1 + 2 togglable under one
+    master per V3-EXQ-608 P2 majority R2a_e3_collapse_confirmed_large_gap
+    routing); P3 behavioural validation pending V3-EXQ-611 substrate-readiness
+    diagnostic.
+  implementation_note: >
+    Substrate landed 2026-05-27 via /implement-substrate. Module:
+    ree-v3/ree_core/predictors/e3_score_diversity.py (E3ScoreDiversity +
+    E3ScoreDiversityConfig). Two togglable sub-flavours under one master
+    (mirroring MECH-314a/b/c precedent so Q-054 falsifier can dissociate
+    which one carries the load): Option 1 entropy_bonus (per-candidate
+    positive bias proportional to over-representation of the candidate's
+    first-action class in the pool, composed into scores AFTER score_bias
+    chain and BEFORE last_scores / softmax); Option 2 stratified_select
+    (partition by first-action class, argmin within each class, softmax-
+    sample across class-representatives, replaces argmin in the committed-
+    path selection). Config (REEConfig.from_dims):
+    use_e3_score_diversity (master, default False, bit-identical OFF) +
+    use_e3_diversity_entropy_bonus (True) + use_e3_diversity_stratified_select
+    (True) + e3_diversity_entropy_lambda (0.05; Q-054 calibrates) +
+    e3_diversity_entropy_bias_scale (0.1) + e3_diversity_stratified_temperature
+    (1.0) + e3_diversity_min_classes_for_stratification (2). Pure-arithmetic
+    regulator; no learned parameters; no gradient flow; sibling pattern to
+    MECH-313 NoiseFloor / MECH-314 StructuredCuriosity / MECH-320 TonicVigor.
+    Validated against 506/506 contracts + 7/7 preflight with master OFF
+    (bit-identical baseline). MECH-094 honored: both methods accept
+    simulation_mode argument; replay/DMN paths bypass the substrate.
+    Validation experiment V3-EXQ-611 queued (4-arm substrate-readiness
+    diagnostic; PASS = single-option arm produces selected_classes_count >= 2
+    with frac_pre_ge2 >= 0.5). Behavioural P3 B_only / ablate_B / ALL_ON arms
+    + R2.c rule promotion pending V3-EXQ-611 PASS. Design doc:
+    REE_assembly/docs/architecture/mech_341_e3_score_diversity_preservation.md.
   evidence_quality_note: >
-    No experimental evidence yet. Architectural argument grounded in (a) the
-    ARC-065 distributed-pathway commitment, (b) the acceptance-criteria doc's
-    Rung 1 FP "diversity in candidates that collapses to one class after E3
-    scoring", and (c) the prior 2026-05-25 4-theory analysis identifying Layer B
-    as the highest-residual-leverage gap. Promotion path requires P2 diagnostic
-    confirming theory 2 (R2.a in isolation plan) plus P3 substrate landing plus
-    B_only or ablate_B arm differential.
+    No experimental evidence yet (substrate just landed 2026-05-27).
+    Architectural argument grounded in (a) the ARC-065 distributed-pathway
+    commitment, (b) the acceptance-criteria doc's Rung 1 FP "diversity in
+    candidates that collapses to one class after E3 scoring", and (c) the
+    prior 2026-05-25 4-theory analysis identifying Layer B as the highest-
+    residual-leverage gap. V3-EXQ-608 P2 majority R2a finding empirically
+    confirmed the gap (mean_top2_class_gap 0.27-0.60 with frac_pre_ge2=1.0
+    pre-CEM) and ruled out option 3 jittered tie-breaking; substrate landed
+    with options 1+2 togglable. Promotion path now requires V3-EXQ-611
+    substrate-readiness PASS plus R2.c rule from
+    behavioral_diversity_isolation_plan.md (B_only arm produces
+    trajectory_class_count >= 2 with first_action_entropy > 0.3).
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is
