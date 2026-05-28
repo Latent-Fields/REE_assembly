@@ -243,9 +243,74 @@ empirically.
 | Phase | Status | Owner | Evidence |
 |-------|--------|-------|----------|
 | P1 substrate landing | DONE 2026-05-27 | this session | code + 506/506 contracts + 7/7 preflight PASS |
-| P2 (substrate readiness) | queued | V3-EXQ-611 | TBD |
-| P3 (B_only / ablate_B / ALL_ON behavioural) | gated on P2 PASS | TBD | TBD |
+| P2 (substrate readiness) | FAIL 2026-05-27T13:02Z | V3-EXQ-611 | C1 false: ARM_1/3 entropy_max_abs 0.023-0.044 << gap range 0.27-1.96; ARM_2 n_stratified_fired=0 (committed branch never entered + Option-2 was committed-only) |
+| Retune (2026-05-28) | DONE 2026-05-28 | implement-substrate-mech-341-retune | (a) e3_selector.py stratified_select call-site expanded to uncommitted branch; (b) V3-EXQ-611b 6-arm sweep queued (3 option groups x 2 entropy_bias_scale); 506/506 contracts PASS post-edit |
+| P2 retune validation | queued | V3-EXQ-611b | TBD |
+| P3 (B_only / ablate_B / ALL_ON behavioural) | gated on P2 retune PASS | TBD | TBD |
 | Promotion to provisional | gated on R2.c rule | governance | TBD |
+
+## Retune (2026-05-28)
+
+V3-EXQ-611 FAILed substrate-readiness on both validation channels:
+
+1. **Entropy bonus magnitude insufficient.** With
+   `entropy_bias_scale=0.1` (the default at landing), the per-candidate
+   bonus max_abs sat at 0.023-0.044 across the 3 OPT1/BOTH arms while
+   the observed `mean_top2_class_gap` was 0.27-1.96. The substrate
+   wired in and fired, but the magnitudes could not move selection
+   ordering on a meaningful fraction of ticks.
+2. **Stratified-select trigger never reached.** With the committed
+   branch never entered during the V3-EXQ-611 measurement episodes
+   (high `_running_variance` driving the uncommitted multinomial path),
+   the prior implementation gated `stratified_select` to the committed
+   branch only, producing `n_stratified_fired = 0` across all three
+   seeds.
+
+The retune lands two paired actions:
+
+**(a) Call-site expansion** (substrate-side). `E3TrajectorySelector.select`
+now consults `stratified_select` on BOTH the committed and uncommitted
+selection paths. The Option-2 categorical-preservation semantic
+(sample across class-representatives rather than across raw softmax
+probabilities) applies whenever the candidate pool admits >= 2 unique
+first-action classes, regardless of commit state. Bit-identical when
+`score_diversity is None` or when `use_e3_diversity_stratified_select`
+is False -- `stratified_select` returns `None` and the caller falls
+through to legacy `argmin` (committed) or `multinomial` (uncommitted).
+MECH-094 preserved via the existing `simulation_mode` kwarg. Smoke
+verified the uncommitted-branch firing path; 506/506 contracts PASS
+post-edit.
+
+**(b) Parameter sweep** (validation-side). V3-EXQ-611b queues a 6-arm
+factorial across 3 option groups (OPT1_only / OPT2_only / BOTH) x 2
+`entropy_bias_scale` values (1.0 / 2.0). No config defaults change per
+implement-substrate skill rule; the scales are passed via per-arm
+cfg_overrides. ALL_OFF behaviour is established by the V3-EXQ-611
+manifest already on origin/master (the retune sweep replaces the
+ALL_OFF anchor with 6 informative ON arms).
+
+Updated acceptance criteria:
+
+- **C1 (call-site expansion).** `n_stratified_fired > 0` across all
+  seeds in the 4 stratified-ON arms (ARM_3 / ARM_4 / ARM_5 / ARM_6).
+  Direct test of the module-level retune.
+- **C2 (bonus scale-commensurate).** `last_entropy_bonus_max_abs >=
+  0.7 * scale` on the majority of seeds in the 4 entropy-ON arms.
+  Substrate is putting the configured magnitude on the table.
+- **C3 (selection-step diversity preserved).** At least one arm
+  produces `selected_classes_count >= 2` AND `frac_pre_ge2 >= 0.5` on
+  a majority of seeds.
+- **C4 (informational ordering).** `scale=2.0 BOTH_ON >= scale=1.0
+  BOTH_ON` selected-class entropy.
+- **R2.c readiness.** At least one arm clears
+  `mean_selected_class_entropy_nats >= 0.3`.
+
+PASS gate: `>= 15/18` seeds complete AND C1 holds AND (C2 OR C3).
+
+The interpretation grid in the V3-EXQ-611b script routes the next
+governance walk per the four outcomes (PASS+C3 routes to behavioural
+successor; FAIL with C1=false routes to /diagnose-errors; FAIL with
+C1=true and C2/C3=false routes to algorithm-level substrate revisit).
 
 ## Plan-of-Record References
 

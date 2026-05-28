@@ -3164,7 +3164,7 @@
     {
       "sd_id": "MECH-341",
       "title": "E3 score diversity preservation retune: (a) entropy_bonus_scale too small relative to score gap range; (b) stratified_select trigger condition (min_classes_for_stratification) never reached in current substrate.",
-      "status": "pending_retune",
+      "status": "retune_implemented_pending_validation",
       "ready": true,
       "ready_blocked_by": null,
       "design_doc": "docs/architecture/mech_341_e3_score_diversity_preservation.md",
@@ -3181,9 +3181,19 @@
         }
       ],
       "implementation_hint": "See ree-v3/ree_core/predictors/e3_score_diversity.py + REEConfig.e3_diversity_entropy_bias_scale + REEConfig.e3_diversity_min_classes_for_stratification. The retune is parameter-only; module surface and config knobs already in place.",
+      "implementation_log": [
+        {
+          "session_id": "implement-substrate-mech-341-retune-20260528T165000Z",
+          "session_utc": "2026-05-28T17:30:00Z",
+          "actions_taken": "Per IGW-20260528-025 + user-confirmed scope via AskUserQuestion (parameter sweep + call-site expansion + 6-arm factorial design). Two retune actions landed: (a) MODULE CHANGE -- ree-v3/ree_core/predictors/e3_selector.py:848-870 applies stratified_select on the uncommitted (multinomial) branch too (was committed-only). Resolves the V3-EXQ-611 n_stratified_fired=0 finding: the committed branch was never entered in EXQ-611 episodes, so OPT2 never had a chance to fire. The Option-2 categorical-preservation semantic applies regardless of commit state (when pool has >=2 unique first-action classes, sample across class-representatives rather than raw softmax probabilities). Bit-identical when score_diversity is None or sub-flag is False (stratified_select returns None; legacy multinomial path taken). MECH-094 preserved by simulation_mode=False kwarg. (b) NO CONFIG DEFAULT CHANGES per implement-substrate skill rule -- entropy_bias_scale stays at 0.1 default; the retune sweep values pass through cfg_overrides in the V3-EXQ-611b script. 506/506 contracts + 7/7 preflight PASS post-edit (bit-identical OFF guarantee holds). Validation experiment V3-EXQ-611b queued (6 arms: 3 option groups OPT1_only/OPT2_only/BOTH x 2 scales 1.0/2.0; 3 seeds; ~200 min on Mac); dry-run 6/6 PASS at reduced scale, C1 (the call-site expansion's primary acceptance gate) confirmed firing.",
+          "primary_acceptance_gate": "C1: n_stratified_fired > 0 across all OPT2/BOTH seeds in V3-EXQ-611b (4 arms x 3 seeds = 12 seeds). PASS path: ARM_3/4/5/6 stratified fires + (C2 entropy bonus is scale-commensurate OR C3 selected-class diversity preserved on majority of seeds).",
+          "supersedes_validation_run_id": "V3-EXQ-611",
+          "next_step": "Await V3-EXQ-611b manifest. On PASS: status moves to retune_validated, MECH-341 implementation_note refreshed in claims.yaml, V3-EXQ-611 manifest annotated supersedes->611b, governance index rebuild. On FAIL: route per behavioral_diversity_isolation_plan.md R2.c rule to next substrate iteration."
+        }
+      ],
       "priority": 2,
       "added_session": "governance-20260527T172644Z",
-      "last_seen_session": "governance-20260527T172644Z"
+      "last_seen_session": "implement-substrate-mech-341-retune-20260528T165000Z"
     }
   ],
   "last_seen_session": "exq590a-gate-correction-20260526T061037Z"

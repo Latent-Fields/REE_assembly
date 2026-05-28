@@ -34335,6 +34335,34 @@
     with frac_pre_ge2 >= 0.5). Behavioural P3 B_only / ablate_B / ALL_ON arms
     + R2.c rule promotion pending V3-EXQ-611 PASS. Design doc:
     REE_assembly/docs/architecture/mech_341_e3_score_diversity_preservation.md.
+    Retune 2026-05-28 (via /implement-substrate
+    implement-substrate-mech-341-retune-20260528T165000Z): V3-EXQ-611
+    FAILed substrate-readiness 2026-05-27T13:02Z (manifest
+    v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3.json)
+    -- ARM_1/3 entropy_bonus_max_abs 0.023-0.044 << observed
+    mean_top2_class_gap 0.27-1.96 (substrate fires but cannot move
+    selection ordering at scale=0.1); ARM_2 n_stratified_fired=0 across
+    all 3 seeds because the committed branch was never entered during
+    measurement and the prior implementation gated stratified_select to
+    the committed path only. Retune is two-pronged: (a) module change --
+    ree-v3/ree_core/predictors/e3_selector.py now consults
+    stratified_select on BOTH committed and uncommitted selection paths.
+    Bit-identical when score_diversity is None or sub-flag is False
+    (stratified_select returns None; caller falls through to legacy
+    argmin or multinomial). MECH-094 preserved via the existing
+    simulation_mode kwarg. 506/506 contracts PASS post-edit. (b) parameter
+    sweep -- V3-EXQ-611b queued (6-arm factorial: 3 option groups x 2
+    entropy_bias_scale values 1.0/2.0). NO config defaults changed per
+    implement-substrate skill rule; scales passed via per-arm
+    cfg_overrides. Acceptance criteria: C1 stratified_fired > 0 across
+    all OPT2/BOTH seeds; C2 entropy_bonus_max_abs >= 0.7 * scale on
+    majority of seeds in entropy-ON arms; C3 selected_classes >= 2 with
+    frac_pre_ge2 >= 0.5 on majority of seeds in at least one arm; R2.c
+    readiness cleared by at least one arm. PASS = >= 15/18 seeds complete
+    AND C1 AND (C2 OR C3). Sentinel routing: PASS routes to behavioural
+    successor; FAIL with C1=false routes to /diagnose-errors on
+    e3_selector.py wiring; FAIL with C1=true and C2/C3=false routes to
+    algorithm-level substrate revisit.
   evidence_quality_note: >
     No experimental evidence yet (substrate just landed 2026-05-27).
     Architectural argument grounded in (a) the ARC-065 distributed-pathway
