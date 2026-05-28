@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-28T16:47:07Z",
+  "generated_at": "2026-05-28T16:51:41Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -239,6 +239,29 @@
         "priority": 25,
         "claim_ids": [
           "MECH-341"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260528T165141Z-b320891e-claude_local",
+      "stable_hash": "b320891e8f93",
+      "igw_id_at_assign": "IGW-20260528-008",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-05-28T16:51:41Z",
+      "released_at": "2026-05-28T16:51:41Z",
+      "released_by": "claude_local",
+      "released_reason": "Brief stale: V3-EXQ-569 ran 2026-05-16 and was reclassified non_contributory; V3-EXQ-571/573/609 follow-on diagnostics + root-cause doc 2026-05-25 (evidence/planning/v3_exq_571_root_cause_2026-05-25.md) identify E2 world-forward per-candidate signal collapse as the upstream blocker. Matched-entropy FP-2 falsifier cannot fire on the current substrate. Real next step is /implement-substrate on E2 world-forward (separate session), NOT /queue-experiment. Plan-of-record behavioral_diversity_isolation_plan.md GAP-A node + status row 1 updated this session to status=blocked_pending_substrate.",
+      "released_event_for": "asn-20260528T164344Z-b320891e-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM child)",
+        "lane": "experiment",
+        "priority": 50,
+        "claim_ids": [
+          "ARC-065"
         ]
       }
     }

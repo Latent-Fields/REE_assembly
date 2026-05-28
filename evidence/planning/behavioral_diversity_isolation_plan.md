@@ -8,15 +8,15 @@ closure_plan:
   nodes:
     - id: "behavioral_diversity_isolation:GAP-A"
       title: "Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM child)"
-      phase: "P1"
-      status: partial
+      phase: "P1 falsifier blocked -> upstream substrate work"
+      status: blocked_pending_substrate
       severity: medium
-      owner_exq: "V3-EXQ-567 (done) + V3-EXQ-569 (queued, matched-noise control)"
+      owner_exq: "V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; FP-2 falsifier blocked on E2-world-forward per-candidate signal collapse"
       unblocks_claims: [ARC-065]
       depends_on: []
-      cross_plan_link: ["arc_062_rule_apprehension:GAP-H"]
-      last_updated: 2026-05-26
-      resume_condition: "V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path). V3-EXQ-569 matched-entropy control (FP-2: SP-CEM vs noise-matched comparator on entropy/coverage/trajectory_class_count) still pending -- this is the diversity-isolation falsifier. Apply R1.a (matched -> non_contributory, attention shifts to theories 2-4) or R1.b (SP-CEM > noise on trajectory_class_count -> theory 1 confirmed, advance to Rung 2) on 569 landing."
+      cross_plan_link: ["arc_062_rule_apprehension:GAP-H", "arc_062_rule_apprehension:GAP-B"]
+      last_updated: 2026-05-28
+      resume_condition: "V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path). V3-EXQ-569 matched-entropy sweep ran 2026-05-16 and was reclassified non_contributory at governance review: all 6 arms produced identical entropy (~0.496) because bias_fraction=0 for all diversity components -- the structured-vs-random comparison was never activated. V3-EXQ-571 PASS diagnostic confirmed F (forward model) dominates 88-89% of E3 score variance and ALL bias_fractions are machine-epsilon. V3-EXQ-573 10-arm bias-scale sweep (1x/5x/10x) reproduced the identical-arms collapse at 10x scale -> reclassified non_contributory; bias channel does not propagate at scale. V3-EXQ-609 per-candidate spread decomp (methodology fork from 571) surfaced curiosity emitting zero per-candidate vector. Root cause documented 2026-05-25 in evidence/planning/v3_exq_571_root_cause_2026-05-25.md: score_bias plumbing is correct, but the per-candidate signal is STRUCTURALLY ZERO -- all K candidates produce identical z_world after one E2 world-forward step (cand_world_pairwise_dist=0.0000) despite differing first actions. Same root cause as the 2026-05-17 ARC-062 GAP-B autopsy; that fix was scoped only to GatedPolicy. R1.a/R1.b cannot fire while the bias channel structurally carries no per-candidate variance. NEXT STEP is /implement-substrate on E2-world-forward per-candidate signal preservation (extends the 2026-05-17 GAP-B autopsy fix beyond GatedPolicy) -- NOT a /queue-experiment re-issue on the current substrate. After the substrate seam lands, queue V3-EXQ-569a as the matched-entropy FP-2 falsifier successor. IGW-20260528-008 (this node's owning IGW item) is stale and pending the substrate fix."
     - id: "behavioral_diversity_isolation:GAP-B"
       title: "Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)"
       phase: "P3 substrate landed -> readiness diagnostic"
@@ -31,14 +31,14 @@ closure_plan:
     - id: "behavioral_diversity_isolation:GAP-C"
       title: "Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)"
       phase: "P1"
-      status: in_progress
+      status: blocked_pending_substrate
       severity: medium
-      owner_exq: "V3-EXQ-544/545 (substrate landed); V3-EXQ-603a/603b FAIL; V3-EXQ-603c (training-phase fix) pending"
+      owner_exq: "V3-EXQ-544/545 substrate PASS 5/5 (2026-05-10); V3-EXQ-603a/603b/603c all FAIL non_contributory (603c 2026-05-27T11:38Z, 8/12 cells aborted on P1 survival gate); cluster-absorbed into failure_autopsy_V3-EXQ-591_2026-05-27"
       unblocks_claims: [MECH-313, MECH-260, Q-045]
       depends_on: []
       cross_plan_link: ["arc_062_rule_apprehension:GAP-H"]
-      last_updated: 2026-05-26
-      resume_condition: "MECH-313 + MECH-314 substrate landed 2026-05-10 (V3-EXQ-544/545 5/5 PASS). Q-045 4-arm ablation (313 OFF / 313 only / 260 only / both ON) is the empirical resolution path. V3-EXQ-603a/603b FAILed (last 603b 2026-05-26T07:14Z FAIL/mixed); failure_autopsy 2026-05-25 verdict: substrate is operative but design-blocked at training-phase config (call-path / FIFO warmup / obs_harm_a wiring). V3-EXQ-603c (training-phase fix successor) is the next contributory retest -- not yet queued. Apply R3.a / R3.b / R3.c on 603c landing; matched-entropy gate against MATCHED_NOISE arm is the FP-2 control."
+      last_updated: 2026-05-28
+      resume_condition: "Cluster-absorbed (591 autopsy section 6: fourth member of the substrate-uniform z_goal-zero family alongside 591 / 540 / 590a). Per gov-correction-20260527T175054Z the cluster routes epistemic_category=substrate_ceiling V3 (substrate-enrichment-within-V3), NOT substrate_conditional V4 as the initial 2026-05-27 governance stamp said. V3-EXQ-603c (P0+P1 phased training fix) FAILed non_contributory 2026-05-27T11:38Z: 8/12 cells aborted at the P1 survival gate (median ep length < 75 under target env), only 4 cells reached P2; ARM_2 / ARM_3 entropy lifted ~0.034 / 0.038 above ARM_0 / ARM_1 but FIFO temporal gate failed in all surviving cells; c1 / c2 / c3 all false. The 603-chain (a/b/c) is complete; no V3-EXQ-603d is owed under the current substrate. MECH-341 (e3_score_diversity, Layer-B sibling) landed 2026-05-27 but its substrate-readiness diagnostic V3-EXQ-611 also FAILed non_contributory 2026-05-27T13:02Z, ruling out the naive 'MECH-341 alone rescues GAP-C' hypothesis. Three substrate prerequisites (per 591 autopsy section 7) must clear before V3-EXQ-603d / 591b is queued: (1) MECH-307 default-value recalibration validated -- V3-EXQ-540e routing; (2) goal-pipeline training regime produces non-trivial z_goal in default config -- open; (3) InfantCurriculumScheduler Phase 0->1 exit signal tuned to achievable signal magnitudes -- recommended /implement-substrate target (lower H_pos fraction-of-max threshold from 0.70 toward ~0.20-0.30 OR replace with z_goal-norm / residue-coverage gate). Once (1)-(3) clear, queue V3-EXQ-603d via /queue-experiment with a partial 7-criterion gate revision (C3 trivially saturating, C5 / C6 / C7 sentinel-emitting). FP-2 matched-entropy gate against MATCHED_NOISE arm retained. R3.a / R3.b / R3.c are not applicable until a contributory PASS / FAIL is reached."
     - id: "behavioral_diversity_isolation:GAP-D"
       title: "Theory 4 / Layer D: V_s regional verisimilitude staleness (MECH-269 / MECH-269b)"
       phase: "P1"
@@ -356,7 +356,7 @@ score distribution data will tell us whether the collapse is happening at near-t
 
 | Theory | Layer | Claim | Substrate status | Falsifier | Result | Decision |
 |--------|-------|-------|------------------|-----------|--------|----------|
-| 1 CEM collapse | A | ARC-065 (SP-CEM child) | landed 2026-05-17 main-path | V3-EXQ-567 / V3-EXQ-569 | 567 PASS (entropy 0.012->0.497); 569 queued | matched-entropy gate pending |
+| 1 CEM collapse | A | ARC-065 (SP-CEM child) | landed 2026-05-17 main-path; **E2-world-forward per-candidate signal collapse identified 2026-05-25 (root cause doc)** | V3-EXQ-567 / V3-EXQ-569 / V3-EXQ-571 / V3-EXQ-573 / V3-EXQ-609 | 567 PASS (entropy 0.012->0.497); 569 + 573 non_contributory (bias channel structurally zero); 570/571/609 diagnostics landed | **R1 falsifier blocked**: per-candidate bias signal structurally zero (all K cands -> identical z_world after one E2 step). Awaiting E2-world-forward substrate fix; V3-EXQ-569a queued after substrate lands |
 | 2 E3 scoring | B | **MECH-341** (registered 2026-05-25) | **IMPLEMENTED 2026-05-27 (options 1+2 togglable)** | V3-EXQ-608 P2 (PASS R2a large-gap 2026-05-26); V3-EXQ-611 P3 substrate-readiness diagnostic queued | 608 majority R2a fired; substrate landed; readiness eval pending | apply R2.c on V3-EXQ-611 PASS + B_only / ablate_B successor |
 | 3 noise floor | C | MECH-313 | landed | V3-EXQ-543b ARM_MECH313 (pending Q-045 retest) | autopsy 603b: substrate operative but design-blocked | retest via 603c (training-phase fix) |
 | 4 V_s stale | D | MECH-269 / 269b | substrate-ready (IGW-021) | V3-EXQ-550 | running | apply R4.a / R4.b / R4.c on landing |
