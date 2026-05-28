@@ -3867,14 +3867,14 @@
       }
     },
     "ARC-062": {
-      "confidence_rationale": "exp=9 entry(s), lit=21 entry(s), exp_conf=0.519, lit_conf=0.861",
+      "confidence_rationale": "exp=9 entry(s), lit=22 entry(s), exp_conf=0.519, lit_conf=0.865",
       "direction_counts": {
         "mixed": 4,
-        "supports": 16,
+        "supports": 17,
         "unknown": 0,
         "weakens": 10
       },
-      "entries_total": 30,
+      "entries_total": 31,
       "evidence_class_counts": {
         "exp:simulation": 9,
         "lit:behavioral_animal": 4,
@@ -3882,7 +3882,7 @@
         "lit:electrophysiology_single_unit": 3,
         "lit:fmri_connectivity": 2,
         "lit:fmri_lesion": 1,
-        "lit:theoretical_review": 5
+        "lit:theoretical_review": 6
       },
       "evidence_level_counts": {
         "C": 9
@@ -3898,29 +3898,13 @@
         "unknown": 0,
         "weakens": 9
       },
-      "latest_run_id": "v3_exq_543l_arc062_mode_separation_gap_b_falsifier_20260526T023059Z_v3",
-      "latest_timestamp_utc": "2026-05-26T02:30:59.480709Z",
-      "literature_confidence": 0.861,
-      "literature_confidence_parallel": 0.861,
-      "overall_confidence": 0.69,
+      "latest_run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
+      "literature_confidence": 0.865,
+      "literature_confidence_parallel": 0.865,
+      "overall_confidence": 0.692,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-062",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_543f_arc062_onehot_dacc_falsifier",
-          "failure_signatures": [],
-          "run_id": "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T130300Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-05-17T13:03:00.234141Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-062",
@@ -3984,12 +3968,28 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-05-26T02:30:59.480709Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-062",
+          "confidence": 0.7,
+          "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         }
       ],
-      "runs_total": 30,
+      "runs_total": 31,
       "source_counts": {
         "experimental": 9,
-        "literature": 21
+        "literature": 22
       }
     },
     "ARC-063": {
@@ -4246,23 +4246,23 @@
       }
     },
     "ARC-065": {
-      "confidence_rationale": "exp=8 entry(s), lit=40 entry(s), exp_conf=0.61, lit_conf=0.869",
+      "confidence_rationale": "exp=8 entry(s), lit=46 entry(s), exp_conf=0.61, lit_conf=0.87",
       "direction_counts": {
         "mixed": 5,
-        "supports": 37,
+        "supports": 43,
         "unknown": 0,
         "weakens": 6
       },
-      "entries_total": 48,
+      "entries_total": 54,
       "evidence_class_counts": {
         "exp:simulation": 8,
         "lit:behavioral_animal": 4,
         "lit:behavioral_human": 4,
-        "lit:computational_model": 19,
+        "lit:computational_model": 22,
         "lit:connectome_mechanistic_review": 3,
         "lit:electrophysiology_single_unit": 1,
         "lit:fmri_connectivity": 2,
-        "lit:theoretical_review": 7
+        "lit:theoretical_review": 10
       },
       "evidence_level_counts": {
         "C": 8
@@ -4278,108 +4278,100 @@
         "unknown": 0,
         "weakens": 6
       },
-      "latest_run_id": "2026-05-16_rl_diversity_paired_dennis2020",
-      "latest_timestamp_utc": "2026-05-16T11:18:42Z",
-      "literature_confidence": 0.869,
-      "literature_confidence_parallel": 0.869,
+      "latest_run_id": "2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023",
+      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
+      "literature_confidence": 0.87,
+      "literature_confidence_parallel": 0.87,
       "overall_confidence": 0.74,
       "pass_runs": 2,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-065",
-          "confidence": 0.8,
-          "confidence_rationale": "ICLR publication; strong theoretical result (unique optimum = even state-space partition); multiple robotic benchmarks confirm diverse skill emergence. Mapping fidelity is high for ARC-065 (behavioral diversity generation). The REE analog -- using mutual information between context and visited states to prevent mode collapse -- is structurally identical to DIAYN's objective. Main caveat: DIAYN operates in pre-training (no task reward); REE needs diversity during task learning, which is harder.",
+          "confidence": 0.68,
+          "confidence_rationale": "Contrastive losses on the next-state prediction explicitly pull together (s_t, a_t) -> s_{t+1} pairs and push apart distractors. This is structurally the right inductive bias for preserving per-action divergence -- you cannot solve the contrastive task if K different actions all map to the same predicted z. Direct ML evidence for the kind of training objective option (ii) would use. Workshop venue and lack of explicit per-action-distinguishability metrics knock confidence down somewhat.",
           "evidence_class": "lit:computational_model",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
           "failure_signatures": [
-            "Skills may fail to scale to very high-dimensional observation spaces, suggesting MI-based diversity objectives need a compact behavioral embedding (not raw observations) to work in REE's latent space.",
-            "Some behaviors remain suboptimal even after training (e.g., ant forward locomotion). DIAYN can learn orthogonal skills that are individually suboptimal rather than the dominant-plus-diverse structure REE needs.",
-            "DIAYN requires domain knowledge to incorporate priors about task-relevant features -- without this, the diversity objective may reward modes that are irrelevant to the task (undirected diversity problem)."
+            "Reconstruction-based latent dynamics losses (the standard RSSM objective) are agnostic to whether actions are distinguishable in the predicted latent -- they only require pixel reconstruction; the contrastive alternative directly penalises action-conditional indistinguishability."
           ],
-          "run_id": "2026-05-16_rl_diversity_diayn_eysenbach2019",
+          "run_id": "2026-05-28_e2_action_divergence_contrastive_rssm_srivastava2021",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T11:18:42Z"
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-065",
+          "confidence": 0.7,
+          "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-065",
           "confidence": 0.78,
-          "confidence_rationale": "NeurIPS 2020 spotlight. Introduces DvD (Diversity via Determinants), which measures population diversity as the volume of a behavioral embedding manifold via the log-determinant of the kernel matrix. Critical finding: traditional pairwise diversity methods suffer from cycling and redundancy -- only volume-based measures prevent degeneracy. Mapping fidelity is high for ARC-065 (what 'effective' diversity means operationally). Caveat: operates on a population of agents, not a single policy with context variable; direct translation to REE's single-agent CEM requires adaptation.",
+          "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
           "evidence_class": "lit:computational_model",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
           "failure_signatures": [
-            "Pairwise distance-based diversity measures (e.g. mean L2 distance between policies) suffer from cycling: a population can have high mean pairwise distance but still cluster into a few degenerate modes. Volume-based measures are necessary to catch this failure mode.",
-            "Explicitly boosting diversity often hurts performance when reward-landscape exploration is not needed -- REE should not apply diversity pressure uniformly throughout training but adaptively (DvD uses online learning to modulate diversity weight).",
-            "Behavioral embeddings that are domain-specific or handcrafted introduce an inductive bias that shapes which diversity modes are captured; REE's embedding must be tuned to capture route-mode diversity, not just action diversity."
+            "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+            "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
           ],
-          "run_id": "2026-05-16_rl_diversity_dvd_parkerholder2020",
+          "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T11:18:42Z"
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-065",
-          "confidence": 0.77,
-          "confidence_rationale": "JMLR publication (submitted 2017, published 2022); grounded in developmental robotics and infant curiosity research; demonstrates automatic curriculum generation through learning progress maximisation across a parameterised goal space. Highly relevant to REE's infant-stage substrate problem: IMGEP's learning-progress-driven curriculum prevents monostrategy by actively seeking goals where the agent is currently making progress, rather than goals where it has already converged. Maps onto ARC-066 (tonic vigor) and ARC-072 (hippocampal cue-indexed goal repertoire). Main caveat: IMGEP's goal space is explicitly parameterised and continuous; REE's goal space is more implicit.",
+          "confidence": 0.6,
+          "confidence_rationale": "Most recent of the three ML entries -- February 2026 preprint, not yet peer-reviewed. The Variational Information Maximisation objective (maximise conditional mutual information between predicted next-state and latent actions given prior states) is structurally the contrapositive of PLSM's objective and addresses the same family of failure. Useful as the third independent ML lever for option (ii). Confidence kept modest because it is a preprint and because the latent-action framing is one degree removed from REE's setting (REE has explicit, observable actions; SWIRL treats them as inferred).",
           "evidence_class": "lit:computational_model",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
           "failure_signatures": [
-            "Learning-progress-based goal selection can stall if the agent reaches a plateau on all current goals simultaneously -- the system needs a mechanism to invent new goals or expand the goal space when progress is zero everywhere.",
-            "IMGEP requires the agent to have already learned to pursue some goals before it can generate a useful learning-progress curriculum. A cold-start agent with no goal representation cannot initialise the system -- suggests IMGEP-like curricula require a bootstrapping phase (infant babbling analog) before they can generate diversity.",
-            "Without an explicit goal-space parameterisation, learning progress is not computable. REE's implicit goal representation (residue field wanting) needs to be made explicit enough to track per-goal progress for an IMGEP-like curriculum to operate."
+            "World models without explicit action-conditional information-maximisation can produce next-state predictions that are insensitive to which action was taken; identifiability-via-MI is the cure."
           ],
-          "run_id": "2026-05-16_rl_diversity_imgep_forestier2017",
+          "run_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T11:18:42Z"
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-065",
-          "confidence": 0.75,
-          "confidence_rationale": "Foundational quality-diversity paper, extremely highly cited; introduces the behavioral descriptor / feature map concept that has become the standard approach to structural diversity preservation. Directly relevant to ARC-065. Core finding: maintaining a map of the best solution found per behavioral descriptor cell structurally prevents monostrategy by forcing the archive to retain high-quality solutions across the full behavioral space. Mapping fidelity moderate: MAP-Elites is a population/archive algorithm, not a single-policy algorithm; however the behavioral descriptor concept is directly applicable to REE's candidate evaluation.",
-          "evidence_class": "lit:computational_model",
+          "confidence": 0.71,
+          "confidence_rationale": "Single-author Cullen lab review; she has been the dominant figure in vestibular-cerebellar single-unit physiology for two decades. The key contribution for our purposes is the explicit voluntary-vs-passive distinction: during active self-motion, the vestibular cerebellum receives corollary discharge / efference copy and gates the predicted sensory consequences differently from passive perturbations. This is direct circuit-level evidence that the biological forward model is gated by which specific action is taken, not by an action-averaged proxy.",
+          "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_rl_diversity_monostrategy_curriculum",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
           "failure_signatures": [
-            "MAP-Elites requires a user-specified behavioral descriptor space. If the descriptor does not capture the behaviorally relevant dimensions of variation (e.g. specifying 'limb usage' for a robot but the relevant diversity axis is 'route taken'), the archive will be diverse on the wrong dimensions and monostrategy on the relevant ones.",
-            "Within each cell of the archive, MAP-Elites only retains the single best solution by fitness -- it does not maintain diversity within a cell. This means it enforces between-cell diversity but not within-cell diversity.",
-            "MAP-Elites scales poorly in very high-dimensional behavioral descriptor spaces (curse of dimensionality in the archive grid)."
+            "When biological forward models lose their action-specific gating (e.g. in vestibular schwannoma or cerebellar damage), self-motion prediction fails specifically for the action class affected -- not uniformly. Demonstrates that the substrate maintains per-action divergence at the single-trial level.",
+            "Passive vs active self-motion experiments demonstrate that the cerebellar prediction is shaped by which action is being executed, not just by a generic motor-state prior."
           ],
-          "run_id": "2026-05-16_rl_diversity_mapelites_mouret2015",
+          "run_id": "2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T11:18:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-065",
-          "confidence": 0.76,
-          "confidence_rationale": "NeurIPS 2020; strong zero-shot transfer results; decision-theoretic grounding (minimax regret) for curriculum generation. Relevant to REE's environment design question: enriching the reef with competing attractors is necessary but not sufficient; the curriculum of which attractors are salient must match the agent's current capabilities. PAIRED shows that environments calibrated to the edge of agent competence (regret-based) prevent monostrategy by constantly exposing weaknesses. Mapping fidelity moderate: PAIRED targets environment generation, REE's problem is within a fixed environment; the curriculum insight is extractable but the full algorithm is not directly applicable.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_rl_diversity_monostrategy_curriculum",
-          "failure_signatures": [
-            "Adding competing attractors to an environment does not prevent monostrategy if the agent's current policy makes one attractor overwhelmingly dominant -- the agent needs to encounter the competing attractors at a difficulty level where they are also tractable. Enriched environments without difficulty calibration produce the same monostrategy as unenriched ones.",
-            "Minimax adversarial environment design (without the regret correction) produces environments the agent cannot solve at all -- pure difficulty maximisation is as harmful as no diversity pressure.",
-            "Regret-based design requires a second (antagonist) agent as a counterfactual baseline -- computationally expensive for REE's current single-agent setup."
-          ],
-          "run_id": "2026-05-16_rl_diversity_paired_dennis2020",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T11:18:42Z"
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         }
       ],
-      "runs_total": 48,
+      "runs_total": 54,
       "source_counts": {
         "experimental": 8,
-        "literature": 40
+        "literature": 46
       }
     },
     "ARC-066": {
@@ -12843,14 +12835,14 @@
       }
     },
     "MECH-094": {
-      "confidence_rationale": "exp=1 entry(s), lit=22 entry(s), exp_conf=0.711, lit_conf=0.846",
+      "confidence_rationale": "exp=1 entry(s), lit=25 entry(s), exp_conf=0.711, lit_conf=0.851",
       "direction_counts": {
         "mixed": 2,
-        "supports": 20,
+        "supports": 23,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 23,
+      "entries_total": 26,
       "evidence_class_counts": {
         "exp:simulation": 1,
         "lit:behavioral_animal": 1,
@@ -12863,7 +12855,7 @@
         "lit:electrophysiology_single_unit": 1,
         "lit:fmri_connectivity": 3,
         "lit:meta_analysis": 1,
-        "lit:theoretical_review": 4
+        "lit:theoretical_review": 7
       },
       "evidence_level_counts": {
         "C": 1
@@ -12879,64 +12871,13 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013",
-      "latest_timestamp_utc": "2026-05-16T12:01:01Z",
-      "literature_confidence": 0.846,
-      "literature_confidence_parallel": 0.846,
-      "overall_confidence": 0.812,
+      "latest_run_id": "2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023",
+      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
+      "literature_confidence": 0.851,
+      "literature_confidence_parallel": 0.851,
+      "overall_confidence": 0.816,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-094",
-          "confidence": 0.72,
-          "confidence_rationale": "Demonstrates that working memory and inhibitory control each partially mediate the relationship between counterfactual thinking and false belief performance in 3-5 year olds (N=76). This establishes the executive function prerequisites for counterfactual cognition in the same age window as pretend play emergence. The specific dissociation of working memory and inhibitory control as separable mediators maps onto the dual demands REE places on the hypothesis_tag system (maintaining the synthetic representation in working memory while inhibiting the real-consequence pathway). Confidence moderate-high: direct measurement of EF components, but correlational design limits causal inference about the developmental order.",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_pretend_play_counterfactual",
-          "failure_signatures": [
-            "After controlling for both working memory and inhibitory control, counterfactual reasoning still accounts for unique variance in false belief, suggesting a residual representational capacity (Leslie's PRETEND operator; REE's hypothesis tag) beyond pure EF.",
-            "3-year-olds show floor performance on both counterfactual and false belief tasks -- the 3-to-4 year developmental jump correlates with EF maturation, placing the pretend play / commitment architecture calibration window at age 3-4."
-          ],
-          "run_id": "2026-05-16_mech198_counterfactual_ef_false_belief_drayton2011",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T12:01:01Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-094",
-          "confidence": 0.82,
-          "confidence_rationale": "This is the canonical theoretical paper establishing the decoupling/metarepresentation framework for pretend play. Leslie's decoupling mechanism -- creating a metarepresentational copy that suspends reference, truth, and existence relations -- maps directly onto REE's hypothesis tag (MECH-094). The framework is widely replicated and remains the dominant theoretical account. Confidence is high for the theoretical mapping (REE's hypothesis tag IS a decoupling mechanism). Confidence not maximal because the paper is theoretical (no direct neurobiological substrate specified) and some aspects of Leslie's 'PRETEND' operator remain contested (Jarrold et al. 2010 show pretense understanding can occur without full metarepresentation).",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_pretend_play_counterfactual",
-          "failure_signatures": [
-            "If pretend play required full metarepresentation, children with theory-of-mind delays would show zero pretend play -- but autism literature shows partial pretend play even with ToM deficits, suggesting the decoupling mechanism is separable from full propositional metarepresentation.",
-            "The PRETEND operator in Leslie's framework is unitary; REE predicts a two-tag system (hypothesis tag + play frame tag) that must co-operate -- this is a REE-specific elaboration beyond what Leslie's original framework entails."
-          ],
-          "run_id": "2026-05-16_mech198_decoupling_metarep_leslie1987",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T12:01:01Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-094",
-          "confidence": 0.79,
-          "confidence_rationale": "Structural equation modelling with N=189 children (mean age 4.8 years) shows pretend play and counterfactual reasoning load onto separate but significantly correlated latent constructs (r=.51, p=.001), both predicted by a higher-order latent imaginative capacity. EF accounts for unique variance in both (beta=.21 and .22 respectively). This is the most methodologically rigorous empirical test of the Weisberg-Gopnik imagination-as-shared-substrate hypothesis. Direct relevance to MECH-198: the imagination latent factor is what REE would call the hypothesis-tag system exercised across both task types. Confidence slightly reduced because the 'imagination' latent is inferred from structural model fit rather than independently measured; the model shows good but not excellent fit (CFI=.94, RMSEA=.08).",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_pretend_play_counterfactual",
-          "failure_signatures": [
-            "If EF were the only driver (no shared imagination construct), the SEM model would fit equally well without the imagination latent factor -- but model fit degrades substantially when imagination is removed, supporting a distinct imaginative capacity beyond EF.",
-            "Object substitution, referring to absent objects, verbal property attribution, and sequenced imaginary actions are the behavioral indicators of the pretend play construct -- agents lacking any of these show reduced counterfactual transfer, each mapping to distinct aspects of REE's frame+hypothesis_tag architecture."
-          ],
-          "run_id": "2026-05-16_mech198_imagination_ef_pretend_francis2023",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T12:01:01Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-094",
@@ -12970,12 +12911,61 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-16T12:01:01Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-094",
+          "confidence": 0.74,
+          "confidence_rationale": "Mainline review establishing the cerebro-cerebellum as a forward model whose dentate-nucleus outputs are predictive for mossy-fibre inputs. The biological forward model is built around the assumption that different motor commands give rise to different predicted sensory consequences -- per-action divergence is the operating regime, not an emergent property to be defended. Strong biological prior that option (ii) (fix E2 to preserve per-action divergence) is the architecturally correct target, not a workaround.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "Loss of forward-model prediction in cerebellar ataxia produces movement kinematics that lag rather than lead the target -- the system reverts from predictive to reactive control. By analogy, an action-collapsed E2 produces planning that cannot distinguish proposed actions from their actual consequences; the predictive function is lost even when the substrate is nominally intact."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_cerebro_cerebellum_tanaka2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-094",
+          "confidence": 0.7,
+          "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-094",
+          "confidence": 0.71,
+          "confidence_rationale": "Single-author Cullen lab review; she has been the dominant figure in vestibular-cerebellar single-unit physiology for two decades. The key contribution for our purposes is the explicit voluntary-vs-passive distinction: during active self-motion, the vestibular cerebellum receives corollary discharge / efference copy and gates the predicted sensory consequences differently from passive perturbations. This is direct circuit-level evidence that the biological forward model is gated by which specific action is taken, not by an action-averaged proxy.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "When biological forward models lose their action-specific gating (e.g. in vestibular schwannoma or cerebellar damage), self-motion prediction fails specifically for the action class affected -- not uniformly. Demonstrates that the substrate maintains per-action divergence at the single-trial level.",
+            "Passive vs active self-motion experiments demonstrate that the cerebellar prediction is shaped by which action is being executed, not just by a generic motor-state prior."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         }
       ],
-      "runs_total": 23,
+      "runs_total": 26,
       "source_counts": {
         "experimental": 1,
-        "literature": 22
+        "literature": 25
       }
     },
     "MECH-095": {
@@ -15838,7 +15828,7 @@
       }
     },
     "MECH-135": {
-      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.714, lit_conf=0.82",
+      "confidence_rationale": "exp=7 entry(s), lit=4 entry(s), exp_conf=0.713, lit_conf=0.82",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -15856,8 +15846,8 @@
         "C": 7
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.714,
-      "experimental_confidence_decoupled": 0.714,
+      "experimental_confidence": 0.713,
+      "experimental_confidence_decoupled": 0.713,
       "fail_runs": 2,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -25866,16 +25856,18 @@
       }
     },
     "MECH-314a": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.757",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.862",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 5,
       "evidence_class_counts": {
-        "lit:connectome_mechanistic_review": 1
+        "lit:computational_model": 3,
+        "lit:connectome_mechanistic_review": 1,
+        "lit:theoretical_review": 1
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -25889,11 +25881,11 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-05-16_arc065_primate_curiosity_circuits_monosov2024",
-      "latest_timestamp_utc": "2026-05-16T11:18:07Z",
-      "literature_confidence": 0.757,
-      "literature_confidence_parallel": 0.757,
-      "overall_confidence": 0.757,
+      "latest_run_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
+      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
+      "literature_confidence": 0.862,
+      "literature_confidence_parallel": 0.862,
+      "overall_confidence": 0.862,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -25912,12 +25904,77 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-16T11:18:07Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-314a",
+          "confidence": 0.74,
+          "confidence_rationale": "Mainline review establishing the cerebro-cerebellum as a forward model whose dentate-nucleus outputs are predictive for mossy-fibre inputs. The biological forward model is built around the assumption that different motor commands give rise to different predicted sensory consequences -- per-action divergence is the operating regime, not an emergent property to be defended. Strong biological prior that option (ii) (fix E2 to preserve per-action divergence) is the architecturally correct target, not a workaround.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "Loss of forward-model prediction in cerebellar ataxia produces movement kinematics that lag rather than lead the target -- the system reverts from predictive to reactive control. By analogy, an action-collapsed E2 produces planning that cannot distinguish proposed actions from their actual consequences; the predictive function is lost even when the substrate is nominally intact."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_cerebro_cerebellum_tanaka2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-314a",
+          "confidence": 0.68,
+          "confidence_rationale": "Contrastive losses on the next-state prediction explicitly pull together (s_t, a_t) -> s_{t+1} pairs and push apart distractors. This is structurally the right inductive bias for preserving per-action divergence -- you cannot solve the contrastive task if K different actions all map to the same predicted z. Direct ML evidence for the kind of training objective option (ii) would use. Workshop venue and lack of explicit per-action-distinguishability metrics knock confidence down somewhat.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "Reconstruction-based latent dynamics losses (the standard RSSM objective) are agnostic to whether actions are distinguishable in the predicted latent -- they only require pixel reconstruction; the contrastive alternative directly penalises action-conditional indistinguishability."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_contrastive_rssm_srivastava2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-314a",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+            "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-314a",
+          "confidence": 0.6,
+          "confidence_rationale": "Most recent of the three ML entries -- February 2026 preprint, not yet peer-reviewed. The Variational Information Maximisation objective (maximise conditional mutual information between predicted next-state and latent actions given prior states) is structurally the contrapositive of PLSM's objective and addresses the same family of failure. Useful as the third independent ML lever for option (ii). Confidence kept modest because it is a preprint and because the latent-action framing is one degree removed from REE's setting (REE has explicit, observable actions; SWIRL treats them as inferred).",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "World models without explicit action-conditional information-maximisation can produce next-state predictions that are insensitive to which action was taken; identifiability-via-MI is the cure."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 5,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 5
       }
     },
     "MECH-314b": {
@@ -26479,18 +26536,18 @@
       }
     },
     "MECH-320": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.348, lit_conf=0.864",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.348, lit_conf=0.896",
       "direction_counts": {
         "mixed": 0,
-        "supports": 3,
+        "supports": 5,
         "unknown": 0,
         "weakens": 2
       },
-      "entries_total": 5,
+      "entries_total": 7,
       "evidence_class_counts": {
         "exp:simulation": 2,
         "lit:behavioral_animal": 1,
-        "lit:computational_model": 1,
+        "lit:computational_model": 3,
         "lit:theoretical_review": 1
       },
       "evidence_level_counts": {
@@ -26507,45 +26564,13 @@
         "unknown": 0,
         "weakens": 2
       },
-      "latest_run_id": "2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007",
-      "latest_timestamp_utc": "2026-05-19T07:12:18Z",
-      "literature_confidence": 0.864,
-      "literature_confidence_parallel": 0.864,
-      "overall_confidence": 0.658,
+      "latest_run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
+      "literature_confidence": 0.896,
+      "literature_confidence_parallel": 0.896,
+      "overall_confidence": 0.677,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-320",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_549_arc066_tonic_vigor_discriminative_pair",
-          "failure_signatures": [],
-          "run_id": "v3_exq_549_arc066_tonic_vigor_discriminative_pair_20260511T190124Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-05-11T19:01:24Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-320",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_573_arc065_bias_scale_sweep",
-          "failure_signatures": [],
-          "run_id": "v3_exq_573_arc065_bias_scale_sweep_20260516T083605Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-05-16T08:36:05Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-320",
@@ -26596,12 +26621,45 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-19T07:12:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-320",
+          "confidence": 0.68,
+          "confidence_rationale": "Contrastive losses on the next-state prediction explicitly pull together (s_t, a_t) -> s_{t+1} pairs and push apart distractors. This is structurally the right inductive bias for preserving per-action divergence -- you cannot solve the contrastive task if K different actions all map to the same predicted z. Direct ML evidence for the kind of training objective option (ii) would use. Workshop venue and lack of explicit per-action-distinguishability metrics knock confidence down somewhat.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "Reconstruction-based latent dynamics losses (the standard RSSM objective) are agnostic to whether actions are distinguishable in the predicted latent -- they only require pixel reconstruction; the contrastive alternative directly penalises action-conditional indistinguishability."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_contrastive_rssm_srivastava2021",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-320",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+            "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         }
       ],
-      "runs_total": 5,
+      "runs_total": 7,
       "source_counts": {
         "experimental": 2,
-        "literature": 3
+        "literature": 5
       }
     },
     "MECH-332": {
@@ -35465,24 +35523,24 @@
       }
     },
     "SD-033a": {
-      "confidence_rationale": "exp=4 entry(s), lit=17 entry(s), exp_conf=0.738, lit_conf=0.871",
+      "confidence_rationale": "exp=4 entry(s), lit=19 entry(s), exp_conf=0.738, lit_conf=0.878",
       "direction_counts": {
         "mixed": 9,
-        "supports": 11,
+        "supports": 13,
         "unknown": 0,
         "weakens": 1
       },
-      "entries_total": 21,
+      "entries_total": 23,
       "evidence_class_counts": {
         "exp:simulation": 4,
         "lit:behavioral_animal": 1,
-        "lit:computational_model": 1,
+        "lit:computational_model": 2,
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_lfp": 3,
         "lit:electrophysiology_single_unit": 6,
         "lit:empirical_animal": 1,
         "lit:fmri_lesion": 1,
-        "lit:theoretical_review": 3
+        "lit:theoretical_review": 4
       },
       "evidence_level_counts": {
         "C": 4
@@ -35498,47 +35556,13 @@
         "unknown": 0,
         "weakens": 1
       },
-      "latest_run_id": "2026-04-28_frontal_goal_grounding_reuniens_swm_synchrony_hallock2016",
-      "latest_timestamp_utc": "2026-04-28T03:57:38Z",
-      "literature_confidence": 0.871,
-      "literature_confidence_parallel": 0.871,
-      "overall_confidence": 0.804,
+      "latest_run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
+      "literature_confidence": 0.878,
+      "literature_confidence_parallel": 0.878,
+      "overall_confidence": 0.808,
       "pass_runs": 4,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-033a",
-          "confidence": 0.72,
-          "confidence_rationale": "High-quality empirical paper (Nature 2001, single-unit recordings in macaque lateral PFC during a same/different rule task). Directly relevant to SD-033a's rule_state representation: a substantial fraction of PFC neurons coded the abstract rule independent of stimulus identity. For A1 specifically, however, the evidence is mixed. Rule-selective single units demonstrate that distinct rule states produce distinct PFC activity patterns (which is necessary for any rule-conditional bias projection, per-candidate or uniform), but the paper does not measure how that rule signal is read out by downstream choice circuits -- so it cannot discriminate between a rule-modulated uniform gain and a rule-modulated per-candidate weighting at the projection step. Held below 0.8 because the projection granularity question is one ARC removed from what was actually recorded.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_sd_033a",
-          "failure_signatures": [
-            "Rule-selective single units in PFC are necessary but not sufficient evidence for the per-candidate bias landing of SD-033a. If downstream readout treats the population rule signal as a single scalar (e.g. via low-rank projection onto a one-dimensional rule axis), the same single-unit data would be compatible with the uniform-gain alternative.",
-            "Wallis 2001 measured rule coding during a same/different decision with two abstract rules; SD-033a's bias projection question concerns multi-candidate trajectory selection in E3. The paper does not exercise the multi-candidate regime, so its evidence on per-candidate vs uniform-gain projection is at best indirect."
-          ],
-          "run_id": "2026-04-27_sd_033a_a1_rule_selective_neurons_wallis2001",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-27T16:46:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-033a",
-          "confidence": 0.82,
-          "confidence_rationale": "Nature paper with optogenetic dissociation of encoding vs maintenance vs retrieval phases, single-unit recording in mPFC, gamma-coherence analysis. Direct mechanistic evidence that mPFC depends on hippocampal input ONLY during cue encoding -- once cached, PFC maintains the representation locally without HPC input. This is a temporal/phase-specific dissociation that makes 'compact handle vs rich readout' a phase-dependent question rather than a forced binary. Mapping fidelity is high for the encoding-phase claim; lower for any extension to non-spatial goal representations. Confidence sits at 0.82 because the result is decisive within its scope but doesn't directly speak to the OFC/lateral-PFC subdivisions REE distinguishes in SD-033a/b.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_frontal_goal_grounding",
-          "failure_signatures": [
-            "Once a spatial cue is cached in mPFC, hippocampal input is NOT required for maintenance or retrieval. This weakens any architectural reading where frontal subdivisions consume rich HPC-keyed content continuously across the working memory cycle. Maintenance is local-to-PFC.",
-            "The dependence is specific to the encoding phase. An architectural commitment to 'frontal systems consume z_goal-keyed readouts of E1 always' would be over-strong relative to the biology -- the rich-readout interface is gated to specific cognitive phases (encoding events), not continuously open."
-          ],
-          "run_id": "2026-04-28_frontal_goal_grounding_hpc_pfc_encoding_spellman2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-28T03:57:38Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-033a",
@@ -35589,12 +35613,45 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-28T03:57:38Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-033a",
+          "confidence": 0.7,
+          "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-033a",
+          "confidence": 0.78,
+          "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+            "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
         }
       ],
-      "runs_total": 21,
+      "runs_total": 23,
       "source_counts": {
         "experimental": 4,
-        "literature": 17
+        "literature": 19
       }
     },
     "SD-033b": {
@@ -101665,6 +101722,300 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-062",
+      "confidence": 0.7,
+      "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-065",
+      "confidence": 0.74,
+      "confidence_rationale": "Mainline review establishing the cerebro-cerebellum as a forward model whose dentate-nucleus outputs are predictive for mossy-fibre inputs. The biological forward model is built around the assumption that different motor commands give rise to different predicted sensory consequences -- per-action divergence is the operating regime, not an emergent property to be defended. Strong biological prior that option (ii) (fix E2 to preserve per-action divergence) is the architecturally correct target, not a workaround.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Loss of forward-model prediction in cerebellar ataxia produces movement kinematics that lag rather than lead the target -- the system reverts from predictive to reactive control. By analogy, an action-collapsed E2 produces planning that cannot distinguish proposed actions from their actual consequences; the predictive function is lost even when the substrate is nominally intact."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_cerebro_cerebellum_tanaka2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-065",
+      "confidence": 0.68,
+      "confidence_rationale": "Contrastive losses on the next-state prediction explicitly pull together (s_t, a_t) -> s_{t+1} pairs and push apart distractors. This is structurally the right inductive bias for preserving per-action divergence -- you cannot solve the contrastive task if K different actions all map to the same predicted z. Direct ML evidence for the kind of training objective option (ii) would use. Workshop venue and lack of explicit per-action-distinguishability metrics knock confidence down somewhat.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Reconstruction-based latent dynamics losses (the standard RSSM objective) are agnostic to whether actions are distinguishable in the predicted latent -- they only require pixel reconstruction; the contrastive alternative directly penalises action-conditional indistinguishability."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_contrastive_rssm_srivastava2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-065",
+      "confidence": 0.7,
+      "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-065",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+        "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-065",
+      "confidence": 0.6,
+      "confidence_rationale": "Most recent of the three ML entries -- February 2026 preprint, not yet peer-reviewed. The Variational Information Maximisation objective (maximise conditional mutual information between predicted next-state and latent actions given prior states) is structurally the contrapositive of PLSM's objective and addresses the same family of failure. Useful as the third independent ML lever for option (ii). Confidence kept modest because it is a preprint and because the latent-action framing is one degree removed from REE's setting (REE has explicit, observable actions; SWIRL treats them as inferred).",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "World models without explicit action-conditional information-maximisation can produce next-state predictions that are insensitive to which action was taken; identifiability-via-MI is the cure."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-065",
+      "confidence": 0.71,
+      "confidence_rationale": "Single-author Cullen lab review; she has been the dominant figure in vestibular-cerebellar single-unit physiology for two decades. The key contribution for our purposes is the explicit voluntary-vs-passive distinction: during active self-motion, the vestibular cerebellum receives corollary discharge / efference copy and gates the predicted sensory consequences differently from passive perturbations. This is direct circuit-level evidence that the biological forward model is gated by which specific action is taken, not by an action-averaged proxy.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "When biological forward models lose their action-specific gating (e.g. in vestibular schwannoma or cerebellar damage), self-motion prediction fails specifically for the action class affected -- not uniformly. Demonstrates that the substrate maintains per-action divergence at the single-trial level.",
+        "Passive vs active self-motion experiments demonstrate that the cerebellar prediction is shaped by which action is being executed, not just by a generic motor-state prior."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-094",
+      "confidence": 0.74,
+      "confidence_rationale": "Mainline review establishing the cerebro-cerebellum as a forward model whose dentate-nucleus outputs are predictive for mossy-fibre inputs. The biological forward model is built around the assumption that different motor commands give rise to different predicted sensory consequences -- per-action divergence is the operating regime, not an emergent property to be defended. Strong biological prior that option (ii) (fix E2 to preserve per-action divergence) is the architecturally correct target, not a workaround.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Loss of forward-model prediction in cerebellar ataxia produces movement kinematics that lag rather than lead the target -- the system reverts from predictive to reactive control. By analogy, an action-collapsed E2 produces planning that cannot distinguish proposed actions from their actual consequences; the predictive function is lost even when the substrate is nominally intact."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_cerebro_cerebellum_tanaka2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-094",
+      "confidence": 0.7,
+      "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-094",
+      "confidence": 0.71,
+      "confidence_rationale": "Single-author Cullen lab review; she has been the dominant figure in vestibular-cerebellar single-unit physiology for two decades. The key contribution for our purposes is the explicit voluntary-vs-passive distinction: during active self-motion, the vestibular cerebellum receives corollary discharge / efference copy and gates the predicted sensory consequences differently from passive perturbations. This is direct circuit-level evidence that the biological forward model is gated by which specific action is taken, not by an action-averaged proxy.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "When biological forward models lose their action-specific gating (e.g. in vestibular schwannoma or cerebellar damage), self-motion prediction fails specifically for the action class affected -- not uniformly. Demonstrates that the substrate maintains per-action divergence at the single-trial level.",
+        "Passive vs active self-motion experiments demonstrate that the cerebellar prediction is shaped by which action is being executed, not just by a generic motor-state prior."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-314a",
+      "confidence": 0.74,
+      "confidence_rationale": "Mainline review establishing the cerebro-cerebellum as a forward model whose dentate-nucleus outputs are predictive for mossy-fibre inputs. The biological forward model is built around the assumption that different motor commands give rise to different predicted sensory consequences -- per-action divergence is the operating regime, not an emergent property to be defended. Strong biological prior that option (ii) (fix E2 to preserve per-action divergence) is the architecturally correct target, not a workaround.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Loss of forward-model prediction in cerebellar ataxia produces movement kinematics that lag rather than lead the target -- the system reverts from predictive to reactive control. By analogy, an action-collapsed E2 produces planning that cannot distinguish proposed actions from their actual consequences; the predictive function is lost even when the substrate is nominally intact."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_cerebro_cerebellum_tanaka2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-314a",
+      "confidence": 0.68,
+      "confidence_rationale": "Contrastive losses on the next-state prediction explicitly pull together (s_t, a_t) -> s_{t+1} pairs and push apart distractors. This is structurally the right inductive bias for preserving per-action divergence -- you cannot solve the contrastive task if K different actions all map to the same predicted z. Direct ML evidence for the kind of training objective option (ii) would use. Workshop venue and lack of explicit per-action-distinguishability metrics knock confidence down somewhat.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Reconstruction-based latent dynamics losses (the standard RSSM objective) are agnostic to whether actions are distinguishable in the predicted latent -- they only require pixel reconstruction; the contrastive alternative directly penalises action-conditional indistinguishability."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_contrastive_rssm_srivastava2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-314a",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+        "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-314a",
+      "confidence": 0.6,
+      "confidence_rationale": "Most recent of the three ML entries -- February 2026 preprint, not yet peer-reviewed. The Variational Information Maximisation objective (maximise conditional mutual information between predicted next-state and latent actions given prior states) is structurally the contrapositive of PLSM's objective and addresses the same family of failure. Useful as the third independent ML lever for option (ii). Confidence kept modest because it is a preprint and because the latent-action framing is one degree removed from REE's setting (REE has explicit, observable actions; SWIRL treats them as inferred).",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "World models without explicit action-conditional information-maximisation can produce next-state predictions that are insensitive to which action was taken; identifiability-via-MI is the cure."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-320",
+      "confidence": 0.68,
+      "confidence_rationale": "Contrastive losses on the next-state prediction explicitly pull together (s_t, a_t) -> s_{t+1} pairs and push apart distractors. This is structurally the right inductive bias for preserving per-action divergence -- you cannot solve the contrastive task if K different actions all map to the same predicted z. Direct ML evidence for the kind of training objective option (ii) would use. Workshop venue and lack of explicit per-action-distinguishability metrics knock confidence down somewhat.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Reconstruction-based latent dynamics losses (the standard RSSM objective) are agnostic to whether actions are distinguishable in the predicted latent -- they only require pixel reconstruction; the contrastive alternative directly penalises action-conditional indistinguishability."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_contrastive_rssm_srivastava2021",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-320",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+        "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-033a",
+      "confidence": 0.7,
+      "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-033a",
+      "confidence": 0.78,
+      "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+      "failure_signatures": [
+        "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+        "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+      ],
+      "run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-05-28T17:17:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -101698,7 +102049,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-05-28T17:11:41.991668Z",
+  "generated_at_utc": "2026-05-28T17:23:52.973985Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

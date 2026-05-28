@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_forward_model_action_divergence",
+  "entry_id": "2026-05-28_e2_action_divergence_cerebro_cerebellum_tanaka2020",
+  "timestamp_utc": "2026-05-28T17:17:26Z",
+  "claim_ids_tested": ["ARC-065", "MECH-094", "MECH-314a"],
+  "source": {
+    "title": "The Cerebro-Cerebellum as a Locus of Forward Model: A Review",
+    "authors": ["Hirokazu Tanaka", "Takahiro Ishikawa", "Jongho Lee", "Shinji Kakei"],
+    "year": 2020,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2020.00019",
+    "url": "https://doi.org/10.3389/fnsys.2020.00019"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Mainline review establishing the cerebro-cerebellum as a forward model whose dentate-nucleus outputs are predictive for mossy-fibre inputs. The biological forward model is built around the assumption that different motor commands give rise to different predicted sensory consequences -- per-action divergence is the operating regime, not an emergent property to be defended. Strong biological prior that option (ii) (fix E2 to preserve per-action divergence) is the architecturally correct target, not a workaround.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Loss of forward-model prediction in cerebellar ataxia produces movement kinematics that lag rather than lead the target -- the system reverts from predictive to reactive control. By analogy, an action-collapsed E2 produces planning that cannot distinguish proposed actions from their actual consequences; the predictive function is lost even when the substrate is nominally intact."
+  ],
+  "tags": ["arc_065", "mech_094", "mech_314a", "cerebellum", "forward_model", "biological_prior"],
+  "mapping": {
+    "source_claim_statement": "The cerebro-cerebellum operates as an internal forward model whose dentate-nucleus output activities are predictive for the next mossy-fibre inputs. The model receives the motor command (or its corollary discharge) and produces a prediction of the sensory consequences that is action-conditional and action-distinguishable. This is the unifying algorithmic principle proposed across motor and cognitive cerebellar function.",
+    "ree_translation": "REE-v3's E2 is the closest substrate analogue to the cerebro-cerebellar forward model: it predicts next z_world conditional on the current state and a proposed action. The biological prior is unambiguous -- different actions produce different predicted next-states, and that distinguishability is the operating regime that motor control and counterfactual rollout both depend on. The V3-EXQ-571 collapse, where K different actions produce identical predicted z_world, is a deviation from the biological reference architecture, not an acceptable feature.",
+    "mapping_caveat": "The review is at the level of the algorithmic principle, not the synaptic implementation. It does not tell us how the cerebellum mechanically prevents action-collapse at the single-step horizon. The biological prior is supportive but does not by itself prescribe whether the right REE-side fix is option (i), (ii), or (iii); it only tells us that *some* action-distinguishability mechanism has to exist in any architecturally faithful forward model.",
+    "source_context": "Motor-system neuroscience review; primate and human evidence across electrophysiology, lesion behaviour, and connectivity."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "High-quality review in a respected systems neuroscience venue. Mapping fidelity is good because REE explicitly identifies E2 with a cerebellar-style forward model. The biological constraint is qualitative (forward models preserve action identity) rather than quantitative (how much divergence at what horizon), so transfer risk is the cost of going from 'must be present' to 'must reach this magnitude'."
+  }
+}

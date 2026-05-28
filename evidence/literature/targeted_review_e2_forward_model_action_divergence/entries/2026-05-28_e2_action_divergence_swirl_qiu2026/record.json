@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_forward_model_action_divergence",
+  "entry_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
+  "timestamp_utc": "2026-05-28T17:17:26Z",
+  "claim_ids_tested": ["ARC-065", "MECH-314a"],
+  "source": {
+    "title": "Self-Improving World Modelling with Latent Actions (SWIRL)",
+    "authors": ["Yifu Qiu", "Zheng Zhao", "Waylon Li", "Yftah Ziser", "Anna Korhonen", "Shay B. Cohen", "Edoardo M. Ponti"],
+    "year": 2026,
+    "venue": "arXiv preprint (cs.LG)",
+    "doi": "10.48550/arXiv.2602.06130",
+    "url": "https://arxiv.org/abs/2602.06130"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Most recent of the three ML entries -- February 2026 preprint, not yet peer-reviewed. The Variational Information Maximisation objective (maximise conditional mutual information between predicted next-state and latent actions given prior states) is structurally the contrapositive of PLSM's objective and addresses the same family of failure. Useful as the third independent ML lever for option (ii). Confidence kept modest because it is a preprint and because the latent-action framing is one degree removed from REE's setting (REE has explicit, observable actions; SWIRL treats them as inferred).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "World models without explicit action-conditional information-maximisation can produce next-state predictions that are insensitive to which action was taken; identifiability-via-MI is the cure."
+  ],
+  "tags": ["arc_065", "mech_314a", "world_model", "variational_information_maximisation", "action_conditioning"],
+  "mapping": {
+    "source_claim_statement": "SWIRL updates forward world models to generate next states that maximise conditional mutual information with latent actions given prior states, encouraging identifiable consistency between action and predicted effect.",
+    "ree_translation": "If E2 were trained with an auxiliary objective maximising mutual information between (z_t, a_t) and predicted z_{t+1}, the model would be penalised for losing action identity in the transition -- a direct attack on the V3-EXQ-571 collapse. SWIRL's framing of action-identifiability via MI is a third independent ML lever for option (ii), alongside PLSM (factorisation) and contrastive RSSM (contrastive prediction).",
+    "mapping_caveat": "SWIRL is currently a preprint (submitted Feb 2026) and has not been peer-reviewed. It also frames actions as latent inferred variables rather than observable inputs, which is the opposite of REE's case where the action one-hot is fully known per candidate. The MI-maximisation objective itself is the transferable insight; the latent-action framing is not.",
+    "source_context": "Multimodal foundation model / world model training; benchmarks AURORABench, ByteMorph, WorldPredictionBench, StableToolBench."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Recent preprint with strong benchmark gains (16-28%) but no peer review yet. The latent-action framing requires translation to fit REE's observable-action substrate; the underlying MI-maximisation objective is generic and transferable."
+  }
+}

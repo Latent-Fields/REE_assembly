@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_forward_model_action_divergence",
+  "entry_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
+  "timestamp_utc": "2026-05-28T17:17:26Z",
+  "claim_ids_tested": ["ARC-065", "ARC-062", "MECH-094", "SD-033a"],
+  "source": {
+    "title": "Imagining the future self through thought experiments",
+    "authors": ["Kentaro Miyamoto", "Matthew F. S. Rushworth", "Nicholas Shea"],
+    "year": 2023,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2023.01.005",
+    "url": "https://doi.org/10.1016/j.tics.2023.01.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Direct biological reference for the comparative function REE's E2/E3 stack is supposed to perform: FPC tracks alternative choices not taken, alPFC compares simulated future scenarios. Both functions require that alternative simulated actions yield distinguishable predicted scenarios -- if simulations of different futures collapsed to the same neural state, the comparison function would be undefined. Strong constraint on what counts as architecturally viable forward modelling at the cognitive-rollout level, not just the motor level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If simulated futures all converge to the same neural representation, the cognitive function of choosing between thought experiments is computationally undefined -- you cannot prefer one simulated scenario over another if they are not represented distinctly."
+  ],
+  "tags": ["arc_065", "arc_062", "mech_094", "sd_033a", "prefrontal_cortex", "frontopolar", "counterfactual_rollout", "biological_prior"],
+  "mapping": {
+    "source_claim_statement": "Frontopolar cortex (FPC) keeps track of and evaluates alternative choices that might have been taken; anterior lateral prefrontal cortex (alPFC) compares simulations of possible future scenarios and evaluates their reward values. Together, these regions support construction of suppositional (Gedankenexperimente) scenarios.",
+    "ree_translation": "REE's E2-driven counterfactual rollout + E3 evaluation stack is the substrate analogue of the alPFC simulation-comparison function. For E3 to compare predicted futures of distinct candidate actions (the core ARC-065 / ARC-062 setting), those predicted futures must be distinguishable in the latent. The V3-EXQ-571 collapse means K simulated futures look identical to every downstream evaluator -- the alPFC-style comparison function REE is supposed to be implementing is computationally vacuous at one-step horizons under the current substrate.",
+    "mapping_caveat": "The paper is a review at the conceptual / cognitive-architecture level, not a direct circuit-level measurement of per-action latent divergence in primate FPC/alPFC. The biological constraint it imposes is functional ('the cognitive function requires distinguishable simulations') rather than quantitative. Maps strongly onto REE's design commitments but does not, on its own, settle option (i) vs (ii) vs (iii).",
+    "source_context": "Primate prospective metacognition; counterfactual-thought-experiment literature; human and non-human-primate frontal-cortex evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Trends in Cognitive Sciences review, Rushworth lineage -- high venue quality. Mapping fidelity is good because REE's design commits to alPFC-style simulation comparison via SD-033a/b. Transfer risk is the residual qualitative-to-quantitative gap."
+  }
+}

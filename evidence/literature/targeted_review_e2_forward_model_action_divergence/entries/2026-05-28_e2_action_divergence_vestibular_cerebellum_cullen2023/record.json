@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_forward_model_action_divergence",
+  "entry_id": "2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023",
+  "timestamp_utc": "2026-05-28T17:17:26Z",
+  "claim_ids_tested": ["ARC-065", "MECH-094"],
+  "source": {
+    "title": "Internal models of self-motion: neural computations by the vestibular cerebellum",
+    "authors": ["Kathleen E. Cullen"],
+    "year": 2023,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2023.08.009",
+    "url": "https://doi.org/10.1016/j.tins.2023.08.009"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Single-author Cullen lab review; she has been the dominant figure in vestibular-cerebellar single-unit physiology for two decades. The key contribution for our purposes is the explicit voluntary-vs-passive distinction: during active self-motion, the vestibular cerebellum receives corollary discharge / efference copy and gates the predicted sensory consequences differently from passive perturbations. This is direct circuit-level evidence that the biological forward model is gated by which specific action is taken, not by an action-averaged proxy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When biological forward models lose their action-specific gating (e.g. in vestibular schwannoma or cerebellar damage), self-motion prediction fails specifically for the action class affected -- not uniformly. Demonstrates that the substrate maintains per-action divergence at the single-trial level.",
+    "Passive vs active self-motion experiments demonstrate that the cerebellar prediction is shaped by which action is being executed, not just by a generic motor-state prior."
+  ],
+  "tags": ["arc_065", "mech_094", "cerebellum", "corollary_discharge", "efference_copy", "biological_prior", "vestibular"],
+  "mapping": {
+    "source_claim_statement": "The vestibular cerebellum encodes vestibular information and combines it with extravestibular signals to build internal models of eye, head, and body movements, updated continually during active self-motion. Recent evidence establishes the cerebellum's role in building predictive models of self-generated movement -- a function that requires action-specific gating, since the same vestibular input must be interpreted differently depending on whether it was self-caused or externally caused.",
+    "ree_translation": "REE's E2 forward model must distinguish predicted z_world arising from candidate action A1 from predicted z_world arising from candidate action A2 at the same starting state. Cullen's review provides direct circuit-level evidence that biological forward models do exactly this via corollary-discharge gating -- the prediction is action-specific, not action-averaged. The V3-EXQ-571 collapse is again a deviation from the biological reference; the cerebellar substrate goes to substantial structural lengths to preserve action specificity.",
+    "mapping_caveat": "The review is specifically about vestibular cerebellum and self-motion (eye, head, body movement). REE-v3's E2 operates on a much more abstract latent space (z_gamma / z_world) that does not map onto vestibular cerebellum in any direct way -- the cerebro-cerebellar review (Tanaka 2020) is a closer analogue. Cullen's contribution here is the corollary-discharge / efference-copy mechanism, which is the part of the cerebellar forward-model machinery that most directly enforces action-specificity.",
+    "source_context": "Primate and human vestibular cerebellum; single-unit recording across passive vs voluntary movement; canonical Cullen-lab synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "High-quality single-author review by the canonical figure in vestibular cerebellum. Mapping fidelity is the limiting factor: vestibular self-motion is a long way from REE's z_world abstraction. The corollary-discharge mechanism transfers; the specific vestibular wiring does not."
+  }
+}

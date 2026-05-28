@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_forward_model_action_divergence",
+  "entry_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
+  "timestamp_utc": "2026-05-28T17:17:26Z",
+  "claim_ids_tested": ["ARC-065", "MECH-314a", "MECH-320", "SD-033a"],
+  "source": {
+    "title": "Simplifying Latent Dynamics with Softly State-Invariant World Models",
+    "authors": ["Tankred Saanum", "Peter Dayan", "Eric Schulz"],
+    "year": 2024,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS) 2024",
+    "doi": "10.48550/arXiv.2401.17835",
+    "url": "https://arxiv.org/abs/2401.17835"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct ML methodological evidence that action effects on latent state can be made systematically representable by an explicit mutual-information regulariser. The 'action-effect factorisation' framing maps cleanly onto REE's predicament: E2 currently does not factorise z_world into a state-dependent component and an action-conditioned change, so per-action divergence vanishes after one step. PLSM is exactly the form of constraint that fix-option (ii) would need. Mapping fidelity is good but transfer risk is moderate -- the PLSM regulariser was demonstrated in image-based RL, not in a latent-only substrate like REE-v3's; the direction of the regulariser there is to minimise MI between latent state and action effect to factor them apart, which is the architectural commitment we'd need to mirror, not its sign.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Without an explicit action-effect factorisation constraint, learned latent dynamics fail to represent the systematic effect of an action -- the model can fit average transitions while losing the per-action contribution.",
+    "Mutual information between latent state and action-induced change is an order parameter for whether downstream consumers can read off action identity from a single forward step."
+  ],
+  "tags": ["arc_065", "mech_314a", "mech_320", "sd_033a", "world_model", "action_conditioning", "latent_dynamics", "mutual_information_regularisation"],
+  "mapping": {
+    "source_claim_statement": "Existing world models lack systematic representation of action effects; the Parsimonious Latent Space Model (PLSM) adds a regulariser that minimises mutual information between latent state and the change an action produces in the agent's latent state, factorising action effect out of state.",
+    "ree_translation": "E2's world-forward predictor in REE-v3 has no such factorisation constraint. As V3-EXQ-571 documented, K candidate first-actions produce identical first-step z_world (cand_world_pairwise_dist = 0.0000). PLSM-style action-effect factorisation is a concrete architectural lever for option (ii): if E2 were trained with a regulariser that decouples a state-dependent prior from an action-conditioned delta, per-action z_world divergence would be enforced as a training objective rather than left to emerge.",
+    "mapping_caveat": "PLSM was evaluated on image-based RL settings (Atari, DeepMind Control). REE-v3 operates on a learned latent z_world that already passes through E1 (a slow recurrent world model) before E2 acts on it; the action-effect compression we observe may have a different proximate cause (e.g. a small action embedding fan-in, an averaging across the K-candidate batch dimension during training). PLSM's regulariser does not by itself guarantee a fix without diagnosing where the compression occurs in E2 specifically.",
+    "source_context": "Vision-based model-based RL; latent dynamics learned from pixels."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "NeurIPS 2024 venue; Dayan/Schulz are highly cited; method is generic enough to apply to non-pixel latent substrates. Transfer risk is the residual concern -- our latent is already compressed before E2 sees it."
+  }
+}

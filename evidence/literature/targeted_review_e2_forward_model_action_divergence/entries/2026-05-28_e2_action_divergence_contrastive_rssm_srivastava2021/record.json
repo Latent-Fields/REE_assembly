@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e2_forward_model_action_divergence",
+  "entry_id": "2026-05-28_e2_action_divergence_contrastive_rssm_srivastava2021",
+  "timestamp_utc": "2026-05-28T17:17:26Z",
+  "claim_ids_tested": ["ARC-065", "MECH-314a", "MECH-320"],
+  "source": {
+    "title": "Robust Robotic Control from Pixels using Contrastive Recurrent State-Space Models",
+    "authors": ["Nitish Srivastava", "Walter Talbott", "Martin Bertran Lopez", "Shuangfei Zhai", "Josh Susskind"],
+    "year": 2021,
+    "venue": "NeurIPS Deep Reinforcement Learning Workshop",
+    "doi": "10.48550/arXiv.2112.01163",
+    "url": "https://arxiv.org/abs/2112.01163"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Contrastive losses on the next-state prediction explicitly pull together (s_t, a_t) -> s_{t+1} pairs and push apart distractors. This is structurally the right inductive bias for preserving per-action divergence -- you cannot solve the contrastive task if K different actions all map to the same predicted z. Direct ML evidence for the kind of training objective option (ii) would use. Workshop venue and lack of explicit per-action-distinguishability metrics knock confidence down somewhat.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reconstruction-based latent dynamics losses (the standard RSSM objective) are agnostic to whether actions are distinguishable in the predicted latent -- they only require pixel reconstruction; the contrastive alternative directly penalises action-conditional indistinguishability."
+  ],
+  "tags": ["arc_065", "mech_314a", "mech_320", "world_model", "contrastive_learning", "action_conditioning", "rssm"],
+  "mapping": {
+    "source_claim_statement": "Replacing the standard RSSM reconstruction loss with a contrastive prediction loss yields more robust pixel control because contrastive learning forces the latent to preserve action-relevant distinctions that pixel-reconstruction does not require.",
+    "ree_translation": "E2's training loss in REE-v3 is reconstruction-shaped (predict next z_world). Reconstruction losses do not, in general, penalise the model for representing K different actions identically -- if the action effect is small relative to the state's autoregressive dynamics, gradient descent finds the trivial solution. A contrastive next-state loss conditioned on action would directly penalise the failure surfaced in V3-EXQ-571.",
+    "mapping_caveat": "The paper is a workshop submission and does not report a per-action distinguishability metric directly; the inference that contrastive losses prevent K-action collapse is structural rather than empirical. Also, contrastive RSSM in the paper is paired with pixel observations; REE-v3's E2 operates on a learned z_gamma latent, so the negative-sample distribution would have to be redesigned to be informative.",
+    "source_context": "Vision-based robotic control with distractor environments; comparison against reconstruction-based RSSM baselines."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "Apple workshop paper; methodologically sound but light on direct per-action analysis. Strong structural argument but no smoking-gun quantitative result for our specific failure mode."
+  }
+}
