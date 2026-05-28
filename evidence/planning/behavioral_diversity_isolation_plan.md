@@ -42,14 +42,14 @@ closure_plan:
     - id: "behavioral_diversity_isolation:GAP-D"
       title: "Theory 4 / Layer D: V_s regional verisimilitude staleness (MECH-269 / MECH-269b)"
       phase: "P1"
-      status: in_progress
+      status: pending_governance_stamp
       severity: medium
-      owner_exq: "V3-EXQ-550 (manifest landed FAIL/supports MECH-269); V3-EXQ-601 (MECH-269b validation PASS 2026-05-21); R4-rule application pending governance"
+      owner_exq: "V3-EXQ-550 FAIL/supports MECH-269 (2026-05-11T20:18Z); V3-EXQ-601 PASS/supports MECH-269b (2026-05-21T12:02Z); R4.b reading flagged 2026-05-28 pending governance stamp; Q-040b behavioural sufficiency still open"
       unblocks_claims: [MECH-269, MECH-269b, Q-040]
       depends_on: []
       cross_plan_link: ["arc_062_rule_apprehension:GAP-B"]
-      last_updated: 2026-05-26
-      resume_condition: "V3-EXQ-550 z_goal monostrategy falsifier landed 2026-05-11T20:18Z, outcome=FAIL, evidence_direction_per_claim={MECH-269: supports}. The doc's status-table row 268 still records '550 running' -- stale. Open governance question: which decision rule does the 550 result fire? R4.a (ARM_ON >> ARM_OFF -> z_goal config-default confound, theory 4 demoted) or R4.b (ARM_ON ~ ARM_OFF -> V_s pathology confirmed)? The supports-MECH-269 per-claim direction reads as R4.b, but the body-text status table should be updated against the actual 550 manifest before closing. V3-EXQ-601 (MECH-269b-followup-A staleness wiring) PASS 2026-05-21T12:02Z confirms the substrate path. Q-040b behavioural sufficiency still open (MECH-295 / StepHarness cohort) per substrate_queue."
+      last_updated: 2026-05-28
+      resume_condition: "V3-EXQ-550 z_goal monostrategy falsifier landed 2026-05-11T20:18Z with outcome=FAIL but evidence_direction_per_claim={MECH-269: supports} (the wired-but-untrained goal pipeline did NOT break monostrategy at this probe depth, so the substrate-level reading of MECH-269 SURVIVES; the FAIL is about the diagnostic falsifier's PASS criterion not about MECH-269 weakening). V3-EXQ-601 MECH-269b-followup-A staleness-gate wiring PASS 2026-05-21T12:02Z further confirms the substrate path. Both run pairs are in review_tracker.reviewed_run_ids since their landing. R4.b decision-rule reading (V_s pathology confirmed; theory 4 promoted; MECH-269 follow-up substrate work prioritised) was applied to the status table 2026-05-28 by igw-011-gapd-doc-sync session; governance stamp pending at next /governance cycle. Remaining open item: Q-040b behavioural sufficiency (MECH-295 / StepHarness cohort) per substrate_queue -- currently owned by IGW-20260528-016 (goal_pipeline:GAP-4, V3-EXQ-490g Tier-1 retest cohort). Resume signal: when /governance cycle runs and stamps R4.b on V3-EXQ-550 (manifest + claim_evidence already carry supports-MECH-269), advance status from pending_governance_stamp to closed; if R4.a is preferred instead, the supports-MECH-269 per-claim direction in the manifest must be revised first."
     - id: "behavioral_diversity_isolation:GAP-E"
       title: "Theory 5 (deferred): proposal-distribution bias (re-enters candidate set on R_X.c)"
       phase: "P4-extend"
@@ -359,10 +359,43 @@ score distribution data will tell us whether the collapse is happening at near-t
 | 1 CEM collapse | A | ARC-065 (SP-CEM child) | landed 2026-05-17 main-path; **E2-world-forward per-candidate signal collapse identified 2026-05-25 (root cause doc)** | V3-EXQ-567 / V3-EXQ-569 / V3-EXQ-571 / V3-EXQ-573 / V3-EXQ-609 | 567 PASS (entropy 0.012->0.497); 569 + 573 non_contributory (bias channel structurally zero); 570/571/609 diagnostics landed | **R1 falsifier blocked**: per-candidate bias signal structurally zero (all K cands -> identical z_world after one E2 step). Awaiting E2-world-forward substrate fix; V3-EXQ-569a queued after substrate lands |
 | 2 E3 scoring | B | **MECH-341** (registered 2026-05-25) | **IMPLEMENTED 2026-05-27 (options 1+2 togglable)** | V3-EXQ-608 P2 (PASS R2a large-gap 2026-05-26); V3-EXQ-611 P3 substrate-readiness diagnostic queued | 608 majority R2a fired; substrate landed; readiness eval pending | apply R2.c on V3-EXQ-611 PASS + B_only / ablate_B successor |
 | 3 noise floor | C | MECH-313 | landed | V3-EXQ-543b ARM_MECH313 (pending Q-045 retest) | autopsy 603b: substrate operative but design-blocked | retest via 603c (training-phase fix) |
-| 4 V_s stale | D | MECH-269 / 269b | substrate-ready (IGW-021) | V3-EXQ-550 | running | apply R4.a / R4.b / R4.c on landing |
+| 4 V_s stale | D | MECH-269 / 269b | substrate-ready (IGW-021); MECH-269b staleness wiring landed | V3-EXQ-550 (z_goal probe); V3-EXQ-601 (MECH-269b staleness gate) | 550 FAIL/supports MECH-269 2026-05-11T20:18Z; 601 PASS/supports MECH-269b 2026-05-21T12:02Z; both reviewed | **R4.b reading** (V_s pathology supported; theory 4 promoted) flagged 2026-05-28 pending governance stamp; Q-040b behavioural sufficiency still open under goal_pipeline:GAP-4 (V3-EXQ-490g cohort) |
 
 **Update cadence:** every time a P-phase experiment lands, update this table in-place with
 the result and the decision-rule outcome. This is the resume primitive across sessions.
+
+### 2026-05-28 GAP-D disposition (pending governance stamp)
+
+V3-EXQ-550 landed 2026-05-11T20:18Z with outcome=FAIL but
+`evidence_direction_per_claim={MECH-269: supports}`. The FAIL is on the diagnostic
+falsifier's PASS criterion (wired-but-untrained z_goal did NOT materially shift action-class
+entropy at this probe depth), which under the manifest's own interpretation grid SUPPORTS
+the substrate-level reading of MECH-269 -- the V_s pathology survives. V3-EXQ-601 PASS
+2026-05-21T12:02Z (MECH-269b-followup-A staleness-gate wiring) supplies an independent
+substrate-path confirmation.
+
+Applying the decision rules in this doc:
+
+- **R4.a** (ARM_ON >> ARM_OFF, z_goal config-default confound, theory 4 demoted) -- does NOT
+  fire. The manifest reads supports-MECH-269, not weakens.
+- **R4.b** (ARM_ON ~ ARM_OFF, V_s pathology confirmed, theory 4 promoted, MECH-269 follow-up
+  substrate work prioritised) -- **fires**. This is the disposition flagged here for the
+  next /governance cycle to stamp.
+- **R4.c** (ARM_ON crashes) -- does NOT fire. No crash recorded in the 550 manifest.
+
+This is a doc-sync update; no claims.yaml or manifest edit is performed in this pass.
+review_tracker.json already contains both 550 run pairs (2026-05-11T19:01Z + 20:18Z) and
+both 601 run pairs (2026-05-21T11:47Z + 12:02Z). The next /governance cycle picks up the
+manifest's supports-MECH-269 per-claim direction automatically; the R4.b promotion is a
+governance-level decision (held in the recommendations queue as a `held_promotion` or
+applied directly per category gating in the indexer) rather than a new experiment.
+
+Q-040b behavioural sufficiency (MECH-295 / StepHarness cohort) is the only remaining open
+item under GAP-D and is currently owned by IGW-20260528-016 (goal_pipeline:GAP-4,
+V3-EXQ-490g Tier-1 retest cohort). GAP-D therefore transitions from `in_progress` to
+`pending_governance_stamp`; close to `done` after the next /governance cycle.
+
+---
 
 ---
 
