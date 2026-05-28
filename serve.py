@@ -1933,6 +1933,35 @@ def scan_evidence_runs() -> dict:
     return result
 
 
+def _default_runner_extra_env() -> dict | None:
+    """Shadow env to inject when start_runner is called without explicit
+    extra_env (i.e. the everyday /api/runner/v3/start path). Reads
+    coordinator.env via _load_coordinator_cfg; returns None when the file
+    is missing or COORDINATOR_URL / COORDINATOR_LOCAL_TOKEN is unset, so
+    behaviour stays bit-identical to the pre-default-injection path on a
+    Mac that has not configured the coordinator.
+
+    Without this default, the explorer "Start" button produced a runner
+    with COORDINATION_MODE unset -> coordinator_client._ENABLED=False ->
+    every report_claim / report_result / heartbeat POST became a no-op.
+    The Shadow Coordination panel's start path already passes the same
+    dict via explicit extra_env; this function consolidates the lookup.
+    Caller-supplied extra_env still wins (e.g. Phase 2 cutover wants
+    COORDINATION_MODE=coordinator, not shadow).
+    """
+    cfg = _load_coordinator_cfg()
+    url = cfg.get("COORDINATOR_URL")
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
+    if not url or not tok:
+        return None
+    return {
+        "COORDINATION_MODE": "shadow",
+        "COORDINATOR_URL": url,
+        "COORDINATOR_TOKEN": tok,
+        "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
+    }
+
+
 def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
     if ver not in RUNNERS:
         return {"status": "error", "message": f"Unknown substrate: {ver}"}
@@ -1963,10 +1992,9 @@ def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
     # STUB: future config could set per-runner flags from a machines.json config file
     popen_kwargs = {"stdout": log_fh, "stderr": log_fh,
                     "cwd": str(cfg["script"].parent)}
+    if extra_env is None:
+        extra_env = _default_runner_extra_env()
     if extra_env:
-        # Only diverge from inherited environment when explicitly asked
-        # (shadow start). Default callers pass nothing -> behaviour is
-        # byte-identical to before.
         _env = os.environ.copy()
         _env.update({k: str(v) for k, v in extra_env.items()})
         popen_kwargs["env"] = _env
