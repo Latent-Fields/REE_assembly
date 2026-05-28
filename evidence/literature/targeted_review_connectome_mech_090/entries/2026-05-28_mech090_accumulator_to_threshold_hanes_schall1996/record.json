@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-05-28_mech090_accumulator_to_threshold_hanes_schall1996",
+  "timestamp_utc": "2026-05-28T17:00:25Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Neural control of voluntary movement initiation",
+    "authors": [
+      "D. P. Hanes",
+      "J. D. Schall"
+    ],
+    "year": 1996,
+    "venue": "Science",
+    "doi": "10.1126/science.274.5286.427"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.80,
+  "confidence_rationale": "Canonical Science paper, foundational for the accumulator-to-threshold class of commitment models. Single-unit recordings in macaque FEF during a countermanding saccade task established that movement initiation is gated by a specific, constant threshold on neural firing rate, with variability in the rate-of-rise accounting for reaction-time variability. The threshold is on a *readiness* signal (FEF movement-cell firing rate, which scales with motor preparation), not on a precision-of-prediction signal. This is the original neural evidence for the proposition that commitment-to-act fires when motor readiness crosses threshold. Confidence is high but not maximal because the task is a discrete saccade rather than a sustained motor-program commitment, and the threshold computation is a 1996 finding -- substantial subsequent literature (Boucher, Brown, Reddi/Carpenter, Pouget) has refined and partly contested the constant-threshold claim. The core architectural claim -- gating is on readiness crossing a criterion, not on PE falling below one -- has held up.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "commit_gate_fires_without_readiness_signal_crossing_threshold",
+    "precision_threshold_substitutes_for_motor_program_readiness"
+  ],
+  "tags": ["mech_090", "accumulator_to_threshold", "FEF", "countermanding", "saccade", "commit_predicate", "readiness_signal", "race_model", "pass_2"],
+  "mapping": {
+    "source_claim_statement": "Single-unit recordings from frontal eye field (FEF) of two rhesus macaques performing a saccade countermanding task. Movement-related FEF neurons increased firing toward saccade onset; the rate of rise was variable across trials, but movements were initiated if and only if firing rate reached a specific, constant threshold activation level (with the variability in rate-of-rise accounting for the distribution of reaction times). The constant-threshold finding distinguished a race / accumulator model from competing deadline-based and stochastic-decision models. The framework generalises: action initiation in this circuit is gated by a readiness accumulator crossing a criterion, not by deliberation duration alone.",
+    "ree_translation": "MECH-090's current BetaGate gates on `running_variance < commitment_threshold`. The Hanes-Schall finding is that the biological commit gate is on an accumulator over a *readiness* signal -- the motor-cell firing rate that encodes motor-program preparation -- not on an inverse precision/PE signal. In REE-V3 terms: the rv-only predicate gates on 'has the world stopped surprising me' rather than 'is the motor program I'm about to enact ready'. The V3-EXQ-592 seed 42 trajectory satisfied the former (rv=2.7e-5) while comprehensively failing the latter (nav_competence=0.0). The substrate change implied is to add a readiness accumulator over the E3 candidate scoring stage and gate BetaGate entry on that accumulator crossing a criterion, with precision either a biasing input to the accumulator or a parallel constraint.",
+    "mapping_caveat": "The task is a discrete saccade countermanding paradigm in macaque FEF, not a sustained committed-sequence in BG circuits. The transfer is at the level of architectural posture: the *form* of the predicate (readiness-crossing-threshold) generalises across motor systems (saccadic, reaching, locomotor) and across structures (FEF, M1, SC, BG); the specific neural implementation differs. A second caveat: the strict constant-threshold claim from 1996 has been refined by subsequent work (Boucher et al. 2007 inhibition models; Reddi & Carpenter 2000 urgency signals) -- modern accumulator models allow threshold modulation by urgency, but the architectural commitment to a readiness-crossing gate is preserved.",
+    "source_context": "Two adult male rhesus macaques (Macaca mulatta) performing visually guided saccades with stop-signal trials. Single-unit recordings from FEF movement-related neurons. Race model and deadline model both tested against the data; constant-threshold race model best fit. No BG recordings, no extended motor-program commitment task."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "Source quality very high: Science 1996, one of the most cited papers in the action-selection literature, established the dominant paradigm for measuring commitment thresholds neurally. Mapping fidelity is moderate-to-high: the architectural commitment to a readiness-crossing gate transfers, but the specific neural implementation differs across circuits. Transfer risk is modest: the framework has been validated across multiple species, circuits, and motor domains. The weakens direction is on the rv-only predicate specifically; the paper does not contradict any sub-claim about beta as a status-quo signal (those are about what beta does, not what gates commit-entry)."
+  }
+}

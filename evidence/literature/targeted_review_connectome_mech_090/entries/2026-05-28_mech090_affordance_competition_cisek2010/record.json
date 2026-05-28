@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-05-28_mech090_affordance_competition_cisek2010",
+  "timestamp_utc": "2026-05-28T17:00:25Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Neural mechanisms for interacting with a world full of action choices",
+    "authors": [
+      "Paul Cisek",
+      "John F. Kalaska"
+    ],
+    "year": 2010,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.051508.135409"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "High-authority synthesis (Annu Rev Neurosci) of two decades of premotor/parietal recording work. The affordance-competition hypothesis recasts action selection as parallel specification of competing motor plans whose readiness signals are integrated with biasing signals (value, attention, urgency) until one plan crosses threshold. Confidence is not perfect because the framework is theoretical synthesis rather than a direct test of any specific gating predicate, and the BG/beta-oscillation literature is not the paper's primary substrate -- they focus on dorsal premotor + parietal reach circuits. But the framework's *architectural posture* is directly load-bearing for the rv-only-vs-conjunction question: in their model, what crosses the commit threshold is a readiness signal over a specified affordance, with precision-of-prediction one of several inputs rather than the predicate itself. The current REE-V3 rv-only predicate is incoherent in this frame -- you cannot 'commit' without a specified affordance to commit to. Weakens MECH-090's current implementation; supports a substrate change to a readiness-conditioned gate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "commit_threshold_on_precision_alone_skips_affordance_specification_step",
+    "agent_can_satisfy_rv_threshold_without_any_specified_motor_plan_to_commit_to"
+  ],
+  "tags": ["mech_090", "sd_034", "affordance_competition", "premotor_cortex", "parietal_cortex", "action_selection", "commit_predicate", "readiness_signal", "pass_2"],
+  "mapping": {
+    "source_claim_statement": "Action selection is implemented as a continuous competition between several potential motor plans whose specification proceeds in parallel with the selection process. Premotor and parietal regions co-encode multiple competing motor plans simultaneously; biasing signals (target value, salience, urgency, recent history) modulate the relative activation of those plans; the selected action is the one whose readiness signal crosses threshold first. The framework explicitly rejects the serial perceive-then-decide-then-act information-processing pipeline in favour of parallel affordance specification with competitive resolution.",
+    "ree_translation": "MECH-090 currently gates committed-mode entry on `running_variance < commitment_threshold`, a one-dimensional precision predicate. In the Cisek-Kalaska frame this is architecturally inverted: the gate should fire when a specified motor plan reaches readiness, with precision (low PE) one of the biasing inputs rather than the gate itself. The V3-EXQ-592 seed 42 trajectory (rv collapses to 2.7e-5 while nav_competence stays 0.0) is the failure mode this framework predicts: an agent with no specified affordance to commit to should not be able to commit, but the rv-only predicate licenses it. The substrate change implied is to condition BetaGate entry on a readiness signal over a leading candidate action / motor program, with precision as a modulatory input.",
+    "mapping_caveat": "The framework is built on dorsal premotor + parietal recordings in macaques performing reach tasks, not on BG beta oscillations during committed sequences. The translation from cortical affordance-competition to BG-level commit-entry gating requires a circuit-level inference: the proposal is that BG beta-elevated state should index the cortical readiness signal having crossed, not that BG should compute the readiness signal itself. The mapping is architectural-posture transfer, not direct mechanism transfer.",
+    "source_context": "Annual review synthesising decades of macaque premotor + parietal single-unit and lesion work plus computational modelling. Primary tasks: reach-to-target with multiple candidate targets, perceptual decision-making with motor effectors. No BG recordings in the focal data; framework explicitly intended to generalise across action domains."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is very high: Annu Rev Neurosci, two-author canonical synthesis by the framework's originators, cited 2000+ times, extensively replicated. Mapping fidelity is moderate-to-high: the framework's architectural commitments transfer cleanly to the commit-predicate question even though the focal recordings are cortical. Transfer risk is modest: macaque-to-rodent and cortex-to-BG transfers are well-trodden, and the framework explicitly aims for cross-domain generality. The weakens direction reflects the framework's incompatibility with rv-only gating, not a contradiction of any specific MECH-090 sub-claim about beta as a status-quo signal."
+  }
+}

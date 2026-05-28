@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_090",
+  "entry_id": "2026-05-28_mech090_premature_commit_pathology_roesch2007",
+  "timestamp_utc": "2026-05-28T17:00:25Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Dopamine neurons encode the better option in rats deciding between differently delayed or sized rewards",
+    "authors": [
+      "Matthew R. Roesch",
+      "Donna J. Calu",
+      "Geoffrey Schoenbaum"
+    ],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn2013"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong single-unit electrophysiology from VTA dopamine neurons in rats performing a delay/magnitude choice task. The load-bearing finding for this lit-pull: VTA-DA cue-evoked activity initially reflected the *better* option (the one with higher subjective value) even when the rat subsequently selected a different option. Mapped to REE, this is direct neural evidence for a dopaminergic readiness signal over a leading candidate that is upstream of the commit decision -- the system can represent 'the better option is X and I am preparing it' before commitment, and commitment can fire on a different option only by overriding that preparation. The implication for REE: there is an empirically grounded readiness/value signal whose state at the moment of commit-entry distinguishes 'I committed because the prepared plan was ready' from 'I committed because the world stopped surprising me'. The current rv-only predicate is blind to this distinction. Confidence is moderate-to-high but not maximal: the paper is about choice between two known options rather than about commitment versus exploration, and the framing 'premature-commit pathology' is the user's framing of an associated literature rather than a primary claim of this specific paper. The paper anchors a body of Roesch / Schoenbaum work where impulsive choice phenotypes (premature commit) map onto dysregulated DA readiness signals; this entry is the cleanest single load-bearing finding from that body of work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "commit_fires_without_dopaminergic_readiness_signal_for_a_specified_option",
+    "rv_only_predicate_cannot_distinguish_prepared_plan_from_arbitrary_collapse"
+  ],
+  "tags": ["mech_090", "dopamine", "VTA", "readiness_signal", "value_signal", "commit_predicate", "impulsivity", "premature_commit", "pass_2"],
+  "mapping": {
+    "source_claim_statement": "Single-unit recordings from putative dopamine neurons in rat ventral tegmental area (VTA) during a behavioural task in which the rat chose between two odour-cued options differing in reward delay or reward size. As expected, DA firing on reward delivery reflected prediction error. The novel finding: cue-evoked DA firing came to reflect the value of the better option even on trials when the rat subsequently chose the worse option, indicating that DA encodes a value/readiness signal over the leading candidate that is dissociable from the action ultimately selected. The result generalises across delay-discounting and size-discounting manipulations.",
+    "ree_translation": "MECH-090 gates committed-mode entry on `running_variance < commitment_threshold`. The Roesch et al. finding establishes that biological action systems carry a DA-encoded readiness/value signal over the leading candidate that is informationally distinct from any precision-of-prediction signal. A commitment that fires when this readiness signal is *absent or low* (as in V3-EXQ-592 seed 42, where nav_competence=0.0) is mechanistically unlike biological commit-entry, which is downstream of the readiness signal. Beyond this specific paper, the wider Roesch / Schoenbaum / Schultz body of work links *premature-commit pathology* (impulsive choice, addiction, OCD-style early closure) to dysregulation of this DA readiness signal. Mapping the V3-EXQ-592 trajectory onto that pathology axis: an rv-only predicate that lets the agent commit without a readiness signal is *pre-pathological* by design -- it implements premature commit as the baseline, not the failure mode.",
+    "mapping_caveat": "The paper is about choice between two known, cued options, not about commitment versus exploration in a novel environment. The translation 'DA encodes readiness over the leading candidate, so a commit gate should reference that readiness' is the architectural transfer; the paper does not directly test commit-entry gating. The 'premature-commit pathology' framing draws on the broader Roesch / Schoenbaum corpus (impulsivity, addiction, OCD-style early closure) -- one paper carries the architectural anchor but not the full pathology mapping. Subsequent papers in that body of work (and Watanabe / Sakagami parallel cohorts) would strengthen the pathology side; this entry establishes the load-bearing neural finding.",
+    "source_context": "Adult male Long-Evans rats (n=6) trained on an odour-cued choice task with two reward wells. Conditions manipulated relative delay (short vs long) or relative size (small vs large) between the two wells. Single-unit recordings from putative VTA dopamine neurons (identified by waveform + response properties); 81 neurons recorded. Analysis used standard PSTH + ANOVA + apomorphine pharmacological confirmation of DA identity in a subset."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high: Nat Neurosci, single-unit DA recording with pharmacological identity confirmation, well-controlled choice task. Mapping fidelity moderate: the architectural claim transfers (DA carries readiness/value over the leading candidate, distinct from precision) but the specific behavioural test is choice between two known options rather than commit-vs-explore. Transfer risk modest-to-high: rat -> generalised-vertebrate is well-trodden for VTA-DA function, but the 'premature-commit pathology' framing draws on a broader corpus than this paper alone. The weakens direction is on the rv-only predicate: a substrate that licenses commit without a readiness signal implements as baseline what biological systems treat as pathology."
+  }
+}

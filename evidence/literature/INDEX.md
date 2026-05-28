@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-27T06:36:27.748735Z`
+Generated: `2026-05-28T17:11:41.991668Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -61,7 +61,7 @@ Generated: `2026-05-27T06:36:27.748735Z`
 | `targeted_review_connectome_mech_074` | [`2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025`](targeted_review_connectome_mech_074/entries/2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025/record.json) | 15 | [`summary`](targeted_review_connectome_mech_074/entries/2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025/summary.md) |
 | `targeted_review_connectome_mech_075` | [`2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018`](targeted_review_connectome_mech_075/entries/2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018/record.json) | 4 | [`summary`](targeted_review_connectome_mech_075/entries/2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018/summary.md) |
 | `targeted_review_connectome_mech_089` | [`2026-04-08_mech089_theta_gamma_learning_tort2009`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/record.json) | 5 | [`summary`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/summary.md) |
-| `targeted_review_connectome_mech_090` | [`2026-04-15_mech090_layer3_model_based_free_dolan2013`](targeted_review_connectome_mech_090/entries/2026-04-15_mech090_layer3_model_based_free_dolan2013/record.json) | 9 | [`summary`](targeted_review_connectome_mech_090/entries/2026-04-15_mech090_layer3_model_based_free_dolan2013/summary.md) |
+| `targeted_review_connectome_mech_090` | [`2026-05-28_mech090_premature_commit_pathology_roesch2007`](targeted_review_connectome_mech_090/entries/2026-05-28_mech090_premature_commit_pathology_roesch2007/record.json) | 12 | [`summary`](targeted_review_connectome_mech_090/entries/2026-05-28_mech090_premature_commit_pathology_roesch2007/summary.md) |
 | `targeted_review_connectome_mech_091` | [`2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007`](targeted_review_connectome_mech_091/entries/2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007/record.json) | 5 | [`summary`](targeted_review_connectome_mech_091/entries/2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007/summary.md) |
 | `targeted_review_connectome_mech_092` | [`2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024`](targeted_review_connectome_mech_092/entries/2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024/record.json) | 4 | [`summary`](targeted_review_connectome_mech_092/entries/2026-04-08_mech092_swr_disruption_no_effect_deceuninck2024/summary.md) |
 | `targeted_review_connectome_mech_093` | [`2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023`](targeted_review_connectome_mech_093/entries/2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023/record.json) | 4 | [`summary`](targeted_review_connectome_mech_093/entries/2026-04-08_mech093_theta_frequency_anxiety_reduction_hines2023/summary.md) |
