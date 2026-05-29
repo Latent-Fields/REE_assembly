@@ -1,46 +1,30 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-29T07:22:36Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 5,
-  "queue_id_at_head": "V3-EXQ-592b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-601",
-      "result": "PASS",
-      "completed_at": "2026-05-21T11:47:54.625196+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-590a",
-      "result": "PASS",
-      "completed_at": "2026-05-25T08:40:57.606321+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603b",
-      "result": "FAIL",
-      "completed_at": "2026-05-26T07:14:59.216957+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-609",
-      "result": "PASS",
-      "completed_at": "2026-05-26T07:24:57.521687+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-612d",
-      "result": "PASS",
-      "completed_at": "2026-05-28T17:57:01.343784+00:00"
-    }
+  "last_tick_utc": "2026-05-29T07:25:23Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-610a",
+  "current_exq_started_utc": "2026-05-29T07:24:37.780841+00:00",
+  "current_title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "starting...",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 0,
+    "episodes_total": 130,
+    "overall_pct": 0.1
+  },
+  "seconds_elapsed": 45,
+  "seconds_remaining": 47942,
+  "recent_lines": [
+    "[V3-EXQ-610a] INV-074 crystallization necessity test (EVB-0270)",
+    "[V3-EXQ-610a] Starting ARM_0_control seed=42 crystallize=False"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 19986,
   "runner_version": null,
   "gpu": {
