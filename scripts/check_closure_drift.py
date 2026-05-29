@@ -57,6 +57,14 @@ NON_TERMINAL_STATUSES = {
     "partial",
     "tracked",
     "open",
+    # Plan-doc node sits at this status when its owner_exq has reached a
+    # terminal state but the closure needs a governance-level decision that
+    # cannot come out of the standard pipeline (e.g. R4.b on diagnostic-probe
+    # evidence where scoring_excluded prevents auto-promotion). Added 2026-05-29
+    # after behavioral_diversity_isolation:GAP-D was missed by this script for
+    # 24h while parked here. Flagging it for the drift report makes the next
+    # /governance cycle see it.
+    "pending_governance_stamp",
 }
 
 EXQ_RE = re.compile(r"V3-EXQ-(\d+[a-z]?)", re.IGNORECASE)

@@ -1,16 +1,17 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-05-29T08:04:53Z
+Generated: 2026-05-29T16:34:00Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. It also flags plans missing a top-level `closure_plan.last_updated` field.
 
 Warn-only -- this script never blocks the governance pipeline.
 
-## Drifted nodes (7)
+## Drifted nodes (8)
 
 | plan | node | status | owner_exq | node last_updated | terminal signal |
 |------|------|--------|-----------|-------------------|-----------------|
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | blocked | V3-EXQ-543l | 2026-05-29 | manifest `evidence/experiments/v3_exq_543l_arc062_mode_separation_gap_b_falsifier_20260526T023059Z_v3.json` + autopsy `evidence/planning/failure_autopsy_V3-EXQ-543l_2026-05-27.json` |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | in-progress | V3-EXQ-592b | 2026-05-29 | manifest `evidence/experiments/v3_exq_592b_mech090_commit_readiness_gate_validation/v3_exq_592b_mech090_commit_readiness_gate_validation_20260529T083239Z_v3.json` |
 | infant_substrate_plan.md | `infant_substrate:GAP-11` | blocked | V3-EXQ-588b | 2026-05-29 | manifest `evidence/experiments/v3_exq_588b_goal_seeding_pipeline_diagnostic/v3_exq_588b_goal_seeding_pipeline_diagnostic_20260521T053758Z_v3.json` |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | blocked | V3-EXQ-590 | 2026-05-29 | manifest `evidence/experiments/v3_exq_590_isef004_novelty_bonus_goldilocks/v3_exq_590_isef004_novelty_bonus_goldilocks_20260525T084057Z_v3.json` |
 | infant_substrate_plan.md | `infant_substrate:GAP-14` | blocked | V3-EXQ-591 | 2026-05-29 | manifest `evidence/experiments/v3_exq_591_isef005_curriculum_vs_flat/v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3.json` + autopsy `evidence/planning/failure_autopsy_V3-EXQ-591_2026-05-27.json` |
