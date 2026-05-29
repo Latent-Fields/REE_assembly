@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-29T07:26:27Z",
+  "last_tick_utc": "2026-05-29T07:27:27Z",
   "state": "running",
   "current_exq": "V3-EXQ-592b",
   "current_exq_started_utc": "2026-05-29T07:23:17.165305+00:00",
@@ -12,17 +12,18 @@
     "run_label": "Seed 42 / ARM_0_GATED",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 0,
-    "episodes_total": 130,
-    "overall_pct": 1.8
+    "episodes_done": 40,
+    "episodes_total": 400,
+    "overall_pct": 2.3
   },
-  "seconds_elapsed": 190,
-  "seconds_remaining": 10588,
+  "seconds_elapsed": 250,
+  "seconds_remaining": 10558,
   "recent_lines": [
     "[V3-EXQ-592b] MECH-090 R-c commit-readiness gate validation",
     "dry_run=False  seeds=[42, 43, 44]",
     "COMMIT_READINESS_FLOOR=0.05  GATE_ENABLED=True",
-    "Seed 42 Condition ARM_0_GATED"
+    "Seed 42 Condition ARM_0_GATED",
+    "[P0 probe] ep 40/400  rv=0.00001  threshold=0.4  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
