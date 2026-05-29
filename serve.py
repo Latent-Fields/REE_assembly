@@ -567,6 +567,128 @@ _runner_procs: dict[str, subprocess.Popen | None] = {"v3": None, "v2": None}
 _runner_ext_pids: dict[str, int | None] = {"v3": None, "v2": None}
 
 
+# ── launchd supervision (Mac v3 runner) ──────────────────────────────────────
+# When ~/Library/LaunchAgents/com.ree.runner.plist is installed, the v3
+# runner is supervised by launchd (KeepAlive=true) instead of being
+# spawned as a Popen child of this serve.py. This matches the cloud
+# workers' systemd setup: crashes auto-respawn, the explorer's Stop
+# button still maps to a genuine "really stop" (launchctl bootout). The
+# plist runs ~/.local/bin/ree_runner_launchd.sh which loads the same env
+# vars _default_runner_extra_env would have injected, so behaviour is
+# bit-identical to the Popen path on a normal run.
+
+_LAUNCHD_PLIST_PATH = Path.home() / "Library" / "LaunchAgents" / "com.ree.runner.plist"
+_LAUNCHD_LABEL = "com.ree.runner"
+
+
+def _launchd_supervises_v3() -> bool:
+    """True iff the v3 runner should be driven via launchctl rather than Popen."""
+    return _LAUNCHD_PLIST_PATH.is_file()
+
+
+def _launchd_target() -> str:
+    return f"gui/{os.getuid()}/{_LAUNCHD_LABEL}"
+
+
+def _launchd_pid() -> int | None:
+    """Return the PID of the running launchd-supervised runner, or None.
+
+    Uses `launchctl print <target>` which prints a PID line when the
+    service is loaded AND running, and exits non-zero (or shows
+    'pid = -' style) when stopped.
+    """
+    try:
+        r = subprocess.run(
+            ["launchctl", "print", _launchd_target()],
+            capture_output=True, text=True, timeout=5,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return None
+    if r.returncode != 0:
+        return None
+    for line in r.stdout.splitlines():
+        s = line.strip()
+        if s.startswith("pid ") or s.startswith("pid="):
+            # Format: "pid = 12345" or similar
+            parts = s.split("=", 1)
+            if len(parts) == 2:
+                try:
+                    pid = int(parts[1].strip())
+                    if pid > 0 and _proc_alive(pid):
+                        return pid
+                except ValueError:
+                    pass
+    return None
+
+
+def _launchd_bootstrap_if_needed() -> tuple[bool, str]:
+    """Ensure the plist is loaded into the user's gui session. Idempotent.
+
+    Returns (ok, note). bootstrap returns 0 on success and 5 (or
+    similar) on "already loaded" -- we treat both as ok.
+    """
+    try:
+        r = subprocess.run(
+            ["launchctl", "bootstrap", f"gui/{os.getuid()}",
+             str(_LAUNCHD_PLIST_PATH)],
+            capture_output=True, text=True, timeout=10,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as e:
+        return False, f"bootstrap failed: {e}"
+    if r.returncode == 0:
+        return True, "bootstrapped"
+    # 5 = service already loaded; benign for kickstart purposes
+    stderr = (r.stderr or "").lower()
+    if "already loaded" in stderr or "service already" in stderr or r.returncode == 5:
+        return True, "already_loaded"
+    return False, f"bootstrap rc={r.returncode}: {r.stderr.strip()}"
+
+
+def _launchd_kickstart() -> tuple[bool, str]:
+    """Tell launchd to start the service if it isn't already running."""
+    try:
+        r = subprocess.run(
+            ["launchctl", "kickstart", _launchd_target()],
+            capture_output=True, text=True, timeout=10,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as e:
+        return False, f"kickstart failed: {e}"
+    if r.returncode == 0:
+        return True, "kickstarted"
+    return False, f"kickstart rc={r.returncode}: {r.stderr.strip()}"
+
+
+def _launchd_bootout() -> tuple[bool, str]:
+    """Unload the plist entirely. KeepAlive does NOT respawn after bootout."""
+    try:
+        r = subprocess.run(
+            ["launchctl", "bootout", _launchd_target()],
+            capture_output=True, text=True, timeout=10,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as e:
+        return False, f"bootout failed: {e}"
+    if r.returncode == 0:
+        return True, "bootout"
+    stderr = (r.stderr or "").lower()
+    if "could not find" in stderr or r.returncode == 113:
+        return True, "not_loaded"
+    return False, f"bootout rc={r.returncode}: {r.stderr.strip()}"
+
+
+def _launchd_kill(sig: str) -> tuple[bool, str]:
+    """Send a signal to the launchd-supervised runner. sig is 'TERM' or 'KILL'."""
+    try:
+        r = subprocess.run(
+            ["launchctl", "kill", sig, _launchd_target()],
+            capture_output=True, text=True, timeout=10,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as e:
+        return False, f"kill failed: {e}"
+    if r.returncode == 0:
+        return True, f"signalled {sig}"
+    return False, f"kill rc={r.returncode}: {r.stderr.strip()}"
+
+
 def _proc_alive(pid: int) -> bool:
     """Return True if a process with this PID is currently running."""
     try:
@@ -592,6 +714,11 @@ def _detect_existing_runners():
 
 def _runner_pid(ver: str) -> int | None:
     """Return the PID of the running runner for a given substrate, or None."""
+    # When v3 is launchd-supervised, launchctl is the source of truth.
+    # It catches PIDs we didn't spawn (post-respawn after a crash) AND
+    # avoids a stale Popen handle confusing us when launchd has moved on.
+    if ver == "v3" and _launchd_supervises_v3():
+        return _launchd_pid()
     proc = _runner_procs.get(ver)
     if proc is not None and proc.poll() is None:
         return proc.pid
@@ -2216,6 +2343,29 @@ def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
     if err:
         return err
 
+    # Launchd-supervised path for the v3 Mac runner. Bootstrap the plist
+    # (idempotent), then kickstart it. launchd then owns the lifecycle:
+    # KeepAlive=true means crashes auto-respawn without a new Start
+    # click. The plist runs ree_runner_launchd.sh which loads the same
+    # env vars _default_runner_extra_env would inject for the Popen path
+    # -- behaviour is bit-identical on a normal run. extra_env is
+    # ignored on this path (the wrapper script owns env) -- callers
+    # that need a custom env should temporarily uninstall the plist.
+    if ver == "v3" and _launchd_supervises_v3() and extra_env is None:
+        boot_ok, boot_note = _launchd_bootstrap_if_needed()
+        if not boot_ok:
+            return {"status": "error", "message": boot_note}
+        kick_ok, kick_note = _launchd_kickstart()
+        if not kick_ok:
+            return {"status": "error", "message": kick_note}
+        # Brief wait so the wrapper script has a chance to exec python.
+        time.sleep(1.0)
+        new_pid = _launchd_pid()
+        print(f"[serve] {cfg['label']} runner started via launchd "
+              f"(PID {new_pid}; {boot_note}; {kick_note})", flush=True)
+        return {"status": "started", "pid": new_pid, "substrate": ver,
+                "supervisor": "launchd"}
+
     python_exe = cfg["python"]
     if not os.path.exists(python_exe):
         python_exe = sys.executable  # fallback
@@ -2691,6 +2841,26 @@ def stop_runner(ver: str | None = None) -> dict:
             continue
         cfg = RUNNERS[v]
 
+        # Launchd-supervised v3: unload the plist entirely so KeepAlive
+        # does NOT respawn the runner after this clean exit. The Stop
+        # button keeps its expected "really stop" meaning. To run the
+        # runner again the user clicks Start, which re-bootstraps the
+        # plist + kickstarts.
+        if v == "v3" and _launchd_supervises_v3():
+            target_pid = _launchd_pid()
+            if target_pid is None:
+                continue  # not running under launchd; fall through
+            # bootout sends SIGTERM (drain) and unloads the plist. The
+            # runner finishes the current experiment then exits, with no
+            # respawn. Return immediately -- drain may take minutes.
+            ok, note = _launchd_bootout()
+            if not ok:
+                return {"status": "error", "message": note}
+            print(f"[serve] {cfg['label']} drain requested via launchd "
+                  f"bootout (PID {target_pid}; {note})", flush=True)
+            return {"status": "draining", "pid": target_pid, "substrate": v,
+                    "supervisor": "launchd"}
+
         # Try the subprocess we launched
         proc = _runner_procs.get(v)
         if proc is not None and proc.poll() is None:
@@ -2726,6 +2896,20 @@ def force_stop_runner(ver: str | None = None) -> dict:
         if v not in RUNNERS:
             continue
         cfg = RUNNERS[v]
+
+        # Launchd-supervised v3: SIGKILL via launchctl, then bootout to
+        # prevent KeepAlive respawn. force_stop semantics are "no drain,
+        # no respawn, gone now".
+        if v == "v3" and _launchd_supervises_v3():
+            target_pid = _launchd_pid()
+            if target_pid is None:
+                continue
+            _launchd_kill("KILL")
+            ok, note = _launchd_bootout()
+            print(f"[serve] {cfg['label']} force-killed via launchd "
+                  f"(PID {target_pid}; {note})", flush=True)
+            return {"status": "stopped", "pid": target_pid,
+                    "substrate": v, "supervisor": "launchd"}
 
         proc = _runner_procs.get(v)
         if proc is not None and proc.poll() is None:
