@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-29T18:28:55Z",
+  "last_tick_utc": "2026-05-29T18:30:00Z",
   "state": "running",
   "current_exq": "V3-EXQ-614",
   "current_exq_started_utc": "2026-05-29T17:42:54.369899+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 42 / ablate_B_a_c_d_on_b_off",
     "runs_done": 3,
     "runs_total": 9,
-    "episodes_done": 10,
+    "episodes_done": 40,
     "episodes_total": 90,
-    "overall_pct": 34.6
+    "overall_pct": 38.3
   },
-  "seconds_elapsed": 2761,
-  "seconds_remaining": 5322,
+  "seconds_elapsed": 2827,
+  "seconds_remaining": 5021,
   "recent_lines": [
-    "[train] arm=ARM_0_B_only seed=44 phase=P1 ep 90/90",
-    "verdict: PASS",
-    "Arm ARM_1_ablate_B (ablate_B_a_c_d_on_b_off) (P0=30 ep, P1=60 ep, steps_per_episode=200, dry_run=False)",
     "Seed 42 Condition ablate_B_a_c_d_on_b_off",
-    "[train] arm=ARM_1_ablate_B seed=42 phase=P0 ep 10/90"
+    "[train] arm=ARM_1_ablate_B seed=42 phase=P0 ep 10/90",
+    "[train] arm=ARM_1_ablate_B seed=42 phase=P0 ep 20/90",
+    "[train] arm=ARM_1_ablate_B seed=42 phase=P0 ep 30/90",
+    "[train] arm=ARM_1_ablate_B seed=42 phase=P1 ep 40/90"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
