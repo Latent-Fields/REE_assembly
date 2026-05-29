@@ -1,34 +1,31 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-29T08:32:37Z",
+  "last_tick_utc": "2026-05-29T15:49:40Z",
   "state": "running",
-  "current_exq": "V3-EXQ-592b",
-  "current_exq_started_utc": "2026-05-29T07:23:17.165305+00:00",
-  "current_title": "MECH-090 R-c commit-readiness gate validation (commitment_closure:GAP-4 substrate)",
+  "current_exq": "V3-EXQ-610a",
+  "current_exq_started_utc": "2026-05-29T15:49:04.633962+00:00",
+  "current_title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_1_GATED_FORCED_READY",
+    "run_label": "starting...",
     "runs_done": 0,
     "runs_total": 1,
     "episodes_done": 0,
-    "episodes_total": 400,
-    "overall_pct": 38.5
+    "episodes_total": 130,
+    "overall_pct": 0.1
   },
-  "seconds_elapsed": 4160,
-  "seconds_remaining": 6646,
+  "seconds_elapsed": 36,
+  "seconds_remaining": 47904,
   "recent_lines": [
-    "[P0 train] ep 80/400  rv=0.00001  reward=-1.1044",
-    "[P0 probe] ep 120/400  rv=0.00001  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[seed=44] ARM_0_GATED: rv_final=0.00001 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=10 last_margin=0.0002 committed_steps=4884 falsifier_fired=False",
-    "Seed 44 Condition ARM_1_GATED_FORCED_READY"
+    "[V3-EXQ-610a] INV-074 crystallization necessity test (EVB-0270)",
+    "[V3-EXQ-610a] Starting ARM_0_control seed=42 crystallize=False"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
-  "runner_pid": 69413,
+  "runner_pid": 96629,
   "runner_version": null,
   "gpu": {
     "available": false

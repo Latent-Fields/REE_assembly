@@ -1,22 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 69413,
-  "runner_started_at": "2026-05-29T07:23:17.028816+00:00",
-  "last_updated": "2026-05-29T08:32:42.512023+00:00",
+  "runner_pid": 96629,
+  "runner_started_at": "2026-05-29T15:49:00.845361+00:00",
+  "last_updated": "2026-05-29T15:49:03.725218+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-544a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-313 (ARC-065) stochastic_noise_floor substrate-readiness diagnostic (re-queue of V3-EXQ-544)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-610a",
       "backlog_id": "EVB-0270",
@@ -24,7 +13,7 @@
       "title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
       "description": "",
       "estimated_minutes": 17.3,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -8154,6 +8143,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2.4
+    },
+    {
+      "queue_id": "V3-EXQ-544a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-313 (ARC-065) stochastic_noise_floor substrate-readiness diagnostic (re-queue of V3-EXQ-544)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | UC3_effective_temperature_lift_correctness: pass=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-544a -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-544a.json",
+      "started_at": "2026-05-29T15:49:01.015474+00:00",
+      "completed_at": "2026-05-29T15:49:03.723426+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2.7
     }
   ]
 }
