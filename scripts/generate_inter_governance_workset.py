@@ -314,6 +314,55 @@ def _retest_blockers(
     return blocker_strs, structured
 
 
+def _implement_substrate_blockers(
+    entry: dict, substrate_by_id: dict[str, dict]
+) -> list[str]:
+    """Compute blocked_by descriptors for an /implement-substrate IGW item.
+
+    Symmetric to _retest_blockers but rooted at the substrate entry itself
+    rather than at a retest claim. Returns empty when the entry is ready
+    (no ready=false + no unresolved depends_on_unresolved tokens). Returns
+    non-empty when (a) ready=false (surfaces ready_blocked_by) OR (b)
+    depends_on_unresolved contains leading-claim-tokens that resolve to
+    substrate_queue entries still in a non-resolved status.
+
+    Same depends_on_unresolved parsing convention as _retest_blockers:
+    leading SD/ARC/MECH/Q token extracted via _LEADING_CLAIM_TOKEN_RE;
+    resolved IDs skipped silently; no-leading-ID entries surfaced as
+    free-text descriptors.
+    """
+    blockers: list[str] = []
+    if entry.get("ready") is False:
+        ready_blocked_by = entry.get("ready_blocked_by")
+        if isinstance(ready_blocked_by, str) and ready_blocked_by.strip():
+            blockers.append(f"ready_blocked_by: {ready_blocked_by[:200]}")
+        else:
+            blockers.append("ready=false (no ready_blocked_by detail)")
+    for dep_str in entry.get("depends_on_unresolved") or []:
+        if not isinstance(dep_str, str) or not dep_str.strip():
+            continue
+        m = _LEADING_CLAIM_TOKEN_RE.match(dep_str)
+        if m:
+            dep_id = m.group(1)
+            dep_entry = substrate_by_id.get(dep_id)
+            if _substrate_resolved(dep_entry):
+                continue
+            if dep_entry:
+                dep_status = (
+                    dep_entry.get("implementation_status")
+                    or dep_entry.get("status")
+                    or "unknown"
+                )
+                blockers.append(f"{dep_id} [{dep_status}]")
+            else:
+                blockers.append(
+                    f"{dep_id} [no-substrate-entry]: {dep_str[:120]}"
+                )
+        else:
+            blockers.append(f"free-text: {dep_str[:160]}")
+    return blockers
+
+
 def _proposed_experiments() -> list[dict]:
     if not PROPOSALS_JSON.exists():
         return []
@@ -791,18 +840,34 @@ def build_workset() -> dict:
         if sd in emitted_substrate_sd_ids:
             continue
         emitted_substrate_sd_ids.add(sd)
+        # Defensive: _substrate_ready_items already filters ready=true, so
+        # blockers here should normally be empty. A non-empty list means the
+        # substrate_queue entry is internally inconsistent (ready=true but
+        # depends_on_unresolved still names a non-resolved substrate); surface
+        # as blocked rather than papering over the inconsistency.
+        blockers = _implement_substrate_blockers(sq, substrate_by_id)
+        status = "blocked" if blockers else "ready"
+        if status == "ready":
+            title = f"Substrate ready: {sd}"
+            why_now = sq.get("implementation_hint", "substrate_queue ready=true")[:200]
+        else:
+            title = f"Substrate (blocked): {sd}"
+            why_now = (
+                f"substrate_queue ready=true but {len(blockers)} unresolved "
+                f"prerequisite(s) -- see blocked_by."
+            )[:240]
         add(
             lane="substrate",
             skill="/implement-substrate",
-            status="ready",
+            status=status,
             priority=25,
             severity="high",
-            title=f"Substrate ready: {sd}",
-            why_now=sq.get("implementation_hint", "substrate_queue ready=true")[:200],
+            title=title,
+            why_now=why_now,
             gap_ids=[],
             claim_ids=list(sq.get("unblocks_claims") or [])[:6],
             owner_exq=None,
-            blocked_by=[],
+            blocked_by=blockers,
             unblocks=list(sq.get("unblocks_claims") or [])[:6],
         )
 
@@ -879,22 +944,38 @@ def build_workset() -> dict:
                 or entry.get("status")
                 or "unknown"
             )
-            add(
-                lane="substrate",
-                skill="/implement-substrate",
-                status="ready",
-                priority=20,
-                severity="high",
-                title=f"Implement substrate: {sid} (unblocks {cid})",
-                why_now=(
+            # Symmetric prereq-detection: an implement-substrate item is
+            # ready only when its own substrate_queue entry is ready=true
+            # AND its depends_on_unresolved is empty or fully resolved.
+            # Without this check the synthesis loop emitted items as ready
+            # even when the substrate_queue itself declared the work
+            # blocked -- see IGW-20260529-033 (ARC-046) for the incident.
+            sub_blockers = _implement_substrate_blockers(entry, substrate_by_id)
+            sub_status = "blocked" if sub_blockers else "ready"
+            if sub_status == "ready":
+                why_now = (
                     f"substrate_queue entry status={entry_status}; "
                     f"unblocks retest of {cid} "
                     f"(pending_retest_after_substrate)."
-                )[:240],
+                )[:240]
+            else:
+                why_now = (
+                    f"substrate_queue entry status={entry_status} with "
+                    f"{len(sub_blockers)} unresolved prerequisite(s); "
+                    f"blocks retest of {cid}. See blocked_by."
+                )[:240]
+            add(
+                lane="substrate",
+                skill="/implement-substrate",
+                status=sub_status,
+                priority=20,
+                severity="high",
+                title=f"Implement substrate: {sid} (unblocks {cid})",
+                why_now=why_now,
                 gap_ids=[],
                 claim_ids=list(entry.get("unblocks_claims") or [])[:6],
                 owner_exq=None,
-                blocked_by=[],
+                blocked_by=sub_blockers,
                 unblocks=list(entry.get("unblocks_claims") or [])[:6],
             )
 

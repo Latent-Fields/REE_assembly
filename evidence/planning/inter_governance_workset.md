@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-29T15:51:03Z`
+Generated: `2026-05-29T16:04:03Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,7 +9,7 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **49** (ready 25, in_flight 0, blocked 14)
+- Items: **49** (ready 21, in_flight 0, blocked 18)
 - Pending review: **0**
 - Queue pending (unclaimed): **1**
 
@@ -19,8 +19,9 @@ UI: http://localhost:8000/workset
 
 ### IGW-20260529-033 -- Implement substrate: ARC-046 (unblocks ARC-046)
 
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 20
-- **Why now:** substrate_queue entry status=pending_implementation; unblocks retest of ARC-046 (pending_retest_after_substrate).
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
+- **Blocked by:** ready_blocked_by: V3 substrate prerequisites (NOT V4 deferral): (a) MECH-307 default-value recalibration validated (V3-EXQ-540e); (b) goal-pipeline / training-regime substrate enrichment so trained policy survives SD-0; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4)
+- **Why now:** substrate_queue entry status=pending_implementation with 2 unresolved prerequisite(s); blocks retest of ARC-046. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -28,9 +29,10 @@ UI: http://localhost:8000/workset
 REE inter-governance work item: IGW-20260529-033
 Title: Implement substrate: ARC-046 (unblocks ARC-046)
 Lane: substrate | Skill: /implement-substrate
-Status: ready
+Status: blocked
 Claims: ARC-046, DEV-NEED-008
-Why now: substrate_queue entry status=pending_implementation; unblocks retest of ARC-046 (pending_retest_after_substrate).
+Blocked by: ready_blocked_by: V3 substrate prerequisites (NOT V4 deferral): (a) MECH-307 default-value recalibration validated (V3-EXQ-540e); (b) goal-pipeline / training-regime substrate enrichment so trained policy survives SD-0; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4)
+Why now: substrate_queue entry status=pending_implementation with 2 unresolved prerequisite(s); blocks retest of ARC-046. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -41,8 +43,9 @@ Instructions:
 
 ### IGW-20260529-035 -- Implement substrate: SD-054 (unblocks ARC-062)
 
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 20
-- **Why now:** substrate_queue entry status=candidate_v3_pending; unblocks retest of ARC-062 (pending_retest_after_substrate).
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
+- **Blocked by:** ready_blocked_by: V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.
+- **Why now:** substrate_queue entry status=candidate_v3_pending with 1 unresolved prerequisite(s); blocks retest of ARC-062. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -50,9 +53,10 @@ Instructions:
 REE inter-governance work item: IGW-20260529-035
 Title: Implement substrate: SD-054 (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
-Status: ready
+Status: blocked
 Claims: SD-054, MECH-309, ARC-062
-Why now: substrate_queue entry status=candidate_v3_pending; unblocks retest of ARC-062 (pending_retest_after_substrate).
+Blocked by: ready_blocked_by: V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.
+Why now: substrate_queue entry status=candidate_v3_pending with 1 unresolved prerequisite(s); blocks retest of ARC-062. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -63,8 +67,9 @@ Instructions:
 
 ### IGW-20260529-041 -- Implement substrate: ARC-065 (unblocks MECH-313)
 
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 20
-- **Why now:** substrate_queue entry status=phase_1_implemented; unblocks retest of MECH-313 (pending_retest_after_substrate).
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
+- **Blocked by:** ready_blocked_by: Q-044 three-arm ablation + Q-045 4-arm ablation pending substrate-landing of all four child substrates (MECH-313/314/318/319).; Q-043 [no-substrate-entry]: Q-043 weight calibration; Q-044 [no-substrate-entry]: Q-044 three-arm ablation; Q-045 [no-substrate-entry]: Q-045 4-arm ablation
+- **Why now:** substrate_queue entry status=phase_1_implemented with 4 unresolved prerequisite(s); blocks retest of MECH-313. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -72,9 +77,10 @@ Instructions:
 REE inter-governance work item: IGW-20260529-041
 Title: Implement substrate: ARC-065 (unblocks MECH-313)
 Lane: substrate | Skill: /implement-substrate
-Status: ready
+Status: blocked
 Claims: ARC-065, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c
-Why now: substrate_queue entry status=phase_1_implemented; unblocks retest of MECH-313 (pending_retest_after_substrate).
+Blocked by: ready_blocked_by: Q-044 three-arm ablation + Q-045 4-arm ablation pending substrate-landing of all four child substrates (MECH-313/314/318/319).; Q-043 [no-substrate-entry]: Q-043 weight calibration; Q-044 [no-substrate-entry]: Q-044 three-arm ablation; Q-045 [no-substrate-entry]: Q-045 4-arm ablation
+Why now: substrate_queue entry status=phase_1_implemented with 4 unresolved prerequisite(s); blocks retest of MECH-313. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -85,8 +91,9 @@ Instructions:
 
 ### IGW-20260529-042 -- Implement substrate: MECH-313 (unblocks MECH-313)
 
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 20
-- **Why now:** substrate_queue entry status=candidate_substrate_landed; unblocks retest of MECH-313 (pending_retest_after_substrate).
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
+- **Blocked by:** ready_blocked_by: Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) on V3-EXQ-543b/c successors; gated on MECH-314 substrate also being landed (done 2026-05-10).; Q-045 [no-substrate-entry]: Q-045 4-arm ablation
+- **Why now:** substrate_queue entry status=candidate_substrate_landed with 2 unresolved prerequisite(s); blocks retest of MECH-313. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -94,9 +101,10 @@ Instructions:
 REE inter-governance work item: IGW-20260529-042
 Title: Implement substrate: MECH-313 (unblocks MECH-313)
 Lane: substrate | Skill: /implement-substrate
-Status: ready
+Status: blocked
 Claims: MECH-313
-Why now: substrate_queue entry status=candidate_substrate_landed; unblocks retest of MECH-313 (pending_retest_after_substrate).
+Blocked by: ready_blocked_by: Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) on V3-EXQ-543b/c successors; gated on MECH-314 substrate also being landed (done 2026-05-10).; Q-045 [no-substrate-entry]: Q-045 4-arm ablation
+Why now: substrate_queue entry status=candidate_substrate_landed with 2 unresolved prerequisite(s); blocks retest of MECH-313. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
