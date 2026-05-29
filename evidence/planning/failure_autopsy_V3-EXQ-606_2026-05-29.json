@@ -1,0 +1,63 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-29T16:57:10Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate_20260521T090253Z_v3",
+      "queue_id": "V3-EXQ-606",
+      "claim_ids": ["MECH-318"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (premature) -- script-declared gate V3-EXQ-543k not cleared at run time",
+        "biological_reference": "clear -- OFC task state (Wilson 2014, Schuck 2016) + Wang 2018 RL^2 meta-RL well-anchored; targeted_review_arc_064 lit-pull present",
+        "prerequisites": "missing (dominant) -- V3-EXQ-543k FAIL/mixed 2026-05-22 (mode_separation_score=0.483 < floor=0.5); MECH-309 monomodal-collapse upstream still active per 543l autopsy 2026-05-27 and 598b governance 2026-05-29; W2 multi-task-training prerequisite NOT ABSORBED in V3 per absorption-check VERDICT B 2026-05-10",
+        "implementation": "partial -- SD-033a LateralPFCAnalog rule_state + ARC-062 Phase 1 + bipartite axis alternation present; C3 PASS confirms wiring is live; rule_state_norm 0.06-0.28 across seeds; ARC-062 Phase 3 GAP-C closure landed 2026-05-17",
+        "environment": "adequate-for-wiring / borderline-for-claim -- SD-054 reef + hazard_food_attraction + bipartite axis present; W2 bandwidth question unanswerable under upstream monomodal policy",
+        "measurement": "adequate (but uninformative under collapse) -- C1/C2/C3 well-formed; C3 confirms wiring; C1/C2 measure behavioural cross-regime which requires policy to inhabit goal-rich states; under monomodal policy reef_frac collapses to 0 in 2/3 seeds",
+        "integration": "partial -- rule_state buffer integrates per-tick (W3); compute_bias composes additively into dacc_score_bias (W4); discriminator->rule_state source vector wired (GAP-C 2026-05-17); W2 multi-task training pressure missing",
+        "scale": "unknown -- cannot evaluate while upstream prerequisite blocks"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC cognitive map / task state (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016) + meta-RL recurrent task-state representation (Wang et al. 2018; Duan et al. 2016 RL^2; Botvinick et al. 2019)",
+        "dependencies": ["multi-task training distribution (W2)", "cross-episode hidden-state continuity (W5; V4-scope)", "MECH-309 monomodal-collapse resolution upstream (GAP-B)"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- biological translation with well-anchored computational reference; not the SD-003 / SD-010-11 formal-definition-import failure mode",
+        "lit_status": "present (evidence/literature/targeted_review_arc_064_bottom_up_rule_discovery/synthesis.md)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "label recorded for completeness and kinship with V3-EXQ-598b MECH-262 reclassification 2026-05-29; indexer-side dispatch behaviour is already a no-op on MECH-318 (v3_pending=true with zero contributory evidence); user-confirmed NOT to apply via claims.yaml in this autopsy artifact",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-606 (2026-05-21) FAIL non_contributory confirmed via /failure-autopsy 2026-05-29 as premature GAP-I gate (ran one day before declared gating predecessor V3-EXQ-543k, which FAILed mode_separation_score=0.483 < floor=0.5 on 2026-05-22). C3 wiring active PASSed (rule_state_norm 0.06-0.28 across seeds); C1 / C2 behavioural cross-regime failed under the substrate-uniform monomodal-V_s monostrategy tail signature also driving V3-EXQ-543l / V3-EXQ-598b / the GAP-4 Tier-1 cohort. Empirical retire-vs-promote verdict still DEFERRED to V3-EXQ-543c-successor on multi-rule-context substrate after GAP-B closure (cf. existing absorption-check W2 / W5 gap framing).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Existing substrate_queue.json MECH-318 entry already records implementation_hint 'NO NEW V3 SUBSTRATE COMMISSIONED. V3-EXQ-606 non_contributory (premature vs 543k gate).' Plan-of-record arc_062_rule_apprehension_plan.md GAP-I resume_condition already holds V3-EXQ-606b queueing until 543k successor contributory PASS + GAP-B resolves. claims.yaml MECH-318 evidence_quality_note already routes empirical verdict downstream. No new substrate to commission; existing routing is correct."
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_after_substrate_note": "Retest sequence: (1) GAP-B closure -- V3-EXQ-598b successor on the substrate-enrichment-first reading (the right test of MECH-309 monomodal collapse under enriched goal-rich state coverage); (2) GAP-B retest of MECH-309 / ARC-062 falsifier under enriched substrate; (3) V3-EXQ-543c-successor on multi-rule-context substrate is the MECH-318 empirical verdict gate per existing claims.yaml evidence_quality_note. No new MECH-318-specific retest queued from this autopsy.",
+      "narrow_supports_flag": false,
+      "narrow_supports_flag_note": "MECH-318 has zero contributory supports (no narrow supports to flag); the candidate v3_pending status already encodes the empirical gap correctly",
+      "learning_extracted": [
+        "Process-discipline: V3-EXQ-606 ran one day before its own script-declared scientific gate (gates_on_exq=V3-EXQ-543k). The 'gates_on_exq' field is the load-bearing fact for autopsy routing -- when set, an autopsy of a FAIL or non_contributory disposition starts at the gate predecessor's state.",
+        "The substrate-uniform monomodal-V_s monostrategy tail signature (2-of-3-seed policy collapse to reef_frac_eval=0) is now confirmed across V3-EXQ-606 (MECH-318), V3-EXQ-483c (SD-037 Tier-1), V3-EXQ-603c (Q-045 phased), V3-EXQ-543l (ARC-062 / MECH-309), V3-EXQ-598b (SD-033a / MECH-262). The structural property V3-EXQ-591 named ('V3 substrate at default config under standard random-policy training does not produce non-trivial goal-rich state coverage') is the load-bearing factor at the GAP-4 cohort level. V3-EXQ-606 cross-references but does not absorb into the cohort autopsy because its dominant layer is prerequisites-at-GAP-B, not training-regime-substrate-at-GAP-4.",
+        "MECH-318 W2 (multi-task training distribution) absorption-check VERDICT B from 2026-05-10 remains accurate: V3 has no W2 substrate today. SD-054 episode-boundary axis alternation is the closest V3 approximation but cannot be evaluated independently of the upstream policy-side collapse.",
+        "Governance state already encodes the correct routing for this FAIL: substrate_queue.json MECH-318 implementation_hint + claims.yaml MECH-318 evidence_quality_note + arc_062_rule_apprehension_plan.md GAP-I resume_condition. The autopsy formalises and confirms this state without recommending new writes."
+      ],
+      "routing": "governance-confirmation",
+      "routing_note": "User-confirmed Step 8 disposition 2026-05-29: Option 1 (governance-confirmation; recommended_substrate_queue_entry.action='none'; no manifest write; no claims.yaml write). Existing governance state implements the correct routing."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "substrate-uniform 2-of-3-seed-collapse-to-zero failure shape on goal-rich state coverage",
+    "is_independent_bugs": false,
+    "structural_property": "V3 substrate at default config under standard random-policy training does not produce non-trivial goal-rich state coverage (named in V3-EXQ-591 autopsy; load-bearing across the GAP-4 Tier-1 cohort)",
+    "readings": ["substrate_enrichment_at_training_regime_level (GAP-4 cohort autopsy)", "per_experiment_prerequisites_at_GAP_B_level (this autopsy: V3-EXQ-606 dominant layer)"],
+    "absorption_decision": "cross-reference, not absorb -- V3-EXQ-606's load-bearing layer is the script-declared prerequisite gate (V3-EXQ-543k) at the arc_062 GAP-B level, not the training-regime substrate gap at the GAP-4 level. The GAP-4 enrichment will likely transitively unblock 606 (clearing GAP-B / MECH-309 collapse needs the same goal-rich state coverage), but the autopsies should not be redundant.",
+    "sibling_autopsies_in_flight": [
+      "failure-autopsy-490g-cohort-20260529T164951Z (V3-EXQ-483c / 524a / 603c GAP-4 Tier-1 cohort)",
+      "failure-autopsy-mech341-cluster-20260529T165617Z (V3-EXQ-608 / 611 MECH-341)",
+      "failure-autopsy-596-602-mech204-20260529T165714Z (V3-EXQ-596 / 602 MECH-204 integration)"
+    ]
+  }
+}
