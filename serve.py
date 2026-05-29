@@ -714,11 +714,18 @@ def _detect_existing_runners():
 
 def _runner_pid(ver: str) -> int | None:
     """Return the PID of the running runner for a given substrate, or None."""
-    # When v3 is launchd-supervised, launchctl is the source of truth.
-    # It catches PIDs we didn't spawn (post-respawn after a crash) AND
-    # avoids a stale Popen handle confusing us when launchd has moved on.
+    # When v3 is launchd-supervised, launchctl is the preferred source.
+    # It catches PIDs that launchd respawned after a crash without our
+    # knowledge. But fall through to the Popen / ext_pid / pid_file
+    # paths when launchctl reports nothing -- the plist may be installed
+    # while an old Popen-spawned runner from a previous serve.py session
+    # is still alive (transition state), and the explorer needs to see
+    # that PID so the Stop button works.
     if ver == "v3" and _launchd_supervises_v3():
-        return _launchd_pid()
+        lpid = _launchd_pid()
+        if lpid is not None:
+            return lpid
+        # fall through to legacy detection below
     proc = _runner_procs.get(ver)
     if proc is not None and proc.poll() is None:
         return proc.pid
@@ -2845,21 +2852,27 @@ def stop_runner(ver: str | None = None) -> dict:
         # does NOT respawn the runner after this clean exit. The Stop
         # button keeps its expected "really stop" meaning. To run the
         # runner again the user clicks Start, which re-bootstraps the
-        # plist + kickstarts.
+        # plist + kickstarts. If launchctl reports no PID (transition
+        # state: plist installed but the running runner is an orphan
+        # Popen child of a previous serve.py session), fall through to
+        # the legacy Popen / ext_pid detection below so the Stop button
+        # can still SIGTERM the orphan.
         if v == "v3" and _launchd_supervises_v3():
             target_pid = _launchd_pid()
-            if target_pid is None:
-                continue  # not running under launchd; fall through
-            # bootout sends SIGTERM (drain) and unloads the plist. The
-            # runner finishes the current experiment then exits, with no
-            # respawn. Return immediately -- drain may take minutes.
-            ok, note = _launchd_bootout()
-            if not ok:
-                return {"status": "error", "message": note}
-            print(f"[serve] {cfg['label']} drain requested via launchd "
-                  f"bootout (PID {target_pid}; {note})", flush=True)
-            return {"status": "draining", "pid": target_pid, "substrate": v,
-                    "supervisor": "launchd"}
+            if target_pid is not None:
+                # bootout sends SIGTERM (drain) and unloads the plist.
+                # The runner finishes the current experiment then exits,
+                # with no respawn. Return immediately -- drain may take
+                # minutes.
+                ok, note = _launchd_bootout()
+                if not ok:
+                    return {"status": "error", "message": note}
+                print(f"[serve] {cfg['label']} drain requested via "
+                      f"launchd bootout (PID {target_pid}; {note})",
+                      flush=True)
+                return {"status": "draining", "pid": target_pid,
+                        "substrate": v, "supervisor": "launchd"}
+            # No launchd-managed runner -- fall through to legacy paths.
 
         # Try the subprocess we launched
         proc = _runner_procs.get(v)
@@ -2899,17 +2912,19 @@ def force_stop_runner(ver: str | None = None) -> dict:
 
         # Launchd-supervised v3: SIGKILL via launchctl, then bootout to
         # prevent KeepAlive respawn. force_stop semantics are "no drain,
-        # no respawn, gone now".
+        # no respawn, gone now". If launchctl reports no PID, fall
+        # through to legacy Popen / ext_pid detection so we can still
+        # kill an orphan from a previous serve.py session.
         if v == "v3" and _launchd_supervises_v3():
             target_pid = _launchd_pid()
-            if target_pid is None:
-                continue
-            _launchd_kill("KILL")
-            ok, note = _launchd_bootout()
-            print(f"[serve] {cfg['label']} force-killed via launchd "
-                  f"(PID {target_pid}; {note})", flush=True)
-            return {"status": "stopped", "pid": target_pid,
-                    "substrate": v, "supervisor": "launchd"}
+            if target_pid is not None:
+                _launchd_kill("KILL")
+                ok, note = _launchd_bootout()
+                print(f"[serve] {cfg['label']} force-killed via launchd "
+                      f"(PID {target_pid}; {note})", flush=True)
+                return {"status": "stopped", "pid": target_pid,
+                        "substrate": v, "supervisor": "launchd"}
+            # No launchd-managed runner -- fall through to legacy paths.
 
         proc = _runner_procs.get(v)
         if proc is not None and proc.poll() is None:
