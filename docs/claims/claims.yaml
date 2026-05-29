@@ -26588,6 +26588,124 @@
     docs/architecture/sd_054_reef_enrichment_substrate.md.
   location: docs/architecture/sd_054_reef_enrichment_substrate.md
 
+- id: SD-056
+  title: "E2 world-forward action-conditional divergence preservation via auxiliary InfoNCE-style contrastive loss. Substrate-level fix for the V3-EXQ-571 root cause finding (2026-05-25): with world_dim=32 and action_dim=4, action contributes ~11% of world_forward input dimensionality, and reconstruction-shaped training collapses to the state-dominated local minimum where action effect is fitted to zero. Measurement: cand_world_pairwise_dist = 0.0000 across K=8 candidates differing only in first action. Same root cause as 2026-05-17 ARC-062 GAP-B autopsy; GAP-B fix was scoped only to GatedPolicy first-action one-hot bypass. SD-056 is the architecturally-faithful generalisation -- fixes the predictor's training objective rather than bypassing the predictor at each consumer. Option (ii) lever B (contrastive next-state, Srivastava et al. 2021 style) chosen over PLSM-style MI factorisation (lever A) and SWIRL-style MI maximisation (lever C) per 2026-05-28 lit-pull SYNTHESIS verdict and user AskUserQuestion confirmation."
+  claim_type: design_decision
+  subject: e2.action_conditional_divergence_contrastive
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-29"
+  depends_on:
+    - SD-005
+    - ARC-033
+  functional_restatement: >
+    For each training batch containing K rollouts that share starting state
+    z_world_0 but differ in first action a_i, add an auxiliary InfoNCE-style
+    contrastive loss against E2.world_forward:
+
+      For each anchor i in [K]:
+        positive:  (z_world_0, a_i) -> predicted z_world_1[i]
+        negatives: (z_world_0, a_j) for j != i (sibling CEM candidates)
+        L_contrast_i = -log(exp(-||pred_i - target_i||^2/tau)
+                          / sum_j exp(-||pred_j - target_i||^2/tau))
+      L_E2 = L_reconstruction + w_contrast * mean_i(L_contrast_i)
+
+    Equivalent to cross-entropy over logits[i,j] = -||pred_j - target_i||^2/tau
+    with label i. Asymmetric (anchor-to-prediction); symmetric would double cost
+    without architectural gain. Negatives drawn from in-batch sibling CEM
+    candidates (z_world_0 shared, first action differs) -- informative by
+    construction, no negative-mining sweep needed.
+
+    Falsifiable: under V3-EXQ-NEW-1 substrate-readiness diagnostic, with the
+    flag ON and 200 SGD steps on K=8 synthetic batches, cand_world_pairwise_dist
+    should rise from ~0.0 baseline to >= 0.05 (direction-of-change is the
+    load-bearing PASS condition; magnitude is calibrated by the experiment).
+    Held-out contrastive-task accuracy > 50% (random baseline 1/K = 12.5%
+    for K=8) confirms the task is learnable on REE's E2 architecture, not
+    just that the loss decreases. Failure routes to PLSM-style MI
+    factorisation fallback or architectural restructure (option D).
+  evidence_quality_note: >
+    Implemented 2026-05-29 in ree-v3/ree_core/predictors/e2_fast.py and
+    ree-v3/ree_core/utils/config.py. Four E2Config flags wired through
+    REEConfig.from_dims: e2_action_contrastive_enabled (bool, default False;
+    bit-identical OFF master), e2_action_contrastive_weight (float, 0.01;
+    calibratable), e2_action_contrastive_temperature (float, 0.1; standard
+    literature value), e2_action_contrastive_min_batch_classes (int, 2;
+    floor below which the loss returns 0 -- no informative negatives).
+    Helpers cand_world_pairwise_dist(z_world_0, candidate_actions) -> scalar
+    and world_forward_contrastive_loss(z_world_0, actions, z_world_1_targets,
+    simulation_mode=False) added to E2FastPredictor. world_forward signature
+    and body unchanged; predict_next_self, action_object, forward,
+    forward_counterfactual unchanged; all downstream consumers (E1, E3,
+    hippocampal, residue field) unchanged. Existing rollout-loss machinery
+    unchanged -- contrastive term is additive, not substituted.
+
+    MECH-094: world_forward_contrastive_loss accepts simulation_mode kwarg
+    and returns tensor(0.0) when True, matching SD-035 / MECH-279 / MECH-313 /
+    MECH-314 / MECH-319 / MECH-320 / MECH-341 pattern. Replay / DMN paths
+    cannot recruit the contrastive training signal.
+
+    Phased training NOT required at the substrate level. Unlike encoder-head-
+    on-frozen-latent patterns (EXQ-166b/c/d historical), both L_recon and
+    L_contrast target the same predictor weights (world_transition +
+    world_action_encoder) with compatible objectives. Joint training is the
+    designed-for case.
+
+    Backward compatible: defaults are no-op; existing experiments unaffected.
+    Substrate-readiness diagnostic V3-EXQ-613 queued in the same session
+    (UC1-UC5 covering module surface, master-OFF backward-compat,
+    cand_world_pairwise_dist direction-of-change, contrastive-task accuracy,
+    MECH-094 simulation gate; smoke 5/5 PASS 2026-05-29). Behavioural
+    validation V3-EXQ-569a (matched-entropy FP-2 falsifier on the fixed
+    substrate; GAP-A R1.a/R1.b decision rule) is the next-stage successor,
+    queued separately per plan-of-record sequencing in
+    evidence/planning/e2_action_divergence_substrate_design.md.
+
+    v3_pending=true until V3-EXQ-569a behavioural validation lands. The
+    substrate-readiness diagnostic alone does not promote; it confirms the
+    substrate is operative on synthetic batches and unblocks the falsifier.
+
+    Lit-pull anchors (REE_assembly/evidence/literature/
+    targeted_review_e2_forward_model_action_divergence/SYNTHESIS.md):
+    Saanum / Dayan / Schulz 2024 PLSM (failure-mode diagnosis "lack of
+    systematic representation of action effects"), Srivastava et al. 2021
+    contrastive RSSM (lever B technique), Qiu et al. 2026 SWIRL (lever C
+    fallback), Tanaka et al. 2020 cerebro-cerebellar forward model,
+    Miyamoto / Rushworth / Shea 2023 frontopolar counterfactual,
+    Cullen 2023 vestibular cerebellum corollary discharge. Methodological-
+    gap finding: no published paper reports per-action pairwise distance
+    between predicted latents at one-step horizons as a headline metric
+    -- REE may publish cand_world_pairwise_dist as a standalone diagnostic
+    contribution.
+  notes: >
+    Plan-of-record memo: REE_assembly/evidence/planning/e2_action_divergence_substrate_design.md
+    (commissioned 2026-05-28T17:43:10Z by session
+    e2-action-divergence-design-memo-20260528T174310Z, closed 2026-05-28T17:50Z).
+    User-confirmed scope 2026-05-29 via AskUserQuestion: register as new SD-056
+    rather than as a MECH amendment under MECH-256; queue V3-EXQ-613 in this
+    /implement-substrate session rather than deferring to a separate
+    /queue-experiment session.
+
+    Generalises ARC-062 GAP-B (gated_policy_use_first_action_onehot, 2026-05-17)
+    by fixing the E2 world-forward predictor itself rather than bypassing it
+    at each downstream consumer. Per V3-EXQ-571 root cause finding, downstream
+    consumers of cand_world_summaries (MECH-314a curiosity novelty, MECH-320
+    tonic vigor, MECH-295 liking bridge, SD-033a lateral_pfc, SD-033b ofc) all
+    suffer the same upstream collapse; SD-056 resolves them at the source.
+
+    What this SD does NOT promise: (a) contrastive task being learnable does not
+    by itself imply behavioural diversity emerges -- V3-EXQ-569a matched-entropy
+    falsifier is what tests downstream behavioural response; (b) lever B may
+    not be the right lever if REE's specific architecture has a feature we have
+    not noticed -- PLSM lever A and SWIRL lever C are valid fallbacks if
+    V3-EXQ-613 fails; (c) option (i) extend GAP-B one-hot bypass to all
+    bias-channel consumers of first-step z_world is still on the table as a
+    tactical step if V3-EXQ-569a is needed urgently.
+  location: docs/architecture/sd_056_e2_action_conditional_divergence.md
+
 - id: MECH-309
   title: "Monomodal policy collapse is the equilibrium of a parametric-policy agent without a rule-apprehension layer. Bayesian update and gradient descent revise weights over a hypothesis space they do not invent; without a non-Bayesian rule-creator that proposes discriminative policy modes ('near-hazard -> reef regime; else -> forage regime'), the trainer collapses to the smoothest single regime good-enough across the whole state space. Monostrategy is therefore not a bug of training but the predicted output of an architecture in which only updaters exist and no apprehender does. Falsifiable by the weak-reading rule-apprehension experiment (ARC-062): a gated-policy architecture trained on the same substrate should break the collapse where standard E3 does not."
   claim_type: mechanism_hypothesis
