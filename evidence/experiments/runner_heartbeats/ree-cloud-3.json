@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-29T22:43:55Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-610a",
-  "current_exq_started_utc": "2026-05-29T07:24:37.780841+00:00",
-  "current_title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "starting...",
-    "runs_done": 0,
-    "runs_total": 1,
-    "episodes_done": 2400,
-    "episodes_total": 2500,
-    "overall_pct": 99.0
-  },
-  "seconds_elapsed": 55158,
-  "seconds_remaining": 557,
-  "recent_lines": [
-    "[INV-074] policy_optimizer rebuilt for expansion_parameters",
-    "[train] ARM_1_test ep 2100/2500 phase=3 ep_reward=-1.0333 rv=0.0127",
-    "[train] ARM_1_test ep 2200/2500 phase=3 ep_reward=-1.0127 rv=0.0136",
-    "[train] ARM_1_test ep 2300/2500 phase=3 ep_reward=-1.3095 rv=0.0168",
-    "[train] ARM_1_test ep 2400/2500 phase=3 ep_reward=-1.2489 rv=0.0132"
+  "last_tick_utc": "2026-05-29T22:44:20Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 4,
+  "queue_id_at_head": "V3-EXQ-592b",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-590a",
+      "result": "PASS",
+      "completed_at": "2026-05-25T08:40:57.606321+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603b",
+      "result": "FAIL",
+      "completed_at": "2026-05-26T07:14:59.216957+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-609",
+      "result": "PASS",
+      "completed_at": "2026-05-26T07:24:57.521687+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-612d",
+      "result": "PASS",
+      "completed_at": "2026-05-28T17:57:01.343784+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-610a",
+      "result": "ERROR",
+      "completed_at": "2026-05-29T22:44:20.399408+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 19986,
   "runner_version": null,
   "gpu": {
