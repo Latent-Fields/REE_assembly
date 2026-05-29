@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-21.2 -->
+<!-- EXPLORER_VERSION: 2026-05-29.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9508,8 +9508,8 @@ END CONFLICT RESOLUTION`;
       // heartbeats (~5s local write, ~60s git push, so up to ~1 min stale
       // on the explorer relative to the cloud runner's actual state).
       const machineEntries = (machinesPayload && machinesPayload.machines) || [];
-      // Phase 2: coordinator heartbeats are fresher than local runner_status
-      // for the same machine; merge live progress + time estimates into cur.
+      // Coordinator heartbeats are fresher than local runner_status for the
+      // same machine; merge live progress + time estimates into cur.
       if (cur && cur.queue_id) {
         const coordLocal = machineEntries.find(m =>
           m.telemetry_source === 'coordinator' && m.fresh &&
@@ -10467,15 +10467,19 @@ END CONFLICT RESOLUTION`;
     init();
   </script>
 
-  <!-- Shadow Coordination panel: self-contained, isolated from the main
-       script above. Backs serve.py /api/shadow/start + /api/shadow/status. -->
-  <div id="shadowCoordCard" style="position:fixed;right:14px;bottom:14px;
+  <!-- Coordination panel: self-contained, isolated from the main script
+       above. Backs serve.py /api/shadow/status (verdict + machines) +
+       /api/coordinator/phase3/writers (sync_daemon writer health, Phase 3
+       live as of 2026-05-29) + /api/shadow/start. Element ids retain
+       'shadow' prefix as a single rename pass would only churn -- the JS
+       above is the only consumer. -->
+  <div id="coordCard" style="position:fixed;right:14px;bottom:14px;
        width:320px;background:#fff;border:1px solid #ccc;border-radius:8px;
        box-shadow:0 2px 10px rgba(0,0,0,0.15);font:12px/1.4 system-ui,
        sans-serif;z-index:9999;">
     <div style="display:flex;align-items:center;justify-content:space-between;
          padding:8px 10px;border-bottom:1px solid #eee;">
-      <strong>Shadow Coordination</strong>
+      <strong>Coordination</strong>
       <span id="shadowDot" title="verdict"
             style="width:11px;height:11px;border-radius:50%;
             background:#777;display:inline-block;"></span>
@@ -10485,10 +10489,18 @@ END CONFLICT RESOLUTION`;
       <div id="shadowMeta" style="color:#555;margin:3px 0 6px;"></div>
       <div id="shadowMachines" style="color:#555;font-size:11px;
            max-height:160px;overflow:auto;"></div>
+      <div style="margin-top:8px;border-top:1px solid #eee;padding-top:6px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <strong style="font-size:11px;">Phase 3 writers</strong>
+          <span id="writersMeta" style="font-size:10px;color:#888;"></span>
+        </div>
+        <div id="writersRows" style="margin-top:4px;font-size:11px;
+             color:#555;"></div>
+      </div>
       <div style="margin-top:8px;display:flex;gap:6px;">
         <button id="shadowStartBtn"
                 style="flex:1;padding:6px;cursor:pointer;">
-          Start shadow soak</button>
+          Start soak</button>
         <button id="shadowRefreshBtn"
                 style="padding:6px 8px;cursor:pointer;">&#8635;</button>
       </div>
@@ -10568,6 +10580,71 @@ END CONFLICT RESOLUTION`;
       $("shadowMachines").innerHTML = html ||
         '<span>(no machines reporting)</span>';
     }
+    function fmtAge(s) {
+      if (s == null) return "?";
+      if (s < 120) return s + "s";
+      if (s < 7200) return Math.round(s/60) + "m";
+      return Math.round(s/3600) + "h";
+    }
+    function renderWriters(w) {
+      var rows = "";
+      if (!w || w.hub_reachable === false) {
+        $("writersMeta").textContent = "hub unreachable";
+        rows = '<div style="color:#c62828;">'
+             + (w && w.error ? String(w.error).slice(0, 120)
+                             : "no signal from hub")
+             + '</div>';
+        $("writersRows").innerHTML = rows;
+        return;
+      }
+      $("writersMeta").textContent =
+        "spool=" + (w.spool_pending != null ? w.spool_pending : "?");
+      var labels = {git_writer: "git", queue_writer: "queue",
+                    heartbeat_writer: "heartbeat"};
+      var wrs = w.writers || {};
+      ["git_writer", "queue_writer", "heartbeat_writer"].forEach(function(k){
+        var r = wrs[k] || {};
+        var c = COLORS[r.color] || "#777";
+        var sha = r.sha10 || "(none)";
+        var age = (r.age_s != null) ? fmtAge(r.age_s) : "?";
+        var status = r.status || "";
+        var subj = r.subject ? String(r.subject).slice(0, 60) : "";
+        rows += '<div style="margin:2px 0;display:flex;align-items:center;'
+              + 'gap:6px;">'
+              + '<span style="display:inline-block;width:8px;height:8px;'
+              + 'border-radius:50%;background:' + c + ';"></span>'
+              + '<span style="min-width:62px;color:#333;">' + labels[k]
+              + '</span>'
+              + '<span style="font-family:ui-monospace,monospace;'
+              + 'font-size:10px;color:#555;">' + sha + '</span>'
+              + '<span style="color:#666;">' + age + '</span>'
+              + '<span style="color:#888;font-size:10px;">' + status
+              + '</span>'
+              + '</div>';
+        if (subj) {
+          rows += '<div style="margin:0 0 4px 16px;color:#888;'
+                + 'font-size:10px;">' + subj + '</div>';
+        }
+      });
+      if (w.journal_tail && w.journal_tail.length) {
+        rows += '<div style="margin-top:4px;padding-top:4px;'
+              + 'border-top:1px dotted #eee;color:#777;font-size:10px;'
+              + 'font-family:ui-monospace,monospace;white-space:nowrap;'
+              + 'overflow:hidden;text-overflow:ellipsis;" '
+              + 'title="' + (w.journal_tail.join("\n").replace(/"/g,"&quot;"))
+              + '">'
+              + (w.journal_tail[w.journal_tail.length - 1].slice(0, 90))
+              + '</div>';
+      }
+      $("writersRows").innerHTML = rows;
+    }
+    function pollWriters() {
+      fetch("/api/coordinator/phase3/writers?t=" + Date.now())
+        .then(function(r){ return r.json(); })
+        .then(renderWriters)
+        .catch(function(e){
+          renderWriters({hub_reachable:false, error:String(e)}); });
+    }
     function poll() {
       fetch("/api/shadow/status?t=" + Date.now())
         .then(function(r){ return r.json(); })
@@ -10575,13 +10652,14 @@ END CONFLICT RESOLUTION`;
         .catch(function(e){
           renderStatus({verdict:"UNREACHABLE", color:"red",
                         detail:String(e)}); });
+      pollWriters();
     }
     $("shadowRefreshBtn").addEventListener("click", poll);
     $("shadowStartBtn").addEventListener("click", function () {
-      if (!confirm("Start the shadow soak?\n\nThis starts the local Mac " +
-          "runner in shadow mode and SSH-starts the ree-cloud-1 " +
-          "coordinator + cloud runners. Daniel-PC / EWIN-PC must be " +
-          "started manually. No Phase-2 cutover.")) return;
+      if (!confirm("Start the coordination soak?\n\nThis starts the local " +
+          "Mac runner and SSH-starts the ree-cloud-1 coordinator + cloud " +
+          "runners. Daniel-PC / EWIN-PC must be started manually. " +
+          "Phase 3 (sync_daemon sole git writer) is live as of 2026-05-29.")) return;
       var b = $("shadowStartBtn");
       b.disabled = true; b.textContent = "Starting...";
       $("shadowResult").textContent = "";

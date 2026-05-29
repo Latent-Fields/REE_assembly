@@ -25,6 +25,7 @@ API (POST, called by the Experiments tab in the explorer):
     /api/review/discuss        -- POST {dir_name, discussed}: toggle discussed_experiment_dirs
     /api/regression/preflight  -- GET: ree-v3 preflight suite result (cached 60s)
     /api/coordinator/phase3/preflight  -- GET: Phase 3 cutover pre-checks (cached 60s)
+    /api/coordinator/phase3/writers    -- GET: Phase 3 sync_daemon writer health (cached 60s)
 
 The runners write progress to evidence/experiments/runner_status.json,
 which the explorer polls automatically when the Experiments tab is open.
@@ -155,6 +156,12 @@ _phase3_preflight_cache_at: float = 0.0
 _phase3_preflight_lock = threading.Lock()
 _PHASE3_PREFLIGHT_TTL = 60.0
 
+_phase3_writers_cache: dict | None = None
+_phase3_writers_cache_at: float = 0.0
+_phase3_writers_lock = threading.Lock()
+_PHASE3_WRITERS_TTL = 60.0
+_PHASE3_HUB_DEFAULT_HOST = "91.98.130.117"
+
 
 def run_phase3_preflight_summary() -> dict:
     """Run coordinator phase3_preflight (dry-run: no SSH). Cached 60s."""
@@ -204,6 +211,196 @@ def run_phase3_preflight_summary() -> dict:
         _phase3_preflight_cache = summary
         _phase3_preflight_cache_at = now
         return summary
+
+
+def _phase3_freshness_color(age_s: float | None) -> str:
+    """green <5 min, yellow 5-15 min, red >15 min or unknown."""
+    if age_s is None:
+        return "red"
+    if age_s < 5 * 60:
+        return "green"
+    if age_s < 15 * 60:
+        return "yellow"
+    return "red"
+
+
+def _parse_phase3_log_line(line: str) -> dict:
+    """One line of `git log --pretty='%H %at %s'`. Returns {sha10, ts, subject}
+    or {} on empty/malformed."""
+    line = (line or "").strip()
+    if not line:
+        return {}
+    parts = line.split(" ", 2)
+    if len(parts) < 2:
+        return {}
+    sha = parts[0]
+    try:
+        ts = int(parts[1])
+    except ValueError:
+        return {}
+    subject = parts[2] if len(parts) >= 3 else ""
+    return {"sha10": sha[:10], "committed_at": ts, "subject": subject}
+
+
+def run_phase3_writers_summary() -> dict:
+    """SSH to the coordinator hub once per cache window, fetch the most recent
+    commit per writer (phase3:/phase3-queue:/phase3-heartbeats:), spool depth,
+    and the last few sync_daemon journal lines. Tolerates hub unreachable.
+
+    Returns {hub_reachable: bool, writers: {git: {...}, queue: {...},
+    heartbeat: {...}} | None, spool_pending: int|null, journal_tail: [str],
+    cached_at: iso, fleet_drained: bool|null (optional)}.
+    """
+    global _phase3_writers_cache, _phase3_writers_cache_at
+    with _phase3_writers_lock:
+        now = time.time()
+        if (_phase3_writers_cache is not None
+                and (now - _phase3_writers_cache_at) < _PHASE3_WRITERS_TTL):
+            return _phase3_writers_cache
+
+        cfg = _load_coordinator_cfg()
+        # Hub SSH target: SHADOW_SSH_HOST_ree-cloud-1 wins, then explicit
+        # PHASE3_HUB_SSH_HOST, then the documented WireGuard-tunnel public IP.
+        hub_host = (cfg.get("SHADOW_SSH_HOST_ree-cloud-1")
+                    or cfg.get("PHASE3_HUB_SSH_HOST")
+                    or _PHASE3_HUB_DEFAULT_HOST)
+        ssh_user = cfg.get("COORDINATOR_SSH_USER", "ree")
+        sentinel_g = "===PHASE3_GIT==="
+        sentinel_q = "===PHASE3_QUEUE==="
+        sentinel_h = "===PHASE3_HB==="
+        sentinel_s = "===PHASE3_SPOOL==="
+        sentinel_j = "===PHASE3_JOURNAL==="
+        # `--all` so we surface writer commits even if local HEAD is behind
+        # origin/<default>. `git -C ~/REE_Working/REE_assembly` -- the hub
+        # checkout path documented in CLAUDE.md Coordinator section.
+        cmd = (
+            "echo " + sentinel_g + " && "
+            "git -C ~/REE_Working/REE_assembly log -1 --all "
+            "--grep='^phase3:' --pretty='%H %at %s' 2>/dev/null && "
+            "echo " + sentinel_q + " && "
+            "git -C ~/REE_Working/ree-v3 log -1 --all "
+            "--grep='^phase3-queue:' --pretty='%H %at %s' 2>/dev/null && "
+            "echo " + sentinel_h + " && "
+            "git -C ~/REE_Working/REE_assembly log -1 --all "
+            "--grep='^phase3-heartbeats:' --pretty='%H %at %s' 2>/dev/null && "
+            "echo " + sentinel_s + " && "
+            "ls /home/ree/coordinator-spool/pending/ 2>/dev/null | wc -l && "
+            "echo " + sentinel_j + " && "
+            "(sudo -n journalctl -u ree-sync-daemon -n 3 --no-pager 2>&1 "
+            "|| journalctl -u ree-sync-daemon -n 3 --no-pager --user 2>&1 "
+            "|| echo 'journalctl unavailable')"
+        )
+        cached_at = datetime.datetime.utcnow().isoformat() + "Z"
+        # _ssh() truncates stdout to 300 chars -- not enough for the journal
+        # tail, so call subprocess directly. Same hardening as _ssh
+        # (BatchMode, ConnectTimeout, accept-new).
+        try:
+            cp = subprocess.run(
+                ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=5",
+                 "-o", "StrictHostKeyChecking=accept-new",
+                 f"{ssh_user}@{hub_host}", cmd],
+                capture_output=True, text=True, timeout=25)
+        except Exception as exc:  # noqa: BLE001
+            result = {
+                "hub_reachable": False,
+                "hub_host": hub_host,
+                "writers": None,
+                "spool_pending": None,
+                "journal_tail": [],
+                "error": repr(exc),
+                "cached_at": cached_at,
+            }
+            _phase3_writers_cache = result
+            _phase3_writers_cache_at = now
+            return result
+        if cp.returncode != 0:
+            detail = (cp.stderr or cp.stdout or "").strip()[:300]
+            result = {
+                "hub_reachable": False,
+                "hub_host": hub_host,
+                "writers": None,
+                "spool_pending": None,
+                "journal_tail": [],
+                "error": detail or ("ssh rc=%d" % cp.returncode),
+                "cached_at": cached_at,
+            }
+            _phase3_writers_cache = result
+            _phase3_writers_cache_at = now
+            return result
+        stdout = cp.stdout or ""
+
+        def _block(text: str, start: str, end: str | None) -> str:
+            i = text.find(start)
+            if i < 0:
+                return ""
+            i += len(start)
+            j = text.find(end, i) if end else len(text)
+            if j < 0:
+                j = len(text)
+            return text[i:j].strip()
+
+        g_block = _block(stdout, sentinel_g, sentinel_q)
+        q_block = _block(stdout, sentinel_q, sentinel_h)
+        h_block = _block(stdout, sentinel_h, sentinel_s)
+        s_block = _block(stdout, sentinel_s, sentinel_j)
+        j_block = _block(stdout, sentinel_j, None)
+
+        now_unix = time.time()
+
+        def _writer_row(block: str) -> dict:
+            parsed = _parse_phase3_log_line(block)
+            if not parsed:
+                return {"sha10": None, "committed_at": None, "subject": None,
+                        "age_s": None, "color": "red"}
+            age = max(0.0, now_unix - parsed["committed_at"])
+            return {
+                "sha10": parsed["sha10"],
+                "committed_at": parsed["committed_at"],
+                "subject": parsed["subject"],
+                "age_s": int(age),
+                "color": _phase3_freshness_color(age),
+            }
+
+        writers = {
+            "git_writer": _writer_row(g_block),
+            "queue_writer": _writer_row(q_block),
+            "heartbeat_writer": _writer_row(h_block),
+        }
+        # Journal-derived status hint for each writer. Cheap pattern match;
+        # leaves "idle" as the default when the tail doesn't say otherwise.
+        journal_lines = [ln for ln in j_block.splitlines() if ln.strip()]
+        tail_blob = " ".join(journal_lines).lower()
+        if "push rejected" in tail_blob or "non-fast-forward" in tail_blob:
+            writer_status = "push-rejected"
+        elif ("conflict" in tail_blob or "rebase aborted" in tail_blob
+              or "needs operator" in tail_blob):
+            writer_status = "rebase-conflict"
+        elif "refusing" in tail_blob or "dirty tree" in tail_blob:
+            writer_status = "refusing"
+        elif ("committed" in tail_blob or "committing" in tail_blob
+              or "wrote" in tail_blob or "tick:" in tail_blob):
+            writer_status = "committing"
+        else:
+            writer_status = "idle"
+        for row in writers.values():
+            row["status"] = writer_status
+
+        try:
+            spool_pending = int(s_block.strip().splitlines()[-1])
+        except (ValueError, IndexError):
+            spool_pending = None
+
+        result = {
+            "hub_reachable": True,
+            "hub_host": hub_host,
+            "writers": writers,
+            "spool_pending": spool_pending,
+            "journal_tail": journal_lines[-3:],
+            "cached_at": cached_at,
+        }
+        _phase3_writers_cache = result
+        _phase3_writers_cache_at = now
+        return result
 
 
 def run_preflight_suite() -> dict:
@@ -2153,7 +2350,8 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
             "next": [
                 "Watch /api/machines and coordinator logs for claim errors.",
                 "Do not flip any host back to git/shadow without draining.",
-                "Phase 3 (sync_daemon sole git writer) is a separate step.",
+                "Phase 3 (sync_daemon sole git writer) is live as of "
+                "2026-05-29 -- see the Coordination panel's writer rows.",
             ],
         }
     return {
@@ -2761,6 +2959,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/coordinator/phase3/preflight":
             body = json.dumps(run_phase3_preflight_summary()).encode()
+            self._json_response(body)
+            return
+        if path == "/api/coordinator/phase3/writers":
+            body = json.dumps(run_phase3_writers_summary()).encode()
             self._json_response(body)
             return
         if path == "/api/machines":
