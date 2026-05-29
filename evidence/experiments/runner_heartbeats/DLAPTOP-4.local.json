@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-29T06:43:17Z",
+  "last_tick_utc": "2026-05-29T06:44:19Z",
   "state": "running",
   "current_exq": "V3-EXQ-592b",
   "current_exq_started_utc": "2026-05-29T06:05:31.767705+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 43 / ARM_0_GATED",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 0,
+    "episodes_done": 40,
     "episodes_total": 400,
-    "overall_pct": 21.0
+    "overall_pct": 21.6
   },
-  "seconds_elapsed": 2266,
-  "seconds_remaining": 8523,
+  "seconds_elapsed": 2328,
+  "seconds_remaining": 8449,
   "recent_lines": [
-    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
     "[seed=42] ARM_0_GATED: rv_final=0.00001 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=10 last_margin=0.0032 committed_steps=3029 falsifier_fired=False",
     "Seed 42 Condition ARM_1_GATED_FORCED_READY",
     "[seed=42] ARM_1_GATED_FORCED_READY: n_admitted=0 n_blocked=4 last_margin=0.0001 committed_steps=2321 admit_fired=False",
-    "Seed 43 Condition ARM_0_GATED"
+    "Seed 43 Condition ARM_0_GATED",
+    "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
