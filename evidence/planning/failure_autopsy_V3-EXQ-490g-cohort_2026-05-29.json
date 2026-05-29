@@ -1,0 +1,166 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-29T16:49:51Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session": "failure-autopsy-490g-cohort-20260529T164951Z",
+  "owner_of_record": "goal_pipeline:GAP-4 / V3-EXQ-490g cohort",
+  "targets": [
+    {
+      "run_id": "v3_exq_483c_sd037_broadcast_gap4_tier1_20260521T064444Z_v3",
+      "queue_id": "V3-EXQ-483c",
+      "claim_ids": ["SD-037", "MECH-280", "MECH-281"],
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failure_summary": "C2_dacc_bias=0 in all 12 runs (use_dacc=True omitted from all 4 arm configs; agent.dacc is None; _dacc_bias_norm returns 0 unconditionally). C3_lift FAIL because OFF_OFF baseline approach_commit_rate already 1.0. Goal pipeline IS firing: goal_norm_peak 0.09-0.31, bridge_cue_fires 3-29, approach_commit_rate 1.0, goal_active_fraction 1.0. OFF/ON arms per-seed byte-identical -- broadcast override flag had zero behavioural effect.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "missing (SD-032b not in SD-037 depends_on)",
+        "implementation": "complete (SD-037 implemented 2026-04-25; EXQ-483b validated PAG release ratio 1.875x)",
+        "environment": "adequate (drive_floor=0.9 + goal_stream)",
+        "measurement": "misleading (C2 measures disabled substrate; C3_lift measures ceiling)",
+        "integration": "partial (SD-037 wired to PAG/SalienceCoordinator/GoalState; dACC integration not wired)",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "orexin-analog LH->PAG arousal override (SD-037)",
+        "dependencies": ["PAG freeze-gate", "SalienceCoordinator", "GoalState"],
+        "is_formal_import": false,
+        "divergence": "none -- orexin pathway is faithful biological translation, well-anchored by orexin_kinetics + homeostatic_override lit-pulls (13 papers)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {
+        "SD-037": "non_contributory",
+        "MECH-280": "unknown",
+        "MECH-281": "unknown"
+      },
+      "recommended_evidence_quality_note": "2026-05-29 (V3-EXQ-490g cohort autopsy): cluster-split analysis confirms 2026-05-24 V3-EXQ-483c autopsy reading. SD-037 weakens tag is algorithm-generated from binary FAIL on a configuration omission (use_dacc=True missing from all 4 arm configs -> agent.dacc is None -> C2_dacc_bias=0 in every run regardless of SD-037 state). Goal pipeline is firing (goal_norm 0.09-0.31; bridge_cue_fires 3-29; approach_commit_rate 1.0). C3_lift FAIL is policy ceiling (baseline approach_commit_rate=1.0 in OFF_OFF arm), not SD-037 suppression. Same template gap drives V3-EXQ-524a per-seed (goal_norm 0.23-0.36; same C2 zero). Cluster = 5 GAP-4 Tier-1 experiments (471a / 475a / 483c / 490g / 524a) all share one tier-1 library template gap. evidence_direction -> non_contributory. Pending retest after Tier-1 library rebuild (use_dacc=True default + C3 metric replacement). NOT in the 591 substrate-uniform z_goal-zero cluster.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Tier-1 library template fix lives in ree-v3/experiments/_lib/goal_pipeline_tier1.py + ENV_FISHTANK_KWARGS / shared arm-spec factory. Experiment-script library change, not a ree_core/ substrate change. /queue-experiment routing handles the rebuild + V3-EXQ-483d successor."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "GAP-4 Tier-1 library template missing use_dacc=True default -> C2_dacc_bias permanently 0 across all 5 cohort experiments",
+        "drive_floor=0.9 + goal_stream + reef saturates approach_commit_rate at 1.0 in baseline -- C3_lift_vs_baseline is the wrong metric for any Tier-1 GAP-4 experiment",
+        "SD-037 implementation validated by EXQ-483b PAG release ratio 1.875x; behavioural FAIL here is configuration + metric, not mechanism",
+        "SD-037 depends_on audit needed: SD-032b not listed but dACC-coupled behaviour is part of the claimed signature"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_524a_reef_showcase_gap4_tier1_20260521T060220Z_v3",
+      "queue_id": "V3-EXQ-524a",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "failure_summary": "3-seed reef-showcase diagnostic. C2_dacc_bias=0 in all 3 seeds (same use_dacc=True omission as 483c). C3_approach_commit PASS at 1.0 (saturated baseline). Goal pipeline firing: goal_norm_peak 0.23-0.36, bridge_cue_fires 4-34, approach_commit_rate 1.0, goal_active_fraction 1.0. Same Tier-1 library template gap as 483c -- shares _lib/goal_pipeline_tier1.py + ENV_FISHTANK_KWARGS.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (diagnostic, no claim_ids)",
+        "biological_reference": "n/a",
+        "prerequisites": "missing (use_dacc=True omitted from arm config)",
+        "implementation": "complete (MECH-295 bridge + SD-054 reef substrate both validated independently)",
+        "environment": "adequate (SD-054 reef + bipartite, V3-EXQ-521/522 substrate-readiness PASS)",
+        "measurement": "misleading (same template gap as 483c)",
+        "integration": "partial (same scope as 483c)",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "diagnostic showcase; reads MECH-295 drive->liking->approach bridge + SD-054 reef refuge",
+        "dependencies": ["MECH-295", "SD-054"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present (anchored to MECH-295 + SD-054 lit-pulls)"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {},
+      "recommended_evidence_quality_note": "2026-05-29 (V3-EXQ-490g cohort autopsy): diagnostic, no claim_ids; evidence_direction stays non_contributory (already correct in manifest). Cluster member of GAP-4 Tier-1 library measurement-gap (483c + 524a + the unrun 471a / 475a / 490g letters). Substrate firing on this run (goal_norm 0.23-0.36; bridge_cue_fires 4-34). No per-claim overrides needed; recommendation is to re-queue 524a's successor under the rebuilt Tier-1 library.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Diagnostic experiment; library template fix is the same as 483c's. /queue-experiment routing handles the successor under the rebuilt library."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "524a confirms the 483c Tier-1 library cluster -- same C2 zero + C3 ceiling pattern under a different (reef-showcase) arm config",
+        "Substrate is producing measurable goal-pipeline signal at goal_norm 0.23-0.36 + bridge_cue_fires 4-34 on the SD-054 reef substrate under drive_floor=0.9",
+        "Library fix from 483c autopsy applies equally to 524a successor"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_603c_q045_mech313_mech260_phased_training_20260527T113805Z_v3",
+      "queue_id": "V3-EXQ-603c",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failure_summary": "Phased-training Fix C (P0+P1 warmup + P2 measurement) on SD-054 reef + bipartite + hazard_food_attraction=0.7 target env. metrics.json empty (values={}); status=FAIL; outcome=None. Script's structurally-underpowered branch fired (n_p2_cells < total_cells/2): most (arm, seed) cells aborted at P0 (running_variance not converging) or failed Fix D survival gate (median episode length < 75). Evidence_direction_per_claim non_contributory across Q-045 / MECH-313 / MECH-260 as designed for this branch.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear (LC-NE adaptive-gain + dACC anti-recency well-anchored)",
+        "prerequisites": "missing (goal-pipeline substrate does not produce non-trivial z_goal in default config)",
+        "implementation": "partial (phased-training scaffold complete; P2 measurement unreached on majority of cells)",
+        "environment": "inadequate for discrimination (substrate-uniform z_goal-zero across arms; agent does not survive long enough to develop z_goal even with P0+P1)",
+        "measurement": "adequate (script correctly emits structurally-underpowered branch when n_p2_cells < total_cells/2)",
+        "integration": "isolated (modules work in isolation; default-config training regime does not engage goal-pipeline substrate)",
+        "scale": "likely insufficient (random-policy training across 2000 episodes does not develop z_goal; same gap V3-EXQ-603b autopsy flagged)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic adaptive-gain (Aston-Jones & Cohen 2005) + dACC anti-recency (Scholl/Kolling 2015) for behavioural diversity preservation",
+        "dependencies": ["MECH-313 noise floor", "MECH-260 dACC suppression"],
+        "is_formal_import": false,
+        "divergence": "none -- substrate is sound; failure is upstream goal-pipeline z_goal development",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {
+        "Q-045": "non_contributory",
+        "MECH-313": "non_contributory",
+        "MECH-260": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-05-29 (V3-EXQ-490g cohort autopsy): cluster-absorb confirmed. V3-EXQ-603c routes into the 591 substrate-uniform z_goal-zero family per failure_autopsy_V3-EXQ-591_2026-05-27.md Section 6. P0+P1 phased training (Fix C from 603b autopsy) was insufficient: most (arm, seed) cells aborted at P0 (running_variance not converging) or failed the Fix D survival gate (median episode length < 75), producing the structurally-underpowered evidence_direction_per_claim non_contributory branch (n_p2_cells < total_cells/2). Substrate prereq #2 from the 591 autopsy (goal-pipeline training regime produces non-trivial z_goal in default config) confirmed unmet. evidence_direction stays non_contributory. pending_retest_after_substrate retained. Recommended substrate-design follow-on per user 2026-05-29 routing: scaffolded SD-054 onboarding (substrate-design memo + /implement-substrate session, sibling pattern to e2_action_divergence_substrate_design.md).",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-XXX-scaffolded-sd054-onboarding",
+        "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
+        "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
+        "unblocks_claims": ["Q-045", "MECH-313", "MECH-260", "MECH-295", "MECH-307", "MECH-117", "SD-049 Phase 2 behavioural", "ARC-030", "Q-040"],
+        "depends_on_unresolved": [
+          "SD-054 [implemented 2026-05-04; bipartite-extension 2026-05-11; substrate-readiness V3-EXQ-521/522 PASS]",
+          "MECH-307 [substrate-landed 2026-05-11; default-value recalibration 2026-05-12; behavioural validation pending]",
+          "MECH-295 [implemented 2026-04-26; default-value recalibration 2026-05-12]"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603c_q045_mech313_mech260_phased_training_20260527T113805Z_v3",
+          "experiment_type": "v3_exq_603c_q045_mech313_mech260_phased_training",
+          "metric": "n_p2_cells < total_cells/2 (most cells aborted at P0 RV-not-converging or Fix D survival gate)",
+          "target": "P0+P1+P2 completes on >= total_cells/2 (arm, seed) cells with z_goal_norm_peak materially non-zero in measurement window"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Phased-training Fix C (P0+P1 on the target env) is insufficient for the 591 substrate-uniform z_goal-zero family -- the target env (SD-054 reef + hazard_food_attraction=0.7 + proximity_harm_scale=0.1) is structurally hostile to the agent at random-init; Fix D survival gate fires before z_goal can develop",
+          "Scaffolded onboarding via SD-054 reef refuge start-state is the next architectural step -- the substrate is already validated by V3-EXQ-521/522 and just needs to be wired as a training-regime start-state distribution",
+          "603c confirms substrate prereq #2 of the 591 autopsy is unmet -- not by failing to test it, but by demonstrating that the within-V3 fix (phased training) is structurally insufficient for the gap"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "two structurally distinct clusters, NOT one substrate-uniform-zero family as the spawning session hypothesised",
+    "is_independent_bugs": false,
+    "structural_property": "Cluster A (483c, 524a, and the unrun 471a / 475a / 490g letters): GAP-4 Tier-1 library measurement-gap -- _lib/goal_pipeline_tier1.py + ENV_FISHTANK_KWARGS shared arm-spec factory omits use_dacc=True default, making C2_dacc_bias unconditionally zero, AND C3_lift_vs_baseline saturates trivially on drive_floor=0.9 + goal_stream baselines. Goal pipeline IS firing on these runs (goal_norm 0.09-0.36; bridge_cue_fires 3-34; approach_commit_rate 1.0); failure is in the test harness, not the substrate. Cluster B (603c, plus 540 series, 590a, 591 itself per 2026-05-27 autopsy): substrate-uniform z_goal-zero -- V3 substrate at default config under standard random-policy training across 2000 episodes does not produce non-trivial z_goal. 603c attempted to break this with phased training (Fix C from 603b autopsy); the agent does not survive the target env even under extended training budget.",
+    "readings": [
+      "Cluster A: test_design_ceiling at the experiment-script library layer (NOT substrate enrichment; rebuilding the library + replacing C3 metric is the correct fix)",
+      "Cluster B: substrate_enrichment at the goal-pipeline training-regime layer (scaffolded SD-054 onboarding is the user-chosen sub-lever; ee2_action_divergence_substrate_design.md is the canonical-shape precedent for the substrate-design memo)"
+    ]
+  }
+}
