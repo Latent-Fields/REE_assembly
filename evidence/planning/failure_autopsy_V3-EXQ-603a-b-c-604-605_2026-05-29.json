@@ -1,0 +1,309 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-29T16:56:00Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session": "failure-autopsy-603-followon-604-605-20260529T165600Z",
+  "title": "V3-EXQ-603 followon chain (603a/603b/603c) + V3-EXQ-604/605 -- ARC-065 / Q-043/Q-044/Q-045 / MECH-260/313/314 cluster",
+  "predecessor_autopsies": [
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-603_2026-05-23.md",
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md (commit 12f0dda773; created SD-XXX-scaffolded-sd054-onboarding entry covering V3-EXQ-603c)",
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-591_2026-05-27.md (named substrate prereq #2: goal-pipeline z_goal under default V3 training regime)"
+  ],
+  "calibration_debt_lens": "MECH-320 / ARC-065 / goal-pipeline / sleep priority-1 per memory/project_calibration_debt.md. Cluster A and Cluster B both rest on the goal-pipeline / training-regime substrate enrichment; Cluster B additionally surfaces the per-candidate z_world variance substrate (SD-056, landed today, V3-EXQ-569a in flight).",
+  "cluster_A_targets": [
+    {
+      "run_id": "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3",
+      "queue_id": "V3-EXQ-603a",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "supersedes": "V3-EXQ-603",
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failure_summary": "Fix 1 (call-path) + Fix 2 (FIFO warmup 75) + Fix 3 (per-claim direction) applied. mech260_operative_all_seeds=true confirmed. fifo_temporal_gate_ok_all=false because 2/3 seeds (42, 44) ended episodes at <500 steps before FIFO warmup -- only seed 43 produced measurable data. ARM_1 (313 only) +0.015 vs ARM_0, ARM_2 (260 only) -0.039, ARM_3 (both) -0.030. Effective N=1.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear (LC-NE adaptive-gain Aston-Jones+Cohen 2005; dACC anti-recency Scholl+Kolling 2015; Tervo 2014 COUPLED-NOT-COLLAPSED for Q-045)",
+        "prerequisites": "missing (goal-pipeline / training-regime substrate; seeds 42/44 die before FIFO warmup on the target env at random-init)",
+        "implementation": "complete (call-path repaired; FIFO operative; dacc_history up to 8 + dacc_max_suppression up to 1.0 in surviving cells)",
+        "environment": "inadequate for discrimination (SD-054 reef + bipartite + hazard_food_attraction=0.7 + proximity_harm_scale=0.1 hostile at random-init)",
+        "measurement": "adequate (FIFO temporal gate + per-claim direction correctly emit the underpowered-evidence branch)",
+        "integration": "isolated (modules work; default-config training does not engage goal-pipeline)",
+        "scale": "likely insufficient (no training before measurement; seeds 42/44 die in <500 steps)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-313 LC-NE tonic noise floor (Aston-Jones+Cohen 2005; Haarnoja 2018 SAC); MECH-260 dACC anti-recency (Scholl+Kolling 2015; Kennerley 2006)",
+        "dependencies": ["working policy", "agent survival to >=75 steps for FIFO warmup", "non-degenerate candidate set at E3 scoring"],
+        "is_formal_import": false,
+        "divergence": "none -- biology is intact; failure is upstream goal-pipeline / training-regime substrate",
+        "lit_status": "present (full Q-045 dedicated lit-pull complete 2026-05-11, 5 entries, lit_conf 0.9)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {
+        "Q-045": "non_contributory",
+        "MECH-313": "non_contributory",
+        "MECH-260": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "See MECH-260 / MECH-313 / Q-045 appended notes in this artifact's draft_evidence_quality_notes_for_governance section. 603a is the first of three convergent followons demonstrating the underlying gap is goal-pipeline / training-regime substrate, not the measurement-layer gaps the 603 predecessor autopsy identified.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-XXX-scaffolded-sd054-onboarding",
+        "failure_record_entry": {
+          "run_id": "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3",
+          "experiment_type": "v3_exq_603a_q045_mech313_mech260_four_arm_ablation",
+          "metric": "fifo_temporal_gate_ok_all=false; 2/3 seeds measured_steps=0 (episodes ended <75 step FIFO warmup); only seed 43 produced data; ARM_1 +0.015 / ARM_2 -0.039 / ARM_3 -0.030 vs ARM_0 -- sub-margin at N=1",
+          "target": "fifo_temporal_gate_ok_all=true with measured_steps >= 75 in >=2/3 seeds per arm; entropy deltas resolvable at N>=2 per cell"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "603 predecessor autopsy's call-path + FIFO temporal-gate fix landed correctly (mech260_operative_all_seeds=true) but did not address the deeper substrate gap",
+        "Seed-fragility (only seed 43 survives) is structurally identical across the entire 603 chain -- pre-existing in 603 predecessor + persistent in 603a, 603b, 603c",
+        "MECH-313 +0.015 lift at N=1 is directionally consistent with the predecessor +0.048 reading; the noise-floor signal is reproducible even when sub-threshold"
+      ],
+      "routing": "implement-substrate (via amend onto parent SD-XXX entry)"
+    },
+    {
+      "run_id": "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3",
+      "queue_id": "V3-EXQ-603b",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "supersedes": "V3-EXQ-603a",
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failure_summary": "Fix A (steps_per_episode 200 -> 500) + Fix B (hazard_harm 0.05 -> 0.02) applied per 603a autopsy. Still 1/3 seeds surviving (seed 43 only). C3 each-alone-beats-off PASS (ARM_2 +0.041, ARM_3 +0.045) but C1 both-beats-off FAIL (margin 0.045 < 0.05) and C2 mutually-load-bearing FAIL (ARM_3 ~ ARM_2). Per 2026-05-26 governance autopsy: proximity_harm_scale=0.1 was the dominant kill channel, not hazard_harm (latent harm signals z_harm_s/z_harm_a decoupled). Effective N=1.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear (same as 603a)",
+        "prerequisites": "missing (proximity_harm_scale=0.1 dominates; even hazard_harm 0.02 + steps_per_episode 500 cannot rescue seeds 42/44)",
+        "implementation": "complete (FIFO operative; dacc_forward_calls up to 1362 in surviving cells)",
+        "environment": "inadequate for discrimination (proximity-harm kill channel untouched; identifies a second layer of env hostility beyond hazard_harm)",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "likely insufficient (env-side reach extended to 500 steps/ep helps in principle but seeds 42/44 still die at 350-475 steps)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "same as 603a",
+        "dependencies": ["working policy that handles proximity-harm pressure", "agent survival on the full hazard stack, not just one channel"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {
+        "Q-045": "non_contributory",
+        "MECH-313": "non_contributory",
+        "MECH-260": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "See MECH-260 / MECH-313 / Q-045 appended notes. 603b is the second of three convergent followons -- the env-side reach hypothesis (Fix A + Fix B) was tested and fails. proximity_harm_scale identified as the dominant kill channel that hazard_harm reduction does not address. This narrows the substrate prereq from generic env-hostility to specifically the goal-pipeline policy-development pathway.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-XXX-scaffolded-sd054-onboarding",
+        "failure_record_entry": {
+          "run_id": "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3",
+          "experiment_type": "v3_exq_603b_q045_mech313_mech260_four_arm_ablation",
+          "metric": "1/3 seeds surviving with steps_per_episode=500 + hazard_harm=0.02; seeds 42/44 still die at 350-475 steps; ARM_1 +0.011 / ARM_2 +0.041 / ARM_3 +0.045 vs ARM_0 -- all below 0.05 margin",
+          "target": "proximity-harm-aware policy survives both kill channels in >=2/3 seeds; entropy lifts resolvable above 0.05 margin"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Env-side reach (steps/ep + hazard_harm) is insufficient when the proximity-harm kill channel is untouched -- the deeper fix is policy development, not env tuning",
+        "Sub-threshold MECH-313 + MECH-260 lifts now appear in BOTH 603a (ARM_1 +0.015) AND 603b (ARM_1 +0.011, ARM_2 +0.041, ARM_3 +0.045) at N=1 -- pattern repeats across env configs",
+        "603 predecessor autopsy's measurement-layer fix sequence has now been exhausted (call-path, FIFO temporal gate, steps/ep, hazard_harm); next layer must be the substrate"
+      ],
+      "routing": "implement-substrate (via amend onto parent SD-XXX entry)"
+    },
+    {
+      "run_id": "v3_exq_603c_q045_mech313_mech260_phased_training_20260527T113805Z_v3",
+      "queue_id": "V3-EXQ-603c",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "supersedes": "V3-EXQ-603b",
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failure_summary": "Fix C (P0 100 ep easy env + P1 50 ep target env) + Fix D (P1 survival gate, abort if median ep length over last 10 ep < 75). 8/12 (arm, seed) cells aborted at P1 survival gate -- seeds 42 and 44 in every arm. Only seed 43 across all four arms reaches P2 measurement (4/12 cells). Post-training MECH-313 lift collapses to ZERO (ARM_1 == ARM_0 == 0.484); MECH-260 lift +0.035 and both-on +0.038 (sub-margin). N=1 effective. ALREADY autopsied in 490g-cohort (commit 12f0dda773); routed action=create on SD-XXX-scaffolded-sd054-onboarding. This autopsy confirms that disposition holds under the Q-045/MECH-313/MECH-260 lettered-followon lens.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "missing (P0+P1 phased training on the target env cannot bootstrap survival -- the within-V3 fix is structurally insufficient)",
+        "implementation": "complete (phased scaffold + survival gate working as designed; correctly emit underpowered branch)",
+        "environment": "inadequate for discrimination (same proximity-harm + sparse-reward stack as 603b; phased training does not help)",
+        "measurement": "adequate (P1 survival gate correctly aborts cells where the trained policy would deliver garbage P2 reads)",
+        "integration": "isolated (default-config training regime does not engage goal-pipeline even with curriculum)",
+        "scale": "likely insufficient (200 step train-window + 75-step P1 survival gate -- agent does not develop a goal-directed survival policy under random-policy training)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "same as 603a/b",
+        "dependencies": ["goal-pipeline z_goal develops under default training", "P0 curriculum sufficient to bootstrap target-env survival"],
+        "is_formal_import": false,
+        "divergence": "none -- but the post-training MECH-313 == ARM_0 result is a load-bearing new observation. In real LC-NE, tonic noise is expected to modulate against a behavioural prior; a sharper-prior agent should see less noise effect. The 603c collapse is consistent with this. N=1 prevents governance reading but the directional pattern is worth flagging.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {
+        "Q-045": "non_contributory",
+        "MECH-313": "non_contributory",
+        "MECH-260": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "See MECH-260 / MECH-313 / Q-045 appended notes. 603c is the third of three convergent followons and the demonstration case that phased training (Fix C) is structurally insufficient on V3 default substrate -- 8/12 cells abort at P1 survival gate. Parent disposition (490g-cohort autopsy commit 12f0dda773) routes to SD-XXX-scaffolded-sd054-onboarding action=create; this autopsy confirms no fork under the Q-045/MECH-313/MECH-260 lens. Additionally observes that MECH-313 post-training lift collapses (ARM_1 == ARM_0 in 603c), directionally consistent with LC-NE-against-prior biology but anecdotal at N=1.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Parent 490g-cohort autopsy (REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md, commit 12f0dda773) already created the SD-XXX-scaffolded-sd054-onboarding substrate entry with V3-EXQ-603c failure_record. This autopsy confirms that disposition under the Q-045/MECH-313/MECH-260 lettered-followon lens -- no second entry needed. The 603a/603b amend operations above add the rest of the 603-chain evidence to the same substrate entry."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Three-followon convergent confirmation that the 603 predecessor autopsy's repair-pathway diagnosis was one layer too shallow -- call-path / temporal gate / hazard tuning / phased training are all measurement-layer fixes, none of which addresses the goal-pipeline / training-regime substrate gap",
+        "MECH-313 post-training lift collapse (ARM_1 == ARM_0 in 603c, vs +0.011 to +0.015 pre-training in 603a/b) is biologically meaningful but anecdotal at N=1 -- worth a future check once substrate-fixed retests deliver N>=2",
+        "490g-cohort autopsy's Cluster B disposition holds under the lettered-followon lens; no fork emerges from this perspective"
+      ],
+      "routing": "implement-substrate (parent disposition; no new substrate entry)"
+    }
+  ],
+  "cluster_A_pattern": {
+    "shape": "convergent four-run chain (predecessor + three lettered followons) demonstrating that V3 substrate at default config under random / early policy produces a structural seed-fragility (only seed 43 survives the target env across all four runs) that all four measurement-layer fixes (call-path, FIFO temporal gate, episode length, hazard tuning, phased training) cannot resolve",
+    "is_independent_bugs": false,
+    "structural_property": "Default V3 substrate + random-policy training does not develop a goal-pipeline z_goal that enables target-env survival in >1/3 seeds. Each successive fix in the 603 chain demonstrates that the previous fix's stated layer was not the load-bearing constraint -- the load-bearing constraint is goal-pipeline / training-regime substrate enrichment (591 autopsy substrate prereq #2; 490g-cohort autopsy Cluster B).",
+    "readings": [
+      "Sole reading: substrate_enrichment at the goal-pipeline training-regime layer (scaffolded SD-054 onboarding per user 2026-05-29 routing). No competing reading -- the four-run fix progression has exhausted the measurement-layer hypotheses."
+    ]
+  },
+  "cluster_B_targets": [
+    {
+      "run_id": "v3_exq_604_q044_mech314_subflavour_three_arm_ablation_20260521T112110Z_v3",
+      "queue_id": "V3-EXQ-604",
+      "claim_ids": ["Q-044", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c"],
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failure_summary": "4-arm sub-flavour ablation (ARM_0 all-on / ARM_1 novelty-off / ARM_2 uncertainty-off / ARM_3 lp-off). All four arms BIT-IDENTICAL per seed: entropy 0.0 / 0.405813 / 0.326341 for seeds 42 / 43 / 44; total_steps 5805 / 1495 / 2267; unique_actions 1 / 2 / 2. C1 two-distinct-ablations FAIL; C2 ablations-not-identical FAIL. Seed 42 dies (unique_actions=1); seeds 43/44 partial. Convergent with Cluster A seed-fragility pattern AND additionally surfaces per-candidate-z_world-variance gap.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact for Q-044/MECH-314a; test-design issue for MECH-314b/MECH-314c (declared Phase 1 broadcast scalars cannot in principle change selection ordering under their own ablation)",
+        "biological_reference": "clear (Wittmann 2008 striatal novelty; Daw 2006 frontopolar uncertainty; Schmidhuber 1991 / Pathak 2017 learning progress; Friston 2010/2015 EFE)",
+        "prerequisites": "missing x 2 -- (1) goal-pipeline / training-regime substrate (same as Cluster A); (2) per-candidate z_world variance substrate (SD-056 e2_action_conditional_divergence_contrastive, landed 2026-05-29 ree-v3 main 041a974; V3-EXQ-613 substrate-readiness PASS; V3-EXQ-569a behavioural-validation FP-2 falsifier queued)",
+        "implementation": "complete for MECH-314a + MECH-313; partial-by-design for MECH-314b + MECH-314c (Phase 1 broadcast scalar; Phase 2 per-candidate refinement is the missing implementation work for them to be ablation-testable)",
+        "environment": "inadequate (Cluster A seed-fragility) + candidate-degenerate (Cluster B per-candidate-variance gap)",
+        "measurement": "misleading for MECH-314b/MECH-314c (test-design assumes per-candidate variance that Phase 1 doesn't deliver); adequate for the others",
+        "integration": "per-candidate variance does not propagate from E2 -> hippocampal candidate scoring -> E3 aggregation -- this is the SD-056 substrate gap",
+        "scale": "same as Cluster A"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-314a ventral striatum novelty bonus; MECH-314b frontopolar uncertainty; MECH-314c learning-progress / compression-progress",
+        "dependencies": ["per-candidate z_world variance at E3 scoring", "working policy that survives the env"],
+        "is_formal_import": false,
+        "divergence": "none -- biology is intact across all sub-flavours; failures are in the V3 implementation phases + the substrate",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {
+        "Q-044": "non_contributory",
+        "MECH-314": "non_contributory",
+        "MECH-314a": "non_contributory",
+        "MECH-314b": "non_contributory",
+        "MECH-314c": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "See Q-044 + MECH-314a + ARC-065 + MECH-314b + MECH-314c appended notes. 604 surfaces TWO substrate prereqs simultaneously: (deep) goal-pipeline / training-regime substrate via the Cluster A seed-fragility pattern, and (proximal) per-candidate-z_world-variance substrate (SD-056, V3-EXQ-569a in flight). MECH-314b/c Phase 1 broadcast scalars cannot in principle be ablation-tested as 604 designed -- their non_contributory direction is correct a priori, NOT a substrate ceiling specific to those claims. MECH-314a novelty bonus collapses to uniform across degenerate candidates; that's the per-candidate-variance gap that V3-EXQ-569a will read.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-XXX-scaffolded-sd054-onboarding",
+        "failure_record_entry": {
+          "run_id": "v3_exq_604_q044_mech314_subflavour_three_arm_ablation_20260521T112110Z_v3",
+          "experiment_type": "v3_exq_604_q044_mech314_subflavour_three_arm_ablation",
+          "metric": "All four arms (ARM_0 all-on / ARM_1 novelty-off / ARM_2 uncertainty-off / ARM_3 lp-off) BIT-IDENTICAL per seed -- entropy 0.0/0.405813/0.326341, total_steps 5805/1495/2267, unique_actions 1/2/2. C1 and C2 FAIL because candidate set is z_world-degenerate (MECH-314a novelty bonus collapses to uniform; MECH-314b/c broadcast-by-design). Seed 42 dies (unique_actions=1).",
+          "target": "After scaffolded onboarding + SD-056 per-candidate variance, MECH-314a ablation produces a non-zero per-candidate bonus delta that resolves at ARM_1 vs ARM_0; seeds 42/44 survive past P2 measurement window. Note: MECH-314b/c remain non-ablation-testable until Phase 2 per-candidate refinement lands."
+        },
+        "additional_proximal_substrate_note": "SD-056 e2_action_conditional_divergence_contrastive is the proximal substrate fix for MECH-314a's per-candidate-variance gap (landed 2026-05-29 ree-v3 main 041a974; V3-EXQ-613 substrate-readiness PASS; V3-EXQ-569a behavioural-validation FP-2 falsifier queued under behavioral_diversity_isolation_plan.md GAP-A). Not creating a separate substrate_queue entry for SD-056 because V3-EXQ-569a is already the active retest. If 569a PASSes, MECH-314a + Q-044 retest is meaningful even before scaffolded SD-054 onboarding lands; if 569a FAILs, the per-candidate-variance gap is deeper than SD-056 and the goal-pipeline substrate prereq dominates."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "604's bit-identical-per-seed shape is the per-candidate-z_world-variance fingerprint -- MECH-314b/c broadcast-by-design + MECH-314a uniform across degenerate candidates -> all four arms produce identical selection sequences",
+        "MECH-314b/c Phase 1 broadcast-scalar honest-scoping caveat surfacing under ablation is NOT a substrate ceiling specific to those claims; the V3-EXQ-604 design tested a falsification that is structurally impossible on the Phase 1 substrate",
+        "Two substrate prereqs stacked: SD-056 (proximal, in flight as V3-EXQ-569a) AND scaffolded SD-054 onboarding (deep, parent autopsy commit 12f0dda773)"
+      ],
+      "routing": "implement-substrate (via amend onto parent SD-XXX entry); flag SD-056 / V3-EXQ-569a as proximal retest in evidence_quality_note"
+    },
+    {
+      "run_id": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep_20260521T115421Z_v3",
+      "queue_id": "V3-EXQ-605",
+      "claim_ids": ["Q-043", "ARC-065", "MECH-313", "MECH-314"],
+      "experiment_purpose": "evidence",
+      "failed_criterion": "discrimination",
+      "failure_summary": "3x3 grid: noise_alpha {0.1, 0.5, 1.0} x curiosity_scale {1.0, 5.0, 10.0}. noise_alpha modulates entropy 0.259 -> 0.292 -> 0.305 (consistent with 603-chain MECH-313 sub-threshold signal); curiosity_scale produces IDENTICAL per-cell entropy and reef_fraction across {1x, 5x, 10x} within each alpha row. p1_any_calibration_zone=false. Seed 42 dies (total_steps 5805 in every cell); seed 43 partial (1046-1495 steps); seed 44 idiosyncratic (1831-2318 steps). Same Cluster A seed-fragility pattern + same Cluster B per-candidate-variance gap on the curiosity dimension.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "missing x 2 (same as 604)",
+        "implementation": "complete (MECH-313 noise-floor wired; MECH-314 cluster wired Phase 1)",
+        "environment": "inadequate + candidate-degenerate (same as 604)",
+        "measurement": "adequate (correctly emits the calibration-zone failure)",
+        "integration": "same as 604",
+        "scale": "same as Cluster A"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-313 LC-NE tonic noise (temperature-level, bypasses per-candidate scoring) + MECH-314 structured curiosity (per-candidate bonus pathway)",
+        "dependencies": ["per-candidate z_world variance for curiosity dimension", "working policy"],
+        "is_formal_import": false,
+        "divergence": "none -- biology intact across both noise + curiosity pathways",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_per_claim_recommended": {
+        "Q-043": "non_contributory",
+        "ARC-065": "non_contributory",
+        "MECH-313": "non_contributory",
+        "MECH-314": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "See Q-043 + ARC-065 + MECH-313 + MECH-314 appended notes. 605 confirms Cluster B's two-substrate-prereq stack and delivers a third independent observation of the sub-threshold MECH-313 noise-floor lift (0.259 -> 0.292 -> 0.305 across noise alpha sweep), consistent with 603 chain. Cumulative MECH-313 directional signal across three substrate designs now (603 + 603a/b + 605) -- evidentially loaded at N=1 per cell; re-evaluate once substrate fixes deliver N>=2.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-XXX-scaffolded-sd054-onboarding",
+        "failure_record_entry": {
+          "run_id": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep_20260521T115421Z_v3",
+          "experiment_type": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep",
+          "metric": "p1_any_calibration_zone=false; curiosity_scale {1x, 5x, 10x} produces identical per-cell entropy + reef_fraction within each noise_alpha row -- curiosity dimension fully degenerate. noise_alpha sweep delivers sub-threshold lifts 0.259/0.292/0.305 at N=1 per cell.",
+          "target": "After scaffolded onboarding + SD-056 per-candidate variance, curiosity_scale sweep produces non-zero entropy delta resolvable at N>=2; p1 calibration zone non-empty; noise dimension delivers >0.05 margin at N>=2 per cell."
+        },
+        "additional_signal_note": "605 also delivers a partial-positive directional read for MECH-313 (noise alpha {0.1, 0.5, 1.0} -> entropy {0.259, 0.292, 0.305}) that joins the cumulative cross-substrate MECH-313 sub-threshold signal. Worth flagging for governance to track once substrate-fixed retests deliver N>=2."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "noise_alpha dimension delivers a real sub-threshold signal (MECH-313 noise floor modulates entropy); curiosity_scale dimension is fully degenerate (MECH-314 cluster cannot discriminate)",
+        "Cluster B's two-substrate-prereq stack is now triply attested: 604 + 605 + the cross-cluster 603 chain all converge on goal-pipeline + per-candidate-variance",
+        "Q-043 calibration grid is the natural integration test once both substrate fixes land -- noise_alpha x curiosity_scale grid should show calibration_zone populated and non-degenerate curiosity sweep"
+      ],
+      "routing": "implement-substrate (via amend onto parent SD-XXX entry); MECH-313 cumulative sub-threshold signal flagged for governance tracking"
+    }
+  ],
+  "cluster_B_pattern": {
+    "shape": "two-target convergent surfacing of the per-candidate-z_world-variance substrate gap (Gap 2) on top of the goal-pipeline / training-regime substrate gap (Gap 1, shared with Cluster A). 604 demonstrates Gap 2 via bit-identical-per-seed sub-flavour ablation (candidate-uniform bonuses); 605 demonstrates Gap 2 via degenerate curiosity_scale sweep (uniform scaling of uniform bonuses); both show Gap 1's seed-fragility pattern via seed 42 death + idiosyncratic seed 43/44 partial survival.",
+    "is_independent_bugs": false,
+    "structural_property": "V3 substrate at default config delivers candidate-degenerate scoring at E3 because per-candidate z_world variance does not propagate from E2 forward-model output. MECH-314a per-candidate novelty bonus collapses to uniform; MECH-314b/c are broadcast-by-design (Phase 1 honest-scoping caveat). The proximal substrate fix is SD-056 e2_action_conditional_divergence_contrastive (landed 2026-05-29; V3-EXQ-569a in flight); the deep substrate fix is scaffolded SD-054 onboarding (parent 490g-cohort autopsy).",
+    "readings": [
+      "Both readings active and stacked, not competing: SD-056 (proximal, in flight) + scaffolded SD-054 onboarding (deep, in design). The substrate-prereq sequence for Cluster B retest is SD-056 first (via V3-EXQ-569a), then SD-XXX-scaffolded-sd054-onboarding lands."
+    ]
+  },
+  "cross_cluster_observations": [
+    "Both clusters route to the same SD-XXX-scaffolded-sd054-onboarding substrate entry (created by the parent 490g-cohort autopsy commit 12f0dda773). This autopsy adds four new failure_record_entries (603a, 603b, 604, 605) and confirms the parent disposition for 603c.",
+    "MECH-313 cumulative sub-threshold directional signal now attested across three substrate designs (603 + 603a/b on the 4-arm target env, 605 on the 3x3 noise/curiosity grid env). N=1 per cell prevents governance reading individually but the cross-substrate convergence is evidentially loaded -- worth flagging for the next /governance walk once substrate-fixed retests deliver N>=2.",
+    "MECH-314b/MECH-314c surfaced in 604 are a Phase 1 honest-scoping caveat surfacing under ablation, NOT a substrate ceiling specific to those claims. Their own evidence_quality_notes already declare this. Recording 604 as weakening evidence for them would over-state; their non_contributory direction is correct a priori.",
+    "Calibration-debt lens: ARC-065 priority-1 confirmed -- the 591 autopsy substrate prereq #2 plus the 490g-cohort autopsy plus this two-cluster autopsy plus the SD-056 substrate-readiness + V3-EXQ-569a falsifier together cover the goal-pipeline + per-candidate-variance gap. MECH-320 / ARC-065 priority-1 calibration debt is being actively worked through SD-056 (today) + the scaffolded-SD-054 substrate-design memo (in flight) -- no new work items from this autopsy beyond the four failure_record_entries."
+  ],
+  "draft_evidence_quality_notes_for_governance": {
+    "MECH-260": "[2026-05-29 autopsy V3-EXQ-603a/b/c followon cluster]: Three-followon convergent confirmation of the 591 substrate-uniform z_goal-zero family. 603a/b/c all 1/3 surviving seeds; MECH-260 operative every cell (dacc_forward_calls up to 4791 in surviving cells) but effective N=1 across the chain. Confirms 490g-cohort autopsy (commit 12f0dda773) Cluster B disposition under the Q-045/MECH-313/MECH-260 lettered-followon lens (no fork). Adds 603a + 603b failure_records to SD-XXX-scaffolded-sd054-onboarding substrate entry. EXQ-445h remains the sole valid MECH-260 support; sub-margin 'weakens' or 'supports' appearances at N=1 across the 603 chain are not load-bearing.",
+    "MECH-313": "[2026-05-29 autopsy V3-EXQ-603a/b/c followon + V3-EXQ-605 cluster]: Cumulative cross-substrate sub-threshold directional signal. 603a (ARM_1 +0.015 vs ARM_0, N=1), 603b (ARM_1 +0.011, ARM_2 +0.041, ARM_3 +0.045, N=1), 605 noise alpha sweep ({0.1, 0.5, 1.0} -> entropy {0.259, 0.292, 0.305}, N=1 per cell). Three independent substrate designs now deliver same-direction MECH-313 signal. 603c surprise: post-phased-training ARM_1 == ARM_0 exactly -- directionally consistent with LC-NE-against-prior biology but anecdotal at N=1. Re-evaluate once substrate-fixed retests (SD-XXX-scaffolded-sd054-onboarding land) deliver N>=2 per cell.",
+    "Q-045": "[2026-05-29 autopsy V3-EXQ-603a/b/c followon cluster]: Independence/coupling question untestable across the four-run chain (predecessor + three followons) -- effective N=1 in every iteration. Confirms substrate_ceiling category. Pending retest after SD-XXX-scaffolded-sd054-onboarding lands and a P2 measurement window with >=2/3 seeds becomes reachable. Lit-pull R5 design-gate (Kennerley temporal horizon) and R4 (8-cell extension) remain on hold behind the substrate fix.",
+    "Q-044": "[2026-05-29 autopsy V3-EXQ-604 + V3-EXQ-605 cluster]: untestable on V3 default substrate due to candidate-uniform z_world (no per-candidate variance from E2 forward-model output). MECH-314a per-candidate novelty bonus collapses to uniform across degenerate candidates -> ARM_1 (novelty-off) == ARM_0 (all-on) bit-identical per seed. MECH-314b/c are broadcast-by-design (Phase 1 honest-scoping caveat already on file). Two-substrate-prereq stack: SD-056 e2_action_conditional_divergence_contrastive (proximal; landed 2026-05-29 ree-v3 main 041a974; V3-EXQ-613 PASS; V3-EXQ-569a falsifier queued) AND SD-XXX-scaffolded-sd054-onboarding (deep; parent 490g-cohort autopsy commit 12f0dda773). Both must close before Q-044 retest is meaningful; SD-056 first via V3-EXQ-569a.",
+    "MECH-314": "[2026-05-29 autopsy V3-EXQ-604 + V3-EXQ-605 cluster]: parent claim; sub-flavour ablations cannot discriminate without per-candidate z_world variance. Same two-substrate-prereq stack as Q-044.",
+    "MECH-314a": "[2026-05-29 autopsy V3-EXQ-604 + V3-EXQ-605 cluster]: per-candidate novelty bonus collapses to uniform across z_world-degenerate candidate sets, making ARM_1 (novelty-off) bit-identical to ARM_0 (all-on) per seed in 604. NOT a substrate ceiling specific to the novelty mechanism -- it's the upstream per-candidate-variance gap. SD-056 substrate-readiness PASS (V3-EXQ-613) and behavioural validation (V3-EXQ-569a, queued today) are the proximal retest path.",
+    "MECH-314b": "[2026-05-29 autopsy V3-EXQ-604 cluster]: ARM_2 (uncertainty-off) == ARM_0 (all-on) bit-identical per seed in 604 is the declared Phase 1 broadcast-scalar honest-scoping caveat surfacing under ablation, NOT a substrate ceiling specific to this claim. Per-candidate refinement (Phase 2 follow-on) is the architectural work that makes 314b independently ablation-testable. No demotion or supports tagging warranted from V3-EXQ-604.",
+    "MECH-314c": "[2026-05-29 autopsy V3-EXQ-604 cluster]: same as MECH-314b -- ARM_3 (lp-off) == ARM_0 (all-on) bit-identical per seed is the Phase 1 broadcast-scalar caveat surfacing under ablation, NOT a substrate ceiling. Phase 2 per-candidate refinement is the prerequisite for ablation-testability.",
+    "Q-043": "[2026-05-29 autopsy V3-EXQ-605 cluster]: calibration grid untestable on V3 default substrate -- curiosity dimension fully degenerate (curiosity_scale {1x, 5x, 10x} produces identical per-cell entropy + reef_fraction); noise dimension delivers sub-threshold signal but N=1 per cell. p1_any_calibration_zone=false stays. Same two-substrate-prereq stack as Q-044 (SD-056 proximal, SD-XXX-scaffolded-sd054-onboarding deep).",
+    "ARC-065": "[2026-05-29 autopsy V3-EXQ-605 + V3-EXQ-604 cluster]: foundational architectural slot; neither child substrate (MECH-313 noise / MECH-314 curiosity) can be load-bearing-tested while V3 substrate produces candidate-degenerate scoring AND seeds 42/44 die on the target env at random-init. ARC-065 stays candidate pending the two-substrate-prereq close (SD-056 via V3-EXQ-569a + SD-XXX-scaffolded-sd054-onboarding via implement-substrate session). Priority-1 calibration debt per project_calibration_debt.md."
+  }
+}
