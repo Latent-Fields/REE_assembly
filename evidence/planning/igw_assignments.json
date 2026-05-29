@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-29T06:12:45Z",
+  "generated_at": "2026-05-29T06:13:30Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -311,6 +311,26 @@
         "claim_ids": [
           "ARC-046"
         ]
+      }
+    },
+    {
+      "event_id": "asn-20260529T061330Z-1233895f-claude_local",
+      "stable_hash": "1233895f3a19",
+      "igw_id_at_assign": "IGW-20260529-029",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-05-29T06:13:30Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": null,
+      "item_snapshot": {
+        "skill": "/diagnose-errors",
+        "title": "Diagnose ERROR: V3-EXQ-544",
+        "lane": "experiment",
+        "priority": 30,
+        "claim_ids": []
       }
     }
   ]
