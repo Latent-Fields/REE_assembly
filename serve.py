@@ -2143,8 +2143,16 @@ def _default_runner_extra_env() -> dict | None:
     every report_claim / report_result / heartbeat POST became a no-op.
     The Shadow Coordination panel's start path already passes the same
     dict via explicit extra_env; this function consolidates the lookup.
-    Caller-supplied extra_env still wins (e.g. Phase 2 cutover wants
+    Caller-supplied extra_env still wins (e.g. cutover paths want
     COORDINATION_MODE=coordinator, not shadow).
+
+    Phase 3 (live 2026-05-29): also injects the three runner-push gates
+    so the Mac runner stops double-writing telemetry the coordinator's
+    sync_daemon already publishes. Cloud workers get these via
+    /etc/systemd/system/ree-runner.service.d/shadow.conf; the Mac path
+    gets them here. Gated on coordinator presence -- a Mac with no
+    coordinator configured still falls through to legacy git pushes so
+    its telemetry isn't black-holed.
     """
     cfg = _load_coordinator_cfg()
     url = cfg.get("COORDINATOR_URL")
@@ -2156,6 +2164,9 @@ def _default_runner_extra_env() -> dict | None:
         "COORDINATOR_URL": url,
         "COORDINATOR_TOKEN": tok,
         "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
+        "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
+        "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
+        "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
     }
 
 
@@ -2505,6 +2516,9 @@ def start_shadow() -> dict:
         "COORDINATOR_URL": url,
         "COORDINATOR_TOKEN": tok,
         "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
+        "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
+        "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
+        "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
     })
 
     hosts = {}
@@ -2562,6 +2576,9 @@ def start_coordinator() -> dict:
         "COORDINATOR_URL": url,
         "COORDINATOR_TOKEN": tok,
         "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
+        "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
+        "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
+        "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
     })
 
     hosts = {}
