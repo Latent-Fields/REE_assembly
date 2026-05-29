@@ -3,6 +3,7 @@ closure_plan:
   id: sd033_governance
   title: "SD-033 Governance (OCD test battery sub-plan)"
   registered: 2026-04-20
+  last_updated: 2026-05-29
   scope_claims: [SD-033, SD-033a, SD-033b, SD-034, MECH-266, MECH-267, MECH-268]
   parent_plan: commitment_closure
   nodes:

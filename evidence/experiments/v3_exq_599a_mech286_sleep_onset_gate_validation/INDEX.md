@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_599a_mech286_sleep_onset_gate_validation
 
-Generated: `2026-05-27T06:36:27.748735Z`
+Generated: `2026-05-29T07:56:52.755338Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

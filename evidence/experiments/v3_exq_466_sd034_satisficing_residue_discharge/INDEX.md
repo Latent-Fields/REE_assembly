@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_466_sd034_satisficing_residue_discharge
 
-Generated: `2026-05-27T17:29:08.678722Z`
+Generated: `2026-05-29T07:56:52.755338Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

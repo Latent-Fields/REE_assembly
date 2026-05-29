@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_494_sd039_anchor_payload_validation
 
-Generated: `2026-05-27T06:36:27.748735Z`
+Generated: `2026-05-29T07:56:52.755338Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -3,13 +3,14 @@ closure_plan:
   id: commitment_closure
   title: "Commitment / Closure / Mode-Governance"
   registered: 2026-05-08
+  last_updated: 2026-05-29
   scope_claims: [SD-033a, SD-033b, SD-033c, SD-033d, SD-033e, SD-034, MECH-090, MECH-091, MECH-260, MECH-262, MECH-263, MECH-266, MECH-267, MECH-268]
   sibling_plans: [sd033_governance]
   nodes:
     - id: "commitment_closure:GAP-1"
       title: "SD-033a bias head untrained (Go-side mechanically silent)"
       phase: 1
-      status: in-progress
+      status: done
       severity: load-bearing
       owner_exq: V3-EXQ-598b
       unblocks_claims: [SD-033a, MECH-262, SD-034]
@@ -20,7 +21,8 @@ closure_plan:
         - "arc_062_rule_apprehension:GAP-C"
         - "arc_062_rule_apprehension:GAP-D"
       blocking_external: []
-      last_updated: 2026-05-27
+      last_updated: 2026-05-29
+      completion_note: "V3-EXQ-598b ran 20260527T120345Z and confirmed C1 frozen_silent PASS (bias=0 when head frozen) + C2 trainable_nonzero PASS (head learned mean abs 0.05-0.10 when trainable). Bias head is no longer mechanically silent. SD-033a recorded as supports (substrate fires as specified). The downstream C3 trainable_not_monomodal FAIL (P2 reef-visit fractions remained equivalent across frozen and trainable arms) is a separate substrate_ceiling: MECH-262 reclassified weakens -> non_contributory + epistemic_category=substrate_ceiling + pending_retest_after_substrate=true on the rule-creator/discriminator substrate (the next layer that would populate DIFFERENTIATED rule_state inputs). That work is tracked under arc_062_rule_apprehension:GAP-B (re-blocked 2026-05-29 on rule-creator substrate) and via the MECH-262 retest flag, not under this gap. GAP-1's narrow scope (head is untrained) is RESOLVED."
       resume_condition: "GAP-1 closes on V3-EXQ-598b PASS (2-arm ablation). Per failure_autopsy_V3-EXQ-543l_2026-05-27 sections 7+9, V3-EXQ-598b is the DISCRIMINATOR between substrate-enrichment (predicted PASS -- GAP-C/D routing consumer rescues differentiation) and test-design-ceiling (predicted FAIL -- REINFORCE on shared return structurally insufficient regardless of consumer) readings. 543l FAIL/mixed (2026-05-26) does NOT block 598b; the autopsy explicitly routes substrate-enrichment-first. 598b carries a PERMISSIVE startup gate (manifest exists + outcome in {PASS, FAIL}); contributory PASS on 543l is NOT required."
       substrate_note: "GAP-C + GAP-D substrate implemented 2026-05-17 (discriminator_proj + train_rule_bias_head + bias_head_parameters). V3-EXQ-598b queued 2026-05-27 (ree-v3 main 94db78d; supersedes V3-EXQ-598a; gates_on_exq=V3-EXQ-543l with permissive semantic per autopsy routing; priority 240): frozen vs trainable bias head on ARC-062+SD-054 stack (SP-CEM main-path defaults, differential heads, mode_separation_floor=0.25, P1_W_DEVIATION_AUX_WEIGHT=0.1). claim_ids=[SD-033a, MECH-262] with evidence_direction_per_claim (SD-034 dropped: closure_operator not exercised by 2-arm ablation). Dry-run smoke: ARM_0 frozen PASS bias=0; ARM_1 trainable FAIL on tiny 3+4+2 ep schedule (documented insufficient-budget signature). Per autopsy section 9 retest sequence on full-run completion: contributory PASS -> close GAP-1 + ARC-062 weak-reading governance-stamped viable; FAIL/weakens -> ARC-063 V4 lit-pull + design session; non_contributory -> /diagnose-errors."
     - id: "commitment_closure:GAP-2"

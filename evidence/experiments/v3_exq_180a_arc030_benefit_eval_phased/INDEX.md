@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_180a_arc030_benefit_eval_phased
 
-Generated: `2026-05-27T17:29:08.678722Z`
+Generated: `2026-05-29T07:56:52.755338Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

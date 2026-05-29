@@ -4142,5 +4142,11 @@
     "subject": "environment.reef_enrichment_substrate",
     "title": "Reef enrichment substrate: env-level behavioral-diversity substrate adding coral-reef safe zones (hazard-free patches with a static scent gradient) and food-attracted hazard drift to CausalGridWorldV2. Creates two competing behavioral attractors -- 'flee to reef' vs 'forage' -- to break monomodal route-exploitation in agents whose policy collapses to a single fixed trajectory, unblocking SD-029 C2 / C3 measurement. Pure environment substrate; no trainable parameters; no MECH-094 interaction. Renamed from SD-050 on 2026-05-08 to resolve a registry-ID collision with the suffering-derivative comparator.",
     "type": "design_decision"
+  },
+  "SD-056": {
+    "status": "candidate",
+    "subject": "e2.action_conditional_divergence_contrastive",
+    "title": "E2 world-forward action-conditional divergence preservation via auxiliary InfoNCE-style contrastive loss. Substrate-level fix for the V3-EXQ-571 root cause finding (2026-05-25): with world_dim=32 and action_dim=4, action contributes ~11% of world_forward input dimensionality, and reconstruction-shaped training collapses to the state-dominated local minimum where action effect is fitted to zero. Measurement: cand_world_pairwise_dist = 0.0000 across K=8 candidates differing only in first action. Same root cause as 2026-05-17 ARC-062 GAP-B autopsy; GAP-B fix was scoped only to GatedPolicy first-action one-hot bypass. SD-056 is the architecturally-faithful generalisation -- fixes the predictor's training objective rather than bypassing the predictor at each consumer. Option (ii) lever B (contrastive next-state, Srivastava et al. 2021 style) chosen over PLSM-style MI factorisation (lever A) and SWIRL-style MI maximisation (lever C) per 2026-05-28 lit-pull SYNTHESIS verdict and user AskUserQuestion confirmation.",
+    "type": "design_decision"
   }
 }

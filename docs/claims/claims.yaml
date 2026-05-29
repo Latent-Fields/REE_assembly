@@ -20719,6 +20719,8 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -20771,6 +20773,20 @@
   evidence_quality_note: >
     Registered pre-implementation. Grounded by Mansouri et al 2020
     (NRN, confidence 0.85 in targeted_review_pfc_subdivision_architecture).
+    2026-05-29 governance: V3-EXQ-598b (GAP-D trainable rule_bias_head
+    ablation) showed C1 frozen_silent PASS + C2 trainable_nonzero PASS
+    (head moves to mean abs 0.05-0.10) but C3 trainable_not_monomodal
+    FAIL (P2 reef-visit fractions equivalent across ARM_0 frozen
+    [0.10, 0.06, 0.0] and ARM_1 trainable [0.10, 0.03, 0.0]).
+    Reclassified epistemic_category=substrate_ceiling with
+    pending_retest_after_substrate=true: the SD-033a substrate fires
+    and the rule_bias_head trains, but rule-selective persistence
+    cannot be tested in isolation because the upstream rule-creator /
+    discriminator that would populate distinct rule states is not yet
+    wired (parallel to the 543l autopsy substrate-enrichment-first
+    reading; MECH-309 monomodal collapse is the active failure mode).
+    V3-EXQ-598b therefore registers as MECH-262=non_contributory rather
+    than weakens. Retest after rule-creator substrate lands.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/entries/2026-04-19_pfc_cluster_abstract_rules_mansouri2020/summary.md
 - id: MECH-263
   title: "OFC-analog state-space and specific-outcome representation: SD-033b represents both a structured cognitive map of the current task state space and the specific outcomes expected from actions in each state. Value signals ride on top of this structured representation rather than being stored in it directly."

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_600a_mech282_lpb_interoceptive_routing_diag
 
-Generated: `2026-05-27T06:36:27.748735Z`
+Generated: `2026-05-29T07:56:52.755338Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

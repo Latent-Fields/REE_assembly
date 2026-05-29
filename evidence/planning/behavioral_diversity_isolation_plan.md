@@ -3,6 +3,7 @@ closure_plan:
   id: behavioral_diversity_isolation
   title: "Behavioural Diversity Isolation"
   registered: 2026-05-25
+  last_updated: 2026-05-29
   scope_claims: [ARC-065, ARC-062, ARC-064, MECH-260, MECH-269, MECH-269b, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-320, MECH-341, SD-003, SD-017, SD-029, SD-054, Q-043, Q-044, Q-045, Q-054, Q-055, INV-074, INV-076]
   sibling_plans: [arc_062_rule_apprehension, commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution]
   nodes:
@@ -15,7 +16,8 @@ closure_plan:
       unblocks_claims: [ARC-065]
       depends_on: []
       cross_plan_link: ["arc_062_rule_apprehension:GAP-H", "arc_062_rule_apprehension:GAP-B"]
-      last_updated: 2026-05-28
+      last_updated: 2026-05-29
+      governance_2026_05_29: "Drift report freshness bump only; status remains in_progress / blocked_pending_substrate. The /implement-substrate work on the E2-world-forward per-candidate signal preservation (SD-056 contrastive next-state landed 2026-05-29 in ree-v3 main 041a974; substrate-readiness validation queued as V3-EXQ-613 by the sibling implement-substrate session) is now in flight. Next-step V3-EXQ-569a matched-entropy FP-2 falsifier will be queued post-V3-EXQ-613 PASS via /queue-experiment. IGW-20260528-008 remains stale pending V3-EXQ-613 outcome."
       resume_condition: "V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path). V3-EXQ-569 matched-entropy sweep ran 2026-05-16 and was reclassified non_contributory at governance review: all 6 arms produced identical entropy (~0.496) because bias_fraction=0 for all diversity components -- the structured-vs-random comparison was never activated. V3-EXQ-571 PASS diagnostic confirmed F (forward model) dominates 88-89% of E3 score variance and ALL bias_fractions are machine-epsilon. V3-EXQ-573 10-arm bias-scale sweep (1x/5x/10x) reproduced the identical-arms collapse at 10x scale -> reclassified non_contributory; bias channel does not propagate at scale. V3-EXQ-609 per-candidate spread decomp (methodology fork from 571) surfaced curiosity emitting zero per-candidate vector. Root cause documented 2026-05-25 in evidence/planning/v3_exq_571_root_cause_2026-05-25.md: score_bias plumbing is correct, but the per-candidate signal is STRUCTURALLY ZERO -- all K candidates produce identical z_world after one E2 world-forward step (cand_world_pairwise_dist=0.0000) despite differing first actions. Same root cause as the 2026-05-17 ARC-062 GAP-B autopsy; that fix was scoped only to GatedPolicy. R1.a/R1.b cannot fire while the bias channel structurally carries no per-candidate variance. NEXT STEP is /implement-substrate on E2-world-forward per-candidate signal preservation (extends the 2026-05-17 GAP-B autopsy fix beyond GatedPolicy) -- NOT a /queue-experiment re-issue on the current substrate. After the substrate seam lands, queue V3-EXQ-569a as the matched-entropy FP-2 falsifier successor. IGW-20260528-008 (this node's owning IGW item) is stale and pending the substrate fix."
     - id: "behavioral_diversity_isolation:GAP-B"
       title: "Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)"

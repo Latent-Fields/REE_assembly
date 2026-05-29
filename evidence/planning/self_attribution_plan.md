@@ -3,6 +3,7 @@ closure_plan:
   id: self_attribution
   title: "Self-Attribution Comparator Loop"
   registered: 2026-05-08
+  last_updated: 2026-05-29
   scope_claims: [SD-013, SD-029, SD-030, SD-031, ARC-033, ARC-058, MECH-256, MECH-257, MECH-258, MECH-260]
   nodes:
     - id: "self_attribution:GAP-1"
@@ -15,7 +16,8 @@ closure_plan:
       depends_on: []
       blocking_external: ["sleep_substrate:GAP-1 Phase 1 PASS", "MECH-269 V_s monostrategy landing", "MECH-307 conjunction architecture"]
       resume_condition: "Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that (a) EXQ-445h dropped the ON_SHARED arm (CONDITIONS=[OFF, ON_INDEPENDENT] only); (b) the earlier three-arm EXQ-445 and EXQ-445b runs that did include ON_SHARED produced bit-identical metrics between ON_INDEPENDENT and ON_SHARED (harm_a_forward_r2 and mean_score_bias_abs floating-point-identical per seed across both arms) under action_class_entropy=0.0 monostrategy. The architectural arbitration is unmeasurable for the same V_s monostrategy reason as GAP-2 -- both forward models converge to predicting a near-degenerate z_harm_a signal. GAP-1 is not a separate gap from GAP-2."
-      last_updated: 2026-05-11
+      last_updated: 2026-05-29
+      governance_2026_05_29: "Drift report freshness bump only; status remains BLOCKED. The three blocking_external prerequisites (sleep_substrate:GAP-1 Phase 1 PASS, MECH-269 V_s monostrategy landing, MECH-307 conjunction architecture) are all unchanged this cycle. The 598b / 543l substrate-ceiling readings from this cycle confirm the monostrategy gate has not lifted on ARC-065 substrate."
     - id: "self_attribution:GAP-2"
       title: "SD-029 / MECH-256 retest under full substrate stack"
       phase: 2

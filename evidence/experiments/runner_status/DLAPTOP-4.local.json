@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
-  "runner_pid": 26016,
-  "runner_started_at": "2026-05-29T06:05:25.644667+00:00",
-  "last_updated": "2026-05-29T06:50:16.098510+00:00",
+  "runner_pid": 69413,
+  "runner_started_at": "2026-05-29T07:23:17.028816+00:00",
+  "last_updated": "2026-05-29T08:09:45.914290+00:00",
   "idle": false,
   "current": {
     "queue_id": "V3-EXQ-592b",
@@ -11,23 +11,23 @@
     "title": "MECH-090 R-c commit-readiness gate validation (commitment_closure:GAP-4 substrate)",
     "description": "",
     "script": "experiments/v3_exq_592b_mech090_commit_readiness_gate_validation.py",
-    "started_at": "2026-05-29T06:05:31.767705+00:00",
+    "started_at": "2026-05-29T07:23:17.165305+00:00",
     "progress": {
-      "run_label": "Seed 43 / ARM_0_GATED",
+      "run_label": "Seed 43 / ARM_1_GATED_FORCED_READY",
       "runs_done": 0,
       "runs_total": 1,
-      "episodes_done": 40,
+      "episodes_done": 0,
       "episodes_total": 400,
-      "overall_pct": 24.9
+      "overall_pct": 25.8
     },
-    "seconds_elapsed": 2684,
-    "seconds_remaining": 8096,
+    "seconds_elapsed": 2789,
+    "seconds_remaining": 8020,
     "recent_lines": [
-      "[seed=42] ARM_0_GATED: rv_final=0.00001 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=10 last_margin=0.0032 committed_steps=3029 falsifier_fired=False",
-      "Seed 42 Condition ARM_1_GATED_FORCED_READY",
-      "[seed=42] ARM_1_GATED_FORCED_READY: n_admitted=0 n_blocked=4 last_margin=0.0001 committed_steps=2321 admit_fired=False",
-      "Seed 43 Condition ARM_0_GATED",
-      "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True"
+      "[P0 train] ep 80/400  rv=0.00000  reward=-0.1881",
+      "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
+      "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
+      "[seed=43] ARM_0_GATED: rv_final=0.00000 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=23 last_margin=0.0000 committed_steps=10000 falsifier_fired=False",
+      "Seed 43 Condition ARM_1_GATED_FORCED_READY"
     ],
     "ree_version": "v3"
   },
@@ -40,6 +40,50 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "running",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-613",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-056 (e2.action_conditional_divergence_contrastive) substrate-readiness diagnostic",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-544a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-313 (ARC-065) stochastic_noise_floor substrate-readiness diagnostic (re-queue of V3-EXQ-544)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-610a",
+      "backlog_id": "EVB-0270",
+      "claim_id": "",
+      "title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-612c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Phase 3 E2E smoke (verdict sentinel fix retry)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }

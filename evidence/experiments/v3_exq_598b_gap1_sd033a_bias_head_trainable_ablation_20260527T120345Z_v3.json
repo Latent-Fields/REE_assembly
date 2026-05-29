@@ -17,8 +17,9 @@
   "evidence_direction": "mixed",
   "evidence_direction_per_claim": {
     "SD-033a": "supports",
-    "MECH-262": "weakens"
+    "MECH-262": "non_contributory"
   },
+  "evidence_direction_note": "2026-05-29 governance: MECH-262 reclassified weakens -> non_contributory + epistemic_category=substrate_ceiling + pending_retest_after_substrate=true on claims.yaml. C1 frozen_silent PASS + C2 trainable_nonzero PASS confirm SD-033a substrate wiring works (head moves to mean abs 0.05-0.10 when trainable); C3 trainable_not_monomodal FAIL was a downstream substrate-ceiling artefact (MECH-309 monomodal collapse; rule-creator/discriminator that would populate distinct rule states is not yet wired). Cannot test rule-selective persistence in isolation. Parallel to the 543l autopsy substrate-enrichment-first reading. SD-033a retained as supports (substrate operates as specified). See claims.yaml MECH-262 evidence_quality_note.",
   "outcome": "FAIL",
   "dry_run": false,
   "elapsed_sec": 1533.0288219451904,

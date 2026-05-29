@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_134_mech103_somatosensory_fusion_pair
 
-Generated: `2026-05-27T17:29:08.678722Z`
+Generated: `2026-05-29T07:56:52.755338Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

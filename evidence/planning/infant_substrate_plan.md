@@ -3,7 +3,7 @@ closure_plan:
   id: infant_substrate
   title: "Infant Substrate Expansion"
   registered: 2026-05-16
-  last_updated: 2026-05-27
+  last_updated: 2026-05-29
   scope_claims: [INV-055, INV-073, ARC-046, ARC-065, DEV-NEED-001, DEV-NEED-002, DEV-NEED-003, DEV-NEED-004, DEV-NEED-005, DEV-NEED-006, DEV-NEED-007, DEV-NEED-008, MECH-189, MECH-313, MECH-314]
   nodes:
     - id: "infant_substrate:GAP-1"
@@ -99,31 +99,34 @@ closure_plan:
     - id: "infant_substrate:GAP-11"
       title: "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison"
       phase: 4
-      status: in-progress
+      status: blocked
       severity: medium
       owner_exq: "V3-EXQ-588b"
       unblocks_claims: [DEV-NEED-006, MECH-189]
       depends_on: ["infant_substrate:GAP-3", "infant_substrate:GAP-5"]
       resume_condition: "V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b goal-seeding pipeline diagnostic (claim_ids=[], supersedes 588) -- monitor runner; on PASS close GAP-11 for DEV-NEED-006; MECH-189 retest deferred until ContextMemory path exists."
-      last_updated: 2026-05-21
+      last_updated: 2026-05-29
+      governance_2026_05_29: "V3-EXQ-588b ran 20260521T053758Z FAIL non_contributory (diagnostic, no claim tags). GAP-11 blocked on the ContextMemory path prerequisite called out in the original resume_condition; the MECH-189 retest cannot proceed until ContextMemory writes are implemented (separate substrate work, not a re-queue of 588 chain)."
     - id: "infant_substrate:GAP-12"
       title: "EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)"
       phase: 4
-      status: in-progress
+      status: done
       severity: medium
       owner_exq: "V3-EXQ-589"
       unblocks_claims: [DEV-NEED-001, DEV-NEED-007, ARC-065]
       depends_on: ["infant_substrate:GAP-2", "infant_substrate:GAP-5", "infant_substrate:GAP-7"]
-      last_updated: 2026-05-17
+      last_updated: 2026-05-29
+      completion_note: "V3-EXQ-589 ran 20260518T134905Z PASS supports ARC-065 (microhabitat zones produce greater latent-state diversity than homogeneous geography per the per-claim direction). GAP-12 closes for ARC-065. DEV-NEED-001 / DEV-NEED-007 measurement gaps satisfied by this run's metrics."
     - id: "infant_substrate:GAP-13"
       title: "EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attractor capture)"
       phase: 4
-      status: in-progress
+      status: blocked
       severity: medium
       owner_exq: V3-EXQ-590
       unblocks_claims: [DEV-NEED-003, MECH-314]
       depends_on: ["infant_substrate:GAP-4", "infant_substrate:GAP-5", "infant_substrate:GAP-6"]
-      last_updated: 2026-05-17
+      last_updated: 2026-05-29
+      governance_2026_05_29: "V3-EXQ-590 ran 20260525T084057Z PASS but evidence_direction=pending_retest_after_substrate with MECH-314 + MECH-111 per-claim non_contributory: Goldilocks calibration is degenerate across novelty_bonus_weight 0.1..1.0 (all 5 arms produce byte-identical mean_coverage=1.0, mean_h_pos, mean_novelty_ema to 16 sig figs -- the MECH-111 broadcast-novelty signal does not propagate to E3 selection variance). Same routing-break signature as 2026-05-08 EXQ-141b. Blocked on MECH-111 broadcast -> E3-selection routing substrate; calibration is unmeasurable until that channel carries per-candidate variance. Routes to /implement-substrate on the MECH-111 routing rather than a re-queue with a finer novelty_bonus_weight grid."
     - id: "infant_substrate:GAP-14"
       title: "EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)"
       phase: 4
@@ -132,7 +135,8 @@ closure_plan:
       owner_exq: V3-EXQ-591
       unblocks_claims: [DEV-NEED-008, ARC-046]
       depends_on: ["infant_substrate:GAP-9", "infant_substrate:GAP-5", "infant_substrate:GAP-6", "infant_substrate:GAP-7", "infant_substrate:GAP-8"]
-      last_updated: 2026-05-27
+      last_updated: 2026-05-29
+      governance_2026_05_29: "Drift report freshness bump only; status remains BLOCKED per the 2026-05-27 autopsy. Three substrate prerequisites (MECH-307 default-fix, goal-pipeline training regime, InfantCurriculumScheduler Phase 0->1 gate retune) all unchanged this cycle."
       resume_condition: "2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirmed) applied: manifest evidence_direction overridden to non_contributory; epistemic_category=substrate_ceiling; ARC-046 NOT weakened; pending_retest_after_substrate=true. Root finding: InfantCurriculumScheduler Phase 0->1 advancement gate (H_pos >= 0.70*ln(144) ~= 3.48) is structurally unreachable under random-policy 2000-episode training (observed rolling-mean H_pos peaks 0.03-1.08). z_goal collapses to ~1e-7 in every arm. Cluster pattern: fourth member of substrate-uniform z_goal-zero family (V3-EXQ-540 / 603 chain / 590a / 591). Status changed in-progress -> blocked: three substrate prerequisites must clear before V3-EXQ-591b can be queued: (a) MECH-307 default-value recalibration validated via V3-EXQ-540e; (b) goal-pipeline training regime produces non-trivial z_goal in default config via V3-EXQ-603c P0/P1 phased training (NOW FAIL 2026-05-27 -- Q-045 routed to substrate_conditional; this prerequisite needs V4 substrate or alternative resolution); (c) InfantCurriculumScheduler Phase 0->1 advancement signal tuned to achievable H_pos magnitudes OR replaced with z_goal-norm-based / residue-progression-based exit gate (routed to /implement-substrate)."
     - id: "infant_substrate:GAP-15"
       title: "Gate update: replace single z_goal.norm criterion in developmental_curriculum.md with 7-criterion table (3 blocking + 4 advisory) from infant_substrate_expansion.md Section 8"

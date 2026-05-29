@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-29T06:13:17Z",
+  "last_review_utc": "2026-05-29T07:50:18Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -397,7 +397,11 @@
     "V3-EXQ-543l",
     "V3-EXQ-591",
     "V3-EXQ-603c",
-    "V3-EXQ-611"
+    "V3-EXQ-611",
+    "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation",
+    "v3_exq_612_phase3_cutover_smoke",
+    "V3-EXQ-610",
+    "V3-EXQ-612"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2573,7 +2577,9 @@
     "v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3",
     "v3_exq_603c_q045_mech313_mech260_phased_training_20260527T113805Z_v3",
     "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3",
-    "v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3"
+    "v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3",
+    "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3",
+    "v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3137,6 +3143,21 @@
       ],
       "discussed_experiment_dirs_added": [],
       "subject": "IGW-20260529-037 ARC-046 closeout. V3-EXQ-591 (2026-05-27 run) was pending /failure-autopsy in the 2026-05-26 governance entry; the autopsy was completed and the read written into ARC-046 evidence_quality_note 2026-05-27 (substrate-uniform FAIL across all 3 arms / 5 seeds, 1/7 gate criteria; curriculum stuck in Phase 0 with H_pos 0.03-1.08 vs gate threshold 3.48; z_goal collapsed to ~1e-7 in every arm; C5/C6/C7 returned 'no data' sentinels). Manifest evidence_direction overridden does_not_support -> non_contributory per autopsy; the failure shape does NOT discriminate against ARC-046's architectural commitment. epistemic_category=substrate_ceiling. pending_retest_after_substrate stays TRUE with three explicit substrate prerequisites: (a) MECH-307 default-fix validation (V3-EXQ-540e MET 2/3 seeds); (b) goal-pipeline / training-regime substrate enrichment so non-trivial z_goal develops in default V3 config (V3-EXQ-603c P0/P1 phased training FAILED 2026-05-27 -- NOT MET; routes to /implement-substrate per autopsy: longer training, scaffolded SD-054 onboarding, or trained-policy regime as test-bed construction); (c) InfantCurriculumScheduler Phase 0->1 advancement signal retune to achievable H_pos OR replace with z_goal-norm-based / residue-progression exit gate (NOT MET; routes to /implement-substrate per autopsy). IGW-20260529-037 marked blocked_substrate -- NO queue entry written, NO experiment script produced. Stale 2026-05-27 IGW-027 TASK_CLAIMS entry (~36h) cleared in same session. Convergent shape with V3-EXQ-540a/b/c/e (MECH-307/MECH-295), V3-EXQ-603/603b/603c (training-regime), V3-EXQ-590a (Goldilocks no-op) is one structural property across four structurally-different claims with four different downstream consumers."
+    },
+    {
+      "reviewed_at_utc": "2026-05-29T07:50:18Z",
+      "session_id": "governance-20260529T074923Z",
+      "reviewed_run_ids": [
+        "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3",
+        "v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation",
+        "v3_exq_612_phase3_cutover_smoke",
+        "V3-EXQ-610",
+        "V3-EXQ-612"
+      ],
+      "subject": "Governance cycle 2026-05-29. (1) V3-EXQ-598b FAIL (SD-033a/MECH-262) post-substrate retest of V3-EXQ-543l: C1 frozen_silent PASS + C2 trainable_nonzero PASS (head moves mean abs 0.05-0.10) but C3 trainable_not_monomodal FAIL (P2 reef-visit fractions equivalent across ARM_0 [0.10, 0.06, 0.0] and ARM_1 [0.10, 0.03, 0.0]). User decision (b): SD-033a=supports (substrate operates as specified); MECH-262 reclassified weakens -> non_contributory + epistemic_category=substrate_ceiling + pending_retest_after_substrate=true. Reason: SD-033a substrate wiring works and head trains, but the upstream rule-creator/discriminator that would populate distinct rule states is not yet wired -- cannot test rule-selective persistence in isolation. Parallel to the 543l autopsy substrate-enrichment-first reading; MECH-309 monomodal collapse remains the active failure mode. Manifest evidence_direction_per_claim updated + evidence_direction_note added; MECH-262 claims.yaml evidence_quality_note appended with 2026-05-29 governance entry; epistemic_category + pending_retest_after_substrate fields added. (2) V3-EXQ-612d PASS infrastructure smoke (Phase 3 cutover, ree-cloud-3, no claim tags, 0.215s, C1/C2/C3 PASS): validates the result->writer->queue-writer cycle. Marked discussed; no claim edits. (3) Runner-only ERRORs V3-EXQ-610 (SIGTERM at 47729s INV-074 crystallization, already re-queued as V3-EXQ-610a via /diagnose-errors with corrected estimated_minutes=800) and V3-EXQ-612 (sentinel-emission glitch, superseded by V3-EXQ-612d PASS): both already resolved, marked discussed. 0 pending_user promotion/demotion recommendations on the agenda."
     }
   ]
 }
