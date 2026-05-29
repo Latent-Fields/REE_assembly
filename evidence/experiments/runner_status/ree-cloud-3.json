@@ -1,19 +1,41 @@
 {
   "schema_version": "v1",
-  "runner_pid": 2267785,
-  "runner_started_at": "2026-05-26T06:04:19.162994+00:00",
-  "last_updated": "2026-05-26T07:24:57.522361+00:00",
+  "runner_pid": 2815,
+  "runner_started_at": "2026-05-28T16:34:31.444185+00:00",
+  "last_updated": "2026-05-28T17:57:01.344398+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-591",
+      "queue_id": "V3-EXQ-611b",
       "backlog_id": "",
-      "claim_id": "ARC-046",
-      "title": "EXQ-ISEF-005: 4-phase infant curriculum vs flat parameter baselines (GAP-14)",
+      "claim_id": "",
+      "title": "MECH-341 retune 6-arm validation (supersedes V3-EXQ-611)",
       "description": "",
-      "estimated_minutes": 4000.0,
+      "estimated_minutes": 17.3,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-612",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Phase 3 cutover end-to-end smoke",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-612c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Phase 3 E2E smoke (verdict sentinel fix retry)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1720,6 +1742,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_609_e3_score_per_candidate_spread_decomp_20260526T072457Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 99.5
+    },
+    {
+      "queue_id": "V3-EXQ-612d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Phase 3 E2E smoke (emit_outcome sentinel)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_612_phase3_cutover_smoke] result=PASS steps=228 elapsed=0.2s | verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-612d -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-612d.json",
+      "started_at": "2026-05-28T17:56:59.633788+00:00",
+      "completed_at": "2026-05-28T17:57:01.343784+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 1.7
     }
   ]
 }
