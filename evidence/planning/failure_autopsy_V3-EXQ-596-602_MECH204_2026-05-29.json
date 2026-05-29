@@ -1,0 +1,104 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-29T16:57:14Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "predecessor_autopsy": "REE_assembly/evidence/planning/failure_autopsy_EXQ-541_MECH204_2026-05-17.md",
+  "plan_of_record": "REE_assembly/evidence/planning/sleep_substrate_plan.md",
+  "targets": [
+    {
+      "run_id": "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260520T044151Z_v3",
+      "queue_id": "V3-EXQ-596",
+      "experiment_type": "v3_exq_596_mech204_sleep_cluster_stepharness_integration",
+      "claim_ids": ["MECH-204"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C2 cluster_live_frac_post_warmup >= 50%; 0/3 seeds; deterministic 9.09% (1/11) across all arms",
+      "passing_criteria": ["C1 fires_every_cycle (3/3 seeds)", "C3 relative_divergence >= 3% (3/3 seeds at 10.2/16.6/10.3%)"],
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "partially_coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dorsal raphe 5-HT quiescence during REM removing tonic serotonergic inhibition of cumulative recalibration",
+        "dependencies": ["MECH-123", "MECH-186", "MECH-178", "INV-045"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "inconclusive_measurement",
+      "recommended_evidence_direction_note": "Reclassified by failure autopsy 2026-05-29: C2 cluster_live_frac_post_warmup >= 50% is a cluster-integration criterion incompatible with the K=1 single-fire driver pattern documented in sleep_substrate_plan.md GAP-7 -- the MECH-285 sampler draws once per buffer-fill, yielding deterministic 1/11 = 9.09% across all 6 seed/arm/run combinations. C1 + C3 confirm MECH-204 mechanism (10.2/16.6/10.3% rv divergence, exceeding the 541c PASS bar). Not a MECH-204 falsification; not a substrate gap. Successor EXQ pending.",
+      "recommended_evidence_quality_note": "V3-EXQ-596 (2026-05-20) + V3-EXQ-602 (2026-05-21) closure-handoff integration at 12 cycles, step=0.25: MECH-204 recalibration fires every cycle in 3/3 seeds (C1 PASS); arm relative rv divergence 8.4-27.6% per seed clears the 3% C3 threshold and exceeds the 541c canonical PASS bar (4.5-9% at 16 cycles). Overall FAIL driven by C2 cluster_live_frac_post_warmup >= 50% (0/3 seeds; deterministic 1/11 = 9.09% because MECH-285 sampler under K=1 single-fire driver draws once at the buffer-fill cycle, then idle). C2 is a cluster-integration criterion (MECH-285 / GAP-3), not a MECH-204 prediction; 596/602 strengthen MECH-204. Reclassify both manifests non_contributory -> inconclusive_measurement. Successor EXQ redesigning C2 against the documented K=1 driver pattern (sleep_substrate_plan.md GAP-7) tracked under /queue-experiment.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "GAP-1/3/4/7/8 in sleep_substrate_plan.md are all done. The C2 redesign is a test-design improvement, not a substrate gap."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-204 triply confirmed (541c canonical PASS + 596 C1+C3 PASS + 602 C1+C3 PASS); mechanism is robust at 12-16 cycle scale",
+        "K=1 single-fire driver produces deterministic cluster_live_frac = 1/N under MECH-285 sampler (buffer-fill / buffer-drain rhythm)",
+        "Single-tag overload on integration EXQs: 596 script tags MECH-204 but C2 tests MECH-285+GAP-3+GAP-7 driver alignment; future closure-handoff EXQs should split per-claim criteria or use evidence_direction_per_claim",
+        "Closure-handoff EXQ design template should include a per-criterion 'which claim does this predict / what driver pattern do we expect to satisfy it' checklist"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_596_mech204_sleep_cluster_stepharness_integration_20260521T085838Z_v3",
+      "queue_id": "V3-EXQ-602",
+      "experiment_type": "v3_exq_596_mech204_sleep_cluster_stepharness_integration",
+      "claim_ids": ["MECH-204"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C2 cluster_live_frac_post_warmup >= 50%; 0/3 seeds; deterministic 9.09% (1/11) across all arms (identical signature to 596)",
+      "passing_criteria": ["C1 fires_every_cycle (3/3 seeds)", "C3 relative_divergence >= 3% (3/3 seeds at 8.4/27.6/7.9%)"],
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "partially_coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dorsal raphe 5-HT quiescence during REM",
+        "dependencies": ["MECH-123", "MECH-186", "MECH-178", "INV-045"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "inconclusive_measurement",
+      "recommended_evidence_direction_note": "Identical-signature rerun of V3-EXQ-596 one day later (same script, same config). Reclassified by failure autopsy 2026-05-29 alongside 596; the bit-identical 1/11 cluster_live_frac confirms the deterministic K=1 driver-buffer pattern rather than stochastic failure. C1 + C3 confirm MECH-204 mechanism (8.4/27.6/7.9% rv divergence). See failure_autopsy_V3-EXQ-596-602_MECH204_2026-05-29.md.",
+      "recommended_evidence_quality_note": "See V3-EXQ-596 entry (same note covers both).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Same finding as 596; no substrate gap surfaced."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Rerun confirmed 596's signature is deterministic, not stochastic -- the cluster_live_frac = 1/11 holds bit-identically across two independent runs with identical config",
+        "Strengthens MECH-204 further (third independent confirmation of recalibration firing every cycle)"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "C1 (mechanism fires every cycle) PASS + C3 (claim-level discrimination) PASS, but C2 (cluster-wide integration liveness) FAIL with bit-identical deterministic signature across all seed/arm/run combinations",
+    "is_independent_bugs": false,
+    "structural_property": "C2 threshold (cluster_live_frac_post_warmup >= 50%) registered without calibrating against the documented K=1 single-fire driver pattern, which yields exactly 1/N post-warmup live cycles by construction (MECH-285 sampler draws once per buffer-fill / buffer-drain rhythm). This is one observation repeated, not two independent failures.",
+    "is_same_diagnosis_as_predecessor": false,
+    "predecessor_diagnosis_layer": "scale (541-family failed on insufficient cycle budget vs EMA_alpha=0.1 floor)",
+    "this_diagnosis_layer": "measurement + integration (596/602 failed on C2 threshold incompatible with K=1 driver; MECH-204 mechanism itself is strengthened, not weakened)",
+    "readings": ["measurement_redesign", "k_driver_buffer_retention_substrate (rejected -- GAP-7 explicitly catalogues K=1 as valid documented pattern)"],
+    "selected_reading": "measurement_redesign"
+  }
+}
