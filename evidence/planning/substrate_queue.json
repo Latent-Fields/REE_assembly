@@ -3143,11 +3143,10 @@
       "title": "InfantCurriculumScheduler Phase 0->1 advancement signal substrate fix: tune H_POS_FRAC_OF_MAX from 0.70 to achievable substrate value (~0.20-0.30 of max) OR replace H_pos exit gate with z_goal-norm-based / residue-coverage-progression-based exit gate.",
       "status": "pending_implementation",
       "ready": false,
-      "ready_blocked_by": "V3 substrate prerequisites (NOT V4 deferral): (a) MECH-307 default-value recalibration validated (V3-EXQ-540e); (b) goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requires V3 substrate enrichment, not V4). Probable joint fix with this entrys exit-gate fix; cluster reading per failure_autopsy_V3-EXQ-591_2026-05-27.",
+      "ready_blocked_by": "V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requires V3 substrate enrichment, not V4; z_goal collapses ~1e-7 across V3-EXQ-591 arms). Probable joint fix with this entry's exit-gate fix; cluster reading per failure_autopsy_V3-EXQ-591_2026-05-27. MECH-307 default-value recalibration prereq CLEARED 2026-05-15 by V3-EXQ-540g PASS+supports (criterion_fix; conjunction_fire_rate=32 in ARM_2); routing per failure_autopsy commit 2f96871335 'count 540g as supports for MECH-307+MECH-295 in governance'; session-land 128714f77b closed MECH-307 substrate-ready 2026-05-21 (IGW-20260521-023). V3-EXQ-540e FAIL 2026-05-12 was a measurement bug (seed44 truncation, 2/3 seeds cleared C2), superseded by 540g.",
       "design_doc": "evidence/planning/infant_substrate_plan.md",
       "depends_on_unresolved": [
-        "MECH-307 default-value recalibration via V3-EXQ-540e (V3 substrate work)",
-        "goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4)"
+        "goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-016 / goal_pipeline:GAP-4 / V3-EXQ-490g cohort)"
       ],
       "unblocks_claims": [
         "ARC-046",
@@ -3164,7 +3163,7 @@
       "implementation_hint": "InfantCurriculumScheduler in ree-v3/experiments/infant_curriculum.py: see PHASE_EP_MIN / H_POS_FRAC_OF_MAX or the equivalent exit-signal API. Brief substrate probe recommended before committing to threshold lower vs gate replacement.",
       "priority": 2,
       "added_session": "governance-20260527T172644Z",
-      "last_seen_session": "governance-20260527T172644Z"
+      "last_seen_session": "gap-c-doc-sync-540e-to-540g-20260529T162151Z"
     },
     {
       "sd_id": "MECH-341",
