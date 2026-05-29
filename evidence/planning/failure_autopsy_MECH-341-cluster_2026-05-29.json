@@ -1,0 +1,115 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-29T16:56:17Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_608_mech341_e3_score_collapse_diagnostic_20260526T025832Z_v3",
+      "queue_id": "V3-EXQ-608",
+      "claim_ids": ["MECH-341"],
+      "outcome": "PASS",
+      "evidence_direction": "non_contributory",
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "n/a (diagnostic PASS; majority_label=R2a_e3_collapse_confirmed_large_gap)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated_by_design",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal_ganglia_cortico_striatal_winner_take_all_with_downstream_action_bias",
+        "dependencies": ["proposal_layer_diversity", "value_estimation"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "absent_acceptable_algorithmic_regulator"
+      },
+      "recommended_epistemic_category": "none_stays_non_contributory_per_diagnostic_purpose",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "see cluster-level note on MECH-341 in failure_autopsy_MECH-341-cluster_2026-05-29.md section 10; no per-run note needed (608 is a diagnostic PASS that correctly routed substrate landing).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "V3-EXQ-608 was a PASS that routed the substrate landing; not a failure_record candidate."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Layer-B score collapse is empirically real at default V3 config in bipartite-reef env (R2a majority 2/3 seeds).",
+        "MECH-341 substrate need is justified by observed gap."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3",
+      "queue_id": "V3-EXQ-611",
+      "claim_ids": ["MECH-341"],
+      "outcome": "FAIL",
+      "evidence_direction": "non_contributory",
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "C1_substrate_fires_in_on_arms (substrate-readiness criterion; not an absolute / negative-control / discrimination criterion in the standard taxonomy)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial_stub_two_first_pass_v1_bugs",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "partially_coupled_stratified_wiring_gap_vs_uncommitted_path",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal_ganglia_cortico_striatal_winner_take_all_with_downstream_action_bias",
+        "dependencies": ["proposal_layer_diversity", "value_estimation"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "absent_acceptable_algorithmic_regulator"
+      },
+      "recommended_epistemic_category": "none_stays_non_contributory_per_diagnostic_purpose",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "see cluster-level note on MECH-341 in failure_autopsy_MECH-341-cluster_2026-05-29.md section 10; per-run note already captured by substrate_queue.json MECH-341 failure_record (line ~3183).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-341",
+        "note": "Existing MECH-341 substrate_queue entry already carries V3-EXQ-611 failure_record (line ~3183) with the correct two-bug breakdown. Amend = link this cluster autopsy artifact path (evidence/planning/failure_autopsy_MECH-341-cluster_2026-05-29.md) into the entry's next_step or notes field so the cluster diagnosis is auditable from the substrate_queue entry. No new failure_record entry needed."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-341 substrate v1 (landed 2026-05-27) had two distinct first-pass implementation gaps surfaced by V3-EXQ-611 instrumentation block.",
+        "Bug 1 (calibration): default e3_diversity_entropy_bias_scale=0.1 is 1-2 orders of magnitude too small for observed mean_top2_class_gap 0.27-1.96 regime.",
+        "Bug 2 (gating-path): stratified_select gated to committed branch while P1 measurement traverses uncommitted path; n_stratified_fired=0 across all 3 seeds.",
+        "Both bugs are independent; not a single structural property of MECH-341.",
+        "Both addressed by 2026-05-28 retune (module change + V3-EXQ-611b 6-arm sweep).",
+        "V3-EXQ-611b runner-cache PASS (C1=True C3=True R2c=True, 18/18) but manifest lost to heartbeat autostash; V3-EXQ-611c is bit-identical recovery re-run already queued.",
+        "Process observation: R2c_readiness_entropy_threshold=0.3 cleared on substrate-OFF ARM_0 (mean_selected_class_entropy_nats=0.563), so R2c is NOT substrate-discriminative at current threshold -- tighten or replace before V3-EXQ-611c interpretation."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "v1_substrate_first_pass_two_bugs_at_distinct_call_sites_surfaced_by_one_readiness_diagnostic",
+    "is_independent_bugs": true,
+    "structural_property": "none (the two bugs are at distinct call sites -- loss-sum bias scale + branch-gated stratified_select -- with no shared upstream cause; MECH-341 claim itself is intact)",
+    "readings": [
+      "two_independent_v1_implementation_bugs (selected by user-confirmed Step 8 gate)",
+      "considered_and_rejected: structural_property_of_MECH_341_claim",
+      "considered_and_rejected: readiness_test_design_failure (partially right re R2c threshold -- noted as observation, not routing escalation)"
+    ]
+  },
+  "process_observations": [
+    "R2c_readiness_entropy_threshold=0.3 cleared on substrate-OFF ARM_0 -- not substrate-discriminative; tighten or replace before V3-EXQ-611c interpretation.",
+    "First-pass substrate implementations should run a single-seed instrumentation-only smoke before consuming a 12-seed readiness diagnostic (general process note; not owned by this autopsy)."
+  ],
+  "audit_trail": {
+    "user_confirmed_at_step_8_utc": "2026-05-29T16:56:17Z",
+    "user_choices": {
+      "cluster_read": "accept_as_stated_two_independent_v1_bugs",
+      "routing": "documentary_close_plus_amend_existing_substrate_entry"
+    }
+  }
+}
