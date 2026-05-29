@@ -211,22 +211,107 @@ def _claim_retest_ids() -> set[str]:
     return out
 
 
-def _substrate_ready_items() -> list[dict]:
+_SUBSTRATE_RESOLVED_STATUSES = {
+    "implemented", "done", "complete", "phase_2_implemented", "phase_3_implemented",
+}
+
+_LEADING_CLAIM_TOKEN_RE = re.compile(r"^\s*([A-Z]+-\d+[a-z]?)\b")
+
+
+def _load_substrate_queue() -> list[dict]:
     if not SUBSTRATE_QUEUE.exists():
         return []
     try:
         sq = json.loads(SUBSTRATE_QUEUE.read_text(encoding="utf-8"))
     except Exception:
         return []
+    return [it for it in (sq.get("queue") or []) if isinstance(it, dict)]
+
+
+def _substrate_by_id() -> dict[str, dict]:
+    """sd_id -> entry, indexed for O(1) lookup."""
+    return {it["sd_id"]: it for it in _load_substrate_queue() if it.get("sd_id")}
+
+
+def _substrate_resolved(entry: dict | None) -> bool:
+    if not entry:
+        return False
+    impl = str(entry.get("implementation_status") or entry.get("status") or "").lower()
+    return impl in _SUBSTRATE_RESOLVED_STATUSES
+
+
+def _substrate_ready_items() -> list[dict]:
     out = []
-    for item in sq.get("queue") or []:
-        if not isinstance(item, dict) or not item.get("ready"):
+    for item in _load_substrate_queue():
+        if not item.get("ready"):
             continue
-        impl = (item.get("implementation_status") or item.get("status") or "").lower()
-        if impl in ("implemented", "done", "complete", "phase_2_implemented"):
+        if _substrate_resolved(item):
             continue
         out.append(item)
     return out
+
+
+def _retest_blockers(
+    claim_id: str, substrate_by_id: dict[str, dict]
+) -> tuple[list[str], list[dict]]:
+    """Compute blocked_by descriptors + structured substrate entries for a retest claim.
+
+    Walks substrate_queue twice:
+      1. Direct: entries whose unblocks_claims contains claim_id and are not resolved.
+      2. Transitive: for each direct entry, parse leading-ID tokens from its
+         depends_on_unresolved list. Skip resolved IDs silently; surface unresolved
+         IDs (with sd_id link if a substrate entry exists) or free-text entries
+         (when no leading ID can be extracted) as informational blockers.
+
+    Returns (blocker_strings, structured_substrate_entries):
+      - blocker_strings: human-readable list for the IGW item's blocked_by field.
+      - structured_substrate_entries: substrate_queue dicts (with sd_id) that
+        should be surfaced as their own "Implement substrate: SD-X" IGW items.
+    """
+    blocker_strs: list[str] = []
+    structured: list[dict] = []
+    seen_sd_ids: set[str] = set()
+
+    direct = [
+        e for e in substrate_by_id.values()
+        if claim_id in (e.get("unblocks_claims") or []) and not _substrate_resolved(e)
+    ]
+    for entry in direct:
+        sid = entry.get("sd_id") or ""
+        status = entry.get("implementation_status") or entry.get("status") or "unknown"
+        blocker_strs.append(f"{sid} [{status}]")
+        if sid and sid not in seen_sd_ids:
+            seen_sd_ids.add(sid)
+            structured.append(entry)
+        for dep_str in entry.get("depends_on_unresolved") or []:
+            if not isinstance(dep_str, str) or not dep_str.strip():
+                continue
+            m = _LEADING_CLAIM_TOKEN_RE.match(dep_str)
+            if m:
+                dep_id = m.group(1)
+                dep_entry = substrate_by_id.get(dep_id)
+                if _substrate_resolved(dep_entry):
+                    continue
+                if dep_entry:
+                    dep_status = (
+                        dep_entry.get("implementation_status")
+                        or dep_entry.get("status")
+                        or "unknown"
+                    )
+                    blocker_strs.append(
+                        f"{dep_id} [{dep_status}] (transitive via {sid})"
+                    )
+                    if dep_id not in seen_sd_ids:
+                        seen_sd_ids.add(dep_id)
+                        structured.append(dep_entry)
+                else:
+                    blocker_strs.append(
+                        f"{dep_id} [no-substrate-entry] (transitive via {sid}): "
+                        f"{dep_str[:120]}"
+                    )
+            else:
+                blocker_strs.append(f"free-text (via {sid}): {dep_str[:160]}")
+    return blocker_strs, structured
 
 
 def _proposed_experiments() -> list[dict]:
@@ -695,8 +780,17 @@ def build_workset() -> dict:
             unblocks=gap.get("unblocks_claims") or [],
         )
 
+    # Track which substrate sd_ids have been emitted as IGW items so we don't
+    # double-emit. Both the "Substrate ready" loop below and the retest-blocker
+    # synthesis loop further down feed this set.
+    emitted_substrate_sd_ids: set[str] = set()
+    substrate_by_id = _substrate_by_id()
+
     for sq in _substrate_ready_items()[:8]:
         sd = sq.get("sd_id") or "?"
+        if sd in emitted_substrate_sd_ids:
+            continue
+        emitted_substrate_sd_ids.add(sd)
         add(
             lane="substrate",
             skill="/implement-substrate",
@@ -748,20 +842,61 @@ def build_workset() -> dict:
 
     retest = sorted(_claim_retest_ids())
     for cid in retest[:10]:
+        blocker_strs, structured_blockers = _retest_blockers(cid, substrate_by_id)
+        status = "blocked" if blocker_strs else "ready"
+        why_now = (
+            "claims.yaml pending_retest_after_substrate=true."
+            if status == "ready"
+            else f"Blocked by {len(blocker_strs)} unresolved substrate "
+                 f"prerequisite(s) -- see blocked_by."
+        )
         add(
             lane="experiment",
             skill="/queue-experiment",
-            status="ready",
+            status=status,
             priority=28,
             severity="medium",
             title=f"Retest after substrate: {cid}",
-            why_now="claims.yaml pending_retest_after_substrate=true.",
+            why_now=why_now,
             gap_ids=[],
             claim_ids=[cid],
             owner_exq=None,
-            blocked_by=[],
+            blocked_by=blocker_strs,
             unblocks=[cid],
         )
+        # Surface each structured (sd_id-bearing) blocker as its own
+        # "Implement substrate" IGW so the prerequisite work appears in the
+        # workset alongside the blocked retest. Idempotent via
+        # emitted_substrate_sd_ids: never double-emits a substrate already
+        # added by the "Substrate ready" loop above.
+        for entry in structured_blockers:
+            sid = entry.get("sd_id") or ""
+            if not sid or sid in emitted_substrate_sd_ids:
+                continue
+            emitted_substrate_sd_ids.add(sid)
+            entry_status = (
+                entry.get("implementation_status")
+                or entry.get("status")
+                or "unknown"
+            )
+            add(
+                lane="substrate",
+                skill="/implement-substrate",
+                status="ready",
+                priority=20,
+                severity="high",
+                title=f"Implement substrate: {sid} (unblocks {cid})",
+                why_now=(
+                    f"substrate_queue entry status={entry_status}; "
+                    f"unblocks retest of {cid} "
+                    f"(pending_retest_after_substrate)."
+                )[:240],
+                gap_ids=[],
+                claim_ids=list(entry.get("unblocks_claims") or [])[:6],
+                owner_exq=None,
+                blocked_by=[],
+                unblocks=list(entry.get("unblocks_claims") or [])[:6],
+            )
 
     for prop in _proposed_experiments()[:5]:
         pid = prop.get("proposal_id") or "?"
