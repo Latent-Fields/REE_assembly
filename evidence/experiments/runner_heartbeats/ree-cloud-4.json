@@ -1,46 +1,30 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-29T17:40:53Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-611c",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-588b",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T05:37:58.598953+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-524a",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T06:02:20.835477+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-595",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T07:47:14.169641+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490g",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T09:51:43.443844+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-543k",
-      "result": "FAIL",
-      "completed_at": "2026-05-22T09:17:14.778471+00:00"
-    }
+  "last_tick_utc": "2026-05-29T17:43:54Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-614",
+  "current_exq_started_utc": "2026-05-29T17:42:54.369899+00:00",
+  "current_title": "GAP-B P3 behavioural falsifier: B_only / ablate_B / ALL_ON (MECH-341 R2.c)",
+  "current_claim_id": "MECH-341",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / B_only_mech341_isolated",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 90,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 60,
+  "seconds_remaining": 3600,
+  "recent_lines": [
+    "Arm ARM_0_B_only (B_only_mech341_isolated) (P0=30 ep, P1=60 ep, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition B_only_mech341_isolated"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 666,
   "runner_version": null,
   "gpu": {
