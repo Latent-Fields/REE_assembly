@@ -1,18 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 4407,
-  "runner_started_at": "2026-05-28T17:53:55.931425+00:00",
-  "last_updated": "2026-05-29T18:45:49.964739+00:00",
+  "runner_pid": 30851,
+  "runner_started_at": "2026-05-29T20:11:45.251330+00:00",
+  "last_updated": "2026-05-29T21:46:09.330563+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-614",
+      "queue_id": "V3-EXQ-569a",
       "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "GAP-B P3 behavioural falsifier: B_only / ablate_B / ALL_ON (MECH-341 R2.c)",
+      "claim_id": "ARC-065",
+      "title": "SD-056 action-contrastive matched-entropy FP-2 falsifier (GAP-A, A_only)",
       "description": "",
-      "estimated_minutes": 108.0,
+      "estimated_minutes": 38.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-483d",
+      "backlog_id": "",
+      "claim_id": "SD-037",
+      "title": "SD-037 broadcast override GAP-4 Tier-1 retest with PAG/override_signal C2",
+      "description": "",
+      "estimated_minutes": 96.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2347,6 +2358,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 4329.5
+    },
+    {
+      "queue_id": "V3-EXQ-490h",
+      "backlog_id": "",
+      "claim_id": "MECH-295",
+      "title": "MECH-295 drive->liking->approach cascade Tier-1 retest (post-library-rebuild)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | [v3_exq_490h_mech295_cascade_gap4_tier1] outcome=FAIL elapsed=5661.5s | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-490h -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-490h.json",
+      "started_at": "2026-05-29T20:11:45.272377+00:00",
+      "completed_at": "2026-05-29T21:46:08.027278+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_490h_mech295_cascade_gap4_tier1/v3_exq_490h_mech295_cascade_gap4_tier1_20260529T214607Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 5662.8
+    },
+    {
+      "queue_id": "V3-EXQ-612c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Phase 3 E2E smoke (verdict sentinel fix retry)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_612_phase3_cutover_smoke] result=PASS steps=228 elapsed=0.1s | verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-612c -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-612c.json",
+      "started_at": "2026-05-29T21:46:08.049181+00:00",
+      "completed_at": "2026-05-29T21:46:09.329597+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_612_phase3_cutover_smoke_20260529T214609Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1.3
     }
   ]
 }
