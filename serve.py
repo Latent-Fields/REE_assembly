@@ -1191,10 +1191,20 @@ def read_machines() -> dict:
     # etc.) is frozen and misleading -- the dashboard already paints the
     # card with the "stale" CSS class, but the state badge text used to
     # keep saying "idle" or "running", making a dead worker look like
-    # available capacity. Force the state badge to match.
+    # available capacity. Force the state badge to match. Also clear the
+    # in-flight-experiment fields so the card doesn't say "current exq:
+    # V3-EXQ-X" for a worker whose runner died mid-run -- the frozen
+    # heartbeat keeps those values pointing at whatever was running at
+    # the moment the runner stopped, which mis-reads as "still running".
     for m in out_machines:
         if m.get("fresh") is False and m.get("age_seconds") is not None:
             m["state"] = "stale"
+            m["current_exq"] = None
+            m["current_title"] = None
+            m["current_claim_id"] = None
+            m["progress"] = None
+            m["seconds_elapsed"] = None
+            m["seconds_remaining"] = None
 
     return {
         "schema_version": "v1",
