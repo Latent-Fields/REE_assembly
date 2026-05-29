@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-29T17:40:43Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-569a",
-  "current_exq_started_utc": "2026-05-29T17:01:58.467430+00:00",
-  "current_title": "SD-056 action-contrastive matched-entropy FP-2 falsifier (GAP-A, A_only)",
-  "current_claim_id": "ARC-065",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 43 / ARM_1_W001",
-    "runs_done": 4,
-    "runs_total": 15,
-    "episodes_done": 30,
-    "episodes_total": 50,
-    "overall_pct": 30.7
-  },
-  "seconds_elapsed": 2325,
-  "seconds_remaining": 4611,
-  "recent_lines": [
-    "verdict: PASS",
-    "Seed 43 Condition ARM_1_W001",
-    "[train] arm=ARM_1_W001 seed=43 phase=P0 ep 10/50",
-    "[train] arm=ARM_1_W001 seed=43 phase=P0 ep 20/50",
-    "[train] arm=ARM_1_W001 seed=43 phase=P0 ep 30/50"
+  "last_tick_utc": "2026-05-29T17:40:53Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 4,
+  "queue_id_at_head": "V3-EXQ-611c",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-588b",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T05:37:58.598953+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-524a",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T06:02:20.835477+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-595",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T07:47:14.169641+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-490g",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T09:51:43.443844+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-543k",
+      "result": "FAIL",
+      "completed_at": "2026-05-22T09:17:14.778471+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 666,
   "runner_version": null,
   "gpu": {
