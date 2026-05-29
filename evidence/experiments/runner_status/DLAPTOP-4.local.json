@@ -2,58 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 69413,
   "runner_started_at": "2026-05-29T07:23:17.028816+00:00",
-  "last_updated": "2026-05-29T08:09:45.914290+00:00",
+  "last_updated": "2026-05-29T08:32:42.512023+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-592b",
-    "backlog_id": "",
-    "claim_id": "",
-    "title": "MECH-090 R-c commit-readiness gate validation (commitment_closure:GAP-4 substrate)",
-    "description": "",
-    "script": "experiments/v3_exq_592b_mech090_commit_readiness_gate_validation.py",
-    "started_at": "2026-05-29T07:23:17.165305+00:00",
-    "progress": {
-      "run_label": "Seed 43 / ARM_1_GATED_FORCED_READY",
-      "runs_done": 0,
-      "runs_total": 1,
-      "episodes_done": 0,
-      "episodes_total": 400,
-      "overall_pct": 25.8
-    },
-    "seconds_elapsed": 2789,
-    "seconds_remaining": 8020,
-    "recent_lines": [
-      "[P0 train] ep 80/400  rv=0.00000  reward=-0.1881",
-      "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
-      "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-      "[seed=43] ARM_0_GATED: rv_final=0.00000 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=23 last_margin=0.0000 committed_steps=10000 falsifier_fired=False",
-      "Seed 43 Condition ARM_1_GATED_FORCED_READY"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-592b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-090 R-c commit-readiness gate validation (commitment_closure:GAP-4 substrate)",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-613",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-056 (e2.action_conditional_divergence_contrastive) substrate-readiness diagnostic",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-544a",
       "backlog_id": "",
@@ -8174,6 +8126,34 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_611b_mech341_retune_6arm_20260528T181445Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2883.7
+    },
+    {
+      "queue_id": "V3-EXQ-592b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 R-c commit-readiness gate validation (commitment_closure:GAP-4 substrate)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[V3-EXQ-592b] Experiment: FAIL | verdict: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-592b -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-592b.json",
+      "started_at": "2026-05-29T07:23:17.165305+00:00",
+      "completed_at": "2026-05-29T08:32:39.841632+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_592b_mech090_commit_readiness_gate_validation/v3_exq_592b_mech090_commit_readiness_gate_validation_20260529T083239Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 4162.6
+    },
+    {
+      "queue_id": "V3-EXQ-613",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-056 (e2.action_conditional_divergence_contrastive) substrate-readiness diagnostic",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-613 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-613.json",
+      "started_at": "2026-05-29T08:32:40.133659+00:00",
+      "completed_at": "2026-05-29T08:32:42.511218+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2.4
     }
   ]
 }
