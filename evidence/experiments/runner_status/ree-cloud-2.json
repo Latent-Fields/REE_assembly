@@ -1,41 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 340361,
-  "runner_started_at": "2026-05-21T13:17:26.449688+00:00",
-  "last_updated": "2026-05-21T14:43:23.496181+00:00",
+  "runner_pid": 4407,
+  "runner_started_at": "2026-05-28T17:53:55.931425+00:00",
+  "last_updated": "2026-05-29T18:45:49.964739+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-590a",
+      "queue_id": "V3-EXQ-614",
       "backlog_id": "",
-      "claim_id": "MECH-314",
-      "title": "EXQ-ISEF-004 rerun: novelty bonus Goldilocks calibration with checkpoint/resume",
+      "claim_id": "MECH-341",
+      "title": "GAP-B P3 behavioural falsifier: B_only / ablate_B / ALL_ON (MECH-341 R2.c)",
       "description": "",
-      "estimated_minutes": 2000.0,
+      "estimated_minutes": 108.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-592",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "GAP-11 pilot: committed-mode curriculum harness validation (EXP-0157)",
+      "queue_id": "V3-EXQ-610a",
+      "backlog_id": "EVB-0270",
+      "claim_id": "",
+      "title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
       "description": "",
-      "estimated_minutes": 480.0,
+      "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-591",
-      "backlog_id": "",
-      "claim_id": "ARC-046",
-      "title": "EXQ-ISEF-005: 4-phase infant curriculum vs flat parameter baselines (GAP-14)",
-      "description": "",
-      "estimated_minutes": 4000.0,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2330,6 +2319,34 @@
       "output_file": "",
       "completed_by": "ree-cloud-2",
       "actual_secs": 1.3
+    },
+    {
+      "queue_id": "V3-EXQ-612b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Phase 3 cutover end-to-end smoke (cloud-2 retry)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "No runner sentinel emitted and no PASS/FAIL on stdout (exit=0; secs=1.2)",
+      "started_at": "2026-05-28T17:36:45.882964+00:00",
+      "completed_at": "2026-05-28T17:36:47.087453+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1.2
+    },
+    {
+      "queue_id": "V3-EXQ-611c",
+      "backlog_id": "",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 retune 6-arm validation (manifest-recovery re-run of V3-EXQ-611b)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS completed=18/18 C1=True C2=False C3=True R2c=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-611c -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-611c.json",
+      "started_at": "2026-05-29T17:33:40.441994+00:00",
+      "completed_at": "2026-05-29T18:45:49.964237+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 4329.5
     }
   ]
 }
