@@ -2191,6 +2191,16 @@ def _default_runner_extra_env() -> dict | None:
         "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
+        # Suppress the LOCAL heartbeat + commands file writes too. The
+        # writer publishes the canonical runner_heartbeats/<host>.json
+        # from the coordinator DB; without this flag, the runner's local
+        # write conflicts with the writer-pulled version on every
+        # auto-sync `git pull REE_assembly` and leaves UU markers that
+        # block subsequent pulls until a human clears them. The flag's
+        # docstring frames it as hub-only, but the same UU happens on any
+        # worker's local checkout -- the "hub-only" guidance was scoped
+        # to *writer-side* corruption, not worker-local conflicts.
+        "PHASE3_DISABLE_RUNNER_HEARTBEAT_WRITE": "1",
     }
 
 
@@ -2558,6 +2568,16 @@ def start_shadow() -> dict:
         "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
+        # Suppress the LOCAL heartbeat + commands file writes too. The
+        # writer publishes the canonical runner_heartbeats/<host>.json
+        # from the coordinator DB; without this flag, the runner's local
+        # write conflicts with the writer-pulled version on every
+        # auto-sync `git pull REE_assembly` and leaves UU markers that
+        # block subsequent pulls until a human clears them. The flag's
+        # docstring frames it as hub-only, but the same UU happens on any
+        # worker's local checkout -- the "hub-only" guidance was scoped
+        # to *writer-side* corruption, not worker-local conflicts.
+        "PHASE3_DISABLE_RUNNER_HEARTBEAT_WRITE": "1",
     })
 
     hosts = {}
@@ -2618,6 +2638,16 @@ def start_coordinator() -> dict:
         "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
+        # Suppress the LOCAL heartbeat + commands file writes too. The
+        # writer publishes the canonical runner_heartbeats/<host>.json
+        # from the coordinator DB; without this flag, the runner's local
+        # write conflicts with the writer-pulled version on every
+        # auto-sync `git pull REE_assembly` and leaves UU markers that
+        # block subsequent pulls until a human clears them. The flag's
+        # docstring frames it as hub-only, but the same UU happens on any
+        # worker's local checkout -- the "hub-only" guidance was scoped
+        # to *writer-side* corruption, not worker-local conflicts.
+        "PHASE3_DISABLE_RUNNER_HEARTBEAT_WRITE": "1",
     })
 
     hosts = {}
