@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-29T06:13:30Z",
+  "generated_at": "2026-05-29T06:13:17Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -331,6 +331,28 @@
         "lane": "experiment",
         "priority": 30,
         "claim_ids": []
+      }
+    },
+    {
+      "event_id": "asn-20260529T061317Z-blocked-substrate-claude_local",
+      "stable_hash": "2b4c3b827f61",
+      "igw_id_at_assign": "IGW-20260529-037",
+      "agent": "claude_local",
+      "agent_label": "igw-20260529-037-arc046-blocked-substrate",
+      "source": "manual_ui",
+      "assigned_at": "2026-05-29T06:12:45Z",
+      "released_at": "2026-05-29T06:13:17Z",
+      "released_by": "claude_local",
+      "released_reason": "blocked_substrate",
+      "note": "ARC-046 evidence_quality_note (claims.yaml 13379-13412) lists three substrate retest-gate prerequisites. (a) MECH-307 default-fix validated by V3-EXQ-540e (MET 2/3 seeds). (b) Goal-pipeline / training-regime substrate enrichment so non-trivial z_goal develops in default V3 config -- V3-EXQ-603c P0/P1 phased training FAILED 2026-05-27 (NOT MET); EXQ-591 autopsy routes the fix to /implement-substrate (longer training, scaffolded SD-054 onboarding, or trained-policy regime as test-bed construction). (c) InfantCurriculumScheduler Phase 0->1 advancement signal retune or replacement (NOT MET); autopsy routes to /implement-substrate. Per /queue-experiment Step 2.5 substrate-readiness check: 'Do NOT write the script. Do NOT add a queue entry.' Queuing another retest would produce another substrate-uniform FAIL with the same shape as V3-EXQ-591 + 540a/b/c/e + 603/603b/603c + 590a. V3-EXQ-591 marked reviewed in same session. Stale 2026-05-27 IGW-027 TASK_CLAIMS entry (same auto-spawn, ~36h stale) cleared in same session. Next plan-of-record: /implement-substrate sessions for prerequisites (b) + (c).",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-046",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-046"
+        ]
       }
     }
   ]

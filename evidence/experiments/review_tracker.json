@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-27T17:35:00Z",
+  "last_review_utc": "2026-05-29T06:13:17Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -2572,7 +2572,8 @@
     "v3_exq_543l_arc062_mode_separation_gap_b_falsifier_20260526T023059Z_v3",
     "v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3",
     "v3_exq_603c_q045_mech313_mech260_phased_training_20260527T113805Z_v3",
-    "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3"
+    "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3",
+    "v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3127,6 +3128,15 @@
         "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3"
       ],
       "subject": "Governance cycle 2026-05-26. (1) V3-EXQ-608 (MECH-341) PASS diagnostic: interpretation_label=R2a_e3_collapse_confirmed_large_gap across all 3 seeds (frac_pre_ge2=1.0, frac_e3_collapse_above_eps=0.858, mean_top2_class_gap=0.378). Diagnostic / non_contributory by design. Routes MECH-341 to substrate-design options 1/2 (entropy bonus / class-stratified argmax at E3 scoring) per behavioral_diversity_isolation_plan.md; option 3 (jittered tie-breaking) ruled out by large-gap reading. No claim edits. (2) V3-EXQ-609 PASS diagnostic methodology fork from EXQ-571 (no claim tags; per finding doc v3_exq_571_root_cause_2026-05-25.md disposition #3). Surfaces per-candidate spread (8 components: state_A_zero_emission / state_B_methodology_mismatch / state_C_per_candidate_signal); current substrate reads 0 state_C / 1 state_B / 7 state_A -- the headline diagnostic finding EXQ-571 mean-collapse metric obscured. No claim edits. (3) V3-EXQ-603 run 111759Z (Q-045/MECH-313/MECH-260) FAIL: third 2026-05-21 run (pre-Fix1/Fix2). User-confirmed apply 603 autopsy (failure_autopsy_V3-EXQ-603_2026-05-23.json, status=confirmed) across all three 2026-05-21 runs. Manifest overridden to non_contributory per-claim + epistemic_category=measurement_gap. (4) V3-EXQ-603b run 071458Z (Q-045/MECH-313/MECH-260) FAIL: post-Fix-B re-run on 2026-05-26 (Fix B hazard_harm 0.02 insufficient because proximity_harm_scale=0.1 untouched was the dominant kill channel; seeds 42/44 still died at 350-475 total_steps; only seed 43 survived). User-confirmed apply 603b autopsy (failure_autopsy_V3-EXQ-603b_2026-05-25.json, status=confirmed). Manifest overridden to non_contributory per-claim + epistemic_category=measurement_gap + pending_retest_after_redesign=true. Q-045/MECH-313/MECH-260 in claims.yaml: appended 2026-05-26 governance entry to evidence_quality_note; added pending_retest_after_redesign: true field. EXQ-445h (C3 3/3 seeds, select_action path) remains valid MECH-260 support. Route to V3-EXQ-603c with P0/P1 training phase via separate /queue-experiment session. NOT marked reviewed (pending /failure-autopsy): v3_exq_543l (head_0==head_1 collapse persists across 543h/i/k/l escalation chain; ARC-062/INV-074/MECH-309/MECH-334 cluster) and v3_exq_591_isef005 (substrate-uniform 1/7 failure across all arms; nothing converging; not a curriculum-vs-flat signal; ARC-046). 0 pending_user promotion/demotion recommendations."
+    },
+    {
+      "reviewed_at_utc": "2026-05-29T06:13:17Z",
+      "session_id": "igw-20260529-037-arc046-blocked-substrate-20260529T061317Z",
+      "reviewed_run_ids": [
+        "v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [],
+      "subject": "IGW-20260529-037 ARC-046 closeout. V3-EXQ-591 (2026-05-27 run) was pending /failure-autopsy in the 2026-05-26 governance entry; the autopsy was completed and the read written into ARC-046 evidence_quality_note 2026-05-27 (substrate-uniform FAIL across all 3 arms / 5 seeds, 1/7 gate criteria; curriculum stuck in Phase 0 with H_pos 0.03-1.08 vs gate threshold 3.48; z_goal collapsed to ~1e-7 in every arm; C5/C6/C7 returned 'no data' sentinels). Manifest evidence_direction overridden does_not_support -> non_contributory per autopsy; the failure shape does NOT discriminate against ARC-046's architectural commitment. epistemic_category=substrate_ceiling. pending_retest_after_substrate stays TRUE with three explicit substrate prerequisites: (a) MECH-307 default-fix validation (V3-EXQ-540e MET 2/3 seeds); (b) goal-pipeline / training-regime substrate enrichment so non-trivial z_goal develops in default V3 config (V3-EXQ-603c P0/P1 phased training FAILED 2026-05-27 -- NOT MET; routes to /implement-substrate per autopsy: longer training, scaffolded SD-054 onboarding, or trained-policy regime as test-bed construction); (c) InfantCurriculumScheduler Phase 0->1 advancement signal retune to achievable H_pos OR replace with z_goal-norm-based / residue-progression exit gate (NOT MET; routes to /implement-substrate per autopsy). IGW-20260529-037 marked blocked_substrate -- NO queue entry written, NO experiment script produced. Stale 2026-05-27 IGW-027 TASK_CLAIMS entry (~36h) cleared in same session. Convergent shape with V3-EXQ-540a/b/c/e (MECH-307/MECH-295), V3-EXQ-603/603b/603c (training-regime), V3-EXQ-590a (Goldilocks no-op) is one structural property across four structurally-different claims with four different downstream consumers."
     }
   ]
 }

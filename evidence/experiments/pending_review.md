@@ -1,21 +1,17 @@
 # Pending Experiment Review
 
-Generated: `2026-05-29T04:18:24Z`  
-Last review: `2026-05-27T17:35:00Z`  
-Pending: **5** item(s) -- 1 PASS, 2 FAIL, 2 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-29T06:20:29Z`  
+Last review: `2026-05-29T06:13:17Z`  
+Pending: **6** item(s) -- 0 PASS, 0 FAIL, 4 runner-only (ERROR/UNKNOWN/smoke), 2 unclaimed manifest(s)
 
-## FAIL (action required)
+## Unclaimed manifests (PASS/FAIL with no claim tags)
 
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3` | 2026-05-27T12:03 | MECH-262, SD-033a | — |
-| `v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3` | 2026-05-27T18:39 | ARC-046 | — |
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
 
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_611b_mech341_retune_6arm_20260528T181445Z_v3` | 2026-05-28T18:14 | MECH-341 |
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| PASS | `v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3` | v3_exq_612_phase3_cutover_smoke | V3-EXQ-612d | ? |
+| FAIL | `v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3` | v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation | V3-EXQ-598b | mixed |
 
 ## Needs discussion (ERROR / UNKNOWN / smoke)
 
@@ -23,8 +19,10 @@ These entries completed in the runner but have no indexed result file (ERROR/UNK
 
 | Queue ID | Result | Script | Notes |
 |----------|--------|--------|-------|
+| `V3-EXQ-598b` | FAIL | `?` | FAIL (index stale — run build_experiment_indexes.py) |
 | `V3-EXQ-610` | ERROR | `?` | ERROR |
 | `V3-EXQ-612` | ERROR | `?` | ERROR |
+| `V3-EXQ-611b` | PASS | `?` | PASS (index stale — run build_experiment_indexes.py) |
 
 ---
 
