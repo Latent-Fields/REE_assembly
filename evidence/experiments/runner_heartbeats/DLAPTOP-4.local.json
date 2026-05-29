@@ -1,46 +1,30 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-29T19:36:43Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-612c",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-612",
-      "result": "ERROR",
-      "completed_at": "2026-05-28T17:25:39.360251+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-611b",
-      "result": "PASS",
-      "completed_at": "2026-05-28T18:14:45.812488+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-592b",
-      "result": "FAIL",
-      "completed_at": "2026-05-29T08:32:39.841632+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-613",
-      "result": "PASS",
-      "completed_at": "2026-05-29T08:32:42.511218+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-544a",
-      "result": "PASS",
-      "completed_at": "2026-05-29T15:49:03.723426+00:00"
-    }
+  "last_tick_utc": "2026-05-29T19:38:35Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-569a",
+  "current_exq_started_utc": "2026-05-29T19:37:44.475807+00:00",
+  "current_title": "SD-056 action-contrastive matched-entropy FP-2 falsifier (GAP-A, A_only)",
+  "current_claim_id": "ARC-065",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_OFF",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 10,
+    "episodes_total": 50,
+    "overall_pct": 1.3
+  },
+  "seconds_elapsed": 52,
+  "seconds_remaining": 10304,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_OFF",
+    "[train] arm=ARM_0_OFF seed=42 phase=P0 ep 10/50"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 96629,
   "runner_version": null,
   "gpu": {
