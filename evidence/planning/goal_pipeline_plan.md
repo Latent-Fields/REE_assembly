@@ -371,7 +371,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-1 | 1 | done | (substrate landed 2026-05-11; 4-arm validation pending separate session) | Queue 4-arm discriminative pair via /queue-experiment under master flag use_mech307_conjunction=True. **NOTE 2026-05-11 (EXQ-550 review):** V3-EXQ-550 FAIL sustains MECH-269 V_s monostrategy substrate-level reading at no-training depth; same run surfaced wired-but-inert z_goal pipeline (1200/1200 update_z_goal calls, z_goal_norm_peak=0.0) -- see decision-log 2026-05-11 entry. V3-EXQ-551 (pipeline-entropy diagnostic) + V3-EXQ-552 (forced-exploration warmup) queued by parallel sessions to narrow mechanism before trained-z_goal follow-up. | TBD (4-arm discriminative pair) | 2026-05-11 |
 | GAP-2 | 2 | blocked | Phase 1 PASS | Re-queue V3-EXQ-514 successor with phased training under MECH-307-fixed substrate | V3-EXQ-514g (TBD) | 2026-05-08 |
 | GAP-3 | 3 | done | (none) | Closed 2026-05-20: V3-EXQ-582a PASS (floor=0.9); MECH-306 registered; Option 1 EMA not discriminative winner (582 FAIL). | V3-EXQ-582a | 2026-05-20 |
-| GAP-4 | 4 | in-progress | /queue-experiment Tier-1 cohort | GAP-3 + SP-CEM prerequisites satisfied. Queue 490g/471a/475a/483c/524a successors with drive_floor=0.9 + StepHarness + MECH-307 flags as pre-registered. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a | 2026-05-20 |
+| GAP-4 | 4 | in-progress | 2-fork: (A) Tier-1 library rebuild + 483d/490g re-queue; (B) SD-XXX scaffolded SD-054 onboarding substrate | Two-fork disposition per 2026-05-29 cluster autopsy `failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` -- Fork A (483c+524a) routes to library rebuild + cohort re-queue; Fork B (603c, absorbed into 591 family) routes to scaffolded SD-054 onboarding substrate-design memo + /implement-substrate. Both spawned as session chips 2026-05-29. Governance application of autopsy recommendations spawned as a third chip 2026-05-29 (per-claim direction overrides + SD-037 evidence_quality_note + new SD-XXX substrate_queue entry; will NOT auto-surface because 483c/524a/603c manifests already have evidence_direction set). See 2026-05-29 decision-log entry below. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a, V3-EXQ-603c | 2026-05-29 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
 
@@ -483,6 +483,109 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-29 - V3-EXQ-490g cohort cluster autopsy landed; GOVERNANCE APPLICATION PENDING
+
+**Status:** autopsy artifact landed; recommendations NOT yet written into the registry.
+
+The V3-EXQ-490g cohort (Tier-1 StepHarness retests for MECH-295 cascade
+behavioural validation under GAP-4) produced three FAILs the 2026-05-27
+V3-EXQ-591 autopsy did not enumerate: V3-EXQ-483c FAIL mixed 2026-05-21,
+V3-EXQ-524a FAIL non_contributory 2026-05-21, V3-EXQ-603c FAIL 2026-05-27.
+The 490g letter itself was never queued. Cluster autopsy landed 2026-05-29
+on REE_assembly master 12f0dda773 at
+`failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.{md,json}`.
+
+**Key finding (overturned the incoming hypothesis):** the three FAILs do
+NOT share root cause. 483c and 524a are a GAP-4 Tier-1 library
+measurement-gap (goal pipeline IS firing -- goal_norm_peak 0.09-0.36;
+bridge_cue_fires 3-34; approach_commit_rate=1.0 saturated -- but C2 measures
+a substrate that wasn't enabled and C3 saturates trivially); same Tier-1
+library template gap the 2026-05-24 V3-EXQ-483c autopsy already named.
+603c IS substrate-uniform z_goal-zero (P0+P1 phased training was
+insufficient; most cells aborted at P0 RV-not-converging or Fix D survival
+gate). Two structurally distinct clusters; user-confirmed two-fork
+disposition (F1) via AskUserQuestion.
+
+**Routing decisions (two forks):**
+
+- **Fork A** (483c, 524a, and the unrun 471a / 475a / 490g letters):
+  routing = `/queue-experiment` (Tier-1 library rebuild +
+  V3-EXQ-483d successor + the rest of the cohort under the rebuilt
+  library). `recommended_substrate_queue_entry.action = none`
+  (experiment-script library fix in
+  `ree-v3/experiments/_lib/goal_pipeline_tier1.py` +
+  `ENV_FISHTANK_KWARGS`, NOT a ree_core/ substrate change). Library
+  changes needed: add `use_dacc=True` default; replace `C3_lift_vs_baseline`
+  metric (saturates at 1.0 under drive_floor=0.9 + goal_stream + reef)
+  with `override_signal_nonzero_steps` (SD-037-specific) or
+  `goal_norm_peak delta vs baseline` (cross-claim). Spawned as a session
+  chip 2026-05-29.
+
+- **Fork B** (603c): routing = `/implement-substrate`. Cluster-absorbs
+  into the 591 substrate-uniform z_goal-zero family per
+  `failure_autopsy_V3-EXQ-591_2026-05-27.md` Section 6.
+  `recommended_substrate_queue_entry.action = create` for
+  `SD-XXX-scaffolded-sd054-onboarding` (governance assigns real ID;
+  priority_suggested=1; unblocks Q-045, MECH-313, MECH-260, MECH-295,
+  MECH-307, MECH-117, SD-049 Phase 2 behavioural, ARC-030, Q-040).
+  User-chosen sub-lever (A2): SD-054 reef + bipartite-horizontal as a
+  scaffolded onboarding start-state distribution so the trained policy
+  inhabits goal-rich states during training. Substrate-design memo
+  (sibling pattern to `e2_action_divergence_substrate_design.md`)
+  spawned as a session chip 2026-05-29; the follow-on
+  `/implement-substrate` lands the code change once the memo lands.
+
+**Pending governance application (LOAD-BEARING):** the autopsy's
+recommended writes have NOT been applied to the registry yet, and
+**they will NOT be auto-surfaced by the next `/governance` walk** because
+the three manifests already have evidence_direction set and are no longer
+in `pending_review.md`. Specifically pending:
+
+1. V3-EXQ-483c manifest: run-level evidence_direction `mixed -> non_contributory`;
+   `evidence_direction_per_claim["SD-037"] = "non_contributory"` (was
+   `weakens`); evidence_direction_note pointing at this cohort autopsy.
+2. V3-EXQ-524a manifest: evidence_direction_note pointing at this
+   cohort autopsy (run-level direction stays non_contributory).
+3. V3-EXQ-603c manifest: evidence_direction_note pointing at this
+   cohort autopsy (cluster-absorb into 591 family).
+4. claims.yaml SD-037: append evidence_quality_note per autopsy JSON
+   `recommended_evidence_quality_note`; set
+   `pending_retest_after_substrate=true`; add `SD-032b` to `depends_on`
+   (2026-05-24 483c autopsy flag, reaffirmed here).
+5. claims.yaml Q-045 / MECH-313 / MECH-260: append shared
+   evidence_quality_note per the autopsy JSON (cluster-absorb into 591
+   family); verify `pending_retest_after_substrate=true` is already
+   set from the 591 autopsy application and don't double-add.
+6. substrate_queue.json: create new `SD-XXX-scaffolded-sd054-onboarding`
+   entry verbatim from autopsy JSON
+   `targets[V3-EXQ-603c].recommended_substrate_queue_entry`.
+7. Rebuild claims.json + run `bash scripts/governance.sh` to reindex.
+
+Governance application spawned as a third session chip 2026-05-29. Once
+applied, the next `/inter-governance-brief` cycle will surface
+`Implement substrate: SD-XXX (unblocks Q-045)` as a properly-gated IGW
+item per the 2026-05-29 prereq-detection symmetric extension (REE_assembly
+commit `d8d1aa2707`).
+
+**GAP-4 status table impact:** GAP-4 stays `in-progress`. Closure
+requires the Fork A library rebuild + V3-EXQ-490g actually running and
+producing a contributory result on the rebuilt library, AND the Fork B
+substrate-design + implementation + V3-EXQ-603d-equivalent run. The
+breadcrumb here exists so any future goal-pipeline-touching session sees
+the autopsy at Step 1 of the resume ritual.
+
+**Cross-cluster cluster note:** the convergent shape "substrate is wired,
+substrate IS firing, but the test harness can't see it" (Cluster A,
+483c+524a) and "substrate is wired but does not fire because the training
+regime never lets it develop" (Cluster B, 603c + 591 family) are
+DIFFERENT failure modes. Cluster A is a test-design ceiling at the
+experiment-script library layer; Cluster B is a substrate-enrichment
+need at the goal-pipeline training-regime layer. The 591 autopsy's
+"substrate enrichment vs test-design ceiling" two-readings framing was
+correct in posture but underspecified -- both readings can be true
+SIMULTANEOUSLY on the SAME substrate, with different downstream
+experiment cohorts triggering different sides.
 
 ### 2026-05-20 - GAP-3 DONE: V3-EXQ-582a PASS + MECH-306 registered
 
