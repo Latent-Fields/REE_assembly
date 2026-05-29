@@ -1186,6 +1186,16 @@ def read_machines() -> dict:
         or m["age_seconds"] <= STALE_EXCLUDE_SECONDS
     ]
 
+    # When a machine's heartbeat is older than the fresh window but still
+    # inside the exclude window, the last reported state ("idle", "running",
+    # etc.) is frozen and misleading -- the dashboard already paints the
+    # card with the "stale" CSS class, but the state badge text used to
+    # keep saying "idle" or "running", making a dead worker look like
+    # available capacity. Force the state badge to match.
+    for m in out_machines:
+        if m.get("fresh") is False and m.get("age_seconds") is not None:
+            m["state"] = "stale"
+
     return {
         "schema_version": "v1",
         "now_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -2141,18 +2151,22 @@ def _default_runner_extra_env() -> dict | None:
     Without this default, the explorer "Start" button produced a runner
     with COORDINATION_MODE unset -> coordinator_client._ENABLED=False ->
     every report_claim / report_result / heartbeat POST became a no-op.
-    The Shadow Coordination panel's start path already passes the same
-    dict via explicit extra_env; this function consolidates the lookup.
-    Caller-supplied extra_env still wins (e.g. cutover paths want
-    COORDINATION_MODE=coordinator, not shadow).
+    The Shadow Coordination panel's start path passes its own explicit
+    dict; this function consolidates the lookup for the everyday
+    /api/runner/v3/start path.
 
-    Phase 3 (live 2026-05-29): also injects the three runner-push gates
-    so the Mac runner stops double-writing telemetry the coordinator's
-    sync_daemon already publishes. Cloud workers get these via
-    /etc/systemd/system/ree-runner.service.d/shadow.conf; the Mac path
-    gets them here. Gated on coordinator presence -- a Mac with no
-    coordinator configured still falls through to legacy git pushes so
-    its telemetry isn't black-holed.
+    Phase 3 (live 2026-05-29): COORDINATION_MODE=coordinator so claim
+    arbitration goes through the writer-authoritative /claim endpoint
+    instead of the legacy git-mutex path. Shadow on a worker under
+    Phase 3 is unsafe: the legacy stale-recovery check reads local
+    heartbeat files materialised by the hub's sync_daemon, which can
+    lag the DB by minutes; a worker can then "stale-recover" a claim
+    the DB still considers active and run a duplicate. Hit on
+    2026-05-29 when DLAPTOP-4 took V3-EXQ-610a away from ree-cloud-3
+    via that exact path. The three PHASE3_DISABLE_RUNNER_*_PUSH gates
+    keep the Mac from double-writing telemetry the sync_daemon already
+    publishes. Cloud workers get the same env via
+    /etc/systemd/system/ree-runner.service.d/shadow.conf.
     """
     cfg = _load_coordinator_cfg()
     url = cfg.get("COORDINATOR_URL")
@@ -2160,7 +2174,7 @@ def _default_runner_extra_env() -> dict | None:
     if not url or not tok:
         return None
     return {
-        "COORDINATION_MODE": "shadow",
+        "COORDINATION_MODE": "coordinator",
         "COORDINATOR_URL": url,
         "COORDINATOR_TOKEN": tok,
         "COORDINATOR_LOG": str(SERVE_DIR / "coordinator_shadow.log"),
