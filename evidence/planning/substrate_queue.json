@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-27T17:52:00Z",
+  "last_updated_utc": "2026-05-29T05:43:27Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -3194,6 +3194,34 @@
       "priority": 2,
       "added_session": "governance-20260527T172644Z",
       "last_seen_session": "implement-substrate-mech-341-retune-20260528T165000Z"
+    },
+    {
+      "sd_id": "MECH-090",
+      "title": "BetaGate commit-entry readiness conjunction (R-c single-gate; commitment_closure:GAP-4)",
+      "status": "substrate_landed_pending_validation",
+      "ready": true,
+      "ready_blocked_by": null,
+      "design_doc": "docs/architecture/mech_090_commit_entry_predicate.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-090",
+        "SD-034",
+        "MECH-266",
+        "MECH-267",
+        "MECH-268"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_592_gap11_pilot_committed_mode_curriculum_20260521T104724Z_v3",
+          "experiment_type": "v3_exq_592_gap11_pilot_committed_mode_curriculum",
+          "metric": "GAP-11 pilot seed 42 surfaced rv-only commit-entry pathology: running_variance=2.7e-5 with nav_competence=0.0 satisfied the existing rv<threshold predicate; agent 'committed' to a degenerate near-fixed-point policy with zero competence. The rv-only substrate cannot distinguish honest commitment (rv falls because E2 learned dynamics) from degenerate commitment (rv falls because policy collapsed to a trivially-self-consistent trajectory).",
+          "target": "Lit-pull synthesis 2026-05-28 (REE_assembly/evidence/literature/targeted_review_connectome_mech_090/synthesis.md commit 9e68c5ca8a) dispositioned R-a (rv-only correct) NOT defensible; R-b (rv-only entry + downstream propagation gate, Tandetnik 2021) conservative; R-c (single-gate conjunction rv_low AND readiness>=floor, Cisek-Kalaska 2010 + Hanes-Schall 1996 + Roesch-Calu-Schoenbaum 2007) strongest reading. User selected R-c + per-candidate first-action E3 score margin readiness signal + new mech_090_commit_entry_predicate.md design doc + V3-EXQ-592b 2-arm falsifier via AskUserQuestion 2026-05-28."
+        }
+      ],
+      "implementation_hint": "Substrate LANDED 2026-05-28 (ree-v3 main). Code: ree-v3/ree_core/heartbeat/beta_gate.py (BetaGate.should_admit_elevation predicate + __init__ kwargs use_commit_readiness_gate / commit_readiness_floor / commit_readiness_strict_single_candidate; get_state + reset extended with mech090_n_elevation_admitted / _blocked / _single_candidate / _last_readiness_score_margin diagnostics); ree-v3/ree_core/agent.py (REEAgent.__init__ forwards knobs via getattr fallback; both beta_gate.elevate() call sites in select_action compute _readiness_margin = sorted(scores)[1] - sorted(scores)[0] once and guard with should_admit_elevation -- bistable branch on transition tick, legacy branch on every committed tick with release-on-block semantic); ree-v3/ree_core/utils/config.py (3 new no-op HeartbeatConfig fields). NOT modified: ree-v3/ree_core/predictors/e3_selector.py (rv-only committed signal stays as-is; gate layered on top) -- deliberate concurrency-safety vs the MECH-341 retune session holding e3_selector.py. Config defaults bit-identical OFF; 506/506 contracts PASS + 7 BetaGate primitive unit tests PASS. Validation: V3-EXQ-592b queued (priority 240, DLAPTOP-4.local, estimated 180 min) as 2-arm falsifier (ARM_0 GATED reproducing seed-42 degenerate basin with gate ON / ARM_1 GATED_FORCED_READY confirming gate admits when margin clears floor). Joint PASS unblocks commitment_closure:GAP-4 (partial -> done substrate-side) + queues Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b). See docs/architecture/mech_090_commit_entry_predicate.md.",
+      "priority": 2,
+      "added_utc": "2026-05-29T05:45:00Z",
+      "added_by": "implement-substrate-mech090-commit-predicate-20260528T172800Z"
     }
   ],
   "last_seen_session": "exq590a-gate-correction-20260526T061037Z"

@@ -45,17 +45,17 @@ closure_plan:
       last_updated: 2026-05-17
       completion_note: "Primitives 1-3 IMPLEMENTED 2026-05-17 in ree-v3/ree_core/environment/causal_grid_world.py (env-only constructor kwargs; NO config.py/REEConfig/queue -- concurrency-safe vs the active goal_pipeline:GAP-3 session). Validated by ree-v3/tests/contracts/test_env_extensions_gap3.py 14/14 (C1 bit-identical OFF + frac=0.0 dynamics-identical; C2 tolerance band/graded_exp; C3 counter-evidence persistent-only + monotone validity->floor + context-invariant; C4 dual-cue SD-049 fail-fast + accounting; C5 spec-section-5 integration smoke) and full ree-v3 contract regression 434/434. NO claim-validation EXQ (spec section 5: env infrastructure; concurrency forbade queue) -- a spec-sanctioned deviation from the implement-substrate skill Step 8. Scope deviation: completion_tolerance_targets='waypoint+resource' is reserved/fail-fast (primitive 1 ships waypoint-only per Q-1a; no EXP arm needs the resource half). GAP-3 (= the tolerance/counter-evidence/dual-cue env primitives) is DONE; this unblocks GAP-8 (depends_on GAP-3). NOTE: the SD-034/MECH-266/MECH-268 *behavioural* arms still require deliverable 4 (phased rule_state training curriculum -- the V3-EXQ-321/261 blocker), which was deliberately split into its own separate design pass (spec section 6) and is NOT part of GAP-3. Spec: causalgridworldv2_env_extensions_spec.md (Status: IMPLEMENTED 2026-05-17)."
     - id: "commitment_closure:GAP-4"
-      title: "OCD battery completeness (V3-EXQ-460..468)"
+      title: "OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction"
       phase: 2
-      status: partial
+      status: in-progress
       severity: high
-      owner_exq: V3-EXQ-592
-      unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268]
+      owner_exq: V3-EXQ-592b
+      unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-090]
       depends_on: ["commitment_closure:GAP-2"]
       cross_plan_link: ["sd033_governance:CHK-EXP_PROPOSALS"]
-      last_updated: 2026-05-21
-      resume_condition: "Phase 2 DONE. V3-EXQ-592 re-queued 2026-05-21 (was dequeued without run). Monitor 592 on DLAPTOP-4.local; on PASS /queue-experiment Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b)."
-      completion_note: "Phase 2 DONE 2026-05-21 reconcile: V3-EXQ-460..468 scripts in ree-v3/experiments/; substrate-readiness PASS on all nine (460/466 x2, 461 reviewed 2026-05-12, 462/465 executed 2026-04-21, 463/464/467/468 authored+PASS 2026-04-21). Queue slots consumed post-run (not re-queued). Phase 4/5 behavioural arms blocked on V3-EXQ-592 (priority 3, pending, DLAPTOP-4.local)."
+      last_updated: 2026-05-29
+      resume_condition: "MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes. 2026-05-28 within-tick decisiveness axis (score_margin gate; ree_core/heartbeat/beta_gate.py + agent.py wiring). 2026-05-29 across-tick motor-program readiness axis (CommitReadiness EMA + nav_competence harness-push seam; ree_core/policy/commit_readiness.py + agent.py AND-composition + config flags). 523/523 contracts PASS with both masters OFF. V3-EXQ-592b queued via /queue-experiment as 4-arm falsifier (ARM_0 GATED score_margin only; ARM_1 GATED_FORCED_READY score_margin only; ARM_2 GATED nav_competence only; ARM_3 GATED both gates; ARM_4 BOTH_GATES_OFF + HARNESS_FORCES_READY baseline). Monitor on DLAPTOP-4.local. On joint PASS: status in-progress -> done + /queue-experiment Phase 4/5 *b cohort (460b/461/463b/464b/466b/467b/468b). On any-arm FAIL: route per the 4-axis falsifier grid in REE_assembly/docs/architecture/mech_090_commit_entry_predicate.md."
+      completion_note: "Phase 2 DONE 2026-05-21 reconcile: V3-EXQ-460..468 scripts in ree-v3/experiments/; substrate-readiness PASS on all nine (460/466 x2, 461 reviewed 2026-05-12, 462/465 executed 2026-04-21, 463/464/467/468 authored+PASS 2026-04-21). Queue slots consumed post-run (not re-queued). 2026-05-21 V3-EXQ-592 surfaced rv-only commit-entry pathology (seed 42 rv=2.7e-5 with nav_competence=0.0). 2026-05-28 lit-pull synthesis (REE_assembly/evidence/literature/targeted_review_connectome_mech_090/synthesis.md commit 9e68c5ca8a) dispositioned R-a NOT defensible / R-b conservative / R-c strongest. 2026-05-28 implement-substrate landed the within-tick decisiveness axis of R-c (per-candidate score_margin gate at BetaGate.should_admit_elevation; floor 0.05). 2026-05-29 implement-substrate landed the across-tick motor-program readiness axis of R-c (CommitReadiness EMA module + nav_competence harness-push seam + conjunction AND-composed with score_margin gate at both elevate sites; floor 0.3). Both axes are R-c readings; both can be enabled/disabled independently; V3-EXQ-592b's 4-arm grid is the falsifier. Phase 4/5 behavioural arms still blocked on V3-EXQ-592b PASS."
     - id: "commitment_closure:GAP-5"
       title: "MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)"
       phase: 6
@@ -478,7 +478,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-1 | 1 | in-progress | arc_062 GAP-B retest V3-EXQ-543k (priority 5); interpret EXQ-598 only after 543k contributory PASS | V3-EXQ-598 queued (2-arm frozen vs trainable bias head; priority 4). Substrate GAP-C/D done 2026-05-17. Closes on 598 PASS. | V3-EXQ-598 | 2026-05-20 |
 | GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
 | GAP-3 | 3 | done | (none) | DONE 2026-05-17: env extensions primitives 1-3 IMPLEMENTED; 14/14 contract tests PASS + 434/434 regression. Deliverable 4 (phased curriculum) is GAP-11 (separate). Unblocks GAP-8. | env infra (no EXQ) | 2026-05-17 |
-| GAP-4 | 2, 4, 5 | partial | V3-EXQ-592 PASS (GAP-11 pilot); then queue 460b/461/463b/464b/466b/467b/468b | Phase 2 DONE (460..468 substrate PASS). Monitor 592; /queue-experiment Phase 4/5 cohort after 592 PASS. | V3-EXQ-592 | 2026-05-21 |
+| GAP-4 | 2, 4, 5 | in-progress | V3-EXQ-592b joint PASS (ARM_0 GATED + ARM_1 GATED_FORCED_READY) | MECH-090 R-c commit-entry conjunction substrate LANDED 2026-05-28. V3-EXQ-592b queued; on PASS, status -> done + queue Phase 4/5 *b cohort. | V3-EXQ-592b | 2026-05-28 |
 | GAP-5 | 6 | done | (none) | Two root causes fixed: (1) forced commitment pattern for 481b; (2) empty-snapshot re-population in agent.py. V3-EXQ-481b queued 2026-05-17; dry-run UC1/UC2/UC3 PASS. | V3-EXQ-481b | 2026-05-17 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
 | GAP-7 | 8 | deferred V4 | SD-006 phase 2 async heartbeat | none in V3 unless SD-006 phase 2 lands | n/a | 2026-05-08 |
@@ -592,6 +592,76 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-28 - GAP-4: MECH-090 R-c commit-entry readiness conjunction substrate LANDED; V3-EXQ-592b queued (IGW-20260528-013)
+
+V3-EXQ-592 seed 42 surfaced the rv-only commit-entry pathology
+(`running_variance=2.7e-5` with `nav_competence=0.0` -- agent satisfied the
+predicate by becoming trivially predictable in a degenerate near-fixed-point
+basin, not by becoming competent). Predecessor lit-pull session
+`lit-pull-commit-predicate-mech090-sd034-20260528T170025Z` wrote the synthesis
+at [synthesis.md](../literature/targeted_review_connectome_mech_090/synthesis.md)
+(commit `9e68c5ca8a`), dispositioning the three live readings:
+
+- R-a (rv-only correct; V3-EXQ-592 is curriculum problem) -- NOT defensible
+  against the post-pass corpus.
+- R-b (rv-only entry + separate downstream propagation gate; Tandetnik 2021) --
+  conservative; retained as fallback if validation fails.
+- R-c (single-gate conjunction rv_low AND readiness>=floor; Cisek-Kalaska 2010
+  + Hanes-Schall 1996 + Roesch-Calu-Schoenbaum 2007) -- strongest reading.
+
+User selected R-c + per-candidate first-action score-margin readiness signal
++ new mech_090_commit_entry_predicate.md design doc + V3-EXQ-592b 2-arm
+falsifier-grade validation via AskUserQuestion at the implement-substrate
+design-plan step.
+
+Substrate landed:
+
+- `ree-v3/ree_core/heartbeat/beta_gate.py` -- `BetaGate.should_admit_elevation(
+  score_margin, n_candidates)` predicate; new `__init__` kwargs
+  `use_commit_readiness_gate` / `commit_readiness_floor` /
+  `commit_readiness_strict_single_candidate`; `get_state` + `reset` extended
+  with `mech090_n_elevation_admitted` / `_blocked` / `_single_candidate` /
+  `_last_readiness_score_margin` diagnostics.
+- `ree-v3/ree_core/agent.py` -- `REEAgent.__init__` forwards the three knobs
+  via `getattr` fallback (default False). Both `beta_gate.elevate()` call
+  sites in `select_action` (bistable branch; legacy branch) compute
+  `_readiness_margin = sorted(scores)[1] - sorted(scores)[0]` once and
+  guard with `should_admit_elevation`.
+- `ree-v3/ree_core/utils/config.py` -- 3 new no-op fields on `HeartbeatConfig`.
+- NOT modified: `ree-v3/ree_core/predictors/e3_selector.py` (rv-only
+  `committed` signal stays as-is; gate layered on top). This was the
+  load-bearing concurrency-safety choice -- the MECH-341 retune session
+  (`implement-substrate-mech-341-retune-20260528T165000Z`) holds
+  `e3_selector.py` with a 6-arm sweep + `stratified_select` call-site
+  expansion under way.
+
+Backward-compat: 506/506 contracts PASS with master OFF (regression-clean
+2026-05-28). 7 BetaGate primitive unit tests PASS (default no-op, gate
+admit / block, single-candidate permissive / strict, reset clears,
+backward-compat elevate/propagate/release).
+
+Validation experiment V3-EXQ-592b queued as 2-arm falsifier:
+
+- **ARM_0 GATED:** `use_commit_readiness_gate=True`, `floor=0.05`, same env
+  + seed 42 as V3-EXQ-592. Acceptance: `total_committed_steps == 0` AND
+  `mech090_n_elevation_blocked >= 1` AND `running_variance <
+  commitment_threshold` at some point during the run.
+- **ARM_1 GATED_FORCED_READY:** Same gate config; experiment script
+  artificially injects `score_bias` to ensure margin >= 0.10. Acceptance:
+  `total_committed_steps > 0` AND `mech090_n_elevation_admitted >= 1`.
+
+Joint PASS = GAP-4 substrate side resolved; remaining work is Phase 4/5
+behavioural arms (*b cohort 460b/461/463b/464b/466b/467b/468b). Status
+flipped `partial` -> `in-progress` pending V3-EXQ-592b PASS; on joint PASS
+flip to `done` once Phase 4/5 cohort completes.
+
+Design doc: [mech_090_commit_entry_predicate.md](../../docs/architecture/mech_090_commit_entry_predicate.md).
+`claims.yaml` MECH-090 `implementation_note` extended with R-c amendment
+section + `evidence_quality_note` extended with V3-EXQ-592 motivating
+finding. Out-of-scope follow-on surfaced: V3-EXQ-612 has a colliding ERROR
+completion record blocking `test_queue_schema_valid` -- spawned as a
+separate chip task.
 
 ### 2026-05-21 - V3-EXQ-592 re-queued after accidental dequeue (IGW-20260521-008)
 
