@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-29T07:35:50Z",
+  "last_tick_utc": "2026-05-29T07:36:53Z",
   "state": "running",
   "current_exq": "V3-EXQ-592b",
   "current_exq_started_utc": "2026-05-29T07:23:17.165305+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_GATED",
+    "run_label": "Seed 42 / ARM_1_GATED_FORCED_READY",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 120,
+    "episodes_done": 0,
     "episodes_total": 400,
-    "overall_pct": 7.0
+    "overall_pct": 7.6
   },
-  "seconds_elapsed": 753,
-  "seconds_remaining": 10033,
+  "seconds_elapsed": 816,
+  "seconds_remaining": 9961,
   "recent_lines": [
-    "[P0 probe] ep 40/400  rv=0.00001  threshold=0.4  converging=True",
-    "[P0 probe] ep 80/400  rv=0.00001  threshold=0.4  converging=True",
     "[P0 train] ep 80/400  rv=0.00001  reward=-1.0049",
     "[P0 probe] ep 120/400  rv=0.00001  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120."
+    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
+    "[seed=42] ARM_0_GATED: rv_final=0.00001 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=10 last_margin=0.0032 committed_steps=3029 falsifier_fired=False",
+    "Seed 42 Condition ARM_1_GATED_FORCED_READY"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
