@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-29T19:12:11Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-614",
-  "current_exq_started_utc": "2026-05-29T17:42:54.369899+00:00",
-  "current_title": "GAP-B P3 behavioural falsifier: B_only / ablate_B / ALL_ON (MECH-341 R2.c)",
-  "current_claim_id": "MECH-341",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 43 / all_on_a_b_c_d",
-    "runs_done": 7,
-    "runs_total": 9,
-    "episodes_done": 80,
-    "episodes_total": 90,
-    "overall_pct": 87.7
-  },
-  "seconds_elapsed": 5357,
-  "seconds_remaining": 679,
-  "recent_lines": [
-    "[train] arm=ARM_2_ALL_ON seed=43 phase=P1 ep 40/90",
-    "[train] arm=ARM_2_ALL_ON seed=43 phase=P1 ep 50/90",
-    "[train] arm=ARM_2_ALL_ON seed=43 phase=P1 ep 60/90",
-    "[train] arm=ARM_2_ALL_ON seed=43 phase=P1 ep 70/90",
-    "[train] arm=ARM_2_ALL_ON seed=43 phase=P1 ep 80/90"
+  "last_tick_utc": "2026-05-29T19:13:19Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-611c",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-524a",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T06:02:20.835477+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-595",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T07:47:14.169641+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-490g",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T09:51:43.443844+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-543k",
+      "result": "FAIL",
+      "completed_at": "2026-05-22T09:17:14.778471+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-614",
+      "result": "FAIL",
+      "completed_at": "2026-05-29T19:13:19.290643+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 666,
   "runner_version": null,
   "gpu": {
