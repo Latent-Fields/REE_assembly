@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-29T18:33:08Z",
+  "last_tick_utc": "2026-05-29T18:34:14Z",
   "state": "running",
   "current_exq": "V3-EXQ-611c",
   "current_exq_started_utc": "2026-05-29T17:33:40.441994+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-341",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / both_on_scale_1p0",
-    "runs_done": 14,
+    "run_label": "Seed 42 / both_on_scale_2p0",
+    "runs_done": 15,
     "runs_total": 18,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 50,
-    "overall_pct": 77.8
+    "overall_pct": 84.4
   },
-  "seconds_elapsed": 3569,
-  "seconds_remaining": 1019,
+  "seconds_elapsed": 3634,
+  "seconds_remaining": 672,
   "recent_lines": [
-    "[train] arm=ARM_5_BOTH_S1 seed=43 phase=P0 ep 30/50",
-    "[train] arm=ARM_5_BOTH_S1 seed=43 phase=P1 ep 40/50",
-    "[train] arm=ARM_5_BOTH_S1 seed=43 phase=P1 ep 50/50",
+    "[train] arm=ARM_5_BOTH_S1 seed=44 phase=P1 ep 50/50",
     "verdict: PASS",
-    "Seed 44 Condition both_on_scale_1p0"
+    "Arm ARM_6_BOTH_S2 (both_on_scale_2p0) (P0=30 ep, P1=20 ep, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition both_on_scale_2p0",
+    "[train] arm=ARM_6_BOTH_S2 seed=42 phase=P0 ep 10/50"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
