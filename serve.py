@@ -2283,16 +2283,19 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
     if verdict == "DIVERGENCE":
         if mode == "coordinator":
             return {
-                "phase": 2,
-                "phase_label": "Phase 2 -- claim cutover (DIVERGENCE)",
-                "parallel": "Coordinator owns claims; sync_daemon still "
-                            "reconciles a git mirror of the queue.",
-                "assess": ("FAIL -- unexplained divergence in Phase 2 "
-                           "(blocking=%d, raw audit=%d). Coordinator "
-                           "verdict disagreed with the git mirror after "
-                           "cutover." % (div, raw_div)),
-                "retire": "Do NOT advance to Phase 3 (sync_daemon sole "
-                          "writer) while blocking divergences are nonzero.",
+                "phase": 3,
+                "phase_label": "Phase 3 -- writers live (DIVERGENCE)",
+                "parallel": "Coordinator owns claims; sync_daemon is sole "
+                            "git writer (Phase 3 live as of 2026-05-29). "
+                            "Writer-rows below show per-writer health.",
+                "assess": ("FAIL -- unexplained claim divergence under "
+                           "Phase 3 (blocking=%d, raw audit=%d). The "
+                           "coordinator's claim verdict disagreed with "
+                           "the git mirror; same Phase-2 root-cause "
+                           "checks still apply." % (div, raw_div)),
+                "retire": "Phase 3 writers are live but divergence blocks "
+                          "Phase 4 cleanup (deleting dead git-claim code). "
+                          "Resolve the divergence first.",
                 "next": [
                     "Read recent_divergences in this panel; classify per "
                     "ree-v3/coordinator/SOAK_LOG.md.",
@@ -2317,16 +2320,20 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
     if verdict == "NO_SIGNAL":
         if mode == "coordinator":
             return {
-                "phase": 2,
-                "phase_label": "Phase 2 -- claim cutover (no fresh heartbeats)",
-                "parallel": "Coordinator owns claims; mutex is live. No "
-                            "worker has heartbeated inside the freshness "
-                            "window.",
-                "assess": ("Phase-2 mutex healthy (div=%d) but workers "
-                           "are not reporting -- runners may be down, "
-                           "paused, or wedged." % div),
-                "retire": "Phase 3 stays blocked until live heartbeats "
-                          "return; do not retire the git heartbeat path.",
+                "phase": 3,
+                "phase_label": "Phase 3 -- writers live (no fresh heartbeats)",
+                "parallel": "Coordinator owns claims; sync_daemon is sole "
+                            "git writer (Phase 3 live as of 2026-05-29). "
+                            "No worker has heartbeated inside the "
+                            "freshness window.",
+                "assess": ("Phase-3 mutex + writers healthy (div=%d) but "
+                           "workers are not reporting -- runners may be "
+                           "down, paused, or wedged." % div),
+                "retire": "Writer rows below should still be ticking "
+                          "(phase3_heartbeat_writer runs on a clock, not "
+                          "on worker traffic). If they ARE ticking, the "
+                          "issue is worker-side; if NOT, the writer is "
+                          "wedged too -- check journal_tail in the panel.",
                 "next": [
                     "Check each runner: systemctl status ree-runner on "
                     "clouds; ps/launchctl on the laptop.",
@@ -2351,18 +2358,26 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
     # HEALTHY
     if mode == "coordinator":
         return {
-            "phase": 2,
-            "phase_label": "Phase 2 -- claim cutover (live)",
-            "parallel": "Coordinator owns claims; git still carries results, "
-                        "status, and queue commits.",
-            "assess": "Phase-2 active -- claims via POST /claim (div 0).",
-            "retire": "Git claim pushes are retired for mutex. Heartbeats and "
-                      "result git pushes remain until Phase 3.",
+            "phase": 3,
+            "phase_label": "Phase 3 -- writers live",
+            "parallel": "Coordinator owns claims; sync_daemon is sole git "
+                        "writer for results, queue, and heartbeats. "
+                        "Phase 3 live as of 2026-05-29; writer-rows below "
+                        "show per-writer health.",
+            "assess": ("Phase-3 active -- claims via POST /claim (div %d); "
+                       "phase3_git_writer / phase3_queue_writer / "
+                       "phase3_heartbeat_writer publish to origin." % div),
+            "retire": "Git claim pushes + git result pushes + git heartbeat "
+                      "pushes are all retired (PHASE3_DISABLE_RUNNER_*_PUSH "
+                      "on every worker). Phase 4 (deleting dead git-claim "
+                      "code, scaler/runner consolidation, optional serve.py "
+                      "-> coordinator API cutover) is the remaining cleanup.",
             "next": [
-                "Watch /api/machines and coordinator logs for claim errors.",
+                "Watch the writer rows below; green = ticking, "
+                "yellow > 5 min, red > 15 min.",
+                "If a writer goes red, see OPERATOR_GUIDE.md 'What to do "
+                "when a row goes red' for the trouble-tree.",
                 "Do not flip any host back to git/shadow without draining.",
-                "Phase 3 (sync_daemon sole git writer) is live as of "
-                "2026-05-29 -- see the Coordination panel's writer rows.",
             ],
         }
     return {
