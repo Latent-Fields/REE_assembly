@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-29T07:50:18Z",
+  "last_review_utc": "2026-05-29T21:35:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -401,7 +401,12 @@
     "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation",
     "v3_exq_612_phase3_cutover_smoke",
     "V3-EXQ-610",
-    "V3-EXQ-612"
+    "V3-EXQ-612",
+    "v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3",
+    "v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z",
+    "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z",
+    "V3-EXQ-613",
+    "V3-EXQ-544a"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2579,7 +2584,9 @@
     "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3",
     "v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3",
     "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3",
-    "v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3"
+    "v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3",
+    "v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3",
+    "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3158,6 +3165,22 @@
         "V3-EXQ-612"
       ],
       "subject": "Governance cycle 2026-05-29. (1) V3-EXQ-598b FAIL (SD-033a/MECH-262) post-substrate retest of V3-EXQ-543l: C1 frozen_silent PASS + C2 trainable_nonzero PASS (head moves mean abs 0.05-0.10) but C3 trainable_not_monomodal FAIL (P2 reef-visit fractions equivalent across ARM_0 [0.10, 0.06, 0.0] and ARM_1 [0.10, 0.03, 0.0]). User decision (b): SD-033a=supports (substrate operates as specified); MECH-262 reclassified weakens -> non_contributory + epistemic_category=substrate_ceiling + pending_retest_after_substrate=true. Reason: SD-033a substrate wiring works and head trains, but the upstream rule-creator/discriminator that would populate distinct rule states is not yet wired -- cannot test rule-selective persistence in isolation. Parallel to the 543l autopsy substrate-enrichment-first reading; MECH-309 monomodal collapse remains the active failure mode. Manifest evidence_direction_per_claim updated + evidence_direction_note added; MECH-262 claims.yaml evidence_quality_note appended with 2026-05-29 governance entry; epistemic_category + pending_retest_after_substrate fields added. (2) V3-EXQ-612d PASS infrastructure smoke (Phase 3 cutover, ree-cloud-3, no claim tags, 0.215s, C1/C2/C3 PASS): validates the result->writer->queue-writer cycle. Marked discussed; no claim edits. (3) Runner-only ERRORs V3-EXQ-610 (SIGTERM at 47729s INV-074 crystallization, already re-queued as V3-EXQ-610a via /diagnose-errors with corrected estimated_minutes=800) and V3-EXQ-612 (sentinel-emission glitch, superseded by V3-EXQ-612d PASS): both already resolved, marked discussed. 0 pending_user promotion/demotion recommendations on the agenda."
+    },
+    {
+      "reviewed_at_utc": "2026-05-29T21:35:00Z",
+      "session_id": "governance-20260529T212835Z",
+      "reviewed_run_ids": [
+        "v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3",
+        "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3",
+        "v3_exq_613_sd056_e2_action_contrastive_substrate_readiness_v3_20260529T083242Z",
+        "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z",
+        "V3-EXQ-613",
+        "V3-EXQ-544a"
+      ],
+      "subject": "Governance cycle 2026-05-29 evening. (1) Pending experiments: V3-EXQ-611c PASS (MECH-341 retune 6-arm; diagnostic non_contributory; C1+C3+C4+R2c PASS, C2 FAIL; supersedes 611b manifest-recovery; routes to V3-EXQ-614 behavioural successor); V3-EXQ-613 PASS (SD-056 E2 action-contrastive substrate-readiness, diagnostic, claim_ids=[]); V3-EXQ-544a PASS (MECH-313 + ARC-065 noise-floor substrate-readiness, diagnostic, supports both, supersedes v3_exq_544). All three marked discussed via discussed_experiment_dirs (substrate-readiness diagnostics are scoring_excluded; no claim-level evidence edits). V3-EXQ-612b ERROR (Phase 3 cutover cloud-2 smoke, 1.2s no-sentinel) left pending for /diagnose-errors -- not marked discussed; Phase 3 writer recovery patches landed today already address adjacent infra. (2) Applied six confirmed failure-autopsies: V3-EXQ-598 SD-033a (claims.yaml evidence_quality_note + pending_retest_after_substrate=true + narrow_supports_flag=true; substrate_queue ARC-046 amend); V3-EXQ-606 MECH-318 (governance-confirmation no-op); V3-EXQ-596-602 MECH-204 (manifest evidence_direction reclassified non_contributory -> inconclusive_measurement on both 596+602; MECH-204 evidence_quality_note appended); V3-EXQ-603a/b/c+604+605 (10 evidence_quality_note appends: MECH-260/313, Q-043/044/045, MECH-314/314a/314b/314c, ARC-065; 4 failure_records to scaffolded_sd054_onboarding); V3-EXQ-490g-cohort (SD-037 evidence_quality_note + pending_retest_after_substrate=true; CREATE substrate_queue entry scaffolded_sd054_onboarding priority 1 unblocking 9 claims with 603c failure_record); MECH-341-cluster (substrate_queue MECH-341 already had 611 record). (3) Added pending_retest_after_substrate=true to SD-037/Q-044/MECH-314/MECH-314a/Q-043/ARC-065 (Q-045/MECH-313 already had it). 0 new promotion/demotion decisions surfaced (all entries in queue marked applied)."
     }
   ]
 }

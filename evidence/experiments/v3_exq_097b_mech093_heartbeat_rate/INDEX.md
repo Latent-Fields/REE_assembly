@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_097b_mech093_heartbeat_rate
 
-Generated: `2026-05-29T07:56:52.755338Z`
+Generated: `2026-05-29T23:34:04.461143Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

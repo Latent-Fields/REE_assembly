@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-29T07:50:18Z",
+  "last_updated_utc": "2026-05-29T23:32:14Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -3158,12 +3158,21 @@
           "experiment_type": "v3_exq_591_isef005_curriculum_vs_flat",
           "metric": "ARM_2 curriculum_final_phase=0 across all 5 seeds; rolling_h_pos_mean peaks at 1.08 (max across all seeds across all arms) vs advancement gate 0.70*ln(144) ~= 3.48. ARM_1 and ARM_2 per-seed rolling H_pos byte-identical because Phase-0 env config = ARM_1 minimal config. z_goal collapses to ~1e-7 every arm. C5/C6/C7 emit -1.0 sentinels every seed every arm.",
           "target": "(a) lower H_POS_FRAC_OF_MAX from 0.70 to a value the substrate can reach (probe data suggests ~0.20-0.30 of max), OR (b) replace H_pos gate with z_goal-norm-based / residue-coverage-progression-based exit gate. Acceptance: ARM_2 advances to Phase 1 by ep 500 in >= 3/5 seeds AND advances to Phase 2 by ep 1500 in >= 3/5 seeds."
+        },
+        {
+          "run_id": "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation_20260521T070715Z_v3",
+          "experiment_type": "v3_exq_598_gap1_sd033a_bias_head_trainable_ablation",
+          "metric": "ARM_1 (trainable bias) reef_visit_fraction 0.096/0.029/0.000 across 3 seeds; ARM_0 (frozen) 0.096/0.060/0.000 -- equivalent across arms despite ARM_1 head movement to mean abs 0.05-0.10. Monomodal-policy collapse prevents reef-side exploration regardless of bias-head trainability. C1 frozen_silent + C2 trainable_nonzero PASS confirm SD-033a substrate operates as specified.",
+          "target": "Goal-pipeline / training-regime substrate enrichment that produces non-trivial behavioural diversity in default config -- specifically, per-candidate first-action class diversity flowing into PFC-bias-receiving E3 selection. Acceptance: any SD-033a successor (call it V3-EXQ-598c) shows ARM_1 reef_visit_fraction in (0.20, 0.80) on >=2/3 seeds at the same SD-054 bipartite reef env, conditional on substrate enrichment + (separately) a redesigned cleaner SD-033a behavioural metric not coupled to first-action class diversity (e.g., direct rule_state cosine probes on held-out rule-context pairs; rule-selective persistence measurement across forced internal_replay events)."
         }
       ],
       "implementation_hint": "InfantCurriculumScheduler in ree-v3/experiments/infant_curriculum.py: see PHASE_EP_MIN / H_POS_FRAC_OF_MAX or the equivalent exit-signal API. Brief substrate probe recommended before committing to threshold lower vs gate replacement.",
       "priority": 2,
       "added_session": "governance-20260527T172644Z",
-      "last_seen_session": "gap-c-doc-sync-540e-to-540g-20260529T162151Z"
+      "last_seen_session": "governance-20260529T212835Z",
+      "autopsy_refs": [
+        "evidence/planning/failure_autopsy_V3-EXQ-598_2026-05-29.md"
+      ]
     },
     {
       "sd_id": "MECH-341",
@@ -3197,7 +3206,10 @@
       ],
       "priority": 2,
       "added_session": "governance-20260527T172644Z",
-      "last_seen_session": "implement-substrate-mech-341-retune-20260528T165000Z"
+      "last_seen_session": "governance-20260529T212835Z",
+      "autopsy_refs": [
+        "evidence/planning/failure_autopsy_MECH-341-cluster_2026-05-29.md"
+      ]
     },
     {
       "sd_id": "MECH-090",
@@ -3226,6 +3238,70 @@
       "priority": 2,
       "added_utc": "2026-05-29T05:45:00Z",
       "added_by": "implement-substrate-mech090-commit-predicate-20260528T172800Z"
+    },
+    {
+      "sd_id": "scaffolded_sd054_onboarding",
+      "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
+      "status": "pending_implementation",
+      "ready": false,
+      "design_doc": "evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md",
+      "depends_on_unresolved": [
+        "SD-054 [implemented 2026-05-04; bipartite-extension 2026-05-11; substrate-readiness V3-EXQ-521/522 PASS]",
+        "MECH-307 [substrate-landed 2026-05-11; default-value recalibration 2026-05-12; behavioural validation pending]",
+        "MECH-295 [implemented 2026-04-26; default-value recalibration 2026-05-12]"
+      ],
+      "unblocks_claims": [
+        "Q-045",
+        "MECH-313",
+        "MECH-260",
+        "MECH-295",
+        "MECH-307",
+        "MECH-117",
+        "SD-049 Phase 2 behavioural",
+        "ARC-030",
+        "Q-040"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_603c_q045_mech313_mech260_phased_training_20260527T113805Z_v3",
+          "experiment_type": "v3_exq_603c_q045_mech313_mech260_phased_training",
+          "metric": "n_p2_cells < total_cells/2 (most cells aborted at P0 RV-not-converging or Fix D survival gate)",
+          "target": "P0+P1+P2 completes on >= total_cells/2 (arm, seed) cells with z_goal_norm_peak materially non-zero in measurement window"
+        },
+        {
+          "run_id": "v3_exq_603a_q045_mech313_mech260_four_arm_ablation_20260524T170349Z_v3",
+          "experiment_type": "v3_exq_603a_q045_mech313_mech260_four_arm_ablation",
+          "metric": "fifo_temporal_gate_ok_all=false; 2/3 seeds measured_steps=0 (episodes ended <75 step FIFO warmup); only seed 43 produced data; ARM_1 +0.015 / ARM_2 -0.039 / ARM_3 -0.030 vs ARM_0 -- sub-margin at N=1",
+          "target": "fifo_temporal_gate_ok_all=true with measured_steps >= 75 in >=2/3 seeds per arm; entropy deltas resolvable at N>=2 per cell"
+        },
+        {
+          "run_id": "v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3",
+          "experiment_type": "v3_exq_603b_q045_mech313_mech260_four_arm_ablation",
+          "metric": "1/3 seeds surviving with steps_per_episode=500 + hazard_harm=0.02; seeds 42/44 still die at 350-475 steps; ARM_1 +0.011 / ARM_2 +0.041 / ARM_3 +0.045 vs ARM_0 -- all below 0.05 margin",
+          "target": "proximity-harm-aware policy survives both kill channels in >=2/3 seeds; entropy lifts resolvable above 0.05 margin"
+        },
+        {
+          "run_id": "v3_exq_604_q044_mech314_subflavour_three_arm_ablation_20260521T112110Z_v3",
+          "experiment_type": "v3_exq_604_q044_mech314_subflavour_three_arm_ablation",
+          "metric": "All four arms (ARM_0 all-on / ARM_1 novelty-off / ARM_2 uncertainty-off / ARM_3 lp-off) BIT-IDENTICAL per seed -- entropy 0.0/0.405813/0.326341, total_steps 5805/1495/2267, unique_actions 1/2/2. C1 and C2 FAIL because candidate set is z_world-degenerate (MECH-314a novelty bonus collapses to uniform; MECH-314b/c broadcast-by-design). Seed 42 dies (unique_actions=1).",
+          "target": "After scaffolded onboarding + SD-056 per-candidate variance, MECH-314a ablation produces a non-zero per-candidate bonus delta that resolves at ARM_1 vs ARM_0; seeds 42/44 survive past P2 measurement window. Note: MECH-314b/c remain non-ablation-testable until Phase 2 per-candidate refinement lands."
+        },
+        {
+          "run_id": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep_20260521T115421Z_v3",
+          "experiment_type": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep",
+          "metric": "p1_any_calibration_zone=false; curiosity_scale {1x, 5x, 10x} produces identical per-cell entropy + reef_fraction within each noise_alpha row -- curiosity dimension fully degenerate. noise_alpha sweep delivers sub-threshold lifts 0.259/0.292/0.305 at N=1 per cell.",
+          "target": "After scaffolded onboarding + SD-056 per-candidate variance, curiosity_scale sweep produces non-zero entropy delta resolvable at N>=2; p1 calibration zone non-empty; noise dimension delivers >0.05 margin at N>=2 per cell."
+        }
+      ],
+      "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
+      "priority": 1,
+      "added_session": "governance-20260529T212835Z",
+      "last_seen_session": "governance-20260529T212835Z",
+      "autopsy_refs": [
+        "evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md",
+        "evidence/planning/failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29.md"
+      ],
+      "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding"
     }
   ],
   "last_seen_session": "governance-20260529T074923Z"
