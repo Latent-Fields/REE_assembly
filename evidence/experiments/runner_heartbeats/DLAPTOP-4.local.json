@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-29T08:02:07Z",
+  "last_tick_utc": "2026-05-29T08:03:14Z",
   "state": "running",
   "current_exq": "V3-EXQ-592b",
   "current_exq_started_utc": "2026-05-29T07:23:17.165305+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 43 / ARM_0_GATED",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 80,
+    "episodes_done": 120,
     "episodes_total": 400,
-    "overall_pct": 21.6
+    "overall_pct": 22.2
   },
-  "seconds_elapsed": 2330,
-  "seconds_remaining": 8457,
+  "seconds_elapsed": 2397,
+  "seconds_remaining": 8400,
   "recent_lines": [
-    "[seed=42] ARM_1_GATED_FORCED_READY: n_admitted=0 n_blocked=4 last_margin=0.0001 committed_steps=2321 admit_fired=False",
-    "Seed 43 Condition ARM_0_GATED",
     "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True",
     "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/400  rv=0.00000  reward=-0.1881"
+    "[P0 train] ep 80/400  rv=0.00000  reward=-0.1881",
+    "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120."
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
