@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-29T07:34:43Z",
+  "last_tick_utc": "2026-05-29T07:35:50Z",
   "state": "running",
   "current_exq": "V3-EXQ-592b",
   "current_exq_started_utc": "2026-05-29T07:23:17.165305+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 42 / ARM_0_GATED",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 80,
+    "episodes_done": 120,
     "episodes_total": 400,
-    "overall_pct": 6.4
+    "overall_pct": 7.0
   },
-  "seconds_elapsed": 686,
-  "seconds_remaining": 10088,
+  "seconds_elapsed": 753,
+  "seconds_remaining": 10033,
   "recent_lines": [
-    "COMMIT_READINESS_FLOOR=0.05  GATE_ENABLED=True",
-    "Seed 42 Condition ARM_0_GATED",
     "[P0 probe] ep 40/400  rv=0.00001  threshold=0.4  converging=True",
     "[P0 probe] ep 80/400  rv=0.00001  threshold=0.4  converging=True",
-    "[P0 train] ep 80/400  rv=0.00001  reward=-1.0049"
+    "[P0 train] ep 80/400  rv=0.00001  reward=-1.0049",
+    "[P0 probe] ep 120/400  rv=0.00001  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120."
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
