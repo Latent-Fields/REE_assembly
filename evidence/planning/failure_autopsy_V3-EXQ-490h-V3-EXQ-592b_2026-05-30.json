@@ -1,10 +1,25 @@
 {
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-05-30T06:02:38Z",
+  "resolved_utc": "2026-05-30T06:22:29Z",
   "scope": "cluster",
-  "status": "confirmed",
+  "status": "resolved",
   "user_decision_utc": "2026-05-30T06:01Z",
   "routing": "diagnose-errors",
+  "resolution": {
+    "fix_commit": "41c3411",
+    "fix_commit_utc": "2026-05-29T21:24:08Z",
+    "fix_commit_title": "runner: fix V3-EXQ-592b FAIL/ERROR silent-drop",
+    "fix_files": ["ree-v3/experiment_runner.py", "ree-v3/tests/contracts/test_runner_fail_branch_persists_result.py"],
+    "rerun_queue_ids": ["V3-EXQ-490i", "V3-EXQ-592c"],
+    "rerun_scripts": [
+      "ree-v3/experiments/v3_exq_490i_mech295_cascade_gap4_tier1.py",
+      "ree-v3/experiments/v3_exq_592c_mech090_commit_readiness_gate_validation.py"
+    ],
+    "rerun_supersedes": {"V3-EXQ-490i": "V3-EXQ-490h", "V3-EXQ-592c": "V3-EXQ-592b"},
+    "rerun_claim_ids_preserved": {"V3-EXQ-490i": ["MECH-295"], "V3-EXQ-592c": ["MECH-090"]},
+    "diagnose_errors_session": "diagnose-errors-490h-592b-requeue-20260530T062229Z"
+  },
   "targets": [
     {
       "run_id": null,

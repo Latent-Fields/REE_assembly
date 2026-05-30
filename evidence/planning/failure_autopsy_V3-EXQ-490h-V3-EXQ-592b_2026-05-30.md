@@ -1,10 +1,28 @@
 # Failure Autopsy: V3-EXQ-490h + V3-EXQ-592b (manifest-pipeline cluster)
 
 **Generated:** 2026-05-30T06:02:38Z
+**Resolved:** 2026-05-30T06:22:29Z
 **Scope:** cluster (2 FAILs sharing a manifest-pipeline failure shape)
-**Status:** confirmed (user sign-off 2026-05-30 — route both to /diagnose-errors)
+**Status:** RESOLVED — bug fixed at ree-v3 commit [`41c3411`](ree-v3/experiment_runner.py) (2026-05-29T21:24:08Z); re-runs queued as V3-EXQ-490i + V3-EXQ-592c.
 **Autopsy session:** failure-autopsy-490h-592b-20260530T060238Z
-**Routing decision:** `/diagnose-errors` for both targets. This is NOT a substrate FAIL of MECH-295 or MECH-090; it is a Phase-3 result-pipeline failure shape.
+**Diagnose-errors session:** diagnose-errors-490h-592b-requeue-20260530T062229Z
+**Routing decision:** `/diagnose-errors` for both targets. This was NOT a substrate FAIL of MECH-295 or MECH-090; it was a Phase-3 result-pipeline failure shape that the 2026-05-29 fix at commit `41c3411` resolves.
+
+## Resolution (2026-05-30T06:22:29Z)
+
+Diagnose-errors session confirmed the bug was already diagnosed and fixed by a parallel session before this autopsy was authored. The fix landed at ree-v3 commit [`41c3411`](ree-v3/experiment_runner.py) titled "runner: fix V3-EXQ-592b FAIL/ERROR silent-drop" — explicitly authored against this exact failure. The FAIL branch (`experiment_runner.py:2299-2367`) and ERROR branch (`experiment_runner.py:2261-2297`) now enforce the same manifest contract the PASS branch already had: present manifest → `git_push_results` → `coordinator_client.report_result` → `report_queue_remove`; missing manifest → WARN + release claim + leave queue entry for operator. Contract tests added at `ree-v3/tests/contracts/test_runner_fail_branch_persists_result.py`.
+
+Runner fleet state at resolution:
+- DLAPTOP-4.local (Mac): runner PID 31449 started 2026-05-30T05:46:22Z, post-fix. Live.
+- ree-cloud-1 (hub): runner disabled by design (hub co-location guard).
+- ree-cloud-2: powered off by cloud-scaler (last heartbeat 2026-05-29T23:06:31Z). Will pull post-fix code at next boot — `git log` on cloud-2's working tree at autopsy time confirms commit `41c3411` is in HEAD's history.
+- ree-cloud-3, ree-cloud-4: stale heartbeats; will pull post-fix on next start.
+
+Re-runs queued (the runner silently skips queue_ids already in `runner_status.json` completed list, so new letters are mandatory):
+- **V3-EXQ-490i** ([v3_exq_490i_mech295_cascade_gap4_tier1.py](ree-v3/experiments/v3_exq_490i_mech295_cascade_gap4_tier1.py)) supersedes V3-EXQ-490h. Bit-identical script body; only EXPERIMENT_TYPE / QUEUE_ID / SUPERSEDES constants and docstring change. claim_ids unchanged: `["MECH-295"]`.
+- **V3-EXQ-592c** ([v3_exq_592c_mech090_commit_readiness_gate_validation.py](ree-v3/experiments/v3_exq_592c_mech090_commit_readiness_gate_validation.py)) supersedes V3-EXQ-592b. Bit-identical script body. claim_ids unchanged: `["MECH-090"]`.
+
+Smoke tested both with `--dry-run`; both initialize, step, write outcomes, print the new queue_id correctly. `validate_queue.py` PASS after `git add`. Section 4 below (the recommended diagnostic order) is preserved for provenance but is now historical — the diagnose-errors session traced the bug to its already-landed fix in five steps rather than the six laid out.
 
 ---
 
