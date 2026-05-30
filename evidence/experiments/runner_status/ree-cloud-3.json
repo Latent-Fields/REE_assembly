@@ -1,41 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 2815,
-  "runner_started_at": "2026-05-28T16:34:31.444185+00:00",
-  "last_updated": "2026-05-28T17:57:01.344398+00:00",
+  "runner_pid": 1529,
+  "runner_started_at": "2026-05-30T17:06:30.500968+00:00",
+  "last_updated": "2026-05-30T19:32:45.508229+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-611b",
+      "queue_id": "V3-EXQ-483e",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-341 retune 6-arm validation (supersedes V3-EXQ-611)",
+      "claim_id": "SD-037",
+      "title": "SD-037 consumer-cascade behavioural validation (PFC/BLA/CeA/beta-gate consumers + SalienceCoordinator enable + PAG-engaging env reuse; supersedes 483d substrate-ceiling FAIL)",
       "description": "",
-      "estimated_minutes": 17.3,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-612",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Phase 3 cutover end-to-end smoke",
-      "description": "",
-      "estimated_minutes": 17.3,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-612c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Phase 3 E2E smoke (verdict sentinel fix retry)",
-      "description": "",
-      "estimated_minutes": 17.3,
+      "estimated_minutes": 96.0,
       "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-490i",
+      "backlog_id": "",
+      "claim_id": "MECH-295",
+      "title": "MECH-295 drive->liking->approach cascade Tier-1 retest (re-queue of 490h post runner FAIL-branch fix)",
+      "description": "",
+      "estimated_minutes": 62.3,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1756,6 +1745,48 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 1.7
+    },
+    {
+      "queue_id": "V3-EXQ-610a",
+      "backlog_id": "EVB-0270",
+      "claim_id": "",
+      "title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "Non-zero exit code 1; no runner sentinel and no stdout verdict",
+      "started_at": "2026-05-29T07:24:37.780841+00:00",
+      "completed_at": "2026-05-29T22:44:20.399408+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 55182.6
+    },
+    {
+      "queue_id": "V3-EXQ-592c",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-090 R-c commit-readiness gate validation (commitment_closure:GAP-4 substrate, requeue of 592b after silent-drop)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[V3-EXQ-592c] Experiment: FAIL | verdict: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-592c -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-592c.json",
+      "started_at": "2026-05-29T22:46:21.348849+00:00",
+      "completed_at": "2026-05-30T01:55:15.559080+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_592c_mech090_commit_readiness_gate_validation/v3_exq_592c_mech090_commit_readiness_gate_validation_20260530T015515Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 11334.2
+    },
+    {
+      "queue_id": "V3-EXQ-614a",
+      "backlog_id": "",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 GAP-B Phase P3 behavioural falsifier B_only/ablate_B/ALL_ON (re-queue of 614 post manifest-pipeline silent-drop fix)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS completed=9/9 C1=False C2=True C3=True label=PASS_C2_C3_only_mech341_load_bearing_in_stack_only | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-614a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-614a.json",
+      "started_at": "2026-05-30T17:06:30.610085+00:00",
+      "completed_at": "2026-05-30T19:32:45.507484+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_614a_mech341_p3_behavioural_falsifier_3arm_20260530T193245Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 8774.9
     }
   ]
 }
