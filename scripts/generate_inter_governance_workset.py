@@ -36,6 +36,7 @@ SUBSTRATE_QUEUE = PLANNING / "substrate_queue.json"
 PROPOSALS_JSON = PLANNING / "experiment_proposals.v1.json"
 RUNNER_STATUS = EVIDENCE / "runner_status.json"
 RUNNER_STATUS_DIR = EVIDENCE / "runner_status"
+REVIEW_TRACKER = EVIDENCE / "review_tracker.json"
 OUTPUT_JSON = PLANNING / "inter_governance_workset.v1.json"
 OUTPUT_MD = PLANNING / "inter_governance_workset.md"
 
@@ -530,11 +531,26 @@ def _has_completed_successor(qid: str, completed_by_qid: dict[str, dict]) -> boo
     return False
 
 
+def _discussed_qids() -> set[str]:
+    """Queue IDs already dispositioned via /diagnose-errors NO-OP closes
+    (or any other manual review) -- recorded in review_tracker.json's
+    `discussed_experiment_dirs`. Suppresses re-surfacing in the workset.
+    """
+    if not REVIEW_TRACKER.exists():
+        return set()
+    try:
+        rt = json.loads(REVIEW_TRACKER.read_text(encoding="utf-8"))
+    except Exception:
+        return set()
+    return {str(x) for x in (rt.get("discussed_experiment_dirs") or []) if x}
+
+
 def _undiagnosed_errors(queue_items: list[dict]) -> list[dict]:
     queued_types = {
         (it.get("experiment_type") or "").lower()
         for it in queue_items
     }
+    discussed_qids = _discussed_qids()
     errors: list[dict] = []
     paths = []
     if RUNNER_STATUS.exists():
@@ -572,6 +588,12 @@ def _undiagnosed_errors(queue_items: list[dict]) -> list[dict]:
             # /diagnose-errors. _EXQ_BASE_RE also cannot resolve their
             # successors, so without this skip they perpetually surface.
             if qid and not _EXQ_BASE_RE.match(qid):
+                continue
+            # ERRORs dispositioned via /diagnose-errors NO-OP closes leave a
+            # trail in review_tracker.json's discussed_experiment_dirs.
+            # Suppress here so they don't perpetually re-surface as chips
+            # after the work has already been done.
+            if qid and qid in discussed_qids:
                 continue
             et = (entry.get("experiment_type") or "").lower()
             key = qid or et
