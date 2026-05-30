@@ -2305,7 +2305,7 @@
     {
       "sd_id": "MECH-302",
       "title": "relief.completion_event_reuses_goal_achievement_pipeline -- suffering-derivative comparator",
-      "status": "implemented",
+      "status": "validated",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -2336,17 +2336,25 @@
           "summary": "substrate_ceiling diagnosis 2026-05-30 (failure_autopsy_V3-EXQ-517b): three discriminative-pair attempts (V3-EXQ-517 / 517a / 517b) FAILed because causal_grid_world_v3 + trained avoidance policy filters out the very trajectories the comparator needs. Comparator substrate-readiness validated by V3-EXQ-515 (PASS 2026-05-04) is intact; gap is on the env side. Landed env-side SD-022 scheduled-injection extension (scheduled_limb_damage_enabled / _interval / _prob / _magnitude / _limb_selection) in ree-v3/ree_core/environment/causal_grid_world.py: direct limb-damage injection independent of agent action or hazard contact, parallel to SD-029 scheduled_external_hazard but distinct in mechanism (SD-029 still requires agent contact; this curriculum bypasses contact entirely). All 5 kwargs env-only (NOT surfaced through REEConfig.from_dims; matches SD-022/023/029/047/048/049/054 precedent). All defaults False/inert; bit-identical OFF guarantee verified. 565/565 contracts + 7/7 preflight PASS with master OFF (regression-clean; was 556 + 9 new MECH-302-curriculum contracts in tests/contracts/test_scheduled_limb_damage_curriculum.py). Activation smoke 2026-05-30: 5 fires across 67 steps at interval=10/prob=1.0 (~1 fire per 13 steps, close to expected 1/10); random / all limb_selection modes both PASS; [0,1] clamp holds across multiple 0.6 injections; per-episode counter reset PASSes; preconditions (master requires limb_damage_enabled + bad limb_selection raises) PASS. V3-EXQ-517c queued 2026-05-30 (priority 280; supersedes V3-EXQ-517b; same 2-arm discriminative-pair structure with curriculum knobs identical on both arms). Curriculum config: interval=50, prob=0.5, magnitude=0.4, limb_selection=random -> ~3 injections per 300-step episode x 40 P1 episodes = ~120 damage events per seed in each arm. Acceptance criteria unchanged from 517b: C1 ARM_A events>=3/seed; C2 ARM_A writes>=2/seed; C3 ARM_B events==0; C4 ARM_B writes==0; PASS_FRACTION_REQUIRED=2/3. PASS clears MECH-302 v3_pending gate AND lifts gate (c) for MECH-304 conditioned-inhibition experiment.",
           "validation_experiment": "V3-EXQ-517c",
           "predecessor_autopsy": "failure_autopsy_V3-EXQ-517b_2026-05-30"
+        },
+        {
+          "utc": "2026-05-30T17:16:27Z",
+          "session": "IGW-20260530-021 MECH-302 MECH-303 implement-substrate",
+          "action": "validation_complete",
+          "summary": "V3-EXQ-517c PASS 2026-05-30T12:46Z. Discriminative-pair 2-arm with scheduled-limb-damage curriculum (interval=50, prob=0.5, magnitude=0.4, limb_selection=random). ARM_A (comparator ON): 2/3 seeds PASS C1+C2 (events>=3/seed, writes>=2/seed); mean 160.3 events/seed, 160.3 writes/seed, 29.7 curriculum_injections/seed. ARM_B (comparator OFF): 3/3 seeds PASS C3+C4 (events==0, writes==0); mean 40.3 curriculum_injections/seed. Overall PASS at 2/3 threshold. Cleared v3_pending from claims.yaml MECH-302 + MECH-303. Substrate validated; discriminative pair becomes contributory evidence.",
+          "validation_experiment": "V3-EXQ-517c",
+          "validation_outcome": "PASS"
         }
       ],
-      "current_blocker": "V3-EXQ-517c manifest pending (queued 2026-05-30T08:42Z, priority 280; estimated ~75 min on Mac).",
-      "next_step": "Await V3-EXQ-517c manifest; on PASS governance clears MECH-302 v3_pending and the discriminative pair becomes contributory evidence. On FAIL with curriculum producing >>3 injections/seed but comparator still not firing, route to /failure-autopsy on the comparator wiring (substrate_ceiling at a different layer than originally diagnosed). On FAIL with curriculum failing to produce injections, route to /diagnose-errors on the new env knobs.",
+      "current_blocker": "none -- V3-EXQ-517c PASS 2026-05-30T12:46Z cleared v3_pending gate",
+      "next_step": "Substrate validated; v3_pending cleared from claims.yaml MECH-302 and MECH-303. Discriminative-pair evidence V3-EXQ-517c contributory (supports, 2/3 seeds PASS). Gate (c) lifted for MECH-304 conditioned-inhibition experiment (V3-EXQ-519 pending).",
       "implemented_utc": "2026-05-04T01:03:00Z",
       "implementation_status": "implemented_env_curriculum_amend",
       "validation_experiment": "V3-EXQ-517c",
-      "pending_retest_after_substrate": true,
+      "pending_retest_after_substrate": false,
       "implemented_session": "implement-substrate-mech302-comparator-2026-05-04T0019Z",
       "last_amend_session": "implement-substrate-mech302-scheduled-limb-damage-curriculum-20260530T084206Z",
-      "last_updated_utc": "2026-05-30T08:42:06Z",
+      "last_updated_utc": "2026-05-30T17:16:27Z",
       "priority": 1,
       "added_session": "implement-substrate-mech302-comparator-2026-05-04T0019Z"
     },
