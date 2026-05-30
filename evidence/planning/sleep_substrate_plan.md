@@ -3,7 +3,7 @@ closure_plan:
   id: sleep_substrate
   title: "Sleep Substrate"
   registered: 2026-05-08
-  last_updated: 2026-05-29
+  last_updated: 2026-05-30
   scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
   nodes:
     - id: "sleep_substrate:GAP-1"
@@ -27,9 +27,10 @@ closure_plan:
       unblocks_claims: [SD-017, ARC-045, MECH-166]
       depends_on: ["arc_062_rule_apprehension:ARC-065-substrate"]
       upstream_block_reason: "ARC-065 (behavioral-diversity-generation pathway) registered 2026-05-10. V3-EXQ-418l + 436a returned bit-identical sleep-vs-waking metrics across all seeds because the agent's waking phase produces no behavioural variation for sleep to refine. Sleep refinement experiments cannot register signal until the agent has waking diversity to refine. See arc_062_rule_apprehension_plan.md decision log 2026-05-10 entry."
-      resume_condition: "V3-EXQ-543l (queued 2026-05-24; escalated MODE_SEPARATION_FLOOR 0.5 + P1_W_DEVIATION_AUX_WEIGHT 0.3; supersedes 543k which FAIL/mixed 20260522T091714Z) is the active ARC-065 substrate gate. On 543l contributory PASS, re-queue 418m + 436b under the diversity-substrate stack. PRIOR: 543b/c/d/e/f/g/h all non_contributory (see arc_062 GAP-B history); 543i/j/k each addressed a distinct substrate defect but none achieved a contributory falsifier result."
-      last_updated: 2026-05-29
+      resume_condition: "Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_autopsy_V3-EXQ-543l_2026-05-27 (confirmed) routed 543l to substrate_ceiling (FAIL branch-e at escalated floor=0.5 / aux=0.3, basin_stable=true, all four diff-ON gated arms 3/3 inert); the substrate-enrichment-first follow-up V3-EXQ-598b also FAILed (C3 trainable_not_monomodal). ARC-065 SP-CEM substrate (live from V3-EXQ-567 PASS 2026-05-15) is NOT sufficient on its own -- 543l ran 2026-05-26 with it live and the trained policy still collapsed to inert monomodal equilibrium. NEW GATE: rule-creator / discriminator substrate landing (a mechanism that populates DIFFERENTIATED rule_state inputs to SD-033a, not just trainable bias heads), tracked under arc_062_rule_apprehension:GAP-B governance_2026_05_29 + arc_062 GAP-B status=blocked routing to /implement-substrate. On that substrate landing AND a contributory PASS retest of arc_062 GAP-B's MECH-309/ARC-062 falsifier under the new substrate, re-queue V3-EXQ-418m + V3-EXQ-436b under the full ARC-065 SP-CEM + rule-creator stack. Further GatedPolicy floor/aux escalations (notional V3-EXQ-543m) explicitly deferred per 543l autopsy section 9. PRIOR (verbatim, for reconstruction): 'V3-EXQ-543l (queued 2026-05-24; escalated MODE_SEPARATION_FLOOR 0.5 + P1_W_DEVIATION_AUX_WEIGHT 0.3; supersedes 543k which FAIL/mixed 20260522T091714Z) is the active ARC-065 substrate gate. On 543l contributory PASS, re-queue 418m + 436b under the diversity-substrate stack. PRIOR: 543b/c/d/e/f/g/h all non_contributory (see arc_062 GAP-B history); 543i/j/k each addressed a distinct substrate defect but none achieved a contributory falsifier result.'"
+      last_updated: 2026-05-30
       governance_2026_05_29: "Upstream blocker re-confirmed this cycle. V3-EXQ-543l ran 20260526T023059Z FAIL branch-e (substrate-uniform monomodal collapse persists across mode_separation_floor=0.5 + P1 deviation aux=0.3); V3-EXQ-598b retest on the GAP-C/D substrate likewise FAILed C3 trainable_not_monomodal -- substrate-enrichment-first path exhausted without escaping ARC-065 substrate gate. GAP-2 remains upstream-blocked; next unlock requires rule-creator/discriminator substrate (tracked under arc_062_rule_apprehension:GAP-B governance_2026_05_29). Sleep retest cohort (418m + 436b + 500a + 503a) stays deferred."
+      governance_2026_05_30: "resume_condition rewrite (no status change). Dropped the stale 'V3-EXQ-543l contributory PASS' gate and named the corrected gate explicitly: rule-creator/discriminator substrate landing (tracked under arc_062_rule_apprehension:GAP-B; status=blocked / routing to /implement-substrate) followed by a contributory PASS retest of GAP-B's MECH-309/ARC-062 falsifier on the new substrate. Triggered by IGW-20260530-020 (sleep_substrate:GAP-2 resume) which would otherwise have re-queued 418m + 436b under ARC-065 SP-CEM alone -- a path the 2026-05-29 governance entry explicitly forbids and 543l empirically falsifies (543l ran 2026-05-26 with ARC-065 SP-CEM live from V3-EXQ-567 PASS and still collapsed). No experiment_queue.json / claims.yaml / substrate_queue.json edits this cycle."
     - id: "sleep_substrate:GAP-3"
       title: "Phase B-E master flags default-False (cluster silent) -- unified use_sleep_aggregation_cluster master flag landed 2026-05-16"
       phase: 3
@@ -424,7 +425,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
-| GAP-2 | 2 | upstream-blocked | ARC-065 (behavioral-diversity-generation pathway) substrate not landed -- V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 (bit-identical sleep-vs-waking metrics; agent in monomodal collapse). 500a + 503a are surviving Tier-1 successors in pending review and are NOT diversity-dependent the same way. Resume after V3-EXQ-543b/c PASS under ARC-065 substrate, then re-queue 418m + 436b. See decision log 2026-05-10 entry + arc_062_rule_apprehension_plan.md for cross-cluster reflection. Original entry: | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
+| GAP-2 | 2 | upstream-blocked | **Gate updated 2026-05-30 (resume_condition rewrite; no status change).** ARC-065 SP-CEM substrate live from V3-EXQ-567 PASS 2026-05-15 is NOT sufficient on its own: V3-EXQ-543l ran 2026-05-26 with it live and still collapsed (failure_autopsy_V3-EXQ-543l_2026-05-27 confirmed substrate_ceiling); V3-EXQ-598b retest on the GAP-C/D substrate also FAILed C3 trainable_not_monomodal. New gate: rule-creator / discriminator substrate landing under arc_062_rule_apprehension:GAP-B (status=blocked, routing to /implement-substrate) AND a contributory PASS retest of GAP-B's MECH-309/ARC-062 falsifier on that new substrate. Then re-queue 418m + 436b. Sleep retest cohort (418m + 436b + 500a + 503a) stays deferred per 2026-05-29 governance. See decision log 2026-05-30 entry. **Prior text (stale, retained for reconstruction):** ARC-065 (behavioral-diversity-generation pathway) substrate not landed -- V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 (bit-identical sleep-vs-waking metrics; agent in monomodal collapse). 500a + 503a are surviving Tier-1 successors in pending review and are NOT diversity-dependent the same way. Resume after V3-EXQ-543b/c PASS under ARC-065 substrate, then re-queue 418m + 436b. See decision log 2026-05-10 entry + arc_062_rule_apprehension_plan.md for cross-cluster reflection. Original entry: | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
 | GAP-3 | 3, 4 | done | (none) | Unified `use_sleep_aggregation_cluster` master flag landed 2026-05-16. Root cause: eight independent default-False flags (use_sleep_loop, sws_enabled, rem_enabled, use_mech285_sampler, use_mech272_routing, use_mech272_routing_consumer, use_mech275_aggregator, use_mech273_self_model) -- cluster silent unless an experiment set all eight by hand. Fix: REEConfig.use_sleep_aggregation_cluster field + enable_sleep_aggregation_cluster() method, resolved in __post_init__ (direct) and at end of from_dims (factory path), mirroring use_mech307_conjunction / enable_goal_stream. OR-only; MECH-204 + anchor-set/e2_harm_s prereqs deliberately NOT bundled. Bit-identical OFF: contracts 410 + preflight 9 PASS; new test_sleep_aggregation_cluster_gap3.py 7/7. V3-EXQ-581 dry-run 6/6 PASS (C1-C5 all four Phase B-E components fire end-to-end under one flag; C6 ARM_CLUSTER == ARM_EXPLICIT proves pure ergonomics, zero behavioural divergence). **The 2026-05-16 GAP-4 entry below claimed "GAP-3 PASS (V3-EXQ-565 2026-05-15)" -- that was a GAP-8/GAP-3 conflation (V3-EXQ-565 is GAP-8's owner-EXQ). GAP-3's own deliverable was not done until 2026-05-16; GAP-4 was completed ahead of its dependency, now satisfied.** | V3-EXQ-581 | 2026-05-16 |
 | GAP-4 | 4 | done | (none) | _harm_replay_buffer populated in REEAgent.sense() (waking only: hypothesis_tag=False, z_harm not None, _last_action not None); capped 1000 entries; snapshotted at SLEEP_ENTRY in SleepLoopManager._run_cycle(); passed to offline_gradient_pass as harm_replay_buffer kwarg. Real tuples sampled via random.choices; synthetic zeros/round-robin one-hot fallback preserved when buffer None or empty. 4 new E11-E14 Phase E contract tests added; 14/14 PASS. | code change (no EXQ) | 2026-05-16 |
 | GAP-5 | -- | deferred V4 | per cluster doc C1 | none in V3 | n/a | 2026-05-08 |
@@ -503,6 +504,61 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-30 - GAP-2 resume_condition rewrite (stale 543l gate cleared; new gate = rule-creator substrate)
+
+IGW-20260530-020 (sleep_substrate:GAP-2 resume) surfaced that the GAP-2
+`resume_condition` field still named "V3-EXQ-543l contributory PASS" as the
+re-queue gate for V3-EXQ-418m + V3-EXQ-436b. That gate is dead:
+
+1. **V3-EXQ-543l FAIL branch-e (2026-05-26).** `failure_autopsy_V3-EXQ-543l_
+   2026-05-27` (status=confirmed) routed all four tagged claims to
+   `epistemic_category=substrate_ceiling`. Escalated MODE_SEPARATION_FLOOR=0.5 +
+   P1_W_DEVIATION_AUX_WEIGHT=0.3 + differential heads + Phase-3 crystallization
+   did not break collapse; basin_stable=true; all four diff-ON gated arms 3/3
+   inert.
+
+2. **V3-EXQ-598b also FAILed (2026-05-27).** The substrate-enrichment-first
+   discriminator (GAP-C/D substrate-landed 2026-05-17) ran C1 frozen_silent
+   PASS + C2 trainable_nonzero PASS + **C3 trainable_not_monomodal FAIL**. The
+   substrate-enrichment-first path was exhausted without escaping the monomodal
+   collapse.
+
+3. **ARC-065 SP-CEM alone is insufficient.** V3-EXQ-567 PASSed 2026-05-15 with
+   ARC-065 SP-CEM landing (`selected_action_entropy` 0.012 -> 0.497;
+   `candidate_support` 1.007 -> 2.810). But 543l ran 2026-05-26 -- 11 days
+   *after* 567 PASSed, with the ARC-065 stack live -- and the trained policy
+   still collapsed to inert monomodal equilibrium under GatedPolicy
+   floor/aux/differential-heads/crystallization. ARC-065 SP-CEM is necessary
+   but not sufficient for the sleep-cohort waking-diversity prerequisite.
+
+4. **Corrected gate.** Per `arc_062_rule_apprehension:GAP-B` governance_2026_05_29
+   (status=blocked, routing to /implement-substrate), the next unlock requires
+   a *rule-creator / discriminator substrate*: a mechanism that populates
+   DIFFERENTIATED rule_state inputs to SD-033a, not just trainable bias heads.
+   Sleep GAP-2 `depends_on` continues to point at the arc_062 chain (the
+   physical entry name `arc_062_rule_apprehension:ARC-065-substrate` is
+   retained for back-pointer compatibility), but the operational resume gate
+   is now arc_062:GAP-B's rule-creator substrate landing + a contributory PASS
+   retest of GAP-B's MECH-309/ARC-062 falsifier on that new substrate. Only
+   then is it scientifically meaningful to re-queue V3-EXQ-418m + V3-EXQ-436b.
+
+5. **Not re-queued this cycle.** The 2026-05-29 governance entry says the
+   sleep retest cohort "stays deferred." This entry is bookkeeping: the
+   `resume_condition` field is updated to match the 2026-05-29 governance
+   verdict, no experiments queued, no claims edited.
+
+Path forks considered + rejected:
+- **Re-queue 418m + 436b now under ARC-065 SP-CEM alone.** Rejected:
+  543l empirically falsifies this -- the trained policy collapses under that
+  substrate.
+- **Point depends_on at scaffolded_sd054_onboarding.** Rejected:
+  scaffolded_sd054_onboarding was created from the goal-pipeline autopsies
+  (V3-EXQ-490g + V3-EXQ-603a/b/c + V3-EXQ-604 + V3-EXQ-605, 2026-05-29) for
+  Q-045 / MECH-313 / MECH-260 / MECH-307 / MECH-295 / MECH-117 unblockers --
+  not for arc_062 GAP-B's rule-creator. The two substrate enrichments are
+  parallel, not nested; conflating them would mis-route the sleep cohort's
+  retest.
 
 ### 2026-05-17 - GAP-7 done (multi-episode driver standardisation)
 
