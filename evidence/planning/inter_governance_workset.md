@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-30T08:07:27Z`
+Generated: `2026-05-30T08:13:29Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -844,7 +844,7 @@ Instructions:
 
 </details>
 
-### IGW-20260530-050 -- Proposal EXP-0028 (SD-049)
+### IGW-20260530-050 -- Proposal EXP-0029 (MECH-302)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -853,28 +853,6 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260530-050
-Title: Proposal EXP-0028 (SD-049)
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: SD-049
-Why now: active_conflict; directional_conflict_alert
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260530-051 -- Proposal EXP-0029 (MECH-302)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** active_conflict; directional_conflict_alert
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260530-051
 Title: Proposal EXP-0029 (MECH-302)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -888,7 +866,29 @@ Instructions:
 
 </details>
 
-### IGW-20260530-052 -- Proposal EXP-0039 (MECH-313)
+### IGW-20260530-051 -- Proposal EXP-0051 (ARC-045)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
+- **Why now:** active_conflict; directional_conflict_alert; low_exp_conf
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260530-051
+Title: Proposal EXP-0051 (ARC-045)
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: ARC-045
+Why now: active_conflict; directional_conflict_alert; low_exp_conf
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260530-052 -- Proposal EXP-0059 (MECH-320)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; directional_conflict_alert
@@ -897,10 +897,10 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260530-052
-Title: Proposal EXP-0039 (MECH-313)
+Title: Proposal EXP-0059 (MECH-320)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-313
+Claims: MECH-320
 Why now: active_conflict; directional_conflict_alert
 
 Instructions:
@@ -910,20 +910,20 @@ Instructions:
 
 </details>
 
-### IGW-20260530-053 -- Proposal EXP-0040 (MECH-204)
+### IGW-20260530-053 -- Proposal EXP-0062 (Q-045)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** active_conflict; directional_conflict_alert
+- **Why now:** active_conflict; directional_conflict_alert; low_exp_conf
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260530-053
-Title: Proposal EXP-0040 (MECH-204)
+Title: Proposal EXP-0062 (Q-045)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-204
-Why now: active_conflict; directional_conflict_alert
+Claims: Q-045
+Why now: active_conflict; directional_conflict_alert; low_exp_conf
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.

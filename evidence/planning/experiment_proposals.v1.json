@@ -1257,7 +1257,8 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
+      "note": "2026-05-30: Closed as executed_by_pending_owner_exq=V3-EXQ-514g. SD-049 Phase 2 hybrid encoder behavioural validation is already owned by IGW-20260530-012 (V3-EXQ-514g, status blocked on goal_pipeline:GAP-2 monostrategy gate). This auto-stub is a re-issue of the same need under the proposal generator; the existing workset chain will deliver the discriminative evidence once GAP-2 unblocks.",
       "suggested_experiment_type": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1724,7 +1725,8 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
+      "note": "2026-05-30: Closed as redundant_with_existing_retest_chain. MECH-313 status=candidate_substrate_landed with pending_retest_after_redesign=true; the discriminative pair this stub asks for is owned by IGW-20260530-045 (V3-EXQ retest of MECH-313, currently blocked on 8 prereqs including ARC-065 phase_1_implemented + Q-043/Q-044/Q-045 ablations + scaffolded_sd054_onboarding pending_implementation). Closing the stub does not unblock the retest; the retest chain remains in the workset and surfaces when prereqs land.",
       "suggested_experiment_type": "v3_exq_603_q045_mech313_mech260_four_arm_ablation",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1764,7 +1766,8 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
+      "note": "2026-05-30: Closed as defer_to_next_governance_pass. MECH-204 substrate IMPLEMENTED 2026-05-08; V3-EXQ-541c PASSed 2026-05-09 supplying the substrate-direction signal. The 2026-05-29 governance cycle reclassified V3-EXQ-596 + V3-EXQ-602 manifests from non_contributory to inconclusive_measurement and appended MECH-204 evidence_quality_note reflecting C1/C3 strengthens reading + C2 cluster-integration K=1 driver. exp_conf 0.529 will lift as those reclassifications propagate through the next index rebuild; a fresh discriminative pair now would be redundant check-the-box work rather than answering an open question. Re-evaluate at the next governance cycle: if exp_conf still sub-0.62 after the 596/602 reclassification settles, design a targeted recalibration-zero-point pair then.",
       "suggested_experiment_type": "v3_exq_596_mech204_sleep_cluster_stepharness_integration",
       "target_repo": "ree-v3",
       "why_now": [
