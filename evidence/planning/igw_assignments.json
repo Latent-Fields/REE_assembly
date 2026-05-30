@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-30T18:55:38Z",
+  "generated_at": "2026-05-30T18:57:25Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -900,6 +900,94 @@
         "priority": 28,
         "claim_ids": [
           "MECH-262"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T185725Z-7aac4893-claude_local",
+      "stable_hash": "7aac4893a7c6",
+      "igw_id_at_assign": "IGW-20260530-039",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-05-30T18:57:25Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Supersede-mark chip: this proposal is a wrong-route per failure-autopsy chain / plan-of-record. Bundled with EXP-0009/0051/0062/0064 supersede chip.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0051 (ARC-045)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "ARC-045"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T185725Z-be456e11-claude_local",
+      "stable_hash": "be456e1105b0",
+      "igw_id_at_assign": "IGW-20260530-040",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-05-30T18:57:25Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Supersede-mark chip: this proposal is a wrong-route per failure-autopsy chain / plan-of-record. Bundled with EXP-0009/0051/0062/0064 supersede chip.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0062 (Q-045)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "Q-045"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T185725Z-94f48f7d-claude_local",
+      "stable_hash": "94f48f7d43bf",
+      "igw_id_at_assign": "IGW-20260530-041",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-05-30T18:57:25Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Supersede-mark chip: this proposal is a wrong-route per failure-autopsy chain / plan-of-record. Bundled with EXP-0009/0051/0062/0064 supersede chip.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0064 (MECH-166)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-166"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T185725Z-0f4d0b41-claude_local",
+      "stable_hash": "0f4d0b4189cd",
+      "igw_id_at_assign": "IGW-20260530-042",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-05-30T18:57:25Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Real chip: queue V3-EXQ-519 successor on now-validated MECH-302 substrate (gate lifted via V3-EXQ-517c PASS today). Spawned by spawn-proposal-chips-mech304-plus-supersedes-20260530T185623Z.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0067 (MECH-304)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-304"
         ]
       }
     }
