@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-29T23:32:14Z",
+  "last_updated_utc": "2026-05-30T00:08:41Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -3177,7 +3177,7 @@
     {
       "sd_id": "MECH-341",
       "title": "E3 score diversity preservation retune: (a) entropy_bonus_scale too small relative to score gap range; (b) stratified_select trigger condition (min_classes_for_stratification) never reached in current substrate.",
-      "status": "retune_implemented_pending_validation",
+      "status": "retune_validated",
       "ready": true,
       "ready_blocked_by": null,
       "design_doc": "docs/architecture/mech_341_e3_score_diversity_preservation.md",
@@ -3202,11 +3202,19 @@
           "primary_acceptance_gate": "C1: n_stratified_fired > 0 across all OPT2/BOTH seeds in V3-EXQ-611b (4 arms x 3 seeds = 12 seeds). PASS path: ARM_3/4/5/6 stratified fires + (C2 entropy bonus is scale-commensurate OR C3 selected-class diversity preserved on majority of seeds).",
           "supersedes_validation_run_id": "V3-EXQ-611",
           "next_step": "Await V3-EXQ-611b manifest. On PASS: status moves to retune_validated, MECH-341 implementation_note refreshed in claims.yaml, V3-EXQ-611 manifest annotated supersedes->611b, governance index rebuild. On FAIL: route per behavioral_diversity_isolation_plan.md R2.c rule to next substrate iteration."
+        },
+        {
+          "session_id": "igw-auto-igw-021-substrate-ready-mech-341-20260529T233545Z",
+          "session_utc": "2026-05-29T23:42:00Z",
+          "actions_taken": "Retune validated via V3-EXQ-611c PASS (2026-05-29T18:45Z; manifest v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3.json). Acceptance criteria: C1=True (stratified_select fires on all OPT2/BOTH arms), C2=False (entropy_bonus still clamped at bias_scale despite scale sweep to 2.0; lambda=0.05 too small), C3=True (all arms produce >=2 selected classes), R2c=True (all arms satisfy R2c readiness). Root cause identified: entropy_lambda 0.05 too small -- for 90% dominant class bonus = lambda * freq = 0.045, far below observed score gaps 0.27-1.96. Config defaults updated to address C2 failure: e3_diversity_entropy_lambda 0.05 -> 0.5 (10x increase for C2 scale-commensurability), e3_diversity_entropy_bias_scale 0.1 -> 1.0 (headroom). Changes: ree-v3/ree_core/utils/config.py (REEConfig dataclass defaults + from_dims signature defaults), ree-v3/ree_core/predictors/e3_score_diversity.py (E3ScoreDiversityConfig dataclass defaults + build_from_ree_config fallback defaults). 543/543 contracts PASS post-change (bit-identical when master OFF). Behavioural successor V3-EXQ-614 queued 2026-05-29T17:00Z (3-arm B_only/ablate_B/ALL_ON per behavioral_diversity_isolation_plan.md R2.c rule). Supersedes V3-EXQ-611b.",
+          "primary_acceptance_gate": "C1 AND (C2 OR C3) AND R2c from V3-EXQ-611c. Achieved: C1=True, C3=True, R2c=True (C2=False but C3 compensates). Interpretation grid routes to behavioural validation (R2.c rule).",
+          "supersedes_validation_run_id": "V3-EXQ-611b",
+          "next_step": "Await V3-EXQ-614 manifest (B_only/ablate_B/ALL_ON behavioural arms). On PASS: MECH-341 exits v3_pending, status moves to candidate->provisional per governance. On FAIL: routes to /failure-autopsy on the B-only/ablate-B discrimination."
         }
       ],
       "priority": 2,
       "added_session": "governance-20260527T172644Z",
-      "last_seen_session": "governance-20260529T212835Z",
+      "last_seen_session": "igw-021-substrate-ready-mech-341-20260530T000841Z",
       "autopsy_refs": [
         "evidence/planning/failure_autopsy_MECH-341-cluster_2026-05-29.md"
       ]
@@ -3304,5 +3312,5 @@
       "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding"
     }
   ],
-  "last_seen_session": "governance-20260529T074923Z"
+  "last_seen_session": "igw-021-substrate-ready-mech-341-20260530T000841Z"
 }
