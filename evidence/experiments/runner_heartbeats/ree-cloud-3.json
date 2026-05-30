@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-30T00:41:32Z",
+  "last_tick_utc": "2026-05-30T00:42:33Z",
   "state": "running",
   "current_exq": "V3-EXQ-592c",
   "current_exq_started_utc": "2026-05-29T22:46:21.348849+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_0_GATED",
+    "run_label": "Seed 43 / ARM_1_GATED_FORCED_READY",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 120,
+    "episodes_done": 0,
     "episodes_total": 400,
-    "overall_pct": 64.0
+    "overall_pct": 64.6
   },
-  "seconds_elapsed": 6911,
-  "seconds_remaining": 3887,
+  "seconds_elapsed": 6972,
+  "seconds_remaining": 3820,
   "recent_lines": [
-    "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
     "[P0 train] ep 80/400  rv=0.00000  reward=-0.1135",
     "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120."
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
+    "[seed=43] ARM_0_GATED: rv_final=0.00000 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=23 last_margin=0.0000 committed_steps=10000 falsifier_fired=False",
+    "Seed 43 Condition ARM_1_GATED_FORCED_READY"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
