@@ -1,0 +1,140 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-30T06:02:38Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "user_decision_utc": "2026-05-30T06:01Z",
+  "routing": "diagnose-errors",
+  "targets": [
+    {
+      "run_id": null,
+      "queue_id": "V3-EXQ-490h",
+      "claim_ids": ["MECH-295"],
+      "experiment_purpose": "evidence",
+      "supersedes": "V3-EXQ-490g",
+      "machine": "ree-cloud-2",
+      "runner_sentinel_outcome": "FAIL",
+      "runner_completed_at": "2026-05-29T21:46:08Z",
+      "runner_elapsed_seconds": 5661.5,
+      "advertised_manifest_path": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_490h_mech295_cascade_gap4_tier1/v3_exq_490h_mech295_cascade_gap4_tier1_20260529T214607Z_v3.json",
+      "manifest_present_on_disk": false,
+      "manifest_present_in_coordinator_db": false,
+      "phase3_writer_commit_present": false,
+      "failed_criterion": "unrecoverable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unrecoverable",
+        "biological_reference": "unrecoverable",
+        "prerequisites": "unrecoverable",
+        "implementation": "unrecoverable",
+        "environment": "unrecoverable",
+        "measurement": "unrecoverable",
+        "integration": "unrecoverable",
+        "scale": "unrecoverable"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a — autopsy did not reach biology layer (manifest absent)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent_from_this_autopsy"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": null,
+      "recommended_evidence_quality_note": null,
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "FAIL outcomes on ree-cloud-2 can complete the runner sentinel write without landing the manifest on disk OR in the coordinator results table.",
+        "The sibling V3-EXQ-612c PASS arrived at the coordinator one second after 490h's sentinel timestamp and DID land, so the publish path itself was functional on the same machine in the same minute. This is outcome-conditional.",
+        "490h's in-script interpretation grid (C1 / C2 / C3 / C3_lift / C4) cannot be applied without the manifest's evidence flags."
+      ],
+      "routing": "diagnose-errors"
+    },
+    {
+      "run_id": null,
+      "queue_id": "V3-EXQ-592b",
+      "claim_ids": ["MECH-090"],
+      "experiment_purpose": "diagnostic",
+      "supersedes": "V3-EXQ-592",
+      "machine": "DLAPTOP-4.local",
+      "runner_sentinel_outcome": "FAIL",
+      "runner_completed_at": "2026-05-29T08:32:39Z",
+      "runner_elapsed_seconds": 4162.6,
+      "advertised_manifest_path": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_592b_mech090_commit_readiness_gate_validation/v3_exq_592b_mech090_commit_readiness_gate_validation_20260529T083239Z_v3.json",
+      "manifest_present_on_disk": false,
+      "manifest_present_in_coordinator_db": false,
+      "phase3_writer_commit_present": false,
+      "failed_criterion": "unrecoverable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unrecoverable",
+        "biological_reference": "unrecoverable",
+        "prerequisites": "unrecoverable",
+        "implementation": "unrecoverable",
+        "environment": "unrecoverable",
+        "measurement": "unrecoverable",
+        "integration": "unrecoverable",
+        "scale": "unrecoverable"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a — autopsy did not reach biology layer (manifest absent)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent_from_this_autopsy"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": null,
+      "recommended_evidence_quality_note": null,
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "FAIL outcomes on the Mac (DLAPTOP-4.local) can complete the runner sentinel write without landing the manifest locally OR in the coordinator results table.",
+        "The sibling V3-EXQ-613 PASS arrived at the coordinator three seconds after 592b's sentinel timestamp and DID land, so the publish path was functional on the same machine in the same minute. Same outcome-conditional shape as 490h.",
+        "592b's 2-arm joint-PASS gate validation (ARM_0 GATED falsifier + ARM_1 GATED_FORCED_READY admit) cannot be disposed without knowing which arm failed."
+      ],
+      "routing": "diagnose-errors"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two FAIL outcomes on the same day, on two different machines, in two different result-pipeline paths, both reported via runner sentinel, both with no manifest landing on disk or in the coordinator results table. Both sibling PASS completions arriving within 1-3 seconds DID land cleanly. The bug is outcome-conditional: FAIL hits a code path that PASS does not exercise.",
+    "is_independent_bugs": false,
+    "structural_property": "Outcome-conditional manifest-publish failure in the Phase-3 result pipeline. Probable root location is the runner side (the runner's experiment_protocol.emit_outcome -> result-publish branch on FAIL outcomes), but the coordinator side is also possible and the diagnostic order should check both. Already-known runner UNKNOWN-result silent-drop at experiment_runner.py:1394 is the natural starting suspect even though it is documented for the UNKNOWN path, not FAIL — the cluster shape suggests the FAIL path may share a sibling site.",
+    "readings": ["outcome_conditional_publish_bug", "fail_path_unhandled_after_sentinel_write"]
+  },
+  "recommended_next_actions": [
+    "Open /diagnose-errors session with this artifact pair as context.",
+    "Read REE_assembly/runner.log windows 2026-05-29T08:32:30-08:33:00Z and 2026-05-29T21:46:00-21:47:00Z; check whether the experiment script's `Result written to:` print appeared (manifest was created and lost) or did not (manifest never created).",
+    "Inspect ree-v3/experiment_runner.py around the result-publish branch and around line 1394 (UNKNOWN-result silent-drop) for a sibling FAIL branch that could silently drop the manifest after the sentinel write.",
+    "Inspect ree-v3/experiments/experiment_protocol.py for the same.",
+    "Inspect ree-v3/coordinator/ ingestion path for whether FAIL POST bodies are filtered or rejected differently from PASS.",
+    "After the bug is identified and fixed, re-queue under NEW EXQ letters (490i / 592c). DO NOT re-queue under 490h / 592b — the runner silently skips queue_ids already in runner_status.json completed list."
+  ],
+  "does_not_modify": [
+    "REE_assembly/docs/claims/claims.yaml",
+    "REE_assembly/evidence/experiments/review_tracker.json",
+    "REE_assembly/evidence/planning/substrate_queue.json",
+    "any manifest"
+  ]
+}
