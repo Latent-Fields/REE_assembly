@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-30T07:13:59Z`
+Generated: `2026-05-30T07:57:33Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,9 +9,9 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **51** (ready 21, in_flight 0, blocked 21)
+- Items: **51** (ready 21, in_flight 0, blocked 18)
 - Pending review: **2**
-- Queue pending (unclaimed): **0**
+- Queue pending (unclaimed): **1**
 
 - Live EXQs: V3-EXQ-483d, V3-EXQ-569b
 
@@ -434,28 +434,28 @@ Instructions:
 
 </details>
 
-### IGW-20260530-008 -- Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
+### IGW-20260530-002 -- MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
-- **Gap(s):** behavioral_diversity_isolation:GAP-B
-- **Owner EXQ:** V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed); V3-EXQ-614a re-queue via /diagnose-errors cluster-absorb 2026-05-30 (same 3-arm script, post 41c3411 runner fix)
-- **Why now:** V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked_pending_substrate | **Priority:** 30
+- **Gap(s):** arc_062_rule_apprehension:GAP-B
+- **Owner EXQ:** V3-EXQ-543l
+- **Why now:** 2026-05-27 GOVERNANCE UPDATE: V3-EXQ-543l ran 20260526T023059Z FAIL branch-e at escalated floor=0.5 / aux=0.3 with basin_stable=true; all four diff-ON gated arms 3/3 inert. failure_autopsy_V3-EXQ-543l_2026-05-27 (status: confirmed) applied:
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260530-008
-Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
+REE inter-governance work item: IGW-20260530-002
+Title: MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
 Lane: experiment | Skill: /queue-experiment
-Status: in_progress
-Gap(s): behavioral_diversity_isolation:GAP-B
-Owner EXQ: V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed); V3-EXQ-614a re-queue via /diagnose-errors cluster-absorb 2026-05-30 (same 3-arm script, post 41c3411 runner fix)
-Claims: MECH-341, ARC-062, ARC-065
-Why now: V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
+Status: blocked_pending_substrate
+Gap(s): arc_062_rule_apprehension:GAP-B
+Owner EXQ: V3-EXQ-543l
+Claims: MECH-309, ARC-062
+Why now: 2026-05-27 GOVERNANCE UPDATE: V3-EXQ-543l ran 20260526T023059Z FAIL branch-e at escalated floor=0.5 / aux=0.3 with basin_stable=true; all four diff-ON gated arms 3/3 inert. failure_autopsy_V3-EXQ-543l_2026-05-27 (status: confirmed) applied:
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md
+- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
@@ -641,7 +641,7 @@ Instructions:
 
 </details>
 
-### IGW-20260530-023 -- Queue depth low (0 pending)
+### IGW-20260530-023 -- Queue depth low (1 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -650,7 +650,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260530-023
-Title: Queue depth low (0 pending)
+Title: Queue depth low (1 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -662,28 +662,28 @@ Instructions:
 
 </details>
 
-### IGW-20260530-002 -- MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
+### IGW-20260530-008 -- Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 38
-- **Gap(s):** arc_062_rule_apprehension:GAP-B
-- **Owner EXQ:** V3-EXQ-543l
-- **Why now:** 2026-05-27 GOVERNANCE UPDATE: V3-EXQ-543l ran 20260526T023059Z FAIL branch-e at escalated floor=0.5 / aux=0.3 with basin_stable=true; all four diff-ON gated arms 3/3 inert. failure_autopsy_V3-EXQ-543l_2026-05-27 (status: confirmed) applied:
+- **Gap(s):** behavioral_diversity_isolation:GAP-B
+- **Owner EXQ:** V3-EXQ-614a (queued 2026-05-30 via /diagnose-errors cluster-absorb post 41c3411 runner fix; 3-arm behavioural falsifier, same script as 614); V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed)
+- **Why now:** V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260530-002
-Title: MECH-309/ARC-062 post-543k retest: escalated mode_separation_floor 0.5 + P1 deviation aux 0.3 (V3-EXQ-543l)
+REE inter-governance work item: IGW-20260530-008
+Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
-Gap(s): arc_062_rule_apprehension:GAP-B
-Owner EXQ: V3-EXQ-543l
-Claims: MECH-309, ARC-062
-Why now: 2026-05-27 GOVERNANCE UPDATE: V3-EXQ-543l ran 20260526T023059Z FAIL branch-e at escalated floor=0.5 / aux=0.3 with basin_stable=true; all four diff-ON gated arms 3/3 inert. failure_autopsy_V3-EXQ-543l_2026-05-27 (status: confirmed) applied:
+Gap(s): behavioral_diversity_isolation:GAP-B
+Owner EXQ: V3-EXQ-614a (queued 2026-05-30 via /diagnose-errors cluster-absorb post 41c3411 runner fix; 3-arm behavioural falsifier, same script as 614); V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed)
+Claims: MECH-341, ARC-062, ARC-065
+Why now: V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
+- Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
@@ -748,7 +748,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** upstream_blocked | **Priority:** 40
 - **Gap(s):** sleep_substrate:GAP-2
 - **Owner EXQ:** V3-EXQ-265a
-- **Why now:** V3-EXQ-543l (queued 2026-05-24; escalated MODE_SEPARATION_FLOOR 0.5 + P1_W_DEVIATION_AUX_WEIGHT 0.3; supersedes 543k which FAIL/mixed 20260522T091714Z) is the active ARC-065 substrate gate. On 543l contributory PASS, re-queue 418m + 436b un
+- **Why now:** Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_autopsy_V3-EXQ-543l_2026-05-27 (confirmed) routed 543l to substrate_ceiling (FAIL branch-e at escalated floor=0.5 / aux=0.3, basin_stable=true, all four 
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -760,7 +760,7 @@ Status: upstream_blocked
 Gap(s): sleep_substrate:GAP-2
 Owner EXQ: V3-EXQ-265a
 Claims: SD-017, ARC-045, MECH-166
-Why now: V3-EXQ-543l (queued 2026-05-24; escalated MODE_SEPARATION_FLOOR 0.5 + P1_W_DEVIATION_AUX_WEIGHT 0.3; supersedes 543k which FAIL/mixed 20260522T091714Z) is the active ARC-065 substrate gate. On 543l contributory PASS, re-queue 418m + 436b un
+Why now: Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_autopsy_V3-EXQ-543l_2026-05-27 (confirmed) routed 543l to substrate_ceiling (FAIL branch-e at escalated floor=0.5 / aux=0.3, basin_stable=true, all four 
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -836,20 +836,20 @@ Instructions:
 
 </details>
 
-### IGW-20260530-050 -- Proposal EXP-0030 (INV-074)
+### IGW-20260530-050 -- Proposal EXP-0039 (MECH-313)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** active_conflict; directional_conflict_alert; low_exp_conf
+- **Why now:** active_conflict; directional_conflict_alert
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260530-050
-Title: Proposal EXP-0030 (INV-074)
+Title: Proposal EXP-0039 (MECH-313)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: INV-074
-Why now: active_conflict; directional_conflict_alert; low_exp_conf
+Claims: MECH-313
+Why now: active_conflict; directional_conflict_alert
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -858,20 +858,20 @@ Instructions:
 
 </details>
 
-### IGW-20260530-051 -- Proposal EXP-0037 (MECH-295)
+### IGW-20260530-051 -- Proposal EXP-0040 (MECH-204)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** directional_conflict_alert
+- **Why now:** active_conflict; directional_conflict_alert
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260530-051
-Title: Proposal EXP-0037 (MECH-295)
+Title: Proposal EXP-0040 (MECH-204)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-295
-Why now: directional_conflict_alert
+Claims: MECH-204
+Why now: active_conflict; directional_conflict_alert
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -964,7 +964,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-H
 - **Owner EXQ:** V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]
 - **Why now:** <!-- TODO: revise resume_condition to reflect V3-EXQ-544a state --> V3-EXQ-604/605 manifests landed FAIL non_contributory (identical arm entropies under SP-CEM+reef). V3-EXQ-603 pruned without run (was re-queued 2026-05-21T13:36Z but draine
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -977,7 +977,7 @@ Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-H
 Owner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30
 Claims: ARC-065, Q-043, Q-044, Q-045
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]
 Why now: <!-- TODO: revise resume_condition to reflect V3-EXQ-544a state --> V3-EXQ-604/605 manifests landed FAIL non_contributory (identical arm entropies under SP-CEM+reef). V3-EXQ-603 pruned without run (was re-queued 2026-05-21T13:36Z but draine
 
 Instructions:
@@ -993,7 +993,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-I
 - **Owner EXQ:** V3-EXQ-606b
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]
 - **Why now:** V3-EXQ-606b script committed to ree-v3 (gates_on_exq=V3-EXQ-543k; hard startup gate). V3-EXQ-543k ran 20260522T091714Z FAIL/mixed -- gate NOT cleared. V3-EXQ-606b ran dry_run=True 20260523T223001Z FAIL/weakens (C3 PASS, C1/C2 FAIL; ARM_2 se
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1006,7 +1006,7 @@ Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-I
 Owner EXQ: V3-EXQ-606b
 Claims: ARC-064, MECH-316, MECH-317, MECH-318
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]
 Why now: V3-EXQ-606b script committed to ree-v3 (gates_on_exq=V3-EXQ-543k; hard startup gate). V3-EXQ-543k ran 20260522T091714Z FAIL/mixed -- gate NOT cleared. V3-EXQ-606b ran dry_run=True 20260523T223001Z FAIL/weakens (C3 PASS, C1/C2 FAIL; ARM_2 se
 
 Instructions:
@@ -1022,7 +1022,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-K
 - **Owner EXQ:** V3-EXQ-546 (done); V3-EXQ-608 queued 2026-05-24
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
 - **Why now:** Plan gap in_progress on arc_062_rule_apprehension.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1035,7 +1035,7 @@ Status: in_progress
 Gap(s): arc_062_rule_apprehension:GAP-K
 Owner EXQ: V3-EXQ-546 (done); V3-EXQ-608 queued 2026-05-24
 Claims: MECH-319
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
+Blocked by: arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [partial]
 Why now: Plan gap in_progress on arc_062_rule_apprehension.
 
 Instructions:
@@ -1100,11 +1100,92 @@ Instructions:
 
 </details>
 
+### IGW-20260530-014 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked_pending_substrate | **Priority:** 50
+- **Gap(s):** infant_substrate:GAP-11
+- **Owner EXQ:** V3-EXQ-588b
+- **Why now:** V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260530-014
+Title: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
+Lane: experiment | Skill: /queue-experiment
+Status: blocked_pending_substrate
+Gap(s): infant_substrate:GAP-11
+Owner EXQ: V3-EXQ-588b
+Claims: DEV-NEED-006, MECH-189
+Why now: V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260530-015 -- EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked_pending_substrate | **Priority:** 50
+- **Gap(s):** infant_substrate:GAP-13
+- **Owner EXQ:** V3-EXQ-590
+- **Why now:** V3-EXQ-590 ran 20260525T084057Z procedural PASS but evidence_direction=pending_retest_after_substrate with MECH-314 + MECH-111 per-claim non_contributory: Goldilocks calibration is degenerate across novelty_bonus_weight 0.1..1.0 (all 5 arms
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260530-015
+Title: EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
+Lane: experiment | Skill: /queue-experiment
+Status: blocked_pending_substrate
+Gap(s): infant_substrate:GAP-13
+Owner EXQ: V3-EXQ-590
+Claims: DEV-NEED-003, MECH-314
+Why now: V3-EXQ-590 ran 20260525T084057Z procedural PASS but evidence_direction=pending_retest_after_substrate with MECH-314 + MECH-111 per-claim non_contributory: Goldilocks calibration is degenerate across novelty_bonus_weight 0.1..1.0 (all 5 arms
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260530-016 -- EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked_pending_substrate | **Priority:** 50
+- **Gap(s):** infant_substrate:GAP-14
+- **Owner EXQ:** V3-EXQ-591
+- **Why now:** 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirme
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260530-016
+Title: EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
+Lane: experiment | Skill: /queue-experiment
+Status: blocked_pending_substrate
+Gap(s): infant_substrate:GAP-14
+Owner EXQ: V3-EXQ-591
+Claims: DEV-NEED-008, ARC-046
+Why now: 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirme
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260530-005 -- MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58
 - **Gap(s):** arc_062_rule_apprehension:GAP-J
-- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
+- **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]
 - **Why now:** Plan gap blocked on arc_062_rule_apprehension.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1116,7 +1197,7 @@ Lane: plan | Skill: (plan reconcile)
 Status: blocked
 Gap(s): arc_062_rule_apprehension:GAP-J
 Claims: MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d
-Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
+Blocked by: arc_062_rule_apprehension:GAP-B [blocked_pending_substrate]
 Why now: Plan gap blocked on arc_062_rule_apprehension.
 
 Instructions:
@@ -1149,87 +1230,6 @@ Why now: Plan gap blocked on commitment_closure.
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260530-014 -- EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 58
-- **Gap(s):** infant_substrate:GAP-11
-- **Owner EXQ:** V3-EXQ-588b
-- **Why now:** V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260530-014
-Title: EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison
-Lane: experiment | Skill: /queue-experiment
-Status: blocked
-Gap(s): infant_substrate:GAP-11
-Owner EXQ: V3-EXQ-588b
-Claims: DEV-NEED-006, MECH-189
-Why now: V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b go
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260530-015 -- EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 58
-- **Gap(s):** infant_substrate:GAP-13
-- **Owner EXQ:** V3-EXQ-590
-- **Why now:** Plan gap blocked on infant_substrate.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260530-015
-Title: EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
-Lane: experiment | Skill: /queue-experiment
-Status: blocked
-Gap(s): infant_substrate:GAP-13
-Owner EXQ: V3-EXQ-590
-Claims: DEV-NEED-003, MECH-314
-Why now: Plan gap blocked on infant_substrate.
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260530-016 -- EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 58
-- **Gap(s):** infant_substrate:GAP-14
-- **Owner EXQ:** V3-EXQ-591
-- **Why now:** 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirme
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260530-016
-Title: EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
-Lane: experiment | Skill: /queue-experiment
-Status: blocked
-Gap(s): infant_substrate:GAP-14
-Owner EXQ: V3-EXQ-591
-Claims: DEV-NEED-008, ARC-046
-Why now: 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirme
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
