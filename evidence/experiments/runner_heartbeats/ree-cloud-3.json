@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-30T00:28:53Z",
+  "last_tick_utc": "2026-05-30T00:29:59Z",
   "state": "running",
   "current_exq": "V3-EXQ-592c",
   "current_exq_started_utc": "2026-05-29T22:46:21.348849+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 43 / ARM_0_GATED",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 80,
+    "episodes_done": 120,
     "episodes_total": 400,
-    "overall_pct": 57.0
+    "overall_pct": 57.6
   },
-  "seconds_elapsed": 6152,
-  "seconds_remaining": 4641,
+  "seconds_elapsed": 6218,
+  "seconds_remaining": 4577,
   "recent_lines": [
-    "[seed=42] ARM_1_GATED_FORCED_READY: n_admitted=0 n_blocked=20 last_margin=0.0037 committed_steps=2675 admit_fired=False",
-    "Seed 43 Condition ARM_0_GATED",
     "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True",
     "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/400  rv=0.00000  reward=-0.1135"
+    "[P0 train] ep 80/400  rv=0.00000  reward=-0.1135",
+    "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120."
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
