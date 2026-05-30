@@ -211,6 +211,33 @@ def _claim_retest_ids() -> set[str]:
     return out
 
 
+def _queued_retest_coverage(queue_items: list[dict]) -> dict[str, str]:
+    """claim_id -> queue_id mapping for claims covered by any queue entry.
+
+    Any item still in ree-v3/experiment_queue.json (pending or claimed) that
+    names a claim in its claim_ids field is treated as a queued retest for
+    that claim. The retest IGW loop suppresses pending_retest_after_substrate
+    claims that already have a queued retest, matching the operator mental
+    model that a queued retest needs no human action until completion.
+
+    Returns the first matching queue_id per claim (queue order). If multiple
+    queue entries cover the same claim, only the earliest is reported in the
+    map; suppression applies regardless.
+    """
+    out: dict[str, str] = {}
+    for item in queue_items:
+        if not isinstance(item, dict):
+            continue
+        qid = item.get("queue_id") or ""
+        if not qid:
+            continue
+        for cid in item.get("claim_ids") or []:
+            cid_s = str(cid)
+            if cid_s and cid_s not in out:
+                out[cid_s] = str(qid)
+    return out
+
+
 _SUBSTRATE_RESOLVED_STATUSES = {
     "implemented", "done", "complete", "phase_2_implemented", "phase_3_implemented",
 }
@@ -905,7 +932,12 @@ def build_workset() -> dict:
             unblocks=[],
         )
 
-    retest = sorted(_claim_retest_ids())
+    retest_all = sorted(_claim_retest_ids())
+    queued_coverage = _queued_retest_coverage(queue_items)
+    auto_absorbed_retests: dict[str, str] = {
+        cid: queued_coverage[cid] for cid in retest_all if cid in queued_coverage
+    }
+    retest = [cid for cid in retest_all if cid not in queued_coverage]
     for cid in retest[:10]:
         blocker_strs, structured_blockers = _retest_blockers(cid, substrate_by_id)
         status = "blocked" if blocker_strs else "ready"
@@ -1034,6 +1066,7 @@ def build_workset() -> dict:
         "pending_review_count": pr,
         "queue_pending": len(pending_q),
         "live_exqs": sorted(live.keys()),
+        "auto_absorbed_retests": auto_absorbed_retests,
     }
 
     return {
@@ -1080,6 +1113,13 @@ def write_markdown(data: dict) -> str:
     ]
     if data["summary"].get("live_exqs"):
         lines.append("- Live EXQs: " + ", ".join(data["summary"]["live_exqs"][:8]))
+        lines.append("")
+    absorbed = data["summary"].get("auto_absorbed_retests") or {}
+    if absorbed:
+        absorbed_str = ", ".join(f"{cid} -> {qid}" for cid, qid in sorted(absorbed.items()))
+        lines.append(
+            f"- Auto-absorbed retests (queued, suppressed from workset): {absorbed_str}"
+        )
         lines.append("")
     lines.extend(["## Work packages", ""])
     for it in data["items"]:
