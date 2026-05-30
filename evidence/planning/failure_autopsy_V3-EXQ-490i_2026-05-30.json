@@ -1,0 +1,77 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-30T19:43:19Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_490i_mech295_cascade_gap4_tier1_20260530T184434Z_v3",
+      "queue_id": "V3-EXQ-490i",
+      "supersedes": "V3-EXQ-490h",
+      "claim_ids": ["MECH-295"],
+      "failed_criteria": ["C2_dacc_bias", "C3_lift_vs_baseline"],
+      "passed_criteria": ["C1_cue_fires", "C3_approach_commit", "C4_goal_active"],
+      "failed_criterion_class": "composite_absolute_and_discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete_mech295_partial_sd032b_dacc_bundle_routing",
+        "environment": "adequate",
+        "measurement": "inadequate_c3_lift_metric_contaminated_by_z_goal_enabled_baseline",
+        "integration": "partial_dacc_bundle_dormant_at_validation_surface",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "nacc_shell_hedonic_hotspot_plus_ventral_pallidum_plus_ofc_pleasure_coding",
+        "dependencies": ["SD-012", "SD-014", "SD-015", "SD-016", "MECH-117", "ARC-036"],
+        "is_formal_import": false,
+        "divergence": "none -- biology supports the architecture; observed sign-test pattern is the biology's prediction",
+        "lit_status": "present",
+        "lit_pull": "evidence/literature/targeted_review_mech295_liking_approach_bridge/SYNTHESIS.md"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "narrow_supports",
+      "recommended_evidence_quality_note": "V3-EXQ-490i (GAP-4 Tier-1 retest on rebuilt library, post 490g-cohort autopsy Fork A): bridge fires cleanly in ARM_1 (cue 4-12 / write 4-40 across seeds 42/7/19) with approach_commit_rate=1.0 in 3/3 seeds vs ARM_0 approach_commit_rate=0.0 in 3/3. The MECH-295 architectural prediction registered as the primary falsifiable test (bridge intact -> approach recovers; bridge severed -> collapses) is met in the sign direction across all seeds. The manifest's evidence_direction=weakens rolls up a test-design contamination on C3_lift_vs_baseline (the chosen substrate-side proxy is goal_norm_peak ARM_1 - ARM_0, but ARM_0 has z_goal_enabled=True and accumulates a goal-norm baseline the metric assumes is zero -- seed-7 ARM_0 spikes to 12.49) and a separate C2 dACC wiring gap (dacc_bias_nonzero_steps=0 across all ARM_1 seeds despite cfg.use_dacc=True -- bundle never reaches _last_bundle population path). Neither failure component falsifies MECH-295. Autopsy upgrade: evidence_direction_per_claim[MECH-295] = narrow_supports. Routing: (a) /queue-experiment for a V3-EXQ-490j successor with a true z_goal_enabled=False severed-bridge baseline and a direct bridge-magnitude probe replacing the contaminated goal_norm_peak delta; (b) separate /diagnose-errors on the SD-032b dACC bundle -> E3 score_bias propagation. See evidence/planning/failure_autopsy_V3-EXQ-490i_2026-05-30.{md,json}.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Substrate operative -- MECH-295 bridge fires (cue + write) in ARM_1 across all seeds and primary behavioural sign-test passes. C2 dACC wiring gap is on SD-032b consumer pathway, not a substrate-design gap; goes to /diagnose-errors rather than /implement-substrate. C3_lift_vs_baseline failure is metric-design contamination, not substrate inadequacy; goes to /queue-experiment for 490j probe redesign."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_rationale": "One experimental pair under one env config; broader retest comes with V3-EXQ-490j on a non-contaminated baseline arm.",
+      "learning_extracted": [
+        "The pre-registered interpretation grid did not anticipate composite-FAIL cells (C2=False AND C3_lift=False simultaneously); future Tier-1 grids should cover composite cells, not just single-criterion-FAIL rows.",
+        "Substrate-side proxy metrics that subtract two arms must guarantee the baseline arm is zero on the measured channel. ARM_0 legacy_collapsed (z_goal_enabled=True, drive_floor=0) does NOT zero the goal_norm_peak channel -- only z_goal_enabled=False is the clean severed-bridge baseline for MECH-295.",
+        "The MECH-295 architectural prediction registered as the primary falsifiable test is the behavioural sign-test (approach_commit_rate); the substrate-side proxy was added as an auxiliary cross-claim-comparable metric and inherits the baseline-contamination risk.",
+        "dACC bundle _last_bundle population path under cfg.use_dacc=True is silently dormant -- same wired-but-inert signature documented under SD-037 / V3-EXQ-483d. Separate from MECH-295; orthogonal SD-032b wiring gap."
+      ],
+      "manifest_metrics_snapshot": {
+        "arm_0_legacy_collapsed": {
+          "seed_42": {"bridge_cue_fires": 0, "bridge_write_fires": 0, "dacc_bias_nonzero_steps": 0, "approach_commit_rate": 0.0, "goal_norm_peak": 0.7925, "total_eval_steps": 441},
+          "seed_7":  {"bridge_cue_fires": 0, "bridge_write_fires": 0, "dacc_bias_nonzero_steps": 0, "approach_commit_rate": 0.0, "goal_norm_peak": 12.4888, "total_eval_steps": 2000},
+          "seed_19": {"bridge_cue_fires": 0, "bridge_write_fires": 0, "dacc_bias_nonzero_steps": 0, "approach_commit_rate": 0.0, "goal_norm_peak": 0.4679, "total_eval_steps": 911}
+        },
+        "arm_1_gap4_operating": {
+          "seed_42": {"bridge_cue_fires": 6, "bridge_write_fires": 6, "dacc_bias_nonzero_steps": 0, "approach_commit_rate": 1.0, "goal_norm_peak": 0.2261, "total_eval_steps": 1379},
+          "seed_7":  {"bridge_cue_fires": 4, "bridge_write_fires": 4, "dacc_bias_nonzero_steps": 0, "approach_commit_rate": 1.0, "goal_norm_peak": 0.0919, "total_eval_steps": 59},
+          "seed_19": {"bridge_cue_fires": 12, "bridge_write_fires": 40, "dacc_bias_nonzero_steps": 0, "approach_commit_rate": 1.0, "goal_norm_peak": 0.2958, "total_eval_steps": 793}
+        }
+      },
+      "routing": ["queue-experiment", "diagnose-errors"],
+      "routing_detail": {
+        "queue-experiment": "V3-EXQ-490j successor: true severed-bridge baseline arm (z_goal_enabled=False, NOT drive_floor=0); direct bridge-magnitude probe (cue_fires + write_fires + per-tick anticipatory liking write magnitude) replacing contaminated goal_norm_peak delta; consistent episode-length budget across seeds.",
+        "diagnose-errors": "Separate session targeting the SD-032b cingulate.dacc bundle -> _last_bundle -> E3 score_bias propagation path. C2 dacc_bias_nonzero_steps=0 across all ARM_1 seeds despite cfg.use_dacc=True. Matches the script's pre-registered FAIL-with-C2=False interpretation row."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "open_items_not_done_this_session": [
+    "claims.yaml MECH-295 evidence_quality_note write (governance applies)",
+    "manifest evidence_direction_per_claim write (governance applies)",
+    "V3-EXQ-490j queue + script (separate /queue-experiment session)",
+    "C2 dACC wiring diagnosis (separate /diagnose-errors session)",
+    "substrate_queue.json (no edit -- no substrate amendment)",
+    "review_tracker.json (governance applies on 490i review marking)"
+  ]
+}
