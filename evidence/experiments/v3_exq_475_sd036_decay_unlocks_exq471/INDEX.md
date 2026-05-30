@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_475_sd036_decay_unlocks_exq471
 
-Generated: `2026-05-30T18:12:38.823861Z`
+Generated: `2026-05-30T18:24:26.204189Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

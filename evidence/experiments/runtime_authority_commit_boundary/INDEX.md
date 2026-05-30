@@ -1,6 +1,6 @@
 # Experiment Index: runtime_authority_commit_boundary
 
-Generated: `2026-05-30T18:12:38.823861Z`
+Generated: `2026-05-30T18:24:26.204189Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1091,12 +1091,12 @@
     },
     "MECH-302": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "v3_pending=true; high conflict_ratio=0.857 noted but gated by v3_pending -- no status change. Hold until V3 substrate experiments clarify the mechanism.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-07T04:14:02Z"
+      "rationale": "Hold candidate; new V3-EXQ-517c PASS provides first valid behavioural evidence on rescued substrate (ARM_A 2/3 seeds PASS 160.3 events/seed; ARM_B 3/3 seeds PASS 0 events). Historical conflict ratio is substrate-ceiling artefact per autopsy. Re-evaluate next cycle.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-05-30T18:16:00Z"
     },
     "MECH-303": {
       "actor": "user",
@@ -1259,6 +1259,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Hold -- V3 substrate required before meaningful evidence can be collected",
       "timestamp_utc": "2026-05-19T21:27:25Z"
+    },
+    "MECH-341": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "v3_pending still true. The 569c PASS-after-autopsy is one supports entry; substrate behavioural validation pending V3-EXQ-569d + 569e returns. Hold until v3_pending clears post-569d/e.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-30T18:16:00Z"
     },
     "Q-006": {
       "actor": "user",
@@ -1693,7 +1702,7 @@
       "timestamp_utc": "2026-03-24T18:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-30T18:12:38.823861Z",
+  "generated_at_utc": "2026-05-30T18:24:26.204189Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

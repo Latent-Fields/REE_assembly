@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_241_sd011_dual_nociceptive_stream_poc
 
-Generated: `2026-05-30T18:12:38.823861Z`
+Generated: `2026-05-30T18:24:26.204189Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

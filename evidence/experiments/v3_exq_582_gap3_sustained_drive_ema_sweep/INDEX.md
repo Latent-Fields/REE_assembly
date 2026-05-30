@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_582_gap3_sustained_drive_ema_sweep
 
-Generated: `2026-05-30T18:12:38.823861Z`
+Generated: `2026-05-30T18:24:26.204189Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

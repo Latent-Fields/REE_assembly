@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-05-30T18:12:38.823861Z`
+Generated: `2026-05-30T18:24:26.204189Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -79,7 +79,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-293` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-294` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-295` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-302` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `MECH-302` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-304` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-307` | `candidate_substrate_landed` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-309` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -97,7 +97,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-334` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-337` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-338` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-341` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `MECH-341` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-021` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-023` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -1406,11 +1406,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `user` at `2026-05-07T04:14:02Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: v3_pending=true; high conflict_ratio=0.857 noted but gated by v3_pending -- no status change. Hold until V3 substrate experiments clarify the mechanism.
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-30T18:16:00Z`
+- Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
+- Last rationale: Hold candidate; new V3-EXQ-517c PASS provides first valid behavioural evidence on rescued substrate (ARM_A 2/3 seeds PASS 160.3 events/seed; ARM_B 3/3 seeds PASS 0 events). Historical conflict ratio is substrate-ceiling artefact per autopsy. Re-evaluate next cycle.
 
 ### MECH-304
 - Current status: `candidate`
@@ -1731,7 +1730,10 @@ Use this as the human-in-the-loop review queue.
   - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
   - What single additional experiment or literature extraction would most reduce uncertainty?
   - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
+- Decision status: `applied`
+- Last logged decision: `applied` by `user` at `2026-05-30T18:16:00Z`
+- Last selected option: Wait for V3 substrate implementation (correct path)
+- Last rationale: v3_pending still true. The 569c PASS-after-autopsy is one supports entry; substrate behavioural validation pending V3-EXQ-569d + 569e returns. Hold until v3_pending clears post-569d/e.
 
 ### Q-021
 - Current status: `open`

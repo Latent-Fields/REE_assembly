@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-30T11:49:46Z`
+Generated: `2026-05-30T18:24:38Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **53** (ready 20, in_flight 0, blocked 21)
 - Pending review: **0**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **2**
 
 - Live EXQs: V3-EXQ-483d, V3-EXQ-569b
 
@@ -187,45 +187,47 @@ Instructions:
 
 </details>
 
-### IGW-20260530-020 -- Substrate ready: MECH-302
+### IGW-20260530-020 -- Substrate VALIDATED: MECH-302 (NO-OP for /implement-substrate; downstream consumer is MECH-304 / V3-EXQ-519)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
-- **Why now:** substrate_queue ready=true
+- **Why now:** Substrate VALIDATED 2026-05-30: V3-EXQ-517c PASS (ARM_A 2/3 seeds, 160.3 events/seed; ARM_B 3/3 seeds, 0 events). v3_pending cleared. Gate (c) for MECH-304 conditioned-inhibition (V3-EXQ-519) now lifted. NO-OP for /implement-substrate this cycle -- substrate already in code + tested. Downstream consumer work: V3-EXQ-519 conditioned-inhibition for MECH-304 (the V3-EXQ-519 queue entry should be confirmed live; if not queued, /queue-experiment is the right routing, NOT /implement-substrate).
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260530-020
-Title: Substrate ready: MECH-302
+Title: Substrate VALIDATED: MECH-302 (NO-OP for /implement-substrate; downstream consumer is MECH-304 / V3-EXQ-519)
 Lane: substrate | Skill: /implement-substrate
 Status: ready
 Claims: MECH-302, MECH-303
-Why now: substrate_queue ready=true
+Why now: Substrate VALIDATED 2026-05-30: V3-EXQ-517c PASS (ARM_A 2/3 seeds, 160.3 events/seed; ARM_B 3/3 seeds, 0 events). v3_pending cleared. Gate (c) for MECH-304 conditioned-inhibition (V3-EXQ-519) now lifted. NO-OP for /implement-substrate this cycle -- substrate already in code + tested. Downstream consumer work: V3-EXQ-519 conditioned-inhibition for MECH-304 (the V3-EXQ-519 queue entry should be confirmed live; if not queued, /queue-experiment is the right routing, NOT /implement-substrate).
 
 Instructions:
-- Use /implement-substrate for the SD/MECH named in title.
+- Substrate is already implemented + validated. NO-OP for /implement-substrate.
+- If a downstream behavioural validation or consumer experiment is named in why_now, route to /queue-experiment instead.
 - Workset: http://localhost:8000/workset
 ```
 
 </details>
 
-### IGW-20260530-021 -- Substrate ready: MECH-341
+### IGW-20260530-021 -- Substrate retune_validated: MECH-341 (awaiting V3-EXQ-569d + 569e behavioural returns; NO-OP for /implement-substrate)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25
-- **Why now:** See ree-v3/ree_core/predictors/e3_score_diversity.py + REEConfig.e3_diversity_entropy_bias_scale + REEConfig.e3_diversity_min_classes_for_stratification. The retune is parameter-only; module surface a
+- **Why now:** Substrate retune_validated 2026-05-29 (V3-EXQ-611c PASS); module landed at ree-v3/ree_core/predictors/e3_score_diversity.py. Behavioural validation V3-EXQ-569c FAILed C1 borderline 2026-05-30 (autopsy applied today: C1 floor calibration miss; ON arms 3x bit-identical noise but below 0.05 floor; C3 ~2.4x matched-noise control). Two parallel successors live in queue: V3-EXQ-569d (floor-recalibrated falsifier; priority 310) + V3-EXQ-569e (Pathway A vs B mechanism probe; priority 305). NO-OP for /implement-substrate this cycle -- substrate is in code; awaiting 569d/569e behavioural returns.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260530-021
-Title: Substrate ready: MECH-341
+Title: Substrate retune_validated: MECH-341 (awaiting V3-EXQ-569d + 569e behavioural returns; NO-OP for /implement-substrate)
 Lane: substrate | Skill: /implement-substrate
 Status: ready
 Claims: MECH-341
-Why now: See ree-v3/ree_core/predictors/e3_score_diversity.py + REEConfig.e3_diversity_entropy_bias_scale + REEConfig.e3_diversity_min_classes_for_stratification. The retune is parameter-only; module surface a
+Why now: Substrate retune_validated 2026-05-29 (V3-EXQ-611c PASS); module landed at ree-v3/ree_core/predictors/e3_score_diversity.py. Behavioural validation V3-EXQ-569c FAILed C1 borderline 2026-05-30 (autopsy applied today: C1 floor calibration miss; ON arms 3x bit-identical noise but below 0.05 floor; C3 ~2.4x matched-noise control). Two parallel successors live in queue: V3-EXQ-569d (floor-recalibrated falsifier; priority 310) + V3-EXQ-569e (Pathway A vs B mechanism probe; priority 305). NO-OP for /implement-substrate this cycle -- substrate is in code; awaiting 569d/569e behavioural returns.
 
 Instructions:
-- Use /implement-substrate for the SD/MECH named in title.
+- Substrate is already implemented + validated. NO-OP for /implement-substrate.
+- If a downstream behavioural validation or consumer experiment is named in why_now, route to /queue-experiment instead.
 - Workset: http://localhost:8000/workset
 ```
 
@@ -694,7 +696,7 @@ Instructions:
 
 </details>
 
-### IGW-20260530-023 -- Queue depth low (1 pending)
+### IGW-20260530-023 -- Queue depth low (2 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -703,7 +705,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260530-023
-Title: Queue depth low (1 pending)
+Title: Queue depth low (2 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
