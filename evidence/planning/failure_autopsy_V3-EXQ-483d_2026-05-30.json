@@ -1,0 +1,86 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-30T05:46:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
+      "queue_id": "V3-EXQ-483d",
+      "supersedes": "V3-EXQ-483c",
+      "claim_ids": ["SD-037", "MECH-280", "MECH-281"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C3_lift_vs_baseline (lifts=1/3 seeds; needs >=2). C1, C2, C3_approach_commit, C4 all PASS at top-level.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- test cannot express the claim (env does not engage PAG freeze; SalienceCoordinator off; sleep onset gating off; only goal-seeding-gain path is live)",
+        "biological_reference": "clear -- orexin multi-target broadcast; biology predicts behavioural divergence only when consumer targets are engaged",
+        "prerequisites": "partially missing -- SalienceCoordinator not enabled; PAG-engaging env condition absent; PFC/BLA/beta-gate consumers deferred (per MECH-281 implementation_note); MECH-286 wired but not enabled in ARM config",
+        "implementation": "partial -- single-channel consumer wiring (goal-seeding-gain only)",
+        "environment": "wrong pressures -- fishtank standard env does not generate sustained threat / drive saturation that recruits override with behavioural lever",
+        "measurement": "under-instrumented -- goal_norm_peak dominated by SD-012 + MECH-295 bridge contributions to effective_drive",
+        "integration": "partially coupled but inert -- regulator-to-consumer wiring effectively single-channel; live channel is downstream of MECH-295 which already pegs approach_commit at 1.0",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LH orexin / hypocretin multi-target broadcast (PAG escape-from-freeze, NAc / VTA motivational gain, BLA / CeA affective salience, mPFC deliberative bias, LC arousal)",
+        "dependencies": [
+          "target system in gate-engaged state (PAG in freeze for alpha_override scaling to matter)",
+          "downstream consumers wired and listening",
+          "sustained-load env recruiting orexin at behaviourally-relevant magnitude"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE substrate is a faithful translation of the multi-target architectural commitment; failure shape resembles biology of orexin firing into disengaged targets -- not a falsification of the broadcast itself",
+        "lit_status": "present",
+        "lit_anchor": "evidence/literature/targeted_review_orexin_kinetics/synthesis.md (Mileykovskiy 2005, Lee 2005, Karnani 2020, Johnson 2012, Carter 2009)"
+      },
+      "load_bearing_observation": "Within each seed, action_counts and goal_norm_peak are BIT-IDENTICAL across the broadcast_override axis (OFF_OFF vs OFF_ON; ON_OFF vs ON_ON). override_signal_nonzero_steps saturates at total step count in every ON arm (regulator fires correctly). dacc_bias_nonzero_steps = 0 across all 12 runs. approach_commit_rate = 1.0 in every run (MECH-295 bridge dominates).",
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction_per_claim": {
+        "SD-037": "non_contributory",
+        "MECH-280": "non_contributory",
+        "MECH-281": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "EXQ-483d (supersedes 483c). Substrate fires correctly: override_signal_nonzero_steps saturates at total step count in every OFF_ON / ON_ON seed (C2 cleanly PASS). However action_counts and goal_norm_peak are bit-identical across the broadcast_override axis within each seed (OFF_OFF vs OFF_ON; ON_OFF vs ON_ON), and C3_lift_vs_baseline fails (lifts=1/3). MECH-295 bridge dominates effective_drive at the goal-seeding site; PAG-freeze and SalienceCoordinator consumer pathways are dormant in this env / config. Substrate-ceiling: SD-037 wired but inert at the validation surface. Closes the SD-037 substrate_queue's pre-existing prediction (\"if still flat, blocker is upstream of SD-037, not override wiring\"). Hold pending consumer-cascade substrate work (SalienceCoordinator enable + PAG-engaging env condition + PFC/BLA/beta-gate consumers per MECH-281 implementation_note). Pair with pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-037",
+        "title": "broadcast.override_regulator -- consumer cascade",
+        "implementation_hint": "Existing SD-037 substrate_queue entry is already implementation_status=implemented. Append a failure_record_entry to metric_trajectory.observations. Update current_blocker to: 'EXQ-483d closes the pre-existing prediction: with MECH-295 bridge dominating effective_drive and PAG-freeze / SalienceCoordinator dormant in fishtank env, single-channel goal-seeding-gain consumer cannot produce C3_lift_vs_baseline. Consumer-cascade substrate work required: (a) PAG-engaging env condition (sustained-threat curriculum); (b) use_salience_coordinator=True in validation config; (c) PFC/BLA/beta-gate consumer wiring per MECH-281 implementation_note.' Update prediction to reflect this closure.",
+        "unblocks_claims": ["MECH-280", "MECH-281", "SD-037"],
+        "depends_on_unresolved": [
+          "PAG-engaging env condition (SD-036 + MECH-279 freeze-engaging substrate already landed via V3-EXQ-475 path; env recipe needed)",
+          "use_salience_coordinator=True in ARM config (substrate landed; config-level enablement)",
+          "PFC/BLA/beta-gate consumer wiring for override_signal (MECH-281 implementation_note; partial-landing follow-on)"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
+          "experiment_type": "v3_exq_483d_sd037_broadcast_gap4_override_signal",
+          "date_utc": "2026-05-29",
+          "substrate_state": "SD-037 landed 2026-04-25; MECH-282 LPB + MECH-286 sleep onset landed 2026-05-21; consumer cascade (SalienceCoordinator enable + PAG-engaging env + PFC/BLA/beta-gate consumers) NOT engaged in this ARM config",
+          "metric_value": "C2 override_signal saturated in all ON arms (PASS); C3_lift_vs_baseline lifts=1/3 (FAIL); action_counts and goal_norm_peak bit-identical across broadcast_override axis within each seed",
+          "metric_notes": "Closes SD-037 substrate_queue prediction. Substrate-ceiling: wired but inert at validation surface. Routes to consumer-cascade substrate work, not to redesigned EXQ on same surface."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "SD-037 wired-but-inert pattern confirmed at validation surface: regulator fires (C2 saturated) but produces zero behavioural lever in this env / config.",
+        "MECH-295 bridge dominates effective_drive at the goal-seeding site, so override amplification at this site cannot produce a discriminative goal_norm_peak lift against the bridge baseline.",
+        "Override needs an additional live consumer pathway (PAG exit-threshold under freeze, SalienceCoordinator mode reweight, or PFC/BLA bias) to deliver a behavioural lever.",
+        "SD-037 substrate_queue's prediction field captured exactly this outcome ahead of the run -- substrate-queue metric_trajectory observation infrastructure worked as designed.",
+        "Env adequacy gap is real: a sustained-threat env that engages PAG freeze is a substrate prerequisite for any future override behavioural test."
+      ],
+      "routing": "implement-substrate",
+      "cluster_context_reference_only": "EXQ-483/483a/483b/483c/483d chain. MECH-281 evidence_quality_note already supersedes 483/483a/483b/490-cohort. 483c FAILed on C2 measurement bug; 483d fixed C2 and exposes fresh C3_lift_vs_baseline failure with wired-but-inert shape. Per user direction (single scope), closed superseded manifests are not re-opened here."
+    }
+  ],
+  "out_of_scope_redirects": [
+    {
+      "queue_id": "V3-EXQ-612b",
+      "outcome": "ERROR",
+      "routing": "diagnose-errors",
+      "note": "ERROR / crash routes to /diagnose-errors, not /failure-autopsy."
+    }
+  ]
+}
