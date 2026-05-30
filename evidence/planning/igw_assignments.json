@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-30T18:49:20Z",
+  "generated_at": "2026-05-30T18:55:38Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -854,6 +854,52 @@
         "priority": 28,
         "claim_ids": [
           "MECH-334"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260530T185445Z-0dd24272-claude_local",
+      "stable_hash": "0dd242720ce4",
+      "igw_id_at_assign": "IGW-20260530-037",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-05-30T18:54:45Z",
+      "released_at": "2026-05-30T18:54:45Z",
+      "released_by": "queue-experiment-igw-20260530-037-mech334-noop-20260530T185234Z",
+      "released_reason": "NO-OP close: V3-EXQ-610a already covers MECH-334 in claim_ids; ERRORed on ree-cloud-3 2026-05-29T22:44:20Z (no manifest); MECH-334-specific successor is IGW-049 EXP-0009 proposal-driven scope, not this chip.",
+      "released_event_for": "asn-20260530T184920Z-0dd24272-claude_local",
+      "note": "Spawned as chip per user request 2026-05-30T18:49Z from interactive workset review session.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-334",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-334"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260530T185538Z-d73434c4-claude_local",
+      "stable_hash": "d73434c4d81b",
+      "igw_id_at_assign": "IGW-20260530-029",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-05-30T18:55:38Z",
+      "released_at": "2026-05-30T18:55:38Z",
+      "released_by": "queue-experiment-igw-029-mech262-blocked-substrate-20260530T185146Z",
+      "released_reason": "blocked_substrate: rule-creator/discriminator substrate not landed (not named as SD/MECH in claims.yaml or substrate_queue.json; no design doc) -- same blocker pattern as IGW-035 SD-054 NO-OP 2026-05-29T15:56Z. Autopsy retest gates also unmet: (a) ARC-062 GAP-B no contributory PASS yet (V3-EXQ-569c FAIL 2026-05-30 implicates GAP-B/MECH-341); (b) ARC-046 goal-pipeline/training-regime still pending_implementation. No new EXQ queued.",
+      "released_event_for": "asn-20260530T184920Z-d73434c4-claude_local",
+      "note": "Spawned as chip per user request 2026-05-30T18:49Z from interactive workset review session.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-262",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-262"
         ]
       }
     }
