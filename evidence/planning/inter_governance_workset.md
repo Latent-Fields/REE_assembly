@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-30T05:46:54Z`
+Generated: `2026-05-30T06:37:55Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -490,7 +490,7 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
 - **Gap(s):** behavioral_diversity_isolation:GAP-B
-- **Owner EXQ:** V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611b retune validation queued 2026-05-28T17:25Z (claimed DLAPTOP-4.local @17:26:40Z, 6-arm factorial); B_only / ablate_B / ALL_ON behavioural falsifier TBD
+- **Owner EXQ:** V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 B_only / ablate_B / ALL_ON behavioural falsifier next (script exists at ree-v3/experiments/v3_exq_614_mech341_p3_behavioural_falsifier_3arm.py, 3 arms x 3 seeds x P0=30 + P1=60, claim_ids=[MECH-341, ARC-065], purpose=evidence; queue via /queue-experiment)
 - **Why now:** V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -501,7 +501,7 @@ Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
 Gap(s): behavioral_diversity_isolation:GAP-B
-Owner EXQ: V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611b retune validation queued 2026-05-28T17:25Z (claimed DLAPTOP-4.local @17:26:40Z, 6-arm factorial); B_only / ablate_B / ALL_ON behavioural falsifier TBD
+Owner EXQ: V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 B_only / ablate_B / ALL_ON behavioural falsifier next (script exists at ree-v3/experiments/v3_exq_614_mech341_p3_behavioural_falsifier_3arm.py, 3 arms x 3 seeds x P0=30 + P1=60, claim_ids=[MECH-341, ARC-065], purpose=evidence; queue via /queue-experiment)
 Claims: MECH-341, ARC-062, ARC-065
 Why now: V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
 
@@ -772,8 +772,8 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** goal_pipeline:GAP-4
-- **Owner EXQ:** V3-EXQ-490g
-- **Why now:** GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 524a) active; V3-EXQ-483c ran 2026-05-23 FAIL non_contributory (measurement gap: 
+- **Owner EXQ:** V3-EXQ-490g (FAIL 2026-05-29 cohort autopsy); V3-EXQ-490h FAIL silent-drop 2026-05-30 (runner bug 41c3411); V3-EXQ-490i queued 2026-05-30
+- **Why now:** <!-- TODO: revise resume_condition to reflect V3-EXQ-490h silent-drop + V3-EXQ-490i re-queue state --> GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -783,9 +783,9 @@ Title: MECH-295 drive->liking->approach cascade Tier-1 retest cohort
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
 Gap(s): goal_pipeline:GAP-4
-Owner EXQ: V3-EXQ-490g
+Owner EXQ: V3-EXQ-490g (FAIL 2026-05-29 cohort autopsy); V3-EXQ-490h FAIL silent-drop 2026-05-30 (runner bug 41c3411); V3-EXQ-490i queued 2026-05-30
 Claims: MECH-295, ARC-030, MECH-117, Q-040
-Why now: GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 524a) active; V3-EXQ-483c ran 2026-05-23 FAIL non_contributory (measurement gap: 
+Why now: <!-- TODO: revise resume_condition to reflect V3-EXQ-490h silent-drop + V3-EXQ-490i re-queue state --> GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -1015,7 +1015,7 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 50
 - **Gap(s):** arc_062_rule_apprehension:GAP-H
-- **Owner EXQ:** V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29
+- **Owner EXQ:** V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30
 - **Blocked by:** arc_062_rule_apprehension:GAP-B [blocked]
 - **Why now:** <!-- TODO: revise resume_condition to reflect V3-EXQ-544a state --> V3-EXQ-604/605 manifests landed FAIL non_contributory (identical arm entropies under SP-CEM+reef). V3-EXQ-603 pruned without run (was re-queued 2026-05-21T13:36Z but draine
 
@@ -1027,7 +1027,7 @@ Title: ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates land
 Lane: experiment | Skill: /queue-experiment
 Status: partial
 Gap(s): arc_062_rule_apprehension:GAP-H
-Owner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29
+Owner EXQ: V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30
 Claims: ARC-065, Q-043, Q-044, Q-045
 Blocked by: arc_062_rule_apprehension:GAP-B [blocked]
 Why now: <!-- TODO: revise resume_condition to reflect V3-EXQ-544a state --> V3-EXQ-604/605 manifests landed FAIL non_contributory (identical arm entropies under SP-CEM+reef). V3-EXQ-603 pruned without run (was re-queued 2026-05-21T13:36Z but draine
@@ -1102,8 +1102,8 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked_pending_substrate | **Priority:** 50
 - **Gap(s):** behavioral_diversity_isolation:GAP-A
-- **Owner EXQ:** V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; FP-2 falsifier blocked on E2-world-forward per-candidate signal collapse
-- **Why now:** V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path). V3-EXQ-569 matched-entropy sweep ran 2026-05-16 and was reclassified non_contribu
+- **Owner EXQ:** V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; FP-2 falsifier blocked on E2-world-forward per-candidate signal collapse; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30
+- **Why now:** <!-- TODO: revise resume_condition to reflect V3-EXQ-544a + V3-EXQ-569c state --> V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path).
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -1113,9 +1113,9 @@ Title: Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 
 Lane: experiment | Skill: /queue-experiment
 Status: blocked_pending_substrate
 Gap(s): behavioral_diversity_isolation:GAP-A
-Owner EXQ: V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; FP-2 falsifier blocked on E2-world-forward per-candidate signal collapse
+Owner EXQ: V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; FP-2 falsifier blocked on E2-world-forward per-candidate signal collapse; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30
 Claims: ARC-065
-Why now: V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path). V3-EXQ-569 matched-entropy sweep ran 2026-05-16 and was reclassified non_contribu
+Why now: <!-- TODO: revise resume_condition to reflect V3-EXQ-544a + V3-EXQ-569c state --> V3-EXQ-567 PASS 2026-05-15 lifts selected_action_entropy 0.012->0.497 and candidate support 1.007->2.810 (ARC-065 SP-CEM child substrate validated main-path).
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
