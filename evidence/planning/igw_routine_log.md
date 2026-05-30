@@ -20,3 +20,10 @@ One line per hourly tick. ASCII only.
 2026-05-30T09:08:17Z skip IGW-20260530-036: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-05-30T10:08:19Z skip IGW-20260530-036: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-05-30T11:08:22Z skip IGW-20260530-036: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-05-30T13:09:17Z SPAWN IGW-20260530-020 skill=/implement-substrate prio=25 uuid=2de39d78-e892-4436-8cac-ac0878564e41 pid=54011 worktree=igw-020-substrate-ready-mech-302
+2026-05-30T14:10:25Z SPAWN IGW-20260530-020 skill=/implement-substrate prio=25 uuid=a250152c-8460-4bb0-9fad-7aef7eba9086 pid=66489 worktree=igw-020-substrate-ready-mech-302
+2026-05-30T15:11:28Z SPAWN IGW-20260530-020 skill=/implement-substrate prio=25 uuid=43badd82-f4ab-4b0c-9d8f-b662768e79c2 pid=77868 worktree=igw-020-substrate-ready-mech-302
+2026-05-30T16:12:34Z SPAWN IGW-20260530-020 skill=/implement-substrate prio=25 uuid=4cd18dc0-327b-4166-8b8a-fd5bf1812f65 pid=89606 worktree=igw-020-substrate-ready-mech-302
+2026-05-30T17:13:38Z SPAWN IGW-20260530-021 skill=/implement-substrate prio=25 uuid=058289f8-5e78-4bc6-94ef-3e152b3d9837 pid=5503 worktree=igw-021-substrate-ready-mech-302
+2026-05-30T18:14:37Z SPAWN IGW-20260530-023 skill=/implement-substrate prio=25 uuid=2437b3fa-b445-4459-888f-8b4e51745271 pid=28901 worktree=igw-023-substrate-ready-mech-302
+2026-05-30T18:19:01Z disposition IGW-20260530-023 hash=994434ce5e5b decision=NO-OP: MECH-302 and MECH-303 already have substrate implementations (SD-050 SufferingDerivativeComparator and SD-052 contextual passive safety) with v3_pending=false and V3-EXQ-517c PASS evidence. Skill /implement-substrate does not exist and is not needed. This IGW item has been spawning hourly since IGW-20260530-020 (13:09Z) due to incorrect workset generation flagging implemented claims as needing substrate work. Recommend investigating workset generation logic to prevent future spurious substrate-lane assignments for claims with existing substrate + v3_pending=false.
