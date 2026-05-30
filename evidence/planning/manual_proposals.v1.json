@@ -1209,6 +1209,38 @@
       ],
       "notes": "First validation step for MECH-320 (ARC-066 child). Behavioural validation (3-arm discriminative pair: baseline / additive / multiplicative) is a separate downstream proposal once substrate-readiness lands. The discriminative pair runs on a well-fed-safe-familiar environment substrate (suitable candidate: SD-054 reef in well-fed-safe regime) -- predicted: ARM_0 baseline = inert at MECH-313 noise floor; ARM_1 additive = action density rises monotonically with v_t; ARM_2 multiplicative = action-vs-no-op gap scales differentially with pre-existing action preference. R3 verdict (lit-pull synthesis) recommends additive as primary; this experiment chooses which lands.",
       "lit_anchor": "evidence/literature/targeted_review_arc_066_tonic_vigor/synthesis.md (R3 + R4 verdicts)"
+    },
+    {
+      "proposal_id": "EXP-0175",
+      "claim_id": "SD-032a",
+      "claims_tested": [
+        "SD-032a",
+        "MECH-259",
+        "MECH-261"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "dispatch_mode": "discriminative_pair",
+      "status": "gated",
+      "added_utc": "2026-05-30",
+      "queue_id_reserved": "V3-EXQ-455b",
+      "predecessor_queue_id": "V3-EXQ-455a",
+      "predecessor_disposition": "NO-OP close 2026-05-30 (intentional NotImplementedError gate in planning-stub script ree-v3/experiments/v3_exq_455a_sd032a_salience_with_vs.py; runner ERROR 2026-04-23T23:23:46Z, 0.047s; REE_Working commit 68b22a2; see WORKSPACE_STATE.md 2026-05-30T07:33Z entry)",
+      "machine_affinity": "any",
+      "estimated_minutes": 120,
+      "objective": "Re-evaluate whether the SD-032a salience-coordinator behavioural-validation question (does the coordinator add coherent policy-level structure on top of V_s diversity, or is V_s sufficient on its own?) still has unanswered substrate-distinct content after V3-EXQ-614a (MECH-341 3-arm behavioural falsifier) and V3-EXQ-483e (SD-037 consumer-cascade validation) manifests land. If yes -> queue V3-EXQ-455b via /queue-experiment with a fresh design pass against the current substrate stack (claim_ids re-evaluated; ARM design probably no longer the original V_s-flags-ON vs OFF since V_s flags are now main-path defaults). If no -> close as superseded_by_cluster and document the absorption in WORKSPACE_STATE.md without queueing.",
+      "design": "DEFERRED -- do not pre-author. The original V3-EXQ-455a Full-implementation TODO is now stale (V_s flags landed as main-path defaults; SD-037 + consumer-cascade landed and being validated). Re-design when gate clears, against the substrate state at that moment.",
+      "release_condition": "BOTH (a) V3-EXQ-614a manifest on REE_assembly/origin/master + reviewed in /governance, AND (b) V3-EXQ-483e manifest on REE_assembly/origin/master + reviewed in /governance.",
+      "blocking_gate": "V3-EXQ-614a + V3-EXQ-483e behavioural-validation manifests pending. Both queued 2026-05-30 and overlap the SD-032a-coordinator-vs-V_s-alone question from different angles (MECH-341 E3-score-diversity behavioural axis + SD-037 broadcast-override consumer-cascade behavioural axis).",
+      "interpretation_grid_on_release": [
+        "If V3-EXQ-614a PASS and V3-EXQ-483e PASS with diverse behavioural lift on the relevant arms -> SD-032a-coordinator-specific question is likely absorbed by the cluster; close EXP-0175 as superseded_by_cluster, NOT queued.",
+        "If both PASS but neither isolates a 'coordinator-mediated structure beyond V_s diversity' signal -> the SD-032a-specific question survives; queue V3-EXQ-455b via /queue-experiment with a fresh design pass (likely a 3-arm V_s_ON_coord_OFF vs V_s_ON_coord_ON vs V_s_ON_coord_ON_consumer_cascade_OFF, or similar against the matured substrate).",
+        "If 614a FAILs or 483e FAILs -> route via /failure-autopsy first; SD-032a behavioural-validation stays gated until upstream cluster resolves.",
+        "If either substrate disappears (claim demoted or retired during the wait window) -> revisit the SD-032a-specific framing; the original 'V_s sufficient on its own?' question may no longer be well-posed."
+      ],
+      "notes": "Held by /diagnose-errors V3-EXQ-455a NO-OP close 2026-05-30T07:33Z. Predecessor V3-EXQ-455a script ree-v3/experiments/v3_exq_455a_sd032a_salience_with_vs.py is a planning stub (NotImplementedError gate); its original gating reasoning (await SD-037 + post-SD-037 cascade gate) is partially obsolete now that SD-037 landed 2026-04-25 and the V_s machinery progressed through MECH-269 Phase 1-3 + MECH-284 + MECH-285 + MECH-272/273/275 + MECH-287/288 + MECH-269b symmetric-V_s-rollout-gating + MECH-341 E3-score-diversity-preservation + SD-056 E2-action-contrastive-divergence. The original 2-arm design (COORD_OFF V_s_ON vs COORD_ON V_s_ON) is also probably stale: V_s flags landed as main-path defaults so 'COORD_ON V_s_ON' is the legacy baseline now, not a treatment arm. /governance NEXT STEP: do not auto-queue; wait for the blocking_gate clearance condition; then re-evaluate per the interpretation_grid_on_release. claim_ids re-evaluation will be required at queue time -- inherited SD-032a/MECH-259/MECH-261 may not match what V3-EXQ-455b would actually test on the matured substrate (per the REE_assembly/CLAUDE.md 'claim_ids Accuracy Rule').",
+      "lit_anchor": "ree-v3/CLAUDE.md SD-032a section (SalienceCoordinator MECH-259 mode-switch trigger + MECH-261 write-gate registry); REE_assembly/docs/claims/claims.yaml SD-032a / MECH-259 / MECH-261; arc_062_rule_apprehension_plan.md (downstream context for V_s + coordinator interaction); behavioral_diversity_isolation_plan.md (overlapping behavioural-diversity thread)."
     }
   ]
 }
