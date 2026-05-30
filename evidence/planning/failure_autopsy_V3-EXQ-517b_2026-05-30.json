@@ -1,0 +1,70 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-30T08:28:45Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_517b_mech302_relief_completion_discriminative_pair_20260506T013515Z_v3",
+      "queue_id": "V3-EXQ-517b",
+      "claim_ids": ["MECH-302"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "inadequate",
+        "measurement": "adequate",
+        "integration": "coupled but unstable",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dopaminergic relief / safety signal at termination of aversive state (Tanimoto & Heisenberg 2004; Roesch / Calu / Schoenbaum 2007 ventral striatal relief firing)",
+        "dependencies": [
+          "discrete onset/offset of suffering state delivered by the env (biological references use experimenter-imposed shock; animal cannot avoid)",
+          "intact downstream commit-release pipeline (MECH-057a)",
+          "valence write path (SD-014 VALENCE_LIKING)"
+        ],
+        "is_formal_import": false,
+        "divergence": "biology fires phasically on discrete onset/offset events; REE comparator uses windowed-derivative detector which is a faithful functional translation but requires the env to deliver suffering trajectories. Trained avoidance policy in REE filters out exactly those trajectories -- a layer the biological reference does not include.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Substrate IMPLEMENTED 2026-05-04 (V3-EXQ-515 substrate-readiness PASS). Three behavioural-validation discriminative-pair attempts (V3-EXQ-517 / 517a / 517b, 2026-05-04 / 2026-05-04 / 2026-05-06) all FAILed at ARM_A C1+C2 with 0-0.33 events/seed across all parameter relaxations. 517a -> 517b doubling of episode length DECREASED ARM_A events (0.33/seed -> 0.00/seed). Failure autopsy (failure_autopsy_V3-EXQ-517b_2026-05-30) attributes the failure to substrate_ceiling at the env-policy-interaction layer: causal_grid_world_v3 plus a trained avoidance policy filters out hazard-contact -> heal sequences before the SufferingDerivativeComparator can arm. Recommended response: env-side substrate enrichment (scheduled limb-damage curriculum) modelled on SD-029 scheduled_external_hazard, then re-queue as 517c. pending_retest_after_substrate=true.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-302",
+        "failure_record_entry": {
+          "run_id": "v3_exq_517b_mech302_relief_completion_discriminative_pair_20260506T013515Z_v3",
+          "experiment_type": "v3_exq_517b_mech302_relief_completion_discriminative_pair",
+          "metric": "ARM_A p1_events 0.00/seed across 3 seeds at window=30 / threshold=0.005 / min_initial_norm=0.01 / steps_per_episode=300; predecessor 517a at 150 steps got 0.33/seed -- doubling episode length DECREASED events (substrate-ceiling: trained avoidance policy filters out hazard-contact trajectories regardless of comparator parameter tuning)",
+          "target": "ARM_A p1_events >= 3/seed; ARM_A p1_writes >= 2/seed under a scheduled-suffering env curriculum (parallel to SD-029 scheduled_external_hazard) that forces periodic limb-damage accumulation independent of agent avoidance"
+        },
+        "implementation_log_append": "substrate_ceiling diagnosis 2026-05-30 (failure_autopsy_V3-EXQ-517b): three discriminative-pair attempts (V3-EXQ-517 / 517a / 517b) FAILed because causal_grid_world_v3 + trained avoidance policy filters out the very trajectories the comparator needs. Comparator substrate-readiness validated by V3-EXQ-515 (PASS 2026-05-04) is intact; gap is on the env side. Recommended next step: env-side `scheduled_limb_damage_enabled` curriculum modelled on SD-029 `scheduled_external_hazard`, then re-queue 517c against the new env knob."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Three FAIL discriminative-pair attempts on MECH-302 with monotonically more permissive comparator parameters are not a parameter-tuning surface; doubling episode length DECREASED events (0.33/seed -> 0.00/seed) confirming the trained avoidance policy filters out hazard-contact trajectories that the comparator needs to detect relief from.",
+        "The substrate-readiness V3-EXQ-515 PASS (2026-05-04) confirms the comparator + valence-write wiring is intact; the failure is purely at the env-policy-interaction layer.",
+        "The 517a single firing (1 event across 3 seeds at 150 steps) is statistically a chance event rather than `comparator on the verge of firing`; the 517b zero-event result at 300 steps confirms this -- if it were verge-of-firing, more steps would have produced more events.",
+        "This is the same structural property as SD-029 monomodal-collapse (trained policy filters out test conditions). Discriminative pairs depending on the agent regularly experiencing suffering will continue to hit this wall until env substrate enrichment lands.",
+        "The biological reference for relief signals (Tanimoto / Heisenberg 2004; Roesch / Calu / Schoenbaum 2007) is anchored on experimenter-imposed discrete onset/offset suffering events. REE's discriminative pair must reproduce that prerequisite at the env layer."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Three discriminative-pair attempts (V3-EXQ-517 with window=5/thresh=0.05 -> 0 events; V3-EXQ-517a with window=30/thresh=0.005/min_norm=0.01 at 150 steps/episode -> 0.33 events/seed; V3-EXQ-517b with same comparator parameters at 300 steps/episode -> 0.00 events/seed). Monotonic parameter relaxation did not move ARM_A events above noise floor; doubling episode length further DECREASED events.",
+    "is_independent_bugs": false,
+    "structural_property": "causal_grid_world_v3 + trained avoidance policy + slow continuous limb-healing dynamics filter out the hazard-contact -> heal trajectories the SufferingDerivativeComparator needs to test. The 30-step window/0.005 threshold would correctly fire on a real heal trajectory; the env+policy pair never delivers one.",
+    "readings": ["substrate_ceiling_env_redesign", "scheduled_suffering_curriculum_analogous_to_SD029"]
+  },
+  "exp_proposal_closure": {
+    "proposal_id": "EXP-0029",
+    "recommended_status": "executed",
+    "recommended_note": "2026-05-30: Closed as deferred_pending_substrate_or_env_redesign. Three discriminative-pair attempts (V3-EXQ-517 / 517a / 517b) all FAILed at ARM_A C1+C2 -- the SufferingDerivativeComparator does not fire reliably on causal_grid_world_v3's slow healing dynamics regardless of window/threshold tuning. Failure autopsy: REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-517b_2026-05-30.{md,json} (routing: implement-substrate; env-side scheduled-suffering curriculum modelled on SD-029 scheduled_external_hazard required before re-issuing the discriminative pair as 517c)."
+  }
+}
