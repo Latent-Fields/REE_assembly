@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-30T11:41:56Z",
+  "last_review_utc": "2026-05-30T18:15:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -230,6 +230,7 @@
     "V3-EXQ-516",
     "V3-EXQ-517a",
     "V3-EXQ-517b",
+    "V3-EXQ-517c",
     "V3-EXQ-518",
     "V3-EXQ-521",
     "V3-EXQ-522",
@@ -261,6 +262,7 @@
     "V3-EXQ-563b",
     "V3-EXQ-564",
     "V3-EXQ-566",
+    "V3-EXQ-569c",
     "V3-EXQ-570",
     "V3-EXQ-575",
     "V3-EXQ-575a",
@@ -2593,7 +2595,9 @@
     "v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3",
     "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z",
     "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
-    "v3_exq_612_phase3_cutover_smoke_20260529T214609Z_v3"
+    "v3_exq_612_phase3_cutover_smoke_20260529T214609Z_v3",
+    "v3_exq_569c_sd056_action_contrastive_diversity_falsifier_20260530T124450Z_v3",
+    "v3_exq_517c_mech302_relief_completion_discriminative_pair_20260530T124600Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3220,6 +3224,19 @@
         "V3-EXQ-612c"
       ],
       "subject": "/governance walkthrough close of V3-EXQ-612c (ree-cloud-2 2026-05-29T21:46:09Z; v3_exq_612_phase3_cutover_smoke.py; 0.142s; PASS 3/3 criteria: C1 episodes>=20 got 20, C2 steps>=50 got 228, C3 manifest_written). Phase 3 cutover end-to-end pipeline-health smoke; claim_ids=[] -> no claim weight applied. Sibling 612d ree-cloud-3 2026-05-28T17:57Z already cleared by the V3-EXQ-612b /diagnose-errors session 06:55Z. 612c + 612d carry identical per-episode step counts (deterministic seed=612) confirming reproduction across cloud-2 and cloud-3 nodes -- the validation purpose of the cutover smoke cohort. No follow-up action; no successor needed (612 family is the smoke family for Phase 3, not a hypothesis test). Pathspec-limited commit (concurrent chips spawned earlier this session but not yet accepted will land on disjoint pathspecs)."
+    },
+    {
+      "reviewed_at_utc": "2026-05-30T18:15:00Z",
+      "session_id": "governance-20260530T180000Z",
+      "reviewed_run_ids": [
+        "v3_exq_569c_sd056_action_contrastive_diversity_falsifier_20260530T124450Z_v3",
+        "v3_exq_517c_mech302_relief_completion_discriminative_pair_20260530T124600Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-569c",
+        "V3-EXQ-517c"
+      ],
+      "subject": "/governance walkthrough -- 2 indexed + 1 runner-only ERROR (phantom of same 517c PASS). (1) V3-EXQ-569c FAIL with confirmed failure_autopsy_V3-EXQ-569c_2026-05-30 applied: manifest evidence_direction mixed -> supports, evidence_direction_per_claim {ARC-065:weakens -> supports, MECH-341:supports preserved}, autopsy evidence_quality_note copied to manifest + appended to ARC-065 + MECH-341 in claims.yaml. Routing: queue-experiment (V3-EXQ-569d + V3-EXQ-569e both queued today as parallel successors). Substrate operative; no substrate amendment. Per-claim direction upgrade based on matched-noise control clearance on C3 axis (ON arms ~2.4x ARM_4 matched-noise control on selected_action_entropy). ARC-065 + MECH-341 stay candidate / v3_pending=true pending 569d+569e returns. (2) V3-EXQ-517c PASS evidence_direction=supports: first valid behavioural discriminative-pair evidence for MECH-302 on the rescued substrate (env-curriculum amend 2026-05-30 lifted the env-policy-interaction substrate ceiling that produced 517/517a/517b FAILs). ARM_A 2/3 seeds PASS (160.3 events/seed); ARM_B 3/3 seeds PASS (0 events). v3_pending=false set by sibling IGW-021 17:16Z; appended evidence_quality_note documenting substrate-rescue context + per illusory-conflict-resolution rule, prior 517/517a/517b FAILs are NOT silently reclassified to non_contributory (they remain in the record as substrate-ceiling per failure_autopsy_V3-EXQ-517b). Gate (c) for MECH-304 lifted. (3) Runner-only V3-EXQ-517c ERROR phantom row: same queue_id as the PASS run; phantom from pre-fix SIGTERM mode (runner-side fix landed today at ree-v3 c8288f1). PASS manifest landed cleanly. V3-EXQ-517c added to discussed_experiment_dirs (covers both PASS and the phantom). Step 5b closure drift: 2 nodes flagged (self_attribution:GAP-1 V3-EXQ-445h blocked + sleep_substrate:GAP-2 V3-EXQ-265a upstream-blocked) both touched today (last_updated 2026-05-30) and legitimately non-terminal -- left as-is. Step 6 proposals: no further executed marking needed (EXP-0029/0028/0030/0037/0039/0040 all already closed by earlier sessions). Step 6a substrate_queue: MECH-302 already moved to validated by IGW-021 17:16Z."
     }
   ]
 }

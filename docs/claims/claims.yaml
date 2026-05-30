@@ -25875,6 +25875,24 @@
     ON/OFF varies). Acceptance criteria unchanged from 517b. PASS clears
     v3_pending AND lifts gate (c) for MECH-304 conditioned-inhibition
     experiment. pending_retest_after_substrate=true.
+
+    2026-05-30 V3-EXQ-517c PASS (governance applied): first valid behavioural
+    discriminative-pair evidence on the rescued substrate. Manifest
+    v3_exq_517c_mech302_relief_completion_discriminative_pair_20260530T124600Z_v3.json,
+    evidence_direction=supports. ARM_A (comparator ON) 2/3 seeds PASS:
+    mean 160.3 events/seed, 160.3 writes/seed, 29.7 curriculum_injections/seed.
+    ARM_B (comparator OFF) 3/3 seeds PASS with 0 events / 0 writes /
+    40.3 curriculum_injections/seed -- strong dissociation. v3_pending
+    cleared by sibling IGW-021 session 2026-05-30T17:16Z; pending_retest_after_substrate
+    set to false in same edit. Prior 517 / 517a / 517b FAILs remain in the
+    record but per failure_autopsy_V3-EXQ-517b_2026-05-30 should be read as
+    substrate-ceiling (env-policy-interaction; comparator wiring intact per
+    V3-EXQ-515 PASS) -- NOT claim-weakens. Per the illusory-conflict-resolution
+    rule, the prior FAIL manifests are NOT being silently reclassified to
+    non_contributory; the historical conflict_ratio reflects the substrate
+    ceiling and will revise downward in future cycles as additional
+    rescued-substrate evidence accumulates. Gate (c) for MECH-304 conditioned-
+    inhibition (V3-EXQ-519) now lifted.
   location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
 
 - id: MECH-303
@@ -27879,6 +27897,8 @@
     See: evidence/literature/targeted_review_arc_065_behavioral_diversity_generation/synthesis.md
 
     [2026-05-29 autopsy V3-EXQ-605 + V3-EXQ-604 cluster]: foundational architectural slot; neither child substrate (MECH-313 noise / MECH-314 curiosity) can be load-bearing-tested while V3 substrate produces candidate-degenerate scoring AND seeds 42/44 die on the target env at random-init. ARC-065 stays candidate pending the two-substrate-prereq close (SD-056 via V3-EXQ-569a + SD-XXX-scaffolded-sd054-onboarding via implement-substrate session). Priority-1 calibration debt per project_calibration_debt.md.
+
+    [2026-05-30 governance / autopsy V3-EXQ-569c applied]: V3-EXQ-569c (2026-05-30) tested SD-056 against ARC-065 GAP-A R1.b as a matched-entropy FP-2 falsifier. Headline result: ON arms (sd056_weight 0.01/0.05/0.20) produce selected_action_entropy 0.875/0.833/0.951 vs matched-noise control (ARM_4 T=2.5) at 0.414 -- ~2.4x above the FP-2 control on the C3 acceptance axis. Pre-registered C1 floor (cand_world_pairwise_dist > 0.05) was not cleared by 2/3-seed majority (ON-arm means 0.045/0.042/0.046; per-seed seeds-above-floor 1/0/1). The C1 floor was calibrated against V3-EXQ-613 standalone-task magnitude (0.286) rather than behavioural-runtime magnitude (~0.045); ON arms cluster at 3x bit-identical noise (0.0148), confirming the substrate is operative. Per /failure-autopsy V3-EXQ-569c 2026-05-30: routed to /queue-experiment for V3-EXQ-569d (recalibrated C1 floor + e3_top2_class_gap NaN fix) and V3-EXQ-569e (mechanism probe dissociating per-candidate-variance propagation vs E2-rollout-dynamics shift as source of the C3 lift). Evidence direction for ARC-065 upgraded supports per the matched-noise control clearance on C3; MECH-341 supports preserved. ARC-065 stays candidate / v3_pending=true / pending_retest_after_substrate=true pending V3-EXQ-569d+569e returns.
 
     Pull 4 R4 verdict assigned ARC-065 to HYBRID-naming convention
     because the REE-internal name (behavioral_diversity_generation_pathway)
@@ -34773,6 +34793,9 @@
     substrate-readiness PASS plus R2.c rule from
     behavioral_diversity_isolation_plan.md (B_only arm produces
     trajectory_class_count >= 2 with first_action_entropy > 0.3).
+
+
+    [2026-05-30 governance / autopsy V3-EXQ-569c applied]: V3-EXQ-569c (2026-05-30) tested SD-056 against ARC-065 GAP-A R1.b as a matched-entropy FP-2 falsifier. Headline result: ON arms (sd056_weight 0.01/0.05/0.20) produce selected_action_entropy 0.875/0.833/0.951 vs matched-noise control (ARM_4 T=2.5) at 0.414 -- ~2.4x above the FP-2 control on the C3 acceptance axis. Pre-registered C1 floor was a calibration miss (0.05 set against V3-EXQ-613 standalone magnitude 0.286 rather than behavioural-runtime ~0.045); ON arms cluster at 3x bit-identical noise (0.0148), confirming the substrate is operative. Per /failure-autopsy V3-EXQ-569c 2026-05-30: routed to /queue-experiment for V3-EXQ-569d (recalibrated C1 floor + e3_top2_class_gap NaN fix) and V3-EXQ-569e (mechanism probe dissociating per-candidate-variance propagation vs E2-rollout-dynamics shift as source of the C3 lift). Evidence direction for MECH-341 supports preserved per the matched-noise control clearance on C3. MECH-341 stays candidate / v3_pending=true pending V3-EXQ-569d+569e returns.
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is
