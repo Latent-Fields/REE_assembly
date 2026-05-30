@@ -1,75 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 43007,
-  "runner_started_at": "2026-05-30T18:47:00.849244+00:00",
-  "last_updated": "2026-05-30T19:02:44.819371+00:00",
+  "runner_pid": 96629,
+  "runner_started_at": "2026-05-29T15:49:00.845361+00:00",
+  "last_updated": "2026-05-29T15:49:03.725218+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-569d",
-    "backlog_id": "",
-    "claim_id": "ARC-065",
-    "title": "SD-056 floor-recalibrated FP-2 falsifier (ARC-065 GAP-A / MECH-341); supersedes 569c",
-    "description": "",
-    "script": "experiments/v3_exq_569d_sd056_action_contrastive_diversity_falsifier_floor_recal.py",
-    "started_at": "2026-05-30T18:47:01.305956+00:00",
-    "progress": {
-      "run_label": "Seed 42 / ARM_0_OFF",
-      "runs_done": 0,
-      "runs_total": 15,
-      "episodes_done": 20,
-      "episodes_total": 80,
-      "overall_pct": 1.7
-    },
-    "seconds_elapsed": 944,
-    "seconds_remaining": 16401,
-    "recent_lines": [
-      "Seed 42 Condition ARM_0_OFF",
-      "[train] arm=ARM_0_OFF seed=42 phase=P0 ep 10/80",
-      "[train] arm=ARM_0_OFF seed=42 phase=P0 ep 20/80"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-483e",
-      "backlog_id": "",
-      "claim_id": "SD-037",
-      "title": "SD-037 consumer-cascade behavioural validation (PFC/BLA/CeA/beta-gate consumers + SalienceCoordinator enable + PAG-engaging env reuse; supersedes 483d substrate-ceiling FAIL)",
+      "queue_id": "V3-EXQ-610a",
+      "backlog_id": "EVB-0270",
+      "claim_id": "",
+      "title": "INV-074 crystallization necessity test (re-queue of V3-EXQ-610 with corrected runtime estimate)",
       "description": "",
-      "estimated_minutes": 96.0,
+      "estimated_minutes": 17.3,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-614a",
+      "queue_id": "V3-EXQ-612c",
       "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "MECH-341 GAP-B Phase P3 behavioural falsifier B_only/ablate_B/ALL_ON (re-queue of 614 post manifest-pipeline silent-drop fix)",
+      "claim_id": "",
+      "title": "Phase 3 E2E smoke (verdict sentinel fix retry)",
       "description": "",
-      "estimated_minutes": 108.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-569d",
-      "backlog_id": "",
-      "claim_id": "ARC-065",
-      "title": "SD-056 floor-recalibrated FP-2 falsifier (ARC-065 GAP-A / MECH-341); supersedes 569c",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "running",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-569e",
-      "backlog_id": "",
-      "claim_id": "ARC-065",
-      "title": "SD-056 mechanism probe (Pathway A vs Pathway B dissociation; parallel diagnostic to 569c/569d)",
-      "description": "",
-      "estimated_minutes": 266.7,
+      "estimated_minutes": 17.3,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -8203,48 +8157,6 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 2.7
-    },
-    {
-      "queue_id": "V3-EXQ-569c",
-      "backlog_id": "",
-      "claim_id": "ARC-065",
-      "title": "SD-056 action-contrastive matched-entropy FP-2 falsifier (GAP-A, A_only; re-queue of 569b)",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "verdict: PASS | Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-569c -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-569c.json",
-      "started_at": "2026-05-30T06:00:01.583002+00:00",
-      "completed_at": "2026-05-30T12:44:52.945850+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_569c_sd056_action_contrastive_diversity_falsifier_20260530T124450Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 24295.3
-    },
-    {
-      "queue_id": "V3-EXQ-517c",
-      "backlog_id": "",
-      "claim_id": "MECH-302",
-      "title": "MECH-302 relief-completion discriminative pair (env-curriculum; supersedes 517b substrate-ceiling FAIL)",
-      "description": "",
-      "result": "ERROR",
-      "result_summary": "No runner sentinel emitted and no PASS/FAIL on stdout (exit=0; secs=6301.7)",
-      "started_at": "2026-05-30T12:45:55.962337+00:00",
-      "completed_at": "2026-05-30T14:31:01.690058+00:00",
-      "output_file": "",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 6301.7
-    },
-    {
-      "queue_id": "V3-EXQ-490i",
-      "backlog_id": "",
-      "claim_id": "MECH-295",
-      "title": "MECH-295 drive->liking->approach cascade Tier-1 retest (re-queue of 490h post runner FAIL-branch fix)",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "verdict: FAIL | [v3_exq_490i_mech295_cascade_gap4_tier1] outcome=FAIL elapsed=15205.8s | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-490i -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-490i.json",
-      "started_at": "2026-05-30T14:31:01.969832+00:00",
-      "completed_at": "2026-05-30T18:44:36.578864+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_490i_mech295_cascade_gap4_tier1/v3_exq_490i_mech295_cascade_gap4_tier1_20260530T184434Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 15214.6
     }
   ]
 }
