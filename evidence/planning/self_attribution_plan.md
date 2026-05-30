@@ -16,8 +16,9 @@ closure_plan:
       depends_on: []
       blocking_external: ["sleep_substrate:GAP-1 Phase 1 PASS", "MECH-269 V_s monostrategy landing", "MECH-307 conjunction architecture"]
       resume_condition: "Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that (a) EXQ-445h dropped the ON_SHARED arm (CONDITIONS=[OFF, ON_INDEPENDENT] only); (b) the earlier three-arm EXQ-445 and EXQ-445b runs that did include ON_SHARED produced bit-identical metrics between ON_INDEPENDENT and ON_SHARED (harm_a_forward_r2 and mean_score_bias_abs floating-point-identical per seed across both arms) under action_class_entropy=0.0 monostrategy. The architectural arbitration is unmeasurable for the same V_s monostrategy reason as GAP-2 -- both forward models converge to predicting a near-degenerate z_harm_a signal. GAP-1 is not a separate gap from GAP-2."
-      last_updated: 2026-05-29
+      last_updated: 2026-05-30
       governance_2026_05_29: "Drift report freshness bump only; status remains BLOCKED. The three blocking_external prerequisites (sleep_substrate:GAP-1 Phase 1 PASS, MECH-269 V_s monostrategy landing, MECH-307 conjunction architecture) are all unchanged this cycle. The 598b / 543l substrate-ceiling readings from this cycle confirm the monostrategy gate has not lifted on ARC-065 substrate."
+      governance_2026_05_30: "IGW-20260530-017 inter-governance-brief routed this node as a methodology-fix (re-queue V3-EXQ-445i three-arm OFF/ON_INDEPENDENT/ON_SHARED). 2026-05-30T07:32Z verification STOPPED before queueing: (a) 445h two-arm forensic re-confirmed at script line 83 + manifest config.conditions; (b) V3-EXQ-567 PASS (2026-05-15 ARC-065 supports) explicitly demonstrates SP-CEM lifts entropy ONLY in ARM_1 (SP-CEM + stratified sampling + ao_std_floor) -- ARM_0 (normal CEM = the default code path 445-cohort scripts use) reproduces the same monostrategy signature 445h shows (selected_action_class_entropy=0.0, single-action action_counts, support_preserving_active_steps=0); (c) use_support_preserving_cem=True default in ree_core/utils/config.py is a naming coincidence -- the actual SP-CEM activation requires the V3-EXQ-567 ARM_1 knob bundle to be plumbed through to the default agent path, which is the work the 2026-05-29 governance note refers to as 'monostrategy gate has not lifted on ARC-065 substrate'. Re-queueing a three-arm methodology fix under default config would reproduce the bit-identical-arms substrate-ceiling signature and waste a runner session. GAP-1 stays BLOCKED on the SAME upstream substrate gates as GAP-2 (sleep_substrate:GAP-1 Phase 1 PASS + MECH-269 V_s landing-in-main-agent-path + MECH-307 conjunction architecture). The /inter-governance-brief workset description for this node should be amended to drop the methodology-fix framing; the node is NOT a re-queueable EXQ at this time."
     - id: "self_attribution:GAP-2"
       title: "SD-029 / MECH-256 retest under full substrate stack"
       phase: 2
@@ -419,7 +420,7 @@ attribution work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | blocked | sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture (same gates as GAP-2) | After upstream gates close, queue a fresh three-arm ablation (NOT 445h -- that script is two-arm) that exercises ARC-033 vs ARC-058 under balanced events. Forensic read 2026-05-11 surfaced substrate-ceiling, not arbitration data -- see Decision log | TBD (post-substrate-gates) | 2026-05-11 |
+| GAP-1 | 1 | blocked | sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture (same gates as GAP-2) -- specifically: SP-CEM ARM_1 knob bundle (stratified sampling + ao_std_floor + activation gating) plumbed into the default agent path that 445-cohort + SD-029 retest cohort use; `use_support_preserving_cem=True` default in config.py is a naming coincidence and is NOT the activation gate (V3-EXQ-567 ARM_0 confirms this) | After upstream gates close, queue a fresh three-arm ablation (NOT 445h -- that script is two-arm) that exercises ARC-033 vs ARC-058 under balanced events. 2026-05-11 forensic read surfaced substrate-ceiling, not arbitration data; 2026-05-30 STOP verification disproved the methodology-fix framing -- see Decision log | TBD (post-substrate-gates) | 2026-05-30 |
 | GAP-2 | 2 | blocked | sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture | After all three upstream gates close, re-queue SD-029 / MECH-256 retest with full substrate stack | TBD (post-substrate-gates) | 2026-05-08 |
 | GAP-3 | 3 | blocked | Phase 2 PASS + Phase 1 verdict | After Phase 2 PASS, re-queue MECH-257 dual-function 3-arm ablation | re-queue of EXQ-452 (TBD) | 2026-05-08 |
 | GAP-4 | 4 | done | (none) | Lit-pull complete: 2 entries written (De Preter & Heinricher 2024 Trends Neurosci; Seymour 2019 Neuron). Verdict: Option A -- MECH-256 generalises to z_harm_s; SD-029 inherits lit_conf; PAG/RVM implements parallel precision-gating (NOT efference-copy); no separate SD-029 design doc needed | n/a (lit-pull) | 2026-05-17 |
@@ -472,6 +473,76 @@ unblocks_claims -- this is reflected explicitly in the
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-30 - GAP-1 STOP on methodology-fix re-queue: SP-CEM substrate default-off in 445-cohort agent path {#2026-05-30-gap-1-stop-methodology-fix}
+
+IGW-20260530-017 (inter-governance-brief workset item, top priority on the
+self_attribution lens) routed this node as a methodology-fix path:
+"a methodology re-run that simply restores the dropped ON_SHARED arm does
+NOT need monostrategy resolution -- ARC-065 SP-CEM substrate is already
+landed (V3-EXQ-567 PASS 2026-05-15, selected_action_entropy 0.012->0.497)
+and produces enough policy diversity for the C2/C3 measurements."
+
+Verification today disproved the framing's premise before any new EXQ was
+queued. Three findings:
+
+1. **445h two-arm read re-confirmed** (predecessor 2026-05-11 finding still
+   accurate): `CONDITIONS = ["OFF", "ON_INDEPENDENT"]` at
+   [v3_exq_445h_sd032b_dacc_reef.py:83](../../../ree-v3/experiments/v3_exq_445h_sd032b_dacc_reef.py);
+   `use_shared_harm_trunk=False` hardcoded at line 127; manifest
+   `config.conditions` matches; manifest per-seed
+   `action_class_entropy=0.0` across all 6 seed/arm cells; manifest
+   `action_counts` shows pure single-action monostrategy per seed
+   (seed=42 -> action 0 only; seed=7 -> action 2 only; seed=13 -> action 4
+   only).
+
+2. **V3-EXQ-567 PASS does NOT mean SP-CEM is on the default agent path.**
+   The 567 manifest's ARM_0 (`ARM_0_normal_cem`) shows the SAME
+   monostrategy signature as 445h: per-seed
+   `selected_action_class_entropy` = 0.0 / 0.0 / 0.03795 and
+   `support_preserving_active_steps = 0` across all three seeds. The
+   PASS verdict is `ARM_1_support_preserving - ARM_0_normal_cem`
+   (ARM_1 mean 0.4897 vs ARM_0 mean 0.0127). The SP-CEM mechanism EXISTS
+   and WORKS, but is activated in ARM_1 specifically by the
+   SP-CEM + stratified-sampling + ao_std_floor knob bundle. ARM_0 is the
+   default code path that the 445-cohort scripts use.
+
+3. **`use_support_preserving_cem: bool = True` in
+   `ree_core/utils/config.py:762` is a naming coincidence.** The field is
+   defaulted True but its activation is gated on the additional knob
+   bundle that ARM_0 of 567 does not set. Hence 567 ARM_0 shows
+   `support_preserving_active_steps = 0` even though the field defaults
+   True. The 2026-05-29 governance note in the GAP-1 closure_plan row's
+   `governance_2026_05_29` field (598b / 543l substrate-ceiling readings
+   from this cycle) is the SAME phenomenon from a different cohort.
+
+**Conclusion: substrate gate IS load-bearing for GAP-1.** Re-queueing a
+three-arm methodology fix (the workset-routed V3-EXQ-445i) under the
+current default config would reproduce the bit-identical-arms
+substrate-ceiling signature surfaced in 2026-05-11, waste a runner
+session, and create a fourth misleading PASS-shaped "winner_suggested" tag
+on a non-discriminative test. GAP-1 stays `blocked` on the SAME upstream
+gates as GAP-2 -- the framing distinction the workset item drew between
+"methodology fix" and "substrate gate" does not hold.
+
+Actions taken this session:
+- GAP-1 closure_plan node `last_updated` bumped to 2026-05-30; new
+  `governance_2026_05_30` field records the STOP verification.
+- This decision-log entry written.
+- NO new EXQ queued.
+- NO claims.yaml / substrate_queue.json / manifest / review_tracker
+  edits.
+- /inter-governance-brief workset description for IGW-20260530-017
+  should drop the methodology-fix framing on its next regen so future
+  sessions do not re-spawn this work. (The /inter-governance-brief
+  generator reads this plan-doc and the closure_plan
+  `governance_2026_05_30` field will reach the next workset regen.)
+- The real unblock path for GAP-1 is the SAME unblock path for GAP-2:
+  the SP-CEM ARM_1 knob bundle (stratified sampling + ao_std_floor +
+  the activation gating that ARM_0 of 567 lacks) must be plumbed into
+  the default agent path that 445-cohort scripts and the SD-029 retest
+  cohort use. That is substrate work, owned by the ARC-065 substrate_queue
+  entry, NOT by a 445i methodology re-queue.
 
 ### 2026-05-17 - GAP-4 DONE: nociceptive-comparator lit-pull complete; architectural verdict Option A
 
