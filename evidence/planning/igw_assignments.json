@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-30T18:57:25Z",
+  "generated_at": "2026-05-30T19:00:55Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -988,6 +988,29 @@
         "priority": 40,
         "claim_ids": [
           "MECH-304"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260530T190055Z-10e3bf78-claude_local",
+      "stable_hash": "10e3bf7821a3",
+      "igw_id_at_assign": "IGW-20260530-026",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-05-30T19:00:55Z",
+      "released_at": "2026-05-30T19:00:55Z",
+      "released_by": "queue-experiment-igw-026-inv074-retest-20260530T185800Z",
+      "released_reason": "no_op_v3_exq_610a_has_contributory_manifest_on_cloud-3_needs_diagnose_errors_to_recover",
+      "released_event_for": "asn-20260530T184920Z-10e3bf78-claude_local",
+      "note": "Spawned as chip per user request 2026-05-30T18:49Z from interactive workset review session.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: INV-074",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "INV-074"
         ]
       }
     }
