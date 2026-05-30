@@ -25850,6 +25850,31 @@
     bit-identical OFF). V3-EXQ-515 PASS 2026-05-04 (comparator logic
     diagnostic). V3-EXQ-516 queued (agent-loop integration diagnostic).
     v3_pending=true until discriminative-pair experiment lands.
+
+    2026-05-30 env-curriculum amend (failure_autopsy_V3-EXQ-517b_2026-05-30,
+    implement-substrate-mech302-scheduled-limb-damage-curriculum-20260530T084206Z):
+    Three behavioural-validation discriminative-pair attempts
+    (V3-EXQ-517 / 517a / 517b, 2026-05-04 / 04 / 06) all FAILed at ARM_A
+    C1+C2 with 0-0.33 events/seed across all parameter relaxations.
+    517a -> 517b doubling of episode length (150 -> 300 steps) DECREASED
+    ARM_A events (0.33/seed -> 0.00/seed) -- the trained avoidance policy
+    learns to avoid hazards regardless of episode length, so the
+    SufferingDerivativeComparator never sees the damage->heal trajectories
+    it needs to fire. Failure autopsy diagnosed substrate_ceiling at the
+    env-policy-interaction layer (comparator wiring is intact per V3-EXQ-515
+    PASS; gap is on the env side). Routed to implement-substrate amend:
+    landed SD-022 scheduled-injection extension (scheduled_limb_damage_*
+    env kwargs in CausalGridWorldV2) -- direct limb-damage injection
+    independent of agent action or hazard contact, parallel to SD-029
+    scheduled_external_hazard but distinct in mechanism (SD-029 still
+    requires agent contact; this curriculum bypasses contact entirely).
+    All 5 new env kwargs default no-op; 565/565 contracts + 7/7 preflight
+    PASS with master OFF (regression-clean; +9 new MECH-302-curriculum
+    contracts). V3-EXQ-517c queued 2026-05-30 (priority 280; supersedes
+    V3-EXQ-517b; curriculum identical on both arms, only comparator
+    ON/OFF varies). Acceptance criteria unchanged from 517b. PASS clears
+    v3_pending AND lifts gate (c) for MECH-304 conditioned-inhibition
+    experiment. pending_retest_after_substrate=true.
   location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
 
 - id: MECH-303
