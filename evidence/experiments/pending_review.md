@@ -1,22 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-05-30T07:01:12Z`  
-Last review: `2026-05-30T06:53:14Z`  
-Pending: **2** item(s) -- 1 PASS, 0 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-30T11:43:54Z`  
+Last review: `2026-05-30T11:41:56Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_612_phase3_cutover_smoke_20260529T214609Z_v3` | 2026-05-30T07:00 | (no claim tags) |
-
-## Needs discussion (ERROR / UNKNOWN / smoke)
-
-These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
-
-| Queue ID | Result | Script | Notes |
-|----------|--------|--------|-------|
-| `V3-EXQ-612b` | ERROR | `?` | ERROR |
+All experiments reviewed. Nothing pending.
 
 ---
 

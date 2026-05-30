@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-30T06:55:36Z",
+  "last_review_utc": "2026-05-30T11:41:56Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -409,7 +409,9 @@
     "V3-EXQ-544a",
     "v3_exq_483d_sd037_broadcast_gap4_override_signal",
     "V3-EXQ-483d",
-    "V3-EXQ-612b"
+    "V3-EXQ-612b",
+    "V3-EXQ-612c",
+    "v3_exq_612_phase3_cutover_smoke_20260529T214609Z_v3"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -2590,7 +2592,8 @@
     "v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3",
     "v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3",
     "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z",
-    "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3"
+    "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
+    "v3_exq_612_phase3_cutover_smoke_20260529T214609Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3206,6 +3209,17 @@
         "V3-EXQ-612b"
       ],
       "subject": "/diagnose-errors closure of V3-EXQ-612b ERROR (ree-cloud-2 2026-05-28T17:36:45Z; v3_exq_612_phase3_cutover_smoke.py; 1.2s; exit=0; result_summary 'No runner sentinel emitted and no PASS/FAIL on stdout'). Disposition: Phase-3-cutover-superseded. NOT re-queued under a new letter. Reasoning: (1) V3-EXQ-612b was a Phase 3 cutover-window transient on the same script that produced two clean PASSes within 21 minutes and 28 hours respectively on the post-cutover pipeline -- V3-EXQ-612d ree-cloud-3 2026-05-28T17:57:01Z PASS (sentinel written, manifest v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3.json on origin/master via Phase 3 writer; runner_status title 'Phase 3 E2E smoke (emit_outcome sentinel)') AND V3-EXQ-612c ree-cloud-2 2026-05-29T21:46:09Z PASS (sentinel written, manifest _20260529T214609Z_v3.json on origin/master; runner_status title 'Phase 3 E2E smoke (verdict sentinel fix retry)'). (2) Script v3_exq_612_phase3_cutover_smoke.py is correct as-shipped (228 steps / 20 ep / ~0.2s; prints 'verdict: PASS' + '[v3_complete] {run_id}' + calls emit_outcome -> sentinel JSON; exits 0 on PASS). The 612 / 612b ERRORs reflect the runner-side sentinel-capture / coordinator report path NOT being fully landed at the 17:25-17:36Z cutover window, NOT a script defect. (3) Runner-side fix landed yesterday at ree-v3 main 41c3411 (FAIL + ERROR branches now invoke _result_manifest_exists + git_push_results + coordinator_client.report_result, gated on output_file non-empty for ERROR) addresses the broader class. 612b predates the fix; 612c/612d ran on the post-fix substrate and PASSed cleanly. (4) Distinct from the 490h / 592b / 614 manifest-pipeline silent-drop cluster autopsied this morning: those were post-cutover silent drops with manifests-on-disk-but-not-on-origin; 612b had no manifest on disk to recover (exit=0, no PASS/FAIL on stdout per the runner). Routing: closed without re-queue. No new V3-EXQ-612e; the 612c/612d PASSes are the de-facto supersession. Pathspec-limited commit (multiple sibling active claims on TASK_CLAIMS / WORKSPACE_STATE). Concurrent active claim at session start: GAP-B plan-doc + substrate_queue refresh (gapb-plandoc-substrate-queue-refresh-20260530T063352Z) -- disjoint resources. NOT touched: claims.yaml, manifests, evidence_direction fields, ree-v3/experiment_queue.json, experiment scripts."
+    },
+    {
+      "reviewed_at_utc": "2026-05-30T11:41:56Z",
+      "session_id": "governance-20260530T080000Z",
+      "reviewed_run_ids": [
+        "v3_exq_612_phase3_cutover_smoke_20260529T214609Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-612c"
+      ],
+      "subject": "/governance walkthrough close of V3-EXQ-612c (ree-cloud-2 2026-05-29T21:46:09Z; v3_exq_612_phase3_cutover_smoke.py; 0.142s; PASS 3/3 criteria: C1 episodes>=20 got 20, C2 steps>=50 got 228, C3 manifest_written). Phase 3 cutover end-to-end pipeline-health smoke; claim_ids=[] -> no claim weight applied. Sibling 612d ree-cloud-3 2026-05-28T17:57Z already cleared by the V3-EXQ-612b /diagnose-errors session 06:55Z. 612c + 612d carry identical per-episode step counts (deterministic seed=612) confirming reproduction across cloud-2 and cloud-3 nodes -- the validation purpose of the cutover smoke cohort. No follow-up action; no successor needed (612 family is the smoke family for Phase 3, not a hypothesis test). Pathspec-limited commit (concurrent chips spawned earlier this session but not yet accepted will land on disjoint pathspecs)."
     }
   ]
 }

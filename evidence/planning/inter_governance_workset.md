@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-30T08:39:30Z`
+Generated: `2026-05-30T11:08:22Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **53** (ready 20, in_flight 0, blocked 21)
 - Pending review: **2**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-483d, V3-EXQ-569b
 
@@ -693,7 +693,7 @@ Instructions:
 
 </details>
 
-### IGW-20260530-023 -- Queue depth low (1 pending)
+### IGW-20260530-023 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -702,7 +702,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260530-023
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.

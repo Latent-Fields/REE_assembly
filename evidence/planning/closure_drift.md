@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-05-30T07:40:21Z
+Generated: 2026-05-30T11:44:39Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. It also flags plans missing a top-level `closure_plan.last_updated` field.
 
