@@ -239,8 +239,30 @@ def _queued_retest_coverage(queue_items: list[dict]) -> dict[str, str]:
 
 
 _SUBSTRATE_RESOLVED_STATUSES = {
-    "implemented", "done", "complete", "phase_2_implemented", "phase_3_implemented",
+    "implemented", "done", "complete", "validated", "retune_validated",
+    "phase_1_implemented", "phase_2_implemented", "phase_3_implemented",
 }
+_SUBSTRATE_RESOLVED_PHASE_RE = re.compile(r"^phase_\d+_implemented$")
+
+
+def _status_resolved(value: str) -> bool:
+    """True if a single status string indicates a done/validated substrate.
+
+    Accepts the literal set above, the phase_N_implemented family, and any
+    `implemented_*` suffix (e.g. `implemented_env_curriculum_amend`) -- but
+    NOT `*_pending_*` (e.g. `substrate_landed_pending_validation`), which
+    explicitly want a downstream validation step.
+    """
+    s = (value or "").strip().lower()
+    if not s or "pending" in s:
+        return False
+    if s in _SUBSTRATE_RESOLVED_STATUSES:
+        return True
+    if s.startswith("implemented_"):
+        return True
+    if _SUBSTRATE_RESOLVED_PHASE_RE.match(s):
+        return True
+    return False
 
 _LEADING_CLAIM_TOKEN_RE = re.compile(r"^\s*([A-Z]+-\d+[a-z]?)\b")
 
@@ -263,8 +285,15 @@ def _substrate_by_id() -> dict[str, dict]:
 def _substrate_resolved(entry: dict | None) -> bool:
     if not entry:
         return False
-    impl = str(entry.get("implementation_status") or entry.get("status") or "").lower()
-    return impl in _SUBSTRATE_RESOLVED_STATUSES
+    # Consult BOTH fields. Earlier bug: `implementation_status OR status` made
+    # the first truthy value win, so `implementation_status=implemented_env_curriculum_amend`
+    # (truthy, custom variant) shadowed `status=validated` and the entry never
+    # resolved, spawning a hourly /implement-substrate IGW loop (MECH-302, hash
+    # 994434ce5e5b, 2026-05-30).
+    return (
+        _status_resolved(entry.get("implementation_status") or "")
+        or _status_resolved(entry.get("status") or "")
+    )
 
 
 def _substrate_ready_items() -> list[dict]:
