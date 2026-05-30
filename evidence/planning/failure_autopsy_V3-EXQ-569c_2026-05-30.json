@@ -1,0 +1,90 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-30T16:55:40Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_569c_sd056_action_contrastive_diversity_falsifier_20260530T124450Z_v3",
+      "queue_id": "V3-EXQ-569c",
+      "claim_ids": ["ARC-065", "MECH-341"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete_small_caveat_buffer_warmup",
+        "environment": "adequate",
+        "measurement": "under_instrumented_e3_top2_class_gap_NaN_on_ON_arms",
+        "integration": "coupled_cleanly",
+        "scale": "likely_insufficient_training_window"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cerebellar_internal_model_action_specificity_preservation_Tanaka_2020 + PFC_counterfactual_rollout_Miyamoto_Rushworth_Shea_2023 + LC_NE_tonic_Aston_Jones_Cohen_2005 (ARC-065 distributed pathway)",
+        "dependencies": ["SP-CEM main-path (substrate-landed 2026-05-15)", "MECH-341 substrate (landed 2026-05-27, retune validated 2026-05-28)", "SD-005 z_world routing", "MECH-269 main-path default"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful biological translation; ML/AI mapping to InfoNCE contrastive next-state Srivastava 2021 is engineering instantiation of the biological prerequisite, not a formal-definition import",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-065": "supports",
+        "MECH-341": "supports"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-569c (2026-05-30) tested SD-056 against ARC-065 GAP-A R1.b as a matched-entropy FP-2 falsifier. Headline result: ON arms (sd056_weight 0.01/0.05/0.20) produce selected_action_entropy 0.875/0.833/0.951 vs matched-noise control (ARM_4 T=2.5) at 0.414 -- ~2.4x above the FP-2 control on the C3 acceptance axis. Pre-registered C1 floor (cand_world_pairwise_dist > 0.05) was not cleared by 2/3-seed majority (ON-arm means 0.045/0.042/0.046; per-seed seeds-above-floor 1/0/1). The C1 floor was calibrated against V3-EXQ-613 standalone-task magnitude (0.286) rather than behavioural-runtime magnitude (~0.045); ON arms cluster at 3x bit-identical noise (0.0148), confirming the substrate is operative. Per /failure-autopsy V3-EXQ-569c 2026-05-30: routed to /queue-experiment for V3-EXQ-569d (recalibrated C1 floor + e3_top2_class_gap NaN fix) and V3-EXQ-569e (mechanism probe dissociating per-candidate-variance propagation vs E2-rollout-dynamics shift as source of the C3 lift). Evidence direction for ARC-065 upgraded supports per the matched-noise control clearance on C3; MECH-341 supports preserved.",
+        "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Substrate is operative (3x baseline pairwise distance + decisive matched-noise clearance on C3). Failure mode is test-design calibration (C1 floor magnitude) + measurement instrumentation (e3_top2_class_gap NaN). Both addressable in /queue-experiment redesign without a substrate amendment."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Substrate operative at 3x baseline pairwise_dist; C1 floor 0.05 was calibrated against V3-EXQ-613 standalone-task magnitude (0.286), not behavioural-runtime magnitude (~0.045); floor recalibration to ~0.03 would discriminate noise (0.015) from substrate-operative (0.045) without rejecting realistic behavioural-runtime regimes.",
+        "Matched-entropy control (ARM_4 T=2.5) achieves selected_action_entropy 0.414 vs OFF baseline 0.361 -- pure softmax temperature contributes ~0.05 entropy. ON arms achieve 0.83-0.95 -- ~2.4x noise control. Decisive evidence that SD-056 produces structural diversity not explained by entropy injection.",
+        "Pre-registered interpretation grid did not anticipate the observed outcome shape (C1 borderline + C2 PASS + strong C3 lift above matched-noise). The two prepared rows (C1 PASS + C2/C3 FAIL -> MECH-341 load-bearing; C1 FAIL -> SD-056 wiring gap) mis-route the actual case. Grid should be extended in 569d / 569e pre-registration to cover this case.",
+        "e3_top2_class_gap NaN on every ON arm (ARM_0 + ARM_4 populated cleanly) is an instrumentation bug that blocks the most informative score-margin-vs-class-collapse dissociation channel. Must be fixed in 569d / 569e.",
+        "Mechanism question (569e): is the C3 lift coming from per-candidate z_world variance propagation through E3 scoring (Pathway A: ~3x C1 lift -> small but real score differences -> different class selection), OR from E2 rollout dynamics shifts induced by contrastive training that affect downstream E3 scoring independent of within-tick per-candidate variance (Pathway B: E2 sees a different scoring problem)? Current measurement stack cannot dissociate.",
+        "Contrastive_loss across ON arms stayed at ~1.95 (near ln(8)=2.08 random baseline) under 30 ep P0 + 20 ep P1 budget; the head has not fully trained in behavioural-runtime sparsity. Either extend the warmup budget or document the buffer-warmup-to-effect curve.",
+        "C2 PASS at parity with matched-noise (ARMs 1/3 at 0.796/0.791 strictly > ARM_4 at 0.786; ARM_2 at 0.786 tied) is a near-degenerate criterion under these conditions -- noise temperature reaches the same candidate-pool entropy as SD-056 + temperature 1.0 ON. C2 is weakly discriminative; the load-bearing falsifier is C3 (selected entropy above noise control)."
+      ],
+      "routing": "queue-experiment",
+      "successors_planned": [
+        {
+          "queue_id_suggested": "V3-EXQ-569d",
+          "kind": "floor_recalibrated_falsifier",
+          "scope": "Same 5-arm structure (OFF / W001 / W005 / W020 / matched-noise T=2.5). C1 floor recalibrated to ~0.03 (final value TBD at queue time). Fix e3_top2_class_gap NaN on ON arms. Optional P0 extension 30 -> 50-60 ep so the contrastive head has more warmup time. Acceptance criteria as 569c with the recalibrated floor."
+        },
+        {
+          "queue_id_suggested": "V3-EXQ-569e",
+          "kind": "mechanism_probe",
+          "scope": "Discriminative pathway-A vs pathway-B test. Add E2 rollout-divergence metrics across arms (per-step KL or pairwise distance over rollout trajectory), e3 score std across candidates, and fix e3_top2_class_gap. Pre-register an interpretation grid that includes the C1-borderline-with-strong-C3-lift cell. Decisive on the source of the C3 lift."
+        }
+      ]
+    }
+  ],
+  "cluster_pattern": null,
+  "user_confirmed": true,
+  "user_routing_choice": "two_parallel_experiments",
+  "user_direction_choice": "ARC-065_supports_MECH-341_supports_autopsy_upgrade",
+  "concurrent_active_claims_at_session_start": [
+    "igw-auto-igw-020-substrate-ready-mech-302-20260530T161236Z (NO-OP DONE 2026-05-30T16:14Z; disjoint resources on evidence/lit_pulls/MECH-302 + MECH-303 + IGW ledger)"
+  ],
+  "writes_in_this_session": [
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-569c_2026-05-30.md",
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-569c_2026-05-30.json",
+    "TASK_CLAIMS.json",
+    "WORKSPACE_STATE.md"
+  ],
+  "NOT_written_in_this_session": [
+    "claims.yaml",
+    "claims.json",
+    "substrate_queue.json",
+    "experiment_queue.json",
+    "review_tracker.json",
+    "manifests",
+    "ree-v3/",
+    "ree_core/",
+    "experiment scripts"
+  ]
+}
