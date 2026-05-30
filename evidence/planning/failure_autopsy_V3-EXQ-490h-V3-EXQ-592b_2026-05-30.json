@@ -2,6 +2,8 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-05-30T06:02:38Z",
   "resolved_utc": "2026-05-30T06:22:29Z",
+  "amended_utc": "2026-05-30T06:42:23Z",
+  "amendment_note": "V3-EXQ-614 (GAP-B Layer-B behavioural falsifier, claim_ids=[MECH-341, ARC-065], experiment_purpose=evidence) absorbed as third cluster member. Same outcome-conditional manifest-publish signature as V3-EXQ-490h + V3-EXQ-592b. V3-EXQ-614 completed 2026-05-29T19:13:19Z (pre-fix runner; commit 41c3411 landed 2026-05-29T21:24Z). Re-queue V3-EXQ-614a queued 2026-05-30T06:42Z under fixed runner.",
   "scope": "cluster",
   "status": "resolved",
   "user_decision_utc": "2026-05-30T06:01Z",
@@ -11,14 +13,16 @@
     "fix_commit_utc": "2026-05-29T21:24:08Z",
     "fix_commit_title": "runner: fix V3-EXQ-592b FAIL/ERROR silent-drop",
     "fix_files": ["ree-v3/experiment_runner.py", "ree-v3/tests/contracts/test_runner_fail_branch_persists_result.py"],
-    "rerun_queue_ids": ["V3-EXQ-490i", "V3-EXQ-592c"],
+    "rerun_queue_ids": ["V3-EXQ-490i", "V3-EXQ-592c", "V3-EXQ-614a"],
     "rerun_scripts": [
       "ree-v3/experiments/v3_exq_490i_mech295_cascade_gap4_tier1.py",
-      "ree-v3/experiments/v3_exq_592c_mech090_commit_readiness_gate_validation.py"
+      "ree-v3/experiments/v3_exq_592c_mech090_commit_readiness_gate_validation.py",
+      "ree-v3/experiments/v3_exq_614a_mech341_p3_behavioural_falsifier_3arm.py"
     ],
-    "rerun_supersedes": {"V3-EXQ-490i": "V3-EXQ-490h", "V3-EXQ-592c": "V3-EXQ-592b"},
-    "rerun_claim_ids_preserved": {"V3-EXQ-490i": ["MECH-295"], "V3-EXQ-592c": ["MECH-090"]},
-    "diagnose_errors_session": "diagnose-errors-490h-592b-requeue-20260530T062229Z"
+    "rerun_supersedes": {"V3-EXQ-490i": "V3-EXQ-490h", "V3-EXQ-592c": "V3-EXQ-592b", "V3-EXQ-614a": "V3-EXQ-614"},
+    "rerun_claim_ids_preserved": {"V3-EXQ-490i": ["MECH-295"], "V3-EXQ-592c": ["MECH-090"], "V3-EXQ-614a": ["MECH-341", "ARC-065"]},
+    "diagnose_errors_session": "diagnose-errors-490h-592b-requeue-20260530T062229Z",
+    "amendment_session": "gapb-plandoc-substrate-queue-refresh-20260530T063352Z"
   },
   "targets": [
     {
@@ -128,6 +132,63 @@
         "FAIL outcomes on the Mac (DLAPTOP-4.local) can complete the runner sentinel write without landing the manifest locally OR in the coordinator results table.",
         "The sibling V3-EXQ-613 PASS arrived at the coordinator three seconds after 592b's sentinel timestamp and DID land, so the publish path was functional on the same machine in the same minute. Same outcome-conditional shape as 490h.",
         "592b's 2-arm joint-PASS gate validation (ARM_0 GATED falsifier + ARM_1 GATED_FORCED_READY admit) cannot be disposed without knowing which arm failed."
+      ],
+      "routing": "diagnose-errors"
+    },
+    {
+      "run_id": null,
+      "queue_id": "V3-EXQ-614",
+      "claim_ids": ["MECH-341", "ARC-065"],
+      "experiment_purpose": "evidence",
+      "supersedes": "V3-EXQ-611c",
+      "machine": null,
+      "runner_sentinel_outcome": null,
+      "runner_completed_at": "2026-05-29T19:13:19Z",
+      "runner_elapsed_seconds": null,
+      "advertised_manifest_path": null,
+      "manifest_present_on_disk": false,
+      "manifest_present_in_coordinator_db": false,
+      "phase3_writer_commit_present": false,
+      "failed_criterion": "unrecoverable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unrecoverable",
+        "biological_reference": "unrecoverable",
+        "prerequisites": "unrecoverable",
+        "implementation": "unrecoverable",
+        "environment": "unrecoverable",
+        "measurement": "unrecoverable",
+        "integration": "unrecoverable",
+        "scale": "unrecoverable"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- autopsy did not reach biology layer (manifest absent)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent_from_this_autopsy"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": null,
+      "recommended_evidence_quality_note": null,
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "V3-EXQ-614 was queued 2026-05-29T17:00Z (ree-v3 commit 62c45e9) and completed at 2026-05-29T19:13:19Z under the PRE-FIX runner -- the runner-side fix at commit 41c3411 landed at 2026-05-29T21:24:08Z, more than two hours after V3-EXQ-614 had already vanished.",
+        "Coordinator DB experiments row: status=completed, claimed_by_machine=None, claimed_at=None. Results table: zero rows for V3-EXQ-614. Filesystem: no manifest under REE_assembly/evidence/experiments/ (find returns nothing for *614*). Monolithic runner_status.json: no entry for V3-EXQ-614.",
+        "The substrate_queue.json MECH-341 implementation_log entry written 2026-05-29T23:42Z (igw-auto-igw-021-substrate-ready-mech-341 session) noted 'Behavioural successor V3-EXQ-614 queued 2026-05-29T17:00Z'; that session did not catch the silent-drop. The plan-doc behavioral_diversity_isolation_plan.md row 2 likewise was not updated to reflect the loss until this amendment session.",
+        "GAP-B substrate-readiness is intact: V3-EXQ-611c PASSed 2026-05-29T18:45Z (C1+C3+C4+R2c=true; C2=false but routed PASS_with_C1_and_C3 directly to behavioural successor). The substrate side of the closure plan is unblocked; the behavioural-falsifier disposition is the load-bearing step that V3-EXQ-614 was supposed to deliver.",
+        "Cluster pattern shape now spans BOTH FAIL outcomes (490h + 592b) AND a no-claimant case (V3-EXQ-614 -- claimed_by_machine=None in the experiments table). The single-bug reading at commit 41c3411 must cover all three; verify the post-fix runner emits sentinel + manifest + DB result row + claim metadata correctly across all three outcome paths."
       ],
       "routing": "diagnose-errors"
     }

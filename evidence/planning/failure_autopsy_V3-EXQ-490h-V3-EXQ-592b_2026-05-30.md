@@ -1,12 +1,38 @@
-# Failure Autopsy: V3-EXQ-490h + V3-EXQ-592b (manifest-pipeline cluster)
+# Failure Autopsy: V3-EXQ-490h + V3-EXQ-592b + V3-EXQ-614 (manifest-pipeline cluster)
 
 **Generated:** 2026-05-30T06:02:38Z
 **Resolved:** 2026-05-30T06:22:29Z
-**Scope:** cluster (2 FAILs sharing a manifest-pipeline failure shape)
-**Status:** RESOLVED — bug fixed at ree-v3 commit [`41c3411`](ree-v3/experiment_runner.py) (2026-05-29T21:24:08Z); re-runs queued as V3-EXQ-490i + V3-EXQ-592c.
+**Amended:** 2026-05-30T06:42:23Z — V3-EXQ-614 (GAP-B Layer-B behavioural falsifier) absorbed as third cluster member.
+**Scope:** cluster (3 FAILs sharing a manifest-pipeline failure shape)
+**Status:** RESOLVED — bug fixed at ree-v3 commit [`41c3411`](ree-v3/experiment_runner.py) (2026-05-29T21:24:08Z); re-runs queued as V3-EXQ-490i + V3-EXQ-592c + V3-EXQ-614a.
 **Autopsy session:** failure-autopsy-490h-592b-20260530T060238Z
-**Diagnose-errors session:** diagnose-errors-490h-592b-requeue-20260530T062229Z
-**Routing decision:** `/diagnose-errors` for both targets. This was NOT a substrate FAIL of MECH-295 or MECH-090; it was a Phase-3 result-pipeline failure shape that the 2026-05-29 fix at commit `41c3411` resolves.
+**Diagnose-errors sessions:** diagnose-errors-490h-592b-requeue-20260530T062229Z; gapb-plandoc-substrate-queue-refresh-20260530T063352Z (614 absorption).
+**Routing decision:** `/diagnose-errors` for all three targets. None of these was a substrate FAIL of MECH-295, MECH-090, MECH-341, or ARC-065; all were Phase-3 result-pipeline failure shapes that the 2026-05-29 fix at commit `41c3411` resolves.
+
+## V3-EXQ-614 absorption (amended 2026-05-30T06:42Z)
+
+**Target:** V3-EXQ-614 — GAP-B Phase P3 behavioural falsifier (B_only / ablate_B / ALL_ON; `claim_ids=["MECH-341", "ARC-065"]`; `experiment_purpose=evidence`).
+
+**Failure shape (identical fingerprint to 490h + 592b):**
+- Queued 2026-05-29T17:00Z (ree-v3 commit [`62c45e9`](https://github.com/Latent-Fields/ree-v3/commit/62c45e9)).
+- Coordinator DB `experiments` table: `status=completed`, `updated_at=2026-05-29T19:13:19Z`, `claimed_by_machine=None`, `claimed_at=None`.
+- Coordinator DB `results` table: **zero rows** for V3-EXQ-614.
+- Filesystem: no manifest at `REE_assembly/evidence/experiments/v3_exq_614_*` (verified `find` returns nothing matching `*614*` under either flat path or `runs/`).
+- Monolithic `runner_status.json`: no entry for V3-EXQ-614 (verified by Python scan).
+
+**Why this is the same bug, not a new one:**
+- Same coordinator-DB-says-completed / results-table-empty / disk-empty / monolithic-status-empty four-way signature as V3-EXQ-490h and V3-EXQ-592b.
+- V3-EXQ-614 completed at 2026-05-29T19:13:19Z — the runner-side fix landed at 2026-05-29T21:24:08Z (commit `41c3411`), so V3-EXQ-614 ran under the pre-fix runner.
+- Whoever last touched the substrate_queue.json MECH-341 implementation_log at 2026-05-29T23:42Z (igw-auto-igw-021-substrate-ready-mech-341 session) noted "Behavioural successor V3-EXQ-614 queued 2026-05-29T17:00Z (3-arm B_only/ablate_B/ALL_ON per behavioral_diversity_isolation_plan.md R2.c rule). Supersedes V3-EXQ-611b." That entry was written assuming V3-EXQ-614 would complete normally; the silent-drop was undetected at the time.
+
+**Re-queue:**
+- **V3-EXQ-614a** ([v3_exq_614a_mech341_p3_behavioural_falsifier_3arm.py](../../../ree-v3/experiments/v3_exq_614a_mech341_p3_behavioural_falsifier_3arm.py)) supersedes V3-EXQ-614. Bit-identical script body to V3-EXQ-614; only `EXPERIMENT_TYPE` / `QUEUE_ID` / `SUPERSEDES` constants and docstring header change. `claim_ids` unchanged: `["MECH-341", "ARC-065"]`. Priority 320 (above V3-EXQ-569c GAP-A re-queue prio 300 + V3-EXQ-490i Tier-1 retest prio 250) because GAP-B is load-bearing for MECH-341 promotion and 614a is the gate. `machine_affinity: "any"` (matches the prior V3-EXQ-614 entry post ree-v3 commit `8b847b0` flip).
+- Smoke-tested 2026-05-30T06:41Z `--dry-run` — 3/3 arms ran to completion, manifest + sentinel written, outcome routing (`FAIL_no_criterion_routes_to_diagnose_errors` at dry-run-tiny-scale) correctly emitted from the interpretation grid.
+- `validate_queue.py` PASS after `git add experiments/v3_exq_614a_*.py`.
+
+**Plan-doc state (this session):**
+- `behavioral_diversity_isolation_plan.md` GAP-B node: `owner_exq` + `resume_condition` updated to reflect V3-EXQ-614 silent-drop loss + V3-EXQ-614a re-queue; `last_updated: 2026-05-30`.
+- `substrate_queue.json` MECH-341 entry: next_step amend to "Await V3-EXQ-614a manifest" pending.
 
 ## Resolution (2026-05-30T06:22:29Z)
 
