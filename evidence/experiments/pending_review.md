@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-30T18:24:37Z`  
-Last review: `2026-05-30T18:15:00Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-30T19:10:27Z`  
+Last review: `2026-05-30T19:04:00Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_490i_mech295_cascade_gap4_tier1_20260530T184434Z_v3` | 2026-05-30T18:44 | MECH-295 | — |
 
 ---
 

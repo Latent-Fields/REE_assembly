@@ -1,0 +1,115 @@
+{
+  "acceptance": {
+    "arm_0_end_phase_2_entropy": 1.107119920634753,
+    "arm_0_end_phase_3_entropy": 1.113317497888992,
+    "arm_1_end_phase_2_entropy": 1.107119920634753,
+    "arm_1_end_phase_3_entropy": 1.1010617034638381,
+    "d1_crystallization_preserves_diversity": false,
+    "d1_delta": -0.012255794425153788,
+    "d2_control_shows_collapse": false,
+    "d2_delta": -0.006197577254238862,
+    "d3_arm0_phase2_entropy": 1.107119920634753,
+    "d3_arm1_phase2_entropy": 1.107119920634753,
+    "d3_sanity_both_show_diversity_at_phase2": true,
+    "verdict": "FAIL"
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "arm_results": [
+    {
+      "arm": "ARM_0_control",
+      "crystallize": false,
+      "end_phase_2_entropy": 1.1382130431885336,
+      "end_phase_3_entropy": 1.096222895139275,
+      "final_phase": 3,
+      "mean_reward": -1.0074113632154464,
+      "seed": 42,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_0_control",
+      "crystallize": false,
+      "end_phase_2_entropy": 0.903899951408903,
+      "end_phase_3_entropy": 1.004919802292809,
+      "final_phase": 3,
+      "mean_reward": -1.133099898827076,
+      "seed": 43,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_0_control",
+      "crystallize": false,
+      "end_phase_2_entropy": 1.2792467673068222,
+      "end_phase_3_entropy": 1.2388097962348918,
+      "final_phase": 3,
+      "mean_reward": -1.1204864260923864,
+      "seed": 44,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_1_test",
+      "crystallize": true,
+      "end_phase_2_entropy": 1.1382130431885336,
+      "end_phase_3_entropy": 1.0997460912449946,
+      "final_phase": 3,
+      "mean_reward": -1.0034913071441651,
+      "seed": 42,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_1_test",
+      "crystallize": true,
+      "end_phase_2_entropy": 0.903899951408903,
+      "end_phase_3_entropy": 0.9764980697289098,
+      "final_phase": 3,
+      "mean_reward": -1.1334420031797887,
+      "seed": 43,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_1_test",
+      "crystallize": true,
+      "end_phase_2_entropy": 1.2792467673068222,
+      "end_phase_3_entropy": 1.2269409494176098,
+      "final_phase": 3,
+      "mean_reward": -1.1199340726292133,
+      "seed": 44,
+      "total_episodes": 2500
+    }
+  ],
+  "backlog_id": "EVB-0270",
+  "claim_ids": [
+    "INV-074",
+    "MECH-334",
+    "MECH-333",
+    "MECH-341"
+  ],
+  "completed_at": "2026-05-29T22:44:19Z",
+  "config": {
+    "dacc_suppression_weight": 0.5,
+    "max_episodes": 2500,
+    "noise_floor_weight": 0.3,
+    "residue_ewc_lambda": 0.1,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "steps_per_episode": 200
+  },
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "MANIFEST RECOVERED 2026-05-30T19:04Z from ree-cloud-3 .bak.20260530 by session rescue-v3-exq-610a-manifest-20260530T190400Z (umbrella commit b975db6). Original run completed normally on ree-cloud-3 (PID 19986) at 2026-05-29T22:44:19Z and wrote this manifest to disk. Script then crashed line 796 with 'TypeError: emit_outcome() got an unexpected keyword argument experiment_type' -- runner classified ERROR (exit non-zero + missing sentinel), Phase 3 writer never ingested, manifest never landed in REE_assembly. Root cause is a copy-paste bug (emit_outcome in ree-v3/experiment_protocol.py has never had an experiment_type parameter); same bug confirmed still present in v3_exq_540g and v3_exq_610 scripts (599/600 already fixed via successors 599a/600a). NOT a stale-worker / commit-lag issue. evidence_direction_per_claim assignment is the conservative governance read: weakens INV-074/MECH-334/MECH-333 (D1=False: crystallization arm delta=-0.012 vs the +0.10 acceptance bar -- crystallization at Phase 3 did NOT preserve diversity advantage); non_contributory MECH-341 (D2=False: control arm delta=-0.006 vs the -0.10 collapse bar -- control did NOT show predicted collapse, so MECH-341 substrate may be doing enough on its own to make this crystallization-necessity test non-discriminative; substrate_ceiling territory consistent with the 2026-05-18 governance reading on INV-074/MECH-334). D3 sanity (both arms had Phase 2 entropy > 0.4) PASSED -- the test setup itself ran cleanly. Governance should adjudicate and confirm or revise per-claim directions.",
+  "evidence_direction_per_claim": {
+    "INV-074": "weakens",
+    "MECH-333": "weakens",
+    "MECH-334": "weakens",
+    "MECH-341": "non_contributory"
+  },
+  "experiment_type": "v3_exq_610a_inv074_crystallization_necessity",
+  "outcome": "FAIL",
+  "queue_id": "V3-EXQ-610a",
+  "recovered_at": "2026-05-30T19:04Z",
+  "recovered_by": "rescue-v3-exq-610a-manifest-20260530T190400Z",
+  "recovered_from": "ree-cloud-3:/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_610a_inv074_crystallization_necessity_20260529T224419Z_v3_manifest.json.bak.20260530",
+  "run_id": "v3_exq_610a_inv074_crystallization_necessity_20260529T224419Z_v3",
+  "supersedes": "V3-EXQ-610"
+}
