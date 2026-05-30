@@ -2888,6 +2888,36 @@ def _build_claim_evidence_stage_info(
     }
 
 
+def _prior_failed_discriminative_attempts(
+    claim_id: str, entries: list[dict[str, Any]]
+) -> list[str]:
+    """Return run_ids of prior experimental discriminative_pair attempts on this claim
+    whose outcome was FAIL or whose evidence_direction was non_contributory / weakens.
+
+    Used to suppress blind re-issue of discriminative_pair auto-stubs in the proposal
+    generator when the claim already has a history of failed pair attempts -- the
+    correct next step there is /failure-autopsy on the latest failing run, not another
+    pair under the same substrate.
+    """
+    out: list[str] = []
+    target = (claim_id or "").upper()
+    for e in entries:
+        if str(e.get("claim_id", "")).upper() != target:
+            continue
+        if str(e.get("source_type", "")).lower() != "experimental":
+            continue
+        exp_type = str(e.get("experiment_type", "")).lower()
+        if "discriminative_pair" not in exp_type and "discriminative-pair" not in exp_type:
+            continue
+        status = str(e.get("status", "")).upper()
+        direction = str(e.get("evidence_direction", "")).lower()
+        if status == "FAIL" or direction in ("non_contributory", "weakens"):
+            rid = e.get("run_id")
+            if rid:
+                out.append(str(rid))
+    return out
+
+
 def _write_planning_outputs(
     planning_root: Path,
     matrix: dict[str, Any],
@@ -3916,6 +3946,30 @@ def _write_planning_outputs(
             for key, value in proposal_patch.items():
                 if str(key).strip():
                     proposal[str(key)] = value
+
+            # Suppress blind re-issue of discriminative_pair auto-stubs when the
+            # claim already has prior FAIL / non_contributory / weakens
+            # discriminative_pair attempts on record. The next correct step is
+            # /failure-autopsy on the latest failing run, not another pair under
+            # the same substrate. Set status=suppressed_prior_attempts_failed so
+            # downstream consumers (workset generator filters status=='proposed')
+            # naturally skip them. The carry-forward block below preserves
+            # status=executed from prior cycles, so a manually-closed proposal
+            # still wins.
+            if proposal.get("dispatch_mode") == "discriminative_pair":
+                prior_fails = _prior_failed_discriminative_attempts(
+                    claim_id, matrix.get("entries", [])
+                )
+                if prior_fails:
+                    proposal["status"] = "suppressed_prior_attempts_failed"
+                    proposal["prior_failed_run_ids"] = prior_fails
+                    proposal["note"] = (
+                        f"Suppressed: prior discriminative-pair attempts for "
+                        f"{claim_id} on record with FAIL / non_contributory / "
+                        f"weakens outcome: {prior_fails}. Route to "
+                        f"/failure-autopsy on the latest run before re-issuing."
+                    )
+
             proposals.append(proposal)
 
         if "literature" in needed:
