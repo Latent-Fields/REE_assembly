@@ -538,6 +538,12 @@ def _undiagnosed_errors(queue_items: list[dict]) -> list[dict]:
             if entry.get("result") != "ERROR":
                 continue
             qid = entry.get("queue_id") or ""
+            # Non-EXQ queue ids (V3-ONBOARD-smoke-*, infra smokes, etc.)
+            # have their own retry cadence and aren't appropriate for
+            # /diagnose-errors. _EXQ_BASE_RE also cannot resolve their
+            # successors, so without this skip they perpetually surface.
+            if qid and not _EXQ_BASE_RE.match(qid):
+                continue
             et = (entry.get("experiment_type") or "").lower()
             key = qid or et
             if key in seen:
