@@ -41,11 +41,11 @@ closure_plan:
       phase: 4
       status: in-progress
       severity: high
-      owner_exq: V3-EXQ-490g
+      owner_exq: "V3-EXQ-490g (FAIL 2026-05-29 cohort autopsy); V3-EXQ-490h FAIL silent-drop 2026-05-30 (runner bug 41c3411); V3-EXQ-490i queued 2026-05-30"
       unblocks_claims: [MECH-295, ARC-030, MECH-117, Q-040]
       depends_on: ["goal_pipeline:GAP-1", "goal_pipeline:GAP-3"]
-      last_updated: 2026-05-24
-      resume_condition: "GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 524a) active; V3-EXQ-483c ran 2026-05-23 FAIL non_contributory (measurement gap: use_dacc=True omitted from all 4 arm configs; dacc is None; C2 cannot fire -- failure_autopsy_V3-EXQ-483c_2026-05-23). V3-EXQ-483d queued 2026-05-24 (PAG/override_signal C2 criterion + goal_norm_peak C3 + use_dacc cluster fix). MECH-307 4-arm discriminative pair still pending but GAP-1 substrate is landed."
+      last_updated: 2026-05-30
+      resume_condition: "<!-- TODO: revise resume_condition to reflect V3-EXQ-490h silent-drop + V3-EXQ-490i re-queue state --> GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 524a) active; V3-EXQ-483c ran 2026-05-23 FAIL non_contributory (measurement gap: use_dacc=True omitted from all 4 arm configs; dacc is None; C2 cannot fire -- failure_autopsy_V3-EXQ-483c_2026-05-23). V3-EXQ-483d queued 2026-05-24 (PAG/override_signal C2 criterion + goal_norm_peak C3 + use_dacc cluster fix). MECH-307 4-arm discriminative pair still pending but GAP-1 substrate is landed."
     - id: "goal_pipeline:GAP-5"
       title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
       phase: 5

@@ -85,10 +85,10 @@ closure_plan:
       phase: "2-3"
       status: partial
       severity: medium
-      owner_exq: "V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29"
+      owner_exq: "V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3-EXQ-605 FAIL NC 2026-05-21; V3-EXQ-603a queued 2026-05-24 (call-path fix); V3-EXQ-544a queued 2026-05-29; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30"
       unblocks_claims: [ARC-065, Q-043, Q-044, Q-045]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
-      last_updated: 2026-05-29
+      last_updated: 2026-05-30
       resume_condition: "<!-- TODO: revise resume_condition to reflect V3-EXQ-544a state --> V3-EXQ-604/605 manifests landed FAIL non_contributory (identical arm entropies under SP-CEM+reef). V3-EXQ-603 pruned without run (was re-queued 2026-05-21T13:36Z but drained). V3-EXQ-603a queued 2026-05-24 (select_action call-path fix + FIFO warmup 75 + obs_harm_a + affective stream; supersedes 603). GAP-H -> done when V3-EXQ-603a manifest lands."
     - id: "arc_062_rule_apprehension:GAP-I"
       title: "ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending"
