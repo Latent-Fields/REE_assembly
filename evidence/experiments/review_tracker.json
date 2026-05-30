@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-30T06:53:14Z",
+  "last_review_utc": "2026-05-30T06:55:36Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -408,7 +408,8 @@
     "V3-EXQ-613",
     "V3-EXQ-544a",
     "v3_exq_483d_sd037_broadcast_gap4_override_signal",
-    "V3-EXQ-483d"
+    "V3-EXQ-483d",
+    "V3-EXQ-612b"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3196,6 +3197,15 @@
         "V3-EXQ-483d"
       ],
       "subject": "Governance application of failure_autopsy_V3-EXQ-483d_2026-05-30 (status=confirmed, scope=single, epistemic_category=substrate_ceiling, routing=implement-substrate). V3-EXQ-483d FAIL (SD-037/MECH-280/MECH-281; 4-arm 2x2 factorial, supersedes V3-EXQ-483c). Substrate fires correctly: override_signal_nonzero_steps saturates at total step count in every OFF_ON/ON_ON seed (C2 cleanly PASS, contra 483c FAIL on C2 measurement bug). However C3_lift_vs_baseline fails (lifts=1/3 seeds); action_counts + goal_norm_peak bit-identical across broadcast_override axis within each seed; MECH-295 bridge dominates effective_drive at goal-seeding site; PAG-freeze + SalienceCoordinator consumer pathways dormant. Substrate-ceiling: SD-037 wired but inert at validation surface. Closes the SD-037 substrate_queue pre-existing prediction. Applied (per autopsy): (1) Manifest evidence_direction overall -> non_contributory + evidence_direction_note + evidence_direction_per_claim updated SD-037/MECH-280/MECH-281 -> non_contributory; (2) claims.yaml SD-037 evidence_quality_note appended with verbatim autopsy text (pending_retest_after_substrate already true); MECH-280 + MECH-281 pending_retest_after_substrate=true added + evidence_quality_note entries appended cross-referencing SD-037; (3) substrate_queue.json SD-037 entry: failure_record_entry appended + metric_trajectory.observations appended + current_blocker + prediction rewritten + priority 2 -> 1 + last_seen_session updated; (4) review_tracker updated with run_id + dir_names. Cluster scope: single (483-cohort only; per MECH-281 existing evidence_quality_note + user direction, closed superseded manifests not re-opened). NOT touched (out of scope): V3-EXQ-612b ERROR (routes to /diagnose-errors separately). 0 new promotion/demotion decisions surfaced."
+    },
+    {
+      "reviewed_at_utc": "2026-05-30T06:55:36Z",
+      "session_id": "diagnose-errors-v3-exq-612b-20260530T065536Z",
+      "reviewed_run_ids": [],
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-612b"
+      ],
+      "subject": "/diagnose-errors closure of V3-EXQ-612b ERROR (ree-cloud-2 2026-05-28T17:36:45Z; v3_exq_612_phase3_cutover_smoke.py; 1.2s; exit=0; result_summary 'No runner sentinel emitted and no PASS/FAIL on stdout'). Disposition: Phase-3-cutover-superseded. NOT re-queued under a new letter. Reasoning: (1) V3-EXQ-612b was a Phase 3 cutover-window transient on the same script that produced two clean PASSes within 21 minutes and 28 hours respectively on the post-cutover pipeline -- V3-EXQ-612d ree-cloud-3 2026-05-28T17:57:01Z PASS (sentinel written, manifest v3_exq_612_phase3_cutover_smoke_20260528T175700Z_v3.json on origin/master via Phase 3 writer; runner_status title 'Phase 3 E2E smoke (emit_outcome sentinel)') AND V3-EXQ-612c ree-cloud-2 2026-05-29T21:46:09Z PASS (sentinel written, manifest _20260529T214609Z_v3.json on origin/master; runner_status title 'Phase 3 E2E smoke (verdict sentinel fix retry)'). (2) Script v3_exq_612_phase3_cutover_smoke.py is correct as-shipped (228 steps / 20 ep / ~0.2s; prints 'verdict: PASS' + '[v3_complete] {run_id}' + calls emit_outcome -> sentinel JSON; exits 0 on PASS). The 612 / 612b ERRORs reflect the runner-side sentinel-capture / coordinator report path NOT being fully landed at the 17:25-17:36Z cutover window, NOT a script defect. (3) Runner-side fix landed yesterday at ree-v3 main 41c3411 (FAIL + ERROR branches now invoke _result_manifest_exists + git_push_results + coordinator_client.report_result, gated on output_file non-empty for ERROR) addresses the broader class. 612b predates the fix; 612c/612d ran on the post-fix substrate and PASSed cleanly. (4) Distinct from the 490h / 592b / 614 manifest-pipeline silent-drop cluster autopsied this morning: those were post-cutover silent drops with manifests-on-disk-but-not-on-origin; 612b had no manifest on disk to recover (exit=0, no PASS/FAIL on stdout per the runner). Routing: closed without re-queue. No new V3-EXQ-612e; the 612c/612d PASSes are the de-facto supersession. Pathspec-limited commit (multiple sibling active claims on TASK_CLAIMS / WORKSPACE_STATE). Concurrent active claim at session start: GAP-B plan-doc + substrate_queue refresh (gapb-plandoc-substrate-queue-refresh-20260530T063352Z) -- disjoint resources. NOT touched: claims.yaml, manifests, evidence_direction fields, ree-v3/experiment_queue.json, experiment scripts."
     }
   ]
 }
