@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-30T04:07:22Z",
+  "generated_at": "2026-05-30T18:32:47Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -555,6 +555,239 @@
         "priority": 28,
         "claim_ids": [
           "INV-074"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T130917Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T13:09:17Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=2de39d78-e892-4436-8cac-ac0878564e41 branch=claude/igw-020-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260530T141026Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T14:10:26Z",
+      "released_at": "2026-05-30T14:10:26Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260530T130917Z-994434ce-claude_local",
+      "note": "session_uuid=2de39d78-e892-4436-8cac-ac0878564e41 branch=claude/igw-020-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T141025Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T14:10:25Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=a250152c-8460-4bb0-9fad-7aef7eba9086 branch=claude/igw-020-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T151128Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T15:11:28Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=43badd82-f4ab-4b0c-9d8f-b662768e79c2 branch=claude/igw-020-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260530T161236Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T16:12:36Z",
+      "released_at": "2026-05-30T16:12:36Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260530T151128Z-994434ce-claude_local",
+      "note": "session_uuid=43badd82-f4ab-4b0c-9d8f-b662768e79c2 branch=claude/igw-020-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T161234Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T16:12:34Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=4cd18dc0-327b-4166-8b8a-fd5bf1812f65 branch=claude/igw-020-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T171338Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-021",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T17:13:38Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=058289f8-5e78-4bc6-94ef-3e152b3d9837 branch=claude/igw-021-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260530T181439Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-021",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T18:14:39Z",
+      "released_at": "2026-05-30T18:14:39Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260530T171338Z-994434ce-claude_local",
+      "note": "session_uuid=058289f8-5e78-4bc6-94ef-3e152b3d9837 branch=claude/igw-021-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T181437Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-023",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-30T18:14:37Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=2437b3fa-b445-4459-888f-8b4e51745271 branch=claude/igw-023-substrate-ready-mech-302",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260530T183247Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-05-30T18:32:47Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": null,
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
         ]
       }
     }
