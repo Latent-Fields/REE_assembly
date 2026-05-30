@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-30T01:54:54Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-592c",
-  "current_exq_started_utc": "2026-05-29T22:46:21.348849+00:00",
-  "current_title": "MECH-090 R-c commit-readiness gate validation (commitment_closure:GAP-4 substrate, requeue of 592b after silent-drop)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_1_GATED_FORCED_READY",
-    "runs_done": 0,
-    "runs_total": 1,
-    "episodes_done": 0,
-    "episodes_total": 400,
-    "overall_pct": 99.0
-  },
-  "seconds_elapsed": 11313,
-  "seconds_remaining": 114,
-  "recent_lines": [
-    "[P0 train] ep 80/400  rv=0.00001  reward=-1.0208",
-    "[P0 probe] ep 120/400  rv=0.00001  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[seed=44] ARM_0_GATED: rv_final=0.00001 (threshold=0.400, crossed=True) n_admitted=0 n_blocked=6 last_margin=0.0008 committed_steps=2374 falsifier_fired=False",
-    "Seed 44 Condition ARM_1_GATED_FORCED_READY"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-05-30T01:55:15Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-603b",
+      "result": "FAIL",
+      "completed_at": "2026-05-26T07:14:59.216957+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-609",
+      "result": "PASS",
+      "completed_at": "2026-05-26T07:24:57.521687+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-612d",
+      "result": "PASS",
+      "completed_at": "2026-05-28T17:57:01.343784+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-610a",
+      "result": "ERROR",
+      "completed_at": "2026-05-29T22:44:20.399408+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-592c",
+      "result": "FAIL",
+      "completed_at": "2026-05-30T01:55:15.559080+00:00"
+    }
+  ],
   "runner_pid": 19986,
   "runner_version": null,
   "gpu": {
