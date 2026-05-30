@@ -1,6 +1,6 @@
 {
   "schema_version": "substrate_queue/v2",
-  "last_updated_utc": "2026-05-30T00:08:41Z",
+  "last_updated_utc": "2026-05-30T06:53:14Z",
   "next_implement_substrate": {
     "sd_id": null,
     "selected_utc": null,
@@ -1142,12 +1142,20 @@
           "experiment_type": "v3_exq_483a_sd037_broadcast_override_4arm",
           "metric": "Warmup 60->200 did NOT recover baseline approach behaviour: approach_commit still 0.0 across all four arms. Substrate-readiness fallback path PASSED: override_mean=0.563 (> 0.30), PAG release ratio ON_ON / ON_OFF=1.69 (> 1.30). Behavioural acceptance criteria still degenerate (PWS / narcolepsy ratios 0/0). Substrate confirmed wired correctly; the catatonic-lock baseline persists with longer warmup.",
           "target": "approach_commit > 0 in the SD-036-only ON_OFF baseline so the falsifiable PWS-hyperphagia / narcolepsy-cataplexy phenotypes can be discriminated. Likely a policy-layer / cue-side bridge issue (MECH-295 candidate) -- not solvable by tuning warmup alone. Future validation requires either (i) a benefit task tuned so baseline drives non-zero approach, or (ii) explicit liking-bridge intervention test (MECH-295 falsifiable primary)."
+        },
+        {
+          "run_id": "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
+          "experiment_type": "v3_exq_483d_sd037_broadcast_gap4_override_signal",
+          "date_utc": "2026-05-29",
+          "substrate_state": "SD-037 landed 2026-04-25; MECH-282 LPB + MECH-286 sleep onset landed 2026-05-21; consumer cascade (SalienceCoordinator enable + PAG-engaging env + PFC/BLA/beta-gate consumers) NOT engaged in this ARM config",
+          "metric_value": "C2 override_signal saturated in all ON arms (PASS); C3_lift_vs_baseline lifts=1/3 (FAIL); action_counts and goal_norm_peak bit-identical across broadcast_override axis within each seed",
+          "metric_notes": "Closes SD-037 substrate_queue prediction. Substrate-ceiling: wired but inert at validation surface. Routes to consumer-cascade substrate work, not to redesigned EXQ on same surface. Autopsy: evidence/planning/failure_autopsy_V3-EXQ-483d_2026-05-30.{md,json}."
         }
       ],
-      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites). Substrate-readiness V3-EXQ-483b PASS. MECH-286 sleep onset IMPLEMENTED 2026-05-21 (V3-EXQ-599 queued). MECH-282 LPB interoceptive routing IMPLEMENTED 2026-05-21 (lpb_interoceptive_routing.py + SD-037 split recruitment; V3-EXQ-600 substrate diagnostic queued). Tier-1 behavioural evidence: V3-EXQ-483c queued.",
-      "priority": 2,
+      "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites). Substrate-readiness V3-EXQ-483b PASS. MECH-286 sleep onset IMPLEMENTED 2026-05-21 (V3-EXQ-599 queued). MECH-282 LPB interoceptive routing IMPLEMENTED 2026-05-21 (lpb_interoceptive_routing.py + SD-037 split recruitment; V3-EXQ-600 substrate diagnostic queued). Tier-1 behavioural evidence: V3-EXQ-483c queued. 2026-05-30: V3-EXQ-483d FAIL routed to consumer-cascade substrate work (see current_blocker / autopsy artifact).",
+      "priority": 1,
       "added_session": "governance-2026-04-24T08:10",
-      "last_seen_session": "governance-20260523T212737Z",
+      "last_seen_session": "governance-apply-v3-exq-483d-autopsy-20260530T065314Z",
       "implementation_status": "implemented",
       "implemented_utc": "2026-04-25T00:00:00Z",
       "validation_experiment": "V3-EXQ-483b",
@@ -1181,10 +1189,18 @@
             "substrate_state": "post Bug-1 breath_period fix",
             "metric_value": "PASS substrate-readiness (canonical)",
             "metric_notes": "supports SD-037/MECH-280/MECH-281; PAG ratio 1.875x; approach_commit=0 (behavioural path N/A)"
+          },
+          {
+            "run_id": "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
+            "experiment_type": "v3_exq_483d_sd037_broadcast_gap4_override_signal",
+            "date_utc": "2026-05-29",
+            "substrate_state": "GAP-4 operating substrate; MECH-282 LPB + MECH-286 sleep onset landed 2026-05-21; consumer cascade NOT engaged (use_salience_coordinator=False; PAG-engaging env condition absent; PFC/BLA/beta-gate consumers deferred per MECH-281 implementation_note)",
+            "metric_value": "C1+C2+C3_approach_commit+C4 PASS top-level; C3_lift_vs_baseline FAIL (lifts=1/3 seeds)",
+            "metric_notes": "Substrate-ceiling. C2 cleanly PASS (override_signal saturates at total step count in every OFF_ON/ON_ON seed). action_counts + goal_norm_peak bit-identical across broadcast_override axis within each seed; MECH-295 bridge dominates effective_drive at the goal-seeding site. Closes the SD-037 substrate_queue prediction. Routes to consumer-cascade substrate work. Autopsy artifact: evidence/planning/failure_autopsy_V3-EXQ-483d_2026-05-30.{md,json}."
           }
         ],
-        "current_blocker": "Policy-layer approach_commit=0 on standard CausalGridWorldV2 benefit task. MECH-282/MECH-286 substrate landed; behavioural dissociation via V3-EXQ-600/483c. Evidence closure via V3-EXQ-483c under GAP-4 operating substrate.",
-        "prediction": "V3-EXQ-483c Tier-1 may show cue_fires/approach_commit lift ON_ON vs OFF_OFF under fishtank+goal_stream; if still flat, blocker is upstream of SD-037 (MECH-295 bridge), not override wiring."
+        "current_blocker": "EXQ-483d closes the pre-existing prediction: with MECH-295 bridge dominating effective_drive and PAG-freeze / SalienceCoordinator dormant in fishtank env, single-channel goal-seeding-gain consumer cannot produce C3_lift_vs_baseline. Consumer-cascade substrate work required: (a) PAG-engaging env condition (sustained-threat curriculum); (b) use_salience_coordinator=True in validation config; (c) PFC/BLA/beta-gate consumer wiring per MECH-281 implementation_note.",
+        "prediction": "Closed by V3-EXQ-483d (2026-05-29): substrate-ceiling confirmed at validation surface. Next behavioural test for SD-037/MECH-280/MECH-281 requires consumer-cascade substrate (SalienceCoordinator enable + PAG-engaging env via SD-036+MECH-279 freeze-engaging substrate + at least one of PFC/BLA/beta-gate consumers wired to read override_signal). Until those land, additional EXQs on the existing surface are predicted to reproduce the wired-but-inert shape and should not be queued."
       }
     },
     {

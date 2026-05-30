@@ -1,0 +1,370 @@
+{
+  "acceptance": {
+    "C1_cue_fires": true,
+    "C2_override_signal": true,
+    "C3_approach_commit": true,
+    "C3_lift_count": 1,
+    "C3_lift_vs_baseline": false,
+    "C4_goal_active": true,
+    "baseline_arm_id": "OFF_OFF",
+    "gap4_arm_id": "ON_ON",
+    "pass": false
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-037",
+    "MECH-280",
+    "MECH-281"
+  ],
+  "elapsed_seconds": 6259.862855911255,
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "Per failure_autopsy_V3-EXQ-483d_2026-05-30.json (status=confirmed; epistemic_category=substrate_ceiling). Substrate fires correctly: override_signal_nonzero_steps saturates at total step count in every OFF_ON / ON_ON seed (C2 cleanly PASS). However action_counts and goal_norm_peak are bit-identical across the broadcast_override axis within each seed (OFF_OFF vs OFF_ON; ON_OFF vs ON_ON), and C3_lift_vs_baseline fails (lifts=1/3). MECH-295 bridge dominates effective_drive at the goal-seeding site; PAG-freeze and SalienceCoordinator consumer pathways are dormant in this env / config. Substrate-ceiling: SD-037 wired but inert at the validation surface. Closes the SD-037 substrate_queue's pre-existing prediction. Hold pending consumer-cascade substrate work (SalienceCoordinator enable + PAG-engaging env condition + PFC/BLA/beta-gate consumers per MECH-281 implementation_note). Pair with pending_retest_after_substrate.",
+  "evidence_direction_per_claim": {
+    "MECH-280": "non_contributory",
+    "MECH-281": "non_contributory",
+    "SD-037": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "experiment_type": "v3_exq_483d_sd037_broadcast_gap4_override_signal",
+  "outcome": "FAIL",
+  "per_run": [
+    {
+      "action_counts": {
+        "0": 5,
+        "1": 502,
+        "2": 6,
+        "3": 859,
+        "4": 7
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1379,
+      "arm": "OFF_OFF",
+      "bridge_cue_fires": 6,
+      "bridge_write_fires": 6,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1379,
+      "goal_norm_peak": 0.2260640412569046,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 11,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1379
+    },
+    {
+      "action_counts": {
+        "0": 3,
+        "1": 535,
+        "2": 2,
+        "3": 1111,
+        "4": 7
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1658,
+      "arm": "ON_OFF",
+      "bridge_cue_fires": 27,
+      "bridge_write_fires": 198,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1658,
+      "goal_norm_peak": 0.1929624378681183,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 4,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1658
+    },
+    {
+      "action_counts": {
+        "0": 5,
+        "1": 502,
+        "2": 6,
+        "3": 859,
+        "4": 7
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1379,
+      "arm": "OFF_ON",
+      "bridge_cue_fires": 6,
+      "bridge_write_fires": 7,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1379,
+      "goal_norm_peak": 0.2260640412569046,
+      "override_signal_nonzero_steps": 1379,
+      "resource_contacts": 11,
+      "seed": 42,
+      "seed_pass": true,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": true,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1379
+    },
+    {
+      "action_counts": {
+        "0": 3,
+        "1": 535,
+        "2": 2,
+        "3": 1111,
+        "4": 7
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1658,
+      "arm": "ON_ON",
+      "bridge_cue_fires": 27,
+      "bridge_write_fires": 199,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1658,
+      "goal_norm_peak": 0.1929624378681183,
+      "override_signal_nonzero_steps": 1658,
+      "resource_contacts": 4,
+      "seed": 42,
+      "seed_pass": true,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": true,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1658
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 58
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "OFF_OFF",
+      "bridge_cue_fires": 4,
+      "bridge_write_fires": 4,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192166477441788,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "4": 58
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "ON_OFF",
+      "bridge_cue_fires": 3,
+      "bridge_write_fires": 3,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192166477441788,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 58
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "OFF_ON",
+      "bridge_cue_fires": 4,
+      "bridge_write_fires": 5,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192166477441788,
+      "override_signal_nonzero_steps": 59,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": true,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": true,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "4": 58
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "ON_ON",
+      "bridge_cue_fires": 3,
+      "bridge_write_fires": 4,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192166477441788,
+      "override_signal_nonzero_steps": 59,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": true,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": true,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "0": 303,
+        "2": 456,
+        "4": 34
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 793,
+      "arm": "OFF_OFF",
+      "bridge_cue_fires": 12,
+      "bridge_write_fires": 40,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 793,
+      "goal_norm_peak": 0.29584237933158875,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 2,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 793
+    },
+    {
+      "action_counts": {
+        "0": 544,
+        "2": 763,
+        "3": 2,
+        "4": 38
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1347,
+      "arm": "ON_OFF",
+      "bridge_cue_fires": 19,
+      "bridge_write_fires": 0,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1347,
+      "goal_norm_peak": 0.3095659613609314,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 1,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1347
+    },
+    {
+      "action_counts": {
+        "0": 303,
+        "2": 456,
+        "4": 34
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 793,
+      "arm": "OFF_ON",
+      "bridge_cue_fires": 12,
+      "bridge_write_fires": 41,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 793,
+      "goal_norm_peak": 0.29584237933158875,
+      "override_signal_nonzero_steps": 793,
+      "resource_contacts": 2,
+      "seed": 19,
+      "seed_pass": true,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": true,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 793
+    },
+    {
+      "action_counts": {
+        "0": 544,
+        "2": 763,
+        "3": 2,
+        "4": 38
+      },
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1347,
+      "arm": "ON_ON",
+      "bridge_cue_fires": 19,
+      "bridge_write_fires": 0,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1347,
+      "goal_norm_peak": 0.3095659613609314,
+      "override_signal_nonzero_steps": 1347,
+      "resource_contacts": 1,
+      "seed": 19,
+      "seed_pass": true,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_override_signal": true,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1347
+    }
+  ],
+  "queue_id": "V3-EXQ-483d",
+  "run_id": "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
+  "supersedes": "V3-EXQ-483c",
+  "thresholds": {
+    "TIER1_GOAL_NORM_PEAK_DELTA": 0.01,
+    "TIER1_OVERRIDE_SIGNAL_MIN": 10
+  },
+  "timestamp_utc": "20260529T220132Z"
+}
