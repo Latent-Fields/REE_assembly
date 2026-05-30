@@ -4082,7 +4082,17 @@ def _write_planning_outputs(
                 if _bid and _ep.get("status", "proposed") != "proposed":
                     _existing_status[_bid] = {
                         k: _ep[k]
-                        for k in ("status", "executed_by", "executed_queue_id")
+                        for k in (
+                            "status",
+                            "executed_by",
+                            "executed_queue_id",
+                            "gated_at_utc",
+                            "gated_by_session",
+                            "gating_reason",
+                            "predecessor_disposition",
+                            "release_condition",
+                            "superseded_by",
+                        )
                         if k in _ep
                     }
         except Exception:
