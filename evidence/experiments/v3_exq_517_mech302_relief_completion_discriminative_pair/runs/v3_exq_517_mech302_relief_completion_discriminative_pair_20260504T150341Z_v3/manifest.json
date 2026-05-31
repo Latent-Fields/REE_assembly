@@ -23,9 +23,9 @@
     "MECH-302"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-302": "weakens"
+    "MECH-302": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Calibration gap: comparator window (5 steps, drop_threshold=5%) cannot detect live z_harm_a healing dynamics (rate=0.002/step -> max drop 0.010 in window, below 5% of typical norm ~0.5). EXQ-516 PASS confirmed the comparator logic is correct. FAIL is a substrate calibration mismatch, not a mechanism failure. Reclassified non_contributory 2026-05-04. EXQ-517a to be queued with recalibrated comparator window."
 }

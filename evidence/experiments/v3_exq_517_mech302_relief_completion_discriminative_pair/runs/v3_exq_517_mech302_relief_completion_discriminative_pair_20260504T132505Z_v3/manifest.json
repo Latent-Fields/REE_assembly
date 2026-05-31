@@ -23,9 +23,9 @@
     "MECH-302"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-302": "weakens"
+    "MECH-302": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Dry-run artifact (config.dry_run=true, n_seeds=1, elapsed=5s). Script validation run, not a genuine discriminative-pair test. Reclassified 2026-05-04 governance session."
 }

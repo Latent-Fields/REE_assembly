@@ -23,8 +23,10 @@
     "SD-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-016": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -40,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-04-28T22Z governance: Reclassified does_not_support -> non_contributory. C1+C2+C3 PASS confirms substrate-side fixes (learnable temperature + entropy-minimisation loss) work as designed; C4+C5 FAIL traced to env-entropy precondition gap (action_class_entropy=1.105e-10 IDENTICAL across all 4 arms regardless of substrate arm; cue_context produces zero behavioural delta because z_world is near-constant cos~0.998). Substrate verdict deferred to env-entropy-corrected retest per substrate_queue.json status=parked_pending_env_entropy_precondition (recorded 2026-04-28T21:05Z). Validation_experiment now V3-EXQ-418h (FAIL today; broader env enrichment scoping needed). NOT counter-evidence to SD-016."
 }

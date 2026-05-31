@@ -23,9 +23,9 @@
     "SD-017"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-017": "does_not_support"
+    "SD-017": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-10T10:11Z (was does_not_support FAIL). The experiment tests whether sleep produces action-bias diversification (SD-017). All seeds returned with_action_bias_div = without_action_bias_div bit-identical (seed 42: 0.000450 = 0.000450; signed_diff = 0.0; abs_diff = 0.0; slot_diversity 0.152 = 0.152). The action-bias-div metric itself is ~0.0003 across both arms, three orders of magnitude below the 0.05 acceptance threshold. Without an upstream behavioral-diversity-generation pathway (ARC-065 cluster registered 2026-05-10: ARC-065 anchor + MECH-313 stochastic_noise_floor + MECH-314/314a/314b/314c structured curiosity + MECH-312 multi-channel arbitration), the agent's policy has no behavioural diversity to source. Sleep cannot diversify what was never diverse. The discriminative-pair test is non_contributory pending ARC-065 substrate (V3-EXQ-543b/c falsifier path). Re-queue as V3-EXQ-418m after ARC-065 substrate lands and produces non-zero waking action-bias-div."
 }

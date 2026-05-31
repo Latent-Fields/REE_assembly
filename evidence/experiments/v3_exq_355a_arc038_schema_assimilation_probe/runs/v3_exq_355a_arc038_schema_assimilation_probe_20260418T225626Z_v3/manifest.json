@@ -23,7 +23,7 @@
     "ARC-038"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Reclassified 2026-04-19 from does_not_support to non_contributory. CONSOLIDATION_ENABLED and CONSOLIDATION_ABLATED produced bit-identical Phase1 harm_rate per seed (0.0379, 0.000422, 0.000537); relative_improvement=0.0 across all seeds. Consolidation loss accumulates (mean 0.011) so harm_eval_head IS being updated, but updates do not propagate to Phase1 online action selection. Missing substrate: MECH-261 (mode-conditioned write gating) -- consolidation-mode writes land in a compartment that online-mode action selection does not read from. ARC-038 pending_retest_after_substrate once MECH-261 implemented. Lit-pull on waking-consolidation -> action-selection propagation (systems consolidation, hippocampal-cortical dialogue) useful before MECH-261 implementation."
 }

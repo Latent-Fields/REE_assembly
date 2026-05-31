@@ -24,10 +24,10 @@
     "MECH-309"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "ARC-062": "weakens",
-    "MECH-309": "non_contributory"
+    "ARC-062": "superseded",
+    "MECH-309": "superseded"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -44,5 +44,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Superseded by V3-EXQ-543i per confirmed failure_autopsy_V3-EXQ-543h_2026-05-18 (status: confirmed; cluster [543f,543g,543h]). Diagnosis: substrate_ceiling -- GatedPolicy head-differentiation does not robustly persist under outcome-coupled REINFORCE; gated arms collapse to inert intermittently. Cross-machine proof: identical 543g config ACTIVE host-A only, INERT cloud-3 + cloud-4 (bit-identical ARM_0). 543g _144716Z 'weakens ARC-062' is a 1/3 minority-basin artifact; 543g overall non_contributory. Do NOT honor 543h supersedes 543g (543h never reproduced 543g substrate). 543i supersedes BOTH 543g and 543h. ARC-062 has ZERO reliable contributory trained-policy evidence (narrow_supports_flag) -- voiding this cluster is NOT conflict resolution. pending_retest_after_substrate=true; routing=implement-substrate."
 }
