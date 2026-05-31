@@ -161,6 +161,16 @@ _phase3_writers_cache_at: float = 0.0
 _phase3_writers_lock = threading.Lock()
 _PHASE3_WRITERS_TTL = 60.0
 _PHASE3_HUB_DEFAULT_HOST = "91.98.130.117"
+# WireGuard-tunnel address of the coordinator HTTP plane on the hub.
+# /writer-health is the durable replacement for the SSH+journal probe; we
+# try this first and fall back to SSH if the call fails (deploy windows,
+# auth issues, endpoint not yet rolled out to the hub).
+_PHASE3_COORDINATOR_WG_URL = "http://10.8.0.1:8787"
+# sync_daemon's tick interval. Used to colour writer rows by tick-age:
+# the SYNC_INTERVAL bump from 60s -> 300s landed on the hub 2026-05-31.
+# Mirroring the default here lets the explorer judge "is the writer
+# alive" without depending on commit cadence.
+_PHASE3_SYNC_INTERVAL_S = 300.0
 
 
 def run_phase3_preflight_summary() -> dict:
@@ -271,14 +281,155 @@ def _parse_phase3_log_line(line: str) -> dict:
     return {"sha10": sha[:10], "committed_at": ts, "subject": subject}
 
 
-def run_phase3_writers_summary() -> dict:
-    """SSH to the coordinator hub once per cache window, fetch the most recent
-    commit per writer (phase3:/phase3-queue:/phase3-heartbeats:), spool depth,
-    and the last few sync_daemon journal lines. Tolerates hub unreachable.
+def _phase3_writer_health_color(tick_age_s: float | None,
+                                 last_error: dict | None) -> str:
+    """Tick-age-based health colour for HTTP-mode writer rows.
 
-    Returns {hub_reachable: bool, writers: {git: {...}, queue: {...},
-    heartbeat: {...}} | None, spool_pending: int|null, journal_tail: [str],
-    cached_at: iso, fleet_drained: bool|null (optional)}.
+    Healthy writer process iff it has ticked recently, regardless of
+    commit cadence. This is the durable signal the chip introduced:
+    "writer X last ticked at HH:MM" tells the explorer "the process is
+    alive and running its loop", which is what the user actually wants
+    to know. Commit age is kept on the row but is informational only.
+
+    Thresholds: < 2 x SYNC_INTERVAL green, 2-5 x yellow, > 5x red.
+    A non-None last_error always paints red regardless of tick age --
+    the writer is alive but failing, which still warrants attention.
+    last_error has already been aged out by the coordinator side
+    (WRITER_HEALTH_ERROR_TTL_S), so a present error is recent enough
+    to be load-bearing.
+    """
+    if last_error is not None:
+        return "red"
+    if tick_age_s is None:
+        return "red"
+    if tick_age_s < 2.0 * _PHASE3_SYNC_INTERVAL_S:
+        return "green"
+    if tick_age_s < 5.0 * _PHASE3_SYNC_INTERVAL_S:
+        return "yellow"
+    return "red"
+
+
+def _parse_iso_utc_to_unix(iso_str: str | None) -> int | None:
+    """Parse `YYYY-MM-DDTHH:MM:SSZ` to a unix int; None on malformed."""
+    if not iso_str:
+        return None
+    try:
+        # Tolerate `Z` or `+00:00` suffix.
+        s = iso_str.rstrip("Z")
+        dt = datetime.datetime.fromisoformat(s)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=datetime.timezone.utc)
+        return int(dt.timestamp())
+    except (ValueError, TypeError):
+        return None
+
+
+def _fetch_phase3_writer_health_http(cfg: dict) -> dict | None:
+    """Single HTTP GET to coordinator /writer-health over WireGuard.
+
+    Returns the run_phase3_writers_summary-shaped result on success, or
+    None on any failure (so the caller can fall back to the SSH path).
+    Never raises. Token comes from coordinator.env COORDINATOR_LOCAL_TOKEN,
+    same as the other coordinator probes in this file.
+    """
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
+    if not tok:
+        return None
+    url = (cfg.get("COORDINATOR_URL")
+           or _PHASE3_COORDINATOR_WG_URL).rstrip("/") + "/writer-health"
+    import urllib.error
+    import urllib.request
+    try:
+        req = urllib.request.Request(
+            url, headers={"Authorization": "Bearer " + tok}, method="GET")
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            doc = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, urllib.error.HTTPError,
+            OSError, ValueError, TimeoutError):
+        return None
+    writers_doc = doc.get("writers")
+    if not isinstance(writers_doc, dict):
+        return None
+
+    now_unix = time.time()
+    cached_at = datetime.datetime.utcnow().isoformat() + "Z"
+
+    def _writer_row_from_health(rec: dict) -> dict:
+        last_tick = _parse_iso_utc_to_unix(rec.get("last_tick_at"))
+        last_commit = _parse_iso_utc_to_unix(rec.get("last_commit_at"))
+        tick_age = (now_unix - last_tick) if last_tick is not None else None
+        commit_age = (now_unix - last_commit) if last_commit is not None else None
+        sha = rec.get("last_commit_sha") or None
+        subject = rec.get("last_commit_subject")
+        err = rec.get("last_error") if isinstance(rec.get("last_error"), dict) else None
+        return {
+            # Keep the legacy shape so the existing UI consumer is bit-
+            # identical when reading committed_at / sha10 / subject.
+            "sha10": (sha[:10] if isinstance(sha, str) else None),
+            "committed_at": last_commit,
+            "subject": subject,
+            "age_s": int(commit_age) if commit_age is not None else None,
+            # NEW: tick-age telemetry surfaced for the explorer to render.
+            "last_tick_at": rec.get("last_tick_at"),
+            "tick_age_s": int(tick_age) if tick_age is not None else None,
+            "last_error": err,
+            "color": _phase3_writer_health_color(tick_age, err),
+        }
+
+    writers = {
+        "git_writer": _writer_row_from_health(
+            writers_doc.get("git_writer") or {}),
+        "queue_writer": _writer_row_from_health(
+            writers_doc.get("queue_writer") or {}),
+        "heartbeat_writer": _writer_row_from_health(
+            writers_doc.get("heartbeat_writer") or {}),
+    }
+    # Status hint derived from per-writer error presence. Coarser than the
+    # journal-line classifier, but the HTTP path is the durable fix and the
+    # error message itself is on the row for the operator to read.
+    any_error = any(w.get("last_error") is not None
+                    for w in writers.values())
+    writer_status = "errored" if any_error else "idle"
+    for row in writers.values():
+        row["status"] = writer_status
+
+    return {
+        "hub_reachable": True,
+        "hub_host": cfg.get("SHADOW_SSH_HOST_ree-cloud-1")
+                    or cfg.get("PHASE3_HUB_SSH_HOST")
+                    or _PHASE3_HUB_DEFAULT_HOST,
+        "writers": writers,
+        # spool depth + journal tail are not available over the writer-health
+        # endpoint; the explorer panel renders them best-effort, so absent
+        # values render as 'unknown'. The SSH fallback fills these when the
+        # HTTP probe fails. A separate /coordinator-spool or similar
+        # endpoint could fold these in later; out of scope for this chip.
+        "spool_pending": None,
+        "journal_tail": [],
+        "sync_daemon_pid": doc.get("sync_daemon_pid"),
+        "probe": "http",
+        "cached_at": cached_at,
+    }
+
+
+def run_phase3_writers_summary() -> dict:
+    """Fetch phase3 writer health for the explorer panel.
+
+    Primary path: HTTP GET coordinator:8787/writer-health (sync_daemon
+    publishes a snapshot every tick; the coordinator serves it). Single
+    auth'd call over WireGuard. Colours come from tick-age, not commit-age,
+    so healthy writers stay green during quiet periods.
+
+    Fallback: SSH to the hub, fetch the most recent commit per writer
+    (phase3:/phase3-queue:/phase3-heartbeats:), spool depth, and the last
+    few sync_daemon journal lines. Slower, conflates 'writer alive' with
+    'something has changed lately', and depends on SSH access -- but
+    survives any future deploy gap where the HTTP endpoint is unreachable.
+
+    Returns {hub_reachable: bool, writers: {git_writer: {...}, queue_writer:
+    {...}, heartbeat_writer: {...}} | None, spool_pending: int|null,
+    journal_tail: [str], probe: 'http'|'ssh', cached_at: iso,
+    fleet_drained: bool|null (optional)}.
     """
     global _phase3_writers_cache, _phase3_writers_cache_at
     with _phase3_writers_lock:
@@ -288,6 +439,12 @@ def run_phase3_writers_summary() -> dict:
             return _phase3_writers_cache
 
         cfg = _load_coordinator_cfg()
+        http_result = _fetch_phase3_writer_health_http(cfg)
+        if http_result is not None:
+            _phase3_writers_cache = http_result
+            _phase3_writers_cache_at = now
+            return http_result
+
         # Hub SSH target: SHADOW_SSH_HOST_ree-cloud-1 wins, then explicit
         # PHASE3_HUB_SSH_HOST, then the documented WireGuard-tunnel public IP.
         hub_host = (cfg.get("SHADOW_SSH_HOST_ree-cloud-1")
@@ -337,6 +494,7 @@ def run_phase3_writers_summary() -> dict:
                 "spool_pending": None,
                 "journal_tail": [],
                 "error": repr(exc),
+                "probe": "ssh",
                 "cached_at": cached_at,
             }
             _phase3_writers_cache = result
@@ -351,6 +509,7 @@ def run_phase3_writers_summary() -> dict:
                 "spool_pending": None,
                 "journal_tail": [],
                 "error": detail or ("ssh rc=%d" % cp.returncode),
+                "probe": "ssh",
                 "cached_at": cached_at,
             }
             _phase3_writers_cache = result
@@ -425,6 +584,7 @@ def run_phase3_writers_summary() -> dict:
             "writers": writers,
             "spool_pending": spool_pending,
             "journal_tail": journal_lines[-3:],
+            "probe": "ssh",
             "cached_at": cached_at,
         }
         _phase3_writers_cache = result
