@@ -24492,6 +24492,28 @@
     the liking bridge, or (b) literature evidence resolving the DAT-
     knockdown / Pecina 2003 inconsistency with strong necessity. The
     weak reading remains the provisional commitment.
+
+    V3-EXQ-490i autopsy upgrade (2026-05-31): the manifest
+    evidence_direction_per_claim[MECH-295] is overridden from "weakens"
+    to "narrow_supports" per confirmed failure_autopsy_V3-EXQ-490i_2026-05-30.
+    Bridge fires cleanly in ARM_1 (cue_fires 6/4/12; write_fires 6/4/40)
+    with approach_commit_rate=1.0 in 3/3 seeds; ARM_0 severed shows
+    approach_commit_rate=0.0 in 3/3. The MECH-295 architectural prediction
+    registered as the primary falsifiable test (bridge intact -> approach
+    recovers; bridge severed -> collapses) is met in the sign direction
+    across all seeds. Manifest evidence_direction=weakens rolls up
+    (i) test-design contamination on C3_lift_vs_baseline (chosen substrate-side
+    proxy is goal_norm_peak ARM_1 - ARM_0; ARM_0 has z_goal_enabled=True
+    and accumulates a goal-norm baseline the metric assumes is zero --
+    seed-7 ARM_0 spikes to 12.49) and (ii) a separate C2 dACC wiring gap
+    (dacc_bias_nonzero_steps=0 across all ARM_1 seeds despite cfg.use_dacc=True
+    -- SD-032b consumer-pathway wiring gap, NOT a MECH-295 falsification).
+    narrow_supports flag set: one experimental pair under one env config;
+    broader retest comes with V3-EXQ-490j on a non-contaminated baseline
+    arm (z_goal_enabled=False) plus direct bridge-magnitude probe.
+    Routing: /queue-experiment for V3-EXQ-490j; /diagnose-errors for the
+    SD-032b dACC bundle -> E3 score_bias propagation path. Substrate
+    operative; no SD-amend.
   implementation_note: >
     V3 substrate IMPLEMENTED 2026-04-26 in ree-v3/ree_core/regulators/
     mech295_liking_bridge.py (MECH295LikingBridge,
@@ -27807,7 +27829,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: architectural
   registered_utc: "2026-05-10"
   depends_on: []
@@ -27875,7 +27897,7 @@
     relative-weight-calibration question (Q-043) and the substrate-
     collapse question (Q-044, Q-045) are open and falsifiable in V3-
     EXQ-543b/c.
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: false
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 lit-pull SYNTHESIS verdict 3
     (PROMOTE-TO-CLUSTER, conf 0.82) and Pull 4 R4 HYBRID-naming
@@ -27918,6 +27940,32 @@
     claim. A standalone pull on the diversity-generation function as
     such (rather than its sub-substrates) would deepen the registration
     but is not a precondition for V3-EXQ-543b/c.
+
+    [2026-05-31 governance: three converging PASSes clear both
+    v3_pending and pending_retest_after_substrate gates]:
+    (i) V3-EXQ-614a PASS (2026-05-30T19:32Z, supersedes V3-EXQ-614)
+        Phase-P3 behavioural falsifier 3-arm, label
+        PASS_C2_C3_only_mech341_load_bearing_in_stack_only per
+        behavioral_diversity_isolation_plan R2.c rule;
+        evidence_direction_per_claim[ARC-065]=supports.
+    (ii) V3-EXQ-569d PASS (2026-05-31T05:36Z, supersedes V3-EXQ-569c)
+        SD-056 matched-entropy FP-2 falsifier with C1 floor
+        recalibrated 0.05->0.03 per autopsy V3-EXQ-569c Section 5;
+        all three C-criteria PASS;
+        evidence_direction_per_claim[ARC-065]=supports.
+        V3-EXQ-569c manifest set evidence_direction=superseded per
+        supersession policy.
+    (iii) V3-EXQ-615 PASS (2026-05-31T09:31Z, real run; the 08:22Z
+        dry_run=True FAIL preceded it and is non-evidential)
+        Rung-1 matched-entropy on rescued substrate (30/60 ep, 200
+        steps); C1+C2+C3 all PASS; entropy_delta_arm2_vs_arm1=1.11;
+        script-routing: "ARC-065 supports, clear pending_retest_after_substrate".
+    Combined: ARC-065 v3_pending false, pending_retest_after_substrate
+    false. 569e mechanism-dissociation diagnostic (Pathway A vs B) is
+    flagged for /failure-autopsy and does not weight against ARC-065 in
+    this cycle. ARC-065 remains status=candidate; the next governance
+    cycle is where the indexer reconsiders the promotion gate now that
+    the V3-pending gate is lifted.
   notes: >
     HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
     internal architectural name (behavioral_diversity_generation_pathway)
@@ -34796,6 +34844,32 @@
 
 
     [2026-05-30 governance / autopsy V3-EXQ-569c applied]: V3-EXQ-569c (2026-05-30) tested SD-056 against ARC-065 GAP-A R1.b as a matched-entropy FP-2 falsifier. Headline result: ON arms (sd056_weight 0.01/0.05/0.20) produce selected_action_entropy 0.875/0.833/0.951 vs matched-noise control (ARM_4 T=2.5) at 0.414 -- ~2.4x above the FP-2 control on the C3 acceptance axis. Pre-registered C1 floor was a calibration miss (0.05 set against V3-EXQ-613 standalone magnitude 0.286 rather than behavioural-runtime ~0.045); ON arms cluster at 3x bit-identical noise (0.0148), confirming the substrate is operative. Per /failure-autopsy V3-EXQ-569c 2026-05-30: routed to /queue-experiment for V3-EXQ-569d (recalibrated C1 floor + e3_top2_class_gap NaN fix) and V3-EXQ-569e (mechanism probe dissociating per-candidate-variance propagation vs E2-rollout-dynamics shift as source of the C3 lift). Evidence direction for MECH-341 supports preserved per the matched-noise control clearance on C3. MECH-341 stays candidate / v3_pending=true pending V3-EXQ-569d+569e returns.
+
+    [2026-05-31 governance: V3-EXQ-614a + V3-EXQ-569d PASS; V3-EXQ-569e
+    diagnostic FAIL flagged for /failure-autopsy]:
+    (i) V3-EXQ-614a PASS (2026-05-30T19:32Z, supersedes V3-EXQ-614)
+        Phase-P3 behavioural falsifier 3-arm, label
+        PASS_C2_C3_only_mech341_load_bearing_in_stack_only per
+        behavioral_diversity_isolation_plan R2.c rule;
+        evidence_direction_per_claim[MECH-341]=supports. Mech341
+        load-bearing in the full stack only (B_only arm does NOT
+        independently produce trajectory_class_count >= 2).
+    (ii) V3-EXQ-569d PASS (2026-05-31T05:36Z, supersedes V3-EXQ-569c)
+        SD-056 matched-entropy FP-2 falsifier with C1 floor
+        recalibrated 0.05->0.03 per autopsy V3-EXQ-569c Section 5;
+        all three C-criteria PASS;
+        evidence_direction_per_claim[MECH-341]=supports.
+        V3-EXQ-569c manifest set evidence_direction=superseded per
+        supersession policy.
+    (iii) V3-EXQ-569e FAIL (2026-05-31T00:49Z) was registered as
+        experiment_purpose=diagnostic (Pathway A vs B mechanism
+        dissociation probe). Per skill rule, diagnostic FAILs do not
+        weight evidence_direction. Flagged for /failure-autopsy.
+        MECH-341 evidence direction not weighted by 569e this cycle.
+    MECH-341 stays candidate / v3_pending=true pending mechanism-
+    dissociation autopsy interpretation; promotion gate held until
+    569e dissociation is resolved and PASS evidence accumulates across
+    additional ARMs.
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is

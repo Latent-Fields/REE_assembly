@@ -1,1 +1,211 @@
-{"acceptance": {"C1_cue_fires": true, "C2_dacc_bias": false, "C3_approach_commit": true, "C3_lift_count": 0, "C3_lift_metric": "goal_norm_peak_delta", "C3_lift_vs_baseline": false, "C4_goal_active": true, "baseline_arm_id": "ARM_0_legacy_collapsed", "gap4_arm_id": "ARM_1_gap4_operating", "pass": false}, "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["MECH-295"], "elapsed_seconds": 15205.751052856445, "evidence_direction": "weakens", "evidence_direction_per_claim": {"MECH-295": "weakens"}, "experiment_purpose": "evidence", "experiment_type": "v3_exq_490i_mech295_cascade_gap4_tier1", "gap4_operating": {"drive_ema_alpha": 1.0, "drive_floor": 0.9, "goal_stream": true, "library_rebuild": "2026-05-29 Fork A (V3-EXQ-490g-cohort autopsy)", "use_dacc": true}, "outcome": "FAIL", "per_run": [{"action_counts": {"0": 139, "1": 68, "3": 233, "4": 1}, "action_entropy": 1.003080339533128, "approach_commit_rate": 0.0, "approach_commit_steps": 0, "arm": "ARM_0_legacy_collapsed", "bridge_cue_fires": 0, "bridge_write_fires": 0, "dacc_bias_nonzero_steps": 0, "goal_active_fraction": 0.022675736961451247, "goal_active_steps": 10, "goal_norm_peak": 0.7924675941467285, "override_signal_nonzero_steps": 0, "resource_contacts": 7, "seed": 42, "seed_pass": false, "tier1_checks": {"C1_cue_fires": false, "C2_dacc_bias": false, "C3_approach_commit": false, "C4_goal_active": false}, "total_eval_steps": 441}, {"action_counts": {"0": 5, "1": 502, "2": 6, "3": 859, "4": 7}, "action_entropy": 0.7335650152185017, "approach_commit_rate": 1.0, "approach_commit_steps": 1379, "arm": "ARM_1_gap4_operating", "bridge_cue_fires": 6, "bridge_write_fires": 6, "dacc_bias_nonzero_steps": 0, "goal_active_fraction": 1.0, "goal_active_steps": 1379, "goal_norm_peak": 0.2260640412569046, "override_signal_nonzero_steps": 0, "resource_contacts": 11, "seed": 42, "seed_pass": false, "tier1_checks": {"C1_cue_fires": true, "C2_dacc_bias": false, "C3_approach_commit": true, "C4_goal_active": true}, "total_eval_steps": 1379}, {"action_counts": {"0": 1961, "1": 39}, "action_entropy": 0.09608677285703669, "approach_commit_rate": 0.0, "approach_commit_steps": 0, "arm": "ARM_0_legacy_collapsed", "bridge_cue_fires": 0, "bridge_write_fires": 0, "dacc_bias_nonzero_steps": 0, "goal_active_fraction": 1.0, "goal_active_steps": 2000, "goal_norm_peak": 12.488753318786621, "override_signal_nonzero_steps": 0, "resource_contacts": 5, "seed": 7, "seed_pass": false, "tier1_checks": {"C1_cue_fires": false, "C2_dacc_bias": false, "C3_approach_commit": false, "C4_goal_active": true}, "total_eval_steps": 2000}, {"action_counts": {"2": 1, "4": 58}, "action_entropy": 0.08591550133466311, "approach_commit_rate": 1.0, "approach_commit_steps": 59, "arm": "ARM_1_gap4_operating", "bridge_cue_fires": 4, "bridge_write_fires": 4, "dacc_bias_nonzero_steps": 0, "goal_active_fraction": 1.0, "goal_active_steps": 59, "goal_norm_peak": 0.09192166477441788, "override_signal_nonzero_steps": 0, "resource_contacts": 0, "seed": 7, "seed_pass": false, "tier1_checks": {"C1_cue_fires": true, "C2_dacc_bias": false, "C3_approach_commit": true, "C4_goal_active": true}, "total_eval_steps": 59}, {"action_counts": {"0": 63, "1": 715, "2": 1, "3": 132}, "action_entropy": 0.6622603949874194, "approach_commit_rate": 0.0, "approach_commit_steps": 0, "arm": "ARM_0_legacy_collapsed", "bridge_cue_fires": 0, "bridge_write_fires": 0, "dacc_bias_nonzero_steps": 0, "goal_active_fraction": 1.0, "goal_active_steps": 911, "goal_norm_peak": 0.46786096692085266, "override_signal_nonzero_steps": 0, "resource_contacts": 2, "seed": 19, "seed_pass": false, "tier1_checks": {"C1_cue_fires": false, "C2_dacc_bias": false, "C3_approach_commit": false, "C4_goal_active": true}, "total_eval_steps": 911}, {"action_counts": {"0": 303, "2": 456, "4": 34}, "action_entropy": 0.8208244586526936, "approach_commit_rate": 1.0, "approach_commit_steps": 793, "arm": "ARM_1_gap4_operating", "bridge_cue_fires": 12, "bridge_write_fires": 40, "dacc_bias_nonzero_steps": 0, "goal_active_fraction": 1.0, "goal_active_steps": 793, "goal_norm_peak": 0.29584237933158875, "override_signal_nonzero_steps": 0, "resource_contacts": 2, "seed": 19, "seed_pass": false, "tier1_checks": {"C1_cue_fires": true, "C2_dacc_bias": false, "C3_approach_commit": true, "C4_goal_active": true}, "total_eval_steps": 793}], "queue_id": "V3-EXQ-490i", "run_id": "v3_exq_490i_mech295_cascade_gap4_tier1_20260530T184434Z_v3", "supersedes": "V3-EXQ-490h", "timestamp_utc": "20260530T184434Z", "machine": "DLAPTOP-4.local"}
+{
+  "acceptance": {
+    "C1_cue_fires": true,
+    "C2_dacc_bias": false,
+    "C3_approach_commit": true,
+    "C3_lift_count": 0,
+    "C3_lift_metric": "goal_norm_peak_delta",
+    "C3_lift_vs_baseline": false,
+    "C4_goal_active": true,
+    "baseline_arm_id": "ARM_0_legacy_collapsed",
+    "gap4_arm_id": "ARM_1_gap4_operating",
+    "pass": false
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-295"
+  ],
+  "elapsed_seconds": 15205.751052856445,
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-295": "narrow_supports"
+  },
+  "experiment_purpose": "evidence",
+  "experiment_type": "v3_exq_490i_mech295_cascade_gap4_tier1",
+  "gap4_operating": {
+    "drive_ema_alpha": 1.0,
+    "drive_floor": 0.9,
+    "goal_stream": true,
+    "library_rebuild": "2026-05-29 Fork A (V3-EXQ-490g-cohort autopsy)",
+    "use_dacc": true
+  },
+  "outcome": "FAIL",
+  "per_run": [
+    {
+      "action_counts": {
+        "0": 139,
+        "1": 68,
+        "3": 233,
+        "4": 1
+      },
+      "action_entropy": 1.003080339533128,
+      "approach_commit_rate": 0.0,
+      "approach_commit_steps": 0,
+      "arm": "ARM_0_legacy_collapsed",
+      "bridge_cue_fires": 0,
+      "bridge_write_fires": 0,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 0.022675736961451247,
+      "goal_active_steps": 10,
+      "goal_norm_peak": 0.7924675941467285,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 7,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": false,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": false,
+        "C4_goal_active": false
+      },
+      "total_eval_steps": 441
+    },
+    {
+      "action_counts": {
+        "0": 5,
+        "1": 502,
+        "2": 6,
+        "3": 859,
+        "4": 7
+      },
+      "action_entropy": 0.7335650152185017,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 1379,
+      "arm": "ARM_1_gap4_operating",
+      "bridge_cue_fires": 6,
+      "bridge_write_fires": 6,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 1379,
+      "goal_norm_peak": 0.2260640412569046,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 11,
+      "seed": 42,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 1379
+    },
+    {
+      "action_counts": {
+        "0": 1961,
+        "1": 39
+      },
+      "action_entropy": 0.09608677285703669,
+      "approach_commit_rate": 0.0,
+      "approach_commit_steps": 0,
+      "arm": "ARM_0_legacy_collapsed",
+      "bridge_cue_fires": 0,
+      "bridge_write_fires": 0,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 2000,
+      "goal_norm_peak": 12.488753318786621,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 5,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": false,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": false,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 2000
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 58
+      },
+      "action_entropy": 0.08591550133466311,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 59,
+      "arm": "ARM_1_gap4_operating",
+      "bridge_cue_fires": 4,
+      "bridge_write_fires": 4,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 59,
+      "goal_norm_peak": 0.09192166477441788,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 0,
+      "seed": 7,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 59
+    },
+    {
+      "action_counts": {
+        "0": 63,
+        "1": 715,
+        "2": 1,
+        "3": 132
+      },
+      "action_entropy": 0.6622603949874194,
+      "approach_commit_rate": 0.0,
+      "approach_commit_steps": 0,
+      "arm": "ARM_0_legacy_collapsed",
+      "bridge_cue_fires": 0,
+      "bridge_write_fires": 0,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 911,
+      "goal_norm_peak": 0.46786096692085266,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 2,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": false,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": false,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 911
+    },
+    {
+      "action_counts": {
+        "0": 303,
+        "2": 456,
+        "4": 34
+      },
+      "action_entropy": 0.8208244586526936,
+      "approach_commit_rate": 1.0,
+      "approach_commit_steps": 793,
+      "arm": "ARM_1_gap4_operating",
+      "bridge_cue_fires": 12,
+      "bridge_write_fires": 40,
+      "dacc_bias_nonzero_steps": 0,
+      "goal_active_fraction": 1.0,
+      "goal_active_steps": 793,
+      "goal_norm_peak": 0.29584237933158875,
+      "override_signal_nonzero_steps": 0,
+      "resource_contacts": 2,
+      "seed": 19,
+      "seed_pass": false,
+      "tier1_checks": {
+        "C1_cue_fires": true,
+        "C2_dacc_bias": false,
+        "C3_approach_commit": true,
+        "C4_goal_active": true
+      },
+      "total_eval_steps": 793
+    }
+  ],
+  "queue_id": "V3-EXQ-490i",
+  "run_id": "v3_exq_490i_mech295_cascade_gap4_tier1_20260530T184434Z_v3",
+  "supersedes": "V3-EXQ-490h",
+  "timestamp_utc": "20260530T184434Z",
+  "machine": "DLAPTOP-4.local",
+  "evidence_direction_note": "Autopsy upgrade (failure_autopsy_V3-EXQ-490i_2026-05-30, confirmed): evidence_direction_per_claim[MECH-295] overridden from weakens to narrow_supports. Bridge fires cleanly in ARM_1 (cue 6/4/12, write 6/4/40), approach_commit_rate=1.0 in 3/3 seeds vs ARM_0 severed approach_commit_rate=0.0 in 3/3. Primary registered falsifier (behavioural sign-test) PASS across all seeds. The manifest's rollup weakens reflects (a) C3_lift_vs_baseline metric-design contamination (goal_norm_peak ARM_1 - ARM_0 with ARM_0 z_goal_enabled=True; seed-7 spike 12.49) and (b) C2 dACC wiring gap (dacc_bias_nonzero_steps=0; SD-032b consumer-pathway, not MECH-295 substrate). Routing: /queue-experiment V3-EXQ-490j (true severed-bridge baseline) + /diagnose-errors for SD-032b dACC bundle. narrow_supports_flag: one experimental pair under one env config."
+}

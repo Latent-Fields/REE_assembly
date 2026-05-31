@@ -208,13 +208,13 @@
       "timestamp_utc": "2026-05-10T12:24:30Z"
     },
     "ARC-065": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
-      "decision_status": "applied",
-      "rationale": "Behavioral-diversity-generation architectural slot. Registered 2026-05-10. Foundational upstream of ARC-062 / ARC-064. Substrate cluster (MECH-313 noise floor + MECH-314 structured curiosity) substrate-landed 2026-05-10. Hold until Q-045 4-arm ablation + Q-044 three-arm ablation PASS.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-10T12:24:30Z"
+      "actor": "dgolden",
+      "decision_needed": "Apply 614a/569d/615 PASS convergence; clear v3_pending + pending_retest_after_substrate",
+      "decision_status": "approved",
+      "rationale": "V3-EXQ-614a PASS (P3 behavioural falsifier) + V3-EXQ-569d PASS (FP-2 floor-recal supersedes 569c) + V3-EXQ-615 PASS (Rung-1 matched-entropy real run). Per 615 script routing: ARC-065 supports, clear pending_retest_after_substrate, route to governance for provisional promotion consideration. v3_pending also cleared given V3 substrate evidence now in volume. ARC-065 stays status=candidate -- next governance cycle reconsiders promotion gate now that V3-pending hold is lifted.",
+      "recommendation": "clear_v3_pending_and_retest_flag",
+      "selected_option": "Clear ARC-065 pending_retest_after_substrate AND v3_pending (3 converging PASSes)",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
     },
     "ARC-066": {
       "actor": "user",
@@ -1081,13 +1081,13 @@
       "timestamp_utc": "2026-04-26T16:17:25Z"
     },
     "MECH-295": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "v3_pending=true; cingulate cluster drive-amplified liking-stream as approach-cue bridge; lit-only (supports=5, mixed=1). Strong-vs-weak necessity unresolved (currently provisional weak reading); evidence_quality_note added to claim to surface for next cycle.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation; flag strong-vs-weak necessity unresolved",
-      "timestamp_utc": "2026-04-26T16:17:25Z"
+      "actor": "dgolden",
+      "decision_needed": "Apply failure-autopsy recommendation for V3-EXQ-490i",
+      "decision_status": "approved",
+      "rationale": "failure_autopsy_V3-EXQ-490i_2026-05-30 (status=confirmed): override manifest evidence_direction_per_claim[MECH-295] from weakens to narrow_supports. Primary registered behavioural sign-test PASSes 3/3 seeds; manifest weakens rollup reflects (a) C3_lift metric contamination and (b) orthogonal SD-032b dACC wiring gap.",
+      "recommendation": "apply_autopsy_narrow_supports",
+      "selected_option": "Apply autopsy verbatim",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
     },
     "MECH-302": {
       "actor": "user",
@@ -1108,13 +1108,13 @@
       "timestamp_utc": "2026-05-07T04:14:02Z"
     },
     "MECH-304": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
-      "decision_status": "applied",
-      "rationale": "v3_pending=true; conflict_ratio=0, clean evidence (supports=3). Standard V3-pending hold. No status change.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-07T04:14:02Z"
+      "actor": "dgolden",
+      "decision_needed": "V3-EXQ-519b PASS (diagnostic substrate-readiness) routing",
+      "decision_status": "approved",
+      "rationale": "519b PASS is a substrate-readiness diagnostic for the rescued scheduled-limb-damage env (SD-022 amend). Per skill rule, diagnostic PASSes do not directly count as hypothesis-testing evidence. v3_pending=true preserved on MECH-304 / SD-051 -- the conditioned-inhibition discriminative-pair experiment is what clears the gate. 519b is the prerequisite check that enables the next EXQ to be run.",
+      "recommendation": "mark_discussed_no_evidence",
+      "selected_option": "Mark discussed, no evidence weighting",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
     },
     "MECH-307": {
       "actor": "user",
@@ -1233,6 +1233,15 @@
       "selected_option": "Hold -- V3 substrate required before meaningful evidence can be collected",
       "timestamp_utc": "2026-05-19T21:27:25Z"
     },
+    "MECH-333": {
+      "actor": "dgolden",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "approved",
+      "rationale": "Claim flagged v3_pending=true (explicit manual gate). Apply hold per standard policy.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
+    },
     "MECH-334": {
       "actor": "user",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -1261,13 +1270,13 @@
       "timestamp_utc": "2026-05-19T21:27:25Z"
     },
     "MECH-341": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "v3_pending still true. The 569c PASS-after-autopsy is one supports entry; substrate behavioural validation pending V3-EXQ-569d + 569e returns. Hold until v3_pending clears post-569d/e.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-30T18:16:00Z"
+      "actor": "dgolden",
+      "decision_needed": "Apply 614a + 569d PASS; 569e diagnostic FAIL flagged for /failure-autopsy",
+      "decision_status": "approved",
+      "rationale": "V3-EXQ-614a PASS evidence_direction_per_claim[MECH-341]=supports (P3 behavioural falsifier; mech341 load-bearing in stack only). V3-EXQ-569d PASS evidence_direction_per_claim[MECH-341]=supports (floor-recalibrated FP-2 falsifier; supersedes 569c). V3-EXQ-569e diagnostic FAIL flagged for /failure-autopsy -- does not weight evidence_direction per skill rule. MECH-341 stays candidate / v3_pending=true pending mechanism-dissociation autopsy interpretation.",
+      "recommendation": "apply_supports_per_claim_and_flag_for_autopsy",
+      "selected_option": "Apply supports per-claim verbatim",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
     },
     "Q-006": {
       "actor": "user",
@@ -1648,13 +1657,13 @@
       "timestamp_utc": "2026-04-25T15:42:09.107896Z"
     },
     "SD-037": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "governance 2026-04-26: hold acknowledged. Substrate IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites wired); first validation V3-EXQ-483 returned substrate-confirmed-wired but behaviourally-inconclusive (PWS / narcolepsy ratios degenerate at 0/0 because approach_commit=0 across all four arms). EXQ-483 manifest reclassified weakens -> non_contributory by this same governance cycle (diagnostic, not falsification). EXQ-483a (warmup 200, substrate-readiness fallback) queued and running.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Apply hold (no status change)",
-      "timestamp_utc": "2026-04-26T05:06:31.977157Z"
+      "actor": "dgolden",
+      "decision_needed": "V3-EXQ-483e FAIL routing",
+      "decision_status": "approved",
+      "rationale": "483e (consumer-cascade 4-arm successor to 483d) FAILed. Predecessor 483d's confirmed autopsy classified SD-037/MECH-280/MECH-281 as substrate_ceiling pending consumer-cascade substrate work. 483e is structurally distinct (broader consumer arm grid). Per skill rule, a FAIL not yet explained by a known substrate gap or expected diagnostic outcome should not get an inline evidence_direction stamp this cycle. No claims.yaml edit for SD-037/MECH-280/MECH-281; defer to /failure-autopsy session.",
+      "recommendation": "flag_for_failure_autopsy",
+      "selected_option": "Flag for /failure-autopsy",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
     },
     "SD-039": {
       "actor": "user",
@@ -1692,6 +1701,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-05-10T12:24:30Z"
     },
+    "SD-056": {
+      "actor": "dgolden",
+      "decision_needed": "V3-EXQ-569e diagnostic FAIL routing",
+      "decision_status": "approved",
+      "rationale": "569e is a Pathway A vs B mechanism-dissociation diagnostic. C1 (M3 instrumentation) PASS; C2 (M4 frozen-arm discriminative) FAIL; C3 (M1 rollout operative) PASS. Per skill rule, diagnostic FAILs do not weight evidence_direction. The mechanism-dissociation question is itself important and warrants its own deep autopsy before further SD-056 work. No claims.yaml edit; defer to /failure-autopsy session.",
+      "recommendation": "flag_for_failure_autopsy",
+      "selected_option": "Flag for /failure-autopsy",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -1700,9 +1718,18 @@
       "recommendation": "approve_dispatch",
       "selected_option": "Approve dispatch with routing fix applied",
       "timestamp_utc": "2026-03-24T18:30:00Z"
+    },
+    "_supersession": {
+      "actor": "dgolden",
+      "decision_needed": "Mark V3-EXQ-569c manifest superseded by V3-EXQ-569d",
+      "decision_status": "approved",
+      "rationale": "Per supersession policy: 569d (floor-recalibrated C1 0.05->0.03 + e3_top2_class_gap NaN fix per autopsy V3-EXQ-569c Section 5) is the corrected successor. 569c manifest evidence_direction set to superseded and evidence_direction_per_claim entries set to superseded so the indexer excludes 569c from scoring.",
+      "recommendation": "mark_superseded",
+      "selected_option": "569d: apply supports; mark 569c manifest superseded (exclude from scoring)",
+      "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-31T07:07:09.612059Z",
+  "generated_at_utc": "2026-05-31T10:53:03.970730Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

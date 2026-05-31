@@ -1,0 +1,103 @@
+{
+  "run_id": "v3_exq_615_arc065_rung1_matched_entropy_20260531T082211Z_v3",
+  "experiment_type": "v3_exq_615_arc065_rung1_matched_entropy",
+  "queue_id": "V3-EXQ-615",
+  "claim_ids": [
+    "ARC-065"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260531T082211Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "arm_results": [
+    {
+      "arm_id": "ARM_0_BASE_OFF",
+      "label": "base_off_all_substrates_disabled",
+      "substrate_axes": {
+        "A_sp_cem": false,
+        "B_mech341": false,
+        "C_noise_floor": false,
+        "D_vs": false
+      },
+      "seed_results": [
+        {
+          "seed": 42,
+          "n_unique_classes": 1,
+          "selected_class_entropy_nats": -0.0,
+          "frac_pre_ge2": 1.0,
+          "total_actions": 10
+        }
+      ],
+      "mean_selected_class_entropy_nats": 0.0,
+      "mean_n_unique_classes": 1.0,
+      "n_seeds_pass_rung1": 0
+    },
+    {
+      "arm_id": "ARM_1_MATCHED_NOISE",
+      "label": "matched_noise_entropy_only",
+      "substrate_axes": {
+        "A_sp_cem": false,
+        "B_mech341": false,
+        "C_noise_floor": true,
+        "D_vs": false
+      },
+      "seed_results": [
+        {
+          "seed": 42,
+          "n_unique_classes": 1,
+          "selected_class_entropy_nats": -0.0,
+          "frac_pre_ge2": 1.0,
+          "total_actions": 10
+        }
+      ],
+      "mean_selected_class_entropy_nats": 0.0,
+      "mean_n_unique_classes": 1.0,
+      "n_seeds_pass_rung1": 0
+    },
+    {
+      "arm_id": "ARM_2_ALL_ON",
+      "label": "all_on_a_b_c_d",
+      "substrate_axes": {
+        "A_sp_cem": true,
+        "B_mech341": true,
+        "C_noise_floor": true,
+        "D_vs": true
+      },
+      "seed_results": [
+        {
+          "seed": 42,
+          "n_unique_classes": 2,
+          "selected_class_entropy_nats": 0.5004023909568787,
+          "frac_pre_ge2": 1.0,
+          "total_actions": 10
+        }
+      ],
+      "mean_selected_class_entropy_nats": 0.5004023909568787,
+      "mean_n_unique_classes": 2.0,
+      "n_seeds_pass_rung1": 1
+    }
+  ],
+  "criteria": {
+    "c1_arm2_rung1_pass": false,
+    "c2_fp2_entropy_delta": true,
+    "c3_arm0_necessity_fail": true
+  },
+  "metrics": {
+    "arm0_base_off_entropy": 0.0,
+    "arm1_matched_noise_entropy": 0.0,
+    "arm2_all_on_entropy": 0.5004023909568787,
+    "entropy_delta_arm2_vs_arm1": 0.5004023909568787,
+    "arm0_n_seeds_pass_rung1": 0,
+    "arm1_n_seeds_pass_rung1": 0,
+    "arm2_n_seeds_pass_rung1": 1
+  },
+  "routing": "ARC-065 weakens, route to diagnose-errors on full-stack integration",
+  "seeds": [
+    42
+  ],
+  "p0_warmup_episodes": 1,
+  "p1_measurement_episodes": 1,
+  "steps_per_episode": 10,
+  "dry_run": true
+}

@@ -24,10 +24,10 @@
     "MECH-341"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "ARC-065": "weakens",
-    "MECH-341": "supports"
+    "ARC-065": "superseded",
+    "MECH-341": "superseded"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -44,5 +44,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-05-31 governance] evidence_direction overridden to superseded per supersession policy. V3-EXQ-569d (PASS, 2026-05-31T05:36Z, supersedes V3-EXQ-569c) is the floor-recalibrated successor (C1 floor 0.05->0.03 per autopsy V3-EXQ-569c Section 5 + e3_top2_class_gap NaN fix). 569c's per-claim 'supports' evidence applied 2026-05-30T18:20Z is replaced by 569d's PASS evidence. Indexer treats this manifest as scoring_excluded: superseded."
 }

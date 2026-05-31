@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_027_sd003_v3_reafference
 
-Generated: `2026-05-31T07:07:09.612059Z`
+Generated: `2026-05-31T10:53:03.970730Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

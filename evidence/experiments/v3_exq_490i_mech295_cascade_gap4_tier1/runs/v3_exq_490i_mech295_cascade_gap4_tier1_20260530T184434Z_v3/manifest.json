@@ -25,7 +25,7 @@
   "evidence_class": "simulation",
   "evidence_direction": "weakens",
   "evidence_direction_per_claim": {
-    "MECH-295": "weakens"
+    "MECH-295": "narrow_supports"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Autopsy upgrade (failure_autopsy_V3-EXQ-490i_2026-05-30, confirmed): evidence_direction_per_claim[MECH-295] overridden from weakens to narrow_supports. Bridge fires cleanly in ARM_1 (cue 6/4/12, write 6/4/40), approach_commit_rate=1.0 in 3/3 seeds vs ARM_0 severed approach_commit_rate=0.0 in 3/3. Primary registered falsifier (behavioural sign-test) PASS across all seeds. The manifest's rollup weakens reflects (a) C3_lift_vs_baseline metric-design contamination (goal_norm_peak ARM_1 - ARM_0 with ARM_0 z_goal_enabled=True; seed-7 spike 12.49) and (b) C2 dACC wiring gap (dacc_bias_nonzero_steps=0; SD-032b consumer-pathway, not MECH-295 substrate). Routing: /queue-experiment V3-EXQ-490j (true severed-bridge baseline) + /diagnose-errors for SD-032b dACC bundle. narrow_supports_flag: one experimental pair under one env config."
 }
