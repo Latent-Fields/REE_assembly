@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_454_arc016_adaptive_commitment_threshold
 
-Generated: `2026-05-31T18:26:39.896279Z`
+Generated: `2026-05-31T16:49:25.925411Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
