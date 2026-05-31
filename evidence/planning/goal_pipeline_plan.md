@@ -45,7 +45,9 @@ closure_plan:
       unblocks_claims: [MECH-295, ARC-030, MECH-117, Q-040]
       depends_on: ["goal_pipeline:GAP-1", "goal_pipeline:GAP-3"]
       last_updated: 2026-05-31
-      resume_condition: "<!-- TODO: revise resume_condition to reflect V3-EXQ-490h silent-drop + V3-EXQ-490i re-queue + V3-EXQ-490j claimed state --> GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 524a) active; V3-EXQ-483c ran 2026-05-23 FAIL non_contributory (measurement gap: use_dacc=True omitted from all 4 arm configs; dacc is None; C2 cannot fire -- failure_autopsy_V3-EXQ-483c_2026-05-23). V3-EXQ-483d queued 2026-05-24 (PAG/override_signal C2 criterion + goal_norm_peak C3 + use_dacc cluster fix). MECH-307 4-arm discriminative pair still pending but GAP-1 substrate is landed."
+      last_updated_note: "Scope clarification added 2026-05-31 distinguishing GAP-4's MECH-295 Phase 4 work from GAP-C prereq (2) z_goal-collapse owner (`scaffolded_sd054_onboarding`)."
+      scope_clarification_2026_05_31: "GAP-4 OWNS the MECH-295 cascade behavioural validation (Phase 4) ONLY. It does NOT own the `goal-pipeline training regime produces non-trivial z_goal in default config` prereq (2) referenced by behavioral_diversity_isolation:GAP-C / failure_autopsy_V3-EXQ-591_2026-05-27 section 7. That prereq is owned by the `scaffolded_sd054_onboarding` substrate-design memo (`evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md`, 2026-05-29) + substrate_queue entry `scaffolded_sd054_onboarding` (status=pending_implementation) + IGW-20260531-029. Triage memo: `evidence/planning/z_goal_collapse_triage_2026-05-31.md`. The 490 cohort operates with the gap4 substrate (drive_floor=0.9 + drive_ema_alpha=1.0 + goal_stream=True) where z_goal IS active across all runs (490j ARM_1 goal_active_fraction=1.0); it CANNOT close prereq (2)."
+      resume_condition: "<!-- TODO: revise resume_condition to reflect V3-EXQ-490h silent-drop + V3-EXQ-490i re-queue + V3-EXQ-490j claimed state + 2026-05-31 scope clarification --> GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 524a) active; V3-EXQ-483c ran 2026-05-23 FAIL non_contributory (measurement gap: use_dacc=True omitted from all 4 arm configs; dacc is None; C2 cannot fire -- failure_autopsy_V3-EXQ-483c_2026-05-23). V3-EXQ-483d queued 2026-05-24 (PAG/override_signal C2 criterion + goal_norm_peak C3 + use_dacc cluster fix). MECH-307 4-arm discriminative pair still pending but GAP-1 substrate is landed. SCOPE: prereq (2) of behavioral_diversity_isolation:GAP-C is owned at `scaffolded_sd054_onboarding`, NOT this node; see scope_clarification_2026_05_31 above."
     - id: "goal_pipeline:GAP-5"
       title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
       phase: 5
@@ -483,6 +485,58 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-05-31 - Scope clarification: prereq (2) of GAP-C (z_goal collapse) is NOT owned by GAP-4
+
+**Status:** documentation correction. No new substrate or experiment work owed by this entry.
+
+`behavioral_diversity_isolation_plan.md` GAP-C `resume_condition` (and earlier mentions in
+the closure-distance bookkeeping) listed prereq (2) -- "goal-pipeline training regime
+produces non-trivial z_goal in default config" -- as `OPEN ... owned today by
+IGW-20260528-016 / goal_pipeline:GAP-4 / V3-EXQ-490g cohort`. The attribution is wrong.
+
+The 2026-05-29 V3-EXQ-490g cohort autopsy explicitly split the cohort into two
+structurally distinct clusters (`failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` section
+6). Cluster A (V3-EXQ-483c / 524a / 471a / 475a / 490g/h/i/j) is a GAP-4 Tier-1 library
+measurement-gap operating on the gap4 substrate (`drive_floor=0.9, drive_ema_alpha=1.0,
+goal_stream=True, use_dacc=True`); the goal pipeline is firing across all runs
+(`goal_norm` 0.09-0.36 in 483c; `goal_active_fraction = 1.0` in 490j ARM_1). Cluster B
+(V3-EXQ-603c) is the 591 substrate-uniform z_goal-zero family member; it was routed
+2026-05-29 to `/implement-substrate` for scaffolded SD-054 onboarding -- a new substrate
+(`scaffolded_sd054_onboarding`, design memo `sd_054_scaffolded_onboarding_substrate_design.md`)
+that anneals `mech295_min_drive_to_fire` 1.0 -> 0.01 and `mech307_conjunction_z_beta_threshold`
+0.6 -> 0.3 across a P0/P1/P2 phased training scheduler against the SD-054 reef as a
+scaffolded start-state distribution. The substrate_queue.json entry is `scaffolded_sd054_onboarding`
+(priority 1, `status: pending_implementation`); the IGW item is IGW-20260531-029.
+
+The 490 cohort cannot, by configuration, close prereq (2). It does not run in the default
+config; it runs in the gap4 config where z_goal is known to fire. Prereq (2) asks whether
+the substrate produces z_goal in the DEFAULT config under random-policy training -- a
+distinct question with a distinct owner.
+
+**Action taken this session:**
+
+- Added `scope_clarification_2026_05_31` to GAP-4's plan-node frontmatter making explicit
+  that GAP-4 owns the MECH-295 cascade behavioural validation (Phase 4) ONLY, not GAP-C
+  prereq (2).
+- Updated `behavioral_diversity_isolation_plan.md` GAP-C `resume_condition` to point
+  prereq (2) ownership at `scaffolded_sd054_onboarding` instead of the 490 cohort.
+- Wrote the triage memo `evidence/planning/z_goal_collapse_triage_2026-05-31.md` that
+  documents the classification (b) substrate-structural finding, the z_goal code trace
+  showing why default config collapses to ~1e-7 (`benefit_threshold=0.1` gate not
+  cleared without drive amplification via `drive_floor`), and the confirmation that
+  today's other landings (SD-049 Phase 3 commit `3d276e5`, MECH-090 wiring,
+  InfantCurriculumScheduler H_POS_FRAC recal commit `da4a1bc`) do not change the
+  substrate-design memo's specification.
+
+**What is NOT done:**
+
+- `/implement-substrate` on `scaffolded_sd054_onboarding`. Owned by IGW-20260531-029,
+  separate session.
+- V3-EXQ-490k or any other queue-experiment routing. The 490 cohort's MECH-295
+  narrowing path (per 490j autopsy section 9) is a downstream governance + queue-experiment
+  item, orthogonal to prereq (2).
+- claims.yaml or substrate_queue.json edits.
 
 ### 2026-05-29 - V3-EXQ-490g cohort cluster autopsy landed; GOVERNANCE APPLICATION PENDING
 
