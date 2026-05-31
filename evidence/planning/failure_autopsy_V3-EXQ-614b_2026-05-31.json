@@ -1,0 +1,60 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-31T18:35:08Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3",
+      "queue_id": "V3-EXQ-614b",
+      "claim_ids": ["MECH-341", "ARC-065"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate-but-coupling-changed",
+        "measurement": "adequate-but-threshold-stale",
+        "integration": "coupled-and-stable",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG / cortico-striatal-thalamic winner-take-all with downstream entropy-regulating modulation (Mnih 2016 A3C entropy regulariser at function level for OPT1; Rigotti 2013 + Padoa-Schioppa & Conen 2017 categorical preservation at function level for OPT2)",
+        "dependencies": ["SP-CEM upstream (ARC-065 Layer A)", "V_s + noise_floor (ARC-065 Layers C+D)", "SD-056 amended E2 action-conditional divergence (substrate enabler)"],
+        "is_formal_import": false,
+        "divergence": "n/a -- algorithmic regulator, no biology divergence at play",
+        "lit_status": "absent (acceptable for an algorithmic regulator; see MECH-341 cluster autopsy 2026-05-29 section 4)"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-341": "non_contributory",
+        "ARC-065": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-05-31 autopsy (failure_autopsy_V3-EXQ-614b_2026-05-31): V3-EXQ-614b ran the V3-EXQ-614a P3 falsifier (3 arms: B_only / ablate_B / ALL_ON; SD-054 bipartite reef env) on the SD-056-amended substrate (multi-step contrastive h=5 + per-step output norm clamp ratio=2.0, ree-v3 main d327b89). Outcome FAIL per the script's hard-coded grid: C1=False (ARM_0 B_only frac_pre_ge2=0.0 across all 3 seeds -- structural CEM proposer collapse without SP-CEM upstream, identical to 614a), C2=False at observed delta 0.087 vs 0.1 threshold (entropy_delta value just below the criterion), C3=True at 3/3 seeds Rung-1 PASS with mean entropy 0.800 nats (highest of any 614-lineage run on record vs 0.684 pre-amend). Diagnosis: SD-056 amend lifted ARM_1 ablate_B baseline by +0.187 nats (0.526 -> 0.713) vs +0.116 nats lift on ARM_2 ALL_ON (0.684 -> 0.800); MECH-341 marginal contribution shrank from 0.158 to 0.087 nats because the SD-056-amended upstream cluster (SP-CEM + V_s + noise_floor + amended E2 action-conditional divergence) is now doing more of the diversity work at the candidate-pool layer, masking MECH-341's score-layer preservation contribution. Not a falsification: ARM_2 ALL_ON ran cleanly with no NaN/Inf rollouts and the highest absolute entropy of any 614-lineage run, providing positive substrate-readiness evidence at the behavioural runtime horizon for the SD-056 amend in addition to the V3-EXQ-617 substrate-readiness PASS 2026-05-31T11:31Z. Per-claim direction override: MECH-341=non_contributory (substrate-stable-but-isolation-still-not-clearing); ARC-065=non_contributory (full-stack diversity preserved at higher absolute entropy; necessity-delta near-miss does not falsify the architectural commitment). pending_retest_after_substrate=true for both, gated on V3-EXQ-616 entropy_bias_scale sweep (priority 100, already queued, scales {1.0, 2.0, 4.0, 8.0} on B_only isolation) AND V3-EXQ-615 matched-entropy control. Process note: C2 necessity_delta_threshold=0.1 was calibrated against the pre-SD-056-amend substrate; under the amended substrate the absolute entropy values are higher and the marginal delta range is smaller. Threshold MUST be revisited before any V3-EXQ-614c successor on the amended substrate (autopsy does not pin a specific new value; Q-054 sweep returns + ARM_0 root-cause will inform). ARM_0 B_only structural degeneracy (frac_pre_ge2=0.0 across all seeds, identical to 614a) is a substrate-coupling fact at the SP-CEM-OFF configuration -- MECH-341 (score-layer preserver) cannot create pool-level diversity from a single-class CEM proposer output; Q-054 entropy_bias_scale sweep V3-EXQ-616 covers the appropriate test of whether higher scales can pull additional classes into the pool through E3 selection feedback.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "Q-054 entropy_bias_scale sweep already covered by V3-EXQ-616 (queued 2026-05-31, priority 100, scales {1.0, 2.0, 4.0, 8.0} on B_only isolation); matched-entropy control already covered by V3-EXQ-615. No new substrate gap surfaced by this autopsy. The recalibration of C2 necessity_delta_threshold=0.1 is a test-design / script-side adjustment, not a substrate gap, and lives in the recommended_evidence_quality_note as a process flag rather than as a substrate_queue entry.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Substrate amends that benefit upstream of a tested mechanism reduce its marginal necessity-delta in necessity-delta tests calibrated for the pre-amend baseline.",
+        "C2 necessity_delta_threshold=0.1 nats in the v3_exq_614 lineage script is calibrated pre-SD-056-amend and MUST be revisited before any V3-EXQ-614c-type re-run on the amended substrate.",
+        "ARM_0 B_only structural degeneracy (frac_pre_ge2=0.0) is a 614-lineage constant independent of SD-056 amend; gated on Q-054 entropy_bias_scale sweep V3-EXQ-616 (already queued).",
+        "SD-056 amend behavioural-layer signal at ARM_2 ALL_ON (0.800 nats entropy, zero NaN/Inf rollouts across 162k steps) is positive substrate-readiness evidence at a different measurement horizon than V3-EXQ-617.",
+        "Cluster lineage 614a + 614b: MECH-341 contributes to the full stack but is not sufficient in isolation; the marginal contribution shrinks as the upstream diversity-generation capacity improves -- which is what a score-layer preserver should do."
+      ],
+      "routing": "governance-reclassification"
+    }
+  ],
+  "cluster_pattern": null
+}
