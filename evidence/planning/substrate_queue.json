@@ -3396,12 +3396,12 @@
         }
       ],
       "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
-      "last_seen_session": "governance-20260529T212835Z",
+      "last_seen_session": "implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z",
       "priority": 1,
-      "ready": false,
+      "ready": true,
       "sd_id": "scaffolded_sd054_onboarding",
       "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding",
-      "status": "pending_implementation",
+      "status": "implemented",
       "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
       "unblocks_claims": [
         "Q-045",
@@ -3413,6 +3413,30 @@
         "SD-049 Phase 2 behavioural",
         "ARC-030",
         "Q-040"
+      ],
+      "implementation_log": [
+        {
+          "session_id": "implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z",
+          "landed_utc": "2026-05-31T18:10:00Z",
+          "ree_v3_commit": "28ebd3d (ree-v3/main)",
+          "ree_v3_files": [
+            "experiments/scaffolded_sd054_onboarding.py (NEW)",
+            "ree_core/environment/causal_grid_world.py (new kwarg reef_bipartite_agent_spawn_in_reef_half)",
+            "tests/contracts/test_scaffolded_sd054_onboarding.py (NEW; 17 contracts PASS)",
+            "CLAUDE.md (SD entry)",
+            "experiments/v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness.py (NEW; validation experiment)",
+            "experiment_queue.json (V3-EXQ-621 entry)"
+          ],
+          "ree_assembly_files": [
+            "evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md (Status flipped plan-of-record -> IMPLEMENTED)",
+            "evidence/planning/substrate_queue.json (status pending_implementation -> implemented; this entry)"
+          ],
+          "regression": "645/645 contracts + 7/7 preflight PASS post-landing",
+          "activation_smoke": "Full P0/P1/P2 pipeline runs end-to-end on default REEAgent at reduced budget (2/2/1 episodes x 20 steps); P0 goal pipeline freeze + reef-half spawn confirmed; P1 anneal lands at min_drive_to_fire=0.010 + hfa=0.70 per memo; P2 frozen-policy eval completes without crash.",
+          "validation_experiment": "V3-EXQ-621 queued; 4-arm design per memo; 3 seeds x 4 arms; acceptance C1 AND (C2 OR C3) per memo Acceptance section.",
+          "closes_igw": "IGW-20260531-029",
+          "triage_memo": "evidence/planning/z_goal_collapse_triage_2026-05-31.md (classification (b) substrate-structural; this implementation realises the recommended fix)."
+        }
       ]
     },
     {

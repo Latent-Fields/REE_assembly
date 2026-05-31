@@ -2,9 +2,9 @@
 
 **Date:** 2026-05-29
 **Author session:** `sd054-scaffolded-onboarding-memo-20260529T172125Z`
-**Status:** plan-of-record for the goal-pipeline training-regime fix (substrate prereq #2 from the 591 autopsy)
+**Status:** IMPLEMENTED 2026-05-31 (ree-v3/main commit `28ebd3d`; substrate landed via `experiments/scaffolded_sd054_onboarding.py` + `reef_bipartite_agent_spawn_in_reef_half` env kwarg on `CausalGridWorldV2`; implementation surface (a) NEW scheduler taken per "Implementation surface choice" section; 14 phase-config knobs match the Config Surface table; 17 contracts in `tests/contracts/test_scaffolded_sd054_onboarding.py` PASS; 645/645 full regression PASS; closes IGW-20260531-029. Behavioural validation V3-EXQ-621 queued separately per the Sequencing table step 4).
 **Lever chosen:** (A2) scaffolded SD-054 reef + bipartite-horizontal as the start-state distribution for P0+P1 training, with hazard_food_attraction and goal-pipeline writes annealed in across P1
-**Successor session:** `/implement-substrate` on a new scheduler (sibling to `experiments/infant_curriculum.py`) AND a small spawn-relaxation extension on CausalGridWorldV2 (separate)
+**Successor session:** `/implement-substrate` on a new scheduler (sibling to `experiments/infant_curriculum.py`) AND a small spawn-relaxation extension on CausalGridWorldV2 (separate) -- DONE 2026-05-31 via session `implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z`
 
 ---
 
