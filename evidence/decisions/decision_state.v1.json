@@ -991,22 +991,22 @@
       "timestamp_utc": "2026-04-25T15:42:09.107868Z"
     },
     "MECH-280": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "actor": "dgolden",
+      "decision_needed": "IGW-20260531-001 disposition (SD-037 parent cluster)",
       "decision_status": "applied",
-      "rationale": "governance 2026-04-26: hold acknowledged. SD-037 substrate IMPLEMENTED 2026-04-25; first validation V3-EXQ-483 returned wired-but-inert (override_signal climbs 0->0.563 / PAG releases 5.3->9.0 ON, but approach_commit=0 across ALL arms including SD-036-only baseline). Successor V3-EXQ-483a (warmup 60->200 + substrate-readiness fallback acceptance) queued and claimed by DLAPTOP-4.local. Hold maintained until 483a provides interpretable behavioural evidence.",
+      "rationale": "MECH-280 (LH-PAG override projection) carries same substrate_ceiling reading as SD-037 parent. PAG alpha_override wired since 2026-04-25; pag_release_count_end=0 across all 12 runs of 483e because z_harm_a does not clear theta_freeze=2.0 even under SD-036+MECH-279 freeze-engaging substrate. Claim could not express itself. Hold maintained; v3_pending preserved; pending_retest_after_substrate=true preserved. Disposition mirrors SD-037: route to /implement-substrate axis (a) PAGFreezeGateConfig.theta_freeze + duration_input_threshold recalibration against fishtank baseline z_harm_a magnitudes.",
       "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Apply hold (no status change)",
-      "timestamp_utc": "2026-04-26T05:06:31.976504Z"
+      "selected_option": "Apply hold + route /implement-substrate axis (a)",
+      "timestamp_utc": "2026-05-31T16:48:22.674825Z"
     },
     "MECH-281": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "actor": "dgolden",
+      "decision_needed": "IGW-20260531-001 disposition (SD-037 motor-coupling cluster)",
       "decision_status": "applied",
-      "rationale": "governance 2026-04-26: hold acknowledged. Same substrate cluster as MECH-280 / SD-037. EXQ-483 wired-but-inert; EXQ-483a queued.",
+      "rationale": "MECH-281 (orexin drive-arousal motor coupling) carries the same substrate_ceiling reading. All four MECH-281 consumer sites wired in 2026-05-30 amend (LateralPFC eff_eta, BLA encoding_gain, CeA mode_prior+fast_prime, BetaGate urgency_interrupt). bla_encoding_gain_peak=cea_mode_prior_peak=cea_fast_prime_peak=beta_release_count=0 across all 12 runs of 483e. lateral_pfc rule_state EMA does respond (1.08-1.18x, below 1.5x C2 threshold) and is the load-bearing evidence that the broadcast path lands when a consumer has no input gate. Hold maintained; v3_pending preserved; pending_retest_after_substrate=true preserved. Same routing: /implement-substrate axis (a) for BLA arousal_threshold_on / CeA fast_route_threshold recalibration. Axis (b) env curriculum reserved as fallback.",
       "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Apply hold (no status change)",
-      "timestamp_utc": "2026-04-26T05:06:31.977128Z"
+      "selected_option": "Apply hold + route /implement-substrate axis (a)",
+      "timestamp_utc": "2026-05-31T16:48:29.594371Z"
     },
     "MECH-284": {
       "actor": "governance-2026-04-25T15:15",
@@ -1658,12 +1658,12 @@
     },
     "SD-037": {
       "actor": "dgolden",
-      "decision_needed": "V3-EXQ-483e FAIL routing",
-      "decision_status": "approved",
-      "rationale": "483e (consumer-cascade 4-arm successor to 483d) FAILed. Predecessor 483d's confirmed autopsy classified SD-037/MECH-280/MECH-281 as substrate_ceiling pending consumer-cascade substrate work. 483e is structurally distinct (broader consumer arm grid). Per skill rule, a FAIL not yet explained by a known substrate gap or expected diagnostic outcome should not get an inline evidence_direction stamp this cycle. No claims.yaml edit for SD-037/MECH-280/MECH-281; defer to /failure-autopsy session.",
-      "recommendation": "flag_for_failure_autopsy",
-      "selected_option": "Flag for /failure-autopsy",
-      "timestamp_utc": "2026-05-31T08:30:00Z"
+      "decision_needed": "IGW-20260531-001 disposition of 483e substrate_ceiling autopsy",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-483e confirmed substrate_ceiling one architectural layer deeper than 483d (autopsy artifact failure_autopsy_V3-EXQ-483e_2026-05-31.{md,json}). Cascade wiring is sound (lateral_pfc EMA 1.08-1.18x confirms broadcast path); all other consumers silent at their own input thresholds (BLA arousal_threshold_on=0.4, CeA fast_route_threshold=0.5, PAG theta_freeze=2.0, dACC pe-mag floor) at fishtank baseline. Multiplicative gain pattern output*(1+gain*override_signal) amplifies zero. evidence_quality_note + epistemic_category=substrate_ceiling already merged into claims.yaml 2026-05-31. Hold maintained (v3_pending=true preserved; no claim status change). Routed to /implement-substrate amend SD-037, axis (a): consumer-input-threshold recalibration on BLAConfig.arousal_threshold_on / CeAConfig.fast_route_threshold / PAGFreezeGateConfig.theta_freeze+duration_input_threshold / dACC pe threshold defaults against measured fishtank baseline magnitudes. Axis (b) SD-029-style env curriculum reserved as fallback if recalibration alone does not lift consumer peaks. V3-EXQ-483f reserved; queue only after substrate-readiness validation shows BLA/CeA peaks > 0.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Apply hold + route /implement-substrate axis (a) consumer-input-threshold recalibration",
+      "timestamp_utc": "2026-05-31T16:48:16.625924Z"
     },
     "SD-039": {
       "actor": "user",
@@ -1729,7 +1729,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-31T12:15:31.703281Z",
+  "generated_at_utc": "2026-05-31T16:49:25.925411Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

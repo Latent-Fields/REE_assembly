@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "governance-20260531T112511Z",
-  "last_updated_utc": "2026-05-31T12:14:35Z",
+  "last_seen_session": "governance-IGW-20260531-001",
+  "last_updated_utc": "2026-05-31T16:48:03Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -1118,7 +1118,7 @@
     },
     {
       "added_session": "governance-2026-04-24T08:10",
-      "current_blocker": "Consumer-cascade wiring (2026-05-30 amend) is landed and broadcast fires correctly, but ALL four consumer modules (BLA, CeA, dACC bundle, PAG freeze-gate) and the MECH-091 urgency-interrupt remain silent at fishtank env baseline because each has its own input-side gating threshold that the baseline signal magnitudes do not cross. The ONLY consumer responding to the broadcast is lateral_pfc rule_state EMA (1.17x growth in ARM_3 ON_ON), which is below the C2 discrimination threshold and insufficient to change selected actions (TV=0.0 across all seeds). Next substrate axes: (a) consumer-input-threshold recalibration on BLA / CeA / PAG / dACC config knobs against fishtank baseline signal magnitudes; (b) env enrichment -- SD-029-style sustained-threat curriculum analog driving z_harm_a above current consumer-input thresholds.",
+      "current_blocker": "Consumer-cascade wiring (2026-05-30 amend) landed; broadcast saturates correctly; consumer-output peaks (BLA / CeA / dACC / PAG / beta) all 0.0 across all 12 runs of V3-EXQ-483e because each consumer's own input gate is not crossed at fishtank baseline. Lateral_pfc rule_state EMA is the one consumer that responds (1.08-1.18x, below 1.5x C2 threshold) -- confirms the broadcast path lands when there is no input gate. IGW-20260531-001 (2026-05-31) selected axis (a) consumer-input-threshold recalibration as the next substrate work: lower BLA arousal_threshold_on / CeA fast_route_threshold / PAG theta_freeze+duration / dACC pe-mag threshold against MEASURED fishtank baseline magnitudes. Axis (b) SD-029-style sustained-threat env curriculum reserved as fallback if axis (a) alone does not lift consumer peaks.",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
       "failure_record": [
@@ -1170,12 +1170,12 @@
       "implementation_status": "implemented",
       "implemented_session": "implement-sd037-orexin-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "last_seen_session": "governance-20260531T112511Z",
-      "last_updated_utc": "2026-05-30T08:50:00Z",
+      "last_seen_session": "governance-IGW-20260531-001",
+      "last_updated_utc": "2026-05-31T16:48:03Z",
       "metric_trajectory": {
         "current_blocker": "Consumer-cascade amend landed 2026-05-30 (LateralPFCAnalog + BLAAnalog + CeAAnalog + BetaGate urgency_interrupt path all wired to read override_signal via four new REEConfig gains). V3-EXQ-483e queued as the 4-arm behavioural validation; reuses SD-036+MECH-279 PAG-engaging env (V3-EXQ-475-style config) + use_salience_coordinator=True. Next read: V3-EXQ-483e manifest. Until that lands, all three consumer-cascade work items (a) + (b) + (c) from the 2026-05-30 autopsy are addressed.",
         "direction": "higher_is_better",
-        "next_step": "Await V3-EXQ-483e manifest. PASS clears pending_retest_after_substrate on SD-037 + MECH-280 + MECH-281 and routes to next governance cycle for promotion review. FAIL routes per the script's interpretation grid: C1+C2 PASS / C3+C4 FAIL -> /failure-autopsy (MECH-295 bridge dominance candidate); C1 FAIL -> /diagnose-errors (PAG-engaging env config issue); all FAIL -> /failure-autopsy with V4-deferred substrate_ceiling reading.",
+        "next_step": "IGW-20260531-001 disposition (2026-05-31): hold maintained on SD-037 / MECH-280 / MECH-281. Route to /implement-substrate amend SD-037 axis (a) consumer-input-threshold recalibration. Scope: lower BLAConfig.arousal_threshold_on (default 0.4) / CeAConfig.fast_route_threshold (default 0.5) / PAGFreezeGateConfig.theta_freeze (default 2.0) + duration_input_threshold (default 0.4) / dACC pe-magnitude threshold against MEASURED fishtank baseline z_harm_a / pe magnitudes (substrate-readiness diagnostic first: log raw consumer-input distributions over a baseline run, then set thresholds to a percentile that admits the upper tail). Axis (b) SD-029-style sustained-threat env curriculum reserved as fallback if axis (a) recalibration alone does not lift consumer peaks > 0. V3-EXQ-483f reserved; queue only after substrate-readiness diagnostic on the recalibrated agent shows BLA/CeA/PAG/dACC consumer outputs > 0 at baseline. Do not re-run 483e shape on uncalibrated substrate.",
         "observations": [
           {
             "date_utc": "2026-04-25",
@@ -1208,6 +1208,12 @@
             "metric_value": "C1+C2+C3_approach_commit+C4 PASS top-level; C3_lift_vs_baseline FAIL (lifts=1/3 seeds)",
             "run_id": "v3_exq_483d_sd037_broadcast_gap4_override_signal_20260529T220132Z_v3",
             "substrate_state": "GAP-4 operating substrate; MECH-282 LPB + MECH-286 sleep onset landed 2026-05-21; consumer cascade NOT engaged (use_salience_coordinator=False; PAG-engaging env condition absent; PFC/BLA/beta-gate consumers deferred per MECH-281 implementation_note)"
+          },
+          {
+            "date_utc": "2026-05-31",
+            "session": "governance-IGW-20260531-001",
+            "event": "governance_disposition",
+            "metric_notes": "Confirmed substrate_ceiling per failure_autopsy_V3-EXQ-483e_2026-05-31. Hold on SD-037 / MECH-280 / MECH-281. epistemic_category=substrate_ceiling set on all three. v3_pending=true and pending_retest_after_substrate=true preserved on all three. Routed to /implement-substrate amend SD-037 axis (a) consumer-input-threshold recalibration."
           }
         ],
         "prediction": "Consumer-cascade engagement (C2 sub-checks) should clear cleanly because the four wiring sites are direct scalar multipliers on existing knobs verified at the activation-smoke level (BLA 2x, CeA 2x, LateralPFC 3x ratios under override_signal=1.0 + gain=1.0 to 2.0). C3 PRIMARY (goal_norm_peak lift ARM_3 vs ARM_0) is the falsifiable surface: it lifts iff the SD-033a / SD-035 / beta-gate side channels produce net effective_drive amplification or commitment-release patterns that move goal_norm_peak against the MECH-295-bridge-dominated baseline. C3 FAIL with C2 PASS would indicate MECH-295 bridge is structurally dominant on this surface even with cascade engaged -- routes to autopsy, not to redesigning the consumer-cascade wiring.",
