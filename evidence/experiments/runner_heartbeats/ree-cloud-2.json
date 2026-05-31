@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-31T09:10:28Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-615",
-  "current_exq_started_utc": "2026-05-31T07:53:56.725451+00:00",
-  "current_title": "ARC-065 Rung-1 validation with matched-entropy control (retest after MECH-341 substrate landed 2026-05-27)",
-  "current_claim_id": "ARC-065",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_1_MATCHED_NOISE",
-    "runs_done": 5,
-    "runs_total": 9,
-    "episodes_done": 30,
-    "episodes_total": 90,
-    "overall_pct": 59.3
-  },
-  "seconds_elapsed": 4592,
-  "seconds_remaining": 2953,
-  "recent_lines": [
-    "verdict: FAIL",
-    "Seed 44 Condition ARM_1_MATCHED_NOISE",
-    "[P0 warmup] seed=44 arm=ARM_1_MATCHED_NOISE ep 10/30",
-    "[P0 warmup] seed=44 arm=ARM_1_MATCHED_NOISE ep 20/30",
-    "[P0 warmup] seed=44 arm=ARM_1_MATCHED_NOISE ep 30/30"
+  "last_tick_utc": "2026-05-31T09:39:19Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-490j",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-611c",
+      "result": "PASS",
+      "completed_at": "2026-05-29T18:45:49.964237+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-490h",
+      "result": "FAIL",
+      "completed_at": "2026-05-29T21:46:08.027278+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-612c",
+      "result": "PASS",
+      "completed_at": "2026-05-29T21:46:09.329597+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-519b",
+      "result": "PASS",
+      "completed_at": "2026-05-31T06:59:41.177425+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-615",
+      "result": "PASS",
+      "completed_at": "2026-05-31T09:31:17.188482+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 53395,
   "runner_version": null,
   "gpu": {
