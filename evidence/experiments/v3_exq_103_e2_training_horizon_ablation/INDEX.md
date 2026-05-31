@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_103_e2_training_horizon_ablation
 
-Generated: `2026-05-30T18:24:26.204189Z`
+Generated: `2026-05-31T07:07:09.612059Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

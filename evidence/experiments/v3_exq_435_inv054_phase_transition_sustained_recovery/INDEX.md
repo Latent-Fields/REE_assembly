@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_435_inv054_phase_transition_sustained_recovery
 
-Generated: `2026-05-30T18:24:26.204189Z`
+Generated: `2026-05-31T07:07:09.612059Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

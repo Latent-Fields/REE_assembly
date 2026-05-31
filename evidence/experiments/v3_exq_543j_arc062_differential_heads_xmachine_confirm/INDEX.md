@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_543j_arc062_differential_heads_xmachine_confirm
 
-Generated: `2026-05-30T18:24:26.204189Z`
+Generated: `2026-05-31T07:07:09.612059Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
