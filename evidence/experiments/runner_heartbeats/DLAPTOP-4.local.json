@@ -1,46 +1,30 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-31T12:45:38Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-569a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-544a",
-      "result": "PASS",
-      "completed_at": "2026-05-29T15:49:03.723426+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-569c",
-      "result": "FAIL",
-      "completed_at": "2026-05-30T12:44:52.945850+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-517c",
-      "result": "ERROR",
-      "completed_at": "2026-05-30T14:31:01.690058+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490i",
-      "result": "FAIL",
-      "completed_at": "2026-05-30T18:44:36.578864+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-569d",
-      "result": "PASS",
-      "completed_at": "2026-05-31T05:36:51.114673+00:00"
-    }
+  "last_tick_utc": "2026-05-31T12:56:29Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-614b",
+  "current_exq_started_utc": "2026-05-31T12:46:42.174103+00:00",
+  "current_title": "MECH-341 P3 behavioural falsifier 3-arm on SD-056-amended substrate (supersedes V3-EXQ-614a; B_only / ablate_B / ALL_ON)",
+  "current_claim_id": "MECH-341",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / B_only_mech341_isolated",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 90,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 588,
+  "seconds_remaining": 3600,
+  "recent_lines": [
+    "Arm ARM_0_B_only (B_only_mech341_isolated) (P0=30 ep, P1=60 ep, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition B_only_mech341_isolated"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 70744,
   "runner_version": null,
   "gpu": {
