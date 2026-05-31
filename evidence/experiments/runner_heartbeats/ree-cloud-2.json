@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-31T07:51:56Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-490j",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-612b",
-      "result": "ERROR",
-      "completed_at": "2026-05-28T17:36:47.087453+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-611c",
-      "result": "PASS",
-      "completed_at": "2026-05-29T18:45:49.964237+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490h",
-      "result": "FAIL",
-      "completed_at": "2026-05-29T21:46:08.027278+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-612c",
-      "result": "PASS",
-      "completed_at": "2026-05-29T21:46:09.329597+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-519b",
-      "result": "PASS",
-      "completed_at": "2026-05-31T06:59:41.177425+00:00"
-    }
+  "last_tick_utc": "2026-05-31T07:57:47Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-615",
+  "current_exq_started_utc": "2026-05-31T07:53:56.725451+00:00",
+  "current_title": "ARC-065 Rung-1 validation with matched-entropy control (retest after MECH-341 substrate landed 2026-05-27)",
+  "current_claim_id": "ARC-065",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_BASE_OFF",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 10,
+    "episodes_total": 90,
+    "overall_pct": 1.2
+  },
+  "seconds_elapsed": 231,
+  "seconds_remaining": 4024,
+  "recent_lines": [
+    "Queue ID: V3-EXQ-615",
+    "Claim IDs: ['ARC-065']",
+    "Dry run: False",
+    "Seed 42 Condition ARM_0_BASE_OFF",
+    "[P0 warmup] seed=42 arm=ARM_0_BASE_OFF ep 10/30"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 53395,
   "runner_version": null,
   "gpu": {
