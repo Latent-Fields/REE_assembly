@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-31T19:53:39Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-621",
-  "current_exq_started_utc": "2026-05-31T18:16:51.221317+00:00",
-  "current_title": "scaffolded_sd054_onboarding substrate-readiness diagnostic (4-arm)",
-  "current_claim_id": "Q-045",
-  "current_description": "",
-  "progress": {
-    "run_label": "starting...",
-    "runs_done": 0,
-    "runs_total": 12,
-    "episodes_done": 0,
-    "episodes_total": 90,
-    "overall_pct": 0.0
-  },
-  "seconds_elapsed": 5808,
-  "seconds_remaining": 14400,
-  "recent_lines": [
-    "--- ARM_2_SCAFFOLD_AND_ANNEAL seed=43 (P0=30 P1=30 P2=30 steps=200) ---",
-    "completed=False z_goal_peak=0.0000 approach_rate=0.000 bridge_fires=0",
-    "--- ARM_2_SCAFFOLD_AND_ANNEAL seed=44 (P0=30 P1=30 P2=30 steps=200) ---",
-    "completed=False z_goal_peak=0.0000 approach_rate=0.000 bridge_fires=0",
-    "--- ARM_3_SCAFFOLD_AND_ANNEAL_FROM_SCRATCH seed=42 (P0=30 P1=30 P2=30 steps=200) ---"
+  "last_tick_utc": "2026-05-31T20:23:07Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-614b",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-592c",
+      "result": "FAIL",
+      "completed_at": "2026-05-30T01:55:15.559080+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-614a",
+      "result": "PASS",
+      "completed_at": "2026-05-30T19:32:45.507484+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-617",
+      "result": "PASS",
+      "completed_at": "2026-05-31T11:31:29.857268+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-618",
+      "result": "PASS",
+      "completed_at": "2026-05-31T17:59:43.642171+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-621",
+      "result": "ERROR",
+      "completed_at": "2026-05-31T20:23:07.794082+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 2488,
   "runner_version": null,
   "gpu": {
