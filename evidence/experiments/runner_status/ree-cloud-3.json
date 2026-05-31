@@ -1,30 +1,19 @@
 {
   "schema_version": "v1",
-  "runner_pid": 1529,
-  "runner_started_at": "2026-05-30T17:06:30.500968+00:00",
-  "last_updated": "2026-05-30T19:32:45.508229+00:00",
+  "runner_pid": 48243,
+  "runner_started_at": "2026-05-31T06:59:45.950182+00:00",
+  "last_updated": "2026-05-31T11:31:29.857795+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-483e",
-      "backlog_id": "",
-      "claim_id": "SD-037",
-      "title": "SD-037 consumer-cascade behavioural validation (PFC/BLA/CeA/beta-gate consumers + SalienceCoordinator enable + PAG-engaging env reuse; supersedes 483d substrate-ceiling FAIL)",
+      "queue_id": "V3-EXQ-616",
+      "backlog_id": "EVB-0284",
+      "claim_id": "Q-054",
+      "title": "Q-054 entropy_bias_scale sweep on MECH-341 B_only isolation arm (4 scales x 3 seeds)",
       "description": "",
-      "estimated_minutes": 96.0,
+      "estimated_minutes": 144.0,
       "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-490i",
-      "backlog_id": "",
-      "claim_id": "MECH-295",
-      "title": "MECH-295 drive->liking->approach cascade Tier-1 retest (re-queue of 490h post runner FAIL-branch fix)",
-      "description": "",
-      "estimated_minutes": 62.3,
-      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1787,6 +1776,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_614a_mech341_p3_behavioural_falsifier_3arm_20260530T193245Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 8774.9
+    },
+    {
+      "queue_id": "V3-EXQ-617",
+      "backlog_id": "",
+      "claim_id": "SD-056",
+      "title": "SD-056 multi-step rollout stability amend substrate-readiness (6 sub-tests UC1-UC6)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-617 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-617.json",
+      "started_at": "2026-05-31T11:31:26.311879+00:00",
+      "completed_at": "2026-05-31T11:31:29.857268+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 3.5
     }
   ]
 }
