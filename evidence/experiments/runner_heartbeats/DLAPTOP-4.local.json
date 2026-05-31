@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-31T15:37:13Z",
+  "last_tick_utc": "2026-05-31T16:07:20Z",
   "state": "running",
   "current_exq": "V3-EXQ-614b",
   "current_exq_started_utc": "2026-05-31T12:46:42.174103+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-341",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / B_only_mech341_isolated",
-    "runs_done": 1,
+    "run_label": "Seed 43 / ablate_B_a_c_d_on_b_off",
+    "runs_done": 4,
     "runs_total": 9,
-    "episodes_done": 70,
+    "episodes_done": 0,
     "episodes_total": 90,
-    "overall_pct": 19.8
+    "overall_pct": 44.4
   },
-  "seconds_elapsed": 10231,
-  "seconds_remaining": 48606,
+  "seconds_elapsed": 12038,
+  "seconds_remaining": 14725,
   "recent_lines": [
-    "[train] arm=ARM_0_B_only seed=43 phase=P0 ep 30/90",
-    "[train] arm=ARM_0_B_only seed=43 phase=P1 ep 40/90",
-    "[train] arm=ARM_0_B_only seed=43 phase=P1 ep 50/90",
-    "[train] arm=ARM_0_B_only seed=43 phase=P1 ep 60/90",
-    "[train] arm=ARM_0_B_only seed=43 phase=P1 ep 70/90"
+    "[train] arm=ARM_1_ablate_B seed=42 phase=P1 ep 70/90",
+    "[train] arm=ARM_1_ablate_B seed=42 phase=P1 ep 80/90",
+    "[train] arm=ARM_1_ablate_B seed=42 phase=P1 ep 90/90",
+    "verdict: PASS",
+    "Seed 43 Condition ablate_B_a_c_d_on_b_off"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
