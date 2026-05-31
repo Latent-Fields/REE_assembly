@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-31.1 -->
+<!-- EXPLORER_VERSION: 2026-05-31.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10524,11 +10524,12 @@ END CONFLICT RESOLUTION`;
         var next = (g.next || []).map(function (x) {
           return "<li>" + x + "</li>";
         }).join("");
-        $("shadowMeta").innerHTML =
-          "<div><b>" + (g.phase_label || "") + "</b></div>" +
-          "<div style=\"margin:2px 0;\">" + (g.assess || "") + "</div>" +
-          "<div style=\"font-size:10px;\">" + (g.parallel || "") + "</div>" +
-          (next ? "<ul style=\"margin:4px 0 0 14px;padding:0;\">" + next + "</ul>" : "");
+        var parts = [];
+        if (g.phase_label) parts.push("<div><b>" + g.phase_label + "</b></div>");
+        if (g.assess) parts.push("<div style=\"margin:2px 0;\">" + g.assess + "</div>");
+        if (g.parallel) parts.push("<div style=\"font-size:10px;\">" + g.parallel + "</div>");
+        if (next) parts.push("<ul style=\"margin:4px 0 0 14px;padding:0;\">" + next + "</ul>");
+        $("shadowMeta").innerHTML = parts.join("");
       } else {
         $("shadowMeta").textContent =
           "mode=" + (s.mode||"?") + "  claims=" + (s.total_claims||0) +

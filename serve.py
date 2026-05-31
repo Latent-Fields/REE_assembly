@@ -2791,26 +2791,18 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
         }
     # HEALTHY
     if mode == "coordinator":
+        # Steady-state Phase 3: HEALTHY verdict + writer rows below are the
+        # whole panel. Operators only need a pointer to the troubleshooting
+        # guide if a row goes red. Reference unused locals to satisfy linters.
+        _ = div
         return {
             "phase": 3,
-            "phase_label": "Phase 3 -- writers live",
-            "parallel": "Coordinator owns claims; sync_daemon is sole git "
-                        "writer for results, queue, and heartbeats. "
-                        "Phase 3 live as of 2026-05-29; writer-rows below "
-                        "show per-writer health.",
-            "assess": ("Phase-3 active -- claims via POST /claim (div %d); "
-                       "phase3_git_writer / phase3_queue_writer / "
-                       "phase3_heartbeat_writer publish to origin." % div),
-            "retire": "Git claim pushes + git result pushes + git heartbeat "
-                      "pushes are all retired (PHASE3_DISABLE_RUNNER_*_PUSH "
-                      "on every worker). Phase 4 (deleting dead git-claim "
-                      "code, scaler/runner consolidation, optional serve.py "
-                      "-> coordinator API cutover) is the remaining cleanup.",
+            "phase_label": "",
+            "parallel": "",
+            "assess": "",
             "next": [
-                "Watch the writer rows below; green = ticking, "
-                "yellow > 5 min, red > 15 min.",
-                "If a writer goes red, see OPERATOR_GUIDE.md 'What to do "
-                "when a row goes red' for the trouble-tree.",
+                "If a writer row goes red, see OPERATOR_GUIDE.md "
+                "'What to do when a row goes red'.",
             ],
         }
     return {
