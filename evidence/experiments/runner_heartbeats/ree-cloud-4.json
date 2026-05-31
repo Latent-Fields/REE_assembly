@@ -1,34 +1,47 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-31T18:18:06Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-620",
-  "current_exq_started_utc": "2026-05-31T17:52:53.359836+00:00",
-  "current_title": "SD-037 axis (a) Phase 1 substrate-readiness diagnostic: log raw BLA/CeA/PAG/dACC consumer-input distributions over fishtank baseline",
+  "last_tick_utc": "2026-05-31T18:47:17Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
   "current_claim_id": null,
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 19 / PHASE1_BASELINE",
-    "runs_done": 2,
-    "runs_total": 3,
-    "episodes_done": 0,
-    "episodes_total": 60,
-    "overall_pct": 66.7
-  },
-  "seconds_elapsed": 1514,
-  "seconds_remaining": 741,
-  "recent_lines": [
-    "[train] phase1_seed_7 ep 40/60",
-    "[train] phase1_seed_7 ep 50/60",
-    "verdict: PASS  seed=7  total_eval_steps=76",
-    "[train] phase1_seed_7 ep 60/60",
-    "Seed 19 Condition PHASE1_BASELINE"
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-621",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-595",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T07:47:14.169641+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-543k",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T08:31:27.425090+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-490g",
+      "result": "FAIL",
+      "completed_at": "2026-05-21T09:51:43.443844+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-616",
+      "result": "FAIL",
+      "completed_at": "2026-05-31T14:15:08.320713+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-620",
+      "result": "PASS",
+      "completed_at": "2026-05-31T18:36:21.768430+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
-  "runner_pid": 668,
+  "runner_pid": 2526,
   "runner_version": null,
   "gpu": {
     "available": false
