@@ -1,22 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 1388,
-  "runner_started_at": "2026-05-31T17:48:28.266142+00:00",
-  "last_updated": "2026-05-31T17:59:43.642784+00:00",
+  "runner_pid": 7293,
+  "runner_started_at": "2026-05-31T20:26:15.324121+00:00",
+  "last_updated": "2026-05-31T23:09:32.722089+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-614b",
-      "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "MECH-341 P3 behavioural falsifier 3-arm on SD-056-amended substrate (supersedes V3-EXQ-614a; B_only / ablate_B / ALL_ON)",
-      "description": "",
-      "estimated_minutes": 108.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-592d",
       "backlog_id": "",
@@ -1815,6 +1804,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_618_sd049_phase3_consumer_cascade_validation/v3_exq_618_sd049_phase3_consumer_cascade_validation_20260531T175943Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 675.3
+    },
+    {
+      "queue_id": "V3-EXQ-621",
+      "backlog_id": "",
+      "claim_id": "Q-045",
+      "title": "scaffolded_sd054_onboarding substrate-readiness diagnostic (4-arm)",
+      "description": "",
+      "result": "ERROR",
+      "result_summary": "No runner sentinel emitted and no PASS/FAIL on stdout (exit=0; secs=7576.6)",
+      "started_at": "2026-05-31T18:16:51.221317+00:00",
+      "completed_at": "2026-05-31T20:23:07.794082+00:00",
+      "output_file": "",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 7576.6
+    },
+    {
+      "queue_id": "V3-EXQ-621a",
+      "backlog_id": "",
+      "claim_id": "Q-045",
+      "title": "scaffolded_sd054_onboarding substrate-readiness (621a: emit_outcome + P1 survival diagnostics)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "outcome=PASS c1=True c2=False c3=True | Overall: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-621a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-621a.json",
+      "started_at": "2026-05-31T20:44:21.966675+00:00",
+      "completed_at": "2026-05-31T23:09:32.721485+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 8710.8
     }
   ]
 }
