@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-05-31T16:37:25Z",
+  "last_tick_utc": "2026-05-31T17:07:33Z",
   "state": "running",
   "current_exq": "V3-EXQ-614b",
   "current_exq_started_utc": "2026-05-31T12:46:42.174103+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-341",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ablate_B_a_c_d_on_b_off",
-    "runs_done": 4,
+    "run_label": "Seed 42 / all_on_a_b_c_d",
+    "runs_done": 6,
     "runs_total": 9,
-    "episodes_done": 40,
+    "episodes_done": 30,
     "episodes_total": 90,
-    "overall_pct": 49.4
+    "overall_pct": 70.4
   },
-  "seconds_elapsed": 13843,
-  "seconds_remaining": 13416,
+  "seconds_elapsed": 15651,
+  "seconds_remaining": 6864,
   "recent_lines": [
-    "Seed 43 Condition ablate_B_a_c_d_on_b_off",
-    "[train] arm=ARM_1_ablate_B seed=43 phase=P0 ep 10/90",
-    "[train] arm=ARM_1_ablate_B seed=43 phase=P0 ep 20/90",
-    "[train] arm=ARM_1_ablate_B seed=43 phase=P0 ep 30/90",
-    "[train] arm=ARM_1_ablate_B seed=43 phase=P1 ep 40/90"
+    "Arm ARM_2_ALL_ON (all_on_a_b_c_d) (P0=30 ep, P1=60 ep, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition all_on_a_b_c_d",
+    "[train] arm=ARM_2_ALL_ON seed=42 phase=P0 ep 10/90",
+    "[train] arm=ARM_2_ALL_ON seed=42 phase=P0 ep 20/90",
+    "[train] arm=ARM_2_ALL_ON seed=42 phase=P0 ep 30/90"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
