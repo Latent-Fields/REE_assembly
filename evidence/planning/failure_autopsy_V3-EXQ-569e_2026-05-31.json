@@ -1,0 +1,77 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-31T10:45:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3",
+      "queue_id": "V3-EXQ-569e",
+      "claim_ids": ["ARC-065", "MECH-341"],
+      "failed_criterion": "instrumentation_failure",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial_unstable",
+        "environment": "adequate",
+        "measurement": "inadequate",
+        "integration": "partial",
+        "scale": "likely_insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cerebellar internal model preserving action-specificity (Tanaka 2020); prefrontal counterfactual rollout (Miyamoto / Rushworth / Shea 2023); vestibular cerebellum corollary discharge (Cullen 2023). Biology preserves action-conditional discriminability at the prediction step via structural mechanisms (cerebellar microcircuits, PFC counterfactual rollouts, corollary-discharge cancellation) and keeps next-state predictions in a bounded operating regime via gain-control loops (climbing-fibre PE normalisation, dopaminergic modulation, neuromodulator-mediated learning-rate decay).",
+        "dependencies": [
+          "gain-control / arithmetic stability guards on the prediction step (lacking in current SD-056 implementation)",
+          "long-horizon rollout stability validation (not exercised by V3-EXQ-613 substrate-readiness which was short-scale training-only)"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE's SD-056 is a faithful biological translation of the action-conditional-divergence-preservation prerequisite. The DIVERGENCE from biology is in the implementation's lack of analogous arithmetic guards (gradient clipping, output norm clamping, contrastive weight scheduling). This is a missing-dependency signature, not a biology-divergence-load-bearing finding.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-065": "mixed",
+        "MECH-341": "mixed"
+      },
+      "recommended_evidence_quality_note": {
+        "ARC-065": "V3-EXQ-569e Pathway A vs Pathway B mechanism probe verdict INSTRUMENTATION_FAILURE 2026-05-31. SD-056 contrastive training produced numerically explosive E2 rollouts (1e16+) on most ON-arm seeds at the behavioural-runtime episode length; verdict cells M1/M3/M4/M5 all saturated. Probe could not dissociate. Substrate implementation pathology (lacks gradient clipping / output norm clamping / contrastive weight schedule), not architectural claim falsification. Routed to /implement-substrate amend SD-056 for numerical stability; ARC-065 reading from V3-EXQ-569c (~2.4x C3 lift over matched-noise control) remains the load-bearing finding pending the amend-and-re-run cycle.",
+        "MECH-341": "V3-EXQ-569e diagnostic INSTRUMENTATION_FAILURE 2026-05-31; M3 / M5 channels intended to dissociate E3-aggregation-collapsed-upstream-variance vs per-candidate variance propagation were saturated by SD-056 numerical instability. MECH-341 substrate-side reading from V3-EXQ-611c retune PASS (2026-05-29) remains valid; 569e adds no new MECH-341 evidence in either direction."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-056",
+        "sd_id_suggested": null,
+        "title": "SD-056 amend: numerical stability under sustained contrastive training at behavioural-runtime episode length",
+        "implementation_hint": "Add gradient clipping on world_transition.parameters() and world_action_encoder.parameters() in the E2 contrastive-loss training step (torch.nn.utils.clip_grad_norm_ with max_norm from lit-pull; 1.0 typical for InfoNCE). Add output norm clamping on world_forward predicted z_world_1 (e.g. cap at 5x z_world_0 norm). Consider contrastive_weight schedule (warmup 0.0 -> 0.01 over N steps, or decay-to-0 if NaN-rate climbs above floor) and a temperature floor (e2_action_contrastive_temperature 0.1 -> 0.5) to soften InfoNCE logit gradients. Biology anchor: cerebellar climbing-fibre PE normalisation, dopaminergic learning-rate modulation. ML/AI anchors: Srivastava 2021 contrastive RSSM, Saanum / Dayan / Schulz 2024 PLSM failure modes, Qiu 2026 SWIRL gradient-clipping defaults.",
+        "unblocks_claims": ["ARC-065", "MECH-341", "MECH-309"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3",
+          "experiment_type": "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b",
+          "metric": "SD-056 contrastive training numerical stability under sustained P1 (50 episode / 200 step) measurement. Observed: world_forward rollout magnitudes overflow to 1e16-1e18 on most ON-arm seeds; e3_top2_class_gap NaN-fraction 0.72-1.00 on ON arms; ARM_0 OFF baseline clean (rollout magnitudes 0.39-0.77, 0 NaN). M1 rollout-divergence ratio = 3.79e16 (overflow); M3 max NaN fraction = 0.89 (vs ceiling 0.40); M4 frozen-vs-live abs_delta = 0.033 (floor 0.05); M5 argmin preservation indeterminate.",
+          "target": "Amended SD-056 implementation produces clean (max-NaN-fraction < 0.05, rollout magnitudes within 2x of ARM_0 baseline) E2 rollouts on a 569e-equivalent 8-arm probe across 5 seeds at the same P1 measurement budget."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "SD-056 substrate-readiness must validate at behavioural-runtime episode length, not just short-scale training-only -- V3-EXQ-613 PASS was insufficient evidence the substrate would hold up at 200-step / 50-episode P1 measurement windows; future contrastive-loss substrate landings should include a long-horizon rollout stability check in UC3.",
+        "Contrastive training on world_forward lacks arithmetic guards (gradient clipping, output norm clamping, contrastive weight schedule) that are standard ML/AI engineering complements to InfoNCE-style auxiliary losses. The SD-056 implementation went straight to the literature-default formulation without these guards, consistent with the substrate-readiness signal being clean at short-scale.",
+        "Diagnostic-probe acceptance criteria need defensive design. Three concrete fixes for the 569e script: C1 should gate on max-NaN-fraction directly (not on count-of-seeds-with-any-finite-value); C3 should sanity-cap rollout magnitudes to FAIL on overflow; acceptance_criteria dict should mirror verdict_cell short-circuit logic (verdict_cell correctly classified INSTRUMENTATION_FAILURE but C1/C3 acceptance flags read PASS -- internal manifest contradiction).",
+        "The 569c autopsy routing needs revision. 569c proposed 569d + 569e to dissociate Pathway A vs B. 569e cannot do that on the unstable substrate. Correct sequence: amend SD-056 first; then re-run a 569e-equivalent (569f or 569e-prime) on the stable substrate; then read the Pathway A vs B verdict. 569d sister manifest expected to show same instability when it lands; attach to this autopsy."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "substrate_numerical_instability_under_sustained_contrastive_training",
+    "is_independent_bugs": false,
+    "structural_property": "SD-056 contrastive E2 training, as implemented, lacks arithmetic stability guards and produces numerically explosive world_forward outputs at behavioural-runtime episode lengths. Distinct in shape from the substrate-uniform cluster (V3-EXQ-540a/b/c/e + 603/603b/603c + 590a + 591 + 598/598b) named by EXQ-591 + EXQ-598 autopsies: that cluster shows negative-control-passes-discrimination-fails (substrate carries information at wrong granularity); 569e shows OFF-baseline-clean ON-arms-overflow (substrate produces non-finite output). 569e should NOT be folded into the substrate-uniform cluster.",
+    "readings": [
+      "substrate_implementation_amend"
+    ]
+  }
+}
