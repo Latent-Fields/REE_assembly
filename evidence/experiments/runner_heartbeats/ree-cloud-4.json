@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-31T12:21:24Z",
+  "last_tick_utc": "2026-05-31T12:46:27Z",
   "state": "running",
   "current_exq": "V3-EXQ-616",
   "current_exq_started_utc": "2026-05-31T11:16:59.983869+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "Q-054",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / B_only_entropy_bias_scale_2",
-    "runs_done": 3,
+    "run_label": "Seed 42 / B_only_entropy_bias_scale_4",
+    "runs_done": 6,
     "runs_total": 12,
-    "episodes_done": 70,
+    "episodes_done": 0,
     "episodes_total": 90,
-    "overall_pct": 31.5
+    "overall_pct": 50.0
   },
-  "seconds_elapsed": 3864,
-  "seconds_remaining": 7323,
+  "seconds_elapsed": 5368,
+  "seconds_remaining": 5314,
   "recent_lines": [
-    "[train] arm=ARM_1_B_only_S2 seed=42 phase=P0 ep 30/90",
-    "[train] arm=ARM_1_B_only_S2 seed=42 phase=P1 ep 40/90",
-    "[train] arm=ARM_1_B_only_S2 seed=42 phase=P1 ep 50/90",
-    "[train] arm=ARM_1_B_only_S2 seed=42 phase=P1 ep 60/90",
-    "[train] arm=ARM_1_B_only_S2 seed=42 phase=P1 ep 70/90"
+    "[train] arm=ARM_1_B_only_S2 seed=44 phase=P1 ep 80/90",
+    "[train] arm=ARM_1_B_only_S2 seed=44 phase=P1 ep 90/90",
+    "verdict: PASS",
+    "Arm ARM_2_B_only_S4 (B_only_entropy_bias_scale_4.0) (scale=4.0, P0=30 ep, P1=60 ep, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition B_only_entropy_bias_scale_4.0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
