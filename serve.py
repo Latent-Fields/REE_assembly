@@ -2811,7 +2811,6 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
                 "yellow > 5 min, red > 15 min.",
                 "If a writer goes red, see OPERATOR_GUIDE.md 'What to do "
                 "when a row goes red' for the trouble-tree.",
-                "Do not flip any host back to git/shadow without draining.",
             ],
         }
     return {
