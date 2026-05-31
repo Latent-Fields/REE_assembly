@@ -2993,13 +2993,18 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_509_sd047_multi_source_substrate_readiness",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
         "low_exp_conf"
-      ]
+      ],
+      "status_resolved_at_utc": "2026-05-31T16:54:07Z",
+      "status_resolution_note": "IGW-20260531-038 truth-up: suggested_experiment_type v3_exq_509_sd047_multi_source_substrate_readiness already executed as V3-EXQ-509 run v3_exq_509_sd047_multi_source_substrate_readiness_20260503T103241Z_v3 (outcome=PASS, evidence_direction=supports, claim_ids=[SD-047]). SD-047 current state: status=provisional, overall_conf=0.691, direction_counts supports=8 weakens=2 mixed=1 (conflict_ratio=2/10=0.20, below 0.3 active_conflict threshold). why_now=active_conflict/low_exp_conf tag is stale relative to current claim_evidence state; no further pair owed.",
+      "executed_run_id": "v3_exq_509_sd047_multi_source_substrate_readiness_20260503T103241Z_v3",
+      "executed_outcome": "PASS",
+      "executed_evidence_direction": "supports"
     },
     {
       "acceptance_checks": [
@@ -3323,12 +3328,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "skipped",
       "suggested_experiment_type": "claim_probe_arc_018",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
-      ]
+      ],
+      "status_resolved_at_utc": "2026-05-31T16:54:07Z",
+      "status_resolution_note": "IGW-20260531-040 truth-up: suggested_experiment_type \"claim_probe_arc_018\" is a generic stub with no experiment script in ree-v3/experiments/ and no design behind it. ARC-018 current state: status=active, overall_conf=0.755, direction_counts supports=27 weakens=4 mixed=1 (conflict_ratio=4/32=0.125, well below 0.3 active_conflict threshold). Existing ARC-018 evidence includes V3-EXQ-172/196 rollout_viability pairs (2026-03-29..2026-04-04, FAIL/weakens then non_contributory) - the recognised weakening evidence is already absorbed in the 27/4/1 counts. why_now=active_conflict tag is stale. No specific design work owed; skipping rather than queueing a placeholder pair."
     },
     {
       "acceptance_checks": [
@@ -3402,12 +3409,17 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_571_e3_score_variance_decomp",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
-      ]
+      ],
+      "status_resolved_at_utc": "2026-05-31T16:54:07Z",
+      "status_resolution_note": "IGW-20260531-039 truth-up: suggested_experiment_type v3_exq_571_e3_score_variance_decomp already executed as V3-EXQ-571 (2 runs on 2026-05-15 and 2026-05-16; latest run v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3 outcome=PASS, evidence_direction=diagnostic, claim_ids=[ARC-065, MECH-313, MECH-314, MECH-320]). MECH-314 current state: status=candidate_substrate_landed, v3_pending=true, pending_retest_after_substrate=true, overall_conf=0.736, direction_counts supports=5 weakens=1 mixed=1 (conflict_ratio=1/7=0.143, below 0.3 threshold). Substrate landed; further retest sequencing belongs to the substrate-retest plan (MECH-314a Phase-2 design doc - see TASK_CLAIMS sessions 2026-05-31), not to a fresh discriminative_pair stub. why_now=active_conflict tag is stale.",
+      "executed_run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+      "executed_outcome": "PASS",
+      "executed_evidence_direction": "diagnostic"
     },
     {
       "acceptance_checks": [
@@ -3482,14 +3494,19 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "status_resolved_at_utc": "2026-05-31T16:54:07Z",
+      "status_resolution_note": "IGW-20260531-041 truth-up: suggested_experiment_type v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate already executed as V3-EXQ-606 run v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate_20260521T090253Z_v3 (outcome=FAIL, evidence_direction=non_contributory, evidence_direction_per_claim={MECH-318: non_contributory}). MECH-318 current state: status=candidate, v3_pending=true, overall_conf=0.841, direction_counts supports=7 weakens=1 (conflict_ratio=1/8=0.125, well below 0.3). why_now [active_conflict/insufficient_experimental_replication/low_exp_conf] is stale: 7-supports count covers replication; FAIL/non_contributory result on the suggested EXQ does not raise conflict_ratio. Any further work belongs to ARC-064 GAP-I substrate sequencing, not a placeholder pair.",
+      "executed_run_id": "v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate_20260521T090253Z_v3",
+      "executed_outcome": "FAIL",
+      "executed_evidence_direction": "non_contributory"
     },
     {
       "acceptance_checks": [
@@ -3523,12 +3540,17 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_106_harm_obs_a_temporal_persistence",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
-      ]
+      ],
+      "status_resolved_at_utc": "2026-05-31T16:54:07Z",
+      "status_resolution_note": "IGW-20260531-042 truth-up: suggested_experiment_type v3_exq_106_harm_obs_a_temporal_persistence already executed as V3-EXQ-106 (4 runs; latest v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3 outcome=PASS, evidence_direction=supports, claim_ids=[SD-011]). SD-011 current state: status=STABLE (promoted candidate -> provisional 2026-04-18; further promotion to stable per memory feedback_governance_pipeline). overall_conf=0.849, direction_counts supports=36 weakens=3 mixed=4 (conflict_ratio ~3/39=0.077, far below 0.3 threshold). why_now=active_conflict tag is stale: a stable claim with 12:1 supports:weakens does not need a fresh discriminative_pair. EXQ-178b PASS (2026-03-30) and EXQ-323a PASS (2026-04-16) already cleared the dissociation in memory.",
+      "executed_run_id": "v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3",
+      "executed_outcome": "PASS",
+      "executed_evidence_direction": "supports"
     },
     {
       "acceptance_checks": [
