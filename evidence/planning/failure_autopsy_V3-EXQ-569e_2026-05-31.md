@@ -196,3 +196,37 @@ The lit-pull on the substrate amendment should look at the same SD-056 SYNTHESIS
 - 569c headline (~2.4x C3 lift over matched-noise) remains the load-bearing finding on ARC-065 GAP-A.
 - 569d (sister floor-recalibrated falsifier) manifest expected to show the same instability when it lands; attach to this autopsy rather than spawn its own.
 - After SD-056 amend lands and a substrate-readiness EXQ PASSes at behavioural-runtime scale: queue a 569e-equivalent Pathway A vs B probe on the stable substrate. Bundle the three script-side acceptance-criteria fixes into the same successor.
+
+---
+
+## 9. Addendum (2026-05-31T10:55Z) -- 569d comparison narrows the diagnosis
+
+After writing Sections 1-8 I checked V3-EXQ-569d (sister floor-recalibrated falsifier; PASS recorded by the 2026-05-31T08:45Z governance walk). 569d uses SD-056 contrastive training at the SAME w in {0.01, 0.05, 0.20} as 569e ARM_1/2/5/6 (LIVE arms), runs LONGER P0 (60 vs 30 episodes), 3 seeds vs 5. 569d PASSed with rollout-stability signatures clean across every arm:
+
+| 569d arm | cand_world_pairwise_dist_mean (per seed) | rollout_traj_pairwise_dist_mean | rollout_skipped_nonfinite | e3_top2_class_gap_nan_fraction |
+|---|---|---|---|---|
+| ARM_0 OFF | 0.014 / 0.014 / 0.016 | not measured | 0 | 0.0 |
+| ARM_1 W=0.01 | 0.060 / 0.021 / 0.070 | not measured | 0 | 0.0 |
+| ARM_2 W=0.05 | 0.063 / 0.029 / 0.050 | not measured | 0 | 0.0 |
+| ARM_3 W=0.20 | 0.059 / 0.026 / 0.066 | not measured | 0 | 0.0 |
+| ARM_4 NOISE | 0.014 / 0.014 / 0.016 | not measured | 0 | 0.0 |
+
+569e LIVE arms at the same weights produce `cand_world_pairwise_dist_mean` of similar magnitude (0.045-0.062 per arm mean), but `rollout_traj_pairwise_dist_mean` over the full horizon explodes to 1e16+. **The t=1 prediction is stable; the iterated multi-step rollout via `E2.get_world_state_sequence()` is what blows up.**
+
+This narrows the diagnosis from "SD-056 substrate is numerically explosive" (overstated -- the substrate is stable at its training horizon) to "SD-056 contrastive loss optimises t=1 action-discriminability and provides no stability constraint over the iterated multi-step rollout that 569e's M1 metric and any other multi-step consumer depends on." The cerebellar / PFC biology of bounded internal models holds for the t=1 step alone -- biology's analogous mechanisms for keeping iterated rollouts bounded are dopaminergic gain modulation, neuromodulator-mediated learning-rate decay over the rollout horizon, and explicit gain-control loops at each successive prediction step.
+
+**Sharper amend recommendation (refines Section 7):** the SD-056 amend should add an iterated-rollout stability constraint, not just a t=1 regulariser. Three options for the implement-substrate lit-pull to choose between (NOT mutually exclusive):
+
+| Option | Where | What |
+|---|---|---|
+| Multi-step contrastive | E2 training loop, NEW auxiliary loss term | Extend the contrastive loss to compare predicted vs target z_world over a horizon (e.g. h=5 steps). The training objective then explicitly constrains iterated rollout stability. Higher training cost; cleanest architectural fix. |
+| Iterated-rollout output clamping | `E2.get_world_state_sequence()` consumer side | Add per-step output norm clamping inside `get_world_state_sequence()`: clamp each predicted z_world_{t+1} to a multiple of z_world_t norm (e.g. 1.5x per step). Tactical, no training-time cost, but bounds the symptom rather than the cause. |
+| Consumer-side bounding in M1 | The 569e script's M1 measurement | Bound the measured rollout magnitudes at the metric layer (e.g. floor at 0, cap at 100x baseline, count overflows separately as a diagnostic). Doesn't fix the substrate; just makes consumer measurements robust. |
+
+The cleanest fix is Option 1 (multi-step contrastive); the lit-pull may anchor it on existing multi-step contrastive RSSM variants (e.g. PlaNet, Dreamer family).
+
+**Implication for Section 5 cluster claim:** the "569e is distinct in shape from the substrate-uniform cluster" reading stands. But the "implementation pathology" framing is now more specific: SD-056 covers t=1 stability (substrate-readiness EXQ-613 PASS was correct at that horizon; 569c and 569d t=1 measurements are clean), and the missing piece is iterated multi-step rollout stability -- a follow-on rather than a hole.
+
+**Implication for the 569c routing:** unchanged. 569c reads at t=1 only and the t=1 substrate is sound; the ~2.4x C3 lift over matched-noise is the load-bearing finding and the autopsy's primary recommendation (amend SD-056) does not change it.
+
+**Implication for the per-claim direction recommendation:** unchanged. ARC-065 / MECH-341 stay mixed (diagnostic, non-weighting) on 569e. The 569d PASS recorded by the morning governance walk is the actual evidence-weighting on this surface for the current cycle.
