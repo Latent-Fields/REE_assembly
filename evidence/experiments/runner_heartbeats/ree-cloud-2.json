@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-31T21:54:15Z",
+  "last_tick_utc": "2026-05-31T22:24:25Z",
   "state": "running",
   "current_exq": "V3-EXQ-622",
   "current_exq_started_utc": "2026-05-31T21:40:53.922777+00:00",
@@ -9,20 +9,21 @@
   "current_claim_id": "Q-045",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / STAGED_GOAL_STREAM",
-    "runs_done": 0,
+    "run_label": "Seed 44 / STAGED_GOAL_STREAM",
+    "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 40,
+    "episodes_done": 0,
     "episodes_total": 130,
-    "overall_pct": 10.3
+    "overall_pct": 66.7
   },
-  "seconds_elapsed": 802,
-  "seconds_remaining": 9028,
+  "seconds_elapsed": 2612,
+  "seconds_remaining": 1128,
   "recent_lines": [
-    "Seed 42 Condition STAGED_GOAL_STREAM",
-    "[stage] seed=42 entering S0 budget=40",
-    "[train] seed=42 ep 40/130 stage=S0 pass=True z_peak=0.2812 reason=S0 z_goal_peak>=0.1 (got 0.2812)",
-    "[stage] seed=42 entering S1 budget=30"
+    "[stage] seed=43 entering S3 budget=30",
+    "[train] seed=43 ep 130/130 stage=S3 pass=False z_peak=0.0030 reason=S3 arbitration (len=15.0 approach=1.0000)",
+    "verdict: FAIL seed=43 S0=True S1=False S2=False S3=False",
+    "Seed 44 Condition STAGED_GOAL_STREAM",
+    "[stage] seed=44 entering S0 budget=40"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
