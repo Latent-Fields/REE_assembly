@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-31T10:58:34Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
+      "queue_id": "V3-EXQ-483e",
+      "machine": "ree-cloud-2",
+      "supersedes": "V3-EXQ-483d",
+      "claim_ids": ["SD-037", "MECH-280", "MECH-281"],
+      "failed_criteria": ["C2_cascade_engagement", "C3_lift_vs_baseline", "C4_action_divergence"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- test cannot express the claim; wiring fully landed but consumer input thresholds not cleared",
+        "biological_reference": "clear -- orexin multi-target broadcast; literature predicts no behavioural divergence when target afferents are quiet",
+        "prerequisites": "partially missing -- BLA arousal_threshold + CeA fast_route_threshold + dACC pe magnitudes + PAG theta_freeze sustained-z_harm_a duration not cleared at fishtank env baseline",
+        "implementation": "complete -- SD-037 broadcast + 4-channel cascade + PAG alpha_override + SalienceCoordinator slot all wired per 2026-05-30 amend",
+        "environment": "wrong pressures -- fishtank baseline z_harm_a / pe / sustained-threat profile sits below input gates of every wired consumer",
+        "measurement": "adequate -- C2_cascade ratios + C3_lift + C4 TV are the right discrimination criteria; correctly read zero behavioural divergence",
+        "integration": "partially coupled but inert -- cascade wired AND broadcast saturated AND env nominally PAG-engaging yet downstream silent end-to-end",
+        "scale": "adequate -- not a model-capacity issue; lateral_pfc EMA responds 1.17x but at sub-discrimination magnitude"
+      },
+      "biological_reference": {
+        "closest_mechanism": "lateral-hypothalamic orexin / hypocretin multi-target broadcast (LH -> PAG / NAc / VTA / BLA / CeA / mPFC / LC)",
+        "dependencies": [
+          "consumer targets responding to their own afferents above per-module input gates",
+          "sustained-threat env that recruits orexin AND drives z_harm_a magnitude above BLA / CeA / PAG / dACC consumer-input thresholds"
+        ],
+        "is_formal_import": false,
+        "divergence": "translation is faithful at the architectural level; what is missing is the upstream signal regime that loads consumer-input gates -- biology predicts no behavioural divergence under these conditions",
+        "lit_status": "present (targeted_review_orexin_kinetics/synthesis.md; Mileykovskiy 2005, Lee 2005, Karnani 2020, Johnson 2012, Carter 2009)"
+      },
+      "load_bearing_observations": [
+        "override_signal_nonzero_steps saturates at total_eval_steps in every ON_OFF / ON_ON seed (1514/1514, 76/76, 1349/1349) -- SD-037 fires correctly",
+        "bla_encoding_gain_peak = 0.0 across ALL 12 runs including ARM_3 ON_ON in every seed",
+        "cea_mode_prior_peak = 0.0 / cea_fast_prime_peak = 0.0 across ALL 12 runs including ARM_3 ON_ON in every seed",
+        "dacc_bias_nonzero_steps = 0 across ALL 12 runs (use_dacc=True everywhere)",
+        "pag_release_count_end = 0 across ALL 12 runs (use_pag_freeze_gate=True + use_gabaergic_decay=True everywhere)",
+        "beta_release_count = 0 across ALL 12 runs (MECH-091 urgency-interrupt never fires)",
+        "lateral_pfc_rule_state_norm_peak grows 1.08-1.18x ON_ON vs OFF_ON (below 1.5 threshold but non-zero -- only consumer responding to broadcast)",
+        "action_counts BIT-IDENTICAL across all 4 arms within each seed (seed 42: {0:6,1:683,2:4,3:813,4:8} in all four)",
+        "goal_norm_peak near-bit-identical: OFF_OFF == ON_OFF, OFF_ON == ON_ON exactly within each seed; seed 42 OFF_ON 0.18989 vs OFF_OFF 0.18358 = 0.6% lift, dwarfed by 0.01 C3_lift threshold; seeds 7 and 19 zero lift",
+        "C2_cascade sub-checks: lateral_pfc_ratio 1.16/1.08/1.18; bla_ratio 0.0/0.0/0.0; cea_ratio 0.0/0.0/0.0 -- BLA and CeA produce zero output in EVERY arm including ON_ON"
+      ],
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-037": "non_contributory",
+        "MECH-280": "non_contributory",
+        "MECH-281": "non_contributory"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "recommended_evidence_quality_note": "EXQ-483e (supersedes 483d). Substrate broadcast fires correctly: override_signal_nonzero_steps saturates at total step count in every OFF_ON / ON_ON seed (C2_substrate cleanly PASS). The 2026-05-30 MECH-281 consumer-cascade amend (four new gain knobs landed: pfc_eta / bla_encoding / cea_amplitude / beta_interrupt) is fully wired in ARM_3 ON_ON but produces zero behavioural divergence: bla_encoding_gain_peak = 0.0 / cea_mode_prior_peak = 0.0 / cea_fast_prime_peak = 0.0 / dacc_bias_nonzero_steps = 0 / pag_release_count_end = 0 / beta_release_count = 0 across ALL 12 runs (including ARM_3 ON_ON arms in every seed). action_counts BIT-IDENTICAL across all four arms within each seed and goal_norm_peak near-bit-identical (OFF_OFF vs ON_OFF identical, OFF_ON vs ON_ON identical). The only consumer that responds at all is lateral_pfc rule_state EMA (1.08-1.18x growth, below the 1.5x C2 discrimination threshold). Diagnosis: SD-037 multiplicative gain pattern requires consumer-module input gates to be crossed first; with consumer-output baselines at zero, broadcast saturation cannot generate behavioural lever. Substrate-ceiling at the consumer-input-threshold layer + env-pressure layer (one architectural layer deeper than 483d). Closes the SD-037 substrate_queue 483d prediction (\"consumer-cascade work would deliver the lever\") -- falsified. Hold pending consumer-input-threshold recalibration AND env enrichment that drives z_harm_a / pe above BLA arousal_threshold_on=0.4 + CeA fast_route_threshold=0.5 + PAG theta_freeze sustained-product=2.0 + dACC pe-magnitude thresholds. Pair with pending_retest_after_substrate. Apply per-claim: SD-037 evidence_direction non_contributory; MECH-280 / MECH-281 evidence_direction non_contributory (claims could not express themselves -- their targets remained silent at the consumer-input layer). Set pending_retest_after_substrate: true on all three. epistemic_category: substrate_ceiling. Routing: implement-substrate (amend SD-037 substrate_queue entry with new failure_record naming the consumer-input-threshold shape; deferred follow-on: consumer-module threshold default recalibration AND/OR SD-029-style sustained-threat env curriculum). Artifact: evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.{md,json}.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-037",
+        "failure_record_entry": {
+          "run_id": "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
+          "queue_id": "V3-EXQ-483e",
+          "experiment_type": "v3_exq_483e_sd037_consumer_cascade_4arm",
+          "supersedes": "V3-EXQ-483d",
+          "metric": "C2_cascade_engagement 0/3 seeds (bla_ratio 0.0 / 0.0 / 0.0; cea_ratio 0.0 / 0.0 / 0.0; lateral_pfc_ratio 1.16 / 1.08 / 1.18 -- all below 1.5 threshold); C3_lift_vs_baseline 0/3 seeds (goal_norm_peak near-bit-identical OFF_OFF vs ON_OFF AND OFF_ON vs ON_ON within each seed); C4_action_divergence 0/3 seeds (TV(ARM_3, ARM_2) = 0.0 / 0.0 / 0.0; action_counts BIT-IDENTICAL across all 4 arms in every seed). bla_encoding_gain_peak = cea_mode_prior_peak = cea_fast_prime_peak = dacc_bias_nonzero_steps = pag_release_count_end = beta_release_count = 0.0 / 0 across ALL 12 runs. override_signal_nonzero_steps = total_eval_steps in every ON_OFF / ON_ON seed (broadcast saturates).",
+          "target": "C2_cascade clear on >=2/3 seeds (lateral_pfc >= 1.5x, bla >= 1.3x, cea >= 1.3x in >=3/4 sub-checks); C3_lift >= 3/3 seeds; C4 TV >= 0.05 per seed; bla_encoding_gain_peak > 0 in ARM_3 ON_ON seed-majority; cea_mode_prior_peak > 0 in ARM_3 ON_ON seed-majority; pag_release_count_end > 0 in ARM_3 ON_ON seed-majority",
+          "diagnosis": "substrate_ceiling at consumer-input-threshold layer (one architectural layer deeper than 483d substrate_ceiling); broadcast amplifies zero baseline outputs -- BLA arousal_threshold_on=0.4 + CeA fast_route_threshold=0.5 + PAG theta_freeze sustained-product=2.0 + dACC pe-magnitude floors not cleared at fishtank baseline; SD-037 multiplicative gain pattern (output * (1 + gain * override_signal)) requires consumer outputs to be non-zero at baseline for the broadcast to produce a behavioural lever. Falsifies the 483d substrate_queue prediction that consumer-cascade wiring alone would deliver the lever."
+        },
+        "current_blocker_update": "Consumer-cascade wiring (2026-05-30 amend) is landed and broadcast fires correctly, but ALL four consumer modules (BLA, CeA, dACC bundle, PAG freeze-gate) and the MECH-091 urgency-interrupt remain silent at fishtank env baseline because each has its own input-side gating threshold that the baseline signal magnitudes do not cross. The ONLY consumer responding to the broadcast is lateral_pfc rule_state EMA (1.17x growth in ARM_3 ON_ON), which is below the C2 discrimination threshold and insufficient to change selected actions (TV=0.0 across all seeds). Next substrate axes: (a) consumer-input-threshold recalibration on BLA / CeA / PAG / dACC config knobs against fishtank baseline signal magnitudes; (b) env enrichment -- SD-029-style sustained-threat curriculum analog driving z_harm_a above current consumer-input thresholds.",
+        "prediction_update": "If the next substrate work recalibrates consumer-input thresholds against fishtank baseline magnitudes AND/OR adds a sustained-threat curriculum that drives z_harm_a above BLA arousal_threshold_on / CeA fast_route_threshold during scheduled windows, then a 483f successor on the recalibrated substrate should produce non-zero bla_encoding_gain_peak / cea_mode_prior_peak in ARM_3 ON_ON seeds and a C3_lift > 0.01 in goal_norm_peak between ARM_3 and ARM_0. If 483f still FAILs on the same shape (bla/cea peaks 0.0, action_counts bit-identical), the substrate ceiling is deeper than the consumer-input layer -- next reading would be that fishtank itself is architecturally too sparse for SD-037 behavioural validation (route to env redesign at a level above current curriculum extensions)."
+      },
+      "learning_extracted": [
+        "The wired-but-inert pattern is confirmed ONE LAYER DEEPER at the SD-037 validation surface: 483d's recommended consumer-cascade wiring landed and works; 483e shows that wiring alone is not sufficient because each consumer has its own input-side gating that the validation env does not clear.",
+        "SD-037's multiplicative gain pattern (output * (1 + gain * override_signal)) is architecturally vulnerable to consumer silence at baseline: amplifying zero = zero, regardless of broadcast saturation. The biology predicts this (orexin sets gain on signals targets already receive; quiet targets stay quiet under orexin alone).",
+        "Lateral_pfc rule_state EMA is the only consumer responding to broadcast in ARM_3 (1.08-1.18x growth across seeds). This is because the lateral_pfc EMA path does NOT require an input-side threshold crossing; eff_eta = update_eta * (1 + override_pfc_eta_gain * override_signal) accelerates the EMA on any non-zero source. This confirms the wiring is sound; the BLA/CeA/dACC silence is an input-threshold story, not a wiring story.",
+        "The 483d substrate_queue prediction (\"consumer-cascade wiring would deliver the lever\") is now closed and falsified. The next prediction names the consumer-input-threshold layer + env-pressure layer.",
+        "483e is NOT the substrate_uniform cluster (540 / 590a / 591 / 598 / 603 / 610). That cluster shape is 'negative-control passes, discrimination fails' on goal-pipeline / z_goal-zero substrates rooted in goal-pipeline training-regime substrate. 483e shape is 'broadcast saturates + consumer cascade silent at input thresholds' and belongs in the SD-037-specific substrate-ceiling thread."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
