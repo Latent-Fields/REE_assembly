@@ -700,19 +700,109 @@ including the Woo/Spelke-style substrate-ceiling falsifier branch (joint
 failure across ARM_2 AND ARM_3 with similar magnitude routes MECH-229 to
 substrate_conditional with V4-1 multi-agent ecology dependency).
 
-### Phase 3 follow-on (deferred)
+### Phase 3 follow-on (LANDED 2026-05-31)
 
-The SD-032 consumer cascade -- migrating AIC, PCC, pACC, dACC,
-salience-coordinator, override-regulator, MECH-295 liking-bridge from
-reading `goal_state._last_drive_level` (collapsed scalar) to reading
-`obs_dict["per_axis_drive"]` directly -- is registered in
-`substrate_queue.json` as the **SD-049-PHASE-3** entry. Action-trigger:
-V3-EXQ-514 failure on SD-032-mediated mode-switching pathway only. The
-encoder-driven failure modes documented in verdict.md (rows 1-5 of the
-falsifier grid) do not predict that the SD-032 cascade is the bottleneck;
-only the row-6 substrate-ceiling falsifier suggests it (and that branch
-routes to V4 rather than to Phase 3 anyway). The cascade is a cleanup-of-
-substrate-coverage refinement, not an acceptance-criterion prerequisite.
+The SD-032 consumer cascade was originally registered as deferred,
+action-triggered by V3-EXQ-514 failure on the SD-032-mediated mode-
+switching pathway only. It was instead landed **proactively** on
+2026-05-31 under explicit user direction (AskUserQuestion at
+2026-05-31T12:52Z confirmed: Full per-consumer axis-aware design,
+substrate-only this session, no claim flips). The cascade is now in
+place; the original deferred status is retained here for historical
+reference.
+
+The seven SD-032 consumers (AIC, PCC, pACC, dACC, SalienceCoordinator,
+BroadcastOverrideRegulator, MECH-295 liking-bridge) now accept an
+optional `per_axis_drive: Sequence[float] | numpy.ndarray |
+torch.Tensor` kwarg on their `tick()` / `forward()` entry points, plus
+a per-consumer combiner config knob.
+
+When `per_axis_drive=None` (the default, taken when the master flag
+`REEConfig.use_sd049_per_axis_consumer_cascade` is `False` OR when the
+env does not surface `obs_dict["per_axis_drive"]`), every consumer
+falls back to its legacy scalar `drive_level` path -- **bit-identical
+OFF**, verified at 628/628 contracts + 7/7 preflight PASS.
+
+When the master flag is `True` and `obs_dict["per_axis_drive"]` is
+piped into `agent.sense()` via the new `obs_per_axis_drive` kwarg, the
+agent's `_per_axis_drive_for_consumers()` gate threads the vector into
+all eight consumer call sites with their per-consumer combiner.
+
+Combiner defaults are biology-anchored:
+
+| Consumer  | Combiner | Reading |
+|-----------|----------|---------|
+| AIC       | `max`    | urgency / interoceptive salience tracks the worst-deficit axis |
+| PCC       | `mean`   | whole-organism fatigue integrates across axes |
+| pACC      | `sum`    | allostatic-load accumulation (Baliki 2012) |
+| dACC      | `max`    | control demand follows the most-pressing axis |
+| Salience  | `max`    | external-task affinity scales with worst axis |
+| Override  | `max`    | orexin recruits on worst-deficit axis (Mileykovskiy 2005) |
+| MECH-295  | `max`    | fallback when `goal_axis_idx` is `None` |
+
+MECH-295 additionally supports **axis-matched routing** -- the
+canonical case the SD-049 design predicts axis-distinguishable output
+for (MECH-229 wanting/liking dissociation, MECH-117 trajectory
+dissociation, MECH-216 schema generalisation, Q-030 routing). When the
+caller supplies `goal_axis_idx: int` (the resource-type index the
+current goal corresponds to), both the anticipatory liking write at
+the goal location AND the per-candidate approach cue scale with
+`per_axis_drive[goal_axis_idx]` rather than the combined scalar. The
+agent attribute `self._current_goal_axis_idx` (default `None`) is the
+read site; experiment harnesses that wire identity-distinct goals set
+this when an axis-tagged goal is active.
+
+Shared helper module `ree_core/utils/per_axis_drive.py` provides
+`collapse_per_axis_drive(vec, mode)`, `select_axis(vec, axis_idx)`,
+and `validate_combiner(mode)` -- one validated implementation used
+across all seven consumers + the contract test suite. Accepts python
+sequences, numpy arrays, and torch tensors interchangeably; clips
+output to `[0, 1]`; raises `ValueError` on unknown combiner modes.
+
+Phase 3 contract tests live in
+`tests/contracts/test_sd049_phase3_consumer_cascade.py` (28
+contracts covering helper correctness, config defaults, per-consumer
+bit-identical-OFF, per-consumer combiner correctness, MECH-295
+axis-matched routing, and agent-level wiring).
+
+**What Phase 3 does NOT include this pass:**
+
+1. Behavioural validation of axis-distinguishable downstream effects.
+   The V3-EXQ-514 successor work (the MECH-229 wanting/liking
+   dissociation test on the full cascade) is owned by IGW-20260531-012
+   under `goal_pipeline:GAP-2`; Phase 3 here is substrate-only.
+2. `claims.yaml` flips. No claim status updates, no
+   `pending_substrate_reconfirmation` flag changes on SD-012-emergent
+   invariants. The invariant-types governance rule says
+   `pending_substrate_reconfirmation` is appropriate when a substrate
+   in an invariant's `emergent_from` drops below active; SD-012 has
+   not changed status here -- only the consumer interface has -- so
+   that flag is held for the /governance cycle that processes the
+   first behavioural validation experiment on the full cascade.
+3. Per-axis pACC drive_bias vector. pACC's autonomic write-back
+   pathway is still whole-organism (`z_harm_a_norm` is the input,
+   `drive_bias` is a scalar EMA). Per-axis pACC would be its own
+   SD-level claim; pACC.tick now caches a per-axis-derived scalar
+   diagnostic + offers `effective_drive_from_per_axis(vec, combiner)`
+   as a helper, but the EMA accumulation logic is unchanged.
+4. `_current_goal_axis_idx` agent-side wiring from `z_goal` /
+   `z_resource` / `obs_dict["resource_type_at_agent"]` to a concrete
+   axis index. The substrate accepts the index; the routing layer
+   (which axis a given `z_goal` corresponds to) is its own design
+   decision and depends on the SD-049 Phase 2 hybrid encoder's
+   identity classifier output. Until that layer lands,
+   `_current_goal_axis_idx` defaults to `None` and MECH-295 uses the
+   combiner fallback (which still preserves backward-compat behaviour
+   while exposing the per-axis vector for diagnostics).
+
+The cascade is now in place; the original action-trigger
+characterisation ("cleanup-of-substrate-coverage refinement, not an
+acceptance-criterion prerequisite") is preserved here for historical
+reference. Future behavioural experiments that want the full
+axis-matched MECH-295 path enabled set
+`use_sd049_per_axis_consumer_cascade=True` on the agent config and
+provide `obs_per_axis_drive=obs_dict["per_axis_drive"]` to
+`agent.sense()` on each tick.
 
 ### What this Phase does NOT settle
 
