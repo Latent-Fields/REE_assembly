@@ -1,47 +1,34 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-31T13:48:31Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-614b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-611c",
-      "result": "PASS",
-      "completed_at": "2026-05-29T18:45:49.964237+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490h",
-      "result": "FAIL",
-      "completed_at": "2026-05-29T21:46:08.027278+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-612c",
-      "result": "PASS",
-      "completed_at": "2026-05-29T21:46:09.329597+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-519b",
-      "result": "PASS",
-      "completed_at": "2026-05-31T06:59:41.177425+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-615",
-      "result": "PASS",
-      "completed_at": "2026-05-31T09:31:17.188482+00:00"
-    }
+  "last_tick_utc": "2026-05-31T14:26:58Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-592d",
+  "current_exq_started_utc": "2026-05-31T14:02:39.910477+00:00",
+  "current_title": "MECH-090 R-c commit-entry readiness conjunction validation (4-arm; supersedes V3-EXQ-592c)",
+  "current_claim_id": "MECH-090",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 43 / ARM_0_BASELINE_BOTH_OFF",
+    "runs_done": 1,
+    "runs_total": 12,
+    "episodes_done": 40,
+    "episodes_total": 400,
+    "overall_pct": 9.2
+  },
+  "seconds_elapsed": 1459,
+  "seconds_remaining": 5370,
+  "recent_lines": [
+    "[run 1/12] ARM_0_BASELINE_BOTH_OFF seed=42  commits=0  blocks_score=0  blocks_nav=0  false_commit_rate=0.000  final_readiness=1.000  final_rv=0.00003",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_0_BASELINE_BOTH_OFF",
+    "[train] ARM_0_BASELINE_BOTH_OFF seed=43 ep 0/400 (P0 warmup start)",
+    "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True"
   ],
-  "runner_pid": 53395,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 667,
   "runner_version": null,
   "gpu": {
     "available": false
