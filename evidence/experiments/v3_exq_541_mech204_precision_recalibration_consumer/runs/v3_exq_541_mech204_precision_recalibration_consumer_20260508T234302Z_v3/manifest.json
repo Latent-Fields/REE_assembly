@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Superseded by V3-EXQ-541a (queued 2026-05-09) following the F1 substrate fix in SerotoninModule: cross-cycle persistent zero-point reference (EMA across REM captures, alpha=0.1) replaces the legacy capture-only consumer. V3-EXQ-541 surfaced the within-cycle no-op pattern -- target == rv at writeback by construction (the captured precision_at_rem_entry equals rv at REM entry; SWS+REM passes do not update _running_variance), so Option A linear interpolation collapsed to a no-op (C1 PASS sign-consistency 1.0; C2 mean_abs_delta 9e-8 vs 1e-3 threshold; C3 cross-arm divergence 2.9e-7 vs 5% threshold). The diagnosis was correct and load-bearing -- it is preserved as the architectural finding that drove the F1 substrate fix. The original FAIL is genuine within the legacy semantics; F1 changes the consumer-side wiring so cycles 2..N have target != rv whenever waking drift moves rv between captures."
 }

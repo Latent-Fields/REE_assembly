@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "SD-016 env-entropy precondition probe. PURPOSE: test whether SD-023 landmarks (n_landmarks_a, n_landmarks_b in CausalGridWorldV2) supply enough cross-context z_world variation to satisfy the substrate-readiness gate that EXQ-418f/g established was missing. PASS = SD-023 landmarks ON produce cross-context cos_cross < 0.95 with separation_gap > H0+0.02 AND H0 (landmarks OFF) reproduces the EXQ-418f/g failure regime (cos_cross >= 0.95). PASS unblocks SD-016 retest in the H1 env config (queue EXQ-418i 4-arm reusing 418g substrate matrix). FAIL routes to broader env enrichment scoping. MUST NOT update SD-016 claim confidence directly -- this is an env-readiness gate probe, not a substrate retest."
 }

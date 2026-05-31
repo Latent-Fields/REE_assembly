@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "SD-016 Path 1 div_weight sweep at 1.0/2.0/5.0 (all arms: writepath_mode=off, temperature_learnable=False). PASS = at least one weight above 0.5 breaks the uniform attention rail in all seeds AND produces a behavioural delta, confirming that Path 1 alone can establish cue-indexed retrieval given strong enough gradient pressure. FAIL on C1 with C2 PASS = the attention bottleneck is categorically in query selectivity, not slot orthogonality; Path 1 alone is insufficient regardless of weight. FAIL on C1 with C4 FAIL = substrate inconsistency. FAIL on C3 with C1+C2 PASS = slots differentiated and attention selective but cue_action_proj output still uninformative."
 }

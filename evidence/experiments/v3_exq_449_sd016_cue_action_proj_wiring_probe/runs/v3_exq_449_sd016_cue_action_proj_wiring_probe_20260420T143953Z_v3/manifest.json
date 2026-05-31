@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Diagnostic probe of cue_action_proj wiring under sd016_enabled. Outcome should NOT be used to update SD-016 claim confidence. Result informs whether the existing wiring has any training signal path and whether auxiliary supervision is a viable fix. supervised arm failed to train cue_action_proj. Something in the forward pass or loss construction is broken; the fix strategy must change. Inspect gradient hooks, loss magnitudes, and extract_cue_context."
 }

@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "INVALID RESULT: env.step() return order bug in script. obs_next, reward, done, truncated, info_next = env.step() but current env.step() returns (flat_obs, harm_signal, done, info, obs_dict). truncated=info dict (truthy) caused every episode to break after 1 step. harm_signal always 0 (info_next.get(harm) on obs_dict). All per_condition_results have n_benefit_samples=0, metrics=0. Verdict and evidence_direction are scientifically invalid. Marked non_contributory pending rerun with corrected script."
 }

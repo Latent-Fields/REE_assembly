@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Diagnostic probe of SD-016 cue_action_proj forward path (EXP-0155). Outcome MUST NOT be used to update SD-016 claim confidence. Result identifies the specific blocker in the forward path and determines the fix plan for EXQ-418b re-run. detach is not the sole blocker. Forward-path tensor(s) below threshold: action_bias per-channel std < 1e-4 (constant output across contexts, g2). Requires redesigning how cue_action_proj output is consumed (learnable scale, different injection point, or folding cue_action into E2.action_object() directly)."
 }

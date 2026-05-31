@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "SD-016 ContextMemory Path 1 auxiliary diversification loss 4-arm ablation. PASS = the diversification loss term breaks slot symmetry where the v2 read+write substrate cannot (EXQ-418d FAIL across all 4 arms with bimodal seed pattern). FAIL on C1 or C2 at div_weight=0.5 invalidates Path 1 at this weight; follow-up is either a weight sweep (EXQ-418f at 1.0/2.0/5.0) or Path 2/3 from the original 3-path proposal. FAIL on C3 with C1+C2 PASS would mean diversification works at the slot level but does not propagate to behaviour (cue_action_proj path uninformative even with non-uniform attention). FAIL on C4 with C1+C2+C3 PASS would invalidate the ablation logic by showing the new substrate accidentally fixed the v2 path."
 }

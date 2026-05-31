@@ -44,5 +44,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "SD-056 matched-entropy FP-2 falsifier (569d, floor-recalibrated successor to 569c). Recalibrated C1 floor 0.05 -> 0.03 per autopsy Section 5 (clean separation noise 0.015 vs substrate-operative 0.045). C3 acceptance tightened to require strict-above matched-noise (not just >0.3 floor) so a PASS forecloses the 'entropy-only artefact' interpretation cell that 569c's grid missed. PASS = SD-056 substrate-operative at behavioural runtime AND that variance propagates through hippocampal scoring + E3 aggregation into selected-action diversity strictly above the matched-entropy random-noise control -> R1.b fires, ARC-065 GAP-A unblocked. FAIL with C1 holding under 0.03 floor + C3 lift NOT strictly above matched-noise = diversity is entropy-only artefact, route to substrate revisit. FAIL with C1 failing under 0.03 floor = substrate not operative at behavioural runtime even at extended P0=60, route to /diagnose-errors on the contrastive head's training. NaN bug on e3_top2_class_gap that blocked dissociation in 569c is fixed in 569d (input non-finite filter in _per_class_score_stats + math.isfinite() check in caller); n_top2_gap_admitted and n_top2_gap_skipped_nonfinite surfaced per arm for post-hoc verification."
 }

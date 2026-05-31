@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Diagnostic verification of the EXQ-449a consumer fix for SD-016 cue_action_proj. Outcome MUST NOT be used to update SD-016 claim confidence. Verifies that cue_action_proj output has per-channel variation across contexts after the [cue_context, z_world] concat fix in extract_cue_context. Consumer fix verified at the projection level (per-channel std clears 1e-3) but safe vs dangerous divergence is below 0.05. The fix removes the constant-output failure mode but contextual selectivity is weak under random-action eval; integration test EXQ-418b can still proceed (the original failure was action_bias_divergence=0.0; non-zero is the necessary precondition the integration test was blocked on)."
 }

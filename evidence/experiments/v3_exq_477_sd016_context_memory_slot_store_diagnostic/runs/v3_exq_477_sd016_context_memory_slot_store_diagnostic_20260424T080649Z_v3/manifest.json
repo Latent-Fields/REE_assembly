@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Diagnostic probe of the SD-016 ContextMemory slot-store / attention-uniformity bug referenced in CLAUDE.md (SD-016 section) and in the 2026-04-24T07:36 TASK_CLAIMS retag note. Outcome MUST NOT be used to update SD-016 claim confidence. Result provides targeted localisation of which ContextMemory forward-path component produces uniform softmax. PRIMARY: (b) key_proj.bias dominates key content -- keys look identical across slots. FLAGS: attention is uniform (entropy=2.773 > 2.67; reference=2.773); cue_context is batch-constant (per-channel std=7.517e-08 < 1e-03); key_proj.bias dominates (bias_over_content_ratio=4.24 > 1.0); keys_pair_sim_with_bias=0.991 vs keys_pair_sim_content_only=0.816."
 }

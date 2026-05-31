@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "SD-016 attention-uniformity diagnostic probe. PURPOSE: localise the cause of the EXQ-418d/418e attn_entropy_mean=ln(16) uniform-rail failure (slot-side fixes alone cannot move attention; queries must be the bottleneck). Reports query/key norms, raw and scaled dot-product distributions, slot argmax histogram, attention entropy stats, and the divisor that would produce target mean entropy 1.5 nats. PASS = the probe ran successfully (diagnostic-only outcome). MUST NOT update SD-016 claim confidence -- this is instrumentation, not evidence."
 }
