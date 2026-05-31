@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-31T08:10:14Z",
+  "last_tick_utc": "2026-05-31T08:40:23Z",
   "state": "running",
   "current_exq": "V3-EXQ-615",
   "current_exq_started_utc": "2026-05-31T07:53:56.725451+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "ARC-065",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_BASE_OFF",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_1_MATCHED_NOISE",
+    "runs_done": 3,
     "runs_total": 9,
-    "episodes_done": 40,
+    "episodes_done": 0,
     "episodes_total": 90,
-    "overall_pct": 4.9
+    "overall_pct": 33.3
   },
-  "seconds_elapsed": 978,
-  "seconds_remaining": 6402,
+  "seconds_elapsed": 2787,
+  "seconds_remaining": 5318,
   "recent_lines": [
-    "[P0 warmup] seed=42 arm=ARM_0_BASE_OFF ep 30/30",
-    "[P1 eval] seed=42 arm=ARM_0_BASE_OFF ep 10/60",
-    "[P1 eval] seed=42 arm=ARM_0_BASE_OFF ep 20/60",
-    "[P1 eval] seed=42 arm=ARM_0_BASE_OFF ep 30/60",
-    "[P1 eval] seed=42 arm=ARM_0_BASE_OFF ep 40/60"
+    "[P1 eval] seed=44 arm=ARM_0_BASE_OFF ep 40/60",
+    "[P1 eval] seed=44 arm=ARM_0_BASE_OFF ep 50/60",
+    "[P1 eval] seed=44 arm=ARM_0_BASE_OFF ep 60/60",
+    "verdict: FAIL",
+    "Seed 42 Condition ARM_1_MATCHED_NOISE"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
