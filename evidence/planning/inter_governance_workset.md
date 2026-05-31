@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-05-31T11:07:06Z`
+Generated: `2026-05-31T12:00:20Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,27 +9,27 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **46** (ready 16, in_flight 0, blocked 18)
-- Pending review: **2**
-- Queue pending (unclaimed): **0**
+- Items: **46** (ready 16, in_flight 0, blocked 17)
+- Pending review: **1**
+- Queue pending (unclaimed): **2**
 
-- Live EXQs: V3-EXQ-490j
+- Live EXQs: V3-EXQ-616
 
 ## Work packages
 
-### IGW-20260531-001 -- Complete governance review (2 pending)
+### IGW-20260531-001 -- Complete governance review (1 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1
-- **Why now:** pending_review.md lists 2 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 1 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260531-001
-Title: Complete governance review (2 pending)
+Title: Complete governance review (1 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 2 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 1 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -319,7 +319,7 @@ Instructions:
 ### IGW-20260531-031 -- Retest after substrate: INV-074
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Why now:** claims.yaml pending_retest_after_substrate=true; auto-spawn NO-OP closed 4x today (latest commit f9fae7f) -- substrate prerequisite for INV-074 not met. Do not re-attempt until upstream substrate work lands.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -334,6 +334,8 @@ Why now: claims.yaml pending_retest_after_substrate=true.
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Workset: http://localhost:8000/workset
+
+NOTE: This item has been auto-spawned and NO-OP closed 4 times today (latest commit f9fae7f -- substrate prerequisite not met). Do not re-attempt the retest until upstream INV-074 substrate prerequisite is implemented.
 ```
 
 </details>
@@ -527,30 +529,9 @@ Instructions:
 
 </details>
 
-### IGW-20260531-026 -- Queue depth low (0 pending)
-
-- **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
-- **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260531-026
-Title: Queue depth low (0 pending)
-Lane: ops | Skill: (manual)
-Status: ready
-Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
-
-Instructions:
-- Update plan-of-record doc and closure frontmatter when complete.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
 ### IGW-20260531-012 -- Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 38
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 30
 - **Gap(s):** behavioral_diversity_isolation:GAP-B
 - **Owner EXQ:** V3-EXQ-614a (queued 2026-05-30 via /diagnose-errors cluster-absorb post 41c3411 runner fix; 3-arm behavioural falsifier, same script as 614); V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed)
 - **Why now:** V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
@@ -561,7 +542,7 @@ Instructions:
 REE inter-governance work item: IGW-20260531-012
 Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 Lane: experiment | Skill: /queue-experiment
-Status: blocked
+Status: partial
 Gap(s): behavioral_diversity_isolation:GAP-B
 Owner EXQ: V3-EXQ-614a (queued 2026-05-30 via /diagnose-errors cluster-absorb post 41c3411 runner fix; 3-arm behavioural falsifier, same script as 614); V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed)
 Claims: MECH-341, ARC-062, ARC-065
@@ -575,12 +556,33 @@ Instructions:
 
 </details>
 
+### IGW-20260531-026 -- Queue depth low (2 pending)
+
+- **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
+- **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260531-026
+Title: Queue depth low (2 pending)
+Lane: ops | Skill: (manual)
+Status: ready
+Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
+
+Instructions:
+- Update plan-of-record doc and closure frontmatter when complete.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260531-014 -- OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** commitment_closure:GAP-4
 - **Owner EXQ:** V3-EXQ-592b
-- **Why now:** MECH-090 commit-entry readiness conjunction substrate landed in two passes (2026-05-28 within-tick decisiveness; 2026-05-29 across-tick motor-program). V3-EXQ-592b is the live OCD-battery completeness probe (commitment_closure:GAP-4 owner).
+- **Why now:** MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes. 2026-05-28 within-tick decisiveness axis (score_margin gate; ree_core/heartbeat/beta_gate.py + agent.py wiring). 2026-05-29 across-tick motor-program readiness 
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -592,12 +594,10 @@ Status: in_progress
 Gap(s): commitment_closure:GAP-4
 Owner EXQ: V3-EXQ-592b
 Claims: SD-034, MECH-266, MECH-267, MECH-268, MECH-090
-Why now: MECH-090 commit-entry readiness conjunction substrate landed in two passes (2026-05-28 within-tick decisiveness; 2026-05-29 across-tick motor-program). V3-EXQ-592b is the live OCD-battery completeness probe (commitment_closure:GAP-4 owner).
+Why now: MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes. 2026-05-28 within-tick decisiveness axis (score_margin gate; ree_core/heartbeat/beta_gate.py + agent.py wiring). 2026-05-29 across-tick motor-program readiness 
 
 Instructions:
-- MONITOR ONLY -- V3-EXQ-592b is the active owner EXQ; do NOT queue a parallel cohort.
-- When 592b manifest lands: route through /governance (SD-034 + MECH-266/267/268 + MECH-090 unblocks).
-- If 592b ERRORs: open /diagnose-errors before re-queueing.
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
 - Workset: http://localhost:8000/workset
 ```
@@ -609,7 +609,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** goal_pipeline:GAP-4
 - **Owner EXQ:** V3-EXQ-490g (FAIL 2026-05-29 cohort autopsy); V3-EXQ-490h FAIL silent-drop 2026-05-30 (runner bug 41c3411); V3-EXQ-490i queued 2026-05-30; V3-EXQ-490j claimed 2026-05-31 (DLAPTOP-4.local, supersedes 490i)
-- **Why now:** GAP-4 cohort retest active. V3-EXQ-490j (Tier-1 StepHarness, supersedes 490i) claimed on DLAPTOP-4.local 2026-05-31T05:38Z after 490h was lost to the runner silent-drop bug (now fixed in ree-v3 41c3411).
+- **Why now:** <!-- TODO: revise resume_condition to reflect V3-EXQ-490h silent-drop + V3-EXQ-490i re-queue + V3-EXQ-490j claimed state --> GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -621,12 +621,10 @@ Status: in_progress
 Gap(s): goal_pipeline:GAP-4
 Owner EXQ: V3-EXQ-490g (FAIL 2026-05-29 cohort autopsy); V3-EXQ-490h FAIL silent-drop 2026-05-30 (runner bug 41c3411); V3-EXQ-490i queued 2026-05-30; V3-EXQ-490j claimed 2026-05-31 (DLAPTOP-4.local, supersedes 490i)
 Claims: MECH-295, ARC-030, MECH-117, Q-040
-Why now: GAP-4 cohort retest active. V3-EXQ-490j (Tier-1 StepHarness, supersedes 490i) claimed on DLAPTOP-4.local 2026-05-31T05:38Z after 490h was lost to the runner silent-drop bug (now fixed in ree-v3 41c3411).
+Why now: <!-- TODO: revise resume_condition to reflect V3-EXQ-490h silent-drop + V3-EXQ-490i re-queue + V3-EXQ-490j claimed state --> GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness
 
 Instructions:
-- MONITOR ONLY -- V3-EXQ-490j is claimed and running on DLAPTOP-4.local; do NOT re-queue.
-- When 490j manifest lands: read result, mark reviewed via /governance, then assess whether GAP-4 closes (MECH-295 + ARC-030 + MECH-117 + Q-040 unblocks).
-- If 490j ERRORs or silently drops again: open /diagnose-errors session (manifest-pipeline regression check); do NOT queue 490k blindly.
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/goal_pipeline_plan.md
 - Workset: http://localhost:8000/workset
 ```
@@ -660,7 +658,7 @@ Instructions:
 
 </details>
 
-### IGW-20260531-042 -- Proposal EXP-0069 (SD-047)
+### IGW-20260531-042 -- Proposal EXP-0068 (SD-047)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; low_exp_conf
@@ -669,7 +667,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260531-042
-Title: Proposal EXP-0069 (SD-047)
+Title: Proposal EXP-0068 (SD-047)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: SD-047
@@ -682,7 +680,7 @@ Instructions:
 
 </details>
 
-### IGW-20260531-043 -- Proposal EXP-0077 (ARC-018)
+### IGW-20260531-043 -- Proposal EXP-0076 (ARC-018)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict
@@ -691,7 +689,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260531-043
-Title: Proposal EXP-0077 (ARC-018)
+Title: Proposal EXP-0076 (ARC-018)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: ARC-018
@@ -704,7 +702,7 @@ Instructions:
 
 </details>
 
-### IGW-20260531-044 -- Proposal EXP-0079 (MECH-314)
+### IGW-20260531-044 -- Proposal EXP-0078 (MECH-314)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict
@@ -713,7 +711,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260531-044
-Title: Proposal EXP-0079 (MECH-314)
+Title: Proposal EXP-0078 (MECH-314)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-314
@@ -726,7 +724,7 @@ Instructions:
 
 </details>
 
-### IGW-20260531-045 -- Proposal EXP-0081 (MECH-318)
+### IGW-20260531-045 -- Proposal EXP-0080 (MECH-318)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict; insufficient_experimental_replication; low_exp_conf
@@ -735,7 +733,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260531-045
-Title: Proposal EXP-0081 (MECH-318)
+Title: Proposal EXP-0080 (MECH-318)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-318
@@ -748,7 +746,7 @@ Instructions:
 
 </details>
 
-### IGW-20260531-046 -- Proposal EXP-0082 (SD-011)
+### IGW-20260531-046 -- Proposal EXP-0081 (SD-011)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** active_conflict
@@ -757,7 +755,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260531-046
-Title: Proposal EXP-0082 (SD-011)
+Title: Proposal EXP-0081 (SD-011)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: SD-011
