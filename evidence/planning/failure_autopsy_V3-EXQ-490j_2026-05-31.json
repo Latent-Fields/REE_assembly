@@ -1,0 +1,100 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-31T11:45:52Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3",
+      "queue_id": "V3-EXQ-490j",
+      "supersedes": "V3-EXQ-490i",
+      "claim_ids": ["MECH-295"],
+      "failed_criteria": ["C8_approach_commit_lift"],
+      "passed_criteria": ["C1_cue_fires", "C3_approach_commit", "C4_goal_active", "C5_write_fires", "C6_anticipatory_write_peak", "C7_approach_cue_bias_peak", "C9_direct_magnitude_lift"],
+      "diagnostic_criteria": ["C2_dacc_bias_diagnostic_seeds_nonzero"],
+      "failed_criterion_class": "discrimination_ceiling_saturation_negative_control",
+      "matched_pre_registered_grid_row": "ROW_3_C8_FAIL_alone_C6_C7_pass_C9_lifts",
+      "severed_bridge_sentinel_clean": true,
+      "per_arm_approach_commit_rate": {
+        "ARM_0_severed_bridge": {"seed_42": 1.0, "seed_7": 1.0, "seed_19": 1.0},
+        "ARM_1_gap4_operating": {"seed_42": 1.0, "seed_7": 1.0, "seed_19": 1.0}
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete_at_mech295_substrate_partial_at_behavioural_readout_isolation",
+        "environment": "adequate_for_substrate_probe_inadequate_for_behavioural_sign_test",
+        "measurement": "inadequate_approach_commit_aggregates_over_non_mech295_valence_wanting_writers",
+        "integration": "partially_coupled_substrate_writes_correct_readout_does_not_isolate_mech295",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "nacc_shell_hedonic_hotspot_plus_ventral_pallidum_plus_ofc_pleasure_coding",
+        "dependencies": ["SD-012", "SD-014", "SD-015", "SD-016", "MECH-117", "ARC-036"],
+        "is_formal_import": false,
+        "divergence": "none -- biology supports architecture; severed-bridge sentinel clean confirms weak-reading falsifier in the predicted direction; behavioural ceiling-saturation is REE-implementation-specific not a biological signature",
+        "lit_status": "present",
+        "lit_pull": "evidence/literature/targeted_review_mech295_liking_approach_bridge/SYNTHESIS.md"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "narrow_supports",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-295": "narrow_supports"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-490j autopsy upgrade (2026-05-31): manifest evidence_direction_per_claim[MECH-295] overridden from 'weakens' to 'narrow_supports' per confirmed failure_autopsy_V3-EXQ-490j_2026-05-31. Severed-bridge baseline contract verified (ARM_0 z_goal_enabled=False; bridge_cue_fires=0, bridge_write_fires=0, mech295_*_calls=0, goal_active_steps=0, goal_norm_peak=0.0 across 3/3 seeds). Substrate-side direct probes confirm bridge fires correctly in ARM_1: anticipatory_liking_write_peak 0.287/0.0066/0.069 (seeds 42/7/19), approach_cue_score_bias_peak 0.396/0.054/0.427, write_sum 80.2/0.58/17.5, all PASS the C9 direct_magnitude_lift criterion against zero-baseline ARM_0. The C8 approach_commit_rate_lift FAIL is metric-design contamination, not claim falsification: approach_commit_rate = 1.0 in BOTH arms across all 3 seeds. _approach_commit (goal_pipeline_tier1.py:225) reads VALENCE_WANTING aggregate at current z_world; in ARM_0 this saturates via MECH-216 schema readout, serotonin tonic_5ht benefit_salience, MECH-290 backward credit sweep, and MECH-307 anticipatory liking write paths that are independent of z_goal_enabled and do not flow through the MECH-295 bridge. Cohort context: 490i had goal_norm_peak baseline contamination; 490j has approach_commit_rate ceiling contamination -- distinct readout-design failures on the same MECH-295 weak-reading falsifier. The substrate signal is the load-bearing positive evidence; the behavioural sign-test cannot carry the load until the readout is redesigned. Routing: /queue-experiment for V3-EXQ-490k with metric redesign isolating MECH-295 contribution from sibling VALENCE_WANTING writers (action-class divergence on first commit tick under matched-write-path conditions, or ablation of non-MECH-295 writers in both arms, or direct E3 score_bias argmin-change probe). claims.yaml MECH-295 v3_pending gate remains held; the substrate is repeatedly clearing its bar, the metric design has not yet caught up.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Substrate operative -- MECH-295 bridge fires correctly when wired (C6/C7 PASS 3/3 seeds with substantial magnitudes), structurally silent when severed (ARM_0 sentinel clean 3/3 seeds). C8 ceiling-saturation is a behavioural-readout metric-design issue at the experiment-script layer, not a substrate inadequacy. Existing MECH-295 substrate_queue.json entry should remain at its current state -- no amend, no new entry. The repair pathway is /queue-experiment metric redesign."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_rationale": "Substrate-side direct measurements (C6/C7/C9) cleanly confirm the weak-reading falsifier across 3/3 seeds; the corroborating behavioural sign-test (C8) cannot carry the load until the readout metric is redesigned. The signal is real but currently single-pathway (substrate-direct probe) and one env config -- broader retest comes with V3-EXQ-490k on a corrected metric.",
+      "learning_extracted": [
+        "Metric design must isolate the claim. approach_commit_rate aggregates over (beta_gate.is_elevated AND VALENCE_WANTING > threshold) -- in a substrate where multiple write paths populate VALENCE_WANTING (MECH-216, serotonin, MECH-290, MECH-307), the metric cannot dissociate MECH-295 contribution. The 490j sentinel demonstrates this directly: bridge is provably silent in ARM_0 (C6/C7=0 across all seeds) yet the metric still saturates at 1.0.",
+        "Severed-bridge baseline is necessary but not sufficient. Severing z_goal_enabled correctly disables MECH-295 at the source (C6/C7 zero in ARM_0 across all seeds, sentinel clean). But it does not disable the agent's other approach-related VALENCE_WANTING write paths. The 490i autopsy fixed one baseline contamination; 490j surfaces another at the readout layer.",
+        "The script's pre-registered ROW 3 routing prescription (parametric sweep on mech295_liking_to_approach_cue_gain and APPROACH_WANTING_THRESH) is misaligned with the actual failure mode. ROW 3's per-claim direction (narrow_supports) is correct; ROW 3's routing recommendation does not address ceiling-saturated negative controls. Future grids should distinguish 'C8 FAIL with ARM_0 near zero' from 'C8 FAIL with ARM_0 at ceiling'.",
+        "Substrate signal is genuinely strong. C6/C7/C9 PASS on 3/3 seeds with substantial magnitudes (peak anticipatory_write 0.287, peak approach_cue_bias 0.396, write_sum 80.2 vs zero in ARM_0) is more direct mechanistic support for MECH-295 weak-reading than any 490 cohort run prior. This signal should be weighted in governance via the narrow_supports per-claim direction.",
+        "Cohort-stable pattern across 490i + 490j: substrate-side direct measurements cleanly support MECH-295 weak-reading; every behavioural sign-test design tried so far has a distinct contamination (490i: goal_norm_peak baseline; 490j: approach_commit_rate ceiling). The next iteration must put a clean metric at the centre of the design, not just iterate on the baseline arm config."
+      ],
+      "manifest_metrics_snapshot": {
+        "ARM_0_severed_bridge": {
+          "seed_42": {"approach_commit_rate": 1.0, "bridge_cue_fires": 0, "bridge_write_fires": 0, "goal_active_steps": 0, "goal_norm_peak": 0.0, "mech295_anticipatory_liking_write_peak": 0.0, "mech295_anticipatory_liking_write_sum": 0.0, "mech295_approach_cue_score_bias_peak": 0.0, "mech295_approach_cue_score_bias_sum": 0.0, "action_entropy": 0.574, "total_eval_steps": 900},
+          "seed_7":  {"approach_commit_rate": 1.0, "bridge_cue_fires": 0, "bridge_write_fires": 0, "goal_active_steps": 0, "goal_norm_peak": 0.0, "mech295_anticipatory_liking_write_peak": 0.0, "mech295_anticipatory_liking_write_sum": 0.0, "mech295_approach_cue_score_bias_peak": 0.0, "mech295_approach_cue_score_bias_sum": 0.0, "action_entropy": 0.221, "total_eval_steps": 900},
+          "seed_19": {"approach_commit_rate": 1.0, "bridge_cue_fires": 0, "bridge_write_fires": 0, "goal_active_steps": 0, "goal_norm_peak": 0.0, "mech295_anticipatory_liking_write_peak": 0.0, "mech295_anticipatory_liking_write_sum": 0.0, "mech295_approach_cue_score_bias_peak": 0.0, "mech295_approach_cue_score_bias_sum": 0.0, "action_entropy": 0.836, "total_eval_steps": 900}
+        },
+        "ARM_1_gap4_operating": {
+          "seed_42": {"approach_commit_rate": 1.0, "bridge_cue_fires": 150, "bridge_write_fires": 900, "goal_active_steps": 900, "goal_norm_peak": 0.2261, "mech295_anticipatory_liking_write_peak": 0.2865, "mech295_anticipatory_liking_write_sum": 80.184, "mech295_approach_cue_score_bias_peak": 0.3958, "mech295_approach_cue_score_bias_sum": 27.140, "action_entropy": 0.709, "total_eval_steps": 900},
+          "seed_7":  {"approach_commit_rate": 1.0, "bridge_cue_fires": 885, "bridge_write_fires": 430, "goal_active_steps": 900, "goal_norm_peak": 0.0919, "mech295_anticipatory_liking_write_peak": 0.0066, "mech295_anticipatory_liking_write_sum": 0.582, "mech295_approach_cue_score_bias_peak": 0.0536, "mech295_approach_cue_score_bias_sum": 8.917, "action_entropy": 0.144, "total_eval_steps": 900},
+          "seed_19": {"approach_commit_rate": 1.0, "bridge_cue_fires": 200, "bridge_write_fires": 822, "goal_active_steps": 900, "goal_norm_peak": 0.2958, "mech295_anticipatory_liking_write_peak": 0.0692, "mech295_anticipatory_liking_write_sum": 17.512, "mech295_approach_cue_score_bias_peak": 0.4266, "mech295_approach_cue_score_bias_sum": 34.231, "action_entropy": 0.806, "total_eval_steps": 900}
+        }
+      },
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "queue-experiment": "V3-EXQ-490k successor with corrected behavioural sign-test metric isolating MECH-295 contribution from non-MECH-295 VALENCE_WANTING writers. Three candidate designs (compose one or more): (a) action-class divergence on first commit tick between ARM_1 and ARM_0 holding other VALENCE_WANTING write paths matched (per-seed argmax-first-action ARM_1 != ARM_0 count or cosine distance on score_bias vector at first commit) -- tests whether MECH-295 changes the selected action, not whether VALENCE_WANTING aggregate is non-zero; (b) ablate non-MECH-295 VALENCE_WANTING writers in BOTH arms (schema_wanting_enabled=False, tonic_5ht_enabled=False, use_backward_credit_sweep=False, MECH-307 paths off) so approach_commit_rate reflects only MECH-295 contribution -- cleanest discriminant, but ablates substrates that may interact; (c) measure bridge-driven E3 score_bias propagation magnitude on first action selection directly (fraction of commit ticks where MECH-295 bridge per-candidate negative score_bias changes argmin from no-MECH-295-counterfactual to with-MECH-295) -- cleanest mechanistic isolation, most invasive instrumentation. Recommended composition: (a) + per-tick guard that confirms substrate is firing (C7 > floor) so metric only counts ticks where MECH-295 is actually producing bias; add variant (b) as a cross-validation ablation arm."
+      },
+      "open_items_not_done_this_session": [
+        "claims.yaml MECH-295 evidence_quality_note append (governance applies)",
+        "manifest evidence_direction_per_claim write (governance applies)",
+        "V3-EXQ-490k queue + script (separate /queue-experiment session)",
+        "C2 dACC wiring diagnosis (separate, V3-EXQ-483 cluster owns; orthogonal to 490j)",
+        "review_tracker.json (governance applies on 490j review marking)",
+        "substrate_queue.json (no edit -- no substrate amendment)"
+      ]
+    }
+  ],
+  "cluster_pattern": {
+    "scope": "single_claim_cohort_not_cross_claim_cluster",
+    "cohort": ["V3-EXQ-490g", "V3-EXQ-490h", "V3-EXQ-490i", "V3-EXQ-490j"],
+    "shape": "MECH-295 substrate-side direct probes consistently fire as architecturally predicted; the behavioural sign-test design has a distinct contamination at each iteration (490g: substrate not delivering; 490h: runner silent-drop; 490i: goal_norm_peak baseline contamination; 490j: approach_commit_rate ceiling contamination on negative control).",
+    "is_independent_bugs": false,
+    "structural_property": "Cohort-stable: the MECH-295 substrate is repeatedly clearing its bar; the behavioural test design is the recurring failure mode. The next iteration must put a clean metric at the centre of the design, not just iterate on the baseline arm config.",
+    "readings": ["behavioural_readout_isolation_design_failure_repeated", "substrate_fully_validated_at_direct_probe_layer"],
+    "distinct_from": ["substrate_uniform_cluster_540_590a_591_598_603_610 (different shape)", "SD-037_consumer_cascade_483d_483e (different shape, different substrate root)"]
+  },
+  "predecessor_autopsies": [
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.{md,json}",
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-490h-V3-EXQ-592b_2026-05-30.{md,json}",
+    "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-490i_2026-05-30.{md,json}"
+  ]
+}
