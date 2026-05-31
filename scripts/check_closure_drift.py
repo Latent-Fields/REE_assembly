@@ -8,6 +8,20 @@ ree-v3/experiment_queue.json queue with a manifest in
 REE_assembly/evidence/experiments/, or has a confirmed
 failure_autopsy_<exq>_*.json artifact under evidence/planning/.
 
+Two suppressors keep legitimate-but-non-terminal nodes out of the
+"drifted" bucket (they are recorded in a separate "Suppressed" section
+so suppression is auditable, never silent):
+
+  1. Case 3 self-tag: the node carries a governance_<date> entry whose
+     value contains the substring "Case 3 in closure-drift terms". This
+     is the convention plans use to mark a node as legitimately
+     non-terminal pending an upstream substrate or successor EXQ.
+
+  2. Owner-exq manifest is non-contributory: the manifest exists but
+     its `evidence_direction` field is in {non_contributory, superseded,
+     inconclusive}. The experiment ran to completion but did not
+     produce closure-grade evidence.
+
 Output is a markdown report at
 REE_assembly/evidence/planning/closure_drift.md. The script exits 0
 regardless of findings -- it is a governance hint, not a gate.
@@ -123,6 +137,32 @@ def find_terminal_manifest(exq_id: str) -> Path | None:
     return None
 
 
+CASE_3_MARKER = "Case 3 in closure-drift terms"
+NON_CONTRIBUTORY_DIRECTIONS = {"non_contributory", "superseded", "inconclusive"}
+
+
+def node_is_case_3(node: dict) -> bool:
+    """True if any governance_<date> field on the node carries the Case-3 marker."""
+    for k, v in node.items():
+        if not isinstance(k, str) or not k.startswith("governance_"):
+            continue
+        if isinstance(v, str) and CASE_3_MARKER in v:
+            return True
+    return False
+
+
+def manifest_evidence_direction(manifest_path: Path) -> str | None:
+    """Read the manifest's evidence_direction field, lowercased. None on read error."""
+    try:
+        data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    direction = data.get("evidence_direction")
+    if not isinstance(direction, str):
+        return None
+    return direction.strip().lower()
+
+
 def find_failure_autopsy(exq_id: str) -> Path | None:
     if not PLANNING_DIR.exists():
         return None
@@ -145,6 +185,7 @@ def find_failure_autopsy(exq_id: str) -> Path | None:
 def main() -> int:
     queue_ids = load_queue_ids()
     findings: list[dict] = []
+    suppressed: list[dict] = []
     missing_plan_last_updated: list[str] = []
     missing_files: list[str] = []
 
@@ -183,7 +224,14 @@ def main() -> int:
             if not manifest and not autopsy:
                 continue
 
-            findings.append({
+            manifest_direction = manifest_evidence_direction(manifest) if manifest else None
+            suppress_reason: str | None = None
+            if node_is_case_3(node):
+                suppress_reason = "case_3_self_tag"
+            elif manifest_direction in NON_CONTRIBUTORY_DIRECTIONS:
+                suppress_reason = f"manifest_evidence_direction={manifest_direction}"
+
+            record = {
                 "plan": plan_name,
                 "node_id": node.get("id"),
                 "node_status": node.get("status"),
@@ -192,7 +240,12 @@ def main() -> int:
                 "manifest": manifest.relative_to(REPO_ROOT).as_posix() if manifest else None,
                 "autopsy": autopsy.relative_to(REPO_ROOT).as_posix() if autopsy else None,
                 "title": (node.get("title") or "")[:120],
-            })
+                "suppress_reason": suppress_reason,
+            }
+            if suppress_reason:
+                suppressed.append(record)
+            else:
+                findings.append(record)
 
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     lines: list[str] = []
@@ -203,8 +256,12 @@ def main() -> int:
     lines.append(
         "This report flags closure_plan nodes whose `owner_exq` has reached a "
         "terminal state (manifest landed and / or failure_autopsy artifact "
-        "present) but whose `status` is still non-terminal. It also flags "
-        "plans missing a top-level `closure_plan.last_updated` field."
+        "present) but whose `status` is still non-terminal. Nodes that "
+        "self-tag as Case 3 (legitimately non-terminal pending upstream "
+        "substrate or successor EXQs) and nodes whose owner_exq manifest is "
+        "non-contributory / superseded / inconclusive are recorded under "
+        "Suppressed instead, not Drifted. The report also flags plans missing "
+        "a top-level `closure_plan.last_updated` field."
     )
     lines.append("")
     lines.append("Warn-only -- this script never blocks the governance pipeline.")
@@ -236,6 +293,33 @@ def main() -> int:
             )
         lines.append("")
 
+    lines.append(f"## Suppressed (legitimately non-terminal) ({len(suppressed)})")
+    lines.append("")
+    if not suppressed:
+        lines.append("_None._")
+        lines.append("")
+    else:
+        lines.append(
+            "Nodes whose `owner_exq` reached a terminal state but where "
+            "suppression rules say the node is legitimately non-terminal "
+            "(Case-3 self-tag or non-contributory manifest evidence_direction). "
+            "Listed here for audit; not counted as drift."
+        )
+        lines.append("")
+        lines.append("| plan | node | status | owner_exq | suppress reason |")
+        lines.append("|------|------|--------|-----------|-----------------|")
+        for s in suppressed:
+            lines.append(
+                "| {plan} | `{node}` | {status} | {exq} | {reason} |".format(
+                    plan=s["plan"],
+                    node=s["node_id"] or "?",
+                    status=s["node_status"] or "?",
+                    exq=s["owner_exq"],
+                    reason=s["suppress_reason"] or "?",
+                )
+            )
+        lines.append("")
+
     lines.append(f"## Plans missing `closure_plan.last_updated` ({len(missing_plan_last_updated)})")
     lines.append("")
     if not missing_plan_last_updated:
@@ -257,6 +341,7 @@ def main() -> int:
     print(f"Closure drift report written: {DRIFT_REPORT.relative_to(REPO_ROOT)}")
     print(
         f"  drifted_nodes={len(findings)}  "
+        f"suppressed={len(suppressed)}  "
         f"plans_missing_last_updated={len(missing_plan_last_updated)}  "
         f"plans_missing_on_disk={len(missing_files)}"
     )
