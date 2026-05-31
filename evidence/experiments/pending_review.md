@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-31T12:21:50Z`  
+Generated: `2026-05-31T16:49:26Z`  
 Last review: `2026-05-31T12:14:35Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3` | 2026-05-31T14:15 | MECH-341, Q-054 | — |
 
 ---
 
