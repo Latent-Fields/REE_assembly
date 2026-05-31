@@ -436,7 +436,18 @@ harm_gradient_enabled: False
 transient_benefit_enabled: False
 ```
 
-**Exit condition:** H_pos > 0.70 * ln(grid_size^2) AND episode count >= 100
+**Exit condition:** H_pos > 0.20 * ln(grid_size^2) AND episode count >= 100
+
+> **Recalibrated 2026-05-31** from 0.70 -> 0.20 per
+> `failure_autopsy_V3-EXQ-591_2026-05-27.md` section 7 (GAP-C prereq 3,
+> behavioral_diversity_isolation_plan.md). Observed rolling-mean H_pos band
+> over 2000 episodes / 5 seeds is 0.03-1.08; the legacy 0.70 threshold
+> (0.70 * ln(144) ~ 3.48 for size=12) was structurally unreachable. The
+> 0.20 calibration (0.20 * ln(144) ~ 0.99) sits inside the observed band
+> with ~9% margin at the upper end. Module-level constant
+> `H_POS_FRAC_OF_MAX` in `ree-v3/experiments/infant_curriculum.py`.
+> Path (b) alternative-gate (z_goal-norm / residue-coverage) deferred
+> until goal_pipeline:GAP-4 clears the z_goal-collapse blocker.
 
 ---
 
