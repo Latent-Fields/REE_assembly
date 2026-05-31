@@ -1,46 +1,31 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-31T11:10:58Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-490j",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-588b",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T05:37:58.598953+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-524a",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T06:02:20.835477+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-595",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T07:47:14.169641+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-543k",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T08:31:27.425090+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490g",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T09:51:43.443844+00:00"
-    }
+  "last_tick_utc": "2026-05-31T11:21:05Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-616",
+  "current_exq_started_utc": "2026-05-31T11:16:59.983869+00:00",
+  "current_title": "Q-054 entropy_bias_scale sweep on MECH-341 B_only isolation arm (4 scales x 3 seeds)",
+  "current_claim_id": "Q-054",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / B_only_entropy_bias_scale_1",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 10,
+    "episodes_total": 90,
+    "overall_pct": 0.9
+  },
+  "seconds_elapsed": 246,
+  "seconds_remaining": 6139,
+  "recent_lines": [
+    "Arm ARM_0_B_only_S1 (B_only_entropy_bias_scale_1.0) (scale=1.0, P0=30 ep, P1=60 ep, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition B_only_entropy_bias_scale_1.0",
+    "[train] arm=ARM_0_B_only_S1 seed=42 phase=P0 ep 10/90"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 90092,
   "runner_version": null,
   "gpu": {
