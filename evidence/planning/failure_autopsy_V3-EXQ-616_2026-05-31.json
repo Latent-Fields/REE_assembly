@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-05-31T18:01:45Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3",
+      "queue_id": "V3-EXQ-616",
+      "claim_ids": ["Q-054", "MECH-341"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear->intact (neither claim was tested under conditions where it could express itself; Q-054 unanswered, MECH-341 not weakened; 614a C2+C3 supports preserved)",
+        "biological_reference": "partial (closest mechanism = striatal/cortico-striatal scoring; requires upstream cortical proposal diversity; biology supports layered model where Layer B cannot rescue Layer A collapse; lit anchors exist for cluster)",
+        "prerequisites": "missing (pre-MECH-341 candidate pool monostrategic frac_pre_ge2=0.0; SD-056 amend is the named prerequisite V3-EXQ-614b will measure)",
+        "implementation": "complete (e3_diversity_entropy_bias_scale->clamp plumbing verified in ree_core/predictors/e3_score_diversity.py:198 and e3_selector.py:840; bit-identical-across-scales is NOT a plumbing bug, it reflects identical inputs producing identical outputs)",
+        "environment": "adequate (SD-054 bipartite reef env unchanged from 614a; same seeds; not an env-layer flaw)",
+        "measurement": "adequate (pre-bias frac_pre_ge2 correctly surfaces the monostrategic candidate pool; the metric makes the diagnosis legible)",
+        "integration": "isolated->collapses (Layer B in isolation cannot rescue upstream Layer A/D collapse; integration property the layered plan-doc model predicts)",
+        "scale": "adequate (30 P0 + 60 P1 episodes per seed; seed 44 358-tick truncation is bit-identical across the swept axis, orthogonal substrate-survival artifact)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "striatal / cortico-striatal action evaluation (scoring/winner-take-all over a candidate pool proposed by cortex/hippocampus); distinguishes proposal (Layer A) from selection (Layer B)",
+        "dependencies": ["cortical/hippocampal option proposal diversity", "tonic noise floor (LC-NE analog)", "V_s regional verisimilitude representation diversity"],
+        "is_formal_import": true,
+        "divergence": "non-load-bearing (the mechanism is biologically licit; the test-bed substrate is missing an upstream dependency the biology would require; FAIL signature matches a missing-dependency biology, not a falsification of the scoring layer)",
+        "lit_status": "partial (targeted_review_arc_065_behavioral_diversity_generation + targeted_review_rl_diversity_monostrategy_curriculum + targeted_review_zebrafish_sleep_behavioral_diversity cover the upstream cluster; no dedicated Q-054 / MECH-341 biology pull, but the plan doc's R2 / R_X.b rules commit to the layered reading)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "Q-054": "non_contributory",
+        "MECH-341": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-616 (2026-05-31T14:15Z) FAIL_no_floor_under_max_swept_scale on entropy_bias_scale in {1,2,4,8} for MECH-341 B_only isolation. Per-seed n_p1_ticks AND selected-class outputs bit-identical across all 4 scale arms (seed 42->class 0, 43->class 2, 44->class 4; 11806/11423/358 ticks identical across scales), confirming the swept knob has zero downstream effect when the upstream candidate pool is already monostrategic. frac_pre_ge2 = 0.0 on every seed-arm: the pre-MECH-341 pool never contains >=2 classes, so the Layer-B scoring substrate has nothing to stratify over. Same root cause as V3-EXQ-569e Pathway A vs B FAIL and the SD-056 amend (E2-world-forward per-candidate signal collapse). Does NOT weaken MECH-341 (614a C2+C3 PASS stamped supports / load-bearing-in-stack; that reading preserved). Q-054 scale-axis sub-question is uninformative on pre-SD-056-amend substrate; broader Q-054 question (minimum class-diversity floor for ARC-062) unanswered because the test-bed couldn't surface diversity at all. evidence_direction_per_claim {Q-054: non_contributory, MECH-341: non_contributory} + pending_retest_after_substrate=true keyed to V3-EXQ-614b (SD-056-amended re-run, queued 2026-05-31T12:32Z). On V3-EXQ-614b PASS_C1 -> re-issue Q-054 sweep as V3-EXQ-616a on amended substrate. On V3-EXQ-614b FAIL_C1 -> amend MECH-341 substrate_queue entry for stratified_temperature default + A-vs-B redundancy probe. Cluster siblings: V3-EXQ-614a ARM_0_B_only, V3-EXQ-569e Pathway A vs B. Recommended epistemic_category: substrate_ceiling.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "MECH-341",
+        "rationale_for_action_none": "User-confirmed routing is HOLD on V3-EXQ-614b outcome. No substrate write today. Contingent action on V3-EXQ-614b FAIL_C1: amend the existing MECH-341 substrate_queue entry (currently status=retune_validated) with a new failure_record_entry for the bit-identical-across-scales observation plus a substrate-revisit task (stratified_temperature default + A-vs-B partial-redundancy probe per the script's interpretation grid). Contingent action on V3-EXQ-614b PASS_C1: re-issue Q-054 sweep as V3-EXQ-616a via /queue-experiment; no substrate write."
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_keyed_to": "V3-EXQ-614b",
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-341 supports as of 2026-05-31 morning carries from one ALL_ON arm (V3-EXQ-614a C2+C3) on pre-SD-056-amend substrate; no replication. Governance must preserve MECH-341.v3_pending=true until V3-EXQ-614b reproduces 614a's C2+C3 PASS on amended substrate (already the 2026-05-31 midday governance policy). Q-054 has no supports (open question, conf=0.0).",
+      "learning_extracted": [
+        "Bit-identical per-seed n_p1_ticks across an 8x scale range is the load-bearing diagnostic signal: zero argmax-flipping effect proves the knob is operating on a monostrategic candidate pool, not that the knob is unplumbed.",
+        "Layer-B isolation arms presume multi-class candidate pools that the pre-SD-056-amend substrate doesn't deliver; any scoring-layer ablation is uninformative until upstream proposal pathway provides diversity.",
+        "MECH-341 is not falsified by 616; the FAIL is structurally consistent with the 614a C2+C3 supports reading (load-bearing-in-stack, not load-bearing-in-isolation when candidate pool is monostrategic).",
+        "The script's FAIL_no_floor row routes to substrate revisit (stratified_temperature default + A-vs-B redundancy probe); on the SD-056-amended substrate that may be the wrong routing because V3-EXQ-614b is the upstream gate that decides whether the substrate gap is closed.",
+        "Seed 44 358-tick truncation is bit-identical across all 4 scale arms; orthogonal substrate-survival artifact independent of the swept axis (not addressed by this autopsy)."
+      ],
+      "routing": "hold_pending_retest"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "B_only / single-pathway isolation -> monostrategy on pre-SD-056-amend substrate",
+    "members": [
+      "V3-EXQ-616 (this; FAIL_no_floor_under_max_swept_scale; bit-identical-across-scales + frac_pre_ge2=0.0)",
+      "V3-EXQ-614a ARM_0_B_only (C1 R2.c FAIL; C2+C3 PASS in same run)",
+      "V3-EXQ-569e Pathway A vs B (INSTRUMENTATION_FAILURE verdict per 2026-05-31 midday governance; SD-056 multistep amend authored as response)"
+    ],
+    "is_independent_bugs": false,
+    "structural_property": "Pre-SD-056-amend substrate has bit-identical per-candidate z_world after one E2 world-forward step. Single-pathway isolation arms (B_only, Pathway A vs B) receive monostrategic candidate pools and cannot demonstrate the layer they isolate. Full-stack ALL_ON arm masks this because Layer C (noise) + Layer D (V_s) inject diversity outside the collapsed per-candidate signal.",
+    "readings": ["substrate_enrichment_via_SD_056_amend"],
+    "planning_decision_forced": "V3-EXQ-614b (queued 2026-05-31T12:32Z; SD-056-amended re-run of 614a 3-arm falsifier) is the single load-bearing retest for the whole cluster. PASS_C1 -> cluster's substrate-ceiling reading confirmed-and-resolved (re-issue 616a; MECH-341 v3_pending clears). FAIL_C1 -> cluster's substrate-ceiling reading escalates to substrate-redesign (amend MECH-341 substrate_queue entry).",
+    "cross_link_plans": ["behavioral_diversity_isolation:GAP-B", "arc_062_rule_apprehension:GAP-B"]
+  }
+}
