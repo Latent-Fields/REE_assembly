@@ -1,48 +1,49 @@
 {
-  "schema_version": "experiment_pack/v1",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "experiment_type": "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b",
-  "run_id": "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3",
-  "status": "FAIL",
-  "timestamp_utc": "2026-05-31T00:49:44Z",
-  "source_repo": {
-    "name": "ree-v3",
-    "commit": "",
-    "branch": "main"
-  },
-  "runner": {
-    "name": "ree-v3-harness",
-    "version": "3.0.0"
-  },
   "artifacts": {
     "metrics_path": "metrics.json",
     "summary_path": "summary.md"
   },
-  "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
     "ARC-065",
     "MECH-341"
   ],
+  "environment": {
+    "config_hash": "unknown",
+    "dynamics_hash": "unknown",
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "observation_hash": "unknown",
+    "reward_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
   "evidence_class": "simulation",
   "evidence_direction": "mixed",
+  "evidence_direction_note": "Per failure_autopsy_V3-EXQ-569e_2026-05-31.json (status=confirmed; verdict_cell=INSTRUMENTATION_FAILURE; epistemic_category=standard NOT substrate_ceiling). SD-056 contrastive E2 training (landed 2026-05-29) produces numerically explosive world_forward rollouts at the behavioural-runtime episode length: ON-arm rollout_traj_pairwise_dist_mean 1e16-1e18 with rollout_skipped_nonfinite up to 3478/3478 (100%) of P1 ticks; ARM_0 OFF baseline clean at 0.39-0.77 with 0 NaN. e3_top2_class_gap NaN-fraction 0.72-1.00 on ON arms vs 0.0 on OFF. M1/M3/M4/M5 verdict cells all saturated by the substrate explosion; probe cannot dissociate Pathway A (per-candidate z_world variance propagation) from Pathway B (E2 rollout dynamics shift) as source of 569c's ~2.4x C3 lift. Diagnosis: substrate implementation pathology (SD-056 contrastive substrate stable at t=1 training horizon per 569d but lacks multi-step rollout stability -- gradient clipping / output norm clamping / contrastive-weight schedule missing). NOT the substrate-uniform cluster shape (which is negative-control-passes-discrimination-fails on z_goal-zero substrates; 569e is implementation pathology, not flat-ceiling). Per-claim direction mixed (diagnostic, non-weighting) for ARC-065 + MECH-341. SD-056 amend landed 2026-05-31 11:25Z (multistep contrastive horizon h=5 + per-step output norm clamp); V3-EXQ-617 substrate-readiness queued; 569e-equivalent Pathway A vs B re-run will follow once V3-EXQ-617 PASSes. 569c headline (~2.4x C3 lift over matched-noise control) + 569d PASS remain load-bearing on ARC-065 GAP-A; 569e adds no new evidence weighting in either direction. Pair with pending_retest_after_substrate.",
   "evidence_direction_per_claim": {
     "ARC-065": "mixed",
     "MECH-341": "mixed"
   },
   "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b",
+  "failure_signatures": [],
   "producer_capabilities": {
-    "sd005_split_latent": true,
     "sd004_action_objects": true,
+    "sd005_split_latent": true,
     "sd006_multirate_clock": true
   },
-  "environment": {
-    "env_id": "ree.causal_grid_world_v3",
-    "env_version": "3.0.0",
-    "dynamics_hash": "unknown",
-    "reward_hash": "unknown",
-    "observation_hash": "unknown",
-    "config_hash": "unknown",
-    "tier": "causal_grid_world_v3"
+  "run_id": "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3",
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
   },
-  "failure_signatures": []
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "",
+    "name": "ree-v3"
+  },
+  "status": "FAIL",
+  "stop_criteria_version": "stop_criteria/v1",
+  "timestamp_utc": "2026-05-31T00:49:44Z"
 }

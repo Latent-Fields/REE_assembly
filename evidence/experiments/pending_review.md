@@ -1,15 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-31T10:53:04Z`  
-Last review: `2026-05-31T08:35:00Z`  
-Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-05-31T11:47:21Z`  
+Last review: `2026-05-31T11:35:00Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3` | 2026-05-30T19:59 | MECH-280, MECH-281, SD-037 | — |
-| `v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3` | 2026-05-31T00:49 | ARC-065, MECH-341 | — |
+| `v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3` | 2026-05-31T11:24 | MECH-295 | — |
 
 ---
 

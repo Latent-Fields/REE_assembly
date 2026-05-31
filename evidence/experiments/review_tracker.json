@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-31T08:35:00Z",
+  "last_review_utc": "2026-05-31T11:35:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -422,9 +422,16 @@
     "v3_exq_614a_mech341_p3_behavioural_falsifier_3arm",
     "v3_exq_569d_sd056_action_contrastive_diversity_falsifier_floor_recal",
     "v3_exq_519b_sd051_conditioned_safety_store_readiness",
-    "v3_exq_615_arc065_rung1_matched_entropy"
+    "v3_exq_615_arc065_rung1_matched_entropy",
+    "V3-EXQ-483e",
+    "v3_exq_483e_sd037_consumer_cascade_4arm",
+    "V3-EXQ-569e",
+    "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b",
+    "v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z"
   ],
   "reviewed_run_ids": [
+    "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
+    "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3",
     "2026-02-13T060000Z_dummy-pass",
     "2026-02-13T070000Z_dummy-fail",
     "2026-02-13T224000Z_commit-dual-error-channels_seed11_pre_post_split_streams",
@@ -3286,6 +3293,30 @@
         "MECH-341"
       ],
       "subject": "V3-EXQ-610a manifest RESCUED from ree-cloud-3 .bak.20260530 (umbrella b975db6 / REE_assembly TBD). Manifest written normally by the experiment on cloud-3 at 2026-05-29T22:44:19Z; script then crashed line 796 on TypeError: emit_outcome() got an unexpected keyword argument 'experiment_type' (root cause: copy-paste bug -- emit_outcome in ree-v3/experiment_protocol.py has NEVER had an experiment_type parameter; same bug confirmed still present in v3_exq_540g.py and v3_exq_610.py; 599/600 already fixed via successors 599a/600a). Crash post-manifest meant the runner classified ERROR (exit nonzero + missing sentinel) and the Phase 3 writer never ingested. NOT a stale-worker/commit-lag issue. Augmented manifest with evidence_direction='mixed' and conservative evidence_direction_per_claim: weakens INV-074/MECH-334/MECH-333 (D1=False, crystallization arm delta=-0.012 vs the +0.10 acceptance bar -- crystallization at Phase 3 did NOT preserve diversity advantage); non_contributory MECH-341 (D2=False, control arm delta=-0.006 vs the -0.10 collapse bar -- control did NOT show predicted collapse, so MECH-341 substrate may itself preserve enough diversity to make the necessity test non-discriminative; substrate_ceiling territory consistent with the 2026-05-18 governance reading on INV-074/MECH-334). D3 sanity (both arms Phase 2 entropy > 0.4) PASSED. Governance should adjudicate per-claim directions on the next /governance cycle. Follow-up TODO (separate session): fix emit_outcome() copy-paste bug in v3_exq_540g.py and v3_exq_610.py before either gets re-run; sweep grep for 'experiment_type=' near 'emit_outcome(' as a regression guard."
+    },
+    {
+      "session_id": "governance-20260531T112511Z",
+      "completed_utc": "2026-05-31T11:35:00Z",
+      "manifests_reviewed": [
+        "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
+        "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3"
+      ],
+      "claim_ids": [
+        "SD-037",
+        "MECH-280",
+        "MECH-281",
+        "ARC-065",
+        "MECH-341",
+        "SD-056"
+      ],
+      "discussed_experiment_dirs_added": [
+        "V3-EXQ-483e",
+        "v3_exq_483e_sd037_consumer_cascade_4arm",
+        "V3-EXQ-569e",
+        "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b",
+        "v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z"
+      ],
+      "subject": "/governance walkthrough (midday) -- 3 indexed pending FAILs walked + 1 unclaimed PASS cleared. (1) V3-EXQ-483e FAIL with confirmed failure_autopsy_V3-EXQ-483e_2026-05-31 applied verbatim per user approval: manifest evidence_direction mixed -> non_contributory, evidence_direction_per_claim {SD-037, MECH-280, MECH-281} all -> non_contributory, evidence_direction_note set to autopsy paragraph. Autopsy diagnosis: substrate_ceiling one architectural layer deeper than 483d (consumers wired but consumer-input thresholds not cleared at fishtank baseline -- BLA arousal_threshold_on=0.4 / CeA fast_route_threshold=0.5 / PAG theta_freeze=2.0 / dACC pe-magnitude floors all above baseline magnitudes; broadcast amplifies zero baseline outputs). Routing: implement-substrate amend SD-037 substrate_queue entry with consumer-input-threshold failure_record_entry; next substrate axes named (consumer-input-threshold recalibration + SD-029-style sustained-threat env curriculum). pending_retest_after_substrate stays TRUE on all three. epistemic_category=substrate_ceiling set explicitly on SD-037 + MECH-280 + MECH-281 (was inherited via parent before). Distinct from 540/590a/591/598/603/610 substrate_uniform cluster -- not folded. (2) V3-EXQ-569e FAIL with confirmed failure_autopsy_V3-EXQ-569e_2026-05-31 applied verbatim: manifest evidence_direction mixed preserved (autopsy: diagnostic, non-weighting), evidence_direction_per_claim {ARC-065:mixed, MECH-341:mixed} preserved, evidence_direction_note set to autopsy paragraph. Autopsy diagnosis: verdict_cell=INSTRUMENTATION_FAILURE; SD-056 contrastive E2 training stable at t=1 (569d clean) but explodes numerically (1e16-1e18) in iterated multi-step rollouts at behavioural-runtime episode length; M1/M3/M4/M5 verdict cells all saturated. epistemic_category=standard (NOT substrate_ceiling; distinct shape from substrate_uniform cluster). Routing: implement-substrate amend SD-056 ALREADY LANDED 2026-05-31 11:25Z (multistep contrastive horizon h=5 + per-step output norm clamp). 569c headline + 569d PASS remain load-bearing on ARC-065 GAP-A pending the amend-and-re-run cycle. pending_retest_after_substrate stays TRUE on SD-056 (set; ARC-065 + MECH-341 unchanged from morning 08:45Z governance reading -- v3_pending=true preserved on MECH-341, v3_pending=false on ARC-065 from morning 3-PASS convergence). (3) V3-EXQ-490j FAIL flagged for /failure-autopsy per user approval -- NOT marked discussed this cycle: failure shape has internal contradiction (C9 substrate-side direct magnitude lift PASSes cleanly 3/3 seeds with bridge magnitudes nonzero in ARM_1 vs zero in ARM_0; C8 behavioural acceptance FAILs because approach_commit_rate=1.0 saturates in BOTH severed and operating arms, in all 3 seeds). One architectural layer deeper than 490i's C3 contamination -- 490j replaced C3 with the substrate-side C9 proxy 490i autopsy commissioned, but C8 saturation contamination is a new failure mode not anticipated by the prior autopsy. No inline evidence_direction applied to MECH-295 this cycle. (4) V3-EXQ-617 PASS substrate-readiness diagnostic (SD-056 multistep amend; unclaimed by design, claim_ids=[]) marked discussed -- confirms SD-056 multistep amend operative on synthetic batches, unblocks the post-amend Pathway A vs B re-run."
     }
   ]
 }

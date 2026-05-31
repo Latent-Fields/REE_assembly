@@ -22371,11 +22371,14 @@
     [2026-05-08 governance]: EXQ-483b PASS supports (substrate validates in isolation). Caveat: integration with MECH-307 conjunction architecture not yet tested; substrate-level support only.
 
     [2026-05-30 governance, V3-EXQ-483d autopsy applied]: EXQ-483d (supersedes 483c). Substrate fires correctly: override_signal_nonzero_steps saturates at total step count in every OFF_ON / ON_ON seed (C2 cleanly PASS). However action_counts and goal_norm_peak are bit-identical across the broadcast_override axis within each seed (OFF_OFF vs OFF_ON; ON_OFF vs ON_ON), and C3_lift_vs_baseline fails (lifts=1/3). MECH-295 bridge dominates effective_drive at the goal-seeding site; PAG-freeze and SalienceCoordinator consumer pathways are dormant in this env / config. Substrate-ceiling: SD-037 wired but inert at the validation surface. Closes the SD-037 substrate_queue's pre-existing prediction ("if still flat, blocker is upstream of SD-037, not override wiring"). Hold pending consumer-cascade substrate work (SalienceCoordinator enable + PAG-engaging env condition + PFC/BLA/beta-gate consumers per MECH-281 implementation_note). Pair with pending_retest_after_substrate. Apply per-claim: SD-037 evidence_direction non_contributory; MECH-280 / MECH-281 evidence_direction non_contributory (claims could not express themselves -- their targets were not engaged). Set pending_retest_after_substrate: true on all three. epistemic_category: substrate_ceiling. Routing: implement-substrate (amend SD-037 substrate_queue entry). Artifact: evidence/planning/failure_autopsy_V3-EXQ-483d_2026-05-30.{md,json}.
+
+    [2026-05-31 governance, V3-EXQ-483e autopsy applied]: EXQ-483e (supersedes 483d under 483 lineage). Substrate broadcast saturates correctly (override_signal_nonzero_steps == total_eval_steps in every ON_OFF / ON_ON seed; C2_substrate cleanly PASS). The 2026-05-30 MECH-281 consumer-cascade amend (four new gain knobs: pfc_eta / bla_encoding / cea_amplitude / beta_interrupt) is fully wired in ARM_3 ON_ON but produces ZERO behavioural divergence: bla_encoding_gain_peak / cea_mode_prior_peak / cea_fast_prime_peak / dacc_bias_nonzero_steps / pag_release_count_end / beta_release_count all 0 across ALL 12 runs (including ARM_3 ON_ON in every seed). action_counts BIT-IDENTICAL across all four arms within each seed. goal_norm_peak near-bit-identical (OFF_OFF vs ON_OFF; OFF_ON vs ON_ON). Only lateral_pfc rule_state EMA responds (1.08-1.18x, below 1.5x C2 threshold). Diagnosis: SD-037 multiplicative gain pattern (output * (1 + gain * override_signal)) requires consumer-module input gates to be crossed first; BLA arousal_threshold_on=0.4 + CeA fast_route_threshold=0.5 + PAG theta_freeze sustained-product=2.0 + dACC pe-magnitude floors all sit ABOVE fishtank baseline signal magnitudes. With consumer outputs at zero baseline, broadcast amplification yields zero. epistemic_category: substrate_ceiling (one architectural layer deeper than 483d: 483d was "consumers unwired"; 483e is "consumers wired but their own input thresholds not cleared"). Falsifies the SD-037 substrate_queue 483d prediction that consumer-cascade wiring alone would deliver the lever. Apply per-claim: SD-037 / MECH-280 / MECH-281 evidence_direction non_contributory. Set pending_retest_after_substrate: true on all three (already true; preserved). Routing: implement-substrate amend SD-037 substrate_queue entry with consumer-input-threshold failure_record_entry; next substrate axes: (a) consumer-input-threshold recalibration on BLA / CeA / PAG / dACC config knobs against fishtank baseline magnitudes; (b) SD-029-style sustained-threat env curriculum driving z_harm_a above current consumer-input thresholds. Distinct from 540/590a/591/598/603/610 substrate_uniform cluster (different shape on different substrate root). Artifact: evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.{md,json}.
   title: "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists."
   claim_type: design_decision
   subject: broadcast.override_regulator
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_ceiling  # set 2026-05-31 per failure_autopsy_V3-EXQ-483e (and 483d before it); consumer-input-threshold layer is the substrate-ceiling root for this claim's current validation surface
   implementation_phase: v3
   v3_pending: true
   implementation_note: "IMPLEMENTED 2026-04-25. Module: ree_core/regulators/broadcast_override.py (BroadcastOverrideRegulator, BroadcastOverrideConfig). Master switch: REEConfig.use_broadcast_override (default False). Three consumer sites wired: PAG freeze-gate (MECH-279) exit_threshold scaled by alpha_override; SalienceCoordinator (SD-032a) operating-mode reweight via update_signal('override_signal', ...); GoalState (SD-012) drive seeding amplification via override_goal_seeding_gain. MECH-094: simulation_mode=True returns cached signal unchanged. Backward compatible with flag OFF (95/95 contracts PASS). Validation experiment: V3-EXQ-483 queued. Lit-pull confirms defaults biologically defensible: targeted_review_orexin_kinetics/synthesis.md (Mileykovskiy 2005, Lee 2005, Karnani 2020, Johnson 2012). [2026-05-30 consumer-cascade amend, MECH-281 motor-coupling axis]: Four additional consumer sites wired per V3-EXQ-483d substrate-ceiling autopsy routing -- (i) LateralPFCAnalog SD-033a update() eff_eta scaled by (1 + override_pfc_eta_gain * override_signal); (ii) BLAAnalog SD-035 encoding_gain scaled by (1 + override_bla_encoding_gain * override_signal); (iii) CeAAnalog SD-035 mode_prior + fast_prime scaled by (1 + override_cea_amplitude_gain * override_signal), bounded by mode_prior_log_odds_max so cortex still cannot be over-ruled; (iv) urgency_interrupt_threshold (MECH-090 motor side, parallel to PAG alpha_override) attenuated by max(0, 1 - override_beta_interrupt_gain * override_signal). All four new REEConfig gains default 0.0 (bit-identical OFF). Backward compatible: 556/556 contracts + 7/7 preflight PASS with all four gains at default 0.0 (543 prior + 13 new MECH-281 contracts at tests/contracts/test_sd_037_consumer_cascade.py). MECH-094 preserved via existing simulation_mode arguments on BLA/CeA + MECH-319 simulation-mode-rule-gate on LateralPFC. ree-v3/CLAUDE.md SD-037 consumer-cascade section appended 2026-05-30. Validation experiment: V3-EXQ-483e queued (4-arm successor under 483 lineage; reuses SD-036+MECH-279 freeze-engaging substrate for PAG-engaging env condition; SalienceCoordinator enable via use_salience_coordinator=True; claim_ids=[SD-037, MECH-280, MECH-281]). pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands."
@@ -22539,11 +22542,14 @@
     [IGW-20260521-020]: SD-037 substrate-ready closed; MECH-280 wired path confirmed by 483b. Behavioural freeze->foraging transition still blocked by approach_commit=0 on standard grid.
 
     [2026-05-30 governance, V3-EXQ-483d autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483d_2026-05-30.json. PAG alpha_override is wired (PAGFreezeGate receives the scaling), but the env does not engage PAG freeze in this run -- no committed-freeze state for the exit-threshold scaling to act on. Claim could not express itself. Hold pending PAG-engaging env condition (sustained-threat curriculum). pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
+
+    [2026-05-31 governance, V3-EXQ-483e autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483e_2026-05-31.json. 483e reuses SD-036+MECH-279 freeze-engaging substrate (use_gabaergic_decay=True + use_pag_freeze_gate=True everywhere) but PAG remains dormant: pag_release_count_end = 0 across ALL 12 runs including ARM_3 ON_ON arms in every seed. MECH-280's path requires z_harm_a * duration > theta_freeze (=2.0) for the alpha_override scaling to act on a committed-freeze state; fishtank baseline z_harm_a magnitudes never cross the threshold even with sustained env exposure. Same shape as 483d but one architectural layer deeper -- the issue is now consumer-input-threshold calibration, not consumer-cascade wiring. Claim could not express itself. Hold pending consumer-input-threshold recalibration (PAG theta_freeze knob vs fishtank baseline) AND/OR SD-029-style sustained-threat env curriculum that drives z_harm_a above the threshold during scheduled windows. pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
   title: "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys."
   claim_type: mechanism_hypothesis
   subject: lh_pag.override_projection
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_ceiling  # set 2026-05-31 per failure_autopsy_V3-EXQ-483e (inherited from SD-037 parent); PAG theta_freeze threshold not cleared at fishtank baseline
   implementation_phase: v3
   v3_pending: true
   implementation_note: "IMPLEMENTED 2026-04-25 as part of SD-037 landing. PAGFreezeGateConfig.alpha_override (default 0.0) accepts the override_signal scaling; PAGFreezeGate.tick() now takes override_signal arg per cycle: exit_threshold = theta_freeze * (1 + alpha_override * override_signal) * gaba_tone. REEAgent wires override_alpha_pag (default 0.5) into PAG config when both use_broadcast_override and use_pag_freeze_gate are True. Substrate-readiness validation: V3-EXQ-483b PASS (2026-05-08). [2026-05-30 consumer-cascade amend]: PAG wiring unchanged this pass (already landed). V3-EXQ-483d FAIL traced to dormant PAG path in the fishtank validation env (no sustained-threat curriculum -> override_signal climbed but exit_threshold scaling had nowhere to discharge). End-to-end PAG-engaging behavioural testability restored via V3-EXQ-483e amend successor which reuses SD-036+MECH-279 freeze-engaging substrate (V3-EXQ-475-style config: use_gabaergic_decay=True + use_pag_freeze_gate=True). pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands. See SD-037 implementation_note 2026-05-30 paragraph for the parent consumer-cascade landing record."
@@ -22594,11 +22600,14 @@
     [IGW-20260521-020]: Partial landing (GoalState seeding + SalienceCoordinator) substrate-ready per 483b; PFC/BLA/beta-gate consumers deferred. Cataplexy/PWS behavioural tests still N/A (approach_commit=0).
 
     [2026-05-30 governance, V3-EXQ-483d autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483d_2026-05-30.json. EXQ-483d clears approach_commit=0 (now 1.0 via MECH-295 bridge) but produces a fresh wired-but-inert signature on goal_norm_peak discrimination: GoalState seeding amplification path is dominated by MECH-295 bridge contribution to effective_drive, and SalienceCoordinator + PFC/BLA/beta-gate consumers remain dormant (consumer-cascade deferral per implementation_note). Override produces saturated override_signal but has nowhere to land where it would move goal_norm_peak against the bridge baseline. pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
+
+    [2026-05-31 governance, V3-EXQ-483e autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483e_2026-05-31.json. 2026-05-30 consumer-cascade amend (deferral closed) landed all four MECH-281 motor-coupling consumers (LateralPFC eff_eta, BLA encoding_gain, CeA mode_prior+fast_prime, BetaGate urgency_interrupt_threshold) -- the amend correctly fires at the override_signal interface (override_signal_nonzero_steps saturates) but ALL consumer outputs at zero across ALL 12 runs: bla_encoding_gain_peak=0, cea_mode_prior_peak=0, cea_fast_prime_peak=0, beta_release_count=0. Only lateral_pfc rule_state EMA responds (1.08-1.18x, sub-threshold). Diagnosis: SD-037 multiplicative gain pattern requires consumer-module input gates crossed first; BLA arousal_threshold_on=0.4 / CeA fast_route_threshold=0.5 / dACC pe-magnitude floors above fishtank baseline magnitudes. Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) remain untestable end-to-end at this substrate layer. Hold pending consumer-input-threshold recalibration + env enrichment. pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
   title: "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy)."
   claim_type: mechanism_hypothesis
   subject: orexin.drive_arousal_coupling
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_ceiling  # set 2026-05-31 per failure_autopsy_V3-EXQ-483e (inherited from SD-037 parent); BLA / CeA / dACC / beta-interrupt consumer input thresholds not cleared at fishtank baseline
   implementation_phase: v3
   v3_pending: true
   implementation_note: "PARTIALLY IMPLEMENTED 2026-04-25 as part of SD-037 landing. Drive-coupling axis wired at GoalState seeding (effective_drive amplified by override_goal_seeding_gain * override_signal in REEAgent.update_z_goal) and at SalienceCoordinator (operating-mode reweight via affinity_weights['override_signal']). PFC/BLA/beta-gate targets noted in claim title rely on the same override_signal but additional consumer wiring is deferred until those substrates need it. Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) are V3-EXQ-483 secondary acceptance criteria. [2026-05-30 consumer-cascade amend, deferral closed]: Four additional consumer sites named in the claim title now wired. (i) LateralPFCAnalog (SD-033a deliberation, ree_core/pfc/lateral_pfc_analog.py): update() gains override_signal + override_eta_gain kwargs; eff_eta scaled by (1 + override_eta_gain * override_signal). Orexin-recruited state accelerates rule_state EMA learning. (ii) BLAAnalog (SD-035 amygdala arbitration, ree_core/amygdala/bla.py): tick() gains override_signal + override_encoding_gain kwargs; final encoding_gain (after inverted-U + post-event window) scaled by (1 + override_encoding_gain * override_signal). Roozendaal 2011 anchor: orexin -> NE / amygdala enhanced LTP. (iii) CeAAnalog (SD-035 amygdala arbitration, ree_core/amygdala/cea.py): tick() gains override_signal + override_amplitude_gain kwargs; both mode_prior and fast_prime scaled by (1 + override_amplitude_gain * override_signal), re-clipped to mode_prior_log_odds_max so CeA cannot over-rule cortex via the amplified path. (iv) BetaGate / agent.py urgency_interrupt path (MECH-090 motor side, ree_core/agent.py select_action MECH-091 block): urgency_threshold scaled by max(0.0, 1 - override_beta_interrupt_gain * override_signal). Orexin -> escape-from-freeze on the motor side, parallel to the already-wired PAG alpha_override path on the freeze-gate side; lower threshold under recruited state -> committed motor program more readily aborted on z_harm_a / z_harm_un urgency. All four new REEConfig gains default 0.0 (bit-identical OFF). 556/556 contracts + 7/7 preflight PASS with all four gains at default 0.0 (was 543 + 13 new MECH-281 contracts at tests/contracts/test_sd_037_consumer_cascade.py). Activation smoke 2026-05-30 (50 ticks drive=0.9 / harm=0.6 -> override_signal=0.768): BLA encoding_gain 2.5 -> 5.0 (2x at gain=1); CeA mode_prior 0.2 -> 0.4, fast_prime 0.15 -> 0.3 (2x each at gain=1); LateralPFC rule_state delta 0.0956 -> 0.2867 (3x at gain=2). MECH-094 preserved via existing simulation_mode arguments on BLA/CeA tick + MECH-319 simulation-mode-rule-gate on LateralPFC update. Validation experiment: V3-EXQ-483e queued (4-arm successor under 483 lineage; reuses SD-036+MECH-279 freeze-engaging substrate for PAG-engaging env condition; SalienceCoordinator enable via use_salience_coordinator=True; claim_ids=[SD-037, MECH-280, MECH-281]). Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) NOT executed this pass -- they are V3-EXQ-483 secondary acceptance criteria, now decisively testable end-to-end via 483e. pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands. ree-v3/CLAUDE.md SD-037 consumer-cascade section appended 2026-05-30."
@@ -26815,6 +26824,30 @@
     between predicted latents at one-step horizons as a headline metric
     -- REE may publish cand_world_pairwise_dist as a standalone diagnostic
     contribution.
+
+    [2026-05-31 governance, V3-EXQ-569e autopsy applied]: evidence_direction
+    mixed (diagnostic, non-weighting) per failure_autopsy_V3-EXQ-569e_2026-05-31.json.
+    569e Pathway A vs Pathway B mechanism probe verdict INSTRUMENTATION_FAILURE:
+    SD-056 contrastive E2 training stable at t=1 training horizon (569d clean,
+    cand_world_pairwise_dist 0.02-0.07 across ON arms) but explodes numerically
+    in iterated multi-step rollouts at behavioural-runtime P1 budget (E2 rollouts
+    1e16-1e18, 100% NaN-fraction on ON-arm seeds). M1/M3/M4/M5 verdict cells all
+    saturated; probe could not dissociate Pathway A from Pathway B. Substrate
+    implementation pathology (lacks gradient clipping / output norm clamping /
+    contrastive weight schedule at multi-step rollout horizon), NOT architectural
+    falsification. epistemic_category: standard (NOT substrate_ceiling -- distinct
+    shape from substrate_uniform cluster 540/590a/591/598/603/610 which is
+    negative-control-passes-discrimination-fails on z_goal-zero substrates).
+    SD-056 multi-step rollout stability amend landed 2026-05-31 11:25Z
+    (multistep contrastive horizon h=5 + per-step output norm clamp; both
+    levers togglable, default OFF; V3-EXQ-617 substrate-readiness diagnostic
+    queued). pending_retest_after_substrate=true; closes only after V3-EXQ-617
+    PASS + 569e-equivalent Pathway A vs B re-run on the amended substrate.
+    569c headline (~2.4x C3 lift over matched-noise control) + V3-EXQ-569d PASS
+    remain load-bearing on ARC-065 GAP-A pending the amend-and-re-run cycle.
+    Three script-side acceptance-criteria fixes bundled with the post-amend
+    re-run per autopsy Section 8 sequencing. Artifact:
+    evidence/planning/failure_autopsy_V3-EXQ-569e_2026-05-31.{md,json}.
   notes: >
     Plan-of-record memo: REE_assembly/evidence/planning/e2_action_divergence_substrate_design.md
     (commissioned 2026-05-28T17:43:10Z by session
@@ -27966,6 +27999,23 @@
     this cycle. ARC-065 remains status=candidate; the next governance
     cycle is where the indexer reconsiders the promotion gate now that
     the V3-pending gate is lifted.
+
+    [2026-05-31 midday governance, V3-EXQ-569e autopsy applied]:
+    V3-EXQ-569e Pathway A vs Pathway B mechanism probe verdict
+    INSTRUMENTATION_FAILURE per failure_autopsy_V3-EXQ-569e_2026-05-31.json.
+    SD-056 contrastive E2 training produced numerically explosive E2 rollouts
+    (1e16+) on most ON-arm seeds at the behavioural-runtime episode length;
+    verdict cells M1/M3/M4/M5 all saturated. Probe could not dissociate
+    Pathway A (per-candidate z_world variance propagation) from Pathway B
+    (E2 rollout dynamics shift). Substrate implementation pathology (lacks
+    multi-step rollout stability machinery), not architectural claim
+    falsification. evidence_direction_per_claim[ARC-065]=mixed (diagnostic,
+    non-weighting per Phase-3 governance rules; ARC-065 reading from
+    V3-EXQ-569c ~2.4x C3 lift over matched-noise control remains
+    load-bearing pending the SD-056 amend-and-re-run cycle). Routed to
+    /implement-substrate amend SD-056 (multistep contrastive horizon +
+    output norm clamp landed 2026-05-31 11:25Z). 569e adds no new ARC-065
+    evidence weighting in either direction this cycle.
   notes: >
     HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
     internal architectural name (behavioral_diversity_generation_pathway)
@@ -34870,6 +34920,23 @@
     dissociation autopsy interpretation; promotion gate held until
     569e dissociation is resolved and PASS evidence accumulates across
     additional ARMs.
+
+    [2026-05-31 midday governance, V3-EXQ-569e autopsy applied]:
+    V3-EXQ-569e Pathway A vs Pathway B mechanism probe verdict
+    INSTRUMENTATION_FAILURE per failure_autopsy_V3-EXQ-569e_2026-05-31.json.
+    M3 / M5 channels intended to dissociate E3-aggregation-collapsed-upstream-
+    variance vs per-candidate variance propagation were saturated by SD-056
+    numerical instability (E2 rollouts 1e16+, NaN-fraction 0.72-1.00 on
+    ON-arm seeds at behavioural-runtime episode length). Substrate
+    implementation pathology, not architectural falsification.
+    evidence_direction_per_claim[MECH-341]=mixed (diagnostic, non-weighting
+    per Phase-3 governance rules). MECH-341 substrate-side reading from
+    V3-EXQ-611c retune PASS (2026-05-29) + V3-EXQ-614a PASS_C2_C3_only stack
+    reading + V3-EXQ-569d matched-entropy PASS remain valid; 569e adds no
+    new MECH-341 evidence in either direction. SD-056 multi-step rollout
+    stability amend landed 2026-05-31 11:25Z (V3-EXQ-617 substrate-readiness
+    queued); MECH-341 stays candidate / v3_pending=true pending the SD-056
+    amend-and-re-run cycle on the corrected substrate.
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is
