@@ -1,41 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 43007,
-  "runner_started_at": "2026-05-30T18:47:00.849244+00:00",
-  "last_updated": "2026-05-31T05:36:51.131025+00:00",
-  "idle": false,
+  "runner_pid": null,
+  "runner_started_at": "2026-05-31T12:44:30.168178+00:00",
+  "last_updated": "2026-05-31T18:53:29.715230+00:00",
+  "idle": true,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-483e",
+      "queue_id": "V3-EXQ-621",
       "backlog_id": "",
-      "claim_id": "SD-037",
-      "title": "SD-037 consumer-cascade behavioural validation (PFC/BLA/CeA/beta-gate consumers + SalienceCoordinator enable + PAG-engaging env reuse; supersedes 483d substrate-ceiling FAIL)",
+      "claim_id": "Q-045",
+      "title": "scaffolded_sd054_onboarding substrate-readiness diagnostic (4-arm)",
       "description": "",
-      "estimated_minutes": 96.0,
+      "estimated_minutes": 144.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-614a",
+      "queue_id": "V3-EXQ-592d",
       "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "MECH-341 GAP-B Phase P3 behavioural falsifier B_only/ablate_B/ALL_ON (re-queue of 614 post manifest-pipeline silent-drop fix)",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 R-c commit-entry readiness conjunction validation (4-arm; supersedes V3-EXQ-592c)",
       "description": "",
-      "estimated_minutes": 108.0,
+      "estimated_minutes": 640.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-569e",
-      "backlog_id": "",
-      "claim_id": "ARC-065",
-      "title": "SD-056 mechanism probe (Pathway A vs Pathway B dissociation; parallel diagnostic to 569c/569d)",
-      "description": "",
-      "estimated_minutes": 266.7,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -8224,6 +8213,21 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_569d_sd056_action_contrastive_diversity_falsifier_floor_recal_20260531T053648Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 38989.5
+    },
+    {
+      "queue_id": "V3-EXQ-614b",
+      "backlog_id": "",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 P3 behavioural falsifier 3-arm on SD-056-amended substrate (supersedes V3-EXQ-614a; B_only / ablate_B / ALL_ON)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL completed=9/9 C1=False C2=False C3=True label=FAIL_no_criterion_routes_to_diagnose_errors | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-614b -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-614b.json",
+      "started_at": "2026-05-31T12:46:42.174103+00:00",
+      "completed_at": "2026-05-31T18:20:42.327643+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 20040.1
     }
-  ]
+  ],
+  "draining": false
 }
