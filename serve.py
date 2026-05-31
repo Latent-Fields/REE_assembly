@@ -213,13 +213,42 @@ def run_phase3_preflight_summary() -> dict:
         return summary
 
 
-def _phase3_freshness_color(age_s: float | None) -> str:
-    """green <5 min, yellow 5-15 min, red >15 min or unknown."""
+def _phase3_freshness_color(age_s: float | None,
+                            writer: str = "default") -> str:
+    """Map commit age to a UI colour, scaled per-writer.
+
+    Per-writer thresholds (seconds):
+      heartbeat_writer: green<10min  yellow<35min  red>=35min
+        (SYNC_INTERVAL=300 + future change-triggered with 30-min liveness
+        floor; old 5/15 thresholds false-alarmed during idle periods)
+      git_writer:       green<60min  yellow<180min red>=180min
+        (commits on experiment completion; quiet stretches 30-60min are
+        routine on a 3-4 worker fleet running multi-hour experiments)
+      queue_writer:     green<60min  yellow<180min red>=180min
+        (commits on queue claim/release/add; can be silent for hours
+        during long-running experiments)
+      default:          green<5min   yellow<15min  red>=15min
+        (legacy thresholds preserved for any unknown writer name)
+
+    Note: these are 'last commit age' thresholds and still conflate
+    'writer process alive' with 'something has changed lately'. The
+    proper fix lives in chips: switch to journal-tick-age or a
+    coordinator /writer-health endpoint. Until then, the thresholds
+    above match each writer's realistic commit cadence so the explorer
+    stops false-alarming on healthy quiet periods.
+    """
     if age_s is None:
         return "red"
-    if age_s < 5 * 60:
+    thresholds = {
+        "heartbeat_writer": (10 * 60, 35 * 60),
+        "git_writer":       (60 * 60, 180 * 60),
+        "queue_writer":     (60 * 60, 180 * 60),
+        "default":          (5 * 60, 15 * 60),
+    }
+    green_max, yellow_max = thresholds.get(writer, thresholds["default"])
+    if age_s < green_max:
         return "green"
-    if age_s < 15 * 60:
+    if age_s < yellow_max:
         return "yellow"
     return "red"
 
@@ -347,7 +376,7 @@ def run_phase3_writers_summary() -> dict:
 
         now_unix = time.time()
 
-        def _writer_row(block: str) -> dict:
+        def _writer_row(block: str, writer: str = "default") -> dict:
             parsed = _parse_phase3_log_line(block)
             if not parsed:
                 return {"sha10": None, "committed_at": None, "subject": None,
@@ -358,13 +387,13 @@ def run_phase3_writers_summary() -> dict:
                 "committed_at": parsed["committed_at"],
                 "subject": parsed["subject"],
                 "age_s": int(age),
-                "color": _phase3_freshness_color(age),
+                "color": _phase3_freshness_color(age, writer=writer),
             }
 
         writers = {
-            "git_writer": _writer_row(g_block),
-            "queue_writer": _writer_row(q_block),
-            "heartbeat_writer": _writer_row(h_block),
+            "git_writer": _writer_row(g_block, writer="git_writer"),
+            "queue_writer": _writer_row(q_block, writer="queue_writer"),
+            "heartbeat_writer": _writer_row(h_block, writer="heartbeat_writer"),
         }
         # Journal-derived status hint for each writer. Cheap pattern match;
         # leaves "idle" as the default when the tail doesn't say otherwise.
