@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-29.1 -->
+<!-- EXPLORER_VERSION: 2026-05-31.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10497,15 +10497,12 @@ END CONFLICT RESOLUTION`;
         <div id="writersRows" style="margin-top:4px;font-size:11px;
              color:#555;"></div>
       </div>
-      <div style="margin-top:8px;display:flex;gap:6px;">
-        <button id="shadowStartBtn"
-                style="flex:1;padding:6px;cursor:pointer;">
-          Start soak</button>
-        <button id="shadowRefreshBtn"
-                style="padding:6px 8px;cursor:pointer;">&#8635;</button>
-      </div>
-      <div id="shadowResult" style="margin-top:6px;color:#555;
-           font-size:11px;white-space:pre-wrap;"></div>
+      <!-- Pre-Phase-3 soak buttons removed 2026-05-31: Phase 3 cutover
+           is live (sync_daemon sole git writer); the soak harness +
+           manual refresh are obsolete. The auto-poll loop below
+           (setInterval 15s) keeps the panel current. Backend
+           /api/shadow/start endpoint is preserved for now in case a
+           future re-soak is needed; chip-worthy to retire if not. -->
     </div>
   </div>
   <script>
@@ -10605,21 +10602,42 @@ END CONFLICT RESOLUTION`;
       ["git_writer", "queue_writer", "heartbeat_writer"].forEach(function(k){
         var r = wrs[k] || {};
         var c = COLORS[r.color] || "#777";
-        var sha = r.sha10 || "(none)";
-        var age = (r.age_s != null) ? fmtAge(r.age_s) : "?";
+        // Prefer commit info when present; fall back to tick info so a
+        // writer that hasn't committed-since-restart (common for git_writer
+        // and queue_writer during quiet stretches) still reads as
+        // "alive, just nothing to commit" rather than "(none) ? idle".
+        var hasCommit = (r.sha10 != null);
+        var sha = hasCommit ? r.sha10 : "(no commits since restart)";
+        var ageLabel;
+        if (r.age_s != null) {
+          ageLabel = fmtAge(r.age_s) + " ago";
+        } else if (r.tick_age_s != null) {
+          ageLabel = "tick " + fmtAge(r.tick_age_s) + " ago";
+        } else {
+          ageLabel = "?";
+        }
         var status = r.status || "";
         var subj = r.subject ? String(r.subject).slice(0, 60) : "";
+        // Surface last_error inline when present (within the 10-min TTL).
+        var errBlock = "";
+        if (r.last_error && (r.last_error.message || r.last_error.at)) {
+          var em = r.last_error.message
+                ? String(r.last_error.message).slice(0, 80) : "(no message)";
+          errBlock = ' <span style="color:#c62828;font-size:10px;">err: '
+                   + em + '</span>';
+        }
         rows += '<div style="margin:2px 0;display:flex;align-items:center;'
-              + 'gap:6px;">'
+              + 'gap:6px;flex-wrap:wrap;">'
               + '<span style="display:inline-block;width:8px;height:8px;'
               + 'border-radius:50%;background:' + c + ';"></span>'
               + '<span style="min-width:62px;color:#333;">' + labels[k]
               + '</span>'
               + '<span style="font-family:ui-monospace,monospace;'
               + 'font-size:10px;color:#555;">' + sha + '</span>'
-              + '<span style="color:#666;">' + age + '</span>'
+              + '<span style="color:#666;">' + ageLabel + '</span>'
               + '<span style="color:#888;font-size:10px;">' + status
               + '</span>'
+              + errBlock
               + '</div>';
         if (subj) {
           rows += '<div style="margin:0 0 4px 16px;color:#888;'
@@ -10654,39 +10672,9 @@ END CONFLICT RESOLUTION`;
                         detail:String(e)}); });
       pollWriters();
     }
-    $("shadowRefreshBtn").addEventListener("click", poll);
-    $("shadowStartBtn").addEventListener("click", function () {
-      if (!confirm("Start the coordination soak?\n\nThis starts the local " +
-          "Mac runner and SSH-starts the ree-cloud-1 coordinator + cloud " +
-          "runners. Daniel-PC / EWIN-PC must be started manually. " +
-          "Phase 3 (sync_daemon sole git writer) is live as of 2026-05-29.")) return;
-      var b = $("shadowStartBtn");
-      b.disabled = true; b.textContent = "Starting...";
-      $("shadowResult").textContent = "";
-      fetch("/api/shadow/start", {method:"POST"})
-        .then(function(r){ return r.json(); })
-        .then(function(j){
-          var lines = [];
-          if (j.status === "error") { lines.push("ERROR: " + j.message); }
-          else {
-            var lm = j.local_mac_runner || {};
-            lines.push("local Mac runner: " + (lm.status||"?") +
-                       (lm.pid ? " (pid "+lm.pid+")" : ""));
-            Object.keys(j.cloud_hosts||{}).forEach(function(h){
-              var c = j.cloud_hosts[h];
-              lines.push(h + ": " + (c.ok ? "ok" : "FAILED") +
-                         (c.detail ? " -- " + c.detail : "")); });
-            Object.keys(j.manual_hosts||{}).forEach(function(h){
-              lines.push(h + ": start manually"); });
-          }
-          $("shadowResult").textContent = lines.join("\n");
-        })
-        .catch(function(e){
-          $("shadowResult").textContent = "request failed: " + e; })
-        .finally(function(){
-          b.disabled = false; b.textContent = "Start shadow soak";
-          poll(); });
-    });
+    // Pre-Phase-3 shadowRefreshBtn / shadowStartBtn click handlers
+    // removed 2026-05-31 alongside their buttons. Auto-polling below
+    // keeps the panel fresh without a manual refresh.
     poll();
     setInterval(poll, 15000);
   })();
