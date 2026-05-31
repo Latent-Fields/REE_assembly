@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-05-31T03:17:53Z",
+  "generated_at": "2026-05-31T11:26:47Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -1238,6 +1238,185 @@
         "priority": 28,
         "claim_ids": [
           "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260531T071807Z-e8231b52-claude_local",
+      "stable_hash": "e8231b52b9a1",
+      "igw_id_at_assign": "IGW-20260531-028",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T07:18:07Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=848d3fde-e724-41d8-81ed-ba3b738a8262 branch=claude/igw-028-retest-after-substrate-arc-065",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-065",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260531T081919Z-e8231b52-claude_local",
+      "stable_hash": "e8231b52b9a1",
+      "igw_id_at_assign": "IGW-20260531-028",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T08:19:19Z",
+      "released_at": "2026-05-31T08:19:19Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260531T071807Z-e8231b52-claude_local",
+      "note": "session_uuid=848d3fde-e724-41d8-81ed-ba3b738a8262 branch=claude/igw-028-retest-after-substrate-arc-065",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-065",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260531T081918Z-e8231b52-claude_local",
+      "stable_hash": "e8231b52b9a1",
+      "igw_id_at_assign": "IGW-20260531-028",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T08:19:18Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=4cd30449-97f3-4e5e-a80e-7aed02de4a9c branch=claude/igw-028-retest-after-substrate-arc-065",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-065",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260531T092019Z-e8231b52-claude_local",
+      "stable_hash": "e8231b52b9a1",
+      "igw_id_at_assign": "IGW-20260531-028",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T09:20:19Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=954c9e64-78e4-407e-a7b1-b71ce6a175e6 branch=claude/igw-028-retest-after-substrate-arc-065",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-065",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260531T102128Z-e8231b52-claude_local",
+      "stable_hash": "e8231b52b9a1",
+      "igw_id_at_assign": "IGW-20260531-028",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T10:21:28Z",
+      "released_at": "2026-05-31T10:21:28Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260531T092019Z-e8231b52-claude_local",
+      "note": "session_uuid=954c9e64-78e4-407e-a7b1-b71ce6a175e6 branch=claude/igw-028-retest-after-substrate-arc-065",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-065",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260531T102126Z-e8231b52-claude_local",
+      "stable_hash": "e8231b52b9a1",
+      "igw_id_at_assign": "IGW-20260531-028",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T10:21:26Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=c56fbd0d-ae99-4664-8161-0f4a7c2ac4f8 branch=claude/igw-028-retest-after-substrate-arc-065",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-065",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260531T112231Z-10e3bf78-claude_local",
+      "stable_hash": "10e3bf7821a3",
+      "igw_id_at_assign": "IGW-20260531-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T11:22:31Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=55d38d8d-60e2-42af-967b-f798c7a0c0eb branch=claude/igw-031-retest-after-substrate-inv-074",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: INV-074",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "INV-074"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260531T112647Z-10e3bf78-claude_local",
+      "stable_hash": "10e3bf7821a3",
+      "igw_id_at_assign": "IGW-20260531-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-05-31T11:26:47Z",
+      "released_at": "2026-05-31T11:26:47Z",
+      "released_by": "igw-031-retest-after-substrate-inv-074-20260531T112605Z",
+      "released_reason": "NO-OP close: V3-EXQ-610a (2026-05-29) already provides contributory FAIL evidence (weakens INV-074/MECH-334/MECH-333). The pending_retest_after_substrate gate was contingent on V3-EXQ-598b (GAP-C/D behavioural validation), which ran 2026-05-27 and FAILed with a deeper substrate gap exposed: rule-creator/discriminator substrate (next layer beyond GAP-C/D) is required to populate differentiated rule_state inputs to SD-033a. Re-queuing INV-074 without this deeper substrate layer would reproduce the same FAIL signature. The claim's evidence_quality_note pending_retest gate should be updated to reflect the actual substrate prerequisite (rule-creator substrate), not the originally anticipated GAP-C/D layer which has been tested and found insufficient.",
+      "released_event_for": "asn-20260531T112231Z-10e3bf78-claude_local",
+      "note": "session_uuid=55d38d8d-60e2-42af-967b-f798c7a0c0eb branch=claude/igw-031-retest-after-substrate-inv-074",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: INV-074",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "INV-074"
         ]
       }
     }
