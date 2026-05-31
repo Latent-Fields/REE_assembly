@@ -9,7 +9,8 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260531T082211Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "2026-05-31T19:00Z supersession (resolves failure_autopsy_MECH-341-cluster_2026-05-31 process flag a). This 08:22Z manifest is a dry_run=true smoke-budget artifact (1 seed, 1 P0 + 1 P1 episode, 10 steps/ep -- the canonical dry-run shape) that the runner emitted to flat evidence/experiments/ despite dry_run=true. The canonical full-scale run is v3_exq_615_arc065_rung1_matched_entropy_20260531T093116Z_v3 (3 seeds, 30 P0 + 60 P1 episodes, 200 steps/ep, ree-cloud-2, outcome PASS, evidence_direction supports, criteria C1+C2+C3 all True at ARM_2 ALL_ON 1.111 nats). The 0822Z arm_results show ARM_2 ALL_ON at 0.5 nats / 1 seed -- not a competing-evidence FAIL but a structural under-budgeting (Rung-1 criterion requires majority of >= 2 seeds; 1-seed-at-10-steps cannot clear it). Process flag also surfaced for governance: the runner should refuse to emit dry_run=true manifests to the flat evidence directory under any experiment_purpose. CLAUDE.md EXQ Versioning policy deviation (two manifests sharing queue_id=V3-EXQ-615 without alphabetic versioning) resolved here by supersession-flagging rather than rename (the 0822Z manifest is now indexer-excluded; no rename needed).",
   "arm_results": [
     {
       "arm_id": "ARM_0_BASE_OFF",
