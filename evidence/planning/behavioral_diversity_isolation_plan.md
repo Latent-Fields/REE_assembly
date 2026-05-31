@@ -333,7 +333,27 @@ in isolation OR if ablate_B drops Rung 1 metrics significantly.
 ### Phase P4 -- Full matrix (post-MECH-341 landing)
 
 Run the 11-arm matrix on a downstream env (CausalGridWorld or a new substrate) for
-replication and to apply R_X rules. **Blocked on Rung 2 SD-054 clearance + MECH-341 landed.**
+replication and to apply R_X rules.
+
+**Design doc staged 2026-05-31:** [`v3_exq_p4_11arm_isolation_design_2026-05-31.md`](v3_exq_p4_11arm_isolation_design_2026-05-31.md)
+fully specifies the 11 arms, R_X.a/b/c acceptance grid, data plan, V3 substrate
+tagging requirements, and Python skeleton (forked from
+`ree-v3/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py`).
+Reserved queue ID: **V3-EXQ-618** (priority 90, one rung below V3-EXQ-616).
+
+**Gating EXQ:** P4 fires AFTER **V3-EXQ-614b** PASSes (the MECH-341 amend-and-re-run
+cycle on the SD-056-amended substrate, queued 2026-05-31T12:32Z @ priority 250).
+Informed by V3-EXQ-616 (Q-054 entropy_bias_scale sweep -- sets
+`MECH341_ENTROPY_BIAS_SCALE`) and V3-EXQ-569a (GAP-A R1.b matched-entropy FP-2 --
+sets A_only expectation). Plan-doc's original blocker text ("Blocked on Rung 2
+SD-054 clearance + MECH-341 landed") is now satisfied at the diagnostic-probe level
+(GAP-B partial-PASS via R2.c on V3-EXQ-614a establishes the Rung-2 reading;
+MECH-341 substrate landed 2026-05-27 + amend landed 2026-05-31). The remaining
+gate is the behavioural confirmation that 614b PASSes on the amended substrate.
+
+Submission protocol in design-doc Section 11. Design doc stays `status: STAGED`
+until 614b PASSes; submission session updates to `status: SUBMITTED` with
+queue-time decisions recorded.
 
 ---
 
