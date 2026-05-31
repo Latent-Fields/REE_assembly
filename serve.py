@@ -2243,6 +2243,24 @@ def _utc_now_iso() -> str:
     return datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _normalize_manifest_fields(m: dict) -> tuple:
+    """Pull (verdict, timestamp, claim_id) out of any of the three manifest
+    schemas we currently emit: legacy flat (verdict/run_timestamp/claim),
+    indexer-built flat sibling (outcome|result/timestamp_utc/claim_ids), and
+    runs/<id>/manifest.json (status/timestamp_utc/claim_ids_tested).
+    """
+    verdict = m.get("verdict") or m.get("outcome") or m.get("result") or m.get("status")
+    timestamp = m.get("run_timestamp") or m.get("timestamp_utc")
+    claim_id = m.get("claim")
+    if not claim_id:
+        for key in ("claim_ids", "claim_ids_tested"):
+            v = m.get(key)
+            if isinstance(v, list) and v:
+                claim_id = v[0]
+                break
+    return verdict, timestamp, claim_id
+
+
 def scan_evidence_runs() -> dict:
     """Scan evidence/experiments dirs for actual run counts on disk."""
     result = {}
@@ -2258,26 +2276,62 @@ def scan_evidence_runs() -> dict:
                 f for f in exp_dir.glob("*.json")
                 if not f.name.endswith("_episode_log.json")
             )
-            if not files:
+            latest_file = None
+            run_count = 0
+            if files:
+                latest_file = files[-1]
+                run_count = len(files)
+            else:
+                # Indexer-built run-pack: manifests live under runs/<run_id>/manifest.json
+                # only (no flat top-level copy). Pick the lexicographically latest run dir
+                # (run_ids are timestamped, so name order == time order).
+                runs_dir = exp_dir / "runs"
+                if runs_dir.is_dir():
+                    run_manifests = sorted(runs_dir.glob("*/manifest.json"))
+                    if run_manifests:
+                        latest_file = run_manifests[-1]
+                        run_count = len(run_manifests)
+                if latest_file is None:
+                    # Last-ditch fallback: indexer's flat input manifest may sit as a
+                    # sibling at the top of evidence/experiments/ (not inside the dir).
+                    sibling_matches = sorted(
+                        f for f in ev_dir.glob(f"{exp_dir.name}_*.json")
+                        if f.is_file() and not f.name.endswith("_episode_log.json")
+                    )
+                    if sibling_matches:
+                        latest_file = sibling_matches[-1]
+                        run_count = 1
+            if latest_file is None:
                 continue
             latest = {}
             try:
-                latest = json.loads(files[-1].read_text())
+                latest = json.loads(latest_file.read_text())
             except Exception:
                 pass
-            # Check for companion episode log alongside the latest result
+            # Check for companion episode log alongside the latest result.
+            # For runs/<id>/manifest.json, the episode log (if any) sits next
+            # to the manifest in the same run dir.
             episode_log_url = None
-            episode_log_file = exp_dir / f"{files[-1].stem}_episode_log.json"
-            if episode_log_file.exists():
-                try:
-                    episode_log_url = str(episode_log_file.relative_to(SERVE_DIR))
-                except ValueError:
-                    pass
+            if latest_file.name == "manifest.json":
+                ep_candidates = list(latest_file.parent.glob("*_episode_log.json"))
+                if ep_candidates:
+                    try:
+                        episode_log_url = str(ep_candidates[0].relative_to(SERVE_DIR))
+                    except ValueError:
+                        pass
+            else:
+                episode_log_file = latest_file.parent / f"{latest_file.stem}_episode_log.json"
+                if episode_log_file.exists():
+                    try:
+                        episode_log_url = str(episode_log_file.relative_to(SERVE_DIR))
+                    except ValueError:
+                        pass
+            verdict, timestamp, claim_id = _normalize_manifest_fields(latest)
             result[exp_dir.name] = {
-                "run_count": len(files),
-                "latest_verdict": latest.get("verdict"),
-                "latest_timestamp": latest.get("run_timestamp"),
-                "claim_id": latest.get("claim"),
+                "run_count": run_count,
+                "latest_verdict": verdict,
+                "latest_timestamp": timestamp,
+                "claim_id": claim_id,
                 "substrate": ver,
                 "episode_log_url": episode_log_url,
             }
