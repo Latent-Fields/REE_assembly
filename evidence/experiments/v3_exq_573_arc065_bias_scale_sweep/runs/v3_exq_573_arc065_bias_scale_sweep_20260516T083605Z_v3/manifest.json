@@ -26,12 +26,12 @@
     "MECH-320"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-065": "weakens",
-    "MECH-313": "does_not_support",
-    "MECH-314": "does_not_support",
-    "MECH-320": "does_not_support"
+    "ARC-065": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-314": "non_contributory",
+    "MECH-320": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -48,5 +48,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-16 governance review. All 10 arms produced identical entropy (delta=0 at 1x/5x/10x scale) because the bias channel is not propagating to E3 selection -- bias components are machine-epsilon regardless of scale factor. EXQ-571 confirmed: bias_fraction=0 for all components. The 10x scaling experiment confirmed the non-propagation but did not constitute a valid scientific test of the mechanisms. Original per-claim: ARC-065=weakens, MECH-313/314/320=does_not_support."
 }
