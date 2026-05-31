@@ -1,46 +1,31 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-05-31T17:50:51Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-05-31T18:02:59Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-620",
+  "current_exq_started_utc": "2026-05-31T17:52:53.359836+00:00",
+  "current_title": "SD-037 axis (a) Phase 1 substrate-readiness diagnostic: log raw BLA/CeA/PAG/dACC consumer-input distributions over fishtank baseline",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-614b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-524a",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T06:02:20.835477+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-595",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T07:47:14.169641+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-543k",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T08:31:27.425090+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490g",
-      "result": "FAIL",
-      "completed_at": "2026-05-21T09:51:43.443844+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-616",
-      "result": "FAIL",
-      "completed_at": "2026-05-31T14:15:08.320713+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / PHASE1_BASELINE",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 20,
+    "episodes_total": 60,
+    "overall_pct": 11.1
+  },
+  "seconds_elapsed": 606,
+  "seconds_remaining": 4028,
+  "recent_lines": [
+    "Seed 42 Condition PHASE1_BASELINE",
+    "[train] phase1_seed_42 ep 10/60",
+    "[train] phase1_seed_42 ep 20/60"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 668,
   "runner_version": null,
   "gpu": {

@@ -1,19 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 48243,
-  "runner_started_at": "2026-05-31T06:59:45.950182+00:00",
-  "last_updated": "2026-05-31T11:31:29.857795+00:00",
+  "runner_pid": 1388,
+  "runner_started_at": "2026-05-31T17:48:28.266142+00:00",
+  "last_updated": "2026-05-31T17:59:43.642784+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-616",
-      "backlog_id": "EVB-0284",
-      "claim_id": "Q-054",
-      "title": "Q-054 entropy_bias_scale sweep on MECH-341 B_only isolation arm (4 scales x 3 seeds)",
+      "queue_id": "V3-EXQ-614b",
+      "backlog_id": "",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 P3 behavioural falsifier 3-arm on SD-056-amended substrate (supersedes V3-EXQ-614a; B_only / ablate_B / ALL_ON)",
       "description": "",
-      "estimated_minutes": 144.0,
-      "status": "pending",
+      "estimated_minutes": 108.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-592d",
+      "backlog_id": "",
+      "claim_id": "MECH-090",
+      "title": "MECH-090 R-c commit-entry readiness conjunction validation (4-arm; supersedes V3-EXQ-592c)",
+      "description": "",
+      "estimated_minutes": 640.0,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1790,6 +1801,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 3.5
+    },
+    {
+      "queue_id": "V3-EXQ-618",
+      "backlog_id": "",
+      "claim_id": "SD-049",
+      "title": "SD-049 Phase 3 SD-032 consumer cascade substrate-readiness (3-arm + direct-API probes)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [v3_exq_618_sd049_phase3_consumer_cascade_validation] outcome=PASS elapsed=673.8s | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-618 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-618.json",
+      "started_at": "2026-05-31T17:48:28.383941+00:00",
+      "completed_at": "2026-05-31T17:59:43.642171+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_618_sd049_phase3_consumer_cascade_validation/v3_exq_618_sd049_phase3_consumer_cascade_validation_20260531T175943Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 675.3
     }
   ]
 }

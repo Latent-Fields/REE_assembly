@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-05-31T17:52:46Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-618",
-  "current_exq_started_utc": "2026-05-31T17:48:28.383941+00:00",
-  "current_title": "SD-049 Phase 3 SD-032 consumer cascade substrate-readiness (3-arm + direct-API probes)",
-  "current_claim_id": "SD-049",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_0_cascade_off",
-    "runs_done": 6,
-    "runs_total": 9,
-    "episodes_done": 10,
-    "episodes_total": 15,
-    "overall_pct": 74.1
-  },
-  "seconds_elapsed": 258,
-  "seconds_remaining": 39,
-  "recent_lines": [
-    "Seed 44 Condition ARM_0_cascade_off",
-    "[train] warmup seed=44 arm=ARM_0_cascade_off ep 1/15",
-    "[train] warmup seed=44 arm=ARM_0_cascade_off ep 5/15",
-    "[train] meas seed=44 arm=ARM_0_cascade_off ep 6/15",
-    "[train] meas seed=44 arm=ARM_0_cascade_off ep 10/15"
+  "last_tick_utc": "2026-05-31T17:59:43Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-614b",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-610a",
+      "result": "ERROR",
+      "completed_at": "2026-05-29T22:44:20.399408+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-592c",
+      "result": "FAIL",
+      "completed_at": "2026-05-30T01:55:15.559080+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-614a",
+      "result": "PASS",
+      "completed_at": "2026-05-30T19:32:45.507484+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-617",
+      "result": "PASS",
+      "completed_at": "2026-05-31T11:31:29.857268+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-618",
+      "result": "PASS",
+      "completed_at": "2026-05-31T17:59:43.642171+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 1388,
   "runner_version": null,
   "gpu": {
