@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-05-31T20:23:47Z",
+  "last_tick_utc": "2026-05-31T20:53:57Z",
   "state": "running",
   "current_exq": "V3-EXQ-592d",
   "current_exq_started_utc": "2026-05-31T14:02:39.910477+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 43 / ARM_3_BOTH_GATES_ON",
     "runs_done": 10,
     "runs_total": 12,
-    "episodes_done": 40,
+    "episodes_done": 120,
     "episodes_total": 400,
-    "overall_pct": 84.2
+    "overall_pct": 85.8
   },
-  "seconds_elapsed": 22868,
-  "seconds_remaining": 4125,
+  "seconds_elapsed": 24678,
+  "seconds_remaining": 3691,
   "recent_lines": [
-    "[run 10/12] ARM_3_BOTH_GATES_ON seed=42  commits=0  blocks_score=362  blocks_nav=50  false_commit_rate=0.000  final_readiness=1.000  final_rv=0.00001",
-    "verdict: PASS",
-    "Seed 43 Condition ARM_3_BOTH_GATES_ON",
-    "[train] ARM_3_BOTH_GATES_ON seed=43 ep 0/400 (P0 warmup start)",
-    "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True"
+    "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 train] ep 80/400  rv=0.00000  reward=-0.1881",
+    "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
+    "[train] ARM_3_BOTH_GATES_ON seed=43 ep 120/400  (P0 done: converged=True aborted=False final_rv=0.00000)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
