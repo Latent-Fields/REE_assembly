@@ -2,7 +2,7 @@
 
 **Claim ID:** SD-056
 **Subject:** e2.action_conditional_divergence_contrastive
-**Status:** IMPLEMENTED 2026-05-29
+**Status:** IMPLEMENTED 2026-05-29; AMENDED 2026-05-31 (multi-step rollout stability; see "Multi-step rollout stability amend (2026-05-31)" section below)
 **Registered:** 2026-05-29
 **Depends on:** SD-005 (z_world / z_self split), ARC-033 (E2_harm_s forward family)
 **Blocks (substrate-readiness):** V3-EXQ-569a matched-entropy FP-2 falsifier (GAP-A R1.a/R1.b decision rule); downstream `cand_world_summaries` consumers (MECH-292, MECH-293, ghost-goal, commitment-closure, MECH-314a curiosity novelty, MECH-320 tonic vigor, MECH-295 liking bridge, SD-033a lateral_pfc, SD-033b ofc).
@@ -262,3 +262,156 @@ diagnostic that surfaced the collapse), ARC-062 GAP-B autopsy 2026-05-17
 - Failure record: [REE_assembly/evidence/planning/v3_exq_571_root_cause_2026-05-25.md](../../evidence/planning/v3_exq_571_root_cause_2026-05-25.md)
 - Lit-pull SYNTHESIS: [REE_assembly/evidence/literature/targeted_review_e2_forward_model_action_divergence/SYNTHESIS.md](../../evidence/literature/targeted_review_e2_forward_model_action_divergence/SYNTHESIS.md)
 - Behavioural successor plan: [REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md](../../evidence/planning/behavioral_diversity_isolation_plan.md)
+
+---
+
+## Multi-step rollout stability amend (2026-05-31)
+
+**Status:** IMPLEMENTED 2026-05-31. Amends -- does not supersede -- the SD-056
+t=1 substrate landed 2026-05-29.
+
+**Triggering autopsy:** [REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-569e_2026-05-31.md](../../evidence/planning/failure_autopsy_V3-EXQ-569e_2026-05-31.md).
+
+### Diagnosis
+
+V3-EXQ-569e Pathway A vs B mechanism probe verdict INSTRUMENTATION_FAILURE
+2026-05-31. SD-056 contrastive training produced numerically explosive E2
+rollouts (1e16+ magnitudes) on most ON-arm seeds at the behavioural-runtime
+episode length (P1 50 ep / 200 steps). 569d t=1 measurements at the SAME
+contrastive weights {0.01, 0.05, 0.20} remained clean (rollout_skipped_nonfinite=0,
+top2_class_gap NaN-fraction=0.0). The SD-056 substrate is stable at its t=1
+training horizon; the missing piece is iterated multi-step rollout stability
+over the full-horizon `E2.get_world_state_sequence()` consumer surface.
+
+### Levers
+
+Two togglable levers, both default OFF (bit-identical to the pre-amend SD-056
+path):
+
+**Lever (a) -- multi-step contrastive (PRIMARY):**
+
+Extend the t=1 InfoNCE objective to an h-step rollout horizon. For each
+anchor `i` in `[K]` and each step `t` in `[1, h]`:
+
+```
+current_i,t = world_forward(current_i,t-1, action_seq_i,t)   starting from current_i,0 = z_world_0
+logits[i, j, t] = -||current_j,t - z_world_targets_i,t||^2 / tau
+L_t = cross_entropy(logits[:, :, t], arange(K))
+L_multistep = sum_t (horizon_weights[t] * L_t) / sum_t horizon_weights[t]
+```
+
+`horizon_weights[t] = horizon_weights_decay ** t` (default 1.0 -> uniform).
+Helper: `E2FastPredictor.world_forward_contrastive_loss_multistep`.
+Same MECH-094 / `min_batch_classes` / `K < 2` defensive returns as the t=1
+helper. Asymmetric anchor-to-prediction per the existing SD-056 pattern.
+
+**Lever (b) -- per-step rollout output norm clamp (DEFENSIVE):**
+
+Inside `E2FastPredictor.rollout_with_world` loop, clamp each predicted
+`z_world_{t+1}` against the **initial-state scale** (B2 anchor):
+
+```
+max_allowed = clamp_ratio * ||z_world_0||
+if ||z_world_{t+1}|| > max_allowed:
+    z_world_{t+1} = z_world_{t+1} * (max_allowed / ||z_world_{t+1}||)
+```
+
+Anchored against `z_world_0` (not `z_t`) so the bound does not compound;
+matches the acceptance criterion's anchoring on the OFF-baseline scale.
+Default `clamp_ratio=2.0`. `initial_z_world.detach()` for the threshold so
+gradient does not flow into the anchor.
+
+### Why both
+
+Lever (a) is the architecturally correct training-objective fix per the
+existing lit-pull SYNTHESIS (Srivastava 2021 contrastive RSSM lever B,
+extended to multi-step rollout per Dreamer / PlaNet anchor). Lever (b) is
+an inference-time defensive guard providing a hard 2x-of-OFF-baseline
+magnitude bound regardless of training state or OOD probe configurations.
+Together they cover the autopsy acceptance criterion (max-NaN-fraction <
+0.05 + rollout magnitudes within 2x of ARM_0 OFF baseline) on average
+(a) and as a hard guarantee per probe tick (b).
+
+### Lit-pull anchors
+
+The autopsy named "existing multi-step contrastive RSSM literature" for
+lever (a). The existing SD-056 lit-pull synthesis at
+[evidence/literature/targeted_review_e2_forward_model_action_divergence/SYNTHESIS.md](../../evidence/literature/targeted_review_e2_forward_model_action_divergence/SYNTHESIS.md)
+already grounds the contrastive next-state objective in Srivastava et al.
+2021. Multi-step extension is the standard Dreamer (Hafner et al. 2019/2020)
+and PlaNet pattern in latent-dynamics training. Biology side: the cerebellar
+and prefrontal forward-model anchors preserve action-specificity at the
+prediction step; bounded iterated rollouts are anchored in the same
+literature (climbing-fibre PE normalisation, dopaminergic gain modulation
+over the rollout horizon -- cited in the autopsy).
+
+### Config
+
+Five new fields on `E2Config`, all wired through `REEConfig.from_dims`:
+
+| Flag | Type | Default | Role |
+|---|---|---|---|
+| `e2_action_contrastive_multistep_enabled` | bool | `False` | Master for lever (a) |
+| `e2_action_contrastive_horizon` | int | `5` | Rollout horizon `h` for the multi-step objective (Dreamer-default value; calibratable) |
+| `e2_action_contrastive_horizon_weights_decay` | float | `1.0` | Per-step weight decay (1.0 = uniform) |
+| `e2_rollout_output_norm_clamp_enabled` | bool | `False` | Master for lever (b) |
+| `e2_rollout_output_norm_clamp_ratio` | float | `2.0` | B2 anchor: max `||z_t|| / ||z_world_0||` |
+
+No defaults of existing parameters change. With all five at defaults, the
+pre-amend SD-056 path is bit-identical (verified 590/590 contracts + 7/7
+preflight PASS).
+
+### Scope (NOT changed)
+
+- t=1 `world_forward_contrastive_loss` helper unchanged and still callable.
+- `cand_world_pairwise_dist` diagnostic helper unchanged.
+- `world_forward` signature and body unchanged.
+- `world_transition`, `world_action_encoder` shapes / inits unchanged.
+- `predict_next_state`, `predict_next_self`, `action_object`, `forward`,
+  `forward_counterfactual` unchanged.
+- E1, E3, hippocampal module, residue field, all downstream consumers
+  unchanged.
+
+### MECH-094
+
+`world_forward_contrastive_loss_multistep` accepts `simulation_mode` kwarg
+returning `tensor(0.0)`. Same defensive pattern as the t=1 helper, SD-035,
+MECH-279, MECH-313, MECH-314, MECH-319, MECH-320, MECH-341. Rollout clamp is
+a numerical guard (bounds a forward computation, not memory content); not
+gated by MECH-094.
+
+### Phased training
+
+NOT required at substrate level. Multi-step contrastive trains the same
+`world_transition` + `world_action_encoder` weights as `L_recon` and the
+existing t=1 contrastive. Joint training is the designed-for case.
+
+### Downstream beneficiaries
+
+The amend is load-bearing for downstream consumers of the iterated multi-step
+`E2.get_world_state_sequence()` surface:
+
+- **ARC-065 GAP-A** (behavioural diversity Pathway A vs B mechanism dissociation
+  -- the V3-EXQ-569e probe blocked by the instability).
+- **MECH-309** (logical-necessity claim for behavioural diversity; downstream
+  consumer of action-discriminability at the rollout horizon).
+- **MECH-341 + ARC-062 GAP-B** (per-candidate signal preservation for the
+  ARC-062 gated-policy heads + lateral-PFC consumers; the t=1 path already
+  works for these via 569d, but multi-step consumers also need stability).
+
+569c headline reading (~2.4x C3 lift over matched-noise control) remains the
+load-bearing finding on ARC-065 GAP-A pending the amend-and-re-run cycle.
+
+### Validation
+
+Substrate-readiness diagnostic: 3-arm probe (SD-056-OFF baseline / multi-step
+ON, clamp OFF / both ON) at 569e-equivalent P1 budget (50 ep / 200 steps).
+Acceptance: max-NaN-fraction < 0.05 across both ON arms AND rollout magnitudes
+within 2x of ARM_0 OFF baseline. Diagnostic-purpose; substrate-readiness;
+`claim_ids=[]`. Queued separately at the end of this implement-substrate
+session.
+
+Behavioural validation (the full 8-arm V3-EXQ-569e-equivalent Pathway A vs B
+falsifier on the amended substrate, bundled with the three script-side
+acceptance-criteria fixes the autopsy Section 6 named) is the next
+`/queue-experiment` session per autopsy Section 8.
