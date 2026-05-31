@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-31T18:20:45.366528Z`
+Generated: `2026-05-31T18:26:39.896279Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -62,10 +62,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-229` | directional, mixed_evidence | 9 | 1 | 0.2 | `2026-05-04_sd_049_temporal_community_schapiro2016` | 12 |
 | `MECH-230` | directional, mixed_evidence | 9 | 1 | 0.2 | `2026-05-04_sd_049_temporal_community_schapiro2016` | 12 |
 | `MECH-256` | directional, mixed_evidence | 9 | 3 | 0.5 | `2026-05-17_sd_029_pain_precision_signal_seymour2019` | 15 |
-| `MECH-260` | directional, mixed_evidence | 11 | 1 | 0.167 | `v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3` | 14 |
 | `MECH-262` | directional, mixed_evidence | 5 | 1 | 0.333 | `v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3` | 10 |
 | `MECH-295` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3` | 8 |
-| `MECH-313` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3` | 6 |
 | `MECH-318` | directional | 7 | 1 | 0.25 | `2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019` | 8 |
 | `MECH-334` | directional, source_disagreement | 3 | 2 | 0.8 | `v3_exq_610a_inv074_crystallization_necessity_20260529T224419Z_v3` | 5 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
@@ -75,7 +73,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `Q-019` | directional, mixed_evidence | 14 | 4 | 0.444 | `2026-05-16_q_019_trn_sensory_selection_circuit_ahrens2015` | 23 |
 | `Q-020` | directional, mixed_evidence | 1 | 4 | 0.4 | `2026-04-02_q020_reward_map_reorganization_dupret2010` | 6 |
 | `Q-034` | directional, source_disagreement | 8 | 3 | 0.545 | `v3_exq_526_q034_reef_threshold_sweep_20260506T082834Z_v3` | 11 |
-| `Q-045` | directional, source_disagreement, mixed_evidence | 4 | 1 | 0.4 | `v3_exq_603b_q045_mech313_mech260_four_arm_ablation_20260526T071458Z_v3` | 8 |
 | `SD-004` | directional, source_disagreement | 17 | 4 | 0.381 | `2026-04-28_action_policy_motor_primitives_mussa_ivaldi2000` | 21 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 11 | 13 | 0.917 | `v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3` | 29 |
 | `SD-007` | directional, mixed_evidence | 16 | 7 | 0.609 | `v3_exq_118_c1fail_20260328T212454Z_v3` | 24 |
@@ -1185,23 +1182,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### MECH-260
-- Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=11, weakens=1, conflict_ratio=0.167, exp_conf=0.903, lit_conf=0.708, overall_confidence_legacy=0.854
-- Recent entries:
-  - `2026-05-21T20:42:22Z` `experimental` `v3_exq_603_q045_mech313_mech260_four_arm_ablation` direction=`non_contributory` confidence=0
-  - `2026-05-24T17:03:49Z` `experimental` `v3_exq_603a_q045_mech313_mech260_four_arm_ablation` direction=`non_contributory` confidence=0
-  - `2026-05-25T06:54:07Z` `experimental` `v3_exq_603b_q045_mech313_mech260_four_arm_ablation` direction=`mixed` confidence=0.5
-  - `2026-05-26T07:14:58Z` `experimental` `v3_exq_603b_q045_mech313_mech260_four_arm_ablation` direction=`mixed` confidence=0.5
-  - `2026-05-27T11:38:05Z` `experimental` `v3_exq_603c_q045_mech313_mech260_phased_training` direction=`non_contributory` confidence=0
-- Recurring failure signatures:
-  - `A substrate whose effort learning is fixed (e.g., hard-coded discount factors) will not reproduce Scholl 2017's finding that effort-learning signals are malleable by serotonergic tone. MECH-260 bias suppression requires a tunable learning rate; that tuning should be gated by a neuromodulatory analogue.` (1)
-  - `A substrate that treats reward learning and effort learning as independent channels will fail to reproduce the co-enhancement of both by a single serotonergic manipulation. The two learning signals must share modulatory gain.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### MECH-262
 - Conflict types: directional, mixed_evidence
 - Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.591, lit_conf=0.875, overall_confidence_legacy=0.761
@@ -1237,26 +1217,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `If MECH-295 strong reading were correct (liking activation NECESSARY for drive-to-approach), then any elevation of wanting/approach should be accompanied by elevated liking; Pecina 2003 shows wanting elevated with liking unchanged.` (1)
   - `If MECH-295 weak reading is correct (liking is the bridge that propagates drive into approach but baseline liking is sufficient -- only the LINK is necessary, not the level), then wanting can be amplified by tonic dopamine without further liking elevation; this paper is consistent with that reading.` (1)
   - `If drive amplification could produce approach without routing through experienced hedonic value, animals should reduce approach to a previously rewarded lever immediately upon a drive-state change (sated -> hungry not relevant; relevant: shift in outcome value); Dickinson & Balleine show they don't until they have experienced the outcome under the new state.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### MECH-313
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.396, lit_conf=0.839, overall_confidence_legacy=0.618
-- Recent entries:
-  - `2026-05-21T20:42:22Z` `experimental` `v3_exq_603_q045_mech313_mech260_four_arm_ablation` direction=`non_contributory` confidence=0
-  - `2026-05-24T17:03:49Z` `experimental` `v3_exq_603a_q045_mech313_mech260_four_arm_ablation` direction=`non_contributory` confidence=0
-  - `2026-05-25T06:54:07Z` `experimental` `v3_exq_603b_q045_mech313_mech260_four_arm_ablation` direction=`mixed` confidence=0.5
-  - `2026-05-26T07:14:58Z` `experimental` `v3_exq_603b_q045_mech313_mech260_four_arm_ablation` direction=`mixed` confidence=0.5
-  - `2026-05-27T11:38:05Z` `experimental` `v3_exq_603c_q045_mech313_mech260_phased_training` direction=`non_contributory` confidence=0
-- Recurring failure signatures:
-  - `If REE's MECH-313 (stochastic-noise-floor) and MECH-316 (cross-episode-regularity-extraction) cannot be unified into a single mutual-information objective like DIAYN's, the architectural-economy claim that ARC-065 and ARC-064 are one machinery in two readings is weakened.` (1)
-  - `DIAYN's discriminator-collapse failure mode (degenerate skills the discriminator cannot distinguish) is directly homologous to the option-collapse and monomodal-collapse patterns REE has hit; the mitigation literature transfers.` (1)
-  - `If REE's MECH-313 stochastic-noise-floor cannot be implemented as MaxEnt-RL-style policy-entropy regularisation, the inheritance pathway from SAC weakens. This is unlikely -- MaxEnt regularisation is a standard substrate-implementation technique.` (1)
-  - `SAC has known temperature-parameter sensitivity: too low, and the policy collapses to deterministic; too high, and the policy ignores the reward signal. REE's MECH-313 inherits this sensitivity. The temperature parameter is a hyperparameter to be calibrated, not derivable from first principles.` (1)
-  - `Pairwise distance-based diversity measures (e.g. mean L2 distance between policies) suffer from cycling: a population can have high mean pairwise distance but still cluster into a few degenerate modes. Volume-based measures are necessary to catch this failure mode.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -1420,26 +1380,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `Crucial resource is not operationalised or quantified.` (1)
   - `Model operates at neural circuit level -- does not specify environmental resource density as the parameter.` (1)
   - `Ratio threshold is not parametrically defined in the model.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### Q-045
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.396, lit_conf=0.894, overall_confidence_legacy=0.645
-- Recent entries:
-  - `2026-05-21T20:42:22Z` `experimental` `v3_exq_603_q045_mech313_mech260_four_arm_ablation` direction=`non_contributory` confidence=0
-  - `2026-05-24T17:03:49Z` `experimental` `v3_exq_603a_q045_mech313_mech260_four_arm_ablation` direction=`non_contributory` confidence=0
-  - `2026-05-25T06:54:07Z` `experimental` `v3_exq_603b_q045_mech313_mech260_four_arm_ablation` direction=`mixed` confidence=0.5
-  - `2026-05-26T07:14:58Z` `experimental` `v3_exq_603b_q045_mech313_mech260_four_arm_ablation` direction=`mixed` confidence=0.5
-  - `2026-05-27T11:38:05Z` `experimental` `v3_exq_603c_q045_mech313_mech260_phased_training` direction=`non_contributory` confidence=0
-- Recurring failure signatures:
-  - `If REE's MECH-260 is implemented as a generic recency-discount on the value buffer (exponential forgetting), the 4-arm ablation should show 260-OFF reproducing Kennerley's ACC-lesion phenotype: failure to sustain rewarded responses (because there is no history-integration substrate to lean on). If 260-OFF instead shows preserved value-history learning, MECH-260's implementation is too narrow -- it is doing only anti-recency, not the broader ACC-role of action-outcome history integration that Kennerley identifies.` (1)
-  - `If the Q-045 collapse outcome is adopted (MECH-313 and MECH-260 collapsed into one substrate), the combined regulator must reproduce Kennerley's dissociation: ACC-lesioned monkeys CAN detect immediate errors but CANNOT sustain history-based responses. This is a within-substrate dissociation that a uniform noise-floor primitive cannot reproduce -- noise affects all decisions uniformly. Supports substrate-distinct.` (1)
-  - `If REE has no analogue of action-outcome history integration at all (i.e. MECH-260 is purely anti-recency without an underlying history-integration substrate), the 4-arm ablation will fail to reproduce Kennerley's pattern in 260-OFF arms -- the absence will be invisible because there was no history-integration to remove.` (1)
-  - `If REE's MECH-260 implementation is a generic recency-discount on the value buffer (exponential forgetting), it will not reproduce Scholl's pattern: in Scholl, dACC does not REMOVE recent reward information, it SUPPRESSES the inappropriate influence of one class of recent reward (hypothetical/irrelevant) on choice while preserving learning from another class (real/informative). The mapping is to a SELECTIVE-suppression substrate, not a forgetting kernel.` (1)
-  - `If MECH-260 fires unconditionally on every recent choice, it will produce excessive anti-recency that prevents any reward-history-based learning at all -- the opposite failure mode from monomodal collapse. Scholl's data require that dACC anti-recency be GATED by some signal of irrelevance (in their task, the real/hypothetical label; in REE, presumably a signal of perseveration or stuck-policy). Without that gate, MECH-260 is mis-calibrated.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
