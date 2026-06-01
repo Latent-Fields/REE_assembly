@@ -1352,55 +1352,97 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
     return {}
 
 
-def _coordinator_preferred(git_fresh: bool, git_age: int | None,
-                          coord_age: int | None,
-                          fresh_window: int) -> bool:
-    """True when coordinator telemetry should override stale git heartbeats."""
-    if coord_age is None or coord_age < 0 or coord_age > fresh_window:
-        return False
-    if not git_fresh:
-        return True
-    if git_age is None:
-        return True
-    return coord_age < git_age
+def _enrich_machine_from_git(entry: dict, hb: dict, st: dict) -> None:
+    """Copy rich display fields from the git mirror only.
+
+    Never changes last_tick_utc, age, fresh, state, or in-flight progress;
+    those come from the coordinator when Phase 3 is live.
+    """
+    if hb:
+        if hb.get("hostname"):
+            entry["hostname"] = hb.get("hostname")
+        for key in (
+            "current_exq_started_utc", "current_title", "current_claim_id",
+            "current_description", "recent_lines", "queue_depth",
+            "queue_id_at_head", "recent_completed", "runner_version",
+        ):
+            val = hb.get(key)
+            if val is not None:
+                entry[key] = val
+        if hb.get("gpu"):
+            entry["gpu"] = hb["gpu"]
+        if hb.get("runner_pid") is not None:
+            entry["runner_pid"] = hb["runner_pid"]
+        entry["has_heartbeat"] = True
+    if st:
+        if st.get("runner_pid") is not None and entry.get("runner_pid") is None:
+            entry["runner_pid"] = st.get("runner_pid")
+        entry["status_idle"] = st.get("idle")
+        entry["status_current"] = st.get("current")
+        entry["status_last_updated"] = st.get("last_updated")
+        entry["has_status"] = True
 
 
-def _overlay_coordinator_heartbeat(entry: dict, snap: dict, now,
-                                   fresh_window: int) -> None:
-    """Mutate a /api/machines row with fresher coordinator fields."""
-    coord_age = _utc_age_seconds(snap.get("last_tick_utc") or "", now)
-    coord_fresh = (
-        coord_age is not None and 0 <= coord_age <= fresh_window)
-    if not _coordinator_preferred(
-            entry.get("fresh"), entry.get("age_seconds"),
-            coord_age, fresh_window):
-        return
-    entry["last_tick_utc"] = snap.get("last_tick_utc") or entry["last_tick_utc"]
-    entry["age_seconds"] = coord_age
-    entry["fresh"] = coord_fresh
-    entry["state"] = snap.get("state") or entry["state"]
-    entry["current_exq"] = snap.get("current_exq")
-    if snap.get("progress"):
-        entry["progress"] = snap["progress"]
-    if snap.get("seconds_elapsed") is not None:
-        entry["seconds_elapsed"] = snap["seconds_elapsed"]
-    if snap.get("seconds_remaining") is not None:
-        entry["seconds_remaining"] = snap["seconds_remaining"]
-    entry["telemetry_source"] = "coordinator"
+def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
+                            fresh_window: int,
+                            display_window: int) -> dict:
+    """One machines-row built solely from git-synced heartbeat/status files."""
+    last_tick = hb.get("last_tick_utc") or st.get("last_updated") or ""
+    age_seconds = _utc_age_seconds(last_tick, now)
+    fresh = (
+        age_seconds is not None
+        and 0 <= age_seconds <= fresh_window)
+    display_fresh = (
+        age_seconds is not None
+        and 0 <= age_seconds <= display_window)
+    return {
+        "machine": name,
+        "hostname": hb.get("hostname"),
+        "last_tick_utc": last_tick,
+        "age_seconds": age_seconds,
+        "fresh": fresh,
+        "display_fresh": display_fresh,
+        "state": hb.get("state", "unknown" if not hb else "idle"),
+        "current_exq": hb.get("current_exq"),
+        "current_exq_started_utc": hb.get("current_exq_started_utc"),
+        "current_title": hb.get("current_title"),
+        "current_claim_id": hb.get("current_claim_id"),
+        "current_description": hb.get("current_description"),
+        "progress": hb.get("progress"),
+        "seconds_elapsed": hb.get("seconds_elapsed"),
+        "seconds_remaining": hb.get("seconds_remaining"),
+        "recent_lines": hb.get("recent_lines", []),
+        "queue_depth": hb.get("queue_depth"),
+        "queue_id_at_head": hb.get("queue_id_at_head"),
+        "recent_completed": hb.get("recent_completed", []),
+        "gpu": hb.get("gpu", {}),
+        "runner_pid": hb.get("runner_pid") or st.get("runner_pid"),
+        "runner_version": hb.get("runner_version"),
+        "status_idle": st.get("idle"),
+        "status_current": st.get("current"),
+        "status_last_updated": st.get("last_updated"),
+        "has_heartbeat": bool(hb),
+        "has_status": bool(st),
+        "telemetry_source": "git",
+    }
 
 
 def _entry_from_coordinator_snapshot(name: str, snap: dict, now,
-                                     fresh_window: int) -> dict:
+                                     fresh_window: int,
+                                     display_window: int) -> dict:
     """Build a /api/machines row for a host only visible on the coordinator."""
     coord_age = _utc_age_seconds(snap.get("last_tick_utc") or "", now)
     coord_fresh = (
         coord_age is not None and 0 <= coord_age <= fresh_window)
+    display_fresh = (
+        coord_age is not None and 0 <= coord_age <= display_window)
     return {
         "machine": name,
         "hostname": None,
         "last_tick_utc": snap.get("last_tick_utc") or "",
         "age_seconds": coord_age,
         "fresh": coord_fresh,
+        "display_fresh": display_fresh,
         "state": snap.get("state") or "unknown",
         "current_exq": snap.get("current_exq"),
         "current_exq_started_utc": None,
@@ -1451,6 +1493,8 @@ def read_machines() -> dict:
     from datetime import datetime, timezone
 
     FRESH_WINDOW_SECONDS = 180
+    # Explorer + Coordination panel: show live telemetry up to 10m.
+    DISPLAY_FRESH_SECONDS = 600
 
     heartbeats: dict[str, dict] = {}
     if HEARTBEAT_DIR.is_dir():
@@ -1473,64 +1517,39 @@ def read_machines() -> dict:
     all_machines = set(heartbeats.keys()) | set(statuses.keys())
     now = datetime.now(timezone.utc)
 
-    out_machines = []
-    for name in sorted(all_machines):
-        hb = heartbeats.get(name, {})
-        st = statuses.get(name, {})
+    cfg = _load_coordinator_cfg()
+    coord_url = (cfg.get("COORDINATOR_URL") or "").rstrip("/")
+    coord_tok = cfg.get("COORDINATOR_LOCAL_TOKEN") or ""
+    coordinator_configured = bool(coord_url and coord_tok)
+    coord_snaps = (
+        _fetch_coordinator_machine_snapshots(cfg)
+        if coordinator_configured else {})
 
-        last_tick = hb.get("last_tick_utc") or st.get("last_updated") or ""
-        age_seconds = _utc_age_seconds(last_tick, now)
-        fresh = (
-            age_seconds is not None
-            and 0 <= age_seconds <= FRESH_WINDOW_SECONDS)
-
-        entry = {
-            "machine": name,
-            "hostname": hb.get("hostname"),
-            "last_tick_utc": last_tick,
-            "age_seconds": age_seconds,
-            "fresh": fresh,
-            "state": hb.get("state", "unknown" if not hb else "idle"),
-            "current_exq": hb.get("current_exq"),
-            "current_exq_started_utc": hb.get("current_exq_started_utc"),
-            "current_title": hb.get("current_title"),
-            "current_claim_id": hb.get("current_claim_id"),
-            "current_description": hb.get("current_description"),
-            "progress": hb.get("progress"),
-            "seconds_elapsed": hb.get("seconds_elapsed"),
-            "seconds_remaining": hb.get("seconds_remaining"),
-            "recent_lines": hb.get("recent_lines"),
-            "queue_depth": hb.get("queue_depth"),
-            "queue_id_at_head": hb.get("queue_id_at_head"),
-            "recent_completed": hb.get("recent_completed", []),
-            "gpu": hb.get("gpu", {}),
-            "runner_pid": hb.get("runner_pid") or st.get("runner_pid"),
-            "runner_version": hb.get("runner_version"),
-            "status_idle": st.get("idle"),
-            "status_current": st.get("current"),
-            "status_last_updated": st.get("last_updated"),
-            "has_heartbeat": name in heartbeats,
-            "has_status": name in statuses,
-            "telemetry_source": "git",
-        }
-        out_machines.append(entry)
-
-    # Phase-1 bridge: coordinator heartbeats are live over WireGuard while
-    # git-synced runner_heartbeats/*.json on this Mac may lag (branch drift,
-    # pull interval, push races). Prefer coordinator when fresher.
-    coord_snaps = _fetch_coordinator_machine_snapshots(_load_coordinator_cfg())
-    if coord_snaps:
-        by_name = {e["machine"]: e for e in out_machines}
-        for entry in out_machines:
-            snap = coord_snaps.get(entry["machine"])
-            if snap:
-                _overlay_coordinator_heartbeat(
-                    entry, snap, now, FRESH_WINDOW_SECONDS)
-        for name, snap in coord_snaps.items():
-            if name not in by_name:
-                out_machines.append(_entry_from_coordinator_snapshot(
-                    name, snap, now, FRESH_WINDOW_SECONDS))
-        out_machines.sort(key=lambda e: e["machine"])
+    # Phase 3: one timing authority. When the hub is configured, fleet rows
+    # come from coordinator /shadow/status (same as the Coordination panel).
+    # Git heartbeats only enrich recent_lines / titles / gpu -- never age.
+    if coordinator_configured and coord_snaps:
+        telemetry_mode = "coordinator"
+        out_machines = []
+        for name in sorted(coord_snaps.keys()):
+            entry = _entry_from_coordinator_snapshot(
+                name, coord_snaps[name], now,
+                FRESH_WINDOW_SECONDS, DISPLAY_FRESH_SECONDS)
+            _enrich_machine_from_git(
+                entry, heartbeats.get(name, {}), statuses.get(name, {}))
+            out_machines.append(entry)
+        for name in sorted(all_machines - set(coord_snaps.keys())):
+            out_machines.append(_machine_entry_from_git(
+                name, heartbeats.get(name, {}), statuses.get(name, {}),
+                now, FRESH_WINDOW_SECONDS, DISPLAY_FRESH_SECONDS))
+    else:
+        telemetry_mode = "git"
+        out_machines = [
+            _machine_entry_from_git(
+                name, heartbeats.get(name, {}), statuses.get(name, {}),
+                now, FRESH_WINDOW_SECONDS, DISPLAY_FRESH_SECONDS)
+            for name in sorted(all_machines)
+        ]
 
     # Exclude machines whose last heartbeat is older than the stale TTL.
     # Default 6h matches the claim stale-cutoff; override with
@@ -1545,24 +1564,27 @@ def read_machines() -> dict:
         or m["age_seconds"] <= STALE_EXCLUDE_SECONDS
     ]
 
-    # When a machine's heartbeat is older than the fresh window but still
-    # inside the exclude window, mark display_stale so UIs can show last-known
-    # progress without treating the worker as live (command buttons stay gated
-    # on fresh). Keep current_exq/progress for the explorer "Now Running"
-    # strip (aligned with the Coordination panel, which never hides machines).
+    # Git-only rows (no hub row): mark display_stale when mirror is old.
     for m in out_machines:
-        if m.get("fresh") is False and m.get("age_seconds") is not None:
-            if m.get("current_exq") or m.get("state") == "running":
-                m["display_stale"] = True
-                m["last_known_exq"] = m.get("current_exq")
-            m["state"] = "stale"
+        if m.get("telemetry_source") != "git":
+            continue
+        if m.get("display_fresh") is not False:
+            continue
+        if m.get("age_seconds") is None:
+            continue
+        if m.get("current_exq") or m.get("state") == "running":
+            m["display_stale"] = True
+            m["last_known_exq"] = m.get("current_exq")
+        m["state"] = "stale"
 
     return {
         "schema_version": "v1",
         "now_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "fresh_window_seconds": FRESH_WINDOW_SECONDS,
+        "display_fresh_seconds": DISPLAY_FRESH_SECONDS,
         "stale_exclude_seconds": STALE_EXCLUDE_SECONDS,
-        "coordinator_overlay": bool(coord_snaps),
+        "telemetry_mode": telemetry_mode,
+        "coordinator_overlay": telemetry_mode == "coordinator",
         "machines": out_machines,
     }
 

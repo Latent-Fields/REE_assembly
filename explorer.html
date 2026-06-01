@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-01.1 -->
+<!-- EXPLORER_VERSION: 2026-06-01.3 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8993,7 +8993,6 @@ END CONFLICT RESOLUTION`;
     const EXP_SCROLL_STORAGE_KEY = 'ree_explorer.exp_scroll_y';
     let expQueueCache = { items: [], source: 'file', at: 0 };
     let expQueueCountDebounce = { shown: null, candidate: null, streak: 0 };
-
     function ensureExpShell() {
       if (!els.expContent) return;
       if (document.getElementById('expShell')) return;
@@ -9609,10 +9608,9 @@ END CONFLICT RESOLUTION`;
         </div>`;
 
       // ── Now Running ──
-      // Local card sourced from runner_status.json (always fresh, full
-      // progress payload). Remote machines sourced from /api/machines
-      // heartbeats (~5s local write, ~60s git push, so up to ~1 min stale
-      // on the explorer relative to the cloud runner's actual state).
+      // Local card: runner_status.json. Remote fleet: /api/machines with
+      // coordinator timing when telemetry_mode=coordinator (git files only
+      // enrich recent_lines / titles, not heartbeat age).
       const machineEntries = (machinesPayload && machinesPayload.machines) || [];
       // Coordinator heartbeats are fresher than local runner_status for the
       // same machine; merge live progress + time estimates into cur.
@@ -9653,16 +9651,16 @@ END CONFLICT RESOLUTION`;
       }
 
       function machineLabelHtml(m, ageSec) {
-        const staleTag = (!m.fresh || m.display_stale || m.state === 'stale')
+        const staleTag = m.display_fresh === false
           ? ` <span style="color:#b8860b;font-weight:600">[STALE]</span>`
           : '';
         const ageLabel = ageSec != null
           ? (ageSec < 120 ? ageSec + 's' : Math.round(ageSec / 60) + 'm')
           : '?';
-        const live = m.telemetry_source === 'coordinator'
-          ? ` <span style="color:var(--muted);font-weight:normal">(coordinator)</span>`
+        const srcHint = m.telemetry_source === 'git'
+          ? ` <span style="color:var(--muted);font-weight:normal">(git mirror)</span>`
           : '';
-        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${live}${staleTag} <span style="font-weight:normal">heartbeat ${ageLabel} ago</span></div>`;
+        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${srcHint}${staleTag} <span style="font-weight:normal">heartbeat ${ageLabel} ago</span></div>`;
       }
 
       let runningHtml = '';
