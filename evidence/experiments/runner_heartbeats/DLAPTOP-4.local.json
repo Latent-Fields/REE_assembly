@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-01T16:11:54Z",
+  "last_tick_utc": "2026-06-01T16:41:59Z",
   "state": "running",
   "current_exq": "V3-EXQ-624",
   "current_exq_started_utc": "2026-06-01T15:52:27.955123+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-320",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_baseline",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_1_vigor_niv",
+    "runs_done": 1,
     "runs_total": 12,
-    "episodes_done": 75,
+    "episodes_done": 50,
     "episodes_total": 130,
-    "overall_pct": 4.8
+    "overall_pct": 11.5
   },
-  "seconds_elapsed": 1167,
-  "seconds_remaining": 12419,
+  "seconds_elapsed": 2972,
+  "seconds_remaining": 19376,
   "recent_lines": [
-    "seeds=[42, 43, 44] p0_ep=100 p1_ep=30 steps=200 grid=8x8 hazards=1 resources=3 action_dim=5 v_t_floor=0.05",
-    "Seed 42 Condition ARM_0_baseline",
-    "[train] seed=42 arm=ARM_0_baseline ep 25/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
-    "[train] seed=42 arm=ARM_0_baseline ep 50/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
-    "[train] seed=42 arm=ARM_0_baseline ep 75/130 phase=p0 p1_ticks=0 p1_nonnoop=0"
+    "[train] seed=42 arm=ARM_0_baseline ep 125/130 phase=p1 p1_ticks=2905 p1_nonnoop=2813",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_1_vigor_niv",
+    "[train] seed=42 arm=ARM_1_vigor_niv ep 25/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
+    "[train] seed=42 arm=ARM_1_vigor_niv ep 50/130 phase=p0 p1_ticks=0 p1_nonnoop=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
