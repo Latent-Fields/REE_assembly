@@ -147,6 +147,33 @@
       "assigned_at": "2026-05-31T02:16:47Z",
       "status": "completed_resumable",
       "reaped_at": "2026-05-31T03:17:53Z"
+    },
+    {
+      "igw_id": "IGW-20260601-028",
+      "stable_hash": "10e3bf7821a3",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 28,
+      "claim_ids": [
+        "INV-074"
+      ],
+      "owner_exq": null,
+      "title": "Retest after substrate: INV-074",
+      "worktree": ".claude/worktrees/igw-028-retest-after-substrate-inv-074",
+      "branch": "claude/igw-028-retest-after-substrate-inv-074",
+      "session_uuid": "01e15c7f-e02d-4618-85af-029c2e2922f8",
+      "pid": 9857,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-028-retest-after-substrate-inv-074 && claude --resume 01e15c7f-e02d-4618-85af-029c2e2922f8",
+      "task_claim_session_id": "igw-auto-igw-028-retest-after-substrate-inv-074-20260601T183952Z",
+      "assigned_at": "2026-06-01T18:39:50Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-06-01T18:50:46Z",
+      "output": {
+        "queue_id": "V3-EXQ-610c",
+        "script": "experiments/v3_exq_610c_inv074_crystallization_necessity.py",
+        "commit": "60275ae5f383c0a34d135f6ffeb5ba2ccebca207",
+        "status": "queued"
+      }
     }
   ],
   "dispositions": [
