@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness",
+  "run_id": "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-05-31T23:09:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-06-01T05:50Z governance cycle] Substrate-readiness diagnostic PASS for scaffolded_sd054_onboarding (substrate landed 2026-05-31 IGW-20260531-029); supersedes V3-EXQ-621. PASS routed via C1 (6/12 cells completed) + C3 (cascade_consequential=true via ARM_2 approach_commit lift); C2 z_goal floor still unmet (z_goal=0 across all arms) -- this motivated the staged V3-EXQ-622 z_goal-collapse decomposition diagnostic. Per substrate-readiness diagnostic pattern (matches MECH-295 / SD-049 precedents): substrate-readiness PASS is non_contributory weighting until a load-bearing behavioural successor lands. Clears prereq (2) of behavioral_diversity_isolation:GAP-C; V3-EXQ-603d / 591b behavioural cluster validation queueable. Per-claim reclassification: {Q-045: non_contributory, MECH-313: non_contributory, MECH-260: non_contributory} -- substrate-readiness signal only, not load-bearing behavioural evidence. claim status / pending_retest_after_substrate flag unchanged."
+}

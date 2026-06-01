@@ -10,13 +10,13 @@
   "experiment_purpose": "diagnostic",
   "outcome": "FAIL",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "Q-045": "non_contributory",
-    "MECH-313": "non_contributory",
-    "MECH-260": "non_contributory"
+    "Q-045": "superseded",
+    "MECH-313": "superseded",
+    "MECH-260": "superseded"
   },
-  "evidence_direction_note": "Substrate-readiness diagnostic for scaffolded_sd054_onboarding (substrate landed 2026-05-31 IGW-20260531-029). PASS clears prereq (2) of behavioral_diversity_isolation:GAP-C; behavioural cluster validation V3-EXQ-603d / 591b queueable. FAIL routes to a re-triage; the substrate-design memo Section 'What this memo does NOT do' bullets reserve A1 full-policy-replay-onto-reward-rich-trajectories and A3 hand-coded heuristic-pretrained agents as fallbacks if (A2) does not produce z_goal lift. Runner recorded ERROR (missing emit_outcome sentinel; subprocess exit=0) -- this manifest is the authoritative scientific outcome (FAIL). V3-EXQ-621a queued for runner-conformance re-run with P1 per-episode length diagnostics.",
+  "evidence_direction_note": "[2026-06-01T05:50Z governance cycle] Superseded by V3-EXQ-621a (run_id v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3). V3-EXQ-621 was the original scaffolded_sd054_onboarding substrate-readiness diagnostic that the runner mis-classified as ERROR due to missing emit_outcome sentinel (exit=0; no coordinator results row; manifest recovered from cloud-3 via /diagnose-errors session 2026-05-31T20:41Z). V3-EXQ-621a is the corrected re-run with emit_outcome patched + richer P1 survival diagnostics; 621a is the canonical evidence for this question. Excluded from scoring via evidence_direction=superseded per CLAUDE.md supersession rule.",
   "scoring_excluded": "diagnostic_probe",
   "timestamp_utc": "20260531T202307Z",
   "dry_run": false,

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-31T19:15:00Z",
+  "last_review_utc": "2026-06-01T05:55:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -438,7 +438,13 @@
     "V3-EXQ-618",
     "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions",
     "V3-EXQ-620",
-    "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3"
+    "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3",
+    "v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness",
+    "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness",
+    "v3_exq_622_goal_stream_staged_sd054",
+    "V3-EXQ-621",
+    "V3-EXQ-621a",
+    "V3-EXQ-622"
   ],
   "reviewed_run_ids": [
     "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
@@ -2636,7 +2642,10 @@
     "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3",
     "v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3",
     "v3_exq_618_sd049_phase3_consumer_cascade_validation_20260531T175943Z_v3",
-    "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3"
+    "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3",
+    "v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness_20260531T202307Z_v3",
+    "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3",
+    "v3_exq_622_goal_stream_staged_sd054_20260531T223804Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3362,6 +3371,35 @@
         "V3-EXQ-620"
       ],
       "subject": "/governance cycle 1908Z. 4 pending experiments walked: (1) V3-EXQ-616 FAIL Q-054 entropy_bias_scale sweep -- per failure_autopsy_MECH-341-cluster_2026-05-31 (status=confirmed) applied: Q-054 -> mixed (definitive negative answer to scale-lever framing; load-bearing floor is at proposer layer SP-CEM, not score layer); MECH-341 -> non_contributory (clarification not falsification; correct claim characterisation is score-layer preserver of upstream-supplied candidate-pool diversity). Bit-identical per-seed results across {1.0,2.0,4.0,8.0} mathematically prove uniform additive bias cannot move a single-class CEM proposer output. (2) V3-EXQ-614b FAIL Phase P3 behavioural falsifier on SD-056-amended substrate -- per failure_autopsy_V3-EXQ-614b_2026-05-31 (status=confirmed) + cluster autopsy applied: MECH-341 -> non_contributory + ARC-065 -> non_contributory. SD-056 amend lifted ARM_1 ablate_B by +0.187 nats vs ARM_2 ALL_ON +0.116 nats; MECH-341 marginal contribution shrunk 0.158->0.087 because upstream cluster does more of diversity work; ARM_2 ALL_ON 0.800 nats is highest of any 614-lineage run. Not a falsification. Process flag: C2 necessity_delta_threshold=0.1 calibrated pre-SD-056-amend; must be revisited before any V3-EXQ-614c successor. (3) V3-EXQ-620 PASS SD-037 Phase 1 consumer-input distributions diagnostic, claim_ids=[]: all 6 measured quantities identically 0.0 across all 2939 pooled steps; fishtank baseline genuinely never engages consumer-input streams. Phase 2 p70 recalibration rule blocked at axis (a) without a probe env that engages hazards. substrate_queue SD-037 entry observation updated separately (axis (b) sustained-threat env curriculum elevated to in-scope). (4) V3-EXQ-618 PASS SD-049 Phase 3 consumer-cascade validation diagnostic: all 4 acceptance criteria PASS; reclassified non_contributory on both SD-049 + MECH-295 per substrate-readiness diagnostic pattern (cf. EXQ-519b precedent). Load-bearing behavioural validation owed to V3-EXQ-619 (reserved). Promotion impact: ARC-065 candidate -> provisional applied per cluster autopsy recommendation (post-walk direction counts 46/5/0). MECH-295 / MECH-304 / MECH-341 hold_pending_v3_substrate rolled pending_user -> applied. record_decision logged for all four claims."
+    },
+    {
+      "utc": "2026-06-01T05:55:00Z",
+      "session_id": "governance-cycle-20260601T054231Z",
+      "runs_reviewed": [
+        "v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness_20260531T202307Z_v3",
+        "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3",
+        "v3_exq_622_goal_stream_staged_sd054_20260531T223804Z_v3"
+      ],
+      "dirs_marked_discussed": [
+        "v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness",
+        "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness",
+        "v3_exq_622_goal_stream_staged_sd054",
+        "V3-EXQ-621",
+        "V3-EXQ-621a",
+        "V3-EXQ-622"
+      ],
+      "governance_decisions": {
+        "V3-EXQ-621": "evidence_direction -> superseded (predecessor of 621a per CLAUDE.md supersession rule)",
+        "V3-EXQ-621a": "evidence_direction_per_claim -> non_contributory (substrate-readiness diagnostic pattern; PASS clears GAP-C prereq 2 but is not load-bearing behavioural evidence)",
+        "V3-EXQ-622": "accept non_contributory verbatim (no claim_ids; staged z_goal-collapse decomposition diagnostic)",
+        "V3-EXQ-592d": "NOT marked reviewed; flagged for /failure-autopsy (3rd consecutive ARM_0 baseline-zero FAIL; commitment_closure:GAP-4 closure-drift; no autopsy artifact yet)",
+        "V3-EXQ-621 ERROR (runner-only)": "discussed; same run as V3-EXQ-621 indexed FAIL (already resolved via /diagnose-errors 2026-05-31T20:41Z; 621a is the corrected successor)"
+      },
+      "claims_yaml_edits": [
+        "MECH-260 eqn append",
+        "MECH-313 eqn append",
+        "Q-045 eqn append"
+      ]
     }
   ],
   "review_log": [
@@ -3409,6 +3447,11 @@
         "V3-EXQ-620"
       ],
       "subject": "/governance cycle 1908Z: 4 pending experiments walked + ARC-065 candidate -> provisional promotion. See review_batches[] entry for full detail."
+    },
+    {
+      "utc": "2026-06-01T05:55:00Z",
+      "session_id": "governance-cycle-20260601T054231Z",
+      "note": "4 indexed pending + 1 runner-only walked. 3 closed (621 superseded, 621a per-claim non_contributory, 622 non_contributory verbatim + runner-only 621 ERROR cleared via prior /diagnose-errors). 592d flagged for /failure-autopsy (3rd consecutive ARM_0 baseline-zero FAIL on MECH-090 commit-readiness conjunction)."
     }
   ]
 }

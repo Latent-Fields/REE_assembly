@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness",
+  "run_id": "v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness_20260531T202307Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-31T20:23:07Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "superseded",
+  "evidence_direction_per_claim": {
+    "Q-045": "superseded",
+    "MECH-313": "superseded",
+    "MECH-260": "superseded"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-06-01T05:50Z governance cycle] Superseded by V3-EXQ-621a (run_id v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3). V3-EXQ-621 was the original scaffolded_sd054_onboarding substrate-readiness diagnostic that the runner mis-classified as ERROR due to missing emit_outcome sentinel (exit=0; no coordinator results row; manifest recovered from cloud-3 via /diagnose-errors session 2026-05-31T20:41Z). V3-EXQ-621a is the corrected re-run with emit_outcome patched + richer P1 survival diagnostics; 621a is the canonical evidence for this question. Excluded from scoring via evidence_direction=superseded per CLAUDE.md supersession rule."
+}

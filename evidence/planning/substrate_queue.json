@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "governance-IGW-20260531-001",
-  "last_updated_utc": "2026-05-31T19:15:00Z",
+  "last_updated_utc": "2026-06-01T05:55Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -3415,7 +3415,7 @@
         }
       ],
       "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
-      "last_seen_session": "implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z",
+      "last_seen_session": "governance-cycle-20260601T054231Z",
       "priority": 1,
       "ready": true,
       "sd_id": "scaffolded_sd054_onboarding",
@@ -3455,6 +3455,15 @@
           "validation_experiment": "V3-EXQ-621 queued; 4-arm design per memo; 3 seeds x 4 arms; acceptance C1 AND (C2 OR C3) per memo Acceptance section.",
           "closes_igw": "IGW-20260531-029",
           "triage_memo": "evidence/planning/z_goal_collapse_triage_2026-05-31.md (classification (b) substrate-structural; this implementation realises the recommended fix)."
+        },
+        {
+          "utc": "2026-06-01T05:55Z",
+          "session_id": "governance-cycle-20260601T054231Z",
+          "event": "substrate_readiness_diagnostic_pass",
+          "queue_id": "V3-EXQ-621a",
+          "run_id": "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3",
+          "supersedes": "V3-EXQ-621 (recovered manifest from runner emit_outcome misclassification; ree-cloud-3 2026-05-31T20:23Z)",
+          "note": "V3-EXQ-621a PASS (C1 6/12 cells + C3 cascade_consequential via ARM_2 approach_commit lift). C2 z_goal floor unmet (z_goal=0 across all arms) -- substrate-readiness PASS clears prereq (2) of behavioral_diversity_isolation:GAP-C, but z_goal feeding under scaffolded onboarding is not yet wired correctly; this motivated the staged V3-EXQ-622 z_goal-collapse decomposition diagnostic (seed 42 S0 PASS shows goal-stream trainability works; S1+ failures point to persistence/risk wiring). Per /governance Step 4 protocol, V3-EXQ-621a reclassified per-claim non_contributory on Q-045/MECH-313/MECH-260 (substrate-readiness diagnostic pattern; not load-bearing behavioural evidence). pending_retest_after_substrate flags retained. Behavioural cluster validation V3-EXQ-603d / 591b queueable next."
         }
       ]
     },

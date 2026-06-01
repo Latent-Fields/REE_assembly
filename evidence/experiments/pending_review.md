@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-05-31T19:25:06Z`  
-Last review: `2026-05-31T19:15:00Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-06-01T05:53:12Z`  
+Last review: `2026-06-01T05:55:00Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_592d_mech090_readiness_conjunction_validation_20260531T213852Z_v3` | 2026-05-31T21:38 | MECH-090 | — |
 
 ---
 
