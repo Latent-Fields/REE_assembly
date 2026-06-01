@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-01T13:46:19Z",
+  "last_tick_utc": "2026-06-01T14:16:26Z",
   "state": "running",
   "current_exq": "V3-EXQ-623",
   "current_exq_started_utc": "2026-06-01T11:30:54.942354+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-104",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / MATCHED_PAIR",
-    "runs_done": 0,
+    "run_label": "Seed 123 / MATCHED_PAIR",
+    "runs_done": 1,
     "runs_total": 2,
-    "episodes_done": 400,
+    "episodes_done": 100,
     "episodes_total": 400,
-    "overall_pct": 50.0
+    "overall_pct": 62.5
   },
-  "seconds_elapsed": 8125,
-  "seconds_remaining": 8125,
+  "seconds_elapsed": 9932,
+  "seconds_remaining": 6577,
   "recent_lines": [
-    "[train] label seed=42 ep 400/400  running_var=0.000003",
-    "Post-train running_variance=0.000003  commit_threshold=0.4000  committed=True",
     "============================================================",
-    "[V3-EXQ-623] Seed 42 -- SURPRISE_GATE_ON",
-    "============================================================"
+    "[V3-EXQ-623] Seed 123 Condition MATCHED_PAIR",
+    "============================================================",
+    "[train] label seed=123 ep 50/400  running_var=0.000013",
+    "[train] label seed=123 ep 100/400  running_var=0.000010"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

@@ -1,46 +1,33 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-01T13:45:29Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-626",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-517c",
-      "result": "ERROR",
-      "completed_at": "2026-05-30T14:31:01.690058+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490i",
-      "result": "FAIL",
-      "completed_at": "2026-05-30T18:44:36.578864+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-569d",
-      "result": "PASS",
-      "completed_at": "2026-05-31T05:36:51.114673+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614b",
-      "result": "FAIL",
-      "completed_at": "2026-05-31T18:20:42.327643+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614c",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T12:45:10.737866+00:00"
-    }
+  "last_tick_utc": "2026-06-01T14:16:22Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-624",
+  "current_exq_started_utc": "2026-06-01T13:47:35.866053+00:00",
+  "current_title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
+  "current_claim_id": "MECH-320",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_baseline",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 100,
+    "episodes_total": 130,
+    "overall_pct": 6.4
+  },
+  "seconds_elapsed": 1726,
+  "seconds_remaining": 13841,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_baseline",
+    "[train] seed=42 arm=ARM_0_baseline ep 25/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
+    "[train] seed=42 arm=ARM_0_baseline ep 50/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
+    "[train] seed=42 arm=ARM_0_baseline ep 75/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
+    "[train] seed=42 arm=ARM_0_baseline ep 100/130 phase=p0 p1_ticks=0 p1_nonnoop=0"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 26802,
   "runner_version": null,
   "gpu": {
