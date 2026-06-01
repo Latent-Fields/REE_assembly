@@ -13,8 +13,8 @@
    "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
   }
  },
- "last_seen_session": "governance-cycle-20260601T165823Z",
- "last_updated_utc": "2026-06-01T17:22:37Z",
+ "last_seen_session": "IGW-20260601-023",
+ "last_updated_utc": "2026-06-01T17:42:58Z",
  "next_implement_substrate": {
   "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
   "sd_id": null,
@@ -3551,7 +3551,7 @@
   {
    "sd_id": "test_bed_enrichment_crystallization_necessity",
    "title": "Phase-3 destabilising-pressure env so the crystallization-necessity control arm measurably collapses",
-   "status": "pending_implementation",
+   "status": "implemented",
    "ready": true,
    "design_doc": null,
    "depends_on_unresolved": [],
@@ -3580,7 +3580,10 @@
     "evidence/planning/failure_autopsy_V3-EXQ-610a_2026-06-01.json"
    ],
    "added_session": "governance-cycle-20260601T165823Z",
-   "last_seen_session": "governance-cycle-20260601T165823Z"
+   "last_seen_session": "IGW-20260601-023",
+   "implementation_session": "IGW-20260601-023",
+   "implementation_utc": "2026-06-01T17:42:58Z",
+   "implementation_note": "Added Phase-3-specific env_kwargs to infant_curriculum.InfantCurriculumScheduler. Phase 3 now enables multi_source_dynamics (SD-047: weather_field + transient_events + background_drift with n_drift_sources=2), interoceptive_noise (SD-048: autonomic + sensitisation + fatigue at scale 0.6), and accelerated env_drift (interval=3, prob=0.5). These dynamics force continued forward-model adaptation post-Phase-3, predicted to collapse diversity in the no-crystallization control arm (INV-074 D2 criterion). With crystallization (MECH-333/334), the locked diversity distribution should persist. Test: ree-v3/experiments/test_infant_curriculum_phase3.py (smoke test PASS 2026-06-01)."
   }
  ],
  "schema_version": "substrate_queue/v2"

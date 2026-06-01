@@ -33891,6 +33891,17 @@
     post-Phase-3 destabilising pressure (env/test-bed ceiling). pending_retest_after_substrate=true;
     substrate_queue amend (test_bed_enrichment_crystallization_necessity, priority 3). 610a marked superseded_by
     610b.
+
+    [2026-06-01 substrate implementation IGW-20260601-023]: test_bed_enrichment_crystallization_necessity
+    substrate item implemented. infant_curriculum.InfantCurriculumScheduler Phase 3 env_kwargs now include
+    destabilizing environmental dynamics: multi_source_dynamics_enabled (SD-047: weather_field + transient_events
+    + background_drift with n_drift_sources=2, intensity_scale=0.8), interoceptive_noise_enabled (SD-048:
+    autonomic + sensitisation + fatigue at scale=0.6), and accelerated env_drift (interval=3 vs default 5,
+    prob=0.5 vs default 0.3). These dynamics force continued forward-model adaptation post-Phase-3. Prediction:
+    control arm (no crystallization) will show entropy collapse (D2 delta >= +0.10) under this pressure;
+    crystallized arm (MECH-333/334) will preserve Phase-2 diversity. Smoke test PASS: ree-v3/experiments/
+    test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs. pending_retest_after_substrate retained
+    pending V3-EXQ retest with new Phase-3 pressure.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
 
@@ -33981,6 +33992,17 @@
     post-Phase-3 destabilising pressure (env/test-bed ceiling). pending_retest_after_substrate=true;
     substrate_queue amend (test_bed_enrichment_crystallization_necessity, priority 3). 610a marked superseded_by
     610b.
+
+    [2026-06-01 substrate implementation IGW-20260601-023]: test_bed_enrichment_crystallization_necessity
+    substrate item implemented. infant_curriculum.InfantCurriculumScheduler Phase 3 env_kwargs now include
+    destabilizing environmental dynamics: multi_source_dynamics_enabled (SD-047: weather_field + transient_events
+    + background_drift with n_drift_sources=2, intensity_scale=0.8), interoceptive_noise_enabled (SD-048:
+    autonomic + sensitisation + fatigue at scale=0.6), and accelerated env_drift (interval=3 vs default 5,
+    prob=0.5 vs default 0.3). These dynamics force continued forward-model adaptation post-Phase-3. Prediction:
+    control arm (no crystallization) will show entropy collapse (D2 delta >= +0.10) under this pressure;
+    crystallized arm (MECH-333/334) will preserve Phase-2 diversity. Smoke test PASS: ree-v3/experiments/
+    test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs. pending_retest_after_substrate retained
+    pending V3-EXQ retest with new Phase-3 pressure.
   implementation_note: >
     PARTIAL implementation 2026-05-17 -- option (E) plasticity injection
     (Nikishin 2023 NeurIPS) only. ree-v3 GatedPolicy.crystallize() adds a
@@ -34138,6 +34160,17 @@
     post-Phase-3 destabilising pressure (env/test-bed ceiling). pending_retest_after_substrate=true;
     substrate_queue amend (test_bed_enrichment_crystallization_necessity, priority 3). 610a marked superseded_by
     610b.
+
+    [2026-06-01 substrate implementation IGW-20260601-023]: test_bed_enrichment_crystallization_necessity
+    substrate item implemented. infant_curriculum.InfantCurriculumScheduler Phase 3 env_kwargs now include
+    destabilizing environmental dynamics: multi_source_dynamics_enabled (SD-047: weather_field + transient_events
+    + background_drift with n_drift_sources=2, intensity_scale=0.8), interoceptive_noise_enabled (SD-048:
+    autonomic + sensitisation + fatigue at scale=0.6), and accelerated env_drift (interval=3 vs default 5,
+    prob=0.5 vs default 0.3). These dynamics force continued forward-model adaptation post-Phase-3. Prediction:
+    control arm (no crystallization) will show entropy collapse (D2 delta >= +0.10) under this pressure;
+    crystallized arm (MECH-333/334) will preserve Phase-2 diversity. Smoke test PASS: ree-v3/experiments/
+    test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs. pending_retest_after_substrate retained
+    pending V3-EXQ retest with new Phase-3 pressure.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   implementation_note: >
