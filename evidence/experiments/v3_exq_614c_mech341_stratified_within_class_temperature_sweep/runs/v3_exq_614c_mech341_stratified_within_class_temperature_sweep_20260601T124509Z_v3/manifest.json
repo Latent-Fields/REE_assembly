@@ -1,0 +1,49 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_614c_mech341_stratified_within_class_temperature_sweep",
+  "run_id": "v3_exq_614c_mech341_stratified_within_class_temperature_sweep_20260601T124509Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-01T12:45:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-341"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-341": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "epistemic_category": "instrumentation_defect",
+  "evidence_direction_note": "2026-06-01T17:22:37Z governance: reclassified weakens->non_contributory per confirmed failure_autopsy_V3-EXQ-614c_2026-06-01 (both failing criteria are test-design defects: C2 vacuous score-layer-argmin metric is temperature-invariant; C1 mis-specified per-seed band vs cross-seed mean; C3 substrate-readiness PASS 3/3). instrumentation_defect, not substrate_ceiling. pending_retest gated on V3-EXQ-614d corrected harness.",
+  "pending_retest_after_corrected_harness": "V3-EXQ-614d"
+}

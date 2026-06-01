@@ -1,0 +1,59 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_610b_inv074_crystallization_necessity",
+  "run_id": "v3_exq_610b_inv074_crystallization_necessity_20260601T122002Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-074",
+    "MECH-334",
+    "MECH-333",
+    "MECH-341"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-074": "non_contributory",
+    "MECH-333": "non_contributory",
+    "MECH-334": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "claim_ids": [
+    "INV-074",
+    "MECH-333",
+    "MECH-334"
+  ],
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true,
+  "evidence_direction_note": "2026-06-01T17:22:37Z governance: non_contributory + substrate_ceiling + pending_retest_after_substrate. Same signature as 610a (failure_autopsy_V3-EXQ-610a_2026-06-01): D2 FAIL -- the no-crystallization control arm did NOT collapse (d2_delta -0.0057; ARM_0 end_phase_2 1.120 ~= end_phase_3 1.126). Per the script's own grid, D2 FAIL = non_contributory; with the control never degrading, D1 (d1_delta -0.036) carries no information against the crystallization-necessity claim. Diagnosis: CausalGridWorldV2 supplies no post-Phase-3 destabilising pressure (env/test-bed ceiling). MECH-341 tag dropped (mis-tagged; not under direct test in a crystallization-necessity exp). Retest requires test_bed_enrichment_crystallization_necessity (substrate_queue amend)."
+}

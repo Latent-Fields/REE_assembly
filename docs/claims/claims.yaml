@@ -9279,6 +9279,12 @@
     and z_goal-to-behavior pathway to be validated.
 
     [2026-05-08 governance]: EXQ-514f reclassified weakens -> non_contributory (same reason as SD-049 sibling: pre-MECH-307 mixed affect-stream confound).
+
+    [2026-06-01 governance: V3-EXQ-514k non_contributory (GAP-2 confound)]: V3-EXQ-514k reclassified
+    weakens->non_contributory for SD-015. Same confound as the SD-049 disposition: the wanting/liking identity
+    dissociation is gated by GAP-2 (SP-CEM) + missing object-bound incentive-salience substrate per
+    failure_autopsy_V3-EXQ-626_2026-06-01. Not load-bearing against SD-015 pending object-bound substrate +
+    positive-control-guarded harness.
   implementation_note: >
     IMPLEMENTED 2026-04-10. ResourceEncoder class in ree_core/latent/stack.py:
     world_obs [250] -> Linear(250,64) -> ReLU -> Linear(64,32) -> z_resource [32];
@@ -25664,6 +25670,13 @@
     substrate_conditional with V4 dependency.
 
     [2026-05-08 governance]: EXQ-514f (both runs) reclassified weakens -> non_contributory. Pre-MECH-307 affect-stream architecture mixed harm and benefit surprise; Phase-2 reef behavioural validation depends on cleanly separated affect signals. With streams mixed, classifier-loss and probe-accuracy outcomes cannot be interpreted as testing the SD-049 sleep-loop claim. Re-test required after MECH-307 conjunction-fix substrate lands; sleep substrate work is the load-bearing prerequisite for the underlying SD-049 mechanism itself.
+
+    [2026-06-01 governance: V3-EXQ-514k non_contributory (GAP-2 confound)]: V3-EXQ-514k Phase-3 wanting/liking
+    identity dissociation FAILed (C6 dissoc=False, C5 goal_resource_r_lift=False, identity-probe weak), but the
+    ecological dissociation is CONFOUNDED by GAP-2 (SP-CEM) and the missing object-bound incentive-salience
+    substrate per failure_autopsy_V3-EXQ-626_2026-06-01 routing (do not re-run ecological dissociation until
+    object-bound substrate + positive-control-guarded harness). Reclassified weakens->non_contributory; not load-
+    bearing against SD-049. MECH-229/MECH-230 remain non_contributory.
   location: docs/architecture/sd_049_multi_resource_heterogeneity.md
 
 - id: MECH-296
@@ -33869,6 +33882,15 @@
     (unchanged). INV-074 is the fourth member of a multi-experiment lineage
     (543h/i/k/l) where every closure-arm result is non_contributory until
     ARC-062 produces a differentiated gated policy at Phase-3 boundary.
+
+    [2026-06-01 governance: V3-EXQ-610b non_contributory + substrate_ceiling + pending_retest; V3-EXQ-610a
+    superseded]: V3-EXQ-610b (crystallization-necessity pair, supersedes 610a) FAILed with the identical signature
+    to 610a: D2 control did NOT collapse (d2_delta -0.0057). Per the script's own grid and confirmed
+    failure_autopsy_V3-EXQ-610a_2026-06-01, D2 FAIL = non_contributory; with the control never degrading, D1
+    (-0.036) carries no information against crystallization-necessity. Diagnosis: CausalGridWorldV2 supplies no
+    post-Phase-3 destabilising pressure (env/test-bed ceiling). pending_retest_after_substrate=true;
+    substrate_queue amend (test_bed_enrichment_crystallization_necessity, priority 3). 610a marked superseded_by
+    610b.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
 
@@ -33950,6 +33972,15 @@
     completed 2026-05-17 -- biological analog (PV soft-WTA via feedback inhibition
     proportional to dominant drive) identified as the most faithful computational
     target.
+
+    [2026-06-01 governance: V3-EXQ-610b non_contributory + substrate_ceiling + pending_retest; V3-EXQ-610a
+    superseded]: V3-EXQ-610b (crystallization-necessity pair, supersedes 610a) FAILed with the identical signature
+    to 610a: D2 control did NOT collapse (d2_delta -0.0057). Per the script's own grid and confirmed
+    failure_autopsy_V3-EXQ-610a_2026-06-01, D2 FAIL = non_contributory; with the control never degrading, D1
+    (-0.036) carries no information against crystallization-necessity. Diagnosis: CausalGridWorldV2 supplies no
+    post-Phase-3 destabilising pressure (env/test-bed ceiling). pending_retest_after_substrate=true;
+    substrate_queue amend (test_bed_enrichment_crystallization_necessity, priority 3). 610a marked superseded_by
+    610b.
   implementation_note: >
     PARTIAL implementation 2026-05-17 -- option (E) plasticity injection
     (Nikishin 2023 NeurIPS) only. ree-v3 GatedPolicy.crystallize() adds a
@@ -34098,6 +34129,15 @@
     non_contributory until ARC-062 produces a differentiated gated
     policy at Phase-3 boundary. epistemic_category=substrate_ceiling
     (unchanged).
+
+    [2026-06-01 governance: V3-EXQ-610b non_contributory + substrate_ceiling + pending_retest; V3-EXQ-610a
+    superseded]: V3-EXQ-610b (crystallization-necessity pair, supersedes 610a) FAILed with the identical signature
+    to 610a: D2 control did NOT collapse (d2_delta -0.0057). Per the script's own grid and confirmed
+    failure_autopsy_V3-EXQ-610a_2026-06-01, D2 FAIL = non_contributory; with the control never degrading, D1
+    (-0.036) carries no information against crystallization-necessity. Diagnosis: CausalGridWorldV2 supplies no
+    post-Phase-3 destabilising pressure (env/test-bed ceiling). pending_retest_after_substrate=true;
+    substrate_queue amend (test_bed_enrichment_crystallization_necessity, priority 3). 610a marked superseded_by
+    610b.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   implementation_note: >
@@ -35315,6 +35355,16 @@
     transitively unblocks arc_062_rule_apprehension:GAP-B (V3-EXQ-543l
     successor cohort) under shared SD-056-amended substrate. MECH-341
     stays candidate / v3_pending=true pending V3-EXQ-614c outcome.
+
+    [2026-06-01 governance: V3-EXQ-614c non_contributory (instrumentation_defect)]: V3-EXQ-614c (within-class
+    temperature sweep) reclassified weakens->non_contributory per confirmed
+    failure_autopsy_V3-EXQ-614c_2026-06-01. Both failing criteria are test-design defects: C2 vacuous (reported
+    selected_class_entropy measured at the score-layer argmin, temperature-invariant by construction; within-class
+    firing diagnostics not recorded); C1 mis-specified (per-seed band vs cross-seed mean; ARM_0 cross-seed mean
+    0.7999 ~= 0.800 = no regression, but 0/3 seeds in band). C3 substrate-readiness PASS 3/3 on all arms
+    (substrate fires). instrumentation_defect, not substrate_ceiling. Corrected re-run queued as V3-EXQ-614d.
+    MECH-341 stays candidate / v3_pending=true. NOTE: V3-EXQ-610b dropped its mis-applied MECH-341 tag (not under
+    test in a crystallization-necessity experiment).
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is

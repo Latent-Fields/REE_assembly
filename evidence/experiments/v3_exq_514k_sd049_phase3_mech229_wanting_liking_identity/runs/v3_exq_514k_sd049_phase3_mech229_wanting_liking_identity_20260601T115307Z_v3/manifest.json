@@ -1,0 +1,54 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity",
+  "run_id": "v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity_20260601T115307Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-049": "non_contributory",
+    "SD-015": "non_contributory",
+    "MECH-229": "non_contributory",
+    "MECH-230": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "epistemic_category": "substrate_ceiling",
+  "evidence_direction_note": "2026-06-01T17:22:37Z governance: SD-049/SD-015 reclassified weakens->non_contributory. The ecological wanting/liking dissociation (C6 dissoc=False, C5 goal_resource_r_lift=False, C2b/C2c identity-probe weak) is CONFOUNDED by GAP-2 (SP-CEM) and the missing object-bound incentive-salience substrate, per failure_autopsy_V3-EXQ-626_2026-06-01 routing: do not re-run ecological dissociation until object-bound substrate + positive-control-guarded harness. Not load-bearing against SD-049/SD-015. MECH-229/MECH-230 remain non_contributory."
+}
