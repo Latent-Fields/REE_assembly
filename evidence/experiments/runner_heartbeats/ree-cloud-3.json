@@ -1,34 +1,34 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-01T18:07:42Z",
+  "last_tick_utc": "2026-06-01T18:37:54Z",
   "state": "running",
-  "current_exq": "V3-EXQ-592e",
-  "current_exq_started_utc": "2026-06-01T06:47:26.261975+00:00",
-  "current_title": "MECH-090 R-c readiness conjunction (4-arm, C1 baseline redesigned)",
-  "current_claim_id": "MECH-090",
+  "current_exq": "V3-EXQ-625b",
+  "current_exq_started_utc": "2026-06-01T18:12:32.306527+00:00",
+  "current_title": "SD-037 axis-b Phase 1b consumer-input distributions, sustained threat -- affective stream ON (supersedes V3-EXQ-625)",
+  "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_3_BOTH_GATES_ON",
-    "runs_done": 11,
-    "runs_total": 12,
-    "episodes_done": 120,
-    "episodes_total": 450,
-    "overall_pct": 93.9
+    "run_label": "Seed 7 / PHASE1B_BASELINE",
+    "runs_done": 1,
+    "runs_total": 3,
+    "episodes_done": 40,
+    "episodes_total": 60,
+    "overall_pct": 55.6
   },
-  "seconds_elapsed": 40816,
-  "seconds_remaining": 2504,
+  "seconds_elapsed": 1522,
+  "seconds_remaining": 657,
   "recent_lines": [
-    "[P0 probe] ep 80/400  rv=0.00001  threshold=0.4  converging=True",
-    "[P0 train] ep 80/400  rv=0.00001  reward=-0.9517",
-    "[P0 probe] ep 120/400  rv=0.00001  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00001 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[train] ARM_3_BOTH_GATES_ON seed=44 ep 120/400  (P0 done: converged=True aborted=False final_rv=0.00001)"
+    "Seed 7 Condition PHASE1B_BASELINE",
+    "[train] phase1b_seed_7 ep 10/60",
+    "[train] phase1b_seed_7 ep 20/60",
+    "[train] phase1b_seed_7 ep 30/60",
+    "[train] phase1b_seed_7 ep 40/60"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
-  "runner_pid": 743,
+  "runner_pid": 55509,
   "runner_version": null,
   "gpu": {
     "available": false

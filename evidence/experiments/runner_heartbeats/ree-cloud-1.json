@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-01T18:07:39Z",
+  "last_tick_utc": "2026-06-01T18:37:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-626a",
   "current_exq_started_utc": "2026-06-01T16:57:19.740208+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_B_DRIVE_ANNEAL_ONLY",
+    "run_label": "Seed 42 / ARM_C_HAZARD_ONLY",
     "runs_done": 0,
     "runs_total": 12,
-    "episodes_done": 60,
+    "episodes_done": 5,
     "episodes_total": 60,
-    "overall_pct": 8.3
+    "overall_pct": 0.7
   },
-  "seconds_elapsed": 4220,
-  "seconds_remaining": 21092,
+  "seconds_elapsed": 6032,
+  "seconds_remaining": 31077,
   "recent_lines": [
-    "[train] seed=42 arm=ARM_B_DRIVE_ANNEAL_ONLY ep 40/60 phase=P1 drive_floor=0.683 hfa=0.000 z_goal_peak=0.0000",
-    "[train] seed=42 arm=ARM_B_DRIVE_ANNEAL_ONLY ep 45/60 phase=P1 drive_floor=0.562 hfa=0.000 z_goal_peak=0.0000",
-    "[train] seed=42 arm=ARM_B_DRIVE_ANNEAL_ONLY ep 50/60 phase=P1 drive_floor=0.441 hfa=0.000 z_goal_peak=0.0000",
-    "[train] seed=42 arm=ARM_B_DRIVE_ANNEAL_ONLY ep 55/60 phase=P1 drive_floor=0.321 hfa=0.000 z_goal_peak=0.0000",
-    "[train] seed=42 arm=ARM_B_DRIVE_ANNEAL_ONLY ep 60/60 phase=P1 drive_floor=0.200 hfa=0.000 z_goal_peak=0.0000"
+    "[train] seed=44 arm=ARM_B_DRIVE_ANNEAL_ONLY ep 55/60 phase=P1 drive_floor=0.321 hfa=0.000 z_goal_peak=0.0000",
+    "[train] seed=44 arm=ARM_B_DRIVE_ANNEAL_ONLY ep 60/60 phase=P1 drive_floor=0.200 hfa=0.000 z_goal_peak=0.0000",
+    "verdict: seed=44 arm=ARM_B_DRIVE_ANNEAL_ONLY P0_peak=0.1917 P1_med_last=0.0000 P2_med_last=0.0000",
+    "Seed 42 Condition ARM_C_HAZARD_ONLY",
+    "[train] seed=42 arm=ARM_C_HAZARD_ONLY ep 5/60 phase=P0 z_goal_peak=0.0000"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
