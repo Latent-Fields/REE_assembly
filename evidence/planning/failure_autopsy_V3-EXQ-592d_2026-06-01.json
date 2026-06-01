@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-01T05:52:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_592d_mech090_readiness_conjunction_validation_20260531T213852Z_v3",
+      "queue_id": "V3-EXQ-592d",
+      "claim_ids": ["MECH-090"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim NOT tested; C1 baseline unmeasurable under rv-only ARM_0 entry semantic",
+        "biological_reference": "clear -- Cisek & Kalaska 2010 + Hanes & Schall 1996 + Roesch / Calu / Schoenbaum 2007 anchor R-c; both axes wired and demonstrably firing",
+        "prerequisites": "present -- R-c within-tick (2026-05-28) + across-tick (2026-05-29) substrates both landed; harness notify_outcome() seam exercised correctly",
+        "implementation": "substrate COMPLETE; SCRIPT has measurement defect -- n_commit_entries is transition-edge counter unreachable under continuous-committed ARM_0 semantic",
+        "environment": "adequate -- committed_mode_curriculum standard P0/P1/P2",
+        "measurement": "UNDER-INSTRUMENTED / MISLEADING -- C1 commit_rate > 0.001 structurally unmeetable on ARM_0; C2/C3/C4 inherit defect via cross-arm comparison against ARM_0 baseline",
+        "integration": "ok -- AND-composition at both elevate sites visible in ARM_3 1949 score + 150 nav blocks",
+        "scale": "adequate -- 3 seeds x 4 arms x ~50 episodes; P0 convergence robust across all 12 cells"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG-level beta gate commit-entry predicate with within-tick decisiveness + across-tick motor-program readiness conjunction (R-c synthesis reading)",
+        "dependencies": ["BetaGate.should_admit_elevation (within-tick decisiveness)", "CommitReadiness EMA (across-tick motor-program readiness)", "E3SelectionResult.scores per-candidate margin", "harness notify_outcome() per-tick proxy push"],
+        "is_formal_import": false,
+        "divergence": "none -- biology-faithful translation; substrate fires at expected rates (2005 score blocks + 150 nav blocks); no divergence to surface",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "non_contributory",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-592d (2026-05-31, 4-arm R-c readiness conjunction validation -- supersedes V3-EXQ-592c) FAIL_no_criterion. Diagnostic, NOT governance evidence against MECH-090 R-c amendment. The test design has an instrumentation defect on the C1 baseline criterion: the script measures 'commit entries' via beta_gate.mech090_n_elevation_admitted (transition-edge counter), but under ARM_0 (rv-only baseline) the agent enters P2 already committed (P0 trained rv to ~1e-5 / 1e-6 / 1e-6 across seeds, well below commit_threshold=0.4) and stays continuously committed throughout P2 (hold_rate=1.0; beta_elevated_steps == committed_steps). No fresh entry transitions occur during the measurement window -> n_commit_entries=0 unconditionally on ARM_0 regardless of gate state. C2/C3/C4 inherit the defect via cross-arm comparison against ARM_0 baseline. Substrate IS firing as predicted: ARM_1 2005 score-margin blocks confirm the within-tick decisiveness axis (Hanes & Schall 1996 reading) is active at the elevate sites; ARM_2/3 150 nav-competence blocks each confirm the across-tick motor-program readiness axis (Cisek & Kalaska 2010 + Roesch / Calu / Schoenbaum 2007 readings) is active; ARM_3 1949 score + 150 nav blocks confirm AND-composition at both elevate sites. The 2026-05-21 V3-EXQ-592 seed-42 degeneracy signature that motivated the R-c amendment (running_variance collapsed to ~1e-5 satisfying rv-only) is reproduced on ARM_0 across all 3 seeds -- positive substrate-side evidence that the rv-only entry semantic IS the degenerate basin R-c was designed to gate. R-c substrate (both 2026-05-28 within-tick + 2026-05-29 across-tick landings) remains pending behavioural validation under a redesigned V3-EXQ-592e successor. Process flags for any V3-EXQ-592e: (a) C1 baseline criterion needs structural rethink -- either force-uncommitted P2 entry (rv perturbation / brief commit_threshold raise) OR replace 'commit entry' count with 'hold_rate >= 0.5 on rv-only ARM_0' so the baseline criterion matches the actual rv-only entry semantic; (b) the script's interpretation-grid C1 FAIL routing ('C1 FAIL -> /diagnose-errors on curriculum harness, NOT the gate') is wrong -- the curriculum harness is working as designed (P0 convergence robust + P2 hold_rate=1.0 on ARM_0 is the correct rv-only semantic); the defect is in the script's chosen C1 predicate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": null,
+        "depends_on_unresolved": null,
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "R-c amendment cluster (both within-tick decisiveness + across-tick motor-program readiness axes) is wired correctly and demonstrably active: 2005 score blocks ARM_1 + 150 nav blocks ARM_2/3 + AND-composition visible in ARM_3 1949 score + 150 nav blocks.",
+        "The 'commit entry' transition-edge counter is structurally unmeetable under the rv-only ARM_0 entry semantic where the agent enters P2 already committed and stays continuously committed (hold_rate=1.0). C1 baseline predicate ('commit_rate > 0.001') is structurally unmeetable independent of substrate behaviour.",
+        "C2/C3/C4 inherit the C1 defect via cross-arm comparison against ARM_0 baseline (C2 ratio undefined; C3 ARM_2-vs-ARM_0 strict-less-than fails because both are 0; C4 ARM_3 commit_rate > 0 unmeetable for the same structural reason).",
+        "The 2026-05-21 V3-EXQ-592 seed-42 degeneracy signature is reproduced on ARM_0 across all 3 seeds (rv 2.72e-5 / 1.94e-6 / 3.67e-6) -- positive substrate-side evidence that the rv-only entry semantic IS the degenerate basin the R-c amendment was designed to gate.",
+        "The script's interpretation-grid C1 FAIL routing is wrong -- it routes to /diagnose-errors on curriculum harness, but the curriculum harness is working as designed; the defect is in the script's choice of C1 predicate, not the harness.",
+        "V3-EXQ-592e successor needs structural C1 redesign -- either force-uncommitted P2 entry (rv perturbation / brief commit_threshold raise / fresh-agent P2 init) so every elevation IS a transition, OR replace transition-edge C1 with a hold-rate-based baseline so the predicate matches the actual rv-only semantic."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "n/a -- single target",
+    "is_independent_bugs": false,
+    "structural_property": "n/a -- single target",
+    "readings": []
+  }
+}
