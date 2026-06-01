@@ -1,0 +1,44 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_622_goal_stream_staged_sd054",
+  "run_id": "v3_exq_622_goal_stream_staged_sd054_20260531T223804Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-31T22:38:04Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "superseded",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Superseded by V3-EXQ-621a (scaffolded_sd054_onboarding substrate-readiness PASS 2026-06-01T05:55Z, run_id v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3). V3-EXQ-622 was staged as a z_goal-collapse decomposition diagnostic in response to V3-EXQ-621a's C2 z_goal-floor unmet observation, but the substrate-readiness PASS on 621a (C1 6/12 cells + C3 cascade_consequential via ARM_2 approach_commit lift) is the canonical / load-bearing result clearing behavioral_diversity_isolation:GAP-C prereq (2) per the /governance cycle 0542Z decision (closing_commit 405218ede1, REE_Working session governance-cycle-20260601T054231Z). 622's S1+ failure-mode characterisation does not change 621a's substrate-readiness disposition; the next step is the GAP-C behavioural cluster validation (V3-EXQ-603d / V3-EXQ-591b), not a 622 successor. Per CLAUDE.md supersession pattern: indexer marks this manifest scoring_excluded=superseded; no claim_ids carried so no per-claim confidence delta. Prior evidence_direction was 'non_contributory' (governance 0542Z, accept verbatim no-claim_ids ruling); supersession is the stronger and correct disposition under 621a's PASS.",
+  "superseded_by": "V3-EXQ-621a"
+}

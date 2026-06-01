@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-01T06:15:42.022837Z`
+Generated: `2026-06-01T06:34:07.497970Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -451,7 +451,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-054
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=6, weakens=3, conflict_ratio=0.667, exp_conf=0.332, lit_conf=0.851, overall_confidence_legacy=0.592
+- Evidence breakdown: supports=6, weakens=3, conflict_ratio=0.667, exp_conf=0.331, lit_conf=0.851, overall_confidence_legacy=0.591
 - Recent entries:
   - `2026-04-18T23:49:49Z` `experimental` `v3_exq_435_inv054_phase_transition_sustained_recovery` direction=`weakens` confidence=0.75
   - `2026-04-20T04:42:02Z` `experimental` `v3_exq_435_inv054_phase_transition_sustained_recovery` direction=`weakens` confidence=0.75
