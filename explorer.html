@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-05-31.2 -->
+<!-- EXPLORER_VERSION: 2026-06-01.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8988,6 +8988,112 @@ END CONFLICT RESOLUTION`;
     // ── Experiment Runner dashboard ──────────────────────────────────────────
 
     let expRefreshTimer = null;
+  // Match Coordination panel: show remote progress up to 10m without hiding.
+    const EXP_MACHINE_DISPLAY_STALE_SEC = 600;
+    const EXP_SCROLL_STORAGE_KEY = 'ree_explorer.exp_scroll_y';
+    let expQueueCache = { items: [], source: 'file', at: 0 };
+    let expQueueCountDebounce = { shown: null, candidate: null, streak: 0 };
+
+    function ensureExpShell() {
+      if (!els.expContent) return;
+      if (document.getElementById('expShell')) return;
+      els.expContent.innerHTML = `
+        <div id="expShell">
+          <div id="expSectionRunner"></div>
+          <div id="expSectionRunning"></div>
+          <div id="expSectionQueue"></div>
+          <div id="expSectionCompleted"></div>
+          <div id="expRefreshNote" class="exp-refresh-note"></div>
+        </div>`;
+    }
+
+    function machineDisplayExq(m) {
+      return m.current_exq || m.last_known_exq || '';
+    }
+
+    function shouldShowRemoteMachine(m, localCurExq) {
+      const exq = machineDisplayExq(m);
+      if (!exq) return false;
+      if (localCurExq && exq === localCurExq) return false;
+      const age = m.age_seconds;
+      if (age != null && age > EXP_MACHINE_DISPLAY_STALE_SEC) return false;
+      if (m.state === 'running') return true;
+      if (m.state === 'stale') return true;
+      return false;
+    }
+
+    function debouncedQueueCount(n) {
+      if (expQueueCountDebounce.shown === null) {
+        expQueueCountDebounce.shown = n;
+        return n;
+      }
+      if (n === expQueueCountDebounce.shown) {
+        expQueueCountDebounce.candidate = null;
+        expQueueCountDebounce.streak = 0;
+        return n;
+      }
+      if (n === expQueueCountDebounce.candidate) {
+        expQueueCountDebounce.streak += 1;
+      } else {
+        expQueueCountDebounce.candidate = n;
+        expQueueCountDebounce.streak = 1;
+      }
+      if (expQueueCountDebounce.streak >= 2) {
+        expQueueCountDebounce.shown = n;
+        expQueueCountDebounce.candidate = null;
+        expQueueCountDebounce.streak = 0;
+      }
+      return expQueueCountDebounce.shown;
+    }
+
+    async function fetchExperimentQueue() {
+      const isActive = st => st !== 'completed' && st !== 'failed';
+      let items = [];
+      let source = 'file';
+      let mirrorStaleBanner = '';
+
+      try {
+        const lr = await fetch('/api/queue/live?t=' + Date.now());
+        if (lr.ok) {
+          const live = await lr.json();
+          const liveItems = (live.items || []).filter(qi => isActive(qi.status));
+          if (liveItems.length) {
+            items = liveItems;
+            source = live.source || 'coordinator';
+          }
+        }
+      } catch (_) {}
+
+      if (!items.length) {
+        for (const ver of ['v3', 'v2']) {
+          try {
+            const qr = await fetch('/api/queue/' + ver + '?t=' + Date.now());
+            if (qr.ok) {
+              const qd = await qr.json();
+              (qd.items || []).forEach(qi => {
+                if (isActive(qi.status)) items.push(qi);
+              });
+            }
+          } catch (_) {}
+        }
+        source = 'file';
+      }
+
+      if (!items.length && expQueueCache.items.length) {
+        items = expQueueCache.items.slice();
+        const ago = expQueueCache.at
+          ? Math.round((Date.now() - expQueueCache.at) / 1000) : '?';
+        mirrorStaleBanner = `<div class="exp-card" style="margin-bottom:8px;border-color:#d8b36d;background:#fffaf0">`
+          + `<div class="exp-desc" style="font-size:12px;color:#7c5a1f">`
+          + `Queue read empty -- showing last successful snapshot (${items.length} item`
+          + `${items.length === 1 ? '' : 's'}, ${ago}s ago, source ${escapeHtml(expQueueCache.source)}).`
+          + `</div></div>`;
+      } else if (items.length) {
+        expQueueCache = { items: items.slice(), source, at: Date.now() };
+      }
+
+      return { items, source, mirrorStaleBanner };
+    }
 
     function startExpRefresh() {
       if (expRefreshTimer) return;
@@ -9390,6 +9496,11 @@ END CONFLICT RESOLUTION`;
 
     async function renderExperiments() {
       if (!els.expContent) return;
+      ensureExpShell();
+      const scrollY = window.scrollY;
+      try {
+        sessionStorage.setItem(EXP_SCROLL_STORAGE_KEY, String(scrollY));
+      } catch (_) {}
 
       let status = null;
       try {
@@ -9421,17 +9532,12 @@ END CONFLICT RESOLUTION`;
         }
       } catch (_) {}
 
-      // Fetch queue files directly (independent of runner state)
-      let queueFromFiles = [];
-      for (const ver of ['v3', 'v2']) {
-        try {
-          const qr = await fetch('/api/queue/' + ver + '?t=' + Date.now());
-          if (qr.ok) {
-            const qd = await qr.json();
-            (qd.items || []).forEach(qi => { if (qi.status !== 'completed' && qi.status !== 'failed') queueFromFiles.push(qi); });
-          }
-        } catch (_) {}
-      }
+      const queueFetch = await fetchExperimentQueue();
+      const queueFromFiles = queueFetch.items;
+      const queueMirrorBanner = queueFetch.mirrorStaleBanner || '';
+      const queueSourceNote = queueFetch.source !== 'file'
+        ? ` <span style="font-weight:normal;color:var(--muted)">(${escapeHtml(queueFetch.source)})</span>`
+        : '';
 
       // Build a map from script basename → evidence run info
       // Key: experiment dir name (e.g. "rollout_viability_mapping")
@@ -9511,9 +9617,12 @@ END CONFLICT RESOLUTION`;
       // Coordinator heartbeats are fresher than local runner_status for the
       // same machine; merge live progress + time estimates into cur.
       if (cur && cur.queue_id) {
-        const coordLocal = machineEntries.find(m =>
-          m.telemetry_source === 'coordinator' && m.fresh &&
-          m.state === 'running' && m.current_exq === cur.queue_id);
+        const coordLocal = machineEntries.find(m => {
+          if (machineDisplayExq(m) !== cur.queue_id) return false;
+          const age = m.age_seconds;
+          if (age != null && age > EXP_MACHINE_DISPLAY_STALE_SEC) return false;
+          return m.state === 'running' || m.state === 'stale';
+        });
         if (coordLocal) {
           cur = Object.assign({}, cur, {
             progress: (coordLocal.progress && Object.keys(coordLocal.progress).length)
@@ -9526,21 +9635,13 @@ END CONFLICT RESOLUTION`;
         }
       }
       const localCurExq = cur && cur.queue_id;
-      const remoteRunning = machineEntries.filter(m => {
-        if (!m.fresh) return false;
-        if (m.state !== 'running') return false;
-        if (!m.current_exq) return false;
-        // Suppress the entry whose current_exq matches the local runner's
-        // current experiment -- that machine IS the local one and the
-        // local card already covers it (full progress payload).
-        if (localCurExq && m.current_exq === localCurExq) return false;
-        return true;
-      });
+      const remoteRunning = machineEntries.filter(m =>
+        shouldShowRemoteMachine(m, localCurExq));
 
       function machineToCurShape(m) {
         // Map heartbeat fields onto the shape expCurrentHtml() expects.
         return {
-          queue_id: m.current_exq,
+          queue_id: machineDisplayExq(m),
           claim_id: m.current_claim_id || '',
           title: m.current_title || '',
           description: m.current_description || '',
@@ -9552,17 +9653,21 @@ END CONFLICT RESOLUTION`;
       }
 
       function machineLabelHtml(m, ageSec) {
-        const stale = ageSec != null && ageSec > 75
-          ? ` <span style="color:var(--muted);font-weight:normal">(heartbeat ${ageSec}s old)</span>`
+        const staleTag = (!m.fresh || m.display_stale || m.state === 'stale')
+          ? ` <span style="color:#b8860b;font-weight:600">[STALE]</span>`
           : '';
+        const ageLabel = ageSec != null
+          ? (ageSec < 120 ? ageSec + 's' : Math.round(ageSec / 60) + 'm')
+          : '?';
         const live = m.telemetry_source === 'coordinator'
           ? ` <span style="color:var(--muted);font-weight:normal">(coordinator)</span>`
           : '';
-        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${live}${stale}</div>`;
+        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${live}${staleTag} <span style="font-weight:normal">heartbeat ${ageLabel} ago</span></div>`;
       }
 
+      let runningHtml = '';
       if (cur || remoteRunning.length > 0 || isRunning) {
-        html += `<div class="exp-section"><div class="exp-section-title">Now Running</div>`;
+        runningHtml += `<div class="exp-section"><div class="exp-section-title">Now Running</div>`;
         if (cur) {
           // Local card -- prepend a label only when there are remote cards
           // to disambiguate. Solo local view stays unchanged.
@@ -9570,21 +9675,23 @@ END CONFLICT RESOLUTION`;
             const localName = (machinesPayload && machinesPayload.machines || [])
               .find(m => m.current_exq && m.current_exq === localCurExq);
             const localLabel = localName ? localName.machine : 'this machine';
-            html += `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(localLabel)} <span style="font-weight:normal">(local)</span></div>`;
+            runningHtml += `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(localLabel)} <span style="font-weight:normal">(local)</span></div>`;
           }
-          html += expCurrentHtml(cur);
+          runningHtml += expCurrentHtml(cur);
         } else if (isRunning) {
-          html += `<div class="exp-card"><div class="exp-desc">Runner active &mdash; starting next experiment&hellip;</div></div>`;
+          runningHtml += `<div class="exp-card"><div class="exp-desc">Runner active &mdash; starting next experiment&hellip;</div></div>`;
         }
         remoteRunning.forEach(m => {
-          html += machineLabelHtml(m, m.age_seconds);
-          html += expCurrentHtml(machineToCurShape(m));
+          runningHtml += machineLabelHtml(m, m.age_seconds);
+          runningHtml += expCurrentHtml(machineToCurShape(m));
         });
-        html += `</div>`;
+        runningHtml += `</div>`;
       }
 
       // ── Queue (always shown) ──
-      html += `<div class="exp-section"><div class="exp-section-title">Queue${queue.length > 0 ? ` &mdash; ${queue.length} item${queue.length === 1 ? '' : 's'}` : ''}</div>`;
+      const queueCountShown = debouncedQueueCount(queue.length);
+      let queueHtml = `<div class="exp-section"><div class="exp-section-title">Queue${queueCountShown > 0 ? ` &mdash; ${queueCountShown} item${queueCountShown === 1 ? '' : 's'}` : ''}${queueSourceNote}</div>`;
+      queueHtml += queueMirrorBanner;
       if (queue.length > 0) {
         const queueGroups = groupByVersion(queue);
         const queueVersions = versionRenderOrder(queueGroups);
@@ -9595,18 +9702,20 @@ END CONFLICT RESOLUTION`;
         };
         if (queueVersions.length > 1) {
           queueVersions.forEach(v => {
-            html += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${queueGroups[v].length}</div>`;
-            html += queueGroups[v].map(queueItemWithEvidence).join('');
+            queueHtml += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${queueGroups[v].length}</div>`;
+            queueHtml += queueGroups[v].map(queueItemWithEvidence).join('');
           });
         } else {
-          html += queue.map(queueItemWithEvidence).join('');
+          queueHtml += queue.map(queueItemWithEvidence).join('');
         }
       } else {
-        html += `<div class="exp-card"><div class="exp-desc" style="color:var(--muted);text-align:center;padding:12px 0">No experiments queued</div></div>`;
+        queueHtml += `<div class="exp-card"><div class="exp-desc" style="color:var(--muted);text-align:center;padding:12px 0">No experiments queued</div></div>`;
       }
-      html += '</div>';
+      queueHtml += '</div>';
 
       // ── Completed ──
+      let completedHtml = '';
+      const queueIdsActive = new Set(queue.map(qi => qi.queue_id).filter(Boolean));
       // Show all runs; annotate each with total on-disk run count for that experiment
       if (completed.length > 0 || Object.keys(evidenceByScript).length > 0) {
         const completedScriptNames = new Set(
@@ -9646,7 +9755,8 @@ END CONFLICT RESOLUTION`;
             };
           });
 
-        const allCompleted = [...completedAnnotated, ...evidenceOnlyItems];
+        const allCompleted = [...completedAnnotated, ...evidenceOnlyItems]
+          .filter(c => !c.queue_id || !queueIdsActive.has(c.queue_id));
         // Sort by completion time (most recent first) within each version group.
         // Normalize compact YYYYMMDDTHHMMSSz format to YYYY-MM-DDTHH:MM:SSZ so
         // string comparison works correctly across both timestamp formats.
@@ -9663,20 +9773,37 @@ END CONFLICT RESOLUTION`;
           const tb = normalize(b.completed_at || b.latest_timestamp || '');
           return tb.localeCompare(ta);
         });
-        html += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${allCompleted.length}</div>`;
+        completedHtml += `<div class="exp-section"><div class="exp-section-title">Completed &mdash; ${allCompleted.length}</div>`;
         const completedGroups = groupByVersion(allCompleted);
         versionRenderOrder(completedGroups).forEach(v => {
-          html += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${completedGroups[v].length}</div>`;
-          html += completedGroups[v].map(c => expCompletedHtml(c, discussedDirs)).join('');
+          completedHtml += `<div class="exp-version-subhead">${versionLabel(v)} &mdash; ${completedGroups[v].length}</div>`;
+          completedHtml += completedGroups[v].map(c => expCompletedHtml(c, discussedDirs)).join('');
         });
-        html += '</div>';
+        completedHtml += '</div>';
       }
 
-      html += `<div class="exp-refresh-note">Refreshes every ${EXP_REFRESH_MS / 1000}s${lastUpdated ? ` &mdash; last updated ${escapeHtml(lastUpdated)}` : ''}</div>`;
-      els.expContent.innerHTML = html;
+      const refreshNote = `Refreshes every ${EXP_REFRESH_MS / 1000}s${lastUpdated ? ` &mdash; last updated ${escapeHtml(lastUpdated)}` : ''}`;
+      const runnerEl = document.getElementById('expSectionRunner');
+      const runningEl = document.getElementById('expSectionRunning');
+      const queueEl = document.getElementById('expSectionQueue');
+      const completedEl = document.getElementById('expSectionCompleted');
+      const noteEl = document.getElementById('expRefreshNote');
+      if (runnerEl) runnerEl.innerHTML = html;
+      if (runningEl) runningEl.innerHTML = runningHtml;
+      if (queueEl) queueEl.innerHTML = queueHtml;
+      if (completedEl) completedEl.innerHTML = completedHtml;
+      if (noteEl) noteEl.innerHTML = refreshNote;
 
+      let restoreY = scrollY;
+      try {
+        const saved = sessionStorage.getItem(EXP_SCROLL_STORAGE_KEY);
+        if (saved != null && !Number.isNaN(Number(saved))) restoreY = Number(saved);
+      } catch (_) {}
+      window.scrollTo(0, restoreY);
+
+      const expRoot = els.expContent;
       // Wire discuss buttons
-      els.expContent.querySelectorAll('.exp-discuss-btn').forEach(btn => {
+      expRoot.querySelectorAll('.exp-discuss-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
           const dirName = btn.dataset.dir;
           btn.disabled = true;

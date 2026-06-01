@@ -26,6 +26,8 @@ API (POST, called by the Experiments tab in the explorer):
     /api/regression/preflight  -- GET: ree-v3 preflight suite result (cached 60s)
     /api/coordinator/phase3/preflight  -- GET: Phase 3 cutover pre-checks (cached 60s)
     /api/coordinator/phase3/writers    -- GET: Phase 3 sync_daemon writer health (cached 60s)
+    /api/queue/live                -- GET: active queue (coordinator DB when reachable, else file)
+    /api/queue/v3                  -- GET: experiment_queue.json mirror (file)
 
 The runners write progress to evidence/experiments/runner_status.json,
 which the explorer polls automatically when the Experiments tab is open.
@@ -1258,9 +1260,17 @@ def _utc_age_seconds(iso: str, now) -> int | None:
         return None
 
 
-_COORD_SNAP_CACHE: dict = {"t": 0.0, "data": {}}
+_COORD_SNAP_CACHE: dict = {
+    "t": 0.0,
+    "ok": False,
+    "data": {},
+    "last_good": {},
+    "last_good_t": 0.0,
+}
 _COORD_SNAP_LOCK = threading.Lock()
 _COORD_SNAP_TTL_SECONDS = 15.0
+_COORD_SNAP_FAILURE_TTL_SECONDS = 3.0
+_COORD_SNAP_LAST_GOOD_MAX_SECONDS = 120.0
 _COORD_SNAP_TIMEOUT_SECONDS = 2.0
 
 
@@ -1270,10 +1280,10 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
     Returns {machine: snapshot} or {} when unconfigured/unreachable.
     Never raises -- /api/machines must stay available if the hub is down.
 
-    Cached for _COORD_SNAP_TTL_SECONDS so a slow WG hop can't stall every
-    request that touches machine telemetry. The cache stores both
-    successful results and empty-dict fallbacks; either way, subsequent
-    callers in the TTL window get an instant answer.
+    Successful responses are cached for _COORD_SNAP_TTL_SECONDS. On fetch
+    failure, returns the last successful snapshot for up to
+    _COORD_SNAP_LAST_GOOD_MAX_SECONDS (does not cache empty failures for
+    the full success TTL).
     """
     import urllib.error
     import urllib.request
@@ -1285,10 +1295,19 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
 
     now = time.monotonic()
     with _COORD_SNAP_LOCK:
-        if now - _COORD_SNAP_CACHE["t"] < _COORD_SNAP_TTL_SECONDS:
-            return dict(_COORD_SNAP_CACHE["data"])
+        age = now - _COORD_SNAP_CACHE["t"]
+        ttl = (_COORD_SNAP_TTL_SECONDS if _COORD_SNAP_CACHE.get("ok")
+               else _COORD_SNAP_FAILURE_TTL_SECONDS)
+        if age < ttl:
+            if _COORD_SNAP_CACHE.get("ok"):
+                return dict(_COORD_SNAP_CACHE["data"])
+            lg = _COORD_SNAP_CACHE.get("last_good") or {}
+            if lg and (now - _COORD_SNAP_CACHE.get("last_good_t", 0)
+                       <= _COORD_SNAP_LAST_GOOD_MAX_SECONDS):
+                return dict(lg)
 
     out: dict[str, dict] = {}
+    fetch_ok = False
     try:
         req = urllib.request.Request(
             url + "/shadow/status",
@@ -1310,14 +1329,27 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
                 "seconds_elapsed": m.get("seconds_elapsed"),
                 "seconds_remaining": m.get("seconds_remaining"),
             }
+        fetch_ok = True
     except (urllib.error.URLError, OSError,
             json.JSONDecodeError, ValueError):
         out = {}
 
     with _COORD_SNAP_LOCK:
         _COORD_SNAP_CACHE["t"] = time.monotonic()
-        _COORD_SNAP_CACHE["data"] = out
-    return dict(out)
+        if fetch_ok:
+            _COORD_SNAP_CACHE["ok"] = True
+            _COORD_SNAP_CACHE["data"] = out
+            if out:
+                _COORD_SNAP_CACHE["last_good"] = out
+                _COORD_SNAP_CACHE["last_good_t"] = _COORD_SNAP_CACHE["t"]
+            return dict(out)
+        _COORD_SNAP_CACHE["ok"] = False
+        _COORD_SNAP_CACHE["data"] = {}
+        lg = _COORD_SNAP_CACHE.get("last_good") or {}
+        if lg and (_COORD_SNAP_CACHE["t"] - _COORD_SNAP_CACHE.get(
+                "last_good_t", 0) <= _COORD_SNAP_LAST_GOOD_MAX_SECONDS):
+            return dict(lg)
+    return {}
 
 
 def _coordinator_preferred(git_fresh: bool, git_age: int | None,
@@ -1514,24 +1546,16 @@ def read_machines() -> dict:
     ]
 
     # When a machine's heartbeat is older than the fresh window but still
-    # inside the exclude window, the last reported state ("idle", "running",
-    # etc.) is frozen and misleading -- the dashboard already paints the
-    # card with the "stale" CSS class, but the state badge text used to
-    # keep saying "idle" or "running", making a dead worker look like
-    # available capacity. Force the state badge to match. Also clear the
-    # in-flight-experiment fields so the card doesn't say "current exq:
-    # V3-EXQ-X" for a worker whose runner died mid-run -- the frozen
-    # heartbeat keeps those values pointing at whatever was running at
-    # the moment the runner stopped, which mis-reads as "still running".
+    # inside the exclude window, mark display_stale so UIs can show last-known
+    # progress without treating the worker as live (command buttons stay gated
+    # on fresh). Keep current_exq/progress for the explorer "Now Running"
+    # strip (aligned with the Coordination panel, which never hides machines).
     for m in out_machines:
         if m.get("fresh") is False and m.get("age_seconds") is not None:
+            if m.get("current_exq") or m.get("state") == "running":
+                m["display_stale"] = True
+                m["last_known_exq"] = m.get("current_exq")
             m["state"] = "stale"
-            m["current_exq"] = None
-            m["current_title"] = None
-            m["current_claim_id"] = None
-            m["progress"] = None
-            m["seconds_elapsed"] = None
-            m["seconds_remaining"] = None
 
     return {
         "schema_version": "v1",
@@ -3221,33 +3245,117 @@ def runner_status() -> dict:
     return result
 
 
-def read_queue(ver: str) -> dict:
-    """Read experiment_queue.json for a substrate. Queue file is authoritative for status."""
-    if ver not in RUNNERS:
-        return {"error": f"Unknown substrate: {ver}"}
-    qf = RUNNERS[ver]["queue_file"]
-    if not qf.exists():
-        return {"items": [], "ver": ver}
-    try:
-        data = json.loads(qf.read_text())
-    except Exception:
-        return {"items": [], "ver": ver}
-
+def _queue_items_from_raw(data: dict, ver: str) -> list[dict]:
+    """Normalize queue JSON items for explorer APIs."""
     items = []
     for item in data.get("items", []):
         qid = item.get("queue_id", "")
+        claim_ids = item.get("claim_ids")
+        claim_id = item.get("claim_id", "")
+        if not claim_id and isinstance(claim_ids, list) and claim_ids:
+            claim_id = claim_ids[0]
         items.append({
             "queue_id": qid,
-            "claim_id": item.get("claim_id", ""),
+            "claim_id": claim_id,
             "title": item.get("title", ""),
-            "description": item.get("description", ""),
+            "description": item.get("description", item.get("note", "")),
             "status": item.get("status", "pending"),
             "script": item.get("script", ""),
             "estimated_minutes": item.get("estimated_minutes"),
             "machine_affinity": item.get("machine_affinity", ""),
             "ree_version": ver,
         })
-    return {"items": items, "ver": ver}
+    return items
+
+
+def read_queue(ver: str) -> dict:
+    """Read experiment_queue.json for a substrate. Queue file is authoritative for status."""
+    if ver not in RUNNERS:
+        return {"error": f"Unknown substrate: {ver}"}
+    qf = RUNNERS[ver]["queue_file"]
+    if not qf.exists():
+        return {"items": [], "ver": ver, "source": "file"}
+    try:
+        data = json.loads(qf.read_text())
+    except Exception:
+        return {"items": [], "ver": ver, "source": "file"}
+
+    return {
+        "items": _queue_items_from_raw(data, ver),
+        "ver": ver,
+        "source": "file",
+    }
+
+
+_COORD_QUEUE_CACHE: dict = {
+    "t": 0.0,
+    "ok": False,
+    "payload": {},
+    "last_good": {},
+}
+_COORD_QUEUE_LOCK = threading.Lock()
+_COORD_QUEUE_TTL_SECONDS = 15.0
+_COORD_QUEUE_FAILURE_TTL_SECONDS = 3.0
+
+
+def read_queue_live(ver: str = "v3") -> dict:
+    """Active queue from coordinator DB when reachable; else local file mirror."""
+    file_payload = read_queue(ver)
+    if ver != "v3":
+        return file_payload
+
+    cfg = _load_coordinator_cfg()
+    url = (cfg.get("COORDINATOR_URL") or "").rstrip("/")
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN") or ""
+    if not url or not tok:
+        return file_payload
+
+    import urllib.error
+    import urllib.request
+
+    now = time.monotonic()
+    with _COORD_QUEUE_LOCK:
+        age = now - _COORD_QUEUE_CACHE["t"]
+        ttl = (_COORD_QUEUE_TTL_SECONDS if _COORD_QUEUE_CACHE.get("ok")
+               else _COORD_QUEUE_FAILURE_TTL_SECONDS)
+        if age < ttl and _COORD_QUEUE_CACHE.get("ok"):
+            return dict(_COORD_QUEUE_CACHE["payload"])
+
+    payload = dict(file_payload)
+    fetch_ok = False
+    try:
+        req = urllib.request.Request(
+            url + "/queue/active",
+            headers={"Authorization": "Bearer " + tok},
+            method="GET",
+        )
+        with urllib.request.urlopen(req, timeout=4) as resp:
+            live = json.loads(resp.read().decode("utf-8"))
+        raw_items = live.get("items") or []
+        items = _queue_items_from_raw({"items": raw_items}, ver)
+        payload = {
+            "items": items,
+            "ver": ver,
+            "source": live.get("source") or "coordinator",
+            "now_utc": live.get("now_utc"),
+        }
+        fetch_ok = True
+    except (urllib.error.URLError, OSError,
+            json.JSONDecodeError, ValueError):
+        fetch_ok = False
+
+    with _COORD_QUEUE_LOCK:
+        _COORD_QUEUE_CACHE["t"] = time.monotonic()
+        if fetch_ok:
+            _COORD_QUEUE_CACHE["ok"] = True
+            _COORD_QUEUE_CACHE["payload"] = payload
+            _COORD_QUEUE_CACHE["last_good"] = payload
+            return dict(payload)
+        _COORD_QUEUE_CACHE["ok"] = False
+        lg = _COORD_QUEUE_CACHE.get("last_good") or {}
+        if lg:
+            return dict(lg)
+    return file_payload
 
 
 # ── Timeline builder ─────────────────────────────────────────────────────────
@@ -3599,6 +3707,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/queue/v3":
             body = json.dumps(read_queue("v3")).encode()
+            self._json_response(body)
+            return
+        if path == "/api/queue/live":
+            body = json.dumps(read_queue_live("v3")).encode()
             self._json_response(body)
             return
         if path == "/api/queue/v2":
