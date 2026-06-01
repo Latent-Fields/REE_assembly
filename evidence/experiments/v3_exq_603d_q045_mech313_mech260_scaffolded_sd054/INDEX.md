@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_603d_q045_mech313_mech260_scaffolded_sd054
 
-Generated: `2026-06-01T17:25:00.200622Z`
+Generated: `2026-06-01T18:09:15.796853Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-06-01T17:26:42Z
+Generated: 2026-06-01T18:09:28Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 

@@ -13,8 +13,8 @@
    "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
   }
  },
- "last_seen_session": "IGW-20260601-023",
- "last_updated_utc": "2026-06-01T17:42:58Z",
+ "last_seen_session": "governance-cycle-20260601T175646Z",
+ "last_updated_utc": "2026-06-01T17:56:46Z",
  "next_implement_substrate": {
   "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
   "sd_id": null,
@@ -3419,7 +3419,8 @@
    "added_session": "governance-20260529T212835Z",
    "autopsy_refs": [
     "evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md",
-    "evidence/planning/failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29.md"
+    "evidence/planning/failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29.md",
+    "evidence/planning/failure_autopsy_V3-EXQ-603d_2026-06-01.md"
    ],
    "depends_on_unresolved": [
     "SD-054 [implemented 2026-05-04; bipartite-extension 2026-05-11; substrate-readiness V3-EXQ-521/522 PASS]",
@@ -3457,15 +3458,21 @@
      "metric": "p1_any_calibration_zone=false; curiosity_scale {1x, 5x, 10x} produces identical per-cell entropy + reef_fraction within each noise_alpha row -- curiosity dimension fully degenerate. noise_alpha sweep delivers sub-threshold lifts 0.259/0.292/0.305 at N=1 per cell.",
      "run_id": "v3_exq_605_q043_noise_floor_curiosity_weight_sweep_20260521T115421Z_v3",
      "target": "After scaffolded onboarding + SD-056 per-candidate variance, curiosity_scale sweep produces non-zero entropy delta resolvable at N>=2; p1 calibration zone non-empty; noise dimension delivers >0.05 margin at N>=2 per cell."
+    },
+    {
+     "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
+     "experiment_type": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054",
+     "metric": "z_goal_norm_peak_ARM_3_max=0.0 (C4 fail) -- scheduler never calls update_z_goal (harness/wiring artifact, 626-class); AND P1 survival gate failed 2/3 seeds (42,44), p2_cell_count 5/15, effective N=1 (confounded by P0/P1=30/30 budget + inert goal pipeline).",
+     "target": "After update_z_goal wired into scheduler: z_goal_norm_peak > 0.4 on >=2/3 seeds in P2, AND P1 survival gate passed on >=2/3 seeds at restored budget, so Q-045 C2/FP2 discrimination becomes testable at N>=2."
     }
    ],
    "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
-   "last_seen_session": "governance-cycle-20260601T054231Z",
+   "last_seen_session": "governance-cycle-20260601T175646Z",
    "priority": 1,
    "ready": true,
    "sd_id": "scaffolded_sd054_onboarding",
    "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding",
-   "status": "implemented",
+   "status": "amend_pending",
    "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
    "unblocks_claims": [
     "Q-045",
@@ -3510,7 +3517,9 @@
      "supersedes": "V3-EXQ-621 (recovered manifest from runner emit_outcome misclassification; ree-cloud-3 2026-05-31T20:23Z)",
      "note": "V3-EXQ-621a PASS (C1 6/12 cells + C3 cascade_consequential via ARM_2 approach_commit lift). C2 z_goal floor unmet (z_goal=0 across all arms) -- substrate-readiness PASS clears prereq (2) of behavioral_diversity_isolation:GAP-C, but z_goal feeding under scaffolded onboarding is not yet wired correctly; this motivated the staged V3-EXQ-622 z_goal-collapse decomposition diagnostic (seed 42 S0 PASS shows goal-stream trainability works; S1+ failures point to persistence/risk wiring). Per /governance Step 4 protocol, V3-EXQ-621a reclassified per-claim non_contributory on Q-045/MECH-313/MECH-260 (substrate-readiness diagnostic pattern; not load-bearing behavioural evidence). pending_retest_after_substrate flags retained. Behavioural cluster validation V3-EXQ-603d / 591b queueable next."
     }
-   ]
+   ],
+   "amend_pending": true,
+   "amend_hint": "ScaffoldedSD054OnboardingScheduler._train_episode (ree-v3/experiments/scaffolded_sd054_onboarding.py:551) and the eval path never call agent.update_z_goal, so GoalState.update is never reached and z_goal stays at zero-init (confirmed: zero update_z_goal matches in the module). Add agent.update_z_goal(benefit_exposure=..., drive_level=...) every step in P1 (and P0 where the frozen-goal design permits), mirroring the shared experiments/goal_stream_stages_sd054.py runner (train ~line 537 / eval ~line 590) the 622 autopsy confirmed feeds z_goal. Add a Stage-0-style contract/positive-control assertion: forced benefit+drive inputs must produce non-zero direction-stable z_goal under the scheduler so a z_goal=0 scheduler is structurally unshippable. This hook fix is strictly UPSTREAM of the 622 anneal-rate amend (which assumed update_z_goal was being called); re-evaluate the anneal-rate amend priority after the hook lands and z_goal forms."
   },
   {
    "added_session": "governance-20260531T112511Z",

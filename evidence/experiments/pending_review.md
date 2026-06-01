@@ -1,20 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-01T17:26:22Z`  
-Last review: `2026-06-01T17:22:37Z`  
-Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-06-01T18:09:16Z`  
+Last review: `2026-06-01T17:56:46Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3` | 2026-06-01T09:53 | MECH-260, MECH-313, Q-045 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_625_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T110921Z_v3` | 2026-06-01T11:09 | (no claim tags) |
+All experiments reviewed. Nothing pending.
 
 ---
 

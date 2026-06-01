@@ -19878,6 +19878,25 @@
     (recovered manifest from runner emit_outcome misclassification) marked
     superseded by V3-EXQ-621a per CLAUDE.md supersession rule.
 
+    [2026-06-01T17:56Z governance cycle, confirmed failure_autopsy_V3-EXQ-603d]:
+    First behavioural retest on the IMPLEMENTED scaffolded_sd054_onboarding
+    substrate. FAIL non_contributory. LOAD-BEARING finding:
+    ScaffoldedSD054OnboardingScheduler._train_episode and 603d's bespoke P2
+    never call agent.update_z_goal, so z_goal stays zero-init for every step of
+    every arm; the C4 z_goal=0 / SUBSTRATE_FAILURE label is a Class-1
+    harness/wiring artifact (same fault class as V3-EXQ-626), NOT
+    substrate-ceiling falsification. This is the true content of 621a's "z_goal
+    feeding not yet wired" + the 591-triage prereq (4). P1 survival gate failed
+    2/3 seeds (42,44; only 43 to P2; p2_cell_count 5/15, effective N=1),
+    reproducing the 603-chain seed-fragility but confounded by reduced budget
+    (P0/P1=30/30 vs 603c 100/50) + the inert goal pipeline. Routing:
+    implement-substrate AMEND on scaffolded_sd054_onboarding (wire update_z_goal
+    into the scheduler + Stage-0 positive-control gate; strictly UPSTREAM of the
+    622 anneal-rate amend), then re-issue 603d -> 603e at restored budget.
+    substrate_queue amended (action=amend, priority 1, 603d failure_record
+    appended). pending_retest_after_substrate retained. EXQ-445h remains the
+    sole valid MECH-260 support; no claim falsified.
+
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   implementation_note: >
@@ -28461,6 +28480,26 @@
     (recovered manifest from runner emit_outcome misclassification) marked
     superseded by V3-EXQ-621a per CLAUDE.md supersession rule.
 
+    [2026-06-01T17:56Z governance cycle, confirmed failure_autopsy_V3-EXQ-603d]:
+    First behavioural retest on the IMPLEMENTED scaffolded_sd054_onboarding
+    substrate. FAIL non_contributory. LOAD-BEARING finding:
+    ScaffoldedSD054OnboardingScheduler._train_episode and 603d's bespoke P2
+    never call agent.update_z_goal, so z_goal stays zero-init for every step of
+    every arm; the C4 z_goal=0 / SUBSTRATE_FAILURE label is a Class-1
+    harness/wiring artifact (same fault class as V3-EXQ-626), NOT
+    substrate-ceiling falsification. This is the true content of 621a's "z_goal
+    feeding not yet wired" + the 591-triage prereq (4). P1 survival gate failed
+    2/3 seeds (42,44; only 43 to P2; p2_cell_count 5/15, effective N=1),
+    reproducing the 603-chain seed-fragility but confounded by reduced budget
+    (P0/P1=30/30 vs 603c 100/50) + the inert goal pipeline. Routing:
+    implement-substrate AMEND on scaffolded_sd054_onboarding (wire update_z_goal
+    + Stage-0 positive-control gate; strictly UPSTREAM of the 622 anneal-rate
+    amend), then re-issue 603d -> 603e at restored budget. substrate_queue
+    amended (action=amend, priority 1, 603d failure_record appended).
+    pending_retest_after_substrate retained. The cumulative sub-threshold
+    MECH-313 directional signal from the 603 chain is unchanged -- 603d adds no
+    new MECH-313 read (N=1, z_goal=0).
+
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   notes: >
@@ -29142,6 +29181,25 @@
     flag retained until behavioural successor returns. Predecessor V3-EXQ-621
     (recovered manifest from runner emit_outcome misclassification) marked
     superseded by V3-EXQ-621a per CLAUDE.md supersession rule.
+
+    [2026-06-01T17:56Z governance cycle, confirmed failure_autopsy_V3-EXQ-603d]:
+    First behavioural retest on the IMPLEMENTED scaffolded_sd054_onboarding
+    substrate. FAIL non_contributory across Q-045 / MECH-313 / MECH-260.
+    LOAD-BEARING finding: ScaffoldedSD054OnboardingScheduler._train_episode and
+    603d's bespoke P2 never call agent.update_z_goal, so z_goal stays zero-init
+    for every step of every arm; the C4 z_goal=0 / SUBSTRATE_FAILURE label is a
+    Class-1 harness/wiring artifact (same fault class as V3-EXQ-626), NOT
+    substrate-ceiling falsification. This is the true content of 621a's "z_goal
+    feeding not yet wired" + the 591-triage prereq (4). P1 survival gate failed
+    2/3 seeds (42,44; only 43 to P2; p2_cell_count 5/15, effective N=1),
+    reproducing the 603-chain seed-fragility but confounded by reduced budget
+    (P0/P1=30/30 vs 603c 100/50) + the inert goal pipeline. The
+    MECH-313-vs-MECH-260 collapse question remains structurally untestable at
+    effective N=1 with z_goal=0. Routing: implement-substrate AMEND on
+    scaffolded_sd054_onboarding (wire update_z_goal + Stage-0 positive-control
+    gate; UPSTREAM of the 622 anneal-rate amend), then re-issue 603d -> 603e at
+    restored budget. substrate_queue amended (action=amend, priority 1, 603d
+    failure_record appended). pending_retest_after_substrate retained.
 
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true

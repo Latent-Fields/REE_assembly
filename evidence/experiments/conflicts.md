@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-01T17:25:00.200622Z`
+Generated: `2026-06-01T18:09:15.796853Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -476,8 +476,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-05-21T03:58:02.061702Z` `experimental` `v3_exq_543i_arc062_differential_heads_falsifier` direction=`non_contributory` confidence=0
   - `2026-05-22T09:17:14.238754Z` `experimental` `v3_exq_543k_arc062_mode_separation_gap_b_falsifier` direction=`non_contributory` confidence=0
   - `2026-05-26T02:30:59.480709Z` `experimental` `v3_exq_543l_arc062_mode_separation_gap_b_falsifier` direction=`non_contributory` confidence=0
-  - `2026-06-01T17:23:25.815359Z` `experimental` `v3_exq_610b_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
-  - `2026-06-01T17:23:25.816173Z` `experimental` `v3_exq_610a_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
+  - `2026-06-01T17:30:16.051159Z` `experimental` `v3_exq_610a_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
+  - `2026-06-01T17:30:16.059818Z` `experimental` `v3_exq_610b_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `The permanent impairment is demonstrated for input/stimulus deficits affecting low-level statistics; INV-074's specific failure mode is suppression of a competing diversity circuit by a high-variance dominant pathway. The mechanism (information-plasticity collapse) is shared, but Achille et al. do not directly instrument a diversity-vs-dominant-pathway competition, so the mapping to ARC-065 is structural, not literal.` (1)
   - `Deficit severity depends on network size and deficit timing -- a corollary INV-074 does not yet quantify: the crystallization-window requirement may itself scale with model capacity, which the claim should eventually address rather than treat as a fixed schedule.` (1)
@@ -691,7 +691,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-095
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=20, weakens=6, conflict_ratio=0.462, exp_conf=0.541, lit_conf=0.838, overall_confidence_legacy=0.69
+- Evidence breakdown: supports=20, weakens=6, conflict_ratio=0.462, exp_conf=0.54, lit_conf=0.838, overall_confidence_legacy=0.689
 - Recent entries:
   - `2026-05-03T04:20:44Z` `literature` `targeted_review_connectome_mech_095` direction=`supports` confidence=0.74
   - `2026-05-03T04:20:44Z` `literature` `targeted_review_connectome_mech_095` direction=`supports` confidence=0.82
@@ -1043,7 +1043,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-204
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.524, lit_conf=0.858, overall_confidence_legacy=0.691
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.523, lit_conf=0.858, overall_confidence_legacy=0.691
 - Recent entries:
   - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.78
   - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.74
@@ -1083,7 +1083,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-220
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.228, lit_conf=0.863, overall_confidence_legacy=0.704
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.227, lit_conf=0.863, overall_confidence_legacy=0.704
 - Recent entries:
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.8
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.72
@@ -1109,7 +1109,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-05-08T16:53:42.767936Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-08T16:53:42.769101Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-23T22:06:32.628491Z` `experimental` `v3_exq_514j_sd049_phase2_reef_mech307_spcem` direction=`non_contributory` confidence=0
-  - `2026-06-01T17:23:25.814687Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
+  - `2026-06-01T17:30:16.027041Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `BLA engrams could not be switched from fear to reward or vice versa — this challenges any architecture that assumes amygdala valence representations are as malleable as hippocampal ones` (1)
   - `If wanting collapsed to contact pleasure, preserving goal-linked payloads on inactive anchors would be unnecessary.` (1)
@@ -1129,7 +1129,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-05-08T16:53:42.767936Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-08T16:53:42.769101Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-23T22:06:32.628491Z` `experimental` `v3_exq_514j_sd049_phase2_reef_mech307_spcem` direction=`non_contributory` confidence=0
-  - `2026-06-01T17:23:25.814687Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
+  - `2026-06-01T17:30:16.027041Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `If z_goal fails to develop a stable positive attractor even when SD-012 drive is active, this paper's mechanism predicts the failure lies in the absence of a motivational neuromodulatory signal equivalent to dopamine excitability widening.` (1)
   - `If z_goal norm stays near zero despite correct homeostatic drive, the attractor basin may not be wide enough -- analogous to latent attractors that are locally stable but globally inaccessible without neuromodulation.` (1)
@@ -1203,7 +1203,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-318
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0, lit_conf=0.841, overall_confidence_legacy=0.841
+- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0, lit_conf=0.84, overall_confidence_legacy=0.84
 - Recent entries:
   - `2026-05-11T18:07:59Z` `literature` `targeted_review_mech_318_rule_state_abstraction` direction=`supports` confidence=0.84
   - `2026-05-11T18:09:02Z` `literature` `targeted_review_mech_318_rule_state_abstraction` direction=`supports` confidence=0.78
@@ -1228,8 +1228,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-05-21T03:58:02.061702Z` `experimental` `v3_exq_543i_arc062_differential_heads_falsifier` direction=`non_contributory` confidence=0
   - `2026-05-22T09:17:14.238754Z` `experimental` `v3_exq_543k_arc062_mode_separation_gap_b_falsifier` direction=`non_contributory` confidence=0
   - `2026-05-26T02:30:59.480709Z` `experimental` `v3_exq_543l_arc062_mode_separation_gap_b_falsifier` direction=`non_contributory` confidence=0
-  - `2026-06-01T17:23:25.815359Z` `experimental` `v3_exq_610b_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
-  - `2026-06-01T17:23:25.816173Z` `experimental` `v3_exq_610a_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
+  - `2026-06-01T17:30:16.051159Z` `experimental` `v3_exq_610a_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
+  - `2026-06-01T17:30:16.059818Z` `experimental` `v3_exq_610b_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `Lynx1 knockout retains juvenile plasticity indefinitely -- removing a single brake is sufficient to prevent closure, so MECH-334's closure is not robust to omission of the locking mechanism: 'no closure' is the default, closure is the engineered addition.` (1)
   - `Lynx1 acts via nicotinic acetylcholine receptor signalling, partially redundant with the perineuronal-net lock (Pizzorusso 2002); MECH-334 modelled as a single closure mechanism may under-represent a biologically multi-lock architecture, with implications for how brittle a single-mechanism REE implementation would be.` (1)
@@ -1509,7 +1509,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-05-08T16:53:42.767936Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-08T16:53:42.769101Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-23T22:06:32.628491Z` `experimental` `v3_exq_514j_sd049_phase2_reef_mech307_spcem` direction=`weakens` confidence=0.75
-  - `2026-06-01T17:23:25.814687Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
+  - `2026-06-01T17:30:16.027041Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `The paper focuses on recognition (classification) rather than goal-directed navigation -- the untangled representation was not tested for downstream approach behavior.` (1)
   - `IT cortex representations retain some residual position sensitivity that only approaches full invariance at the population level, not single neurons.` (1)
@@ -1543,7 +1543,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-018
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.201, lit_conf=0.746, overall_confidence_legacy=0.564
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.2, lit_conf=0.746, overall_confidence_legacy=0.564
 - Recent entries:
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`supports` confidence=0.78
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`mixed` confidence=0.65
@@ -1661,7 +1661,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-037
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.3, lit_conf=0.861, overall_confidence_legacy=0.721
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.299, lit_conf=0.861, overall_confidence_legacy=0.721
 - Recent entries:
   - `2026-05-08T13:53:29Z` `experimental` `v3_exq_483b_sd037_broadcast_override_4arm` direction=`supports` confidence=0.75
   - `2026-05-21T06:44:44Z` `experimental` `v3_exq_483c_sd037_broadcast_gap4_tier1` direction=`weakens` confidence=0.75
@@ -1707,7 +1707,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-05-08T16:53:42.769101Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-23T22:06:32.628491Z` `experimental` `v3_exq_514j_sd049_phase2_reef_mech307_spcem` direction=`weakens` confidence=0.75
   - `2026-05-31T17:59:43Z` `experimental` `v3_exq_618_sd049_phase3_consumer_cascade_validation` direction=`non_contributory` confidence=0
-  - `2026-06-01T17:23:25.814687Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
+  - `2026-06-01T17:30:16.027041Z` `experimental` `v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `Kidd & Hayden warn against treating curiosity as a single phenomenon -- they argue it is a class of information-seeking motivations that vary by context and species. SD-049's novelty channel implements one specific operationalisation: benefit decays with per-cell familiarity. Kidd & Hayden's framework licenses this as a valid instance, but cautions that the agent will not generalise to other curiosity-class motivations (e.g. specific epistemic curiosity, perceptual curiosity, social information-seeking) without further substrate work. SD-049 is therefore a partial implementation of the curiosity class, not a complete one.` (1)
   - `The curiosity class's reward signal is not deficit-reduction but uncertainty-reduction. SD-049's novelty-decay implementation is closer to a habituation analog than to a true uncertainty-reduction signal. This is a known architectural simplification; flagging here so that future child mechanisms (e.g. MECH-(TBD): predictive uncertainty as benefit signal) can be registered without confusion.` (1)

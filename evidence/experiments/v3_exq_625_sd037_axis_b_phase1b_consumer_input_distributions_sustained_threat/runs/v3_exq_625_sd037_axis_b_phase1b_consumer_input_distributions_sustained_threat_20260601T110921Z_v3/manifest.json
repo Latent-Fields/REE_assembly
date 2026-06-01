@@ -21,8 +21,10 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
+  "evidence_direction_note": "[2026-06-01 governance] Superseded by V3-EXQ-625b. Per /diagnose-errors (2026-06-01), the headline PASS was vacuous: acceptance_pass=false with z_harm_a_norm identically 0.0 across all 1027 ticks / 3 seeds (incl. the 17 hazard-event ticks) because the gap4 config path (REEConfig.goal_stream()) never enabled use_affective_harm_stream, so the AffectiveHarmEncoder was never instantiated and every consumer-input quantity read exactly 0.0. NOT a substrate finding. 625b re-runs with the affective stream enabled (guarded library opt-in) and ties the outcome to the substrate-readiness acceptance gate. No claim tags; no claim impact.",
+  "superseded_by": "V3-EXQ-625b",
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,

@@ -31,6 +31,9 @@
     "MECH-313": "non_contributory",
     "MECH-260": "non_contributory"
   },
+  "evidence_direction_note": "[2026-06-01 governance / confirmed failure_autopsy_V3-EXQ-603d] non_contributory on Q-045/MECH-313/MECH-260. C4 z_goal=0 everywhere is a Class-1 harness/wiring artifact (same class as V3-EXQ-626), NOT substrate-ceiling falsification: ScaffoldedSD054OnboardingScheduler._train_episode and 603d's bespoke P2 never call agent.update_z_goal, so z_goal stays zero-init for every step of every arm; the goal-pipeline gates open onto an unfed stream. P1 survival gate failed 2/3 seeds (42,44; only 43 to P2; p2_cell_count 5/15, effective N=1), reproducing 603-chain seed-fragility but confounded by reduced budget (P0/P1=30/30 vs 603c 100/50) + inert goal pipeline. Routing: implement-substrate AMEND on scaffolded_sd054_onboarding (wire update_z_goal + Stage-0 positive-control gate; upstream of 622 anneal-rate amend), then re-issue 603d -> 603e at restored budget. EXQ-445h remains sole valid MECH-260 support; no claim falsified. epistemic_category=substrate_ceiling; pending_retest_after_substrate.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true,
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
