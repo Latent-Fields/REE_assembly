@@ -1,0 +1,140 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-01T19:09:47Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_592e_mech090_readiness_conjunction_validation_20260601T180923Z_v3",
+      "queue_id": "V3-EXQ-592e",
+      "claim_ids": [
+        "MECH-090"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "partial -- MECH-090 tag is accurate, but 592e primarily tested admission/elevation plus an upstream E3 committed-trajectory proxy rather than already-held release authority.",
+        "biological_reference": "clear -- BG beta gating, action readiness, affordance preparation, and dopaminergic readiness remain the correct biological reference cluster.",
+        "prerequisites": "present for entry gating; untested for maintenance -- R-c score-margin and nav axes are implemented, but release authority is separate and not coupled to readiness failure.",
+        "implementation": "partial integration -- predicates are wired to elevate/admit; no readiness-failure path releases an already elevated bistable latch.",
+        "environment": "not load-bearing -- a full ecological environment is unnecessary for the next question.",
+        "measurement": "misleading -- e3._committed_trajectory occupancy is upstream of BetaGate admission and can remain 1.0 while beta elevation is 0.0.",
+        "integration": "admission coupled, maintenance not demonstrated -- the unresolved interface is predicate-to-state authority.",
+        "scale": "adequate for diagnosis -- the next probe should be smaller, not larger."
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG-level beta commitment gate with readiness-gated action-selection admission and separate release/stop-change pathways.",
+        "dependencies": [
+          "BetaGate.should_admit_elevation score-margin admission predicate",
+          "CommitReadiness.is_above_floor nav-readiness predicate",
+          "REEAgent.select_action bistable beta-gate branch",
+          "BetaGate.release and release-side mechanisms such as hippocampal completion, urgency interrupt, V_s invalidation, relief/safety gates, and SD-034 closure"
+        ],
+        "is_formal_import": false,
+        "divergence": "No biology divergence established. The current failure localises to implementation integration: readiness predicates are admission-side only and lack demonstrated maintenance/release authority.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "does_not_support_state_authority",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "V3-EXQ-592e (2026-06-01, supersedes V3-EXQ-592d) FAILed after correcting the 592d commit-entry-count defect. C1 baseline hold-rate fired, and both readiness predicates were measurable: ARM_1 score-margin blocks=1793, ARM_3 score-margin blocks=2088, ARM_2/3 nav-competence blocks=150 each. The failure is therefore not predicate silence. The informative result is that predicate firing did not produce discriminative committed-state occupancy under the script's hold-rate measure: all arms had hold_rate=1.0 and total_commits=0. Per-cell beta-elevation totals localise the issue further: score-margin gating can suppress BetaGate elevation when the latch is not elevated (ARM_1/3 beta-elevated fraction 0.0), but E3's rv-low committed-trajectory marker remains present because it is set upstream of BetaGate admission. Current code confirms the R-c predicates are wired to admission/elevation sites; no readiness-failure path releases an already-elevated bistable latch or clears E3 committed state. This is a direct integration/state-authority gap, not a clean conceptual falsification of MECH-090. Route to V3-EXQ-592f, a controlled state-machine probe of whether failed readiness can release/suppress an already-held committed state and recover when readiness returns.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": null,
+        "depends_on_unresolved": null,
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The predicates did fire: score-margin blocks were 1793 in ARM_1 and 2088 in ARM_3; nav-competence blocks were 150 in ARM_2 and 150 in ARM_3.",
+        "592e is more informative than 592d because it removed the structurally bad C1 entry-count predicate and exposed a predicate-to-state authority gap.",
+        "Score-margin gating can suppress BetaGate elevation when the latch is not yet elevated: per-cell totals give beta-elevated fraction 0.0 in ARM_1 and ARM_3.",
+        "The script's hold_rate counted e3._committed_trajectory, which E3 sets on rv-low selection upstream of BetaGate admission. That marker can stay at 1.0 even when beta elevation is suppressed.",
+        "In bistable mode, score-margin admission is consulted only on the not-yet-elevated transition tick; nav readiness can emit block diagnostics on rv-low selections but is still only AND-composed into the elevation call.",
+        "No current readiness-failure path calls beta_gate.release() or clears the E3 committed marker; release exists through separate mechanisms such as hippocampal completion, urgency interrupt, V_s invalidation, relief/safety, contextual safety, and SD-034 closure.",
+        "The next experiment must be a controlled commitment-state transition probe that starts already committed, forces predicate failure, measures beta/e3 state occupancy and release transitions, and then restores readiness to test recovery."
+      ],
+      "routing": "queue-experiment",
+      "next_experiment_plan": {
+        "queue_id": "V3-EXQ-592f",
+        "title": "MECH-090 commitment-state transition authority probe",
+        "experiment_type": "v3_exq_592f_mech090_commitment_state_transition_probe",
+        "experiment_purpose": "diagnostic",
+        "purpose_note": "Direct state-machine diagnostic of MECH-090 maintenance/release authority; not a full ecological behavioural experiment.",
+        "supersedes": "V3-EXQ-592e",
+        "claim_ids_policy": "Use claim_ids=[\"MECH-090\"] if the harness exercises real REEAgent.select_action, BetaGate, and CommitReadiness. Use claim_ids=[] only for standalone instrumentation.",
+        "estimated_minutes": 10,
+        "machine_affinity": "any",
+        "stages": [
+          {
+            "stage": "A_forced_committed_baseline",
+            "forced_inputs": "score margin above floor; nav readiness above floor; beta elevated; E3 rv-low",
+            "expected": "baseline beta_elevated_fraction and e3_committed_pointer_fraction >= 0.8"
+          },
+          {
+            "stage": "B_score_margin_failure_while_committed",
+            "forced_inputs": "score margin below 0.05; nav readiness passing; beta initially elevated",
+            "expected": "direct score-below-floor count rises and beta/e3 occupancy drops or decommit transition occurs"
+          },
+          {
+            "stage": "C_nav_competence_failure_while_committed",
+            "forced_inputs": "nav readiness below 0.3; score margin passing; beta initially elevated",
+            "expected": "nav block count rises and beta/e3 occupancy drops or decommit transition occurs"
+          },
+          {
+            "stage": "D_both_gates_fail_while_committed",
+            "forced_inputs": "score margin below floor and nav readiness below floor; beta initially elevated",
+            "expected": "suppression at least as strong as the strongest single-gate condition"
+          },
+          {
+            "stage": "E_recovery",
+            "forced_inputs": "score margin and nav readiness restored above floors",
+            "expected": "beta/e3 occupancy rises again and no permanent lockout occurs"
+          }
+        ],
+        "acceptance_criteria": {
+          "C1_forced_baseline": "baseline_beta_elevated_fraction >= 0.8 and baseline_e3_committed_pointer_fraction >= 0.8",
+          "C2_score_margin_release_authority": "direct_score_margin_below_floor_count > 0 and beta_elevated_fraction decreases by >= 0.5 from baseline OR e3_committed_pointer_fraction decreases by >= 0.5 from baseline OR decommit_transition_count >= 1",
+          "C3_nav_competence_release_authority": "nav_competence_blocks > 0 and beta_elevated_fraction decreases by >= 0.5 from baseline OR e3_committed_pointer_fraction decreases by >= 0.5 from baseline OR decommit_transition_count >= 1",
+          "C4_conjunction_authority": "both direct gate-failure counters > 0 and Stage D suppression is at least as strong as the strongest single-gate suppression",
+          "C5_recovery": "after gates restore, beta_elevated_fraction rises to at least 0.8 of baseline; if no suppression occurred earlier, recovery is not evaluable and overall cannot PASS",
+          "C6_no_vacuity": "forced perturbations must cross thresholds; otherwise INVALID / harness failure, not FAIL"
+        },
+        "failure_routing": {
+          "forced_inputs_not_changed": "INVALID; claim_ids=[]; non_contributory; diagnose harness",
+          "direct_inputs_changed_but_counters_not_consulted": "diagnostic FAIL showing admission-only predicate consultation in already-elevated state; implementation audit before behavioural retest",
+          "counters_move_but_state_not_suppressed": "does_not_support or weakens MECH-090 state-authority depending on governance convention",
+          "release_occurs_but_no_recovery": "FAIL for lockout; route to release/re-entry calibration",
+          "pass": "supports MECH-090 state-machine authority and permits later ecological behavioural validation; does not itself mark commitment closure done in this session"
+        }
+      },
+      "queue_proposal": {
+        "queue_id": "V3-EXQ-592f",
+        "title": "MECH-090 commitment-state transition authority probe",
+        "script": "experiments/v3_exq_592f_mech090_commitment_state_transition_probe.py",
+        "experiment_type": "v3_exq_592f_mech090_commitment_state_transition_probe",
+        "experiment_purpose": "diagnostic",
+        "claim_ids": [
+          "MECH-090"
+        ],
+        "supersedes": "V3-EXQ-592e",
+        "priority": 35,
+        "estimated_minutes": 10,
+        "machine_affinity": "any",
+        "status": "pending",
+        "note": "Do not compare commit-entry counts alone. PASS requires direct suppression/release of already-held beta/e3 commitment state plus recovery after readiness returns. INVALID if forced inputs do not cross thresholds."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "n/a -- single target",
+    "is_independent_bugs": false,
+    "structural_property": "n/a -- single target",
+    "readings": []
+  },
+  "final_concise_verdict": "592e showed that MECH-090 predicates fire but lack demonstrated authority over commitment maintenance/release. 592f must directly test whether failed readiness can release or suppress an already-held committed state, and whether commitment can recover when readiness returns."
+}
