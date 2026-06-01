@@ -1,0 +1,52 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-01T16:46:43Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_614c_mech341_stratified_within_class_temperature_sweep_20260601T124509Z_v3",
+      "queue_id": "V3-EXQ-614c",
+      "claim_ids": ["MECH-341"],
+      "failed_criterion": "absolute",
+      "failed_criterion_note": "Script routed via the C1=False cell (FAIL_C1_regression). Both failing criteria (C1 regression band, C2 within-class lift) are test-design defects; the only sound criterion C3 (substrate-readiness) PASSed 3/3 on all 4 arms.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- legacy path did NOT regress (ARM_0 cross-seed mean 0.7999 ~= 0.800 reference); MECH-341 claim text untested by this run, not falsified",
+        "biological_reference": "partial -- algorithmic regulator (BG winner-take-all + entropy regulation); no biology divergence",
+        "prerequisites": "present -- SD-056 amend + scaffolded substrate landed; substrate fires",
+        "implementation": "substrate complete and correctly gated; experiment harness defective (measures wrong quantity, omits lever diagnostics)",
+        "environment": "adequate-but-coupling -- SD-054 reef env likely yields few multi-candidate-per-class pools, starving the within-class branch (unrecorded)",
+        "measurement": "DOMINANT: under-instrumented + mis-specified -- C2 metric is temperature-invariant by construction; within-class diagnostics not recorded; C1 predicate compares per-seed values to a cross-seed-mean band",
+        "integration": "coupled-and-stable -- 12/12 cells, no NaN/Inf, no non-finite actions",
+        "scale": "adequate -- 4 arms x 3 seeds x 90 ep x 200 steps"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG / cortico-striatal winner-take-all selection with downstream entropy-regulating modulation; within-class proportional sampling is an algorithmic regulator",
+        "dependencies": ["across-class stratified selection", "candidate-pool multi-candidate-per-class density"],
+        "is_formal_import": false,
+        "divergence": "n/a -- not a biology-divergence finding",
+        "lit_status": "absent (acceptable for an algorithmic regulator)"
+      },
+      "recommended_epistemic_category": "instrumentation_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-01 autopsy (failure_autopsy_V3-EXQ-614c_2026-06-01): V3-EXQ-614c (4-arm within-class temperature sweep {None,0.5,1.0,2.0} on the SD-056-amended baseline) FAILed via the script's C1-regression cell, but both failing criteria are test-design defects, so the run is non_contributory for MECH-341 rather than weakens. (1) C2 vacuous: ARM_1/2/3 (T=0.5/1.0/2.0) are bit-identical per seed because the reported selected_class_entropy_nats is measured at the score-layer argmin(last_scores), which is upstream of and independent from the within-class temperature lever (the lever only changes the committed within-class representative inside stratified_select, e3_score_diversity.py:269-284, and only when a class has >=2 candidates). The within-class firing diagnostics (mech341_n_within_class_sampled) were not recorded, so the lever's engagement is unconfirmed. (2) C1 mis-specified: it checks per-seed ARM_0 entropy against [0.720,0.880] (614b cross-seed mean 0.800 +/-10%) needing >=2/3 seeds in band; ARM_0 per-seed entropies [1.177,0.530,0.693] have cross-seed mean 0.7999 (~=0.800, no regression) but 0/3 land in the band due to cross-seed variance. C3 substrate-readiness PASSed 3/3 on all 4 arms (substrate fires). Routed to /queue-experiment for V3-EXQ-614d: measure the committed-action class distribution and the E3 within-class diagnostics (the score-layer argmin metric is temperature-invariant by construction), and fix C1 to compare cross-seed means. pending_retest_after_corrected_harness (gated on V3-EXQ-614d). Same instrumentation-defect class as the V3-EXQ-626 harness-bug FAIL; not substrate_ceiling -- substrate is V3-tractable and already validated in-stack at C3 ALL_ON on this substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Substrate (E3 within-class temperature lever) is implemented and gated correctly and fires (C3 PASS). The gap is in the experiment harness (metric choice + omitted diagnostics + mis-specified C1), which is fixed by a corrected re-run, not a substrate change."
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after_corrected_harness": true,
+      "retest_gated_on": "V3-EXQ-614d",
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A temperature sweep over a score-layer argmin metric cannot discriminate a within-class committed-path lever; measure committed_classes_p1_counts and/or E3 within-class diagnostics instead.",
+        "Always record the lever's own firing diagnostics (mech341_n_within_class_sampled); bit-identical arms with no firing-rate field are uninterpretable and would have been caught at smoke-test.",
+        "Regression-guard predicates must compare like-to-like: a band built from a cross-seed mean must be checked against the successor cross-seed mean, not per-seed membership.",
+        "Multi-candidate-per-class frequency is a precondition for the within-class lever; confirm the branch fires often enough before interpreting a sweep.",
+        "Third consecutive 614-lineage FAIL whose headline reading is an instrument/test-design artifact rather than evidence against MECH-341."
+      ],
+      "routing": "governance-reclassification + queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

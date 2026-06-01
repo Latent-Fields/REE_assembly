@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-01T16:46:43Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_610a_inv074_crystallization_necessity_20260529T224419Z_v3",
+      "queue_id": "V3-EXQ-610a",
+      "claim_ids": ["INV-074", "MECH-333", "MECH-334", "MECH-341"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_note": "Governing failure is D2 (negative control did NOT collapse: ARM_0 end_phase_2 1.107 ~= end_phase_3 1.113, d2_delta -0.006). D1 also False (d1_delta -0.012) but is uninformative when the control never degrades. D3 sanity PASS. Per the script's own grid, D2 FAIL = non_contributory.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (not weakened) -- INV-074 cannot be weakened by a run where the predicted control collapse never occurred",
+        "biological_reference": "partial -- critical-period closure mechanism; protective benefit observable only under a destabilising post-closure pressure absent in this env",
+        "prerequisites": "present-but-inert -- MECH-341 diversity established (D3 PASS) but no Phase-3 degradation pressure",
+        "implementation": "complete -- crystallization + residue EWC wired; manifest written normally (crash was post-manifest tail)",
+        "environment": "DOMINANT: too benign / wrong pressures -- control did not collapse; CausalGridWorldV2 supplies no post-Phase-3 overwriting pressure",
+        "measurement": "adequate -- Phase 2/3 entropy is the right observable; D3 confirms the instrument captured diversity",
+        "integration": "coupled-and-stable -- both arms ran 2500 ep x 3 seeds; arms track each other",
+        "scale": "adequate-or-more -- 2500 ep/arm makes the too-benign-env reading stronger than too-short-training"
+      },
+      "biological_reference": {
+        "closest_mechanism": "critical-period crystallization / closure of plasticity windows (Hensch PV/GABA; REE closure side INV-074 + MECH-333/334 + EWC)",
+        "dependencies": ["ongoing destabilising post-closure pressure (forward-model consolidation / distribution shift) that would otherwise overwrite established discrimination"],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present-adjacent (critical_period_crystallization.md; Hensch/Bear anchors in 2026-06-01 plasticity-window thoughts doc)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-074": "non_contributory",
+        "MECH-333": "non_contributory",
+        "MECH-334": "non_contributory",
+        "MECH-341": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-06-01 autopsy (failure_autopsy_V3-EXQ-610a_2026-06-01): V3-EXQ-610a (2-arm crystallization-necessity discriminative pair, 2500 ep x 3 seeds, 4-phase curriculum) is reclassified non_contributory for INV-074/MECH-333/MECH-334 (correcting the 2026-05-30 rescue session's conservative weakens read). The run FAILed D1 (d1_delta -0.012) and D2 (d2_delta -0.006) with D3 (sanity) PASS. The governing failure is D2: the no-crystallization control arm did NOT exhibit the predicted post-Phase-3 diversity collapse (ARM_0 end_phase_2 entropy 1.107 ~= end_phase_3 1.113). Per the script's own pre-registered interpretation grid, D2 FAIL = non_contributory (control does not exhibit the predicted failure mode). With the control never degrading, ARM_1's lack of marginal advantage (D1 FAIL) is expected and carries no information against the crystallization-necessity claim. Diagnosis: environment/test-bed ceiling -- CausalGridWorldV2 does not drive the post-Phase-3 forward-model consolidation that would overwrite Phase-2 discrimination, so the protective benefit of crystallization cannot express itself (consistent with INV-074's existing epistemic_category=substrate_ceiling). MECH-341 non_contributory retained (background Phase-0-2 diversity dependency, not under direct test). pending_retest_after_substrate=true: a retest requires a test-bed enrichment introducing a destabilising Phase-3 pressure strong enough that the control arm measurably collapses. The original run's emit_outcome(experiment_type=...) crash that caused the ERROR misclassification is already fixed lineage-wide (540g, 610 clean as of 2026-06-01); the recovered manifest science is intact, so no /diagnose-errors loop and no re-run is needed to recover the result.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "test_bed_enrichment_crystallization_necessity",
+        "title": "Phase-3 destabilising-pressure env so the crystallization-necessity control arm measurably collapses",
+        "implementation_hint": "Add a post-Phase-3 destabilising pressure (continued forward-model consolidation / distribution shift / new-resource regime) to CausalGridWorldV2 strong enough that the no-crystallization control arm shows the predicted diversity collapse (D2 delta >= +0.10). Without it, the crystallization-necessity claim cannot be discriminated. Governance to decide whether to materialise now or defer.",
+        "unblocks_claims": ["INV-074", "MECH-333", "MECH-334"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_610a_inv074_crystallization_necessity_20260529T224419Z_v3",
+          "experiment_type": "v3_exq_610a_inv074_crystallization_necessity",
+          "metric": "ARM_0 control end_phase_2 - end_phase_3 entropy (D2 collapse) = -0.006 (control did not collapse)",
+          "target": "D2 delta >= +0.10 (control must show post-Phase-3 collapse for the test to discriminate)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 2026-05-30 rescue session's conservative weakens read overshoots the pre-registered grid; D2 FAIL (control does not collapse) maps to non_contributory per the script's own row (c).",
+        "A crystallization-necessity test needs an env that drives post-closure degradation; the control arm must measurably collapse or the necessity claim cannot express itself.",
+        "2500 episodes makes the too-benign-env reading stronger than the too-short-training reading.",
+        "MECH-341 non_contributory is correct -- it is a Phase-0-2 diversity-establishment dependency, not a claim this 2-arm design discriminates.",
+        "The emit_outcome(experiment_type=...) crash is already remediated lineage-wide (540g, 610 clean); recovered manifest science intact, no re-run needed."
+      ],
+      "routing": "governance-reclassification"
+    }
+  ],
+  "cluster_pattern": null
+}
