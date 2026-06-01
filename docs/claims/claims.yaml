@@ -16575,13 +16575,15 @@
   claim_type: mechanism_hypothesis
   subject: drive.wanting_liking_behavioral_dissociation
   polarity: asserts
-  status: active
+  status: provisional
   implementation_phase: v3
   split_from: MECH-112
   registered: "2026-04-13"
+  pending_retest_after_substrate: true
   depends_on:
     - SD-005
     - SD-015
+    - SD-049
     - ARC-030
     - MECH-069
   location: docs/architecture/approach_avoidance_symmetry.md#mech-112
@@ -16592,7 +16594,9 @@
     at contact. Measured by wanting_l1_fraction vs liking_l1_fraction dissociation delta.
     Evidence: EXQ-074f PASS 4/4 seeds, EXQ-234 PASS 3/3 seeds, EXQ-354 PASS 3/3 seeds
     (2026-04-04 to 2026-04-12). 10 seeds across 3 independent experiments, all PASS.
-    No conflicting evidence. Promoted to active 2026-04-13.
+    No conflicting evidence at promotion time. Promoted to active 2026-04-13.
+    Demoted active -> provisional 2026-06-01 pending substrate-honest retest on SD-049
+    substrate (see evidence_quality_note triage trail).
     Prior hold_candidate_resolve_conflict (MECH-112) was driven by conflation with the
     z_goal latent structure arm (now MECH-230). Behavioral dissociation does not require
     SD-012 homeostatic drive -- z_world fallback seeding is sufficient.
@@ -16606,7 +16610,57 @@
     EXQ-354 PASS 3/3 seeds (2026-04-12): definitive test with correct SD-015 ResourceEncoder
     wiring. wanting_l1_fraction 0.96/0.935/0.985 vs liking_l1_fraction 0.43/0.54/0.43.
     Dissociation delta 0.53/0.40/0.55. All >> 0.10 threshold. resource_rate floor met all seeds.
-    Total: 10 seeds, 3 experiments, 0 failures. Promoted to active.
+    Total: 10 seeds, 3 experiments, 0 failures. Promoted to active 2026-04-13.
+
+    Governance triage 2026-06-01T07:15Z (active_conflict flag, conflict_ratio 0.2, 9 supports /
+    1 weakens, source 2026-05-04_sd_049_temporal_community_schapiro2016): demoted active ->
+    provisional + pending_retest_after_substrate=true. The schapiro2016 lit-pull is a
+    substrate-honesty / methodology critique (NOT a mechanism refutation): on a single-resource
+    substrate, wanting-target and liking-target are forced to coincide at the trajectory level
+    -- the agent has nothing to approach except the one consummatory resource, so any apparent
+    wanting/liking dissociation in approach trajectories is degenerate by construction. The
+    structural argument (distributed similarity-preserving substrate per Schapiro/Turk-Browne/
+    Norman/Botvinick 2015 Hippocampus) maps onto SD-049's multi-identity z_resource encoding +
+    per-axis drive: only on that substrate can the agent approach target_A while target_B is
+    what it would consume for satiation (the non-degenerate identity-distinct wanting test).
+    The three prior PASSes (EXQ-074f / EXQ-234 / EXQ-354, all 2026-04-04 -> 2026-04-12) ran
+    BEFORE SD-049 Phase 1 substrate landed (2026-05-03), confirmed by the EXQ-074f 'z_world
+    fallback seeding' descriptor above and by all three predating the SD-049 implementation
+    timeline. They are therefore single-resource substrate runs and the critique stands --
+    the prior PASSes may be degenerate.
+
+    Substrate status at triage time: SD-049 Phase 1 IMPLEMENTED 2026-05-03 (multi-identity
+    resources + per-axis drive + curriculum hook on CausalGridWorld); Phase 2 hybrid encoder
+    IMPLEMENTED 2026-05-04 (ResourceEncoder identity_head + identity-classifier head);
+    Phase 3 consumer cascade IMPLEMENTED 2026-05-31 (all 7 SD-032 consumers per-axis-aware,
+    including MECH-295 liking-bridge axis-matched routing -- the canonical case for MECH-229).
+    Behavioural validation status: V3-EXQ-514 / 514b / 514f / 514j ALL non_contributory
+    (substrate-readiness pattern, not load-bearing); V3-EXQ-514g IGW-20260601-011 is the
+    Phase 2 successor and is currently BLOCKED on goal-pipeline GAP-2 substrate work (see
+    substrate_queue.json MECH-262 retest_after_substrate target). The pre-registered
+    non-degenerate test exists (substrate_queue SD-049 retest target: identity-distinct
+    wanting >= 60% seeded episodes on 3-type ARM_2 substrate; ARM_2 - ARM_0 >= 0.4 monotone
+    gradient; wanting != liking trajectory fraction near-zero in ARM_0/ARM_1 and >= 0.6 in
+    ARM_2) -- but no PASS yet exists against it.
+
+    Disposition: status -> provisional (not demote_to_candidate; the mechanism is not refuted,
+    only the prior-evidence ground was substrate-degenerate); pending_retest_after_substrate=true
+    with target = SD-049 Phase 2 behavioural validation PASS on multi-resource substrate (the
+    514-lineage successor, expected to unblock once goal-pipeline GAP-2 lands). SD-049 added
+    to depends_on to make the substrate dependency machine-readable. Conflict-ratio reading
+    after triage: the 1 'weakens' lit entry is now correctly characterised as a methodology
+    flag against the substrate-fitness of the prior PASS evidence, not a mechanism conflict;
+    on the SD-049 substrate retest the lit-pull explicitly licenses the non-degenerate test
+    as the load-bearing question (per record.json failure_signatures: 'If option A is chosen
+    and ARM_2 fails wanting != liking despite passing identity-recovery, the failure mode is
+    the absent similarity structure'). The 9 'supports' entries include lit_conf=0.848 from
+    independent biology of wanting/liking (Berridge & Robinson 2003; Smith & Berridge
+    cooperative-vs-dominant architecture) which remains intact.
+    Routing: no /queue-experiment from this triage (the 514-lineage successor is already
+    workset-tracked under IGW-20260601-011 / goal-pipeline GAP-2); no /failure-autopsy (no
+    FAIL to autopsy -- the issue is methodological, not falsificational). claims.json rebuilt
+    + indexer outputs refreshed; substrate_queue.json NOT touched (owned by concurrent
+    MECH-341 amend session; SD-049 retest target already pre-registered there).
 
 - id: MECH-230
   title: "E3 maintains a structured latent goal representation (positive attractor in z_goal sub-space, measurable as z_goal_norm > 0) distinct from harm avoidance, enabling hippocampal terrain navigation toward goal states."
