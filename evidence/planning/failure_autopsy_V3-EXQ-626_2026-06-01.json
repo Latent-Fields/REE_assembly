@@ -1,0 +1,39 @@
+{
+  "autopsy_id": "failure_autopsy_V3-EXQ-626_2026-06-01",
+  "date": "2026-06-01",
+  "primary_subject": "v3_exq_626_goal_pipeline_developmental_window_diagnostic_20260601T152729Z_v3",
+  "queue_id": "V3-EXQ-626",
+  "verdict": "class_1_harness_measurement_failure",
+  "one_line": "626 never calls agent.update_z_goal(); z_goal stayed at zero-init across all arms, making C1/C5 fail and C2/C3 vacuous. NOT a substrate formation regression.",
+  "root_cause": {
+    "type": "missing_seeding_hook",
+    "detail": "bespoke _run_episode loop omits update_z_goal / update_liking / update_schema_wanting; GoalState.update is reachable only via REEAgent.update_z_goal (agent.py:4827).",
+    "evidence": "content search for update_z_goal|update_liking|update_schema_wanting in the 626 script returns no matches; 622 runner goal_stream_stages_sd054.py calls update_z_goal at lines 537 and 590."
+  },
+  "positive_controls": {
+    "V3-EXQ-622_S0": {"outcome": "PASS", "z_goal_norm_peak_per_seed": [0.281, 0.439, 0.342], "threshold": 0.1, "note": "same agent config family, runner DOES feed pipeline"},
+    "V3-EXQ-582a": {"outcome": "PASS", "mean_effective_benefit_at_contact": 0.115, "benefit_threshold": 0.1, "note": "GAP-3 drive_floor=0.9"}
+  },
+  "vacuous_criteria": ["C2_drive_axis_isolation", "C3_hazard_axis_isolation"],
+  "vacuous_reason": "differential criteria assume non-zero control z_goal; all arms pinned at 0 so 0 < ceiling is trivially true and uninformative.",
+  "cohort_context": {
+    "V3-EXQ-514k": {"class": "class_2_object_binding_gap_confounded", "wanting_liking_dissoc_fraction": 0.0, "evidence_direction": "weakens SD-049/SD-015; non_contributory MECH-229/230", "confound": "GAP-2 SP-CEM monostrategy"},
+    "V3-EXQ-625": {"class": "harm_axis_sibling_pattern", "governance_flag": "headline PASS conflicts with acceptance_pass=false; harm/salience consumer-input channels all 0.0 despite hazard events firing in 2/3 seeds"},
+    "V3-EXQ-623": {"class": "positive_control", "outcome": "PASS", "lesson": "signal->behaviour machinery intact when a path is correctly wired and driven"}
+  },
+  "routing": [
+    {"target": "V3-EXQ-626", "action": "diagnose-errors; re-issue as V3-EXQ-626a (lettered, supersedes V3-EXQ-626); reuse update_z_goal-driven runner + add positive-control assertion"},
+    {"target": "Stage_0_unit_test", "action": "add contract asserting forced GoalState.update inputs yield non-zero direction-stable z_goal"},
+    {"target": "V3-EXQ-514k", "action": "object-binding ladder Stage 1-2; gate on GAP-2 SP-CEM; do not re-run ecological dissociation until object-bound substrate + positive-control-guarded harness"},
+    {"target": "V3-EXQ-625", "action": "separate governance flag for headline/acceptance conflict + shared event-not-in-consumer-stream hypothesis"}
+  ],
+  "claim_ids": [],
+  "evidence_direction": "non_contributory",
+  "must_not_conclude": [
+    "protected goal formation is broken",
+    "drive/hazard/writer-freeze explains z_goal collapse",
+    "goal stream is closed",
+    "wanting/liking dissociation demonstrated",
+    "625 passed"
+  ]
+}
