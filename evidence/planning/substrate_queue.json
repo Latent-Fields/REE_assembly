@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "sd037-axis-a-phase2-recalibration-block-20260601T073706Z",
-  "last_updated_utc": "2026-06-01T07:37:06Z",
+  "last_seen_session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
+  "last_updated_utc": "2026-06-01T07:49:25Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -1118,7 +1118,7 @@
     },
     {
       "added_session": "governance-2026-04-24T08:10",
-      "current_blocker": "Phase 1 fishtank baseline produces zero distributions across all 6 consumer-input quantities; Phase 2 p70 recalibration rule cannot fit on zero data. Need a probe env that engages hazards (Phase 1 re-run on V3-EXQ-620a-style sustained-threat env OR axis (b) SD-029-style curriculum).",
+      "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
       "failure_record": [
@@ -1191,18 +1191,25 @@
           "scope": "Phase 2 recalibration block authored from V3-EXQ-620 Phase 1 manifest. Per-knob p70 computation against pooled n=2939 fishtank-baseline distributions: all four knobs (BLAConfig.arousal_threshold_on, CeAConfig.fast_route_threshold, PAGFreezeGateConfig.duration_input_threshold + theta_freeze, DACCConfig.dacc_precision_scale) hit the plan-doc floor-violation path because every measured distribution is identically 0.0 (zero_fraction=1.0 per quantity, p10..p99 all 0.0). p60/p80 sensitivity values also identically zero -- within-axis-(a) sweep is non-recoverable. Override block emitted as inert (None per knob, hold ree_core defaults) with explicit axis_a_status=empirically_unmeetable flag and route_to=axis_b_sustained_threat_env_curriculum. Phase 3 verification + Phase 4 V3-EXQ-483f both remain reserved -- there is no override block to verify or validate. NO code; NO claims.yaml; NO experiment_queue.json. New planning doc: evidence/planning/sd_037_axis_a_phase2_recalibration_block.md.",
           "validation_experiment": "Phase 3 RESERVED (no override block to verify). Axis (b) plan to be authored in a follow-on /implement-substrate session; until then Phase 2 retry under axis (a) is blocked behind a Phase 1b hazard-engaging probe-env prerequisite (substrate-side).",
           "phase2_block_doc": "evidence/planning/sd_037_axis_a_phase2_recalibration_block.md"
+        },
+        {
+          "date_utc": "2026-06-01",
+          "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
+          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in §5: harm magnitude lift (§5.1) -> sustained-window lengthening via env_drift_interval/prob (§5.2) -> stochasticity for dACC PE (§5.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (§5.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
+          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md §3. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate.",
+          "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md"
         }
       ],
       "implementation_status": "implemented",
       "implemented_session": "implement-sd037-orexin-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "last_seen_session": "sd037-axis-a-phase2-recalibration-block-20260601T073706Z",
-      "last_updated_utc": "2026-06-01T07:37:06Z",
+      "last_seen_session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
+      "last_updated_utc": "2026-06-01T07:49:25Z",
       "recalibration_plan_doc": "evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md",
       "metric_trajectory": {
-        "current_blocker": "Phase 1 fishtank baseline produces zero distributions across all 6 consumer-input quantities; Phase 2 p70 recalibration rule cannot fit on zero data. Need a probe env that engages hazards (Phase 1 re-run on V3-EXQ-620a-style sustained-threat env OR axis (b) SD-029-style curriculum).",
+        "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
         "direction": "higher_is_better",
-        "next_step": "Re-run V3-EXQ-620-style Phase 1 diagnostic on a hazard-engaging probe env (axis-(b)-style sustained-threat curriculum or env_kwargs increasing hazard density) before Phase 2 analysis. recalibration_plan_doc evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md may need a Phase 1b addendum landing the substrate-side prerequisite.",
+        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan §3.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
         "observations": [
           {
             "date_utc": "2026-04-25",
@@ -1253,6 +1260,12 @@
             "utc": "2026-05-31T19:15:00Z",
             "event": "phase1_diagnostic_returned_with_zero_baseline_distributions",
             "note": "V3-EXQ-620 Phase 1 substrate-readiness diagnostic landed PASS at gate level (manifest emitted) but with scientific content negative: fishtank baseline pooled distributions all identically 0.0 across all 6 measured quantities and all 3 seeds. p70 recalibration rule blocked at axis (a) without a hazard-engaging probe env. Axis (b) SD-029-style sustained-threat env curriculum elevated to in-scope as the immediate next step (originally reserved as fallback). recalibration_plan_doc Phase 2 cannot proceed on this data."
+          },
+          {
+            "date_utc": "2026-06-01",
+            "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
+            "event": "axis_b_plan_landed",
+            "metric_notes": "Axis (b) sustained-threat env curriculum plan landed at evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md. Routing decision: LIGHTER (env-kwargs-only). SD-029's scheduled_external_hazard substrate is already implemented (2026-04-21); axis (b) re-uses it via an ENV_FISHTANK_KWARGS overlay rather than authoring a new ree-v3 module. Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session. Plan covers Sections 1-9 (routing decision, per-gate target windows, Phase 1b script design, post-Phase-1b chip-sequence re-application, five failure modes incl. escalation to axis (c) new SD-NNN sustained-threat scheduler if env-kwarg surface exhausted, cross-refs, out-of-scope, risks, provenance)."
           }
         ],
         "prediction": "Consumer-cascade engagement (C2 sub-checks) should clear cleanly because the four wiring sites are direct scalar multipliers on existing knobs verified at the activation-smoke level (BLA 2x, CeA 2x, LateralPFC 3x ratios under override_signal=1.0 + gain=1.0 to 2.0). C3 PRIMARY (goal_norm_peak lift ARM_3 vs ARM_0) is the falsifiable surface: it lifts iff the SD-033a / SD-035 / beta-gate side channels produce net effective_drive amplification or commitment-release patterns that move goal_norm_peak against the MECH-295-bridge-dominated baseline. C3 FAIL with C2 PASS would indicate MECH-295 bridge is structurally dominant on this surface even with cascade engaged -- routes to autopsy, not to redesigning the consumer-cascade wiring.",
@@ -1273,7 +1286,8 @@
         "MECH-282",
         "MECH-286"
       ],
-      "validation_experiment": "V3-EXQ-483b"
+      "validation_experiment": "V3-EXQ-483b",
+      "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md"
     },
     {
       "added_session": "governance-2026-04-24T08:10",
