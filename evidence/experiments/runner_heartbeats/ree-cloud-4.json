@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-01T18:37:54Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-620b",
-  "current_exq_started_utc": "2026-06-01T18:06:10.558361+00:00",
-  "current_title": "SD-037 axis-a Phase 1 consumer-input distributions -- affective stream ON (supersedes V3-EXQ-620)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 7 / PHASE1_BASELINE",
-    "runs_done": 1,
-    "runs_total": 3,
-    "episodes_done": 40,
-    "episodes_total": 60,
-    "overall_pct": 55.6
-  },
-  "seconds_elapsed": 1904,
-  "seconds_remaining": 878,
-  "recent_lines": [
-    "Seed 7 Condition PHASE1_BASELINE",
-    "[train] phase1_seed_7 ep 10/60",
-    "[train] phase1_seed_7 ep 20/60",
-    "[train] phase1_seed_7 ep 30/60",
-    "[train] phase1_seed_7 ep 40/60"
+  "last_tick_utc": "2026-06-01T19:07:29Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-610c",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-620",
+      "result": "PASS",
+      "completed_at": "2026-05-31T18:36:21.768430+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603d",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T09:53:45.947850+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-514k",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T11:53:08.281325+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-626",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T15:27:29.504502+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-620b",
+      "result": "PASS",
+      "completed_at": "2026-06-01T19:01:27.728456+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 668,
   "runner_version": null,
   "gpu": {
