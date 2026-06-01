@@ -1,1 +1,643 @@
-{"acceptance": {"C1_forced_baseline": {"baseline_beta_elevated_fraction": 1.0, "baseline_e3_committed_pointer_fraction": 1.0, "pass": true, "threshold": 0.8}, "C2_score_margin_release_authority": {"decommit_transition_count": 0, "direct_score_margin_below_floor_count": 6, "pass": false, "suppression": {"beta_drop": 0.0, "e3_pointer_drop": 0.0, "max_drop": 0.0}}, "C3_nav_competence_release_authority": {"decommit_transition_count": 0, "nav_competence_blocks": 6, "pass": false, "suppression": {"beta_drop": 0.0, "e3_pointer_drop": 0.0, "max_drop": 0.0}}, "C4_conjunction_authority": {"decommit_transition_count": 0, "direct_nav_readiness_below_floor_count": 6, "direct_score_margin_below_floor_count": 6, "pass": true, "strongest_single_gate_suppression": 0.0, "suppression": {"beta_drop": 0.0, "e3_pointer_drop": 0.0, "max_drop": 0.0}}, "C5_recovery": {"note": "not_evaluable_no_prior_suppression", "pass": false, "prior_suppression_observed": false, "recovery_beta_elevated_fraction": 1.0, "required_fraction_of_baseline": 0.8}, "C6_no_vacuity": {"parts": {"A_nav_above_floor": true, "A_score_above_floor": true, "B_score_below_floor": true, "C_nav_below_floor": true, "D_nav_below_floor": true, "D_score_below_floor": true, "E_nav_above_floor": true, "E_score_above_floor": true}, "pass": true}}, "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["MECH-090"], "diagnostic_interpretation": {"failure_routing": "implement-substrate audit for readiness-to-release coupling before further ecological retests", "stubbed_component": "E3TrajectorySelector.select SelectionResult only", "summary": "FAIL_NO_RELEASE_AUTHORITY", "uses_real_beta_gate": true, "uses_real_commit_readiness": true, "uses_real_select_action": true}, "diagnostic_outcome": "FAIL_NO_RELEASE_AUTHORITY", "direct_gate_inputs": {"A_forced_committed_baseline": {"direct_nav_readiness_below_floor_count": 0, "direct_score_margin_below_floor_count": 0, "forced_nav_readiness": 1.0, "forced_score_margin": 0.1, "observed_readiness_values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "observed_score_margins": [0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612]}, "B_score_margin_failure_while_committed": {"direct_nav_readiness_below_floor_count": 0, "direct_score_margin_below_floor_count": 6, "forced_nav_readiness": 1.0, "forced_score_margin": 0.01, "observed_readiness_values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "observed_score_margins": [0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582]}, "C_nav_competence_failure_while_committed": {"direct_nav_readiness_below_floor_count": 6, "direct_score_margin_below_floor_count": 0, "forced_nav_readiness": 0.0, "forced_score_margin": 0.1, "observed_readiness_values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "observed_score_margins": [0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612]}, "D_both_gates_fail_while_committed": {"direct_nav_readiness_below_floor_count": 6, "direct_score_margin_below_floor_count": 6, "forced_nav_readiness": 0.0, "forced_score_margin": 0.01, "observed_readiness_values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "observed_score_margins": [0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582]}, "E_recovery": {"direct_nav_readiness_below_floor_count": 0, "direct_score_margin_below_floor_count": 0, "forced_nav_readiness": 1.0, "forced_score_margin": 0.1, "observed_readiness_values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "observed_score_margins": [0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612]}}, "dry_run": false, "evidence_direction": "does_not_support", "evidence_direction_note": "Forced score/readiness failures crossed thresholds while using real REEAgent.select_action, BetaGate, and CommitReadiness, but already-held beta/E3 commitment state did not suppress or release. This supports the 592e autopsy read that current MECH-090 R-c integration is admission-side only in bistable mode.", "evidence_direction_per_claim": {}, "experiment_purpose": "diagnostic", "experiment_type": "v3_exq_592f_mech090_commitment_state_transition_probe", "machine": "DLAPTOP-4.local", "notes": ["592f is a controlled state-machine probe, not an ecological behavioural run.", "The E3 stub preserves the pre-forced committed pointer unless select_action clears it.", "PASS requires already-held commitment suppression/release plus recovery."], "official_gate_counters": {"A_forced_committed_baseline": {"nav_blocks": 0, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "B_score_margin_failure_while_committed": {"nav_blocks": 0, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "C_nav_competence_failure_while_committed": {"nav_blocks": 6, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "D_both_gates_fail_while_committed": {"nav_blocks": 6, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "E_recovery": {"nav_blocks": 0, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}}, "outcome": "FAIL", "queue_id": "V3-EXQ-592f", "run_id": "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3", "schema_version": "experiment_result/v1", "sleep_driver_pattern": "K=never", "stage_metrics": {"A_forced_committed_baseline": {"direct_nav_readiness_below_floor_count": 0, "direct_score_margin_below_floor_count": 0, "final_beta_elevated": true, "final_e3_committed_pointer_present": true, "forced_nav_readiness": 1.0, "forced_score_margin": 0.1, "label": "baseline", "nav_readiness_floor": 0.3, "observed_readiness_values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "observed_score_margins": [0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612], "official_gate_counters_delta": {"nav_blocks": 0, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "score_margin_floor": 0.05, "selected_action_classes": [1, 1, 1, 1, 1, 1], "stage_id": "A_forced_committed_baseline", "state_occupancy": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "ticks": 6, "transition_counts": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}}, "B_score_margin_failure_while_committed": {"direct_nav_readiness_below_floor_count": 0, "direct_score_margin_below_floor_count": 6, "final_beta_elevated": true, "final_e3_committed_pointer_present": true, "forced_nav_readiness": 1.0, "forced_score_margin": 0.01, "label": "score_fail", "nav_readiness_floor": 0.3, "observed_readiness_values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "observed_score_margins": [0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582], "official_gate_counters_delta": {"nav_blocks": 0, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "score_margin_floor": 0.05, "selected_action_classes": [1, 1, 1, 1, 1, 1], "stage_id": "B_score_margin_failure_while_committed", "state_occupancy": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "ticks": 6, "transition_counts": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}}, "C_nav_competence_failure_while_committed": {"direct_nav_readiness_below_floor_count": 6, "direct_score_margin_below_floor_count": 0, "final_beta_elevated": true, "final_e3_committed_pointer_present": true, "forced_nav_readiness": 0.0, "forced_score_margin": 0.1, "label": "nav_fail", "nav_readiness_floor": 0.3, "observed_readiness_values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "observed_score_margins": [0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612], "official_gate_counters_delta": {"nav_blocks": 6, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "score_margin_floor": 0.05, "selected_action_classes": [1, 1, 1, 1, 1, 1], "stage_id": "C_nav_competence_failure_while_committed", "state_occupancy": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "ticks": 6, "transition_counts": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}}, "D_both_gates_fail_while_committed": {"direct_nav_readiness_below_floor_count": 6, "direct_score_margin_below_floor_count": 6, "final_beta_elevated": true, "final_e3_committed_pointer_present": true, "forced_nav_readiness": 0.0, "forced_score_margin": 0.01, "label": "both_fail", "nav_readiness_floor": 0.3, "observed_readiness_values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "observed_score_margins": [0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582, 0.009999999776482582], "official_gate_counters_delta": {"nav_blocks": 6, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "score_margin_floor": 0.05, "selected_action_classes": [1, 1, 1, 1, 1, 1], "stage_id": "D_both_gates_fail_while_committed", "state_occupancy": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "ticks": 6, "transition_counts": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}}, "E_recovery": {"direct_nav_readiness_below_floor_count": 0, "direct_score_margin_below_floor_count": 0, "final_beta_elevated": true, "final_e3_committed_pointer_present": true, "forced_nav_readiness": 1.0, "forced_score_margin": 0.1, "label": "recovery", "nav_readiness_floor": 0.3, "observed_readiness_values": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "observed_score_margins": [0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 0.10000000149011612], "official_gate_counters_delta": {"nav_blocks": 0, "nav_updates": 6, "policy_hold_count": 6, "policy_propagation_count": 0, "score_admits": 0, "score_blocks": 0, "score_single_candidate": 0}, "score_margin_floor": 0.05, "selected_action_classes": [1, 1, 1, 1, 1, 1], "stage_id": "E_recovery", "state_occupancy": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "ticks": 6, "transition_counts": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}}}, "state_occupancy": {"A_forced_committed_baseline": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "B_score_margin_failure_while_committed": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "C_nav_competence_failure_while_committed": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "D_both_gates_fail_while_committed": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}, "E_recovery": {"beta_elevated_fraction": 1.0, "e3_committed_pointer_fraction": 1.0, "policy_hold_count_delta": 6, "policy_propagation_count_delta": 0, "result_committed_fraction": 1.0}}, "supersedes": "V3-EXQ-592e", "thresholds": {"baseline_min_occupancy": 0.8, "fail_nav_readiness": 0.0, "fail_score_margin": 0.01, "nav_readiness_floor": 0.3, "pass_nav_readiness": 1.0, "pass_score_margin": 0.1, "recovery_fraction_of_baseline": 0.8, "score_margin_floor": 0.05, "suppression_drop_threshold": 0.5}, "timestamp_utc": "20260601T194325Z", "transition_counts": {"A_forced_committed_baseline": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}, "B_score_margin_failure_while_committed": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}, "C_nav_competence_failure_while_committed": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}, "D_both_gates_fail_while_committed": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}, "E_recovery": {"beta_false_to_true_reentry_count": 0, "beta_true_to_false_release_count": 0, "e3_pointer_true_to_false_drop_count": 0, "step_index_reset_count": 0}}, "vacuity_checks": {"parts": {"A_nav_above_floor": true, "A_score_above_floor": true, "B_score_below_floor": true, "C_nav_below_floor": true, "D_nav_below_floor": true, "D_score_below_floor": true, "E_nav_above_floor": true, "E_score_above_floor": true}, "pass": true}}
+{
+  "acceptance": {
+    "C1_forced_baseline": {
+      "baseline_beta_elevated_fraction": 1.0,
+      "baseline_e3_committed_pointer_fraction": 1.0,
+      "pass": true,
+      "threshold": 0.8
+    },
+    "C2_score_margin_release_authority": {
+      "decommit_transition_count": 0,
+      "direct_score_margin_below_floor_count": 6,
+      "pass": false,
+      "suppression": {
+        "beta_drop": 0.0,
+        "e3_pointer_drop": 0.0,
+        "max_drop": 0.0
+      }
+    },
+    "C3_nav_competence_release_authority": {
+      "decommit_transition_count": 0,
+      "nav_competence_blocks": 6,
+      "pass": false,
+      "suppression": {
+        "beta_drop": 0.0,
+        "e3_pointer_drop": 0.0,
+        "max_drop": 0.0
+      }
+    },
+    "C4_conjunction_authority": {
+      "decommit_transition_count": 0,
+      "direct_nav_readiness_below_floor_count": 6,
+      "direct_score_margin_below_floor_count": 6,
+      "pass": true,
+      "strongest_single_gate_suppression": 0.0,
+      "suppression": {
+        "beta_drop": 0.0,
+        "e3_pointer_drop": 0.0,
+        "max_drop": 0.0
+      }
+    },
+    "C5_recovery": {
+      "note": "not_evaluable_no_prior_suppression",
+      "pass": false,
+      "prior_suppression_observed": false,
+      "recovery_beta_elevated_fraction": 1.0,
+      "required_fraction_of_baseline": 0.8
+    },
+    "C6_no_vacuity": {
+      "parts": {
+        "A_nav_above_floor": true,
+        "A_score_above_floor": true,
+        "B_score_below_floor": true,
+        "C_nav_below_floor": true,
+        "D_nav_below_floor": true,
+        "D_score_below_floor": true,
+        "E_nav_above_floor": true,
+        "E_score_above_floor": true
+      },
+      "pass": true
+    }
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-090"
+  ],
+  "diagnostic_interpretation": {
+    "failure_routing": "implement-substrate audit for readiness-to-release coupling before further ecological retests",
+    "stubbed_component": "E3TrajectorySelector.select SelectionResult only",
+    "summary": "FAIL_NO_RELEASE_AUTHORITY",
+    "uses_real_beta_gate": true,
+    "uses_real_commit_readiness": true,
+    "uses_real_select_action": true
+  },
+  "diagnostic_outcome": "FAIL_NO_RELEASE_AUTHORITY",
+  "direct_gate_inputs": {
+    "A_forced_committed_baseline": {
+      "direct_nav_readiness_below_floor_count": 0,
+      "direct_score_margin_below_floor_count": 0,
+      "forced_nav_readiness": 1.0,
+      "forced_score_margin": 0.1,
+      "observed_readiness_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "observed_score_margins": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ]
+    },
+    "B_score_margin_failure_while_committed": {
+      "direct_nav_readiness_below_floor_count": 0,
+      "direct_score_margin_below_floor_count": 6,
+      "forced_nav_readiness": 1.0,
+      "forced_score_margin": 0.01,
+      "observed_readiness_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "observed_score_margins": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ]
+    },
+    "C_nav_competence_failure_while_committed": {
+      "direct_nav_readiness_below_floor_count": 6,
+      "direct_score_margin_below_floor_count": 0,
+      "forced_nav_readiness": 0.0,
+      "forced_score_margin": 0.1,
+      "observed_readiness_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "observed_score_margins": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ]
+    },
+    "D_both_gates_fail_while_committed": {
+      "direct_nav_readiness_below_floor_count": 6,
+      "direct_score_margin_below_floor_count": 6,
+      "forced_nav_readiness": 0.0,
+      "forced_score_margin": 0.01,
+      "observed_readiness_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "observed_score_margins": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ]
+    },
+    "E_recovery": {
+      "direct_nav_readiness_below_floor_count": 0,
+      "direct_score_margin_below_floor_count": 0,
+      "forced_nav_readiness": 1.0,
+      "forced_score_margin": 0.1,
+      "observed_readiness_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "observed_score_margins": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ]
+    }
+  },
+  "dry_run": false,
+  "evidence_direction": "does_not_support",
+  "evidence_direction_note": "Forced score/readiness failures crossed thresholds while using real REEAgent.select_action, BetaGate, and CommitReadiness, but already-held beta/E3 commitment state did not suppress or release. This supports the 592e autopsy read that current MECH-090 R-c integration is admission-side only in bistable mode.",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_592f_mech090_commitment_state_transition_probe",
+  "machine": "DLAPTOP-4.local",
+  "notes": [
+    "592f is a controlled state-machine probe, not an ecological behavioural run.",
+    "The E3 stub preserves the pre-forced committed pointer unless select_action clears it.",
+    "PASS requires already-held commitment suppression/release plus recovery."
+  ],
+  "official_gate_counters": {
+    "A_forced_committed_baseline": {
+      "nav_blocks": 0,
+      "nav_updates": 6,
+      "policy_hold_count": 6,
+      "policy_propagation_count": 0,
+      "score_admits": 0,
+      "score_blocks": 0,
+      "score_single_candidate": 0
+    },
+    "B_score_margin_failure_while_committed": {
+      "nav_blocks": 0,
+      "nav_updates": 6,
+      "policy_hold_count": 6,
+      "policy_propagation_count": 0,
+      "score_admits": 0,
+      "score_blocks": 0,
+      "score_single_candidate": 0
+    },
+    "C_nav_competence_failure_while_committed": {
+      "nav_blocks": 6,
+      "nav_updates": 6,
+      "policy_hold_count": 6,
+      "policy_propagation_count": 0,
+      "score_admits": 0,
+      "score_blocks": 0,
+      "score_single_candidate": 0
+    },
+    "D_both_gates_fail_while_committed": {
+      "nav_blocks": 6,
+      "nav_updates": 6,
+      "policy_hold_count": 6,
+      "policy_propagation_count": 0,
+      "score_admits": 0,
+      "score_blocks": 0,
+      "score_single_candidate": 0
+    },
+    "E_recovery": {
+      "nav_blocks": 0,
+      "nav_updates": 6,
+      "policy_hold_count": 6,
+      "policy_propagation_count": 0,
+      "score_admits": 0,
+      "score_blocks": 0,
+      "score_single_candidate": 0
+    }
+  },
+  "outcome": "FAIL",
+  "queue_id": "V3-EXQ-592f",
+  "run_id": "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3",
+  "schema_version": "experiment_result/v1",
+  "sleep_driver_pattern": "K=never",
+  "stage_metrics": {
+    "A_forced_committed_baseline": {
+      "direct_nav_readiness_below_floor_count": 0,
+      "direct_score_margin_below_floor_count": 0,
+      "final_beta_elevated": true,
+      "final_e3_committed_pointer_present": true,
+      "forced_nav_readiness": 1.0,
+      "forced_score_margin": 0.1,
+      "label": "baseline",
+      "nav_readiness_floor": 0.3,
+      "observed_readiness_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "observed_score_margins": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ],
+      "official_gate_counters_delta": {
+        "nav_blocks": 0,
+        "nav_updates": 6,
+        "policy_hold_count": 6,
+        "policy_propagation_count": 0,
+        "score_admits": 0,
+        "score_blocks": 0,
+        "score_single_candidate": 0
+      },
+      "score_margin_floor": 0.05,
+      "selected_action_classes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "stage_id": "A_forced_committed_baseline",
+      "state_occupancy": {
+        "beta_elevated_fraction": 1.0,
+        "e3_committed_pointer_fraction": 1.0,
+        "policy_hold_count_delta": 6,
+        "policy_propagation_count_delta": 0,
+        "result_committed_fraction": 1.0
+      },
+      "ticks": 6,
+      "transition_counts": {
+        "beta_false_to_true_reentry_count": 0,
+        "beta_true_to_false_release_count": 0,
+        "e3_pointer_true_to_false_drop_count": 0,
+        "step_index_reset_count": 0
+      }
+    },
+    "B_score_margin_failure_while_committed": {
+      "direct_nav_readiness_below_floor_count": 0,
+      "direct_score_margin_below_floor_count": 6,
+      "final_beta_elevated": true,
+      "final_e3_committed_pointer_present": true,
+      "forced_nav_readiness": 1.0,
+      "forced_score_margin": 0.01,
+      "label": "score_fail",
+      "nav_readiness_floor": 0.3,
+      "observed_readiness_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "observed_score_margins": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "official_gate_counters_delta": {
+        "nav_blocks": 0,
+        "nav_updates": 6,
+        "policy_hold_count": 6,
+        "policy_propagation_count": 0,
+        "score_admits": 0,
+        "score_blocks": 0,
+        "score_single_candidate": 0
+      },
+      "score_margin_floor": 0.05,
+      "selected_action_classes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "stage_id": "B_score_margin_failure_while_committed",
+      "state_occupancy": {
+        "beta_elevated_fraction": 1.0,
+        "e3_committed_pointer_fraction": 1.0,
+        "policy_hold_count_delta": 6,
+        "policy_propagation_count_delta": 0,
+        "result_committed_fraction": 1.0
+      },
+      "ticks": 6,
+      "transition_counts": {
+        "beta_false_to_true_reentry_count": 0,
+        "beta_true_to_false_release_count": 0,
+        "e3_pointer_true_to_false_drop_count": 0,
+        "step_index_reset_count": 0
+      }
+    },
+    "C_nav_competence_failure_while_committed": {
+      "direct_nav_readiness_below_floor_count": 6,
+      "direct_score_margin_below_floor_count": 0,
+      "final_beta_elevated": true,
+      "final_e3_committed_pointer_present": true,
+      "forced_nav_readiness": 0.0,
+      "forced_score_margin": 0.1,
+      "label": "nav_fail",
+      "nav_readiness_floor": 0.3,
+      "observed_readiness_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "observed_score_margins": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ],
+      "official_gate_counters_delta": {
+        "nav_blocks": 6,
+        "nav_updates": 6,
+        "policy_hold_count": 6,
+        "policy_propagation_count": 0,
+        "score_admits": 0,
+        "score_blocks": 0,
+        "score_single_candidate": 0
+      },
+      "score_margin_floor": 0.05,
+      "selected_action_classes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "stage_id": "C_nav_competence_failure_while_committed",
+      "state_occupancy": {
+        "beta_elevated_fraction": 1.0,
+        "e3_committed_pointer_fraction": 1.0,
+        "policy_hold_count_delta": 6,
+        "policy_propagation_count_delta": 0,
+        "result_committed_fraction": 1.0
+      },
+      "ticks": 6,
+      "transition_counts": {
+        "beta_false_to_true_reentry_count": 0,
+        "beta_true_to_false_release_count": 0,
+        "e3_pointer_true_to_false_drop_count": 0,
+        "step_index_reset_count": 0
+      }
+    },
+    "D_both_gates_fail_while_committed": {
+      "direct_nav_readiness_below_floor_count": 6,
+      "direct_score_margin_below_floor_count": 6,
+      "final_beta_elevated": true,
+      "final_e3_committed_pointer_present": true,
+      "forced_nav_readiness": 0.0,
+      "forced_score_margin": 0.01,
+      "label": "both_fail",
+      "nav_readiness_floor": 0.3,
+      "observed_readiness_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "observed_score_margins": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "official_gate_counters_delta": {
+        "nav_blocks": 6,
+        "nav_updates": 6,
+        "policy_hold_count": 6,
+        "policy_propagation_count": 0,
+        "score_admits": 0,
+        "score_blocks": 0,
+        "score_single_candidate": 0
+      },
+      "score_margin_floor": 0.05,
+      "selected_action_classes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "stage_id": "D_both_gates_fail_while_committed",
+      "state_occupancy": {
+        "beta_elevated_fraction": 1.0,
+        "e3_committed_pointer_fraction": 1.0,
+        "policy_hold_count_delta": 6,
+        "policy_propagation_count_delta": 0,
+        "result_committed_fraction": 1.0
+      },
+      "ticks": 6,
+      "transition_counts": {
+        "beta_false_to_true_reentry_count": 0,
+        "beta_true_to_false_release_count": 0,
+        "e3_pointer_true_to_false_drop_count": 0,
+        "step_index_reset_count": 0
+      }
+    },
+    "E_recovery": {
+      "direct_nav_readiness_below_floor_count": 0,
+      "direct_score_margin_below_floor_count": 0,
+      "final_beta_elevated": true,
+      "final_e3_committed_pointer_present": true,
+      "forced_nav_readiness": 1.0,
+      "forced_score_margin": 0.1,
+      "label": "recovery",
+      "nav_readiness_floor": 0.3,
+      "observed_readiness_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "observed_score_margins": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ],
+      "official_gate_counters_delta": {
+        "nav_blocks": 0,
+        "nav_updates": 6,
+        "policy_hold_count": 6,
+        "policy_propagation_count": 0,
+        "score_admits": 0,
+        "score_blocks": 0,
+        "score_single_candidate": 0
+      },
+      "score_margin_floor": 0.05,
+      "selected_action_classes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "stage_id": "E_recovery",
+      "state_occupancy": {
+        "beta_elevated_fraction": 1.0,
+        "e3_committed_pointer_fraction": 1.0,
+        "policy_hold_count_delta": 6,
+        "policy_propagation_count_delta": 0,
+        "result_committed_fraction": 1.0
+      },
+      "ticks": 6,
+      "transition_counts": {
+        "beta_false_to_true_reentry_count": 0,
+        "beta_true_to_false_release_count": 0,
+        "e3_pointer_true_to_false_drop_count": 0,
+        "step_index_reset_count": 0
+      }
+    }
+  },
+  "state_occupancy": {
+    "A_forced_committed_baseline": {
+      "beta_elevated_fraction": 1.0,
+      "e3_committed_pointer_fraction": 1.0,
+      "policy_hold_count_delta": 6,
+      "policy_propagation_count_delta": 0,
+      "result_committed_fraction": 1.0
+    },
+    "B_score_margin_failure_while_committed": {
+      "beta_elevated_fraction": 1.0,
+      "e3_committed_pointer_fraction": 1.0,
+      "policy_hold_count_delta": 6,
+      "policy_propagation_count_delta": 0,
+      "result_committed_fraction": 1.0
+    },
+    "C_nav_competence_failure_while_committed": {
+      "beta_elevated_fraction": 1.0,
+      "e3_committed_pointer_fraction": 1.0,
+      "policy_hold_count_delta": 6,
+      "policy_propagation_count_delta": 0,
+      "result_committed_fraction": 1.0
+    },
+    "D_both_gates_fail_while_committed": {
+      "beta_elevated_fraction": 1.0,
+      "e3_committed_pointer_fraction": 1.0,
+      "policy_hold_count_delta": 6,
+      "policy_propagation_count_delta": 0,
+      "result_committed_fraction": 1.0
+    },
+    "E_recovery": {
+      "beta_elevated_fraction": 1.0,
+      "e3_committed_pointer_fraction": 1.0,
+      "policy_hold_count_delta": 6,
+      "policy_propagation_count_delta": 0,
+      "result_committed_fraction": 1.0
+    }
+  },
+  "supersedes": "V3-EXQ-592e",
+  "thresholds": {
+    "baseline_min_occupancy": 0.8,
+    "fail_nav_readiness": 0.0,
+    "fail_score_margin": 0.01,
+    "nav_readiness_floor": 0.3,
+    "pass_nav_readiness": 1.0,
+    "pass_score_margin": 0.1,
+    "recovery_fraction_of_baseline": 0.8,
+    "score_margin_floor": 0.05,
+    "suppression_drop_threshold": 0.5
+  },
+  "timestamp_utc": "20260601T194325Z",
+  "transition_counts": {
+    "A_forced_committed_baseline": {
+      "beta_false_to_true_reentry_count": 0,
+      "beta_true_to_false_release_count": 0,
+      "e3_pointer_true_to_false_drop_count": 0,
+      "step_index_reset_count": 0
+    },
+    "B_score_margin_failure_while_committed": {
+      "beta_false_to_true_reentry_count": 0,
+      "beta_true_to_false_release_count": 0,
+      "e3_pointer_true_to_false_drop_count": 0,
+      "step_index_reset_count": 0
+    },
+    "C_nav_competence_failure_while_committed": {
+      "beta_false_to_true_reentry_count": 0,
+      "beta_true_to_false_release_count": 0,
+      "e3_pointer_true_to_false_drop_count": 0,
+      "step_index_reset_count": 0
+    },
+    "D_both_gates_fail_while_committed": {
+      "beta_false_to_true_reentry_count": 0,
+      "beta_true_to_false_release_count": 0,
+      "e3_pointer_true_to_false_drop_count": 0,
+      "step_index_reset_count": 0
+    },
+    "E_recovery": {
+      "beta_false_to_true_reentry_count": 0,
+      "beta_true_to_false_release_count": 0,
+      "e3_pointer_true_to_false_drop_count": 0,
+      "step_index_reset_count": 0
+    }
+  },
+  "vacuity_checks": {
+    "parts": {
+      "A_nav_above_floor": true,
+      "A_score_above_floor": true,
+      "B_score_below_floor": true,
+      "C_nav_below_floor": true,
+      "D_nav_below_floor": true,
+      "D_score_below_floor": true,
+      "E_nav_above_floor": true,
+      "E_score_above_floor": true
+    },
+    "pass": true
+  }
+}

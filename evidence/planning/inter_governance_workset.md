@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-01T11:36:37Z`
+Generated: `2026-06-01T19:40:54Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,17 +9,17 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **42** (ready 12, in_flight 1, blocked 17)
+- Items: **42** (ready 12, in_flight 0, blocked 17)
 - Pending review: **0**
-- Queue pending (unclaimed): **2**
+- Queue pending (unclaimed): **1**
 
-- Live EXQs: V3-EXQ-514k, V3-EXQ-592e, V3-EXQ-610b, V3-EXQ-614c, V3-EXQ-625
+- Live EXQs: V3-EXQ-610c, V3-EXQ-624, V3-EXQ-626a
 
-- Auto-absorbed retests (queued, suppressed from workset): INV-074 -> V3-EXQ-610b, MECH-229 -> V3-EXQ-514k, MECH-334 -> V3-EXQ-610b
+- Auto-absorbed retests (queued, suppressed from workset): INV-074 -> V3-EXQ-610c, MECH-334 -> V3-EXQ-610c
 
 ## Work packages
 
-### IGW-20260601-024 -- Implement substrate: ARC-046 (unblocks ARC-046)
+### IGW-20260601-025 -- Implement substrate: ARC-046 (unblocks ARC-046)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
@@ -28,7 +28,7 @@ UI: http://localhost:8000/workset
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-024
+REE inter-governance work item: IGW-20260601-025
 Title: Implement substrate: ARC-046 (unblocks ARC-046)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -43,7 +43,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-026 -- Implement substrate: SD-054 (unblocks ARC-062)
+### IGW-20260601-027 -- Implement substrate: SD-054 (unblocks ARC-062)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.
@@ -52,7 +52,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-026
+REE inter-governance work item: IGW-20260601-027
 Title: Implement substrate: SD-054 (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -67,7 +67,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-033 -- Implement substrate: MECH-313 (unblocks MECH-313)
+### IGW-20260601-035 -- Implement substrate: MECH-313 (unblocks MECH-313)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) on V3-EXQ-543b/c successors; gated on MECH-314 substrate also being landed (done 2026-05-10).; Q-045 [no-substrate-entry]: Q-045 4-arm ablation
@@ -76,7 +76,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-033
+REE inter-governance work item: IGW-20260601-035
 Title: Implement substrate: MECH-313 (unblocks MECH-313)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -91,7 +91,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-035 -- Implement substrate: MECH-314 (unblocks MECH-314)
+### IGW-20260601-037 -- Implement substrate: MECH-314 (unblocks MECH-314)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: Q-044 three-arm ablation (314a striatal novelty / 314b frontopolar uncertainty / 314c learning progress) gated on MECH-318/319 absorption checks (now done 2026-05-10).; Q-044 [no-substrate-entry]: Q-044 three-arm ablation
@@ -100,37 +100,13 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-035
+REE inter-governance work item: IGW-20260601-037
 Title: Implement substrate: MECH-314 (unblocks MECH-314)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
 Claims: MECH-314, MECH-314a, MECH-314b, MECH-314c
 Blocked by: ready_blocked_by: Q-044 three-arm ablation (314a striatal novelty / 314b frontopolar uncertainty / 314c learning progress) gated on MECH-318/319 absorption checks (now done 2026-05-10).; Q-044 [no-substrate-entry]: Q-044 three-arm ablation
 Why now: substrate_queue entry status=candidate_substrate_landed with 2 unresolved prerequisite(s); blocks retest of MECH-314. See blocked_by.
-
-Instructions:
-- Use /implement-substrate for the SD/MECH named in title.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260601-037 -- Implement substrate: MECH-314a-Phase-2 (unblocks MECH-314a)
-
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
-- **Blocked by:** ready_blocked_by: User assent on architecture-doc section 6 Candidate 5A recommendation (rolling z_world visitation buffer + first-action one-hot augmentation). Post-assent the implementation entry MECH-314a-Phase-2-im; free-text: User assent on architecture-doc section 6 Candidate 5A recommendation (rolling z_world visitation buffer + first-action one-hot augmentation), or selection of a
-- **Why now:** substrate_queue entry status=design_question with 2 unresolved prerequisite(s); blocks retest of MECH-314a. See blocked_by.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260601-037
-Title: Implement substrate: MECH-314a-Phase-2 (unblocks MECH-314a)
-Lane: substrate | Skill: /implement-substrate
-Status: blocked
-Claims: MECH-314a
-Blocked by: ready_blocked_by: User assent on architecture-doc section 6 Candidate 5A recommendation (rolling z_world visitation buffer + first-action one-hot augmentation). Post-assent the implementation entry MECH-314a-Phase-2-im; free-text: User assent on architecture-doc section 6 Candidate 5A recommendation (rolling z_world visitation buffer + first-action one-hot augmentation), or selection of a
-Why now: substrate_queue entry status=design_question with 2 unresolved prerequisite(s); blocks retest of MECH-314a. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -183,7 +159,31 @@ Instructions:
 
 </details>
 
-### IGW-20260601-023 -- Retest after substrate: ARC-046
+### IGW-20260601-022 -- Substrate (blocked): scaffolded_sd054_onboarding
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 25
+- **Blocked by:** SD-054 [candidate_v3_pending]
+- **Why now:** substrate_queue ready=true but 1 unresolved prerequisite(s) -- see blocked_by.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260601-022
+Title: Substrate (blocked): scaffolded_sd054_onboarding
+Lane: substrate | Skill: /implement-substrate
+Status: blocked
+Claims: Q-045, MECH-313, MECH-260, MECH-295, MECH-307, MECH-117
+Blocked by: SD-054 [candidate_v3_pending]
+Why now: substrate_queue ready=true but 1 unresolved prerequisite(s) -- see blocked_by.
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260601-024 -- Retest after substrate: ARC-046
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** ARC-046 [pending_implementation]; free-text (via ARC-046): goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
@@ -192,7 +192,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-023
+REE inter-governance work item: IGW-20260601-024
 Title: Retest after substrate: ARC-046
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -207,7 +207,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-025 -- Retest after substrate: ARC-062
+### IGW-20260601-026 -- Retest after substrate: ARC-062
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-054 [candidate_v3_pending]
@@ -216,7 +216,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-025
+REE inter-governance work item: IGW-20260601-026
 Title: Retest after substrate: ARC-062
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -231,7 +231,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-027 -- Retest after substrate: MECH-260
+### IGW-20260601-028 -- Retest after substrate: MECH-229
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -239,11 +239,11 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-027
-Title: Retest after substrate: MECH-260
+REE inter-governance work item: IGW-20260601-028
+Title: Retest after substrate: MECH-229
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-260
+Claims: MECH-229
 Why now: claims.yaml pending_retest_after_substrate=true.
 
 Instructions:
@@ -253,7 +253,31 @@ Instructions:
 
 </details>
 
-### IGW-20260601-028 -- Retest after substrate: MECH-262
+### IGW-20260601-029 -- Retest after substrate: MECH-260
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
+- **Blocked by:** scaffolded_sd054_onboarding [amend_pending]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+- **Why now:** Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260601-029
+Title: Retest after substrate: MECH-260
+Lane: experiment | Skill: /queue-experiment
+Status: blocked
+Claims: MECH-260
+Blocked by: scaffolded_sd054_onboarding [amend_pending]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+Why now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260601-030 -- Retest after substrate: MECH-262
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -261,7 +285,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-028
+REE inter-governance work item: IGW-20260601-030
 Title: Retest after substrate: MECH-262
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -275,7 +299,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-029 -- Retest after substrate: MECH-280
+### IGW-20260601-031 -- Retest after substrate: MECH-280
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -283,7 +307,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-029
+REE inter-governance work item: IGW-20260601-031
 Title: Retest after substrate: MECH-280
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -297,7 +321,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-030 -- Retest after substrate: MECH-281
+### IGW-20260601-032 -- Retest after substrate: MECH-281
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -305,7 +329,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-030
+REE inter-governance work item: IGW-20260601-032
 Title: Retest after substrate: MECH-281
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -319,7 +343,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-031 -- Retest after substrate: MECH-309
+### IGW-20260601-033 -- Retest after substrate: MECH-309
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-054 [candidate_v3_pending]
@@ -328,7 +352,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-031
+REE inter-governance work item: IGW-20260601-033
 Title: Retest after substrate: MECH-309
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -343,22 +367,22 @@ Instructions:
 
 </details>
 
-### IGW-20260601-032 -- Retest after substrate: MECH-313
+### IGW-20260601-034 -- Retest after substrate: MECH-313
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
-- **Blocked by:** MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation
-- **Why now:** Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
+- **Blocked by:** MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_pending]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+- **Why now:** Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-032
+REE inter-governance work item: IGW-20260601-034
 Title: Retest after substrate: MECH-313
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-313
-Blocked by: MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation
-Why now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
+Blocked by: MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_pending]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+Why now: Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -367,7 +391,7 @@ Instructions:
 
 </details>
 
-### IGW-20260601-034 -- Retest after substrate: MECH-314
+### IGW-20260601-036 -- Retest after substrate: MECH-314
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** MECH-314 [candidate_substrate_landed]; Q-044 [no-substrate-entry] (transitive via MECH-314): Q-044 three-arm ablation
@@ -376,37 +400,13 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-034
+REE inter-governance work item: IGW-20260601-036
 Title: Retest after substrate: MECH-314
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-314
 Blocked by: MECH-314 [candidate_substrate_landed]; Q-044 [no-substrate-entry] (transitive via MECH-314): Q-044 three-arm ablation
 Why now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260601-036 -- Retest after substrate: MECH-314a
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
-- **Blocked by:** MECH-314 [candidate_substrate_landed]; Q-044 [no-substrate-entry] (transitive via MECH-314): Q-044 three-arm ablation; MECH-314a-Phase-2 [design_question]; free-text (via MECH-314a-Phase-2): User assent on architecture-doc section 6 Candidate 5A recommendation (rolling z_world visitation buffer + first-action one-hot augmentation), or selection of a
-- **Why now:** Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260601-036
-Title: Retest after substrate: MECH-314a
-Lane: experiment | Skill: /queue-experiment
-Status: blocked
-Claims: MECH-314a
-Blocked by: MECH-314 [candidate_substrate_landed]; Q-044 [no-substrate-entry] (transitive via MECH-314): Q-044 three-arm ablation; MECH-314a-Phase-2 [design_question]; free-text (via MECH-314a-Phase-2): User assent on architecture-doc section 6 Candidate 5A recommendation (rolling z_world visitation buffer + first-action one-hot augmentation), or selection of a
-Why now: Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -444,7 +444,7 @@ Instructions:
 
 ### IGW-20260601-007 -- Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 
-- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 33
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 30
 - **Gap(s):** behavioral_diversity_isolation:GAP-B
 - **Owner EXQ:** V3-EXQ-614c (queued 2026-06-01 via /implement-substrate amend session; 4-arm within-class temperature sweep stratified_within_class_temperature in {None=legacy, 0.5, 1.0, 2.0} on SD-056-amended baseline; cross-plan beneficiary arc_062_rule_apprehension:GAP-B); V3-EXQ-614b FAIL_no_criterion 2026-05-31 (C1=False structural degeneracy + C2=0.087 below threshold + C3=True ALL_ON 0.800 nats; per-claim non_contributory on MECH-341 + ARC-065 via /governance; routed to amend per failure_autopsy_V3-EXQ-616 Sections 7 + 10 contingent path); V3-EXQ-614b (queued 2026-05-31T12:32Z via /queue-experiment; 3-arm behavioural re-run on SD-056-amended substrate, supersedes V3-EXQ-614a; 5 SD-056 amend lever flags applied uniformly across all 3 arms: e2_action_contrastive_multistep_enabled=True h=5, e2_rollout_output_norm_clamp_enabled=True ratio=2.0, e2_action_contrastive_enabled=True weight=0.01; same env_kwargs + acceptance criteria as 614a; 4-row interpretation grid copied verbatim + header note that under amended substrate PASS via C1 is now the load-bearing target since 614a established PASS via C2+C3); V3-EXQ-614a (queued 2026-05-30 via /diagnose-errors cluster-absorb post 41c3411 runner fix; 3-arm behavioural falsifier, same script as 614); V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed)
 - **Why now:** V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
@@ -454,22 +454,22 @@ Instructions:
 ```
 REE inter-governance work item: IGW-20260601-007
 Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
-Lane: experiment | Skill: (monitor -- do not re-queue)
-Status: in_flight
+Lane: experiment | Skill: /queue-experiment
+Status: partial
 Gap(s): behavioral_diversity_isolation:GAP-B
 Owner EXQ: V3-EXQ-614c (queued 2026-06-01 via /implement-substrate amend session; 4-arm within-class temperature sweep stratified_within_class_temperature in {None=legacy, 0.5, 1.0, 2.0} on SD-056-amended baseline; cross-plan beneficiary arc_062_rule_apprehension:GAP-B); V3-EXQ-614b FAIL_no_criterion 2026-05-31 (C1=False structural degeneracy + C2=0.087 below threshold + C3=True ALL_ON 0.800 nats; per-claim non_contributory on MECH-341 + ARC-065 via /governance; routed to amend per failure_autopsy_V3-EXQ-616 Sections 7 + 10 contingent path); V3-EXQ-614b (queued 2026-05-31T12:32Z via /queue-experiment; 3-arm behavioural re-run on SD-056-amended substrate, supersedes V3-EXQ-614a; 5 SD-056 amend lever flags applied uniformly across all 3 arms: e2_action_contrastive_multistep_enabled=True h=5, e2_rollout_output_norm_clamp_enabled=True ratio=2.0, e2_action_contrastive_enabled=True weight=0.01; same env_kwargs + acceptance criteria as 614a; 4-row interpretation grid copied verbatim + header note that under amended substrate PASS via C1 is now the load-bearing target since 614a established PASS via C2+C3); V3-EXQ-614a (queued 2026-05-30 via /diagnose-errors cluster-absorb post 41c3411 runner fix; 3-arm behavioural falsifier, same script as 614); V3-EXQ-608 (P2 PASS); V3-EXQ-611 FAIL 2026-05-27T13:02Z (C1 substrate-readiness false: entropy_max_abs << gap range + stratified_fired=0 committed-only); V3-EXQ-611c PASS 2026-05-29T18:45Z (6-arm retune, supersedes V3-EXQ-611b manifest-recovery; C1 stratified_fires=true all OPT2/BOTH arms; C3 selected-class diversity=true all 6 arms; C4 monotone in scale=true; R2c_readiness=true all arms; C2 entropy_bonus_scale_commensurate=false but interpretation grid routes PASS_with_C1_and_C3 directly to behavioural successor); V3-EXQ-614 LOST to manifest-pipeline silent-drop cluster 2026-05-29T19:13:19Z (coordinator status=completed + zero results-table row, same signature as V3-EXQ-490h / V3-EXQ-592b autopsied 2026-05-30T06:02Z; runner-side fix ree-v3 commit 41c3411 already landed)
 Claims: MECH-341, ARC-062, ARC-065
 Why now: V3-EXQ-608 P2 diagnostic landed 2026-05-26T02:58Z PASS majority R2a_e3_collapse_confirmed_large_gap; substrate landed 2026-05-27 via /implement-substrate. V3-EXQ-611 substrate-readiness FAILed 2026-05-27T13:02Z on both validation channels: 
 
 Instructions:
-- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
 </details>
 
-### IGW-20260601-022 -- Queue depth low (2 pending)
+### IGW-20260601-023 -- Queue depth low (1 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -477,8 +477,8 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260601-022
-Title: Queue depth low (2 pending)
+REE inter-governance work item: IGW-20260601-023
+Title: Queue depth low (1 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.

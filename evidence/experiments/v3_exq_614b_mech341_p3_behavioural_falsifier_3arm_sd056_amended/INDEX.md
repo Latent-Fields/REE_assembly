@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended
+
+Generated: `2026-06-01T18:09:15.796853Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3` | `2026-05-31T18:20:40Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3/summary.md) / [`manifest`](runs/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3/manifest.json) / [`metrics`](runs/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3/metrics.json) |
