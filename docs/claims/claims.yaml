@@ -5048,6 +5048,36 @@
     out of scope for CausalGridWorld. The urgency interrupt (Layer 2, implemented
     2026-04-15) is grounded in vmPFC arbitration weighting toward model-free (MECH-235),
     not a beta-bypass mechanism.
+
+    V3-EXQ-592d (2026-05-31, 4-arm R-c readiness conjunction validation -- supersedes
+    V3-EXQ-592c) FAIL_no_criterion reclassified non_contributory per
+    failure_autopsy_V3-EXQ-592d_2026-06-01 (confirmed). Diagnostic, NOT governance
+    evidence against MECH-090 R-c amendment. C1 baseline criterion has an
+    instrumentation defect: the script measures commit entries via beta_gate
+    mech090_n_elevation_admitted (a transition-edge counter), but under ARM_0 (rv-only
+    baseline) the agent enters P2 already committed (P0 trained running_variance to
+    ~1e-5 / 1e-6 / 1e-6 across seeds, well below commit_threshold=0.4) and stays
+    continuously committed (hold_rate=1.0; beta_elevated_steps == committed_steps). No
+    fresh entry transitions occur during the measurement window -> n_commit_entries=0
+    unconditionally on ARM_0 regardless of gate state. C2/C3/C4 inherit the defect via
+    cross-arm comparison against ARM_0 baseline. Substrate IS firing as predicted:
+    ARM_1 2005 score-margin blocks confirm within-tick decisiveness axis (Hanes &
+    Schall 1996 reading); ARM_2/3 150 nav-competence blocks each confirm across-tick
+    motor-program readiness axis (Cisek & Kalaska 2010 + Roesch / Calu / Schoenbaum
+    2007 readings); ARM_3 1949 score + 150 nav blocks confirm AND-composition at both
+    elevate sites. The 2026-05-21 V3-EXQ-592 seed-42 degeneracy signature that
+    motivated the R-c amendment (running_variance collapsed to ~1e-5 satisfying
+    rv-only) is reproduced on ARM_0 across all 3 seeds -- positive substrate-side
+    evidence that the rv-only entry semantic IS the degenerate basin R-c was designed
+    to gate. R-c substrate (both 2026-05-28 within-tick + 2026-05-29 across-tick
+    landings) sound; only the test needs redesign. Routing: /queue-experiment for
+    V3-EXQ-592e fixing C1 baseline via force-uncommitted P2 entry OR hold-rate-based
+    baseline predicate. pending_retest_after_substrate=false (no substrate gap).
+    narrow_supports_flag=false. recommended_substrate_queue_entry.action=none
+    (commitment_closure:GAP-4 stays drifted pending V3-EXQ-592e; closure-plan side,
+    not substrate-queue side). Process flag: script's interpretation-grid
+    C1 FAIL -> /diagnose-errors routing is wrong for this manifestation; the
+    curriculum harness is working as designed.
 - id: MECH-091
   title: "Salient events phase-reset the E3 heartbeat clock."
   claim_type: mechanism_hypothesis

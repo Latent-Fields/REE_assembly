@@ -1,0 +1,47 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_592d_mech090_readiness_conjunction_validation",
+  "run_id": "v3_exq_592d_mech090_readiness_conjunction_validation_20260531T213852Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-31T21:38:52Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-090"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-090": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Reclassified non_contributory 2026-06-01 per failure_autopsy_V3-EXQ-592d_2026-06-01 (confirmed; user verdict 2026-06-01T05:55Z) and /governance cycle 2026-06-01T06:07Z. C1 baseline criterion has a measurement defect: n_commit_entries (transition-edge counter) is structurally unmeetable under ARM_0 rv-only entry semantic (agent enters P2 already committed; hold_rate=1.0; zero entries during measurement window). C2/C3/C4 inherit the defect via cross-arm comparison against ARM_0. Substrate IS firing as predicted (ARM_1 2005 score-margin blocks + ARM_2/3 150 nav-competence blocks each + ARM_3 1949 score + 150 nav AND-composition); 2026-05-21 V3-EXQ-592 seed-42 rv-only degeneracy basin reproduced on ARM_0 all 3 seeds (positive substrate-side evidence). R-c substrate sound; only test needs redesign (V3-EXQ-592e via /queue-experiment). Routing: queue-experiment. pending_retest_after_substrate=false. substrate_queue action=none. NOT governance evidence against MECH-090 R-c amendment."
+}

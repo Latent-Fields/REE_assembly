@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-01T05:55:00Z",
+  "last_review_utc": "2026-06-01T06:15:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -444,9 +444,12 @@
     "v3_exq_622_goal_stream_staged_sd054",
     "V3-EXQ-621",
     "V3-EXQ-621a",
-    "V3-EXQ-622"
+    "V3-EXQ-622",
+    "v3_exq_592d_mech090_readiness_conjunction_validation",
+    "V3-EXQ-592d"
   ],
   "reviewed_run_ids": [
+    "v3_exq_592d_mech090_readiness_conjunction_validation_20260531T213852Z_v3",
     "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
     "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3",
     "2026-02-13T060000Z_dummy-pass",
@@ -3452,6 +3455,11 @@
       "utc": "2026-06-01T05:55:00Z",
       "session_id": "governance-cycle-20260601T054231Z",
       "note": "4 indexed pending + 1 runner-only walked. 3 closed (621 superseded, 621a per-claim non_contributory, 622 non_contributory verbatim + runner-only 621 ERROR cleared via prior /diagnose-errors). 592d flagged for /failure-autopsy (3rd consecutive ARM_0 baseline-zero FAIL on MECH-090 commit-readiness conjunction)."
+    },
+    {
+      "utc": "2026-06-01T06:15:00Z",
+      "session_id": "governance-cycle-20260601T060712Z",
+      "note": "1 indexed pending walked. V3-EXQ-592d reclassified non_contributory on flat + runs manifests per failure_autopsy_V3-EXQ-592d_2026-06-01 (confirmed; user verdict 2026-06-01T05:55Z; autopsy commit 48ca5684be). C1 baseline measurement defect under ARM_0 rv-only entry semantic; substrate IS firing (ARM_1 2005 score blocks + ARM_2/3 150 nav blocks + ARM_3 AND-composition); 2026-05-21 V3-EXQ-592 seed-42 rv-only basin reproduced on ARM_0 all 3 seeds. R-c substrate sound; test redesign V3-EXQ-592e routed to /queue-experiment. evidence_quality_note appended to MECH-090. pending_retest_after_substrate=false. substrate_queue action=none."
     }
   ]
 }
