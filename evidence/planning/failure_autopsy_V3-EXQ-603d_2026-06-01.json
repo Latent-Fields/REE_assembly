@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-01T17:33:42Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
+      "queue_id": "V3-EXQ-603d",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "failed_criterion": "absolute",
+      "failed_criterion_note": "C4 z_goal-engagement gate (z_goal_norm_peak_max > 0.4) false because z_goal=0 everywhere; AND p2_cell_count 5/15 (P1 survival aborts on seeds 42/44 in all arms). C4 failure is a harness/wiring artifact upstream of the substrate (see four_layer_diagnosis.implementation).",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- none of the three claims under fair test; FAIL weighs against none; tags inherited correctly from 603 chain",
+        "biological_reference": "clear -- MECH-313 (LC-NE), MECH-260 (dACC), goal maintenance (vmPFC) all well-anchored; no divergence",
+        "prerequisites": "missing (wiring) -- implemented scheduler never calls update_z_goal; goal-pipeline gates open onto an unfed stream",
+        "implementation": "partial / wiring gap -- gates annealed + pipeline un-frozen (symbol present) but z_goal never formed (functional role absent); same fault class as V3-EXQ-626",
+        "environment": "confounded -- P0 frozen-goal env still kills seeds 42/44, but with no goal drive the policy has no foraging reason so survival is not a clean env read",
+        "measurement": "partial -- bespoke P2 also omits update_z_goal; C4/C5 cannot measure engagement of an unfed pipeline",
+        "integration": "isolated -- goal stream never integrated into the trained policy because never driven",
+        "scale": "confounded -- P0=30/P1=30 below 603c's 100/50; survival fragility cannot be cleanly attributed without restored budget"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic noise floor (MECH-313); dACC anti-recency (MECH-260); vmPFC goal maintenance under threat (goal stream)",
+        "dependencies": ["goal-pipeline feed (update_z_goal -> GoalState.update)", "drive trace / benefit-threshold gate", "5-HT salience modulation", "dACC bias suppression"],
+        "is_formal_import": false,
+        "divergence": "none -- substrate-wiring failure, not claim falsification; no formal-definition import implicated",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-01 autopsy V3-EXQ-603d] First behavioural retest on the implemented scaffolded_sd054_onboarding substrate. FAIL non_contributory on Q-045 / MECH-313 / MECH-260. Two findings: (1) LOAD-BEARING -- the scheduler's _train_episode (and 603d's bespoke P2) never call agent.update_z_goal, so z_goal stays at zero-init for every step of every arm; the SUBSTRATE_FAILURE/C4 z_goal=0 label is a Class-1 harness/wiring artifact (same class as V3-EXQ-626), NOT substrate-ceiling evidence. This is the true content of 621a's 'z_goal feeding not yet wired correctly' and the 591-triage's anticipated prereq (4). Routing: implement-substrate AMEND -- wire update_z_goal into the scheduler + Stage-0 positive-control gate; this is upstream of the 622 anneal-rate amend. (2) P1 survival gate failed 2/3 seeds (42, 44; only 43 to P2; p2_cell_count 5/15), reproducing the 603-chain seed-fragility -- but confounded by reduced budget (P0/P1=30/30 vs 603c 100/50) and the inert goal pipeline; recorded as a failure_record, to be re-tested on 603e at restored budget on the hook-fixed scheduler. EXQ-445h remains the sole valid MECH-260 support; the cumulative sub-threshold MECH-313 directional signal from the 603 chain is unchanged (603d adds no new MECH-313 read -- N=1, z_goal=0).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "sd_id_suggested": "scaffolded_sd054_onboarding",
+        "title": "AMEND: wire update_z_goal into scheduler training loop + Stage-0 positive-control gate",
+        "implementation_hint": "ScaffoldedSD054OnboardingScheduler._train_episode (ree-v3/experiments/scaffolded_sd054_onboarding.py:551) and the eval path never call agent.update_z_goal, so GoalState.update is never reached and z_goal stays at zero-init (confirmed: zero update_z_goal matches in the module). Add agent.update_z_goal(benefit_exposure=..., drive_level=...) every step in P1 (and P0 where the frozen-goal design permits), mirroring the shared experiments/goal_stream_stages_sd054.py runner (train ~line 537 / eval ~line 590) the 622 autopsy confirmed feeds z_goal. Add a Stage-0-style contract/positive-control assertion: forced benefit+drive inputs must produce non-zero direction-stable z_goal under the scheduler so a z_goal=0 scheduler is structurally unshippable. This hook fix is strictly UPSTREAM of the 622 anneal-rate amend (which assumed update_z_goal was being called); re-evaluate the anneal-rate amend priority after the hook lands and z_goal forms.",
+        "unblocks_claims": ["Q-045", "MECH-313", "MECH-260", "MECH-295", "MECH-307"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
+          "experiment_type": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054",
+          "metric": "z_goal_norm_peak_ARM_3_max=0.0 (C4 fail) -- scheduler never calls update_z_goal (harness/wiring artifact, 626-class); AND P1 survival gate failed 2/3 seeds (42,44), p2_cell_count 5/15, effective N=1 (confounded by P0/P1=30/30 budget + inert goal pipeline).",
+          "target": "After update_z_goal wired into scheduler: z_goal_norm_peak > 0.4 on >=2/3 seeds in P2, AND P1 survival gate passed on >=2/3 seeds at restored budget, so Q-045 C2/FP2 discrimination becomes testable at N>=2."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Implemented scaffolded_sd054_onboarding scheduler never calls update_z_goal (_train_episode + bespoke P2); 626 fault class surfacing in a substrate module; true content of 621a 'z_goal feeding not yet wired' + 591-triage prereq (4).",
+        "Hook omission is strictly upstream of the 622 anneal-rate amend (which assumed update_z_goal was called in the shared runner, a different module).",
+        "603d SUBSTRATE_FAILURE label is a wiring artifact, not a ceiling: C4 could not pass regardless of substrate quality.",
+        "P1 survival fragility (2/3 seeds die) persists but is confounded by reduced budget (30/30 vs 603c 100/50) + inert goal pipeline; recorded as failure_record, re-test on 603e at restored budget.",
+        "Positive-control assertion mandatory: a dry-run that does not assert non-zero z_goal cannot catch this omission (626 lesson)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "603-chain seed-fragility (only seed 43 survives) reproduced on the implemented substrate; load-bearing new signal is single (scheduler update_z_goal omission)",
+    "is_independent_bugs": false,
+    "structural_property": "the implemented scheduler opens the goal-pipeline gates but never drives the goal feed, so z_goal cannot form regardless of anneal; survival fragility is a continuation of the known cluster shape, now confounded by budget + inert goal pipeline",
+    "readings": ["harness_wiring_gap_in_substrate_module", "survival_fragility_confounded_pending_restored_budget"]
+  }
+}
