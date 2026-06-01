@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-01T08:47:16Z",
+  "last_tick_utc": "2026-06-01T09:17:37Z",
   "state": "running",
   "current_exq": "V3-EXQ-592e",
   "current_exq_started_utc": "2026-06-01T06:47:26.261975+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 44 / ARM_0_BASELINE_BOTH_OFF",
     "runs_done": 2,
     "runs_total": 12,
-    "episodes_done": 40,
+    "episodes_done": 120,
     "episodes_total": 450,
-    "overall_pct": 17.4
+    "overall_pct": 18.9
   },
-  "seconds_elapsed": 7190,
-  "seconds_remaining": 28184,
+  "seconds_elapsed": 9011,
+  "seconds_remaining": 27678,
   "recent_lines": [
-    "[run 2/12] ARM_0_BASELINE_BOTH_OFF seed=43  hold_rate=1.000  commits=0  blocks_score=0  blocks_nav=0  false_commit_rate=0.000  final_readiness=1.000  final_rv=0.00000",
-    "verdict: PASS",
-    "Seed 44 Condition ARM_0_BASELINE_BOTH_OFF",
-    "[train] ARM_0_BASELINE_BOTH_OFF seed=44 ep 0/400 (P0 warmup start)",
-    "[P0 probe] ep 40/400  rv=0.00001  threshold=0.4  converging=True"
+    "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 train] ep 80/400  rv=0.00000  reward=-1.0403",
+    "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
+    "[train] ARM_0_BASELINE_BOTH_OFF seed=44 ep 120/400  (P0 done: converged=True aborted=False final_rv=0.00000)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
