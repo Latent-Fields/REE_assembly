@@ -118,6 +118,20 @@ _DEFAULT_PYTHON = _default_python()
 V3_PYTHON = _DEFAULT_PYTHON
 V2_PYTHON = _DEFAULT_PYTHON
 
+
+def _utc_now_iso_z() -> str:
+    """UTC ISO-8601 with Z suffix (microsecond precision)."""
+    return (
+        datetime.datetime.now(datetime.UTC)
+        .isoformat(timespec="microseconds")
+        .replace("+00:00", "Z")
+    )
+
+
+def _utc_now_compact() -> str:
+    """UTC ISO-8601 second precision with Z suffix."""
+    return datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
 # Runner configs keyed by substrate version
 RUNNERS = {
     "v3": {
@@ -190,7 +204,7 @@ def run_phase3_preflight_summary() -> dict:
             result = {
                 "ok": False,
                 "error": "phase3_preflight.py missing",
-                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "cached_at": _utc_now_iso_z(),
             }
             _phase3_preflight_cache = result
             _phase3_preflight_cache_at = now
@@ -209,7 +223,7 @@ def run_phase3_preflight_summary() -> dict:
                 quiet=True,
             )
             summary["cached_at"] = (
-                datetime.datetime.utcnow().isoformat() + "Z")
+                _utc_now_iso_z())
             summary["dry_run"] = True
             summary["note"] = (
                 "Explorer summary uses dry-run (no SSH). "
@@ -218,7 +232,7 @@ def run_phase3_preflight_summary() -> dict:
             summary = {
                 "ok": False,
                 "error": "%s: %s" % (type(exc).__name__, exc),
-                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "cached_at": _utc_now_iso_z(),
             }
         _phase3_preflight_cache = summary
         _phase3_preflight_cache_at = now
@@ -354,7 +368,7 @@ def _fetch_phase3_writer_health_http(cfg: dict) -> dict | None:
         return None
 
     now_unix = time.time()
-    cached_at = datetime.datetime.utcnow().isoformat() + "Z"
+    cached_at = _utc_now_iso_z()
 
     def _writer_row_from_health(rec: dict) -> dict:
         last_tick = _parse_iso_utc_to_unix(rec.get("last_tick_at"))
@@ -482,7 +496,7 @@ def run_phase3_writers_summary() -> dict:
             "|| journalctl -u ree-sync-daemon -n 3 --no-pager --user 2>&1 "
             "|| echo 'journalctl unavailable')"
         )
-        cached_at = datetime.datetime.utcnow().isoformat() + "Z"
+        cached_at = _utc_now_iso_z()
         # _ssh() truncates stdout to 300 chars -- not enough for the journal
         # tail, so call subprocess directly. Same hardening as _ssh
         # (BatchMode, ConnectTimeout, accept-new).
@@ -619,7 +633,7 @@ def run_preflight_suite() -> dict:
                 "passed": 0,
                 "failed": 0,
                 "duration_s": 0.0,
-                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "cached_at": _utc_now_iso_z(),
                 "tail": [],
                 "error": f"preflight directory missing: {preflight_dir}",
             }
@@ -653,7 +667,7 @@ def run_preflight_suite() -> dict:
                 "passed": passed,
                 "failed": failed,
                 "duration_s": round(duration, 3),
-                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "cached_at": _utc_now_iso_z(),
                 "tail": tail,
                 "error": None if proc.returncode == 0 else f"exit {proc.returncode}",
             }
@@ -663,7 +677,7 @@ def run_preflight_suite() -> dict:
                 "passed": 0,
                 "failed": 0,
                 "duration_s": round(time.time() - start, 3),
-                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "cached_at": _utc_now_iso_z(),
                 "tail": [],
                 "error": "timeout",
             }
@@ -673,7 +687,7 @@ def run_preflight_suite() -> dict:
                 "passed": 0,
                 "failed": 0,
                 "duration_s": round(time.time() - start, 3),
-                "cached_at": datetime.datetime.utcnow().isoformat() + "Z",
+                "cached_at": _utc_now_iso_z(),
                 "tail": [],
                 "error": f"{type(exc).__name__}: {exc}",
             }
@@ -1768,7 +1782,7 @@ def _brain_conflict_snippets(region_docs: list[str]) -> list[str]:
 
 def read_brain_map() -> dict:
     """Aggregate brain-region stats for /api/brain-map."""
-    generated_at = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    generated_at = _utc_now_compact()
     map_doc = _brain_load_region_map()
     if not map_doc:
         return {
@@ -2326,7 +2340,7 @@ def read_closure() -> dict:
 
     return _enrich_closure_v2({
         "schema_version": "closure/v1",
-        "generated_at": datetime.datetime.utcnow().isoformat() + "Z",
+        "generated_at": _utc_now_iso_z(),
         "plans": plans,
         "nodes": list(nodes_by_id.values()),
         "edges": edges,
@@ -2478,8 +2492,7 @@ def append_machine_command(
 
 
 def _utc_now_iso() -> str:
-    from datetime import datetime
-    return datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    return _utc_now_compact()
 
 
 def _normalize_manifest_fields(m: dict) -> tuple:
@@ -3383,7 +3396,7 @@ def read_queue_live(ver: str = "v3") -> dict:
 # ── Timeline builder ─────────────────────────────────────────────────────────
 
 def _tl_utc_now() -> str:
-    return datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    return _utc_now_compact()
 
 
 def _tl_claim_date(claim: dict) -> tuple:
