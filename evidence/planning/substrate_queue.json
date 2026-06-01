@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "governance-cycle-20260601T060712Z",
-  "last_updated_utc": "2026-06-01T07:05Z",
+  "last_seen_session": "sd037-axis-a-phase2-recalibration-block-20260601T073706Z",
+  "last_updated_utc": "2026-06-01T07:37:06Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -1184,13 +1184,20 @@
           "utc": "2026-05-31T19:15:00Z",
           "action": "phase1_diagnostic_landed_with_negative_signal",
           "note": "V3-EXQ-620 PASS at manifest-gate level + scientific-negative on substrate-readiness for Phase 2 p70 recalibration rule. Axis (b) sustained-threat curriculum elevated to in-scope. Plan doc evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md may need Phase 1b prerequisite."
+        },
+        {
+          "date_utc": "2026-06-01",
+          "session": "sd037-axis-a-phase2-recalibration-block-20260601T073706Z",
+          "scope": "Phase 2 recalibration block authored from V3-EXQ-620 Phase 1 manifest. Per-knob p70 computation against pooled n=2939 fishtank-baseline distributions: all four knobs (BLAConfig.arousal_threshold_on, CeAConfig.fast_route_threshold, PAGFreezeGateConfig.duration_input_threshold + theta_freeze, DACCConfig.dacc_precision_scale) hit the plan-doc floor-violation path because every measured distribution is identically 0.0 (zero_fraction=1.0 per quantity, p10..p99 all 0.0). p60/p80 sensitivity values also identically zero -- within-axis-(a) sweep is non-recoverable. Override block emitted as inert (None per knob, hold ree_core defaults) with explicit axis_a_status=empirically_unmeetable flag and route_to=axis_b_sustained_threat_env_curriculum. Phase 3 verification + Phase 4 V3-EXQ-483f both remain reserved -- there is no override block to verify or validate. NO code; NO claims.yaml; NO experiment_queue.json. New planning doc: evidence/planning/sd_037_axis_a_phase2_recalibration_block.md.",
+          "validation_experiment": "Phase 3 RESERVED (no override block to verify). Axis (b) plan to be authored in a follow-on /implement-substrate session; until then Phase 2 retry under axis (a) is blocked behind a Phase 1b hazard-engaging probe-env prerequisite (substrate-side).",
+          "phase2_block_doc": "evidence/planning/sd_037_axis_a_phase2_recalibration_block.md"
         }
       ],
       "implementation_status": "implemented",
       "implemented_session": "implement-sd037-orexin-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "last_seen_session": "governance-20260531T190821Z",
-      "last_updated_utc": "2026-05-31T16:54:00Z",
+      "last_seen_session": "sd037-axis-a-phase2-recalibration-block-20260601T073706Z",
+      "last_updated_utc": "2026-06-01T07:37:06Z",
       "recalibration_plan_doc": "evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md",
       "metric_trajectory": {
         "current_blocker": "Phase 1 fishtank baseline produces zero distributions across all 6 consumer-input quantities; Phase 2 p70 recalibration rule cannot fit on zero data. Need a probe env that engages hazards (Phase 1 re-run on V3-EXQ-620a-style sustained-threat env OR axis (b) SD-029-style curriculum).",
