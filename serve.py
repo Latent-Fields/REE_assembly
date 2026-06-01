@@ -393,18 +393,22 @@ def _fetch_phase3_writer_health_http(cfg: dict) -> dict | None:
     for row in writers.values():
         row["status"] = writer_status
 
+    spool_pending = None
+    raw_spool = doc.get("spool_pending")
+    if raw_spool is not None:
+        try:
+            spool_pending = int(raw_spool)
+        except (TypeError, ValueError):
+            spool_pending = None
+
     return {
         "hub_reachable": True,
         "hub_host": cfg.get("SHADOW_SSH_HOST_ree-cloud-1")
                     or cfg.get("PHASE3_HUB_SSH_HOST")
                     or _PHASE3_HUB_DEFAULT_HOST,
         "writers": writers,
-        # spool depth + journal tail are not available over the writer-health
-        # endpoint; the explorer panel renders them best-effort, so absent
-        # values render as 'unknown'. The SSH fallback fills these when the
-        # HTTP probe fails. A separate /coordinator-spool or similar
-        # endpoint could fold these in later; out of scope for this chip.
-        "spool_pending": None,
+        "spool_pending": spool_pending,
+        # Journal tail still SSH-only; HTTP path leaves it empty.
         "journal_tail": [],
         "sync_daemon_pid": doc.get("sync_daemon_pid"),
         "probe": "http",
