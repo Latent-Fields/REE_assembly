@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-01T09:17:37Z",
+  "last_tick_utc": "2026-06-01T09:47:43Z",
   "state": "running",
   "current_exq": "V3-EXQ-592e",
   "current_exq_started_utc": "2026-06-01T06:47:26.261975+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_0_BASELINE_BOTH_OFF",
-    "runs_done": 2,
+    "run_label": "Seed 42 / ARM_1_SCORE_MARGIN_ONLY",
+    "runs_done": 3,
     "runs_total": 12,
-    "episodes_done": 120,
+    "episodes_done": 80,
     "episodes_total": 450,
-    "overall_pct": 18.9
+    "overall_pct": 26.5
   },
-  "seconds_elapsed": 9011,
-  "seconds_remaining": 27678,
+  "seconds_elapsed": 10817,
+  "seconds_remaining": 27740,
   "recent_lines": [
-    "[P0 probe] ep 80/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/400  rv=0.00000  reward=-1.0403",
-    "[P0 probe] ep 120/400  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[train] ARM_0_BASELINE_BOTH_OFF seed=44 ep 120/400  (P0 done: converged=True aborted=False final_rv=0.00000)"
+    "Seed 42 Condition ARM_1_SCORE_MARGIN_ONLY",
+    "[train] ARM_1_SCORE_MARGIN_ONLY seed=42 ep 0/400 (P0 warmup start)",
+    "[P0 probe] ep 40/400  rv=0.00001  threshold=0.4  converging=True",
+    "[P0 probe] ep 80/400  rv=0.00001  threshold=0.4  converging=True",
+    "[P0 train] ep 80/400  rv=0.00001  reward=-1.3653"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
