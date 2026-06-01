@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-01T17:46:04Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-626a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-519b",
-      "result": "PASS",
-      "completed_at": "2026-05-31T06:59:41.177425+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-615",
-      "result": "PASS",
-      "completed_at": "2026-05-31T09:31:17.188482+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-592d",
-      "result": "FAIL",
-      "completed_at": "2026-05-31T21:38:53.220424+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-622",
-      "result": "FAIL",
-      "completed_at": "2026-05-31T22:38:05.390229+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-610b",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T12:20:02.751579+00:00"
-    }
+  "last_tick_utc": "2026-06-01T18:07:42Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-624",
+  "current_exq_started_utc": "2026-06-01T17:48:05.415813+00:00",
+  "current_title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
+  "current_claim_id": "MECH-320",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_1_vigor_niv",
+    "runs_done": 1,
+    "runs_total": 12,
+    "episodes_done": 75,
+    "episodes_total": 130,
+    "overall_pct": 13.1
+  },
+  "seconds_elapsed": 1177,
+  "seconds_remaining": 7100,
+  "recent_lines": [
+    "verdict: PASS",
+    "Seed 42 Condition ARM_1_vigor_niv",
+    "[train] seed=42 arm=ARM_1_vigor_niv ep 25/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
+    "[train] seed=42 arm=ARM_1_vigor_niv ep 50/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
+    "[train] seed=42 arm=ARM_1_vigor_niv ep 75/130 phase=p0 p1_ticks=0 p1_nonnoop=0"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 37118,
   "runner_version": null,
   "gpu": {
