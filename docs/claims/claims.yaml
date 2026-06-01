@@ -4632,6 +4632,49 @@
     2026-05-10). MECH-094 itself is not relaxed; MECH-322 is a parallel write-path
     with its own conditions. MECH-292/293 ghost-goal probes (waking DMN) remain
     MECH-094-strict; the carve-out is sleep-only.
+
+    2026-06-01 active_conflict flag disposition (governance triage). The indexer
+    surfaced MECH-094 in conflicts.md with conflict_ratio 0.083 (23 supports vs
+    1 weakens). On inspection the flag is non-load-bearing and is cleared without
+    status change. Three findings: (1) The single weakens entry is the ARC-071 R6
+    source (sleep-replay drives motor-chunk consolidation; Hippocampus journal).
+    This is exactly the source that triggered the MECH-322 carve-out registration
+    on 2026-05-11 -- the weakening is already governed by the parallel write-path
+    above and is not a refutation of MECH-094's strict-gating default. (2) The
+    four mechanism-refinement quotes appearing under "MECH-094" in conflicts.md
+    (categorical-vs-graded tag, encoding-vs-retrieval, selective PTSD reading,
+    multi-factor inference) are NOT weakening evidence -- they are honest
+    failure_signatures embedded in three SUPPORTING lit-pull entries (Dijkstra
+    et al. 2022 reality monitoring review evidence_direction=supports conf 0.82;
+    Kunimatsu et al. 2019 PTSD MRI review evidence_direction=supports conf 0.65;
+    King et al. 2013 source memory fMRI evidence_direction=supports conf 0.68).
+    The indexer surfaces these as caveats for accountability; they do not flip
+    the underlying evidence direction. (3) The categorical-vs-graded critique
+    is already pre-empted by the 2026-04-16 reframing in this evidence_quality_note
+    and the notes: field of this claim, which explicitly removed "categorical gate"
+    language and registered the biological implementation as a distributed set of
+    overlapping mechanisms (source monitoring MECH-248, temporal context filtering,
+    neuromodulatory mode-setting MECH-249); the "hypothesis_tag" shorthand names
+    the combined functional effect of those distributed mechanisms, not a single
+    categorical circuit element. The encoding-vs-retrieval critique is addressed by
+    the same distributed-implementation framing: source monitoring operates at
+    retrieval, neuromodulatory mode-setting at encoding, and MECH-094 names the
+    combined functional separation rather than asserting a single-stage gate. The
+    PTSD-failure-mode prediction is best read as "graded tag degradation" under
+    the distributed implementation -- consistent with the 2020 Lavalle et al.
+    clinical dissociation between tag-loss (Korsakoff/confabulation) and
+    tag-misassignment (schizophrenia/hallucination) already captured in the
+    related-claims evidence pool. (4) Packaging caveat: the conflicts.md
+    Source field at top-of-row cites
+    `2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023`. This is
+    an indexer artefact -- the field shows the most-recent lit-pull touching
+    MECH-094, not the citation behind any specific failure_signature. Cullen 2023
+    is about motor corollary-discharge gating in the vestibular cerebellum and is
+    unrelated to simulation/real distinction. Verdict: no status change, no
+    confidence change, no claim_evidence edit. The mechanism-refinement notes
+    will continue to surface in conflicts.md as honest caveats; this paragraph
+    is the audit record of their disposition. MECH-257 dual-function workset
+    cross-link not affected (MECH-094 remains stable).
   depends_on:
     - ARC-014
     - INV-011
