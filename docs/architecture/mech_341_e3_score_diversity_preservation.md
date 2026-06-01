@@ -324,3 +324,136 @@ C1=true and C2/C3=false routes to algorithm-level substrate revisit).
   `from_dims` surface)
 - `ree-v3/ree_core/agent.py` (instantiation in `REEAgent.__init__`;
   reset hook; e3.select kwarg pass-through)
+
+---
+
+## Amend 2026-06-01: within-class proportional sampling + A-vs-B partial-redundancy probe
+
+Routed by `failure_autopsy_V3-EXQ-616_2026-05-31.md` Sections 7 + 10
+(contingent-on-614b-FAIL-C1 path). The 2026-05-28 retune (`stratified_select`
+applied on both committed and uncommitted branches; entropy_lambda 0.05 -> 0.5
++ entropy_bias_scale 0.1 -> 1.0 defaults) is unchanged. This amend ADDS a new
+togglable lever -- within-class proportional sampling sharpness -- without
+modifying any existing knob.
+
+### What changed
+
+`E3ScoreDiversity.stratified_select` previously picked the `argmin` candidate
+within each first-action class as the class representative, then sampled
+across class-representatives via `softmax(-rep_scores / stratified_temperature)`.
+That across-class step is unchanged. The within-class step gains a new
+parameter `stratified_within_class_temperature: Optional[float]`:
+
+```
+within-class branch (per class c with members class_idxs):
+    if stratified_within_class_temperature is None:
+        local_idx = argmin(class_scores)   # legacy bit-identical
+    else:
+        T = max(stratified_within_class_temperature, 1e-6)
+        local_idx ~ Multinomial(softmax(-class_scores / T))   # NEW
+```
+
+`None` is the bit-identical OFF sentinel. `T -> 0+` approaches argmin
+(sharpening). `T -> inf` approaches uniform-within-class.
+
+### Why decoupled from `stratified_temperature`
+
+The autopsy's hint phrased the lever as "stratified_temperature default",
+which could have been read as repurposing the existing parameter. That
+reading is rejected: the existing `stratified_temperature` (default 1.0)
+controls **across-class** softmax sampling at the per-class-representative
+step. The V3-EXQ-611c retune defaults were calibrated against this exact
+knob; semantic shift would break the bit-identical OFF guarantee for any
+caller that explicitly sets it today. More importantly, the A-vs-B
+partial-redundancy probe requires the two layers (within-class and
+across-class) to be dissociable -- collapsing both into one knob would make
+the Q-054-style sweep results uninterpretable.
+
+### A-vs-B partial-redundancy probe
+
+The autopsy's "config flag that lets a single experiment arm run with SP-CEM
+ON + MECH-341 selectively ablated (or vice versa)" is satisfied by the
+existing independent master flags:
+
+- `use_support_preserving_cem` -- Layer A (CEM proposal diversity,
+  ARC-065 SP-CEM child)
+- `use_e3_score_diversity` -- Layer B (this claim, MECH-341 score-layer
+  preservation)
+
+These already compose to a complete factorial: A_only / B_only / BOTH /
+NEITHER. No new code flag is added (would be redundant). The amend's
+contribution is naming the probe pattern, pinning acceptance criteria, and
+recording the composition convention in
+`evidence/planning/substrate_queue.json` `amend_history` (mirroring SD-056
+multi-step stability amend pattern landed 2026-05-31T11:25Z).
+
+### Diagnostics
+
+Three new keys on `E3ScoreDiversity.get_state()`:
+
+- `mech341_n_within_class_sampled` -- count of calls that entered the
+  within-class proportional sampling branch
+- `mech341_last_within_class_sampled` -- bool, did the last call sample
+  within-class
+- `mech341_last_within_class_temperature` -- the T value used on the last
+  call (0.0 when None)
+
+V3-EXQ-614c reads these in acceptance criteria.
+
+### Backward compatibility
+
+`stratified_within_class_temperature=None` is the dataclass default and
+the `REEConfig.from_dims` default. The new branch is gated by
+`is not None`, so callers that do not set the new field run bit-identical
+to pre-amend MECH-341. The legacy argmin path is preserved exactly.
+With `use_e3_score_diversity=False` (master OFF), the entire MECH-341 block
+at the `e3_selector.py` call sites is skipped regardless of the new
+parameter.
+
+Contract evidence: 655/655 contracts (645 prior + 10 new MECH-341 amend
+contracts in `tests/contracts/test_mech_341_stratified_temperature_amend.py`)
++ 7/7 preflight PASS with master OFF and amend OFF.
+
+### Validation: V3-EXQ-614c
+
+4-arm sweep of `e3_diversity_stratified_within_class_temperature` in
+`{None=legacy, 0.5, 1.0, 2.0}` on the SD-056-amended baseline (all other
+levers held at the V3-EXQ-614b config that produced ARM_2 ALL_ON = 0.800
+nats):
+
+- ARM_0 LEGACY -- T=None; within-class collapses to argmin; should
+  reproduce V3-EXQ-614b ARM_2 within 10% (regression guard).
+- ARM_1 T_0_5 -- T=0.5; sharpened within-class proportional sampling.
+- ARM_2 T_1_0 -- T=1.0; mid-temperature stochastic within-class.
+- ARM_3 T_2_0 -- T=2.0; flatter within-class distribution.
+
+Acceptance criteria:
+
+- **C1** (regression guard): ARM_0 LEGACY produces
+  `mean_selected_class_entropy_nats` within 10% of 614b ARM_2 ALL_ON (0.800
+  nats).
+- **C2** (within-class lift): at least one of {0.5, 1.0, 2.0} produces
+  `mean_selected_class_entropy_nats >= 0.800` on majority of seeds.
+- **C3** (substrate-readiness): all 4 arms `frac_pre_ge2 > 0.3` on
+  majority of seeds.
+
+PASS = C1 AND (C2 OR C3-only-with-no-regression). Cross-link:
+`behavioral_diversity_isolation_plan.md` GAP-B + `arc_062_rule_apprehension:GAP-B`
+(same SD-056-amended substrate transitively benefits the ARC-062 cohort).
+
+### Cross-plan impact
+
+Layer B within-class diversity contributes to ARC-062 head-input
+candidate-pool diversity. If V3-EXQ-614c surfaces a within-class lift,
+arc_062_rule_apprehension GAP-B (V3-EXQ-543l successor cohort) inherits
+the same substrate. Flagged in the V3-EXQ-614c queue entry rationale.
+
+### Constraint preserved
+
+NO flip of `use_differentiable_cem` default. The safety note recorded in
+substrate_queue.json (under the SD-055 / scaffolded_sd054_onboarding entry,
+`default_flip_safety_note_2026_05_31`) remains binding: flipping OFF before
+569a-equivalent matched-entropy FP-2 falsifier PASS under current OFF
+substrate would change the selection rule under measurement and make the
+R1 decision-rule walk uninterpretable. The amend respects this constraint.
+

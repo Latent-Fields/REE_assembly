@@ -35193,6 +35193,40 @@
     a new value). MECH-341 stays candidate / v3_pending=true; promotion
     gate held pending in-stack behavioural-runtime evidence on the
     SD-054 / multi-resource substrate cohort.
+
+
+    [2026-06-01 implement-substrate amend landed per failure_autopsy_V3-EXQ-616
+    Sections 7 + 10 contingent-on-614b-FAIL-C1 path]: MECH-341 substrate
+    amend (failure_autopsy_V3-EXQ-616 named contingent action
+    "stratified_temperature default + A-vs-B partial-redundancy probe")
+    landed via /implement-substrate session
+    implement-substrate-mech-341-amend-stratified-temp-ab-probe-20260601T063226Z.
+    Two-part amend:
+    (a) E3ScoreDiversity gains stratified_within_class_temperature:
+        Optional[float] = None lever. When set, samples a within-class
+        representative via softmax(-class_scores / T) before the existing
+        across-class softmax step. Bit-identical legacy argmin when None.
+        Decoupled from existing across-class stratified_temperature
+        (default 1.0; unchanged) so V3-EXQ-614c sweep can dissociate
+        within-class and across-class layers.
+    (b) A-vs-B partial-redundancy probe lever satisfied by existing
+        independent flags use_support_preserving_cem (Layer A) and
+        use_e3_score_diversity (Layer B). The autopsy's "config flag"
+        requirement is met by the existing composition (A_only / B_only /
+        BOTH / NEITHER); no new code flag added. The amend's contribution
+        is naming the probe pattern + pinning acceptance criteria in
+        V3-EXQ-614c.
+    655/655 contracts + 7/7 preflight PASS with master OFF and amend OFF
+    (regression-clean; was 645 + 10 new MECH-341 amend contracts in
+    tests/contracts/test_mech_341_stratified_temperature_amend.py). NO
+    flip of use_differentiable_cem default (SD-055 safety note preserved).
+    Validation experiment V3-EXQ-614c queued 2026-06-01 (4-arm
+    within-class temperature sweep {None=legacy, 0.5, 1.0, 2.0} on
+    SD-056-amended baseline; acceptance C1 regression guard + C2
+    within-class lift or C3 substrate-readiness). Cross-plan: amend
+    transitively unblocks arc_062_rule_apprehension:GAP-B (V3-EXQ-543l
+    successor cohort) under shared SD-056-amended substrate. MECH-341
+    stays candidate / v3_pending=true pending V3-EXQ-614c outcome.
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is

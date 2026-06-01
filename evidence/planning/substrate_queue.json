@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "governance-cycle-20260601T060712Z",
-  "last_updated_utc": "2026-06-01T06:18Z",
+  "last_updated_utc": "2026-06-01T07:05Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -3291,9 +3291,25 @@
     },
     {
       "added_session": "governance-20260527T172644Z",
-      "autopsy_refs": [
-        "evidence/planning/failure_autopsy_MECH-341-cluster_2026-05-29.md"
+      "amend_history": [
+        {
+          "amend_description": "Within-class proportional sampling sharpness lever (stratified_within_class_temperature, Optional[float], default None = legacy argmin bit-identical) on E3ScoreDiversity.stratified_select. Within each first-action class, when set, sample a representative via softmax(-class_scores / T) before the existing across-class softmax step. Decoupled from existing `stratified_temperature` (across-class) so the A-vs-B partial-redundancy probe can dissociate within-class and across-class layers. A-vs-B probe lever satisfied by existing independent master flags use_support_preserving_cem (Layer A) and use_e3_score_diversity (Layer B) -- already compose to a complete A_only / B_only / BOTH / NEITHER factorial; no new code flag added. Three new diagnostics (mech341_n_within_class_sampled / _last_within_class_sampled / _last_within_class_temperature). 655/655 contracts (645 prior + 10 new MECH-341 amend contracts in tests/contracts/test_mech_341_stratified_temperature_amend.py) + 7/7 preflight PASS with master OFF and amend OFF.",
+          "amend_landed_session": "implement-substrate-mech-341-amend-stratified-temp-ab-probe-20260601T063226Z",
+          "amend_landed_utc": "2026-06-01T07:05:00Z",
+          "autopsy": "evidence/planning/failure_autopsy_V3-EXQ-616_2026-05-31.md",
+          "cluster_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-614b_2026-05-31.md",
+          "next_validation": "V3-EXQ-614c 4-arm sweep stratified_within_class_temperature in {None=legacy, 0.5, 1.0, 2.0} on SD-056-amended baseline. Cross-plan beneficiary: arc_062_rule_apprehension:GAP-B (V3-EXQ-543l successor cohort) under shared SD-056-amended substrate.",
+          "session": "implement-substrate-mech-341-amend-stratified-temp-ab-probe-20260601T063226Z",
+          "preserved_constraint": "NO flip of use_differentiable_cem default (SD-055 / scaffolded_sd054_onboarding default_flip_safety_note_2026_05_31 remains binding)."
+        }
       ],
+      "autopsy_refs": [
+        "evidence/planning/failure_autopsy_MECH-341-cluster_2026-05-29.md",
+        "evidence/planning/failure_autopsy_V3-EXQ-614b_2026-05-31.md",
+        "evidence/planning/failure_autopsy_V3-EXQ-616_2026-05-31.md",
+        "evidence/planning/failure_autopsy_MECH-341-cluster_2026-05-31.md"
+      ],
+      "default_flip_safety_note_2026_06_01": "Implement-substrate session 20260601T063226Z landed within-class proportional sampling lever (Part a of the 616 autopsy's named contingent amend) + named the existing-flag A-vs-B partial-redundancy probe composition (Part b). Default for the new stratified_within_class_temperature stays at None (legacy argmin within-class). NO default flip to a positive T value without (a) V3-EXQ-614c-equivalent 4-arm sweep PASS surfacing a within-class lift over the legacy ARM_0, AND (b) explicit governance ratification of the chosen T value via /governance pending_user gate. The within-class branch is bit-identical OFF at None; any opt-in experiment can set a per-arm value through cfg_overrides without touching the default. NO flip of use_differentiable_cem default (carries forward the 2026-05-31 safety note; the within-class amend is orthogonal to that flag's flip decision).",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/mech_341_e3_score_diversity_preservation.md",
       "failure_record": [
@@ -3329,14 +3345,22 @@
           "session_id": "gapb-plandoc-substrate-queue-refresh-20260530T063352Z",
           "session_utc": "2026-05-30T06:42:23Z",
           "supersedes_validation_run_id": "V3-EXQ-614"
+        },
+        {
+          "actions_taken": "MECH-341 amend (failure_autopsy_V3-EXQ-616_2026-05-31 Sections 7 + 10 contingent-on-614b-FAIL-C1 path). V3-EXQ-614b FAILed C1 (B_only Rung-1 majority=False; structural CEM proposer collapse without SP-CEM Layer A) AND C2 (necessity delta 0.087 nats below pre-amend 0.1 threshold). C3 ALL_ON Rung-1 PASSed at 0.800 nats (highest of 614-lineage; positive substrate-readiness for SD-056 amend at behavioural-runtime horizon). Two-part amend landed: (a) E3ScoreDiversityConfig.stratified_within_class_temperature: Optional[float] = None added to ree-v3/ree_core/predictors/e3_score_diversity.py; E3ScoreDiversity.stratified_select extended to sample within each first-action class via softmax(-class_scores / T) when set; bit-identical legacy argmin when None. Decoupled from existing across-class stratified_temperature (default 1.0; unchanged) so the A-vs-B probe can dissociate within-class and across-class layers in V3-EXQ-614c sweep. Three new diagnostics on E3ScoreDiversity.get_state(): mech341_n_within_class_sampled / mech341_last_within_class_sampled / mech341_last_within_class_temperature. REEConfig + REEConfig.from_dims gain e3_diversity_stratified_within_class_temperature (Optional[float], default None) propagating to config + build_from_ree_config via getattr fallback. (b) A-vs-B partial-redundancy probe lever satisfied by existing independent flags use_support_preserving_cem (Layer A: ARC-065 SP-CEM child) and use_e3_score_diversity (Layer B: MECH-341); the existing flag composition already provides A_only / B_only / BOTH / NEITHER. No new code flag (would be redundant); the amend's contribution is naming the probe pattern + pinning acceptance criteria in V3-EXQ-614c. 655/655 contracts + 7/7 preflight PASS with master OFF AND amend OFF (regression-clean 2026-06-01; was 645 + 10 new MECH-341 amend contracts in tests/contracts/test_mech_341_stratified_temperature_amend.py covering C1 default-bit-identical / C2 low-T-sharpening / C3 high-T-uniform-within-class / C4 mid-T-stochastic / C5 master-gate / C6 simulation-mode-gate / C7 single-class-pool-fall-through / C8 from_dims-propagation / C9 build_from_ree_config-reads-new-flag / C10 get_state-diagnostics-surface). Cross-plan: amend transitively unblocks arc_062_rule_apprehension:GAP-B (V3-EXQ-543l successor cohort) under shared SD-056-amended substrate. NO flip of use_differentiable_cem default (SD-055 safety note preserved). Mirrors SD-056 multi-step amend pattern at 2026-05-31T11:25Z.",
+          "next_step": "Await V3-EXQ-614c manifest (4-arm within-class temperature sweep). On C1+C2 PASS: MECH-341 within-class lever validated; routes to /governance for MECH-341 promotion candidate (v3_pending clearance via the score-layer preservation pathway). On C1+C3-only PASS (no within-class lift): amend is functional but not load-bearing under SD-056-amended substrate; routes to Q-054 collapse-with-ARC-065-architectural reading or to substrate-redesign decision (Layer B may be redundant with Layer A under SP-CEM-ON). On C1 FAIL (regression vs 614b): autopsy on the amend itself (broken bit-identical OFF guarantee or upstream substrate drift; the only path the contract suite cannot catch).",
+          "primary_acceptance_gate": "V3-EXQ-614c manifest lands with C1 ARM_LEGACY reproducing 614b ARM_2 ALL_ON within 10% (regression guard) AND (C2 at least one of {0.5, 1.0, 2.0} produces mean_selected_class_entropy_nats >= 0.800 nats on majority of seeds OR C3 frac_pre_ge2 > 0.3 on majority of seeds across all 4 arms).",
+          "session_id": "implement-substrate-mech-341-amend-stratified-temp-ab-probe-20260601T063226Z",
+          "session_utc": "2026-06-01T07:05:00Z",
+          "supersedes_validation_run_id": null
         }
       ],
-      "last_seen_session": "igw-021-substrate-ready-mech-341-20260530T000841Z",
+      "last_seen_session": "implement-substrate-mech-341-amend-stratified-temp-ab-probe-20260601T063226Z",
       "priority": 2,
       "ready": true,
       "ready_blocked_by": null,
       "sd_id": "MECH-341",
-      "status": "retune_validated",
+      "status": "amend_implemented_pending_validation",
       "title": "E3 score diversity preservation retune: (a) entropy_bonus_scale too small relative to score gap range; (b) stratified_select trigger condition (min_classes_for_stratification) never reached in current substrate.",
       "unblocks_claims": [
         "MECH-341"
