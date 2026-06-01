@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-05-31T19:02:35.103222Z`
+Generated: `2026-05-31T19:24:10.603114Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -844,7 +844,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-118
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.183, lit_conf=0.804, overall_confidence_legacy=0.649
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.182, lit_conf=0.804, overall_confidence_legacy=0.648
 - Recent entries:
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_118` direction=`supports` confidence=0.78
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_118` direction=`supports` confidence=0.72
@@ -1185,11 +1185,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.374, lit_conf=0.874, overall_confidence_legacy=0.674
 - Recent entries:
-  - `2026-05-12T18:15:40.501838Z` `experimental` `v3_exq_540e_mech307_default_fix_validation` direction=`weakens` confidence=0.75
   - `2026-05-15T20:18:26.097339Z` `experimental` `v3_exq_540f_mech307_default_fix_3seed` direction=`weakens` confidence=0.75
   - `2026-05-15T23:31:21.483025Z` `experimental` `v3_exq_540g_mech307_criterion_fix` direction=`supports` confidence=0.75
   - `2026-05-30T18:44:34Z` `experimental` `v3_exq_490i_mech295_cascade_gap4_tier1` direction=`weakens` confidence=0.75
   - `2026-05-31T11:24:17Z` `experimental` `v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline` direction=`weakens` confidence=0.75
+  - `2026-05-31T17:59:43Z` `experimental` `v3_exq_618_sd049_phase3_consumer_cascade_validation` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `If liking and wanting were the same signal at different sites, no anatomical hotspot/coldspot dissociation should be observable; the review documents that they are.` (1)
   - `If the liking-stream were a passive consequence of wanting activation, the same circuits should generate both; the review documents distinct generator regions and discrete control by mu-opioid, kappa-opioid, delta-opioid, cannabinoid and orexin signalling.` (1)
@@ -1503,7 +1503,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-015
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.608, lit_conf=0.811, overall_confidence_legacy=0.709
+- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.607, lit_conf=0.811, overall_confidence_legacy=0.709
 - Recent entries:
   - `2026-05-05T17:52:29.305243Z` `experimental` `v3_exq_514b_sd049_phase_2_behavioural_validation` direction=`weakens` confidence=0.75
   - `2026-05-06T15:09:32.039060Z` `experimental` `v3_exq_531_sd015_resource_encoder_ablation` direction=`weakens` confidence=0.75
@@ -1701,13 +1701,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-049
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, exp_conf=0.358, lit_conf=0.802, overall_confidence_legacy=0.624
+- Evidence breakdown: supports=7, weakens=4, conflict_ratio=0.727, exp_conf=0.357, lit_conf=0.802, overall_confidence_legacy=0.624
 - Recent entries:
-  - `2026-05-04T21:33:40.763741Z` `experimental` `v3_exq_514_sd049_phase_2_behavioural_validation` direction=`superseded` confidence=0.55
   - `2026-05-05T17:52:29.305243Z` `experimental` `v3_exq_514b_sd049_phase_2_behavioural_validation` direction=`weakens` confidence=0.75
   - `2026-05-08T16:53:42.767936Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-08T16:53:42.769101Z` `experimental` `v3_exq_514f_sd049_phase_2_reef_behavioural_validation` direction=`non_contributory` confidence=0
   - `2026-05-23T22:06:32.628491Z` `experimental` `v3_exq_514j_sd049_phase2_reef_mech307_spcem` direction=`weakens` confidence=0.75
+  - `2026-05-31T17:59:43Z` `experimental` `v3_exq_618_sd049_phase3_consumer_cascade_validation` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `Kidd & Hayden warn against treating curiosity as a single phenomenon -- they argue it is a class of information-seeking motivations that vary by context and species. SD-049's novelty channel implements one specific operationalisation: benefit decays with per-cell familiarity. Kidd & Hayden's framework licenses this as a valid instance, but cautions that the agent will not generalise to other curiosity-class motivations (e.g. specific epistemic curiosity, perceptual curiosity, social information-seeking) without further substrate work. SD-049 is therefore a partial implementation of the curiosity class, not a complete one.` (1)
   - `The curiosity class's reward signal is not deficit-reduction but uncertainty-reduction. SD-049's novelty-decay implementation is closer to a habituation analog than to a true uncertainty-reduction signal. This is a known architectural simplification; flagging here so that future child mechanisms (e.g. MECH-(TBD): predictive uncertainty as benefit signal) can be registered without confusion.` (1)

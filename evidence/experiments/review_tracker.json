@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-05-31T12:14:35Z",
+  "last_review_utc": "2026-05-31T19:15:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -429,7 +429,16 @@
     "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b",
     "v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z",
     "v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline",
-    "V3-EXQ-490j"
+    "V3-EXQ-490j",
+    "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended",
+    "V3-EXQ-614b",
+    "v3_exq_616_q054_mech341_entropy_bias_scale_sweep",
+    "V3-EXQ-616",
+    "v3_exq_618_sd049_phase3_consumer_cascade_validation",
+    "V3-EXQ-618",
+    "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions",
+    "V3-EXQ-620",
+    "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
@@ -2623,7 +2632,11 @@
     "v3_exq_519b_sd051_conditioned_safety_store_readiness_20260531T065940Z_v3",
     "v3_exq_615_arc065_rung1_matched_entropy_20260531T082211Z_v3",
     "v3_exq_615_arc065_rung1_matched_entropy_20260531T093116Z_v3",
-    "v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3"
+    "v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3",
+    "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3",
+    "v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3",
+    "v3_exq_618_sd049_phase3_consumer_cascade_validation_20260531T175943Z_v3",
+    "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3320,6 +3333,35 @@
         "v3_exq_617_sd056_multistep_substrate_readiness_v3_20260531T113129Z"
       ],
       "subject": "/governance walkthrough (midday) -- 3 indexed pending FAILs walked + 1 unclaimed PASS cleared. (1) V3-EXQ-483e FAIL with confirmed failure_autopsy_V3-EXQ-483e_2026-05-31 applied verbatim per user approval: manifest evidence_direction mixed -> non_contributory, evidence_direction_per_claim {SD-037, MECH-280, MECH-281} all -> non_contributory, evidence_direction_note set to autopsy paragraph. Autopsy diagnosis: substrate_ceiling one architectural layer deeper than 483d (consumers wired but consumer-input thresholds not cleared at fishtank baseline -- BLA arousal_threshold_on=0.4 / CeA fast_route_threshold=0.5 / PAG theta_freeze=2.0 / dACC pe-magnitude floors all above baseline magnitudes; broadcast amplifies zero baseline outputs). Routing: implement-substrate amend SD-037 substrate_queue entry with consumer-input-threshold failure_record_entry; next substrate axes named (consumer-input-threshold recalibration + SD-029-style sustained-threat env curriculum). pending_retest_after_substrate stays TRUE on all three. epistemic_category=substrate_ceiling set explicitly on SD-037 + MECH-280 + MECH-281 (was inherited via parent before). Distinct from 540/590a/591/598/603/610 substrate_uniform cluster -- not folded. (2) V3-EXQ-569e FAIL with confirmed failure_autopsy_V3-EXQ-569e_2026-05-31 applied verbatim: manifest evidence_direction mixed preserved (autopsy: diagnostic, non-weighting), evidence_direction_per_claim {ARC-065:mixed, MECH-341:mixed} preserved, evidence_direction_note set to autopsy paragraph. Autopsy diagnosis: verdict_cell=INSTRUMENTATION_FAILURE; SD-056 contrastive E2 training stable at t=1 (569d clean) but explodes numerically (1e16-1e18) in iterated multi-step rollouts at behavioural-runtime episode length; M1/M3/M4/M5 verdict cells all saturated. epistemic_category=standard (NOT substrate_ceiling; distinct shape from substrate_uniform cluster). Routing: implement-substrate amend SD-056 ALREADY LANDED 2026-05-31 11:25Z (multistep contrastive horizon h=5 + per-step output norm clamp). 569c headline + 569d PASS remain load-bearing on ARC-065 GAP-A pending the amend-and-re-run cycle. pending_retest_after_substrate stays TRUE on SD-056 (set; ARC-065 + MECH-341 unchanged from morning 08:45Z governance reading -- v3_pending=true preserved on MECH-341, v3_pending=false on ARC-065 from morning 3-PASS convergence). (3) V3-EXQ-490j FAIL flagged for /failure-autopsy per user approval -- NOT marked discussed this cycle: failure shape has internal contradiction (C9 substrate-side direct magnitude lift PASSes cleanly 3/3 seeds with bridge magnitudes nonzero in ARM_1 vs zero in ARM_0; C8 behavioural acceptance FAILs because approach_commit_rate=1.0 saturates in BOTH severed and operating arms, in all 3 seeds). One architectural layer deeper than 490i's C3 contamination -- 490j replaced C3 with the substrate-side C9 proxy 490i autopsy commissioned, but C8 saturation contamination is a new failure mode not anticipated by the prior autopsy. No inline evidence_direction applied to MECH-295 this cycle. (4) V3-EXQ-617 PASS substrate-readiness diagnostic (SD-056 multistep amend; unclaimed by design, claim_ids=[]) marked discussed -- confirms SD-056 multistep amend operative on synthetic batches, unblocks the post-amend Pathway A vs B re-run."
+    },
+    {
+      "session_id": "governance-20260531T190821Z",
+      "completed_utc": "2026-05-31T19:15:00Z",
+      "manifests_reviewed": [
+        "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3",
+        "v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3",
+        "v3_exq_618_sd049_phase3_consumer_cascade_validation_20260531T175943Z_v3",
+        "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3"
+      ],
+      "claim_ids": [
+        "MECH-341",
+        "ARC-065",
+        "Q-054",
+        "SD-049",
+        "MECH-295",
+        "MECH-304"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended",
+        "V3-EXQ-614b",
+        "v3_exq_616_q054_mech341_entropy_bias_scale_sweep",
+        "V3-EXQ-616",
+        "v3_exq_618_sd049_phase3_consumer_cascade_validation",
+        "V3-EXQ-618",
+        "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions",
+        "V3-EXQ-620"
+      ],
+      "subject": "/governance cycle 1908Z. 4 pending experiments walked: (1) V3-EXQ-616 FAIL Q-054 entropy_bias_scale sweep -- per failure_autopsy_MECH-341-cluster_2026-05-31 (status=confirmed) applied: Q-054 -> mixed (definitive negative answer to scale-lever framing; load-bearing floor is at proposer layer SP-CEM, not score layer); MECH-341 -> non_contributory (clarification not falsification; correct claim characterisation is score-layer preserver of upstream-supplied candidate-pool diversity). Bit-identical per-seed results across {1.0,2.0,4.0,8.0} mathematically prove uniform additive bias cannot move a single-class CEM proposer output. (2) V3-EXQ-614b FAIL Phase P3 behavioural falsifier on SD-056-amended substrate -- per failure_autopsy_V3-EXQ-614b_2026-05-31 (status=confirmed) + cluster autopsy applied: MECH-341 -> non_contributory + ARC-065 -> non_contributory. SD-056 amend lifted ARM_1 ablate_B by +0.187 nats vs ARM_2 ALL_ON +0.116 nats; MECH-341 marginal contribution shrunk 0.158->0.087 because upstream cluster does more of diversity work; ARM_2 ALL_ON 0.800 nats is highest of any 614-lineage run. Not a falsification. Process flag: C2 necessity_delta_threshold=0.1 calibrated pre-SD-056-amend; must be revisited before any V3-EXQ-614c successor. (3) V3-EXQ-620 PASS SD-037 Phase 1 consumer-input distributions diagnostic, claim_ids=[]: all 6 measured quantities identically 0.0 across all 2939 pooled steps; fishtank baseline genuinely never engages consumer-input streams. Phase 2 p70 recalibration rule blocked at axis (a) without a probe env that engages hazards. substrate_queue SD-037 entry observation updated separately (axis (b) sustained-threat env curriculum elevated to in-scope). (4) V3-EXQ-618 PASS SD-049 Phase 3 consumer-cascade validation diagnostic: all 4 acceptance criteria PASS; reclassified non_contributory on both SD-049 + MECH-295 per substrate-readiness diagnostic pattern (cf. EXQ-519b precedent). Load-bearing behavioural validation owed to V3-EXQ-619 (reserved). Promotion impact: ARC-065 candidate -> provisional applied per cluster autopsy recommendation (post-walk direction counts 46/5/0). MECH-295 / MECH-304 / MECH-341 hold_pending_v3_substrate rolled pending_user -> applied. record_decision logged for all four claims."
     }
   ],
   "review_log": [
@@ -3339,6 +3381,34 @@
         "V3-EXQ-490j"
       ],
       "subject": "/governance walkthrough (afternoon, post-490j-revision) -- 1 indexed pending FAIL walked. V3-EXQ-490j (MECH-295 GAP-4 Tier-1 retest, severed-bridge baseline) FAIL with confirmed failure_autopsy_V3-EXQ-490j_2026-05-31 (status=confirmed_revised, revised 11:58Z) applied per user approval option 'Apply + narrow claim text'. Manifest evidence_direction=weakens preserved; evidence_direction_per_claim[MECH-295]=weakens preserved; evidence_direction_note added with autopsy split reading (weakens at behavioural-necessity layer + supports at substrate-firing layer; counterweight recorded). claims.yaml MECH-295: (a) evidence_quality_note appended with V3-EXQ-490j autopsy upgrade paragraph documenting the split reading and the narrowing decision; (b) title rewritten from necessity-framed to modulation-framed; (c) functional_restatement extended with NARROWED 2026-05-31 section -- weak-reading necessity falsified at behavioural-necessity layer (ARM_0 severed-bridge + drive amp still produced approach_commit_rate=1.0 via parallel REE drive->approach pathways MECH-216/MECH-290/MECH-307/tonic_5ht); narrowed claim is modulation (drive->liking-stream->approach-cue per-candidate score_bias contribution, one of several pathways, not the sole or necessary one); biology-faithful per Berridge & Robinson 2003 + Berridge & Kringelbach 2015; resolves Pecina 2003 DAT-knockdown tension; primary falsifier for narrowed claim is direct E3 score_bias argmin-change probe (V3-EXQ-490k composition); strong-reading falsifier (mu-opioid antagonist) remains experimental gap. status=candidate preserved; v3_pending=true preserved (gate stays held until narrowed claim's substrate-isolating retest lands); claim_type=mechanism_hypothesis preserved; epistemic_category=standard preserved. promotion_demotion_recommendations.md: MECH-295 + MECH-304 + MECH-341 hold_pending_v3_substrate flipped pending_user->applied (per user approval 'Apply both' on 304/341 + 'applied' on 295). substrate_queue.json: no MECH-295 amend (autopsy recommended_substrate_queue_entry.action=none; substrate operative); last_seen_session bumped. Routing-out: SECONDARY /queue-experiment V3-EXQ-490k substrate-isolating retest of narrowed claim (autopsy Section 9 composition: option c argmin-change probe as primary metric + option a behavioural sanity + option b sensitivity ablation). Cohort 490g/h/i/j closes at the substrate-firing layer (substrate fires correctly across the lineage); behavioural-necessity reading was the conceptual problem, not metric design alone."
+    },
+    {
+      "utc": "2026-05-31T19:15:00Z",
+      "session": "governance-20260531T190821Z",
+      "reviewed_run_ids_added": [
+        "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3",
+        "v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3",
+        "v3_exq_618_sd049_phase3_consumer_cascade_validation_20260531T175943Z_v3"
+      ],
+      "claim_ids_touched": [
+        "MECH-341",
+        "ARC-065",
+        "Q-054",
+        "SD-049",
+        "MECH-295",
+        "MECH-304"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended",
+        "V3-EXQ-614b",
+        "v3_exq_616_q054_mech341_entropy_bias_scale_sweep",
+        "V3-EXQ-616",
+        "v3_exq_618_sd049_phase3_consumer_cascade_validation",
+        "V3-EXQ-618",
+        "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions",
+        "V3-EXQ-620"
+      ],
+      "subject": "/governance cycle 1908Z: 4 pending experiments walked + ARC-065 candidate -> provisional promotion. See review_batches[] entry for full detail."
     }
   ]
 }

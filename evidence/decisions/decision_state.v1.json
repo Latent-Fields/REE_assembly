@@ -209,12 +209,12 @@
     },
     "ARC-065": {
       "actor": "dgolden",
-      "decision_needed": "Apply 614a/569d/615 PASS convergence; clear v3_pending + pending_retest_after_substrate",
-      "decision_status": "approved",
-      "rationale": "V3-EXQ-614a PASS (P3 behavioural falsifier) + V3-EXQ-569d PASS (FP-2 floor-recal supersedes 569c) + V3-EXQ-615 PASS (Rung-1 matched-entropy real run). Per 615 script routing: ARC-065 supports, clear pending_retest_after_substrate, route to governance for provisional promotion consideration. v3_pending also cleared given V3 substrate evidence now in volume. ARC-065 stays status=candidate -- next governance cycle reconsiders promotion gate now that V3-pending hold is lifted.",
-      "recommendation": "clear_v3_pending_and_retest_flag",
-      "selected_option": "Clear ARC-065 pending_retest_after_substrate AND v3_pending (3 converging PASSes)",
-      "timestamp_utc": "2026-05-31T08:30:00Z"
+      "decision_needed": "Promote candidate -> provisional per confirmed cluster autopsy",
+      "decision_status": "applied",
+      "rationale": "2026-05-31 evening governance cycle 1908Z: per failure_autopsy_MECH-341-cluster_2026-05-31. Distributed-pathway commitment empirically supported by V3-EXQ-615 09:31Z matched-entropy control discrimination and corroborated by V3-EXQ-614b ALL_ON 0.800 nats (highest of any 614-lineage run). Direction counts after reclassifying 614b weakens to non_contributory: 46 supports / 5 mixed / 0 weakens. v3_pending=false and pending_retest_after_substrate=false already cleared at midday. Promotion to full active reserved for a behavioural-runtime walk on the SD-054 / multi-resource cohort (V3-EXQ-619 + downstream).",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote candidate -> provisional",
+      "timestamp_utc": "2026-05-31T19:22:15.800725Z"
     },
     "ARC-066": {
       "actor": "user",
@@ -1082,12 +1082,12 @@
     },
     "MECH-295": {
       "actor": "dgolden",
-      "decision_needed": "Apply failure-autopsy recommendation for V3-EXQ-490i",
-      "decision_status": "approved",
-      "rationale": "failure_autopsy_V3-EXQ-490i_2026-05-30 (status=confirmed): override manifest evidence_direction_per_claim[MECH-295] from weakens to narrow_supports. Primary registered behavioural sign-test PASSes 3/3 seeds; manifest weakens rollup reflects (a) C3_lift metric contamination and (b) orthogonal SD-032b dACC wiring gap.",
-      "recommendation": "apply_autopsy_narrow_supports",
-      "selected_option": "Apply autopsy verbatim",
-      "timestamp_utc": "2026-05-31T08:30:00Z"
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "2026-05-31 evening governance cycle 1908Z: v3_pending=true gate stands; V3-EXQ-618 reclassified non_contributory per Phase 3 substrate-readiness diagnostic pattern; behavioural validation deferred to V3-EXQ-619.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-31T19:22:15.673324Z"
     },
     "MECH-302": {
       "actor": "user",
@@ -1109,12 +1109,12 @@
     },
     "MECH-304": {
       "actor": "dgolden",
-      "decision_needed": "V3-EXQ-519b PASS (diagnostic substrate-readiness) routing",
-      "decision_status": "approved",
-      "rationale": "519b PASS is a substrate-readiness diagnostic for the rescued scheduled-limb-damage env (SD-022 amend). Per skill rule, diagnostic PASSes do not directly count as hypothesis-testing evidence. v3_pending=true preserved on MECH-304 / SD-051 -- the conditioned-inhibition discriminative-pair experiment is what clears the gate. 519b is the prerequisite check that enables the next EXQ to be run.",
-      "recommendation": "mark_discussed_no_evidence",
-      "selected_option": "Mark discussed, no evidence weighting",
-      "timestamp_utc": "2026-05-31T08:30:00Z"
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "2026-05-31 evening governance cycle 1908Z: v3_pending=true gate stands; no new evidence this walk; disposition unchanged from 08:30Z approval.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-31T19:22:15.717729Z"
     },
     "MECH-307": {
       "actor": "user",
@@ -1271,12 +1271,12 @@
     },
     "MECH-341": {
       "actor": "dgolden",
-      "decision_needed": "Apply 614a + 569d PASS; 569e diagnostic FAIL flagged for /failure-autopsy",
-      "decision_status": "approved",
-      "rationale": "V3-EXQ-614a PASS evidence_direction_per_claim[MECH-341]=supports (P3 behavioural falsifier; mech341 load-bearing in stack only). V3-EXQ-569d PASS evidence_direction_per_claim[MECH-341]=supports (floor-recalibrated FP-2 falsifier; supersedes 569c). V3-EXQ-569e diagnostic FAIL flagged for /failure-autopsy -- does not weight evidence_direction per skill rule. MECH-341 stays candidate / v3_pending=true pending mechanism-dissociation autopsy interpretation.",
-      "recommendation": "apply_supports_per_claim_and_flag_for_autopsy",
-      "selected_option": "Apply supports per-claim verbatim",
-      "timestamp_utc": "2026-05-31T08:30:00Z"
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "2026-05-31 evening governance cycle 1908Z: v3_pending=true gate stands. Cluster autopsy applied; MECH-341 characterised as score-layer preserver, not in-isolation generator. V3-EXQ-614b + V3-EXQ-616 reclassified non_contributory; load-bearing evidence is in-stack ALL_ON across 614a/614b/615.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-05-31T19:22:15.759997Z"
     },
     "Q-006": {
       "actor": "user",
@@ -1729,7 +1729,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-05-31T16:49:25.925411Z",
+  "generated_at_utc": "2026-05-31T19:24:10.603114Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

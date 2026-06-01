@@ -24636,6 +24636,20 @@
     correctly, behavioural-necessity reading reframed). Autopsy artifact:
     evidence/planning/failure_autopsy_V3-EXQ-490j_2026-05-31.{md,json}
     status=confirmed_revised.
+
+    [2026-05-31 evening governance: V3-EXQ-618 reclassified non_contributory]:
+    V3-EXQ-618 SD-049 Phase 3 consumer-cascade validation PASSed all four
+    substrate-readiness acceptance criteria (C1 per_axis_drive evolves
+    min_peak=0.027; C2 no crashes; C3 AIC reads per_axis mean_l1=5.92;
+    C4 MECH-295 axis routes mean_l1=0.169) but is experiment_purpose=
+    diagnostic and does not test MECH-295's behavioural-necessity
+    hypothesis directly. Per the established pattern for substrate-
+    readiness diagnostics in this claim (cf. EXQ-519b 2026-05-30
+    governance), reclassified non_contributory for both tagged claims.
+    Load-bearing behavioural validation is owed to V3-EXQ-619 (reserved;
+    replicates V3-EXQ-514g structure on Phase 3 substrate; unblocks
+    goal_pipeline:GAP-2 cluster). MECH-295 stays candidate /
+    v3_pending=true.
   implementation_note: >
     V3 substrate IMPLEMENTED 2026-04-26 in ree-v3/ree_core/regulators/
     mech295_liking_bridge.py (MECH295LikingBridge,
@@ -27973,7 +27987,7 @@
   claim_type: architectural_commitment
   subject: rule_apprehension.behavioral_diversity_generation_pathway
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   v3_pending: false
   claim_level: architectural
@@ -28129,6 +28143,27 @@
     /implement-substrate amend SD-056 (multistep contrastive horizon +
     output norm clamp landed 2026-05-31 11:25Z). 569e adds no new ARC-065
     evidence weighting in either direction this cycle.
+
+    [2026-05-31 evening governance: PROMOTED candidate -> provisional]:
+    Per failure_autopsy_MECH-341-cluster_2026-05-31 (status=confirmed).
+    Cluster autopsy on V3-EXQ-614b + V3-EXQ-615 + V3-EXQ-616 confirms
+    that ARC-065's distributed-pathway commitment is empirically supported
+    by V3-EXQ-615 09:31Z PASS (matched-entropy control discrimination:
+    ARM_2 ALL_ON 4.33 unique classes / 1.111 nats; ARM_0 BASE_OFF and
+    ARM_1 MATCHED_NOISE both collapse to single-class 0.0 nats; matched-
+    noise control cannot reproduce ALL_ON diversity). V3-EXQ-614b 0.800
+    nats ALL_ON entropy on SD-056-amended substrate is the highest of
+    any 614-lineage run, corroborating the architectural-necessity reading.
+    Direction counts post-walk reclassification: 46 supports / 5 mixed /
+    0 weakens (the prior 1 weakens from 614b reclassified non_contributory
+    this cycle; the prior weakens from EXQ-615 08:22Z dry-run dual-manifest
+    artifact resolved to superseded earlier in the day). conflict_ratio
+    drops near zero; exp_conf rises to ~0.97 (post-rebuild value applies).
+    Promotion candidate -> provisional applied; v3_pending already false;
+    pending_retest_after_substrate already false (gates cleared at midday).
+    Promotion to full active reserved for a subsequent walk after a
+    behavioural-runtime test on the larger SD-054 / multi-resource
+    substrate cohort (V3-EXQ-619 and downstream).
   notes: >
     HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
     internal architectural name (behavioral_diversity_generation_pathway)
@@ -35050,6 +35085,42 @@
     stability amend landed 2026-05-31 11:25Z (V3-EXQ-617 substrate-readiness
     queued); MECH-341 stays candidate / v3_pending=true pending the SD-056
     amend-and-re-run cycle on the corrected substrate.
+
+    [2026-05-31 evening governance: cluster autopsy applied; role
+    characterised as score-layer preserver, not in-isolation generator]:
+    Per failure_autopsy_MECH-341-cluster_2026-05-31 (status=confirmed) and
+    failure_autopsy_V3-EXQ-614b_2026-05-31 (status=confirmed). Two new
+    manifests reclassified non_contributory on MECH-341:
+    (i) V3-EXQ-614b (Phase P3 behavioural falsifier on SD-056-amended
+        substrate). C1=False (B_only ARM_0 frac_pre_ge2=0.0; structural
+        CEM proposer collapse without SP-CEM upstream, identical to 614a);
+        C2=False at 0.087 vs 0.1 threshold (near-miss); C3=True at ALL_ON
+        0.800 nats (highest of any 614-lineage run). SD-056 amend lifted
+        ARM_1 ablate_B by +0.187 nats vs ARM_2 ALL_ON +0.116 nats;
+        MECH-341 marginal contribution shrunk 0.158->0.087 because the
+        upstream cluster (SP-CEM + V_s + noise_floor + amended E2
+        action-conditional divergence) is doing more of the diversity
+        work at the candidate-pool layer. Not a falsification.
+    (ii) V3-EXQ-616 (Q-054 entropy_bias_scale sweep on B_only isolation,
+        scales {1.0, 2.0, 4.0, 8.0}). Bit-identical per-seed results
+        across all four scales (frac_pre_ge2=0.0, n_unique=1, entropy=0.0
+        universally). Mathematical proof that uniform additive bias
+        cannot move a single-class CEM proposer output. In-isolation
+        testing of MECH-341 through the entropy_bias_scale lever is
+        structurally not reachable.
+    Cluster reading: MECH-341 is correctly characterised as a
+    SCORE-LAYER PRESERVER of upstream-supplied candidate-pool diversity,
+    NOT an in-isolation diversity generator. The structural bound on
+    in-isolation Rung-1 clearance is at the proposer layer (SP-CEM
+    presence/absence), not at the score-layer knob. Load-bearing
+    evidence for MECH-341 is in-stack ALL_ON across V3-EXQ-614a (0.684
+    nats), V3-EXQ-614b (0.800 nats), V3-EXQ-615 (1.111 nats); the claim
+    text stays intact. Process flag: C2 necessity_delta_threshold=0.1
+    in the 614-lineage script was calibrated pre-SD-056-amend and must
+    be revisited before any V3-EXQ-614c successor (autopsy does not pin
+    a new value). MECH-341 stays candidate / v3_pending=true; promotion
+    gate held pending in-stack behavioural-runtime evidence on the
+    SD-054 / multi-resource substrate cohort.
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is
