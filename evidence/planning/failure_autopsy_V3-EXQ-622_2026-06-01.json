@@ -1,0 +1,75 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-01T07:55:01Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_622_goal_stream_staged_sd054_20260531T223804Z_v3",
+      "queue_id": "V3-EXQ-622",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n_a_no_claim_ids",
+        "biological_reference": "clear_vmpfc_goal_maintenance_under_threat",
+        "prerequisites": "partial_substrate_implemented_but_anneal_trajectory_undertuned",
+        "implementation": "partial_S0_wired_S1_persistence_mistuned",
+        "environment": "adequate_staged_curriculum_localises_failure_inflection",
+        "measurement": "partial_S3_approach_commit_rate_criterion_uninformative",
+        "integration": "failure_at_goal_stream_drive_risk_integration_layer",
+        "scale": "n_a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "vmPFC_dlPFC_goal_maintenance_under_threat_via_top_down_gain_control_against_LC_NE_amygdala_pressure",
+        "dependencies": [
+          "vmPFC_goal_maintenance_MECH_260",
+          "LC_NE_tonic_arousal_MECH_313",
+          "5_HT_salience_modulation_MECH_203",
+          "drive_trace_EMA_SD_012_sustained_drive_amendment_2026_05_17"
+        ],
+        "is_formal_import": false,
+        "divergence": "n_a_staged_curriculum_is_instructional_pattern_not_formal_definition_import",
+        "lit_status": "present_loffler_2018_knutson_2001_substrate_anchors_already_in_evidence_literature"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "superseded_already_applied_no_change_recommended",
+      "recommended_evidence_quality_note": "V3-EXQ-622 (staged S0-S3 goal-stream decomposition diagnostic, superseded by 621a per /governance cycle 0542Z, no claim_ids) showed the goal-stream substrate is trainable in isolation (S0 PASS all 3 seeds: z_goal_peak 0.281 / 0.439 / 0.342 vs floor 0.10) but z_goal collapses 1-6 orders of magnitude at S1 (drive_floor anneal 0.9->0.2 + mild hazard introduction; z_goal_median 0.0089 / 0.0465 / 1.3e-6 vs floor 0.05) on all 3 seeds. Failure is in the persistence / arbitration layer between goal-stream and drive + risk pressure, not in the goal feed. Substrate-readiness PASS on 621a holds at the substrate-readiness layer; the behavioural-runtime layer needs the P1 anneal curriculum revised. Candidate amend axes (substrate-design only, lit-anchored sensitivity analysis pending): (a) slower or staged drive_floor anneal (e.g. 0.9->0.5->0.2 across more episodes), (b) decoupled risk_floor introduction (delay until z_goal stabilises post-anneal), (c) sustained-drive EMA recalibration at low drive_floor (drive_ema_alpha may need to fall below 1.0 at low drive levels so the trace persists rather than collapsing to the floor each tick). NOT a substrate redesign; the existing scaffolded_sd054_onboarding scheduler's P1 anneal logic is the surface. S3's approach_commit_rate criterion (>=0.01) is methodology-uninformative -- supersession bookkeeping already excludes 622 from scoring.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "sd_id_suggested": null,
+        "title": "P1 anneal curriculum revision: drive_floor anneal rate + risk_floor introduction timing",
+        "implementation_hint": "V3-EXQ-622 staged curriculum shows S1-stage drive_floor anneal (0.9->0.2 across 30 episodes) + mild hazard introduction collapses z_goal_median by 1-6 orders of magnitude on all 3 seeds while S0-stage goal-only training is sound. Amend explores (a) slower or staged drive_floor anneal e.g. 0.9->0.5->0.2 across more episodes, (b) decoupled risk_floor introduction (delay until z_goal stabilises post-anneal), (c) sustained-drive EMA recalibration so drive_ema_alpha falls below 1.0 at low drive_floor and the trace persists. Surface is the existing scheduler's P1 anneal logic in experiments/scaffolded_sd054_onboarding.py; NOT a substrate redesign. Lit-anchored sensitivity analysis pending; priority gated on V3-EXQ-603d behavioural-cluster validation outcome.",
+        "unblocks_claims": [
+          "behavioral_diversity_isolation_GAP_C_behavioural_runtime_z_goal_persistence_under_anneal",
+          "Q_045_via_603d_prereq_2",
+          "MECH_313_via_603d_prereq_2",
+          "MECH_260_via_603d_prereq_2"
+        ],
+        "depends_on_unresolved": [
+          "scaffolded_sd054_onboarding_substrate_readiness_PASS_621a_already_landed_2026_06_01",
+          "V3_EXQ_603d_behavioural_cluster_validation_outcome_to_calibrate_amend_priority"
+        ],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_622_goal_stream_staged_sd054_20260531T223804Z_v3",
+          "experiment_type": "v3_exq_622_goal_stream_staged_sd054",
+          "metric": "z_goal_norm_median_last_window collapse 1-6 orders of magnitude at S1 across all 3 seeds (0.0089 / 0.0465 / 1.3e-6 vs floor 0.05); S0 PASS all 3 seeds (z_goal_peak 0.281 / 0.439 / 0.342 vs floor 0.10); first_failing_stage=S1 all seeds; failure inflection at drive_floor anneal 0.9->0.2 + mild hazard introduction BEFORE harm food attraction (S2) or full conflict (S3); approach_commit_rate=0 all seeds at S0/S1/S2 (S3=1.0 trivially satisfies >=0.01 criterion despite z_goal at 1e-14 to 1e-3, methodology-uninformative)",
+          "target": "z_goal_median >= 0.05 at S1 final-window after drive_floor anneal 0.9->0.2 + mild hazard introduction; all 3 seeds; with episode survivability median_len >= 40 (currently 200 / 35 / 58 -- survivability intact, persistence collapsed)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "goal_stream_substrate_trainable_in_isolation_S0_PASS_all_3_seeds_z_goal_peak_0_28_to_0_44",
+        "failure_inflection_at_S0_to_S1_boundary_before_harm_food_attraction_or_full_conflict",
+        "minimum_sufficient_pressure_to_collapse_z_goal_is_drive_floor_0_9_to_0_2_anneal_plus_mild_hazard",
+        "z_goal_persistence_collapses_1_to_6_orders_of_magnitude_while_episode_survivability_remains_intact_median_ep_len_200_35_58",
+        "S3_approach_commit_rate_criterion_is_methodology_uninformative_two_seeds_satisfy_trivially_with_z_goal_at_1e_14_and_1e_3",
+        "substrate_readiness_PASS_does_not_transfer_to_behavioural_runtime_persistence_under_anneal_trajectories_generalisable_lesson"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
