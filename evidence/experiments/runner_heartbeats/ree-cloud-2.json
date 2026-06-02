@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-02T20:20:32Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-630",
-  "current_exq_started_utc": "2026-06-02T19:16:27.653937+00:00",
-  "current_title": "ARC-029/MECH-090 across-tick nav_competence ECOLOGICAL: suppress-on-degrade / admit-on-recover (3-arm OFF/NAV_COMP_ON/BOTH_ON; successor to V3-EXQ-063a)",
-  "current_claim_id": "MECH-090",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 1 / base",
-    "runs_done": 1,
-    "runs_total": 2,
-    "episodes_done": 50,
-    "episodes_total": 300,
-    "overall_pct": 58.3
-  },
-  "seconds_elapsed": 3845,
-  "seconds_remaining": 2150,
-  "recent_lines": [
-    "verdict: FAIL",
-    "============================================================",
-    "Seed 1 Condition base",
-    "============================================================",
-    "[train] ep 50/300  running_var=0.000005"
+  "last_tick_utc": "2026-06-02T22:17:07Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 4,
+  "queue_id_at_head": "V3-EXQ-629",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-622",
+      "result": "FAIL",
+      "completed_at": "2026-05-31T22:38:05.390229+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-610b",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T12:20:02.751579+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-610c",
+      "result": "FAIL",
+      "completed_at": "2026-06-02T19:14:04.482839+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-628",
+      "result": "PASS",
+      "completed_at": "2026-06-02T19:16:25.419036+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-630",
+      "result": "FAIL",
+      "completed_at": "2026-06-02T22:17:06.039112+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 6641,
   "runner_version": null,
   "gpu": {
