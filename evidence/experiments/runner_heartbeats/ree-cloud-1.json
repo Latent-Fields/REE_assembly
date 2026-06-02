@@ -1,29 +1,29 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-02T10:08:27Z",
+  "last_tick_utc": "2026-06-02T10:18:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-624",
-  "current_exq_started_utc": "2026-06-02T09:42:00.453503+00:00",
+  "current_exq_started_utc": "2026-06-02T10:14:12.633192+00:00",
   "current_title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
   "current_claim_id": "MECH-320",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_2_vigor_salamone",
-    "runs_done": 2,
+    "run_label": "Seed 42 / ARM_0_baseline",
+    "runs_done": 0,
     "runs_total": 12,
     "episodes_done": 50,
     "episodes_total": 130,
-    "overall_pct": 19.9
+    "overall_pct": 3.2
   },
-  "seconds_elapsed": 1587,
-  "seconds_remaining": 6297,
+  "seconds_elapsed": 265,
+  "seconds_remaining": 9629,
   "recent_lines": [
-    "[train] seed=42 arm=ARM_1_vigor_niv ep 125/130 phase=p1 p1_ticks=2710 p1_nonnoop=2600",
-    "verdict: PASS",
-    "Seed 42 Condition ARM_2_vigor_salamone",
-    "[train] seed=42 arm=ARM_2_vigor_salamone ep 25/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
-    "[train] seed=42 arm=ARM_2_vigor_salamone ep 50/130 phase=p0 p1_ticks=0 p1_nonnoop=0"
+    "V3-EXQ-624 ARC-068 / MECH-320 Niv-vs-Salamone dissociation",
+    "seeds=[42, 43, 44] p0_ep=100 p1_ep=30 steps=200 grid=8x8 hazards=1 resources=3 action_dim=5 v_t_floor=0.05",
+    "Seed 42 Condition ARM_0_baseline",
+    "[train] seed=42 arm=ARM_0_baseline ep 25/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
+    "[train] seed=42 arm=ARM_0_baseline ep 50/130 phase=p0 p1_ticks=0 p1_nonnoop=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
