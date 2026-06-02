@@ -268,9 +268,10 @@ The user cleared Step 8 via AskUserQuestion 2026-06-02. Confirmed decisions:
    existing release pathways (ARC-028/MECH-105 hippocampal-completion,
    MECH-091 urgency-interrupt, V_s anchor invalidation, SD-034 closure
    operator) for coverage of degraded-readiness scenarios. Option (a) -- a
-   new R-c-level release coupling -- is explicitly NOT taken; if the audit
-   surfaces a coverage gap, that gap is registered as separate substrate
-   work on the relevant pathway's entry, not on MECH-090's.
+   new R-c-level release coupling -- is explicitly NOT taken **as the default**;
+   if the audit surfaces a coverage gap, that gap is registered as separate
+   substrate work on the relevant pathway's entry, not on MECH-090's. See
+   §9.1 below for the conditional chain that flows from the audit outcome.
 2. **Evidence direction: `non_contributory` + `pending_retest_after_substrate=true`.**
    Governance to re-tag the 592f manifest from `does_not_support` to
    `non_contributory` with epistemic_category `substrate_ceiling` at the
@@ -288,3 +289,87 @@ The user cleared Step 8 via AskUserQuestion 2026-06-02. Confirmed decisions:
    planned; the patch lands either standalone as a script-hardening
    follow-on or bundled with any future state-machine probe in this
    lineage if one is ever queued).
+
+### 9.1 Conditional chain after the audit (amended 2026-06-02)
+
+Option (b) "admission-only + audit" is NOT a static endpoint. It is the
+**default branch** of a three-outcome decision tree that the
+`/implement-substrate` AMEND session running the audit will resolve.
+This subsection spells out the chain so a future reader of this artifact
+alone does not have to reconstruct it.
+
+The audit's single concrete question, asked once per pathway: *"Does this
+pathway fire when nav_competence has been low for K consecutive ticks while
+`beta_gate.is_elevated`?"* Targets: ARC-028 / MECH-105 hippocampal-completion,
+MECH-091 urgency-interrupt (z_harm_a.norm threshold), V_s anchor invalidation
+(MECH-269 / MECH-284 / MECH-287 broadcast), SD-034 closure operator.
+
+Three branches the audit can produce:
+
+**Branch B1 -- Audit clears.** One of the four pathways already covers
+degraded-readiness mid-commitment (e.g. V_s anchor staleness accumulates on
+nav_competence-failing regions and MECH-287 broadcasts a release event in
+the timescale that matters). No new substrate work. The 592f "gap" was a
+mis-routed expectation: release authority lives where biology says it
+lives, the architecture is complete, and pending_retest_after_substrate on
+the 592f manifest is cleared by the audit closure itself (no successor
+probe required). The MECH-090 substrate_queue entry's status stays
+`substrate_landed_validation_v3_exq_592d_queued`; the failure_record
+gains a "resolved by audit" note pointing at the covering pathway.
+
+**Branch B2 -- Audit finds a gap; pathway-resident fix is on the map.**
+The audit surfaces a coverage gap in one of the four named pathways AND the
+biology of that pathway (already in the literature anchors that built it)
+suggests an extension that closes the gap without raising new biological
+unknowns. Example shape: V_s anchor invalidation does not currently
+consume CommitReadiness state, but the existing V_s lit-pull synthesis
+(Vinogradova 2001; O'Mara 2009; Lisman & Grace 2005 -- already commissioned)
+covers the read-side biology and the change is a wiring extension. In this
+case `/implement-substrate` opens (or amends) the substrate_queue entry on
+the failing pathway, not on MECH-090. No new `/lit-pull` needed; the audit
+session itself transitions into the substrate work for that pathway.
+
+**Branch B3 -- Audit finds a gap; pathway extension exceeds existing
+biology coverage OR no pathway extension fits.** Two sub-cases:
+ (i) The failing pathway's existing lit-pull doesn't reach into the
+     degraded-readiness regime (e.g. MECH-091 urgency-interrupt is anchored
+     in nociceptive-escalation literature only; a readiness-failure
+     extension would need motor-program-cessation biology the original
+     pull didn't survey).
+ (ii) None of the four pathways looks like a natural home; the failing
+     biology may live in a fifth substrate not yet claimed (e.g. a
+     thalamic motor-program-cessation analog, or an STN beta-decay
+     mechanism distinct from urgency-burst).
+
+In either sub-case the next step is a **`/lit-pull` commission** targeted
+at the disambiguating biology question, NOT immediate code. The lit-pull
+output then determines whether:
+ - **B3a** an existing pathway absorbs the new biology as an extension
+   (collapses to B2 with the new lit context), or
+ - **B3b** a new substrate-queue entry is opened on a previously unclaimed
+   mechanism (this is the path where option (a) "new R-c-level release
+   coupling" can resurface, but only if the biology specifically supports
+   readiness-driven release living at the R-c level rather than elsewhere),
+   or
+ - **B3c** the gap is registered as a substrate_ceiling / substrate_conditional
+   architectural commitment and the reach-axis question becomes a V4 item.
+
+**What this implies for the 592f manifest's `pending_retest_after_substrate`
+flag:** it stays TRUE until the audit resolves to a definite branch. On
+B1 the flag clears without code work; on B2 it clears when the pathway-
+resident extension lands; on B3 it clears when (a) the lit-pull plus
+follow-on substrate work lands, or (b) governance accepts substrate_ceiling /
+substrate_conditional / V4 reclassification.
+
+**What this implies for option (a):** it is on the menu again under B3b
+only, and only if the biology points there. The user-confirmed decision
+"option (b), not (a)" is binding **at the audit-entry step**; it does not
+foreclose option (a) at the post-lit-pull step if the biology demands it.
+The current default just shifts the burden of proof: option (a) becomes
+defensible only when audit + lit-pull together rule out the alternatives.
+
+This conditional chain is what makes option (b) a strictly more informative
+choice than option (a) would have been: option (a) commits to a specific
+substrate without checking whether the gap is real, whereas option (b)
+makes the gap visible first and then routes the response to where biology
+says the fix belongs.

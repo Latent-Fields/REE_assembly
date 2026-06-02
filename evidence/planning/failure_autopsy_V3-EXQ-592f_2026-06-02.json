@@ -34,7 +34,7 @@
         "target_sd_id": "MECH-090",
         "sd_id_suggested": null,
         "title": null,
-        "implementation_hint": "Architectural choice from V3-EXQ-592f autopsy (user-confirmed 2026-06-02): option (b) ADMISSION-ONLY + AUDIT. Document admission-only as the architectural commitment for MECH-090 R-c readiness conjunction. Do NOT add a new R-c-level release coupling. Audit the four existing release pathways for coverage of degraded-readiness scenarios: (1) ARC-028 / MECH-105 hippocampal-completion -- does it fire when an agent is mid-program with degraded nav_competence? (2) MECH-091 urgency-interrupt -- z_harm_a.norm() > urgency_interrupt_threshold path only fires on threat escalation, not readiness decay. (3) V_s anchor invalidation (MECH-269 / MECH-284 / MECH-287 broadcast) -- does sustained low readiness register as an anchor staleness signal? (4) SD-034 closure operator -- mode-conditioned at sd_033a write_gate >= min; orthogonal to readiness. If audit surfaces a coverage gap, register that gap as separate substrate work on the affected pathway's entry, not on MECH-090's. NOT taken: option (a) new readiness-failure-while-elevated release coupling on beta_gate.release() + _committed_trajectory clearing. Successor: no new MECH-090 substrate work this lineage; pending_retest_after_substrate flag on the 592f manifest is gated on the audit outcome, not on a code landing.",
+        "implementation_hint": "Architectural choice from V3-EXQ-592f autopsy (user-confirmed 2026-06-02): option (b) ADMISSION-ONLY + AUDIT, with conditional follow-on chain (see conditional_chain field; full prose in failure_autopsy_V3-EXQ-592f_2026-06-02.md Section 9.1). Document admission-only as the architectural commitment for MECH-090 R-c readiness conjunction. Audit the four existing release pathways for coverage of degraded-readiness scenarios -- single concrete question per pathway: 'Does this pathway fire when nav_competence has been low for K consecutive ticks while beta_gate.is_elevated?' (1) ARC-028 / MECH-105 hippocampal-completion. (2) MECH-091 urgency-interrupt -- z_harm_a.norm() threshold only fires on threat escalation, not readiness decay. (3) V_s anchor invalidation (MECH-269 / MECH-284 / MECH-287 broadcast) -- does sustained low readiness register as anchor staleness? (4) SD-034 closure operator -- mode-conditioned at sd_033a write_gate >= min; orthogonal to readiness. Branch B1 (audit clears): no new substrate work; resolve 592f failure_record + clear pending_retest_after_substrate. Branch B2 (gap + pathway-resident fix on the existing biology map): open / amend substrate_queue on the failing pathway, not on MECH-090. Branch B3 (gap exceeds existing biology coverage): commission /lit-pull at the disambiguating biology question; lit-pull output then routes to B3a (existing pathway absorbs new biology), B3b (new substrate_queue entry on previously unclaimed mechanism -- the only branch where option (a) new R-c-level release coupling can resurface, and only if biology supports it), or B3c (substrate_ceiling / substrate_conditional / V4 reclassification). NOT taken at audit-entry: option (a) new R-c-level release coupling as default. Successor: no new MECH-090 substrate work this lineage; pending_retest_after_substrate flag on the 592f manifest is gated on the audit + (optional) lit-pull + (optional) follow-on substrate work landing, depending on which branch fires.",
         "unblocks_claims": [],
         "depends_on_unresolved": [],
         "priority_suggested": null,
@@ -55,6 +55,63 @@
         "C4 conjunction-authority criterion in the 592f script admits a vacuous PASS at identically-zero suppression (d_supp.max_drop=0 >= max(b_supp,c_supp)=0). User-confirmed routing: in-place script patch via /queue-experiment (require d_supp.max_drop strictly > 0 AND >= max(b_supp,c_supp)); not edited in this autopsy session per mandatory-skill-path rule.",
         "MECH-090 base claim (beta gates E3-to-action-selection propagation, not E3 internal updating) is INTACT. R-c admission integration is INTACT. V3-EXQ-592d behavioural validation on the admission axis remains live."
       ],
+      "conditional_chain": {
+        "decision_doc": "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-592f_2026-06-02.md#section-91",
+        "audit_question": "Does this pathway fire when nav_competence has been low for K consecutive ticks while beta_gate.is_elevated?",
+        "audit_targets": [
+          {"pathway": "ARC-028 / MECH-105 hippocampal-completion", "release_call_site": "beta_gate.receive_hippocampal_completion(hippocampal.compute_completion_signal(candidates))"},
+          {"pathway": "MECH-091 urgency-interrupt", "release_call_site": "z_harm_a.norm() > urgency_interrupt_threshold -> beta_gate.release() + _committed_step_idx=0"},
+          {"pathway": "V_s anchor invalidation (MECH-269 / MECH-284 / MECH-287)", "release_call_site": "broadcast trigger consumes BoundaryEvent -> anchor mark_inactive on (scale, segment_id_old)"},
+          {"pathway": "SD-034 closure operator", "release_call_site": "ClosureOperator.tick -> beta_gate.release() + dacc.inject_nogo + ResidueField.discharge_domain + salience update_signal('closure_event', ...)"}
+        ],
+        "branches": [
+          {
+            "id": "B1",
+            "label": "audit_clears",
+            "condition": "One of the four pathways already covers degraded-readiness mid-commitment.",
+            "response": "No new substrate work. Resolve 592f failure_record with 'covered by <pathway>'. Clear pending_retest_after_substrate on the 592f manifest.",
+            "lit_pull_required": false,
+            "option_a_reopened": false
+          },
+          {
+            "id": "B2",
+            "label": "gap_with_pathway_resident_fix",
+            "condition": "Audit finds a gap AND the failing pathway's existing biology coverage (already-commissioned lit-pulls) extends to the readiness-decay regime.",
+            "response": "Open or amend substrate_queue entry on the failing pathway (NOT on MECH-090). Audit session transitions into the pathway-resident substrate work.",
+            "lit_pull_required": false,
+            "option_a_reopened": false
+          },
+          {
+            "id": "B3",
+            "label": "gap_exceeds_biology_coverage",
+            "condition": "Audit finds a gap AND either (i) the failing pathway's existing lit-pull does not reach the degraded-readiness regime, or (ii) no pathway looks like a natural home.",
+            "response": "Commission /lit-pull targeted at the disambiguating biology question. Lit-pull output routes to one of B3a / B3b / B3c.",
+            "lit_pull_required": true,
+            "lit_pull_topic_hint": "motor-program-cessation under readiness decay; thalamic / STN beta-decay / cortical PE-spike vs sustained-readiness-failure release mechanisms in BG-STN-thalamic loops",
+            "sub_branches": [
+              {
+                "id": "B3a",
+                "label": "existing_pathway_absorbs_new_biology",
+                "response": "Collapses to B2 with the new lit context attached.",
+                "option_a_reopened": false
+              },
+              {
+                "id": "B3b",
+                "label": "new_substrate_on_unclaimed_mechanism",
+                "response": "Open a new substrate_queue entry on the unclaimed mechanism. This is the only branch under which option (a) 'new R-c-level release coupling on MECH-090' can resurface as a defensible choice -- and only if the post-lit-pull biology specifically supports release living at the R-c level rather than elsewhere.",
+                "option_a_reopened": true
+              },
+              {
+                "id": "B3c",
+                "label": "substrate_ceiling_or_v4_reclassification",
+                "response": "Governance accepts substrate_ceiling / substrate_conditional / V4 reclassification of the reach axis. No V3 code work.",
+                "option_a_reopened": false
+              }
+            ]
+          }
+        ],
+        "pending_retest_after_substrate_resolution": "Flag stays TRUE on the 592f manifest until the audit (+ optional lit-pull + optional follow-on substrate work) lands on a definite branch. Cleared by B1 audit closure, B2 pathway-resident substrate work, B3a same, B3b new-substrate-entry landing, or B3c governance reclassification."
+      },
       "queue_experiment_followons": [
         {
           "purpose": "Harden the C4 conjunction-authority criterion on ree-v3/experiments/v3_exq_592f_mech090_commitment_state_transition_probe.py: require d_supp.max_drop strictly > 0 AND d_supp.max_drop >= max(b_supp.max_drop, c_supp.max_drop). Routed via /queue-experiment. Lands either standalone as a script-hardening follow-on or bundled with any future 592-lineage state-machine probe if one is queued.",
