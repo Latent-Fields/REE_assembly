@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-02T15:03:50Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-610c",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-597",
-      "result": "FAIL",
-      "completed_at": "2026-05-20T07:11:31.827252+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-625",
-      "result": "PASS",
-      "completed_at": "2026-06-01T11:28:54.358129+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-623",
-      "result": "PASS",
-      "completed_at": "2026-06-01T15:20:51.042827+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-626a",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T20:13:55.078648+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-625c",
-      "result": "FAIL",
-      "completed_at": "2026-06-02T07:52:29.704588+00:00"
-    }
+  "last_tick_utc": "2026-06-02T15:35:28Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-514l",
+  "current_exq_started_utc": "2026-06-02T15:05:51.570181+00:00",
+  "current_title": "MECH-229 identity-distinct wanting retest on SD-049 Phase 3 substrate (retry of 514k FAIL)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_2_3type",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 20,
+    "episodes_total": 30,
+    "overall_pct": 22.2
+  },
+  "seconds_elapsed": 1777,
+  "seconds_remaining": 6228,
+  "recent_lines": [
+    "seed=42 arm=ARM_1_2type    obs_dim=350 mech307=True drive_floor=0.9 reef=True cascade=True probe_neigh=0.658 goal_r=0.999 wl_frac=0.000 probe_cons=0.333 elapsed=201.8s",
+    "[train] completed unit 2/12 ep_budget=55",
+    "Seed 42 Condition ARM_2_3type",
+    "[train] P0 ep 10/30",
+    "[train] P0 ep 20/30"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 890083,
   "runner_version": null,
   "gpu": {
