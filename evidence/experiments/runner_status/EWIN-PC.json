@@ -277,13 +277,23 @@
       "claim_id": "INV-054",
       "title": "INV-054: Phase-Transition Recovery (SD-018)",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "INCONCLUSIVE",
       "result_summary": "verdict: INCONCLUSIVE (seed=13 latency=None) | PASS count (latency>50): 0/3 | FAIL count (latency<=10): 0/3",
       "started_at": "2026-04-07T02:29:53.816758+00:00",
       "completed_at": "2026-04-07T05:59:04.170220+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_250_inv054_phase_transition_recovery/v3_exq_250_inv054_phase_transition_recovery_1775541543.json",
       "completed_by": "EWIN-PC",
-      "actual_secs": 12550.5
+      "actual_secs": 12550.5,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "INCONCLUSIVE",
+        "manifest": "evidence/experiments/v3_exq_250_inv054_phase_transition_recovery/v3_exq_250_inv054_phase_transition_recovery_1775541543.json",
+        "result_source": "manifest_status",
+        "match_basis": "num_fallback_near",
+        "delta_sec": 1.2,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-251b",
@@ -543,13 +553,23 @@
       "claim_id": "",
       "title": "SD-003 causal attribution discrimination: signed directionality test (TRAINED vs RANDOM)",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "FAIL",
       "result_summary": "C2 sign_correct_env (>=0.65): True (vals=['0.667', '0.724', '0.639']) | D1 agent_caused sign_correct: ['0.737', '0.500', '1.000'] (n=[156, 2, 1]) | D2 approach sign_correct trained/random: ['0.696', '0.569', '0.581'] / ['0.276', '0.699', '0.762']",
       "started_at": "2026-04-17T15:25:29.999947+00:00",
       "completed_at": "2026-04-17T21:01:09.864221+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_431_sd003_causal_discrimination/v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3.json",
       "completed_by": "EWIN-PC",
-      "actual_secs": 20140.2
+      "actual_secs": 20140.2,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "FAIL",
+        "manifest": "evidence/experiments/v3_exq_431_sd003_causal_discrimination/v3_exq_431_sd003_causal_discrimination_20260417T152531Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_nearest",
+        "delta_sec": 20138.9,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-332a",
@@ -557,13 +577,23 @@
       "claim_id": "",
       "title": "MECH-216 predictive wanting adjudication: dense environment fix (EXQ-332 sparse-label fix)",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "FAIL",
       "result_summary": "Outcome: FAIL | C1 (CUE_ON future_target_corr > 0.10): False  [0.0128] | CUE_ON  landmark_prox_corr:  -0.0354",
       "started_at": "2026-04-17T21:01:15.206307+00:00",
       "completed_at": "2026-04-18T04:08:10.802122+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_332a_mech216_predictive_wanting_dense_20260418T040810Z_v3.json",
       "completed_by": "EWIN-PC",
-      "actual_secs": 25615.9
+      "actual_secs": 25615.9,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "FAIL",
+        "manifest": "evidence/experiments/v3_exq_332a_mech216_predictive_wanting_dense_20260418T040810Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_nearest",
+        "delta_sec": 0.8,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-406a",
@@ -809,13 +839,23 @@
       "claim_id": "",
       "title": "SD-029 E2_harm_s comparator -- extended interventional training (fraction=0.7, margin=0.2, 4 seeds)",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "FAIL",
       "result_summary": "[seed=13] r2=0.495 attn_ratio=nan snr=26.2 causal_sig(agent_caused)=0.0000 causal_sig(env_caused)=0.0138 | [seed=99] r2=0.573 attn_ratio=nan snr=26.1 causal_sig(agent_caused)=0.0000 causal_sig(env_caused)=0.0065 | Outcome: FAIL",
       "started_at": "2026-04-20T15:52:54.220497+00:00",
       "completed_at": "2026-04-20T22:55:15.788481+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_433b_sd029_extended_interventional/v3_exq_433b_sd029_extended_interventional_20260420T155256Z_v3.json",
       "completed_by": "EWIN-PC",
-      "actual_secs": 25341.9
+      "actual_secs": 25341.9,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "FAIL",
+        "manifest": "evidence/experiments/v3_exq_433b_sd029_extended_interventional/v3_exq_433b_sd029_extended_interventional_20260420T155256Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_unique",
+        "delta_sec": 25339.8,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-450",
@@ -851,13 +891,23 @@
       "claim_id": "",
       "title": "SD-032b dACC full pipeline -- E3 harm_eval + terrain trained, terrain fix: min-residue candidate",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "FAIL",
       "result_summary": "Outcome: FAIL | c1_mech258_forward_r2: {'on_wins': 3, 'pass': True, 'desc': 'ON harm_a_forward_r2>=0.3 in >=2/3 seeds'}",
       "started_at": "2026-04-20T23:29:32.864946+00:00",
       "completed_at": "2026-04-21T06:59:21.748798+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_445a_sd032b_dacc_full_pipeline/v3_exq_445a_sd032b_dacc_full_pipeline_20260420T232934Z_v3.json",
       "completed_by": "EWIN-PC",
-      "actual_secs": 26989.2
+      "actual_secs": 26989.2,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "FAIL",
+        "manifest": "evidence/experiments/v3_exq_445a_sd032b_dacc_full_pipeline/v3_exq_445a_sd032b_dacc_full_pipeline_20260420T232934Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_nearest",
+        "delta_sec": 26987.7,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-397c",
@@ -1075,13 +1125,23 @@
       "claim_id": "",
       "title": "SD-035 CeA mode-prior substrate-readiness (MECH-046)",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "PASS",
       "result_summary": "Outcome: PASS",
       "started_at": "2026-04-21T19:55:29.822451+00:00",
       "completed_at": "2026-04-21T19:55:39.871629+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_473_sd035_cea_mode_prior/v3_exq_473_sd035_cea_mode_prior_20260421T195533Z_v3.json",
       "completed_by": "EWIN-PC",
-      "actual_secs": 10.0
+      "actual_secs": 10.0,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "PASS",
+        "manifest": "evidence/experiments/v3_exq_473_sd035_cea_mode_prior/v3_exq_473_sd035_cea_mode_prior_20260421T195533Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_nearest",
+        "delta_sec": 6.9,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-474",
@@ -1089,13 +1149,23 @@
       "claim_id": "",
       "title": "SD-035 BLA encoding-gain + remap substrate-readiness (MECH-074a, MECH-074d)",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "PASS",
       "result_summary": "Outcome: PASS",
       "started_at": "2026-04-21T19:55:55.944091+00:00",
       "completed_at": "2026-04-21T19:56:05.090573+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_474_sd035_bla_encoding_remap/v3_exq_474_sd035_bla_encoding_remap_20260421T195558Z_v3.json",
       "completed_by": "EWIN-PC",
-      "actual_secs": 9.1
+      "actual_secs": 9.1,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "PASS",
+        "manifest": "evidence/experiments/v3_exq_474_sd035_bla_encoding_remap/v3_exq_474_sd035_bla_encoding_remap_20260421T195558Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_nearest",
+        "delta_sec": 7.1,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     }
   ]
 }

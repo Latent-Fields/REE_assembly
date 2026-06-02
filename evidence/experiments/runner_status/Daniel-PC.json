@@ -193,13 +193,23 @@
       "claim_id": "",
       "title": "MECH-122 Phase 3 Spindle Coordination Proxy (ThetaBuffer consolidation_summary->ContextMemory)",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "PASS",
       "result_summary": "Outcome: PASS | t1_spindle_no_harm_regression: {'wins': 3, 'pass': True, 'desc': 'WITH_SPINDLE harm_dang <= NO_SPINDLE*1.05 in >=2/3 seeds'} | t2_spindle_maintains_discrimination: {'wins': 3, 'pass': True, 'desc': 'WITH_SPINDLE harm_discrim >= NO_SPINDLE in >=2/3 seeds'}",
       "started_at": "2026-04-05T13:21:43.560726+00:00",
       "completed_at": "2026-04-05T13:28:45.829039+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_246_mech122_spindle_coordination/v3_exq_246_mech122_spindle_coordination_20260405T132145Z_v3.json",
       "completed_by": "Daniel-PC",
-      "actual_secs": 422.3
+      "actual_secs": 422.3,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "PASS",
+        "manifest": "evidence/experiments/v3_exq_246_mech122_spindle_coordination/v3_exq_246_mech122_spindle_coordination_20260405T132145Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_nearest",
+        "delta_sec": 420.8,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-240",
@@ -375,13 +385,23 @@
       "claim_id": "ARC-033",
       "title": "ARC-033: E2_harm_s forward model validation",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "FAIL",
       "result_summary": "File \"C:\\Users\\Daniel\\REE_Working\\ree-v3\\experiments\\v3_exq_264_arc033_e2_harm_s_forward.py\", line 227, in run_condition | Results written to C:\\Users\\Daniel\\REE_Working\\ree-v3\\..\\REE_assembly\\evidence\\experiments\\v3_exq_264_arc033_e2_harm_s_forward_20260409T170322Z_v3.json | Outcome: FAIL (0/3 criteria)",
       "started_at": "2026-04-09T17:03:10.187333+00:00",
       "completed_at": "2026-04-09T17:03:23.459358+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_264_arc033_e2_harm_s_forward_20260409T170322Z_v3.json",
       "completed_by": "Daniel-PC",
-      "actual_secs": 13.3
+      "actual_secs": 13.3,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "FAIL",
+        "manifest": "evidence/experiments/v3_exq_264_arc033_e2_harm_s_forward_20260409T170322Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_unique",
+        "delta_sec": 1.5,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     },
     {
       "queue_id": "V3-EXQ-266",
@@ -403,13 +423,23 @@
       "claim_id": "ARC-038",
       "title": "ARC-038: waking consolidation discriminative evidence",
       "description": "",
-      "result": "UNKNOWN",
+      "result": "FAIL",
       "result_summary": "Ep 100/100 [CONSOLIDATION_ABLATED seed=68 P1] harm_rate=0.0004 | -- [CONSOLIDATION_ABLATED seed=68] Phase0=0.0006 Phase1=0.0005 active_centers=32 verdict:PASS | Outcome: FAIL",
       "started_at": "2026-04-10T02:33:05.065568+00:00",
       "completed_at": "2026-04-10T09:36:18.911121+00:00",
-      "output_file": "",
+      "output_file": "evidence/experiments/v3_exq_267_arc038_waking_consolidation_discriminative_20260410T093618Z_v3.json",
       "completed_by": "Daniel-PC",
-      "actual_secs": 25393.8
+      "actual_secs": 25393.8,
+      "reclassified_from_unknown": {
+        "from": "UNKNOWN",
+        "to": "FAIL",
+        "manifest": "evidence/experiments/v3_exq_267_arc038_waking_consolidation_discriminative_20260410T093618Z_v3.json",
+        "result_source": "manifest_status",
+        "match_basis": "exact_letter_unique",
+        "delta_sec": 0.9,
+        "at": "2026-06-02T07:01:07Z",
+        "by": "triage-unknown-results-2026-06-02"
+      }
     }
   ]
 }
