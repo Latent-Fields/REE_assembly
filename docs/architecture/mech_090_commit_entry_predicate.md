@@ -309,7 +309,7 @@ let the EMA sit at its initial value, preserving the fail-open default.
     None-sentinel + simulation_mode gate already supported this).
   The across-tick axis is now exercisable ecologically for the first time. The
   Phase-1 `notify_outcome` seam remains for controlled-probe pushes (592b ARM_4).
-  Validation: V3-EXQ-628 (ecological ARC-029 successor to 063a). Contract:
+  Validation: V3-EXQ-630 (ecological ARC-029 successor to 063a). Contract:
   `ree-v3/tests/contracts/test_mech090_readiness_outcome_wiring.py`. Substrate
   implementation log: `ree-v3/CLAUDE.md` "MECH-090 R-c continuation Phase-2
   follow-on" section.
