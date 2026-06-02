@@ -14,7 +14,7 @@
   }
  },
  "last_seen_session": "governance-cycle-20260601T175646Z",
- "last_updated_utc": "2026-06-01T17:56:46Z",
+ "last_updated_utc": "2026-06-02T05:25:00Z",
  "next_implement_substrate": {
   "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
   "sd_id": null,
@@ -1118,7 +1118,8 @@
   },
   {
    "added_session": "governance-2026-04-24T08:10",
-   "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
+   "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
+   "current_blocker": "Phase 1b first run V3-EXQ-625b 2026-06-01 (post-stream-on fix; supersedes 625) FAILed \u00a73.4 acceptance on C3 sustained-window axis (1/3 seeds). C1 + C2 PASS. Magnitude floor IS cleared per-tick (pooled p70=0.43 clears BLA 0.4); temporal-structure axis is load-bearing. Plan-doc \u00a710 records disposition; routing to \u00a75.2 (interval shorter / prob higher) or \u00a75.4 (relax sustained-window definition) for the next Phase 1b iteration. Axis-(a) sibling V3-EXQ-620b PASSed measurement (acceptance_pass=true) so consumer-cascade engagement at defaults is confirmed under stream-on. Phase 2 / Phase 3 / Phase 4 reserved until axis-(b) Phase 1b PASSes.",
    "depends_on_unresolved": [],
    "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
    "failure_record": [
@@ -1152,11 +1153,19 @@
      "target": "C2_cascade clear on >=2/3 seeds (lateral_pfc >= 1.5x, bla >= 1.3x, cea >= 1.3x in >=3/4 sub-checks); C3_lift >= 3/3 seeds; C4 TV >= 0.05 per seed; bla_encoding_gain_peak > 0 in ARM_3 ON_ON seed-majority; cea_mode_prior_peak > 0 in ARM_3 ON_ON seed-majority; pag_release_count_end > 0 in ARM_3 ON_ON seed-majority"
     },
     {
-     "run_id": "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3",
      "experiment_type": "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions",
      "metric": "fishtank baseline pooled distributions (n=2939 steps, 3 seeds): z_harm_a_norm / cea_low_freq_magnitude / z_harm_a_instant_val / pag_sustained_product / bla_pe_magnitude / dacc_pe all identically 0.0 across all percentiles {p10..p99}; zero_fraction=1.0 for every quantity; min=max=mean=std=0",
-     "target": "Phase 2 p70 recalibration rule requires nonzero baseline distributions to fit per-knob thresholds. Phase 1 manifest PASS (gate=manifest emitted with all 6 distributions populated) is satisfied; the SCIENTIFIC content is that fishtank baseline genuinely never engages any consumer-input stream. Phase 2 deterministic p70 rule is BLOCKED at axis (a) without a probe env that engages hazards (per Phase 1 plan footnote: 30-step smoke dry-run prediction of zero baseline distributions was correct; the 60-ep full budget did not change the picture).",
-     "session_added": "governance-20260531T190821Z"
+     "run_id": "v3_exq_620_sd037_axis_a_phase1_consumer_input_distributions_20260531T175254Z_v3",
+     "session_added": "governance-20260531T190821Z",
+     "target": "Phase 2 p70 recalibration rule requires nonzero baseline distributions to fit per-knob thresholds. Phase 1 manifest PASS (gate=manifest emitted with all 6 distributions populated) is satisfied; the SCIENTIFIC content is that fishtank baseline genuinely never engages any consumer-input stream. Phase 2 deterministic p70 rule is BLOCKED at axis (a) without a probe env that engages hazards (per Phase 1 plan footnote: 30-step smoke dry-run prediction of zero baseline distributions was correct; the 60-ep full budget did not change the picture)."
+    },
+    {
+     "date_utc": "2026-06-01",
+     "experiment_type": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
+     "metric_notes": "Plan \u00a73.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to \u00a75.2 (shorten interval / lift prob) or \u00a75.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc \u00a710 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
+     "metric_value": "C1 curriculum_firing PASS 3/3 (external_hazard_event_count 10/45/6); C2 z_harm_a_nonzero PASS 3/3 (zero_fraction=0.0); C3 sustained_window FAIL 1/3 (seed 42=0 runs, seed 7=1 run, seed 19=0 runs; threshold z>=0.4 for run_len>=10). Pooled z_harm_a_norm p70=0.43, p80=0.44, p90=0.44; upper tail clears BLA arousal_threshold_on=0.4 but does not sustain. Affective stream confirmed wired (post-625 stream-off fix).",
+     "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
+     "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan \u00a75.2 / \u00a75.4."
     }
    ],
    "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites). Substrate-readiness V3-EXQ-483b PASS. MECH-286 sleep onset IMPLEMENTED 2026-05-21 (V3-EXQ-599 queued). MECH-282 LPB interoceptive routing IMPLEMENTED 2026-05-21 (lpb_interoceptive_routing.py + SD-037 split recruitment; V3-EXQ-600 substrate diagnostic queued). Tier-1 behavioural evidence: V3-EXQ-483c queued. 2026-05-30: V3-EXQ-483d FAIL routed to consumer-cascade substrate work (see current_blocker / autopsy artifact). 2026-05-30 consumer-cascade amend session landed all four MECH-281 motor-coupling consumer sites: LateralPFCAnalog (SD-033a) eff_eta scaling, BLAAnalog (SD-035) encoding_gain scaling, CeAAnalog (SD-035) mode_prior + fast_prime scaling, and BetaGate (MECH-090) urgency_interrupt_threshold attenuation. Four new REEConfig gains (override_pfc_eta_gain / override_bla_encoding_gain / override_cea_amplitude_gain / override_beta_interrupt_gain) all default 0.0 = bit-identical OFF; 556/556 contracts + 7/7 preflight PASS with defaults. V3-EXQ-483e queued as 4-arm behavioural validation; reuses SD-036+MECH-279 freeze-engaging substrate (V3-EXQ-475-style config) to engage PAG path + use_salience_coordinator=True flips the dormant SalienceCoordinator slot active.",
@@ -1180,32 +1189,31 @@
      "validation_experiment": "V3-EXQ-483f RESERVED (out of scope this session). Phase 1 diagnostic to be queued in a follow-on /queue-experiment session referencing evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md Phase 1."
     },
     {
-     "session": "governance-20260531T190821Z",
-     "utc": "2026-05-31T19:15:00Z",
      "action": "phase1_diagnostic_landed_with_negative_signal",
-     "note": "V3-EXQ-620 PASS at manifest-gate level + scientific-negative on substrate-readiness for Phase 2 p70 recalibration rule. Axis (b) sustained-threat curriculum elevated to in-scope. Plan doc evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md may need Phase 1b prerequisite."
+     "note": "V3-EXQ-620 PASS at manifest-gate level + scientific-negative on substrate-readiness for Phase 2 p70 recalibration rule. Axis (b) sustained-threat curriculum elevated to in-scope. Plan doc evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md may need Phase 1b prerequisite.",
+     "session": "governance-20260531T190821Z",
+     "utc": "2026-05-31T19:15:00Z"
     },
     {
      "date_utc": "2026-06-01",
-     "session": "sd037-axis-a-phase2-recalibration-block-20260601T073706Z",
+     "phase2_block_doc": "evidence/planning/sd_037_axis_a_phase2_recalibration_block.md",
      "scope": "Phase 2 recalibration block authored from V3-EXQ-620 Phase 1 manifest. Per-knob p70 computation against pooled n=2939 fishtank-baseline distributions: all four knobs (BLAConfig.arousal_threshold_on, CeAConfig.fast_route_threshold, PAGFreezeGateConfig.duration_input_threshold + theta_freeze, DACCConfig.dacc_precision_scale) hit the plan-doc floor-violation path because every measured distribution is identically 0.0 (zero_fraction=1.0 per quantity, p10..p99 all 0.0). p60/p80 sensitivity values also identically zero -- within-axis-(a) sweep is non-recoverable. Override block emitted as inert (None per knob, hold ree_core defaults) with explicit axis_a_status=empirically_unmeetable flag and route_to=axis_b_sustained_threat_env_curriculum. Phase 3 verification + Phase 4 V3-EXQ-483f both remain reserved -- there is no override block to verify or validate. NO code; NO claims.yaml; NO experiment_queue.json. New planning doc: evidence/planning/sd_037_axis_a_phase2_recalibration_block.md.",
-     "validation_experiment": "Phase 3 RESERVED (no override block to verify). Axis (b) plan to be authored in a follow-on /implement-substrate session; until then Phase 2 retry under axis (a) is blocked behind a Phase 1b hazard-engaging probe-env prerequisite (substrate-side).",
-     "phase2_block_doc": "evidence/planning/sd_037_axis_a_phase2_recalibration_block.md"
+     "session": "sd037-axis-a-phase2-recalibration-block-20260601T073706Z",
+     "validation_experiment": "Phase 3 RESERVED (no override block to verify). Axis (b) plan to be authored in a follow-on /implement-substrate session; until then Phase 2 retry under axis (a) is blocked behind a Phase 1b hazard-engaging probe-env prerequisite (substrate-side)."
     },
     {
+     "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
      "date_utc": "2026-06-01",
-     "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
      "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in \u00a75: harm magnitude lift (\u00a75.1) -> sustained-window lengthening via env_drift_interval/prob (\u00a75.2) -> stochasticity for dACC PE (\u00a75.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (\u00a75.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
-     "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md \u00a73. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate.",
-     "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md"
+     "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
+     "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md \u00a73. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
     }
    ],
    "implementation_status": "implemented",
    "implemented_session": "implement-sd037-orexin-2026-04-25",
    "implemented_utc": "2026-04-25T00:00:00Z",
-   "last_seen_session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
+   "last_seen_session": "governance-cycle-20260602T051900Z",
    "last_updated_utc": "2026-06-01T07:49:25Z",
-   "recalibration_plan_doc": "evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md",
    "metric_trajectory": {
     "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
     "direction": "higher_is_better",
@@ -1245,27 +1253,27 @@
      },
      {
       "date_utc": "2026-05-31",
-      "session": "governance-IGW-20260531-001",
       "event": "governance_disposition",
-      "metric_notes": "Confirmed substrate_ceiling per failure_autopsy_V3-EXQ-483e_2026-05-31. Hold on SD-037 / MECH-280 / MECH-281. epistemic_category=substrate_ceiling set on all three. v3_pending=true and pending_retest_after_substrate=true preserved on all three. Routed to /implement-substrate amend SD-037 axis (a) consumer-input-threshold recalibration."
+      "metric_notes": "Confirmed substrate_ceiling per failure_autopsy_V3-EXQ-483e_2026-05-31. Hold on SD-037 / MECH-280 / MECH-281. epistemic_category=substrate_ceiling set on all three. v3_pending=true and pending_retest_after_substrate=true preserved on all three. Routed to /implement-substrate amend SD-037 axis (a) consumer-input-threshold recalibration.",
+      "session": "governance-IGW-20260531-001"
      },
      {
       "date_utc": "2026-05-31",
-      "session": "implement-substrate-sd037-axis-a-consumer-input-recalibration-plan-20260531T165400Z",
       "event": "next_axis_plan_landed",
-      "metric_notes": "Axis (a) consumer-input-threshold recalibration plan landed at evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md. Four-phase structure (Phase 1 diagnostic + Phase 2 p70 recalibration rule + Phase 3 verification + Phase 4 V3-EXQ-483f gated on Phase 3 PASS). Axis (b) SD-029-style sustained-threat env curriculum reserved as fallback. No code; no claims.yaml edits; no V3-EXQ-483f queueing. Default-flips deferred to Phase 4 PASS. Next session: /queue-experiment for Phase 1 substrate-readiness diagnostic."
+      "metric_notes": "Axis (a) consumer-input-threshold recalibration plan landed at evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md. Four-phase structure (Phase 1 diagnostic + Phase 2 p70 recalibration rule + Phase 3 verification + Phase 4 V3-EXQ-483f gated on Phase 3 PASS). Axis (b) SD-029-style sustained-threat env curriculum reserved as fallback. No code; no claims.yaml edits; no V3-EXQ-483f queueing. Default-flips deferred to Phase 4 PASS. Next session: /queue-experiment for Phase 1 substrate-readiness diagnostic.",
+      "session": "implement-substrate-sd037-axis-a-consumer-input-recalibration-plan-20260531T165400Z"
      },
      {
-      "session": "governance-20260531T190821Z",
-      "utc": "2026-05-31T19:15:00Z",
       "event": "phase1_diagnostic_returned_with_zero_baseline_distributions",
-      "note": "V3-EXQ-620 Phase 1 substrate-readiness diagnostic landed PASS at gate level (manifest emitted) but with scientific content negative: fishtank baseline pooled distributions all identically 0.0 across all 6 measured quantities and all 3 seeds. p70 recalibration rule blocked at axis (a) without a hazard-engaging probe env. Axis (b) SD-029-style sustained-threat env curriculum elevated to in-scope as the immediate next step (originally reserved as fallback). recalibration_plan_doc Phase 2 cannot proceed on this data."
+      "note": "V3-EXQ-620 Phase 1 substrate-readiness diagnostic landed PASS at gate level (manifest emitted) but with scientific content negative: fishtank baseline pooled distributions all identically 0.0 across all 6 measured quantities and all 3 seeds. p70 recalibration rule blocked at axis (a) without a hazard-engaging probe env. Axis (b) SD-029-style sustained-threat env curriculum elevated to in-scope as the immediate next step (originally reserved as fallback). recalibration_plan_doc Phase 2 cannot proceed on this data.",
+      "session": "governance-20260531T190821Z",
+      "utc": "2026-05-31T19:15:00Z"
      },
      {
       "date_utc": "2026-06-01",
-      "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
       "event": "axis_b_plan_landed",
-      "metric_notes": "Axis (b) sustained-threat env curriculum plan landed at evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md. Routing decision: LIGHTER (env-kwargs-only). SD-029's scheduled_external_hazard substrate is already implemented (2026-04-21); axis (b) re-uses it via an ENV_FISHTANK_KWARGS overlay rather than authoring a new ree-v3 module. Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session. Plan covers Sections 1-9 (routing decision, per-gate target windows, Phase 1b script design, post-Phase-1b chip-sequence re-application, five failure modes incl. escalation to axis (c) new SD-NNN sustained-threat scheduler if env-kwarg surface exhausted, cross-refs, out-of-scope, risks, provenance)."
+      "metric_notes": "Axis (b) sustained-threat env curriculum plan landed at evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md. Routing decision: LIGHTER (env-kwargs-only). SD-029's scheduled_external_hazard substrate is already implemented (2026-04-21); axis (b) re-uses it via an ENV_FISHTANK_KWARGS overlay rather than authoring a new ree-v3 module. Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session. Plan covers Sections 1-9 (routing decision, per-gate target windows, Phase 1b script design, post-Phase-1b chip-sequence re-application, five failure modes incl. escalation to axis (c) new SD-NNN sustained-threat scheduler if env-kwarg surface exhausted, cross-refs, out-of-scope, risks, provenance).",
+      "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z"
      }
     ],
     "prediction": "Consumer-cascade engagement (C2 sub-checks) should clear cleanly because the four wiring sites are direct scalar multipliers on existing knobs verified at the activation-smoke level (BLA 2x, CeA 2x, LateralPFC 3x ratios under override_signal=1.0 + gain=1.0 to 2.0). C3 PRIMARY (goal_norm_peak lift ARM_3 vs ARM_0) is the falsifiable surface: it lifts iff the SD-033a / SD-035 / beta-gate side channels produce net effective_drive amplification or commitment-release patterns that move goal_norm_peak against the MECH-295-bridge-dominated baseline. C3 FAIL with C2 PASS would indicate MECH-295 bridge is structurally dominant on this surface even with cascade engaged -- routes to autopsy, not to redesigning the consumer-cascade wiring.",
@@ -1276,6 +1284,7 @@
    "prediction": "If the next substrate work recalibrates consumer-input thresholds against fishtank baseline magnitudes AND/OR adds a sustained-threat curriculum that drives z_harm_a above BLA arousal_threshold_on / CeA fast_route_threshold during scheduled windows, then a 483f successor on the recalibrated substrate should produce non-zero bla_encoding_gain_peak / cea_mode_prior_peak in ARM_3 ON_ON seeds and a C3_lift > 0.01 in goal_norm_peak between ARM_3 and ARM_0. If 483f still FAILs on the same shape (bla/cea peaks 0.0, action_counts bit-identical), the substrate ceiling is deeper than the consumer-input layer -- next reading would be that fishtank itself is architecturally too sparse for SD-037 behavioural validation (route to env redesign at a level above current curriculum extensions).",
    "priority": 1,
    "ready": false,
+   "recalibration_plan_doc": "evidence/planning/sd_037_axis_a_consumer_input_recalibration_plan.md",
    "sd_id": "SD-037",
    "title": "broadcast.override_regulator",
    "unblocks_claims": [
@@ -1286,8 +1295,7 @@
     "MECH-282",
     "MECH-286"
    ],
-   "validation_experiment": "V3-EXQ-483b",
-   "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md"
+   "validation_experiment": "V3-EXQ-483b"
   },
   {
    "added_session": "governance-2026-04-24T08:10",
@@ -2434,6 +2442,9 @@
    "depends_on_unresolved": [],
    "design_doc": "evidence/planning/goal_pipeline_plan.md",
    "implementation_hint": "Per-consumer migration order: start with MECH-295 liking-bridge (simplest -- reads scalar; can add per-axis if relevant); then salience-coordinator; then dACC; then AIC/PCC/pACC. Each consumer preserves bit-identical OFF when per_axis_drive is None or SD-049 per-axis is OFF. Test suite run after each consumer.",
+   "implementation_note": "SD-049 Phase 3 SUBSTRATE LANDED 2026-05-31 (proactive, action-trigger not met but user-confirmed scope via AskUserQuestion 2026-05-31T12:52Z: Full per-consumer axis-aware design, substrate-only this session, no claim flips). All 7 SD-032 consumers (AIC / PCC / pACC / dACC / SalienceCoordinator / BroadcastOverrideRegulator / MECH-295 liking- bridge) accept optional per_axis_drive kwarg + a per-consumer combiner. Six whole-organism control modules (biology predicts scalar control output) use combiner-collapse defaults: AIC/dACC/Salience/Override 'max' (worst-deficit), PCC 'mean' (integrated fatigue), pACC 'sum' (allostatic-load accumulation per Baliki 2012). MECH-295 (the canonical axis-distinguishable case the SD-049 design unblocks for MECH-229 / MECH-117 / MECH-216 / Q-030) gets full goal_axis_idx routing: when supplied, the per-axis vector indexes the goal's resource-type channel for both anticipatory liking write + per-candidate approach cue; combiner fallback used when goal_axis_idx is None. Master flag REEConfig.use_sd049_per_axis_consumer_cascade (default False) gates the entire plumbing chain; bit-identical OFF guarantee verified at 628/628 contracts + 7/7 preflight PASS. Shared helper module ree_core/utils/per_axis_drive.py provides collapse_per_axis_drive + select_axis + validate_combiner (one validated implementation across all 7 consumers + tests). Agent wiring: sense() accepts new obs_per_axis_drive kwarg, caches on self._per_axis_drive, exposes via _per_axis_drive_for_consumers() gate helper that returns the vector iff master flag AND a non-None vector was supplied this tick. All 8 call sites in agent.py (broadcast_override.tick in sense(); AIC.tick in sense(); pACC.tick / PCC.tick / dACC.forward / salience.tick / mech295 approach-cue in select_action(); mech295 anticipatory-liking write in update_z_goal) thread the per-axis vector through with the appropriate per-consumer combiner. Phase 3 contract tests: tests/contracts/test_sd049_phase3_consumer_cascade.py 28/28 PASS covering C1 helper / C2 axis-select / C3 config defaults / C4 from_dims surfacing / C6 bit-identical per-consumer when vec=None / C7 combiner correctness per consumer / C8 MECH-295 axis-matched routing / C9 agent helper gate / C10 sense() bit-identical OFF. NO claims.yaml flips this session (deferred to /governance per user direction). Behavioural validation: V3-EXQ-514 successor work owned by IGW-20260531-012 (goal_pipeline:GAP-2); Phase 3 here is substrate- only. _current_goal_axis_idx routing is an agent attribute the experiment harness sets when an axis-distinct goal is active; default None falls through to the combiner. Bit-identical OFF non-negotiable per task chip; verified empirically at full regression.",
+   "implemented_session": "implement-substrate-sd049-phase-3-consumer-cascade-20260531T125200Z",
+   "implemented_utc": "2026-05-31T12:55:00Z",
    "last_seen_session": "implement-substrate-sd049-phase-3-consumer-cascade-20260531T125200Z",
    "phase_3_scope": [
     "Migrate AIC (cingulate/aic_analog.py), PCC (cingulate/pcc_analog.py), pACC (cingulate/pacc_analog.py), dACC (cingulate/dacc.py), SalienceCoordinator (cingulate/salience_coordinator.py), BroadcastOverrideRegulator (regulators/broadcast_override.py), MECH295LikingBridge (regulators/mech295_liking_bridge.py) from reading goal_state._last_drive_level (collapsed scalar) to optionally reading obs_dict['per_axis_drive'] directly when SD-049 per-axis is on.",
@@ -2447,10 +2458,7 @@
    "sd_id": "SD-049-PHASE-3",
    "status": "implemented",
    "title": "SD-049 Phase 3: SD-032 consumer cascade reading per_axis_drive directly. Migrates AIC, PCC, pACC, dACC adaptive control, salience-coordinator, override-regulator, MECH-295 liking-bridge from reading goal_state._last_drive_level (collapsed scalar) to reading obs_dict['per_axis_drive'] directly when SD-049 per-axis is on. Completes the substrate cascade originally specified in the SD-049 design doc.",
-   "unblocks_claims": [],
-   "implemented_session": "implement-substrate-sd049-phase-3-consumer-cascade-20260531T125200Z",
-   "implemented_utc": "2026-05-31T12:55:00Z",
-   "implementation_note": "SD-049 Phase 3 SUBSTRATE LANDED 2026-05-31 (proactive, action-trigger not met but user-confirmed scope via AskUserQuestion 2026-05-31T12:52Z: Full per-consumer axis-aware design, substrate-only this session, no claim flips). All 7 SD-032 consumers (AIC / PCC / pACC / dACC / SalienceCoordinator / BroadcastOverrideRegulator / MECH-295 liking- bridge) accept optional per_axis_drive kwarg + a per-consumer combiner. Six whole-organism control modules (biology predicts scalar control output) use combiner-collapse defaults: AIC/dACC/Salience/Override 'max' (worst-deficit), PCC 'mean' (integrated fatigue), pACC 'sum' (allostatic-load accumulation per Baliki 2012). MECH-295 (the canonical axis-distinguishable case the SD-049 design unblocks for MECH-229 / MECH-117 / MECH-216 / Q-030) gets full goal_axis_idx routing: when supplied, the per-axis vector indexes the goal's resource-type channel for both anticipatory liking write + per-candidate approach cue; combiner fallback used when goal_axis_idx is None. Master flag REEConfig.use_sd049_per_axis_consumer_cascade (default False) gates the entire plumbing chain; bit-identical OFF guarantee verified at 628/628 contracts + 7/7 preflight PASS. Shared helper module ree_core/utils/per_axis_drive.py provides collapse_per_axis_drive + select_axis + validate_combiner (one validated implementation across all 7 consumers + tests). Agent wiring: sense() accepts new obs_per_axis_drive kwarg, caches on self._per_axis_drive, exposes via _per_axis_drive_for_consumers() gate helper that returns the vector iff master flag AND a non-None vector was supplied this tick. All 8 call sites in agent.py (broadcast_override.tick in sense(); AIC.tick in sense(); pACC.tick / PCC.tick / dACC.forward / salience.tick / mech295 approach-cue in select_action(); mech295 anticipatory-liking write in update_z_goal) thread the per-axis vector through with the appropriate per-consumer combiner. Phase 3 contract tests: tests/contracts/test_sd049_phase3_consumer_cascade.py 28/28 PASS covering C1 helper / C2 axis-select / C3 config defaults / C4 from_dims surfacing / C6 bit-identical per-consumer when vec=None / C7 combiner correctness per consumer / C8 MECH-295 axis-matched routing / C9 agent helper gate / C10 sense() bit-identical OFF. NO claims.yaml flips this session (deferred to /governance per user direction). Behavioural validation: V3-EXQ-514 successor work owned by IGW-20260531-012 (goal_pipeline:GAP-2); Phase 3 here is substrate- only. _current_goal_axis_idx routing is an agent attribute the experiment harness sets when an axis-distinct goal is active; default None falls through to the combiner. Bit-identical OFF non-negotiable per task chip; verified empirically at full regression."
+   "unblocks_claims": []
   },
   {
    "added_session": "implement-substrate-mech304-sd051-2026-05-04T1347Z",
@@ -3151,6 +3159,7 @@
   },
   {
    "added_session": "governance-cycle-2026-05-15T205941Z",
+   "default_flip_safety_note_2026_05_31": "Implement-substrate session 20260531T125503Z re-evaluated this entry against the in-flight ARC-065 GAP-A V3-EXQ-569a matched-entropy FP-2 falsifier and ARC-062 GAP-B MECH-341 V3-EXQ-614b 3-arm falsifier (both queued 12:32-12:48Z 2026-05-31 against the SD-056-amended substrate; OFF use_differentiable_cem is the baseline both falsifiers measure). User option 1 (close as already-done) confirmed. NO DEFAULT FLIP from use_differentiable_cem=False without (a) V3-EXQ-569a-equivalent matched-entropy FP-2 falsifier PASS under current OFF substrate AND (b) a separate validation experiment with the flag ON to verify gradient training of SD-016 cue_action_proj actually delivers behavioural improvement. Flipping the default before (a) lands would change the selection rule under measurement and make the R1 decision-rule walk uninterpretable; absent (b) the flag stays opt-in for SD-016 training only. The implementation already preserves bit-identical OFF (legacy argsort + indexed mean at ree_core/hippocampal/module.py:1110-1129) so any opt-in experiment can set use_differentiable_cem=True per-arm without touching the default. No code edit landed this session; this note records the safety constraint for the future /implement-substrate session that considers the default flip.",
    "depends_on_unresolved": [],
    "design_doc": "docs/architecture/sd_055_differentiable_cem_selection.md",
    "failure_record": [
@@ -3163,7 +3172,6 @@
    ],
    "implementation_hint": "Substrate landed 2026-05-15 in hippocampal/module.py (use_differentiable_cem, softmax-weighted ao_mean). Canonical validation V3-EXQ-568 PASS 20260515T204931Z (grad_max=372, UC1-UC5). smoke_sd055_differentiable_cem.py 4/4 PASS. Behavioural cue-conditioned divergence on goal-rich env still deferred (ARC-072 gap 2 staging only).",
    "implementation_note_update": "IGW-20260521-021 substrate-ready 2026-05-21: code landed 2026-05-15; V3-EXQ-568 canonical PASS; smoke 4/4. ARC-072 gap 2 V3 staging path open; gap 1 bootstrapping epoch still unresolved. MECH-326 full library routing still v4_pending.",
-   "default_flip_safety_note_2026_05_31": "Implement-substrate session 20260531T125503Z re-evaluated this entry against the in-flight ARC-065 GAP-A V3-EXQ-569a matched-entropy FP-2 falsifier and ARC-062 GAP-B MECH-341 V3-EXQ-614b 3-arm falsifier (both queued 12:32-12:48Z 2026-05-31 against the SD-056-amended substrate; OFF use_differentiable_cem is the baseline both falsifiers measure). User option 1 (close as already-done) confirmed. NO DEFAULT FLIP from use_differentiable_cem=False without (a) V3-EXQ-569a-equivalent matched-entropy FP-2 falsifier PASS under current OFF substrate AND (b) a separate validation experiment with the flag ON to verify gradient training of SD-016 cue_action_proj actually delivers behavioural improvement. Flipping the default before (a) lands would change the selection rule under measurement and make the R1 decision-rule walk uninterpretable; absent (b) the flag stays opt-in for SD-016 training only. The implementation already preserves bit-identical OFF (legacy argsort + indexed mean at ree_core/hippocampal/module.py:1110-1129) so any opt-in experiment can set use_differentiable_cem=True per-arm without touching the default. No code edit landed this session; this note records the safety constraint for the future /implement-substrate session that considers the default flip.",
    "implementation_status": "implemented",
    "implemented_session": "sd-diff-cem-approx-2026-05-15T202939Z",
    "implemented_utc": "2026-05-15T20:54:00Z",
@@ -3320,8 +3328,8 @@
      "autopsy": "evidence/planning/failure_autopsy_V3-EXQ-616_2026-05-31.md",
      "cluster_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-614b_2026-05-31.md",
      "next_validation": "V3-EXQ-614c 4-arm sweep stratified_within_class_temperature in {None=legacy, 0.5, 1.0, 2.0} on SD-056-amended baseline. Cross-plan beneficiary: arc_062_rule_apprehension:GAP-B (V3-EXQ-543l successor cohort) under shared SD-056-amended substrate.",
-     "session": "implement-substrate-mech-341-amend-stratified-temp-ab-probe-20260601T063226Z",
-     "preserved_constraint": "NO flip of use_differentiable_cem default (SD-055 / scaffolded_sd054_onboarding default_flip_safety_note_2026_05_31 remains binding)."
+     "preserved_constraint": "NO flip of use_differentiable_cem default (SD-055 / scaffolded_sd054_onboarding default_flip_safety_note_2026_05_31 remains binding).",
+     "session": "implement-substrate-mech-341-amend-stratified-temp-ab-probe-20260601T063226Z"
     }
    ],
    "autopsy_refs": [
@@ -3417,6 +3425,8 @@
   },
   {
    "added_session": "governance-20260529T212835Z",
+   "amend_hint": "ScaffoldedSD054OnboardingScheduler._train_episode (ree-v3/experiments/scaffolded_sd054_onboarding.py:551) and the eval path never call agent.update_z_goal, so GoalState.update is never reached and z_goal stays at zero-init (confirmed: zero update_z_goal matches in the module). Add agent.update_z_goal(benefit_exposure=..., drive_level=...) every step in P1 (and P0 where the frozen-goal design permits), mirroring the shared experiments/goal_stream_stages_sd054.py runner (train ~line 537 / eval ~line 590) the 622 autopsy confirmed feeds z_goal. Add a Stage-0-style contract/positive-control assertion: forced benefit+drive inputs must produce non-zero direction-stable z_goal under the scheduler so a z_goal=0 scheduler is structurally unshippable. This hook fix is strictly UPSTREAM of the 622 anneal-rate amend (which assumed update_z_goal was being called); re-evaluate the anneal-rate amend priority after the hook lands and z_goal forms.",
+   "amend_pending": true,
    "autopsy_refs": [
     "evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md",
     "evidence/planning/failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29.md",
@@ -3460,13 +3470,46 @@
      "target": "After scaffolded onboarding + SD-056 per-candidate variance, curiosity_scale sweep produces non-zero entropy delta resolvable at N>=2; p1 calibration zone non-empty; noise dimension delivers >0.05 margin at N>=2 per cell."
     },
     {
-     "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
      "experiment_type": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054",
      "metric": "z_goal_norm_peak_ARM_3_max=0.0 (C4 fail) -- scheduler never calls update_z_goal (harness/wiring artifact, 626-class); AND P1 survival gate failed 2/3 seeds (42,44), p2_cell_count 5/15, effective N=1 (confounded by P0/P1=30/30 budget + inert goal pipeline).",
+     "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
      "target": "After update_z_goal wired into scheduler: z_goal_norm_peak > 0.4 on >=2/3 seeds in P2, AND P1 survival gate passed on >=2/3 seeds at restored budget, so Q-045 C2/FP2 discrimination becomes testable at N>=2."
     }
    ],
    "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
+   "implementation_log": [
+    {
+     "activation_smoke": "Full P0/P1/P2 pipeline runs end-to-end on default REEAgent at reduced budget (2/2/1 episodes x 20 steps); P0 goal pipeline freeze + reef-half spawn confirmed; P1 anneal lands at min_drive_to_fire=0.010 + hfa=0.70 per memo; P2 frozen-policy eval completes without crash.",
+     "closes_igw": "IGW-20260531-029",
+     "landed_utc": "2026-05-31T18:10:00Z",
+     "ree_assembly_files": [
+      "evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md (Status flipped plan-of-record -> IMPLEMENTED)",
+      "evidence/planning/substrate_queue.json (status pending_implementation -> implemented; this entry)"
+     ],
+     "ree_v3_commit": "28ebd3d (ree-v3/main)",
+     "ree_v3_files": [
+      "experiments/scaffolded_sd054_onboarding.py (NEW)",
+      "ree_core/environment/causal_grid_world.py (new kwarg reef_bipartite_agent_spawn_in_reef_half)",
+      "tests/contracts/test_scaffolded_sd054_onboarding.py (NEW; 17 contracts PASS)",
+      "CLAUDE.md (SD entry)",
+      "experiments/v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness.py (NEW; validation experiment)",
+      "experiment_queue.json (V3-EXQ-621 entry)"
+     ],
+     "regression": "645/645 contracts + 7/7 preflight PASS post-landing",
+     "session_id": "implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z",
+     "triage_memo": "evidence/planning/z_goal_collapse_triage_2026-05-31.md (classification (b) substrate-structural; this implementation realises the recommended fix).",
+     "validation_experiment": "V3-EXQ-621 queued; 4-arm design per memo; 3 seeds x 4 arms; acceptance C1 AND (C2 OR C3) per memo Acceptance section."
+    },
+    {
+     "event": "substrate_readiness_diagnostic_pass",
+     "note": "V3-EXQ-621a PASS (C1 6/12 cells + C3 cascade_consequential via ARM_2 approach_commit lift). C2 z_goal floor unmet (z_goal=0 across all arms) -- substrate-readiness PASS clears prereq (2) of behavioral_diversity_isolation:GAP-C, but z_goal feeding under scaffolded onboarding is not yet wired correctly; this motivated the staged V3-EXQ-622 z_goal-collapse decomposition diagnostic (seed 42 S0 PASS shows goal-stream trainability works; S1+ failures point to persistence/risk wiring). Per /governance Step 4 protocol, V3-EXQ-621a reclassified per-claim non_contributory on Q-045/MECH-313/MECH-260 (substrate-readiness diagnostic pattern; not load-bearing behavioural evidence). pending_retest_after_substrate flags retained. Behavioural cluster validation V3-EXQ-603d / 591b queueable next.",
+     "queue_id": "V3-EXQ-621a",
+     "run_id": "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3",
+     "session_id": "governance-cycle-20260601T054231Z",
+     "supersedes": "V3-EXQ-621 (recovered manifest from runner emit_outcome misclassification; ree-cloud-3 2026-05-31T20:23Z)",
+     "utc": "2026-06-01T05:55Z"
+    }
+   ],
    "last_seen_session": "governance-cycle-20260601T175646Z",
    "priority": 1,
    "ready": true,
@@ -3484,42 +3527,7 @@
     "SD-049 Phase 2 behavioural",
     "ARC-030",
     "Q-040"
-   ],
-   "implementation_log": [
-    {
-     "session_id": "implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z",
-     "landed_utc": "2026-05-31T18:10:00Z",
-     "ree_v3_commit": "28ebd3d (ree-v3/main)",
-     "ree_v3_files": [
-      "experiments/scaffolded_sd054_onboarding.py (NEW)",
-      "ree_core/environment/causal_grid_world.py (new kwarg reef_bipartite_agent_spawn_in_reef_half)",
-      "tests/contracts/test_scaffolded_sd054_onboarding.py (NEW; 17 contracts PASS)",
-      "CLAUDE.md (SD entry)",
-      "experiments/v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness.py (NEW; validation experiment)",
-      "experiment_queue.json (V3-EXQ-621 entry)"
-     ],
-     "ree_assembly_files": [
-      "evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md (Status flipped plan-of-record -> IMPLEMENTED)",
-      "evidence/planning/substrate_queue.json (status pending_implementation -> implemented; this entry)"
-     ],
-     "regression": "645/645 contracts + 7/7 preflight PASS post-landing",
-     "activation_smoke": "Full P0/P1/P2 pipeline runs end-to-end on default REEAgent at reduced budget (2/2/1 episodes x 20 steps); P0 goal pipeline freeze + reef-half spawn confirmed; P1 anneal lands at min_drive_to_fire=0.010 + hfa=0.70 per memo; P2 frozen-policy eval completes without crash.",
-     "validation_experiment": "V3-EXQ-621 queued; 4-arm design per memo; 3 seeds x 4 arms; acceptance C1 AND (C2 OR C3) per memo Acceptance section.",
-     "closes_igw": "IGW-20260531-029",
-     "triage_memo": "evidence/planning/z_goal_collapse_triage_2026-05-31.md (classification (b) substrate-structural; this implementation realises the recommended fix)."
-    },
-    {
-     "utc": "2026-06-01T05:55Z",
-     "session_id": "governance-cycle-20260601T054231Z",
-     "event": "substrate_readiness_diagnostic_pass",
-     "queue_id": "V3-EXQ-621a",
-     "run_id": "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3",
-     "supersedes": "V3-EXQ-621 (recovered manifest from runner emit_outcome misclassification; ree-cloud-3 2026-05-31T20:23Z)",
-     "note": "V3-EXQ-621a PASS (C1 6/12 cells + C3 cascade_consequential via ARM_2 approach_commit lift). C2 z_goal floor unmet (z_goal=0 across all arms) -- substrate-readiness PASS clears prereq (2) of behavioral_diversity_isolation:GAP-C, but z_goal feeding under scaffolded onboarding is not yet wired correctly; this motivated the staged V3-EXQ-622 z_goal-collapse decomposition diagnostic (seed 42 S0 PASS shows goal-stream trainability works; S1+ failures point to persistence/risk wiring). Per /governance Step 4 protocol, V3-EXQ-621a reclassified per-claim non_contributory on Q-045/MECH-313/MECH-260 (substrate-readiness diagnostic pattern; not load-bearing behavioural evidence). pending_retest_after_substrate flags retained. Behavioural cluster validation V3-EXQ-603d / 591b queueable next."
-    }
-   ],
-   "amend_pending": true,
-   "amend_hint": "ScaffoldedSD054OnboardingScheduler._train_episode (ree-v3/experiments/scaffolded_sd054_onboarding.py:551) and the eval path never call agent.update_z_goal, so GoalState.update is never reached and z_goal stays at zero-init (confirmed: zero update_z_goal matches in the module). Add agent.update_z_goal(benefit_exposure=..., drive_level=...) every step in P1 (and P0 where the frozen-goal design permits), mirroring the shared experiments/goal_stream_stages_sd054.py runner (train ~line 537 / eval ~line 590) the 622 autopsy confirmed feeds z_goal. Add a Stage-0-style contract/positive-control assertion: forced benefit+drive inputs must produce non-zero direction-stable z_goal under the scheduler so a z_goal=0 scheduler is structurally unshippable. This hook fix is strictly UPSTREAM of the 622 anneal-rate amend (which assumed update_z_goal was being called); re-evaluate the anneal-rate amend priority after the hook lands and z_goal forms."
+   ]
   },
   {
    "added_session": "governance-20260531T112511Z",
@@ -3558,41 +3566,41 @@
    ]
   },
   {
-   "sd_id": "test_bed_enrichment_crystallization_necessity",
-   "title": "Phase-3 destabilising-pressure env so the crystallization-necessity control arm measurably collapses",
-   "status": "implemented",
-   "ready": true,
-   "design_doc": null,
-   "depends_on_unresolved": [],
-   "unblocks_claims": [
-    "INV-074",
-    "MECH-333",
-    "MECH-334"
+   "added_session": "governance-cycle-20260601T165823Z",
+   "autopsy_refs": [
+    "evidence/planning/failure_autopsy_V3-EXQ-610a_2026-06-01.json"
    ],
+   "depends_on_unresolved": [],
+   "design_doc": null,
    "failure_record": [
     {
-     "run_id": "v3_exq_610a_inv074_crystallization_necessity_20260529T224419Z_v3",
      "experiment_type": "v3_exq_610a_inv074_crystallization_necessity",
      "metric": "ARM_0 control end_phase_2 - end_phase_3 entropy (D2 collapse) = -0.006 (control did not collapse)",
+     "run_id": "v3_exq_610a_inv074_crystallization_necessity_20260529T224419Z_v3",
      "target": "D2 delta >= +0.10 (control must show post-Phase-3 collapse for the test to discriminate)"
     },
     {
-     "run_id": "v3_exq_610b_inv074_crystallization_necessity_20260601T122002Z_v3",
      "experiment_type": "v3_exq_610b_inv074_crystallization_necessity",
      "metric": "ARM_0 control end_phase_2 1.120 ~= end_phase_3 1.126 (d2_delta -0.0057; control did not collapse); D1 d1_delta -0.036; D3 sanity PASS. Identical signature to 610a.",
+     "run_id": "v3_exq_610b_inv074_crystallization_necessity_20260601T122002Z_v3",
      "target": "D2 delta >= +0.10 (control must show post-Phase-3 collapse for the test to discriminate)"
     }
    ],
    "implementation_hint": "Add a post-Phase-3 destabilising pressure (continued forward-model consolidation / distribution shift / new-resource regime) to CausalGridWorldV2 strong enough that the no-crystallization control arm shows the predicted diversity collapse (D2 delta >= +0.10). Without it, the crystallization-necessity claim cannot be discriminated. Governance to decide whether to materialise now or defer.",
-   "priority": 3,
-   "autopsy_refs": [
-    "evidence/planning/failure_autopsy_V3-EXQ-610a_2026-06-01.json"
-   ],
-   "added_session": "governance-cycle-20260601T165823Z",
-   "last_seen_session": "IGW-20260601-023",
+   "implementation_note": "Added Phase-3-specific env_kwargs to infant_curriculum.InfantCurriculumScheduler. Phase 3 now enables multi_source_dynamics (SD-047: weather_field + transient_events + background_drift with n_drift_sources=2), interoceptive_noise (SD-048: autonomic + sensitisation + fatigue at scale 0.6), and accelerated env_drift (interval=3, prob=0.5). These dynamics force continued forward-model adaptation post-Phase-3, predicted to collapse diversity in the no-crystallization control arm (INV-074 D2 criterion). With crystallization (MECH-333/334), the locked diversity distribution should persist. Test: ree-v3/experiments/test_infant_curriculum_phase3.py (smoke test PASS 2026-06-01).",
    "implementation_session": "IGW-20260601-023",
    "implementation_utc": "2026-06-01T17:42:58Z",
-   "implementation_note": "Added Phase-3-specific env_kwargs to infant_curriculum.InfantCurriculumScheduler. Phase 3 now enables multi_source_dynamics (SD-047: weather_field + transient_events + background_drift with n_drift_sources=2), interoceptive_noise (SD-048: autonomic + sensitisation + fatigue at scale 0.6), and accelerated env_drift (interval=3, prob=0.5). These dynamics force continued forward-model adaptation post-Phase-3, predicted to collapse diversity in the no-crystallization control arm (INV-074 D2 criterion). With crystallization (MECH-333/334), the locked diversity distribution should persist. Test: ree-v3/experiments/test_infant_curriculum_phase3.py (smoke test PASS 2026-06-01)."
+   "last_seen_session": "IGW-20260601-023",
+   "priority": 3,
+   "ready": true,
+   "sd_id": "test_bed_enrichment_crystallization_necessity",
+   "status": "implemented",
+   "title": "Phase-3 destabilising-pressure env so the crystallization-necessity control arm measurably collapses",
+   "unblocks_claims": [
+    "INV-074",
+    "MECH-333",
+    "MECH-334"
+   ]
   }
  ],
  "schema_version": "substrate_queue/v2"

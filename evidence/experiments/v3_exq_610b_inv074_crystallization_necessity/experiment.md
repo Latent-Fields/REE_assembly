@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_610b_inv074_crystallization_necessity_20260601T122002Z_v3` at `2026-06-01T17:23:25.815359Z` signatures: none
+- `v3_exq_610b_inv074_crystallization_necessity_20260601T122002Z_v3` at `2026-06-01T17:30:16.059818Z` signatures: none
 
 Recurring signatures:
 

@@ -5121,6 +5121,29 @@
     not substrate-queue side). Process flag: script's interpretation-grid
     C1 FAIL -> /diagnose-errors routing is wrong for this manifestation; the
     curriculum harness is working as designed.
+
+    V3-EXQ-592e (2026-06-01, supersedes V3-EXQ-592d) FAILed after correcting the 592d
+    commit-entry-count defect; applied verbatim per failure_autopsy_V3-EXQ-592e_
+    2026-06-01 (confirmed, status=confirmed, routing=queue-experiment). C1 baseline
+    hold-rate fired, and both readiness predicates were measurable: ARM_1 score-margin
+    blocks=1793, ARM_3 score-margin blocks=2088, ARM_2/3 nav-competence blocks=150
+    each. The failure is therefore not predicate silence. The informative result is
+    that predicate firing did not produce discriminative committed-state occupancy
+    under the script's hold-rate measure: all arms had hold_rate=1.0 and
+    total_commits=0. Per-cell beta-elevation totals localise the issue further:
+    score-margin gating can suppress BetaGate elevation when the latch is not
+    elevated (ARM_1/3 beta-elevated fraction 0.0), but E3's rv-low
+    committed-trajectory marker remains present because it is set upstream of
+    BetaGate admission. Current code confirms the R-c predicates are wired to
+    admission/elevation sites; no readiness-failure path releases an already-elevated
+    bistable latch or clears E3 committed state. This is a direct integration/
+    state-authority gap, not a clean conceptual falsification of MECH-090.
+    evidence_direction=does_not_support (epistemic_category=
+    does_not_support_state_authority). MECH-090 status unchanged (active). Routing:
+    V3-EXQ-592f as the controlled state-machine probe of whether failed readiness can
+    release/suppress an already-held committed state and recover when readiness
+    returns. recommended_substrate_queue_entry.action=none.
+    pending_retest_after_substrate=false. V3-EXQ-592d superseded.
 - id: MECH-091
   title: "Salient events phase-reset the E3 heartbeat clock."
   claim_type: mechanism_hypothesis

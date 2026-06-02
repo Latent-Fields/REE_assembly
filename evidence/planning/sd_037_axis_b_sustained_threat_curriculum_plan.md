@@ -263,3 +263,19 @@ Routing: axis (c) -- a new SD-NNN sustained-threat scheduler authored under /imp
 ## 9. Provenance
 
 Authored 2026-06-01 in session `implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z`. No ree-v3 code touched; no claims.yaml edits; no experiment_queue.json edits. Pathspec-limited REE_assembly master commit covers `evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md` (NEW) + `evidence/planning/substrate_queue.json` (SD-037 entry amend) only. Next session: `/queue-experiment` for the Phase 1b diagnostic referencing this plan §3.
+
+---
+
+## 10. Phase 1b first-run result (V3-EXQ-625b, 2026-06-01)
+
+**Status: §3.4 acceptance gate FAIL on C3 sustained-window axis (1/3 seeds).**
+
+V3-EXQ-625b ran the Phase 1b diagnostic per §3 on `affective_harm_stream_enabled=True` (post-stream-off bug fix; supersedes V3-EXQ-625). `env_overlay_delta_vs_620`: `scheduled_external_hazard_enabled=True`, `interval=20`, `prob=0.7`, `adjacent_only=True`, `hazard_harm=0.2`, `proximity_harm_scale=0.2`. Sustained-window config: `z_threshold=0.4, min_run_len=10`.
+
+- **C1 curriculum_firing** PASS 3/3 seeds (external_hazard_event_count seed 42=10, seed 7=45, seed 19=6).
+- **C2 z_harm_a_nonzero** PASS 3/3 seeds (zero_fraction=0.0 per seed).
+- **C3 sustained_window** FAIL 1/3 seeds: seed 42 `n_sustained_runs=0`, seed 7 `n_sustained_runs=1`, seed 19 `n_sustained_runs=0`. §3.4 requires ≥2/3 seeds with ≥1 sustained window.
+
+Pooled z_harm_a_norm distribution: p70=0.43, p80=0.44, p90=0.44, p99=0.45. The upper tail clears the BLA arousal_threshold_on=0.4, but the signal does not stay above 0.4 for ≥10 consecutive ticks in 2/3 seeds. The `interval=20, prob=0.7` schedule produces isolated contact spikes rather than the sustained 10-20 tick windows §1.2 sensitivity-rationalised to drive PAG's `theta_freeze=2.0` duration-integral.
+
+Routing (per §5 failure-mode ladder): both **§5.2 (interval shorter, prob higher)** and **§5.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len)** are in scope. §5.1 magnitude lifts (`hazard_harm=0.3`) are not the primary lever because the magnitude floor IS being cleared at the per-tick level; the temporal-structure axis is the load-bearing one. Plan owner picks the §5.2/§5.4 axis when next-cycling the diagnostic. Manifest: `evidence/experiments/v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3.json`. Marked discussed in `review_tracker.json` 2026-06-02T05:23Z.
