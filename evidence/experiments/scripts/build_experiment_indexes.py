@@ -87,6 +87,15 @@ class RunRecord:
     adapter_contract_status: str = "n/a"
     adapter_contract_errors: list[str] = field(default_factory=list)
     evidence_level: str = "C"
+    # Substrate-staleness gate (2026-06-02): manually-set manifest fields that
+    # mark this run's evidence as mechanistically stale because a substrate it
+    # depends on changed AFTER the run was recorded. Either flag excludes the
+    # entry from confidence/conflict scoring (scoring_excluded="stale_substrate")
+    # while leaving it in the full entry log. Distinct from the time-only
+    # epoch gate (stale_epoch) and from duplicate/iteration supersession
+    # (superseded). Default-absent => bit-identical to pre-gate behaviour.
+    pending_retest_after_substrate: bool = False
+    superseded_by_substrate: str = ""
 
 
 @dataclass
@@ -180,6 +189,22 @@ def _normalize_confidence(raw: Any, default: float = 0.5) -> float:
         value = float(raw)
     value = max(0.0, min(1.0, value))
     return round(value, 3)
+
+
+def _coerce_bool(raw: Any) -> bool:
+    """Coerce a manifest value to bool, accepting JSON bools and truthy strings.
+
+    Manifests are hand-edited and may carry true/false, "true"/"false",
+    "yes"/"1", etc. Anything not recognised as truthy is False, so an absent
+    or malformed flag never accidentally excludes evidence from scoring.
+    """
+    if isinstance(raw, bool):
+        return raw
+    if isinstance(raw, (int, float)):
+        return raw != 0
+    if isinstance(raw, str):
+        return raw.strip().lower() in {"true", "1", "yes", "y", "t"}
+    return False
 
 
 def _normalize_evidence_level(raw: Any) -> str:
@@ -370,6 +395,14 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         direction_explicitly_set = bool(manifest.get("evidence_direction_note"))
         experiment_purpose = str(manifest.get("experiment_purpose", "evidence")).strip() or "evidence"
         evidence_level = _normalize_evidence_level(manifest.get("evidence_level"))
+        # Substrate-staleness gate: honor manually-set manifest fields that mark
+        # this run as mechanistically stale after a downstream substrate change.
+        # `pending_retest_after_substrate` accepts a bool or truthy string;
+        # `superseded_by_substrate` is a "<SD-id>@<YYYY-MM-DD>" reference string.
+        pending_retest_after_substrate = _coerce_bool(
+            manifest.get("pending_retest_after_substrate", False))
+        superseded_by_substrate = str(
+            manifest.get("superseded_by_substrate", "") or "").strip()
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -392,6 +425,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
                 evidence_level=evidence_level,
+                pending_retest_after_substrate=pending_retest_after_substrate,
+                superseded_by_substrate=superseded_by_substrate,
             )
         )
 
@@ -1311,6 +1346,16 @@ def _write_claim_evidence_matrix(
                 continue
             if inferred_direction == "superseded":
                 entry["scoring_excluded"] = "superseded"
+                continue
+            # Substrate-staleness gate (2026-06-02): a manually-set manifest
+            # flag marks this run's evidence as mechanistically stale because a
+            # substrate it depends on changed after the run was recorded. The
+            # entry stays in the full log (with the substrate ref for audit) but
+            # stops weighting confidence/conflict. Absent flags => no-op.
+            if run.pending_retest_after_substrate or run.superseded_by_substrate:
+                entry["scoring_excluded"] = "stale_substrate"
+                if run.superseded_by_substrate:
+                    entry["superseded_by_substrate"] = run.superseded_by_substrate
                 continue
             if run.experiment_purpose in ("diagnostic", "baseline"):
                 entry["scoring_excluded"] = f"{run.experiment_purpose}_probe"
@@ -2284,7 +2329,8 @@ def _write_promotion_demotion_recommendations(
         if not is_applicable(entry):
             continue
         # Phase 3 fix: scoring_excluded entries (diagnostic_probe,
-        # non_contributory, superseded, stale_epoch, invalid_run) must NOT
+        # non_contributory, superseded, stale_epoch, stale_substrate,
+        # invalid_run) must NOT
         # feed the gate's claim summary -- the main matrix's claims dict
         # excludes them, so the gate (which reads experimental_confidence
         # post-cutover) was computing inflated values vs the matrix.
