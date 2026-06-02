@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-02T05:50:36Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
+      "queue_id": "V3-EXQ-625b",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (diagnostic, claim_ids=[])",
+        "biological_reference": "partial -- PAG sustained-threat lit solid (Bandler & Shipley 1994, McNaughton & Corr 2004, Carter 2009); C3 measurement criterion drifts from dynamic-sequence biology by treating 'always above' as equivalent to 'dynamic crossings'",
+        "prerequisites": "missing -- behavioural-diversity substrate (ARC-065 SP-CEM, SD-056 contrastive E2, MECH-341 score-diversity, scaffolded_sd054_onboarding) not yet validated as effective under this env config; monostrategy collapse persists",
+        "implementation": "complete at curriculum + affective-stream layer; collapse downstream at policy layer",
+        "environment": "adequate -- seed 7 (mean z_harm_a 0.435 sustained 1413 ticks) proves env CAN sustain threat windows",
+        "measurement": "inadequate at C3 -- cannot distinguish PAG dynamic engagement from catatonic-lock literal-pass (seed 7 1413-step single-action run produces literal-pass C3 that is biologically degenerate)",
+        "integration": "broken at policy layer -- upstream env signal lands, downstream policy collapses to one of three monomorphic action attractors per seed",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PAG sustained-threat integration (PAG columnar organisation Bandler & Shipley 1994; BIS sustained-threat axis McNaughton & Corr 2004; LH->PAG orexin projection Carter 2009)",
+        "dependencies": [
+          "hippocampal place/episode orienting",
+          "amygdalo-cortical valuation (BLA/CeA arousal cascade)",
+          "behavioural-diversity generation at PFC + striatal + cortical loops (the load-bearing missing dependency)"
+        ],
+        "is_formal_import": false,
+        "divergence": "Plan-doc's biological grounding is sound at the mechanism layer. Divergence is at the measurement-design layer: C3 acceptance criterion is too crude to distinguish biological dynamic-sequence engagement from catatonic-lock literal-pass.",
+        "lit_status": "present (targeted_review_orexin_kinetics, lit_conf 0.789; no new lit-pull commission)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-02 failure-autopsy V3-EXQ-625b]: FAIL on plan-doc 3.4 C3 (sustained-window 1/3). C1 + C2 PASS. Substrate-ceiling at one layer downstream of the affective-stream curriculum: behavioural-diversity collapse to monomorphic action attractors persists under sustained-threat env (three seeds, three locks; eval-length divergence 191/312/1413). Seed 7 frozen on action 0 for 1409/1413 steps produces a literal-pass C3 that is biologically degenerate. Routed to scaffolded_sd054_onboarding substrate_queue amend as corroborating failure record alongside V3-EXQ-603d. SD-037 / MECH-280 / MECH-281 status unchanged (this FAIL is upstream of their gating layer). Companion follow-on: redesign C3 to distinguish dynamic crossings from continuous-elevation lock. Artifact: evidence/planning/failure_autopsy_V3-EXQ-625b_2026-06-02.{md,json}.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "failure_record_entry": {
+          "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
+          "experiment_type": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
+          "metric": "C3 sustained-window 1/3 FAIL via monostrategy collapse: three seeds -> three monomorphic action attractors (seed 42 action 3 only, seed 7 action 0 only for 1409/1413 steps, seed 19 action 0 dominant). z_harm_a structurally locked below 0.4 in seeds 42/19 and continuously above 0.4 in seed 7. Eval-length divergence 191/312/1413 confirms policy-attractor collapse, not stochastic variation. Env curriculum proven sufficient at affective-stream layer (seed 7); behavioural-diversity layer is the load-bearing gap.",
+          "target": "Behavioural-diversity substrate must deliver dynamic action sequences under sustained-threat env config so PAG duration integrator sees genuine z_harm_a crossings (>=1 below->above AND >=1 above->below transition per seed) rather than monomorphic action lock at a single threat-level attractor."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "625b env config is sufficient at the affective-stream layer -- plan-doc 1.2 sensitivity rationale empirically validated by seed 7 (mean z_harm_a 0.435 sustained 1413 ticks).",
+        "C3 acceptance criterion is too crude -- treats 'always above' as equivalent to 'dynamic crossings'; needs redesign with explicit dynamic-crossing detection.",
+        "Monostrategy collapse persists under sustained threat -- three seeds, three lock attractors, eval-length divergence 191/312/1413; adds sustained-threat axis to the existing behavioural-diversity gap cluster.",
+        "dacc_pe = 0 structural instrumentation gap predates 625b -- same dead-channel signature on V3-EXQ-620; informational, not load-bearing for the C3 FAIL."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_confirmed_routings": {
+    "primary_routing": "implement-substrate AMEND on scaffolded_sd054_onboarding (behavioural-diversity cluster)",
+    "evidence_direction_decision": "keep non_contributory (runner-set value correct)",
+    "sd_037_status": "unchanged -- substrate_ceiling at consumer-input-threshold layer stands; 625b is upstream of SD-037 gating layer",
+    "confirmation_method": "AskUserQuestion Step 8 interactive gate, 2026-06-02"
+  },
+  "companion_recommendation": {
+    "type": "queue-experiment redesign",
+    "description": "Redesign SD-037 axis-b Phase 1b C3 criterion. Suggested form: C3a (>=1 above->below transition per seed) AND C3b (>=1 sustained run of >=10 ticks per seed); joint PASS on >=2/3 seeds. Schedule after behavioural-diversity substrate amend lands and scaffolded_sd054_onboarding re-validates downstream diversity. NOT bundled in this autopsy session per skill scope."
+  }
+}
