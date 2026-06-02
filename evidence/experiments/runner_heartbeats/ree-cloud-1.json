@@ -1,29 +1,27 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-01T20:08:38Z",
+  "last_tick_utc": "2026-06-02T08:07:43Z",
   "state": "running",
-  "current_exq": "V3-EXQ-626a",
-  "current_exq_started_utc": "2026-06-01T16:57:19.740208+00:00",
-  "current_title": "Goal-pipeline developmental-window 4-arm dissociation -- HARNESS-FIXED (update_z_goal driven + P0 positive control)",
-  "current_claim_id": "",
+  "current_exq": "V3-EXQ-624",
+  "current_exq_started_utc": "2026-06-02T08:06:33.854936+00:00",
+  "current_title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
+  "current_claim_id": "MECH-320",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_D_WRITER_FROZEN_DURING_TRANSITION",
+    "run_label": "Seed 42 / ARM_0_baseline",
     "runs_done": 0,
     "runs_total": 12,
-    "episodes_done": 50,
-    "episodes_total": 60,
-    "overall_pct": 6.9
+    "episodes_done": 0,
+    "episodes_total": 130,
+    "overall_pct": 0.0
   },
-  "seconds_elapsed": 11479,
-  "seconds_remaining": 50631,
+  "seconds_elapsed": 70,
+  "seconds_remaining": 10200,
   "recent_lines": [
-    "[train] seed=44 arm=ARM_D_WRITER_FROZEN_DURING_TRANSITION ep 30/60 phase=P0 z_goal_peak=0.0002",
-    "[train] seed=44 arm=ARM_D_WRITER_FROZEN_DURING_TRANSITION ep 35/60 phase=P1 drive_floor=0.803 hfa=0.097 z_goal_peak=0.0000",
-    "[train] seed=44 arm=ARM_D_WRITER_FROZEN_DURING_TRANSITION ep 40/60 phase=P1 drive_floor=0.683 hfa=0.217 z_goal_peak=0.0000",
-    "[train] seed=44 arm=ARM_D_WRITER_FROZEN_DURING_TRANSITION ep 45/60 phase=P1 drive_floor=0.562 hfa=0.338 z_goal_peak=0.0000",
-    "[train] seed=44 arm=ARM_D_WRITER_FROZEN_DURING_TRANSITION ep 50/60 phase=P1 drive_floor=0.441 hfa=0.459 z_goal_peak=0.0000"
+    "V3-EXQ-624 ARC-068 / MECH-320 Niv-vs-Salamone dissociation",
+    "seeds=[42, 43, 44] p0_ep=100 p1_ep=30 steps=200 grid=8x8 hazards=1 resources=3 action_dim=5 v_t_floor=0.05",
+    "Seed 42 Condition ARM_0_baseline"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

@@ -1,53 +1,16 @@
 {
   "schema_version": "v1",
-  "runner_pid": 26616,
-  "runner_started_at": "2026-06-01T19:06:11.803828+00:00",
-  "last_updated": "2026-06-01T20:41:40.603517+00:00",
+  "runner_pid": 43007,
+  "runner_started_at": "2026-05-30T18:47:00.849244+00:00",
+  "last_updated": "2026-05-31T05:36:51.131025+00:00",
   "idle": false,
-  "current": {
-    "queue_id": "V3-EXQ-624",
-    "backlog_id": "EVB-0237",
-    "claim_id": "MECH-320",
-    "title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
-    "description": "",
-    "script": "experiments/v3_exq_624_arc068_mech320_niv_salamone_dissociation.py",
-    "started_at": "2026-06-01T19:58:19.450001+00:00",
-    "progress": {
-      "run_label": "Seed 42 / ARM_1_vigor_niv",
-      "runs_done": 1,
-      "runs_total": 12,
-      "episodes_done": 25,
-      "episodes_total": 130,
-      "overall_pct": 9.9
-    },
-    "seconds_elapsed": 2601,
-    "seconds_remaining": 22038,
-    "recent_lines": [
-      "[train] seed=42 arm=ARM_0_baseline ep 100/130 phase=p0 p1_ticks=0 p1_nonnoop=0",
-      "[train] seed=42 arm=ARM_0_baseline ep 125/130 phase=p1 p1_ticks=2905 p1_nonnoop=2813",
-      "verdict: PASS",
-      "Seed 42 Condition ARM_1_vigor_niv",
-      "[train] seed=42 arm=ARM_1_vigor_niv ep 25/130 phase=p0 p1_ticks=0 p1_nonnoop=0"
-    ],
-    "ree_version": "v3"
-  },
+  "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-610c",
-      "backlog_id": "EVB-0270",
-      "claim_id": "",
-      "title": "INV-074 crystallization necessity test -- post-Phase-3-enrichment retest (supersedes V3-EXQ-610b)",
-      "description": "",
-      "estimated_minutes": 2000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-626a",
+      "queue_id": "V3-EXQ-483e",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "Goal-pipeline developmental-window 4-arm dissociation -- HARNESS-FIXED (update_z_goal driven + P0 positive control)",
+      "claim_id": "SD-037",
+      "title": "SD-037 consumer-cascade behavioural validation (PFC/BLA/CeA/beta-gate consumers + SalienceCoordinator enable + PAG-engaging env reuse; supersedes 483d substrate-ceiling FAIL)",
       "description": "",
       "estimated_minutes": 96.0,
       "status": "claimed",
@@ -55,13 +18,24 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-624",
-      "backlog_id": "EVB-0237",
-      "claim_id": "MECH-320",
-      "title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
+      "queue_id": "V3-EXQ-614a",
+      "backlog_id": "",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 GAP-B Phase P3 behavioural falsifier B_only/ablate_B/ALL_ON (re-queue of 614 post manifest-pipeline silent-drop fix)",
       "description": "",
-      "estimated_minutes": 81.5,
-      "status": "running",
+      "estimated_minutes": 108.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-569e",
+      "backlog_id": "",
+      "claim_id": "ARC-065",
+      "title": "SD-056 mechanism probe (Pathway A vs Pathway B dissociation; parallel diagnostic to 569c/569d)",
+      "description": "",
+      "estimated_minutes": 266.7,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -8250,48 +8224,6 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_569d_sd056_action_contrastive_diversity_falsifier_floor_recal_20260531T053648Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 38989.5
-    },
-    {
-      "queue_id": "V3-EXQ-614b",
-      "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "MECH-341 P3 behavioural falsifier 3-arm on SD-056-amended substrate (supersedes V3-EXQ-614a; B_only / ablate_B / ALL_ON)",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "verdict: PASS | outcome: FAIL completed=9/9 C1=False C2=False C3=True label=FAIL_no_criterion_routes_to_diagnose_errors | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-614b -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-614b.json",
-      "started_at": "2026-05-31T12:46:42.174103+00:00",
-      "completed_at": "2026-05-31T18:20:42.327643+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended_20260531T182040Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 20040.1
-    },
-    {
-      "queue_id": "V3-EXQ-614c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-341 amend stratified_within_class_temperature 4-arm sweep on SD-056-amended baseline",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "verdict: PASS | outcome: FAIL completed=12/12 C1_legacy_regression_band=False C2_within_class_lift=False C3_substrate_readiness=True label=FAIL_C1_regression_against_614b_routes_to_amend_autopsy | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-614c -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-614c.json",
-      "started_at": "2026-06-01T07:02:33.754645+00:00",
-      "completed_at": "2026-06-01T12:45:10.737866+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_614c_mech341_stratified_within_class_temperature_sweep_20260601T124509Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 20556.9
-    },
-    {
-      "queue_id": "V3-EXQ-592f",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "MECH-090 commitment-state transition authority probe",
-      "description": "",
-      "result": "FAIL",
-      "result_summary": "sentinel exit_reason=fail",
-      "started_at": "2026-06-01T19:43:20.901901+00:00",
-      "completed_at": "2026-06-01T19:43:26.170478+00:00",
-      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3.json",
-      "completed_by": "DLAPTOP-4.local",
-      "actual_secs": 5.3
     }
   ]
 }
