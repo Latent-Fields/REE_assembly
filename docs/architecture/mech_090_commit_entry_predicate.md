@@ -289,6 +289,31 @@ let the EMA sit at its initial value, preserving the fail-open default.
   `mech090_readiness_outcome` key reading in `agent.sense()` so the substrate advances
   readiness automatically without harness involvement.
 
+  **Phase-2 env-source follow-on -- DONE 2026-06-02.** The Phase-2 follow-on above
+  is implemented. Crucially the Phase-1 `notify_outcome` seam was never actually
+  exercised by any caller (`committed_mode_curriculum` computes `nav_competence`
+  but does not push it; grep-verified zero callers repo-wide), so the across-tick
+  axis sat fail-open (readiness pinned at the initial `1.0`) in every ecological
+  run -- which is why `V3-EXQ-063a` deliberately left it OFF. The follow-on adds
+  the automatic source:
+  - **Env source:** `CausalGridWorldV2.mech090_readiness_outcome_enabled` (env-only
+    kwarg, default `False`, NOT in `from_dims`). When `True`, `step()` emits
+    `info["mech090_readiness_outcome"] = clip(1 - mean(limb_damage), 0, 1)` -- a
+    `[0,1]` motor-program-readiness scalar that degrades with SD-022 limb damage
+    (Cisek-Kalaska affordance-preparation: can the prepared motor program be
+    executed) and recovers as damage heals. Absent-when-disabled (bit-identical OFF).
+  - **Agent sink:** `REEAgent.sense(mech090_readiness_outcome: Optional[float] = None)`
+    forwards the env value into `commit_readiness.update(outcome_signal=...,
+    simulation_mode=hypothesis_tag)`. No-op when `commit_readiness is None` or the
+    value is `None`. The `CommitReadiness` module is unchanged (its `update()`
+    None-sentinel + simulation_mode gate already supported this).
+  The across-tick axis is now exercisable ecologically for the first time. The
+  Phase-1 `notify_outcome` seam remains for controlled-probe pushes (592b ARM_4).
+  Validation: V3-EXQ-628 (ecological ARC-029 successor to 063a). Contract:
+  `ree-v3/tests/contracts/test_mech090_readiness_outcome_wiring.py`. Substrate
+  implementation log: `ree-v3/CLAUDE.md` "MECH-090 R-c continuation Phase-2
+  follow-on" section.
+
 ### Composition with the score_margin gate
 
 ```

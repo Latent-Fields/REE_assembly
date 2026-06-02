@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-06-02T16:34:50Z",
+  "last_updated_utc": "2026-06-02T18:02:20Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -255,6 +255,18 @@
       ],
       "candidate_stale": [],
       "audit_note": "Additive / no-op-default landing: a new release pathway gated default-OFF. MECH-090 dependent evidence (EXQ-049e PASS; V3-EXQ-592d admission-axis 4-arm validator) is on the ADMISSION axis, which MECH-342 does not touch (it is the release-side complement). All MECH-090 experimental scoring entries KEEP (no stale-substrate re-tag). The V3-EXQ-592f manifest pending_retest_after_substrate flag is governed by the MECH-342 substrate_queue entry / V3-EXQ-592g, not by this staleness audit."
+    },
+    {
+      "substrate": "MECH-090 R-c continuation Phase-2 env-source (nav_competence automatic source)",
+      "landed_utc": "2026-06-02T18:02:20Z",
+      "description": "Wired the named Phase-2 follow-on for the MECH-090 R-c across-tick nav_competence axis: CausalGridWorldV2.mech090_readiness_outcome_enabled (env-only kwarg, default False) emits info['mech090_readiness_outcome']=clip(1-mean(limb_damage),0,1); REEAgent.sense(mech090_readiness_outcome=...) forwards it into commit_readiness.update(). The 2026-05-29 pass wired the consumer + notify_outcome seam but no caller ever pushed, so the axis was fail-open inert in ecological runs. CommitReadiness module unchanged. 719/719 contracts + 7/7 preflight; default-OFF bit-identical.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-090",
+        "ARC-029"
+      ],
+      "candidate_stale": [],
+      "audit_note": "ADDITIVE / no-op-default. The across-tick nav_competence axis was never exercised by any prior experiment (no notify_outcome caller existed), so it produced no evidence and made none stale. No PASSED run measured this axis. KEEP all MECH-090 / ARC-029 evidence. Validation is the new V3-EXQ-628 (ecological ARC-029 successor to 063a), not a re-scoring of existing evidence."
     }
   ]
 }

@@ -5048,6 +5048,30 @@
     contaminating the other.
     Design doc: REE_assembly/docs/architecture/mech_090_commit_entry_predicate.md
     (R-c continuation section appended 2026-05-29).
+
+    R-c CONTINUATION PHASE-2 ENV-SOURCE FOLLOW-ON IMPLEMENTED 2026-06-02
+    (additive wiring; NO flag/confidence/status change to MECH-090). The
+    2026-05-29 pass wired the nav_competence CONSUMER (is_above_floor AND-composed
+    at both elevate sites) + the notify_outcome seam but left no automatic SOURCE,
+    and grep-verified zero notify_outcome callers existed repo-wide -- so in any
+    ecological run the readiness EMA sat pinned at its fail-open initial 1.0 and
+    the across-tick axis added no signal (precisely why V3-EXQ-063a left it OFF).
+    This pass wires the named Phase-2 follow-on: CausalGridWorldV2 gains an
+    env-only kwarg mech090_readiness_outcome_enabled (default False) emitting
+    info["mech090_readiness_outcome"]=clip(1-mean(limb_damage),0,1) (a Cisek-Kalaska
+    affordance-preparation / motor-program-readiness scalar that degrades with
+    SD-022 limb damage and recovers on heal); REEAgent.sense() gains a
+    mech090_readiness_outcome param that forwards it into commit_readiness.update().
+    Default-OFF / bit-identical (719/719 contracts + 7/7 preflight; env key
+    absent-when-disabled; commit_readiness None when master flags off). The
+    CommitReadiness module is UNCHANGED. The across-tick axis is now exercisable
+    ecologically for the first time. Validation: V3-EXQ-628 (ecological ARC-029
+    successor to 063a; 592b ARM_2 GATED_NAV_COMP_ON + ARM_3 GATED_BOTH_ON arms
+    ecologically -- suppress-on-degrade / admit-on-recover). Contract:
+    ree-v3/tests/contracts/test_mech090_readiness_outcome_wiring.py. Substrate log:
+    ree-v3/CLAUDE.md "MECH-090 R-c continuation Phase-2 follow-on" section.
+    This is additive (no PASSED experiment measured the across-tick axis before --
+    it was inert), so no prior MECH-090/ARC-029 evidence is made stale.
   literature_evidence: |
     Jenkinson & Brown (2011) PMID 22018805 [DOI: 10.1016/j.tins.2011.09.003]:
     "Beta oscillations provide a measure of the likelihood that a new voluntary action
