@@ -13,8 +13,8 @@
    "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
   }
  },
- "last_seen_session": "implement-substrate-scaffolded-sd054-zgoal-wiring-20260602T062215Z",
- "last_updated_utc": "2026-06-02T06:30:00Z",
+ "last_seen_session": "implement-substrate-mech342-maintenance-release-20260602T155225Z",
+ "last_updated_utc": "2026-06-02T16:15:43Z",
  "next_implement_substrate": {
   "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
   "sd_id": null,
@@ -3639,6 +3639,29 @@
     "INV-074",
     "MECH-333",
     "MECH-334"
+   ]
+  },
+  {
+   "added_by": "implement-substrate-mech342-maintenance-release-20260602T155225Z",
+   "added_utc": "2026-06-02T16:15:43Z",
+   "amend_pending": false,
+   "autopsy_refs": [
+    "evidence/planning/failure_autopsy_V3-EXQ-592f_2026-06-02.md",
+    "evidence/planning/mech090_release_path_audit_2026-06-02.md",
+    "evidence/literature/targeted_review_mech_090_release_motor_cessation/SYNTHESIS.md"
+   ],
+   "current_blocker": "V3-EXQ-592g maintenance-release validation probe not yet run (substrate landed; behavioural confirmation pending).",
+   "depends_on_unresolved": [],
+   "design_doc": "docs/architecture/mech_342_commit_maintenance_release.md",
+   "implementation_hint": "NEW substrate (NOT on the MECH-090 entry, which the audit + AMEND aab1e61d96 recorded as admission-only by design). Routed by the MECH-090 release-path audit (B1 ruled out: none of ARC-028/MECH-105 completion, MECH-091 urgency, V_s commit-release, SD-034 closure covers degraded-readiness mid-commitment) + motor-cessation lit-pull verdict B3b. Autopsy option (a) resurfacing, reframed graded-online (Resulaj bounded accumulation + Cavanagh conflict-graded STN) + targeted/hysteretic with reengagement (Falasconi movement-specific vs Wessel non-selective).",
+   "implementation_log": "LANDED 2026-06-02 via /implement-substrate. ree-v3/ree_core/policy/commit_maintenance_release.py (CommitMaintenanceRelease + Config); release branch in REEAgent.select_action after the MECH-091 urgency block; REEConfig.from_dims knobs all default no-op (use_maintenance_release=False bit-identical). 685/685 prior contracts + 15 new MECH-342 contracts PASS. claims.yaml MECH-342 registered candidate/v3_pending (no MECH-090 flag change). Validation: V3-EXQ-592g (592f-style maintenance-release probe) queued via /queue-experiment. The V3-EXQ-592f manifest pending_retest_after_substrate stays TRUE until 592g validates. Does NOT reopen the MECH-090 admission axis (V3-EXQ-592d live).",
+   "priority": 5,
+   "ready": true,
+   "sd_id": "MECH-342",
+   "status": "substrate_landed_validation_v3_exq_592g_queued",
+   "title": "Maintenance-time readiness-driven commitment-release coupling (B3b). Release-side complement to the MECH-090 admission-only R-c conjunction: degraded execution readiness (score_margin + nav_competence) drives a graded bounded-accumulation RELEASE of an already-elevated beta latch.",
+   "unblocks_claims": [
+    "MECH-342"
    ]
   }
  ],

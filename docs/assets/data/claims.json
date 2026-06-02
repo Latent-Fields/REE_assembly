@@ -3435,6 +3435,12 @@
     "title": "e3_scoring_preserves_trajectory_class_diversity. E3 score aggregation over CEM-supplied candidates must preserve trajectory-class diversity rather than collapse a diverse candidate pool onto a single deterministic ranking. Without explicit diversity preservation at the scoring step, downstream action selection becomes deterministic regardless of proposal-layer diversity (ARC-065 SP-CEM child), making the whole distributed diversity pathway rate-limited by Layer B. Mechanism options (not yet committed): (1) entropy bonus over candidate first-action classes added to E3 score; (2) class- stratified argmax with within-class proportional sampling; (3) jittered tie-breaking when top-K E3 scores are within epsilon. Final design pending diagnostic data on whether E3 collapse is near-tie or large-gap (see behavioral_diversity_isolation_plan.md Phase P2).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-342": {
+    "status": "candidate",
+    "subject": "control_plane.commit_maintenance_release",
+    "title": "control_plane.commit_maintenance_release. The R-c readiness signals that gate commitment ENTRY (MECH-090: score_margin decisiveness + nav_competence) must ALSO be able to RELEASE an already-elevated beta latch when execution readiness degrades mid-commitment. The release is a graded, bounded-accumulation drift-to-a-release-bound (conflict-scaled by the deficit magnitude), NOT a one-shot threshold flag; targeted to the active committed motor program (not a global brake); and hysteretic with a reengagement path that guards the premature-abort pole. This closes the V3-EXQ-592f reach gap (the MECH-090 R-c conjunction is admission-only by design; no existing release pathway covers degraded-readiness-mid- commitment).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",

@@ -35539,6 +35539,81 @@
        collapse to single value rank is pathological."
   location: evidence/planning/behavioral_diversity_isolation_plan.md
 
+- id: MECH-342
+  title: "control_plane.commit_maintenance_release. The R-c readiness signals
+    that gate commitment ENTRY (MECH-090: score_margin decisiveness +
+    nav_competence) must ALSO be able to RELEASE an already-elevated beta
+    latch when execution readiness degrades mid-commitment. The release is a
+    graded, bounded-accumulation drift-to-a-release-bound (conflict-scaled by
+    the deficit magnitude), NOT a one-shot threshold flag; targeted to the
+    active committed motor program (not a global brake); and hysteretic with a
+    reengagement path that guards the premature-abort pole. This closes the
+    V3-EXQ-592f reach gap (the MECH-090 R-c conjunction is admission-only by
+    design; no existing release pathway covers degraded-readiness-mid-
+    commitment)."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.commit_maintenance_release
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-06-02"
+  depends_on:
+    - MECH-090   # commit-entry R-c admission conjunction (beta latch + CommitReadiness signal)
+  notes: >
+    Registered 2026-06-02 as the B3b substrate concluded by the MECH-090
+    release-path audit (evidence/planning/mech090_release_path_audit_2026-06-02.md;
+    B1 ruled out -- none of ARC-028/MECH-105 hippocampal-completion, MECH-091
+    urgency-interrupt, V_s commit-release MECH-269/284/287, or SD-034 closure
+    covers degraded-readiness mid-commitment) and the motor-program-cessation
+    lit-pull (evidence/literature/targeted_review_mech_090_release_motor_cessation/
+    SYNTHESIS.md; verdict B3b). This is autopsy option (a) resurfacing, but the
+    biology (Resulaj 2009 changes-of-mind bounded accumulation; Cavanagh/Frank
+    2011 conflict-graded STN dynamic threshold; Falasconi/Arber 2025 BG-output
+    movement-specific suppression; Wessel 2022 non-selective stop-signal as the
+    WRONG model) adds two binding constraints the naive option-(a) sketch
+    lacked: (1) graded/online, not a Schmitt flag; (2) targeted + hysteretic
+    with reengagement. Distinct from MECH-090 admission (entry-only, AND-
+    composed; MECH-342 is maintenance, OR-composed -- the De Morgan dual),
+    MECH-091 (threat axis; MECH-342 fires with z_harm_a BELOW threshold),
+    ARC-028 completion (options GOOD; MECH-342 fires when completion_signal is
+    LOW), MECH-269b/V_s (schema staleness; MECH-342 fires with a STABLE schema),
+    MECH-340 (goal-level ghost-goal bank timescale; MECH-342 is the active beta
+    latch at motor-program timescale). Does NOT reopen the MECH-090 admission
+    axis (V3-EXQ-592d 4-arm validator remains live). lit_conf 0.69 is a parallel
+    signal (lit/exp decoupled); it does not weight MECH-090 or MECH-342
+    experimental confidence.
+  implementation_note: >
+    Substrate landed 2026-06-02 via /implement-substrate. Module:
+    ree-v3/ree_core/policy/commit_maintenance_release.py (CommitMaintenanceRelease
+    + CommitMaintenanceReleaseConfig). Pure-arithmetic regulator (no nn.Module,
+    no learned params); sibling to commit_readiness.py (the admission-side R-c
+    signal). Per maintenance tick (only while beta is elevated):
+    deficit_d = clip((score_margin_floor - score_margin)/score_margin_floor, 0, 1);
+    deficit_n = clip((nav_floor - nav_competence)/nav_floor, 0, 1);
+    combined = max(deficit_d, deficit_n);
+    if combined>0 pressure += accumulation_rate*combined (drift-to-bound);
+    elif both axes recovered above their reengage levels pressure -= leak_rate
+    (reengagement); else hold (dead-band); fire when pressure >= release_bound.
+    On fire: beta_gate.release() + reset _committed_step_idx + clear
+    _committed_anchor_keys + clear e3._committed_trajectory. Release branch in
+    REEAgent.select_action after the MECH-091 urgency block (template mirrored);
+    reads decisiveness from e3.last_scores and nav from
+    commit_readiness.get_readiness(). Config (REEConfig.from_dims, all default
+    no-op): use_maintenance_release (False, bit-identical OFF) +
+    maintenance_release_score_margin_floor (0.05) / _score_margin_reengage (0.10)
+    / _nav_floor (0.3) / _nav_reengage (0.5) / _accumulation_rate (0.2) /
+    _leak_rate (0.1) / _bound (1.0) / _pressure_cap (1.5). MECH-094:
+    tick(simulation_mode=True) is a no-op. 685/685 prior contracts + 15 new
+    MECH-342 contracts (tests/contracts/test_mech_342_commit_maintenance_release.py)
+    PASS; bit-identical OFF verified (agent.maintenance_release is None). NO
+    flag/confidence/promotion change to MECH-090 (admission axis intact). Status
+    stays candidate / v3_pending pending V3-EXQ-592g maintenance-release
+    validation probe; the V3-EXQ-592f manifest's pending_retest_after_substrate
+    stays TRUE until 592g validates the maintenance-time release.
+  location: docs/architecture/mech_342_commit_maintenance_release.md
+
 - id: Q-054
   title: "What is the minimum trajectory-class diversity floor (Rung 1
     first_action_entropy threshold) required for the ARC-062 context
