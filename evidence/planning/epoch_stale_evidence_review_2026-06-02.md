@@ -213,3 +213,49 @@ the manifests; live scoring refreshes on the next `/governance` index rebuild.
 
 **Still open (not applied):** confirm `483c` superseded by `483e`; optional backfill of the B.3
 "asserts-but-missing" autopsy manifests (scoring-neutral); SD-012 fan-out + KEEP rows untouched.
+
+---
+
+## REVALIDATION STATUS (2026-06-02) — read before re-queuing anything for ARC-029 / SD-049
+
+The two REVALIDATE candidates above were dispositioned the same day. **Do not re-queue either —
+both are already in flight:**
+
+### ARC-029 → V3-EXQ-063a QUEUED (ree-v3 main, commit 1e7fdc9)
+
+`experiments/v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate.py` (supersedes V3-EXQ-063).
+Re-runs the identical 063 2×2 gate×environment committed-mode harm-outcomes design with
+`config.heartbeat.use_commit_readiness_gate=True` so commit ENTRY is governed by the MECH-090 R-c
+commit-entry predicate that landed 2026-05-28 (the staleness cause). Within-tick decisiveness axis
+only (floor 0.05; wiring verified: margin<0.05 blocks / ≥0.05 admits / gate-OFF admits
+unconditionally). Across-tick nav_competence axis intentionally OFF — it needs a per-tick harness
+`notify_outcome` push this eval design does not emit, so it would sit fail-open and add no signal.
+
+**Result-interpretation routing (for /governance + /failure-autopsy when 063a completes):**
+- **PASS** (C1–C5) → ARC-029 supports; replaces the de-weighted 063 evidence on the current substrate.
+- **C3 FAIL** (`n_committed_active_stable ≤ n_uncommitted`) is the load-bearing branch and is **NOT
+  noise**: it means the R-c readiness gate now *suppresses commitment* in this environment — a
+  substantively different ARC-029 verdict than the original 063 PASS (the gate that was supposed to
+  help committed-mode no longer fires). Route to **/failure-autopsy**, not /diagnose-errors: the
+  question is whether the commit-entry predicate's `commit_readiness_floor=0.05` is mis-calibrated
+  for this env's score-margin distribution, or whether committed-mode is genuinely no longer entered
+  under R-c gating. Do not silently re-tune the floor — that is a substrate decision.
+- **C1/C2 FAIL with C3 PASS** → committed-mode is entered under the R-c gate but no longer produces
+  the harm advantage / volatility narrowing → ARC-029 weakens on the current substrate (governance
+  demotion candidate).
+
+### SD-049 → ALREADY COVERED by queued V3-EXQ-514l — DO NOT queue a separate 514m
+
+`V3-EXQ-514l` (already in `ree-v3/experiment_queue.json`, status=claimed; supersedes 514k) IS the
+SD-049 Phase-3 revalidation: it runs `use_sd049_per_axis_consumer_cascade=True` (the exact Phase-3
+substrate that landed 2026-05-31 and de-weighted 514b/514j), tags SD-049, and tests the wanting≠liking
+dissociation (C6) + goal_resource_r lift (C4/C5) — SD-049's load-bearing acceptance criteria. When it
+runs it re-establishes SD-049 evidence on the current substrate automatically. Its title foregrounds
+MECH-229, but its `claim_ids` include SD-049 and its acceptance grid IS the SD-049 behavioural test.
+Queueing a separate SD-049 EXQ would duplicate it and contaminate both runs' evidence records.
+
+### MECH-307 (v3_exq_539) — no separate revalidation queued
+
+The 539 MARK de-weighted MECH-307's pre-split-channel commit-gating run; the live MECH-307 evidence is
+already the post-recalibration 540g lineage (ree-v3/CLAUDE.md "MECH-307 Default-Value Recalibration").
+No new EXQ needed — the de-weight simply stops the stale 539 entry from weighting; 540g carries MECH-307.
