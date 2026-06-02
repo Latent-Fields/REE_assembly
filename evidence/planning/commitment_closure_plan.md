@@ -51,11 +51,12 @@ closure_plan:
       phase: 2
       status: in-progress
       severity: high
-      owner_exq: V3-EXQ-592d
-      unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-090]
+      owner_exq: V3-EXQ-592g
+      unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-090, MECH-342]
       depends_on: ["commitment_closure:GAP-2"]
       cross_plan_link: ["sd033_governance:CHK-EXP_PROPOSALS"]
-      last_updated: 2026-06-01
+      last_updated: 2026-06-02
+      governance_2026_06_02: "SUBSTRATE SIDE OF GAP-4 RESOLVED via the V3-EXQ-592d->592e->592f->592g chain (disposition LANDED REE_assembly master 01144f9bf6, 2026-06-02T17:57Z). Chain: (1) 592e (C1-baseline fix attempt, force-uncommitted P2 entry) FAILed does_not_support 2026-06-01T18:09Z. (2) 592f (controlled state-machine probe, supersedes 592e; forced score_margin=0.01 < floor 0.05 + nav_readiness=0.0 < floor 0.3 while beta forced elevated + E3 committed pointer forced present) produced ZERO state-occupancy suppression and ZERO decommit transitions -- tag FAIL_NO_RELEASE_AUTHORITY. Combined with the B3b release-path audit (all 4 candidate release pathways = NO; commits e00c8e0f96 + b20ea959b8), this surfaced the real finding: MECH-090 governs commit ENTRY soundly but carries NO release/decommit authority -- that capability was simply absent from the substrate. (3) The gap spawned MECH-342 (maintenance-time release substrate). (4) 592g (MECH-342 maintenance-release validation probe) PASSED all six criteria 2026-06-02T16:35Z: with MECH-342 ENABLED, degraded execution readiness under elevated beta now yields >=1 decommit transition per fail stage (the quantity 592f measured as zero), suppression 0.4-0.6, mech342_fires 1/stage, C4 conjunction strictly-positive 0.6 (592f passed C4 only vacuously at 0), no false abort in A/E. Governance outcome: MECH-090 unchanged (active); its pending_retest_after_substrate cleared (reach gap closed) -- the release capability now lives on MECH-342. MECH-342 registered candidate/v3_pending (592g is a diagnostic state-machine probe, NOT ecological evidence; the V3-pending gate forbids promotion). 592f re-tagged does_not_support -> non_contributory (epistemic_category substrate_ceiling). substrate_queue MECH-342 -> implemented_validated_v3_exq_592g. REMAINING GAP-4 WORK (status stays in-progress): (a) MECH-342 ecological/behavioural evidence to clear v3_pending -- V3-EXQ-631 maintenance-release follow-on queued by the concurrent next-wave session (IGW coordination); (b) the Phase 4/5 OCD behavioural *b cohort (460b, 461 full, 463b, 464b, 466b, 467b, 468b) is STILL UNQUEUED -- next action is /queue-experiment for that cohort on env extensions (GAP-3) + committed_mode_curriculum (GAP-11), both already done. GAP-4 closes when the *b cohort PASSes."
       resume_condition: "MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes (2026-05-28 within-tick score_margin axis + 2026-05-29 across-tick CommitReadiness EMA / nav_competence axis; 523/523 contracts PASS masters OFF). V3-EXQ-592d (4-arm expansion, FIRST-EVER nav_competence axis validation) FAIL_no_criterion 2026-05-31T21:38Z DIAGNOSED 2026-06-01T05:57Z as measurement defect, NOT substrate falsification (failure_autopsy_V3-EXQ-592d_2026-06-01.{md,json} status=confirmed; REE_assembly master 48ca5684be). Diagnosis: C1 baseline criterion (commit_rate > 0.001) is structurally unmeetable under ARM_0 rv-only entry semantic -- P0 trained running_variance to ~1e-5/1e-6 << commit_threshold=0.4, agent enters P2 already committed, hold_rate=1.0, zero transition-edge entries during measurement window. C2/C3/C4 inherit the defect via cross-arm comparison against ARM_0. Substrate IS firing as predicted: ARM_1 2005 score-margin blocks confirm within-tick decisiveness axis (Hanes & Schall 1996 reading); ARM_2/3 150 nav-competence blocks each confirm across-tick motor-program readiness axis (Cisek & Kalaska 2010 + Roesch / Calu / Schoenbaum 2007 readings); ARM_3 1949 score + 150 nav blocks confirm AND-composition at both elevate sites. The 2026-05-21 V3-EXQ-592 seed-42 rv-only degeneracy signature reproduced on ARM_0 all 3 seeds (positive substrate-side evidence that R-c was correctly designed to gate this basin). R-c substrate sound; only the test needs redesign. /governance cycle 2026-06-01T06:07Z applied autopsy verbatim: 592d reclassified non_contributory on flat + runs manifests; MECH-090 evidence_quality_note appended; pending_retest_after_substrate=false; substrate_queue action=none. Next action: /queue-experiment for V3-EXQ-592e fixing C1 baseline via force-uncommitted P2 entry OR hold-rate-based baseline predicate (success criterion: ARM_0 baseline commit_rate measurably > 0.001 so cross-arm comparison is interpretable). Process flag retained: script's interpretation-grid C1 FAIL -> /diagnose-errors routing is wrong for this manifestation; the curriculum harness is working as designed. Cross-link IGW-20260531-021."
       governance_2026_06_01: "V3-EXQ-592d disposition LANDED via failure_autopsy artifact (2026-06-01T05:57Z) + /governance cycle 0607Z (2026-06-01T06:17Z): measurement defect on C1 baseline, NOT substrate falsification. Substrate sound. 592d reclassified non_contributory on flat + runs manifests; MECH-090 claims.yaml evidence_quality_note appended; pending_retest_after_substrate=false; substrate_queue action=none. GAP-4 status remains in-progress pending V3-EXQ-592e successor (routed to /queue-experiment). Case 3 in closure-drift terms: node now suppressed via manifest_evidence_direction=non_contributory rule (alongside case_3_self_tag pathway). owner_exq stays V3-EXQ-592d in the field until 592e is queued; once queued, update owner_exq to V3-EXQ-592e and last_updated."
       completion_note: "Phase 2 DONE 2026-05-21 reconcile: V3-EXQ-460..468 scripts in ree-v3/experiments/; substrate-readiness PASS on all nine (460/466 x2, 461 reviewed 2026-05-12, 462/465 executed 2026-04-21, 463/464/467/468 authored+PASS 2026-04-21). Queue slots consumed post-run (not re-queued). 2026-05-21 V3-EXQ-592 surfaced rv-only commit-entry pathology (seed 42 rv=2.7e-5 with nav_competence=0.0). 2026-05-28 lit-pull synthesis (REE_assembly/evidence/literature/targeted_review_connectome_mech_090/synthesis.md commit 9e68c5ca8a) dispositioned R-a NOT defensible / R-b conservative / R-c strongest. 2026-05-28 implement-substrate landed the within-tick decisiveness axis of R-c (per-candidate score_margin gate at BetaGate.should_admit_elevation; floor 0.05). 2026-05-29 implement-substrate landed the across-tick motor-program readiness axis of R-c (CommitReadiness EMA module + nav_competence harness-push seam + conjunction AND-composed with score_margin gate at both elevate sites; floor 0.3). Both axes are R-c readings; both can be enabled/disabled independently. 2026-05-29 V3-EXQ-592b (2-arm, score_margin-axis-only) FAILed DLAPTOP-4 (manifest silent-drop pre-runner-pipeline-fix 41c3411). 2026-05-30 V3-EXQ-592c (2-arm, score_margin-axis-only re-run post-fix) FAILed ree-cloud-3. 2026-05-31 V3-EXQ-592d queued (expanded to 4-arm, FIRST-EVER nav_competence axis validation; supersedes 592c). Phase 4/5 behavioural arms still blocked on V3-EXQ-592d PASS."
@@ -156,7 +157,12 @@ condition.
 > operator have all landed. The Go-side bias pathway is still untrained
 > (GAP-1). CausalGridWorldV2 env extensions and the committed-mode curriculum
 > harness are landed (GAP-3, GAP-11). The OCD substrate-readiness battery
-> (V3-EXQ-460..468) is complete; behavioural re-runs wait on V3-EXQ-592.
+> (V3-EXQ-460..468) is complete. The MECH-090 commit-entry conjunction
+> validation chain (V3-EXQ-592d->g) resolved 2026-06-02: it surfaced that
+> MECH-090 governs commit *entry* but had no *release* authority -- now
+> supplied by the new MECH-342 maintenance-release substrate (validated by
+> V3-EXQ-592g, candidate/v3_pending). The Phase 4/5 OCD behavioural *b cohort
+> is the remaining GAP-4 work and is still unqueued.
 
 The control-plane substrate matured fast between 2026-04-10 and 2026-04-21:
 MECH-090 bistable BetaGate (2026-04-10), MECH-260 FIFO action-class
@@ -231,7 +237,7 @@ Ten gaps, ordered by leverage. Each is the basis for one row of the
 | **GAP-1** | SD-033a bias head untrained: frozen-random with last Linear zeroed -> initial bias = 0; Go-side pathway is mechanically silent until a training protocol lands | load-bearing | MECH-262 rule-selective persistence; SD-034 mode-conditioning gate firing from a real rule_state; full-loop OCD-battery interpretability |
 | **GAP-2** | V3-EXQ-461 (EXP-0157 delayed-reward persistence / Hold-axis falsifier) substrate-readiness PASS reviewed; full behavioural successor remains GAP-3 env-infra work | high | OCD battery completeness; SD-033a + MECH-090 + SD-034 Hold-axis evidence |
 | **GAP-3** | CausalGridWorldV2 env extensions not built: tolerance-band completion, counter-evidence injection, dual simultaneously-active resource cue, phased rule_state training curriculum | high | SD-034 + MECH-266 + MECH-268 behavioural arms (currently smoke / sub-test only); EXP-0156/0157/0160/0162/0163/0164 full-loop runs |
-| **GAP-4** | OCD battery Phase 2 DONE (460..468 substrate-readiness PASS); Phase 4/5 behavioural arms (*b cohort) blocked on V3-EXQ-592 PASS + /queue-experiment | high | First end-to-end behavioural battery on env extensions + committed_mode_curriculum; SD-034 / MECH-266 / MECH-267 / MECH-268 promotion path |
+| **GAP-4** | OCD battery Phase 2 DONE (460..468 substrate-readiness PASS); substrate side of MECH-090 commit-entry/release RESOLVED 2026-06-02 (592d->g chain -> MECH-342 release substrate validated by 592g); Phase 4/5 behavioural arms (*b cohort) still UNQUEUED -- next action /queue-experiment | high | First end-to-end behavioural battery on env extensions + committed_mode_curriculum; SD-034 / MECH-266 / MECH-267 / MECH-268 promotion path; MECH-342 ecological evidence (V3-EXQ-631) |
 | **GAP-5** | MECH-090 V_s -> commit-release pathway substrate-readiness FAIL: V3-EXQ-481 vs_commit_release_count=0 in BOTH ON and OFF arms; release predicate never matches; anchor resets fire (63/31 per seed) but release threshold never met | medium | MECH-090 release-via-V_s pathway empirical validation; tighter coupling between hippocampal anchor invalidation (MECH-269 / MECH-284) and BG beta release |
 | **GAP-6** | MECH-260 vs SD-034 No-Go pulse boundary unclear: lit-pull 2026-04-27 recommended routing post-completion negative bias through SD-033a per-candidate bias projection rather than only via MECH-260 action-class FIFO; current implementation does both, with overlapping function | medium (V4 flag) | Cleaner mode-governance separation in V4; not urgent for V3 |
 | **GAP-7** | MECH-091 salient-event phase-reset held on SD-006 phase 2 async heartbeat (V3-EXQ-133 reclassified non_contributory 2026-04-22) | low (V4 deferred) | MECH-091 empirical validation; deferred to V4 unless SD-006 phase 2 lands earlier |
@@ -481,7 +487,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-1 | 1 | in-progress | arc_062 GAP-B retest V3-EXQ-543k (priority 5); interpret EXQ-598 only after 543k contributory PASS | V3-EXQ-598 queued (2-arm frozen vs trainable bias head; priority 4). Substrate GAP-C/D done 2026-05-17. Closes on 598 PASS. | V3-EXQ-598 | 2026-05-20 |
 | GAP-2 | 2 | done | none for substrate-readiness; behavioural successor blocked on GAP-3 | Use Phase 3 env extensions for the full behavioural delayed-reward arm | V3-EXQ-461 | 2026-05-12 |
 | GAP-3 | 3 | done | (none) | DONE 2026-05-17: env extensions primitives 1-3 IMPLEMENTED; 14/14 contract tests PASS + 434/434 regression. Deliverable 4 (phased curriculum) is GAP-11 (separate). Unblocks GAP-8. | env infra (no EXQ) | 2026-05-17 |
-| GAP-4 | 2, 4, 5 | in-progress | V3-EXQ-592b joint PASS (ARM_0 GATED + ARM_1 GATED_FORCED_READY) | MECH-090 R-c commit-entry conjunction substrate LANDED 2026-05-28. V3-EXQ-592b queued; on PASS, status -> done + queue Phase 4/5 *b cohort. | V3-EXQ-592b | 2026-05-28 |
+| GAP-4 | 2, 4, 5 | in-progress | Phase 4/5 OCD behavioural *b cohort (UNQUEUED) + MECH-342 ecological evidence (V3-EXQ-631 queued) | SUBSTRATE SIDE RESOLVED 2026-06-02 via 592d->e->f->g: 592f (FAIL_NO_RELEASE_AUTHORITY) + B3b audit showed MECH-090 has no decommit authority; MECH-342 maintenance-release substrate registered + 592g PASS (6/6 criteria) validates it (candidate/v3_pending -- probe, not ecological). MECH-090 pending_retest cleared. Next: /queue-experiment the *b cohort (460b/461/463b/464b/466b/467b/468b) on GAP-3 env + GAP-11 curriculum. | V3-EXQ-592g | 2026-06-02 |
 | GAP-5 | 6 | done | (none) | Two root causes fixed: (1) forced commitment pattern for 481b; (2) empty-snapshot re-population in agent.py. V3-EXQ-481b queued 2026-05-17; dry-run UC1/UC2/UC3 PASS. | V3-EXQ-481b | 2026-05-17 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
 | GAP-7 | 8 | deferred V4 | SD-006 phase 2 async heartbeat | none in V3 unless SD-006 phase 2 lands | n/a | 2026-05-08 |
@@ -521,13 +527,21 @@ completeness as a status concern.
 **Phase 2 acceptance (substrate battery):** met 2026-05-21 -- all nine scripts
 authored; all latest manifests `result: PASS` at substrate-readiness level.
 
-**Phase 4/5 gate:** V3-EXQ-592 (GAP-11 committed-mode curriculum pilot) queued
-priority 3, `machine_affinity: DLAPTOP-4.local`, status pending. PASS unblocks
-/queue-experiment for behavioural arms: 460b, 461 (full), 463b, 464b, 466b,
-467b, 468b (require GAP-3 env primitives + `committed_mode_curriculum.py`).
+**Phase 4/5 gate (UPDATED 2026-06-02):** The substrate prerequisite is now
+satisfied. The MECH-090 commit-entry conjunction validation chain
+(V3-EXQ-592 -> 592b -> 592c -> 592d -> 592e -> 592f -> 592g) resolved
+2026-06-02: 592f (FAIL_NO_RELEASE_AUTHORITY) + the B3b release-path audit
+surfaced that MECH-090 had no decommit authority; the new MECH-342
+maintenance-release substrate supplies it and 592g PASSed all six criteria
+validating it. The Phase 4/5 behavioural arms (460b, 461 full, 463b, 464b,
+466b, 467b, 468b -- require GAP-3 env primitives + `committed_mode_curriculum.py`,
+both DONE) are now UNBLOCKED on the substrate side and are the immediate
+next /queue-experiment action.
 
-**Full GAP-4 closure:** Phase 2 + 592 PASS + Phase 4/5 behavioural PASS on env
-extensions.
+**Full GAP-4 closure:** Phase 2 (done) + commit-entry/release substrate
+validated (done 2026-06-02 via 592g + MECH-342) + Phase 4/5 behavioural *b
+cohort PASS on env extensions (UNQUEUED) + MECH-342 ecological evidence to
+clear v3_pending (V3-EXQ-631 queued).
 
 ### Other relevant EXQs
 
@@ -538,6 +552,11 @@ extensions.
 | V3-EXQ-481 | MECH-090 V_s -> commit-release substrate-readiness | FAIL (inconclusive) | GAP-5 / Phase 6 |
 | V3-EXQ-485 / 485a | SD-033b OFC substrate readiness + oracle round-trip | PASS / queued | GAP-8 / Phase 7 |
 | V3-EXQ-456 | SD-033a substrate-landing diagnostic | (per substrate_queue) | GAP-1 / Phase 1 baseline |
+| V3-EXQ-592 / 592b / 592c / 592d | MECH-090 commit-entry conjunction (curriculum pilot -> 4-arm validation) | FAIL/superseded chain (592d non_contributory, measurement defect) | GAP-4 / Phase 2,4,5 |
+| V3-EXQ-592e | MECH-090 conjunction, C1-baseline fix attempt | FAIL does_not_support (2026-06-01) | GAP-4; superseded by 592f |
+| V3-EXQ-592f | MECH-090 commitment-state transition probe (controlled state-machine) | FAIL non_contributory (substrate_ceiling); FAIL_NO_RELEASE_AUTHORITY -> spawned MECH-342 | GAP-4 |
+| V3-EXQ-592g | MECH-342 maintenance-release validation probe | PASS supports (6/6 criteria, 2026-06-02) | GAP-4; MECH-342 candidate/v3_pending |
+| V3-EXQ-631 | MECH-342 maintenance-release ecological follow-on | queued (next-wave session) | GAP-4; clears MECH-342 v3_pending |
 
 ---
 
@@ -595,6 +614,51 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-06-02 - GAP-4: MECH-090 commit-entry/release validation chain RESOLVED; MECH-342 release substrate registered + validated (592d->g)
+
+The 4-arm conjunction validator V3-EXQ-592d FAILed 2026-05-31 and was
+diagnosed (2026-06-01) as a C1-baseline measurement defect, not substrate
+falsification. The redesign chain that followed produced a more important
+finding than the original test was after:
+
+- **592e** (C1-baseline fix, force-uncommitted P2 entry) FAILed
+  `does_not_support` 2026-06-01T18:09Z.
+- **592f** (controlled state-machine probe, supersedes 592e) forced
+  `score_margin=0.01` (< floor 0.05) and `nav_readiness=0.0` (< floor 0.3)
+  while beta was forced elevated and the E3 committed pointer forced present.
+  It produced **zero state-occupancy suppression and zero decommit
+  transitions** -- tag `FAIL_NO_RELEASE_AUTHORITY`. Together with the B3b
+  release-path audit (all four candidate release pathways = NO; commits
+  `e00c8e0f96` + `b20ea959b8`) this established that **MECH-090 governs
+  commit ENTRY soundly but carries NO release/decommit authority** -- the
+  capability was simply absent from the substrate, not mis-measured.
+- That gap spawned **MECH-342** (maintenance-time release substrate).
+- **592g** (MECH-342 maintenance-release validation probe) PASSed all six
+  criteria 2026-06-02T16:35Z: with MECH-342 enabled, degraded execution
+  readiness under elevated beta now yields >=1 decommit transition per fail
+  stage (the quantity 592f measured as zero), suppression 0.4-0.6,
+  `mech342_fires` 1/stage, C4 conjunction strictly-positive at 0.6 (592f had
+  passed C4 only vacuously at 0), no false abort in A/E.
+
+Governance disposition (REE_assembly master `01144f9bf6`, 2026-06-02T17:57Z):
+MECH-090 stays `active`, unchanged; its `pending_retest_after_substrate`
+cleared ("reach gap closed") since the release capability now lives on
+MECH-342. MECH-342 registered **candidate / v3_pending** -- 592g is a
+diagnostic state-machine probe, not ecological evidence, and the V3-pending
+gate forbids promotion. 592f re-tagged `does_not_support -> non_contributory`
+(epistemic_category `substrate_ceiling`). `substrate_queue` MECH-342 ->
+`implemented_validated_v3_exq_592g`.
+
+**Effect on GAP-4:** the commit-entry/release *substrate* side is now
+resolved. GAP-4 stays `in-progress`; the remaining work is (a) MECH-342
+ecological evidence to clear v3_pending -- V3-EXQ-631 maintenance-release
+follow-on queued by the concurrent next-wave session; (b) the Phase 4/5 OCD
+behavioural *b cohort (460b, 461 full, 463b, 464b, 466b, 467b, 468b), still
+UNQUEUED -- the immediate next /queue-experiment action, on the already-done
+GAP-3 env primitives + GAP-11 committed_mode_curriculum. owner_exq advanced
+V3-EXQ-592d -> V3-EXQ-592g; status-table, gap-inventory, one-line framing,
+and Phase 4/5 gate rows updated to match.
 
 ### 2026-05-28 - GAP-4: MECH-090 R-c commit-entry readiness conjunction substrate LANDED; V3-EXQ-592b queued (IGW-20260528-013)
 
