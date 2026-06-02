@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-02T10:18:36Z",
+  "last_tick_utc": "2026-06-02T10:33:42Z",
   "state": "running",
   "current_exq": "V3-EXQ-603e",
   "current_exq_started_utc": "2026-06-02T06:46:54.193693+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 43 / ARM_0_both_off",
     "runs_done": 1,
     "runs_total": 15,
-    "episodes_done": 150,
+    "episodes_done": 10,
     "episodes_total": 180,
-    "overall_pct": 12.2
+    "overall_pct": 7.0
   },
-  "seconds_elapsed": 12702,
-  "seconds_remaining": 14760,
+  "seconds_elapsed": 13608,
+  "seconds_remaining": 15632,
   "recent_lines": [
-    "[train] scaffold_p1 arm=ARM_0_both_off seed=42 ep 150/180 median_last=12.0 survival_gate=fail",
     "verdict: FAIL arm=ARM_0_both_off seed=42 aborted_at=scaffold_p1 reason=p1_survival_gate_failed",
     "Seed 43 Condition ARM_0_both_off",
     "[train] scaffold_p0 arm=ARM_0_both_off seed=43 ep 100/180 mean_len=200.0 rv=0.00000",
-    "[train] scaffold_p1 arm=ARM_0_both_off seed=43 ep 150/180 median_last=200.0 survival_gate=pass"
+    "[train] scaffold_p1 arm=ARM_0_both_off seed=43 ep 150/180 median_last=200.0 survival_gate=pass",
+    "[P2 eval] arm=ARM_0_both_off seed=43 ep 10/30"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
