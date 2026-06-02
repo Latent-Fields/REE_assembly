@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-02T15:35:24Z",
+  "last_tick_utc": "2026-06-02T16:05:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-603e",
   "current_exq_started_utc": "2026-06-02T06:46:54.193693+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "Q-045",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_1_mech313_only",
-    "runs_done": 5,
+    "run_label": "Seed 43 / ARM_2_mech260_only",
+    "runs_done": 7,
     "runs_total": 15,
     "episodes_done": 0,
     "episodes_total": 180,
-    "overall_pct": 33.3
+    "overall_pct": 46.7
   },
-  "seconds_elapsed": 31714,
-  "seconds_remaining": 61378,
+  "seconds_elapsed": 33524,
+  "seconds_remaining": 38236,
   "recent_lines": [
-    "[P2 eval] arm=ARM_1_mech313_only seed=43 ep 10/30",
-    "[P2 eval] arm=ARM_1_mech313_only seed=43 ep 20/30",
-    "[P2 eval] arm=ARM_1_mech313_only seed=43 ep 30/30",
-    "verdict: PASS arm=ARM_1_mech313_only seed=43",
-    "Seed 44 Condition ARM_1_mech313_only"
+    "Seed 42 Condition ARM_2_mech260_only",
+    "[train] scaffold_p0 arm=ARM_2_mech260_only seed=42 ep 100/180 mean_len=23.4 rv=0.00001",
+    "[train] scaffold_p1 arm=ARM_2_mech260_only seed=42 ep 150/180 median_last=11.5 survival_gate=fail",
+    "verdict: FAIL arm=ARM_2_mech260_only seed=42 aborted_at=scaffold_p1 reason=p1_survival_gate_failed",
+    "Seed 43 Condition ARM_2_mech260_only"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
