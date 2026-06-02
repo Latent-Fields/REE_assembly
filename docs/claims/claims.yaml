@@ -19920,6 +19920,14 @@
     appended). pending_retest_after_substrate retained. EXQ-445h remains the
     sole valid MECH-260 support; no claim falsified.
 
+    [2026-06-02 implement-substrate AMEND landed]: scaffolded_sd054_onboarding
+    update_z_goal wiring fixed (P1 _train_episode + P2 _eval_episode) + Stage-0
+    positive control added; 625b failure record folded in. Validation pending
+    V3-EXQ-603e (restored budget + z_goal_enabled=True required -- 603d config
+    omitted it). Status unchanged (substrate_ceiling / pending_retest_after_substrate);
+    substrate_queue amend_pending -> amend_implemented_pending_validation.
+    EXQ-445h remains the sole valid MECH-260 support. See Q-045.
+
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   implementation_note: >
@@ -28523,6 +28531,13 @@
     MECH-313 directional signal from the 603 chain is unchanged -- 603d adds no
     new MECH-313 read (N=1, z_goal=0).
 
+    [2026-06-02 implement-substrate AMEND landed]: scaffolded_sd054_onboarding
+    update_z_goal wiring fixed (P1 _train_episode + P2 _eval_episode) + Stage-0
+    positive control added; 625b failure record folded in. Validation pending
+    V3-EXQ-603e (restored budget + z_goal_enabled=True required -- 603d config
+    omitted it). Status unchanged (substrate_ceiling / pending_retest_after_substrate);
+    substrate_queue amend_pending -> amend_implemented_pending_validation. See Q-045.
+
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   notes: >
@@ -29223,6 +29238,21 @@
     gate; UPSTREAM of the 622 anneal-rate amend), then re-issue 603d -> 603e at
     restored budget. substrate_queue amended (action=amend, priority 1, 603d
     failure_record appended). pending_retest_after_substrate retained.
+
+    [2026-06-02 implement-substrate AMEND landed -- scaffolded_sd054_onboarding
+    update_z_goal wiring]: ScaffoldedSD054OnboardingScheduler now calls
+    agent.update_z_goal(benefit, drive) in _train_episode (P1) + _eval_episode
+    (P2), mirroring the goal_stream_stages_sd054 reference runner; P0 left
+    goal-frozen by design. Stage-0 positive-control contracts added (a z_goal=0
+    scheduler is now structurally unshippable). The V3-EXQ-625b monostrategy
+    failure record was folded into the same substrate_queue entry (plausibly
+    downstream of the same inert goal pipeline). TWO-PART FIX: the 603d FAIL
+    config also omitted z_goal_enabled=True (goal_state was None -> update_z_goal
+    early-returns); the V3-EXQ-603e validation MUST set z_goal_enabled=True +
+    drive_weight=2.0 (as the working V3-EXQ-622 does). Status unchanged
+    (substrate_ceiling / pending_retest_after_substrate retained): this is a
+    wiring fix, validation pending V3-EXQ-603e (restored P0/P1=100/50 budget).
+    substrate_queue status amend_pending -> amend_implemented_pending_validation.
 
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true

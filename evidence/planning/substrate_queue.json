@@ -13,8 +13,8 @@
    "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
   }
  },
- "last_seen_session": "governance-cycle-20260601T175646Z",
- "last_updated_utc": "2026-06-02T05:25:00Z",
+ "last_seen_session": "implement-substrate-scaffolded-sd054-zgoal-wiring-20260602T062215Z",
+ "last_updated_utc": "2026-06-02T06:30:00Z",
  "next_implement_substrate": {
   "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
   "sd_id": null,
@@ -3438,11 +3438,12 @@
   {
    "added_session": "governance-20260529T212835Z",
    "amend_hint": "ScaffoldedSD054OnboardingScheduler._train_episode (ree-v3/experiments/scaffolded_sd054_onboarding.py:551) and the eval path never call agent.update_z_goal, so GoalState.update is never reached and z_goal stays at zero-init (confirmed: zero update_z_goal matches in the module). Add agent.update_z_goal(benefit_exposure=..., drive_level=...) every step in P1 (and P0 where the frozen-goal design permits), mirroring the shared experiments/goal_stream_stages_sd054.py runner (train ~line 537 / eval ~line 590) the 622 autopsy confirmed feeds z_goal. Add a Stage-0-style contract/positive-control assertion: forced benefit+drive inputs must produce non-zero direction-stable z_goal under the scheduler so a z_goal=0 scheduler is structurally unshippable. This hook fix is strictly UPSTREAM of the 622 anneal-rate amend (which assumed update_z_goal was being called); re-evaluate the anneal-rate amend priority after the hook lands and z_goal forms.",
-   "amend_pending": true,
+   "amend_pending": false,
    "autopsy_refs": [
     "evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md",
     "evidence/planning/failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29.md",
-    "evidence/planning/failure_autopsy_V3-EXQ-603d_2026-06-01.md"
+    "evidence/planning/failure_autopsy_V3-EXQ-603d_2026-06-01.md",
+    "evidence/planning/failure_autopsy_V3-EXQ-625b_2026-06-02.md"
    ],
    "depends_on_unresolved": [
     "SD-054 [implemented 2026-05-04; bipartite-extension 2026-05-11; substrate-readiness V3-EXQ-521/522 PASS]",
@@ -3486,6 +3487,12 @@
      "metric": "z_goal_norm_peak_ARM_3_max=0.0 (C4 fail) -- scheduler never calls update_z_goal (harness/wiring artifact, 626-class); AND P1 survival gate failed 2/3 seeds (42,44), p2_cell_count 5/15, effective N=1 (confounded by P0/P1=30/30 budget + inert goal pipeline).",
      "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
      "target": "After update_z_goal wired into scheduler: z_goal_norm_peak > 0.4 on >=2/3 seeds in P2, AND P1 survival gate passed on >=2/3 seeds at restored budget, so Q-045 C2/FP2 discrimination becomes testable at N>=2."
+    },
+    {
+     "experiment_type": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
+     "metric": "C3 sustained-window 1/3 FAIL via monostrategy collapse: three seeds -> three monomorphic action attractors (seed 42 action 3 only, seed 7 action 0 only for 1409/1413 steps, seed 19 action 0 dominant). z_harm_a structurally locked below 0.4 in seeds 42/19 and continuously above 0.4 in seed 7. Eval-length divergence 191/312/1413 confirms policy-attractor collapse, not stochastic variation. Env curriculum proven sufficient at affective-stream layer (seed 7); behavioural-diversity layer is the load-bearing gap.",
+     "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
+     "target": "Behavioural-diversity substrate must deliver dynamic action sequences under sustained-threat env config so PAG duration integrator sees genuine z_harm_a crossings (>=1 below->above AND >=1 above->below transition per seed) rather than monomorphic action lock at a single threat-level attractor."
     }
    ],
    "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
@@ -3520,6 +3527,26 @@
      "session_id": "governance-cycle-20260601T054231Z",
      "supersedes": "V3-EXQ-621 (recovered manifest from runner emit_outcome misclassification; ree-cloud-3 2026-05-31T20:23Z)",
      "utc": "2026-06-01T05:55Z"
+    },
+    {
+     "autopsy_refs": [
+      "evidence/planning/failure_autopsy_V3-EXQ-603d_2026-06-01.md",
+      "evidence/planning/failure_autopsy_V3-EXQ-625b_2026-06-02.md"
+     ],
+     "event": "amend_update_z_goal_wiring",
+     "fix": "Wired agent.update_z_goal(benefit,drive) into ScaffoldedSD054OnboardingScheduler _train_episode (P1, seed_goal=True) + _eval_episode (P2), mirroring goal_stream_stages_sd054 reference runner (train 537 / eval 590). P0 left goal-frozen (seed_goal=False) per user-confirmed P1+P2-only scope. Resolves the 603d C4 z_goal=0 harness/wiring artifact (GoalState.update was never reached) and folds the 625b monostrategy/behavioural-diversity corroborating record (plausibly downstream of the same inert goal pipeline).",
+     "ree_v3_commit": "deb24cc (ree-v3/main)",
+     "ree_v3_files": [
+      "experiments/scaffolded_sd054_onboarding.py (NEW _benefit_and_drive helper; _train_episode seed_goal kwarg -> update_z_goal in P1; _eval_episode update_z_goal in P2)",
+      "tests/contracts/test_scaffolded_sd054_onboarding.py (2 NEW Stage-0 contracts: C6 positive-control P2 z_goal>0 + C6 update_z_goal called-in-P1-not-P0)",
+      "CLAUDE.md (scaffolded_sd054_onboarding AMEND section)"
+     ],
+     "regression": "19/19 scaffolded contracts + 7/7 preflight PASS; full contract suite 665 passed (1 pre-existing unrelated FAIL: infant_curriculum_gap9 C6 stale Phase3==Phase2 from IGW-023 enrichment, flagged separately). End-to-end P0/P1/P2 activation smoke runs without crash.",
+     "session_id": "implement-substrate-scaffolded-sd054-zgoal-wiring-20260602T062215Z",
+     "stage0_positive_control": "test_c6_stage0_positive_control_p2_seeds_zgoal asserts scheduler P2 produces z_goal_norm_peak_max > 0 under forced supra-threshold benefit+drive on a z_goal_enabled agent -> a z_goal=0 scheduler is structurally unshippable. test_c6_update_z_goal_called_in_p1_not_p0 asserts 0 calls in P0, >0 in P1.",
+     "two_part_fix_note": "WIRING ALONE IS NOT SUFFICIENT. The 603d FAIL config built the agent WITHOUT z_goal_enabled=True (from_dims default False) -> agent.goal_state was None -> update_z_goal early-returns. The V3-EXQ-603e validation config MUST set z_goal_enabled=True + drive_weight=2.0 (as the working reference V3-EXQ-622 does), keeping use_mech295_liking_bridge / use_mech307_conjunction as 603d did. Confirmed empirically 2026-06-02: 603d-style from_dims (no z_goal_enabled) yields goal_state=None.",
+     "utc": "2026-06-02T06:30:00Z",
+     "validation_experiment": "V3-EXQ-603e queued via /queue-experiment (re-issue of 603d at restored budget P0/P1=100/50 + z_goal_enabled=True). Acceptance: z_goal_norm_peak > 0.4 on >=2/3 seeds in P2 AND P1 survival gate passed on >=2/3 seeds."
     }
    ],
    "last_seen_session": "governance-cycle-20260601T175646Z",
@@ -3527,7 +3554,7 @@
    "ready": true,
    "sd_id": "scaffolded_sd054_onboarding",
    "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding",
-   "status": "amend_pending",
+   "status": "amend_implemented_pending_validation",
    "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
    "unblocks_claims": [
     "Q-045",
