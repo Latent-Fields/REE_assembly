@@ -1,41 +1,63 @@
 {
   "schema_version": "v1",
-  "runner_pid": 668,
-  "runner_started_at": "2026-06-01T18:06:10.547011+00:00",
-  "last_updated": "2026-06-01T19:01:27.728956+00:00",
+  "runner_pid": 667,
+  "runner_started_at": "2026-06-02T16:35:46.093155+00:00",
+  "last_updated": "2026-06-02T16:35:47.261226+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-625b",
+      "queue_id": "V3-EXQ-610c",
+      "backlog_id": "EVB-0270",
+      "claim_id": "",
+      "title": "INV-074 crystallization necessity test -- post-Phase-3-enrichment retest (supersedes V3-EXQ-610b)",
+      "description": "",
+      "estimated_minutes": 2000.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-514l",
       "backlog_id": "",
       "claim_id": "",
-      "title": "SD-037 axis-b Phase 1b consumer-input distributions, sustained threat -- affective stream ON (supersedes V3-EXQ-625)",
+      "title": "MECH-229 identity-distinct wanting retest on SD-049 Phase 3 substrate (retry of 514k FAIL)",
       "description": "",
-      "estimated_minutes": 24.0,
+      "estimated_minutes": 52.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-603e",
+      "backlog_id": "",
+      "claim_id": "Q-045",
+      "title": "Q-045/MECH-313/MECH-260 + FP-2 dissociation on scaffolded_sd054_onboarding (re-issue of 603d on hook-fixed scheduler + z_goal_enabled config)",
+      "description": "",
+      "estimated_minutes": 360.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-614d",
+      "backlog_id": "",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 within-class temperature 4-arm sweep -- corrected harness (committed-class metric + within-class diagnostics + cross-seed-mean C1; supersedes 614c)",
+      "description": "",
+      "estimated_minutes": 144.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-626a",
+      "queue_id": "V3-EXQ-063a",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "Goal-pipeline developmental-window 4-arm dissociation -- HARNESS-FIXED (update_z_goal driven + P0 positive control)",
+      "claim_id": "ARC-029",
+      "title": "ARC-029 committed-mode harm-outcomes revalidation under MECH-090 R-c commit-entry gate (supersedes V3-EXQ-063; post stale_substrate MARK)",
       "description": "",
-      "estimated_minutes": 96.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-592e",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "MECH-090 R-c readiness conjunction (4-arm, C1 baseline redesigned)",
-      "description": "",
-      "estimated_minutes": 720.0,
-      "status": "claimed",
+      "estimated_minutes": 106.7,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -1823,6 +1845,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_620b_sd037_axis_a_phase1_consumer_input_distributions_stream_on_20260601T180611Z_v3.json",
       "completed_by": "ree-cloud-4",
       "actual_secs": 3317.2
+    },
+    {
+      "queue_id": "V3-EXQ-592g",
+      "backlog_id": "",
+      "claim_id": "MECH-342",
+      "title": "MECH-342 maintenance-time commitment-release validation probe (592f successor; substrate ON)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Experiment: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-592g -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-592g.json",
+      "started_at": "2026-06-02T16:35:46.112467+00:00",
+      "completed_at": "2026-06-02T16:35:47.260335+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 1.1
     }
   ]
 }
