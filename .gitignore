@@ -13,3 +13,9 @@ coordinator_shadow.log
 *.bak
 *.backup
 .claude/
+
+# Runner sentinel files (emit_outcome IPC between experiment script and runner).
+# Transient + machine-local; treated as telemetry by governance/explorer (skip lists),
+# never read as evidence. Committing them dirtied the hub shared checkout and wedged
+# the phase3 writers (no autostash). Untracked 2026-06-02.
+evidence/experiments/_runner_signals/
