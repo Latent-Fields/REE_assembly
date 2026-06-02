@@ -1,0 +1,69 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-02T05:51:20Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3",
+      "queue_id": "V3-EXQ-592f",
+      "claim_ids": ["MECH-090"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened_substrate_partial_reach",
+        "biological_reference": "clear -- admission gates and release gates are biologically distinct substrates",
+        "prerequisites": "present at admission; not exercised for maintenance",
+        "implementation": "partial -- readiness-failure-while-elevated has no release-side consumer",
+        "environment": "adequate by construction (state-machine probe)",
+        "measurement": "adequate at most cells; C4 vacuous-PASS noted as script-design gap",
+        "integration": "admission-coupled; maintenance-not-coupled",
+        "scale": "adequate (5 stages x 6 ticks)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG/STN beta gating (admission) vs hippocampal-completion + STN urgency-burst + cortical PE-spike (release/cessation)",
+        "dependencies": ["Cisek_Kalaska_2010_affordance_competition", "Hanes_Schall_1996_FEF_accumulator", "Roesch_Calu_Schoenbaum_2007_dopaminergic_readiness", "Lisman_Grace_2005_subiculum_NAc_VP_VTA_release_loop"],
+        "is_formal_import": false,
+        "divergence": "none -- admission-only R-c integration is biologically faithful; the gap is architectural completeness (the expected release substrates are biologically distinct and live in ARC-028/MECH-105/MECH-091/V_s anchor/SD-034 pathways)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-592f (2026-06-01, controlled state-machine probe; supersedes V3-EXQ-592e; FAIL_NO_RELEASE_AUTHORITY): with beta forced already elevated and E3 committed pointer forced present, forced score_margin=0.01 (below floor 0.05) and forced nav_readiness=0.0 (below floor 0.3) produce zero state-occupancy suppression and zero decommit transitions across stages B/C/D. nav readiness predicate IS consulted (n_blocks_emitted advances 6 per stage in C/D); score_margin admission gate is bypassed because beta is already elevated (current bistable-branch design). C4 conjunction-authority returns PASS vacuously (0 >= max(0, 0)); diagnostic outcome correctly ignores it because C2 AND C3 AND C5 FAIL. NOT a falsification of MECH-090 base claim (EXQ-049e remains the canonical PASS). NOT a falsification of R-c admission integration (V3-EXQ-592d retains its 4-arm validation scope on the admission axis). IS a controlled-measurement confirmation of the 592e autopsy: current R-c integration is admission-only; the same predicates that guard entry do not currently couple to beta_gate.release() or e3._committed_trajectory clearing under failure-while-elevated. Architectural choice routed via implement-substrate AMEND on the MECH-090 substrate_queue entry: option (a) add a readiness-failure-while-elevated release coupling, or option (b) document admission-only as the architectural commitment and audit hippocampal-completion / urgency-interrupt / V_s anchor / SD-034 closure pathways for coverage of degraded-readiness scenarios.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-090",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "Architectural choice from V3-EXQ-592f autopsy (user-confirmed 2026-06-02): option (b) ADMISSION-ONLY + AUDIT. Document admission-only as the architectural commitment for MECH-090 R-c readiness conjunction. Do NOT add a new R-c-level release coupling. Audit the four existing release pathways for coverage of degraded-readiness scenarios: (1) ARC-028 / MECH-105 hippocampal-completion -- does it fire when an agent is mid-program with degraded nav_competence? (2) MECH-091 urgency-interrupt -- z_harm_a.norm() > urgency_interrupt_threshold path only fires on threat escalation, not readiness decay. (3) V_s anchor invalidation (MECH-269 / MECH-284 / MECH-287 broadcast) -- does sustained low readiness register as an anchor staleness signal? (4) SD-034 closure operator -- mode-conditioned at sd_033a write_gate >= min; orthogonal to readiness. If audit surfaces a coverage gap, register that gap as separate substrate work on the affected pathway's entry, not on MECH-090's. NOT taken: option (a) new readiness-failure-while-elevated release coupling on beta_gate.release() + _committed_trajectory clearing. Successor: no new MECH-090 substrate work this lineage; pending_retest_after_substrate flag on the 592f manifest is gated on the audit outcome, not on a code landing.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": {
+          "run_id": "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3",
+          "queue_id": "V3-EXQ-592f",
+          "experiment_type": "v3_exq_592f_mech090_commitment_state_transition_probe",
+          "metric": "Predicates fire under forced beta-elevated state but produce zero state-occupancy suppression (b/c/d_supp.max_drop = 0.0); diagnostic outcome FAIL_NO_RELEASE_AUTHORITY. nav_blocks advance 6 per stage in C/D (predicate consulted) but no transition counter ever ticked. score_blocks=0 in B/D because BetaGate.should_admit_elevation is bypassed when beta already elevated.",
+          "target": "User-confirmed routing (2026-06-02): option (b) admission-only + audit of existing release pathways (ARC-028/MECH-105 hippocampal completion, MECH-091 urgency interrupt, V_s anchor invalidation, SD-034 closure operator) for coverage of degraded-readiness scenarios. NOT taken: option (a) new R-c-level release coupling."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-090 R-c readiness predicates are admission-side only by current implementation; controlled forcing in 592f cleanly observes the consequence (zero release authority over already-held committed state).",
+        "Score-margin and nav-competence predicates fire on different sites: score-margin gate is bypassed entirely when beta already elevated (only consulted on the admission transition); nav-competence increments n_blocks_emitted but has no release-side consumer.",
+        "User-confirmed architectural response (2026-06-02): option (b) admission-only + audit of existing release pathways. Option (a) new R-c-level release coupling NOT taken. Audit targets: ARC-028/MECH-105 hippocampal-completion, MECH-091 urgency-interrupt, V_s anchor invalidation (MECH-269/284/287), SD-034 closure operator.",
+        "C4 conjunction-authority criterion in the 592f script admits a vacuous PASS at identically-zero suppression (d_supp.max_drop=0 >= max(b_supp,c_supp)=0). User-confirmed routing: in-place script patch via /queue-experiment (require d_supp.max_drop strictly > 0 AND >= max(b_supp,c_supp)); not edited in this autopsy session per mandatory-skill-path rule.",
+        "MECH-090 base claim (beta gates E3-to-action-selection propagation, not E3 internal updating) is INTACT. R-c admission integration is INTACT. V3-EXQ-592d behavioural validation on the admission axis remains live."
+      ],
+      "queue_experiment_followons": [
+        {
+          "purpose": "Harden the C4 conjunction-authority criterion on ree-v3/experiments/v3_exq_592f_mech090_commitment_state_transition_probe.py: require d_supp.max_drop strictly > 0 AND d_supp.max_drop >= max(b_supp.max_drop, c_supp.max_drop). Routed via /queue-experiment. Lands either standalone as a script-hardening follow-on or bundled with any future 592-lineage state-machine probe if one is queued.",
+          "scope": "experiment-script-hardening",
+          "blocks": false
+        }
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
