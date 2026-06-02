@@ -6,9 +6,13 @@ The gate honors two manually-set manifest fields that mark a run's evidence as
 mechanistically stale because a substrate it depends on changed AFTER the run
 was recorded:
 
-  - pending_retest_after_substrate: bool
-  - superseded_by_substrate: "<SD-id>@<YYYY-MM-DD>" reference string
+  - pending_retest_after_substrate: bool                 (run-level)
+  - superseded_by_substrate: "<SD-id>@<YYYY-MM-DD>"       (run-level ref string)
+  - pending_retest_after_substrate_per_claim: [claim_id]  (per-claim)
+  - superseded_by_substrate_per_claim: {claim_id: ref}    (per-claim ref)
 
+The per-claim forms de-weight ONLY the named claim in a multi-claim manifest,
+leaving co-tagged claims intact (mirrors evidence_direction_per_claim).
 A flagged entry stays in matrix["entries"] (full audit log) but is tagged
 scoring_excluded="stale_substrate" and does NOT feed claim confidence/conflict.
 When neither field is present the behaviour is bit-identical to the pre-gate
@@ -42,9 +46,12 @@ def _load_indexer():
 IDX = _load_indexer()
 
 
-def _make_run(mod, run_id, claim_id, *, pending=False, superseded_by="",
+def _make_run(mod, run_id, claim_ids, *, pending=False, superseded_by="",
+              pending_per_claim=None, superseded_per_claim=None,
               direction="supports", status="PASS"):
-    """Minimal applicable PASS RunRecord tagging a single claim."""
+    """Minimal applicable PASS RunRecord tagging one or more claims."""
+    if isinstance(claim_ids, str):
+        claim_ids = [claim_ids]
     ts = datetime(2026, 5, 1, 12, 0, 0, tzinfo=timezone.utc)
     return mod.RunRecord(
         experiment_type=run_id.rsplit("_", 1)[0],
@@ -56,11 +63,13 @@ def _make_run(mod, run_id, claim_id, *, pending=False, superseded_by="",
         summary_path=Path("/dev/null"),
         manifest_status=status,
         final_status=status,
-        claim_ids_tested=[claim_id],
+        claim_ids_tested=list(claim_ids),
         evidence_direction=direction,
         experiment_purpose="evidence",
         pending_retest_after_substrate=pending,
         superseded_by_substrate=superseded_by,
+        pending_retest_after_substrate_per_claim=list(pending_per_claim or []),
+        superseded_by_substrate_per_claim=dict(superseded_per_claim or {}),
     )
 
 
@@ -141,6 +150,50 @@ class StalenessGateTests(unittest.TestCase):
         m = self._build([run])
         run_ids = {e["run_id"] for e in m["entries"]}
         self.assertIn("exp_audit_v3", run_ids)
+
+
+class PerClaimStalenessTests(unittest.TestCase):
+    def _build(self, runs):
+        with tempfile.TemporaryDirectory() as d:
+            return IDX._write_claim_evidence_matrix(
+                base_dir=Path(d),
+                by_experiment={"exp": runs},
+                by_literature={},
+                generated_at="2026-06-02T12:00:00Z",
+                planning_criteria={},
+            )
+
+    def test_per_claim_list_excludes_only_named_claim(self):
+        """Only the listed claim is de-weighted; co-tagged claims still count."""
+        run = _make_run(IDX, "exp_multi_v3", ["MECH-307", "MECH-216", "SD-014"],
+                        pending_per_claim=["MECH-307"])
+        m = self._build([run])
+        self.assertEqual(_excl_for(m, "exp_multi_v3", "MECH-307")[0], "stale_substrate")
+        self.assertEqual(_excl_for(m, "exp_multi_v3", "MECH-216")[0], "<COUNTS>")
+        self.assertEqual(_excl_for(m, "exp_multi_v3", "SD-014")[0], "<COUNTS>")
+        # The non-stale co-tagged claims survive into scoring.
+        self.assertIn("MECH-216", m["claims"])
+        self.assertIn("SD-014", m["claims"])
+        self.assertNotIn("MECH-307", m["claims"])
+
+    def test_per_claim_ref_echoed_only_on_named_claim(self):
+        run = _make_run(IDX, "exp_ref_v3", ["SD-049", "SD-015"],
+                        direction="weakens",
+                        superseded_per_claim={"SD-049": "SD-049@2026-05-31"})
+        m = self._build([run])
+        excl_049, entry_049 = _excl_for(m, "exp_ref_v3", "SD-049")
+        excl_015, entry_015 = _excl_for(m, "exp_ref_v3", "SD-015")
+        self.assertEqual(excl_049, "stale_substrate")
+        self.assertEqual(entry_049.get("superseded_by_substrate"), "SD-049@2026-05-31")
+        self.assertEqual(excl_015, "<COUNTS>")
+        self.assertNotIn("superseded_by_substrate", entry_015)
+
+    def test_absent_per_claim_fields_bit_identical(self):
+        """No per-claim fields => every claim counts (bit-identical)."""
+        run = _make_run(IDX, "exp_clean_multi_v3", ["MECH-101", "MECH-102"])
+        m = self._build([run])
+        self.assertEqual(_excl_for(m, "exp_clean_multi_v3", "MECH-101")[0], "<COUNTS>")
+        self.assertEqual(_excl_for(m, "exp_clean_multi_v3", "MECH-102")[0], "<COUNTS>")
 
 
 if __name__ == "__main__":

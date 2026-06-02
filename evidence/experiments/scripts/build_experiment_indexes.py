@@ -96,6 +96,14 @@ class RunRecord:
     # (superseded). Default-absent => bit-identical to pre-gate behaviour.
     pending_retest_after_substrate: bool = False
     superseded_by_substrate: str = ""
+    # Per-claim staleness (mirrors evidence_direction_per_claim): de-weights ONLY
+    # the listed claim(s) in a multi-claim manifest, leaving the other tagged
+    # claims' evidence intact. Use when a substrate change makes the run stale
+    # for one claim but not the others it tests.
+    #   pending_retest_after_substrate_per_claim: ["MECH-307"]
+    #   superseded_by_substrate_per_claim: {"SD-049": "SD-049@2026-05-31"}
+    pending_retest_after_substrate_per_claim: list[str] = field(default_factory=list)
+    superseded_by_substrate_per_claim: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -403,6 +411,17 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
             manifest.get("pending_retest_after_substrate", False))
         superseded_by_substrate = str(
             manifest.get("superseded_by_substrate", "") or "").strip()
+        # Per-claim staleness: de-weight only the named claim(s) in a multi-claim
+        # manifest. `pending_retest_after_substrate_per_claim` is a list of claim
+        # ids; `superseded_by_substrate_per_claim` is {claim_id: "<id>@<date>"}.
+        raw_pr_pc = manifest.get("pending_retest_after_substrate_per_claim") or []
+        pending_retest_after_substrate_per_claim = (
+            [str(x).strip() for x in raw_pr_pc if str(x).strip()]
+            if isinstance(raw_pr_pc, list) else [])
+        raw_sb_pc = manifest.get("superseded_by_substrate_per_claim") or {}
+        superseded_by_substrate_per_claim = (
+            {str(k): str(v).strip() for k, v in raw_sb_pc.items() if str(v).strip()}
+            if isinstance(raw_sb_pc, dict) else {})
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -427,6 +446,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 evidence_level=evidence_level,
                 pending_retest_after_substrate=pending_retest_after_substrate,
                 superseded_by_substrate=superseded_by_substrate,
+                pending_retest_after_substrate_per_claim=pending_retest_after_substrate_per_claim,
+                superseded_by_substrate_per_claim=superseded_by_substrate_per_claim,
             )
         )
 
@@ -1352,10 +1373,17 @@ def _write_claim_evidence_matrix(
             # substrate it depends on changed after the run was recorded. The
             # entry stays in the full log (with the substrate ref for audit) but
             # stops weighting confidence/conflict. Absent flags => no-op.
-            if run.pending_retest_after_substrate or run.superseded_by_substrate:
+            # Run-level flags apply to every tagged claim; the per-claim forms
+            # de-weight ONLY this claim_id, leaving co-tagged claims intact.
+            per_claim_ref = run.superseded_by_substrate_per_claim.get(claim_id, "")
+            if (run.pending_retest_after_substrate
+                    or run.superseded_by_substrate
+                    or claim_id in run.pending_retest_after_substrate_per_claim
+                    or per_claim_ref):
                 entry["scoring_excluded"] = "stale_substrate"
-                if run.superseded_by_substrate:
-                    entry["superseded_by_substrate"] = run.superseded_by_substrate
+                ref = run.superseded_by_substrate or per_claim_ref
+                if ref:
+                    entry["superseded_by_substrate"] = ref
                 continue
             if run.experiment_purpose in ("diagnostic", "baseline"):
                 entry["scoring_excluded"] = f"{run.experiment_purpose}_probe"

@@ -171,3 +171,45 @@ GAP runs and the V3-EXQ-455a cluster (455, 447, 448, 445h, 325d).
 Durable follow-ups landed alongside this memo: `substrate_dependencies.json` (date-stamped
 substrate→dependent-claim registry) and an evidence-staleness audit step added to the
 substrate-landing routine in `/governance` and `/implement-substrate`.
+
+---
+
+## RESOLUTION (2026-06-02, applied)
+
+The MECH-090 release-path audit landed in parallel (`mech090_release_path_audit_2026-06-02.md`,
+verdict **B3b**: all four existing release pathways verdict NO; admission-only is the
+architectural commitment; the 592f `pending_retest_after_substrate` reach-claim flag stays
+TRUE). Two consequences refined the application below:
+
+1. **MECH-090 bistable runs → KEEP (review reversed).** The audit established the bistable
+   *latch* (hold-rate / concordance — what `049a`/`321a`/`321b` measure) is INTACT; only
+   *admission* gained a readiness pre-condition. Those runs measure the unchanged latch, so they
+   are NOT stale. The B.2 "MARK the MECH-090 bistable trio" recommendation is withdrawn.
+
+2. **Run-level gate is insufficient for multi-claim manifests.** `v3_exq_539` (MECH-307) also
+   tags MECH-216/205/093 (supports) + SD-014; `v3_exq_514b/j` (SD-049) also tag SD-015 (weakens)
+   + MECH-229/230. A run-level `stale_substrate` flag would have wrongly de-weighted those
+   co-tagged, non-stale claims. The indexer was therefore extended with a **per-claim** form —
+   `pending_retest_after_substrate_per_claim: [claim_id]` and
+   `superseded_by_substrate_per_claim: {claim_id: "<id>@<date>"}` — mirroring
+   `evidence_direction_per_claim`. Contract coverage added (12 tests total).
+
+**MARKs applied** (per-claim, on the nested `runs/<id>/manifest.json`; verified surgical via a
+same-moment old-vs-new-indexer diff = exactly these 4 entries, zero collateral):
+
+| run (nested manifest) | claim MARKed | ref | exp_conf effect |
+|------------------------|--------------|-----|-----------------|
+| `v3_exq_063_arc029_committed_mode_harm_outcomes` | ARC-029 | `MECH-090@2026-05-28` | 0.454 → 0.179 |
+| `v3_exq_539_mech307_commit_gating_check` | MECH-307 | `MECH-307@2026-05-11` | 0.53 → 0.48 |
+| `v3_exq_514b_sd049_phase_2_behavioural_validation` | SD-049 | `SD-049@2026-05-31` | (combined) |
+| `v3_exq_514j_sd049_phase2_reef_mech307_spcem` | SD-049 | `SD-049@2026-05-31` | 0.375 → 0.0 |
+
+Co-tagged claims confirmed UNAFFECTED: MECH-216/205/093, SD-014, SD-015, MECH-229/230.
+
+**Governance consequence to watch:** ARC-029 (now 0.179) and SD-049 (now 0.0 experimental) are
+left with thin/no experimental evidence after de-weighting — both are now genuine **REVALIDATE**
+candidates (queue a post-landing EXQ) rather than merely de-weighted. The de-weight is durable in
+the manifests; live scoring refreshes on the next `/governance` index rebuild.
+
+**Still open (not applied):** confirm `483c` superseded by `483e`; optional backfill of the B.3
+"asserts-but-missing" autopsy manifests (scoring-neutral); SD-012 fan-out + KEEP rows untouched.
