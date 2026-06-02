@@ -2721,6 +2721,91 @@ def _priority_rank(priority: str) -> int:
     return {"high": 0, "medium": 1, "low": 2}.get(priority, 3)
 
 
+# Status vocabulary for evidence_backlog.v1.json items. Historically every item was
+# emitted with status="open" and never updated, so the "open" count carried no signal
+# (see insights_report.md, Literature Coverage note). The status is now DERIVED at
+# generation time from the same claim_evidence.v1.json ground truth the backlog is built
+# from, so it stays fresh on every governance run. A manual `user_status` override (carried
+# forward across regenerations like user_notes) always wins when present.
+#
+#   open        -- no evidence of the needed type yet and governance has not engaged.
+#   in_progress -- partial evidence of the needed type exists, OR a governance decision has
+#                  been applied, OR an open mandatory decision checkpoint is pending.
+#   covered     -- sufficient evidence of the needed type now EXISTS and routine collection
+#                  can stop. Direction-AGNOSTIC: "covered" means the evidence gap the backlog
+#                  item asked for is filled (PASS or FAIL); it does NOT assert the claim is
+#                  supported. Any remaining action is a governance decision, not more data.
+#   superseded  -- the claim itself is superseded in claims.yaml.
+#
+# Conservative `covered` rule (only mark covered with concrete evidence for THIS claim):
+#   - the needed evidence type meets a volume bar (>=2 genuine experimental runs when
+#     experimental is needed; >=3 literature entries when literature is needed); AND
+#   - no open mandatory_decision_checkpoint; AND
+#   - conflict_ratio < 0.5 (not an actively unresolved directional conflict); AND
+#   - a governance decision has been applied OR the evidence is strong on its own
+#     (>=5 genuine experimental runs, or >=6 literature entries).
+# Literature is near-universal across claims, so a literature volume bar NEVER marks an
+# experimental-needed item covered -- the needed type gates which volume bar applies.
+_BACKLOG_COVERED_MIN_EXP = 2
+_BACKLOG_COVERED_MIN_LIT = 3
+_BACKLOG_STRONG_EXP = 5
+_BACKLOG_STRONG_LIT = 6
+_BACKLOG_COVERED_MAX_CONFLICT = 0.5
+
+
+def _derive_backlog_status(
+    *,
+    evidence_needed: set[str],
+    genuine_exp_count: int,
+    lit_count: int,
+    conflict_ratio: float,
+    decision_status: str,
+    mandatory_decision_checkpoint: bool,
+    current_status: str | None,
+) -> str:
+    """Derive an evidence_backlog item status from claim-evidence ground truth.
+
+    `evidence_needed` must be the genuine need snapshotted BEFORE the saturation /
+    escalation / mandatory-checkpoint guards discard from it, so the needed-type gating
+    is accurate.
+    """
+    if str(current_status or "").strip().lower() == "superseded":
+        return "superseded"
+
+    need = set(evidence_needed)
+    decision_applied = str(decision_status or "").strip().lower() in {"applied", "approved"}
+
+    exp_needed = "experimental" in need
+    lit_needed = "literature" in need
+    # If the need set was emptied by the guards, fall back to experimental (the indexer's
+    # own default at the bottom of the loop) so a thin item is not spuriously "covered".
+    if not exp_needed and not lit_needed:
+        exp_needed = True
+
+    exp_ok = (not exp_needed) or genuine_exp_count >= _BACKLOG_COVERED_MIN_EXP
+    lit_ok = (not lit_needed) or lit_count >= _BACKLOG_COVERED_MIN_LIT
+    strong = (exp_needed and genuine_exp_count >= _BACKLOG_STRONG_EXP) or (
+        lit_needed and lit_count >= _BACKLOG_STRONG_LIT
+    )
+
+    covered = (
+        exp_ok
+        and lit_ok
+        and not mandatory_decision_checkpoint
+        and float(conflict_ratio) < _BACKLOG_COVERED_MAX_CONFLICT
+        and (decision_applied or strong)
+    )
+    if covered:
+        return "covered"
+
+    some_evidence = (exp_needed and genuine_exp_count >= 1) or (
+        lit_needed and lit_count >= 1
+    )
+    if some_evidence or decision_applied or mandatory_decision_checkpoint:
+        return "in_progress"
+    return "open"
+
+
 def _backlog_urgency_rank(item: dict[str, Any]) -> tuple[int, float, int, str]:
     reasons = {str(r) for r in item.get("reasons", [])}
     signals = item.get("signals", {})
@@ -3497,6 +3582,10 @@ def _write_planning_outputs(
             signals["decision_required_outcomes"] = list(allowed_conflict_outcomes)
             _add_reason("mandatory_decision_checkpoint")
 
+        # Snapshot the genuine evidence need BEFORE the guards below discard from it, so the
+        # backlog status derivation can gate "covered" on the correct evidence type.
+        _status_evidence_needed = set(evidence_needed)
+
         # Saturation guard prevents infinite re-dispatch loops for stale experimental probes.
         if saturation_guard_engaged and "experimental" in evidence_needed:
             evidence_needed.discard("experimental")
@@ -3689,7 +3778,17 @@ def _write_planning_outputs(
                     },
                 },
                 "latest_decision": effective_decision_state,
-                "status": "open",
+                "status": _derive_backlog_status(
+                    evidence_needed=_status_evidence_needed,
+                    genuine_exp_count=genuine_exp_count,
+                    lit_count=lit_count,
+                    conflict_ratio=conflict_ratio,
+                    decision_status=str(
+                        effective_decision_state.get("decision_status", "none")
+                    ),
+                    mandatory_decision_checkpoint=mandatory_decision_checkpoint,
+                    current_status=current_status,
+                ),
             }
         )
 
@@ -3700,6 +3799,7 @@ def _write_planning_outputs(
     # is unique within a single backlog (one item per claim that needs evidence).
     existing_backlog_path = planning_root / "evidence_backlog.v1.json"
     _existing_user_notes: dict[str, str] = {}
+    _existing_user_status: dict[str, str] = {}  # claim_id -> manual status override
     _existing_backlog_ids: dict[str, str] = {}  # claim_id -> EVB-NNNN
     _used_numeric_ids: set[int] = set()
     if existing_backlog_path.exists():
@@ -3711,6 +3811,9 @@ def _write_planning_outputs(
                 _cid = str(_item.get("claim_id", "")).strip()
                 if _cid and "user_notes" in _item and _item["user_notes"]:
                     _existing_user_notes[_cid] = str(_item["user_notes"])
+                # A human-pinned status override always wins over the derived value.
+                if _cid and _item.get("user_status"):
+                    _existing_user_status[_cid] = str(_item["user_status"])
                 _bid = str(_item.get("backlog_id", "")).strip()
                 # Only carry forward auto-generated IDs (EVB-NNNN, not EVB-PINNED-*).
                 # Pinned items handle their own ID via the _preloaded_pinned_items path.
@@ -3722,11 +3825,14 @@ def _write_planning_outputs(
         except Exception:
             pass  # Corrupt or missing backlog -- skip carry-forward
 
-    # Restore preserved user_notes onto auto-generated items
+    # Restore preserved user_notes + honour manual user_status overrides on auto-generated items
     for item in backlog_items:
         _cid = str(item.get("claim_id", ""))
         if _cid in _existing_user_notes:
             item["user_notes"] = _existing_user_notes[_cid]
+        if _cid in _existing_user_status:
+            item["user_status"] = _existing_user_status[_cid]
+            item["status"] = _existing_user_status[_cid]
 
     # Append pre-loaded pinned items -- rich content and original backlog_id intact
     backlog_items.extend(_preloaded_pinned_items)
