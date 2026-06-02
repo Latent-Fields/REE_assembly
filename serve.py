@@ -2491,6 +2491,66 @@ def append_machine_command(
     return True, f"command {cmd['id']} queued for {machine}", cmd
 
 
+def _coordinator_command_dual_write_enabled() -> bool:
+    """Phase 3 command-channel migration: when True, POST /api/machines/<host>/
+    command ALSO issues the command via the coordinator's /commands/issue
+    endpoint (in addition to the legacy git command-file write).
+
+    Default OFF -- serve.py behaves bit-identically (git-file only). The
+    operator turns this on as a deliberate canary step AFTER at least one
+    worker is running PHASE3_COMMANDS_VIA_COORDINATOR, so coordinator-issued
+    commands are actually consumed+acked rather than accumulating unacked
+    (a backlog the first via-coordinator worker would then drain at once).
+    Controlled by env PHASE3_COMMANDS_DUAL_WRITE or the same key in
+    coordinator.env."""
+    val = os.environ.get("PHASE3_COMMANDS_DUAL_WRITE")
+    if val is None:
+        val = _load_coordinator_cfg().get("PHASE3_COMMANDS_DUAL_WRITE")
+    return str(val or "").strip().lower() in ("1", "true", "yes")
+
+
+def _coordinator_issue_command(
+    machine: str,
+    kind: str,
+    args: dict | None,
+    issued_by: str,
+) -> tuple[bool, bool, object]:
+    """Best-effort issue of a remote-control command via the coordinator's
+    POST /commands/issue. Returns (attempted, ok, detail).
+
+      attempted == False -> coordinator not configured (coordinator.env
+                            missing COORDINATOR_URL / COORDINATOR_LOCAL_TOKEN);
+                            caller treats as git-only.
+      attempted == True, ok == True  -> detail is the created command dict.
+      attempted == True, ok == False -> detail is an error string.
+
+    Never raises. Mirrors the urllib pattern of _fetch_coordinator_snapshot /
+    _shadow_status proxy."""
+    cfg = _load_coordinator_cfg()
+    url = (cfg.get("COORDINATOR_URL") or "").rstrip("/")
+    tok = cfg.get("COORDINATOR_LOCAL_TOKEN") or ""
+    if not url or not tok:
+        return (False, False, "coordinator not configured")
+    import urllib.error
+    import urllib.request
+    body = json.dumps({
+        "machine": machine, "kind": kind,
+        "args": args or {}, "issued_by": issued_by,
+    }).encode("utf-8")
+    try:
+        req = urllib.request.Request(
+            url + "/commands/issue", data=body,
+            headers={"Authorization": "Bearer " + tok,
+                     "Content-Type": "application/json"},
+            method="POST")
+        with urllib.request.urlopen(req, timeout=8) as r:
+            resp = json.loads(r.read().decode("utf-8"))
+        return (True, bool(resp.get("ok")), resp.get("command"))
+    except (urllib.error.URLError, urllib.error.HTTPError, OSError,
+            ValueError, json.JSONDecodeError) as exc:
+        return (True, False, f"coordinator issue failed: {exc}")
+
+
 def _utc_now_iso() -> str:
     return _utc_now_compact()
 
@@ -4000,6 +4060,20 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 "machine": host,
                 "valid_kinds": list(VALID_REMOTE_COMMAND_KINDS),
             }
+            # Phase 3 command-channel migration: dual-write to the coordinator
+            # when enabled (and only when the git append validated the kind).
+            # Best-effort -- the git command-file above remains the
+            # authoritative channel until every worker is on
+            # PHASE3_COMMANDS_OFF_GIT. Surfaced in the response for operator
+            # visibility during the canary rollout.
+            if ok and _coordinator_command_dual_write_enabled():
+                c_attempted, c_ok, c_detail = _coordinator_issue_command(
+                    host, kind, args, issued_by)
+                result["coordinator"] = {
+                    "attempted": c_attempted,
+                    "ok": c_ok,
+                    "detail": c_detail,
+                }
             body = json.dumps(result).encode()
             self._json_response(body, status=200 if ok else 400)
             return
