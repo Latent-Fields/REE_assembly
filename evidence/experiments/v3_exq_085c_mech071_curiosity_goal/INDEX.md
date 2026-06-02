@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_085c_mech071_curiosity_goal
 
-Generated: `2026-05-31T16:49:25.925411Z`
+Generated: `2026-06-02T07:37:34.345419Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

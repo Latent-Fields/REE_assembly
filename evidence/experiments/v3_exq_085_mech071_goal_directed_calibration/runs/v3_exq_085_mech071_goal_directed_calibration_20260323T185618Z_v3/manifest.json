@@ -25,7 +25,7 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
-  "evidence_direction_note": "Goal latent never seeded (z_goal_norm < 0.1) -- mechanism under test was never instantiated. Non-contributory to MECH-071. Root cause: missing homeostatic drive modulation (SD-012). Requires drive-weighted benefit signal + resource respawn for repeated drive-reduction cycles. See EXQ-085e.",
+  "evidence_direction_note": "Goal latent never seeded (z_goal_norm < 0.1) -- mechanism under test was never instantiated. Non-contributory to MECH-071. Root cause: missing homeostatic drive modulation (SD-012). Requires drive-weighted benefit signal + resource respawn for repeated drive-reduction cycles. See EXQ-085e. | non_contributory for MECH-071 (2026-06-02 disposition, evidence/planning/exq085_mech071_disposition_2026-06-02.md): this 085-chain run tests goal-state seeding/navigation (C1/C2), not MECH-071's harm-eval calibration gradient (C3, which passed or was never instantiated). FAIL reflects goal navigation, not harm calibration. MECH-071 remains provisional (EXQ-026/029). Chain migrated to SD-015 -> active V3-EXQ-626 ladder.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -42,7 +42,7 @@
   },
   "failure_signatures": [],
   "evidence_direction_per_claim": {
-    "MECH-071": "mixed",
+    "MECH-071": "non_contributory",
     "INV-034": "mixed"
   }
 }

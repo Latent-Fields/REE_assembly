@@ -14,7 +14,7 @@ Generated: 2026-06-02T06:28:02Z
     "lost" run, check `evidence/` for an actual manifest (per `reference_cloud_workers`).
 
 - **High-iteration experiments** (3+ lettered iterations — repeated diagnose/autopsy cycles):
-  - **EXQ-085 — 14 iterations** (085, b, c, e–o) — all **FAIL** — claims: MECH-071 — *never passed; longest dead chain*
+  - **EXQ-085 — 14 iterations** (085, b, c, e–o) — all **FAIL** — claims: MECH-071 — *never passed; longest dead chain* — **[2026-06-02 CORRECTION: heuristic artifact. Only 6 of 14 iterations carry MECH-071; 085h–085o re-tagged SD-015/ARC-030. MECH-071's criterion (C3) PASSED throughout; FAILs are C2 goal-navigation. MECH-071 RETAINED provisional. See evidence/planning/exq085_mech071_disposition_2026-06-02.md]**
   - **EXQ-418 — 13 iterations** (SD-016 / SD-017) — mixed; 418f PASS, rest FAIL/UNKNOWN/ERROR
   - **EXQ-514 — 12 iterations** (SD-049) — 514g/h/i PASS, then 514j/k FAIL again
   - **EXQ-543 — 10 iterations** (MECH-309 → ARC-062) — 543 PASS then 9 consecutive FAIL on ARC-062
@@ -30,7 +30,7 @@ Generated: 2026-06-02T06:28:02Z
   - (39 ERROR rows have no claim_id attached — attribution gap)
 
 - **Stalled chains** (terminal FAIL, no successor in current 3-item queue):
-  - EXQ-085o — FAIL — MECH-071 — no fix queued (chain abandoned after 14 tries)
+  - EXQ-085o — FAIL — MECH-071 — no fix queued (chain abandoned after 14 tries) — **[2026-06-02 CORRECTION: 085o is SD-015-tagged, not MECH-071; chain MIGRATED to SD-015 → active V3-EXQ-622/626/626a ladder, not abandoned. See disposition memo.]**
   - EXQ-490g — FAIL — Q-040/MECH-295 — no successor
   - EXQ-543k — FAIL — ARC-062 — gated on `543k_598`, no live successor
   - EXQ-616 — FAIL (2026-05-31) — Q-054 — no successor
@@ -144,6 +144,12 @@ Recent session-type distribution (last ~120 WORKSPACE_STATE headers):
 4. **Close the EXQ-085 / MECH-071 chain.** 14 FAIL iterations, no successor, no PASS — formally
    declare it stalled (new number with a different hypothesis, or shelve MECH-071) rather than
    leaving it as open churn.
+   **[2026-06-02 RESOLVED — user-approved disposition, memo evidence/planning/exq085_mech071_disposition_2026-06-02.md]:**
+   Do NOT shelve MECH-071. MECH-071's calibration gradient (C3) PASSED in every iteration and is
+   validated by EXQ-026/029; the recurring FAIL is C2 goal-navigation, owned by SD-015/MECH-112/ARC-030.
+   The 8 MECH-071-tagged 085 manifests were reclassified `non_contributory` for MECH-071. The chain is
+   closed as **migrated** (→ SD-015 → active V3-EXQ-622/626/626a), not stalled. The `/insights` Step 2
+   heuristic has been updated (claim-continuity + per-criterion caveats) to prevent recurrence.
 
 5. **Clear the 13 open promotion/demotion decisions** and adopt status-tracking on
    evidence_backlog (all 258 items still read `open`), so governance progress is measurable.

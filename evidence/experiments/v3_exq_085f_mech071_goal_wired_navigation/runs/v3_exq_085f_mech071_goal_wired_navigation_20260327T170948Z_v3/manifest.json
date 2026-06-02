@@ -43,7 +43,10 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Degenerate pre-run: warmup=1ep, eval=1ep, all metrics 0.0. Not a valid experimental result. The authoritative run is v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3 (3-seed, warmup=500, eval=100, curriculum=100).",
+  "evidence_direction_note": "Degenerate pre-run: warmup=1ep, eval=1ep, all metrics 0.0. Not a valid experimental result. The authoritative run is v3_exq_085f_mech071_goal_wired_navigation_20260327T172024Z_v3 (3-seed, warmup=500, eval=100, curriculum=100). | non_contributory for MECH-071 (2026-06-02 disposition, evidence/planning/exq085_mech071_disposition_2026-06-02.md): this 085-chain run tests goal-state seeding/navigation (C1/C2), not MECH-071's harm-eval calibration gradient (C3, which passed or was never instantiated). FAIL reflects goal navigation, not harm calibration. MECH-071 remains provisional (EXQ-026/029). Chain migrated to SD-015 -> active V3-EXQ-626 ladder.",
   "superseded_by": null,
-  "supersedes_reason": null
+  "supersedes_reason": null,
+  "evidence_direction_per_claim": {
+    "MECH-071": "non_contributory"
+  }
 }

@@ -42,5 +42,9 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_per_claim": {
+    "MECH-071": "non_contributory"
+  },
+  "evidence_direction_note": "non_contributory for MECH-071 (2026-06-02 disposition, evidence/planning/exq085_mech071_disposition_2026-06-02.md): this 085-chain run tests goal-state seeding/navigation (C1/C2), not MECH-071's harm-eval calibration gradient (C3, which passed or was never instantiated). FAIL reflects goal navigation, not harm calibration. MECH-071 remains provisional (EXQ-026/029). Chain migrated to SD-015 -> active V3-EXQ-626 ladder."
 }

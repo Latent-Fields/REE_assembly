@@ -3780,7 +3780,20 @@
     full scene, not resource specifically; features are not location-invariant across
     respawns. Dedicated z_resource encoder needed (SD-015). MECH-071 calibration claim
     intact (C3 consistently PASS); failure is in goal navigation, not harm calibration.
-  heterogeneity_note: "Methodological divergence: the C2 FAILs (EXQ-085 through EXQ-085g) reflect a scaffolding bug (goal_state not wired to action_selection) that prevented MECH-071's calibration mechanism from being instantiated; C3 (harm calibration gradient) consistently PASSes throughout the series, and the core claim is validated by EXQ-026 and EXQ-029."
+    [2026-06-02 disposition -- user-approved, memo evidence/planning/exq085_mech071_disposition_2026-06-02.md]:
+    MECH-071 RETAINED provisional; NOT shelved/demoted. The insights_report "EXQ-085 14-FAIL
+    dead chain / shelve MECH-071" flag is a letter-suffix heuristic artifact. MECH-071's
+    calibration gradient (criterion C3) PASSED in every 085 iteration and is validated by
+    EXQ-026/029; the recurring FAIL is criterion C2 (goal-directed navigation), a distinct
+    mechanism owned by SD-015/MECH-112/ARC-030. All eight MECH-071-tagged 085 manifests
+    (085 x2, 085c, 085d, 085e, 085f x2, 085g) reclassified evidence_direction_per_claim
+    MECH-071 -> non_contributory (they test C1/C2 goal-seeding+navigation, not C3): this
+    removes the spurious weakening signal so MECH-071's confidence/conflict are not dragged
+    by navigation failures it does not own. The 085-letter chain is CLOSED as migrated, not
+    stalled -- its goal-navigation question continued under SD-015 (EXQ-185, EXQ-182a oracle
+    PASS 11.14x, EXQ-322, EXQ-514) and is active today as the goal-stream-repair ladder
+    V3-EXQ-622/626/626a. No new 085 letter and no new EXQ are warranted for MECH-071.
+  heterogeneity_note: "Methodological divergence: the C2 FAILs (EXQ-085 through EXQ-085g) reflect a scaffolding bug (goal_state not wired to action_selection) that prevented MECH-071's calibration mechanism from being instantiated; C3 (harm calibration gradient) consistently PASSes throughout the series, and the core claim is validated by EXQ-026 and EXQ-029. The eight MECH-071-tagged 085 manifests carry evidence_direction_per_claim MECH-071=non_contributory (2026-06-02 disposition) so the series does not weight MECH-071 scoring."
   notes: >
     After training, E3.harm_eval(z_world_t) is better calibrated before hazard_approach
     and agent_caused_hazard transitions than env_caused_hazard transitions or locomotion.
@@ -9308,6 +9321,14 @@
     dissociation is gated by GAP-2 (SP-CEM) + missing object-bound incentive-salience substrate per
     failure_autopsy_V3-EXQ-626_2026-06-01. Not load-bearing against SD-015 pending object-bound substrate +
     positive-control-guarded harness.
+    [2026-06-02 cross-ref -- exq085_mech071_disposition memo]: SD-015 (with MECH-112/ARC-030) is the
+    true owner of the goal-directed-navigation failures mis-attributed to the "EXQ-085 MECH-071 dead
+    chain" (085h-085o were SD-015-tagged; 085m ARC-030). This cohort is substrate_conditional in
+    character -- EXQ-182a oracle PASS (11.14x) shows the action-selection mechanism is reachable once
+    a clean goal cue exists; the gap is z_goal formation quality + multi-step planning, now being
+    probed by the active V3-EXQ-622/626/626a object-binding ladder. FLAG ONLY: if governance wants to
+    mark the cohort, substrate_conditional (planned object-bound incentive-salience substrate) fits
+    better than substrate_ceiling. No reclassification made here.
   implementation_note: >
     IMPLEMENTED 2026-04-10. ResourceEncoder class in ree_core/latent/stack.py:
     world_obs [250] -> Linear(250,64) -> ReLU -> Linear(64,32) -> z_resource [32];

@@ -28,7 +28,10 @@
   "verdict": "FAIL",
   "run_id": "v3_exq_085_mech071_goal_directed_calibration_20260323T175143Z_v3",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "evidence_direction_note": "DEDUP/SUPERSEDED 2026-05-01T19:53:00Z: identical signature (sha1=0781d98a32d1) to v3_exq_085_mech071_goal_directed_calibration_20260323T185618Z_v3 emitted 64.6min later. Treated as a single broken/deterministic run emitted multiple times by the runner; only the latest emission counts as evidence. Phase 1 of post-EXQ-232 duplicate-manifest sweep.",
+  "evidence_direction_note": "non_contributory for MECH-071 (2026-06-02 disposition, evidence/planning/exq085_mech071_disposition_2026-06-02.md): this 085-chain run tests goal-state seeding/navigation (criteria C1/C2). MECH-071's calibration gradient (criterion C3) was either never instantiated (085-085d: z_goal unseeded) or passed and was not the failing criterion (085e-085g). The FAIL verdict reflects goal-directed navigation (C2), not harm-eval calibration. MECH-071 remains provisional, validated independently by EXQ-026/029. Chain question continued under SD-015 -> active V3-EXQ-626 ladder.",
   "superseded_by": "v3_exq_085_mech071_goal_directed_calibration_20260323T185618Z_v3",
-  "supersedes_reason": "duplicate_emission_within_2h_identical_signature"
+  "supersedes_reason": "duplicate_emission_within_2h_identical_signature",
+  "evidence_direction_per_claim": {
+    "MECH-071": "non_contributory"
+  }
 }
