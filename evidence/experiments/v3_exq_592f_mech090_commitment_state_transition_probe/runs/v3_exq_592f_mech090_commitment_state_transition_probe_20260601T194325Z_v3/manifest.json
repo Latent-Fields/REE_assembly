@@ -1,44 +1,48 @@
 {
-  "schema_version": "experiment_pack/v1",
   "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "experiment_type": "v3_exq_592f_mech090_commitment_state_transition_probe",
-  "run_id": "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3",
-  "status": "FAIL",
-  "timestamp_utc": "2026-06-01T19:43:25Z",
-  "source_repo": {
-    "name": "ree-v3",
-    "commit": "",
-    "branch": "main"
-  },
-  "runner": {
-    "name": "ree-v3-harness",
-    "version": "3.0.0"
-  },
   "artifacts": {
     "metrics_path": "metrics.json",
     "summary_path": "summary.md"
   },
-  "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
     "MECH-090"
   ],
-  "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {},
-  "experiment_purpose": "diagnostic",
-  "producer_capabilities": {
-    "sd005_split_latent": true,
-    "sd004_action_objects": true,
-    "sd006_multirate_clock": true
-  },
   "environment": {
+    "config_hash": "unknown",
+    "dynamics_hash": "unknown",
     "env_id": "ree.causal_grid_world_v3",
     "env_version": "3.0.0",
-    "dynamics_hash": "unknown",
-    "reward_hash": "unknown",
     "observation_hash": "unknown",
-    "config_hash": "unknown",
+    "reward_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "epistemic_category": "substrate_ceiling",
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "V3-EXQ-592f (controlled state-machine probe, supersedes 592e; FAIL_NO_RELEASE_AUTHORITY): forced score_margin=0.01 (<floor 0.05) and nav_readiness=0.0 (<floor 0.3) while beta forced elevated and E3 committed pointer forced present produced zero state-occupancy suppression and zero decommit transitions across stages B/C/D. The nav predicate IS consulted (6 blocks/stage in C/D); the score-margin admission gate is bypassed when beta is already elevated (current bistable-branch design); C4 conjunction-authority PASSed vacuously (0 >= max(0,0)). This is a diagnostic reach-gap probe, NOT a falsification of the MECH-090 base claim (EXQ-049e remains the canonical PASS) nor of the R-c admission axis (V3-EXQ-592d 4-arm validator remains live). Re-tagged does_not_support -> non_contributory per the confirmed failure_autopsy_V3-EXQ-592f_2026-06-02 (recommended_evidence_direction=non_contributory, recommended_epistemic_category=substrate_ceiling). RESOLVED 2026-06-02: the admission-only reach gap is now covered by the NEW MECH-342 maintenance-time, readiness-driven commitment-release coupling (landed 2026-06-02 via /implement-substrate; concluded by mech090_release_path_audit_2026-06-02 verdict B3b + the motor-program-cessation lit-pull), VALIDATED by V3-EXQ-592g PASS (v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3: decommit transitions 2/stage in B/C/D, suppression 0.4-0.6, mech342_fires=1/stage, C4 now strictly-positive 0.6, no false abort in A/E baseline/recovery). pending_retest_after_substrate cleared to false: the substrate retest happened and passed.",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_592f_mech090_commitment_state_transition_probe",
+  "failure_signatures": [],
+  "pending_retest_after_substrate": true,
+  "producer_capabilities": {
+    "sd004_action_objects": true,
+    "sd005_split_latent": true,
+    "sd006_multirate_clock": true
+  },
+  "run_id": "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3",
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "schema_version": "experiment_pack/v1",
+  "source_repo": {
+    "branch": "main",
+    "commit": "",
+    "name": "ree-v3"
+  },
+  "status": "FAIL",
+  "stop_criteria_version": "stop_criteria/v1",
+  "timestamp_utc": "2026-06-01T19:43:25Z",
+  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted."
 }

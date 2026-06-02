@@ -1,7 +1,9 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-02T05:23:00Z",
+  "last_review_utc": "2026-06-02T16:49:58Z",
   "discussed_experiment_dirs": [
+    "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
+    "v3_exq_592f_mech090_commitment_state_transition_probe",
     "V3-EXQ-008",
     "V3-EXQ-038",
     "V3-EXQ-046",
@@ -467,6 +469,8 @@
     "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3"
   ],
   "reviewed_run_ids": [
+    "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
+    "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3",
     "v3_exq_592d_mech090_readiness_conjunction_validation_20260531T213852Z_v3",
     "v3_exq_483e_sd037_consumer_cascade_4arm_20260530T195925Z_v3",
     "v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b_20260531T004944Z_v3",
@@ -3512,6 +3516,19 @@
         "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3"
       ],
       "subject": "/governance cycle. 4 pending experiments walked. (1) V3-EXQ-592e FAIL MECH-090 R-c readiness conjunction validation -- failure_autopsy_V3-EXQ-592e_2026-06-01 applied verbatim per user approval: evidence_direction does_not_support (epistemic_category does_not_support_state_authority; state-authority specifically, not base claim falsification). MECH-090 status unchanged (active). evidence_quality_note appended to MECH-090 with autopsy paragraph. Routing: V3-EXQ-592f as controlled state-machine probe. pending_retest_after_substrate=false. substrate_queue action=none. V3-EXQ-592d superseded. (2) V3-EXQ-592f FAIL MECH-090 commitment_state_transition_probe -- explicit diagnostic; manifest's own diagnostic_interpretation.failure_routing=implement-substrate. Per user decision: routed to /failure-autopsy. NOT marked reviewed; NOT applied this cycle. Stays pending until autopsy artifact lands. (3) V3-EXQ-620b PASS SD-037 axis-a consumer-input distributions (stream-on fix; supersedes 620). claim_ids=[]; experiment_purpose=diagnostic. acceptance_pass=true (z_harm_a_norm zero_fraction=0.0 3/3 seeds; pooled p70=0.43 clears BLA arousal-threshold 0.4 at upper tail). Marked discussed. (4) V3-EXQ-625b FAIL SD-037 axis-b sustained-threat curriculum (supersedes 625). claim_ids=[]; experiment_purpose=diagnostic. C1 (curriculum firing) + C2 (z_harm_a nonzero) PASS; C3 sustained_window FAIL 1/3 seeds (seed 42: 0 runs, seed 7: 1 run, seed 19: 0 runs; threshold z>=0.4 for run_len>=10). Substrate-side signal for axis-b plan: env-kwarg-only curriculum does not reliably produce sustained windows; plan needs curriculum tightening (lift hazard_prob or shorten interval) or sustained-window relaxation. Marked discussed; surfaced to axis-b plan owner."
+    },
+    {
+      "timestamp_utc": "2026-06-02T16:49:58Z",
+      "session_label": "pre-governance-disposition-592fg-mech342-20260602T164958Z",
+      "reviewed_run_ids": [
+        "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
+        "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
+        "v3_exq_592f_mech090_commitment_state_transition_probe"
+      ],
+      "subject": "Pre-governance result disposition of two MECH-090/MECH-342 results. (1) V3-EXQ-592g PASS (MECH-342 maintenance-release validation probe; experiment_purpose=diagnostic; evidence_direction=supports). All six acceptance criteria pass: C1 forced baseline (beta/E3 occupancy 1.0), C2 score-margin release authority (decommit=2, suppression 0.4, mech342_fires=1), C3 nav-competence release authority (decommit=2, suppression 0.6, mech342_fires=1), C4 conjunction authority STRICTLY positive (max_drop 0.6 -- 592f could only PASS this vacuously at 0), C5 no false abort (A/E decommit=0, beta re-elevates on recovery), C6 no-vacuity. DISPOSITION: MECH-342 stays candidate / v3_pending -- 592g is a controlled diagnostic state-machine probe (not ecological evidence) and the V3-pending gate forbids promotion regardless of evidence count; promotion needs an ecological evidence-grade experiment. validation_note added to MECH-342 in claims.yaml; substrate_queue MECH-342 status -> implemented_validated_v3_exq_592g. (2) V3-EXQ-592f (MECH-090, the sole prior pending item, held during the 2026-06-02T05:55 /governance cycle 'pending autopsy artifact lands'). Autopsy (failure_autopsy_V3-EXQ-592f_2026-06-02, confirmed) + the B3b release-path audit + MECH-342 (validated by 592g) resolve its implement-substrate routing. Applied the confirmed autopsy's recommended_evidence_direction: re-tagged 592f manifest (flat + nested) does_not_support -> non_contributory (epistemic_category substrate_ceiling); cleared pending_retest_after_substrate to false (reach gap closed -- the substrate retest happened and passed). MECH-090 status unchanged (active); the maintenance-release capability lives on the dependent MECH-342 claim, not on MECH-090 (no MECH-090 flag/confidence/promotion change). Dated closure note appended to MECH-090. Both marked reviewed; pending_review re-confirmed 0."
     }
   ]
 }

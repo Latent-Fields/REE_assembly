@@ -5157,6 +5157,25 @@
     release/suppress an already-held committed state and recover when readiness
     returns. recommended_substrate_queue_entry.action=none.
     pending_retest_after_substrate=false. V3-EXQ-592d superseded.
+
+    V3-EXQ-592f (2026-06-01, controlled state-machine probe, supersedes
+    V3-EXQ-592e) FAILed FAIL_NO_RELEASE_AUTHORITY: with beta forced elevated and
+    E3 committed pointer forced present, degraded score_margin (0.01) / nav_competence
+    (0.0) produced zero decommit transitions across B/C/D and C4 PASSed only
+    vacuously (0 >= max(0,0)). Per confirmed failure_autopsy_V3-EXQ-592f_2026-06-02
+    this is a diagnostic reach-gap probe, NOT a falsification of MECH-090 (EXQ-049e
+    remains the canonical PASS; the R-c admission axis V3-EXQ-592d stays live) -- it
+    confirms the R-c conjunction is admission-only by design. 592f manifest re-tagged
+    does_not_support -> non_contributory (epistemic_category substrate_ceiling).
+    RESOLVED 2026-06-02: the admission-only reach gap is now covered by the NEW
+    MECH-342 maintenance-time, readiness-driven commitment-release coupling (landed
+    via /implement-substrate; concluded by mech090_release_path_audit_2026-06-02
+    verdict B3b + the motor-program-cessation lit-pull), VALIDATED by V3-EXQ-592g
+    PASS (2/stage decommit transitions in B/C/D, suppression 0.4-0.6, mech342_fires
+    1/stage, no false abort in A/E). MECH-090 status unchanged (active); the
+    maintenance-release capability lives on the dependent MECH-342 claim, not here --
+    no MECH-090 flag / confidence / promotion change. 592f pending_retest_after_substrate
+    cleared to false (the reach-gap retest happened and passed).
 - id: MECH-091
   title: "Salient events phase-reset the E3 heartbeat clock."
   claim_type: mechanism_hypothesis
@@ -35612,6 +35631,25 @@
     stays candidate / v3_pending pending V3-EXQ-592g maintenance-release
     validation probe; the V3-EXQ-592f manifest's pending_retest_after_substrate
     stays TRUE until 592g validates the maintenance-time release.
+  validation_note: >
+    2026-06-02: V3-EXQ-592g
+    (v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3) PASSED --
+    the maintenance-release coupling fires as designed on the controlled
+    state-machine probe. All six acceptance criteria pass: C1 forced baseline
+    (beta/E3 occupancy 1.0), C2 score-margin release authority (decommit
+    transitions=2, suppression beta/e3 0.4, mech342_fires=1), C3 nav-competence
+    release authority (decommit=2, suppression 0.6, mech342_fires=1), C4
+    conjunction authority now STRICTLY positive (max_drop 0.6 -- the quantity
+    592f could only PASS vacuously at 0), C5 no false abort (A/E baseline+recovery
+    decommit=0, beta re-elevates on recovery), C6 no-vacuity (all forced predicates
+    crossed their floors). This closes the V3-EXQ-592f reach gap; the 592f manifest
+    has been re-tagged non_contributory and its pending_retest_after_substrate
+    cleared to false. DISPOSITION: status stays candidate / v3_pending. 592g is a
+    controlled diagnostic state-machine probe (experiment_purpose=diagnostic), which
+    validates the substrate behaves as designed but is NOT ecological evidence; and
+    the V3-pending gate forbids promotion regardless of evidence count. Promotion to
+    provisional/active requires an ecological, evidence-grade experiment showing the
+    coupling improves agent behaviour. No flag/confidence change to MECH-090.
   location: docs/architecture/mech_342_commit_maintenance_release.md
 
 - id: Q-054

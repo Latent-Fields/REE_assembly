@@ -3652,15 +3652,15 @@
         "evidence/planning/mech090_release_path_audit_2026-06-02.md",
         "evidence/literature/targeted_review_mech_090_release_motor_cessation/SYNTHESIS.md"
       ],
-      "current_blocker": "V3-EXQ-592g maintenance-release validation probe not yet run (substrate landed; behavioural confirmation pending).",
+      "current_blocker": null,
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/mech_342_commit_maintenance_release.md",
       "implementation_hint": "NEW substrate (NOT on the MECH-090 entry, which the audit + AMEND aab1e61d96 recorded as admission-only by design). Routed by the MECH-090 release-path audit (B1 ruled out: none of ARC-028/MECH-105 completion, MECH-091 urgency, V_s commit-release, SD-034 closure covers degraded-readiness mid-commitment) + motor-cessation lit-pull verdict B3b. Autopsy option (a) resurfacing, reframed graded-online (Resulaj bounded accumulation + Cavanagh conflict-graded STN) + targeted/hysteretic with reengagement (Falasconi movement-specific vs Wessel non-selective).",
-      "implementation_log": "LANDED 2026-06-02 via /implement-substrate. ree-v3/ree_core/policy/commit_maintenance_release.py (CommitMaintenanceRelease + Config); release branch in REEAgent.select_action after the MECH-091 urgency block; REEConfig.from_dims knobs all default no-op (use_maintenance_release=False bit-identical). 685/685 prior contracts + 15 new MECH-342 contracts PASS. claims.yaml MECH-342 registered candidate/v3_pending (no MECH-090 flag change). Validation: V3-EXQ-592g (592f-style maintenance-release probe) queued via /queue-experiment. The V3-EXQ-592f manifest pending_retest_after_substrate stays TRUE until 592g validates. Does NOT reopen the MECH-090 admission axis (V3-EXQ-592d live).",
+      "implementation_log": "LANDED 2026-06-02 via /implement-substrate. ree-v3/ree_core/policy/commit_maintenance_release.py (CommitMaintenanceRelease + Config); release branch in REEAgent.select_action after the MECH-091 urgency block; REEConfig.from_dims knobs all default no-op (use_maintenance_release=False bit-identical). 685/685 prior contracts + 15 new MECH-342 contracts PASS. claims.yaml MECH-342 registered candidate/v3_pending (no MECH-090 flag change). Validation: V3-EXQ-592g (592f-style maintenance-release probe) queued via /queue-experiment. The V3-EXQ-592f manifest pending_retest_after_substrate stays TRUE until 592g validates. Does NOT reopen the MECH-090 admission axis (V3-EXQ-592d live). VALIDATED 2026-06-02: V3-EXQ-592g (v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3) PASSED all six acceptance criteria -- decommit transitions 2/stage in B/C/D, suppression 0.4-0.6, mech342_fires 1/stage, C4 conjunction now strictly-positive 0.6 (592f could only PASS it vacuously at 0), no false abort in A/E. Closes the 592f reach gap: 592f manifest re-tagged non_contributory and pending_retest_after_substrate cleared to false. MECH-342 stays candidate / v3_pending (592g is a diagnostic probe, not ecological evidence; V3-pending gate forbids promotion).",
       "priority": 5,
-      "ready": true,
+      "ready": false,
       "sd_id": "MECH-342",
-      "status": "substrate_landed_validation_v3_exq_592g_queued",
+      "status": "implemented_validated_v3_exq_592g",
       "title": "Maintenance-time readiness-driven commitment-release coupling (B3b). Release-side complement to the MECH-090 admission-only R-c conjunction: degraded execution readiness (score_margin + nav_competence) drives a graded bounded-accumulation RELEASE of an already-elevated beta latch.",
       "unblocks_claims": [
         "MECH-342"
