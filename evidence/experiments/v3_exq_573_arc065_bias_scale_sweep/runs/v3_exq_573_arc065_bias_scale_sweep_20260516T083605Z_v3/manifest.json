@@ -49,5 +49,12 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Reclassified non_contributory 2026-05-16 governance review. All 10 arms produced identical entropy (delta=0 at 1x/5x/10x scale) because the bias channel is not propagating to E3 selection -- bias components are machine-epsilon regardless of scale factor. EXQ-571 confirmed: bias_fraction=0 for all components. The 10x scaling experiment confirmed the non-propagation but did not constitute a valid scientific test of the mechanisms. Original per-claim: ARC-065=weakens, MECH-313/314/320=does_not_support."
+  "evidence_direction_note": "Reclassified non_contributory 2026-05-16 governance review. All 10 arms produced identical entropy (delta=0 at 1x/5x/10x scale) because the bias channel is not propagating to E3 selection -- bias components are machine-epsilon regardless of scale factor. EXQ-571 confirmed: bias_fraction=0 for all components. The 10x scaling experiment confirmed the non-propagation but did not constitute a valid scientific test of the mechanisms. Original per-claim: ARC-065=weakens, MECH-313/314/320=does_not_support.",
+  "pending_retest_after_substrate_per_claim": [
+    "ARC-065",
+    "MECH-313",
+    "MECH-314",
+    "MECH-320"
+  ],
+  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted."
 }

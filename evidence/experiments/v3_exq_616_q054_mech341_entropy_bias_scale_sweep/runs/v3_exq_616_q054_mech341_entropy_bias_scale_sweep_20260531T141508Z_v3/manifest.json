@@ -1,1 +1,53 @@
-{"schema_version": "experiment_pack/v1", "architecture_epoch": "ree_hybrid_guardrails_v1", "experiment_type": "v3_exq_616_q054_mech341_entropy_bias_scale_sweep", "run_id": "v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3", "status": "FAIL", "timestamp_utc": "2026-05-31T14:15:08Z", "source_repo": {"name": "ree-v3", "commit": "", "branch": "main"}, "runner": {"name": "ree-v3-harness", "version": "3.0.0"}, "artifacts": {"metrics_path": "metrics.json", "summary_path": "summary.md"}, "stop_criteria_version": "stop_criteria/v1", "claim_ids_tested": ["Q-054", "MECH-341"], "evidence_class": "simulation", "evidence_direction": "mixed", "evidence_direction_per_claim": {"Q-054": "mixed", "MECH-341": "non_contributory"}, "experiment_purpose": "evidence", "producer_capabilities": {"sd005_split_latent": true, "sd004_action_objects": true, "sd006_multirate_clock": true}, "environment": {"env_id": "ree.causal_grid_world_v3", "env_version": "3.0.0", "dynamics_hash": "unknown", "reward_hash": "unknown", "observation_hash": "unknown", "config_hash": "unknown", "tier": "causal_grid_world_v3"}, "failure_signatures": [], "evidence_direction_note": "2026-05-31 governance cycle (1908Z): applied failure_autopsy_MECH-341-cluster_2026-05-31. Per-claim direction overrides: Q-054=mixed (definitive negative answer to the scale-lever question; load-bearing diversity floor is at the proposer layer SP-CEM presence/absence, not the score layer; no entropy_bias_scale in [1.0,8.0] rescues a single-class candidate pool), MECH-341=non_contributory (clarification not falsification; correct claim characterisation is score-layer preserver of upstream-supplied candidate-pool diversity, not in-isolation diversity generator; in-isolation testing through entropy_bias_scale is structurally not reachable). load_bearing_floor_scale=None across all four sweep arms; bit-identical per-seed results across (1.0, 2.0, 4.0, 8.0) mathematically prove uniform additive bias cannot move a single-class CEM proposer output. | experiment_purpose=evidence; Q-054 entropy_bias_scale sweep on MECH-341 B_only isolation arm (routed from V3-EXQ-614a PASS_via_C2_C3). interpretation_label=FAIL_no_floor_under_max_swept_scale. load_bearing_floor_scale=None. Per-arm acceptance grid in result.acceptance_grid."}
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_616_q054_mech341_entropy_bias_scale_sweep",
+  "run_id": "v3_exq_616_q054_mech341_entropy_bias_scale_sweep_20260531T141508Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-31T14:15:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-054",
+    "MECH-341"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "Q-054": "mixed",
+    "MECH-341": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-05-31 governance cycle (1908Z): applied failure_autopsy_MECH-341-cluster_2026-05-31. Per-claim direction overrides: Q-054=mixed (definitive negative answer to the scale-lever question; load-bearing diversity floor is at the proposer layer SP-CEM presence/absence, not the score layer; no entropy_bias_scale in [1.0,8.0] rescues a single-class candidate pool), MECH-341=non_contributory (clarification not falsification; correct claim characterisation is score-layer preserver of upstream-supplied candidate-pool diversity, not in-isolation diversity generator; in-isolation testing through entropy_bias_scale is structurally not reachable). load_bearing_floor_scale=None across all four sweep arms; bit-identical per-seed results across (1.0, 2.0, 4.0, 8.0) mathematically prove uniform additive bias cannot move a single-class CEM proposer output. | experiment_purpose=evidence; Q-054 entropy_bias_scale sweep on MECH-341 B_only isolation arm (routed from V3-EXQ-614a PASS_via_C2_C3). interpretation_label=FAIL_no_floor_under_max_swept_scale. load_bearing_floor_scale=None. Per-arm acceptance grid in result.acceptance_grid.",
+  "pending_retest_after_substrate_per_claim": [
+    "MECH-341"
+  ],
+  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted."
+}

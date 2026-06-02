@@ -49,5 +49,12 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Governance 2026-05-21: substrate_ceiling / measurement. Curiosity_scale (1x/5x/10x) and noise_alpha sweeps produce identical per-cell entropy and reef_fraction within each alpha row (e.g. all a0.1 arms 0.259/0.289). p1_any_calibration_zone false. Q-043 calibration grid untestable until curiosity/noise paths modulate behavior."
+  "evidence_direction_note": "Governance 2026-05-21: substrate_ceiling / measurement. Curiosity_scale (1x/5x/10x) and noise_alpha sweeps produce identical per-cell entropy and reef_fraction within each alpha row (e.g. all a0.1 arms 0.259/0.289). p1_any_calibration_zone false. Q-043 calibration grid untestable until curiosity/noise paths modulate behavior.",
+  "pending_retest_after_substrate_per_claim": [
+    "ARC-065",
+    "MECH-313",
+    "MECH-314",
+    "Q-043"
+  ],
+  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted."
 }

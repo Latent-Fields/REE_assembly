@@ -211,8 +211,9 @@ left with thin/no experimental evidence after de-weighting — both are now genu
 candidates (queue a post-landing EXQ) rather than merely de-weighted. The de-weight is durable in
 the manifests; live scoring refreshes on the next `/governance` index rebuild.
 
-**Still open (not applied):** confirm `483c` superseded by `483e`; optional backfill of the B.3
-"asserts-but-missing" autopsy manifests (scoring-neutral); SD-012 fan-out + KEEP rows untouched.
+**Still open (not applied):** ~~confirm `483c` superseded by `483e`; optional backfill of the B.3
+"asserts-but-missing" autopsy manifests (scoring-neutral)~~ — **BOTH CLOSED 2026-06-02, see the
+CLOSURE section at the end of this memo.** SD-012 fan-out + KEEP rows untouched.
 
 ---
 
@@ -259,3 +260,86 @@ Queueing a separate SD-049 EXQ would duplicate it and contaminate both runs' evi
 The 539 MARK de-weighted MECH-307's pre-split-channel commit-gating run; the live MECH-307 evidence is
 already the post-recalibration 540g lineage (ree-v3/CLAUDE.md "MECH-307 Default-Value Recalibration").
 No new EXQ needed — the de-weight simply stops the stale 539 entry from weighting; 540g carries MECH-307.
+
+---
+
+## CLOSURE (2026-06-02) — the two "Still open" bookkeeping items
+
+Both scoring-neutral / audit-hygiene items above are now closed. Manifest edits landed on the nested
+`runs/<id>/manifest.json` (the indexer-read copy); the index relabels apply on the next `/governance`
+rebuild (the regenerated index was NOT committed here — it carried unrelated concurrent manifest drift,
+same handling as the B.2 MARK session).
+
+### (1) 483c supersession — was NOT recorded; now recorded (this is a real de-weight, not scoring-neutral)
+
+The B.2 row assumed "almost certainly already superseded by 483e — confirm, then 483c needs no flag."
+On inspection the supersession was **not** recorded anywhere: `v3_exq_483c`'s nested manifest read
+`evidence_direction: mixed` (per-claim SD-037=weakens, MECH-280/281=unknown) and **was still weighting**;
+neither the `483e` nested manifest nor `483c`'s carried a supersession reference. The chain is genuine:
+`483d`'s docstring states *"Supersedes V3-EXQ-483c. Root cause of 483c failure: C2 measured agent.dacc
+which was [the wrong attribute]"* and `483e` (`...consumer_cascade_4arm_20260530T195925Z_v3`) supersedes
+`483d`. So `483c`'s scoring contribution came from a **defective harness** and was spurious.
+
+**Action taken:** set `evidence_direction: "superseded"` + `evidence_direction_note` (+ informational
+`superseded_by`) on `483c`'s nested manifest; cleared `evidence_direction_per_claim` (canonical for a
+superseded run, mirrors the indexer's auto-supersede path). Run-level `superseded` excludes all three
+tagged claims (`scoring_excluded: superseded`).
+
+**Governance consequence (parallels the ARC-029 / SD-049 MARK outcome).** `483c` was the **only** genuine
+experimental entry for SD-037, MECH-280, and MECH-281, and the superseding runs `483d`/`483e` are
+themselves `non_contributory`. So de-weighting `483c` drops the **experimental** confidence of all three
+to **0.0** (HEAD→post-edit, verified via same-code old-vs-new manifest diff; zero collateral on any other
+claim):
+
+| claim | exp_conf before → after | genuine_exp_count | note |
+|-------|-------------------------|-------------------|------|
+| SD-037 | 0.297 → 0.0 | 1 → 0 | overall_confidence (decoupled) rose 0.719→0.86 as a spurious *weakens* left scoring; lit unaffected |
+| MECH-280 | 0.452 → 0.0 | 1 → 0 | sole entry was 483c (mixed) |
+| MECH-281 | 0.452 → 0.0 | 1 → 0 | sole entry was 483c (mixed) |
+
+These three are now genuine **REVALIDATE** candidates on the SD-037/MECH-281 consumer-cascade axis (no
+contributory experimental evidence post-supersession). Note SD-037 itself remains `implemented` with
+*other* active streams (483b readiness PASS, 620b axis-a PASS, 625c axis-b queued) — the zero is specific
+to the broadcast/consumer-cascade evidence that 483c/d/e were probing. Do not double-queue against the
+existing axis-b work; route a consumer-cascade revalidation only if governance wants the MECH-280/281
+broadcast axis re-established.
+
+### (2) B.3 backfill — applied, verified scoring-neutral (17 nested manifests)
+
+Wrote `pending_retest_after_substrate` to the nested manifests of the B.3 "asserts-but-missing" set,
+using the **per-claim** form (`pending_retest_after_substrate_per_claim: [...]`) on multi-claim manifests
+and targeting **only the claims that currently read `non_contributory`** so no co-tagged scoring claim is
+de-weighted (per the RESOLUTION note on `v3_exq_539` co-tagging). Verified scoring-neutral by a
+same-moment indexer diff: **0 claims with any confidence/conflict delta**; the only change is the
+`scoring_excluded` label — `non_contributory` 303→270 and `diagnostic_probe` 365→364 (the 592f MECH-090
+entry) all moved into `stale_substrate` 11→45 (+34).
+
+| run (nested manifest) | form | claim(s) flagged |
+|------------------------|------|------------------|
+| `v3_exq_572_intervention_a_dual_attractor` (×4 runs) | run-level | ARC-065 |
+| `v3_exq_573_arc065_bias_scale_sweep` | per-claim | ARC-065, MECH-313, MECH-314, MECH-320 |
+| `v3_exq_603a_q045_mech313_mech260_four_arm_ablation` | per-claim | Q-045, MECH-313, MECH-260 |
+| `v3_exq_603c_q045_mech313_mech260_phased_training` | per-claim | Q-045, MECH-313, MECH-260 |
+| `v3_exq_604_q044_mech314_subflavour_three_arm_ablation` | per-claim | Q-044, MECH-314, MECH-314a/b/c |
+| `v3_exq_605_q043_noise_floor_curiosity_weight_sweep` | per-claim | Q-043, ARC-065, MECH-313, MECH-314 |
+| `v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate` | run-level | MECH-318 |
+| `v3_exq_517b_mech302_relief_completion_discriminative_pair` | run-level | MECH-302 |
+| `v3_exq_543i_arc062_differential_heads_falsifier` (035802Z) | per-claim | ARC-062, MECH-309, INV-074, MECH-334 |
+| `v3_exq_543l_arc062_mode_separation_gap_b_falsifier` (023059Z) | per-claim | INV-074, MECH-334 *(only)* |
+| `v3_exq_592f_mech090_commitment_state_transition_probe` | run-level | MECH-090 (diagnostic_probe→stale_substrate) |
+| `v3_exq_598_gap1_sd033a_bias_head_trainable_ablation` | run-level | SD-033a |
+| `v3_exq_616_q054_mech341_entropy_bias_scale_sweep` | per-claim | MECH-341 *(only)* |
+| `v3_exq_625b_sd037_axis_b_phase1b_..._sustained_threat` | run-level | (claim_ids=[]; documentary — produces no index entries) |
+
+**Deliberately NOT flagged (would not have been scoring-neutral, or no nested manifest):**
+
+- **`v3_exq_577`** — flat-only; no `runs/<id>/manifest.json` exists, and the indexer reads **only** nested
+  manifests, so it is not indexed at all (nothing to relabel; a flat-file flag is inert).
+- **`v3_exq_603b`** (×2 runs) — currently reads `mixed` (all of Q-045/MECH-313/MECH-260 score). Flagging
+  would *de-weight* live scoring entries — that is a substantive call (like the B.2 MARK process), not the
+  scoring-neutral backfill, so it was left for a governance decision.
+- **`v3_exq_610a`** — run-level `evidence_direction: superseded` already; `superseded` is a stronger
+  exclusion that takes precedence over the stale-substrate gate, so a flag would be inert.
+- **`v3_exq_622`** — `claim_ids: []` and already `superseded`; inert.
+- On `543l` and `616` the scoring claims (`543l`: ARC-062 *weakens* / MECH-309 *supports*; `616`: Q-054
+  *mixed*) were left untouched — only their `non_contributory` co-tags were flagged.

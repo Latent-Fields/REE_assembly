@@ -51,5 +51,13 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Governance 2026-05-21: substrate_ceiling. All four arms identical selected_action_entropy (0.244051) and monomodal collapse (seed 42 unique_actions=1) -- MECH-314 sub-flavour ablations exert no discriminable signal. Do not weaken Q-044/MECH-314; retest after structured-curiosity substrate carries information at action-selection."
+  "evidence_direction_note": "Governance 2026-05-21: substrate_ceiling. All four arms identical selected_action_entropy (0.244051) and monomodal collapse (seed 42 unique_actions=1) -- MECH-314 sub-flavour ablations exert no discriminable signal. Do not weaken Q-044/MECH-314; retest after structured-curiosity substrate carries information at action-selection.",
+  "pending_retest_after_substrate_per_claim": [
+    "MECH-314",
+    "MECH-314a",
+    "MECH-314b",
+    "MECH-314c",
+    "Q-044"
+  ],
+  "pending_retest_after_substrate_note": "B.3 backfill of epoch_stale_evidence_review_2026-06-02.md (applied 2026-06-02): this run's failure_autopsy asserts pending_retest_after_substrate but the nested manifest lacked the field. Written here to relabel the listed claim(s) non_contributory -> stale_substrate (scoring-neutral -- the run was already excluded from scoring). Per-claim form used where the manifest is multi-claim so co-tagged scoring claims are not de-weighted."
 }
