@@ -54,20 +54,20 @@ Generated: 2026-06-02T06:28:02Z
   - SD-033 cluster (SD-033/b/c/d/e) — all gated on MECH-261 + MECH-094/ARC-035
   - SD-025 — blocked on 5 deps (SD-024, SD-004, ARC-057, MECH-111, INV-051)
   - SD-026/027/028 — INV-034/037/038 + MECH-007 chain
-  - MECH-256 → blocked on MECH-269; MECH-257 → blocked on MECH-256
+  - MECH-256 → blocked on MECH-269; MECH-257 → blocked on MECH-256 — **[2026-06-02 CORRECTION: not a stale edge. Base MECH-269 landed 2026-04-22 but the V_s-monostrategy blocker persisted (MECH-256 failures run through 2026-05-08) and live V_s work moved to the MECH-269b lineage (269b + followup-A implemented-but-unvalidated). `ready_blocked_by` confirms genuine. Correct fix = retarget the dep to MECH-269b, NOT delete.]**
   - ARC-064 / SD-054 / MECH-316/317/318 — all gated on **ARC-062 Phase 3 wiring**
 
 - **SDs with failure records** (experiments failed because of missing/incomplete substrate):
-  - **MECH-256 — 10 failures** (candidate_v3_pending, blocked on MECH-269) — *worst*
-  - **ARC-062 — 9 failures** (phase_1, evidence-gated 543k/598) — drives the EXQ-543 chain
-  - **SD-037 — 6 failures** (status `null` — not cleanly implemented; drove EXQ-418/490 churn)
+  - **MECH-256 — 10 failures** (candidate_v3_pending, blocked on MECH-269) — *worst* — **[2026-06-02 CORRECTION: the 10 failures are the V_s-monostrategy substrate-ceiling pattern (shared across the 433/470/537 cluster), not MECH-256-specific bugs. Mechanism is wired end-to-end; genuine blocker is the upstream V_s work (MECH-269b lineage). See MECH-256 note above.]**
+  - **ARC-062 — 9 failures** (phase_1, evidence-gated 543k/598) — drives the EXQ-543 chain — **[2026-06-02 CORRECTION: NOT a missing-substrate ceiling. The "rule-creator substrate" framing (543l/598b records) was superseded by the user-confirmed V3-EXQ-598 autopsy (2026-05-29): blocker is behavioral-diversity collapse, owned by the EXISTING ARC-065 (foundational upstream of ARC-062) + SD-056 (E2 action-divergence), which landed + passed falsifiers 569d/617 (2026-05-31). Remaining ARC-062 path is experimental (GAP-B re-falsifier), not new substrate. Scoping memo: evidence/planning/arc062_rule_creator_scoping_2026-06-02.md.]**
+  - **SD-037 — 6 failures** (status `null` — not cleanly implemented; drove EXQ-418/490 churn) — **[2026-06-02 CORRECTION: SD-037 WAS implemented (implementation_status=implemented, implemented_utc 2026-04-25, readiness V3-EXQ-483b PASS, axis-a 620b PASS); only the top-level status field was a stale null, now fixed to `implemented` (commit eb6884b365). The 6 failure_records are env-curriculum tuning (axis-b sustained-window C3, V3-EXQ-625b autopsy), NOT substrate.]**
   - **scaffolded_sd054_onboarding — 6 failures** (amend_pending)
   - SD-016 — 4 (parked, env-entropy precondition); SD-049 — 4 (phase_1)
   - 3 each: SD-015, SD-029, MECH-307
 
 - **Cross-reference (substrate ↔ high-iteration churn):**
-  - ARC-062 (9 substrate failures) ⇒ EXQ-543 chain (10 iterations, 9 FAIL)
-  - SD-037 (6 failures, never cleanly landed) ⇒ EXQ-418 (13 iter) + EXQ-490 (9 iter) churn
+  - ARC-062 (9 substrate failures) ⇒ EXQ-543 chain (10 iterations, 9 FAIL) — **[2026-06-02: the shared cause is behavioral-diversity collapse (ARC-065/SD-056 domain), now landing — see ARC-062 correction above]**
+  - SD-037 (6 failures, never cleanly landed) ⇒ EXQ-418 (13 iter) + EXQ-490 (9 iter) churn — **[2026-06-02 CORRECTION: SD-037 was cleanly landed 2026-04-25; the churn is env-curriculum, not substrate]**
   - SD-049 (4 failures) ⇒ EXQ-514 chain (12 iterations)
 
 ---
@@ -130,16 +130,30 @@ Recent session-type distribution (last ~120 WORKSPACE_STATE headers):
    the cloud-worker silent-drop bug. Many high-iteration "chains" (EXQ-445, parts of 490/418/514)
    are inflated by lost results, not real scientific failures. Sweep `evidence/` for orphan
    manifests and reclassify; fix `experiment_runner.py:1394` to stop the leak.
+   **[2026-06-02 PARTIALLY DONE: triage ran (unknown_results_triage_2026-06-02.md) — 183/193 relinked
+   to real manifests, 0 disagreements, only 10 genuinely lost. The root-cause `experiment_runner.py:1394`
+   fix is STILL OPEN (chip queued).]**
 
 2. **Unblock the ARC-062 Phase-3 wiring keystone.** ARC-062 has 9 substrate failures, drives the
    EXQ-543 chain (10 iterations, 9 FAIL), and is the named blocker for ARC-064, SD-054,
    MECH-316/317/318. It is the single highest-leverage substrate item. SD-037 (6 failures, status
    `null`) is second — it never cleanly landed yet drove the EXQ-418/490 churn; either finish it
    or formally park it.
+   **[2026-06-02 CORRECTED — scoped, memo evidence/planning/arc062_rule_creator_scoping_2026-06-02.md]:**
+   ARC-062 needs NO new substrate. Per the user-confirmed V3-EXQ-598 autopsy (2026-05-29) the blocker
+   is behavioral-diversity collapse, owned by the EXISTING ARC-065 + SD-056 — both landed + passed
+   falsifiers (569d/617, 2026-05-31). Next ARC-062 action is a GAP-B re-falsifier on that substrate
+   (`/queue-experiment`), gated on ARC-065's Q-043/44/45 ablations (Q-045=603e, 614d already queued).
+   SD-037 was ALSO mis-flagged: it was cleanly implemented 2026-04-25; only the status field was a
+   stale null, now fixed (eb6884b365). Real next step here is queue-experiment, not implement-substrate.
 
 3. **Resolve MECH-256 / MECH-269 dependency knot.** MECH-256 carries 10 failure records and is
    blocked on MECH-269 (which itself has 2). This chain (→ MECH-257) is the deepest failure-loaded
    dependency in the substrate queue.
+   **[2026-06-02 CORRECTION: not a "knot to clear." The dep is genuine — base MECH-269 landed
+   2026-04-22 but the V_s-monostrategy blocker persisted and moved to the MECH-269b lineage. The 10
+   failures are the shared V_s-ceiling pattern, not MECH-256 bugs. Correct action = retarget the dep
+   edge to MECH-269b (the unresolved V_s work), deferred to the V_s-cluster owner.]**
 
 4. **Close the EXQ-085 / MECH-071 chain.** 14 FAIL iterations, no successor, no PASS — formally
    declare it stalled (new number with a different hypothesis, or shelve MECH-071) rather than
@@ -153,3 +167,8 @@ Recent session-type distribution (last ~120 WORKSPACE_STATE headers):
 
 5. **Clear the 13 open promotion/demotion decisions** and adopt status-tracking on
    evidence_backlog (all 258 items still read `open`), so governance progress is measurable.
+   **[2026-06-02 CORRECTION + PARTIALLY DONE: the "13 open" are all Q-claim narrowing reviews
+   (Q-021/022/023/024/033/036/037/040/041/043/044) under `narrow_open_question` / `hold_pending_v3_substrate`
+   with recommendation already `applied` — open *questions*, not pending promote/demote calls. The
+   evidence_backlog status-tracking landed elsewhere (commit "backlog: derive evidence_backlog status
+   open/in_progress/covered/superseded").]**
