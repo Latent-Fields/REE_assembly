@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-02T19:50:26Z",
+  "last_tick_utc": "2026-06-02T20:20:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-629",
   "current_exq_started_utc": "2026-06-02T19:03:27.815440+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-342",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_0_RELEASE_OFF",
-    "runs_done": 1,
+    "run_label": "Seed 44 / ARM_0_RELEASE_OFF",
+    "runs_done": 2,
     "runs_total": 6,
-    "episodes_done": 40,
+    "episodes_done": 0,
     "episodes_total": 400,
-    "overall_pct": 18.3
+    "overall_pct": 33.3
   },
-  "seconds_elapsed": 2819,
-  "seconds_remaining": 6205,
+  "seconds_elapsed": 4626,
+  "seconds_remaining": 9115,
   "recent_lines": [
-    "[run 1/6] ARM_0_RELEASE_OFF seed=42  H[occ=1.000 fires=0 decommit=0]  D[occ=1.000 fires=0 decommit=0 degr_ticks=915 min_nav=1.000 max_rv=0.0000]",
+    "[train] ARM_0_RELEASE_OFF seed=43 ep 120/400  (P0 done: converged=True aborted=False final_rv=0.00000)",
+    "[run 2/6] ARM_0_RELEASE_OFF seed=43  H[occ=1.000 fires=0 decommit=0]  D[occ=1.000 fires=0 decommit=0 degr_ticks=4439 min_nav=1.000 max_rv=0.0000]",
     "verdict: PASS",
-    "Seed 43 Condition ARM_0_RELEASE_OFF",
-    "[train] ARM_0_RELEASE_OFF seed=43 ep 0/400 (P0 warmup start)",
-    "[P0 probe] ep 40/400  rv=0.00000  threshold=0.4  converging=True"
+    "Seed 44 Condition ARM_0_RELEASE_OFF",
+    "[train] ARM_0_RELEASE_OFF seed=44 ep 0/400 (P0 warmup start)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
