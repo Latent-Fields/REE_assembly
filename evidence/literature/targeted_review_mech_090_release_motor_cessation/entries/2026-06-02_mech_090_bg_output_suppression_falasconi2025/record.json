@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_090_release_motor_cessation",
+  "entry_id": "2026-06-02_mech_090_bg_output_suppression_falasconi2025",
+  "timestamp_utc": "2026-06-02T15:35:42Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Dynamic basal ganglia output signals license and suppress forelimb movements",
+    "authors": ["Antonio Falasconi", "Harsh Kanodia", "Silvia Arber"],
+    "year": 2025,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-025-09066-z",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12367548/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Recent (2025) single-unit + causal optogenetic Nature paper showing basal-ganglia OUTPUT (SNr) bidirectionally and movement-specifically licenses AND suppresses ongoing forelimb movements in real time. Establishes the EFFECTOR for maintenance-time motor-program release exists at the BG-output / motor-latch level and is continuous and granular, distinct from slow goal-level disengagement. Strong source; transfer risk elevated by mouse-to-REE-latch gap and because the paper frames pauses as movement-enabling rather than the release per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Falasconi frame SNr firing PAUSES as movement-ENABLING (release of a movement) and INCREASES as suppression -- the sign convention is movement-specific and bidirectional, so a naive 'increase = abort' reading is wrong; the abort of a committed program is the increase-firing suppression on that specific movement channel.",
+    "Suppression is movement-specific (one neuron pauses for movement A while increasing to suppress A when movement B runs) -- a global non-specific brake would be the wrong model for a targeted commitment release."
+  ],
+  "tags": ["mech-090", "substantia_nigra_reticulata", "basal_ganglia_output", "motor_program_suppression", "bidirectional", "motor_cessation", "release_path_audit"],
+  "mapping": {
+    "source_claim_statement": "SNr (basal-ganglia output) neurons show highly granular, dynamic, movement-specific firing pauses and increases tiling task execution; 60% of modulated units are bidirectionally modulated; these firing-rate changes are causally necessary and function to both release and suppress specific forelimb movements through downstream targets, supporting a model of bidirectional movement-specific basal-ganglia output control.",
+    "ree_translation": "The maintenance and cessation of an ongoing committed motor program is a continuous, granular, bidirectional basal-ganglia-OUTPUT function operating at the motor-program / latch level in real time -- exactly the layer at which REE's beta gate sits. This establishes that a maintenance-time release effector exists and is biologically distinct from slow goal-level disengagement (Wrosch/Klinger, the MECH-340 ghost-goal-bank construct). It supports B3b (the degraded-readiness release is a distinct motor-latch substrate) over B2 (a mere readout of goal-level disengagement).",
+    "mapping_caveat": "Falasconi study the EFFECTOR (how BG output releases/suppresses movement), not the TRIGGER (what upstream signal, e.g. degraded action-value/competence, commands the suppression). It evidences that maintenance-time motor-program release is a real, continuous, motor-latch-level function distinct from goal disengagement; it does not show that DEGRADED READINESS specifically is the commanding signal -- that linkage is supplied by Resulaj (changes of mind on continued evidence) and Cavanagh (STN conflict-graded threshold). Mouse single-unit to REE grid-world latch is a substantial transfer.",
+    "source_context": "Mouse, head-fixed skilled forelimb lever-press task; SNr single-unit electrophysiology + optogenetic causal perturbation."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "Nature 2025, single-unit + causal optogenetics, strong. Mapping_fidelity 0.66 because it evidences the EFFECTOR/substrate-existence (maintenance-time motor-program release is a real continuous BG-output function distinct from goal disengagement) but not the degraded-readiness trigger. Transfer_risk 0.42: mouse forelimb to REE multi-tick commitment latch."
+  }
+}

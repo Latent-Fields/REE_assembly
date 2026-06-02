@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_090_release_motor_cessation",
+  "entry_id": "2026-06-02_mech_090_stn_decision_threshold_cavanagh2011",
+  "timestamp_utc": "2026-06-02T15:35:42Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Subthalamic nucleus stimulation reverses mediofrontal influence over decision threshold",
+    "authors": ["James F. Cavanagh", "Thomas V. Wiecki", "Michael X. Cohen", "Christina M. Figueroa", "Johan Samanta", "Scott J. Sherman", "Michael J. Frank"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2925",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3394226/"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Causal human intervention (STN-DBS ON/OFF within-subject) plus EEG + drift-diffusion modeling showing the STN dynamically modulates the decision/commitment threshold in real time and that disrupting the STN removes the brake (impulsive responding). Directly evidences that the STN/beta substrate -- the SAME circuit as the MECH-090 beta gate -- is a continuously-modulated bidirectional commitment regulator, not a one-shot admission latch. Mapping fidelity high for the 'beta gate is dynamic, not latch-only' claim; the DBS perturbation is a strong causal handle.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "STN-DBS removing the conflict-adaptive threshold elevation produces IMPULSIVE premature responding -- the clinical signature of a missing/disabled maintenance brake. The mirror failure (a too-aggressive maintenance brake) is perseverative over-holding.",
+    "The STN threshold modulation is conflict/evidence-graded and operates over the deliberation window, not a categorical post-hoc release -- another data point against a one-shot Schmitt-flag implementation at the latch."
+  ],
+  "tags": ["mech-090", "subthalamic_nucleus", "decision_threshold", "hold_your_horses", "beta_gate", "commitment_regulation", "release_path_audit"],
+  "mapping": {
+    "source_claim_statement": "Medial prefrontal theta (4-8 Hz) scales the decision threshold up in proportion to decision conflict on high-conflict trials (P=0.01); STN deep-brain stimulation reverses this mPFC-theta-to-threshold relationship (P=0.045), speeding responses and producing impulsive choice. The STN buys time for cortico-striatal systems to settle on the best choice under conflict ('hold your horses').",
+    "ree_translation": "The STN, which IS the basal-ganglia substrate of the MECH-090 beta gate, dynamically and bidirectionally modulates the commitment threshold in real time as a function of ongoing conflict/decisiveness -- and removing it causes premature, impulsive commitment. This refutes the reading that admission-only is the biologically correct architecture for the beta-gate latch (option iii / B3c): the same circuit that admits a commitment continuously regulates whether it should be held or released. It supports siting a maintenance-time, decisiveness-driven release coupling AT the R-c / beta-gate level (autopsy option (a), resurfacing under B3b).",
+    "mapping_caveat": "Cavanagh's threshold modulation is measured during pre-response deliberation (gating commitment ENTRY timing), not explicitly during an already-elevated committed motor program. It establishes the STN/beta gate is a continuously-modulated bidirectional regulator (against admission-only) and is the same circuit as REE's gate, but it does not by itself demonstrate release of an already-initiated program -- that is the Resulaj entry's contribution. The two compose.",
+    "source_context": "Human Parkinson's-disease patients with STN-DBS, within-subject ON/OFF; scalp EEG theta + Hierarchical Drift Diffusion Model; high- vs low-conflict reinforcement-learning choices."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Strong causal design (within-subject DBS ON/OFF) in humans, Nature Neuroscience. Mapping_fidelity 0.72: directly supports 'STN/beta gate is dynamic+bidirectional, not admission-only' but the threshold is studied at entry-timing, not mid-program maintenance. Transfer_risk 0.38: PD-DBS cohort + conflict-RL task to REE latch."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-05-31T16:49:25.925411Z`
+Generated: `2026-06-02T15:39:33.245696Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -169,6 +169,7 @@ Generated: `2026-05-31T16:49:25.925411Z`
 | `targeted_review_mech_061` | [`2026-04-04_mech_061_stop_signal_ifc_stn_aron2006`](targeted_review_mech_061/entries/2026-04-04_mech_061_stop_signal_ifc_stn_aron2006/record.json) | 8 | [`summary`](targeted_review_mech_061/entries/2026-04-04_mech_061_stop_signal_ifc_stn_aron2006/summary.md) |
 | `targeted_review_mech_062` | [`2026-02-15_mech062_pbwm_gating_neuralcomputation2006`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/record.json) | 2 | [`summary`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/summary.md) |
 | `targeted_review_mech_063` | [`2026-02-15_q017_lit-0032_completion`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/record.json) | 5 | [`summary`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/summary.md) |
+| `targeted_review_mech_090_release_motor_cessation` | [`2026-06-02_mech_090_stn_decision_threshold_cavanagh2011`](targeted_review_mech_090_release_motor_cessation/entries/2026-06-02_mech_090_stn_decision_threshold_cavanagh2011/record.json) | 4 | [`summary`](targeted_review_mech_090_release_motor_cessation/entries/2026-06-02_mech_090_stn_decision_threshold_cavanagh2011/summary.md) |
 | `targeted_review_mech_098` | [`2026-04-16_mech_098_auditory_sis_whitford2019`](targeted_review_mech_098/entries/2026-04-16_mech_098_auditory_sis_whitford2019/record.json) | 4 | [`summary`](targeted_review_mech_098/entries/2026-04-16_mech_098_auditory_sis_whitford2019/summary.md) |
 | `targeted_review_mech_099` | [`2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value`](targeted_review_mech_099/entries/2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value/record.json) | 4 | [`summary`](targeted_review_mech_099/entries/2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value/summary.md) |
 | `targeted_review_mech_102` | [`2026-03-29_mech_102_just_war_last_resort_aloyo2015`](targeted_review_mech_102/entries/2026-03-29_mech_102_just_war_last_resort_aloyo2015/record.json) | 4 | [`summary`](targeted_review_mech_102/entries/2026-03-29_mech_102_just_war_last_resort_aloyo2015/summary.md) |

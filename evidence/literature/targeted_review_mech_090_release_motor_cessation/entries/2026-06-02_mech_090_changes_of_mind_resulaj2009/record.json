@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_090_release_motor_cessation",
+  "entry_id": "2026-06-02_mech_090_changes_of_mind_resulaj2009",
+  "timestamp_utc": "2026-06-02T15:35:42Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "Changes of mind in decision-making",
+    "authors": ["Arbora Resulaj", "Roozbeh Kiani", "Daniel M. Wolpert", "Michael N. Shadlen"],
+    "year": 2009,
+    "venue": "Nature",
+    "doi": "10.1038/nature08275",
+    "url": "https://www.nature.com/articles/nature08275"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical, high-quality psychophysics + bounded-accumulation model directly demonstrating that an ALREADY-INITIATED action is revised/reversed by post-decisional evidence still in the processing pipeline. Maps tightly onto the 592f reach axis (release of an already-committed action on continued degraded decisiveness). Mapping fidelity high; transfer risk moderate (perceptual-decision reach task vs REE commitment latch, but the structural primitive -- post-commit evidence can abort -- is exactly the gap).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reversal is graded and evidence-driven (bounded accumulation continues post-decision), NOT a one-shot threshold flag -- a Schmitt-style K-consecutive-ticks-below-floor release at the latch would discard the continued-accumulation dynamics this paper shows are the mechanism.",
+    "Changes of mind improve accuracy when the initial decision was erroneous but can also wrongly reverse a correct decision; a maintenance-time release driven by transient low decisiveness risks premature abort of a correct-but-hard commitment."
+  ],
+  "tags": ["mech-090", "changes_of_mind", "post_decisional_evidence", "commitment_release", "motor_cessation", "release_path_audit"],
+  "mapping": {
+    "source_claim_statement": "Subjects deciding about noisy motion by reaching reverse their initial choice mid-movement on some trials, with no new external information; a bounded-accumulation model in which evidence still in the processing pipeline at the moment of commitment continues to accumulate and can cross a second bound that reverses or reaffirms the initial decision explains both the frequency of changes of mind and their dependence on task difficulty and initial accuracy.",
+    "ree_translation": "Biological commitment is NOT locked irreversibly at the moment of action initiation: continued internal evidence/decisiveness (the REE R-c score_margin axis) can release/revise an already-committed action online. This directly evidences that MECH-090's beta-gate latch SHOULD have a maintenance-time release coupling on degraded within-tick decisiveness -- the 592f gap is a real architectural incompleteness, not a mis-routed expectation. It supports autopsy option (a) (an R-c-level release coupling) but reframes its trigger as graded continued-accumulation, not a one-shot flag.",
+    "mapping_caveat": "Resulaj measures perceptual-decision reaches over ~hundreds of ms with a single post-decision bound; REE's commitment latch operates over E3 ticks across a multi-step motor program. The primitive (post-commit evidence reverses the action) transfers; the exact bound geometry and timescale do not. This paper evidences that maintenance-time readiness-driven release exists, NOT the specific REE implementation.",
+    "source_context": "Human psychophysics, random-dot motion discrimination with reaching responses; computational bounded-accumulation (drift-diffusion-style) model."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Nature, heavily replicated, foundational. Mapping_fidelity weighted high because the structural claim (post-commit evidence can reverse an initiated action) IS the 592f gap. Transfer_risk from perceptual-reach to REE multi-tick commitment kept at 0.35."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_090_release_motor_cessation",
+  "entry_id": "2026-06-02_mech_090_nonselective_stopping_wessel2022",
+  "timestamp_utc": "2026-06-02T15:35:42Z",
+  "claim_ids_tested": ["MECH-090"],
+  "source": {
+    "title": "A causal role for the human subthalamic nucleus in non-selective cortico-motor inhibition",
+    "authors": ["Jan R. Wessel", "Darcy A. Diesburg", "Nathan H. Chalkley", "Jeremy D. W. Greenlee"],
+    "year": 2022,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2022.06.067",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35841891/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Causal human STN-DBS evidence that the STN mediates a fast, NON-SELECTIVE (global) cortico-motor brake triggered by an EXTERNAL stop signal. Strong for the existence/identity of the STN brake effector, but the classic stop-signal trigger (exogenous cue / surprise) and the non-selective (global) scope are a MISMATCH for REE's gap, which needs an INTERNALLY-driven (degraded competence/decisiveness) and TARGETED (this committed program) release. Logged mixed because it both confirms the effector and rules out the pure stop-signal reading as the answer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Stop-signal STN inhibition is NON-SELECTIVE -- it suppresses even task-irrelevant motor representations globally. A REE release that abruptly globally brakes on degraded readiness would over-generalise (freeze unrelated action channels), the wrong behaviour for a targeted commitment abort.",
+    "The classic stop-signal trigger is an EXTERNAL cue / surprising event, not internal competence decay -- so the canonical stop-signal pathway is the wrong TRIGGER model for the 592f gap even though it is the right effector family."
+  ],
+  "tags": ["mech-090", "subthalamic_nucleus", "stop_signal", "non_selective_inhibition", "hyperdirect_pathway", "motor_cessation", "release_path_audit"],
+  "mapping": {
+    "source_claim_statement": "In humans, successful rapid action-stopping non-selectively suppresses cortico-spinal excitability beyond the stopped effector, affecting even task-irrelevant motor representations; this non-selective suppression disappears when the STN is disrupted by DBS, establishing a causal STN role in a fast, global, externally-cued cortico-motor brake.",
+    "ree_translation": "The STN/hyperdirect brake is a real, causal release EFFECTOR co-located with the MECH-090 beta-gate substrate -- but in its canonical stop-signal form it is fast, GLOBAL/non-selective, and triggered by an EXTERNAL cue or surprise. That trigger and scope do NOT match REE's gap (an internally-driven, targeted release of one committed program on degraded readiness). So the pure stop-signal pathway is the wrong answer to the 592f question, and REE already has the surprise/escalation analog (MECH-091 urgency-interrupt). The internally-driven, graded, targeted release that REE needs is the changes-of-mind / hold-your-horses axis (Resulaj, Cavanagh), routed through the same BG-output effector (Falasconi) but NOT the non-selective stop-signal trigger.",
+    "mapping_caveat": "This paper is included precisely to keep the verdict honest: it confirms the STN brake exists and is causal, but rules out the canonical (external-cue, non-selective) stop-signal reading as the model for REE's degraded-readiness release. It is mixed -- supports effector-existence, weakens the stop-signal-as-the-answer hypothesis. The proactive/'hold your horses' STN function (a distinct, conflict-graded mode of the same nucleus) is the relevant one, and it is covered by the Cavanagh entry.",
+    "source_context": "Human Parkinson's-disease patients with STN-DBS + controls; verbal stop-signal task; TMS-evoked cortico-spinal excitability (MEP) measurement."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.40,
+    "notes": "Causal human STN-DBS, Current Biology, strong design. Mapping_fidelity 0.58 because the canonical stop-signal trigger/scope MISMATCH the REE gap -- this entry's value is delimiting (effector yes, this-trigger no). evidence_direction mixed accordingly."
+  }
+}
