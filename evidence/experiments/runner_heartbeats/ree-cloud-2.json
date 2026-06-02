@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-02T19:20:17Z",
+  "last_tick_utc": "2026-06-02T19:50:25Z",
   "state": "running",
   "current_exq": "V3-EXQ-630",
   "current_exq_started_utc": "2026-06-02T19:16:27.653937+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 0 / base",
     "runs_done": 0,
     "runs_total": 2,
-    "episodes_done": 0,
+    "episodes_done": 300,
     "episodes_total": 300,
-    "overall_pct": 0.0
+    "overall_pct": 50.0
   },
-  "seconds_elapsed": 230,
-  "seconds_remaining": 10800,
+  "seconds_elapsed": 2038,
+  "seconds_remaining": 2038,
   "recent_lines": [
-    "floor=0.3 ema_alpha=0.2",
-    "seeds=[0, 1] warmup=300 eval=40 steps=200",
-    "============================================================",
-    "Seed 0 Condition base",
-    "============================================================"
+    "[train] ep 150/300  running_var=0.000016",
+    "[train] ep 200/300  running_var=0.000014",
+    "[train] ep 250/300  running_var=0.000011",
+    "[train] ep 300/300  running_var=0.000013",
+    "Post-train running_variance=0.000013  commit_threshold=0.4000  committed_capable=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
