@@ -84,7 +84,8 @@ closure_plan:
       last_updated: 2026-06-03
       source_artefact: "evidence/planning/thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md section 8 (L0-L9 closure map) + section 9 (proposed plan-of-record updates); lit anchor evidence/planning/literature_synthesis_2026-06-01_object_bound_incentive_salience.md"
       ratified_2026_06_03: "User ratified the section-9 GAP-7 proposal into the plan-of-record this session. Closure thesis (intake section 8): the goal stream's broken links are L2-L3 (the benefit signal at contact is never bound to OBJECT IDENTITY and there is no per-object incentive-salience / wanted-object TOKEN -- the substrate writes raw z_world/z_resource at contact with no binding step and no per-object wanting amplitude), plus the measurement/wiring around L1 (forced-seed positive control) and L7 (dACC/E3/commitment consumer readout, where dACC does NOT read z_goal directly). L0/L1/L5 are substrate-present; L6/L8 are present-but-starved. The minimal repair is the L2-L3 layer + a clean L1 positive control + an L7 wiring audit -- NOT a new mature goal ecology. Cross-evidence: V3-EXQ-623 (MECH-104 volatility interrupt) is the positive control that REE DOES turn a correctly-wired signal into behavioural consequence, so the goal-stream fault is upstream (signal never produced / never object-bound), not 'REE cannot convert signal to behaviour'. The 626 harness bug (Class-1 separation: positive-control arms with z_goal not actually engaged) must be fixed before L1/L7 are measurable. Distinct from GAP-2 (which is the developmental foraging-competence ceiling -- get the agent to CONTACT resources); GAP-7 is what happens to the benefit signal ONCE contact occurs (bind it to an object, mint an incentive token, read it out). The two are sequential: GAP-2 supplies reliable contact, GAP-7 makes that contact object-bound and behaviourally consequential. This node carries the L0-L9 closure map embedded in the plan body below."
-      resume_condition: "RESUME the L1 harness positive control + L7 consumer-readout audit once the 626a-class harness fix lands (z_goal genuinely engaged in positive-control arms). The L2-L3 object-binding + incentive-token substrate is a /implement-substrate design-discovery task (no SD/MECH doc yet; proposed_claims are placeholders, NOT registered in claims.yaml). The full L9 wanting!=liking dissociation acceptance (currently 514k=0.0) depends on L2-L3 landing AND on GAP-2 supplying reliable foraging contact."
+      resume_condition: "L1 sub-deliverable LANDED at the harness level (2026-06-03, see l1_2026_06_03 below): the 626-class Class-1 wiring defect is closed and a forced-seed positive control the harness can SEE is established (F0 unit contract 6/6 + V3-EXQ-626b queued). NEXT deliverable is L7 (consumer-readout wiring audit: does dACC/E3/commitment actually read z_goal -- today dACC does NOT read z_goal directly; route via /queue-experiment or an /implement-substrate wiring audit). Then the L2-L3 object-binding + incentive-token substrate (/implement-substrate design-discovery; no SD/MECH doc yet; proposed_claims are placeholders, NOT registered in claims.yaml). The full L9 wanting!=liking dissociation acceptance (currently 514k=0.0) depends on L2-L3 landing AND on GAP-2 supplying reliable foraging contact."
+      l1_2026_06_03: "L1 (forced seed -> non-zero, stable z_goal) re-established as a passing diagnostic, GAP-2-independent. (1) The 626 Class-1 harness defect (the bespoke loop never called agent.update_z_goal) is CLOSED -- 626a wired update_z_goal; the 2026-06-03 cluster autopsy V3-EXQ-603e-626a-622 confirms 'the goal-pipeline WIRING layer is closed and verified'. (2) The forced-seed L1 positive control passes at the UNIT level: ree-v3/tests/contracts/test_goalstate_forced_seed_positive_control.py 6/6 (forced supra-threshold seed -> non-zero, direction-stable z_goal). (3) V3-EXQ-626b (queued + ingested into coordinator DB 2026-06-03; supersedes 626a; claim_ids=[], diagnostic) adds a genuine FORCED-SEED positive-control arm to the developmental-window diagnostic itself -- benefit forced supra-threshold fed to update_z_goal every step (run_stage0_nursery pattern), DECOUPLED from foraging -- plus a no-benefit negative control and a z_goal-off parity control, so the harness can SEE a non-zero stable z_goal dependent ONLY on the harness fix + GoalState gate, NOT on the GAP-2 foraging-competence substrate. Dry-run smoke PASS (C1 forced-seed formation >=0.4 / C2 stability / C3 negative-control no-seed / C4 OFF-parity all True at 2-ep dry budget); full-run PASS pending a runner + governance review. KEY CORRECTION the L1 work makes precise: 626a's experiment-level positive control FAILED only because its ARM_A drew benefit from ecological foraging, so seeds that never foraged (a GAP-2 leak) showed z_goal=0 -- that is GAP-2's foraging-competence ceiling, NOT a harness defect. The forced-seed control removes that confound. L2-L3 object-binding + L7 consumer-readout audit remain open (node stays status:open)."
 ---
 # Goal Pipeline Plan (wanting / liking / goal-seeding)
 
@@ -462,7 +463,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-4 | 4 | in-progress | 2-fork: (A) Tier-1 library rebuild + 483d/490g re-queue; (B) SD-XXX scaffolded SD-054 onboarding substrate | Two-fork disposition per 2026-05-29 cluster autopsy `failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` -- Fork A (483c+524a) routes to library rebuild + cohort re-queue; Fork B (603c, absorbed into 591 family) routes to scaffolded SD-054 onboarding substrate-design memo + /implement-substrate. Both spawned as session chips 2026-05-29. Governance application of autopsy recommendations spawned as a third chip 2026-05-29 (per-claim direction overrides + SD-037 evidence_quality_note + new SD-XXX substrate_queue entry; will NOT auto-surface because 483c/524a/603c manifests already have evidence_direction set). See 2026-05-29 decision-log entry below. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a, V3-EXQ-603c | 2026-05-29 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
-| GAP-7 | 7 | open | 626a-class harness fix (for L1/L7); goal_pipeline:GAP-2 foraging contact (for L9) | (1) L1 harness positive control + 626a Class-1 fix [unblocked entry], (2) L7 consumer-readout wiring audit, (3) L2-L3 object-bound incentive-salience layer via /implement-substrate. Ratified into plan+map 2026-06-03 from thought_intake_2026-06-01 section 9. proposed_claims are placeholders, NOT registered. | null (design-discovery) | 2026-06-03 |
+| GAP-7 | 7 | open | L7/L2-L3 only (L1 landed); goal_pipeline:GAP-2 foraging contact (for L9) | **L1 LANDED 2026-06-03** (see l1_2026_06_03 frontmatter + decision log): 626 Class-1 wiring defect closed (626a wired update_z_goal; cluster autopsy confirms wiring closed+verified), forced-seed L1 positive control re-established GAP-2-independent (F0 unit contract 6/6 + V3-EXQ-626b queued/ingested, dry-run PASS, full-run pending review). **NEXT: (2) L7 consumer-readout wiring audit** (does dACC/E3/commitment read z_goal -- today dACC does NOT), then (3) L2-L3 object-bound incentive-salience layer via /implement-substrate. proposed_claims are placeholders, NOT registered. | V3-EXQ-626b (L1); null (L7/L2-L3 design-discovery) | 2026-06-03 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`,
 `tracked`. A `paused` row carries a resume condition in the
@@ -572,6 +573,53 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-06-03 - GAP-7 L1 landed: forced-seed positive control (V3-EXQ-626b) + 626-class harness defect closed
+
+**Status:** L1 sub-deliverable of GAP-7 delivered. Node stays `status: open`
+(L7 + L2-L3 remain). First unblocked GAP-7 step per the ratification: the L1
+harness positive control + 626-class Class-1 fix, which depends on the harness
+fix NOT on GAP-2.
+
+**What was verified / landed:**
+
+- **626 Class-1 wiring defect CLOSED.** The original 626 bespoke loop never
+  called `agent.update_z_goal`, so z_goal stayed at zero-init across all arms.
+  626a wired it; the 2026-06-03 cluster autopsy
+  `failure_autopsy_V3-EXQ-603e-626a-622` confirms "the goal-pipeline WIRING
+  layer is closed and verified."
+- **L1 forced-seed positive control passes at the unit level.**
+  `ree-v3/tests/contracts/test_goalstate_forced_seed_positive_control.py` is
+  6/6 green (forced supra-threshold seed -> non-zero, direction-stable z_goal).
+- **V3-EXQ-626b queued + ingested into the coordinator DB** (supersedes
+  V3-EXQ-626a; `claim_ids=[]`, `experiment_purpose=diagnostic`). It bakes a
+  genuine FORCED-SEED positive-control arm into the developmental-window
+  diagnostic itself -- benefit forced supra-threshold fed to `update_z_goal`
+  every step (the `run_stage0_nursery` pattern), decoupled from foraging --
+  plus a no-benefit negative control (proves the signal is the seed) and a
+  z_goal-off parity control. So the harness can SEE a non-zero stable z_goal
+  that depends ONLY on the harness fix + the GoalState gate, NOT on the GAP-2
+  foraging-competence substrate. Dry-run smoke PASS (C1 forced-seed formation
+  >=0.4 / C2 stability / C3 negative-control no-seed / C4 OFF-parity all True);
+  full-run PASS pending a runner + governance review.
+
+**The correction L1 makes precise:** 626a's experiment-level positive control
+FAILED on 2/3 seeds only because its ARM_A drew benefit from *ecological
+foraging* -- seeds that never foraged (a GAP-2 leak) showed z_goal=0, and the
+harness could not separate "signal absent" from "signal present but inert."
+That 2/3 failure is GAP-2's foraging-competence ceiling, NOT a harness defect.
+626b's forced-seed arm removes the confound so L1 is testable independent of
+GAP-2.
+
+**Scope held:** L1 forced-seed positive control + 626-class fix ONLY. Did NOT
+touch the L2-L3 object-binding / incentive-token substrate (later
+/implement-substrate; placeholders MECH-BIND-obj / MECH-INCENT-token NOT
+registered) and did NOT do the L7 audit. No claims.yaml edits.
+
+**Next deliverable: L7 consumer-readout wiring audit** -- audit whether
+dACC / E3 / commitment actually read z_goal (today dACC does NOT read z_goal
+directly per the closure map) and wire the missing readouts so a non-zero
+z_goal is consequential. Then L2-L3.
 
 ### 2026-06-03 - GAP-7 ratified into plan + closure map embedded
 
