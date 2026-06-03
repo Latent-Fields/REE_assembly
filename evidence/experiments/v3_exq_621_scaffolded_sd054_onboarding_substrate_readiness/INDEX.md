@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness
 
-Generated: `2026-06-01T18:09:15.796853Z`
+Generated: `2026-06-03T06:46:11.830885Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

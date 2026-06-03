@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-02T16:49:58Z",
+  "last_review_utc": "2026-06-03T06:44:51Z",
   "discussed_experiment_dirs": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
     "v3_exq_592f_mech090_commitment_state_transition_probe",
@@ -466,7 +466,26 @@
     "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
     "V3-EXQ-625b",
     "v3_exq_620b_sd037_axis_a_phase1_consumer_input_distributions_stream_on_20260601T180611Z_v3",
-    "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3"
+    "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
+    "v3_exq_629_mech342_ecological_maintenance_release_evidence",
+    "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate",
+    "v3_exq_624a_arc068_mech320_niv_salamone_dissociation",
+    "v3_exq_630_arc029_acrosstick_nav_competence_ecological",
+    "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054",
+    "v3_exq_626a_goal_pipeline_developmental_window_diagnostic",
+    "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341",
+    "v3_exq_627_mech306_sustained_drive_trace_validation",
+    "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate",
+    "v3_exq_629_mech342_ecological_maintenance_release_evidence_20260602T225839Z_v3",
+    "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate_20260602T202814Z_v3",
+    "v3_exq_624a_arc068_mech320_niv_salamone_dissociation_20260602T172734Z_v3",
+    "v3_exq_630_arc029_acrosstick_nav_competence_ecological_20260602T221705Z_v3",
+    "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+    "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+    "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341_20260602T072226Z_v3",
+    "v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3",
+    "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3",
+    "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z"
   ],
   "reviewed_run_ids": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
@@ -2681,7 +2700,16 @@
     "v3_exq_625_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T110921Z_v3",
     "v3_exq_592e_mech090_readiness_conjunction_validation_20260601T180923Z_v3",
     "v3_exq_620b_sd037_axis_a_phase1_consumer_input_distributions_stream_on_20260601T180611Z_v3",
-    "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3"
+    "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
+    "v3_exq_629_mech342_ecological_maintenance_release_evidence_20260602T225839Z_v3",
+    "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate_20260602T202814Z_v3",
+    "v3_exq_624a_arc068_mech320_niv_salamone_dissociation_20260602T172734Z_v3",
+    "v3_exq_630_arc029_acrosstick_nav_competence_ecological_20260602T221705Z_v3",
+    "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+    "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+    "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341_20260602T072226Z_v3",
+    "v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3",
+    "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3529,6 +3557,43 @@
         "v3_exq_592f_mech090_commitment_state_transition_probe"
       ],
       "subject": "Pre-governance result disposition of two MECH-090/MECH-342 results. (1) V3-EXQ-592g PASS (MECH-342 maintenance-release validation probe; experiment_purpose=diagnostic; evidence_direction=supports). All six acceptance criteria pass: C1 forced baseline (beta/E3 occupancy 1.0), C2 score-margin release authority (decommit=2, suppression 0.4, mech342_fires=1), C3 nav-competence release authority (decommit=2, suppression 0.6, mech342_fires=1), C4 conjunction authority STRICTLY positive (max_drop 0.6 -- 592f could only PASS this vacuously at 0), C5 no false abort (A/E decommit=0, beta re-elevates on recovery), C6 no-vacuity. DISPOSITION: MECH-342 stays candidate / v3_pending -- 592g is a controlled diagnostic state-machine probe (not ecological evidence) and the V3-pending gate forbids promotion regardless of evidence count; promotion needs an ecological evidence-grade experiment. validation_note added to MECH-342 in claims.yaml; substrate_queue MECH-342 status -> implemented_validated_v3_exq_592g. (2) V3-EXQ-592f (MECH-090, the sole prior pending item, held during the 2026-06-02T05:55 /governance cycle 'pending autopsy artifact lands'). Autopsy (failure_autopsy_V3-EXQ-592f_2026-06-02, confirmed) + the B3b release-path audit + MECH-342 (validated by 592g) resolve its implement-substrate routing. Applied the confirmed autopsy's recommended_evidence_direction: re-tagged 592f manifest (flat + nested) does_not_support -> non_contributory (epistemic_category substrate_ceiling); cleared pending_retest_after_substrate to false (reach gap closed -- the substrate retest happened and passed). MECH-090 status unchanged (active); the maintenance-release capability lives on the dependent MECH-342 claim, not on MECH-090 (no MECH-090 flag/confidence/promotion change). Dated closure note appended to MECH-090. Both marked reviewed; pending_review re-confirmed 0."
+    },
+    {
+      "timestamp_utc": "2026-06-03T06:44:51Z",
+      "session_label": "governance-cycle-20260603T063324Z",
+      "reviewed_run_ids": [
+        "v3_exq_629_mech342_ecological_maintenance_release_evidence_20260602T225839Z_v3",
+        "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate_20260602T202814Z_v3",
+        "v3_exq_624a_arc068_mech320_niv_salamone_dissociation_20260602T172734Z_v3",
+        "v3_exq_630_arc029_acrosstick_nav_competence_ecological_20260602T221705Z_v3",
+        "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+        "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+        "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341_20260602T072226Z_v3",
+        "v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3",
+        "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_629_mech342_ecological_maintenance_release_evidence",
+        "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate",
+        "v3_exq_624a_arc068_mech320_niv_salamone_dissociation",
+        "v3_exq_630_arc029_acrosstick_nav_competence_ecological",
+        "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054",
+        "v3_exq_626a_goal_pipeline_developmental_window_diagnostic",
+        "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341",
+        "v3_exq_627_mech306_sustained_drive_trace_validation",
+        "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate",
+        "v3_exq_629_mech342_ecological_maintenance_release_evidence_20260602T225839Z_v3",
+        "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate_20260602T202814Z_v3",
+        "v3_exq_624a_arc068_mech320_niv_salamone_dissociation_20260602T172734Z_v3",
+        "v3_exq_630_arc029_acrosstick_nav_competence_ecological_20260602T221705Z_v3",
+        "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+        "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+        "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341_20260602T072226Z_v3",
+        "v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3",
+        "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3",
+        "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z"
+      ],
+      "subject": "/governance cycle 2026-06-03. 12 pending walked. GROUP A (6 FAILs, confirmed autopsies applied verbatim per user approval): V3-EXQ-629 (MECH-342 ecological; claim_ids=[]) non_contributory/measurement_test_design_defect -- NO_NATURAL_COMMITMENT (score_margin 0.00074 ~70x below MECH-090 floor 0.05); redesign 629b queued; substrate none. V3-EXQ-604a (Q-044,MECH-314/a/b/c) non_contributory/substrate_ceiling/pending_retest -- C0 PASS (SD-056 fixed monomodal collapse) but curiosity_bias=0.0 every arm; substrate_queue CREATE modulatory-bias-selection-authority. V3-EXQ-624a (MECH-320,ARC-068) non_contributory/substrate_ceiling/pending_retest -- action_density byte-identical vigor ON==OFF; substrate AMEND modulatory-bias-selection-authority (folds into 604a CREATE). V3-EXQ-630 (ARC-029,MECH-090) non_contributory/measurement_test_design_defect -- OFF baseline shows same collapse (arm0_baseline_delta 1.0), gate unattributable (SD-022 confound); do NOT weaken; redesign queued; substrate none. V3-EXQ-603e (Q-045,MECH-313,MECH-260) non_contributory/substrate_ceiling/pending_retest -- wiring closed+verified but z_goal=0 ecologically (foraging-competence + benefit-starvation prerequisite, Berridge); substrate AMEND scaffolded_sd054_onboarding -> 603e->603f. V3-EXQ-626a (claim_ids=[]) non_contributory/substrate_ceiling -- P0 positive control 1/3 seeds; corroborates 603e gap; folds into 603e failure_record. GROUP B (NOT applied, flagged for /failure-autopsy, stay pending): V3-EXQ-514l (SD-049/SD-015 author-stamped weakens NOT trusted -- C2c insufficient identity samples + C5/C6 dissoc fail look foraging-competence/substrate-ceiling, same prerequisite as 603e cluster); V3-EXQ-610c (INV-074/MECH-333/MECH-334; evidence_direction=unknown; predicted diversity collapse never manifested d1/d2 both false ~1.0 entropy = substrate-ceiling shape). GROUP C: V3-EXQ-625c (claim_ids=[], diagnostic, non_contributory, supersedes 625b) marked discussed -- C3 dynamic-crossings 0 transitions on gap4-baseline base policy; no claim weight. GROUP D (PASS): V3-EXQ-627 supports MECH-306 (evidence) but MECH-306 v3_pending -> hold_pending_v3_substrate (no promotion); V3-EXQ-063a supports ARC-029 (5/5 criteria; supersedes 063; provisional). GROUP E: V3-EXQ-628 PASS supports MECH-319 (evidence) -- unclaimed in index because run_id ends in timestamp not _v3; marked discussed by manifest stem; MECH-319 v3_pending -> no promotion. claims.yaml: dated notes + pending_retest_after_substrate flags applied to 604a/624a/603e clusters (4 flags newly set: MECH-314b/c, MECH-320, ARC-068); ARC-029/MECH-090 dated 630 notes (no de-weight). claims.json rebuilt (660). substrate_queue CREATE+AMEND applied."
     }
   ]
 }

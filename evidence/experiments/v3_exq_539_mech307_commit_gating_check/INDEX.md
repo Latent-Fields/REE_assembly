@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_539_mech307_commit_gating_check
 
-Generated: `2026-05-31T16:49:25.925411Z`
+Generated: `2026-06-03T06:46:11.830885Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-05-31T16:49:25.925411Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3` | `2026-05-08T22:22:29.884171Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3/summary.md) / [`manifest`](runs/v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3/manifest.json) / [`metrics`](runs/v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3/metrics.json) |
+| `v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3` | `2026-06-02T16:09:28.820330Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3/summary.md) / [`manifest`](runs/v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3/manifest.json) / [`metrics`](runs/v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3/metrics.json) |

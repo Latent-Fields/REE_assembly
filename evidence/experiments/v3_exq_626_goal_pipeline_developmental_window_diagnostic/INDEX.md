@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_626_goal_pipeline_developmental_window_diagnostic
 
-Generated: `2026-06-01T17:25:00.200622Z`
+Generated: `2026-06-03T06:46:11.830885Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

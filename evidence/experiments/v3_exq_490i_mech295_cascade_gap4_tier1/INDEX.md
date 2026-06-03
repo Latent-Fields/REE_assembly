@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_490i_mech295_cascade_gap4_tier1
 
-Generated: `2026-05-31T16:49:25.925411Z`
+Generated: `2026-06-03T06:46:11.830885Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

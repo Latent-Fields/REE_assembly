@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_623_mech104_volatility_interrupt_discriminative_pair
 
-Generated: `2026-06-01T17:25:00.200622Z`
+Generated: `2026-06-03T06:46:11.830885Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
