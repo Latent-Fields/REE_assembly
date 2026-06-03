@@ -150,6 +150,35 @@ getting the juvenile to self-sustaining contact in the wild.
 
 ---
 
+## 6b. Reconciliation with the developmental-window amend + V3-EXQ-634b (IMPORTANT)
+
+634 was queued at 15:07Z and was already in-flight on ree-cloud-1 when the
+**developmental-window / Stage-0b consolidation amend** landed at 16:24Z (ree-v3
+d24dfba/484a261; REE_assembly 68d935757b; substrate_queue status
+`amend_developmental_window_implemented_pending_validation`, blocked_by V3-EXQ-634b).
+That amend's flags default OFF, so **634 ran with the developmental window INACTIVE** --
+it is the developmental-window-OFF baseline, and **V3-EXQ-634b (flags ON) is the actual
+validation** of the consolidation fix.
+
+This splits 634's failure into two complementary halves:
+
+- **G3 (P2 mature-test z_goal collapses to ~0, 0/3)** is exactly the *decay-only washout*
+  failure mode the developmental-window/Stage-0b amend was built to fix (GoalState.update()
+  decays the attractor every unfed step; unfed P1/P2 steps wash out the Stage-0 trace
+  before contact). This half is **already addressed in code** and is pending the 634b
+  validation -- it is NOT a new gap this autopsy needs to open.
+- **G1 (P1 survival 1/3) + G2 (P2 ecological contact 1/3)** is the *foraging-competence /
+  survival* half. The contact-gated-update amend cannot help an agent that never makes
+  contact and dies early. This is the **complementary, still-open gap** that this autopsy's
+  `implement-substrate` AMEND routing targets (strengthen/lengthen the P0/P1
+  survival-foraging scaffold).
+
+Net: 634's `substrate_not_engaged` verdict is consistent with -- not contradicted by --
+the developmental-window amend. The amend addresses goal *maintenance* (G3); 634 shows the
+remaining blocker is goal-supporting *behaviour* (G1/G2). Re-validation should run AFTER
+both halves are in place (634b confirms maintenance; a strengthened foraging scaffold
+confirms competence). Do not flip `ready=true` until G1+G2+G3 all clear >= 2/3.
+
 ## 7. Routing summary
 
 | Field | Value |
