@@ -1,0 +1,54 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-03T06:51:53Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_610c_inv074_crystallization_necessity_20260602T191404Z_v3",
+      "queue_id": "V3-EXQ-610c",
+      "supersedes": "V3-EXQ-610b",
+      "claim_ids": ["INV-074", "MECH-334", "MECH-333"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim never allowed to express; no pressure on INV-074/333/334",
+        "biological_reference": "clear -- OD-plasticity / BCM / critical-period-in-ANNs; existence proof for the class; lit already pulled 2026-05-17",
+        "prerequisites": "missing -- requires a trained, WTA-prone policy; harness omits policy training",
+        "implementation": "stub -- crystallize() fires (symbol present) but functional role absent: frozen heads never trained, expansion_parameters never stepped, ewc_penalty never added to loss",
+        "environment": "adequate-but-irrelevant -- IGW-023 Phase-3 destabilising pressure landed but is not the blocker for this run",
+        "measurement": "misleading -- D1/D2 measure an untrained near-uniform action distribution that crystallization cannot move",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ocular-dominance critical-period plasticity (open-window competitive plasticity then PNN/Lynx1/NgR1 closure); monocular deprivation = monostrategy capture when the window never closes",
+        "dependencies": ["a competitive learning dynamic that would collapse without closure (a trained WTA-prone policy)", "the closure mechanism actually operating (crystallize + EWC penalty exercised)"],
+        "is_formal_import": false,
+        "divergence": "none -- INV-074 is a biology-faithful translation; the FAIL matches a missing prerequisite of the reference mechanism, not a divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-03 governance: V3-EXQ-610c non_contributory + measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-610c_2026-06-03)]: V3-EXQ-610c (crystallization-necessity retest, supersedes 610b) FAILed D1 (-0.013) and D2 (+0.047, below the 0.10 floor) with both arms near-uniform (entropy 1.06-1.12 of 1.609 max). Root cause is HARNESS-level, not env-level: the experiment never trains the gated policy (policy_optimizer.step() is never called; REINFORCE is explicitly passed at lines 575-585), crystallize() freezes never-trained heads and the expansion optimizer is rebuilt but never stepped, and ewc_penalty() is never added to any loss. So crystallization is a behavioral no-op and INV-074's predicted winner-take-all monostrategy collapse is never instantiated -- D1/D2 are non-discriminative by construction. This supersedes the 610a/b env-ceiling reading (IGW-023 Phase-3 pressure landed and did not help because env pressure cannot collapse an untrained policy). 7th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c): one structural property -- a functional, trained, WTA-prone policy has never been placed under the crystallization mechanism. INV-074 (universal invariant, lit_conf 0.82) not weakened, no claim falsified; pending_retest_after_substrate retained; epistemic_category substrate_ceiling unchanged. Routed to /queue-experiment redesign V3-EXQ-610d: train the policy, step expansion_parameters + add ewc_penalty, with a pre-registered substrate-ceiling fork (a trained-policy control that still does not collapse strengthens MECH-341/MECH-313, not weakens INV-074).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Routing is /queue-experiment (harness redesign), NOT implement-substrate. The env substrate (test_bed_enrichment_crystallization_necessity, IGW-20260601-023) already landed and is not the blocker; the gap is harness-level (no policy training, crystallization not exercised). Leave substrate_queue unchanged. A standing substrate-ceiling question (SP-CEM + MECH-341/313/260 robustness preventing control collapse even with a trained policy) is pre-registered as the 610d fork, to be opened only after the trained-policy retest."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 610-lineage env-ceiling diagnosis (610a/b) was incomplete; IGW-023 env pressure did not unblock the test because the blocker is harness-level (policy never trained).",
+        "The crystallization machinery (crystallize() + EWC) is wired + contract-tested but behaviorally inert in any harness that does not train the policy AND add residue_field.ewc_penalty() to the loss AND step expansion_parameters() post-crystallization.",
+        "Negative control (D3) passing while all discrimination criteria fail is the test-design fingerprint -- here driven by the harness, not the substrate.",
+        "7th non_contributory crystallization-arm result for INV-074/MECH-333/MECH-334; one structural property -- a functional trained WTA-prone policy has never been placed under the crystallization mechanism (543 sub-lineage: heads never differentiated; 610 sub-lineage: no collapse pressure / no policy training)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control / sanity passes (D3) while every discrimination criterion (D1/D2) fails, with both arms near-uniform -- but the dominant cause for this run is a harness defect (policy never trained -> crystallization a behavioral no-op), distinct from the 610a/b env-ceiling and 543 head-non-differentiation causes",
+    "is_independent_bugs": false,
+    "structural_property": "across the full INV-074/MECH-333/MECH-334 crystallization-arm lineage (543h/i/k/l + 610a/b/c) a functional, trained, WTA-prone policy has never actually been placed under the crystallization mechanism, so the crystallization-necessity claim has never been falsifiably tested",
+    "readings": ["measurement_test_design_defect", "substrate_ceiling_standing_question"]
+  }
+}
