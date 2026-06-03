@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-06-03T07:01:00Z",
+  "generated_at": "2026-06-03T14:08:38Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -1551,6 +1551,252 @@
         "priority": 28,
         "claim_ids": [
           "INV-074"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260603T080203Z-10e3bf78-claude_local",
+      "stable_hash": "10e3bf7821a3",
+      "igw_id_at_assign": "IGW-20260603-032",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T08:02:03Z",
+      "released_at": "2026-06-03T08:02:03Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260603T070056Z-10e3bf78-claude_local",
+      "note": "session_uuid=e9aee539-049e-40d1-8dd4-6af1c08a0e31 branch=claude/igw-032-retest-after-substrate-inv-074",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: INV-074",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "INV-074"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T080201Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T08:02:01Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=e1dd95a4-ed9c-4aaa-8c60-df733b75f465 branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260603T090311Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T09:03:11Z",
+      "released_at": "2026-06-03T09:03:11Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260603T080201Z-e96e8d33-claude_local",
+      "note": "session_uuid=e1dd95a4-ed9c-4aaa-8c60-df733b75f465 branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T090309Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T09:03:09Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=901b4e1a-d385-4881-bba8-66fb1a4cbd21 branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T100414Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T10:04:14Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=623f614f-aae5-40da-9bc2-416a21199583 branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260603T110520Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T11:05:20Z",
+      "released_at": "2026-06-03T11:05:20Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260603T100414Z-e96e8d33-claude_local",
+      "note": "session_uuid=623f614f-aae5-40da-9bc2-416a21199583 branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T110519Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T11:05:19Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=f86daa9f-aada-4c1b-b302-53913601acaa branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T120627Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T12:06:27Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=88456555-c111-4bea-8817-db6b089321ec branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260603T130732Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T13:07:32Z",
+      "released_at": "2026-06-03T13:07:32Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260603T120627Z-e96e8d33-claude_local",
+      "note": "session_uuid=88456555-c111-4bea-8817-db6b089321ec branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T130731Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T13:07:31Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=6f6c8fe1-aa7d-44fd-ad06-7622666a37bf branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T140835Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T14:08:35Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=c569bead-bd03-4a56-a859-3901a7ddc3ff branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
         ]
       }
     }

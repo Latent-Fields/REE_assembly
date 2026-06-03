@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-03T06:44:51Z",
+  "last_review_utc": "2026-06-03T14:48:32Z",
   "discussed_experiment_dirs": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
     "v3_exq_592f_mech090_commitment_state_transition_probe",
@@ -485,7 +485,9 @@
     "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341_20260602T072226Z_v3",
     "v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3",
     "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3",
-    "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z"
+    "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z",
+    "v3_exq_614d_mech341_within_class_temperature_committed_class",
+    "v3_exq_614d_mech341_within_class_temperature_committed_class_20260603T120121Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
@@ -2709,7 +2711,8 @@
     "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
     "v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341_20260602T072226Z_v3",
     "v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3",
-    "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3"
+    "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3",
+    "v3_exq_614d_mech341_within_class_temperature_committed_class_20260603T120121Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3594,6 +3597,18 @@
         "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z"
       ],
       "subject": "/governance cycle 2026-06-03. 12 pending walked. GROUP A (6 FAILs, confirmed autopsies applied verbatim per user approval): V3-EXQ-629 (MECH-342 ecological; claim_ids=[]) non_contributory/measurement_test_design_defect -- NO_NATURAL_COMMITMENT (score_margin 0.00074 ~70x below MECH-090 floor 0.05); redesign 629b queued; substrate none. V3-EXQ-604a (Q-044,MECH-314/a/b/c) non_contributory/substrate_ceiling/pending_retest -- C0 PASS (SD-056 fixed monomodal collapse) but curiosity_bias=0.0 every arm; substrate_queue CREATE modulatory-bias-selection-authority. V3-EXQ-624a (MECH-320,ARC-068) non_contributory/substrate_ceiling/pending_retest -- action_density byte-identical vigor ON==OFF; substrate AMEND modulatory-bias-selection-authority (folds into 604a CREATE). V3-EXQ-630 (ARC-029,MECH-090) non_contributory/measurement_test_design_defect -- OFF baseline shows same collapse (arm0_baseline_delta 1.0), gate unattributable (SD-022 confound); do NOT weaken; redesign queued; substrate none. V3-EXQ-603e (Q-045,MECH-313,MECH-260) non_contributory/substrate_ceiling/pending_retest -- wiring closed+verified but z_goal=0 ecologically (foraging-competence + benefit-starvation prerequisite, Berridge); substrate AMEND scaffolded_sd054_onboarding -> 603e->603f. V3-EXQ-626a (claim_ids=[]) non_contributory/substrate_ceiling -- P0 positive control 1/3 seeds; corroborates 603e gap; folds into 603e failure_record. GROUP B (NOT applied, flagged for /failure-autopsy, stay pending): V3-EXQ-514l (SD-049/SD-015 author-stamped weakens NOT trusted -- C2c insufficient identity samples + C5/C6 dissoc fail look foraging-competence/substrate-ceiling, same prerequisite as 603e cluster); V3-EXQ-610c (INV-074/MECH-333/MECH-334; evidence_direction=unknown; predicted diversity collapse never manifested d1/d2 both false ~1.0 entropy = substrate-ceiling shape). GROUP C: V3-EXQ-625c (claim_ids=[], diagnostic, non_contributory, supersedes 625b) marked discussed -- C3 dynamic-crossings 0 transitions on gap4-baseline base policy; no claim weight. GROUP D (PASS): V3-EXQ-627 supports MECH-306 (evidence) but MECH-306 v3_pending -> hold_pending_v3_substrate (no promotion); V3-EXQ-063a supports ARC-029 (5/5 criteria; supersedes 063; provisional). GROUP E: V3-EXQ-628 PASS supports MECH-319 (evidence) -- unclaimed in index because run_id ends in timestamp not _v3; marked discussed by manifest stem; MECH-319 v3_pending -> no promotion. claims.yaml: dated notes + pending_retest_after_substrate flags applied to 604a/624a/603e clusters (4 flags newly set: MECH-314b/c, MECH-320, ARC-068); ARC-029/MECH-090 dated 630 notes (no de-weight). claims.json rebuilt (660). substrate_queue CREATE+AMEND applied."
+    },
+    {
+      "timestamp_utc": "2026-06-03T14:48:32Z",
+      "session_label": "review-614d-mech341-20260603T144832Z",
+      "reviewed_run_ids": [
+        "v3_exq_614d_mech341_within_class_temperature_committed_class_20260603T120121Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_614d_mech341_within_class_temperature_committed_class",
+        "v3_exq_614d_mech341_within_class_temperature_committed_class_20260603T120121Z_v3"
+      ],
+      "subject": "Single-experiment review of V3-EXQ-614d (MECH-341 within-class temperature -> committed-class diversity; diagnostic; supersedes 614c non_contributory; PASS/mixed). C1 (no regression vs 614b ALL_ON band, cross-seed selected-entropy 0.80) PASS; C3 (substrate-readiness, within-class branch fires 3/3 seeds 159-1030 samples) PASS; C2 (committed-class lift from temperature) FAIL -- committed-class entropy byte-identical 1.056572 at T=0.5/1.0/2.0 (legacy 1.057734), paired-lift 0/3 seeds per arm. The within-class lever is ACTIVE but has ZERO committed-action authority = THIRD convergent instance of the modulatory-bias-selection-authority gap (604a curiosity, 624a vigor, 614d within-class temperature). DISPOSITION (user-approved): diagnostic, excluded from scoring; MECH-341 stays candidate/v3_pending (do NOT clear -- within-class temperature alone doesn't deliver committed diversity); dated note added to MECH-341. SUBSTRATE: modulatory-bias-selection-authority gate CLEARED -- the ARC-065/E3.select validation it waited on (614d) landed and confirms the shared-layer bottleneck; ready=true, depends_on_unresolved emptied, 614d added as 3rd failure_record, MECH-341 added to unblocks_claims, implementation_hint updated to unify the three levers. Now a priority-1 /implement-substrate candidate. 632(MECH-230 FAIL)/633(MECH-094 PASS) newly surfaced by the sync and 514l/610c (flagged for /failure-autopsy) remain pending for the next /governance cycle."
     }
   ]
 }

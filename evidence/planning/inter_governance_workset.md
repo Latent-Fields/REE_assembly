@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-03T07:00:56Z`
+Generated: `2026-06-03T14:08:35Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,11 +9,11 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **43** (ready 15, in_flight 0, blocked 15)
+- Items: **44** (ready 14, in_flight 0, blocked 17)
 - Pending review: **2**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-614d
+- Live EXQs: V3-EXQ-610d, V3-EXQ-632
 
 ## Work packages
 
@@ -60,7 +60,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-027 -- Implement substrate: ARC-046 (unblocks ARC-046)
+### IGW-20260603-026 -- Implement substrate: ARC-046 (unblocks ARC-046)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
@@ -69,7 +69,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-027
+REE inter-governance work item: IGW-20260603-026
 Title: Implement substrate: ARC-046 (unblocks ARC-046)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -84,7 +84,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-029 -- Implement substrate: SD-054 (unblocks ARC-062)
+### IGW-20260603-028 -- Implement substrate: SD-054 (unblocks ARC-062)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.
@@ -93,7 +93,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-029
+REE inter-governance work item: IGW-20260603-028
 Title: Implement substrate: SD-054 (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -108,7 +108,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-031 -- Implement substrate: modulatory-bias-selection-authority (unblocks ARC-068)
+### IGW-20260603-030 -- Implement substrate: modulatory-bias-selection-authority (unblocks ARC-068)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready=false (no ready_blocked_by detail)
@@ -117,13 +117,61 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-031
+REE inter-governance work item: IGW-20260603-030
 Title: Implement substrate: modulatory-bias-selection-authority (unblocks ARC-068)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
 Claims: MECH-314, MECH-314a, MECH-314b, MECH-314c, Q-044, MECH-320
 Blocked by: ready=false (no ready_blocked_by detail)
 Why now: substrate_queue entry status=pending_implementation with 1 unresolved prerequisite(s); blocks retest of ARC-068. See blocked_by.
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260603-033 -- Implement substrate: scaffolded_sd054_onboarding (unblocks MECH-260)
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
+- **Blocked by:** ready=false (no ready_blocked_by detail); SD-054 [candidate_v3_pending]
+- **Why now:** substrate_queue entry status=amend_foraging_competence_pending_implementation with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260603-033
+Title: Implement substrate: scaffolded_sd054_onboarding (unblocks MECH-260)
+Lane: substrate | Skill: /implement-substrate
+Status: blocked
+Claims: Q-045, MECH-313, MECH-260, MECH-295, MECH-307, MECH-117
+Blocked by: ready=false (no ready_blocked_by detail); SD-054 [candidate_v3_pending]
+Why now: substrate_queue entry status=amend_foraging_competence_pending_implementation with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260603-039 -- Implement substrate: MECH-313 (unblocks MECH-313)
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
+- **Blocked by:** ready_blocked_by: Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) on V3-EXQ-543b/c successors; gated on MECH-314 substrate also being landed (done 2026-05-10).; Q-045 [no-substrate-entry]: Q-045 4-arm ablation
+- **Why now:** substrate_queue entry status=candidate_substrate_landed with 2 unresolved prerequisite(s); blocks retest of MECH-313. See blocked_by.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260603-039
+Title: Implement substrate: MECH-313 (unblocks MECH-313)
+Lane: substrate | Skill: /implement-substrate
+Status: blocked
+Claims: MECH-313
+Blocked by: ready_blocked_by: Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) on V3-EXQ-543b/c successors; gated on MECH-314 substrate also being landed (done 2026-05-10).; Q-045 [no-substrate-entry]: Q-045 4-arm ablation
+Why now: substrate_queue entry status=candidate_substrate_landed with 2 unresolved prerequisite(s); blocks retest of MECH-313. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -176,31 +224,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-024 -- Substrate (blocked): scaffolded_sd054_onboarding
-
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 25
-- **Blocked by:** SD-054 [candidate_v3_pending]
-- **Why now:** substrate_queue ready=true but 1 unresolved prerequisite(s) -- see blocked_by.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260603-024
-Title: Substrate (blocked): scaffolded_sd054_onboarding
-Lane: substrate | Skill: /implement-substrate
-Status: blocked
-Claims: Q-045, MECH-313, MECH-260, MECH-295, MECH-307, MECH-117
-Blocked by: SD-054 [candidate_v3_pending]
-Why now: substrate_queue ready=true but 1 unresolved prerequisite(s) -- see blocked_by.
-
-Instructions:
-- Use /implement-substrate for the SD/MECH named in title.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260603-026 -- Retest after substrate: ARC-046
+### IGW-20260603-025 -- Retest after substrate: ARC-046
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** ARC-046 [pending_implementation]; free-text (via ARC-046): goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
@@ -209,7 +233,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-026
+REE inter-governance work item: IGW-20260603-025
 Title: Retest after substrate: ARC-046
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -224,7 +248,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-028 -- Retest after substrate: ARC-062
+### IGW-20260603-027 -- Retest after substrate: ARC-062
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-054 [candidate_v3_pending]
@@ -233,7 +257,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-028
+REE inter-governance work item: IGW-20260603-027
 Title: Retest after substrate: ARC-062
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -248,7 +272,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-030 -- Retest after substrate: ARC-068
+### IGW-20260603-029 -- Retest after substrate: ARC-068
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** modulatory-bias-selection-authority [pending_implementation]
@@ -257,7 +281,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-030
+REE inter-governance work item: IGW-20260603-029
 Title: Retest after substrate: ARC-068
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -272,7 +296,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-032 -- Retest after substrate: INV-074
+### IGW-20260603-031 -- Retest after substrate: MECH-229
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -280,29 +304,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-032
-Title: Retest after substrate: INV-074
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: INV-074
-Why now: claims.yaml pending_retest_after_substrate=true.
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260603-033 -- Retest after substrate: MECH-229
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260603-033
+REE inter-governance work item: IGW-20260603-031
 Title: Retest after substrate: MECH-229
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -316,21 +318,21 @@ Instructions:
 
 </details>
 
-### IGW-20260603-034 -- Retest after substrate: MECH-260
+### IGW-20260603-032 -- Retest after substrate: MECH-260
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
-- **Blocked by:** scaffolded_sd054_onboarding [amend_implemented_pending_validation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+- **Blocked by:** scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
 - **Why now:** Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-034
+REE inter-governance work item: IGW-20260603-032
 Title: Retest after substrate: MECH-260
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-260
-Blocked by: scaffolded_sd054_onboarding [amend_implemented_pending_validation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+Blocked by: scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
 Why now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
@@ -340,7 +342,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-035 -- Retest after substrate: MECH-262
+### IGW-20260603-034 -- Retest after substrate: MECH-262
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -348,7 +350,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-035
+REE inter-governance work item: IGW-20260603-034
 Title: Retest after substrate: MECH-262
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -362,7 +364,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-036 -- Retest after substrate: MECH-280
+### IGW-20260603-035 -- Retest after substrate: MECH-280
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -370,7 +372,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-036
+REE inter-governance work item: IGW-20260603-035
 Title: Retest after substrate: MECH-280
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -384,7 +386,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-037 -- Retest after substrate: MECH-281
+### IGW-20260603-036 -- Retest after substrate: MECH-281
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
 - **Why now:** claims.yaml pending_retest_after_substrate=true.
@@ -392,7 +394,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-037
+REE inter-governance work item: IGW-20260603-036
 Title: Retest after substrate: MECH-281
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -406,7 +408,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-038 -- Retest after substrate: MECH-309
+### IGW-20260603-037 -- Retest after substrate: MECH-309
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-054 [candidate_v3_pending]
@@ -415,13 +417,37 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-038
+REE inter-governance work item: IGW-20260603-037
 Title: Retest after substrate: MECH-309
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-309
 Blocked by: SD-054 [candidate_v3_pending]
 Why now: Blocked by 1 unresolved substrate prerequisite(s) -- see blocked_by.
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260603-038 -- Retest after substrate: MECH-313
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
+- **Blocked by:** MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+- **Why now:** Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260603-038
+Title: Retest after substrate: MECH-313
+Lane: experiment | Skill: /queue-experiment
+Status: blocked
+Claims: MECH-313
+Blocked by: MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+Why now: Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -484,7 +510,7 @@ Instructions:
 
 </details>
 
-### IGW-20260603-025 -- Queue depth low (0 pending)
+### IGW-20260603-024 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -492,7 +518,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260603-025
+REE inter-governance work item: IGW-20260603-024
 Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
@@ -586,28 +612,6 @@ Instructions:
 
 </details>
 
-### IGW-20260603-039 -- Proposal EXP-0075 (MECH-230)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** active_conflict
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260603-039
-Title: Proposal EXP-0075 (MECH-230)
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-230
-Why now: active_conflict
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
 ### IGW-20260603-040 -- Proposal EXP-0076 (MECH-229)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
@@ -630,20 +634,20 @@ Instructions:
 
 </details>
 
-### IGW-20260603-041 -- Proposal EXP-0080 (MECH-094)
+### IGW-20260603-041 -- Proposal EXP-0083 (ARC-049)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** active_conflict
+- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260603-041
-Title: Proposal EXP-0080 (MECH-094)
+Title: Proposal EXP-0083 (ARC-049)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-094
-Why now: active_conflict
+Claims: ARC-049
+Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -652,20 +656,20 @@ Instructions:
 
 </details>
 
-### IGW-20260603-042 -- Proposal EXP-0081 (ARC-071)
+### IGW-20260603-042 -- Proposal EXP-0084 (INV-059)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** active_conflict; insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260603-042
-Title: Proposal EXP-0081 (ARC-071)
+Title: Proposal EXP-0084 (INV-059)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: ARC-071
-Why now: active_conflict; insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+Claims: INV-059
+Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -674,20 +678,42 @@ Instructions:
 
 </details>
 
-### IGW-20260603-043 -- Proposal EXP-0082 (ARC-064)
+### IGW-20260603-043 -- Proposal EXP-0086 (Q-035)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** active_conflict; insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+- **Why now:** lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260603-043
-Title: Proposal EXP-0082 (ARC-064)
+Title: Proposal EXP-0086 (Q-035)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: ARC-064
-Why now: active_conflict; insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+Claims: Q-035
+Why now: lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260603-044 -- Proposal EXP-0087 (ARC-063)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
+- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260603-044
+Title: Proposal EXP-0087 (ARC-063)
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: ARC-063
+Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.

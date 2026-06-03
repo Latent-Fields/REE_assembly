@@ -35605,6 +35605,8 @@
     (substrate fires). instrumentation_defect, not substrate_ceiling. Corrected re-run queued as V3-EXQ-614d.
     MECH-341 stays candidate / v3_pending=true. NOTE: V3-EXQ-610b dropped its mis-applied MECH-341 tag (not under
     test in a crystallization-necessity experiment).
+
+    [2026-06-03 review V3-EXQ-614d, diagnostic] Within-class sampling temperature (MECH-341 stratified_select sub-flavour) was tested at T=0.5/1.0/2.0 vs legacy argmin for COMMITTED-action class diversity. PASS on C1 (no regression vs 614b ALL_ON band; cross-seed selected-entropy 0.80) and C3 (substrate-readiness: within-class branch fires 3/3 seeds, 159-1030 samples/seed) -- but C2 FAILED: committed-class entropy is byte-identical across all three temperatures (1.056572 at T=0.5/1.0/2.0; legacy 1.057734), paired-lift seed count 0/3 in every arm. The within-class lever is ACTIVE but has ZERO authority at committed-action selection -- a THIRD convergent instance of the modulatory-bias-selection-authority gap (cf. 604a curiosity_bias, 624a vigor: scoring-layer signal fires but never changes the committed argmax). Diagnostic (excluded from confidence/conflict scoring); MECH-341 stays candidate / v3_pending (within-class temperature alone does not deliver committed diversity). Routes to the modulatory-bias-selection-authority substrate (now ready=true; MECH-341 added to its unblocks_claims). Supersedes 614c (non_contributory).
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is

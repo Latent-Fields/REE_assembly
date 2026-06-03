@@ -48,3 +48,17 @@ One line per hourly tick. ASCII only.
 2026-06-03T05:59:43Z SPAWN IGW-20260603-029 skill=/queue-experiment prio=28 uuid=d7a5bbc9-d97d-458f-9291-3c10c9fd6649 pid=12580 worktree=igw-029-retest-after-substrate-inv-074
 2026-06-03T07:00:57Z reaped TASK_CLAIMS igw-auto-igw-029-retest-after-substrate-inv-074-20260603T055950Z (ledger IGW-20260603-029 -> completed_resumable)
 2026-06-03T07:00:56Z SPAWN IGW-20260603-032 skill=/queue-experiment prio=28 uuid=e9aee539-049e-40d1-8dd4-6af1c08a0e31 pid=41262 worktree=igw-032-retest-after-substrate-inv-074
+2026-06-03T08:02:03Z reaped TASK_CLAIMS igw-auto-igw-032-retest-after-substrate-inv-074-20260603T070058Z (ledger IGW-20260603-032 -> completed_resumable)
+2026-06-03T08:02:01Z SPAWN IGW-20260603-031 skill=/queue-experiment prio=28 uuid=e1dd95a4-ed9c-4aaa-8c60-df733b75f465 pid=66579 worktree=igw-031-retest-after-substrate-mech-229
+2026-06-03T09:03:11Z reaped TASK_CLAIMS igw-auto-igw-031-retest-after-substrate-mech-229-20260603T080205Z (ledger IGW-20260603-031 -> completed_resumable)
+2026-06-03T09:03:09Z SPAWN IGW-20260603-031 skill=/queue-experiment prio=28 uuid=901b4e1a-d385-4881-bba8-66fb1a4cbd21 pid=79168 worktree=igw-031-retest-after-substrate-mech-229
+2026-06-03T10:04:16Z reaped TASK_CLAIMS igw-auto-igw-031-retest-after-substrate-mech-229-20260603T090311Z (ledger IGW-20260603-031 -> completed_resumable)
+2026-06-03T10:04:14Z SPAWN IGW-20260603-031 skill=/queue-experiment prio=28 uuid=623f614f-aae5-40da-9bc2-416a21199583 pid=90354 worktree=igw-031-retest-after-substrate-mech-229
+2026-06-03T11:05:20Z reaped TASK_CLAIMS igw-auto-igw-031-retest-after-substrate-mech-229-20260603T100416Z (ledger IGW-20260603-031 -> completed_resumable)
+2026-06-03T11:05:19Z SPAWN IGW-20260603-031 skill=/queue-experiment prio=28 uuid=f86daa9f-aada-4c1b-b302-53913601acaa pid=2277 worktree=igw-031-retest-after-substrate-mech-229
+2026-06-03T12:06:28Z reaped TASK_CLAIMS igw-auto-igw-031-retest-after-substrate-mech-229-20260603T110520Z (ledger IGW-20260603-031 -> completed_resumable)
+2026-06-03T12:06:27Z SPAWN IGW-20260603-031 skill=/queue-experiment prio=28 uuid=88456555-c111-4bea-8817-db6b089321ec pid=13862 worktree=igw-031-retest-after-substrate-mech-229
+2026-06-03T13:07:32Z reaped TASK_CLAIMS igw-auto-igw-031-retest-after-substrate-mech-229-20260603T120628Z (ledger IGW-20260603-031 -> completed_resumable)
+2026-06-03T13:07:31Z SPAWN IGW-20260603-031 skill=/queue-experiment prio=28 uuid=6f6c8fe1-aa7d-44fd-ad06-7622666a37bf pid=26363 worktree=igw-031-retest-after-substrate-mech-229
+2026-06-03T14:08:36Z reaped TASK_CLAIMS igw-auto-igw-031-retest-after-substrate-mech-229-20260603T130732Z (ledger IGW-20260603-031 -> completed_resumable)
+2026-06-03T14:08:35Z SPAWN IGW-20260603-031 skill=/queue-experiment prio=28 uuid=c569bead-bd03-4a56-a859-3901a7ddc3ff pid=38253 worktree=igw-031-retest-after-substrate-mech-229

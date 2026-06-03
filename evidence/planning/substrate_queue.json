@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "insights-substrate-bookkeeping-20260602T163521Z",
-  "last_updated_utc": "2026-06-03T06:44:51Z",
+  "last_updated_utc": "2026-06-03T14:48:32Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -3727,11 +3727,9 @@
       "sd_id": "modulatory-bias-selection-authority",
       "title": "Modulatory score-bias selection authority at E3.select",
       "status": "pending_implementation",
-      "ready": false,
+      "ready": true,
       "design_doc": null,
-      "depends_on_unresolved": [
-        "ARC-065 behavioral diversity (same E3.select arbitration layer)"
-      ],
+      "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-314",
         "MECH-314a",
@@ -3739,7 +3737,8 @@
         "MECH-314c",
         "Q-044",
         "MECH-320",
-        "ARC-068"
+        "ARC-068",
+        "MECH-341"
       ],
       "failure_record": [
         {
@@ -3753,12 +3752,19 @@
           "experiment_type": "v3_exq_624a_arc068_mech320_niv_salamone_dissociation",
           "metric": "action_density lift ARM_1 - ARM_0 = 0.0 (both 0.865) with gate_product 1.0 / v_t 0.05",
           "target": "a working impl must produce action_density lift >= 0.03 (C1_LIFT_MIN) when vigor is ON and the gate fires"
+        },
+        {
+          "run_id": "v3_exq_614d_mech341_within_class_temperature_committed_class_20260603T120121Z_v3",
+          "experiment_type": "v3_exq_614d_mech341_within_class_temperature_committed_class",
+          "metric": "committed-class entropy byte-identical across within-class temperature T=0.5/1.0/2.0 (1.056572 every arm; legacy 1.057734); within-class branch fires 3/3 seeds; paired-lift seed count 0/3 per arm",
+          "target": "a working impl must produce committed-class entropy that RISES with within-class temperature (>=1 paired-lift seed per arm), i.e. the scoring-layer diversity lever must reach committed-action selection"
         }
       ],
-      "implementation_hint": "Modulatory/secondary score-bias channels (MECH-314 curiosity bonus, MECH-320 vigor no-op penalty) are added to candidate scores at e3.select but are dominated by the primary harm/goal score term, so they never change argmax (604a bias=0.0 even ON, 624a v_t=0.05 both ON==OFF). Give modulatory biases competitive selection authority -- score normalization before bias addition, relative scaling of the bias to the candidate score gap, or a separate arbitration/gating channel -- so an enabled modulatory mechanism can change selection. Mirrors the z_goal-vs-harm salience gap (603e/626a/622) and the monostrategy 'diversity must act at/after E3 scoring' finding.",
+      "implementation_hint": "Modulatory/secondary score-bias channels (MECH-314 curiosity bonus, MECH-320 vigor no-op penalty) are added to candidate scores at e3.select but are dominated by the primary harm/goal score term, so they never change argmax (604a bias=0.0 even ON, 624a v_t=0.05 both ON==OFF). Give modulatory biases competitive selection authority -- score normalization before bias addition, relative scaling of the bias to the candidate score gap, or a separate arbitration/gating channel -- so an enabled modulatory mechanism can change selection. Mirrors the z_goal-vs-harm salience gap (603e/626a/622) and the monostrategy 'diversity must act at/after E3 scoring' finding. [2026-06-03 update] V3-EXQ-614d adds a THIRD convergent instance: MECH-341's within-class sampling temperature also fires but leaves committed-class entropy invariant. The redesign should UNIFY the committed-action authority fix across all three scoring-layer levers (MECH-314 curiosity, MECH-320 vigor, MECH-341 within-class temperature/stratified-select) -- they share one bottleneck: scoring-layer signals do not reach the committed argmax. Build the arbitration/authority channel once, exercise it with all three.",
       "priority": 1,
       "added_session": "governance-cycle-20260603T063324Z",
-      "last_seen_session": "governance-cycle-20260603T063324Z"
+      "last_seen_session": "review-614d-mech341-20260603T144832Z",
+      "depends_on_resolved_note": "ARC-065 (same E3.select arbitration layer) coordination gate CLEARED 2026-06-03: the MECH-341 E3-diversity validation the gate was waiting on landed (V3-EXQ-614d, diagnostic) and confirms MECH-341's within-class-temperature lever shares this exact committed-action-authority gap -- so they are addressed together, not serialized. MECH-341 substrate already implemented 2026-05-27; SD-056 landed + falsifiers passed (569d/617)."
     }
   ],
   "schema_version": "substrate_queue/v2"
