@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-03T16:41:47Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_632_mech230_zgoal_structured_latent_discriminative_20260603T071913Z_v3",
+      "queue_id": "V3-EXQ-632",
+      "claim_ids": ["MECH-230"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened-on-fair-seed / unclear-aggregate -- seed 42 (6 contacts) is a clean positive-discrimination result for MECH-230 (z_goal=3.0115 vs ablated 0.0); aggregate FAIL driven entirely by 2/3 seeds (7,13) making zero resource contact, where the claim was never under test",
+        "biological_reference": "clear -- vmPFC/OFC structured goal/incentive-value formation from reward-contact history (Berridge); faithful translation, not a formal import; no divergence",
+        "prerequisites": "missing -- foraging/benefit-contact competence: 2/3 seeds make zero resource contact under the P0/P1 curriculum; SD-012/SD-015 wiring present and verified",
+        "implementation": "complete -- z_goal seeding correctly gated on transition_type=='resource' with the post-step benefit fix; GOAL_ABLATED negative control behaves exactly (goal_state None -> 0.0 every seed, C3 3/3)",
+        "environment": "wrong pressures -- measurement env does not reliably deliver the agent to resources; no contact -> no benefit input -> z_goal cannot seed",
+        "measurement": "partial -- no foraging-contact-rate guard on the z_goal read; only num_contact_events saved interpretability here (distinguished 'never foraged' from 'goal not structured')",
+        "integration": "isolated -- goal stream never integrated into behaviour on the non-foraging seeds because the policy never reaches the contact stage that drives it",
+        "scale": "adequate -- P0=150 / P1=100 ep is not the binding constraint; seed 42 reached competence at this budget, seeds 7/13 did not (curriculum/substrate property, not budget)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "vmPFC/OFC structured goal / incentive-value representation forming from reward-contact history; benefit_exposure at resource contact = consummatory-contact analog feeding GoalState.update under SD-012 drive amplification",
+        "dependencies": [
+          "foraging/benefit-contact competence (policy reaches the resource at all)",
+          "non-zero benefit_exposure input to update_z_goal (requires a resource-contact event)",
+          "SD-012 homeostatic drive amplification (present, drive_weight=2.0)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- the FAIL matches what happens biologically when a developmental dependency (competent foraging / reward contact) is absent; seed 42 confirms the mechanism is sound when contact occurs. A discovered/confirmed prerequisite, not a falsification",
+        "lit_status": "present -- lit_conf 0.831 / 11 entries; no new lit-pull warranted"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-03 failure autopsy V3-EXQ-632] FAIL re-read as non_contributory / substrate_ceiling, NOT does_not_support. Discriminative pair on z_goal structured-latent formation: negative control C3 (ablated absent) PASSED 3/3, but C1/C2/delta failed because 2/3 seeds (7, 13) made ZERO resource contact (num_contact_events=0) so z_goal never had benefit input to seed on. The one seed that foraged (42, 6 contacts) produced a clean positive result: z_goal_norm=3.0115 at contact, persisting byte-identically to t50, absent under ablation (0.0) -- a structured z_goal attractor distinct from harm avoidance, exactly as MECH-230 asserts. This CORRECTS the prior recorded substrate gap: the blocker is NOT the E1-frontal -> hippocampal goal-projection wiring (z_goal structure forms fine post-contact) but foraging-competence / benefit-contact upstream. Convergent with the 603e/626a/622 cluster and 514l (same foraging-competence ceiling across the z_goal / wanting-liking family). MECH-230 stays provisional/v3_pending, pending_retest_after_substrate; the remaining experimental support is narrow (1 PASS after this reclassification) so non_contributory does NOT resolve the claim -- it returns it to awaiting a fair test on the foraging-competence substrate. Routing: implement-substrate AMEND on scaffolded_sd054_onboarding (add MECH-230 to unblocks_claims + 632 failure_record). The substrate fix is landed (ree-v3 e718bf4 + developmental-window amend) but its runtime readiness gates failed on V3-EXQ-634 (Stage-0 forced-feed lights z_goal, P1 survival / P2 contact still fail), so the 632 retest is gated on the nursery substrate reaching readiness.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "title": "Add MECH-230 (z_goal structured latent) to the foraging-competence substrate's unblocked claims",
+        "implementation_hint": "The scaffolded_sd054_onboarding nursery/feeding + developmental-window amend (ree-v3 e718bf4) already targets the foraging-competence / benefit-contact gap that blocks z_goal-formation measurement at N>1. 632 confirms MECH-230's mechanism is sound (seed 42, 6 contacts -> z_goal=3.0115, persists, absent under ablation) but only 1/3 seeds forage; add MECH-230 to unblocks_claims and append the 632 failure_record. No new substrate entry needed. The 632 retest (a MECH-230-tagged re-issue with a foraging-contact-rate guard on the z_goal read) is queued via /queue-experiment only after a full-scale readiness run clears the P1-survival / P2-contact gates (V3-EXQ-634 just failed them).",
+        "unblocks_claims": ["MECH-230"],
+        "depends_on_unresolved": [
+          "scaffolded_sd054_onboarding (parent substrate; nursery/feeding + developmental-window amend landed, implemented_pending_validation; V3-EXQ-634 readiness FAIL -- P1 survival / P2 contact gates unmet)"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_632_mech230_zgoal_structured_latent_discriminative_20260603T071913Z_v3",
+          "experiment_type": "v3_exq_632_mech230_zgoal_structured_latent_discriminative",
+          "metric": "z_goal_norm_at_contact: seed42=3.0115 (6 contacts, perfect discrimination vs ablated 0.0, persists to t50); seed7=0.0 and seed13=0.0 (num_contact_events=0, never foraged). C3 ablation 3/3 pass; C1/C2/delta 1/3",
+          "target": "z_goal_norm > 0.1 at contact AND > 0.05 at t50 on >= 2/3 seeds with per-seed structured-minus-ablated delta > 0.05 -- requires >= 2/3 seeds to make resource contact (foraging-competence), which the substrate must deliver"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "MECH-230's mechanism is sound when the prerequisite is met: seed 42 (6 contacts) produced a structured z_goal attractor (3.0115) that persisted to t50 and was absent under ablation -- positive evidence for the claim, surfaced only because the script recorded num_contact_events.",
+        "MECH-230's recorded substrate gap (E1-frontal -> hippocampal goal-projection wiring) is contradicted by seed 42: z_goal structure forms fine post-contact. The operative prerequisite is foraging-competence / benefit-contact upstream.",
+        "Same foraging-competence ceiling as 603e/626a/622 and 514l -- one structural property across the MECH-229/230/313/260/Q-045 z_goal/goal-pipeline family, uniformly blocked upstream of the claims.",
+        "The substrate fix is landed but unvalidated: V3-EXQ-634 nursery readiness FAILed (Stage-0 forced-feed lights z_goal=0.454, but P1 survival / P2 contact=0 / P2 z_goal still fail). 632's retest is gated on the nursery substrate reaching readiness.",
+        "Measurement gap to port forward: a foraging-contact-rate guard on the z_goal read should be standard on every z_goal-formation measurement (the scaffolded_sd054_onboarding amend already adds a P2 contact-rate readout; the 632 successor should adopt it)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control/positive-control passes, discrimination fails because the agent never reaches the resource -- z_goal / post-contact latent structure cannot be measured at N>1",
+    "is_independent_bugs": false,
+    "structural_property": "REE-v3 agents cannot reliably forage competently enough to make ecological resource contact, so any claim whose measurement requires post-contact latent structure (z_goal formation, wanting/liking dissociation) cannot be discriminatively tested. 632 is informative toward the substrate-enrichment reading: seed 42 shows the downstream z_goal-formation mechanism is sound, so the gap is upstream (getting to the resource), not in goal-representation formation.",
+    "members": [
+      "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+      "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+      "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3",
+      "v3_exq_632_mech230_zgoal_structured_latent_discriminative_20260603T071913Z_v3",
+      "v3_exq_634_scaffolded_nursery_substrate_readiness_20260603T163357Z_v3 (readiness diagnostic: substrate fix landed but NOT yet validated)"
+    ],
+    "readings": ["substrate_enrichment", "test_design_ceiling"]
+  }
+}
