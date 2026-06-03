@@ -1,18 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 7293,
-  "runner_started_at": "2026-05-31T20:26:15.324121+00:00",
-  "last_updated": "2026-05-31T23:09:32.722089+00:00",
+  "runner_pid": 745,
+  "runner_started_at": "2026-06-03T15:50:28.426922+00:00",
+  "last_updated": "2026-06-03T15:59:02.248702+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-592d",
-      "backlog_id": "",
-      "claim_id": "MECH-090",
-      "title": "MECH-090 R-c commit-entry readiness conjunction validation (4-arm; supersedes V3-EXQ-592c)",
+      "queue_id": "V3-EXQ-610d",
+      "backlog_id": "EVB-0270",
+      "claim_id": "INV-074",
+      "title": "INV-074 crystallization necessity (post-Phase-3-enrichment retest; supersedes 610c)",
       "description": "",
-      "estimated_minutes": 640.0,
+      "estimated_minutes": 2000.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-634",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "scaffolded_sd054_onboarding nursery/feeding substrate-readiness diagnostic (Stage-0 forced-feed + P0/P1 + P2-guard gates)",
+      "description": "",
+      "estimated_minutes": 74.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -1832,6 +1843,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 8710.8
+    },
+    {
+      "queue_id": "V3-EXQ-635",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "modulatory-bias-selection-authority substrate-readiness (vigor/within-class/curiosity OFF vs ON)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: INVALID_HARNESS  (CURIOSITY committed_class_entropy OFF=0.8686 ON=0.8686 auth_on_ticks=0 harm_ok=True) | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-635 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-635.json",
+      "started_at": "2026-06-03T15:50:28.584770+00:00",
+      "completed_at": "2026-06-03T15:59:02.247946+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_635_modulatory_bias_selection_authority_readiness_20260603T155901Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 513.2
     }
   ]
 }
