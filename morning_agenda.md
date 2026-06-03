@@ -129,8 +129,14 @@ Generated: 2026-06-03T04:21:43Z
   floor 0.1); axis_criteria_trusted=false. The diagnostic discriminates harness-bug vs genuine
   formation regression — the weak positive control means the axis criteria can't be trusted.
 - **Classification:** diagnostic, claim_ids=[]. Goal-pipeline developmental-window question
-  (relates to goal_pipeline_plan GAP-2, see Active Plans). Route to `/diagnose-errors` on the
-  positive control.
+  (relates to goal_pipeline_plan GAP-2, see Active Plans). ~~Route to `/diagnose-errors` on the
+  positive control.~~
+- **CORRECTION (2026-06-03T05:40Z, cluster autopsy V3-EXQ-603e/626a/622):** NOT invalid-harness / NOT `/diagnose-errors`.
+  626a ran to completion on the *fixed* harness (the harness bug was 626's; 626a feeds `update_z_goal` every step and
+  the seed-44 z_goal=0.192 confirms the fix took effect). The weak positive control is a genuine substrate signal —
+  ecological z_goal formation is foraging-competence-gated — not a harness fault. Disposition: `non_contributory` +
+  diagnostic note; routing: `/implement-substrate` AMEND on `scaffolded_sd054_onboarding` (with V3-EXQ-603e).
+  See [failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md](evidence/planning/failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md).
 
 #### V3-EXQ-625c — sd037_axis_b_phase1b_dynamic_crossings_mech341 — **FAIL** (non_contributory)
 - **Claims tested:** (no claim tags). Supersedes V3-EXQ-625b. SD-037 axis-b / MECH-341 territory.
@@ -160,6 +166,9 @@ Generated: 2026-06-03T04:21:43Z
   residue, not actionable this cycle. **Nothing requires `/diagnose-errors` from the ERROR log
   itself** — but note three FAIL results above (624a, 629, 626a) are *non_contributory / invalid
   harness* and DO warrant `/diagnose-errors` on their harnesses.
+  **CORRECTION (2026-06-03T05:40Z):** 626a is NOT in this set — the cluster autopsy V3-EXQ-603e/626a/622 found its
+  harness valid (the bug was 626's; 626a is the fixed re-run). 626a routes to `/implement-substrate` AMEND, NOT
+  `/diagnose-errors`. Only 624a + 629 remain candidates for harness `/diagnose-errors` review.
 
 ---
 
