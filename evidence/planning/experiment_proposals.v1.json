@@ -3247,12 +3247,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_328b_mech112_zgoal_structured_latent",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
-      ]
+      ],
+      "executed_by": "V3-EXQ-632",
+      "executed_queue_id": "V3-EXQ-632"
     },
     {
       "acceptance_checks": [
@@ -3451,12 +3453,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_465_mech267_intrusive_simulation_filtering",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
-      ]
+      ],
+      "executed_by": "V3-EXQ-633",
+      "executed_queue_id": "V3-EXQ-633"
     },
     {
       "acceptance_checks": [
@@ -3490,7 +3494,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_071",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3500,7 +3504,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-071"
+      ],
+      "blocked_note": "ARC-071 v3_pending=true in claims.yaml; policy_composition_via_repeated_grounding V3 substrate not yet implemented; no claim_probe_arc_071 base script exists. Re-evaluate after substrate lands."
     },
     {
       "acceptance_checks": [
@@ -3534,7 +3542,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_064",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3544,7 +3552,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-064"
+      ],
+      "blocked_note": "ARC-064 v3_pending=true in claims.yaml; bottom_up_behavioral_pattern_extraction_pathway V3 substrate not yet implemented; no claim_probe_arc_064 base script exists. Re-evaluate after substrate lands."
     },
     {
       "acceptance_checks": [
