@@ -1,0 +1,69 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-03T06:59:06Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3",
+      "queue_id": "V3-EXQ-514l",
+      "claim_ids": ["SD-049", "SD-015", "MECH-229", "MECH-230"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- test could not let MECH-229/230 express; no reward-contact history. MECH-229 already provisional/pending_retest with only degenerate single-resource supports.",
+        "biological_reference": "clear, faithful translation -- Berridge incentive-salience (wanting) + opioid hedonic hotspot (liking); FAIL matches missing reward-contact dependency.",
+        "prerequisites": "missing -- foraging-competence (reaches resources, 818 neighborhood samples; consumes only ~23) + benefit/consumption-contact history. Same two coupled prerequisites as the 603e/626a/622 cluster.",
+        "implementation": "complete -- SD-049 Phase 1+2 + SD-015 encoder wired (obs dims grow, per-axis drive evolves, identity classifier trains+fires). Functional role present, behavioural data absent.",
+        "environment": "wrong pressure for the policy -- hazard_food_attraction=0.7 (hard) + no foraging-competence scaffold (P0/P1=30/10) -> ~0.2% consumption rate.",
+        "measurement": "under-instrumented + one defect -- C2c starved (23<30); C6 needs consumption data; C5 lift is a test-design defect (ARM_0 control saturates goal_resource_r ~1.0, +0.4 lift structurally impossible); C4/C5 non-discriminating (goal_resource_r near-saturated everywhere).",
+        "integration": "partially coupled -- encoder + goal pipeline + valence streams wired, but foraging policy upstream does not feed them.",
+        "scale": "likely insufficient budget -- P0=30/P1=10; seed-44 classifier overfit (loss 0.010) on 7+131 samples."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Berridge mesolimbic-DA incentive-salience (wanting) + opioid hedonic-hotspot (liking); identity-distinct wanting = resource-specific incentive salience.",
+        "dependencies": ["learned cue-reward association", "consummatory/foraging contact history", "foraging-competent policy"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful translation. FAIL matches missing-dependency (no reward-contact history) signature, a discovered prerequisite not a falsification.",
+        "lit_status": "present (SD-049 lit_conf=0.898; Berridge 2018, Smith & Berridge 2007). No lit-pull warranted; gap is behavioural-substrate not biological-translation."
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-049": "non_contributory",
+        "SD-015": "non_contributory",
+        "MECH-229": "non_contributory",
+        "MECH-230": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-06-03 (failure_autopsy_V3-EXQ-514l): V3-EXQ-514l FAIL re-tagged non_contributory / epistemic_category substrate_ceiling / pending_retest_after_substrate. The author-stamped per-claim 'weakens' (SD-049, SD-015) is NOT trusted: every absolute/wiring criterion passed (C0/C1/C2a/C2d/C3/C4) but every discrimination criterion failed (C2b probe 0.447, C2c n_consumption_samples 23<30, C5 lift -0.004, C6 wanting!=liking dissoc 0.0 on all seeds). Root cause is a foraging-competence + benefit-contact substrate ceiling: ~0.2% consumption rate (23 consumption vs 818 neighborhood samples), so the Berridge wanting/liking dissociation has no reward-contact history to express in. Same structural property as the 603e/626a/622 cluster (different substrate, different claims, same foraging-competence ceiling). Third FAIL on the same row1b branch (514j/514k/514l). NOT a falsification (biology clear; discovered prerequisite). C5 is additionally a test-design defect (ARM_0 control saturates goal_resource_r ~1.0). For MECH-229 specifically: this was the only genuine multi-resource test; its remaining supports (EXQ-074f/234/354) are degenerate single-resource, so this non_contributory does NOT resolve MECH-229 -- it stays provisional with no genuine multi-resource support. Routing: implement-substrate (foraging-competence scaffold on the SD-049/reef harness; SD-049-PHASE-2 substrate_queue amend). 514m redesign (non-saturating C5 control) deferred until the substrate lands.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-049-PHASE-2",
+        "title": "SD-049 Phase-2 behavioural validation blocked by foraging-competence + benefit-contact ceiling",
+        "implementation_hint": "SD-049-PHASE-2 lands the z_resource identity encoder + SD-032 consumer cascade, but its stated deliverable (V3-EXQ-514 behavioural validation: goal_resource_r lift + identity-recovery probe + wanting!=liking dissociation) is NOT met -- 514j/514k/514l all FAIL the row1b_joint_identity_probe_weak branch. The encoder/cascade are wired and firing (C0/C1/C2a/C2d/C3 PASS); the missing piece is upstream: the policy does not forage competently on the SD-049 multi-resource + reef substrate (~0.2% consumption rate; 23 consumption vs 818 neighborhood samples in ARM_2), so the wanting/liking valence streams never differentiate (C6=0.0 every seed) and the consumption-identity probe is starved (C2c 23<30). Required substrate work: a foraging-competence + consumption-contact scaffold for the SD-049/reef harness that brings the agent to a consumption-competent policy ACROSS resource identities before measuring identity-distinct wanting, plus a forced/guaranteed benefit-contact stage so the wanting!=liking dissociation has data. Port the pattern from scaffolded_sd054_onboarding (which already lists 'SD-049 Phase 2 behavioural' in its unblocks_claims and is the analogous foraging-competence/goal-formation scaffold for the SD-054 harness) rather than creating a third overlapping scaffold entry; the 514 family currently uses its own phased P0/P1/P2 (30/10) and does NOT use the scaffolded scheduler. Separately, the C5 lift criterion is a test-design defect (ARM_0 control saturates goal_resource_r ~1.0, so +0.4 lift is impossible) -- a 514m redesign (non-saturating control + C5 replacement) is deferred until this scaffold lands.",
+        "unblocks_claims": ["SD-049", "SD-015", "MECH-229", "MECH-230", "MECH-117", "MECH-216", "ARC-030", "ARC-032", "Q-030"],
+        "depends_on_unresolved": ["foraging-competence scaffold (port from scaffolded_sd054_onboarding to SD-049/reef harness)", "benefit/consumption-contact guarantee stage"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3",
+          "experiment_type": "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity",
+          "metric": "ARM_2 consumption rate ~0.2% (23 consumption vs 818 neighborhood samples); C6 wanting!=liking dissoc fraction 0.0 on all 3 seeds; C2b probe_acc_neighborhood 0.447; C2c n_consumption_samples 23. Third FAIL on row1b_joint_identity_probe_weak (514j/514k/514l).",
+          "target": "A working foraging-competence scaffold must drive consumption across resource identities to >= 30 consumption-identity samples/seed (C2c) AND yield wanting!=liking dissoc fraction >= 0.6 (C6) AND probe_acc_neighborhood >= 0.6 (C2b) on the multi-resource substrate."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "The SD-049 multi-resource wanting/liking test (514j/514k/514l, three FAILs on the same row1b branch) is blocked by the same foraging-competence + benefit-contact prerequisite as the 603e/626a/622 cluster -- foraging-competence is a cross-cutting V3 substrate ceiling, not a per-test tuning issue.",
+        "Illusory-conflict guard: MECH-229's only genuine multi-resource test has now FAILed 3x; its remaining supports (EXQ-074f/234/354) are all degenerate single-resource. Reclassifying 514l non_contributory must NOT read as MECH-229-resolved -- it stays provisional/pending_retest with zero genuine multi-resource support (narrow_supports_flag=true).",
+        "C5 lift is a test-design defect independent of the ceiling (ARM_0 control saturates goal_resource_r ~1.0); the 514m redesign needs a non-saturating control/metric, deferred until the foraging-competence substrate lands (user decision 2026-06-03)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "absolute/negative-control/wiring criteria pass; every discrimination criterion fails -- substrate-ceiling fingerprint, driven by a foraging-competence + benefit-contact prerequisite that leaves the goal/wanting pipeline with no behavioural substrate to express in.",
+    "is_independent_bugs": false,
+    "structural_property": "Foraging-competence is a cross-cutting V3 ceiling: the same prerequisite blocks 514l (SD-049/reef harness, MECH-229/230 wanting-liking) and the 603e/626a/622 cluster (scaffolded_sd054_onboarding harness, Q-045/MECH-313/MECH-260 diversity) -- structurally-different substrates and claim families failing on the same property.",
+    "readings": ["substrate_enrichment"]
+  }
+}
