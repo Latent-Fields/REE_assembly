@@ -4,7 +4,7 @@
 **Author session:** `sd054-scaffolded-onboarding-memo-20260529T172125Z`
 **Status:** IMPLEMENTED 2026-05-31 (ree-v3/main commit `28ebd3d`; substrate landed via `experiments/scaffolded_sd054_onboarding.py` + `reef_bipartite_agent_spawn_in_reef_half` env kwarg on `CausalGridWorldV2`; implementation surface (a) NEW scheduler taken per "Implementation surface choice" section; 14 phase-config knobs match the Config Surface table; 17 contracts in `tests/contracts/test_scaffolded_sd054_onboarding.py` PASS; 645/645 full regression PASS; closes IGW-20260531-029. Behavioural validation V3-EXQ-621 queued separately per the Sequencing table step 4).
 **Amend 2026-06-02 (update_z_goal wiring):** the as-landed scheduler never called `agent.update_z_goal`, so `GoalState.update` was never reached and z_goal stayed zero-init across every arm (V3-EXQ-603d C4 FAIL; 626-class harness/wiring artifact in the substrate module, not a ceiling). Wired `agent.update_z_goal(benefit, drive)` into `_train_episode` (P1 only, via a `seed_goal` kwarg) and `_eval_episode` (P2), mirroring the `goal_stream_stages_sd054.py` reference runner; P0 left goal-frozen by design (user-confirmed P1+P2-only scope). Added Stage-0 positive-control contracts so a z_goal=0 scheduler is unshippable. **Two-part fix:** the validation config must ALSO set `z_goal_enabled=True` + `drive_weight=2.0` (603d's config omitted it -> `goal_state` was None -> `update_z_goal` early-returns); the working reference V3-EXQ-622 sets it. V3-EXQ-603e re-issue (restored P0/P1=100/50 budget + z_goal_enabled=True) is the validation. Folds the V3-EXQ-625b monostrategy failure record (plausibly downstream of the same inert goal pipeline). Session `implement-substrate-scaffolded-sd054-zgoal-wiring-20260602T062215Z`; autopsies `failure_autopsy_V3-EXQ-603d_2026-06-01` + `failure_autopsy_V3-EXQ-625b_2026-06-02`.
-**Amend 2026-06-03 (foraging-competence + forced-benefit Stage-0) -- PENDING:** the update_z_goal wiring amend (deb24cc) is now validated **necessary-but-insufficient** by V3-EXQ-603e + V3-EXQ-626a: z_goal forms under the forced-input Stage-0 contract yet stays **0.0 ecologically** (603e: 0.0 on all 15 cells incl. the 5 surviving seed-43 cells, restored budget P0/P1=100/50; 626a P0 positive control forms z_goal on only 1/3 seeds). The 2026-06-03 cluster autopsy ([failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03](failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md)) ruled the cluster `non_contributory` / `substrate_ceiling` / `pending_retest_after_substrate`: the gap is **upstream of the wiring** -- (1) survival/foraging competence (2/3 seeds never reach a foraging-competent policy) and (2) benefit-input starvation (hard P2 `hazard_food_attraction=0.7` keeps `benefit_exposure` sub-threshold even for survivors). A new foraging-competence amend is **pending implementation** (substrate_queue `scaffolded_sd054_onboarding.current_pending_amend`, `ready:false`); the re-issue **V3-EXQ-603f** is BLOCKED until it lands. See the "## Amend 2026-06-03 (PENDING)" section below.
+**Amend 2026-06-03 (foraging-competence + forced-benefit Stage-0) -- PENDING:** the update_z_goal wiring amend (deb24cc) is now validated **necessary-but-insufficient** by V3-EXQ-603e + V3-EXQ-626a: z_goal forms under the forced-input Stage-0 contract yet stays **0.0 ecologically** (603e: 0.0 on all 15 cells incl. the 5 surviving seed-43 cells, restored budget P0/P1=100/50; 626a P0 positive control forms z_goal on only 1/3 seeds). The 2026-06-03 cluster autopsy ([failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03](failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md)) ruled the cluster `non_contributory` / `substrate_ceiling` / `pending_retest_after_substrate`: the gap is **upstream of the wiring** -- (1) survival/foraging competence (2/3 seeds never reach a foraging-competent policy) and (2) benefit-input starvation (hard P2 `hazard_food_attraction=0.7` keeps `benefit_exposure` sub-threshold even for survivors). The foraging-competence amend is now **IMPLEMENTED 2026-06-03** (ree-v3 commit `e718bf4`; nursery/forced-benefit Stage-0 + survival lever + P2 guard + contact-rate + gate/branch helpers + 12 contracts; 731 contracts + 7/7 preflight PASS; forced-feed smoke lights z_goal). **Full-scale runtime readiness is still PENDING** a substrate-readiness run, so substrate_queue `ready` stays `false` and the re-issue **V3-EXQ-603f** is NOT yet queued. See the "## Amend 2026-06-03" section below.
 **Lever chosen:** (A2) scaffolded SD-054 reef + bipartite-horizontal as the start-state distribution for P0+P1 training, with hazard_food_attraction and goal-pipeline writes annealed in across P1
 **Successor session:** `/implement-substrate` on a new scheduler (sibling to `experiments/infant_curriculum.py`) AND a small spawn-relaxation extension on CausalGridWorldV2 (separate) -- DONE 2026-05-31 via session `implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z`
 
@@ -182,9 +182,26 @@ Three honest disclaimers, mirroring the SD-056 memo's tone.
 
 ---
 
-## Amend 2026-06-03 (PENDING): foraging-competence + forced-benefit Stage-0 z_goal warmup (603e -> 603f path)
+## Amend 2026-06-03: foraging-competence + forced-benefit Stage-0 z_goal warmup (603e -> 603f path)
 
-**Status: pending implementation.** Routed by the 2026-06-03 cluster autopsy
+**Status: IMPLEMENTED 2026-06-03 (ree-v3 `e718bf4`); full-scale runtime readiness PENDING.**
+The nursery/feeding scaffold landed in `experiments/scaffolded_sd054_onboarding.py`
+(additive -- no existing config default changed; master-OFF bit-identical;
+731 contracts + 7/7 preflight PASS; 603e --dry-run unchanged). Activation smoke
+(real REEAgent, z_goal_enabled=True + drive_weight=2.0, Stage-0 2 ep x 25 steps):
+forced feed lights z_goal (`z_goal_norm_peak=0.234 > 0`; the `>0.4` acceptance is
+a full-scale gate, not a dry-scale one), P2 guard `hfa=0.3` applied, contact-rate
+readout wired. What lands: `run_stage0_nursery` (forced supra-threshold benefit,
+decoupled from survival) + `Stage0NurseryResult`; `scaffold_p1_anneal_hold_fraction`
+staged-withdrawal lever; `STAGE_PLAN`/`stage_plan()`; P2 `scaffold_p2_hazard_food_attraction_guard`
++ `contact_steps`/`contact_rate`/`hazard_food_attraction_used`; `evaluate_substrate_gate`
++ `classify_interpretation_branch`. **What remains before 603f:** a full-budget
+substrate-readiness run must confirm the runtime gates (Stage-0 z_goal>0.4 on
+>=2/3 seeds, P1 survival >=2/3, P2 contact>0 on >=2/3) -- the mechanism is proven
+but the strengthened scaffold's ability to get 2/3 seeds to competence at scale
+is not yet demonstrated. substrate_queue `ready` stays `false` until then.
+
+Routed by the 2026-06-03 cluster autopsy
 [failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03](failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md)
 (`recommended_substrate_queue_entry.action=amend`). Tracked in
 `substrate_queue.json :: scaffolded_sd054_onboarding.current_pending_amend`

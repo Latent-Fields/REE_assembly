@@ -3440,7 +3440,7 @@
     {
       "added_session": "governance-20260529T212835Z",
       "amend_hint": "ScaffoldedSD054OnboardingScheduler._train_episode (ree-v3/experiments/scaffolded_sd054_onboarding.py:551) and the eval path never call agent.update_z_goal, so GoalState.update is never reached and z_goal stays at zero-init (confirmed: zero update_z_goal matches in the module). Add agent.update_z_goal(benefit_exposure=..., drive_level=...) every step in P1 (and P0 where the frozen-goal design permits), mirroring the shared experiments/goal_stream_stages_sd054.py runner (train ~line 537 / eval ~line 590) the 622 autopsy confirmed feeds z_goal. Add a Stage-0-style contract/positive-control assertion: forced benefit+drive inputs must produce non-zero direction-stable z_goal under the scheduler so a z_goal=0 scheduler is structurally unshippable. This hook fix is strictly UPSTREAM of the 622 anneal-rate amend (which assumed update_z_goal was being called); re-evaluate the anneal-rate amend priority after the hook lands and z_goal forms.",
-      "amend_pending": true,
+      "amend_pending": false,
       "autopsy_refs": [
         "evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md",
         "evidence/planning/failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29.md",
@@ -3571,6 +3571,13 @@
             "evidence/planning/failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.json"
           ],
           "session_id": "plan-603f-path-postsubstrate-20260603T075525Z"
+        },
+        {
+          "event": "amend_foraging_competence_implemented_pending_validation",
+          "utc": "2026-06-03T14:53:47Z",
+          "ree_v3_commit": "e718bf4 (ree-v3/main)",
+          "note": "Nursery/feeding scaffold landed: forced-benefit Stage-0 (decouples z_goal formation from survival) + survival lever + P2 measurement guard + foraging-contact-rate readout + substrate-gate/interpretation-branch helpers + 12 contracts. Mechanism-validated (smoke: forced feed lights z_goal; 731 contracts + 7/7 preflight PASS; 603e dry-run unchanged). ready stays FALSE -- full-scale runtime readiness gates (>=2/3 seeds) unproven; a full-budget substrate-readiness run is the gate before 603f is queued.",
+          "session_id": "implement-substrate-scaffolded-nursery-feeding-20260603T145347Z"
         }
       ],
       "last_seen_session": "governance-cycle-20260603T063324Z",
@@ -3578,7 +3585,7 @@
       "ready": false,
       "sd_id": "scaffolded_sd054_onboarding",
       "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding",
-      "status": "amend_foraging_competence_pending_implementation",
+      "status": "amend_foraging_competence_implemented_pending_validation",
       "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
       "unblocks_claims": [
         "Q-045",
@@ -3606,7 +3613,18 @@
         "acceptance_target": "z_goal_norm_peak > 0.4 on >=2/3 seeds in P2 AND P1 survival/foraging gate passed on >=2/3 seeds AND non-zero benefit/contact exposure on >=2/3 seeds. Stage-0 forced-benefit warmup must produce direction-stable z_goal independent of survival.",
         "validation_experiment": "V3-EXQ-603f (proposal EXP-603F-POSTSUBSTRATE, status blocked_substrate, supersedes V3-EXQ-603e) -- re-issue of 603e on the repaired scaffold. NOT a same-substrate retest. BLOCKED until this amend lands + smoke passes.",
         "routing": "implement-substrate (write the substrate-design memo amend first, then code, then re-validate the Stage-0 + survival contracts, then hand 603f to /queue-experiment).",
-        "interpretation_note": "Frames REE-v3's dominant goal-pipeline failure as ecological reward-contact + BG-like action-selection/commitment limitation, NOT representational absence. 603f tests whether repairing developmental foraging/contact makes goal representations behaviourally available. If z_goal forms but diversity deltas stay sub-margin, the next blocker is the modulatory-bias-selection-authority substrate (BG-like E3.select authority), not reward-contact -- see the modulatory-bias-selection-authority substrate_queue entry."
+        "interpretation_note": "Frames REE-v3's dominant goal-pipeline failure as ecological reward-contact + BG-like action-selection/commitment limitation, NOT representational absence. 603f tests whether repairing developmental foraging/contact makes goal representations behaviourally available. If z_goal forms but diversity deltas stay sub-margin, the next blocker is the modulatory-bias-selection-authority substrate (BG-like E3.select authority), not reward-contact -- see the modulatory-bias-selection-authority substrate_queue entry.",
+        "implemented": true,
+        "implementation": {
+          "landed_utc": "2026-06-03T14:53:47Z",
+          "ree_v3_commit": "e718bf4 (ree-v3/main)",
+          "module": "experiments/scaffolded_sd054_onboarding.py",
+          "what_landed": "run_stage0_nursery + Stage0NurseryResult (forced supra-threshold benefit decoupled from survival); scaffold_p1_anneal_hold_fraction staged-withdrawal lever; STAGE_PLAN/stage_plan(); P2 scaffold_p2_hazard_food_attraction_guard + contact_steps/contact_rate/hazard_food_attraction_used; evaluate_substrate_gate + classify_interpretation_branch (5-way grid).",
+          "additive": "no existing config default changed; master-OFF bit-identical; 12 new contracts (C6 block); 731 contracts + 7/7 preflight PASS; 603e --dry-run unchanged.",
+          "smoke": "real REEAgent (z_goal_enabled=True + drive_weight=2.0), Stage-0 2ep x 25steps: forced feed lights z_goal (z_goal_norm_peak=0.234 > 0; >0.4 is the full-scale gate). P2 guard hfa=0.3 applied; contact-rate wired.",
+          "ready_false_reason": "Mechanism validated (forced feed -> z_goal forms; gate/branch helpers contract-tested) but the RUNTIME readiness gates (Stage-0 z_goal>0.4 on >=2/3 seeds, P1 survival >=2/3, P2 contact>0 on >=2/3) require a full-budget run and are unproven at scale. ready flips true only after a full-scale substrate-readiness run confirms the gates.",
+          "next_step": "Full-scale substrate-readiness run (621-equivalent) via /queue-experiment confirming the >=2/3 gates; THEN flip ready=true + unblock EXP-603F-POSTSUBSTRATE + queue V3-EXQ-603f. 603f itself evaluates the substrate gate first (classify_interpretation_branch) and self-routes to non_contributory/substrate_not_engaged if the gates fail."
+        }
       }
     },
     {
