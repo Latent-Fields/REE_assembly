@@ -1,33 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-03T11:42:26Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-614d",
-  "current_exq_started_utc": "2026-06-03T05:55:04.419721+00:00",
-  "current_title": "MECH-341 within-class temperature 4-arm sweep -- corrected harness (committed-class metric + within-class diagnostics + cross-seed-mean C1; supersedes 614c)",
-  "current_claim_id": "MECH-341",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 43 / within_class_T_2_0_flatter",
-    "runs_done": 10,
-    "runs_total": 12,
-    "episodes_done": 70,
-    "episodes_total": 90,
-    "overall_pct": 89.8
-  },
-  "seconds_elapsed": 20838,
-  "seconds_remaining": 2129,
-  "recent_lines": [
-    "[train] arm=ARM_3_T_2_0 seed=43 phase=P0 ep 30/90",
-    "[train] arm=ARM_3_T_2_0 seed=43 phase=P1 ep 40/90",
-    "[train] arm=ARM_3_T_2_0 seed=43 phase=P1 ep 50/90",
-    "[train] arm=ARM_3_T_2_0 seed=43 phase=P1 ep 60/90",
-    "[train] arm=ARM_3_T_2_0 seed=43 phase=P1 ep 70/90"
+  "last_tick_utc": "2026-06-03T12:02:28Z",
+  "state": "paused",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-610d",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-614b",
+      "result": "FAIL",
+      "completed_at": "2026-05-31T18:20:42.327643+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-614c",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T12:45:10.737866+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-592f",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T19:43:26.170478+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603e",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T04:03:13.135462+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-614d",
+      "result": "PASS",
+      "completed_at": "2026-06-03T12:01:24.020537+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 7964,
   "runner_version": null,
   "gpu": {
