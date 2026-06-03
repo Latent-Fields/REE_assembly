@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-03T20:35:47Z",
+  "last_tick_utc": "2026-06-03T21:05:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-461b",
   "current_exq_started_utc": "2026-06-03T20:27:07.368302+00:00",
@@ -9,18 +9,21 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / warmup",
-    "runs_done": 0,
+    "run_label": "Seed 43 / warmup",
+    "runs_done": 1,
     "runs_total": 3,
-    "episodes_done": 40,
+    "episodes_done": 0,
     "episodes_total": 350,
-    "overall_pct": 3.8
+    "overall_pct": 33.3
   },
-  "seconds_elapsed": 520,
-  "seconds_remaining": 10830,
+  "seconds_elapsed": 2325,
+  "seconds_remaining": 3061,
   "recent_lines": [
-    "Seed 42 Condition warmup P0",
-    "[P0 probe] ep 40/200  rv=0.00000  threshold=0.4  converging=True"
+    "Seed 42 Condition ARM_EMERGENT_ON",
+    "Seed 42 Condition ARM_FORCED_RV_ON",
+    "Seed 42 Condition ARM_NO_HOLD_OFF",
+    "verdict: FAIL C1=False C2=False C3=False",
+    "Seed 43 Condition warmup P0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
