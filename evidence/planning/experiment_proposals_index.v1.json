@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-03T06:46:11.830885Z",
+  "generated_at_utc": "2026-06-03T07:46:24.137802Z",
   "items": [
     {
       "backlog_id": "EVB-0005",
@@ -1350,11 +1350,13 @@
       "backlog_id": "EVB-0196",
       "claim_id": "MECH-230",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-632",
+      "executed_queue_id": "V3-EXQ-632",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-230 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0075",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_328b_mech112_zgoal_structured_latent",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1430,11 +1432,13 @@
       "backlog_id": "EVB-0234",
       "claim_id": "MECH-094",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-633",
+      "executed_queue_id": "V3-EXQ-633",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-094 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0080",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_465_mech267_intrusive_simulation_filtering",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1449,7 +1453,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0081",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_071",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1469,7 +1473,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0082",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_064",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4642,6 +4646,34 @@
       ]
     },
     {
+      "backlog_id": "EVB-0291",
+      "claim_id": "Q-056",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for Q-056 via targeted experiment runs.",
+      "priority": "low",
+      "proposal_id": "EXP-0266",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_q_056",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0291",
+      "claim_id": "Q-056",
+      "objective": "Improve literature grounding and confidence for Q-056.",
+      "priority": "low",
+      "proposal_id": "LIT-0267",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "no_evidence_for_open_question"
+      ]
+    },
+    {
       "claim_id": "MECH-094",
       "dispatch_mode": "discriminative_pair",
       "executed_by": "V3-EXQ-499",
@@ -5295,11 +5327,21 @@
       "proposal_type": "experimental",
       "status": "gated",
       "target_repo": "ree-v3"
+    },
+    {
+      "claim_id": "MECH-343",
+      "dispatch_mode": "multi_arm_ablation",
+      "objective": "Test the difficulty-gated proposal-entropy hypothesis (MECH-343 / Q-056): does stuck-state-GATED proposal entropy beat both entropy-off and always-high entropy, producing flexible exploration without behavioural chaos? WORKING HYPOTHESIS -- no experimental evidence yet.",
+      "priority": "medium",
+      "proposal_id": "EXP-0176",
+      "proposal_type": "experimental",
+      "status": "proposed_blocked_substrate",
+      "target_repo": "ree-v3"
     }
   ],
-  "n_executed": 138,
-  "n_proposed_exp": 162,
-  "n_proposed_lit": 13,
+  "n_executed": 140,
+  "n_proposed_exp": 159,
+  "n_proposed_lit": 14,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }

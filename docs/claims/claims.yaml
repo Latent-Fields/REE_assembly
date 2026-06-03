@@ -35708,6 +35708,73 @@
     coupling improves agent behaviour. No flag/confidence change to MECH-090.
   location: docs/architecture/mech_342_commit_maintenance_release.md
 
+- id: MECH-343
+  title: "difficulty_gated_proposal_entropy (controlled proposal-entropy widening under goal blockage). When goal progress stalls -- repeated failure to improve goal progress, high inter-candidate conflict, low E3 score margin, low committed-action diversity, plateau/stuck-state signal -- WITH goal salience preserved, the agent should transiently INCREASE proposal-generation entropy UPSTREAM of action selection (wider hippocampal/world-model rollout candidate set + higher within-class sampling temperature) while preserving goal/harm/constraint scoring and DELAYING commitment until one candidate clears the E3 score-margin / commitment threshold; entropy then NARROWS once a workable candidate is found -> committed action -> entropy decay. Asserted distinction (preserve this): a hard problem must trigger WIDER INTERNAL PROPOSALS -> more candidate diversity -> longer arbitration -> selective committed action (controlled entropy), NOT 'hard problem -> random behaviour' (noise). WORKING HYPOTHESIS -- no experimental evidence yet; not an established mechanism."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.difficulty_gated_proposal_entropy
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  epistemic_category: substrate_conditional
+  registered_utc: "2026-06-03"
+  depends_on:
+    - ARC-018    # hippocampal rollouts -- the proposal-generation locus that widens
+    - ARC-065    # behavioural-diversity generation pathway
+    - MECH-341   # E3 scoring preserves candidate-class diversity (narrowing/arbitration side; V3-EXQ-614d)
+    - MECH-314   # structured-curiosity bonus -- a candidate upstream-widening signal
+    - MECH-090   # commitment-entry predicate / score-margin admission (threshold gate)
+    - MECH-342   # maintenance/commitment release authority
+    - ARC-003    # E3 commitment / trajectory authority
+  notes: >
+    Registered 2026-06-03 as a WORKING HYPOTHESIS (user-proposed), not an
+    established mechanism. Names a closed-loop control policy that couples
+    stuck-state detection to a transient gain on PROPOSAL-layer entropy,
+    held under goal/harm constraints, with commitment deferred until a
+    candidate clears threshold and entropy decayed after success. Loop:
+    stuck-state signal -> proposal-entropy gain (ARC-018 hippocampal/CEM
+    candidate-set widening + within-class temperature) -> goal/harm scoring
+    preserved -> E3 arbitration over the widened pool (MECH-341 preserves
+    class diversity at scoring) -> commitment only when score margin clears
+    (MECH-090/MECH-342) -> entropy decay on goal progress. Biological
+    reading: increased neural variability / network flexibility during hard
+    cognitive work (controlled entropy, not noise). Distinct from a state-
+    independent noise floor (MECH-313) and from constant high temperature:
+    the entropy gain is DIFFICULTY-GATED and time-limited. Pathological
+    signatures (cross-referenced in docs/architecture/psychiatric_failure_modes.md):
+    entropy up but behaviour unchanged = selection-authority failure (the
+    current modulatory-bias-selection-authority bottleneck); entropy up and
+    behaviour random/harmful = arbitration failure; entropy fails to rise
+    when stuck = proposal-generation rigidity; entropy rises but never
+    narrows = manic/disorganised-exploration analogue; proposals widen but
+    commitment never occurs = catatonic/abulic action-release analogue.
+    Main falsifiable prediction tracked as Q-056: a STUCK-GATED entropy arm
+    should beat BOTH entropy-off (rigidity/stuck) and always-high entropy
+    (disorganised churn). V3-EXQ-614d / MECH-341 tests only whether within-
+    class temperature can lift COMMITTED-action diversity (one piece -- can
+    controlled variability reach committed action vs stay trapped upstream);
+    it does NOT test the whole loop. Connected failures: MECH-314/MECH-320
+    (modulatory signals exist but lack selection authority at E3), MECH-342
+    (no natural commit when score margins are flat -- V3-EXQ-629), z_goal/
+    foraging cluster (goal reps need ecological contact before guiding
+    behaviour -- 603e). One candidate route from catatonic-like inert
+    cognition toward controlled exploratory cognition.
+  evidence_quality_note: >
+    conf=0.0 by construction (working hypothesis, no experiment run).
+    epistemic_category=substrate_conditional: blocked on upstream substrate
+    not yet built -- (1) the modulatory-bias-selection-authority gap
+    (substrate_queue, created 2026-06-03 from the 604a/624a cluster
+    autopsy) which must give modulatory/diversity signals genuine authority
+    at E3.select, and (2) a difficulty-gated proposal-entropy regulator
+    (stuck-state detector + transient CEM temperature/candidate-count gain +
+    decay) not yet designed. Promotion/demotion suppressed until those land.
+    Experiment proposal EXP-0176 (manual_proposals.v1.json) records the
+    4-arm design; the script is deferred to /queue-experiment per the
+    mandatory skill path.
+  literature_anchors:
+    - "Increased neural variability / network flexibility during difficult cognitive work (controlled-entropy reading; working analogy, not a settled citation)."
+  location: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md
 - id: Q-054
   title: "What is the minimum trajectory-class diversity floor (Rung 1
     first_action_entropy threshold) required for the ARC-062 context
@@ -35788,6 +35855,32 @@
     scientific content unchanged.
   location: evidence/planning/behavioral_diversity_acceptance_criteria.md
 
+- id: Q-056
+  title: "Does stuck-state-GATED proposal entropy outperform BOTH entropy-off and always-high entropy? Main empirical prediction of MECH-343: in a hard-goal/blocked-path environment (matched easy-goal controls), the difficulty-gated-entropy arm should show flexible exploration -- improved goal progress, no harm increase, no random-churn increase, commitment latency that rises during the hard phase then falls after solution discovery -- and should BEAT both the entropy-off arm (proposal rigidity / stuck) and the entropy-always-high arm (disorganised exploration / no narrowing). WORKING QUESTION -- no evidence yet."
+  claim_type: open_question
+  subject: control_plane.stuck_gated_vs_constant_proposal_entropy
+  polarity: open
+  status: open
+  implementation_phase: v3
+  claim_level: mechanistic
+  epistemic_category: answer_state
+  registered_utc: "2026-06-03"
+  depends_on:
+    - MECH-343
+    - MECH-341
+    - ARC-018
+  notes: >
+    The discriminating question for MECH-343. Arms (see EXP-0176 /
+    docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md):
+    (1) entropy-gating OFF; (2) entropy-gating ON under stuck-state;
+    (3) entropy ALWAYS high; (4) entropy high with goal/harm constraints
+    ablated (diagnostic only, if safe). Metrics: candidate proposal entropy,
+    committed-action entropy, score-margin distribution, # arbitration
+    cycles before commitment, goal progress, harm rate, action churn,
+    time-to-first-workable-path, entropy reduction after success. PASS =
+    arm 2 > arms 1 and 3 on goal progress with no harm/churn increase and a
+    post-success entropy narrowing. conf=0.0 by construction.
+  location: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md
 - id: INV-076
   title: "Behavioural diversity is a structural prerequisite for ethical
     counterfactual evaluation. A system with monomodal policy cannot instantiate

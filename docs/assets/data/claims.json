@@ -3441,6 +3441,12 @@
     "title": "control_plane.commit_maintenance_release. The R-c readiness signals that gate commitment ENTRY (MECH-090: score_margin decisiveness + nav_competence) must ALSO be able to RELEASE an already-elevated beta latch when execution readiness degrades mid-commitment. The release is a graded, bounded-accumulation drift-to-a-release-bound (conflict-scaled by the deficit magnitude), NOT a one-shot threshold flag; targeted to the active committed motor program (not a global brake); and hysteretic with a reengagement path that guards the premature-abort pole. This closes the V3-EXQ-592f reach gap (the MECH-090 R-c conjunction is admission-only by design; no existing release pathway covers degraded-readiness-mid- commitment).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-343": {
+    "status": "candidate",
+    "subject": "control_plane.difficulty_gated_proposal_entropy",
+    "title": "difficulty_gated_proposal_entropy (controlled proposal-entropy widening under goal blockage). When goal progress stalls -- repeated failure to improve goal progress, high inter-candidate conflict, low E3 score margin, low committed-action diversity, plateau/stuck-state signal -- WITH goal salience preserved, the agent should transiently INCREASE proposal-generation entropy UPSTREAM of action selection (wider hippocampal/world-model rollout candidate set + higher within-class sampling temperature) while preserving goal/harm/constraint scoring and DELAYING commitment until one candidate clears the E3 score-margin / commitment threshold; entropy then NARROWS once a workable candidate is found -> committed action -> entropy decay. Asserted distinction (preserve this): a hard problem must trigger WIDER INTERNAL PROPOSALS -> more candidate diversity -> longer arbitration -> selective committed action (controlled entropy), NOT 'hard problem -> random behaviour' (noise). WORKING HYPOTHESIS -- no experimental evidence yet; not an established mechanism.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3757,6 +3763,12 @@
     "status": "open",
     "subject": "policy.sleep_consolidation.diversity_effect",
     "title": "Does sleep consolidation (SD-017 SWS phase) preserve the trajectory- class diversity achieved by ARC-065 during waking, or does Hebbian winner- take-all dynamics during replay erode it? Is sleep a net positive or net negative for learned behavioural diversity? (Was proposed 2026-05-15 as Q-047 in behavioral_diversity_acceptance_criteria.md; never registered; re-registered under next available Q-id.)",
+    "type": "open_question"
+  },
+  "Q-056": {
+    "status": "open",
+    "subject": "control_plane.stuck_gated_vs_constant_proposal_entropy",
+    "title": "Does stuck-state-GATED proposal entropy outperform BOTH entropy-off and always-high entropy? Main empirical prediction of MECH-343: in a hard-goal/blocked-path environment (matched easy-goal controls), the difficulty-gated-entropy arm should show flexible exploration -- improved goal progress, no harm increase, no random-churn increase, commitment latency that rises during the hard phase then falls after solution discovery -- and should BEAT both the entropy-off arm (proposal rigidity / stuck) and the entropy-always-high arm (disorganised exploration / no narrowing). WORKING QUESTION -- no evidence yet.",
     "type": "open_question"
   },
   "SD-001": {

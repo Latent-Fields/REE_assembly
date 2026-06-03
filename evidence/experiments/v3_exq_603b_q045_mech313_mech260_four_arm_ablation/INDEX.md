@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_603b_q045_mech313_mech260_four_arm_ablation
 
-Generated: `2026-06-03T06:46:11.830885Z`
+Generated: `2026-06-03T07:46:24.137802Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

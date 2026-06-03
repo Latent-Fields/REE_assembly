@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-06-03T05:59:52Z",
+  "generated_at": "2026-06-03T07:01:00Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -1522,6 +1522,28 @@
       "released_by": null,
       "released_reason": null,
       "note": "session_uuid=d7a5bbc9-d97d-458f-9291-3c10c9fd6649 branch=claude/igw-029-retest-after-substrate-inv-074",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: INV-074",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "INV-074"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T070056Z-10e3bf78-claude_local",
+      "stable_hash": "10e3bf7821a3",
+      "igw_id_at_assign": "IGW-20260603-032",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T07:00:56Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=e9aee539-049e-40d1-8dd4-6af1c08a0e31 branch=claude/igw-032-retest-after-substrate-inv-074",
       "item_snapshot": {
         "skill": "/queue-experiment",
         "title": "Retest after substrate: INV-074",

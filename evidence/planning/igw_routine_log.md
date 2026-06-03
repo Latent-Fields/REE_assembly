@@ -46,3 +46,5 @@ One line per hourly tick. ASCII only.
 2026-06-03T04:58:32Z SPAWN IGW-20260603-029 skill=/queue-experiment prio=28 uuid=dbfed872-9a2d-4db2-82dc-0b78bcc8f957 pid=91188 worktree=igw-029-retest-after-substrate-inv-074
 2026-06-03T05:59:50Z reaped TASK_CLAIMS igw-auto-igw-029-retest-after-substrate-inv-074-20260603T045835Z (ledger IGW-20260603-029 -> completed_resumable)
 2026-06-03T05:59:43Z SPAWN IGW-20260603-029 skill=/queue-experiment prio=28 uuid=d7a5bbc9-d97d-458f-9291-3c10c9fd6649 pid=12580 worktree=igw-029-retest-after-substrate-inv-074
+2026-06-03T07:00:57Z reaped TASK_CLAIMS igw-auto-igw-029-retest-after-substrate-inv-074-20260603T055950Z (ledger IGW-20260603-029 -> completed_resumable)
+2026-06-03T07:00:56Z SPAWN IGW-20260603-032 skill=/queue-experiment prio=28 uuid=e9aee539-049e-40d1-8dd4-6af1c08a0e31 pid=41262 worktree=igw-032-retest-after-substrate-inv-074

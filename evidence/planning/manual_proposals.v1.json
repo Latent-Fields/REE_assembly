@@ -1100,11 +1100,11 @@
         "MECH-287 broadcast invalidation trigger wired (pending; online arm implementation landed with attribution_weight integration but trigger emission module is separate)"
       ],
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "claims_tested": [
         "MECH-285"
       ],
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null
@@ -1241,6 +1241,57 @@
       ],
       "notes": "Held by /diagnose-errors V3-EXQ-455a NO-OP close 2026-05-30T07:33Z. Predecessor V3-EXQ-455a script ree-v3/experiments/v3_exq_455a_sd032a_salience_with_vs.py is a planning stub (NotImplementedError gate); its original gating reasoning (await SD-037 + post-SD-037 cascade gate) is partially obsolete now that SD-037 landed 2026-04-25 and the V_s machinery progressed through MECH-269 Phase 1-3 + MECH-284 + MECH-285 + MECH-272/273/275 + MECH-287/288 + MECH-269b symmetric-V_s-rollout-gating + MECH-341 E3-score-diversity-preservation + SD-056 E2-action-contrastive-divergence. The original 2-arm design (COORD_OFF V_s_ON vs COORD_ON V_s_ON) is also probably stale: V_s flags landed as main-path defaults so 'COORD_ON V_s_ON' is the legacy baseline now, not a treatment arm. /governance NEXT STEP: do not auto-queue; wait for the blocking_gate clearance condition; then re-evaluate per the interpretation_grid_on_release. claim_ids re-evaluation will be required at queue time -- inherited SD-032a/MECH-259/MECH-261 may not match what V3-EXQ-455b would actually test on the matured substrate (per the REE_assembly/CLAUDE.md 'claim_ids Accuracy Rule').",
       "lit_anchor": "ree-v3/CLAUDE.md SD-032a section (SalienceCoordinator MECH-259 mode-switch trigger + MECH-261 write-gate registry); REE_assembly/docs/claims/claims.yaml SD-032a / MECH-259 / MECH-261; arc_062_rule_apprehension_plan.md (downstream context for V_s + coordinator interaction); behavioral_diversity_isolation_plan.md (overlapping behavioural-diversity thread)."
+    },
+    {
+      "proposal_id": "EXP-0176",
+      "claim_id": "MECH-343",
+      "related_claims": [
+        "MECH-343",
+        "Q-056",
+        "MECH-341",
+        "MECH-314",
+        "MECH-320",
+        "MECH-090",
+        "MECH-342",
+        "ARC-018",
+        "ARC-065"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed_blocked_substrate",
+      "queue_id": null,
+      "script_path": null,
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 240,
+      "machine_affinity": "any",
+      "registered_utc": "2026-06-03",
+      "objective": "Test the difficulty-gated proposal-entropy hypothesis (MECH-343 / Q-056): does stuck-state-GATED proposal entropy beat both entropy-off and always-high entropy, producing flexible exploration without behavioural chaos? WORKING HYPOTHESIS -- no experimental evidence yet.",
+      "design": "Hard-goal / blocked-path environment with matched easy-goal controls. 4 arms x matched seeds: (1) entropy-gating OFF; (2) entropy-gating ON under stuck-state (transient gain on CEM within-class temperature / candidate-set size, decayed on goal progress, goal+harm scoring preserved, commitment deferred until E3 score-margin clears); (3) entropy ALWAYS high (no gating, no decay); (4) entropy high with goal/harm constraints ablated (DIAGNOSTIC only, run only if safe -- expected to surface arbitration-failure / harmful-random signature). Stuck-state signal = repeated failure to improve goal progress OR low E3 score margin OR low committed-action diversity, with goal salience preserved.",
+      "metrics": [
+        "candidate_proposal_entropy",
+        "committed_action_entropy",
+        "e3_score_margin_distribution",
+        "n_arbitration_cycles_before_commitment",
+        "goal_progress",
+        "harm_rate",
+        "action_churn",
+        "time_to_first_workable_path",
+        "entropy_reduction_after_success"
+      ],
+      "acceptance_checks": [
+        "Main prediction: arm 2 (stuck-gated) > arm 1 (off) AND > arm 3 (always-high) on goal progress, with no increase in harm_rate or action_churn vs arm 1, and a measurable post-success entropy narrowing (arm 2 candidate entropy falls after time_to_first_workable_path).",
+        "Arm 1 expected signature: proposal rigidity / stays stuck (low candidate entropy under stuck-state, poor goal progress).",
+        "Arm 3 expected signature: disorganised exploration / no narrowing (high entropy that never decays; churn up; goal progress not improved over arm 2).",
+        "Diagnostic arm 4 (if run): entropy up + harmful/random behaviour = arbitration-failure signature; do NOT treat as MECH-343 falsification.",
+        "INVALID_HARNESS guard: if the agent never naturally commits in ANY arm (cf. MECH-342 / V3-EXQ-629 flat-score-margin failure) or never reaches a stuck-state, route to /failure-autopsy rather than scoring -- the loop precondition was not met.",
+        "Pre-register thresholds before execution; report deltas against registration; emit claim_ids_tested + evidence_direction_per_claim (multi-claim)."
+      ],
+      "blocked_by": [
+        "modulatory-bias-selection-authority (substrate_queue, created 2026-06-03) -- without genuine modulatory authority at E3.select the entropy gain cannot reach committed action (the 604a/624a selection-authority bottleneck).",
+        "difficulty-gated proposal-entropy regulator -- stuck-state detector + transient CEM temperature/candidate-count gain + decay; not yet designed (no design doc)."
+      ],
+      "notes": "Proposal only -- script authoring + queue entry deferred to /queue-experiment per the mandatory skill path. V3-EXQ-614d / MECH-341 is a possible early substrate (within-class temperature -> committed-action diversity) but tests only one piece, not the whole loop. Hypothesis note: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md. Psychiatry bridge: docs/architecture/psychiatric_failure_modes.md."
     }
   ]
 }

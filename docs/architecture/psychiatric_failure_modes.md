@@ -1292,3 +1292,50 @@ and cataplexy applies here: REE does not partition disorders into psychiatric an
 neurological. Dementia is a sleep-pipeline failure mode under INV-046/047/048 with a
 substantial pharmacological prediction surface; full mechanistic discussion lives in
 [`sleep/medications_dementia.md`](sleep/medications_dementia.md).
+
+---
+
+## Difficulty-Gated Proposal Entropy: failure modes of stuck-state cognition (MECH-343, Q-056 — working hypothesis)
+
+**Status:** WORKING HYPOTHESIS (registered 2026-06-03). Not an established mechanism;
+no experimental evidence yet. Hypothesis note:
+[`docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md`](../thoughts/2026-06-03_difficulty_gated_proposal_entropy.md).
+Experiment proposal `EXP-0176` (`evidence/planning/manual_proposals.v1.json`).
+
+`MECH-343` proposes that when a goal is blocked, a healthy agent should transiently
+**widen its internal proposal distribution** (more diverse hippocampal/world-model
+rollouts, higher within-class sampling temperature) under preserved goal/harm
+constraints, **defer commitment** until a candidate clears the E3 score-margin
+threshold, then **narrow** once a workable candidate is found. Controlled entropy,
+not noise: *hard problem → wider internal proposals → more candidate diversity →
+longer arbitration → selective committed action* — never *hard problem → random
+behaviour*.
+
+Read as a coordinate system for cognitive pathology, each step of that loop has a
+distinct failure mode — and several map onto states already in this document:
+
+| Failure signature | Architectural locus | Psychiatric analogue |
+|---|---|---|
+| entropy rises but behaviour unchanged | **selection-authority failure** at `E3.select` (the current `modulatory-bias-selection-authority` bottleneck; MECH-314/MECH-320 fire but never change argmax — V3-EXQ-604a/624a) | inert effortful striving without behavioural change |
+| proposals widen but commitment never occurs | **action-release / commitment-threshold failure** (flat score margins never clear admission — cf. MECH-342 / V3-EXQ-629; MECH-090 floor) | **catatonia / abulia, action-release subtype** — distinct from the SD-036/MECH-279 harm-stream lock-in subtype above: there the gate is *jammed by harm*, here the candidate distribution never resolves to a committable winner |
+| entropy fails to rise despite a stuck state | **proposal-generation rigidity** (ARC-018 rollout set does not widen) | perseverative / cognitively rigid states; failure to "step back and think differently" |
+| entropy rises but never narrows | **arbitration that cannot converge** (no decay, no commitment threshold met) | **manic / disorganised exploration** — flight of ideas without selection |
+| entropy rises and behaviour becomes random/harmful | **arbitration failure** (goal/harm scoring not preserved during widening) | disorganised/agitated states; the diagnostic arm-4 ablation in EXP-0176 |
+
+The clinically important point this hypothesis surfaces is that **catatonia/abulia is
+not a single architectural state**. SD-036/MECH-279 (above) is the *harm-stream lock-in*
+subtype — the commitment gate is held shut by an over-weighted harm stream. The
+MECH-343 *action-release* subtype is different: goal salience and harm scoring are
+intact, but the proposal→arbitration→commitment loop never resolves a committable
+candidate (the score-margin distribution stays too flat to clear threshold). Same
+surface phenomenology (inert, non-committing), different locus, potentially different
+intervention. This hypothesis is one candidate route from catatonic-like inert
+cognition toward controlled exploratory cognition, and it predicts that the
+*direction* of repair differs by subtype: lower harm gain (lock-in subtype) vs. restore
+score-margin contrast / proposal-entropy gating (action-release subtype).
+
+**Epistemic status:** forward-reference only. None of these mappings are validated; they
+are predictions the MECH-343 / Q-056 experiment program (EXP-0176) would test. The loop
+is currently blocked on two upstream substrates (`modulatory-bias-selection-authority`
+and a difficulty-gated proposal-entropy regulator), so `MECH-343` is registered
+`epistemic_category: substrate_conditional` and is not promotable until they land.
