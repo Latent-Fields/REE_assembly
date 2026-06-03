@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-03T16:34:14Z",
+  "last_tick_utc": "2026-06-03T17:04:19Z",
   "state": "running",
   "current_exq": "V3-EXQ-634b",
   "current_exq_started_utc": "2026-06-03T16:25:27.658101+00:00",
@@ -9,20 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / nursery_consolidation_scaffold",
-    "runs_done": 0,
+    "run_label": "Seed 43 / nursery_consolidation_scaffold",
+    "runs_done": 1,
     "runs_total": 3,
     "episodes_done": 30,
     "episodes_total": 195,
-    "overall_pct": 5.1
+    "overall_pct": 38.5
   },
-  "seconds_elapsed": 526,
-  "seconds_remaining": 13501,
+  "seconds_elapsed": 2331,
+  "seconds_remaining": 1732,
   "recent_lines": [
-    "[v3_exq_634b_scaffolded_nursery_consolidation_readiness] starting (dry_run=False)",
-    "Seed 42 Condition nursery_consolidation_scaffold",
-    "[train] stage0_nursery seed=42 ep 20/195 forced_benefit=1.00 z_goal_peak=0.4424 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/195 start=0.4398 end=0.4398 retention=0.994 gate=pass"
+    "[train] p2_measure seed=42 ep 195/195 z_goal_peak=0.4398 contact_rate=0.0000 hfa_used=0.30 gated=True decay_only=0 skipped=250 refresh=0",
+    "verdict: FAIL seed=42",
+    "Seed 43 Condition nursery_consolidation_scaffold",
+    "[train] stage0_nursery seed=43 ep 20/195 forced_benefit=1.00 z_goal_peak=0.4567 formed=True",
+    "[train] stage0b_consolidate seed=43 ep 30/195 start=0.4501 end=0.4501 retention=0.986 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
