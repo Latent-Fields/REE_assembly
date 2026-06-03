@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BRAIN_MAP_VERSION: 2026-05-27.1 -->
+<!-- BRAIN_MAP_VERSION: 2026-06-03.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -160,6 +160,7 @@
       <label><input type="checkbox" id="layerEvidence" checked> Evidence</label>
       <label><input type="checkbox" id="layerFrontier" checked> Leading edge</label>
       <label><input type="checkbox" id="layerGhost" checked> Ghost regions</label>
+      <label><input type="checkbox" id="layerAnatomy" checked> Brain backdrop</label>
     </div>
     <div id="svgHost"></div>
   </div>
@@ -283,7 +284,15 @@
         el.classList.toggle("selected", node.id === selectedId);
       });
     });
+    applyAnatomy();
     drawPathways();
+  }
+
+  function applyAnatomy() {
+    const svg = $("svgHost").querySelector("svg");
+    if (!svg) return;
+    const g = svg.getElementById("anatomy_backdrop");
+    if (g) g.style.display = $("layerAnatomy").checked ? "" : "none";
   }
 
   function drawPathways() {
@@ -419,7 +428,7 @@
     applyTransform();
   }
 
-  ["layerImpl", "layerClaims", "layerEvidence", "layerFrontier", "layerGhost"].forEach((id) => {
+  ["layerImpl", "layerClaims", "layerEvidence", "layerFrontier", "layerGhost", "layerAnatomy"].forEach((id) => {
     $(id).addEventListener("change", applyLayers);
   });
   $("btnViewAnatomy").onclick = () => {

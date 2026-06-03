@@ -9,12 +9,63 @@
       <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="#a371f7" stop-opacity="0.35"/>
     </linearGradient>
+    <radialGradient id="mri_tissue" cx="48%" cy="40%" r="62%">
+      <stop offset="0%" stop-color="#46505f" stop-opacity="0.34"/>
+      <stop offset="65%" stop-color="#2c3340" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#1a1f27" stop-opacity="0.04"/>
+    </radialGradient>
   </defs>
 
   <!-- Outer head / brain outline -->
   <path id="silhouette_outline" fill="none" stroke="url(#silhouette_stroke)" stroke-width="2"
     d="M 210 18 C 120 18 55 75 48 155 C 42 220 55 290 75 350 C 95 410 140 455 210 468
        C 280 455 325 410 345 350 C 365 290 378 220 372 155 C 365 75 300 18 210 18 Z"/>
+
+  <!-- Ghosted MRI-style midsagittal anatomy backdrop (decorative orientation aid only;
+       non-interactive, drawn behind the functional regions; toggled by brain_map.html). -->
+  <g id="anatomy_backdrop" pointer-events="none">
+    <!-- soft tissue mass to give the silhouette body -->
+    <path id="anat_tissue" fill="url(#mri_tissue)" stroke="none"
+      d="M 210 30 C 134 30 70 82 62 156 C 56 218 68 286 87 342 C 105 398 146 440 210 454
+         C 274 440 315 398 333 342 C 352 286 364 218 358 156 C 350 82 286 30 210 30 Z"/>
+
+    <!-- cortical mantle: cartoon gyri/sulci ridge running over the crown (anterior at left) -->
+    <path class="anat-line" fill="none" stroke="#7d8ea5" stroke-opacity="0.30" stroke-width="1.3"
+      stroke-linecap="round"
+      d="M 70 156 Q 78 122 98 130 Q 104 98 126 108 Q 134 78 156 90 Q 166 60 190 72
+         Q 202 50 216 66 Q 232 56 246 76 Q 264 66 278 88 Q 298 80 310 106
+         Q 330 100 340 128 Q 354 138 350 158"/>
+    <!-- a few sulci dipping inward from the mantle -->
+    <path class="anat-line" fill="none" stroke="#7d8ea5" stroke-opacity="0.22" stroke-width="1"
+      stroke-linecap="round"
+      d="M 126 108 q 4 22 0 34 M 190 72 q 4 26 -2 40 M 246 76 q 6 24 0 38 M 310 106 q 2 22 -4 34"/>
+
+    <!-- corpus callosum: central crescent band -->
+    <path class="anat-line" fill="#7d8ea5" fill-opacity="0.10" stroke="#7d8ea5" stroke-opacity="0.30"
+      stroke-width="1.2"
+      d="M 150 234 C 150 200 192 184 234 194 C 260 200 270 214 264 226
+         C 252 212 226 204 202 208 C 178 212 166 224 170 238 Z"/>
+
+    <!-- brainstem (midbrain -> pons bulge -> medulla) tapering to the spinal cord -->
+    <path class="anat-line" fill="#7d8ea5" fill-opacity="0.08" stroke="#7d8ea5" stroke-opacity="0.28"
+      stroke-width="1.2"
+      d="M 204 252 C 196 282 194 302 198 322 C 184 332 184 354 200 362
+         C 198 396 204 424 213 444 C 222 424 227 396 225 362 C 240 354 240 332 226 322
+         C 230 302 228 282 220 254 Z"/>
+
+    <!-- cerebellum (posterior-inferior, right) with arbor vitae folia -->
+    <path class="anat-line" fill="#7d8ea5" fill-opacity="0.09" stroke="#7d8ea5" stroke-opacity="0.28"
+      stroke-width="1.2"
+      d="M 288 332 C 322 322 352 344 352 380 C 352 414 326 436 296 430 C 280 406 280 356 288 332 Z"/>
+    <path class="anat-line" fill="none" stroke="#7d8ea5" stroke-opacity="0.24" stroke-width="0.9"
+      stroke-linecap="round"
+      d="M 300 386 L 348 366 M 300 386 L 350 384 M 300 386 L 344 404 M 300 386 L 322 420
+         M 300 386 L 312 350"/>
+
+    <!-- cerebrum / cerebellum dividing fissure -->
+    <path class="anat-line" fill="none" stroke="#7d8ea5" stroke-opacity="0.18" stroke-width="1"
+      stroke-linecap="round" d="M 268 318 C 286 326 300 332 312 348"/>
+  </g>
 
   <!-- In-scope regions -->
   <path id="region_pfc" class="brain-region" data-region="pfc"
