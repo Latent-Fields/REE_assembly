@@ -22,6 +22,33 @@ so suppression is auditable, never silent):
      inconclusive}. The experiment ran to completion but did not
      produce closure-grade evidence.
 
+The owner_exq comparison above keys ENTIRELY on the node's recorded
+`owner_exq`, which let goal_pipeline:GAP-2 hide on 2026-06-03: its
+owner_exq pinned a stale lineage letter (514g) while the consequential
+evidence (514l FAIL + 632/634 autopsies) landed on later letters and on
+the node's `unblocks_claims` (MECH-229/230 reclassified substrate_ceiling)
+-- none of which the owner_exq check looks at, and the 514g manifest's
+non_contributory direction would only have parked it in Suppressed. So a
+second, date-aware pass runs for EVERY non-terminal node (including ones
+the rules above suppress) and reports them under "Stale since last
+update" when either signal fires:
+
+  A. Lineage-advanced: a later-lettered sibling of owner_exq (same EXQ
+     number, lexically greater letter) has terminal evidence (manifest or
+     failure_autopsy) -- the owner_exq pointer is behind its own lineage.
+
+  B. Claims-reclassified-since: a CONFIRMED failure_autopsy whose
+     targets[].claim_ids intersect the node's `unblocks_claims` is dated
+     (generated_utc, else filename date) strictly AFTER the node's
+     `last_updated` -- a governance decision the plan node has not yet
+     absorbed. Same-day counts as reconciled (strict >), so a node updated
+     in the same governance cycle that produced the autopsy stays clean.
+
+These are review hints, not drift: a node can legitimately appear here
+and still be correct (e.g. the maintainer judged the new evidence does
+not change the node). They surface the "did the plan absorb today's
+governance?" question that the owner_exq-only check could not ask.
+
 Output is a markdown report at
 REE_assembly/evidence/planning/closure_drift.md. The script exits 0
 regardless of findings -- it is a governance hint, not a gate.
@@ -182,10 +209,147 @@ def find_failure_autopsy(exq_id: str) -> Path | None:
     return None
 
 
+# --- Date-aware "stale since last update" pass (signals A + B) ----------------
+
+CONFIRMED_AUTOPSY_STATUSES = {"confirmed", "complete", "completed"}
+_AUTOPSY_NAME_RE = re.compile(r"failure_autopsy_V3-EXQ-(\d+)([a-z]?)_(\d{4}-\d{2}-\d{2})", re.IGNORECASE)
+_MANIFEST_NAME_RE = re.compile(r"v3_exq_(\d+)([a-z]?)_", re.IGNORECASE)
+
+
+def _to_date(value):
+    """Coerce a YAML date/datetime or ISO/YYYY-MM-DD string to a date. None on failure."""
+    if isinstance(value, datetime):
+        return value.date()
+    # yaml.safe_load turns an unquoted YYYY-MM-DD into datetime.date already
+    if hasattr(value, "year") and hasattr(value, "month") and not isinstance(value, str):
+        return value
+    if isinstance(value, str) and len(value) >= 10:
+        try:
+            return datetime.strptime(value[:10], "%Y-%m-%d").date()
+        except ValueError:
+            return None
+    return None
+
+
+def _exq_num_letter(exq_id: str):
+    """('514g') -> (514, 'g'); ('582') -> (582, ''). None if not an EXQ id."""
+    m = EXQ_RE.search(exq_id or "")
+    if not m:
+        return None
+    mm = re.match(r"(\d+)([a-z]?)$", m.group(1).lower())
+    if not mm:
+        return None
+    return int(mm.group(1)), mm.group(2)
+
+
+def collect_terminal_lineage() -> dict[int, list[tuple[str, str]]]:
+    """Map EXQ number -> [(letter, signal_str)] for every terminal manifest / autopsy.
+
+    Used to detect when a node's owner_exq pins an earlier lineage letter than
+    the latest letter that has actually produced terminal evidence.
+    """
+    fam: dict[int, list[tuple[str, str]]] = {}
+
+    def add(num: int, letter: str, signal: str) -> None:
+        fam.setdefault(num, []).append((letter, signal))
+
+    if EXPERIMENTS_DIR.exists():
+        for p in EXPERIMENTS_DIR.glob("v3_exq_*_v3.json"):
+            mm = _MANIFEST_NAME_RE.match(p.name)
+            if mm:
+                add(int(mm.group(1)), mm.group(2).lower(), f"manifest `{p.name}`")
+        # run-pack dirs (manifest may be runs/<id>/manifest.json, not *_v3.json)
+        for d in EXPERIMENTS_DIR.glob("v3_exq_*"):
+            if d.is_dir():
+                mm = _MANIFEST_NAME_RE.match(d.name)
+                if mm:
+                    add(int(mm.group(1)), mm.group(2).lower(), f"manifest dir `{d.name}`")
+    if PLANNING_DIR.exists():
+        for p in PLANNING_DIR.glob("failure_autopsy_V3-EXQ-*_*.json"):
+            mm = _AUTOPSY_NAME_RE.match(p.name)
+            if mm:
+                add(int(mm.group(1)), mm.group(2).lower(), f"autopsy `{p.name}`")
+    return fam
+
+
+def collect_confirmed_autopsies() -> list[dict]:
+    """Confirmed failure-autopsies as {date, claim_ids:set, path} for signal B."""
+    out: list[dict] = []
+    if not PLANNING_DIR.exists():
+        return out
+    for p in PLANNING_DIR.glob("failure_autopsy_V3-EXQ-*_*.json"):
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if (data.get("status") or "").strip().lower() not in CONFIRMED_AUTOPSY_STATUSES:
+            continue
+        claim_ids: set[str] = set()
+        for t in data.get("targets") or []:
+            if isinstance(t, dict):
+                for c in t.get("claim_ids") or []:
+                    if isinstance(c, str):
+                        claim_ids.add(c.strip().upper())
+        adate = _to_date(data.get("generated_utc"))
+        if adate is None:
+            mm = _AUTOPSY_NAME_RE.match(p.name)
+            if mm:
+                adate = _to_date(mm.group(3))
+        out.append({"path": p.name, "date": adate, "claim_ids": claim_ids})
+    return out
+
+
+def lineage_advanced(owner_exq: str, fam: dict[int, list[tuple[str, str]]]) -> str | None:
+    """If a later-lettered sibling of owner_exq has terminal evidence, describe it."""
+    nl = _exq_num_letter(owner_exq)
+    if nl is None:
+        return None
+    num, letter = nl
+    successors = [(lt, sig) for (lt, sig) in fam.get(num, []) if lt > letter]
+    if not successors:
+        return None
+    best_letter, best_sig = max(successors, key=lambda t: t[0])
+    return (
+        f"owner_exq pins V3-EXQ-{num}{letter or '(base)'} but later sibling "
+        f"V3-EXQ-{num}{best_letter} has terminal evidence ({best_sig})"
+    )
+
+
+def claims_reclassified_since(node: dict, autopsies: list[dict]):
+    """Confirmed autopsies touching this node's unblocks_claims, dated after last_updated."""
+    unblocks = {
+        str(c).strip().upper()
+        for c in (node.get("unblocks_claims") or [])
+        if isinstance(c, str)
+    }
+    if not unblocks:
+        return None
+    lu = _to_date(node.get("last_updated"))
+    hits: list[str] = []
+    for a in autopsies:
+        if a["date"] is None:
+            continue
+        if lu is not None and not (a["date"] > lu):
+            continue  # same-day or older == already reconciled
+        overlap = sorted(a["claim_ids"] & unblocks)
+        if overlap:
+            hits.append(f"{a['path']} ({a['date'].isoformat()}) reclassified {', '.join(overlap)}")
+    if not hits:
+        return None
+    # cap the rendered list so one ancient node can't flood the row
+    shown = hits[:3]
+    if len(hits) > 3:
+        shown.append(f"(+{len(hits) - 3} more)")
+    return "; ".join(shown)
+
+
 def main() -> int:
     queue_ids = load_queue_ids()
+    terminal_fam = collect_terminal_lineage()
+    confirmed_autopsies = collect_confirmed_autopsies()
     findings: list[dict] = []
     suppressed: list[dict] = []
+    stale_since: list[dict] = []
     missing_plan_last_updated: list[str] = []
     missing_files: list[str] = []
 
@@ -208,6 +372,29 @@ def main() -> int:
             status = (node.get("status") or "").strip().lower().replace(" ", "_")
             if status not in NON_TERMINAL_STATUSES:
                 continue
+
+            # Date-aware stale-since pass: runs for EVERY non-terminal node,
+            # independent of whether the owner_exq pass below suppresses it.
+            owner_raw = node.get("owner_exq")
+            owner_str = owner_raw.strip() if isinstance(owner_raw, str) else ""
+            reasons: list[str] = []
+            if owner_str:
+                la = lineage_advanced(owner_str, terminal_fam)
+                if la:
+                    reasons.append(la)
+            cr = claims_reclassified_since(node, confirmed_autopsies)
+            if cr:
+                reasons.append(cr)
+            if reasons:
+                stale_since.append({
+                    "plan": plan_name,
+                    "node_id": node.get("id"),
+                    "node_status": node.get("status"),
+                    "owner_exq": owner_str or None,
+                    "node_last_updated": node.get("last_updated"),
+                    "reasons": reasons,
+                })
+
             owner_exq = node.get("owner_exq")
             if not isinstance(owner_exq, str):
                 continue
@@ -260,8 +447,13 @@ def main() -> int:
         "self-tag as Case 3 (legitimately non-terminal pending upstream "
         "substrate or successor EXQs) and nodes whose owner_exq manifest is "
         "non-contributory / superseded / inconclusive are recorded under "
-        "Suppressed instead, not Drifted. The report also flags plans missing "
-        "a top-level `closure_plan.last_updated` field."
+        "Suppressed instead, not Drifted. A separate date-aware section, "
+        "`Stale since last update`, flags non-terminal nodes (including "
+        "suppressed ones) where a later-lettered owner_exq sibling reached "
+        "terminal state or a confirmed failure_autopsy touching the node's "
+        "`unblocks_claims` post-dates the node's `last_updated` -- the class "
+        "of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report "
+        "also flags plans missing a top-level `closure_plan.last_updated` field."
     )
     lines.append("")
     lines.append("Warn-only -- this script never blocks the governance pipeline.")
@@ -320,6 +512,47 @@ def main() -> int:
             )
         lines.append("")
 
+    # Drifted nodes already carry the strongest "go fix me" call; don't repeat
+    # them in the review section. Suppressed nodes DO belong here -- suppression
+    # on owner_exq is exactly what hid GAP-2.
+    drifted_keys = {(f["plan"], f["node_id"]) for f in findings}
+    stale_review = [s for s in stale_since if (s["plan"], s["node_id"]) not in drifted_keys]
+
+    lines.append(f"## Stale since last update -- review ({len(stale_review)})")
+    lines.append("")
+    if not stale_review:
+        lines.append("_None._")
+        lines.append("")
+    else:
+        lines.append(
+            "Non-terminal nodes (including ones Suppressed above) where newer "
+            "evidence landed that the node frontmatter may not have absorbed: a "
+            "later-lettered owner_exq sibling reached terminal state (lineage "
+            "advanced), and / or a confirmed failure_autopsy touching the node's "
+            "`unblocks_claims` is dated after the node's `last_updated`. Review "
+            "each: update owner_exq / status / resume_condition and bump "
+            "`last_updated`, or (if the new evidence genuinely does not change the "
+            "node) bump `last_updated` to acknowledge it. Not counted as drift."
+        )
+        lines.append("")
+        lines.append("| plan | node | status | owner_exq | node last_updated | why |")
+        lines.append("|------|------|--------|-----------|-------------------|-----|")
+        for s in stale_review:
+            exq_disp = s["owner_exq"] or "_none_"
+            if len(exq_disp) > 60:
+                exq_disp = exq_disp[:57] + "..."
+            lines.append(
+                "| {plan} | `{node}` | {status} | {exq} | {lu} | {why} |".format(
+                    plan=s["plan"],
+                    node=s["node_id"] or "?",
+                    status=s["node_status"] or "?",
+                    exq=exq_disp,
+                    lu=s["node_last_updated"] or "_unset_",
+                    why="; ".join(s["reasons"]),
+                )
+            )
+        lines.append("")
+
     lines.append(f"## Plans missing `closure_plan.last_updated` ({len(missing_plan_last_updated)})")
     lines.append("")
     if not missing_plan_last_updated:
@@ -342,6 +575,7 @@ def main() -> int:
     print(
         f"  drifted_nodes={len(findings)}  "
         f"suppressed={len(suppressed)}  "
+        f"stale_since_review={len(stale_review)}  "
         f"plans_missing_last_updated={len(missing_plan_last_updated)}  "
         f"plans_missing_on_disk={len(missing_files)}"
     )
