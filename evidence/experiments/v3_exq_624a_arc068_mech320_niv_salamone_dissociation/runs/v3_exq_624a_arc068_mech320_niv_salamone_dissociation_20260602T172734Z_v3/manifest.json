@@ -1,0 +1,55 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_624a_arc068_mech320_niv_salamone_dissociation",
+  "run_id": "v3_exq_624a_arc068_mech320_niv_salamone_dissociation_20260602T172734Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-02T17:27:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-320",
+    "ARC-068"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-320": "non_contributory",
+    "ARC-068": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "V3-EXQ-624a (2026-06-03 autopsy): C3 PASS (gate_product 1.0, v_t 0.05 fires) but C1 FAIL -- action_density byte-identical between vigor-ON and vigor-OFF arms (ARM_1 = ARM_0 = 0.865 per-seed). The vigor no-op penalty fires but does not change argmax (script grid cell 3). NOT a falsification of MECH-320 or a supersession trigger for ARC-068. epistemic_category substrate_ceiling (selection-authority sub-type). pending_retest_after_substrate -- same substrate entry as 604a (modulatory score-bias selection authority at E3.select). Supersedes the 624 crash.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true,
+  "pending_retest_after_substrate_per_claim": [
+    "MECH-320",
+    "ARC-068"
+  ]
+}

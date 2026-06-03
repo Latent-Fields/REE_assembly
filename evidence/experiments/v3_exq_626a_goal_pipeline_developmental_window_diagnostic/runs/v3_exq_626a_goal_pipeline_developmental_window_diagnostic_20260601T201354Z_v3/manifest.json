@@ -1,0 +1,44 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_626a_goal_pipeline_developmental_window_diagnostic",
+  "run_id": "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-01T20:13:54Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-06-03 cluster autopsy V3-EXQ-603e/626a/622] 626a is the re-run of 626 with the harness fix (feeds update_z_goal every step via body_state[11] benefit + 1-energy drive, plus a P0 positive control adjudicating harness-bug vs formation-regression). Result: the harness fix took effect (seed 44 formed z_goal=0.19 where 626 was zero everywhere) BUT the P0 positive control FAILED (frac_seeds_clearing=0.333; seeds 42,43 = 0.0) and C5 consumer readout (dACC) = 0 across all seeds. This ANSWERS the 626 adjudication question: not a residual harness bug, but ecological z_goal formation gated on foraging contact -- it fails on the seeds that do not forage. claim_ids=[] so no claim-weight delta; set evidence_direction=non_contributory. Escalates to the survival/foraging-competence + benefit-input substrate gap recorded for the 603e target (implement-substrate AMEND on scaffolded_sd054_onboarding). Not superseded (no 626b planned).",
+  "epistemic_category": "substrate_ceiling"
+}

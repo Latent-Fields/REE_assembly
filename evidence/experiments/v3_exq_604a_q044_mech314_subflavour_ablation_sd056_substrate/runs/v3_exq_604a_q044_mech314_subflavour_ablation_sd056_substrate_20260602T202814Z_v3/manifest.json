@@ -1,0 +1,64 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate",
+  "run_id": "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate_20260602T202814Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-02T20:28:14Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-044",
+    "MECH-314",
+    "MECH-314a",
+    "MECH-314b",
+    "MECH-314c"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-044": "non_contributory",
+    "MECH-314": "non_contributory",
+    "MECH-314a": "non_contributory",
+    "MECH-314b": "non_contributory",
+    "MECH-314c": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "V3-EXQ-604a (2026-06-03 autopsy): C0 PASS (pairwise_dist 0.039 > 0.03 -- the SD-056 contrastive substrate fixed the 604 monomodal collapse), but C1/C2 FAIL with curiosity_bias_abs_mean = 0.0 in every arm including ARM_ALL_ON and selected_entropy identical across all 5 arms. The curiosity bias contributes zero authority at E3 action selection. NOT a MECH-314 falsification -- the test could not let the claim express itself. epistemic_category substrate_ceiling (selection-authority sub-type). pending_retest_after_substrate -- blocked by substrate entry 'modulatory score-bias selection authority at E3.select'. Convergent with 624a (MECH-320) and the z_goal salience gap (603e/626a/622).",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true,
+  "pending_retest_after_substrate_per_claim": [
+    "Q-044",
+    "MECH-314",
+    "MECH-314a",
+    "MECH-314b",
+    "MECH-314c"
+  ]
+}

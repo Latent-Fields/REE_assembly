@@ -1,0 +1,58 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054",
+  "run_id": "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-03T04:03:10Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-06-03 cluster autopsy V3-EXQ-603e/626a/622] The goal-pipeline WIRING layer is closed and verified: update_z_goal is wired into the scheduler P1/P2 (AMEND deb24cc) and 603e's bespoke P2, z_goal_enabled=True + drive_weight=2.0 are set, and contract test_c6_stage0_positive_control confirms z_goal forms under forced supra-threshold benefit+drive. 603e (restored budget P0/P1=100/50) nonetheless FAILed with z_goal_norm_peak=0.0 on ALL 15 cells incl. the 5 surviving seed-43 cells; 626a's P0 positive control formed z_goal on only 1/3 seeds (seed 44 = 0.19). Diagnosis: z_goal=0 is now downstream of TWO coupled prerequisites upstream of the wiring -- (1) survival/foraging-competence (2/3 seeds never reach a survival-competent policy even on the easy P0 env at restored budget -> NOT a budget artifact, ruling out the 603d-autopsy confound), and (2) benefit-input starvation (a non-foraging frozen policy keeps benefit_exposure sub-threshold in the hard P2 env hazard_food_attraction=0.7). Biologically a discovered developmental prerequisite (goal representations require reward-contact history; Berridge), NOT a falsification: Q-045/MECH-313/MECH-260 were never under fair test (z_goal=0 -> no goal-directed behaviour to diversify; effective N=1). non_contributory; all three stay pending_retest_after_substrate / substrate_ceiling; EXQ-445h remains the sole valid MECH-260 support. Routing: implement-substrate AMEND on scaffolded_sd054_onboarding -- strengthen the P0/P1 survival scaffold to >=2/3 foraging-competent seeds AND add a forced-benefit Stage-0 z_goal warmup that decouples formation from survival; lower P2 hazard_food_attraction / add a foraging-contact-rate guard; then re-issue 603e -> 603f.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true,
+  "pending_retest_after_substrate_per_claim": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ]
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_503a_sd017_sleep_phase_discriminative_phase2
 
-Generated: `2026-06-03T14:54:23.778749Z`
+Generated: `2026-06-03T16:41:15.736968Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

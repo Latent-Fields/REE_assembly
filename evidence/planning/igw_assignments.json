@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-06-03T14:08:38Z",
+  "generated_at": "2026-06-03T16:10:45Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -1797,6 +1797,84 @@
         "priority": 28,
         "claim_ids": [
           "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260603T150940Z-e96e8d33-claude_local",
+      "stable_hash": "e96e8d33f9ea",
+      "igw_id_at_assign": "IGW-20260603-031",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T15:09:40Z",
+      "released_at": "2026-06-03T15:09:40Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260603T140835Z-e96e8d33-claude_local",
+      "note": "session_uuid=c569bead-bd03-4a56-a859-3901a7ddc3ff branch=claude/igw-031-retest-after-substrate-mech-229",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: MECH-229",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "MECH-229"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260603T150939Z-dabd3444-claude_local",
+      "stable_hash": "dabd3444eb20",
+      "igw_id_at_assign": "IGW-20260603-024",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T15:09:39Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=7c69e652-ea5d-4fa6-9551-76cc16aaf7a3 branch=claude/igw-024-substrate-ready-modulatory-bias",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: modulatory-bias-selection-authority",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-314",
+          "MECH-314a",
+          "MECH-314b",
+          "MECH-314c",
+          "Q-044",
+          "MECH-320"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260603T161045Z-dabd3444-claude_local",
+      "stable_hash": "dabd3444eb20",
+      "igw_id_at_assign": "IGW-20260603-024",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-03T16:10:45Z",
+      "released_at": "2026-06-03T16:10:45Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260603T150939Z-dabd3444-claude_local",
+      "note": "session_uuid=7c69e652-ea5d-4fa6-9551-76cc16aaf7a3 branch=claude/igw-024-substrate-ready-modulatory-bias",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: modulatory-bias-selection-authority",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-314",
+          "MECH-314a",
+          "MECH-314b",
+          "MECH-314c",
+          "Q-044",
+          "MECH-320"
         ]
       }
     }

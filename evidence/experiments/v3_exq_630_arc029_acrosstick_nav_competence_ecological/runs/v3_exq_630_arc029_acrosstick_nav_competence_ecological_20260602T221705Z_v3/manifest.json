@@ -1,0 +1,50 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_630_arc029_acrosstick_nav_competence_ecological",
+  "run_id": "v3_exq_630_arc029_acrosstick_nav_competence_ecological_20260602T221705Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-02T22:17:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-029",
+    "MECH-090"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-029": "non_contributory",
+    "MECH-090": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "V3-EXQ-630 (2026-06-03 autopsy): C4 FAIL -- OFF baseline shows the same readiness-conditioned commitment collapse (arm0_baseline_delta 1.0) as the gated arms, so the across-tick nav_competence gate's contribution is unattributable. Environment confound: SD-022 limb-damage degrade drives commitment via running_variance independent of nav_competence readiness. evidence_direction non_contributory (re-tag from mixed) -- tested nothing about the gate. Do NOT weaken ARC-029 or MECH-090. epistemic_category measurement_test_design_defect. Redesign queued (confound-isolation arm / decoupled degrade signal).",
+  "epistemic_category": "measurement_test_design_defect"
+}

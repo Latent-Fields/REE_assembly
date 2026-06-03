@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-03T14:08:35Z`
+Generated: `2026-06-03T16:10:44Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -10,26 +10,26 @@ UI: http://localhost:8000/workset
 ## Summary
 
 - Items: **44** (ready 14, in_flight 0, blocked 17)
-- Pending review: **2**
+- Pending review: **4**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-610d, V3-EXQ-632
+- Live EXQs: V3-EXQ-610d, V3-EXQ-634
 
 ## Work packages
 
-### IGW-20260603-001 -- Complete governance review (2 pending)
+### IGW-20260603-001 -- Complete governance review (4 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1
-- **Why now:** pending_review.md lists 2 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 4 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260603-001
-Title: Complete governance review (2 pending)
+Title: Complete governance review (4 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 2 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 4 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -112,7 +112,7 @@ Instructions:
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready=false (no ready_blocked_by detail)
-- **Why now:** substrate_queue entry status=pending_implementation with 1 unresolved prerequisite(s); blocks retest of ARC-068. See blocked_by.
+- **Why now:** substrate_queue entry status=implemented_pending_validation with 1 unresolved prerequisite(s); blocks retest of ARC-068. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -123,7 +123,7 @@ Lane: substrate | Skill: /implement-substrate
 Status: blocked
 Claims: MECH-314, MECH-314a, MECH-314b, MECH-314c, Q-044, MECH-320
 Blocked by: ready=false (no ready_blocked_by detail)
-Why now: substrate_queue entry status=pending_implementation with 1 unresolved prerequisite(s); blocks retest of ARC-068. See blocked_by.
+Why now: substrate_queue entry status=implemented_pending_validation with 1 unresolved prerequisite(s); blocks retest of ARC-068. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -136,7 +136,7 @@ Instructions:
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready=false (no ready_blocked_by detail); SD-054 [candidate_v3_pending]
-- **Why now:** substrate_queue entry status=amend_foraging_competence_pending_implementation with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.
+- **Why now:** substrate_queue entry status=amend_foraging_competence_implemented_pending_validation with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -147,7 +147,7 @@ Lane: substrate | Skill: /implement-substrate
 Status: blocked
 Claims: Q-045, MECH-313, MECH-260, MECH-295, MECH-307, MECH-117
 Blocked by: ready=false (no ready_blocked_by detail); SD-054 [candidate_v3_pending]
-Why now: substrate_queue entry status=amend_foraging_competence_pending_implementation with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.
+Why now: substrate_queue entry status=amend_foraging_competence_implemented_pending_validation with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -275,7 +275,7 @@ Instructions:
 ### IGW-20260603-029 -- Retest after substrate: ARC-068
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
-- **Blocked by:** modulatory-bias-selection-authority [pending_implementation]
+- **Blocked by:** modulatory-bias-selection-authority [implemented_pending_validation]
 - **Why now:** Blocked by 1 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -286,7 +286,7 @@ Title: Retest after substrate: ARC-068
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: ARC-068
-Blocked by: modulatory-bias-selection-authority [pending_implementation]
+Blocked by: modulatory-bias-selection-authority [implemented_pending_validation]
 Why now: Blocked by 1 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
@@ -321,7 +321,7 @@ Instructions:
 ### IGW-20260603-032 -- Retest after substrate: MECH-260
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
-- **Blocked by:** scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+- **Blocked by:** scaffolded_sd054_onboarding [amend_foraging_competence_implemented_pending_validation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
 - **Why now:** Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -332,7 +332,7 @@ Title: Retest after substrate: MECH-260
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-260
-Blocked by: scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+Blocked by: scaffolded_sd054_onboarding [amend_foraging_competence_implemented_pending_validation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
 Why now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
@@ -435,7 +435,7 @@ Instructions:
 ### IGW-20260603-038 -- Retest after substrate: MECH-313
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
-- **Blocked by:** MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+- **Blocked by:** MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_foraging_competence_implemented_pending_validation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
 - **Why now:** Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -446,7 +446,7 @@ Title: Retest after substrate: MECH-313
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-313
-Blocked by: MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_foraging_competence_pending_implementation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
+Blocked by: MECH-313 [candidate_substrate_landed]; Q-045 [no-substrate-entry] (transitive via MECH-313): Q-045 4-arm ablation; scaffolded_sd054_onboarding [amend_foraging_competence_implemented_pending_validation]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding)
 Why now: Blocked by 4 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:

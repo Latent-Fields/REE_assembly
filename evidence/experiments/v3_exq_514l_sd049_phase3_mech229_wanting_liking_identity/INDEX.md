@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity
+
+Generated: `2026-06-03T16:41:15.736968Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3` | `2026-06-03T05:49:26.355888Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3/summary.md) / [`manifest`](runs/v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3/manifest.json) / [`metrics`](runs/v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3/metrics.json) |

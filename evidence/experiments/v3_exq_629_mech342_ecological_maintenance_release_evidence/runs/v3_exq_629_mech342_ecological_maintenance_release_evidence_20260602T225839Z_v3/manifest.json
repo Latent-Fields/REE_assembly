@@ -1,0 +1,44 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_629_mech342_ecological_maintenance_release_evidence",
+  "run_id": "v3_exq_629_mech342_ecological_maintenance_release_evidence_20260602T225839Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-02T22:58:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "V3-EXQ-629 (2026-06-03 autopsy): outcome FAIL, NO_NATURAL_COMMITMENT (C1 non-vacuity fail). The agent never naturally commits -- mean_score_margin 0.00074 is ~70x below the MECH-090 admission floor 0.05 in every window (nav axis fine at ~1.0), so the R-c admission AND never fires and there is no beta latch for MECH-342 to release. Compounded by an inert degradation driver (running_variance max 3.9e-5; env-side commit_readiness auto-drive unwired). NOT a MECH-342 falsification; claim_ids=[] so no claim weight. MECH-342 stays implemented_validated_v3_exq_592g, ecological validation BLOCKED. epistemic_category measurement_test_design_defect. Redesign queued (629b: establish commitment precondition -- recalibrate score_margin_floor or commitment-inducing curriculum -- AND fix the degradation driver). Score_margin degeneracy cross-linked to MECH-341 as an E3-selection-landscape watch item.",
+  "epistemic_category": "measurement_test_design_defect"
+}
