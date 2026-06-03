@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-03T17:57:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_610d_inv074_crystallization_necessity_20260603T173519Z_v3",
+      "queue_id": "V3-EXQ-610d",
+      "supersedes": "V3-EXQ-610c",
+      "claim_ids": ["INV-074", "MECH-334", "MECH-333"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim never allowed to express; no pressure on INV-074/333/334; not weakened",
+        "biological_reference": "clear + faithful -- OD critical-period / BCM open-window-then-closure; existence proof for the class; lit present (lit_conf ~0.82); no divergence",
+        "prerequisites": "missing -- requires a trained, WTA-prone policy; harness omits policy training (identical to 610c)",
+        "implementation": "stub -- crystallize() fires (symbol present) but functional role absent: frozen heads never trained, expansion optimizer rebuilt (line 635) but never stepped, ewc_penalty never added to any loss (zero call sites)",
+        "environment": "adequate-but-irrelevant -- IGW-023 Phase-3 destabilising pressure is present and partially worked (control collapse rose from ~0 in 610b to 0.047 in 610d) but env pressure is not the blocker for this run; an untrained policy cannot collapse",
+        "measurement": "misleading -- D1/D2 measure an untrained near-uniform action distribution (entropy 1.06-1.12 of ln(5)=1.609 max) that crystallization cannot move; D3 sanity passes -> substrate-ceiling fingerprint driven by the HARNESS, not the substrate",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ocular-dominance critical-period plasticity (open-window competitive plasticity then PNN/Lynx1/NgR1 closure); monocular-deprivation = monostrategy capture when the window never closes",
+        "dependencies": [
+          "a competitive learning dynamic that would collapse without closure (a trained WTA-prone policy)",
+          "the closure mechanism actually operating (crystallize + EWC penalty exercised + expansion optimizer stepped)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- INV-074 is a biology-faithful translation; the FAIL matches a missing prerequisite of the reference mechanism, not a divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-03 governance: V3-EXQ-610d non_contributory + measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-610d_2026-06-03)]: V3-EXQ-610d (crystallization-necessity retest, supersedes 610c) FAILed D1 (-0.013) and D2 (+0.047, below the 0.10 floor) with both arms near-uniform (entropy 1.06-1.12 of 1.609 max). Root cause is IDENTICAL to its predecessor 610c and is HARNESS-level, not env-level: the experiment never trains the gated policy (lines 575-585 set requires_grad=False and `pass  # Omit policy training`; there is no policy_optimizer.step() anywhere in the file), crystallize() freezes never-trained heads, the rebuilt expansion optimizer (line 635) is never stepped, and ewc_penalty() is never added to any loss (zero call sites). So crystallization is a behavioral no-op and INV-074's predicted winner-take-all monostrategy collapse is never instantiated -- D1/D2 are non-discriminative by construction. The IGW-023 Phase-3 destabilising pressure that 610d added DID partially work (control collapse rose from ~0 in 610b to +0.047 in 610d) but cannot collapse an untrained policy. PROCESS FINDING: the 610c autopsy (2026-06-03, confirmed) routed to /queue-experiment for a 610d that would train the policy + step expansion_parameters + add ewc_penalty; 610d implemented NONE of the three. The redesign silently dropped the prescription. 8th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c/d): one structural property -- a functional, trained, WTA-prone policy has never been placed under the crystallization mechanism. INV-074 (universal invariant) not weakened, no claim falsified; pending_retest_after_substrate retained; epistemic_category substrate_ceiling unchanged. Routed to /queue-experiment redesign V3-EXQ-610e that ACTUALLY trains the policy (real REINFORCE with stored log_probs + advantages and a stepped policy_optimizer), steps expansion_parameters() post-crystallization, and adds residue_field.ewc_penalty() to the loss -- with a pre-registered substrate-ceiling fork (a trained-policy control that still does not collapse strengthens MECH-341/MECH-313, not weakens INV-074). The 610e queue rationale MUST carry an explicit pre-run assertion that policy_optimizer.step() is called, ewc_penalty() is summed into the loss, and expansion_parameters() are stepped, so the prescription is not dropped a third time.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Routing is /queue-experiment (harness redesign), NOT implement-substrate. The env substrate (test_bed_enrichment_crystallization_necessity, IGW-20260601-023) already landed and partially worked (control collapse rose to +0.047); it is not the blocker. The INV-074/MECH-333/MECH-334 crystallization machinery (gated_policy.crystallize() + expansion_parameters() + residue_field.ewc_penalty()) is wired + contract-tested but behaviorally inert in any harness that does not (a) train the policy, (b) step expansion_parameters() post-crystallization, and (c) add ewc_penalty() to the loss. Leave substrate_queue unchanged. The standing substrate-ceiling question (does a trained WTA-prone policy still resist collapse because MECH-341/313/260 are robust?) is the pre-registered 610e fork, openable only after the trained-policy retest."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "process_finding": "The 610c autopsy->610d /queue-experiment redesign cycle silently dropped all three prescribed harness fixes (train policy, step expansion_parameters, add ewc_penalty). 610d is a near-copy of 610c with the same `pass  # Omit policy training` no-op. The 610e re-queue must carry a pre-run assertion verifying the three fixes are present before the run is allowed to count.",
+      "learning_extracted": [
+        "610d reproduced 610c's harness no-op verbatim despite 610c's autopsy prescribing the fix -- the redesign did not take. Process control gap in the autopsy->queue-experiment handoff for harness-level fixes.",
+        "The crystallization machinery (crystallize() + expansion + EWC) is wired + contract-tested but behaviorally inert in any harness that does not train the policy AND step expansion_parameters() AND add residue_field.ewc_penalty() to the loss.",
+        "The IGW-023 Phase-3 destabilising-pressure substrate DID partially work: control collapse rose from ~0 (610b, no pressure) to +0.047 (610d, with pressure) -- moving toward but not clearing the 0.10 floor. The substrate is not the blocker; the untrained policy is.",
+        "Negative control (D3) passing while all discrimination criteria (D1/D2) fail is the substrate-ceiling fingerprint -- here driven by the harness, not the substrate or the env.",
+        "8th non_contributory crystallization-arm result for INV-074/MECH-333/MECH-334; one structural property -- a functional trained WTA-prone policy has never been placed under the crystallization mechanism (543 sub-lineage: heads never differentiated; 610 sub-lineage: no policy training).",
+        "NOT a cluster member with V3-EXQ-632/634: those are the goal-pipeline foraging-competence ceiling (MECH-229/230, scaffolded_sd054_onboarding substrate). 610d shares only the abstract sanity-passes/discrimination-fails shape, not the structural property."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control / sanity (D3) passes while every discrimination criterion (D1/D2) fails, with both arms near-uniform -- driven by a harness defect (policy never trained -> crystallization a behavioral no-op), recurring identically from 610c",
+    "is_independent_bugs": false,
+    "structural_property": "across the full INV-074/MECH-333/MECH-334 crystallization-arm lineage (543h/i/k/l + 610a/b/c/d) a functional, trained, WTA-prone policy has never actually been placed under the crystallization mechanism, so the crystallization-necessity claim has never been falsifiably tested",
+    "members": [
+      "543h/i/k/l (head-non-differentiation sub-lineage)",
+      "v3_exq_610a_inv074_crystallization_necessity (env-ceiling reading)",
+      "v3_exq_610b_inv074_crystallization_necessity (no Phase-3 pressure)",
+      "v3_exq_610c_inv074_crystallization_necessity (harness no-op; policy never trained)",
+      "v3_exq_610d_inv074_crystallization_necessity_20260603T173519Z_v3 (harness no-op reproduced despite 610c prescription)"
+    ],
+    "not_members": [
+      "v3_exq_632_mech230_zgoal_structured_latent_discriminative (goal-pipeline foraging-competence ceiling; different substrate/claims)",
+      "v3_exq_634_scaffolded_nursery_substrate_readiness (same foraging-competence cluster as 632)"
+    ],
+    "readings": ["measurement_test_design_defect", "substrate_ceiling_standing_question"]
+  }
+}
