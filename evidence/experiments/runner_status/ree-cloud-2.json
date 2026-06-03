@@ -1,29 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 667,
-  "runner_started_at": "2026-06-03T07:20:41.799718+00:00",
-  "last_updated": "2026-06-03T07:20:43.039087+00:00",
+  "runner_pid": 665,
+  "runner_started_at": "2026-06-03T20:10:53.415069+00:00",
+  "last_updated": "2026-06-03T20:10:54.652399+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-610d",
-      "backlog_id": "EVB-0270",
-      "claim_id": "INV-074",
-      "title": "INV-074 crystallization necessity (post-Phase-3-enrichment retest; supersedes 610c)",
+      "queue_id": "V3-EXQ-485c",
+      "backlog_id": "",
+      "claim_id": "SD-033b",
+      "title": "SD-033b OFC-analog task-role discrimination (MECH-263 sig b; same-sensory/different-task-stage direct-drive)",
       "description": "",
-      "estimated_minutes": 2000.0,
+      "estimated_minutes": 2.1,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-614d",
+      "queue_id": "V3-EXQ-626b",
       "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "MECH-341 within-class temperature 4-arm sweep -- corrected harness (committed-class metric + within-class diagnostics + cross-seed-mean C1; supersedes 614c)",
+      "claim_id": null,
+      "title": "goal-pipeline FORCED-SEED L1 positive control (GAP-7; z_goal SEEN decoupled from GAP-2 foraging)",
       "description": "",
-      "estimated_minutes": 144.0,
+      "estimated_minutes": 36.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2485,6 +2485,20 @@
       "started_at": "2026-06-03T07:20:41.818247+00:00",
       "completed_at": "2026-06-03T07:20:43.038394+00:00",
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_633_mech094_simulation_real_writegate_discriminative_20260603T072042Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1.2
+    },
+    {
+      "queue_id": "V3-EXQ-485b",
+      "backlog_id": "",
+      "claim_id": "SD-033b",
+      "title": "SD-033b OFC-analog devaluation sensitivity (MECH-263 sig a; representation-level, aversive-outcome direct-drive)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS (engaged=True, ticks_to_div=18) | result: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-485b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-485b.json",
+      "started_at": "2026-06-03T20:10:53.425073+00:00",
+      "completed_at": "2026-06-03T20:10:54.651843+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_485b_sd033b_devaluation_sensitivity_20260603T201054Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 1.2
     }

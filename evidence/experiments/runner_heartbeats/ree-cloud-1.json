@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-03T19:54:59Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-03T20:15:33Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-626b",
+  "current_exq_started_utc": "2026-06-03T20:07:02.821189+00:00",
+  "current_title": "goal-pipeline FORCED-SEED L1 positive control (GAP-7; z_goal SEEN decoupled from GAP-2 foraging)",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-634b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-625c",
-      "result": "FAIL",
-      "completed_at": "2026-06-02T07:52:29.704588+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514l",
-      "result": "FAIL",
-      "completed_at": "2026-06-02T17:01:06.861868+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-627",
-      "result": "PASS",
-      "completed_at": "2026-06-02T17:21:22.336289+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-632",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T10:31:04.762341+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-634",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T16:33:57.686093+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_FORCED_SEED_ON",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 20,
+    "episodes_total": 30,
+    "overall_pct": 7.4
+  },
+  "seconds_elapsed": 511,
+  "seconds_remaining": 3366,
+  "recent_lines": [
+    "Seed 42 Condition ARM_FORCED_SEED_ON",
+    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 5/30 z_goal_peak=0.4615",
+    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 10/30 z_goal_peak=0.4605",
+    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 15/30 z_goal_peak=0.4607",
+    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 20/30 z_goal_peak=0.4592"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 2199291,
   "runner_version": null,
   "gpu": {
