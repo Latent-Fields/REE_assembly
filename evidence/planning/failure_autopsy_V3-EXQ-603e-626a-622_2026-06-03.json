@@ -1,0 +1,160 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-03T05:40:09Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+      "queue_id": "V3-EXQ-603e",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- none of Q-045/MECH-313/MECH-260 under fair test; z_goal=0 means no goal-directed behaviour to diversify; effective N=1 (survival 1/3 seeds)",
+        "biological_reference": "clear -- MECH-313 LC-NE tonic noise + MECH-260 dACC anti-recency both well-anchored; goal-formation-requires-reward-contact dependency well-anchored (Berridge); no divergence",
+        "prerequisites": "missing -- survival/foraging competence not reached by 2/3 seeds even at restored budget; benefit_exposure sub-threshold for the non-foraging surviving policy",
+        "implementation": "complete -- update_z_goal wired (deb24cc), z_goal_enabled=True, drive_weight=2.0; contract test_c6 proves z_goal forms under forced input. Wiring layer closed.",
+        "environment": "wrong pressures -- P2 target env hazard_food_attraction=0.7 + food-attracted hazards suppress foraging contact -> benefit_exposure ~ 0 -> z_goal=0 even on surviving seed",
+        "measurement": "partial -- no foraging-contact-rate guard on the z_goal read; C4 cannot measure substrate engagement when the agent never forages",
+        "integration": "isolated -- goal stream never integrated into behaviour because the policy never reaches the foraging-competent stage that drives it",
+        "scale": "adequate -- restored budget P0/P1=100/50 did NOT fix survival (seed 42 P0 mean ep len 24.2; P1 median 18 < gate 75); budget ruled out as cause"
+      },
+      "biological_reference": {
+        "closest_mechanism": "vmPFC/OFC incentive-value / goal representation formation from reward-contact history (Berridge wanting/liking; benefit_exposure = consummatory-contact analog feeding GoalState.update)",
+        "dependencies": ["survival/foraging competence (policy reaches the developmental stage that contacts rewards)", "non-zero benefit_exposure input to update_z_goal", "LC-NE tonic substrate (MECH-313) and dACC anti-recency (MECH-260) require a goal-engaged regime to act on"],
+        "is_formal_import": false,
+        "divergence": "none -- the FAIL matches what happens biologically when a developmental dependency (competent foraging / reward contact) is absent; a discovered prerequisite, not claim falsification",
+        "lit_status": "present -- no new lit-pull warranted; biology of goal-formation-needs-reward-contact is clear"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-03 cluster autopsy V3-EXQ-603e/626a/622] The goal-pipeline WIRING layer is closed and verified: update_z_goal is wired into the scheduler P1/P2 (AMEND deb24cc) and 603e's bespoke P2, z_goal_enabled=True + drive_weight=2.0 are set, and contract test_c6_stage0_positive_control confirms z_goal forms under forced supra-threshold benefit+drive. 603e (restored budget P0/P1=100/50) nonetheless FAILed with z_goal_norm_peak=0.0 on ALL 15 cells incl. the 5 surviving seed-43 cells; 626a's P0 positive control formed z_goal on only 1/3 seeds (seed 44 = 0.19). Diagnosis: z_goal=0 is now downstream of TWO coupled prerequisites upstream of the wiring -- (1) survival/foraging-competence (2/3 seeds never reach a survival-competent policy even on the easy P0 env at restored budget -> NOT a budget artifact, ruling out the 603d-autopsy confound), and (2) benefit-input starvation (a non-foraging frozen policy keeps benefit_exposure sub-threshold in the hard P2 env hazard_food_attraction=0.7). Biologically a discovered developmental prerequisite (goal representations require reward-contact history; Berridge), NOT a falsification: Q-045/MECH-313/MECH-260 were never under fair test (z_goal=0 -> no goal-directed behaviour to diversify; effective N=1). non_contributory; all three stay pending_retest_after_substrate / substrate_ceiling; EXQ-445h remains the sole valid MECH-260 support. Routing: implement-substrate AMEND on scaffolded_sd054_onboarding -- strengthen the P0/P1 survival scaffold to >=2/3 foraging-competent seeds AND add a forced-benefit Stage-0 z_goal warmup that decouples formation from survival; lower P2 hazard_food_attraction / add a foraging-contact-rate guard; then re-issue 603e -> 603f.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "title": "Survival/foraging-competence + forced-benefit Stage-0 z_goal warmup (decouple formation from survival)",
+        "implementation_hint": "The update_z_goal wiring AMEND (deb24cc) is validated necessary-but-insufficient by 603e/626a: z_goal forms under forced input (contract) but not ecologically because 2/3 seeds never reach foraging competence and the hard P2 env (hazard_food_attraction=0.7) starves benefit_exposure even for survivors. Amend the onboarding curriculum to (a) strengthen the P0/P1 survival scaffold so >=2/3 seeds reach a foraging-competent policy, (b) add a forced-benefit Stage-0 z_goal warmup that seeds z_goal independent of foraging so Q-045/MECH-313/MECH-260 discrimination is testable at N>1, and (c) lower the P2 measurement hazard_food_attraction / add a foraging-contact-rate guard so a z_goal=0 read is interpretable. Then re-issue 603e -> 603f.",
+        "unblocks_claims": ["Q-045", "MECH-313", "MECH-260"],
+        "depends_on_unresolved": ["scaffolded_sd054_onboarding (parent substrate; goal-wiring AMEND deb24cc already landed)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054_20260603T040310Z_v3",
+          "experiment_type": "v3_exq_603e_q045_mech313_mech260_scaffolded_sd054",
+          "metric": "z_goal_norm_peak = 0.0 on all 15 cells (incl. 5 surviving seed-43 cells) at restored budget P0/P1=100/50; P1 survival 1/3 seeds; 626a P0 positive control 1/3 seeds form z_goal",
+          "target": "z_goal_norm_peak > 0.4 on >=2/3 seeds in P2 AND P1 survival gate passed on >=2/3 seeds (so Q-045 4-arm discrimination is testable at N>1)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Goal-pipeline wiring layer is closed and verified (deb24cc + contract test_c6); the 603d/626 Class-1 harness framing no longer applies to 603e/626a.",
+        "Restored budget (100/50) ruled out the 603d-autopsy budget confound: survival fragility (1/3 seeds) is a genuine curriculum/substrate property.",
+        "z_goal=0 in 603e/626a is downstream of survival/foraging competence + benefit-input starvation, not the pipeline.",
+        "Goal formation requires reward-contact history (biological prerequisite) -- a discovered dependency, not a falsification of Q-045/MECH-313/MECH-260.",
+        "A forced-benefit Stage-0 z_goal warmup that decouples formation from survival is the cheapest path to testing the claims at N>1."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+      "queue_id": "V3-EXQ-626a",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids=[]; diagnostic only",
+        "biological_reference": "clear -- same goal-formation-needs-reward-contact dependency",
+        "prerequisites": "missing -- ecological z_goal formation foraging-gated; P0 positive control forms z_goal only on the foraging seed (44)",
+        "implementation": "complete -- harness fix confirmed effective (seed 44 z_goal=0.19 where 626 was zero everywhere)",
+        "environment": "P0 formation env adequate for the foraging seed; non-foraging seeds get sub-threshold benefit_exposure",
+        "measurement": "partial -- consumer readout (dACC) = 0 across all seeds; axis_criteria_trusted=false",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "goal representation formation from reward-contact history (Berridge)",
+        "dependencies": ["foraging contact to drive benefit_exposure into update_z_goal"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-03 cluster autopsy V3-EXQ-603e/626a/622] 626a is the re-run of 626 with the harness fix (feeds update_z_goal every step via body_state[11] benefit + 1-energy drive, plus a P0 positive control adjudicating harness-bug vs formation-regression). Result: the harness fix took effect (seed 44 formed z_goal=0.19 where 626 was zero everywhere) BUT the P0 positive control FAILED (frac_seeds_clearing=0.333; seeds 42,43 = 0.0) and C5 consumer readout (dACC) = 0 across all seeds. This ANSWERS the 626 adjudication question: not a residual harness bug, but ecological z_goal formation gated on foraging contact -- it fails on the seeds that do not forage. claim_ids=[] so no claim-weight delta; set evidence_direction=non_contributory. Escalates to the survival/foraging-competence + benefit-input substrate gap recorded for the 603e target (implement-substrate AMEND on scaffolded_sd054_onboarding). Not superseded (no 626b planned).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "title": "(folds into the 603e failure_record above -- same substrate gap)",
+        "implementation_hint": "626a's P0-positive-control 1/3-seed result is corroborating evidence for the same survival/foraging-competence + benefit-input gap; folds into the single 603e failure_record. No separate substrate entry.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": ["scaffolded_sd054_onboarding"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_626a_goal_pipeline_developmental_window_diagnostic_20260601T201354Z_v3",
+          "experiment_type": "v3_exq_626a_goal_pipeline_developmental_window_diagnostic",
+          "metric": "P0 positive control z_goal forms on 1/3 seeds (seed 44 = 0.19; 42,43 = 0.0); dACC consumer readout = 0 all seeds",
+          "target": "z_goal forms on >=2/3 seeds under the P0 formation control (harness fix already effective; gap is foraging-competence + benefit input)"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "626a confirms the harness fix took effect (seed 44) and that ecological formation is foraging-gated (2/3 seeds fail) -- answering the 626 adjudication question.",
+        "626a was untriaged (evidence_direction null, morning-digest unclaimed manifest); recommended non_contributory + diagnostic note."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_622_goal_stream_staged_sd054_20260531T223804Z_v3",
+      "queue_id": "V3-EXQ-622",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids=[]; superseded by 621a PASS",
+        "biological_reference": "clear",
+        "prerequisites": "missing -- same z_goal-formation gap (earliest member of the family)",
+        "implementation": "n/a -- superseded",
+        "environment": "n/a",
+        "measurement": "n/a",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "goal representation formation from reward-contact history",
+        "dependencies": ["update_z_goal called (was the 622-era gap, now fixed downstream)"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "No new action: V3-EXQ-622 is already evidence_direction=superseded (by V3-EXQ-621a substrate-readiness PASS 2026-06-01, governance cycle 0542Z) with an existing autopsy (failure_autopsy_V3-EXQ-622_2026-06-01). Recorded in this cluster autopsy for shape only -- it is the earliest member of the SD-054 goal-stream z_goal=0 family. The terminal substrate gap is captured on the 603e target.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "title": "(no action -- already superseded)",
+        "implementation_hint": "Already superseded by 621a; no substrate write. Folds conceptually into the 603e failure_record.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_622_goal_stream_staged_sd054_20260531T223804Z_v3",
+          "experiment_type": "v3_exq_622_goal_stream_staged_sd054",
+          "metric": "z_goal=0 (earliest family member; superseded)",
+          "target": "n/a -- superseded by 621a"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "622 is the earliest member of the SD-054 goal-stream z_goal=0 family; already superseded by 621a; no new disposition needed."
+      ],
+      "routing": "governance-demotion"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "z_goal stays at zero-init across structurally-different SD-054 goal-onboarding/goal-stream harnesses; negative-control/absolute criteria (P0 episode length for the surviving seed; selection entropy ARM_2/3 = 0.70) partially hold while the C4 substrate-engagement gate and all discrimination criteria fail -- the substrate-ceiling fingerprint, with the ceiling now identified as the survival/foraging-competence + benefit-input prerequisite (the goal-wiring layer is closed and verified).",
+    "is_independent_bugs": false,
+    "structural_property": "The SD-054 scaffolded onboarding does not bring the agent to a survival/foraging-competent policy, so neither balanced behaviour (Q-045) nor benefit-driven z_goal formation can occur. The three prior wiring/config/budget bugs (hook omission, z_goal_enabled, reduced budget) were genuinely independent and are all fixed; what remains is this single structural property.",
+    "readings": ["substrate_curriculum_formation_gap", "measurement_test_design_ceiling"]
+  }
+}
