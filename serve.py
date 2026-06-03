@@ -2701,6 +2701,12 @@ def _default_runner_extra_env() -> dict | None:
         # worker's local checkout -- the "hub-only" guidance was scoped
         # to *writer-side* corruption, not worker-local conflicts.
         "PHASE3_DISABLE_RUNNER_HEARTBEAT_WRITE": "1",
+        # Command-channel migration (2026-06-03): fetch + ack remote-control
+        # commands via the coordinator too (dual-read; the local git command-
+        # file is the fallback). Mirrors the cloud workers' shadow.conf +
+        # ~/.local/bin/ree_runner_launchd.sh. Default-safe: the runner's
+        # gate is a no-op unless COORDINATION_MODE=coordinator (set above).
+        "PHASE3_COMMANDS_VIA_COORDINATOR": "1",
     }
 
 
