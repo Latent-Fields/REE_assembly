@@ -9309,6 +9309,8 @@
   subject: goal_representation.z_resource_encoder
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   implementation_phase: v3
   depends_on:
     - SD-012
@@ -9336,6 +9338,7 @@
     changes to the grid world environment.
   registered_utc: 2026-03-29
   evidence_quality_note: |
+    2026-06-03 (governance, failure_autopsy_V3-EXQ-514l): V3-EXQ-514l re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate. SD-049 Phase-2's stated deliverable (V3-EXQ-514 behavioural validation: goal_resource_r lift + identity probe + wanting!=liking dissociation) is NOT met -- 514j/k/l all FAIL row1b_joint_identity_probe_weak. Encoder/cascade wired+firing (C0/C1/C2a/C2d/C3 PASS); missing piece is upstream foraging-competence on the SD-049 multi-resource/reef substrate (~0.2% consumption, 23 vs 818 neighborhood samples). C5 lift is also a test-design defect (ARM_0 saturates goal_resource_r ~1.0). Discovered prerequisite, NOT falsification. Substrate routing: amend SD-049-PHASE-2 (port foraging-competence scaffold from scaffolded_sd054_onboarding); 514m non-saturating-C5 redesign deferred until substrate lands.
     Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all
     085x iterations despite contact-gated seeding). EXP-0091 will first test a handcrafted
     resource_indicator to confirm the diagnosis before implementing the full encoder.
@@ -16673,6 +16676,7 @@
   subject: drive.wanting_liking_behavioral_dissociation
   polarity: asserts
   status: provisional
+  epistemic_category: substrate_ceiling
   implementation_phase: v3
   split_from: MECH-112
   registered: "2026-04-13"
@@ -16700,6 +16704,7 @@
     Neurological basis: Barch & Dowd 2010 (wanting/liking in schizophrenia);
     Hollerman et al. 2000 (striatal goal representation). Full literature in MECH-112.
   evidence_quality_note: |
+    2026-06-03 (governance, failure_autopsy_V3-EXQ-514l): V3-EXQ-514l (the only genuine multi-resource wanting/liking test) re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate -- foraging-competence/benefit-contact ceiling, C6 wanting!=liking dissoc 0.0 on all 3 seeds (no reward-contact history to express in). narrow_supports_flag=true: remaining supports EXQ-074f/234/354 are degenerate single-resource, so this non_contributory does NOT resolve MECH-229 -- it stays provisional with no genuine multi-resource support, awaiting a fair test on the foraging-competence substrate.
     EXQ-074f PASS 4/4 seeds (2026-04-04): wanting_l1_fraction=0.96 vs liking_l1_fraction=0.43,
     delta=0.53 (z_world fallback seeding). Single-seed replication pending at time of run.
     EXQ-234 PASS 3/3 seeds (2026-04-05): independent replication. All 4 criteria met.
@@ -16765,6 +16770,8 @@
   subject: drive.goal_state_latent_structure
   polarity: asserts
   status: provisional
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   implementation_phase: v3
   split_from: MECH-112
   registered: "2026-04-13"
@@ -16791,6 +16798,7 @@
     (VALENCE_WANTING residue field seeding, goal-directed approach). Without z_goal
     structure, MECH-229 behavioral signal does not translate to navigation lift (EXQ-326 C3 FAIL).
   evidence_quality_note: |
+    2026-06-03 (governance, failure_autopsy_V3-EXQ-632 + V3-EXQ-514l): both FAILs re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate (foraging-competence/benefit-contact ceiling). 632 is load-bearing: negative control C3 (ablated absent) PASS 3/3 and the one foraging seed (42, 6 contacts) is a CLEAN positive -- z_goal_norm=3.0115 at contact, persists byte-identically to t50, absent under ablation (0.0) = a structured z_goal attractor distinct from harm avoidance exactly as MECH-230 asserts; aggregate FAIL driven entirely by 2/3 seeds (7,13) making zero resource contact. CORRECTS the prior recorded gap: the blocker is foraging-competence upstream, NOT the E1-frontal->hippocampal goal-projection wiring. narrow_supports_flag=true (1 PASS remains; non_contributory does not resolve). Substrate routing: amend scaffolded_sd054_onboarding (MECH-230 added to unblocks_claims + 632 failure_record).
     EXQ-328a dry run (2026-04-12): z_goal_norm=0.0 in all conditions (non_contributory --
     dry run too short for resource contacts; 3 episodes x 120 steps insufficient).
     SD-012 substrate confirmed IMPLEMENTED. All prior failures (EXQ-233/238/247/328) due
@@ -25540,6 +25548,8 @@
   subject: environment.multi_resource_heterogeneity
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -25755,6 +25765,7 @@
     v3_pending=true KEPT until V3-EXQ-514 (Phase 2 behavioural
     validation) PASSes.
   evidence_quality_note: >
+    2026-06-03 (governance, failure_autopsy_V3-EXQ-514l): V3-EXQ-514l re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate. SD-049 Phase-2's deliverable (V3-EXQ-514 behavioural validation) is NOT met -- 514j/k/l all FAIL row1b_joint_identity_probe_weak. The z_resource encoder + SD-032 consumer cascade are wired and firing (C0/C1/C2a/C2d/C3 PASS); the missing piece is upstream foraging-competence on the SD-049 multi-resource/reef substrate (~0.2% consumption rate, 23 vs 818 neighborhood samples), so wanting/liking valence streams never differentiate (C6=0.0 every seed). Substrate routing: amend SD-049-PHASE-2 (port foraging-competence scaffold from scaffolded_sd054_onboarding, not a third overlapping entry).
     Registered candidate. SUBSTRATE PHASE 1 IMPLEMENTED 2026-05-03.
 
     Architectural motivation: cohort blocked at substrate thinness,
@@ -33970,6 +33981,7 @@
   subject: learning.developmental_plasticity_crystallization_necessity
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: true
   registered_utc: "2026-05-17"
   depends_on:
     - INV-075    # parent: signal-structure temporal decoupling. INV-074 is the COMPETITIVE special case (decay mechanism = active dominant-pathway overwriting; resolution = crystallization/lock arm)
@@ -34046,6 +34058,7 @@
     waking dynamics set gate 1 (consolidation instructions); if gate 1 is corrupted by
     WTA, sleep cannot reconstruct diverse signals at gate 2.
   evidence_quality_note: >
+    2026-06-03 (governance, failure_autopsy_V3-EXQ-610c): V3-EXQ-610c (crystallization-necessity retest, supersedes 610b) re-tagged non_contributory + measurement_test_design_defect (manifest-level) + pending_retest_after_substrate. Root cause is HARNESS-level, NOT env: the experiment never trains the gated policy (policy_optimizer.step never called; REINFORCE explicitly passed), crystallize() freezes never-trained heads, ewc_penalty never added to loss -> crystallization is a behavioral no-op and the predicted WTA monostrategy collapse is never instantiated (D1 -0.013, D2 +0.047 below 0.10 floor; both arms near-uniform). 7th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c). INV-074 (universal invariant, lit_conf 0.82) NOT weakened; epistemic_category substrate_ceiling unchanged. Routed to /queue-experiment redesign V3-EXQ-610d (train the policy, step expansion_parameters, add ewc_penalty; pre-registered substrate-ceiling fork where a trained-policy control that still does not collapse strengthens MECH-341/MECH-313, not weakens INV-074).
     Registered 2026-05-17. V3 experimental support via EXQ-569/571 (indirect --
     confirms F-dominance pattern; does not directly test the invariant's causal claim).
     Lit pull completed 2026-05-17 (4 subagents). EXQ-573 (bias-scale sweep) provides
@@ -34124,6 +34137,7 @@
   subject: learning.developmental_critical_period_open_phase
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: true
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -34186,6 +34200,7 @@
     plasticity asymmetry never resolves and the system remains in a permanently tilted
     training regime.
   evidence_quality_note: >
+    2026-06-03 (governance, failure_autopsy_V3-EXQ-610c): V3-EXQ-610c re-tagged non_contributory + measurement_test_design_defect (manifest) + pending_retest_after_substrate. Crystallization is a behavioral no-op in this harness (policy never trained; crystallize() freezes untrained heads; ewc_penalty never in loss), so the open-phase/closure mechanism is never exercised -- D1/D2 non-discriminative by construction. Not a falsification. Routed to /queue-experiment V3-EXQ-610d (trained-policy redesign).
     Registered 2026-05-17. No V3 implementation exists; MECH-333 is a design
     prescription derived from the EXQ-569/571 audit and the 2026-05-17 lit pull.
     Implementation gated on Q-052 resolution (magnitude vs structure). Lit pull
@@ -34246,6 +34261,7 @@
   subject: learning.developmental_critical_period_closure_crystallization
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: true
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -34316,6 +34332,7 @@
     within an open window. Both are required but neither implements crystallization
     by itself.
   evidence_quality_note: >
+    2026-06-03 (governance, failure_autopsy_V3-EXQ-610c): V3-EXQ-610c re-tagged non_contributory + measurement_test_design_defect (manifest) + pending_retest_after_substrate. Harness defect (policy never trained, ewc_penalty never added to loss) -> crystallization/closure never exercised; D1/D2 non-discriminative by construction. epistemic_category substrate_ceiling unchanged; not a falsification. Routed to /queue-experiment V3-EXQ-610d.
     Registered 2026-05-17. No V3 implementation exists. MECH-334 is logically
     dependent on MECH-333. Lit pull completed 2026-05-17 -- PNN/Lynx1/NgR1 three-
     brake architecture identified as the biological model. Implementation design

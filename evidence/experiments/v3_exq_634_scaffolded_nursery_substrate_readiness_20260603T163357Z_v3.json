@@ -1,1 +1,151 @@
-{"run_id": "v3_exq_634_scaffolded_nursery_substrate_readiness_20260603T163357Z_v3", "experiment_type": "v3_exq_634_scaffolded_nursery_substrate_readiness", "queue_id": "V3-EXQ-634", "claim_ids": [], "experiment_purpose": "diagnostic", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260603T163357Z", "outcome": "FAIL", "evidence_direction": "non_contributory", "substrate": "scaffolded_sd054_onboarding (nursery/feeding amend, ree-v3 e718bf4)", "predecessor": "V3-EXQ-621a (pre-amend readiness; NOT superseded -- different design)", "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "pre_registered_gates": {"stage0_z_goal_gate": 0.4, "p2_z_goal_gate": 0.4, "contact_gate": 0.0, "min_fraction": 0.6666666666666666}, "scaffold_curriculum": {"stage0_budget": 20, "p0_budget": 100, "p1_budget": 50, "p2_budget": 15, "train_steps": 200, "p1_hold_fraction": 0.3, "p0_num_hazards": 1, "p2_hfa_guard": 0.3}, "substrate_gate": {"substrate_gate_passed": false, "stage0_positive_control": true, "g1_survival": false, "g2_contact": false, "g3_zgoal": false, "z_goal_gate": 0.4, "contact_gate": 0.0, "min_fraction": 0.6666666666666666}, "interpretation_branch": "substrate_not_engaged", "per_seed": [{"seed": 42, "aborted_at": null, "abort_reason": "", "stage0_z_goal_norm_peak": 0.45396700501441956, "stage0_benefit_exposure": 1.0, "stage0_z_goal_formed": true, "p0_mean_episode_length": 28.64, "p1_survival_pass": false, "p1_median_last_window_episode_length": 12.5, "p2_contact_rate": 0.0, "p2_contact_steps": 0, "p2_z_goal_norm_peak": 0.0037977590691298246, "p2_hazard_food_attraction_used": 0.3, "seed_pass": false}, {"seed": 43, "aborted_at": null, "abort_reason": "", "stage0_z_goal_norm_peak": 0.4543346166610718, "stage0_benefit_exposure": 1.0, "stage0_z_goal_formed": true, "p0_mean_episode_length": 200.0, "p1_survival_pass": true, "p1_median_last_window_episode_length": 200.0, "p2_contact_rate": 0.0, "p2_contact_steps": 0, "p2_z_goal_norm_peak": 5.6850956234311134e-12, "p2_hazard_food_attraction_used": 0.3, "seed_pass": false}, {"seed": 44, "aborted_at": null, "abort_reason": "", "stage0_z_goal_norm_peak": 0.4026130735874176, "stage0_benefit_exposure": 1.0, "stage0_z_goal_formed": true, "p0_mean_episode_length": 47.65, "p1_survival_pass": false, "p1_median_last_window_episode_length": 14.5, "p2_contact_rate": 0.5103092783505154, "p2_contact_steps": 99, "p2_z_goal_norm_peak": 0.005668925121426582, "p2_hazard_food_attraction_used": 0.3, "seed_pass": false}], "stage0_benefit_exposure_per_seed": [1.0, 1.0, 1.0], "stage0_z_goal_norm_peak_per_seed": [0.45396700501441956, 0.4543346166610718, 0.4026130735874176], "p1_survival_foraging_pass_per_seed": [false, true, false], "p2_contact_rate_per_seed": [0.0, 0.0, 0.5103092783505154], "p2_z_goal_norm_peak_per_seed": [0.0037977590691298246, 5.6850956234311134e-12, 0.005668925121426582], "substrate_gate_passed": false, "machine": "ree-cloud-1"}
+{
+  "run_id": "v3_exq_634_scaffolded_nursery_substrate_readiness_20260603T163357Z_v3",
+  "experiment_type": "v3_exq_634_scaffolded_nursery_substrate_readiness",
+  "queue_id": "V3-EXQ-634",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260603T163357Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "substrate": "scaffolded_sd054_onboarding (nursery/feeding amend, ree-v3 e718bf4)",
+  "predecessor": "V3-EXQ-621a (pre-amend readiness; NOT superseded -- different design)",
+  "stage_plan": [
+    {
+      "stage": "0",
+      "name": "nursery_forced_feed",
+      "method": "run_stage0_nursery",
+      "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"
+    },
+    {
+      "stage": "1",
+      "name": "guided_low_conflict",
+      "method": "run_p0",
+      "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"
+    },
+    {
+      "stage": "2",
+      "name": "easy_foraging",
+      "method": "run_p1 (early anneal)",
+      "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"
+    },
+    {
+      "stage": "3",
+      "name": "guarded_hazard",
+      "method": "run_p1 (late anneal)",
+      "desc": "hazard_food_attraction + proximity_harm ramp toward target"
+    },
+    {
+      "stage": "4",
+      "name": "mature_test",
+      "method": "run_p2",
+      "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"
+    }
+  ],
+  "pre_registered_gates": {
+    "stage0_z_goal_gate": 0.4,
+    "p2_z_goal_gate": 0.4,
+    "contact_gate": 0.0,
+    "min_fraction": 0.6666666666666666
+  },
+  "scaffold_curriculum": {
+    "stage0_budget": 20,
+    "p0_budget": 100,
+    "p1_budget": 50,
+    "p2_budget": 15,
+    "train_steps": 200,
+    "p1_hold_fraction": 0.3,
+    "p0_num_hazards": 1,
+    "p2_hfa_guard": 0.3
+  },
+  "substrate_gate": {
+    "substrate_gate_passed": false,
+    "stage0_positive_control": true,
+    "g1_survival": false,
+    "g2_contact": false,
+    "g3_zgoal": false,
+    "z_goal_gate": 0.4,
+    "contact_gate": 0.0,
+    "min_fraction": 0.6666666666666666
+  },
+  "interpretation_branch": "substrate_not_engaged",
+  "per_seed": [
+    {
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "stage0_z_goal_norm_peak": 0.45396700501441956,
+      "stage0_benefit_exposure": 1.0,
+      "stage0_z_goal_formed": true,
+      "p0_mean_episode_length": 28.64,
+      "p1_survival_pass": false,
+      "p1_median_last_window_episode_length": 12.5,
+      "p2_contact_rate": 0.0,
+      "p2_contact_steps": 0,
+      "p2_z_goal_norm_peak": 0.0037977590691298246,
+      "p2_hazard_food_attraction_used": 0.3,
+      "seed_pass": false
+    },
+    {
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "stage0_z_goal_norm_peak": 0.4543346166610718,
+      "stage0_benefit_exposure": 1.0,
+      "stage0_z_goal_formed": true,
+      "p0_mean_episode_length": 200.0,
+      "p1_survival_pass": true,
+      "p1_median_last_window_episode_length": 200.0,
+      "p2_contact_rate": 0.0,
+      "p2_contact_steps": 0,
+      "p2_z_goal_norm_peak": 5.6850956234311134e-12,
+      "p2_hazard_food_attraction_used": 0.3,
+      "seed_pass": false
+    },
+    {
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "stage0_z_goal_norm_peak": 0.4026130735874176,
+      "stage0_benefit_exposure": 1.0,
+      "stage0_z_goal_formed": true,
+      "p0_mean_episode_length": 47.65,
+      "p1_survival_pass": false,
+      "p1_median_last_window_episode_length": 14.5,
+      "p2_contact_rate": 0.5103092783505154,
+      "p2_contact_steps": 99,
+      "p2_z_goal_norm_peak": 0.005668925121426582,
+      "p2_hazard_food_attraction_used": 0.3,
+      "seed_pass": false
+    }
+  ],
+  "stage0_benefit_exposure_per_seed": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "stage0_z_goal_norm_peak_per_seed": [
+    0.45396700501441956,
+    0.4543346166610718,
+    0.4026130735874176
+  ],
+  "p1_survival_foraging_pass_per_seed": [
+    false,
+    true,
+    false
+  ],
+  "p2_contact_rate_per_seed": [
+    0.0,
+    0.0,
+    0.5103092783505154
+  ],
+  "p2_z_goal_norm_peak_per_seed": [
+    0.0037977590691298246,
+    5.6850956234311134e-12,
+    0.005668925121426582
+  ],
+  "substrate_gate_passed": false,
+  "machine": "ree-cloud-1",
+  "evidence_direction_note": "V3-EXQ-634 (2026-06-03) full-scale readiness validation of the scaffolded_sd054_onboarding nursery amend FAILED the substrate gate (substrate_gate_passed=false, branch=substrate_not_engaged). Stage-0 forced-feed positive control PASSES 3/3 (z_goal_norm_peak 0.40-0.45 > 0.4) -- the nursery half of the amend is validated; goal-formation wiring is sound. But P1 survival passes only 1/3 (seed 43), P2 ecological contact only 1/3 (seed 44), and P2 mature-test z_goal is ~0 on all 3 seeds (0/3). The seed that survives makes no contact; the seed that contacts does not survive. The amend is necessary-but-insufficient: forced-feed goal formation works, but the P0/P1 survival-foraging scaffold does not reliably carry >=2/3 seeds to self-sustaining contact, so the goal representation is not maintained in the wild. Substrate stays NOT ready (ready=false); do not queue 603f.",
+  "epistemic_category": "substrate_ceiling"
+}

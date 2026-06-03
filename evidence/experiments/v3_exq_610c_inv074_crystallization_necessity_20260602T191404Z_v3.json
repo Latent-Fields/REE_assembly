@@ -1,1 +1,112 @@
-{"acceptance": {"arm_0_end_phase_2_entropy": 1.1200053543931277, "arm_0_end_phase_3_entropy": 1.0735265781040604, "arm_1_end_phase_2_entropy": 1.1200053543931277, "arm_1_end_phase_3_entropy": 1.0605563504403035, "d1_crystallization_preserves_diversity": false, "d1_delta": -0.012970227663756884, "d2_control_shows_collapse": false, "d2_delta": 0.04647877628906727, "d3_arm0_phase2_entropy": 1.1200053543931277, "d3_arm1_phase2_entropy": 1.1200053543931277, "d3_sanity_both_show_diversity_at_phase2": true, "verdict": "FAIL"}, "architecture_epoch": "ree_hybrid_guardrails_v1", "arm_results": [{"arm": "ARM_0_control", "crystallize": false, "end_phase_2_entropy": 1.090839590671242, "end_phase_3_entropy": 0.971778385518353, "final_phase": 3, "mean_reward": -1.0261601037418844, "seed": 42, "total_episodes": 2500}, {"arm": "ARM_0_control", "crystallize": false, "end_phase_2_entropy": 0.9581282870872977, "end_phase_3_entropy": 0.9921827491797212, "final_phase": 3, "mean_reward": -1.1441602078640463, "seed": 43, "total_episodes": 2500}, {"arm": "ARM_0_control", "crystallize": false, "end_phase_2_entropy": 1.3110481854208431, "end_phase_3_entropy": 1.2566185996141068, "final_phase": 3, "mean_reward": -1.1316227825748921, "seed": 44, "total_episodes": 2500}, {"arm": "ARM_1_test", "crystallize": true, "end_phase_2_entropy": 1.090839590671242, "end_phase_3_entropy": 0.933158973456881, "final_phase": 3, "mean_reward": -1.0272642629754545, "seed": 42, "total_episodes": 2500}, {"arm": "ARM_1_test", "crystallize": true, "end_phase_2_entropy": 0.9581282870872977, "end_phase_3_entropy": 0.9786291093203897, "final_phase": 3, "mean_reward": -1.1453671803081038, "seed": 43, "total_episodes": 2500}, {"arm": "ARM_1_test", "crystallize": true, "end_phase_2_entropy": 1.3110481854208431, "end_phase_3_entropy": 1.2698809685436399, "final_phase": 3, "mean_reward": -1.1309090955126286, "seed": 44, "total_episodes": 2500}], "backlog_id": "EVB-0270", "claim_ids": ["INV-074", "MECH-334", "MECH-333"], "completed_at": "2026-06-02T19:14:04Z", "config": {"dacc_suppression_weight": 0.5, "max_episodes": 2500, "noise_floor_weight": 0.3, "residue_ewc_lambda": 0.1, "seeds": [42, 43, 44], "steps_per_episode": 200}, "experiment_type": "v3_exq_610c_inv074_crystallization_necessity", "outcome": "FAIL", "queue_id": "V3-EXQ-610c", "run_id": "v3_exq_610c_inv074_crystallization_necessity_20260602T191404Z_v3", "supersedes": "V3-EXQ-610b", "machine": "ree-cloud-2"}
+{
+  "acceptance": {
+    "arm_0_end_phase_2_entropy": 1.1200053543931277,
+    "arm_0_end_phase_3_entropy": 1.0735265781040604,
+    "arm_1_end_phase_2_entropy": 1.1200053543931277,
+    "arm_1_end_phase_3_entropy": 1.0605563504403035,
+    "d1_crystallization_preserves_diversity": false,
+    "d1_delta": -0.012970227663756884,
+    "d2_control_shows_collapse": false,
+    "d2_delta": 0.04647877628906727,
+    "d3_arm0_phase2_entropy": 1.1200053543931277,
+    "d3_arm1_phase2_entropy": 1.1200053543931277,
+    "d3_sanity_both_show_diversity_at_phase2": true,
+    "verdict": "FAIL"
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "arm_results": [
+    {
+      "arm": "ARM_0_control",
+      "crystallize": false,
+      "end_phase_2_entropy": 1.090839590671242,
+      "end_phase_3_entropy": 0.971778385518353,
+      "final_phase": 3,
+      "mean_reward": -1.0261601037418844,
+      "seed": 42,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_0_control",
+      "crystallize": false,
+      "end_phase_2_entropy": 0.9581282870872977,
+      "end_phase_3_entropy": 0.9921827491797212,
+      "final_phase": 3,
+      "mean_reward": -1.1441602078640463,
+      "seed": 43,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_0_control",
+      "crystallize": false,
+      "end_phase_2_entropy": 1.3110481854208431,
+      "end_phase_3_entropy": 1.2566185996141068,
+      "final_phase": 3,
+      "mean_reward": -1.1316227825748921,
+      "seed": 44,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_1_test",
+      "crystallize": true,
+      "end_phase_2_entropy": 1.090839590671242,
+      "end_phase_3_entropy": 0.933158973456881,
+      "final_phase": 3,
+      "mean_reward": -1.0272642629754545,
+      "seed": 42,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_1_test",
+      "crystallize": true,
+      "end_phase_2_entropy": 0.9581282870872977,
+      "end_phase_3_entropy": 0.9786291093203897,
+      "final_phase": 3,
+      "mean_reward": -1.1453671803081038,
+      "seed": 43,
+      "total_episodes": 2500
+    },
+    {
+      "arm": "ARM_1_test",
+      "crystallize": true,
+      "end_phase_2_entropy": 1.3110481854208431,
+      "end_phase_3_entropy": 1.2698809685436399,
+      "final_phase": 3,
+      "mean_reward": -1.1309090955126286,
+      "seed": 44,
+      "total_episodes": 2500
+    }
+  ],
+  "backlog_id": "EVB-0270",
+  "claim_ids": [
+    "INV-074",
+    "MECH-334",
+    "MECH-333"
+  ],
+  "completed_at": "2026-06-02T19:14:04Z",
+  "config": {
+    "dacc_suppression_weight": 0.5,
+    "max_episodes": 2500,
+    "noise_floor_weight": 0.3,
+    "residue_ewc_lambda": 0.1,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "steps_per_episode": 200
+  },
+  "experiment_type": "v3_exq_610c_inv074_crystallization_necessity",
+  "outcome": "FAIL",
+  "queue_id": "V3-EXQ-610c",
+  "run_id": "v3_exq_610c_inv074_crystallization_necessity_20260602T191404Z_v3",
+  "supersedes": "V3-EXQ-610b",
+  "machine": "ree-cloud-2",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "[2026-06-03 governance: V3-EXQ-610c non_contributory + measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-610c_2026-06-03)]: V3-EXQ-610c (crystallization-necessity retest, supersedes 610b) FAILed D1 (-0.013) and D2 (+0.047, below the 0.10 floor) with both arms near-uniform (entropy 1.06-1.12 of 1.609 max). Root cause is HARNESS-level, not env-level: the experiment never trains the gated policy (policy_optimizer.step() is never called; REINFORCE is explicitly passed at lines 575-585), crystallize() freezes never-trained heads and the expansion optimizer is rebuilt but never stepped, and ewc_penalty() is never added to any loss. So crystallization is a behavioral no-op and INV-074's predicted winner-take-all monostrategy collapse is never instantiated -- D1/D2 are non-discriminative by construction. This supersedes the 610a/b env-ceiling reading (IGW-023 Phase-3 pressure landed and did not help because env pressure cannot collapse an untrained policy). 7th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c): one structural property -- a functional, trained, WTA-prone policy has never been placed under the crystallization mechanism. INV-074 (universal invariant, lit_conf 0.82) not weakened, no claim falsified; pending_retest_after_substrate retained; epistemic_category substrate_ceiling unchanged. Routed to /queue-experiment redesign V3-EXQ-610d: train the policy, step expansion_parameters + add ewc_penalty, with a pre-registered substrate-ceiling fork (a trained-policy control that still does not collapse strengthens MECH-341/MECH-313, not weakens INV-074).",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_per_claim": {
+    "INV-074": "non_contributory",
+    "MECH-333": "non_contributory",
+    "MECH-334": "non_contributory"
+  }
+}

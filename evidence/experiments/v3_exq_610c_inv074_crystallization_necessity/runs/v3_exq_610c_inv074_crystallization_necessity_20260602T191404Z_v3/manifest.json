@@ -25,8 +25,12 @@
     "MECH-333"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-074": "non_contributory",
+    "MECH-333": "non_contributory",
+    "MECH-334": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -42,5 +46,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-06-03 governance: V3-EXQ-610c non_contributory + measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-610c_2026-06-03)]: V3-EXQ-610c (crystallization-necessity retest, supersedes 610b) FAILed D1 (-0.013) and D2 (+0.047, below the 0.10 floor) with both arms near-uniform (entropy 1.06-1.12 of 1.609 max). Root cause is HARNESS-level, not env-level: the experiment never trains the gated policy (policy_optimizer.step() is never called; REINFORCE is explicitly passed at lines 575-585), crystallize() freezes never-trained heads and the expansion optimizer is rebuilt but never stepped, and ewc_penalty() is never added to any loss. So crystallization is a behavioral no-op and INV-074's predicted winner-take-all monostrategy collapse is never instantiated -- D1/D2 are non-discriminative by construction. This supersedes the 610a/b env-ceiling reading (IGW-023 Phase-3 pressure landed and did not help because env pressure cannot collapse an untrained policy). 7th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c): one structural property -- a functional, trained, WTA-prone policy has never been placed under the crystallization mechanism. INV-074 (universal invariant, lit_conf 0.82) not weakened, no claim falsified; pending_retest_after_substrate retained; epistemic_category substrate_ceiling unchanged. Routed to /queue-experiment redesign V3-EXQ-610d: train the policy, step expansion_parameters + add ewc_penalty, with a pre-registered substrate-ceiling fork (a trained-policy control that still does not collapse strengthens MECH-341/MECH-313, not weakens INV-074).",
+  "epistemic_category": "measurement_test_design_defect"
 }

@@ -23,8 +23,10 @@
     "MECH-230"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-230": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -40,5 +42,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-06-03 failure autopsy V3-EXQ-632] FAIL re-read as non_contributory / substrate_ceiling, NOT does_not_support. Discriminative pair on z_goal structured-latent formation: negative control C3 (ablated absent) PASSED 3/3, but C1/C2/delta failed because 2/3 seeds (7, 13) made ZERO resource contact (num_contact_events=0) so z_goal never had benefit input to seed on. The one seed that foraged (42, 6 contacts) produced a clean positive result: z_goal_norm=3.0115 at contact, persisting byte-identically to t50, absent under ablation (0.0) -- a structured z_goal attractor distinct from harm avoidance, exactly as MECH-230 asserts. This CORRECTS the prior recorded substrate gap: the blocker is NOT the E1-frontal -> hippocampal goal-projection wiring (z_goal structure forms fine post-contact) but foraging-competence / benefit-contact upstream. Convergent with the 603e/626a/622 cluster and 514l (same foraging-competence ceiling across the z_goal / wanting-liking family). MECH-230 stays provisional/v3_pending, pending_retest_after_substrate; the remaining experimental support is narrow (1 PASS after this reclassification) so non_contributory does NOT resolve the claim -- it returns it to awaiting a fair test on the foraging-competence substrate. Routing: implement-substrate AMEND on scaffolded_sd054_onboarding (add MECH-230 to unblocks_claims + 632 failure_record). The substrate fix is landed (ree-v3 e718bf4 + developmental-window amend) but its runtime readiness gates failed on V3-EXQ-634 (Stage-0 forced-feed lights z_goal, P1 survival / P2 contact still fail), so the 632 retest is gated on the nursery substrate reaching readiness.",
+  "epistemic_category": "substrate_ceiling"
 }

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_571_e3_score_variance_decomp
 
-Generated: `2026-06-03T16:41:15.736968Z`
+Generated: `2026-06-03T17:09:59.853782Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
