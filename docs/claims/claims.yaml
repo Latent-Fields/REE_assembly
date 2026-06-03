@@ -26599,9 +26599,9 @@
   claim_type: mechanism_hypothesis
   subject: goal_seeding.sustained_drive_trace
   polarity: asserts
-  status: candidate_substrate_landed
+  status: provisional
   implementation_phase: v3
-  v3_pending: true
+  promoted_utc: "2026-06-03"
   claim_level: mechanistic
   registered_utc: 2026-05-20
   depends_on:
@@ -26643,6 +26643,7 @@
     MECH-216 schema-driven anticipatory wanting (Option 3) remains the escalation
     if floor+EMA fail in future regimes (e.g. infant persistent agent EXQ-588b).
   evidence_quality_note: |
+    2026-06-03 (governance): PROMOTED candidate_substrate_landed -> provisional; v3_pending CLEARED. The manual v3_pending gate's purpose (await a V3 evidence-grade run) is satisfied by V3-EXQ-627 (v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3): experiment_purpose=evidence, claim_ids=[MECH-306], outcome PASS, evidence_direction=supports, exp_conf=0.773 (above the 0.62 promotion threshold), reviewed 2026-06-03. 627 is the 2-arm drive_floor ablation (SUSTAINED 0.9 vs OFF 0.0) that confirms the sustained-drive-trace mechanism the predecessor diagnostic 582a only demonstrated (582a was claim_ids=[]/non_contributory). Promoted to PROVISIONAL not active: single genuine experiment (genuine_exp_count=1, lit_conf=0.0, novel_discovery quadrant); full active deferred pending replication / breadth. implementation_phase:v3 retained as a factual record -- it no longer gates (the indexer holds on implementation_phase=v3 only when zero V3 runs exist; 627 is a V3 run).
     [goal_pipeline:GAP-3 closure 2026-05-20] EXQ-536a diagnostic anchor: drive x
     benefit anti-correlation at contact (mean drive ~0.005, seeding never crosses
     threshold). V3-EXQ-582 FAIL (Option 1 EMA, all 12 runs): drive_trace_at_contact

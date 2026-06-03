@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_045_mech102_ethical_ttype
 
-Generated: `2026-06-03T17:09:59.853782Z`
+Generated: `2026-06-03T17:19:44.419058Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
