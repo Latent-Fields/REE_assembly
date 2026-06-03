@@ -2673,6 +2673,16 @@ def _default_runner_extra_env() -> dict | None:
         "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
+        # Claim-push gate (2026-06-03): retire the last git-as-IPC coordination
+        # path. The coordinator /claim endpoint (db.try_claim, atomic
+        # BEGIN IMMEDIATE) is the authoritative claim mutex under
+        # COORDINATION_MODE=coordinator (set above), so the legacy
+        # attempt_claim / release_claim `claim:` commits to ree-v3/main are
+        # pure noise. The claimed_by write still lands in the LOCAL queue file
+        # (read next tick); only the commit/push is skipped. Mirrors the cloud
+        # workers' shadow.conf + ree_runner_launchd.sh. Default OFF would run
+        # the git-mode mutex (bit-identical pre-Phase-3 behaviour).
+        "PHASE3_DISABLE_RUNNER_CLAIM_PUSH": "1",
         # Suppress the LOCAL heartbeat + commands file writes too. The
         # writer publishes the canonical runner_heartbeats/<host>.json
         # from the coordinator DB; without this flag, the runner's local
@@ -3147,6 +3157,12 @@ def start_coordinator() -> dict:
         "PHASE3_DISABLE_RUNNER_HEARTBEAT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_RESULT_PUSH": "1",
         "PHASE3_DISABLE_RUNNER_QUEUE_PUSH": "1",
+        # Claim-push gate (2026-06-03): coordinator /claim (db.try_claim,
+        # atomic BEGIN IMMEDIATE) is the authoritative claim mutex in
+        # coordinator mode, so the legacy attempt_claim / release_claim
+        # `claim:` commits to ree-v3/main are noise. Local queue claimed_by
+        # write is preserved; only the commit/push is skipped.
+        "PHASE3_DISABLE_RUNNER_CLAIM_PUSH": "1",
         # Suppress the LOCAL heartbeat + commands file writes too. The
         # writer publishes the canonical runner_heartbeats/<host>.json
         # from the coordinator DB; without this flag, the runner's local
