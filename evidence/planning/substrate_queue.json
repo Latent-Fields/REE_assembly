@@ -3440,7 +3440,7 @@
     {
       "added_session": "governance-20260529T212835Z",
       "amend_hint": "ScaffoldedSD054OnboardingScheduler._train_episode (ree-v3/experiments/scaffolded_sd054_onboarding.py:551) and the eval path never call agent.update_z_goal, so GoalState.update is never reached and z_goal stays at zero-init (confirmed: zero update_z_goal matches in the module). Add agent.update_z_goal(benefit_exposure=..., drive_level=...) every step in P1 (and P0 where the frozen-goal design permits), mirroring the shared experiments/goal_stream_stages_sd054.py runner (train ~line 537 / eval ~line 590) the 622 autopsy confirmed feeds z_goal. Add a Stage-0-style contract/positive-control assertion: forced benefit+drive inputs must produce non-zero direction-stable z_goal under the scheduler so a z_goal=0 scheduler is structurally unshippable. This hook fix is strictly UPSTREAM of the 622 anneal-rate amend (which assumed update_z_goal was being called); re-evaluate the anneal-rate amend priority after the hook lands and z_goal forms.",
-      "amend_pending": false,
+      "amend_pending": true,
       "autopsy_refs": [
         "evidence/planning/failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md",
         "evidence/planning/failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29.md",
@@ -3561,14 +3561,24 @@
           "two_part_fix_note": "WIRING ALONE IS NOT SUFFICIENT. The 603d FAIL config built the agent WITHOUT z_goal_enabled=True (from_dims default False) -> agent.goal_state was None -> update_z_goal early-returns. The V3-EXQ-603e validation config MUST set z_goal_enabled=True + drive_weight=2.0 (as the working reference V3-EXQ-622 does), keeping use_mech295_liking_bridge / use_mech307_conjunction as 603d did. Confirmed empirically 2026-06-02: 603d-style from_dims (no z_goal_enabled) yields goal_state=None.",
           "utc": "2026-06-02T06:30:00Z",
           "validation_experiment": "V3-EXQ-603e queued via /queue-experiment (re-issue of 603d at restored budget P0/P1=100/50 + z_goal_enabled=True). Acceptance: z_goal_norm_peak > 0.4 on >=2/3 seeds in P2 AND P1 survival gate passed on >=2/3 seeds."
+        },
+        {
+          "event": "amend_validated_necessary_but_insufficient",
+          "utc": "2026-06-03T07:55:25Z",
+          "note": "V3-EXQ-603e (restored budget P0/P1=100/50 + z_goal_enabled=True) + V3-EXQ-626a (P0 positive control) confirm the update_z_goal wiring amend (deb24cc) is necessary but NOT sufficient: z_goal forms under the forced-input Stage-0 contract yet stays 0.0 ecologically (603e: 0.0 on all 15 cells incl. 5 surviving seed-43 cells; 626a: P0 control forms z_goal on 1/3 seeds). Root cause is upstream of the wiring: foraging-competence (2/3 seeds never reach a survival-competent foraging policy) + benefit-input starvation (hard P2 hfa=0.7 keeps benefit_exposure sub-threshold). Re-tagged the cluster non_contributory/substrate_ceiling/pending_retest at the 2026-06-03 /governance walk. A new foraging-competence + forced-benefit Stage-0 amend is now pending implementation (see current_pending_amend). ready set False so the IGW retest-blocker gate holds 603f until that amend lands.",
+          "autopsy_refs": [
+            "evidence/planning/failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md",
+            "evidence/planning/failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.json"
+          ],
+          "session_id": "plan-603f-path-postsubstrate-20260603T075525Z"
         }
       ],
       "last_seen_session": "governance-cycle-20260603T063324Z",
       "priority": 1,
-      "ready": true,
+      "ready": false,
       "sd_id": "scaffolded_sd054_onboarding",
       "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding",
-      "status": "amend_implemented_pending_validation",
+      "status": "amend_foraging_competence_pending_implementation",
       "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
       "unblocks_claims": [
         "Q-045",
@@ -3580,7 +3590,24 @@
         "SD-049 Phase 2 behavioural",
         "ARC-030",
         "Q-040"
-      ]
+      ],
+      "current_pending_amend": {
+        "action": "amend",
+        "added_utc": "2026-06-03T07:55:25Z",
+        "title": "Survival/foraging-competence scaffold + forced-benefit Stage-0 z_goal warmup (decouple formation from survival) + P2 hazard_food_attraction guard + foraging-contact-rate guard",
+        "autopsy_ref": "evidence/planning/failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.{md,json}",
+        "supersedes_amend": "amend_update_z_goal_wiring (deb24cc, 2026-06-02) -- LANDED + validated necessary-but-insufficient by V3-EXQ-603e/626a (z_goal forms under forced input per the Stage-0 contract, but stays 0 ecologically because foraging competence and benefit-contact are not reached).",
+        "required_repairs": [
+          "(a) Strengthen the P0/P1 survival-foraging scaffold so >=2/3 seeds reach a foraging-competent policy (603e: P1 survival 1/3 seeds; 626a: P0 z_goal 1/3 seeds).",
+          "(b) Add a forced-benefit Stage-0 z_goal warmup that seeds z_goal independent of foraging competence, so Q-045/MECH-313/MECH-260 discrimination is testable at N>1 even when ecological foraging is still developing (decouple goal FORMATION from survival).",
+          "(c) Lower the P2 measurement hazard_food_attraction (currently hardcoded 0.7 at scaffolded_sd054_onboarding.py:133) and/or add a P2 foraging-contact-rate guard so a z_goal=0 read is INTERPRETABLE (distinguishes 'substrate not engaged' from 'goal mechanism absent').",
+          "(d) Add a foraging-contact-rate guard / readout (non-zero benefit/contact exposure per seed) recorded in the manifest so z_goal=0 is never confounded with starvation."
+        ],
+        "acceptance_target": "z_goal_norm_peak > 0.4 on >=2/3 seeds in P2 AND P1 survival/foraging gate passed on >=2/3 seeds AND non-zero benefit/contact exposure on >=2/3 seeds. Stage-0 forced-benefit warmup must produce direction-stable z_goal independent of survival.",
+        "validation_experiment": "V3-EXQ-603f (proposal EXP-603F-POSTSUBSTRATE, status blocked_substrate, supersedes V3-EXQ-603e) -- re-issue of 603e on the repaired scaffold. NOT a same-substrate retest. BLOCKED until this amend lands + smoke passes.",
+        "routing": "implement-substrate (write the substrate-design memo amend first, then code, then re-validate the Stage-0 + survival contracts, then hand 603f to /queue-experiment).",
+        "interpretation_note": "Frames REE-v3's dominant goal-pipeline failure as ecological reward-contact + BG-like action-selection/commitment limitation, NOT representational absence. 603f tests whether repairing developmental foraging/contact makes goal representations behaviourally available. If z_goal forms but diversity deltas stay sub-margin, the next blocker is the modulatory-bias-selection-authority substrate (BG-like E3.select authority), not reward-contact -- see the modulatory-bias-selection-authority substrate_queue entry."
+      }
     },
     {
       "added_session": "governance-20260531T112511Z",

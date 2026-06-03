@@ -4,6 +4,7 @@
 **Author session:** `sd054-scaffolded-onboarding-memo-20260529T172125Z`
 **Status:** IMPLEMENTED 2026-05-31 (ree-v3/main commit `28ebd3d`; substrate landed via `experiments/scaffolded_sd054_onboarding.py` + `reef_bipartite_agent_spawn_in_reef_half` env kwarg on `CausalGridWorldV2`; implementation surface (a) NEW scheduler taken per "Implementation surface choice" section; 14 phase-config knobs match the Config Surface table; 17 contracts in `tests/contracts/test_scaffolded_sd054_onboarding.py` PASS; 645/645 full regression PASS; closes IGW-20260531-029. Behavioural validation V3-EXQ-621 queued separately per the Sequencing table step 4).
 **Amend 2026-06-02 (update_z_goal wiring):** the as-landed scheduler never called `agent.update_z_goal`, so `GoalState.update` was never reached and z_goal stayed zero-init across every arm (V3-EXQ-603d C4 FAIL; 626-class harness/wiring artifact in the substrate module, not a ceiling). Wired `agent.update_z_goal(benefit, drive)` into `_train_episode` (P1 only, via a `seed_goal` kwarg) and `_eval_episode` (P2), mirroring the `goal_stream_stages_sd054.py` reference runner; P0 left goal-frozen by design (user-confirmed P1+P2-only scope). Added Stage-0 positive-control contracts so a z_goal=0 scheduler is unshippable. **Two-part fix:** the validation config must ALSO set `z_goal_enabled=True` + `drive_weight=2.0` (603d's config omitted it -> `goal_state` was None -> `update_z_goal` early-returns); the working reference V3-EXQ-622 sets it. V3-EXQ-603e re-issue (restored P0/P1=100/50 budget + z_goal_enabled=True) is the validation. Folds the V3-EXQ-625b monostrategy failure record (plausibly downstream of the same inert goal pipeline). Session `implement-substrate-scaffolded-sd054-zgoal-wiring-20260602T062215Z`; autopsies `failure_autopsy_V3-EXQ-603d_2026-06-01` + `failure_autopsy_V3-EXQ-625b_2026-06-02`.
+**Amend 2026-06-03 (foraging-competence + forced-benefit Stage-0) -- PENDING:** the update_z_goal wiring amend (deb24cc) is now validated **necessary-but-insufficient** by V3-EXQ-603e + V3-EXQ-626a: z_goal forms under the forced-input Stage-0 contract yet stays **0.0 ecologically** (603e: 0.0 on all 15 cells incl. the 5 surviving seed-43 cells, restored budget P0/P1=100/50; 626a P0 positive control forms z_goal on only 1/3 seeds). The 2026-06-03 cluster autopsy ([failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03](failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md)) ruled the cluster `non_contributory` / `substrate_ceiling` / `pending_retest_after_substrate`: the gap is **upstream of the wiring** -- (1) survival/foraging competence (2/3 seeds never reach a foraging-competent policy) and (2) benefit-input starvation (hard P2 `hazard_food_attraction=0.7` keeps `benefit_exposure` sub-threshold even for survivors). A new foraging-competence amend is **pending implementation** (substrate_queue `scaffolded_sd054_onboarding.current_pending_amend`, `ready:false`); the re-issue **V3-EXQ-603f** is BLOCKED until it lands. See the "## Amend 2026-06-03 (PENDING)" section below.
 **Lever chosen:** (A2) scaffolded SD-054 reef + bipartite-horizontal as the start-state distribution for P0+P1 training, with hazard_food_attraction and goal-pipeline writes annealed in across P1
 **Successor session:** `/implement-substrate` on a new scheduler (sibling to `experiments/infant_curriculum.py`) AND a small spawn-relaxation extension on CausalGridWorldV2 (separate) -- DONE 2026-05-31 via session `implement-substrate-scaffolded-sd054-onboarding-20260531T174200Z`
 
@@ -178,6 +179,96 @@ Three honest disclaimers, mirroring the SD-056 memo's tone.
 - **(A2) may not be the load-bearing lever** if the substrate-uniform z_goal-zero family has a deeper cause we have not noticed. (A1) full-policy-replay-onto-reward-rich-trajectories and (A3) hand-coded heuristic-pretrained agents are valid fallbacks if the validation experiment FAILs. If V3-EXQ-603c-successor fails on the scaffolded SD-054 onboarding objective, that is itself a substrate finding worth its own autopsy before re-trying a different lever.
 
 - **The MECH-307 4-arm discriminative pair remains separately pending** (GAP-4 plan-of-record row 1). This memo addresses the upstream substrate gap that has been blocking *every* GAP-4 retest cohort from running through to measurement; it does not by itself constitute the MECH-307 acceptance evidence. The cascade behavioural validation that MECH-295 needs is still the Phase 4 Tier-1 cohort's responsibility, gated on this substrate landing first.
+
+---
+
+## Amend 2026-06-03 (PENDING): foraging-competence + forced-benefit Stage-0 z_goal warmup (603e -> 603f path)
+
+**Status: pending implementation.** Routed by the 2026-06-03 cluster autopsy
+[failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03](failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03.md)
+(`recommended_substrate_queue_entry.action=amend`). Tracked in
+`substrate_queue.json :: scaffolded_sd054_onboarding.current_pending_amend`
+(`ready:false`, `status: amend_foraging_competence_pending_implementation`).
+
+### What 603e/626a established
+
+The 2026-06-02 update_z_goal wiring amend (`deb24cc`) closed the harness/wiring
+layer and is **necessary** -- the Stage-0 positive-control contract proves z_goal
+forms under forced supra-threshold benefit+drive. But it is **not sufficient**:
+
+- **V3-EXQ-603e** (restored budget P0/P1=100/50, z_goal_enabled=True, ruling out
+  the 603d budget confound) FAILed with `z_goal_norm_peak = 0.0` on **all 15 cells**,
+  including the 5 surviving seed-43 cells; P1 survival passed on **1/3** seeds.
+- **V3-EXQ-626a** P0 positive control formed z_goal on only **1/3** seeds (seed 44 = 0.19;
+  42/43 = 0.0); dACC consumer readout = 0 on all seeds.
+
+Terminal diagnosis (cluster autopsy): z_goal=0 is downstream of **two coupled
+prerequisites upstream of the wiring** -- (1) survival/foraging competence (2/3 seeds
+never reach a survival-competent foraging policy even on easy P0 at restored budget)
+and (2) benefit-input starvation (the hard P2 env `hazard_food_attraction=0.7` keeps
+`benefit_exposure` sub-threshold even for survivors). Biologically a **discovered
+prerequisite** (goal representations require reward-contact history; Berridge), NOT a
+falsification -- Q-045/MECH-313/MECH-260 were never under fair test (z_goal=0 -> no
+goal-directed behaviour to diversify; effective N=1).
+
+### Required repairs (the pending amend)
+
+1. **(a) Strengthen the P0/P1 survival-foraging scaffold** so **>=2/3 seeds** reach a
+   foraging-competent policy. 603e shows the current scaffold gets 1/3.
+2. **(b) Forced-benefit Stage-0 z_goal warmup** that seeds z_goal **independent of
+   foraging competence**, so Q-045/MECH-313/MECH-260 discrimination is testable at N>1
+   even while ecological foraging is still developing. This **decouples goal FORMATION
+   from survival** -- the key architectural move (the existing Stage-0 contract proves
+   formation is possible under forced input; this makes it a training stage, not just a
+   test assertion).
+3. **(c) P2 measurement guard:** lower the P2 `hazard_food_attraction` (currently
+   hardcoded 0.7 at `scaffolded_sd054_onboarding.py:133`, knob
+   `scaffold_p2_hazard_food_attraction`) and/or add a **foraging-contact-rate guard** so
+   a z_goal=0 read is **interpretable** (distinguishes "substrate not engaged" from
+   "goal mechanism absent").
+4. **(d) Foraging-contact-rate readout** recorded per seed in the manifest so z_goal=0 is
+   never confounded with benefit starvation.
+
+**Acceptance target (substrate-readiness for 603f):** `z_goal_norm_peak > 0.4` on
+**>=2/3 seeds** in P2 **AND** P1 survival/foraging gate passed on **>=2/3 seeds**
+**AND** non-zero benefit/contact exposure on **>=2/3 seeds**. The forced-benefit Stage-0
+warmup must produce direction-stable z_goal independent of survival.
+
+### V3-EXQ-603f (the post-substrate re-issue) -- BLOCKED, not queued
+
+Proposal `EXP-603F-POSTSUBSTRATE` (`experiment_proposals.v1.json`,
+`status: blocked_substrate`, `supersedes: V3-EXQ-603e`, `claim_ids: Q-045 / MECH-313 /
+MECH-260`). **This is NOT a same-substrate retest** -- it runs only after the foraging
+amend lands and its survival/Stage-0 smoke + contracts pass. 603f re-runs the 603e 4-arm
+Q-045 ablation (ARM_0 both-off / ARM_1 313-only / ARM_2 260-only / ARM_3 both-on) on the
+repaired scaffold, evaluating the **substrate gate first** (G1 survival >=2/3, G2 non-zero
+benefit contact, G3 z_goal>0.4 on >=2/3) and interpreting Q-045 discrimination **only if
+the gate passes**.
+
+**Pre-registered four-way interpretation grid:**
+
+| Branch | Signature | Disposition |
+|---|---|---|
+| (1) substrate NOT engaged | G1/G2/G3 fail | `non_contributory`; re-route `/implement-substrate` (not a MECH-313/260 falsification). |
+| (2) goal formed, diversity INERT | gate passes; all ARM deltas sub-margin | `does_not_support`/`weakens` MECH-313/260; **next blocker = modulatory-bias-selection-authority** (BG-like E3.select authority), not reward-contact. |
+| (3) goal formed, mechanisms LOAD-BEARING | gate passes; ARM deltas resolve >0.05 at N>=2 | `supports`. |
+| (4) goal formed, behaviour RANDOM/HARMFUL | gate passes; harm_rate up / churn up / entropy never narrows | arbitration-failure signature -> `/failure-autopsy`; do NOT treat as MECH-313/260 falsification. |
+
+### Interpretation framing (why 603f matters)
+
+REE-v3's dominant goal-pipeline failure **may not be representational absence but failure
+of ecological reward-contact plus basal-ganglia-like action-selection / commitment loops.**
+603f isolates the first half: whether repairing developmental foraging/contact makes goal
+representations behaviourally **available**. Outcome (2) is the diagnostic hinge -- if
+z_goal forms but the diversity mechanisms stay inert, the locus shifts to the **BG-like
+selection-authority** gap captured by the `modulatory-bias-selection-authority`
+substrate_queue entry (the 2026-06-03 governance CREATE from the 604a/624a autopsy:
+modulatory score-bias fires but has zero E3.select authority). 603f (reward-contact side)
+and that substrate (selection-authority side) are **complementary** tests, not duplicates.
+
+**Avoid overclaiming:** a passing 603f on Q-045 does not by itself promote MECH-313/MECH-260
+(v3_pending + answer_state gating); it removes the substrate-ceiling confound so the
+diversity claims can be **fairly tested** for the first time.
 
 ---
 
