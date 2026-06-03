@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "insights-substrate-bookkeeping-20260602T163521Z",
-  "last_updated_utc": "2026-06-03T15:20:00Z",
+  "last_seen_session": "scaffolded-sd054-developmental-window-amend-20260603T1520Z",
+  "last_updated_utc": "2026-06-03T16:05:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -3578,14 +3578,20 @@
           "ree_v3_commit": "e718bf4 (ree-v3/main)",
           "note": "Nursery/feeding scaffold landed: forced-benefit Stage-0 (decouples z_goal formation from survival) + survival lever + P2 measurement guard + foraging-contact-rate readout + substrate-gate/interpretation-branch helpers + 12 contracts. Mechanism-validated (smoke: forced feed lights z_goal; 731 contracts + 7/7 preflight PASS; 603e dry-run unchanged). ready stays FALSE -- full-scale runtime readiness gates (>=2/3 seeds) unproven; a full-budget substrate-readiness run is the gate before 603f is queued.",
           "session_id": "implement-substrate-scaffolded-nursery-feeding-20260603T145347Z"
+        },
+        {
+          "event": "amend_developmental_window_implemented_pending_validation",
+          "utc": "2026-06-03T16:05:00Z",
+          "ree_v3_commit": "(pending push, ree-v3/main)",
+          "note": "Developmental-window / protected-goal consolidation amend (harness-layer; no ree_core/goal.py/claims.yaml change). Routed by the V3-EXQ-634 design-error review: GoalState.update() always decays the persistent z_goal attractor and REEAgent.reset() never resets goal_state, so the prior scaffold's every-step update_z_goal in P1 (seed_goal) + P2 (_eval) washed out the Stage-0 trace on unfed steps before ecological contact -- 634 tested 'stay goal-active while fed-then-starved under decay-only' not 'form->consolidate->learn contact'. MECH-295/307 freezes only gate the consumer pathway, not the attractor. FIX (all no-op-default flags, bit-identical OFF): (1) run_stage0b_consolidation protected window (update_z_goal not called -> no decay-only washout; records retention_ratio, gate 0.75); (2) scaffold_contact_gated_goal_updates -> P1/P2 only update on validated contact, unfed steps skipped; (3) goal-write-mode constants + n_contact_refresh/n_decay_only/n_skipped_protected diagnostics. 739 contracts (C7 group +5) + 7/7 preflight PASS; 634 dry-run unchanged; smoke: Stage-0b retention=1.0, Stage-0 trace survives to P2 under contact-gating vs decays to ~0 legacy. Claim-free."
         }
       ],
-      "last_seen_session": "governance-cycle-20260603T063324Z",
+      "last_seen_session": "scaffolded-sd054-developmental-window-amend-20260603T1520Z",
       "priority": 1,
       "ready": false,
       "sd_id": "scaffolded_sd054_onboarding",
       "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding",
-      "status": "amend_foraging_competence_implemented_pending_validation",
+      "status": "amend_developmental_window_implemented_pending_validation",
       "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
       "unblocks_claims": [
         "Q-045",
@@ -3625,7 +3631,9 @@
           "ready_false_reason": "Mechanism validated (forced feed -> z_goal forms; gate/branch helpers contract-tested) but the RUNTIME readiness gates (Stage-0 z_goal>0.4 on >=2/3 seeds, P1 survival >=2/3, P2 contact>0 on >=2/3) require a full-budget run and are unproven at scale. ready flips true only after a full-scale substrate-readiness run confirms the gates.",
           "next_step": "Full-scale substrate-readiness run (621-equivalent) via /queue-experiment confirming the >=2/3 gates; THEN flip ready=true + unblock EXP-603F-POSTSUBSTRATE + queue V3-EXQ-603f. 603f itself evaluates the substrate gate first (classify_interpretation_branch) and self-routes to non_contributory/substrate_not_engaged if the gates fail."
         }
-      }
+      },
+      "ready_blocked_by": "V3-EXQ-634b (corrected nursery: protected Stage-0b + contact-gated P1/P2) must pass the substrate readiness gates before ready=True; do NOT queue V3-EXQ-603f until then.",
+      "validation_experiment": "V3-EXQ-634b"
     },
     {
       "added_session": "governance-20260531T112511Z",

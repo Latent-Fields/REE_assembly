@@ -289,4 +289,21 @@ diversity claims can be **fairly tested** for the first time.
 
 ---
 
+## Amend 2026-06-03b (developmental-window / protected-goal consolidation)
+
+**Status:** IMPLEMENTED 2026-06-03 (harness layer; no `ree_core`/`goal.py`/`claims.yaml` change). Validation experiment **V3-EXQ-634b** queued; claim-free (substrate diagnostic). Session `scaffolded-sd054-developmental-window-amend-20260603T1520Z`.
+
+**Problem (substrate design error surfaced by the V3-EXQ-634 review, not tuning).** `GoalState.update()` (`ree_core/goal.py:173`) *always* decays the persistent z_goal attractor (`z_goal *= 1 - decay_goal`) before the benefit-gated pull, and `REEAgent.reset()` never calls `goal_state.reset()` (z_goal persists across episodes/phases). The as-landed scaffold called `update_z_goal` **every step** in P1 (`seed_goal=True`) and P2 (`_eval_episode`), so every *unfed* step is a pure decay-only washout. Stage-0 lights z_goal and P0 preserves it (goal pipeline frozen -> `update_z_goal` not called), but P1/P2 then erode the trace before ecological contact — and because the 603e cluster shows 2/3 seeds never reach foraging competence, P1 is mostly unfed, so the Stage-0 trace is washed out before the P2 measurement. 634 thus tests "can the infant stay goal-active while fed-then-starved under decay-only updates?" rather than "form -> consolidate -> learn guided/autonomous contact." `_set_goal_pipeline_frozen` only short-circuits the MECH-295/MECH-307 *consumer* pathway; it does not protect the attractor — a separate developmental window was required.
+
+**Fix (all behind no-op-default flags; bit-identical when off).**
+- **Stage-0b protected consolidation:** `run_stage0b_consolidation()` runs a short window in the safe nursery env with E1/E2 training open but `update_z_goal` not called -> z_goal cannot be washed out by decay-only updating. Records `z_goal_norm_start/end`, `retention_ratio`, `retention_gate_passed` (acceptance `>= scaffold_stage0b_retention_gate`, default 0.75 of the Stage-0 baseline).
+- **Contact-gated P1/P2:** with `scaffold_contact_gated_goal_updates` (under master `scaffold_developmental_window_enabled`), P1/P2 only call `update_z_goal` on a *validated contact* step (`benefit > scaffold_p2_contact_benefit_threshold`); unfed steps are skipped (no decay-only washout). Stage-0 forced-feed is unaffected. `decay_only` is reserved for mature/autonomous tests, NOT the nursery gate.
+- **Goal-write-mode constants + diagnostics:** `GOAL_WRITE_{FORCED_FEED_OPEN,CONSOLIDATE_PROTECTED,ECOLOGICAL_CONTACT_OPEN,DECAY_ONLY_ALLOWED,MEASUREMENT_READONLY}`; per-phase `n_contact_refresh_updates` / `n_decay_only_updates` / `n_skipped_protected_updates` on `P1OnboardingResult` + `P2OnboardingMetrics`, so a manifest distinguishes goal loss due to no-contact vs decay-only washout vs failed-formation-despite-contact.
+
+**Validation.** 739 contracts (C7 group: persistence-across-Stage-0b; decay-only blockable in protected window (ON-vs-OFF contrast); ecological contact still refreshes; flags-off bit-identical) + 7/7 preflight PASS; `v3_exq_634` dry-run unchanged. Smoke: Stage-0b retention 1.000; under contact-gating the Stage-0 trace survives to P2 vs decaying to ~0 on the legacy path.
+
+**Governance.** V3-EXQ-634b (developmental-window flags ON) is the corrected nursery readiness gate. **V3-EXQ-603f stays blocked** until 634b passes. V3-EXQ-634 was left running for diagnostic value; if it fails Stage-0-lights / P1-P2-contact-absent / z_goal-collapses, that is `substrate_not_engaged` (developmental-window missing), NOT evidence against the goal stream.
+
+---
+
 *Author session: sd054-scaffolded-onboarding-memo-20260529T172125Z. Commissioned 2026-05-29T17:21:25Z. References: [failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md](failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md), [failure_autopsy_V3-EXQ-591_2026-05-27.md](failure_autopsy_V3-EXQ-591_2026-05-27.md), [failure_autopsy_V3-EXQ-603b_2026-05-25.md](failure_autopsy_V3-EXQ-603b_2026-05-25.md), [e2_action_divergence_substrate_design.md](e2_action_divergence_substrate_design.md), [goal_pipeline_plan.md](goal_pipeline_plan.md).*
