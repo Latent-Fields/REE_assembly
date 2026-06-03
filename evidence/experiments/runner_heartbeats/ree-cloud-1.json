@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-03T09:41:52Z",
+  "last_tick_utc": "2026-06-03T10:11:59Z",
   "state": "running",
   "current_exq": "V3-EXQ-632",
   "current_exq_started_utc": "2026-06-03T07:19:12.728447+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-230",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 7 / GOAL_ABLATED",
-    "runs_done": 3,
+    "run_label": "Seed 13 / GOAL_STRUCTURED",
+    "runs_done": 4,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 150,
     "episodes_total": 250,
-    "overall_pct": 50.0
+    "overall_pct": 76.7
   },
-  "seconds_elapsed": 8560,
-  "seconds_remaining": 8552,
+  "seconds_elapsed": 10367,
+  "seconds_remaining": 3350,
   "recent_lines": [
-    "[train] seed=7 GOAL_STRUCTURED ep 150/250 phase=P0 contacts=0",
-    "[train] seed=7 GOAL_STRUCTURED ep 200/250 phase=P1 contacts=0",
-    "[train] seed=7 GOAL_STRUCTURED ep 250/250 phase=P1 contacts=0",
-    "verdict: FAIL (t0=0.0000 t50=0.0000 ablated=0.0000 n_contacts=0)",
-    "Seed 7 Condition GOAL_ABLATED"
+    "verdict: PASS (t0=0.0000 t50=0.0000 ablated=0.0000 n_contacts=0)",
+    "Seed 13 Condition GOAL_STRUCTURED",
+    "[train] seed=13 GOAL_STRUCTURED ep 50/250 phase=P0 contacts=0",
+    "[train] seed=13 GOAL_STRUCTURED ep 100/250 phase=P0 contacts=0",
+    "[train] seed=13 GOAL_STRUCTURED ep 150/250 phase=P0 contacts=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
