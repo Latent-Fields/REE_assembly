@@ -1,34 +1,34 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-03T05:42:59Z",
+  "last_tick_utc": "2026-06-03T06:13:09Z",
   "state": "running",
   "current_exq": "V3-EXQ-614d",
-  "current_exq_started_utc": "2026-06-03T04:04:16.741560+00:00",
+  "current_exq_started_utc": "2026-06-03T05:55:04.419721+00:00",
   "current_title": "MECH-341 within-class temperature 4-arm sweep -- corrected harness (committed-class metric + within-class diagnostics + cross-seed-mean C1; supersedes 614c)",
   "current_claim_id": "MECH-341",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / within_class_T_0_5_sharpened",
-    "runs_done": 4,
+    "run_label": "Seed 43 / within_class_legacy_argmin",
+    "runs_done": 1,
     "runs_total": 12,
-    "episodes_done": 10,
+    "episodes_done": 0,
     "episodes_total": 90,
-    "overall_pct": 34.3
+    "overall_pct": 8.3
   },
-  "seconds_elapsed": 5922,
-  "seconds_remaining": 10158,
+  "seconds_elapsed": 1085,
+  "seconds_remaining": 9919,
   "recent_lines": [
-    "[train] arm=ARM_1_T_0_5 seed=42 phase=P1 ep 80/90",
-    "[train] arm=ARM_1_T_0_5 seed=42 phase=P1 ep 90/90",
+    "[train] arm=ARM_0_LEGACY seed=42 phase=P1 ep 70/90",
+    "[train] arm=ARM_0_LEGACY seed=42 phase=P1 ep 80/90",
+    "[train] arm=ARM_0_LEGACY seed=42 phase=P1 ep 90/90",
     "verdict: PASS",
-    "Seed 43 Condition within_class_T_0_5_sharpened",
-    "[train] arm=ARM_1_T_0_5 seed=43 phase=P0 ep 10/90"
+    "Seed 43 Condition within_class_legacy_argmin"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
-  "runner_pid": 26616,
+  "runner_pid": 7964,
   "runner_version": null,
   "gpu": {
     "available": false
