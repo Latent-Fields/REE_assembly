@@ -93,12 +93,13 @@ closure_plan:
     - id: "commitment_closure:GAP-8"
       title: "SD-033b behavioural validation (devaluation + perceptual discrimination)"
       phase: 7
-      status: blocked
+      status: in-progress
       severity: medium
       owner_exq: V3-EXQ-485b
       unblocks_claims: [SD-033b, MECH-263]
       depends_on: ["commitment_closure:GAP-3"]
-      last_updated: 2026-05-08
+      last_updated: 2026-06-03
+      governance_2026_06_03: "Blocker GAP-3 (env extensions) DONE 2026-05-17 -> GAP-8 unblocked. Audit found V3-EXQ-485b/485c were NEVER queued (no manifests / no runner_status rows / no git history / no coordinator-DB rows) -- the prior 'queued 485b/c' note was aspirational. Authored + smoke-PASSED + queued both as REPRESENTATION-LEVEL MECH-263 functional-signature diagnostics (ree-v3 main 9f45b0f). SUBSTRATE FINDING: the OFC reads only z_world + z_harm (no appetitive value/drive input), so SD-049 satiety AND the GAP-3 counter-evidence primitive are invisible to the state_code; 485b uses an AVERSIVE outcome devaluation, 485c uses same-z_world/different-task-stage. status->in-progress (awaiting runner). NOTE: FULL SD-033b candidate->provisional promotion still needs the deferred trained-OFC-head behavioural arm (frozen-zeroed bias head -> behaviour-change not measurable; parallel to SD-033a GAP-1) -- so GAP-8 will land 'partial' on 485b/c PASS, not fully done."
     - id: "commitment_closure:GAP-9"
       title: "SD-033c/d/e graph-consolidation incomplete"
       phase: 8
@@ -492,7 +493,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-5 | 6 | done | (none) | Two root causes fixed: (1) forced commitment pattern for 481b; (2) empty-snapshot re-population in agent.py. V3-EXQ-481b queued 2026-05-17; dry-run UC1/UC2/UC3 PASS. | V3-EXQ-481b | 2026-05-17 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
 | GAP-7 | 8 | deferred V4 | SD-006 phase 2 async heartbeat | none in V3 unless SD-006 phase 2 lands | n/a | 2026-05-08 |
-| GAP-8 | 7 | blocked | Phase 3 env extensions (devaluation hook + task-role discriminability) | After Phase 3 PASS, queue 485b/c | V3-EXQ-485b, 485c | 2026-05-08 |
+| GAP-8 | 7 | in-progress | nothing (GAP-3 DONE 2026-05-17 -> unblocked). Awaiting runner for 485b/485c. | DONE 2026-06-03: audited 485b/485c = NEVER ran (no manifest/runner_status/git/coordinator rows; prior "queued" note was aspirational). Authored+smoke+queued both as representation-level MECH-263 functional-signature diagnostics (ree-v3 main 9f45b0f; 485b 3/3 + 485c 4/4 PASS at smoke). OFC reads only z_world+z_harm -> appetitive SD-049 satiety + GAP-3 counter-evidence invisible to state_code; 485b uses aversive devaluation, 485c same-z_world/diff-task-stage. On PASS -> GAP-8 PARTIAL (full done still needs trained-OFC-head behavioural arm, parallel SD-033a GAP-1). | V3-EXQ-485b, 485c | 2026-06-03 |
 | GAP-9 | 8 | deferred | low-priority graph completeness | none in V3 | n/a | 2026-05-08 |
 | GAP-10 | 8 | done | (none) | Audit complete: 6 write sub-sites documented in sd_034_governance_closure_operator.md; all are within-select_action() architectural exceptions; zero require StepHarness re-routing | substrate audit (no EXQ) | 2026-05-17 |
 | GAP-11 | 4 | done | (none) | DONE 2026-05-17: committed_mode_curriculum.py harness helper IMPLEMENTED; P0/P1/P2/clone_trained_agent API; smoke PASS. Pilot EXQ V3-EXQ-592 queued (3 arms: EMERGENT/FORCED_RV/STARVED). | V3-EXQ-592 | 2026-05-17 |
@@ -552,6 +553,7 @@ clear v3_pending (V3-EXQ-631 queued).
 | V3-EXQ-445h | SD-032b dACC reef + MECH-258/260 supports | PASS (per-claim) | MECH-260 first clean supporting evidence |
 | V3-EXQ-481 | MECH-090 V_s -> commit-release substrate-readiness | FAIL (inconclusive) | GAP-5 / Phase 6 |
 | V3-EXQ-485 / 485a | SD-033b OFC substrate readiness + oracle round-trip | PASS / queued | GAP-8 / Phase 7 |
+| V3-EXQ-485b / 485c | SD-033b OFC MECH-263 functional signatures (devaluation sensitivity / task-role discrimination; representation-level) | queued 2026-06-03 (smoke PASS) | GAP-8 / Phase 7 |
 | V3-EXQ-456 | SD-033a substrate-landing diagnostic | (per substrate_queue) | GAP-1 / Phase 1 baseline |
 | V3-EXQ-592 / 592b / 592c / 592d | MECH-090 commit-entry conjunction (curriculum pilot -> 4-arm validation) | FAIL/superseded chain (592d non_contributory, measurement defect) | GAP-4 / Phase 2,4,5 |
 | V3-EXQ-592e | MECH-090 conjunction, C1-baseline fix attempt | FAIL does_not_support (2026-06-01) | GAP-4; superseded by 592f |
@@ -615,6 +617,45 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-06-03 - GAP-8: SD-033b behavioural validation un-stuck; 485b/485c authored+queued as representation-level MECH-263 signatures (aversive-devaluation + task-stage instruments)
+
+GAP-8 was carried as `blocked` with next-action "After Phase 3 PASS, queue
+485b/c" and owner `V3-EXQ-485b, 485c`. The blocker (GAP-3 env extensions) had
+in fact landed 2026-05-17, so GAP-8 was already unblocked. An audit of 485b/485c
+found they were **never queued and never ran**: no manifests in
+`evidence/experiments/` (only 485 + 485a exist), no `runner_status` rows on any
+host, no git history of the IDs in `ree-v3/experiment_queue.json`, and no
+`experiments`/`results` rows in the coordinator DB. The "queued 485b/c" language
+was aspirational, not a record of a run -- so this is NOT a manifest silent-drop
+(no completion row + zero results); it is case (c) never-claimed, and the IDs
+were reusable.
+
+**Substrate finding that reshaped the instruments.** `OFCAnalog.update(z_world,
+z_harm, gate)` reads only `z_world` and (when `harm_dim>0`) `z_harm` -- it has
+**no appetitive value / drive / benefit input**. The originally-imagined SD-049
+sensory-specific-satiety instrument (and the GAP-3 counter-evidence primitive,
+which mutates only committed-target reward-validity and leaves observations
+invariant) are therefore **invisible to the OFC state_code**. The faithful
+realizations given the OFC's actual inputs:
+
+- **V3-EXQ-485b** (MECH-263 sig a, devaluation sensitivity): an AVERSIVE outcome
+  devaluation -- `z_harm` dropped (threat removed) at a fixed `z_world` state,
+  matched DEVALUE-vs-CONTROL arms, measure state_code divergence onset within
+  bounded EMA ticks. Smoke: 3/3 seeds PASS (ticks_to_div 9-18 < 20).
+- **V3-EXQ-485c** (MECH-263 sig b, same-sensory / different-task-role): two
+  distinct task-context `z_world` histories converging on a byte-identical
+  matched final input; state_code separability vs within-context jitter. NOT the
+  GAP-3 dual-cue primitive (its cues are perceptually DISTINCT). Smoke: 4/4 reps
+  PASS (separation ratio 67-297 >> 3).
+
+Both are **representation-level** (`experiment_purpose=diagnostic`, claim_ids
+`[SD-033b, MECH-263]`), in the same direct-drive style as the PASSed 485/485a.
+The OFC **bias head is frozen-random with last layer zeroed (untrained)**, so
+behaviour-change is not measurable here -- FULL SD-033b candidate->provisional
+promotion still needs the deferred trained-OFC-head behavioural arm (the
+phased-training protocol, parallel to SD-033a GAP-1). On 485b/c PASS, GAP-8
+advances to **partial**, not fully done. Landed ree-v3 main 9f45b0f.
 
 ### 2026-06-02 - GAP-4: MECH-090 commit-entry/release validation chain RESOLVED; MECH-342 release substrate registered + validated (592d->g)
 
