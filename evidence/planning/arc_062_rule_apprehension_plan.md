@@ -95,13 +95,13 @@ closure_plan:
     - id: "arc_062_rule_apprehension:GAP-I"
       title: "ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending"
       phase: "2-3"
-      status: partial
+      status: blocked_pending_substrate
       severity: medium
       owner_exq: V3-EXQ-606b
       unblocks_claims: [ARC-064, MECH-316, MECH-317, MECH-318]
       depends_on: ["arc_062_rule_apprehension:GAP-B", "arc_062_rule_apprehension:GAP-C"]
-      last_updated: 2026-05-24
-      resume_condition: "V3-EXQ-606b script committed to ree-v3 (gates_on_exq=V3-EXQ-543k; hard startup gate). V3-EXQ-543k ran 20260522T091714Z FAIL/mixed -- gate NOT cleared. V3-EXQ-606b ran dry_run=True 20260523T223001Z FAIL/weakens (C3 PASS, C1/C2 FAIL; ARM_2 seed 42 cross_regime_delta=0.238, seeds 7/17=0.0). Per diagnose-errors session 20260523T223655Z, user decision: HOLD 606b until a 543k successor achieves contributory PASS and GAP-B resolves. Queue entry NOT appended. Episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. MECH-316/317 absorption checks remain doc-only (no V3 modules)."
+      last_updated: 2026-06-03
+      resume_condition: "BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creator/discriminator substrate that populates DIFFERENTIATED rule_state into SD-033a; scaffolded_sd054_onboarding is the candidate vehicle). The MECH-318 empirical retire-vs-promote gate (per claims.yaml MECH-318: verdict deferred to 'ARC-062 Phase 2 GAP-B PASS + Phase 3 GAP-C closure') cannot run before GAP-B resolves -- a multi-rule-context falsifier needs the cluster to produce differentiated rule_state first. MECH-318/ARC-064/MECH-316/MECH-317 are correctly held by the indexer (candidate + v3_pending/implementation_phase=v3 -> hold_pending_v3_substrate); no governance-pipeline action is stuck. STALE-PIN WARNING: the committed 606b script hardcodes GATES_ON_EXQ=V3-EXQ-543k, and 543k ran 20260522T091714Z FAIL/mixed (done, never re-runs) -- that pin is a DEAD END. Do NOT wait on a '543k successor contributory PASS' (the prior 2026-05-23 HOLD note); GAP-B was re-framed to blocked_pending_substrate on 2026-05-30 and its line moved past 543k (543l FAIL -> rule-creator substrate). 606b dry_run 20260523T223001Z FAIL/weakens (C3 PASS, C1/C2 FAIL). RESUME: when GAP-B resolves (rule-creator substrate validated via the scaffolded_sd054_onboarding cohort -- e.g. the V3-EXQ-620 / 603e / 591b line), queue a 606b-successor via /queue-experiment RE-GATED to the GAP-B-resolving EXQ (NOT 543k); the existing 606b script GATES_ON_EXQ=V3-EXQ-543k must be replaced at that time (script-logic change -> /queue-experiment, not a hand edit). DIAGNOSE-ERRORS NOTE: V3-EXQ-606a stays an unaddressed ERROR in /diagnose-errors scans (sync-lag infra error on ree-cloud-2, not a code bug; 606b is its byte-identical re-queue, parked here) until a 606b-successor actually runs -- this is expected; do not re-diagnose 606a or write a 606c. Episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. MECH-316/317 absorption checks remain doc-only (no V3 modules)."
     - id: "arc_062_rule_apprehension:GAP-J"
       title: "MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)"
       phase: "2-3"
