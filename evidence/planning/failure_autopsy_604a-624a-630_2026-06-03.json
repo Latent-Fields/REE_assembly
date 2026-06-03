@@ -1,0 +1,164 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-03T06:01:04Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate_20260602T202814Z_v3",
+      "queue_id": "V3-EXQ-604a",
+      "claim_ids": ["Q-044", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (protected) -- test could not let the claim express itself; ON==OFF because the curiosity bias never moved selection",
+        "biological_reference": "clear -- frontopolar/striatal exploration is a competing valuation channel (Daw 2006, Wittmann 2008); zero bias resembles the exploration channel disconnected from the arbitrator",
+        "prerequisites": "present -- SD-056 contrastive substrate landed and operative (C0 PASS, pairwise_dist 0.039)",
+        "implementation": "partial -- symbol not function: curiosity_bias_abs_mean = 0.0 at e3.select even in ARM_ALL_ON",
+        "environment": "adequate -- C0 confirms candidates are action-divergent",
+        "measurement": "adequate -- the null effect is real; selected_entropy identical across all 5 arms",
+        "integration": "coupled but inert -- bias computed but e3.select does not let it change argmax",
+        "scale": "likely insufficient -- modulatory bias not scaled competitively against the dominant score term"
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontopolar / ventral-striatal uncertainty- and novelty-driven exploration bonus",
+        "dependencies": ["action-selection arbitrator that lets the exploration channel compete with primary value"],
+        "is_formal_import": false,
+        "divergence": "exploration bonus in brains is a competing valuation channel, not a small additive nudge swamped by primary value",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-604a (2026-06-03 autopsy): C0 PASS (pairwise_dist 0.039 > 0.03 -- the SD-056 contrastive substrate fixed the 604 monomodal collapse), but C1/C2 FAIL with curiosity_bias_abs_mean = 0.0 in every arm including ARM_ALL_ON and selected_entropy identical across all 5 arms. The curiosity bias contributes zero authority at E3 action selection. NOT a MECH-314 falsification -- the test could not let the claim express itself. epistemic_category substrate_ceiling (selection-authority sub-type). pending_retest_after_substrate -- blocked by substrate entry 'modulatory score-bias selection authority at E3.select'. Convergent with 624a (MECH-320) and the z_goal salience gap (603e/626a/622).",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "modulatory-bias-selection-authority",
+        "title": "Modulatory score-bias selection authority at E3.select",
+        "implementation_hint": "Modulatory/secondary score-bias channels (MECH-314 curiosity bonus, MECH-320 vigor no-op penalty) are added to candidate scores at e3.select but are dominated by the primary harm/goal score term, so they never change argmax (604a bias=0.0 even ON, 624a v_t=0.05 both ON==OFF). Give modulatory biases competitive selection authority -- score normalization before bias addition, relative scaling of the bias to the candidate score gap, or a separate arbitration/gating channel -- so an enabled modulatory mechanism can change selection. Mirrors the z_goal-vs-harm salience gap (603e/626a/622) and the monostrategy 'diversity must act at/after E3 scoring' finding.",
+        "unblocks_claims": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "Q-044", "MECH-320", "ARC-068"],
+        "depends_on_unresolved": ["ARC-065 behavioral diversity (same E3.select arbitration layer)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate_20260602T202814Z_v3",
+          "experiment_type": "v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate",
+          "metric": "curiosity_bias_abs_mean = 0.0 in every arm including ARM_ALL_ON; c1_parent_delta_on_vs_off = 0.0",
+          "target": "a working impl must produce curiosity_bias > 0 at select AND c1_parent_delta_on_vs_off >= 0.03 (selected-entropy margin)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Modulatory additive score-bias lacks selection authority at E3.select (curiosity term contributes 0.0 even ON)",
+        "SD-056 contrastive substrate fixed the 604 monomodal collapse (C0 PASS) -- the remaining gap is downstream, at selection arbitration",
+        "MECH-314 not falsified -- protected (v3_pending, biology present, test could not let the claim express itself)"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_624a_arc068_mech320_niv_salamone_dissociation_20260602T172734Z_v3",
+      "queue_id": "V3-EXQ-624a",
+      "claim_ids": ["MECH-320", "ARC-068"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (protected) -- gate fires but the vigor scalar never moved selection; ON==OFF",
+        "biological_reference": "clear -- tonic-DA vigor is a global gain on response rate (Niv 2007); a v_t that does not change action_density resembles a vigor signal with no motor-gain coupling",
+        "prerequisites": "present -- tonic_vigor substrate landed and operative (C3 PASS, gate_product 1.0)",
+        "implementation": "partial -- symbol not function: v_t=0.05 added at select but does not change argmax",
+        "environment": "adequate -- well-fed-safe-familiar regime as designed; observation space held constant across arms",
+        "measurement": "adequate -- action_density correctly captured the null lift",
+        "integration": "coupled but inert -- gate opens, v_t positive, but score-bias does not propagate to action selection",
+        "scale": "likely insufficient -- w_passive*v_t dominated by the candidate score gap"
+      },
+      "biological_reference": {
+        "closest_mechanism": "tonic-dopamine response vigor / opportunity-cost-of-time (Niv 2007; Salamone & Correa 2003)",
+        "dependencies": ["a motor-gain pathway coupling the vigor scalar to action rate at selection"],
+        "is_formal_import": false,
+        "divergence": "Niv opportunity-cost is a formal derivation but tonic-DA vigor is biologically solid; the gap is the missing gain coupling, not the claim",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-624a (2026-06-03 autopsy): C3 PASS (gate_product 1.0, v_t 0.05 fires) but C1 FAIL -- action_density byte-identical between vigor-ON and vigor-OFF arms (ARM_1 = ARM_0 = 0.865 per-seed). The vigor no-op penalty fires but does not change argmax (script grid cell 3). NOT a falsification of MECH-320 or a supersession trigger for ARC-068. epistemic_category substrate_ceiling (selection-authority sub-type). pending_retest_after_substrate -- same substrate entry as 604a (modulatory score-bias selection authority at E3.select). Supersedes the 624 crash.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "sd_id_suggested": "modulatory-bias-selection-authority",
+        "title": "Modulatory score-bias selection authority at E3.select",
+        "implementation_hint": "Append this failure record to the same entry created from 604a -- do not create a second substrate entry. 624a is the second convergent member of the selection-authority gap (vigor instead of curiosity).",
+        "unblocks_claims": ["MECH-320", "ARC-068"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_624a_arc068_mech320_niv_salamone_dissociation_20260602T172734Z_v3",
+          "experiment_type": "v3_exq_624a_arc068_mech320_niv_salamone_dissociation",
+          "metric": "action_density lift ARM_1 - ARM_0 = 0.0 (both 0.865) with gate_product 1.0 / v_t 0.05",
+          "target": "a working impl must produce action_density lift >= 0.03 (C1_LIFT_MIN) when vigor is ON and the gate fires"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Vigor scalar fires (gate_product 1.0, v_t 0.05) but does not propagate to action selection -- a propagation-authority failure, not a gate-off failure",
+        "Convergent with 604a (curiosity) -- same selection-authority structural property across two different mechanisms",
+        "MECH-320/ARC-068 not falsified; ARC-068 supersession-into-MECH-258 question NOT triggered"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_630_arc029_acrosstick_nav_competence_ecological_20260602T221705Z_v3",
+      "queue_id": "V3-EXQ-630",
+      "claim_ids": ["ARC-029", "MECH-090"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (protected) -- confound means nothing about the across-tick gate was tested",
+        "biological_reference": "partial -- Cisek-Kalaska affordance/motor-readiness gating; not exercised due to confound",
+        "prerequisites": "present -- the across-tick nav_competence axis substrate landed 2026-06-02",
+        "implementation": "complete -- the gate fires (gated arm suppress_delta 0.96)",
+        "environment": "wrong pressures (confound) -- SD-022 limb-damage degrade drives commitment collapse via running_variance independent of nav_competence readiness",
+        "measurement": "adequate -- the C4 confound control fired exactly as designed and caught the confound",
+        "integration": "isolated -- could not isolate the gate's contribution from the damage->commitment pathway",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Cisek-Kalaska affordance-preparation / motor-readiness gating of commitment",
+        "dependencies": ["a degrade signal that moves only nav_competence, not other commitment pathways"],
+        "is_formal_import": false,
+        "divergence": "n/a -- the gate was not tested; this is an environment-confound, not a claim divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-630 (2026-06-03 autopsy): C4 FAIL -- OFF baseline shows the same readiness-conditioned commitment collapse (arm0_baseline_delta 1.0) as the gated arms, so the across-tick nav_competence gate's contribution is unattributable. Environment confound: SD-022 limb-damage degrade drives commitment via running_variance independent of nav_competence readiness. evidence_direction non_contributory (re-tag from mixed) -- tested nothing about the gate. Do NOT weaken ARC-029 or MECH-090. epistemic_category measurement_test_design_defect. Redesign queued (confound-isolation arm / decoupled degrade signal).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "SD-022 limb-damage degrade drives commitment collapse via running_variance independent of nav_competence -- a confound any across-tick readiness test must decouple",
+        "The C4 confound control did its job -- it caught the confound rather than letting a spurious gate effect through",
+        "630 must not weaken ARC-029 or MECH-090 -- it tested nothing about the gate"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Substrate-operative / negative-control criterion passes (mechanism machinery confirmed firing), but the mechanism produces no distinguishable effect on measured behaviour -- ON == OFF.",
+    "is_independent_bugs": false,
+    "structural_property": "604a + 624a: a modulatory/secondary additive score-bias (curiosity bonus, vigor no-op penalty) does not reach E3 action selection with enough authority to change argmax against the dominant primary (harm/goal) score term. Same phenomenon as the z_goal-vs-harm salience gap (603e/626a/622) and the monostrategy 'diversity must act at/after E3 scoring' finding. 630 is in the same family (mechanism effect not isolable in the ecological regime) but via a distinct proximate cause -- an environment confound, not bias-propagation -- and routes separately.",
+    "readings": ["substrate_enrichment_selection_authority", "test_design_per_mechanism_tuning"],
+    "confirmed_reading": "substrate_enrichment_selection_authority",
+    "members": {
+      "load_bearing_pair": ["V3-EXQ-604a", "V3-EXQ-624a"],
+      "related_distinct_cause": ["V3-EXQ-630"]
+    }
+  }
+}
