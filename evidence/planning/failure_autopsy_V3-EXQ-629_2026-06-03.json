@@ -1,0 +1,56 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-03T06:13:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_629_mech342_ecological_maintenance_release_evidence_20260602T225839Z_v3",
+      "queue_id": "V3-EXQ-629",
+      "claim_ids": [],
+      "related_claim_ids": ["MECH-342", "MECH-090", "MECH-341"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (protected) -- mechanism untestable; precondition (natural beta commitment) never formed",
+        "biological_reference": "clear but untested -- commitment-release class is biologically grounded (Resulaj 2009 / Falasconi 2025); not exercised",
+        "prerequisites": "missing -- natural commitment is the precondition; E3 score_margin decisiveness (~0.00074) never reaches admission floor 0.05",
+        "implementation": "MECH-342 complete (592g-validated); harness partial -- lacks working commitment-induction and an effective degradation driver",
+        "environment": "wrong pressures -- ecological env produces undifferentiated E3 scores (margin ~0) and a near-zero running_variance perturbation",
+        "measurement": "adequate -- the C1 non-vacuity guard correctly caught the no-commitment state",
+        "integration": "isolated -- maintenance-release branch never reached (no beta latch to release)",
+        "scale": "unknown -- not reached"
+      },
+      "biological_reference": {
+        "closest_mechanism": "motor-program-timescale commitment maintenance / release (Resulaj 2009 drift-to-bound; Falasconi 2025 selective movement cancellation)",
+        "dependencies": ["a committable decision: E3 candidate-score decisiveness (score_margin) reaching the admission bound"],
+        "is_formal_import": false,
+        "divergence": "n/a -- harness precondition failure, not a claim divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-629 (2026-06-03 autopsy): outcome FAIL, NO_NATURAL_COMMITMENT (C1 non-vacuity fail). The agent never naturally commits -- mean_score_margin 0.00074 is ~70x below the MECH-090 admission floor 0.05 in every window (nav axis fine at ~1.0), so the R-c admission AND never fires and there is no beta latch for MECH-342 to release. Compounded by an inert degradation driver (running_variance max 3.9e-5; env-side commit_readiness auto-drive unwired). NOT a MECH-342 falsification; claim_ids=[] so no claim weight. MECH-342 stays implemented_validated_v3_exq_592g, ecological validation BLOCKED. epistemic_category measurement_test_design_defect. Redesign queued (629b: establish commitment precondition -- recalibrate score_margin_floor or commitment-inducing curriculum -- AND fix the degradation driver). Score_margin degeneracy cross-linked to MECH-341 as an E3-selection-landscape watch item.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No substrate write this autopsy. Primary repair is a harness redesign (629b). Watch item for governance: the score_margin decisiveness degeneracy connects to the existing MECH-341 (E3 score diversity retune) and the new modulatory-bias-selection-authority entry; escalate to a substrate write only if recalibration shows the ecological E3 cannot produce committable margins.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Ecological MECH-342 validation is blocked on a missing precondition: mean_score_margin ~0.00074 is ~70x below the 0.05 admission floor in every window, so the MECH-090 R-c admission AND never fires and the agent never naturally commits (nav axis fine at ~1.0)",
+        "The score_margin degeneracy is a recurring E3-selection-landscape signal -- a different facet of the 604a/624a (modulatory bias cannot move selection) and z_goal salience (603e/626a/622) family; here candidate scores are too undifferentiated for decisive commitment. Connects to MECH-341.",
+        "The degradation driver is inert (running_variance max 3.9e-5; env-side commit_readiness auto-drive is an unwired Phase-2 follow-on) -- a second harness gap that only bites once commitment forms",
+        "MECH-342 not falsified and carries no claim weight (claim_ids=[]); stays implemented_validated_v3_exq_592g, ecological validation blocked"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
