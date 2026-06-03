@@ -34103,10 +34103,12 @@
     prob=0.5 vs default 0.3). These dynamics force continued forward-model adaptation post-Phase-3. Prediction:
     control arm (no crystallization) will show entropy collapse (D2 delta >= +0.10) under this pressure;
     crystallized arm (MECH-333/334) will preserve Phase-2 diversity. Smoke test PASS: ree-v3/experiments/
-    test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs. pending_retest_after_substrate retained
-    pending V3-EXQ retest with new Phase-3 pressure.
+    test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs.
+
+    [2026-06-03 IGW-20260603-032 retest queued]: V3-EXQ-610d queued (supersedes 610c; post-Phase-3-enrichment
+    retest). 2-arm discriminative (control vs test), 3 seeds, 2500 episodes. Claims: INV-074, MECH-333, MECH-334.
+    pending_retest_after_substrate cleared pending V3-EXQ-610d completion.
   epistemic_category: substrate_ceiling
-  pending_retest_after_substrate: true
 
 - id: MECH-333
   title: "Critical period open phase: the dominant scoring pathway's effective update
@@ -34372,10 +34374,12 @@
     prob=0.5 vs default 0.3). These dynamics force continued forward-model adaptation post-Phase-3. Prediction:
     control arm (no crystallization) will show entropy collapse (D2 delta >= +0.10) under this pressure;
     crystallized arm (MECH-333/334) will preserve Phase-2 diversity. Smoke test PASS: ree-v3/experiments/
-    test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs. pending_retest_after_substrate retained
-    pending V3-EXQ retest with new Phase-3 pressure.
+    test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs.
+
+    [2026-06-03 IGW-20260603-032 retest queued]: V3-EXQ-610d queued (supersedes 610c; post-Phase-3-enrichment
+    retest). 2-arm discriminative (control vs test), 3 seeds, 2500 episodes. Claims: INV-074, MECH-333, MECH-334.
+    pending_retest_after_substrate cleared pending V3-EXQ-610d completion.
   epistemic_category: substrate_ceiling
-  pending_retest_after_substrate: true
   implementation_note: >
     IMPLEMENTED 2026-05-17 (primary closure mechanism). ree-v3:
     GatedPolicy.crystallize() freezes head_0/head_1/discriminator at the
