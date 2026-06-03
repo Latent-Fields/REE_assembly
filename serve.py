@@ -2707,6 +2707,13 @@ def _default_runner_extra_env() -> dict | None:
         # ~/.local/bin/ree_runner_launchd.sh. Default-safe: the runner's
         # gate is a no-op unless COORDINATION_MODE=coordinator (set above).
         "PHASE3_COMMANDS_VIA_COORDINATOR": "1",
+        # OFF_GIT (2026-06-03): coordinator is the SOLE command channel; the
+        # runner neither reads nor writes the local git command-file. Self-
+        # guards back to git if the coordinator is unavailable, so the runner
+        # is never left uncontrollable. Mirrors the fleet shadow.conf +
+        # ree_runner_launchd.sh. Commands now reach off-git runners via the
+        # serve.py dual-write path (PHASE3_COMMANDS_DUAL_WRITE in coordinator.env).
+        "PHASE3_COMMANDS_OFF_GIT": "1",
     }
 
 
