@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-03T00:41:44Z",
+  "last_tick_utc": "2026-06-03T01:03:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-603e",
   "current_exq_started_utc": "2026-06-02T06:46:54.193693+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "Q-045",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_4_matched_noise",
-    "runs_done": 12,
+    "run_label": "Seed 43 / ARM_4_matched_noise",
+    "runs_done": 13,
     "runs_total": 15,
-    "episodes_done": 100,
+    "episodes_done": 0,
     "episodes_total": 180,
-    "overall_pct": 83.7
+    "overall_pct": 86.7
   },
-  "seconds_elapsed": 64494,
-  "seconds_remaining": 12945,
+  "seconds_elapsed": 65808,
+  "seconds_remaining": 9936,
   "recent_lines": [
-    "[train] scaffold_p0 arm=ARM_3_both_on seed=44 ep 100/180 mean_len=33.2 rv=0.00002",
-    "[train] scaffold_p1 arm=ARM_3_both_on seed=44 ep 150/180 median_last=12.5 survival_gate=fail",
-    "verdict: FAIL arm=ARM_3_both_on seed=44 aborted_at=scaffold_p1 reason=p1_survival_gate_failed",
     "Seed 42 Condition ARM_4_matched_noise",
-    "[train] scaffold_p0 arm=ARM_4_matched_noise seed=42 ep 100/180 mean_len=22.4 rv=0.00001"
+    "[train] scaffold_p0 arm=ARM_4_matched_noise seed=42 ep 100/180 mean_len=22.4 rv=0.00001",
+    "[train] scaffold_p1 arm=ARM_4_matched_noise seed=42 ep 150/180 median_last=11.0 survival_gate=fail",
+    "verdict: FAIL arm=ARM_4_matched_noise seed=42 aborted_at=scaffold_p1 reason=p1_survival_gate_failed",
+    "Seed 43 Condition ARM_4_matched_noise"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
