@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-03T18:29:51Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-634b",
-  "current_exq_started_utc": "2026-06-03T16:25:27.658101+00:00",
-  "current_title": "scaffolded_sd054_onboarding nursery + protected-consolidation substrate-readiness diagnostic (developmental-window amend: Stage-0b + contact-gated P1/P2)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / nursery_consolidation_scaffold",
-    "runs_done": 2,
-    "runs_total": 3,
-    "episodes_done": 30,
-    "episodes_total": 195,
-    "overall_pct": 71.8
-  },
-  "seconds_elapsed": 7463,
-  "seconds_remaining": 2833,
-  "recent_lines": [
-    "[train] p2_measure seed=43 ep 195/195 z_goal_peak=0.0000 contact_rate=0.3482 hfa_used=0.30 gated=True decay_only=0 skipped=889 refresh=475",
-    "verdict: FAIL seed=43",
-    "Seed 44 Condition nursery_consolidation_scaffold",
-    "[train] stage0_nursery seed=44 ep 20/195 forced_benefit=1.00 z_goal_peak=0.4008 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/195 start=0.3940 end=0.3940 retention=0.983 gate=pass"
+  "last_tick_utc": "2026-06-03T19:00:04Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-610d",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-618",
+      "result": "PASS",
+      "completed_at": "2026-05-31T17:59:43.642171+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-621",
+      "result": "ERROR",
+      "completed_at": "2026-05-31T20:23:07.794082+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-621a",
+      "result": "PASS",
+      "completed_at": "2026-05-31T23:09:32.721485+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-635",
+      "result": "PASS",
+      "completed_at": "2026-06-03T15:59:02.247946+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-634b",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T18:37:55.491050+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 746,
   "runner_version": null,
   "gpu": {
