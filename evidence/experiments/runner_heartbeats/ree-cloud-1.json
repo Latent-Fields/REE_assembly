@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-03T20:15:33Z",
+  "last_tick_utc": "2026-06-03T20:35:44Z",
   "state": "running",
   "current_exq": "V3-EXQ-626b",
   "current_exq_started_utc": "2026-06-03T20:07:02.821189+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": null,
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_FORCED_SEED_ON",
+    "run_label": "Seed 42 / ARM_NO_BENEFIT",
     "runs_done": 0,
     "runs_total": 9,
-    "episodes_done": 20,
+    "episodes_done": 10,
     "episodes_total": 30,
-    "overall_pct": 7.4
+    "overall_pct": 3.7
   },
-  "seconds_elapsed": 511,
-  "seconds_remaining": 3366,
+  "seconds_elapsed": 1722,
+  "seconds_remaining": 8600,
   "recent_lines": [
-    "Seed 42 Condition ARM_FORCED_SEED_ON",
-    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 5/30 z_goal_peak=0.4615",
-    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 10/30 z_goal_peak=0.4605",
-    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 15/30 z_goal_peak=0.4607",
-    "[train] seed=42 arm=ARM_FORCED_SEED_ON ep 20/30 z_goal_peak=0.4592"
+    "[train] seed=44 arm=ARM_FORCED_SEED_ON ep 30/30 z_goal_peak=0.5959",
+    "verdict: seed=44 arm=ARM_FORCED_SEED_ON peak_max=0.6145 med_last=0.5955",
+    "Seed 42 Condition ARM_NO_BENEFIT",
+    "[train] seed=42 arm=ARM_NO_BENEFIT ep 5/30 z_goal_peak=0.0000",
+    "[train] seed=42 arm=ARM_NO_BENEFIT ep 10/30 z_goal_peak=0.0000"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

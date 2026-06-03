@@ -1,47 +1,30 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-03T06:14:54Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-614d",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-514k",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T11:53:08.281325+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-626",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T15:27:29.504502+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-620b",
-      "result": "PASS",
-      "completed_at": "2026-06-01T19:01:27.728456+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-592g",
-      "result": "PASS",
-      "completed_at": "2026-06-02T16:35:47.260335+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-063a",
-      "result": "PASS",
-      "completed_at": "2026-06-02T17:25:31.731586+00:00"
-    }
+  "last_tick_utc": "2026-06-03T20:35:47Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-463b",
+  "current_exq_started_utc": "2026-06-03T20:35:42.396210+00:00",
+  "current_title": "MECH-268 dACC conflict saturation (500-step behavioural, GAP-4 Phase 5)",
+  "current_claim_id": "MECH-268",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / train_dacc_on",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 0,
+    "episodes_total": 350,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 19200,
+  "recent_lines": [
+    "Seed 42 Condition train_dacc_on"
   ],
-  "runner_pid": 1155,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 668,
   "runner_version": null,
   "gpu": {
     "available": false
