@@ -1,6 +1,6 @@
 {
   "schema_version": "contributions/v1",
-  "last_updated": "2026-06-02T05:22:01Z",
+  "last_updated": "2026-06-03T19:48:45Z",
   "compute": {
     "cost_model": {
       "electricity_kwh_rate": 0.27,
@@ -29,12 +29,12 @@
         "hardware": "Apple M2 Air 8GB",
         "tdp_watts": 15,
         "gpu_watts": 0,
-        "total_cpu_hours": 543.125,
-        "total_experiments": 465,
+        "total_cpu_hours": 570.502,
+        "total_experiments": 467,
         "first_run": "2026-03-22T01:42:13.931249+00:00",
-        "last_run": "2026-06-01T19:43:26.170478+00:00",
-        "estimated_electricity_cost_eur": 2.1997,
-        "estimated_cloud_equivalent_cost_usd": 22.594
+        "last_run": "2026-06-03T12:01:24.020537+00:00",
+        "estimated_electricity_cost_eur": 2.3105,
+        "estimated_cloud_equivalent_cost_usd": 23.7329
       },
       "Daniel-PC": {
         "display_name": "CyberPower PC (i5-8600K + RTX 2060 Super)",
@@ -81,12 +81,12 @@
         "hardware": "Hetzner CX22 (2x shared vCPU, 4 GB RAM, no GPU)",
         "tdp_watts": 20,
         "gpu_watts": 0,
-        "total_cpu_hours": 100.177,
-        "total_experiments": 81,
+        "total_cpu_hours": 106.112,
+        "total_experiments": 85,
         "first_run": "2026-04-06T15:55:57.691885+00:00",
-        "last_run": "2026-06-01T15:20:51.042827+00:00",
-        "estimated_electricity_cost_eur": 0.541,
-        "estimated_cloud_equivalent_cost_usd": 4.1674
+        "last_run": "2026-06-02T17:21:22.336289+00:00",
+        "estimated_electricity_cost_eur": 0.573,
+        "estimated_cloud_equivalent_cost_usd": 4.4143
       },
       "ree-cloud-2": {
         "display_name": "Hetzner CX22 Cloud Worker (second)",
@@ -94,12 +94,12 @@
         "hardware": "Hetzner CX22 (2x shared vCPU, 4 GB RAM, no GPU)",
         "tdp_watts": 20,
         "gpu_watts": 0,
-        "total_cpu_hours": 64.132,
-        "total_experiments": 32,
+        "total_cpu_hours": 93.214,
+        "total_experiments": 38,
         "first_run": "2026-04-18T22:56:27.214359+00:00",
-        "last_run": "2026-05-31T09:31:17.188482+00:00",
-        "estimated_electricity_cost_eur": 0.3463,
-        "estimated_cloud_equivalent_cost_usd": 2.6679
+        "last_run": "2026-06-03T07:20:43.038394+00:00",
+        "estimated_electricity_cost_eur": 0.5034,
+        "estimated_cloud_equivalent_cost_usd": 3.8777
       },
       "ree-cloud-3": {
         "display_name": "ree-cloud-3",
@@ -120,17 +120,17 @@
         "hardware": "Unknown",
         "tdp_watts": 15,
         "gpu_watts": 0,
-        "total_cpu_hours": 61.553,
-        "total_experiments": 13,
+        "total_cpu_hours": 62.381,
+        "total_experiments": 15,
         "first_run": "2026-05-18T00:09:31.190600+00:00",
-        "last_run": "2026-06-01T19:01:27.728456+00:00",
-        "estimated_electricity_cost_eur": 0.2493,
-        "estimated_cloud_equivalent_cost_usd": 2.5606
+        "last_run": "2026-06-02T17:25:31.731586+00:00",
+        "estimated_electricity_cost_eur": 0.2526,
+        "estimated_cloud_equivalent_cost_usd": 2.5951
       }
     },
     "totals": {
-      "cpu_hours": 1064.926,
-      "experiments": 789
+      "cpu_hours": 1128.148,
+      "experiments": 803
     }
   },
   "decisions": {
@@ -161,15 +161,15 @@
   },
   "coding": {
     "baseline_method": "git_co_authorship",
-    "baseline_date": "2026-06-02",
-    "total_lines_analyzed": 9654267,
-    "total_commits_analyzed": 48946,
+    "baseline_date": "2026-06-03",
+    "total_lines_analyzed": 9723778,
+    "total_commits_analyzed": 49227,
     "contributors": {
       "Claude (Anthropic)": {
-        "lines_added": 2168096,
-        "commits": 1880,
-        "proportion_by_lines": 0.2246,
-        "proportion_by_commits": 0.0384,
+        "lines_added": 2231835,
+        "commits": 1998,
+        "proportion_by_lines": 0.2295,
+        "proportion_by_commits": 0.0406,
         "basis": "git_history_co_authorship"
       },
       "Codex (OpenAI)": {
@@ -180,10 +180,10 @@
         "basis": "git_history_co_authorship"
       },
       "Daniel Golden": {
-        "lines_added": 7486171,
-        "commits": 47063,
-        "proportion_by_lines": 0.7754,
-        "proportion_by_commits": 0.9615,
+        "lines_added": 7491943,
+        "commits": 47226,
+        "proportion_by_lines": 0.7705,
+        "proportion_by_commits": 0.9594,
         "basis": "git_history_co_authorship"
       }
     },

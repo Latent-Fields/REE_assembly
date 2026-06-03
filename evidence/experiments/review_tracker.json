@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-03T17:00:38Z",
+  "last_review_utc": "2026-06-03T19:57:16Z",
   "discussed_experiment_dirs": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
     "v3_exq_592f_mech090_commitment_state_transition_probe",
@@ -499,7 +499,10 @@
     "v3_exq_632_mech230_zgoal_structured_latent_discriminative",
     "v3_exq_634_scaffolded_nursery_substrate_readiness",
     "v3_exq_633_mech094_simulation_real_writegate_discriminative",
-    "v3_exq_635_modulatory_bias_selection_authority_readiness"
+    "v3_exq_635_modulatory_bias_selection_authority_readiness",
+    "v3_exq_610d_inv074_crystallization_necessity",
+    "v3_exq_634b_scaffolded_nursery_consolidation_readiness",
+    "v3_exq_634b_scaffolded_nursery_consolidation_readiness_20260603T183754Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
@@ -2730,7 +2733,9 @@
     "v3_exq_632_mech230_zgoal_structured_latent_discriminative_20260603T071913Z_v3",
     "v3_exq_634_scaffolded_nursery_substrate_readiness_20260603T163357Z_v3",
     "v3_exq_633_mech094_simulation_real_writegate_discriminative_20260603T072042Z_v3",
-    "v3_exq_635_modulatory_bias_selection_authority_readiness_20260603T155901Z_v3"
+    "v3_exq_635_modulatory_bias_selection_authority_readiness_20260603T155901Z_v3",
+    "v3_exq_610d_inv074_crystallization_necessity_20260603T173519Z_v3",
+    "v3_exq_634b_scaffolded_nursery_consolidation_readiness_20260603T183754Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3648,6 +3653,20 @@
         "v3_exq_635_modulatory_bias_selection_authority_readiness"
       ],
       "subject": "/governance evening cycle 2026-06-03. 6 pending walked (2 PASS, 4 FAIL); all 4 FAILs had confirmed failure-autopsy artifacts produced same day, user-approved (AskUserQuestion) to apply verbatim. FAILs: V3-EXQ-514l (SD-049/SD-015/MECH-229/MECH-230) non_contributory+substrate_ceiling+pending_retest -- foraging-competence/benefit-contact ceiling (~0.2% consumption, C6 dissoc 0.0 all seeds); author-stamped weakens overridden; narrow_supports_flag=true (MECH-229 has no genuine multi-resource support left); substrate AMEND SD-049-PHASE-2. V3-EXQ-632 (MECH-230) non_contributory+substrate_ceiling+pending_retest -- seed42 CLEAN positive (z_goal_norm 3.0115 at contact, persists, absent under ablation) but 2/3 seeds zero contact; CORRECTS recorded gap (foraging-competence upstream, not goal-projection wiring); substrate AMEND scaffolded_sd054_onboarding (+MECH-230 unblocks). V3-EXQ-634 (claim_ids=[], diagnostic, weights no score) non_contributory+substrate_ceiling -- nursery readiness: G0 forced-feed positive control PASS 3/3, G1/G2/G3 (wean-to-wild) FAIL; substrate_not_engaged; substrate AMEND scaffolded_sd054_onboarding (strengthen P0/P1 survival-foraging; keep ready=false; do NOT queue 603f). V3-EXQ-610c (INV-074/MECH-333/MECH-334) non_contributory+measurement_test_design_defect (manifest)+pending_retest -- HARNESS defect not env: policy never trained, crystallize freezes untrained heads, ewc_penalty never in loss -> crystallization behavioral no-op; INV-074 universal invariant NOT weakened; substrate_queue action=none; routed to /queue-experiment 610d trained-policy redesign. PASS: V3-EXQ-633 (MECH-094, evidence) supports -- sim-vs-real write-gate discriminative pair clean 3/3 (gate_on contamination 0.0 vs gate_off 0.99999; confab 0.0 vs 0.64; routing MI 0.693 vs 0.0); corroborates already-stable MECH-094, addresses n=1 replication gap; no status change. V3-EXQ-635 (claim_ids=[], diagnostic) PASS -- modulatory-bias-selection-authority readiness: WITHIN_CLASS lever now has genuine committed-selection authority (entropy 0.87->1.31, lift +0.446, harm 0.15->0.097, 71 auth ticks) validating the substrate landed today; VIGOR+CURIOSITY arms INVALID_HARNESS (degenerate upstream bias, not substrate failures). Promotion/demotion: 1 pending_user item MECH-306 -> hold_pending_v3_substrate (v3_pending; validation V3-EXQ-627 queued but not landed); chip spawned to investigate+land 627. claims.yaml: dated notes + epistemic_category substrate_ceiling + pending_retest_after_substrate applied to SD-049/SD-015/MECH-229/MECH-230 (514l/632) and pending_retest to INV-074/MECH-333/MECH-334 (610c); claims.json rebuilt (662); index rebuilt (1200 runs); manifests re-tagged (flat+nested). substrate_queue AMENDs applied (SD-049-PHASE-2 + scaffolded_sd054_onboarding x2)."
+    },
+    {
+      "timestamp_utc": "2026-06-03T19:57:16Z",
+      "session_label": "governance-cycle-20260603T1946Z",
+      "reviewed_run_ids": [
+        "v3_exq_610d_inv074_crystallization_necessity_20260603T173519Z_v3",
+        "v3_exq_634b_scaffolded_nursery_consolidation_readiness_20260603T183754Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_610d_inv074_crystallization_necessity",
+        "v3_exq_634b_scaffolded_nursery_consolidation_readiness",
+        "v3_exq_634b_scaffolded_nursery_consolidation_readiness_20260603T183754Z_v3"
+      ],
+      "subject": "/governance cycle 2026-06-03 (evening, 2nd). 2 pending FAILs walked; both had confirmed same-day failure-autopsy artifacts; user-approved (AskUserQuestion) to apply. V3-EXQ-610d (INV-074/MECH-333/MECH-334, supersedes 610c) non_contributory + measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-610d_2026-06-03): indexer had applied a blanket weakens (manifest lacked evidence_direction); corrected to non_contributory per-claim on flat+nested manifests. Root cause IDENTICAL to 610c and HARNESS-level not env: gated policy never trained (no policy_optimizer.step()), crystallize() freezes never-trained heads, expansion optimizer never stepped, ewc_penalty() never in loss -> crystallization a behavioral no-op; D1 -0.013, D2 +0.047 below 0.10 floor, both arms near-uniform. PROCESS FINDING: 610c autopsy prescribed train-policy+step-expansion+add-ewc_penalty for 610d; 610d implemented none (silent prescription drop). 8th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c/d). INV-074 universal invariant NOT weakened; substrate_queue action=none (env substrate already landed, partially worked +0.047); routed to /queue-experiment 610e (trained-policy redesign + pre-run assertion). pending_retest_after_substrate retained; epistemic_category substrate_ceiling unchanged. Dated notes added to INV-074/MECH-333/MECH-334. V3-EXQ-634b (claim_ids=[], diagnostic, weights no score) non_contributory + substrate_ceiling/measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-634b_2026-06-03): scaffolded-nursery consolidation-readiness. Manifest already non_contributory. VALIDATED the consolidation half (G0 forced-feed PASS 3/3, G0b Stage-0b retention PASS 3/3 0.98-0.99, n_decay_only_updates=0 -> protected-window+contact-gating amend fixes 634 decay washout). Remaining blocker: contact-gating contact_threshold(1e-6) decoupled from GoalState seeding benefit_threshold(0.1-effective); wild benefit ~0.03 sub-threshold so foraging seed 43 (475 contact-refresh calls) decayed z_goal to 4.5e-05 while non-foraging seed 42 passed G3 on the frozen nursery trace (G3 anti-correlated with foraging). substrate AMEND scaffolded_sd054_onboarding (reconcile thresholds + strengthen P0/P1 + 632-style consumption-event-gated readout; keep ready=false; do NOT queue 603f). Promotion/demotion: 0 pending_user items (all applied). claims.json rebuilt (662); index rebuilt (1202 runs; 610d blanket-weakens warning cleared). goal_pipeline_plan.md + commitment_closure_plan.md DEFERRED in Step 5b (held by active gap7/gap8/gap4 sessions)."
     }
   ]
 }

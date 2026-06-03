@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "scaffolded-sd054-developmental-window-amend-20260603T1520Z",
-  "last_updated_utc": "2026-06-03T17:00:38Z",
+  "last_updated_utc": "2026-06-03T20:02:33Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -3528,9 +3528,15 @@
           "experiment_type": "v3_exq_634_scaffolded_nursery_substrate_readiness",
           "metric": "substrate_gate_passed=false (G0 forced-feed z_goal PASS 3/3 at 0.40-0.45; G1 P1-survival 1/3, G2 P2-contact 1/3, G3 P2-z_goal 0/3)",
           "target": "G1 P1-survival >=2/3 AND G2 P2-contact>0 >=2/3 AND G3 P2-z_goal>0.4 >=2/3 (G0 already met)"
+        },
+        {
+          "run_id": "v3_exq_634b_scaffolded_nursery_consolidation_readiness_20260603T183754Z_v3",
+          "experiment_type": "v3_exq_634b_scaffolded_nursery_consolidation_readiness",
+          "metric": "substrate_gate_passed=false; G0 3/3 + G0b retention 3/3 (consolidation amend VALIDATED, decay_only=0) but G1 P1-survival 1/3 and G3 P2-z_goal 1/3; G3 anti-correlated with foraging (seed42 passes with 0 contact via protected nursery trace; seed43 475 contact-refresh calls -> z_goal 4.5e-05). Root cause: contact_threshold(1e-6) decoupled from seeding benefit_threshold(0.1-effective); wild benefit ~0.03 sub-threshold.",
+          "target": "substrate_gate_passed=true (G0+G0b+G1+G2+G3 each >=2/3) with mature-test z_goal read at genuine consumption events; >=2/3 seeds reach self-sustaining wild contact AND seed a persistent z_goal above the consumption-gated acceptance threshold."
         }
       ],
-      "implementation_hint": "Use SD-054 reef + bipartite-horizontal substrate (landed 2026-05-04, V3-EXQ-521 + V3-EXQ-522 PASS) as start-state distribution for P0+P1 training so the agent inhabits goal-rich states during training instead of dying at P0 RV-not-converging on the target env. P0: freeze goal-pipeline writes (use_mech307_conjunction=False, use_mech295_liking_bridge=False) so encoder + E2 + E3 warm up on SD-054 spatial structure without goal-pipeline gating its own training data. P1: anneal mech295_min_drive_to_fire 1.0 -> 0.01 and mech307_conjunction_z_beta_threshold 0.6 -> 0.3 over a curriculum window. P2: measurement on trained agent. Follow-on /implement-substrate session writes the substrate-design memo (sibling pattern to e2_action_divergence_substrate_design.md) before code.",
+      "implementation_hint": "634b PROVED the Stage-0b protected window + contact-gating (G0b retention 3/3; n_decay_only_updates=0). The next blocker is two coupled gaps. (a) Benefit-magnitude/threshold mismatch: contact-gating skips only benefit<=scaffold_p2_contact_benefit_threshold(1e-6), but GoalState.update (goal.py:209-224) seeds z_goal only when effective_benefit = benefit_exposure * z_goal_seeding_gain(1.0) * (1 + drive_weight(2.0)*drive_trace) > benefit_threshold(0.1). Natural wild benefit obs_body[11] ~0.03 => effective_benefit <= ~0.09 < 0.1, so wild contact never fires the pull and the band (1e-6, ~0.1-effective) DECAYS the consolidated trace instead of refreshing it. Candidate levers (one or a combination, pick via a small sweep): raise z_goal_seeding_gain above 1.0; lower benefit_threshold below 0.1; apply drive_floor~0.9 (the EXQ-582a first-PASS arm, effective_benefit >= benefit*2.8); and/or raise the scaffold contact_threshold to the seeding floor so sub-seeding whiffs are PROTECTED (skipped) rather than decaying the trace. (b) Still-open foraging-competence half (634): strengthen/lengthen P0/P1 so >=2/3 seeds reach self-sustaining consumption (only seed 43 survives P1). (c) Test-design: redefine the mature-test z_goal acceptance readout to read AT genuine consumption events (632-style num_contact_events) rather than the forced-feed-calibrated frozen-peak G3>0.4, which is anti-correlated with foraging. Keep ready=false; do not queue 603f until a consumption-event-gated re-validation clears.",
       "implementation_log": [
         {
           "activation_smoke": "Full P0/P1/P2 pipeline runs end-to-end on default REEAgent at reduced budget (2/2/1 episodes x 20 steps); P0 goal pipeline freeze + reef-half spawn confirmed; P1 anneal lands at min_drive_to_fire=0.010 + hfa=0.70 per memo; P2 frozen-policy eval completes without crash.",
@@ -3607,24 +3613,24 @@
           "note": "Developmental-window / protected-goal consolidation amend (harness-layer; no ree_core/goal.py/claims.yaml change). Routed by the V3-EXQ-634 design-error review: GoalState.update() always decays the persistent z_goal attractor and REEAgent.reset() never resets goal_state, so the prior scaffold's every-step update_z_goal in P1 (seed_goal) + P2 (_eval) washed out the Stage-0 trace on unfed steps before ecological contact -- 634 tested 'stay goal-active while fed-then-starved under decay-only' not 'form->consolidate->learn contact'. MECH-295/307 freezes only gate the consumer pathway, not the attractor. FIX (all no-op-default flags, bit-identical OFF): (1) run_stage0b_consolidation protected window (update_z_goal not called -> no decay-only washout; records retention_ratio, gate 0.75); (2) scaffold_contact_gated_goal_updates -> P1/P2 only update on validated contact, unfed steps skipped; (3) goal-write-mode constants + n_contact_refresh/n_decay_only/n_skipped_protected diagnostics. 739 contracts (C7 group +5) + 7/7 preflight PASS; 634 dry-run unchanged; smoke: Stage-0b retention=1.0, Stage-0 trace survives to P2 under contact-gating vs decays to ~0 legacy. Claim-free."
         }
       ],
-      "last_seen_session": "governance-cycle-20260603T165935Z",
+      "last_seen_session": "governance-cycle-20260603T1946Z",
       "priority": 1,
       "ready": false,
       "sd_id": "scaffolded_sd054_onboarding",
       "sd_id_suggested_in_autopsy": "SD-XXX-scaffolded-sd054-onboarding",
-      "status": "amend_foraging_competence_pending_implementation_readiness_failed_634",
-      "title": "Scaffolded SD-054 onboarding for goal-pipeline training regime",
+      "status": "amend_foraging_competence_plus_seeding_calibration_pending; 634b validated consolidation half (G0/G0b 3/3, decay_only=0)",
+      "title": "Reconcile contact-gating contact_threshold with the z_goal seeding firing threshold (so genuine wild contact seeds z_goal) + strengthen/lengthen P0/P1 foraging-competence scaffold; redefine mature-test z_goal readout to consumption-event-gated (632-style)",
       "unblocks_claims": [
-        "Q-045",
-        "MECH-313",
+        "ARC-030",
+        "MECH-117",
+        "MECH-230",
         "MECH-260",
         "MECH-295",
         "MECH-307",
-        "MECH-117",
-        "SD-049 Phase 2 behavioural",
-        "ARC-030",
+        "MECH-313",
         "Q-040",
-        "MECH-230"
+        "Q-045",
+        "SD-049 Phase 2 behavioural"
       ],
       "current_pending_amend": {
         "action": "amend",

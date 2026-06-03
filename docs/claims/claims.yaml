@@ -34126,6 +34126,26 @@
     [2026-06-03 IGW-20260603-032 retest queued]: V3-EXQ-610d queued (supersedes 610c; post-Phase-3-enrichment
     retest). 2-arm discriminative (control vs test), 3 seeds, 2500 episodes. Claims: INV-074, MECH-333, MECH-334.
     pending_retest_after_substrate cleared pending V3-EXQ-610d completion.
+
+    [2026-06-03 governance: V3-EXQ-610d non_contributory + measurement_test_design_defect (confirmed
+    failure_autopsy_V3-EXQ-610d_2026-06-03)]: V3-EXQ-610d (crystallization-necessity retest, supersedes 610c)
+    FAILed D1 (-0.013) and D2 (+0.047, below the 0.10 floor) with both arms near-uniform (entropy 1.06-1.12 of
+    1.609 max). Root cause IDENTICAL to 610c and HARNESS-level, not env: the gated policy is never trained
+    (requires_grad=False, "pass # Omit policy training"; no policy_optimizer.step()), crystallize() freezes
+    never-trained heads, the rebuilt expansion optimizer is never stepped, and ewc_penalty() is never added to
+    the loss, so crystallization is a behavioral no-op and INV-074's predicted WTA monostrategy collapse is
+    never instantiated -- D1/D2 non-discriminative by construction. The IGW-023 Phase-3 destabilising pressure
+    DID partially work (control collapse rose from ~0 in 610b to +0.047) but cannot collapse an untrained
+    policy. PROCESS FINDING: the 610c autopsy prescribed train-policy + step-expansion-params + add-ewc_penalty
+    for 610d; 610d implemented none (silent prescription drop, near-copy of 610c). 8th non_contributory
+    crystallization-arm result (543h/i/k/l + 610a/b/c/d): a functional, trained, WTA-prone policy has never been
+    placed under the crystallization mechanism. INV-074 (universal invariant, lit_conf 0.82) NOT weakened, no
+    claim falsified; epistemic_category substrate_ceiling unchanged; pending_retest_after_substrate retained.
+    Routed to /queue-experiment redesign V3-EXQ-610e (real REINFORCE + stepped policy_optimizer, stepped
+    expansion_parameters() post-crystallization, residue_field.ewc_penalty() summed into the loss), with a
+    pre-registered substrate-ceiling fork (a trained-policy control that still does not collapse strengthens
+    MECH-341/MECH-313, not weakens INV-074) and a mandatory pre-run assertion that the three fixes are present
+    so the prescription is not dropped a third time.
   epistemic_category: substrate_ceiling
 
 - id: MECH-333
@@ -34228,6 +34248,16 @@
     crystallized arm (MECH-333/334) will preserve Phase-2 diversity. Smoke test PASS: ree-v3/experiments/
     test_infant_curriculum_phase3.py verifies Phase-3-specific kwargs. pending_retest_after_substrate retained
     pending V3-EXQ retest with new Phase-3 pressure.
+
+    [2026-06-03 governance: V3-EXQ-610d non_contributory + measurement_test_design_defect (confirmed
+    failure_autopsy_V3-EXQ-610d_2026-06-03)]: V3-EXQ-610d (supersedes 610c) reproduced 610c's HARNESS no-op
+    verbatim: the gated policy is never trained (no policy_optimizer.step()), crystallize() freezes never-trained
+    heads, expansion optimizer never stepped, ewc_penalty() never added to the loss -> the open-phase/closure
+    mechanism is never exercised and D1/D2 are non-discriminative by construction (D1 -0.013, D2 +0.047 below the
+    0.10 floor; both arms near-uniform entropy 1.06-1.12). The 610c autopsy's three prescribed fixes were
+    silently dropped in the 610d redesign (process finding). MECH-333 (v3_pending, substrate_ceiling) NOT
+    weakened. Routed to /queue-experiment V3-EXQ-610e (trained-policy redesign + stepped expansion_parameters +
+    ewc_penalty in loss + pre-run assertion). pending_retest_after_substrate retained.
   implementation_note: >
     PARTIAL implementation 2026-05-17 -- option (E) plasticity injection
     (Nikishin 2023 NeurIPS) only. ree-v3 GatedPolicy.crystallize() adds a
@@ -34401,6 +34431,16 @@
     [2026-06-03 IGW-20260603-032 retest queued]: V3-EXQ-610d queued (supersedes 610c; post-Phase-3-enrichment
     retest). 2-arm discriminative (control vs test), 3 seeds, 2500 episodes. Claims: INV-074, MECH-333, MECH-334.
     pending_retest_after_substrate cleared pending V3-EXQ-610d completion.
+
+    [2026-06-03 governance: V3-EXQ-610d non_contributory + measurement_test_design_defect (confirmed
+    failure_autopsy_V3-EXQ-610d_2026-06-03)]: V3-EXQ-610d (supersedes 610c) reproduced 610c's HARNESS no-op
+    verbatim: policy never trained, crystallize() freezes never-trained heads, expansion optimizer never stepped,
+    ewc_penalty() never added to the loss -> the three-brake closure mechanism is never exercised; D1/D2
+    non-discriminative by construction (D1 -0.013, D2 +0.047 below the 0.10 floor; both arms near-uniform). The
+    610c autopsy's three prescribed fixes were silently dropped in the 610d redesign (process finding). MECH-334
+    (PNN/Lynx1/NgR1 three-brake closure, lit_conf 0.78) NOT weakened. Routed to /queue-experiment V3-EXQ-610e
+    (trained-policy redesign + stepped expansion_parameters + ewc_penalty in loss + pre-run assertion).
+    pending_retest_after_substrate retained; epistemic_category substrate_ceiling unchanged.
   epistemic_category: substrate_ceiling
   implementation_note: >
     IMPLEMENTED 2026-05-17 (primary closure mechanism). ree-v3:

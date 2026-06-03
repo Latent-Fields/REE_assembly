@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_161_q024_trajectory_representation_triple
 
-Generated: `2026-06-03T17:19:44.419058Z`
+Generated: `2026-06-03T19:56:19.970633Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
