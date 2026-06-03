@@ -1,133 +1,248 @@
-# Morning Agenda — 2026-05-29
+# Morning Agenda — 2026-06-03
 
-Generated: 2026-05-29T04:21:55Z
+Generated: 2026-06-03T04:21:43Z
 
 ---
 
 ## Queue Status
-- Total pending: **2** (DLAPTOP-4: 0 | PC: 0 | EWIN: 0 | cloud-2: 1 | cloud-3: 1 | any: 0)
-- 1 additional item claimed: `V3-EXQ-612` on `DLAPTOP-4.local` (claimed 2026-05-28T17:24Z, ~11h ago — stale claim worth checking).
-- **ALERT: Queue low** — fewer than 3 pending experiments; both remaining items are 1-minute Phase-3-cutover smoke retries (`V3-EXQ-612c`, `V3-EXQ-612d`), not scientific work.
-- Affinity note: 0 scientific experiments queued anywhere. The next-step funnel is bottlenecked at `/implement-substrate` and `/queue-experiment` upstream of the runners — see "Active Plans Heartbeat" below.
+- **Total pending: 0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
+- **ALERT: Queue empty.** Only one item in the queue file — `V3-EXQ-614d`, currently `claimed`
+  (running) by `DLAPTOP-4.local` since 2026-06-03T04:04Z. Nothing is queued behind it.
+- The whole 2026-06-02 experiment wave (627, 604a, 629, 630, 628, 603e, 514l, 610c) has completed
+  and drained into the review queue below. **The 5-machine fleet will go idle as soon as 614d
+  finishes** unless new experiments are queued. Several FAILs below route to retests / autopsies —
+  good candidates to refill the queue.
 
 ---
 
-## Experiments Awaiting Review (3 indexed / 2 runner-only)
+## Experiments Awaiting Review (11 indexed / 1 unclaimed manifest)
 
-### V3-EXQ-611b — `v3_exq_611b_mech341_retune_6arm` — **PASS**
-- **Claims tested:** MECH-341 (candidate, v3_pending, implementation_phase=v3; not yet in claim_evidence index — this is its first run after the 2026-05-28 retune).
-- **Key metrics:** evidence_direction `non_contributory` (note: PASS but non-contributory — substrate-readiness diagnostic, not behavioural evidence).
-- **Classification:** diagnostic (substrate-readiness — primary acceptance gate was C1: `n_stratified_fired > 0` in OPT2/BOTH arms).
-- **Governance impact if confirmed:** confirms the call-site expansion landed by `implement-substrate-mech-341-retune-20260528T165000Z` works; opens the door to a behavioural falsifier (B_only / ablate_B / ALL_ON), which would then be evidence for MECH-341 under R2.c.
-- **Supersedes:** V3-EXQ-611 — entropy_bias_scale=0.1 + stratified_select gated to committed-only branch produced `n_stratified_fired=0` across 3 seeds. 611b fixes call-site + sweeps 6 arms (3 option groups x 2 entropy scales).
+> 2 PASS, 9 FAIL, 0 runner-only (ERROR/UNKNOWN). Nothing marked reviewed — this is research-only.
 
-### V3-EXQ-598b — `v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation` — **FAIL**
-- **Claims tested:**
-  - **SD-033a** (candidate, v3_pending; exp_conf 0.873, lit_conf 0.878, quadrant `confirmed_established`; 14 supports / 1 weakens / 9 mixed across 24 prior entries) — per-claim direction: **supports** (criterion that bears on SD-033a passed).
-  - **MECH-262** (candidate, v3_pending; exp_conf 0.787, lit_conf 0.876, quadrant `confirmed_established`; 7 supports / 2 weakens / 4 mixed across 13 prior entries) — per-claim direction: **weakens**.
-- **Key metrics:** overall outcome FAIL, evidence_direction `mixed` (per-claim split is the load-bearing reading).
-- **Classification:** evidence (multi-claim ablation; tests both claims simultaneously).
-- **Governance impact if confirmed:** would add 1 more support to SD-033a (already confirmed_established) and 1 weakens to MECH-262 — MECH-262's exp_conf would dip slightly but stay well clear of demotion territory. Neither claim is currently up for promotion (both V3-pending-gated).
-- **Supersedes:** V3-EXQ-598a (bias-head ablation iteration).
+### PASS (verify & close)
 
-### V3-EXQ-591 — `v3_exq_591_isef005_curriculum_vs_flat` — **FAIL**
-- **Claims tested:** **ARC-046** (candidate, epistemic_category `substrate_ceiling`; exp_conf 0.322, lit_conf 0, quadrant `speculative`; 0 supports / 1 weakens across 1 prior entry — this run was the prior entry).
-- **Key metrics:** evidence_direction `does_not_support` (per-claim same).
-- **Classification:** evidence (claim-tagged), but ARC-046 is `substrate_ceiling` -> promote/demote suppressed; supporting evidence requires substrate enrichment, not more experiments on the current substrate.
-- **Governance impact if confirmed:** adds a second `does_not_support` entry; under `substrate_ceiling` dispatch this does not move the recommendation — the routing should remain "substrate_ceiling V3, prereqs still gating" per the 2026-05-27 V3-EXQ-591 autopsy cluster reading.
-- **Supersedes:** none in queue; this was the latest of the 591 cluster (610 ERRORed, no further successor planned per autopsy section 7 prereqs).
+#### V3-EXQ-627 — mech306_sustained_drive_trace_validation — **PASS** (supports)
+- **Claims tested:** MECH-306 (`candidate_substrate_landed`, exp_conf 0.774, lit 0.0, quadrant
+  *novel_discovery*; genuine_exp 1 → 1 supports). v3_pending=True.
+- **Key metrics:** A1 eff_benefit_on_contact 0.106 (>0.08 ✓), A2 seedings fired 3/3 seeds ✓,
+  A3 z_goal_active 0.159 (>0.05 ✓), A4 OFF-arm zero seedings ✓. All four acceptance criteria pass.
+- **Classification:** evidence (2-arm drive_floor ablation: SUSTAINED 0.9 vs OFF 0.0).
+- **Governance impact if confirmed:** First governance-weighting evidence for MECH-306 (lineage
+  582a was diagnostic, claim_ids=[]). **BUT** MECH-306 is V3-pending — the recommendation queue
+  already holds it `hold_pending_v3_substrate` (see Governance Agenda). The PASS strengthens the
+  case but cannot promote past the V3-pending gate.
+
+#### V3-EXQ-063a — arc029_committed_mode_harm_outcomes_rc_gate — **PASS** (supports)
+- **Claims tested:** ARC-029 (`provisional`, exp_conf 0.641, lit 0.814, quadrant
+  *confirmed_established*; genuine_exp 3 = 1 supports / 1 mixed / 1 weakens).
+- **Key metrics:** harm_gap_stable +0.0205, harm_gap_volatile +0.0106 (committed-mode harm
+  outcomes better than ablated R-c gate). gap_reduction_ratio populated.
+- **Classification:** evidence. Supersedes v3_exq_063 (committed-mode harm outcomes).
+- **Governance impact if confirmed:** Adds a third genuine ARC-029 entry, tilting a previously
+  split record (1/1/1) toward support. Note the **across-tick axis** of this same revalidation
+  is covered separately by V3-EXQ-630 below (which FAILed mixed) — read the two together before
+  any ARC-029 disposition.
+
+### FAIL (action required)
+
+#### V3-EXQ-514l — sd049_phase3_mech229_wanting_liking_identity — **FAIL** (weakens)
+- **Claims tested:** SD-049 (candidate, exp 0.325), SD-015 (candidate, exp 0.615), MECH-229
+  (provisional, exp 0.703), MECH-230 (provisional, exp 0.662). All v3_pending except SD-015/229/230.
+- **Key metrics:** C2b probe_acc_neighborhood FAIL, C2c n_identity_samples_consumption FAIL;
+  C0/C1a/C1b/C2a/C3a/C3b/C4 pass. Mixed criterion outcome but overall weakens.
+- **Classification:** evidence. Supersedes V3-EXQ-514k.
+- **Governance impact if confirmed:** This is the **only genuine SD-049 entry and it weakens**
+  (exp_conf 0.325). A multi-claim FAIL — check `evidence_direction_per_claim` so MECH-229/230
+  (both currently provisional, healthy records) aren't dragged down by SD-049's neighborhood-probe
+  failure. **Per-claim review needed** before disposition.
+
+#### V3-EXQ-610c — inv074_crystallization_necessity — **FAIL**
+- **Claims tested:** INV-074 (candidate, exp 0.375, epi *substrate_ceiling*), MECH-334 (candidate,
+  exp 0.375, substrate_ceiling), MECH-333 (candidate, exp 0.325, quadrant *speculative*, lit 0.0).
+- **Key metrics:** d1_crystallization_preserves_diversity = **false** (delta −0.013);
+  d2_control_shows_collapse = **false** (delta +0.046). The crystallization mechanism did not
+  preserve diversity and the control did not collapse — the predicted contrast did not appear.
+- **Classification:** evidence. Supersedes V3-EXQ-610b (third iteration: 610a ERROR → 610b → 610c).
+- **Governance impact if confirmed:** INV-074 now has 2 genuine entries, both weakens. With
+  substrate_ceiling epistemic category, the right response is **substrate enrichment, not another
+  retest on the same substrate** — candidate for `/failure-autopsy` rather than a `610d` re-queue.
+
+#### V3-EXQ-630 — arc029_acrosstick_nav_competence_ecological — **FAIL** (mixed)
+- **Claims tested:** ARC-029 (provisional, exp 0.641), MECH-090 (active, exp 0.815, quadrant
+  *confirmed_established*).
+- **Key metrics:** crit1/crit2/crit3 all pass=1.0; arm2 suppress_delta 0.964 (degrades 1.0→0.036
+  committed-rate on readiness drop — the across-tick suppression DID fire). Overall tagged mixed.
+- **Classification:** evidence. First ecological across-tick run (the axis 063a deliberately left
+  off). The suppress-on-degrade behaviour worked; the mixed/FAIL tag is worth reading against the
+  063a PASS — together they may actually be a net-positive ARC-029 story. **Review the two
+  ARC-029 runs jointly.**
+
+#### V3-EXQ-604a — q044_mech314_subflavour_ablation_sd056_substrate — **FAIL** (does_not_support)
+- **Claims tested:** Q-044 (open, exp 0.479), MECH-314 + 314a/b/c (candidate_substrate_landed,
+  exp 0.324). All v3_pending / impl_phase v3.
+- **Key metrics:** C0 PASS (cand_world_pairwise_dist guard cleared, 2 seeds/arm — substrate is
+  non-degenerate this time). But **selected_entropy identical across all 5 arms (0.7146)** —
+  curiosity ON did not differ from OFF. C1 fails: no behavioural separation.
+- **Classification:** evidence. Supersedes V3-EXQ-604 (which FAILed non_contributory on degenerate
+  substrate). 604a fixed the substrate (E2 trained online w/ SD-056 contrastive loss) but the
+  curiosity ablation still shows no effect.
+- **Governance impact if confirmed:** MECH-314's only genuine entry now weakens on a *valid*
+  substrate. The note's pre-registered reading: C0-pass + no-C1-separation = curiosity sub-flavours
+  are **not selection-level load-bearing** as implemented. Strong signal — route to discussion,
+  not an automatic re-queue.
+
+#### V3-EXQ-624a — arc068_mech320_niv_salamone_dissociation — **FAIL** (non_contributory)
+- **Claims tested:** MECH-320 (candidate_substrate_landed, exp 0.0, lit 0.895), ARC-068
+  (candidate, exp 0.0, lit 0.799). Both v3_pending.
+- **Key metrics:** n_windows=0, pearson_r_v_t_action_density=0.0, gate_product_mean=0.0 across
+  arms — action_density saturated at 1.0 (no noop windows formed). The vigor/movement-cost
+  manipulation produced no measurable vigor dynamics.
+- **Classification:** evidence (intended) but landed **non_contributory** — harness did not
+  generate the dissociation regime. Supersedes V3-EXQ-624.
+- **Governance impact:** No movement on MECH-320/ARC-068 (both still exp 0.0). Route to
+  `/diagnose-errors` on the Niv-vs-Salamone harness (window formation / action-density saturation),
+  not a falsification.
+
+#### V3-EXQ-629 — mech342_ecological_maintenance_release_evidence — **FAIL** (non_contributory)
+- **Claims tested:** (no claim tags in manifest; predecessor V3-EXQ-592g). Intended MECH-342.
+- **Key metrics:** C1_baseline_commits = **0 commits in every arm** (off/on × healthy/degraded);
+  C2 degradation occurred (6782/6216 ticks ✓). Note: *"Harness invalid: the agent did not achieve
+  natural commitment in P2 — without commitment there is nothing to release. Not a falsification
+  of MECH-342."*
+- **Classification:** evidence (intended) → non_contributory (harness invalid). This was the
+  ecological evidence run MECH-342 needs to move off candidate. **It did not deliver** — needs
+  P0-convergence / commit-entry-gating fix before re-running. Route to `/diagnose-errors`.
+
+#### V3-EXQ-603e — q045_mech313_mech260_scaffolded_sd054 — **FAIL** (non_contributory)
+- **Claims tested:** Q-045 (open, exp 0.512, substrate_ceiling), MECH-313 (candidate_substrate_landed,
+  exp 0.512, substrate_ceiling), MECH-260 (candidate, exp 0.937, quadrant *confirmed_established*).
+- **Key metrics:** c1_q045_both_beats_off=true, c3_each_alone_beats_off=true, but
+  **c2_mutually_load_bearing=false**; ARM_3 reef_fraction 0.0 / z_goal_peak 0.0 (no goal formed in
+  the scaffolded arm). Tagged non_contributory.
+- **Classification:** diagnostic. Supersedes V3-EXQ-603d.
+- **Governance impact:** non_contributory — does not weight. Q-045/MECH-313 are substrate_ceiling
+  (no narrow_open_question, no more same-substrate retests). MECH-260 already strong (0.937).
+
+#### V3-EXQ-626a — goal_pipeline_developmental_window_diagnostic — **FAIL**
+- **Claims tested:** (no claim tags; diagnostic). Supersedes v3_exq_626.
+- **Key metrics:** P0 positive control fired in only 1/3 seeds (z_goal_peak [0.0, 0.0, 0.192],
+  floor 0.1); axis_criteria_trusted=false. The diagnostic discriminates harness-bug vs genuine
+  formation regression — the weak positive control means the axis criteria can't be trusted.
+- **Classification:** diagnostic, claim_ids=[]. Goal-pipeline developmental-window question
+  (relates to goal_pipeline_plan GAP-2, see Active Plans). Route to `/diagnose-errors` on the
+  positive control.
+
+#### V3-EXQ-625c — sd037_axis_b_phase1b_dynamic_crossings_mech341 — **FAIL** (non_contributory)
+- **Claims tested:** (no claim tags). Supersedes V3-EXQ-625b. SD-037 axis-b / MECH-341 territory.
+- **Classification:** diagnostic, non_contributory — does not weight. SD-037 axis-b is tracked in
+  its own plan doc (`sd_037_axis_b_*` — currently at an acceptance-gate FAIL on the C3 sustained
+  window).
+
+### Unclaimed manifest (PASS, no claim tags in evidence index)
+
+#### V3-EXQ-628 — mech319_simulation_mode_rule_gate_replay_falsifier_evidence — **PASS** (supports)
+- Manifest stem `v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z`
+  is on disk PASS/supports but its run_id is absent from `claim_evidence.v1.json` (non-standard
+  `_v3_<ts>` stem ordering may be why it didn't link). MECH-319 is candidate_substrate_landed,
+  v3_pending. **If this is meant to be MECH-319 evidence, the link is not registering** — worth a
+  look during `/governance` (mark via `discussed_experiment_dirs`, or fix the manifest stem so the
+  indexer links it).
 
 ---
 
-## Errors to Diagnose (1 new / 13 historical without queued fix)
+## Errors to Diagnose (0 actionable from ERROR log)
 
-**New (from this pending_review):**
-- **V3-EXQ-610**: experiment_type unknown (script `?`) — ERROR — needs **/diagnose-errors**.
-  - Root cause already known: queue-validation cascade tied to the 2026-05-27 fleet wedge (queue entry committed without script, see queue-atomicity-fix-c-d-deploy session 2026-05-28T07:13Z for fixes A-D landed). The wedge is resolved; the ERROR row may simply need to be marked discussed (`discussed_experiment_dirs`) once user confirms.
-
-**Has queued fix (no action needed):**
-- **V3-EXQ-612**: ERROR — fixes already queued as V3-EXQ-612c (cloud-2, pending) and V3-EXQ-612d (cloud-3, pending).
-
-**Historical undiagnosed ERRORs (no queued or completed successor found):**
-- V3-EXQ-263, V3-EXQ-244a, V3-EXQ-250a, V3-EXQ-253b, V3-EXQ-254b, V3-EXQ-325c, V3-EXQ-385a, V3-EXQ-418j, V3-EXQ-445d, V3-EXQ-449c, V3-EXQ-455a, V3-EXQ-476, V3-EXQ-495, V3-EXQ-538, V3-EXQ-544, V3-EXQ-606a, V3-EXQ-540c — most are from April / early May, many overtaken by later substrate redesigns. Worth a sweep to mark stale ones discussed and pull any that still gate live claims.
-
----
-
-## Governance Agenda (0 pending_user recommendations)
-
-The recommendations file lists **114 decision rows**, all with `decision_status: applied`. No row is awaiting user input. Distribution of standing recommendations:
-
-| Recommendation | Count |
-|---|---:|
-| `hold_pending_v3_substrate` | 77 |
-| `hold_candidate_resolve_conflict` | 28 |
-| `narrow_open_question` | 9 |
-
-There is no governance work blocked on a decision today. The 28 `hold_candidate_resolve_conflict` rows are the next promotion-pressure cluster (conflict_ratio > 0.30 keeping them off the promotion path) — a future session could pick one and run a targeted resolution experiment, but that is **scoped work, not surfaced as a pending decision**.
+- Pipeline reports **0 runner-only (ERROR/UNKNOWN) pending**.
+- `runner_status/*.json` across the cloud machines holds **129 historical ERROR rows** (legacy).
+  Spot-check of the most recent ones confirms successors/completed manifests exist:
+  598→598b, 606a→606, 610a→610b/610c, 612b→612 (phase3 smoke), 621→621a, 483b→483e.
+- A few older rows (599, 600, 540c) have no on-disk manifest but predate the current wave — legacy
+  residue, not actionable this cycle. **Nothing requires `/diagnose-errors` from the ERROR log
+  itself** — but note three FAIL results above (624a, 629, 626a) are *non_contributory / invalid
+  harness* and DO warrant `/diagnose-errors` on their harnesses.
 
 ---
 
-## Active Plans Heartbeat (8 plans)
+## Governance Agenda (1 pending_user recommendation)
+
+- **MECH-306** (`candidate_substrate_landed`) — Recommendation: **hold_pending_v3_substrate**
+  - Evidence: 1 supporting / 0 opposing (genuine_exp 1; exp_conf 0.774, quadrant *novel_discovery*).
+  - This is the claim V3-EXQ-627 just PASSed (above). The fresh PASS is real support, but the
+    V3-pending gate holds promotion regardless of evidence count. Decision for the user: does the
+    627 PASS + substrate-landed status justify clearing the v3_pending flag, or does MECH-306 still
+    need an *ecological* evidence run (627 is a 2-arm ablation)?
+- All other 109 decision-queue rows are `applied` (77 hold_pending_v3_substrate, 25
+  hold_candidate_resolve_conflict, 9 narrow_open_question) — no new action.
+
+---
+
+## Active Plans Heartbeat (7 active plans)
 
 | Plan | In-flight | Blocked | Paused | Stale rows | Last decision |
-|---|---:|---:|---:|---:|---|
-| `arc_062_rule_apprehension_plan` | 4 | 0 | 0 | 5 | 2026-05-18 |
-| `behavioral_diversity_isolation_plan` | -- | -- | -- | -- | -- |
-| `commitment_closure_plan` | 2 | 1 | 0 | 2 | 2026-05-28 |
-| `goal_pipeline_plan` | 1 | 1 | 0 | 2 | 2026-05-20 |
-| `infant_substrate_plan` | 0 | 0 | 0 | 0 | 2026-05-21 |
-| `sd033_governance_plan` | -- | -- | -- | -- | -- |
-| `self_attribution_plan` | 0 | 3 | 0 | 3 | 2026-05-17 |
-| `sleep_substrate_plan` | 0 | 1 | 0 | 0 | 2026-05-17 |
+|---|---|---|---|---|---|
+| arc_062_rule_apprehension | 4 | 2 | 0 | 5 | 2026-05-18 |
+| commitment_closure | 2 | 1 | 0 | 2 | 2026-06-02 |
+| goal_pipeline | 1 | 1 | 0 | 1 | 2026-05-31 |
+| infant_substrate | 1 | 0 | 0 | 1 | 2026-05-21 |
+| sd033_governance | — | — | — | — | (table not auto-parsed — non-standard format) |
+| self_attribution | 0 | 3 | 0 | 2 | 2026-05-30 |
+| sleep_substrate | 0 | 1 | 0 | 0 | 2026-05-30 |
 
-Notes:
-- `behavioral_diversity_isolation_plan` and `sd033_governance_plan` did not match the `## Status table` heading pattern in this parser pass — they may use a different section header or table format. Worth a manual look if either is supposed to be active. (Multiple recent sessions touched `behavioral_diversity_isolation_plan` GAP-A/B/C/D rows yesterday, so it is in heavy use even if the table parser missed it.)
+**PLAN STALING: arc_062_rule_apprehension** — last decision logged 2026-05-18 (16 days ago) with
+4 phases in-flight and 5 stale rows. This plan needs a heartbeat. (Note: TASK_CLAIMS shows recent
+GAP-K owner_exq repointing 2026-06-02, so work *is* moving — the plan doc's decision log just isn't
+being updated to match.)
 
-**Stale rows (> 7 days since last_updated, status not done/deferred):**
+**arc_062_rule_apprehension stale rows:**
+- GAP-B (last 2026-05-21) — the load-bearing GAP-B re-falsifier flagged in the 2026-06-02 ARC-062
+  scoping memo as the next step (not yet queued).
+- GAP-D (last 2026-05-20), GAP-I (last 2026-05-10), GAP-J (last 2026-05-17), GAP-L (last 2026-05-18).
 
-`arc_062_rule_apprehension_plan`:
-- GAP-D — in-progress — last 2026-05-20
-- GAP-H — partial — last 2026-05-21
-- GAP-I — partial — last 2026-05-10
-- GAP-J — open — last 2026-05-17
-- GAP-K — in-progress — last 2026-05-10
+**commitment_closure stale rows:** GAP-1 (2026-05-20), GAP-8 (2026-05-08) — though plan was
+otherwise touched 2026-06-02 (GAP-4 → V3-EXQ-629 ecological run).
 
-`commitment_closure_plan`:
-- GAP-1 — in-progress — last 2026-05-20
-- GAP-8 — blocked — last 2026-05-08
+**goal_pipeline stale rows:** GAP-2 (2026-05-08) — relates to the 626a developmental-window
+diagnostic FAIL above.
 
-`goal_pipeline_plan`:
-- GAP-2 — blocked — last 2026-05-08
-- GAP-4 — in-progress — last 2026-05-20  *(note: a live MECH-090 R-c conjunction substrate is mid-implementation against GAP-4 — claim `implement-substrate-mech090-rc-conjunction-20260528T173828Z` is now stale-active at 10.7h; needs cleanup or commit landing).*
+**infant_substrate stale rows:** GAP-11 / EXQ-ISEF-002 (2026-05-21).
 
-`self_attribution_plan`:
-- GAP-1, GAP-2, GAP-3 — all blocked — last 2026-05-08 to 2026-05-11. Long-stalled cluster.
+**self_attribution stale rows:** GAP-2 (2026-05-08), GAP-3 (2026-05-08) — 3 of 5 rows blocked.
 
-**Plan-staling flags (no decision in > 14 days AND phases in-flight):** none. All in-flight plans have a decision-log entry within the last 12 days.
+> Note: sd033_governance_plan.md has no `## Status table` in the expected format, so its rows were
+> not auto-counted. Worth a manual glance if SD-033/OCD-axis work is on the agenda.
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-| # | Claim | Priority | Reasons | Existing entries |
-|---|-------|----------|---------|-----------------|
-| 1 | MECH-341 | medium | low_exp_conf, missing_literature_evidence | 0 |
-| 2 | ARC-046 | medium | low_exp_conf, missing_literature_evidence | 0 |
-| 3 | MECH-282 | medium | insufficient_experimental_replication, missing_literature_evidence | 0 |
-| 4 | Q-054 | low | no_evidence_for_open_question | 0 |
-| 5 | Q-055 | low | no_evidence_for_open_question | 0 |
+| # | Claim | Recommendation | Priority | Existing entries |
+|---|-------|----------------|----------|-----------------|
+| 1 | MECH-341 | collect_targeted_evidence | medium | 0 |
+| 2 | MECH-333 | collect_targeted_evidence (low_exp_conf + missing_lit) | medium | 0 |
+| 3 | ARC-046 | collect_targeted_evidence (low_exp_conf + missing_lit) | medium | 0 |
+| 4 | MECH-282 | paired exp + lit cycle | medium | 0 |
+| 5 | MECH-286 | paired exp + lit cycle | medium | 0 |
 
-MECH-341 (just had its first PASS in V3-EXQ-611b) and ARC-046 (lit_conf=0, 1 weakens, substrate_ceiling) are the two most actionable lit-pull candidates. None of the five have a `targeted_review_*` directory matched by simple name normalisation, so a fresh /lit-pull cycle would be additive on all five.
+12 literature-needed backlog items total (none high-priority; remainder low). MECH-333 also appears
+in today's 610c FAIL (exp 0.325, lit 0.0, quadrant *speculative*) — a lit pull would give it a
+parallel signal it currently lacks entirely.
 
 ---
 
 ## Serve.py Status
-- **RUNNING** on port 8000 (PID 54997).
+- **RUNNING** on port 8000 (PID 60138).
 
 ---
 
 ## Blocked Items
-
-- **Stale-active claim cleanup needed:** `implement-substrate-mech090-rc-conjunction-20260528T173828Z` (10.7h old, status `active`, holding `ree-v3/ree_core/policy/commit_readiness.py` + `agent.py` + `utils/config.py` + claims.yaml MECH-090 + substrate_queue + commitment_closure_plan GAP-4). And `igw-auto-igw-027-retest-after-substrate-arc-046-20260528T011947Z` (34.3h old, status `active`, on `ree-v3/experiment_queue.json`). Both were treated as cleared (stale > 6h) for this digest — confirm before resuming any conflicting work, and either land/close or explicitly clear them.
-- No governance collisions affected this run; `governance.sh` ran cleanly. Pipeline written: `pending_review.md`, `promotion_demotion_recommendations.md` (substrate-change section appended), `option_e_recommendations.md`, `closure_drift.md`.
-- Traceability validator emitted 121 developmental-claim warnings (claims missing register row reference) — not blocking, but a long-running drift the validator continues to flag.
+- **governance.sh exited 1** — caused by the non-blocking `check_backward_traceability.py` gate
+  (122 developmental claims lack a register row in `developmental_needs_register.md`). The core
+  pipeline (index rebuild → 1195 runs / 709 types; pending_review; recommendations; option-E
+  shadow; claims.json) **completed successfully before the traceability check ran**. All outputs in
+  this agenda are fresh. To silence: add claims to the register or run with `SKIP_TRACEABILITY=1`.
+- **Pull conflicts resolved at start:** an untracked 603e result manifest and locally-modified
+  runner heartbeat/status files blocked the REE_assembly pull. Heartbeats are runner-managed
+  (remote phase3-heartbeats authoritative) — stashed/dropped; 603e came cleanly from origin.
+- No TASK_CLAIMS governance collision: the 3 "active" claims in TASK_CLAIMS.json
+  (IGW-024 MECH-342, IGW-029 MECH-229, IGW-028 MECH-229) are all **stale** (>11h old) — treated
+  as cleared. governance.sh ran normally.
