@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-03T22:21:20Z",
+  "last_tick_utc": "2026-06-03T22:51:29Z",
   "state": "running",
   "current_exq": "V3-EXQ-461b",
   "current_exq_started_utc": "2026-06-03T20:27:07.368302+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / consolidation",
-    "runs_done": 1,
+    "run_label": "Seed 44 / warmup",
+    "runs_done": 2,
     "runs_total": 3,
     "episodes_done": 0,
     "episodes_total": 350,
-    "overall_pct": 33.3
+    "overall_pct": 66.7
   },
-  "seconds_elapsed": 6853,
-  "seconds_remaining": 3061,
+  "seconds_elapsed": 8662,
+  "seconds_remaining": 4123,
   "recent_lines": [
-    "[P0 train] ep 80/200  rv=0.00000  reward=-0.1261",
-    "[P0 probe] ep 120/200  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[train] seed=43 P0 ep 120/200 converged=True aborted=False rv=0.00000",
-    "Seed 43 Condition consolidation P1"
+    "Seed 43 Condition ARM_EMERGENT_ON",
+    "Seed 43 Condition ARM_FORCED_RV_ON",
+    "Seed 43 Condition ARM_NO_HOLD_OFF",
+    "verdict: FAIL C1=False C2=False C3=False",
+    "Seed 44 Condition warmup P0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
