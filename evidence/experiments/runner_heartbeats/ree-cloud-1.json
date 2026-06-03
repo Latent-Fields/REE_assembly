@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-03T08:11:31Z",
+  "last_tick_utc": "2026-06-03T08:41:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-632",
   "current_exq_started_utc": "2026-06-03T07:19:12.728447+00:00",
@@ -9,20 +9,21 @@
   "current_claim_id": "MECH-230",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / GOAL_STRUCTURED",
-    "runs_done": 0,
+    "run_label": "Seed 42 / GOAL_ABLATED",
+    "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 100,
+    "episodes_done": 0,
     "episodes_total": 250,
-    "overall_pct": 6.7
+    "overall_pct": 16.7
   },
-  "seconds_elapsed": 3139,
-  "seconds_remaining": 18540,
+  "seconds_elapsed": 4946,
+  "seconds_remaining": 18871,
   "recent_lines": [
-    "EXQ-632 start: v3_exq_632_mech230_zgoal_structured_latent_discriminative_20260603T071913Z_v3",
-    "Seed 42 Condition GOAL_STRUCTURED",
-    "[train] seed=42 GOAL_STRUCTURED ep 50/250 phase=P0 contacts=0",
-    "[train] seed=42 GOAL_STRUCTURED ep 100/250 phase=P0 contacts=0"
+    "[train] seed=42 GOAL_STRUCTURED ep 150/250 phase=P0 contacts=0",
+    "[train] seed=42 GOAL_STRUCTURED ep 200/250 phase=P1 contacts=4",
+    "[train] seed=42 GOAL_STRUCTURED ep 250/250 phase=P1 contacts=6",
+    "verdict: PASS (t0=3.0115 t50=3.0115 ablated=0.0000 n_contacts=6)",
+    "Seed 42 Condition GOAL_ABLATED"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
