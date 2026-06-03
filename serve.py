@@ -2491,24 +2491,6 @@ def append_machine_command(
     return True, f"command {cmd['id']} queued for {machine}", cmd
 
 
-def _coordinator_command_dual_write_enabled() -> bool:
-    """Phase 3 command-channel migration: when True, POST /api/machines/<host>/
-    command ALSO issues the command via the coordinator's /commands/issue
-    endpoint (in addition to the legacy git command-file write).
-
-    Default OFF -- serve.py behaves bit-identically (git-file only). The
-    operator turns this on as a deliberate canary step AFTER at least one
-    worker is running PHASE3_COMMANDS_VIA_COORDINATOR, so coordinator-issued
-    commands are actually consumed+acked rather than accumulating unacked
-    (a backlog the first via-coordinator worker would then drain at once).
-    Controlled by env PHASE3_COMMANDS_DUAL_WRITE or the same key in
-    coordinator.env."""
-    val = os.environ.get("PHASE3_COMMANDS_DUAL_WRITE")
-    if val is None:
-        val = _load_coordinator_cfg().get("PHASE3_COMMANDS_DUAL_WRITE")
-    return str(val or "").strip().lower() in ("1", "true", "yes")
-
-
 def _coordinator_issue_command(
     machine: str,
     kind: str,
@@ -4065,28 +4047,37 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             kind = (payload.get("kind") or "").strip()
             args = payload.get("args") or {}
             issued_by = payload.get("issued_by") or "explorer"
-            ok, msg, cmd = append_machine_command(host, kind, args, issued_by)
+            # Phase 3 (OFF_GIT complete, 2026-06-03): the coordinator is THE
+            # remote-control command channel. Issue via the coordinator when it
+            # is configured; the legacy git command-file is written ONLY as a
+            # fallback when the coordinator is NOT configured (a no-coordinator
+            # / pre-Phase-3 setup). A configured-but-unreachable coordinator
+            # fails loudly so the operator retries -- we do NOT silently write a
+            # git command-file that OFF_GIT workers (the whole fleet) would
+            # ignore, which would make a dropped command look issued.
+            c_attempted, c_ok, c_detail = _coordinator_issue_command(
+                host, kind, args, issued_by)
+            if c_attempted:
+                ok = c_ok
+                cmd = c_detail if c_ok else None
+                if c_ok and isinstance(c_detail, dict):
+                    msg = f"issued via coordinator (id={c_detail.get('id')})"
+                else:
+                    msg = f"coordinator issue failed: {c_detail}"
+                channel = "coordinator"
+            else:
+                # Coordinator not configured -> legacy git command-file.
+                ok, msg, cmd = append_machine_command(host, kind, args, issued_by)
+                channel = "git_command_file"
             result = {
                 "status": "ok" if ok else "error",
                 "message": msg,
                 "command": cmd,
                 "machine": host,
+                "channel": channel,
+                "coordinator": {"attempted": c_attempted, "ok": c_ok},
                 "valid_kinds": list(VALID_REMOTE_COMMAND_KINDS),
             }
-            # Phase 3 command-channel migration: dual-write to the coordinator
-            # when enabled (and only when the git append validated the kind).
-            # Best-effort -- the git command-file above remains the
-            # authoritative channel until every worker is on
-            # PHASE3_COMMANDS_OFF_GIT. Surfaced in the response for operator
-            # visibility during the canary rollout.
-            if ok and _coordinator_command_dual_write_enabled():
-                c_attempted, c_ok, c_detail = _coordinator_issue_command(
-                    host, kind, args, issued_by)
-                result["coordinator"] = {
-                    "attempted": c_attempted,
-                    "ok": c_ok,
-                    "detail": c_detail,
-                }
             body = json.dumps(result).encode()
             self._json_response(body, status=200 if ok else 400)
             return
