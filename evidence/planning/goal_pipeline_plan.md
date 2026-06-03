@@ -3,7 +3,7 @@ closure_plan:
   id: goal_pipeline
   title: "Goal Pipeline (wanting / liking / drive cascade)"
   registered: 2026-05-08
-  last_updated: 2026-05-29
+  last_updated: 2026-06-03
   scope_claims: [SD-012, SD-014, SD-015, SD-018, SD-049, MECH-117, MECH-216, MECH-229, MECH-230, MECH-295, MECH-306, MECH-307, ARC-030, ARC-032, ARC-036, ARC-051]
   nodes:
     - id: "goal_pipeline:GAP-1"
@@ -71,6 +71,20 @@ closure_plan:
       blocking_external: ["external V_s invalidation runtime evolution"]
       last_updated: 2026-05-17
       completion_note: "Substrate fully implemented: HippocampalConfig.use_vs_gate_staleness_lookup, VsRolloutGate.gate() per_stream_staleness path, agent.py end-to-end wiring, HippocampalModule.compute_per_stream_staleness(). V3-EXQ-490b C1 PASS (gate fires); V3-EXQ-490c/e/f completed Q-040 factorial (MECH-295 dominant cause of catatonic-lock, not MECH-269b alone). Monostrategy confound resolved at substrate level by ARC-065 SP-CEM landing as default 2026-05-17. Q-040b behavioral sufficiency of staleness correction alone is a claims-level question continuing under v_s_invalidation_runtime.md; GAP-6 goal_pipeline dependency is satisfied."
+    - id: "goal_pipeline:GAP-7"
+      title: "Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 consumer-readout wiring audit"
+      phase: 7
+      status: open
+      severity: load-bearing
+      owner_exq: null
+      unblocks_claims: [MECH-229, MECH-230, MECH-117, ARC-030]
+      depends_on: ["goal_pipeline:GAP-2"]
+      proposed_claims: ["MECH-BIND-obj (L2 benefit->object-identity binding)", "MECH-INCENT-token (L3 per-object wanting amplitude / incentive token)", "MECH-GOALPTR (L4 z_goal written from token/affordance pointer)", "MECH-CUEWANT (L6 cue-triggered pre-consummatory wanting)", "MECH-CONSUME (L7 consumer readout wiring audit)"]
+      registered: 2026-06-03
+      last_updated: 2026-06-03
+      source_artefact: "evidence/planning/thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md section 8 (L0-L9 closure map) + section 9 (proposed plan-of-record updates); lit anchor evidence/planning/literature_synthesis_2026-06-01_object_bound_incentive_salience.md"
+      ratified_2026_06_03: "User ratified the section-9 GAP-7 proposal into the plan-of-record this session. Closure thesis (intake section 8): the goal stream's broken links are L2-L3 (the benefit signal at contact is never bound to OBJECT IDENTITY and there is no per-object incentive-salience / wanted-object TOKEN -- the substrate writes raw z_world/z_resource at contact with no binding step and no per-object wanting amplitude), plus the measurement/wiring around L1 (forced-seed positive control) and L7 (dACC/E3/commitment consumer readout, where dACC does NOT read z_goal directly). L0/L1/L5 are substrate-present; L6/L8 are present-but-starved. The minimal repair is the L2-L3 layer + a clean L1 positive control + an L7 wiring audit -- NOT a new mature goal ecology. Cross-evidence: V3-EXQ-623 (MECH-104 volatility interrupt) is the positive control that REE DOES turn a correctly-wired signal into behavioural consequence, so the goal-stream fault is upstream (signal never produced / never object-bound), not 'REE cannot convert signal to behaviour'. The 626 harness bug (Class-1 separation: positive-control arms with z_goal not actually engaged) must be fixed before L1/L7 are measurable. Distinct from GAP-2 (which is the developmental foraging-competence ceiling -- get the agent to CONTACT resources); GAP-7 is what happens to the benefit signal ONCE contact occurs (bind it to an object, mint an incentive token, read it out). The two are sequential: GAP-2 supplies reliable contact, GAP-7 makes that contact object-bound and behaviourally consequential. This node carries the L0-L9 closure map embedded in the plan body below."
+      resume_condition: "RESUME the L1 harness positive control + L7 consumer-readout audit once the 626a-class harness fix lands (z_goal genuinely engaged in positive-control arms). The L2-L3 object-binding + incentive-token substrate is a /implement-substrate design-discovery task (no SD/MECH doc yet; proposed_claims are placeholders, NOT registered in claims.yaml). The full L9 wanting!=liking dissociation acceptance (currently 514k=0.0) depends on L2-L3 landing AND on GAP-2 supplying reliable foraging contact."
 ---
 # Goal Pipeline Plan (wanting / liking / goal-seeding)
 
@@ -172,6 +186,7 @@ Six gaps, ordered by leverage. Each is the basis for one row of the
 | **GAP-4** | MECH-295 cascade behavioural validation deferred: V3-EXQ-493 isolation 6/6 PASS confirms substrate, but EXQ-490f / EXQ-536a/b force-arm probe shows downstream cascade inert under realistic policy state (cue_fires=0 at relaxed activation floors; approach_commit_rate=0 even at z_goal_inject=0.3 + action-time fraction=1.0) | high | EXQ-471 catatonic-lock factorial diagnosis (Q-040), MECH-295 promotion, SD-029 substrate retest |
 | **GAP-5** | SD-049 Phase 3 SD-032 consumer cascade reading per_axis_drive directly: AIC, PCC, pACC, dACC adaptive control, salience-coordinator, override-regulator, MECH-295 liking-bridge currently read goal_state._last_drive_level (collapsed scalar) | medium | SD-032b cascade fidelity, MECH-258 + MECH-260 calibration; refactor not on acceptance-criterion path for any current claim |
 | **GAP-6** | MECH-269b-followup-A staleness-corrected V_s in VsRolloutGate.gate: lower-priority follow-on after V3-EXQ-490b clears; gates the V_s monostrategy resolution that interacts with goal-pipeline behavioural tests | medium | SD-029 retest cohort (cross-plan with sleep_substrate_plan via V_s invalidation runtime) |
+| **GAP-7** | Object-bound incentive-salience layer missing: at resource contact the benefit signal is written as raw z_world / z_resource with no binding to object IDENTITY (L2) and no per-object wanting amplitude / incentive TOKEN (L3); plus measurement/wiring gaps at L1 (forced-seed positive control, blocked by the 626 harness bug) and L7 (dACC does not read z_goal directly). This is the "what happens to benefit ONCE contact occurs" gap, sequential to GAP-2's "get the agent to contact at all" | load-bearing | MECH-229 non-degenerate retest, MECH-230, MECH-117, ARC-030; L9 wanting!=liking dissociation (514k currently 0.0) |
 
 GAP-3 (sustained-drive amendment) is intentionally separated from GAP-1 even
 though both touch SD-012 / MECH-216. Reason: GAP-1 is the four-gap conjunction
@@ -364,6 +379,74 @@ Deliverables:
    sleep_substrate_plan / sd033_governance_plan; this plan tracks its
    dependency rather than owning the implementation.
 
+### Phase 7: Object-bound incentive-salience layer + L1/L7 measurement repair (GAP-7)
+
+Ratified 2026-06-03 from `thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md`.
+GAP-2 closes the *developmental* failure ("the agent never reliably contacts a
+resource, so z_goal is never seeded"). GAP-7 closes the *representational /
+wiring* failure that sits immediately downstream: once contact DOES occur, the
+benefit signal is not bound to an object and is not read out consequentially.
+The two are sequential -- GAP-2 supplies reliable contact, GAP-7 makes that
+contact object-bound and behaviourally consequential.
+
+The closure thesis (intake section 8): the broken links are **L2-L3** (object
+binding + incentive token), plus the **measurement/wiring** around **L1**
+(forced-seed positive control) and **L7** (consumer readout). L0/L1/L5 are
+substrate-present; L6/L8 are present-but-starved. The minimal repair is the
+L2-L3 layer + a clean L1 positive control + an L7 wiring audit -- NOT a new
+mature goal ecology.
+
+Deliverables (ordered by what is unblocked-first):
+
+1. **L1 harness positive control + 626a Class-1 fix** (no new substrate). The
+   626 harness bug let "positive control" arms run with z_goal not actually
+   engaged (Class-1 separation). Fix the harness so a forced supra-threshold
+   seed produces a non-zero, stable z_goal that the test can SEE, then
+   re-establish the L1 positive control. This is the genuinely-unblocked entry
+   point (depends on the 626a harness fix, not on the GAP-2 foraging substrate).
+2. **L7 consumer-readout wiring audit** (no new substrate, mostly). Audit
+   whether dACC / E3 / commitment actually read z_goal (today dACC does NOT
+   read z_goal directly); document and wire the missing readouts so a non-zero
+   z_goal is consequential. `PROP: MECH-CONSUME`.
+3. **L2-L3 object-bound incentive-salience layer** (`/implement-substrate`
+   design-discovery; no SD/MECH doc yet). Add (L2) a binding step that ties the
+   benefit pulse to object IDENTITY rather than raw z_world/z_resource, and
+   (L3) a per-object wanting amplitude / incentive token that decays slowly.
+   Proposed placeholder claims `MECH-BIND-obj`, `MECH-INCENT-token`,
+   `MECH-GOALPTR` (L4 z_goal-from-token-pointer), `MECH-CUEWANT` (L6
+   cue-triggered pre-consummatory wanting) -- NOT yet registered in claims.yaml.
+4. **Validation:** the L9 wanting != liking dissociation acceptance
+   (514k currently 0.0) is the terminal acceptance, and depends on both L2-L3
+   landing AND GAP-2 supplying reliable foraging contact.
+
+Cross-evidence anchor: V3-EXQ-623 (MECH-104 volatility interrupt) is the
+positive control proving REE DOES convert a correctly-wired signal into
+behavioural consequence (discriminative signal + behavioural de-commitment,
+8/8). So the goal-stream fault is upstream (signal never produced / never
+object-bound), NOT "REE cannot convert signal to behaviour."
+
+#### Closure map for the goal stream (L0-L9)
+
+Embedded into the plan-of-record from intake section 8. Each link carries its
+substrate status today and the diagnostic / claim that owns it.
+
+| # | Link | Substrate today | Owning diagnostic (proposed) | Claim(s) |
+|---|---|---|---|---|
+| L0 | benefit pulse exists & crosses threshold | `env.benefit_exposure` + GoalState gate; GAP-3 PASS (582a) | Stage 0 unit | SD-012, MECH-306 |
+| L1 | forced seed -> non-zero, stable z_goal | `GoalState.update` (exists) | **Stage 0 unit** (no new code; blocked by 626 harness bug) | MECH-230 |
+| L2 | benefit binds to **object identity** (not location) | **MISSING** (writes raw z_world / z_resource at contact, no binding step) | **Stage 1** | **PROP: MECH-BIND-obj** |
+| L3 | incentive-salience / wanted-object **token** | **MISSING** (no per-object wanting amplitude) | **Stage 1-2** | **PROP: MECH-INCENT-token** |
+| L4 | z_goal written FROM token/affordance pointer | partial (z_resource seeding is closest) | **Stage 1** | MECH-230 amend; **PROP: MECH-GOALPTR** |
+| L5 | persistent goal maintenance | slow attractor + E1 LSTM (MECH-116) | Stage 0/1 decay check | MECH-116, ARC-032 |
+| L6 | cue-triggered wanting BEFORE consumption | MECH-295 bridge (isolation PASS) but no cue-recall path | **Stage 2** | MECH-295; **PROP: MECH-CUEWANT** |
+| L7 | consumer readout (dACC/E3/commitment) non-zero & consequential | E3 goal_weight + MECH-295 + MECH-307; dACC does NOT read z_goal directly | **Stage 3** | **PROP: MECH-CONSUME** |
+| L8 | pre-consummatory approach bias | beta gate + approach_commit | Stage 3 | ARC-030, MECH-229 |
+| L9 | wanting != liking dissociation | NOT shown (514k = 0.0) | Stage 2-4 (after L2-L3) | MECH-117, MECH-229 |
+
+**Closure thesis:** broken links are L2-L3 + measurement/wiring at L1 and L7.
+L0/L1/L5 substrate-present; L6/L8 present-but-starved. Minimal repair = L2-L3 +
+clean L1 positive control + L7 wiring audit. Not a new mature goal ecology.
+
 ---
 
 ## Status table
@@ -379,6 +462,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-4 | 4 | in-progress | 2-fork: (A) Tier-1 library rebuild + 483d/490g re-queue; (B) SD-XXX scaffolded SD-054 onboarding substrate | Two-fork disposition per 2026-05-29 cluster autopsy `failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` -- Fork A (483c+524a) routes to library rebuild + cohort re-queue; Fork B (603c, absorbed into 591 family) routes to scaffolded SD-054 onboarding substrate-design memo + /implement-substrate. Both spawned as session chips 2026-05-29. Governance application of autopsy recommendations spawned as a third chip 2026-05-29 (per-claim direction overrides + SD-037 evidence_quality_note + new SD-XXX substrate_queue entry; will NOT auto-surface because 483c/524a/603c manifests already have evidence_direction set). See 2026-05-29 decision-log entry below. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a, V3-EXQ-603c | 2026-05-29 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
+| GAP-7 | 7 | open | 626a-class harness fix (for L1/L7); goal_pipeline:GAP-2 foraging contact (for L9) | (1) L1 harness positive control + 626a Class-1 fix [unblocked entry], (2) L7 consumer-readout wiring audit, (3) L2-L3 object-bound incentive-salience layer via /implement-substrate. Ratified into plan+map 2026-06-03 from thought_intake_2026-06-01 section 9. proposed_claims are placeholders, NOT registered. | null (design-discovery) | 2026-06-03 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`,
 `tracked`. A `paused` row carries a resume condition in the
@@ -488,6 +572,46 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-06-03 - GAP-7 ratified into plan + closure map embedded
+
+**Status:** plan-of-record addition. User ratified the GAP-7 proposal that had
+been parked in `thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md`
+section 9 ("PROPOSALS for the governance owner; this session does not edit the
+plan body"). It is now a live node.
+
+**What landed this session:**
+
+- New `goal_pipeline:GAP-7` frontmatter node (status `open`, severity
+  `load-bearing`, owner_exq `null`/design-discovery, depends_on
+  `goal_pipeline:GAP-2`).
+- Gap-inventory row, Phase 7 deliverables section, and status-table row.
+- The L0-L9 **closure map** is now embedded in the plan body (Phase 7
+  subsection) -- previously it lived only in the intake doc. This is the "in the
+  map" half of the request: the /closure renderer reads `closure_plan:`
+  frontmatter, and the human-readable L0-L9 link map now travels with the plan.
+
+**The thesis GAP-7 encodes:** the goal stream's broken links are L2-L3 (the
+benefit signal at contact is never bound to object IDENTITY and there is no
+per-object incentive-salience TOKEN) plus measurement/wiring at L1 (forced-seed
+positive control, blocked by the 626 harness bug) and L7 (dACC does not read
+z_goal directly). GAP-7 is sequential-downstream of GAP-2: GAP-2 is the
+developmental foraging-competence ceiling (get the agent to contact a resource
+at all); GAP-7 is what happens to the benefit signal once contact occurs.
+V3-EXQ-623 (MECH-104) is the cross-evidence positive control that REE DOES turn
+a correctly-wired signal into behaviour, so the fault is upstream, not in
+signal->behaviour conversion.
+
+**What is NOT done (deliberately):**
+
+- No claims.yaml registration of `MECH-BIND-obj` / `MECH-INCENT-token` /
+  `MECH-GOALPTR` / `MECH-CUEWANT` / `MECH-CONSUME` -- these stay as `proposed_claims`
+  placeholders on the node until /implement-substrate design-discovery assigns
+  real IDs.
+- No substrate_queue entry, no experiment scripts, no queue entries. The L1
+  harness positive control + 626a Class-1 fix is the unblocked first deliverable
+  and routes through /queue-experiment (or /diagnose-errors for the harness fix)
+  in a separate session.
 
 ### 2026-05-31 - Scope clarification: prereq (2) of GAP-C (z_goal collapse) is NOT owned by GAP-4
 
