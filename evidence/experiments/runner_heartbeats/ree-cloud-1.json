@@ -1,29 +1,26 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-03T21:05:52Z",
+  "last_tick_utc": "2026-06-03T21:21:06Z",
   "state": "running",
-  "current_exq": "V3-EXQ-626b",
-  "current_exq_started_utc": "2026-06-03T20:07:02.821189+00:00",
-  "current_title": "goal-pipeline FORCED-SEED L1 positive control (GAP-7; z_goal SEEN decoupled from GAP-2 foraging)",
-  "current_claim_id": null,
+  "current_exq": "V3-EXQ-610e",
+  "current_exq_started_utc": "2026-06-03T21:19:06.134425+00:00",
+  "current_title": "INV-074/MECH-333/MECH-334 crystallization-necessity retest (HARNESS-FIXED, startup-assertion-gated): real REINFORCE on gated_policy (Phases 0-2) + stepped expansion_parameters() optimizer post-crystallize (Phase 3) + residue_field.ewc_penalty() summed into the Phase-3 loss. 2-arm/3-seed, IGW-023 Phase-3 pressure. Supersedes 610d (untrained-policy no-op).",
+  "current_claim_id": "INV-074",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_ZGOAL_OFF",
+    "run_label": "starting...",
     "runs_done": 0,
-    "runs_total": 9,
-    "episodes_done": 20,
-    "episodes_total": 30,
-    "overall_pct": 7.4
+    "runs_total": 6,
+    "episodes_done": 0,
+    "episodes_total": 2500,
+    "overall_pct": 0.0
   },
-  "seconds_elapsed": 3529,
-  "seconds_remaining": 15441,
+  "seconds_elapsed": 120,
+  "seconds_remaining": 51000,
   "recent_lines": [
-    "Seed 43 Condition ARM_ZGOAL_OFF",
-    "[train] seed=43 arm=ARM_ZGOAL_OFF ep 5/30 z_goal_peak=0.0000",
-    "[train] seed=43 arm=ARM_ZGOAL_OFF ep 10/30 z_goal_peak=0.0000",
-    "[train] seed=43 arm=ARM_ZGOAL_OFF ep 15/30 z_goal_peak=0.0000",
-    "[train] seed=43 arm=ARM_ZGOAL_OFF ep 20/30 z_goal_peak=0.0000"
+    "[V3-EXQ-610e] INV-074 crystallization necessity test (EVB-0270, harness-fixed retest; supersedes V3-EXQ-610d)",
+    "[V3-EXQ-610e][ASSERT] verifying the three fixes are wired..."
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

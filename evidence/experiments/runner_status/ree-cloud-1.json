@@ -1,67 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 890083,
-  "runner_started_at": "2026-06-01T11:09:20.142293+00:00",
-  "last_updated": "2026-06-02T17:21:22.336875+00:00",
+  "runner_pid": 2199291,
+  "runner_started_at": "2026-06-03T06:06:50.999872+00:00",
+  "last_updated": "2026-06-03T21:17:04.192453+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-610c",
-      "backlog_id": "EVB-0270",
-      "claim_id": "",
-      "title": "INV-074 crystallization necessity test -- post-Phase-3-enrichment retest (supersedes V3-EXQ-610b)",
-      "description": "",
-      "estimated_minutes": 2000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-603e",
-      "backlog_id": "",
-      "claim_id": "Q-045",
-      "title": "Q-045/MECH-313/MECH-260 + FP-2 dissociation on scaffolded_sd054_onboarding (re-issue of 603d on hook-fixed scheduler + z_goal_enabled config)",
-      "description": "",
-      "estimated_minutes": 360.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-614d",
-      "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "MECH-341 within-class temperature 4-arm sweep -- corrected harness (committed-class metric + within-class diagnostics + cross-seed-mean C1; supersedes 614c)",
-      "description": "",
-      "estimated_minutes": 144.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-063a",
-      "backlog_id": "",
-      "claim_id": "ARC-029",
-      "title": "ARC-029 committed-mode harm-outcomes revalidation under MECH-090 R-c commit-entry gate (supersedes V3-EXQ-063; post stale_substrate MARK)",
-      "description": "",
-      "estimated_minutes": 106.7,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-624",
-      "backlog_id": "EVB-0237",
-      "claim_id": "MECH-320",
-      "title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
-      "description": "",
-      "estimated_minutes": 30.3,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3262,6 +3206,48 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_627_mech306_sustained_drive_trace_validation/v3_exq_627_mech306_sustained_drive_trace_validation_20260602T172121Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 853.3
+    },
+    {
+      "queue_id": "V3-EXQ-632",
+      "backlog_id": "EVB-0196",
+      "claim_id": "MECH-230",
+      "title": "MECH-230 z_goal structured-latent discriminative pair (structured attractor vs ablation; z_goal_norm>0)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS (t0=0.0000 t50=0.0000 ablated=0.0000 n_contacts=0) | === EXQ-632 FAIL === | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-632 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-632.json",
+      "started_at": "2026-06-03T07:19:12.728447+00:00",
+      "completed_at": "2026-06-03T10:31:04.762341+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_632_mech230_zgoal_structured_latent_discriminative/v3_exq_632_mech230_zgoal_structured_latent_discriminative_20260603T071913Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 11512.0
+    },
+    {
+      "queue_id": "V3-EXQ-634",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "scaffolded_sd054_onboarding nursery/feeding substrate-readiness diagnostic (Stage-0 forced-feed + P0/P1 + P2-guard gates)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_634_scaffolded_nursery_substrate_readiness] outcome=FAIL | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-634 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-634.json",
+      "started_at": "2026-06-03T15:08:30.339238+00:00",
+      "completed_at": "2026-06-03T16:33:57.686093+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_634_scaffolded_nursery_substrate_readiness/v3_exq_634_scaffolded_nursery_substrate_readiness_20260603T163357Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 5127.3
+    },
+    {
+      "queue_id": "V3-EXQ-626b",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "goal-pipeline FORCED-SEED L1 positive control (GAP-7; z_goal SEEN decoupled from GAP-2 foraging)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: seed=44 arm=ARM_ZGOAL_OFF peak_max=0.0000 med_last=0.0000 | Overall: PASS | C1=True C2=True C3=True C4=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-626b -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-626b.json",
+      "started_at": "2026-06-03T20:07:02.821189+00:00",
+      "completed_at": "2026-06-03T21:17:04.191567+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_626b_goal_pipeline_forced_seed_positive_control/v3_exq_626b_goal_pipeline_forced_seed_positive_control_20260603T211703Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 4201.4
     }
   ]
 }
