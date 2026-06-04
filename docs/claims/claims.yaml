@@ -35473,6 +35473,148 @@
     (ToM/Woodward/Csibra) follow when their pillars are scheduled.
   location: docs/architecture/arc_080_object_representation_primitive.md
 
+- id: ARC-081
+  title: "Self-as-object (PILLAR 2 of ARC-080): z_self becomes a privileged token-keyed object-file SLOT in the generalised object-file layer. The SELF BEGINS IN V3 -- z_self self/world split (SD-005), self-attribution (SD-003), action-space discovery / self-as-object stage 1 (MECH-277, ARC-059 stage 1), reward-free babbling Phase 0 (ARC-074). The object-file CUTOVER IS V4 -- z_self promoted from a body-state latent to a privileged self-OBJECT slot, gated by the DR-10..DR-14 self-model integration audit, MECH-214 (goal E1-representability), MECH-215 (self-model prerequisite for agentive prediction), INV-064 (maturational-sequence necessity), and SD-030 (E2 self-forward-model, V4-deferred). The beginning of self is V3; the object-file-slot cutover is V4."
+  claim_type: architectural_commitment
+  subject: representation.self_as_object_file_slot
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-06-04
+  depends_on:
+    - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the self specialisation)
+    - SD-005     # V3 BEGINNING -- z_self self/world split (proprioceptive/interoceptive body latent)
+    - SD-003     # V3 BEGINNING -- self-attribution (self-vs-external causal credit)
+    - MECH-277   # V3 BEGINNING -- action-space discovery / self-as-object stage 1
+    - ARC-059    # V3 BEGINNING -- developmental ordering stage 1 (self before objects before others)
+    - ARC-074    # V3 BEGINNING -- reward-free babbling Phase 0 (the self-discovery substrate)
+    - MECH-214   # V4 CUTOVER -- goal must be E1-representable (self-model integration audit)
+    - MECH-215   # V4 CUTOVER -- self-model prerequisite for agentive prediction
+    - INV-064    # V4 CUTOVER -- maturational-sequence necessity (self-stability gates later pillars)
+    - SD-030     # V4 CUTOVER -- E2 self-forward-model (V4-deferred)
+  functional_restatement: >
+    ARC-081 is a THIN COHERENCE-MAP CHILD of ARC-080, not new mechanism. It adds
+    exactly ONE thing the existing self claims do not state: that z_self's V4
+    endpoint is a PRIVILEGED OBJECT-FILE SLOT -- the self treated as a special case
+    of the ARC-080 token-keyed object-file, not a free-standing body latent. The
+    underlying mechanism is already owned by the depends_on claims (z_self =
+    SD-005; self-attribution = SD-003; self-as-object stage 1 = MECH-277/ARC-059;
+    the self-model integration audit = DR-10..DR-14 + MECH-214/215; maturational
+    necessity = INV-064; E2 self-forward-model = SD-030); ARC-081 does NOT restate
+    them, it only names the cross-cutting framing and the phase boundary.
+
+    THE BOUNDARY (the central correction). Self-as-object is NOT flatly V4. It has
+    a V3 BEGINNING and a V4 CUTOVER:
+    - BEGINS IN V3: z_self exists today as a single-MLP + EMA body-state latent
+      (SD-005); self/external causal attribution runs (SD-003); action-space
+      discovery / self-as-object stage 1 is the MECH-277 + ARC-059-stage-1 +
+      ARC-074 reward-free-babbling line. "The idea of a self that acts" has begun.
+    - CUTOVER TO V4: z_self becoming a privileged object-file SLOT -- in E3 scoring
+      (DR-10), with its own z_goal_self domain (DR-11), E2-PE modulating E3
+      confidence (DR-12), temporal depth/recurrence (DR-13), and a proxy/hedonic
+      dissociating env (DR-14) -- gated by the DR-10..DR-14 self-model integration
+      audit + MECH-163 multi-step planning. This is the self-OBJECT slot, and it is
+      V4.
+
+    SCOPE / GUARD. epistemic_category inferred to substrate_coherence
+    (architectural_commitment) -- promote/demote suppressed; this is a coherence
+    map, not an empirical assertion to be gated. v3_pending + implementation_phase
+    v4: registering this child introduces NO substrate code, NO experiments, and
+    changes NO V3 behaviour. The self-OBJECT-slot substrate step is V4 and must NOT
+    enter V3 closure. SD-005/SD-003/MECH-277/ARC-074 keep their existing V3 roles
+    unchanged.
+  location: docs/architecture/arc_080_object_representation_primitive.md
+
+- id: ARC-082
+  title: "Tools/affordances as object->action binding (PILLAR 3 of ARC-080): an object's afforded actions are bound to its object-file. The V3 SUBSTRATE EXISTS BUT IS UNGROUNDED -- SD-016 cue_action_proj is inert (V3-EXQ-449 found 0.0 gradient; the non-differentiable CEM blocks the path before E3.select; EXP-0155 queued to instrument). GROUNDING STRADDLES V3 on its own existing track (EXP-0155 instrumentation + the SD-055 differentiable-CEM dependency). FULL object->action binding via the object-file -- afforded actions keyed to a token-instance object-file slot -- IS V4, once the generalised object-file exists."
+  claim_type: architectural_commitment
+  subject: representation.tools_object_action_binding
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-06-04
+  depends_on:
+    - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the tools/affordance specialisation)
+    - SD-016     # V3 SUBSTRATE -- cue_action_proj (affordance bias for E2; LIVE but ungrounded, V3-EXQ-449 0.0 gradient)
+  functional_restatement: >
+    ARC-082 is a THIN COHERENCE-MAP CHILD of ARC-080, not new mechanism. It adds
+    one framing the existing SD-016 track does not: that the affordance/action
+    pathway's V4 endpoint is OBJECT->ACTION BINDING keyed to a token-instance
+    object-file slot -- tools as a specialisation of the ARC-080 object-file, not a
+    standalone cue projection. SD-016 already owns the substrate; ARC-082 does NOT
+    restate it.
+
+    THE BOUNDARY. Tools/affordances is NOT cleanly one phase:
+    - V3 SUBSTRATE EXISTS, UNGROUNDED: SD-016 cue_action_proj is in V3 code but
+      inert. V3-EXQ-449 found 0.0 gradient through it (the non-differentiable CEM
+      proposer severs the path; the signal vanishes before E3.select). EXP-0155 is
+      queued to instrument it.
+    - GROUNDING STRADDLES V3: making cue_action_proj actually carry an
+      object->action signal is its OWN existing track -- EXP-0155 instrumentation +
+      the SD-055 differentiable-CEM dependency (SD-055 has a design doc and is
+      substrate-ready 2026-05-21 but is NOT yet a registered claims.yaml entry --
+      referenced here in prose only, not as a depends_on edge). This grounding work
+      can begin in the V3 era but is gated on the differentiable-CEM path.
+    - FULL BINDING VIA THE OBJECT-FILE IS V4: folding the grounded affordance
+      pathway into a token-keyed object->action axis -- "this object affords these
+      actions" attached to the object-file slot -- requires the generalised
+      object-file, which is V4 / late-V3 substrate enrichment.
+
+    SCOPE / GUARD. epistemic_category inferred to substrate_coherence
+    (architectural_commitment) -- promote/demote suppressed. v3_pending +
+    implementation_phase v4: this child introduces NO code and NO experiments and
+    does not pull SD-016 grounding or any object-file work into V3 closure. The
+    EXP-0155 / SD-055 grounding track is owned separately and is untouched by this
+    registration.
+  location: docs/architecture/arc_080_object_representation_primitive.md
+
+- id: ARC-083
+  title: "Others-as-object (PILLAR 4 of ARC-080): each other agent j gets its own token-keyed object-file SLOT (z_self_j, z_harm_a_j, drive, commitment chain) -- a special case of the ARC-080 object-file. This pillar is V4 (ARC-010 mirror modelling, ARC-047 SocialGridWorld), gated on MECH-163 multi-step hippocampal planning. Per developmental_needs_register DEV-NEED-021 its prerequisites are object-permanence (PILLAR 1, partial via SD-039 ghost bank) + self-stability (PILLAR 2 self, ARC-081): otherness inference REQUIRES object persistence + a stable self."
+  claim_type: architectural_commitment
+  subject: representation.others_as_object_file_slot
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-06-04
+  depends_on:
+    - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the others specialisation)
+    - ARC-010    # other-modelling substrate -- mirror modelling (stable)
+    - ARC-047    # other-modelling harness -- SocialGridWorld scent harness (candidate, v4)
+    - MECH-163   # GATE -- multi-step hippocampal planning required before V4 social entry
+    - ARC-081    # PREREQUISITE (DEV-NEED-021) -- self-stability: a stable self before others
+    - SD-039     # PREREQUISITE (DEV-NEED-021, partial) -- object-persistence substrate (ghost-goal bank; true object permanence is PILLAR 1, unregistered/future)
+  functional_restatement: >
+    ARC-083 is a THIN COHERENCE-MAP CHILD of ARC-080, not new mechanism. It adds
+    one framing: that other-modelling's V4 endpoint is an "OTHER-AS-OBJECT" slot --
+    each other agent j carried as its own token-keyed object-file (z_self_j,
+    z_harm_a_j, drive, commitment chain), a specialisation of the ARC-080
+    object-file. The mechanism is already owned by ARC-010 / ARC-047 (and the
+    MECH-031/032/036/041 social cluster); ARC-083 does NOT restate them.
+
+    THE BOUNDARY. This pillar is V4 -- design-only today (ARC-010 mirror modelling
+    is stable as a claim but unimplemented as an other-object slot; ARC-047
+    SocialGridWorld is the candidate v4 harness). It is gated on MECH-163
+    (multi-step hippocampal planning) before V4 social entry. Per
+    developmental_needs_register DEV-NEED-021, otherness inference REQUIRES object
+    persistence + self-stability, so PILLAR 1 (permanence) and PILLAR 2 (self,
+    ARC-081) are prerequisites for PILLAR 4. Object permanence is only PARTIALLY
+    present (the SD-039 motivational ghost bank, not a true object-file persistence
+    buffer); the token-instance permanence substrate is PILLAR 1, which the ARC-080
+    umbrella documents as a FUTURE child and which this batch deliberately does NOT
+    register (no duplication).
+
+    SCOPE / GUARD. epistemic_category inferred to substrate_coherence
+    (architectural_commitment) -- promote/demote suppressed. v3_pending +
+    implementation_phase v4: this child introduces NO code and NO experiments. All
+    other-object substrate is V4 and must NOT enter V3 closure.
+  location: docs/architecture/arc_080_object_representation_primitive.md
+
 - id: MECH-340
   title: "The persistence/efficacy gate: a control/efficacy-detection signal that maintains an unresolved-goal bank entry as an active MECH-293 re-probe target. Its ABSENCE is the default (the entry stops being re-probed and decays in MECH-292 rank; the SD-039 trace is NOT erased). It is gated ON by an unattainability-negative / control-positive appraisal, NOT by accumulated failure, repeated suppression, bare effort-cost, or staleness."
   claim_type: mechanism_hypothesis

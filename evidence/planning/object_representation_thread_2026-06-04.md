@@ -176,8 +176,25 @@ adopted. Do **not** run these now; recommend for user approval.
 | Permanence — object token through occlusion | **V3-straddle / V4** | NOT built | **No — must NOT enter V3 closure** |
 | Object-schema formation (MECH-278, objects-as-patterns) | **V4** | BYPASSED in V3 (engineered z_world) | No |
 | Tools / affordances (SD-016) | **V3 substrate / V4-grounding** | LIVE but UNGROUNDED (EXP-0155 gate) | No — separate existing track |
-| Self-as-object (z_self, DR-10..14) | **V4** | latent only | No |
+| Self-as-object (z_self, DR-10..14) | **begins V3, cutover V4** | V3 beginning live (z_self/SD-005, SD-003, MECH-277, ARC-074); V4 self-OBJECT slot latent only | No |
 | Others-as-object (ARC-010/047) | **V4** | design only | No |
+
+> **Correction + update (2026-06-04, post-adoption).** The Option-A spine was
+> ADOPTED: ARC-080 umbrella is registered, and Pillars 2/3/4 are now thin
+> `architectural_commitment` children — **ARC-081** (self-as-object), **ARC-082**
+> (tools/affordances), **ARC-083** (others-as-object); Pillar 1 permanence remains
+> an unregistered future child. The self row above is **corrected** from the
+> earlier "flatly V4": self-as-object is **NOT cleanly V4 — it BEGINS in V3 and the
+> object-file cutover is V4.** The V3 beginning is z_self self/world split (SD-005),
+> self-attribution (SD-003), action-space discovery / self-as-object stage 1
+> (MECH-277, ARC-059 stage 1), and reward-free babbling Phase 0 (ARC-074). The V4
+> cutover — z_self promoted to a privileged token-keyed object-file SLOT — is the
+> DR-10..DR-14 self-model integration audit + MECH-214/215 + INV-064 + SD-030,
+> gated on MECH-163. Likewise Pillar 3 tools: the SD-016 substrate is V3 (ungrounded,
+> V3-EXQ-449 0.0 gradient), grounding straddles V3 (EXP-0155 / SD-055), full
+> object→action binding via the object-file is V4. The authoritative per-pillar
+> V3-begin/V4-cutover table is §5.1 of
+> [`arc_080_object_representation_primitive.md`](../../docs/architecture/arc_080_object_representation_primitive.md).
 
 ### 5.2 Dependency edges (the ordering is load-bearing)
 

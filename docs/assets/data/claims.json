@@ -479,6 +479,24 @@
     "title": "Object identity is a cross-cutting representational primitive. An object is a token-bound identity representation that persists across time and perceptual gaps, generalising z_object/z_resource into an object-file/binding layer (ARC-006), defined by causal feature-coherence under intervention (MECH-278), and consumed by drive/goal (SD-057), hippocampal planning (MECH-262), and the self/other special-object cases. The four planned object capabilities -- (1) permanence, (2) self-as-object, (3) tools/affordances, (4) others-as-object -- are specialisations of one primitive, not four separate mechanisms.",
     "type": "architectural_commitment"
   },
+  "ARC-081": {
+    "status": "candidate",
+    "subject": "representation.self_as_object_file_slot",
+    "title": "Self-as-object (PILLAR 2 of ARC-080): z_self becomes a privileged token-keyed object-file SLOT in the generalised object-file layer. The SELF BEGINS IN V3 -- z_self self/world split (SD-005), self-attribution (SD-003), action-space discovery / self-as-object stage 1 (MECH-277, ARC-059 stage 1), reward-free babbling Phase 0 (ARC-074). The object-file CUTOVER IS V4 -- z_self promoted from a body-state latent to a privileged self-OBJECT slot, gated by the DR-10..DR-14 self-model integration audit, MECH-214 (goal E1-representability), MECH-215 (self-model prerequisite for agentive prediction), INV-064 (maturational-sequence necessity), and SD-030 (E2 self-forward-model, V4-deferred). The beginning of self is V3; the object-file-slot cutover is V4.",
+    "type": "architectural_commitment"
+  },
+  "ARC-082": {
+    "status": "candidate",
+    "subject": "representation.tools_object_action_binding",
+    "title": "Tools/affordances as object->action binding (PILLAR 3 of ARC-080): an object's afforded actions are bound to its object-file. The V3 SUBSTRATE EXISTS BUT IS UNGROUNDED -- SD-016 cue_action_proj is inert (V3-EXQ-449 found 0.0 gradient; the non-differentiable CEM blocks the path before E3.select; EXP-0155 queued to instrument). GROUNDING STRADDLES V3 on its own existing track (EXP-0155 instrumentation + the SD-055 differentiable-CEM dependency). FULL object->action binding via the object-file -- afforded actions keyed to a token-instance object-file slot -- IS V4, once the generalised object-file exists.",
+    "type": "architectural_commitment"
+  },
+  "ARC-083": {
+    "status": "candidate",
+    "subject": "representation.others_as_object_file_slot",
+    "title": "Others-as-object (PILLAR 4 of ARC-080): each other agent j gets its own token-keyed object-file SLOT (z_self_j, z_harm_a_j, drive, commitment chain) -- a special case of the ARC-080 object-file. This pillar is V4 (ARC-010 mirror modelling, ARC-047 SocialGridWorld), gated on MECH-163 multi-step hippocampal planning. Per developmental_needs_register DEV-NEED-021 its prerequisites are object-permanence (PILLAR 1, partial via SD-039 ghost bank) + self-stability (PILLAR 2 self, ARC-081): otherness inference REQUIRES object persistence + a stable self.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",

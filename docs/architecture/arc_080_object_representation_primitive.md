@@ -171,13 +171,24 @@ ARC-080  object identity = cross-cutting representational primitive
   ├─ PILLAR 1  permanence .............. NEW future child (token persistence through occlusion);
   │                                      reactivate MECH-045; generalise the SD-039/MECH-292/293
   │                                      ghost-goal bank from goal-snapshot to object-token. [V3-straddle/V4]
-  ├─ PILLAR 2  self-as-object .......... z_self as a privileged object-file slot
-  │                                      (DR-10..DR-14, MECH-214/MECH-215, INV-064). [V4]
-  ├─ PILLAR 3  tools / affordances ..... object->action binding; ground SD-016
+  │                                      -- UNREGISTERED (future child; not minted by this umbrella)
+  ├─ PILLAR 2  self-as-object .......... ARC-081 -- z_self as a privileged object-file slot
+  │                                      (DR-10..DR-14, MECH-214/MECH-215, INV-064). [begins V3, cutover V4]
+  ├─ PILLAR 3  tools / affordances ..... ARC-082 -- object->action binding; ground SD-016
   │                                      cue_action_proj (UNGROUNDED -- V3-EXQ-449 0.0 grad; EXP-0155). [V3 substrate / V4 grounding]
-  └─ PILLAR 4  others-as-object ........ other-agent object-file slots (z_self_j, z_harm_a_j);
+  └─ PILLAR 4  others-as-object ........ ARC-083 -- other-agent object-file slots (z_self_j, z_harm_a_j);
                                          ARC-010 / ARC-047. [V4]
 ```
+
+> **Registered children (2026-06-04):** Pillars 2/3/4 are now registered as thin
+> `architectural_commitment` children of ARC-080 -- **ARC-081** (self-as-object),
+> **ARC-082** (tools/affordances), **ARC-083** (others-as-object) -- each a
+> coherence-map child that adds *only* the "X-as-object-file-slot" framing + the
+> V3-begin/V4-cutover boundary (see §5.1), wiring `depends_on` to the pillar's
+> existing claims rather than restating their mechanism. **Pillar 1 (permanence)
+> remains an unregistered future child** -- the umbrella documents it but does not
+> mint a claim for it (the token-instance permanence substrate is the first real
+> V4/late-V3 step, not a doc-spine entry).
 
 ### Pillar 1 -- object permanence
 
@@ -195,7 +206,9 @@ ARC-080  object identity = cross-cutting representational primitive
 | **Existing fragment** | z_self (SD-005 self/world split; SD-030 E2 self-forward-model, V4-deferred); DR-10..DR-14 self-model integration audit; MECH-214 (goal must be E1-representable); MECH-215 (self-model prerequisite for agentive prediction); INV-064 (maturational-sequence necessity). |
 | **What it actually delivers** | z_self is a body-state latent (proprioceptive/interoceptive; single MLP + EMA) -- **not a self-OBJECT slot.** |
 | **What's missing** | DR-10 (not in E3 scoring), DR-11 (no z_goal_self domain), DR-12 (E2 PE not modulating E3 confidence), DR-13 (no temporal depth/recurrence), DR-14 (env doesn't dissociate proxy from hedonic). All V4. |
-| **Insertion point** | z_self as a privileged object-file slot, gated by the DR-10..14 self-model integration audit + MECH-163 multi-step planning. [V4] |
+| **Registered child** | **ARC-081** (self-as-object-file-slot). `depends_on` ARC-080 + SD-005/SD-003/MECH-277/ARC-059/ARC-074 (V3 beginning) + MECH-214/MECH-215/INV-064/SD-030 (V4 cutover). |
+| **Boundary** | **Begins V3, cutover V4.** The self *begins* in V3 -- z_self body latent (SD-005), self-attribution (SD-003), action-space discovery / self-as-object stage 1 (MECH-277, ARC-059 stage 1), reward-free babbling Phase 0 (ARC-074). The object-file **cutover** -- z_self promoted to a privileged self-OBJECT slot -- is V4 (DR-10..DR-14 audit, MECH-214/215, INV-064, SD-030). See §5.1. |
+| **Insertion point** | z_self as a privileged object-file slot, gated by the DR-10..14 self-model integration audit + MECH-163 multi-step planning. [V4 cutover; V3 beginning already live] |
 
 ### Pillar 3 -- objects as tools / affordances
 
@@ -204,6 +217,8 @@ ARC-080  object identity = cross-cutting representational primitive
 | **Existing fragment** | SD-016 `cue_action_proj` (affordance bias for E2), `cue_terrain_proj`, `world_query_proj`. |
 | **What it actually delivers** | `cue_terrain_proj` works (E3 precision). `cue_action_proj` is inert: V3-EXQ-449 found 0.0 gradient (non-differentiable CEM blocks the path; signal vanishes before E3.select). EXP-0155 queued to instrument. |
 | **What's missing** | A grounded object->action pathway. |
+| **Registered child** | **ARC-082** (tools-object-action-binding). `depends_on` ARC-080 + SD-016. (SD-055 differentiable-CEM is prose-only -- it has a design doc but no `claims.yaml` entry yet, so it is not a `depends_on` edge.) |
+| **Boundary** | **V3 substrate exists but ungrounded; grounding straddles V3; full binding V4.** SD-016 `cue_action_proj` is in V3 code but inert (V3-EXQ-449 0.0 gradient). Grounding it (EXP-0155 + SD-055 differentiable-CEM) is its own track and can begin in the V3 era; folding afforded actions into a token-keyed object-file slot is V4. See §5.1. |
 | **Insertion point** | object->action binding; ground SD-016 `cue_action_proj` (its own existing track via EXP-0155 / differentiable-CEM SD-055); fold into the object->action axis once the object-file exists. [V3 substrate / V4 grounding] |
 
 ### Pillar 4 -- others as special objects
@@ -213,6 +228,8 @@ ARC-080  object identity = cross-cutting representational primitive
 | **Existing fragment** | ARC-010 mirror modelling (`stable`); ARC-047 SocialGridWorld scent harness (`candidate`, v4); MECH-031/032/036/041 (derived social tags, empathy coupling, other-harm veto, affective broadcast); MECH-051/052/127/159/190. |
 | **What it actually delivers** | Design-only. |
 | **What's missing** | Each other-agent j needs its own `z_self_j`, `z_harm_a_j`, drive, commitment chain -- an "other-as-object" slot. |
+| **Registered child** | **ARC-083** (others-as-object-file-slot). `depends_on` ARC-080 + ARC-010/ARC-047 + MECH-163 (gate) + ARC-081 (self-stability prereq) + SD-039 (partial-permanence prereq). |
+| **Boundary** | **V4.** Design-only today; gated on MECH-163 multi-step planning. Per DEV-NEED-021, prerequisites are object-permanence (Pillar 1, partial via SD-039) + self-stability (Pillar 2 / ARC-081). See §5.1. |
 | **Insertion point** | other-agent object-file slots; ARC-010 / ARC-047. Gated on MECH-163 (multi-step hippocampal planning) and on Pillars 1+2 (per DEV-NEED-021: otherness inference REQUIRES object persistence + self-stability). [V4] |
 
 ### The ordering is load-bearing
@@ -250,9 +267,28 @@ DEV-NEED-021: otherness REQUIRES object persistence + self-stability
 | Permanence -- motivational (ghost-goal bank) | **V3** | LANDED (goal-snapshot, partial) | No |
 | Permanence -- object token through occlusion | **V3-straddle / V4** | NOT built | **No -- must NOT enter V3 closure** |
 | Object-schema formation (MECH-278) | **V4** | BYPASSED in V3 (engineered z_world) | No |
-| Tools / affordances (SD-016) | **V3 substrate / V4-grounding** | LIVE but UNGROUNDED (EXP-0155 gate) | No -- separate existing track |
-| Self-as-object (z_self, DR-10..14) | **V4** | latent only | No |
-| Others-as-object (ARC-010/047) | **V4** | design only | No |
+| Tools / affordances (SD-016, ARC-082) | **V3 substrate / V4-grounding** | LIVE but UNGROUNDED (EXP-0155 gate) | No -- separate existing track |
+| Self-as-object (z_self, DR-10..14, ARC-081) | **begins V3, cutover V4** | V3 beginning live (z_self/SD-005, SD-003, MECH-277, ARC-074); V4 self-OBJECT slot latent only | No |
+| Others-as-object (ARC-010/047, ARC-083) | **V4** | design only | No |
+
+### 5.1 Per-pillar V3-begin / V4-cutover boundary
+
+The four pillars are **not** cleanly V3-vs-V4. Each has a V3 BEGINNING and a V4
+CUTOVER at which it becomes a **token-keyed object-file slot** under ARC-080. This
+is the central distinction the registered children (ARC-081/082/083) encode:
+
+| Pillar | Registered child | V3 BEGINNING (already live / in progress) | V4 CUTOVER (-> object-file slot) | On V3-closure critical path? |
+|---|---|---|---|---|
+| **1 -- permanence** | *(unregistered future child)* | Motivational persistence: SD-039 dual-trace ghost-goal bank, MECH-292/293 (goal-VALUE snapshots that persist when unperceived) | Token-instance persistence through occlusion: reactivate MECH-045; generalise the ghost bank from goal-snapshot to object-token | No -- must NOT enter V3 closure |
+| **2 -- self-as-object** | **ARC-081** | z_self self/world split (SD-005); self-attribution (SD-003); action-space discovery / self-as-object stage 1 (MECH-277, ARC-059 stage 1); reward-free babbling Phase 0 (ARC-074). *"The idea of a self that acts" has begun.* | z_self promoted to a privileged self-OBJECT slot: DR-10..DR-14 self-model integration audit, MECH-214 (goal E1-representability), MECH-215 (self-model prerequisite), INV-064 (maturational sequence), SD-030 (E2 self-forward-model). Gated on MECH-163. | No |
+| **3 -- tools/affordances** | **ARC-082** | SD-016 `cue_action_proj` exists in V3 code but is UNGROUNDED (V3-EXQ-449 0.0 gradient; non-differentiable CEM severs the path). *Grounding straddles V3* on its own track: EXP-0155 instrumentation + SD-055 differentiable-CEM. | Full object->action binding: afforded actions keyed to a token-instance object-file slot, once the generalised object-file exists. | No -- separate existing track |
+| **4 -- others-as-object** | **ARC-083** | *(none -- design-only)*; mirror-modelling claim ARC-010 is `stable` but unimplemented as an other-slot. | Per other-agent j: own `z_self_j`, `z_harm_a_j`, drive, commitment chain (ARC-010 / ARC-047). Gated on MECH-163 + (per DEV-NEED-021) on Pillar 1 permanence + Pillar 2 self-stability. | No |
+
+**The boundary in one line:** *the beginning of each pillar is V3 (or partial-V3);
+the object-file-slot cutover is V4.* Self is the clearest case -- it is NOT flatly
+V4: the self **begins in V3**, and only the privileged-object-file-slot cutover is
+V4. Registering ARC-081/082/083 changes no V3 behaviour and pulls nothing into V3
+closure; the cutovers are V4 / late-V3 substrate enrichment.
 
 **Proposed ordering (post-V3, nothing pulled forward):**
 
@@ -289,8 +325,17 @@ being closed concurrently:
 | L1 | Object files & feature binding | Kahneman/Treisman/Gibbs 1992 (object files); Treisman & Gelade 1980 (FIT) | ARC-006, MECH-044, MECH-045; generalised `z_object` | **ACTIVE 2026-06-04** (`litpull-object-files-feature-binding`) |
 | L2 | Object permanence (token-instance, occlusion) | Piaget A-not-B; Baillargeon violation-of-expectation; Spelke core-knowledge; Kellman & Spelke 1983 | PILLAR 1; token-vs-type gap | **ACTIVE 2026-06-04** (`litpull-object-permanence`) |
 | L3 | Affordances / objects-as-tools | Gibson 1979; Rizzolatti/Murata canonical neurons; Khetarpal et al. (affordances in RL) | PILLAR 3; SD-016 grounding | pending (when Pillar 3 scheduled) |
-| L4 | Self-as-object / minimal self | Gallagher minimal vs narrative self; de Vignemont body schema; Botvinick & Cohen rubber-hand; Blanke | PILLAR 2; z_self-as-object | pending (V4) |
-| L5 | Theory of mind / others-as-agents | Premack & Woodruff; Baron-Cohen ToMM; Woodward 1998; Gergely & Csibra | PILLAR 4; ARC-010 / ARC-047 | pending (V4) |
+| L4 | Self-as-object / minimal self | Gallagher minimal vs narrative self; de Vignemont body schema; Botvinick & Cohen rubber-hand; Blanke bodily self | PILLAR 2 / **ARC-081**; z_self-as-object | pending (V4) -- RECOMMENDED next |
+| L5 | Theory of mind / others-as-agents | Woodward 1998 (infant goal attribution); Gergely & Csibra (teleological stance / natural pedagogy); Baron-Cohen ToMM; Premack & Woodruff | PILLAR 4 / **ARC-083**; ARC-010 / ARC-047 | pending (V4) -- RECOMMENDED next |
+
+> **Recommendation (NOT auto-run -- for user approval).** With Pillars 2 and 4 now
+> registered (ARC-081, ARC-083), the next two biology groundings are **L4
+> (self-as-object / body-as-object: Gallagher minimal self, Botvinick & Cohen
+> rubber-hand, de Vignemont body schema)** for ARC-081 and **L5 (theory of mind:
+> Woodward 1998 infant goal attribution, Gergely & Csibra teleological stance /
+> natural pedagogy, Baron-Cohen ToMM)** for ARC-083. These are recommendations to
+> commission when Pillars 2/4 are scheduled, per `biology_before_formal_definitions`
+> -- they are deliberately **not** run as part of this doc-only registration.
 
 **Until L1 lands, treat ARC-006's biology grounding as IN PROGRESS** -- the
 umbrella is registered now (doc-spine is V3-safe and the fragments were already
@@ -318,6 +363,7 @@ acknowledge each other and this umbrella:
 ## Related Claims (IDs)
 
 - ARC-080 (this umbrella)
+- ARC-081 (PILLAR 2 child -- self-as-object-file-slot), ARC-082 (PILLAR 3 child -- tools/object-action-binding), ARC-083 (PILLAR 4 child -- others-as-object-file-slot)
 - ARC-006, MECH-044, MECH-045, MECH-050 (representational substrate)
 - MECH-278, MECH-276, MECH-277, ARC-059 (object definition + developmental ordering)
 - SD-015, SD-049, SD-057, MECH-262, MECH-344..348 (live identity latent)
