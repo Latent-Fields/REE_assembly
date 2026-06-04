@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_permanence",
+  "entry_id": "2026-06-04_mech_045_anotb_recall_inhibition_diamond1985",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "ARC-080",
+    "MECH-045",
+    "ARC-006"
+  ],
+  "source": {
+    "title": "Development of the ability to use recall to guide action, as indicated by infants' performance on AB.",
+    "authors": [
+      "Adele Diamond"
+    ],
+    "year": 1985,
+    "venue": "Child Development",
+    "doi": "10.2307/1130099"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Reframes Piaget's A-not-B error as a recall-plus-inhibition (prefrontal) limit on USING a representation to guide action, not a failure of the object representation itself. The hide-to-reach delay tolerated before the error grows ~2 s/month (7.5 -> 12 months); dorsolateral-PFC lesions in monkeys reproduce the error. Grounds the competence/performance -- equivalently the STORE/READOUT -- dissociation that the SD-039/MECH-292/293 ghost-goal bank embodies: a persistent store can be intact while the action-readout perseverates. Confidence 0.71: strong, longitudinally precise, lesion-corroborated, but the substrate (PFC working memory/inhibition) is not REE's (hippocampal anchored value store), so the mapping is functional-analogical.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The A-not-B error is a PERSEVERATIVE READOUT failure (inability to inhibit the prepotent reach to the previously rewarded location A) under a memory delay -- the object representation can be intact while action goes to the wrong place. A permanence store that is correct can still drive wrong behaviour if its readout/selection layer perseverates.",
+    "Diamond's mechanism is prefrontal working memory + response inhibition; REE's ghost-goal bank is a hippocampal-anchor value store queried by wanting-rank. The store/readout split maps functionally but the substrate does not, so REE's analog of the A-not-B failure would live in the query/selection layer, not in PFC.",
+    "The error is delay-dependent and matures continuously; a static persistence buffer with no delay-sensitive readout would not reproduce the developmental signature, suggesting permanence in REE needs a graded, delay/decay-sensitive retrieval stage, not just a store."
+  ],
+  "tags": [
+    "arc-080",
+    "mech-045",
+    "arc-006",
+    "object_permanence",
+    "a_not_b_error",
+    "prefrontal_cortex",
+    "working_memory",
+    "response_inhibition",
+    "competence_performance",
+    "store_vs_readout"
+  ],
+  "mapping": {
+    "source_claim_statement": "Infants' A-not-B error -- searching at the previously-rewarded location A after watching an object hidden at B -- reflects two developing abilities: holding the new location in memory across a delay, and inhibiting the prepotent reach toward A. The delay infants tolerate before erring rises ~2 s/month from <2 s at 7.5 months to >10 s by 12 months. Dorsolateral-prefrontal-lesioned rhesus monkeys reproduce the error at comparable delays. The error is a limit on using recall to guide action, not on whether the hidden object is represented.",
+    "ree_translation": "Grounds the STORE-vs-READOUT (competence/performance) dissociation that is exactly the shape of REE's partial permanence: the SD-039/MECH-292/293 ghost-goal bank stores a value snapshot that persists out of view (the 'store'), and queries it by wanting-rank (the 'readout'). Diamond shows that in biology the persistent representation and the action that uses it are separable stages with distinct maturational/substrate dependencies -- so REE's permanence pillar should likewise distinguish a persistence buffer from a delay-sensitive retrieval/selection stage, and a correct store can still yield perseverative action if the readout fails.",
+    "mapping_caveat": "Diamond localises the readout limit to prefrontal working memory and response inhibition; REE's ghost bank is hippocampal-anchored and queried by wanting-rank, so the substrate does not transfer -- only the functional store/readout architecture does. The paper concerns action-guidance under delay, not the looking-time permanence of Baillargeon, and conflating the two (the search-vs-surprise debate) is itself a live controversy.",
+    "source_context": "Longitudinal study (25 infants tested fortnightly from first reaching to 12 months) plus cross-species comparison with dorsolateral-PFC-lesioned rhesus monkeys; manual-search (reaching) object-permanence task."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Landmark longitudinal + lesion-corroborated work, foundational to the executive-function account. Mapping fidelity 0.68: the store/readout dissociation transfers cleanly but the prefrontal substrate does not match REE's hippocampal ghost bank. Transfer risk moderate."
+  }
+}

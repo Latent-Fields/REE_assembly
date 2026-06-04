@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_permanence",
+  "entry_id": "2026-06-04_arc_006_numerical_identity_token_vs_type_xu_carey1996",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "ARC-080",
+    "ARC-006",
+    "MECH-045"
+  ],
+  "source": {
+    "title": "Infants' metaphysics: the case of numerical identity.",
+    "authors": [
+      "Fei Xu",
+      "Susan Carey"
+    ],
+    "year": 1996,
+    "venue": "Cognitive Psychology",
+    "doi": "10.1006/cogp.1996.0005"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "The load-bearing entry for the memo's central token-vs-type distinction. Five experiments (158 infants) show 10-month-olds trace numerical identity through occlusion using SPATIOTEMPORAL information (token/instance) but do NOT use property/kind information (type) to individuate -- the kind-based route emerges later (~12 months). Directly grounds the claim that true permanence is token-instance tracking, distinct from type identity. Marked 'mixed' because it simultaneously SUPPORTS the token-permanence pillar and WEAKENS the assumption that REE's type-level identity (SD-049) suffices for permanence -- REE has built the developmentally LATER, kind-based route and lacks the earlier spatiotemporal-token route permanence rests on.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "REE's live object identity (SD-015 z_resource + SD-049 type tag + SD-057 IncentiveTokenBank keyed by type) is PROPERTY/KIND-based -- the route Xu & Carey show develops LATER and is NOT what young infants use to track identity through occlusion. REE has the inverse developmental order: it implements type-based identity but lacks the spatiotemporal token-tracking that permanence actually requires.",
+    "Spatiotemporal individuation requires representing distinct locations/trajectories of a token across an occluding gap (e.g. an object that goes behind a screen and a second that comes out the other side => two objects). REE's stores encode neither a per-token trajectory nor a 'how many distinct objects' count -- the ghost bank keys by anchor, the incentive bank by type; neither performs numerical individuation.",
+    "The dissociation means a fourth per-object store built for permanence on the existing TYPE key would reproduce REE's gap rather than close it: the unit for permanence must be a spatiotemporally-tracked token, not a category."
+  ],
+  "tags": [
+    "arc-080",
+    "arc-006",
+    "mech-045",
+    "object_permanence",
+    "numerical_identity",
+    "individuation",
+    "token_vs_type",
+    "spatiotemporal_tracking",
+    "sortal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Ten-month-old infants establish numerical identity (whether an object seen now is the SAME one seen before) and individuate (how many distinct objects there are) using SPATIOTEMPORAL information -- distinct paths, locations, and continuity through occlusion. They do NOT yet use property or kind information (shape, colour, category: a duck vs a ball) to infer that there must be two numerically distinct objects. Kind-based individuation emerges later, around 12 months. For the most general sortal 'bounded physical object', spatiotemporal properties provide the criteria of individuation and identity (the Object-first Hypothesis).",
+    "ree_translation": "This is the empirical backbone of the object-representation memo's section 2.2: true object permanence is TOKEN-INSTANCE tracking ('where is THAT particular object now'), criterially distinct from TYPE/category identity ('what kind of thing is it'). Spatiotemporal continuity is the primitive that carries a token through occlusion. It tells the permanence pillar that its unit must be a spatiotemporally-tracked token, and it tells the spine that REE's live SD-015/049/057 identity lineage -- which is type/kind-keyed -- is the developmentally LATER, individuation-by-property route, not the token route permanence is built on.",
+    "mapping_caveat": "Infant looking-time numerical-identity tasks are not a machine object-tracker; the mapping is at the level of the representational DISTINCTION (token vs type), not the algorithm. Xu & Carey also do not claim type information is useless -- only that it is not yet used for individuation at 10 months; REE's type identity is therefore not wrong, it is a different (later) layer that does not substitute for token tracking.",
+    "source_context": "Five visual-habituation / manual-search experiments, 158 human infants, predominantly 10-month-olds (with 12-month comparison), single- and two-object occlusion-emergence designs."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Highly cited, multi-experiment, large-N foundational paper. Mapping fidelity high (0.80) -- it is the most direct possible grounding of the token-vs-type distinction the pillar turns on. Transfer risk moderate. Aggregate 0.74, weighting the strong mapping against the looking-time-to-machine bridge."
+  }
+}

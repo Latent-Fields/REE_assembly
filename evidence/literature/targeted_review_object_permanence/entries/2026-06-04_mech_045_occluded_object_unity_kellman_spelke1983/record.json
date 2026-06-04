@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_permanence",
+  "entry_id": "2026-06-04_mech_045_occluded_object_unity_kellman_spelke1983",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "ARC-080",
+    "MECH-045",
+    "ARC-006"
+  ],
+  "source": {
+    "title": "Perception of partly occluded objects in infancy.",
+    "authors": [
+      "Philip J. Kellman",
+      "Elizabeth S. Spelke"
+    ],
+    "year": 1983,
+    "venue": "Cognitive Psychology",
+    "doi": "10.1016/0010-0285(83)90017-8"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Direct, clean evidence that infants represent a partly-hidden object as a single connected entity -- a token-level unity inference that bridges occlusion. This is the perceptual-completion sibling of full-occlusion permanence and grounds MECH-045's persistence buffer at the unit level. Confidence 0.7 because the binding CUE the paper isolates (common motion of the visible parts) is precisely the cue REE's anchor-keyed ghost bank does NOT use -- so the paper supports the capability while exposing a mechanism mismatch in REE's current implementation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Unity was perceived from COMMON MOTION of the visible surfaces; with static, homogeneous, aligned, simple-shaped edges infants did NOT perceive a connected object. REE's persistence stores key on a spatial anchor (ghost bank) or a static type tag (SD-049), neither of which is the motion-based amodal-completion cue the infant uses.",
+    "The study tests completion of a CURRENTLY partly-visible object, not full occlusion across time -- it is the spatial-gap analog of permanence, one inferential step short of the temporal-gap (fully-hidden) case Baillargeon tests.",
+    "Common-motion binding is a perceptual-input grouping operation; it does not by itself establish a stored token that survives the object becoming fully invisible. MECH-045 must add the temporal-persistence step that this paradigm stops short of."
+  ],
+  "tags": [
+    "arc-080",
+    "mech-045",
+    "arc-006",
+    "object_permanence",
+    "perceptual_completion",
+    "partial_occlusion",
+    "common_motion",
+    "amodal_completion",
+    "token_unity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Four-month-old infants perceive a center-occluded rod (top and bottom visible, middle hidden behind a nearer block) as ONE connected object when its visible ends undergo common motion behind the occluder; they do not perceive unity from static configural cues (alignment, simple shape, homogeneous colour) alone. Common motion of visible surfaces is the decisive cue to object unity across an occluding gap.",
+    "ree_translation": "Grounds MECH-045's persistence buffer at the level of the UNIT: the visual system binds spatially separated, partly-hidden surfaces into a single token entity that bridges the occluding gap -- the spatial-gap precursor of the temporal-gap persistence (full occlusion) permanence requires. It tells the permanence pillar that the unit which must persist is established by spatiotemporal/motion coherence, not by static feature similarity -- reinforcing Xu & Carey's token (spatiotemporal) over type (property) ordering, and flagging that REE's anchor-keyed/type-tagged stores use the wrong binding cue.",
+    "mapping_caveat": "This is completion of a CURRENTLY partly-visible object, not a fully-hidden one persisting over time -- it is one step short of permanence proper. And the isolated cue (common motion) is absent from REE's current object stores, so the paper supports the target capability while simultaneously diagnosing a cue-mismatch in the live substrate; the support is for the claim, the mismatch is logged as a failure signature.",
+    "source_context": "Habituation looking-time study, 4-month-old human infants, center-occluded moving rod (Michotte-style amodal completion)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Classic, well-replicated infant-psychophysics result. Mapping fidelity 0.70: directly about token-unity across an occluding gap (on point for MECH-045) but it is partial not full occlusion, and the motion cue is not in REE's stores. Transfer risk moderate (human-infant perception to machine buffer)."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_permanence",
+  "entry_id": "2026-06-04_mech_045_object_permanence_5mo_baillargeon1985",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "ARC-080",
+    "MECH-045",
+    "ARC-006"
+  ],
+  "source": {
+    "title": "Object permanence in five-month-old infants.",
+    "authors": [
+      "Renee Baillargeon",
+      "Elizabeth S. Spelke",
+      "Stanley Wasserman"
+    ],
+    "year": 1985,
+    "venue": "Cognition",
+    "doi": "10.1016/0010-0277(85)90008-3"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Foundational and many-times-replicated demonstration that a hidden object is REPRESENTED as continuing to exist long before Piaget's manual-search criterion. Directly grounds the existence of a persistence buffer (MECH-045): permanence is a representational competence dissociable from action. Confidence held at 0.7 rather than higher because (a) the drawbridge paradigm specifically carries a documented low-level novelty/familiarity confound (Rivera/Wakeley/Langer 1999; Cashon & Cohen 2000), and (b) the mapping from looking-time surprise to a substrate-level buffer is conceptual, not mechanistic.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The drawbridge version of VOE has a known low-level confound: infants may simply prefer the larger/more-novel 180-degree rotation independent of any box representation (Rivera, Wakeley & Langer 1999). The permanence inference rests on the full VOE literature, not this paradigm alone.",
+    "Looking-time 'surprise' demonstrates that SOMETHING about the hidden object is represented; it does not specify whether the representation is a token-instance object-file, a spatial expectation, or a physical-event prediction. It cannot by itself adjudicate the token-vs-type question MECH-045 must answer.",
+    "A representation sufficient to drive differential looking is not necessarily sufficient to drive search/retrieval -- the competence (representation) / performance (action) gap (see Diamond 1985 entry) means MECH-045's buffer must be specified at the level it is consumed."
+  ],
+  "tags": [
+    "arc-080",
+    "mech-045",
+    "arc-006",
+    "object_permanence",
+    "violation_of_expectation",
+    "occlusion",
+    "infant_cognition",
+    "token_instance"
+  ],
+  "mapping": {
+    "source_claim_statement": "Five-month-old infants represent the existence, location, and physical solidity of an object after it is fully occluded: they look reliably longer at an 'impossible' event in which a rotating screen appears to pass through the space occupied by a now-hidden box than at a 'possible' event in which it stops at the box. The hidden object continues to be represented and to constrain expectations about other objects' motion.",
+    "ree_translation": "Grounds MECH-045 ('object-file-like buffers provide minimal entity persistence across time') and ARC-006 ('entities are sparse, persistent, bindable structures') at the level of the capability they assert: an entity's representation must survive perceptual disappearance and keep constraining prediction. It establishes that permanence is a genuine REPRESENTATIONAL primitive, not merely a motivational one -- which is exactly the gap the object-representation memo flags between REE's true-permanence target and the SD-039/MECH-292/293 ghost-goal bank (a value snapshot that persists, not an object-token that persists).",
+    "mapping_caveat": "VOE measures looking-time, an index of expectation violation; REE's MECH-045 is a substrate buffer that must be readable by planning/action. The paper shows permanence-as-expectation exists early but says nothing about the buffer's key (token vs anchor vs type) or how it is queried. It supports the EXISTENCE of the pillar, not any particular implementation. The drawbridge-specific confound further caps the strength.",
+    "source_context": "Habituation / violation-of-expectation looking-time study, 5.5-month-old human infants, fully-occluded rigid object behind a rotating screen."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Canonical, heavily cited, broadly replicated across the wider VOE corpus -- but the drawbridge paradigm itself was later shown to have a perceptual-novelty confound, so source_quality is held below 0.8. Transfer risk moderate: human-infant looking-time to a machine persistence buffer is a conceptual, not measured, bridge."
+  }
+}
