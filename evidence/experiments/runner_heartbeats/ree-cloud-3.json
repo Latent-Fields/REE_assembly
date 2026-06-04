@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-04T02:22:29Z",
+  "last_tick_utc": "2026-06-04T02:52:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-466b",
   "current_exq_started_utc": "2026-06-04T00:12:31.836436+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "SD-034",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / train_closure_on",
-    "runs_done": 1,
+    "run_label": "Seed 44 / train_closure_on",
+    "runs_done": 2,
     "runs_total": 3,
     "episodes_done": 40,
     "episodes_total": 350,
-    "overall_pct": 37.1
+    "overall_pct": 70.5
   },
-  "seconds_elapsed": 7798,
-  "seconds_remaining": 2779,
+  "seconds_elapsed": 9607,
+  "seconds_remaining": 3509,
   "recent_lines": [
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[train] seed=43 P0 ep 120/200 converged=True aborted=False rv=0.00000",
-    "[P1 probe] ep 40/150  rv=0.00000  ep_committed=200  median_window=200.0  floor=100",
     "[P1 EMERGED] median committed steps/ep=200.0 >= 100 sustained over 5 eps. P1 done at ep=40.",
-    "[train] seed=43 P1 ep 40/150 emerged=True committed/ep=200.0"
+    "[train] seed=43 P1 ep 40/150 emerged=True committed/ep=200.0",
+    "verdict: FAIL",
+    "Seed 44 Condition train_closure_on",
+    "[P0 probe] ep 40/200  rv=0.00000  threshold=0.4  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
