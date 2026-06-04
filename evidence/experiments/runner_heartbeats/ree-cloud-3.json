@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-04T03:42:50Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-466b",
-  "current_exq_started_utc": "2026-06-04T00:12:31.836436+00:00",
-  "current_title": "SD-034 satisficing / residue discharge (behavioural, GAP-4 Phase 4)",
-  "current_claim_id": "SD-034",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / train_closure_on",
-    "runs_done": 2,
-    "runs_total": 3,
-    "episodes_done": 40,
-    "episodes_total": 350,
-    "overall_pct": 70.5
-  },
-  "seconds_elapsed": 12619,
-  "seconds_remaining": 3509,
-  "recent_lines": [
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[train] seed=44 P0 ep 120/200 converged=True aborted=False rv=0.00000",
-    "[P1 probe] ep 40/150  rv=0.00000  ep_committed=135  median_window=161.0  floor=100",
-    "[P1 EMERGED] median committed steps/ep=161.0 >= 100 sustained over 5 eps. P1 done at ep=40.",
-    "[train] seed=44 P1 ep 40/150 emerged=True committed/ep=161.0"
+  "last_tick_utc": "2026-06-04T04:11:21Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 4,
+  "queue_id_at_head": "V3-EXQ-634c",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-621a",
+      "result": "PASS",
+      "completed_at": "2026-05-31T23:09:32.721485+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-635",
+      "result": "PASS",
+      "completed_at": "2026-06-03T15:59:02.247946+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-485c",
+      "result": "PASS",
+      "completed_at": "2026-06-03T20:10:56.273229+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-461b",
+      "result": "FAIL",
+      "completed_at": "2026-06-04T00:12:30.272021+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-466b",
+      "result": "FAIL",
+      "completed_at": "2026-06-04T03:55:12.485269+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 747,
   "runner_version": null,
   "gpu": {
