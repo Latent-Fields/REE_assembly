@@ -3,6 +3,7 @@
 **Date:** 2026-06-04
 **Type:** Long-horizon architecture-coherence / convergence-intake review (planning memo only)
 **Status:** EXPLORATORY DESIGN. NO claims registered, NO substrate code, NO experiments queued. Surfaced for user decision.
+**Target horizon:** **V5** (user-confirmed 2026-06-04: "ready to come back to in V5"). This is later than V4 (= social systems / "sharing joys and sorrows"). Resume primitive: revisit this memo at the start of V5 scoping; check the §5.4 V3 prerequisites have closed and that the V4 social layer (which the language faculty's internal<->external map depends on) is in place before building any of the proposed spine.
 **Author session:** language-system-llm-mining-review-20260604T1539Z (TASK_CLAIMS)
 **Sibling session (coordinate, do not duplicate):** object-representation-thread-design-review-20260604T1539Z -> `evidence/planning/object_representation_thread_2026-06-04.md`
 
@@ -177,12 +178,12 @@ A candidate ARC-level spine for the language faculty, **explicitly subordinate t
   - **child MECH (proposed):** *PE-derived sequence-prediction signal* — symbol-sequence learning derives from E1/E2 PE, not surface statistics. Grounds on Pickering & Garrod + philosophy Axiom II.
 - **Reconciliation note:** ARC-009 (symbolic mediation), ARC-048 (externalisation channel), MECH-191/192/193 (signal legibility), INV-057 (cross-species legibility) are the *emergence/coordination* face; ARC-LANG-α is the *substrate/discretisation* face. At registration they must be cross-linked, not duplicated — the existing claims answer "why/when language", the proposed spine answers "from what units / on what machinery".
 
-### 5.4 Developmental sequencing (V4+ / late; what must NOT enter V3)
+### 5.4 Developmental sequencing (V5 target; what must NOT enter V3)
 
-- **This is V4+ and exploratory.** It is gated **well after V3 closure**.
+- **This is V5 work** (user-confirmed 2026-06-04) — exploratory, gated **well after V3 closure** and after the V4 social layer. V4 (social systems / "sharing joys and sorrows", multi-agent z_self_j) is itself a prerequisite: the internal<->external symbol map (the new organ in §3.2/§5.2) presupposes a represented *other* to communicate with, which is V4 territory. So the dependency chain is **V3 closure -> V4 social -> V5 language faculty.**
 - **V3 prerequisites** (must be done first, on the existing critical path — not advanced by this work): goal_pipeline:GAP-2 foraging competence + GAP-7 L9 wanting/liking dissociation (so the object vocabulary is behaviourally real); behavioral_diversity closure (so the sequence generator produces diverse non-monostrategic sequences — a degenerate generator cannot support compositional language); SD-049 Phase-2 identity-recovery validation (V3-EXQ-514 — so the grounding-to-symbol map is proven before a vocabulary is built on it); ARC-063 GAP-B behavioural validation (so the rule/composition primitive is real).
 - **What must NOT enter V3:** no codebook/quantiser, no symbol layer, no internal/external map, no language sequence objective, no claim registration. The V3/V4 boundary doc (`ree-v3/CLAUDE.md`, V4 scope = social systems "sharing joys and sorrows") already places language-grade multi-agent communication in V4; this memo is consistent with that and adds the substrate-side detail.
-- **Earliest sensible first step (V4):** the *lexicalisation* MECH alone — a small grounded codebook over O or z_resource, validated as a substrate-readiness probe (identity recovery + reuse), with NO external symbols yet. Everything else sequences after.
+- **Earliest sensible first step (V5):** the *lexicalisation* MECH alone — a small grounded codebook over O or z_resource, validated as a substrate-readiness probe (identity recovery + reuse), with NO external symbols yet. Everything else sequences after.
 
 ---
 
@@ -197,7 +198,7 @@ A candidate ARC-level spine for the language faculty, **explicitly subordinate t
 1. **Accept the framing** that the REE-LLM bridge is *discretisation/vocabulary/sequence*, not the token pun. (Confirm or redirect.)
 2. **Commission the §4 biology lit pulls** (priority: Saffran statistical learning, then symbol grounding, then Hickok & Poeppel) — these are cheap, biology-first, and are the gate before any formal claim. Could be done *during* V3 (literature work does not touch the V3 critical path) so the design is ready when V4 opens.
 3. **Coordinate with the object-representation sibling memo** (`object_representation_thread_2026-06-04.md`) — the discrete-typed-objects -> vocabulary -> symbols -> language arc is one continuous thread; the object memo owns the object/entity end, this memo owns the language end. Register a shared ARC spine, not two.
-4. **Defer everything substrate-side to V4**, gated on the §5.4 V3 prerequisites. The earliest build is the grounded codebook over O.
+4. **Defer everything substrate-side to V5** (per the V3 -> V4 social -> V5 language chain in §5.4), gated on the §5.4 V3 prerequisites and the V4 social layer. The earliest build is the grounded codebook over O.
 5. **Reconcile, do not duplicate, the existing INV-003/ARC-009/ARC-048 language layer** when (if) the spine is registered.
 
 ---
