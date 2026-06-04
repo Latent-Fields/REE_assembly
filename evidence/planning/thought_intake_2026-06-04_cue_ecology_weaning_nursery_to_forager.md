@@ -120,7 +120,35 @@ Do **not** tune to pass. The goal is to determine whether REE-v3 needs a richer
 behaviourally consequential -- and whether it needs body-state meaning to be so -- is the
 open scientific question 638a (then 638b) is designed to answer.
 
-## 8. Cross-references
+## 8. Captured future follow-up: safe weaning as its own layer (routing only)
+
+**Status: captured future follow-up / routing guidance only. NOT new V3 scope, NOT an
+active work item, and NOT a change to any current experiment's acceptance criteria. It
+becomes actionable only if the result pattern below appears.**
+
+The two layers above (formation, then interoceptive need-gating / behavioural authority)
+both ask whether a cue can *produce contact*. They do not yet name a distinct later step:
+whether cue-guided contact can occur **safely** -- without survival collapse, reckless
+hazard approach, or dependence on excessive scaffold support. Make that step explicit in
+the weaning arc:
+
+> nursery feeding -> token formation -> cue recall -> contact lift -> **safe weaning** ->
+> autonomous foraging.
+
+**Routing rule.** If 638a or 638b shows cue fires AND contact lift but **survival worsens
+or hazard exposure increases**, that is *not* a cue-recall failure and must not be read as
+one (the cue did its job: it produced approach). Route it instead to a separate
+**"safe-weaning scaffold" / "hazard-safe cue-guided approach"** follow-up -- a later
+diagnostic that would test whether cue-guided contact can be sustained without survival
+collapse, reckless hazard approach, or reliance on excessive scaffold support. This is the
+weaning-arc analogue of: a pup that has learned to approach food but not yet to do so
+without getting eaten.
+
+This keeps the 638a/638b discriminator (sections 5-6) clean -- those experiments test
+*recall -> contact*; the safe-weaning layer tests *contact -> autonomous survival* -- and
+prevents a survival regression from being misattributed to the cue bridge.
+
+## 9. Cross-references
 
 - `scaffolded_sd054_onboarding` cue-recall bridge + formation-fix amend (ree-v3/CLAUDE.md).
 - SD-057 / MECH-347 (L6 cue-recall) / MECH-348 (L7 dACC readout); `goal.py`
