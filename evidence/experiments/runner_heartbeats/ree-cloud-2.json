@@ -1,47 +1,33 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-04T10:49:54Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-04T11:15:33Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-638",
+  "current_exq_started_utc": "2026-06-04T11:10:42.755666+00:00",
+  "current_title": "SD-057 cue-recall bridge foraging contact-rate ablation (GAP-2): scaffolded_sd054_onboarding cue-recall ON vs OFF, shared 634c ARM_3 seeding regime; does cue-recall raise P2 contact_rate",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-634c",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-628",
-      "result": "PASS",
-      "completed_at": "2026-06-02T19:16:25.419036+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-633",
-      "result": "PASS",
-      "completed_at": "2026-06-03T07:20:43.038394+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485b",
-      "result": "PASS",
-      "completed_at": "2026-06-03T20:10:54.651843+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490k",
-      "result": "PASS",
-      "completed_at": "2026-06-04T09:19:45.172966+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-637",
-      "result": "PASS",
-      "completed_at": "2026-06-04T10:25:46.312696+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_OFF",
+    "runs_done": 0,
+    "runs_total": 6,
+    "episodes_done": 30,
+    "episodes_total": 235,
+    "overall_pct": 2.1
+  },
+  "seconds_elapsed": 290,
+  "seconds_remaining": 14050,
+  "recent_lines": [
+    "[v3_exq_638_scaffold_cue_recall_contact_ablation] starting (dry_run=False)",
+    "Seed 42 Condition ARM_OFF",
+    "[train] stage0 seed=42 arm=ARM_OFF ep 20/235 z_goal_peak=0.4436 formed=True",
+    "[train] stage0b seed=42 arm=ARM_OFF ep 30/235 retention=0.999 gate=pass"
   ],
-  "runner_pid": 663,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 669,
   "runner_version": null,
   "gpu": {
     "available": false
