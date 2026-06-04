@@ -431,6 +431,49 @@
       "assigned_at": "2026-06-03T15:09:39Z",
       "status": "completed_resumable",
       "reaped_at": "2026-06-03T16:10:45Z"
+    },
+    {
+      "igw_id": "IGW-20260604-030",
+      "stable_hash": "10e3bf7821a3",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 28,
+      "claim_ids": [
+        "INV-074"
+      ],
+      "owner_exq": null,
+      "title": "Retest after substrate: INV-074",
+      "worktree": ".claude/worktrees/igw-030-retest-after-substrate-inv-074",
+      "branch": "claude/igw-030-retest-after-substrate-inv-074",
+      "session_uuid": "09b6bef8-8288-436d-a388-2a3d4a57e6ac",
+      "pid": 74738,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-030-retest-after-substrate-inv-074 && claude --resume 09b6bef8-8288-436d-a388-2a3d4a57e6ac",
+      "task_claim_session_id": "igw-auto-igw-030-retest-after-substrate-inv-074-20260604T021225Z",
+      "assigned_at": "2026-06-04T02:12:22Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-06-04T03:13:32Z"
+    },
+    {
+      "igw_id": "IGW-20260604-030",
+      "stable_hash": "10e3bf7821a3",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 28,
+      "claim_ids": [
+        "INV-074"
+      ],
+      "owner_exq": null,
+      "title": "Retest after substrate: INV-074",
+      "worktree": ".claude/worktrees/igw-030-retest-after-substrate-inv-074",
+      "branch": "claude/igw-030-retest-after-substrate-inv-074",
+      "session_uuid": "c3225064-75f6-4e09-a4bb-b6694a98f95d",
+      "pid": 5008,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-030-retest-after-substrate-inv-074 && claude --resume c3225064-75f6-4e09-a4bb-b6694a98f95d",
+      "task_claim_session_id": "igw-auto-igw-030-retest-after-substrate-inv-074-20260604T031332Z",
+      "assigned_at": "2026-06-04T03:13:29Z",
+      "status": "completed",
+      "completed_at": "2026-06-04T03:18:14Z",
+      "completion_summary": "V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Verified: (1) experiment script has all three required fixes (real REINFORCE, stepped expansion_parameters, ewc_penalty in loss) with mandatory startup assertion; (2) queue entry correctly configured (2 arms, 3 seeds, 2500 episodes, supersedes V3-EXQ-610d, claim_id=INV-074). No additional work needed - experiment was properly queued in previous IGW-030 session. Estimated completion: ~14h from claim time = ~2026-06-04T11:00Z."
     }
   ],
   "dispositions": [
