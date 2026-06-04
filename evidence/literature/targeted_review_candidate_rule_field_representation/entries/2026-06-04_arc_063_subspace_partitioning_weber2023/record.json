@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_rule_field_representation",
+  "entry_id": "2026-06-04_arc_063_subspace_partitioning_weber2023",
+  "timestamp_utc": "2026-06-04T15:00:09Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "Subspace partitioning in the human prefrontal cortex resolves cognitive interference.",
+    "authors": [
+      "Jan Weber",
+      "Gabriela Iwama",
+      "Anne-Kristin Solbakk",
+      "Alejandro O. Blenkmann",
+      "Pal G. Larsson",
+      "Jugoslav Ivanovic",
+      "Robert T. Knight",
+      "Tor Endestad",
+      "Randolph Helfrich"
+    ],
+    "year": 2023,
+    "venue": "PNAS",
+    "doi": "10.1073/pnas.2220523120"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Human intracranial evidence that mixed-selective PFC populations hold multiple task variables in DISTINCT low-dimensional subspaces, partitioning to minimise interference -- the representational geometry that lets multiple candidate rules coexist in one field without collapse. Mid-high: task variables (past/present states), not labelled rules; geometry transfers by analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The coexisting representations are past vs present task states, not multiple candidate RULES; ARC-063 assumes the same subspace-partitioning geometry scales to a field of rules, which is an extrapolation.",
+    "Interference between coexisting codes incurs a behavioural switch cost even when resolved -- so a CandidateRule field holding many rules should predict residual switch/interference costs, a falsifiable consequence."
+  ],
+  "tags": [
+    "arc-063",
+    "mixed_selectivity",
+    "population_geometry",
+    "subspace_partitioning",
+    "prefrontal_cortex",
+    "field_representation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human PFC intracranial recordings show competition between coexisting representations of past and present task variables incurs a behavioural switch cost, resolved by partitioning the codes into distinct low-dimensional neural subspaces, which attenuates the switch cost -- a core mechanism of flexible cognitive control.",
+    "ree_translation": "ARC-063's distributed CandidateRule field must hold MULTIPLE candidate rules simultaneously without them collapsing into one (the MECH-309 monomodal-collapse failure). Subspace partitioning is the population-geometry mechanism for exactly that: mixed-selective populations keep competing representations separable in distinct low-D subspaces. This grounds the field's representational strategy -- how many rules coexist without mutual interference.",
+    "mapping_caveat": "The separated codes are past/present task STATES, not labelled candidate rules; ARC-063 extrapolates the subspace-partitioning geometry from states to rules. The mechanism is general (population geometry) but the rule-as-subspace mapping is an REE extension.",
+    "source_context": "Human intracranial EEG, PFC, context-dependent task with switch costs; population-geometry analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Strong human iEEG + population geometry. Discounted for state-vs-rule target; transfer risk low (human PFC)."
+  }
+}

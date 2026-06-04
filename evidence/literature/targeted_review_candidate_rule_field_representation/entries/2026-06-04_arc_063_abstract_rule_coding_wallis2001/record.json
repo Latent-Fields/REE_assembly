@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_rule_field_representation",
+  "entry_id": "2026-06-04_arc_063_abstract_rule_coding_wallis2001",
+  "timestamp_utc": "2026-06-04T15:00:09Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "Single neurons in prefrontal cortex encode abstract rules.",
+    "authors": [
+      "Jonathan D. Wallis",
+      "Kathleen C. Anderson",
+      "Earl K. Miller"
+    ],
+    "year": 2001,
+    "venue": "Nature",
+    "doi": "10.1038/35082081"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical demonstration that PFC single neurons explicitly encode abstract rules that generalise to novel stimuli -- direct evidence that a rule is a represented quantity with a neural substrate, grounding the existence of an ARC-063 CandidateRule representation. Held below top band: it shows rule CODING, not a FIELD of competing candidate rules with tolerance/eligibility attributes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Demonstrates that rules ARE encoded, but with only two rules in effect -- it does not show a population holding MANY candidate rules simultaneously, nor the per-rule attributes (tolerance, context-tags, evidence) ARC-063 requires.",
+    "Rule coding is reported at the single-neuron level; whether a distributed FIELD with graded availability exists is not addressed here (Weber 2023 subspace entry covers the population geometry)."
+  ],
+  "tags": [
+    "arc-063",
+    "abstract_rule_coding",
+    "prefrontal_cortex",
+    "rule_representation",
+    "field_representation",
+    "mech-309"
+  ],
+  "mapping": {
+    "source_claim_statement": "Single neurons in monkey PFC most prevalently coded which of two abstract same/different rules was currently in effect; the rules generalised to pictures the monkeys had not previously experienced, showing genuine abstraction.",
+    "ree_translation": "ARC-063 element (i) posits a represented CandidateRule. Wallis shows the foundational fact that an abstract rule IS an explicit, generalising representation carried by PFC neurons -- the substrate on which a CandidateRule field could be built. It confirms the rule is not merely an emergent policy smoothness (the MECH-309 worry) but a representable object.",
+    "mapping_caveat": "Only two rules were in play; this grounds that rules are represented, NOT that a distributed field of many competing candidate rules with tolerance/eligibility/context attributes exists. ARC-063's field is a substantial elaboration beyond single-neuron rule coding.",
+    "source_context": "Single-unit recording, macaque PFC, two abstract same/different rules with novel stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "Landmark Nature paper. Mapping fidelity good for 'rules are represented'; discounted because a multi-rule FIELD with attributes is not shown."
+  }
+}

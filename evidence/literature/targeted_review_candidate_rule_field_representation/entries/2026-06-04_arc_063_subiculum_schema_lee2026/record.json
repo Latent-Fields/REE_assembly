@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_candidate_rule_field_representation",
+  "entry_id": "2026-06-04_arc_063_subiculum_schema_lee2026",
+  "timestamp_utc": "2026-06-04T15:00:09Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "Encoding Patterned Spatial Behavior in the Subiculum.",
+    "authors": [
+      "Su-Min Lee",
+      "Inah Lee"
+    ],
+    "year": 2026,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.70102"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Review arguing the subiculum transforms granular hippocampal codes into memory SCHEMAS encoding environmental + task-imposed behavioural regularities, with subicular->mPFC outputs facilitating rule-guided action. Grounds a schema-cell substrate for the field's bottom-up 'in' face + the rule_state->mPFC output path. Held mid: review (not primary), spatial/behavioural schemas, mapping to a CandidateRule field is interpretive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Schemas here are spatial/behavioural-pattern regularities (boundaries, axes, pre/post-choice zones), not the affect-weighted, tolerance-gated CandidateRules ARC-063 specifies; the schema-to-rule mapping is interpretive.",
+    "It is a review synthesising existing findings, not a primary demonstration of a rule field; weight is conceptual."
+  ],
+  "tags": [
+    "arc-063",
+    "schema_cells",
+    "subiculum",
+    "hippocampal_to_pfc",
+    "rule_guided_action",
+    "bottom_up_in_face"
+  ],
+  "mapping": {
+    "source_claim_statement": "The subiculum encodes regularities in environmental structure and task-imposed behavioural patterns, integrating hippocampal information into schematic representations for goal-directed action; theta-phase-specific fields segment space into pre/post-choice zones encoding context and choice, and subicular outputs to mPFC facilitate rule-guided action generation.",
+    "ree_translation": "ARC-063's distributed field has a bottom-up 'in' face (ARC-064: regularities extracted from behaviour become candidate rules) and must feed rule_state to mPFC (the SD-033a pathway GAP-B needs populated). The subiculum-as-schema-former, with subicular->mPFC outputs shaping rule-guided action, is a biological substrate for exactly that: hippocampal granular codes -> schematic regularities -> mPFC rule-guided action.",
+    "mapping_caveat": "The schemas are spatial / behavioural-pattern regularities, not the affect-weighted, tolerance-gated, context-tagged CandidateRules ARC-063 specifies; and this is a review, so the grounding is conceptual rather than a direct rule-field demonstration.",
+    "source_context": "Review of rodent subiculum electrophysiology (boundary/axis tuning, theta-phase choice-zone fields) and subiculum->mPFC anatomy."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Review-level (lower source_quality than primary). Grounds the schema-substrate + hippocampal->mPFC rule-guided-action path conceptually; interpretive mapping."
+  }
+}

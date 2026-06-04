@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_tolerance_gated_rule_availability",
+  "entry_id": "2026-06-04_arc_063_bg_gating_wm_updating_frank2001",
+  "timestamp_utc": "2026-06-04T14:55:09Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "Interactions between frontal cortex and basal ganglia in working memory: a computational model.",
+    "authors": [
+      "Michael J. Frank",
+      "Bryan Loughry",
+      "Randall C. O'Reilly"
+    ],
+    "year": 2001,
+    "venue": "Cognitive, Affective, & Behavioral Neuroscience",
+    "doi": "10.3758/cabn.1.2.137"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly grounds ARC-063's availability-vs-expression DISTINCTION: the basal ganglia provide a selective, dynamic GATE on which frontal representations are UPDATED/maintained (become available), separate from selecting the final action. Higher mapping_fidelity than the threshold papers because gating-of-availability is exactly the function, not just an analog.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The gated content is task-relevant working-memory representations, not labelled rules; REE assumes the same gate type can admit a CandidateRule, which the model does not test.",
+    "Gating is binary/selective per stripe in the model; ARC-063's tolerance gate is graded/threshold-based -- the model grounds the gating FUNCTION but not the graded-tolerance form (the threshold papers cover the graded part)."
+  ],
+  "tags": [
+    "arc-063",
+    "availability_gating",
+    "basal_ganglia",
+    "working_memory_updating",
+    "prefrontal",
+    "mech-309"
+  ],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia contribute a selective, dynamic gating function that enables frontal (PFC) memory representations to be rapidly updated in a task-relevant manner, while PFC provides robust active maintenance -- a 'releasing the brakes' disinhibition that decides WHEN a representation enters/updates the active maintained set.",
+    "ree_translation": "This grounds the KEY distinction in ARC-063 element (ii): tolerance-gated AVAILABILITY (which candidate rule becomes active/maintained, gated by the basal ganglia) is architecturally separate from rule EXPRESSION/selection (which action is taken). ARC-063's CandidateRule field availability gate maps onto BG-gated updating of PFC rule_state -- exactly the SD-033a rule_state-into-PFC pathway GAP-B needs populated.",
+    "mapping_caveat": "The model gates working-memory CONTENT updating, not the admission of a labelled rule; and its gate is selective/binary rather than graded-by-tolerance. It grounds the gating FUNCTION and the availability-vs-selection split, while the conflict-scaled graded threshold comes from the Cavanagh/Frank STN papers.",
+    "source_context": "Computational neural-network model of frontal-cortex / basal-ganglia interaction on a selective working-memory-updating (continuous performance) task."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Canonical PBWM-lineage model. Mapping fidelity higher than the threshold papers: gating-of-availability is the literal function. Transfer risk lower (general WM mechanism, not clinical)."
+  }
+}

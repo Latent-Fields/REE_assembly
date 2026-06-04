@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_level_credit_assignment",
+  "entry_id": "2026-06-04_arc_063_frontopolar_reward_trend_kovach2012",
+  "timestamp_utc": "2026-06-04T14:58:04Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "Anterior prefrontal cortex contributes to action selection through tracking of recent reward trends.",
+    "authors": [
+      "Christopher K. Kovach",
+      "Nathaniel D. Daw",
+      "David Rudrauf",
+      "Daniel Tranel",
+      "John P. O'Doherty",
+      "Ralph Adolphs"
+    ],
+    "year": 2012,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5468-11.2012"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Lesion evidence that frontopolar cortex selectively supports crediting RECENT outcome trends to update the active contingency model (vs cumulative history) -- grounds the frontal contribution to crediting the currently-active rule/model for recent outcomes. Mixed/mid: it is contingency-model updating, not credit to a distinct rule object, and is correlational at the rule level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Frontopolar lesion abolished recent-trend extrapolation but left cumulative reward learning intact -- so a REE rule-field that credited only cumulative history (no recent-trend channel) would reproduce the lesion deficit, i.e. ARC-063 needs a recent-trend credit pathway distinct from cumulative accumulation.",
+    "The credited entity is a reward-contingency model, not an explicit rule; mapping to per-rule credit is an extension."
+  ],
+  "tags": [
+    "arc-063",
+    "frontopolar_cortex",
+    "credit_assignment",
+    "reward_trend",
+    "contingency_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "Patients with anterior-prefrontal (frontopolar) lesions showed a selective deficit in extrapolating the most recent reward trend (comparisons between the two most recent outcomes) while retaining intact cumulative reward learning; FPC is proposed to select and update models of reward contingency in dynamic environments.",
+    "ree_translation": "ARC-063 must credit the CURRENTLY-ACTIVE rule for RECENT outcomes (so a rule can be split/merged/retired on recent evidence), a channel distinct from slow cumulative statistics. FPC's selective role in recent-trend extrapolation grounds a frontal substrate for exactly that recency-weighted, model-updating credit the evidence-trace refinement loop needs.",
+    "mapping_caveat": "FPC tracks recent reward TRENDS to update a contingency MODEL, not credit assigned to a labelled rule object. The mapping treats 'active contingency model' as the analog of 'active rule', which is reasonable but an extension; and the rule-level inference is correlational/lesion, not mechanistic.",
+    "source_context": "Human anterior-prefrontal lesion patients (n=8) on a four-armed bandit, model-based analysis vs healthy controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.35,
+    "notes": "Good lesion study with model-based analysis. Mapping fidelity mid: contingency-model vs rule-object; lower transfer risk (human)."
+  }
+}

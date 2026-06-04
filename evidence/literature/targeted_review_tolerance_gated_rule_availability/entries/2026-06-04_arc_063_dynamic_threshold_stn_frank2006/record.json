@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_tolerance_gated_rule_availability",
+  "entry_id": "2026-06-04_arc_063_dynamic_threshold_stn_frank2006",
+  "timestamp_utc": "2026-06-04T14:55:09Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "Hold your horses: a dynamic computational role for the subthalamic nucleus in decision making.",
+    "authors": [
+      "Michael J. Frank"
+    ],
+    "year": 2006,
+    "venue": "Neural Networks",
+    "doi": "10.1016/j.neunet.2006.03.006"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Canonical computational model showing cortical conflict drives a DYNAMIC, adaptive threshold via the cortico-subthalamic-pallidal loop -- grounds ARC-063's adaptive-threshold (not fixed) requirement. Confidence mid: it is a response-selection model, not rule-availability, and is a simulation rather than direct measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The threshold modulated is on response EXECUTION timing, not on rule availability; the model has no representation of abstract rules competing for admission.",
+    "The model predicts that without the STN dynamic-threshold pathway, multiple competing options produce premature responding -- so a REE tolerance-gate lacking an adaptive (conflict-sensitive) component, not just a fixed bar, would fail under rule competition."
+  ],
+  "tags": [
+    "arc-063",
+    "tolerance_gate",
+    "dynamic_threshold",
+    "subthalamic_nucleus",
+    "response_conflict",
+    "mech-309"
+  ],
+  "mapping": {
+    "source_claim_statement": "Incorporating the STN into a basal-ganglia network model, increased cortical response conflict produces dynamic adjustments in the response threshold via cortico-subthalamic-pallidal pathways ('hold your horses'), reducing premature responding when multiple responses compete.",
+    "ree_translation": "ARC-063's tolerance gate must be ADAPTIVE, not a fixed bar: when several candidate rules compete (or exceptions accumulate), the availability threshold should rise so the agent samples longer before committing a rule to the active set. Frank's cortico-subthalamic dynamic-threshold loop is the computational template for that adaptivity.",
+    "mapping_caveat": "The model gates response execution under motor-response conflict; it contains no abstract-rule layer. REE transfers the adaptive-threshold computation to rule availability -- a domain the model never simulated.",
+    "source_context": "Neural-network simulation of basal-ganglia / STN dynamics, validated against Parkinson's response-selection deficits and dopaminergic pharmacological challenge."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Foundational, repeatedly empirically-confirmed model. Mapping/transfer discounted for the response-vs-rule target gap and simulation (vs measurement) status."
+  }
+}

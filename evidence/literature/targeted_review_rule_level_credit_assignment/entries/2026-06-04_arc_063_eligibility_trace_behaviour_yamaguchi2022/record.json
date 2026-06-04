@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rule_level_credit_assignment",
+  "entry_id": "2026-06-04_arc_063_eligibility_trace_behaviour_yamaguchi2022",
+  "timestamp_utc": "2026-06-04T14:58:04Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "A behavioural correlate of the synaptic eligibility trace in the nucleus accumbens.",
+    "authors": [
+      "Kenji Yamaguchi",
+      "Yoshitomo Maeda",
+      "Takeshi Sawada",
+      "Yusuke Iino",
+      "Mio Tajiri",
+      "Ryosuke Nakazato",
+      "Shin Ishii",
+      "Haruo Kasai",
+      "Sho Yagishita"
+    ],
+    "year": 2022,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-022-05637-6"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Behavioural + optogenetic confirmation that the ~1s NAc synaptic eligibility-trace window governs a reward-sensitive period -- bridges the synaptic mechanism (Brzosko) to behaviour and to biologically plausible RL eligibility traces. Mid confidence: NAc Pavlovian reward, not rule-level credit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reward-sensitive window is ~1s and tied to NAc presynaptic activity for a sensorimotor event -- ARC-063 rule-evidence traces are presumed to operate over much longer, rule-relevant horizons, a timescale gap this paper does not address.",
+    "Establishes credit timing for a sensorimotor cue->reward association, not for a rule that organised the behaviour."
+  ],
+  "tags": [
+    "arc-063",
+    "eligibility_trace",
+    "nucleus_accumbens",
+    "reward_sensitive_period",
+    "credit_assignment"
+  ],
+  "mapping": {
+    "source_claim_statement": "In head-fixed Pavlovian conditioning, the reward-sensitive period for a brief tone is within ~1s of the tone and depends on plasticity-related signalling in the nucleus accumbens, matching the synaptic eligibility-trace window measured in slices -- supporting application of the synaptic eligibility trace to biologically plausible RL models.",
+    "ree_translation": "Behavioural confirmation that the eligibility-trace credit mechanism (entry brzosko2015) is real at the behavioural level and governs WHEN an outcome can credit a preceding event. ARC-063's evidence-trace credit assumes such a creditable window exists; this paper shows it does and that it is plasticity-gated in a reward hub.",
+    "mapping_caveat": "The window is ~1s and tied to a sensorimotor cue in the NAc; ARC-063 needs credit over rule-relevant horizons and to a rule object. The paper grounds the EXISTENCE and plasticity-dependence of an eligibility window, not its rule-level or long-horizon form.",
+    "source_context": "Mouse head-fixed Pavlovian conditioning with optogenetic NAc presynaptic stimulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Solid behavioural-optogenetic paper; companion to Brzosko. Discounted for timescale + rule-target gaps."
+  }
+}

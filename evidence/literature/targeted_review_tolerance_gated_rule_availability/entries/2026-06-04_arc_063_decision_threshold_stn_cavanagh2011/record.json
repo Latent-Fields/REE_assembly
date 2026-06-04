@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_tolerance_gated_rule_availability",
+  "entry_id": "2026-06-04_arc_063_decision_threshold_stn_cavanagh2011",
+  "timestamp_utc": "2026-06-04T14:55:09Z",
+  "claim_ids_tested": [
+    "ARC-063"
+  ],
+  "source": {
+    "title": "Subthalamic nucleus stimulation reverses mediofrontal influence over decision threshold.",
+    "authors": [
+      "James F. Cavanagh",
+      "Thomas V. Wiecki",
+      "Michael X. Cohen",
+      "Christina M. Figueroa",
+      "Johan Samanta",
+      "Scott J. Sherman",
+      "Michael J. Frank"
+    ],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2925"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Strong human empirical + causal (DBS reversal) evidence that a frontally-set, STN-implemented threshold scales with conflict -- the exact mechanism ARC-063's tolerance-gate borrows. Confidence held mid by mapping caveat: it is a response/decision (drift-diffusion) threshold, not a rule-AVAILABILITY threshold; REE extends the mechanism to a new target.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The measured threshold is a motor-response evidence-accumulation bound (drift-diffusion boundary), not a gate on which abstract RULE becomes available; mapping the STN conflict-threshold onto rule-availability is an architectural extension, not a demonstrated identity.",
+    "STN DBS REMOVED the adaptive coupling (produced impulsive choice), so the mechanism is necessary for the adaptive threshold -- a REE tolerance-gate without an STN-analog dynamic-adjustment pathway would predict the same impulsive failure mode."
+  ],
+  "tags": [
+    "arc-063",
+    "tolerance_gate",
+    "decision_threshold",
+    "subthalamic_nucleus",
+    "conflict",
+    "mech-309"
+  ],
+  "mapping": {
+    "source_claim_statement": "Trial-to-trial increases in mPFC theta (4-8 Hz) raise the evidence-accumulation decision threshold as a function of decision conflict; STN DBS reverses this mPFC->threshold relationship, producing impulsive choice; STN-area activity (2.5-5 Hz) increases during high-conflict decisions.",
+    "ree_translation": "ARC-063's tolerance-gated availability is a frontally-set, basal-ganglia/STN-implemented DYNAMIC threshold: a candidate rule becomes AVAILABLE only once accumulated support clears a bar that is RAISED under conflict (competing rules / accumulated exceptions). The cortico-subthalamic 'hold your horses' pathway is the biological analog of the gate that keeps a not-yet-supported rule out of the active set.",
+    "mapping_caveat": "This is a response-time decision threshold over a single motor choice, NOT a gate on rule availability. REE borrows the MECHANISM (frontal-set, conflict-scaled, STN-implemented dynamic threshold) and applies it to a different target (rule availability). The transfer is biologically motivated but not empirically demonstrated for rules.",
+    "source_context": "Human EEG (decision conflict, drift-diffusion modelling) + intracranial STN recording + STN deep-brain-stimulation in Parkinson's disease."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (Nature Neuroscience, causal DBS manipulation). Mapping fidelity mid: mechanism transfers cleanly, target (rule vs response) does not. Transfer risk mid: clinical (PD) + motor-decision -> healthy rule-availability."
+  }
+}
