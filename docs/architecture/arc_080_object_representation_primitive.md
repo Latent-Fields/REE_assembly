@@ -217,7 +217,7 @@ ARC-080  object identity = cross-cutting representational primitive
 | **Existing fragment** | SD-016 `cue_action_proj` (affordance bias for E2), `cue_terrain_proj`, `world_query_proj`. |
 | **What it actually delivers** | `cue_terrain_proj` works (E3 precision). `cue_action_proj` is inert: V3-EXQ-449 found 0.0 gradient (non-differentiable CEM blocks the path; signal vanishes before E3.select). EXP-0155 queued to instrument. |
 | **What's missing** | A grounded object->action pathway. |
-| **Registered child** | **ARC-082** (tools-object-action-binding). `depends_on` ARC-080 + SD-016. (SD-055 differentiable-CEM is prose-only -- it has a design doc but no `claims.yaml` entry yet, so it is not a `depends_on` edge.) |
+| **Registered child** | **ARC-082** (tools-object-action-binding). `depends_on` ARC-080 + SD-016 + SD-055 (differentiable-CEM grounding track; SD-055 was re-registered 2026-06-04 after a 2026-05-15 auto-sync conflict had silently dropped its `claims.yaml` entry). |
 | **Boundary** | **V3 substrate exists but ungrounded; grounding straddles V3; full binding V4.** SD-016 `cue_action_proj` is in V3 code but inert (V3-EXQ-449 0.0 gradient). Grounding it (EXP-0155 + SD-055 differentiable-CEM) is its own track and can begin in the V3 era; folding afforded actions into a token-keyed object-file slot is V4. See §5.1. |
 | **Insertion point** | object->action binding; ground SD-016 `cue_action_proj` (its own existing track via EXP-0155 / differentiable-CEM SD-055); fold into the object->action axis once the object-file exists. [V3 substrate / V4 grounding] |
 

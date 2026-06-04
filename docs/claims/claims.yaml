@@ -27168,6 +27168,91 @@
     docs/architecture/sd_054_reef_enrichment_substrate.md.
   location: docs/architecture/sd_054_reef_enrichment_substrate.md
 
+- id: SD-055
+  title: "Differentiable CEM selection approximation -- replaces the non-differentiable argmax / argsort elite-selection step in HippocampalModule.propose_trajectories() with a softmax-weighted candidate mean so that gradient flows from task reward back through candidate selection to SD-016 cue_action_proj. Opt-in via use_differentiable_cem flag (default False; legacy argmax path bit-identical when off). Preserves ARC-007 STRICT value-flat constraint: scoring uses existing residue-terrain evaluation, not a new value head."
+  claim_type: design_decision
+  subject: hippocampal.differentiable_cem_selection
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-05-15"
+  re_registered_utc: "2026-06-04"
+  depends_on:
+    - SD-016     # cue_action_proj -- the projection whose gradient is being restored
+    - ARC-007    # value-flat constraint -- preserved by scoring only over residue terrain
+    - ARC-072    # architectural gap cluster naming Gap 2 (cue_action_proj zero-gradient)
+    - MECH-326   # PFC-hippocampal routing mechanism that V4 will complete; SD-055 is the V3 staging path
+  functional_restatement: >
+    SD-055 addresses the gradient severance identified in EXP-0155 and the
+    EXQ-540f FAIL cluster: the CEM elite-selection step in
+    HippocampalModule.propose_trajectories() uses torch.argsort() to rank
+    candidates by score, then indexes elite candidates by rank -- an operation
+    with zero gradient w.r.t. scores. Because action_bias from cue_action_proj
+    enters candidate generation via E2 rollouts and scores derive from those
+    rollouts, the argsort barrier prevents any gradient from reaching
+    cue_action_proj.weight.
+
+    The differentiable approximation replaces argsort + indexed mean with a
+    softmax-weighted candidate mean over all candidates:
+
+      weights = softmax(-scores / T, dim=0)          # [n_candidates]
+      ao_mean = sum_i weights[i] * ao_candidate[i]   # [batch, H, ao_dim]
+
+    where T = differentiable_cem_temperature (default 1.0). This makes ao_mean
+    differentiable w.r.t. scores, and scores are partially differentiable
+    w.r.t. action_bias via E2 rollouts. Low T concentrates weight on the best
+    candidates (approaching argmax behavior); high T averages more broadly.
+
+    Value-flat constraint (ARC-007): scoring continues to use the existing
+    residue-terrain evaluation in _score_trajectory() -- no new value head is
+    introduced. The approximation changes only the mathematical form of the
+    selection aggregate.
+
+    Opt-in safety: use_differentiable_cem (default False) leaves the legacy
+    argmax path bit-identical when off. All existing experiments and queue
+    entries are unaffected.
+
+    Expected downstream effect: when gradient flows to cue_action_proj,
+    different z_goal states should steer different candidate action-object
+    distributions, making cue-conditioned trajectory generation measurably
+    distinct across goal contexts. This is the V3 staging path for MECH-326
+    prior to the full MECH-325 trajectory library in V4.
+  evidence_quality_note: >
+    Registered 2026-05-15 alongside implementation in
+    ree-v3/ree_core/hippocampal/module.py (softmax-weighted refit when
+    use_differentiable_cem=True) and ree-v3/ree_core/utils/config.py
+    (use_differentiable_cem: bool = False,
+    differentiable_cem_temperature: float = 1.0 in HippocampalConfig).
+    Smoke test: gradient flows to cue_action_proj.weight when flag=True;
+    flag=False is bit-identical to legacy CEM behavior.
+
+    RE-REGISTRATION NOTE (2026-06-04): this claims.yaml entry was registered by
+    commit 59ca45d6c4 on 2026-05-15 and SILENTLY DROPPED the same day by commit
+    d3fb89c64d ("auto-sync: re-apply results after conflict 2026-05-15") -- the
+    conflict re-apply removed the entire `- id: SD-055` block. The claim was
+    absent from claims.yaml for ~3 weeks even though it remained implemented,
+    referenced as a dependency by other claims (e.g. the ARC-080 PILLAR 3 child
+    ARC-082), and progressed through substrate-readiness and a default-flip
+    safety review. Restored verbatim from 59ca45d6c4 with this note. The drop is
+    a confirmed instance of the conflict-re-apply / auto-sync silent-revert
+    failure mode documented in REE_assembly/CLAUDE.md.
+  implementation_note: >
+    IMPLEMENTED 2026-05-15 (ree-v3/ree_core/hippocampal/module.py post-elite
+    refit block; HippocampalConfig.use_differentiable_cem /
+    differentiable_cem_temperature; surfaced via REEConfig.from_dims). Substrate
+    -readiness PASS V3-EXQ-568 (diagnostic, non_contributory, 5/5 UC,
+    grad_max=372) 2026-05-15; smoke ree-v3/smoke_sd055_differentiable_cem.py 4/4
+    PASS. Marked substrate-ready 2026-05-21 (IGW-20260521-021, commit
+    0658373550). use_differentiable_cem default-flip evaluated 2026-05 (commit
+    d08bad6387, safety note: stays default-False; opt-in only). The behavioural
+    claim (cue-conditioned candidate divergence on a goal-rich env) is NOT
+    validated by substrate-readiness and requires a separate training
+    experiment; status stays candidate / v3_pending (exp_conf = 0;
+    implementation is not evidence).
+  location: docs/architecture/sd_055_differentiable_cem_selection.md
+
 - id: SD-056
   title: "E2 world-forward action-conditional divergence preservation via auxiliary InfoNCE-style contrastive loss. Substrate-level fix for the V3-EXQ-571 root cause finding (2026-05-25): with world_dim=32 and action_dim=4, action contributes ~11% of world_forward input dimensionality, and reconstruction-shaped training collapses to the state-dominated local minimum where action effect is fitted to zero. Measurement: cand_world_pairwise_dist = 0.0000 across K=8 candidates differing only in first action. Same root cause as 2026-05-17 ARC-062 GAP-B autopsy; GAP-B fix was scoped only to GatedPolicy first-action one-hot bypass. SD-056 is the architecturally-faithful generalisation -- fixes the predictor's training objective rather than bypassing the predictor at each consumer. Option (ii) lever B (contrastive next-state, Srivastava et al. 2021 style) chosen over PLSM-style MI factorisation (lever A) and SWIRL-style MI maximisation (lever C) per 2026-05-28 lit-pull SYNTHESIS verdict and user AskUserQuestion confirmation."
   claim_type: design_decision
@@ -35540,6 +35625,7 @@
   depends_on:
     - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the tools/affordance specialisation)
     - SD-016     # V3 SUBSTRATE -- cue_action_proj (affordance bias for E2; LIVE but ungrounded, V3-EXQ-449 0.0 gradient)
+    - SD-055     # GROUNDING TRACK -- differentiable CEM that restores gradient to cue_action_proj (the straddling-V3 grounding path)
   functional_restatement: >
     ARC-082 is a THIN COHERENCE-MAP CHILD of ARC-080, not new mechanism. It adds
     one framing the existing SD-016 track does not: that the affordance/action
@@ -35555,10 +35641,11 @@
       queued to instrument it.
     - GROUNDING STRADDLES V3: making cue_action_proj actually carry an
       object->action signal is its OWN existing track -- EXP-0155 instrumentation +
-      the SD-055 differentiable-CEM dependency (SD-055 has a design doc and is
-      substrate-ready 2026-05-21 but is NOT yet a registered claims.yaml entry --
-      referenced here in prose only, not as a depends_on edge). This grounding work
-      can begin in the V3 era but is gated on the differentiable-CEM path.
+      the SD-055 differentiable-CEM dependency (now a depends_on edge; SD-055 is
+      implemented + substrate-ready 2026-05-21, re-registered 2026-06-04 after a
+      2026-05-15 auto-sync conflict re-apply had silently dropped its claims.yaml
+      entry). This grounding work can begin in the V3 era but is gated on the
+      differentiable-CEM path.
     - FULL BINDING VIA THE OBJECT-FILE IS V4: folding the grounded affordance
       pathway into a token-keyed object->action axis -- "this object affords these
       actions" attached to the object-file slot -- requires the generalised
