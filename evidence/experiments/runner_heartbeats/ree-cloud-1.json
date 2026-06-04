@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-04T22:43:43Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-610e",
-  "current_exq_started_utc": "2026-06-03T21:19:06.134425+00:00",
-  "current_title": "INV-074/MECH-333/MECH-334 crystallization-necessity retest (HARNESS-FIXED, startup-assertion-gated): real REINFORCE on gated_policy (Phases 0-2) + stepped expansion_parameters() optimizer post-crystallize (Phase 3) + residue_field.ewc_penalty() summed into the Phase-3 loss. 2-arm/3-seed, IGW-023 Phase-3 pressure. Supersedes 610d (untrained-policy no-op).",
-  "current_claim_id": "INV-074",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_1_test",
-    "runs_done": 5,
-    "runs_total": 6,
-    "episodes_done": 2300,
-    "episodes_total": 2500,
-    "overall_pct": 98.7
-  },
-  "seconds_elapsed": 91477,
-  "seconds_remaining": 1223,
-  "recent_lines": [
-    "[train] ARM_1_test ep 2001/2500 phase=3 ep_reward=-1.0870 rv=0.0135 pol_steps=2001 exp_steps=0 ewc_terms=0",
-    "[INV-074] policy_optimizer rebuilt for expansion_parameters (4 expansion + 2 residue params)",
-    "[train] ARM_1_test ep 2100/2500 phase=3 ep_reward=-1.0563 rv=0.0163 pol_steps=2100 exp_steps=99 ewc_terms=99",
-    "[train] ARM_1_test ep 2200/2500 phase=3 ep_reward=-1.0376 rv=0.0175 pol_steps=2200 exp_steps=199 ewc_terms=199",
-    "[train] ARM_1_test ep 2300/2500 phase=3 ep_reward=-1.1375 rv=0.0159 pol_steps=2300 exp_steps=299 ewc_terms=299"
+  "last_tick_utc": "2026-06-04T23:13:27Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 6,
+  "queue_id_at_head": "V3-EXQ-460b",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-627",
+      "result": "PASS",
+      "completed_at": "2026-06-02T17:21:22.336289+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-632",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T10:31:04.762341+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-634",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T16:33:57.686093+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-626b",
+      "result": "PASS",
+      "completed_at": "2026-06-03T21:17:04.191567+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-610e",
+      "result": "FAIL",
+      "completed_at": "2026-06-04T22:53:20.206305+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 2199291,
   "runner_version": null,
   "gpu": {
