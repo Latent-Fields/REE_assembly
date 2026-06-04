@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-04T02:52:38Z",
+  "last_tick_utc": "2026-06-04T03:12:45Z",
   "state": "running",
   "current_exq": "V3-EXQ-467b",
   "current_exq_started_utc": "2026-06-04T01:25:56.289853+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "MECH-266",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / warmup",
+    "run_label": "Seed 43 / consolidation",
     "runs_done": 1,
     "runs_total": 18,
-    "episodes_done": 80,
+    "episodes_done": 40,
     "episodes_total": 250,
-    "overall_pct": 7.3
+    "overall_pct": 6.4
   },
-  "seconds_elapsed": 5202,
-  "seconds_remaining": 54342,
+  "seconds_elapsed": 6409,
+  "seconds_remaining": 54863,
   "recent_lines": [
-    "verdict: FAIL C1=False C2=False C3=False dwell_low=151.0 dwell_high=143.95",
-    "Seed 43 Condition warmup P0",
-    "[P0 probe] ep 40/150  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 probe] ep 80/150  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/150  rv=0.00000  reward=-0.7082"
+    "[P0 probe] ep 120/150  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
+    "[train] ep 120/150 converged=True aborted=False rv=0.00000",
+    "Seed 43 Condition consolidation P1",
+    "[P1 probe] ep 40/100  rv=0.00000  ep_committed=83  median_window=83.0  floor=100"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

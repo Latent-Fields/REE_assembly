@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-04T02:52:37Z",
+  "last_tick_utc": "2026-06-04T03:12:47Z",
   "state": "running",
   "current_exq": "V3-EXQ-634c",
   "current_exq_started_utc": "2026-06-03T22:04:56.869735+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_0_baseline",
-    "runs_done": 1,
+    "run_label": "Seed 44 / ARM_0_baseline",
+    "runs_done": 2,
     "runs_total": 12,
-    "episodes_done": 220,
+    "episodes_done": 30,
     "episodes_total": 235,
-    "overall_pct": 16.1
+    "overall_pct": 17.7
   },
-  "seconds_elapsed": 17259,
-  "seconds_remaining": 19107,
+  "seconds_elapsed": 18468,
+  "seconds_remaining": 85726,
   "recent_lines": [
-    "Seed 43 Condition ARM_0_baseline",
-    "[train] stage0_nursery seed=43 arm=ARM_0_baseline ep 20/235 forced_benefit=1.00 z_goal_peak=0.4552 formed=True",
-    "[train] stage0b_consolidate seed=43 arm=ARM_0_baseline ep 30/235 start=0.4443 end=0.4443 retention=0.976 gate=pass",
-    "[train] p0_guided seed=43 arm=ARM_0_baseline ep 150/235 mean_len=198.4 rv=0.00000",
-    "[train] p1_foraging seed=43 arm=ARM_0_baseline ep 220/235 median_last=111.5 survival_gate=pass final_hfa=0.70 gated=True decay_only=0 skipped=5618 refresh=2845"
+    "[train] p2_measure seed=43 arm=ARM_0_baseline ep 235/235 z_goal_frozen=0.0000 z_goal_at_contact=0.0000 contact_events=54 contact_rate=0.0181 hfa_used=0.30 gated=True decay_only=0 skipped=2937 refresh=54",
+    "verdict: FAIL seed=43 arm=ARM_0_baseline",
+    "Seed 44 Condition ARM_0_baseline",
+    "[train] stage0_nursery seed=44 arm=ARM_0_baseline ep 20/235 forced_benefit=1.00 z_goal_peak=0.3985 formed=False",
+    "[train] stage0b_consolidate seed=44 arm=ARM_0_baseline ep 30/235 start=0.3944 end=0.3944 retention=0.990 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

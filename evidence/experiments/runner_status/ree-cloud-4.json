@@ -1,63 +1,96 @@
 {
   "schema_version": "v1",
-  "runner_pid": 667,
-  "runner_started_at": "2026-06-02T16:35:46.093155+00:00",
-  "last_updated": "2026-06-02T17:25:31.732536+00:00",
+  "runner_pid": 668,
+  "runner_started_at": "2026-06-03T20:35:42.369351+00:00",
+  "last_updated": "2026-06-04T03:09:03.626009+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-610c",
+      "queue_id": "V3-EXQ-610e",
       "backlog_id": "EVB-0270",
-      "claim_id": "",
-      "title": "INV-074 crystallization necessity test -- post-Phase-3-enrichment retest (supersedes V3-EXQ-610b)",
+      "claim_id": "INV-074",
+      "title": "INV-074/MECH-333/MECH-334 crystallization-necessity retest (HARNESS-FIXED, startup-assertion-gated): real REINFORCE on gated_policy (Phases 0-2) + stepped expansion_parameters() optimizer post-crystallize (Phase 3) + residue_field.ewc_penalty() summed into the Phase-3 loss. 2-arm/3-seed, IGW-023 Phase-3 pressure. Supersedes 610d (untrained-policy no-op).",
       "description": "",
       "estimated_minutes": 2000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-514l",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-229 identity-distinct wanting retest on SD-049 Phase 3 substrate (retry of 514k FAIL)",
-      "description": "",
-      "estimated_minutes": 52.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-603e",
-      "backlog_id": "",
-      "claim_id": "Q-045",
-      "title": "Q-045/MECH-313/MECH-260 + FP-2 dissociation on scaffolded_sd054_onboarding (re-issue of 603d on hook-fixed scheduler + z_goal_enabled config)",
-      "description": "",
-      "estimated_minutes": 360.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-614d",
-      "backlog_id": "",
-      "claim_id": "MECH-341",
-      "title": "MECH-341 within-class temperature 4-arm sweep -- corrected harness (committed-class metric + within-class diagnostics + cross-seed-mean C1; supersedes 614c)",
-      "description": "",
-      "estimated_minutes": 144.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-624",
-      "backlog_id": "EVB-0237",
-      "claim_id": "MECH-320",
-      "title": "ARC-068 / MECH-320 Niv-vs-Salamone opportunity-cost-vs-effort-cost dissociation",
+      "queue_id": "V3-EXQ-626b",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "goal-pipeline FORCED-SEED L1 positive control (GAP-7; z_goal SEEN decoupled from GAP-2 foraging)",
       "description": "",
-      "estimated_minutes": 208.0,
+      "estimated_minutes": 36.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-460b",
+      "backlog_id": "",
+      "claim_id": "SD-034",
+      "title": "SD-034 verified-but-not-released closure (behavioural, GAP-4 Phase 4)",
+      "description": "",
+      "estimated_minutes": 140.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-461b",
+      "backlog_id": "",
+      "claim_id": "MECH-090",
+      "title": "MECH-090+SD-033a+SD-034 delayed-reward persistence (full behavioural, GAP-4 Phase 4)",
+      "description": "",
+      "estimated_minutes": 140.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-464b",
+      "backlog_id": "",
+      "claim_id": "MECH-266",
+      "title": "MECH-266 competing goals / switch-cost asymmetry (behavioural, GAP-4 Phase 5)",
+      "description": "",
+      "estimated_minutes": 400.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-466b",
+      "backlog_id": "",
+      "claim_id": "SD-034",
+      "title": "SD-034 satisficing / residue discharge (behavioural, GAP-4 Phase 4)",
+      "description": "",
+      "estimated_minutes": 140.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-467b",
+      "backlog_id": "",
+      "claim_id": "MECH-266",
+      "title": "MECH-266 mode stickiness / hold-decay dose-response (behavioural, GAP-4 Phase 5)",
+      "description": "",
+      "estimated_minutes": 600.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-468b",
+      "backlog_id": "",
+      "claim_id": "SD-034",
+      "title": "SD-034+MECH-268+MECH-090 commitment vs contradiction (behavioural, GAP-4 Phase 4)",
+      "description": "",
+      "estimated_minutes": 140.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1862,6 +1895,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate/v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z.json",
       "completed_by": "ree-cloud-4",
       "actual_secs": 2982.0
+    },
+    {
+      "queue_id": "V3-EXQ-463b",
+      "backlog_id": "",
+      "claim_id": "MECH-268",
+      "title": "MECH-268 dACC conflict saturation (500-step behavioural, GAP-4 Phase 5)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS (3/3 seeds pass) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-463b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-463b.json",
+      "started_at": "2026-06-03T20:35:42.396210+00:00",
+      "completed_at": "2026-06-04T03:09:03.625506+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_463b_mech268_dacc_conflict_saturation_behavioural_20260604T030903Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 23600.4
     }
   ]
 }
