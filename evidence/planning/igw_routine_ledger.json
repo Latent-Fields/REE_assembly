@@ -474,6 +474,28 @@
       "status": "completed",
       "completed_at": "2026-06-04T03:18:14Z",
       "completion_summary": "V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Verified: (1) experiment script has all three required fixes (real REINFORCE, stepped expansion_parameters, ewc_penalty in loss) with mandatory startup assertion; (2) queue entry correctly configured (2 arms, 3 seeds, 2500 episodes, supersedes V3-EXQ-610d, claim_id=INV-074). No additional work needed - experiment was properly queued in previous IGW-030 session. Estimated completion: ~14h from claim time = ~2026-06-04T11:00Z."
+    },
+    {
+      "igw_id": "IGW-20260604-032",
+      "stable_hash": "10e3bf7821a3",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 28,
+      "claim_ids": [
+        "INV-074"
+      ],
+      "owner_exq": null,
+      "title": "Retest after substrate: INV-074",
+      "worktree": ".claude/worktrees/igw-032-retest-after-substrate-inv-074",
+      "branch": "claude/igw-032-retest-after-substrate-inv-074",
+      "session_uuid": "ac06a8e5-198e-474a-b549-2f4df6dfd49c",
+      "pid": 62245,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-032-retest-after-substrate-inv-074 && claude --resume ac06a8e5-198e-474a-b549-2f4df6dfd49c",
+      "task_claim_session_id": "igw-auto-igw-032-retest-after-substrate-inv-074-20260604T051440Z",
+      "assigned_at": "2026-06-04T05:14:37Z",
+      "status": "completed",
+      "completed_at": "2026-06-04T05:17:05Z",
+      "completion_summary": "V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Same stable_hash as IGW-20260604-030 which verified all required fixes. No additional work needed."
     }
   ],
   "dispositions": [

@@ -77,3 +77,5 @@ One line per hourly tick. ASCII only.
 2026-06-04T02:12:22Z SPAWN IGW-20260604-030 skill=/queue-experiment prio=28 uuid=09b6bef8-8288-436d-a388-2a3d4a57e6ac pid=74738 worktree=igw-030-retest-after-substrate-inv-074
 2026-06-04T03:13:32Z reaped TASK_CLAIMS igw-auto-igw-030-retest-after-substrate-inv-074-20260604T021225Z (ledger IGW-20260604-030 -> completed_resumable)
 2026-06-04T03:13:29Z SPAWN IGW-20260604-030 skill=/queue-experiment prio=28 uuid=c3225064-75f6-4e09-a4bb-b6694a98f95d pid=5008 worktree=igw-030-retest-after-substrate-inv-074
+2026-06-04T05:14:37Z SPAWN IGW-20260604-032 skill=/queue-experiment prio=28 uuid=ac06a8e5-198e-474a-b549-2f4df6dfd49c pid=62245 worktree=igw-032-retest-after-substrate-inv-074
+2026-06-04T05:17:05Z disposition IGW-20260604-032 decision=NO-OP: V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Same stable_hash (10e3bf7821a3) as IGW-20260604-030 which verified all three required fixes (real REINFORCE, stepped expansion_parameters, ewc_penalty) and correct queue configuration. No additional work needed.
