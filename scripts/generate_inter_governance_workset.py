@@ -216,10 +216,17 @@ def _queued_retest_coverage(queue_items: list[dict]) -> dict[str, str]:
     """claim_id -> queue_id mapping for claims covered by any queue entry.
 
     Any item still in ree-v3/experiment_queue.json (pending or claimed) that
-    names a claim in its claim_ids field is treated as a queued retest for
-    that claim. The retest IGW loop suppresses pending_retest_after_substrate
-    claims that already have a queued retest, matching the operator mental
-    model that a queued retest needs no human action until completion.
+    names a claim is treated as a queued retest for that claim. The retest IGW
+    loop suppresses pending_retest_after_substrate claims that already have a
+    queued retest, matching the operator mental model that a queued retest
+    needs no human action until completion.
+
+    Queue entries carry the claim either as a singular `claim_id` string (the
+    common case -- e.g. V3-EXQ-610e has claim_id="INV-074") or as a `claim_ids`
+    list. BOTH must be read: a 2026-06-04 audit found this function read only
+    the list form, so every singular-`claim_id` queued retest went undetected
+    and its IGW item stayed `ready` -- which the hourly auto-spawn routine then
+    re-spawned every hour as a NO-OP (INV-074 12x over 6 days, MECH-229 8x).
 
     Returns the first matching queue_id per claim (queue order). If multiple
     queue entries cover the same claim, only the earliest is reported in the
@@ -232,7 +239,11 @@ def _queued_retest_coverage(queue_items: list[dict]) -> dict[str, str]:
         qid = item.get("queue_id") or ""
         if not qid:
             continue
-        for cid in item.get("claim_ids") or []:
+        cids = list(item.get("claim_ids") or [])
+        single = item.get("claim_id")
+        if single:
+            cids.append(single)
+        for cid in cids:
             cid_s = str(cid)
             if cid_s and cid_s not in out:
                 out[cid_s] = str(qid)
