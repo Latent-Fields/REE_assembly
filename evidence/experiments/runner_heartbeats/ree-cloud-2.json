@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-04T18:17:37Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-638a",
-  "current_exq_started_utc": "2026-06-04T15:20:31.248636+00:00",
-  "current_title": "SD-057 cue-recall contact ablation on the FORMATION-FIXED substrate (validates V3-EXQ-638 cue-silent fix). ARM_CUE_ON sets scaffold_stage0_bind_incentive_token=True so Stage-0 binds per-type tokens -> bank non-empty -> cue can fire; surfaces cue_diag (token_bank_size / nonfire reasons / drive_peak) per arm/seed. 2 arms x 3 seeds.",
+  "last_tick_utc": "2026-06-04T18:46:17Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
   "current_claim_id": null,
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_CUE_ON",
-    "runs_done": 0,
-    "runs_total": 6,
-    "episodes_done": 30,
-    "episodes_total": 235,
-    "overall_pct": 2.1
-  },
-  "seconds_elapsed": 10625,
-  "seconds_remaining": 58611,
-  "recent_lines": [
-    "[train] p2 seed=43 arm=ARM_CUE_ON ep 235/235 contact_rate=0.0000 contact_events=0 cue_fires=180 bank=3 drive_peak=0.0390 z_goal_at_contact=0.0000",
-    "verdict: seed=43 arm=ARM_CUE_ON contact_rate=0.0000 cue_fires=180",
-    "Seed 44 Condition ARM_CUE_ON",
-    "[train] stage0 seed=44 arm=ARM_CUE_ON ep 20/235 z_goal_peak=0.4372 formed=True token_bank_size_end=3",
-    "[train] stage0b seed=44 arm=ARM_CUE_ON ep 30/235 retention=0.969 gate=pass"
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-634c",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-633",
+      "result": "PASS",
+      "completed_at": "2026-06-03T07:20:43.038394+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-485b",
+      "result": "PASS",
+      "completed_at": "2026-06-03T20:10:54.651843+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-490k",
+      "result": "PASS",
+      "completed_at": "2026-06-04T09:19:45.172966+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-637",
+      "result": "PASS",
+      "completed_at": "2026-06-04T10:25:46.312696+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-638a",
+      "result": "FAIL",
+      "completed_at": "2026-06-04T18:36:13.450793+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 666,
   "runner_version": null,
   "gpu": {
