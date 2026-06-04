@@ -90,11 +90,13 @@ The active set (available ∧ context-matched rules) is stacked into a **differe
 
 **In v1 (this design):** CREATE (bottom-up regularity-mint + top-down ARC-062 seed), REPRESENT (subspace field), GATE (tolerance availability), SELECT (cue/context retrieval), OUTPUT (differentiated rule_state → SD-033a), minimal CREDIT (eligibility-trace availability update). Reuses existing latents (no new trained encoder).
 
-**Deferred (explicit, NOT in v1):**
-- **Social "in" face** (ARC-077/MECH-337) — requires a caregiver/teacher-agent substrate that does not exist in V3 (single-agent). Hard-gated.
-- **Sleep-vs-waking refinement asymmetry** (element v) — requires integration with the sleep cluster (MECH-272/273/285); the rule-field compression/renormalisation operations are V4.
-- **Full per-action evidence-trace records + moral-residue attribution** — v1 keeps only the eligibility→availability credit loop; the rich evidence record (rollouts generated/suppressed, harm, moral residue) and rule-field-level moral attribution are V4.
+**Deferred to a V3 follow-on within ARC-063 (NOT in v1, but V3-tractable — not V4):**
+- **Sleep-vs-waking refinement asymmetry** (element v) — **V3, not V4.** Sleep is V3 (rescoped from V4 on 2026-04-20; V4 is social-only), and the sleep cluster it needs is already implemented (MECH-272 routing gate, MECH-273 self-model writeback, MECH-285 replay sampler, SD-017 passes). The asymmetry is: waking does lightweight rule operations (mint / split / merge / availability credit — the v1 core); sleep does heavyweight rule-field operations (compress redundant rules, renormalise availability, consolidate/contextualise). This is a V3 follow-on (a `CandidateRuleField` sleep-pass invoked from the sleep loop), deferred out of the v1 core only to bound the first landing — NOT deferred to V4. MECH-094 applies (sleep writes carry the hypothesis-tag/mode-gate convention).
+- **Full per-action evidence-trace records + moral-residue attribution** — v1 keeps only the eligibility→availability credit loop; the richer evidence record (rollouts generated/suppressed, harm, moral residue) and rule-field-level moral-residue attribution are a later phase (the moral-residue face is tied to the V4 strong-reading elaboration; the evidence-record enrichment itself is V3-tractable).
 - **Learned affordance/identity embedding** for rule_embedding — v1 mints from existing z_world/z_self/z_resource + action-object; a learned rule encoder (which would need phased training) is the upgrade path.
+
+**Genuinely V4-deferred (hard substrate gap):**
+- **Social "in" face** (ARC-077/MECH-337) — requires a caregiver/teacher-agent substrate that does not exist in V3 (single-agent). Hard-gated; this is the only ARC-063 face that is V4 by substrate necessity rather than landing-order convenience.
 
 ## Config (all no-op defaults; bit-identical OFF)
 

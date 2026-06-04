@@ -27778,8 +27778,104 @@
     ARC-062's status, confidence, flags, conflict ratio, or phase.
   location: docs/architecture/rule_apprehension_layer.md
 
+- id: MECH-349
+  title: "CandidateRule mint (ARC-063 CREATE face): a non-gradient structural event mints a distinct CandidateRule slot when a (context-bucket -> action-object) regularity recurs above threshold and no existing rule's context_tag already covers it. The literal MECH-309 answer -- the creator that 'invents' rules so that credit only 'weights' them. Bottom-up (ARC-064 regularity detection) primary; optional top-down ARC-062 discriminator seed."
+  claim_type: mechanism_hypothesis
+  subject: policy.candidate_rule_field.mint
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-06-04"
+  depends_on:
+    - ARC-063
+    - MECH-309
+    - ARC-064
+    - ARC-062
+  notes: >
+    ARC-063 v1 CREATE face. CandidateRuleField._maybe_mint: recurrence counter keyed on
+    (sign-bucket of context, action_object_idx); mint when count >= crf_mint_recurrence_threshold
+    AND no existing rule's context_tag cosine >= crf_context_match_threshold AND a free slot
+    exists. Minted rule_embedding = the slot's pinned-distinct unit direction (MECH-350);
+    context_tag = current context; initial availability = crf_tolerance_floor, nudged by the
+    ARC-062 gating_weight confidence when crf_seed_from_arc062. Non-gradient instantiation --
+    the structural creator that gradient descent cannot supply (543/598b inert-equilibrium
+    finding). Module ree-v3/ree_core/policy/candidate_rule_field.py. Config
+    use_candidate_rule_field (no-op default). MECH-094: simulation_mode no-op. Validation V3-EXQ-639.
+  location: docs/architecture/arc_063_candidate_rule_field.md
+
+- id: MECH-350
+  title: "CandidateRule field representation (ARC-063 REPRESENT face): the field holds K candidate rules as a population of distinct pinned subspace directions, so distinct minted rules occupy distinct directions and the rule_state handed to SD-033a is differentiated by construction. The architectural answer to why two shared-gradient scalar heads collapse (598b) but a minted field does not -- separability is structural, not an equilibrium gradient must find."
+  claim_type: mechanism_hypothesis
+  subject: policy.candidate_rule_field.subspace_partitioned_representation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-06-04"
+  depends_on:
+    - ARC-063
+    - MECH-349
+    - SD-033a
+  notes: >
+    ARC-063 v1 REPRESENT face. CandidateRuleField._pinned_directions: deterministic seeded
+    (CandidateRuleFieldConfig.pinned_seed, default 6063) unit vectors in rule_dim, one per slot. Minted rules take their slot's
+    pinned direction as rule_embedding, so the active-rule stack written to SD-033a is
+    differentiated by construction. Biology: Wallis 2001 (PFC abstract rule cells), Weber 2023
+    (mixed-selective subspace partitioning lets multiple codes coexist without interference).
+    Headline diagnostic crf_max_pairwise_rule_dist. Module ree-v3/ree_core/policy/candidate_rule_field.py.
+    Validation V3-EXQ-639 C1 (>=2 distinct active rule vectors).
+  location: docs/architecture/arc_063_candidate_rule_field.md
+
+- id: MECH-351
+  title: "CandidateRule tolerance gate (ARC-063 GATE face): a candidate rule becomes AVAILABLE (eligible to enter the active rule_state) only when its availability clears a threshold that RISES with the number of competing context-matched rules. The conflict-graded 'hold your horses' dynamic threshold; availability (which rules enter the active set) is distinct from selection (which action E3 picks among available rules' biases)."
+  claim_type: mechanism_hypothesis
+  subject: policy.candidate_rule_field.tolerance_gated_availability
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-06-04"
+  depends_on:
+    - ARC-063
+    - MECH-349
+    - MECH-338
+  notes: >
+    ARC-063 v1 GATE face. CandidateRuleField.gate_and_select: matched = rules with
+    cosine(context, context_tag) >= crf_context_match_threshold; theta = crf_tolerance_floor +
+    crf_tolerance_conflict_gain * (n_matched - 1); a matched rule is active iff availability >=
+    theta. Under-supported / high-conflict rules are held out until credit raises availability.
+    Biology: Frank 2006 (frontally-set dynamic BG/STN threshold), Cavanagh 2011 (STN conflict
+    signal), Frank/O'Reilly 2001 (BG-gates-WM-updating: availability != expression). Module
+    ree-v3/ree_core/policy/candidate_rule_field.py. Validation V3-EXQ-639 C3 (conflict-sensitive gate).
+  location: docs/architecture/arc_063_candidate_rule_field.md
+
+- id: MECH-352
+  title: "CandidateRule eligibility-trace credit (ARC-063 CREDIT face): each rule active when an action was taken leaves a decaying eligibility trace; the subsequent outcome/PE updates the rule's availability (raise on success, lower on exception), recency-weighted, with slow availability decay and retire-below-floor. The 'weight' half of mint-then-weight -- credit refines an existing rule's availability, it does not create rules."
+  claim_type: mechanism_hypothesis
+  subject: policy.candidate_rule_field.eligibility_trace_credit
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-06-04"
+  depends_on:
+    - ARC-063
+    - MECH-349
+    - MECH-351
+  notes: >
+    ARC-063 v1 CREDIT face. CandidateRuleField.credit: eligibility-weighted availability EMA toward
+    1.0 (outcome>=0 success) or 0.0 (outcome<0 exception) at rate crf_availability_alpha*eligibility;
+    eligibility decays at (1 - 1/crf_eligibility_window); availability decays slowly at
+    crf_availability_decay; rules below 0.5*crf_tolerance_floor are retired (slot freed). The agent
+    feeds an outcome proxy (lower harm = success) for the previous tick's active rules. Biology:
+    Brzosko 2015 (retroactive eligibility / dopaminergic conversion of STDP), Kovach 2012 (recency-
+    weighted credit). Module ree-v3/ree_core/policy/candidate_rule_field.py. MECH-094: simulation_mode
+    no-op. Validation V3-EXQ-639 (credit loop exercised).
+  location: docs/architecture/arc_063_candidate_rule_field.md
+
 - id: ARC-063
-  title: "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md) -- the social in-face (ARC-077/MECH-337), sleep-vs-waking refinement asymmetry, and full per-action moral-residue evidence records remain V4-deferred. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
+  title: "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
   claim_type: architectural_commitment
   subject: policy.rule_apprehension_layer.strong_reading
   polarity: asserts
@@ -27792,15 +27888,24 @@
   design_doc: docs/architecture/arc_063_candidate_rule_field.md
   implementation_note: >
     2026-06-04: V3-tractable design landed (docs/architecture/arc_063_candidate_rule_field.md),
-    DESIGN-ONLY (no code). Resolves arc_062_rule_apprehension:GAP-B's blocker via a mint-then-weight
-    split: a non-Bayesian rule-creator (bottom-up regularity-mint ARC-064 + top-down ARC-062 seed)
-    populates a subspace-partitioned CandidateRule field (Weber 2023 anti-monomodal geometry; Wallis
-    2001 rule cells), tolerance-gated availability (Cavanagh 2011 / Frank 2006; availability!=selection
-    Frank-O'Reilly 2001), cue-driven context retrieval (MECH-338), writing DIFFERENTIATED rule_state
-    into SD-033a (the literal 598b gap) with eligibility-trace credit (Brzosko 2015 / Kovach 2012). The
-    three pre-design lit gaps were closed by the 2026-06-04 A+B+C top-up pulls (lit-ready). Proposed V3
-    child claims (NOT yet registered): MECH-CRF-mint / -field / -tolerance / -credit. Status/flags
-    unchanged (still candidate + v3_pending); design landing does not promote. NEXT: /implement-substrate.
+    then v1 SUBSTRATE IMPLEMENTED the same day. Resolves arc_062_rule_apprehension:GAP-B's blocker via a
+    mint-then-weight split: a non-Bayesian rule-creator (bottom-up regularity-mint ARC-064 + top-down
+    ARC-062 seed) populates a subspace-partitioned CandidateRule field (Weber 2023 anti-monomodal
+    geometry; Wallis 2001 rule cells), tolerance-gated availability (Cavanagh 2011 / Frank 2006;
+    availability!=selection Frank-O'Reilly 2001), cue-driven context retrieval (MECH-338), writing
+    DIFFERENTIATED rule_state into SD-033a (the literal 598b gap) with eligibility-trace credit (Brzosko
+    2015 / Kovach 2012). The three pre-design lit gaps were closed by the 2026-06-04 A+B+C top-up pulls.
+    v1 substrate: ree-v3/ree_core/policy/candidate_rule_field.py (CandidateRuleField, pure-arithmetic, no
+    trained params -> no phased training) + SD-033a LateralPFCAnalog.update crf_source wiring
+    (use_candidate_rule_source) + agent select_action tick + REEConfig.use_candidate_rule_field (no-op
+    default, bit-identical OFF; precondition requires use_lateral_pfc_analog). MECH-094 by simulation_mode
+    no-op + MECH-319 _lpfc_skip. Child claims REGISTERED 2026-06-04: MECH-349 (CREATE) / MECH-350
+    (REPRESENT) / MECH-351 (GATE) / MECH-352 (CREDIT). Contracts test_candidate_rule_field.py 8/8;
+    775/782 contracts (7 fails = pre-existing local-git-env runner-recovery artifact). Status/flags
+    unchanged (still candidate + v3_pending); substrate landing does not promote (governance gated on the
+    V3-EXQ-639 substrate-readiness diagnostic + the ARC-062 GAP-B behavioural re-run). Sleep-vs-waking
+    rule-field refinement is a V3 follow-on (NOT V4); only the social in-face (ARC-077/MECH-337) is
+    V4-deferred. ree-v3/CLAUDE.md "ARC-063 v1" section is the implementation source of truth.
   depends_on:
     - MECH-309    # the diagnostic claim that motivates the rule-apprehension layer cluster
     - ARC-064     # 2026-06-04 design: the bottom-up regularity-mint population source (the V3 creator)

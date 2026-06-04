@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-06-04T10:14:56Z",
+  "last_updated_utc": "2026-06-04T15:34:09Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -296,6 +296,27 @@
       ],
       "candidate_stale": [],
       "audit_note": "ADDITIVE / no-op-default (use_cue_recall=False, use_mech_consume=False, cue_recall_gain unused, dacc_goal_readout_weight=0.0). The L6 cue path and L7 dACC goal readout are exercised only when the flags are ON; every prior experiment ran with both OFF, so no PASSED run's measured mechanism changed and none is made stale. KEEP all dependent evidence. MECH-229/117/ARC-030 stay v3_pending; phase-2 unblocks their L9 retest (still GAP-2-gated) but does not re-score existing evidence. Validation = SD-057 phase-2 forced-cue diagnostic V3-EXQ-637 (claim_ids=[])."
+    },
+    {
+      "substrate": "ARC-063 v1 (distributed CandidateRule field; GAP-B non-Bayesian rule-creator; child claims MECH-349/350/351/352)",
+      "landed_utc": "2026-06-04T15:34:09Z",
+      "description": "ree_core/policy/candidate_rule_field.py (CandidateRuleField: CREATE mint MECH-349 / REPRESENT pinned subspace MECH-350 / GATE tolerance MECH-351 / SELECT MECH-338 / OUTPUT+CREDIT MECH-352) + SD-033a LateralPFCAnalog.update crf_source wiring (use_candidate_rule_source) + agent select_action tick + REEConfig.use_candidate_rule_field. Pure-arithmetic, no trained params, no phased training. Precondition requires use_lateral_pfc_analog. Contracts test_candidate_rule_field.py 8/8; 775/782 (7 pre-existing local-git runner fails) + 7/7 preflight; V3-EXQ-639 readiness 5/5.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "ARC-063",
+        "MECH-349",
+        "MECH-350",
+        "MECH-351",
+        "MECH-352",
+        "MECH-309",
+        "ARC-062",
+        "ARC-064",
+        "SD-033a",
+        "MECH-318",
+        "MECH-338"
+      ],
+      "candidate_stale": [],
+      "audit_note": "ADDITIVE / no-op-default (use_candidate_rule_field=False -> agent.candidate_rule_field is None; lateral_pfc.update sees crf_source=None and runs the legacy delta/world EMA source; bit-identical OFF, verified 775/782 contracts). The field is exercised only when the master flag is ON; every prior experiment ran with it OFF, so no PASSED run's measured mechanism changed and none is made stale. KEEP all dependent evidence. The 543/598b GAP-B evidence (MECH-309/ARC-062/SD-033a) measured the rule_state COLLAPSE on the field-OFF substrate; ARC-063 supplies the missing creator but does not re-score that evidence -- the ARC-062 GAP-B behavioural re-run on the field-ON substrate is the governance-weighting successor, queued separately. Readiness validation V3-EXQ-639 (claim_ids=[]). MECH-349/350/351/352 register candidate+v3_pending; substrate landing does not promote."
     }
   ]
 }

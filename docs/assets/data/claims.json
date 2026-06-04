@@ -374,7 +374,7 @@
   "ARC-063": {
     "status": "candidate",
     "subject": "policy.rule_apprehension_layer.strong_reading",
-    "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md) -- the social in-face (ARC-077/MECH-337), sleep-vs-waking refinement asymmetry, and full per-action moral-residue evidence records remain V4-deferred. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
+    "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
     "type": "architectural_commitment"
   },
   "ARC-064": {
@@ -3475,6 +3475,30 @@
     "status": "candidate",
     "subject": "incentive.dacc_object_discriminative_readout",
     "title": "dACC object-discriminative goal readout (L7): the dACC adaptive-control consumer reads per-candidate goal_proximity to the (SD-057 object-bound) z_goal, so its effort/value computation becomes object-discriminative -- approach_commit is goal-conditioned rather than z_goal-blind. Resolves the 2026-06-04 L7 audit finding that only E3 goal_proximity read z_goal consequentially and dACC was blind.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-349": {
+    "status": "candidate",
+    "subject": "policy.candidate_rule_field.mint",
+    "title": "CandidateRule mint (ARC-063 CREATE face): a non-gradient structural event mints a distinct CandidateRule slot when a (context-bucket -> action-object) regularity recurs above threshold and no existing rule's context_tag already covers it. The literal MECH-309 answer -- the creator that 'invents' rules so that credit only 'weights' them. Bottom-up (ARC-064 regularity detection) primary; optional top-down ARC-062 discriminator seed.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-350": {
+    "status": "candidate",
+    "subject": "policy.candidate_rule_field.subspace_partitioned_representation",
+    "title": "CandidateRule field representation (ARC-063 REPRESENT face): the field holds K candidate rules as a population of distinct pinned subspace directions, so distinct minted rules occupy distinct directions and the rule_state handed to SD-033a is differentiated by construction. The architectural answer to why two shared-gradient scalar heads collapse (598b) but a minted field does not -- separability is structural, not an equilibrium gradient must find.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-351": {
+    "status": "candidate",
+    "subject": "policy.candidate_rule_field.tolerance_gated_availability",
+    "title": "CandidateRule tolerance gate (ARC-063 GATE face): a candidate rule becomes AVAILABLE (eligible to enter the active rule_state) only when its availability clears a threshold that RISES with the number of competing context-matched rules. The conflict-graded 'hold your horses' dynamic threshold; availability (which rules enter the active set) is distinct from selection (which action E3 picks among available rules' biases).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-352": {
+    "status": "candidate",
+    "subject": "policy.candidate_rule_field.eligibility_trace_credit",
+    "title": "CandidateRule eligibility-trace credit (ARC-063 CREDIT face): each rule active when an action was taken leaves a decaying eligibility trace; the subsequent outcome/PE updates the rule's availability (raise on success, lower on exception), recency-weighted, with slow availability decay and retire-below-floor. The 'weight' half of mint-then-weight -- credit refines an existing rule's availability, it does not create rules.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {
