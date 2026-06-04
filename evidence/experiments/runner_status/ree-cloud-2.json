@@ -1,29 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 665,
-  "runner_started_at": "2026-06-03T20:10:53.415069+00:00",
-  "last_updated": "2026-06-03T20:10:54.652399+00:00",
+  "runner_pid": 667,
+  "runner_started_at": "2026-06-04T07:05:38.537050+00:00",
+  "last_updated": "2026-06-04T09:19:45.173562+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-485c",
+      "queue_id": "V3-EXQ-634c",
       "backlog_id": "",
-      "claim_id": "SD-033b",
-      "title": "SD-033b OFC-analog task-role discrimination (MECH-263 sig b; same-sensory/different-task-stage direct-drive)",
+      "claim_id": "",
+      "title": "scaffolded_sd054_onboarding seeding-calibration readiness (4-arm seeding-lever sweep)",
       "description": "",
-      "estimated_minutes": 2.1,
-      "status": "pending",
+      "estimated_minutes": 376.0,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-626b",
-      "backlog_id": "",
-      "claim_id": null,
-      "title": "goal-pipeline FORCED-SEED L1 positive control (GAP-7; z_goal SEEN decoupled from GAP-2 foraging)",
+      "queue_id": "V3-EXQ-610e",
+      "backlog_id": "EVB-0270",
+      "claim_id": "INV-074",
+      "title": "INV-074/MECH-333/MECH-334 crystallization-necessity retest (HARNESS-FIXED, startup-assertion-gated): real REINFORCE on gated_policy (Phases 0-2) + stepped expansion_parameters() optimizer post-crystallize (Phase 3) + residue_field.ewc_penalty() summed into the Phase-3 loss. 2-arm/3-seed, IGW-023 Phase-3 pressure. Supersedes 610d (untrained-policy no-op).",
       "description": "",
-      "estimated_minutes": 36.0,
+      "estimated_minutes": 2000.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2501,6 +2501,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_485b_sd033b_devaluation_sensitivity_20260603T201054Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 1.2
+    },
+    {
+      "queue_id": "V3-EXQ-490k",
+      "backlog_id": "",
+      "claim_id": "MECH-295",
+      "title": "MECH-295 modulatory-SUFFICIENCY probe (goal_pipeline:GAP-4 successor to terminal V3-EXQ-490j). E3 score_bias argmin-change probe: per tick where the MECH-295 cue fires, does subtracting the MECH-295 contribution from e3.last_scores change the committed argmin (does the modulation flip which action wins). 3 arms x 3 seeds.",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_490k_mech295_modulatory_sufficiency] acceptance={'outcome': 'PASS', 'grid_row': 'ROW_2_fires_but_never_flips', 'per_claim_direction_mech295': 'weakens', 'probe_ran': True, 'full_arm_fired_seeds': 3, 'full_arm_argmin_flip_seeds': 0, 'only_arm_fired_seeds': 3, 'only_arm_argmin_flip_seeds': 0, 'per_seed_action_divergence': [{'seed': 42, 'action_tv_distance': 0.0, 'first_commit_action_differs': False}, {'seed': 7, 'action_tv_distance': 0.0, 'first_commit_action_differs': False}, {'seed': 19, 'action_tv_distance': 0.0, 'first_commit_action_differs': False}], 'seeds_pass_min': 2, 'full_arm_id': 'ARM_1_full_gap4', 'severed_arm_id': 'ARM_0_cue_severed', 'only_arm_id': 'ARM_2_mech295_only', 'total_eval_step_budget': 900} | [v3_exq_490k_mech295_modulatory_sufficiency] outcome=PASS elapsed=8045.3s | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-490k -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-490k.json",
+      "started_at": "2026-06-04T07:05:38.558830+00:00",
+      "completed_at": "2026-06-04T09:19:45.172966+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_490k_mech295_modulatory_sufficiency/v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 8046.6
     }
   ]
 }
