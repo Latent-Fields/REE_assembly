@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-04T07:08:58Z",
+  "last_tick_utc": "2026-06-04T07:24:05Z",
   "state": "running",
   "current_exq": "V3-EXQ-490k",
   "current_exq_started_utc": "2026-06-04T07:05:38.558830+00:00",
@@ -12,15 +12,18 @@
     "run_label": "Seed 42 / ARM_1_full_gap4",
     "runs_done": 0,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 40,
     "episodes_total": 50,
-    "overall_pct": 0.0
+    "overall_pct": 8.9
   },
-  "seconds_elapsed": 200,
-  "seconds_remaining": 7200,
+  "seconds_elapsed": 1106,
+  "seconds_remaining": 8422,
   "recent_lines": [
-    "[v3_exq_490k_mech295_modulatory_sufficiency] dry_run=False",
-    "Seed 42 Condition ARM_1_full_gap4"
+    "Seed 42 Condition ARM_1_full_gap4",
+    "[train] seed=42 arm=ARM_1_full_gap4 ep 10/50",
+    "[train] seed=42 arm=ARM_1_full_gap4 ep 20/50",
+    "[train] seed=42 arm=ARM_1_full_gap4 ep 30/50",
+    "[train] seed=42 arm=ARM_1_full_gap4 ep 40/50"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
