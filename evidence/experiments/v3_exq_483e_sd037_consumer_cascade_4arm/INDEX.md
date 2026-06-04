@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_483e_sd037_consumer_cascade_4arm
 
-Generated: `2026-06-04T06:33:49.692075Z`
+Generated: `2026-06-04T17:05:36.095128Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

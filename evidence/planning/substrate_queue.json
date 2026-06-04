@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "scaffolded-sd054-developmental-window-amend-20260603T1520Z",
-  "last_updated_utc": "2026-06-04T06:24:44Z",
+  "last_updated_utc": "2026-06-04T16:20:17Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -3577,6 +3577,12 @@
           "metric": "beta_release_events=0 / beta_release_near_contradiction=0 / episodes_with_contradiction=0 in every arm (contradiction injection never triggers; commitment never releases)",
           "target": "ARM_SUBSTRATE_ON beta_release_near_contradiction >= 1 with episodes_with_contradiction >= 1 once goal completions/contradictions occur",
           "added_by": "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04 (gov 2026-06-04)"
+        },
+        {
+          "run_id": "v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3",
+          "experiment_type": "v3_exq_490k_mech295_modulatory_sufficiency",
+          "metric": "mech295_bias_range_mean=0.0 with mech295_fired_ticks=145 in 3/3 seeds (per-candidate MECH-295 bias uniform across candidates); mech295_argmin_flip_fraction=0.0 all seeds; goal_norm_peak=0.193 (weak z_goal)",
+          "target": "490L retest on enriched substrate must first clear a pre-registered guard mech295_bias_range_mean > 0 (per-candidate bias non-uniform) BEFORE interpreting argmin flips; then mech295_argmin_flip_fraction > 0 on >= 2/3 seeds = modulatory contribution behaviourally consequential"
         }
       ],
       "implementation_hint": "634b PROVED the Stage-0b protected window + contact-gating (G0b retention 3/3; n_decay_only_updates=0). The next blocker is two coupled gaps. (a) Benefit-magnitude/threshold mismatch: contact-gating skips only benefit<=scaffold_p2_contact_benefit_threshold(1e-6), but GoalState.update (goal.py:209-224) seeds z_goal only when effective_benefit = benefit_exposure * z_goal_seeding_gain(1.0) * (1 + drive_weight(2.0)*drive_trace) > benefit_threshold(0.1). Natural wild benefit obs_body[11] ~0.03 => effective_benefit <= ~0.09 < 0.1, so wild contact never fires the pull and the band (1e-6, ~0.1-effective) DECAYS the consolidated trace instead of refreshing it. Candidate levers (one or a combination, pick via a small sweep): raise z_goal_seeding_gain above 1.0; lower benefit_threshold below 0.1; apply drive_floor~0.9 (the EXQ-582a first-PASS arm, effective_benefit >= benefit*2.8); and/or raise the scaffold contact_threshold to the seeding floor so sub-seeding whiffs are PROTECTED (skipped) rather than decaying the trace. (b) Still-open foraging-competence half (634): strengthen/lengthen P0/P1 so >=2/3 seeds reach self-sustaining consumption (only seed 43 survives P1). (c) Test-design: redefine the mature-test z_goal acceptance readout to read AT genuine consumption events (632-style num_contact_events) rather than the forced-feed-calibrated frozen-peak G3>0.4, which is anti-correlated with foraging. Keep ready=false; do not queue 603f until a consumption-event-gated re-validation clears.",
@@ -3656,7 +3662,7 @@
           "note": "Developmental-window / protected-goal consolidation amend (harness-layer; no ree_core/goal.py/claims.yaml change). Routed by the V3-EXQ-634 design-error review: GoalState.update() always decays the persistent z_goal attractor and REEAgent.reset() never resets goal_state, so the prior scaffold's every-step update_z_goal in P1 (seed_goal) + P2 (_eval) washed out the Stage-0 trace on unfed steps before ecological contact -- 634 tested 'stay goal-active while fed-then-starved under decay-only' not 'form->consolidate->learn contact'. MECH-295/307 freezes only gate the consumer pathway, not the attractor. FIX (all no-op-default flags, bit-identical OFF): (1) run_stage0b_consolidation protected window (update_z_goal not called -> no decay-only washout; records retention_ratio, gate 0.75); (2) scaffold_contact_gated_goal_updates -> P1/P2 only update on validated contact, unfed steps skipped; (3) goal-write-mode constants + n_contact_refresh/n_decay_only/n_skipped_protected diagnostics. 739 contracts (C7 group +5) + 7/7 preflight PASS; 634 dry-run unchanged; smoke: Stage-0b retention=1.0, Stage-0 trace survives to P2 under contact-gating vs decays to ~0 legacy. Claim-free."
         }
       ],
-      "last_seen_session": "governance-cycle-20260604T0624Z",
+      "last_seen_session": "governance-cycle-20260604T1620Z",
       "priority": 1,
       "ready": false,
       "sd_id": "scaffolded_sd054_onboarding",

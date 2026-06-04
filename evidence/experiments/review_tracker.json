@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-04T06:25:02Z",
+  "last_review_utc": "2026-06-04T16:20:17Z",
   "discussed_experiment_dirs": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
     "v3_exq_592f_mech090_commitment_state_transition_probe",
@@ -522,7 +522,17 @@
     "v3_exq_626b_goal_pipeline_forced_seed_positive_control",
     "v3_exq_626b_goal_pipeline_forced_seed_positive_control_20260603T211703Z_v3",
     "v3_exq_463b_mech268_dacc_conflict_saturation_behavioural",
-    "v3_exq_463b_mech268_dacc_conflict_saturation_behavioural_20260604T030903Z_v3"
+    "v3_exq_463b_mech268_dacc_conflict_saturation_behavioural_20260604T030903Z_v3",
+    "v3_exq_490k_mech295_modulatory_sufficiency",
+    "v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3",
+    "v3_exq_636_sd057_object_bound_incentive_mechanism",
+    "v3_exq_636_sd057_object_bound_incentive_mechanism_20260604T073038Z_v3",
+    "v3_exq_637_sd057_phase2_cue_recall_consume",
+    "v3_exq_637_sd057_phase2_cue_recall_consume_20260604T102546Z_v3",
+    "v3_exq_638_scaffold_cue_recall_contact_ablation",
+    "v3_exq_638_scaffold_cue_recall_contact_ablation_20260604T142524Z_v3",
+    "v3_exq_639_arc063_candidate_rule_field_readiness",
+    "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z"
   ],
   "reviewed_run_ids": [
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
@@ -2765,7 +2775,11 @@
     "v3_exq_485b_sd033b_devaluation_sensitivity_20260603T201054Z_v3",
     "v3_exq_485c_sd033b_task_role_discrimination_20260603T201055Z_v3",
     "v3_exq_626b_goal_pipeline_forced_seed_positive_control_20260603T211703Z_v3",
-    "v3_exq_463b_mech268_dacc_conflict_saturation_behavioural_20260604T030903Z_v3"
+    "v3_exq_463b_mech268_dacc_conflict_saturation_behavioural_20260604T030903Z_v3",
+    "v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3",
+    "v3_exq_636_sd057_object_bound_incentive_mechanism_20260604T073038Z_v3",
+    "v3_exq_637_sd057_phase2_cue_recall_consume_20260604T102546Z_v3",
+    "v3_exq_638_scaffold_cue_recall_contact_ablation_20260604T142524Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3736,6 +3750,29 @@
         "v3_exq_634b_scaffolded_nursery_consolidation_readiness_20260603T183754Z_v3"
       ],
       "subject": "/governance cycle 2026-06-03 (evening, 2nd). 2 pending FAILs walked; both had confirmed same-day failure-autopsy artifacts; user-approved (AskUserQuestion) to apply. V3-EXQ-610d (INV-074/MECH-333/MECH-334, supersedes 610c) non_contributory + measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-610d_2026-06-03): indexer had applied a blanket weakens (manifest lacked evidence_direction); corrected to non_contributory per-claim on flat+nested manifests. Root cause IDENTICAL to 610c and HARNESS-level not env: gated policy never trained (no policy_optimizer.step()), crystallize() freezes never-trained heads, expansion optimizer never stepped, ewc_penalty() never in loss -> crystallization a behavioral no-op; D1 -0.013, D2 +0.047 below 0.10 floor, both arms near-uniform. PROCESS FINDING: 610c autopsy prescribed train-policy+step-expansion+add-ewc_penalty for 610d; 610d implemented none (silent prescription drop). 8th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c/d). INV-074 universal invariant NOT weakened; substrate_queue action=none (env substrate already landed, partially worked +0.047); routed to /queue-experiment 610e (trained-policy redesign + pre-run assertion). pending_retest_after_substrate retained; epistemic_category substrate_ceiling unchanged. Dated notes added to INV-074/MECH-333/MECH-334. V3-EXQ-634b (claim_ids=[], diagnostic, weights no score) non_contributory + substrate_ceiling/measurement_test_design_defect (confirmed failure_autopsy_V3-EXQ-634b_2026-06-03): scaffolded-nursery consolidation-readiness. Manifest already non_contributory. VALIDATED the consolidation half (G0 forced-feed PASS 3/3, G0b Stage-0b retention PASS 3/3 0.98-0.99, n_decay_only_updates=0 -> protected-window+contact-gating amend fixes 634 decay washout). Remaining blocker: contact-gating contact_threshold(1e-6) decoupled from GoalState seeding benefit_threshold(0.1-effective); wild benefit ~0.03 sub-threshold so foraging seed 43 (475 contact-refresh calls) decayed z_goal to 4.5e-05 while non-foraging seed 42 passed G3 on the frozen nursery trace (G3 anti-correlated with foraging). substrate AMEND scaffolded_sd054_onboarding (reconcile thresholds + strengthen P0/P1 + 632-style consumption-event-gated readout; keep ready=false; do NOT queue 603f). Promotion/demotion: 0 pending_user items (all applied). claims.json rebuilt (662); index rebuilt (1202 runs; 610d blanket-weakens warning cleared). goal_pipeline_plan.md + commitment_closure_plan.md DEFERRED in Step 5b (held by active gap7/gap8/gap4 sessions)."
+    },
+    {
+      "timestamp_utc": "2026-06-04T16:20:17Z",
+      "session_label": "governance-cycle-20260604T1620Z",
+      "reviewed_run_ids": [
+        "v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3",
+        "v3_exq_636_sd057_object_bound_incentive_mechanism_20260604T073038Z_v3",
+        "v3_exq_637_sd057_phase2_cue_recall_consume_20260604T102546Z_v3",
+        "v3_exq_638_scaffold_cue_recall_contact_ablation_20260604T142524Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_490k_mech295_modulatory_sufficiency",
+        "v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3",
+        "v3_exq_636_sd057_object_bound_incentive_mechanism",
+        "v3_exq_636_sd057_object_bound_incentive_mechanism_20260604T073038Z_v3",
+        "v3_exq_637_sd057_phase2_cue_recall_consume",
+        "v3_exq_637_sd057_phase2_cue_recall_consume_20260604T102546Z_v3",
+        "v3_exq_638_scaffold_cue_recall_contact_ablation",
+        "v3_exq_638_scaffold_cue_recall_contact_ablation_20260604T142524Z_v3",
+        "v3_exq_639_arc063_candidate_rule_field_readiness",
+        "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z"
+      ],
+      "subject": "/governance cycle 2026-06-04 (afternoon). 5 pending walked (3 PASS, 1 FAIL, 1 unclaimed manifest) -- all diagnostics/mechanism-probes. V3-EXQ-490k (MECH-295, the only claim-tagged item): confirmed failure_autopsy_V3-EXQ-490k applied verbatim (user-approved). ROW_2_fires_but_never_flips -- cue fires 145 ticks but mech295_bias_range_mean=0.0 (per-candidate bias uniform -> argmin cannot flip BY CONSTRUCTION), defeated by upstream collapsed z_world + weak z_goal (goal_norm_peak=0.193). Manifest weakens->non_contributory (flat, +note); MECH-295 epistemic_category=substrate_ceiling + pending_retest_after_substrate=true + dated evidence_quality_note; narrow_supports_flag=true (zero behavioural-sufficiency across 490g/h/i/j/k). substrate_queue AMEND scaffolded_sd054_onboarding (+490k failure_record, MECH-295 already in unblocks); 490L successor with mech295_bias_range_mean>0 guard. Four no-claim diagnostics cleared (claim_ids=[] -> weight no claim): V3-EXQ-636 SD-057 L2-L4 mechanism PASS (bank binds >=2 identities, wanting!=liking 5/6, OFF control 0); V3-EXQ-637 SD-057 phase-2 L6/L7 PASS (cue fires no-benefit, identity-matched cos~1.0, readout reaches dACC); V3-EXQ-638 FAIL cue-silent (confirmed failure_autopsy_V3-EXQ-638 substrate_not_ready -- Stage-0 forced-feed/token chicken-and-egg, fix a9ef0be+636128a landed, validation 638a running); V3-EXQ-639 ARC-063 CandidateRuleField readiness PASS (C1-C4+UC5; field substrate wired, OFF bit-identical, MECH-094 sim-gate). SD-057/MECH-344-348 + ARC-063 children stay v3_pending (behavioural successors GAP-2/GAP-B-gated). Promotion/demotion: 1 pending_user (ARC-080 hold_pending_v3_substrate, correct no-op -- architectural_commitment suppresses promote/demote). closure-drift 0 drifted; GAP-4 node repointed owner_exq 490j->490k. claims.json rebuilt (673); index rebuilt (1216 runs)."
     }
   ]
 }

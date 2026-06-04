@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_465_mech267_intrusive_simulation_filtering
 
-Generated: `2026-06-04T06:33:49.692075Z`
+Generated: `2026-06-04T17:05:36.095128Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
