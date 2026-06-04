@@ -1,29 +1,40 @@
 {
   "schema_version": "v1",
-  "runner_pid": 747,
-  "runner_started_at": "2026-06-03T20:10:54.317757+00:00",
-  "last_updated": "2026-06-03T20:10:56.273838+00:00",
+  "runner_pid": 745,
+  "runner_started_at": "2026-06-04T07:30:37.060469+00:00",
+  "last_updated": "2026-06-04T07:30:39.189797+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-485b",
+      "queue_id": "V3-EXQ-490k",
       "backlog_id": "",
-      "claim_id": "SD-033b",
-      "title": "SD-033b OFC-analog devaluation sensitivity (MECH-263 sig a; representation-level, aversive-outcome direct-drive)",
+      "claim_id": "MECH-295",
+      "title": "MECH-295 modulatory-SUFFICIENCY probe (goal_pipeline:GAP-4 successor to terminal V3-EXQ-490j). E3 score_bias argmin-change probe: per tick where the MECH-295 cue fires, does subtracting the MECH-295 contribution from e3.last_scores change the committed argmin (does the modulation flip which action wins). 3 arms x 3 seeds.",
       "description": "",
-      "estimated_minutes": 1.2,
-      "status": "pending",
+      "estimated_minutes": 60.0,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-626b",
+      "queue_id": "V3-EXQ-634c",
       "backlog_id": "",
-      "claim_id": null,
-      "title": "goal-pipeline FORCED-SEED L1 positive control (GAP-7; z_goal SEEN decoupled from GAP-2 foraging)",
+      "claim_id": "",
+      "title": "scaffolded_sd054_onboarding seeding-calibration readiness (4-arm seeding-lever sweep)",
       "description": "",
-      "estimated_minutes": 36.0,
+      "estimated_minutes": 376.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-610e",
+      "backlog_id": "EVB-0270",
+      "claim_id": "INV-074",
+      "title": "INV-074/MECH-333/MECH-334 crystallization-necessity retest (HARNESS-FIXED, startup-assertion-gated): real REINFORCE on gated_policy (Phases 0-2) + stepped expansion_parameters() optimizer post-crystallize (Phase 3) + residue_field.ewc_penalty() summed into the Phase-3 loss. 2-arm/3-seed, IGW-023 Phase-3 pressure. Supersedes 610d (untrained-policy no-op).",
+      "description": "",
+      "estimated_minutes": 2000.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -1871,6 +1882,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_485c_sd033b_task_role_discrimination_20260603T201055Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 1.8
+    },
+    {
+      "queue_id": "V3-EXQ-636",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "SD-057 object-bound incentive-salience MECHANISM diagnostic (GAP-7 L2-L3-L4): bank ON vs OFF, forced two-type contacts under opposing per-axis drive; tests wanting-target (most-wanted pointer) != liking-target (contacted)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: seed=44 arm=ARM_BANK_OFF types_bound=0 dissoc_events=0/6 zgoal_min=0.0187 | Overall: PASS | C1=True C2=True C3=True C4=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-636 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-636.json",
+      "started_at": "2026-06-04T07:30:37.165113+00:00",
+      "completed_at": "2026-06-04T07:30:39.189033+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_636_sd057_object_bound_incentive_mechanism/v3_exq_636_sd057_object_bound_incentive_mechanism_20260604T073038Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 2.0
     }
   ]
 }
