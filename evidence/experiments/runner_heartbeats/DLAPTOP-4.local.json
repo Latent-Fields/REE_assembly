@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-04T04:28:13Z",
+  "last_tick_utc": "2026-06-04T04:53:20Z",
   "state": "running",
   "current_exq": "V3-EXQ-634c",
   "current_exq_started_utc": "2026-06-03T22:04:56.869735+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_1_drivefloor",
-    "runs_done": 3,
+    "run_label": "Seed 43 / ARM_1_drivefloor",
+    "runs_done": 4,
     "runs_total": 12,
-    "episodes_done": 150,
+    "episodes_done": 0,
     "episodes_total": 235,
-    "overall_pct": 30.3
+    "overall_pct": 33.3
   },
-  "seconds_elapsed": 22994,
-  "seconds_remaining": 58487,
+  "seconds_elapsed": 24502,
+  "seconds_remaining": 46378,
   "recent_lines": [
-    "[v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness] arm=ARM_0_baseline seeding=False seeding_floor=None gate_passed=False branch=substrate_not_engaged",
-    "Seed 42 Condition ARM_1_drivefloor",
-    "[train] stage0_nursery seed=42 arm=ARM_1_drivefloor ep 20/235 forced_benefit=1.00 z_goal_peak=0.4401 formed=True",
-    "[train] stage0b_consolidate seed=42 arm=ARM_1_drivefloor ep 30/235 start=0.4342 end=0.4342 retention=0.987 gate=pass",
-    "[train] p0_guided seed=42 arm=ARM_1_drivefloor ep 150/235 mean_len=30.2 rv=0.00001"
+    "[train] p0_guided seed=42 arm=ARM_1_drivefloor ep 150/235 mean_len=30.2 rv=0.00001",
+    "[train] p1_foraging seed=42 arm=ARM_1_drivefloor ep 220/235 median_last=14.0 survival_gate=FAIL final_hfa=0.70 gated=True decay_only=0 skipped=1517 refresh=0",
+    "[train] p2_measure seed=42 arm=ARM_1_drivefloor ep 235/235 z_goal_frozen=0.4342 z_goal_at_contact=0.0000 contact_events=0 contact_rate=0.0000 hfa_used=0.30 gated=True decay_only=0 skipped=193 refresh=0",
+    "verdict: FAIL seed=42 arm=ARM_1_drivefloor",
+    "Seed 43 Condition ARM_1_drivefloor"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

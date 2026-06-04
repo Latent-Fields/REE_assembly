@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-04T04:28:11Z",
+  "last_tick_utc": "2026-06-04T04:53:18Z",
   "state": "running",
   "current_exq": "V3-EXQ-468b",
   "current_exq_started_utc": "2026-06-04T03:09:05.192954+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "SD-034",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_SUBSTRATE_ON",
-    "runs_done": 1,
+    "run_label": "Seed 44 / train_substrate_on",
+    "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 40,
     "episodes_total": 350,
-    "overall_pct": 33.3
+    "overall_pct": 70.5
   },
-  "seconds_elapsed": 4746,
-  "seconds_remaining": 2075,
+  "seconds_elapsed": 6253,
+  "seconds_remaining": 2407,
   "recent_lines": [
-    "[train] ep 120/200 converged=True aborted=False rv=0.00000",
-    "[P1 probe] ep 40/150  rv=0.00000  ep_committed=200  median_window=200.0  floor=100",
-    "[P1 EMERGED] median committed steps/ep=200.0 >= 100 sustained over 5 eps. P1 done at ep=40.",
-    "[train] ep 40/150 emerged=True committed/ep=200.0",
-    "Seed 43 Condition ARM_SUBSTRATE_ON"
+    "Seed 43 Condition ARM_FORCED_RV_ON",
+    "Seed 43 Condition ARM_SUBSTRATE_OFF",
+    "verdict: FAIL",
+    "Seed 44 Condition train_substrate_on",
+    "[P0 probe] ep 40/200  rv=0.00000  threshold=0.4  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
