@@ -161,3 +161,27 @@ prerequisite is the missing layer. The goal-*wiring* is verified closed; goal
 ## 9. Machine-readable
 
 See `failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04.json`.
+
+---
+
+## Extension 2026-06-04 (governance fold-in): V3-EXQ-467b + V3-EXQ-468b
+
+Two further behavioural successors landed after this artifact was generated
+(05:54Z) and were folded into the same cluster by governance-cycle-20260604T0624Z
+(user-approved "same cluster, apply inline"):
+
+- **V3-EXQ-467b** (MECH-266, SD-032a) -- mode-stickiness hysteresis dose-response.
+  `n_switches=0` at every ratio r in [0.1, 0.5, 1.0, 1.5, 2.0]; `mean_dwell` flat
+  ~130-151. Degenerate no-switch baseline -- identical to sibling V3-EXQ-464b.
+- **V3-EXQ-468b** (SD-034, MECH-268, MECH-090) -- commitment vs contradiction.
+  `beta_release_events=0`, `episodes_with_contradiction=0`, `had_contradiction=false`
+  in every arm; the GAP-3 counter-evidence injection never fired. Identical to
+  sibling V3-EXQ-460b. NOTE MECH-268 is independently and genuinely supported by
+  the contemporaneous **V3-EXQ-463b PASS** (dACC saturation, measured directly,
+  not closure-gated) -- this non_contributory result does not bear on that.
+
+Both: `non_contributory` + `substrate_ceiling` + `pending_retest_after_substrate`,
+substrate_queue amend on scaffolded_sd054_onboarding, routing implement-substrate.
+Same structural property as the original four: agent commits but the
+goal-achievement / foraging-competence layer never produces a completion, so the
+closure-triggered OCD-axis behaviours cannot express.

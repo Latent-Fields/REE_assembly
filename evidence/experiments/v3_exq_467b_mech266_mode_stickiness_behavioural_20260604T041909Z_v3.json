@@ -1,1 +1,227 @@
-{"schema_version": "v1", "run_id": "v3_exq_467b_mech266_mode_stickiness_behavioural_20260604T041909Z_v3", "experiment_type": "v3_exq_467b_mech266_mode_stickiness_behavioural", "queue_id": "V3-EXQ-467b", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-04T04:19:09.175723Z", "experiment_purpose": "evidence", "claim_ids": ["MECH-266", "SD-032a"], "result": "FAIL", "outcome": "FAIL", "evidence_direction": "weakens", "evidence_direction_per_claim": {"MECH-266": "weakens", "SD-032a": "weakens"}, "thresholds": {"C2_min_dwell_ratio": 2.0, "C3_min_switches": 1, "pass_fraction_required": 0.6666666666666666, "ratios_sweep": [0.1, 0.5, 1.0, 1.5, 2.0]}, "n_seeds": 3, "n_seeds_pass": 0, "smoke": false, "metrics": {"per_seed": [{"seed": 42, "conditions": [{"ratio": 0.1, "mean_dwell": 151.0, "n_switches": 0, "n_runs": 20, "total_steps": 3000, "n_episodes": 20}, {"ratio": 0.5, "mean_dwell": 151.0, "n_switches": 0, "n_runs": 20, "total_steps": 3000, "n_episodes": 20}, {"ratio": 1.0, "mean_dwell": 143.75, "n_switches": 0, "n_runs": 20, "total_steps": 2855, "n_episodes": 20}, {"ratio": 1.5, "mean_dwell": 130.65, "n_switches": 0, "n_runs": 20, "total_steps": 2593, "n_episodes": 20}, {"ratio": 2.0, "mean_dwell": 143.95, "n_switches": 0, "n_runs": 20, "total_steps": 2859, "n_episodes": 20}], "criteria": {"C1": false, "C2": false, "C3": false}, "dwell_per_ratio": {"0.1": 151.0, "0.5": 151.0, "1.0": 143.75, "1.5": 130.65, "2.0": 143.95}, "p0_final_rv": 3.881265275400374e-07, "p1_commitment_emerged": true, "p1_committed_per_ep": 150.0, "pass": false}, {"seed": 43, "conditions": [{"ratio": 0.1, "mean_dwell": 140.8, "n_switches": 0, "n_runs": 20, "total_steps": 2796, "n_episodes": 20}, {"ratio": 0.5, "mean_dwell": 140.45, "n_switches": 0, "n_runs": 20, "total_steps": 2789, "n_episodes": 20}, {"ratio": 1.0, "mean_dwell": 147.5, "n_switches": 0, "n_runs": 20, "total_steps": 2930, "n_episodes": 20}, {"ratio": 1.5, "mean_dwell": 137.6, "n_switches": 0, "n_runs": 20, "total_steps": 2732, "n_episodes": 20}, {"ratio": 2.0, "mean_dwell": 128.75, "n_switches": 0, "n_runs": 20, "total_steps": 2555, "n_episodes": 20}], "criteria": {"C1": false, "C2": false, "C3": false}, "dwell_per_ratio": {"0.1": 140.8, "0.5": 140.45, "1.0": 147.5, "1.5": 137.6, "2.0": 128.75}, "p0_final_rv": 5.541411583532947e-07, "p1_commitment_emerged": true, "p1_committed_per_ep": 150.0, "pass": false}, {"seed": 44, "conditions": [{"ratio": 0.1, "mean_dwell": 138.75, "n_switches": 0, "n_runs": 20, "total_steps": 2755, "n_episodes": 20}, {"ratio": 0.5, "mean_dwell": 124.15, "n_switches": 0, "n_runs": 20, "total_steps": 2463, "n_episodes": 20}, {"ratio": 1.0, "mean_dwell": 124.05, "n_switches": 0, "n_runs": 20, "total_steps": 2461, "n_episodes": 20}, {"ratio": 1.5, "mean_dwell": 117.25, "n_switches": 0, "n_runs": 20, "total_steps": 2325, "n_episodes": 20}, {"ratio": 2.0, "mean_dwell": 131.8, "n_switches": 0, "n_runs": 20, "total_steps": 2616, "n_episodes": 20}], "criteria": {"C1": false, "C2": false, "C3": false}, "dwell_per_ratio": {"0.1": 138.75, "0.5": 124.15, "1.0": 124.05, "1.5": 117.25, "2.0": 131.8}, "p0_final_rv": 1.1801805604401087e-06, "p1_commitment_emerged": true, "p1_committed_per_ep": 150.0, "pass": false}]}, "notes": "V3-EXQ-467b behavioural arm: MECH-266 mode stickiness / hold decay dose-response in a live competing-goals loop on CausalGridWorldV2 with GAP-3 dual-cue primitive ON (SD-049 multi-resource heterogeneity required). Sweeps MECH-266 hysteresis ratio r across five arms [0.10, 0.50, 1.00, 1.50, 2.00] and measures coordinator MODE-DWELL TIME after committed_mode_curriculum P0 warmup + P1 consolidation. Prediction: monotone non-increasing dwell with r: low r = OCD-axis over-binding = long dwell (stuck-in-mode); high r = depression/ADHD-axis under-binding = short dwell (readily flips). Dose-response distinguishes the two ends of the MECH-266 hysteresis axis in an ecologically-valid agent loop. Behavioral successor to V3-EXQ-467 (substrate-only parametric sweep on synthetic signal sequences). Plan: commitment_closure_plan.md GAP-4 Phase 4/5 OCD cohort.", "machine": "ree-cloud-2"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_467b_mech266_mode_stickiness_behavioural_20260604T041909Z_v3",
+  "experiment_type": "v3_exq_467b_mech266_mode_stickiness_behavioural",
+  "queue_id": "V3-EXQ-467b",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-04T04:19:09.175723Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "result": "FAIL",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "non_contributory"
+  },
+  "thresholds": {
+    "C2_min_dwell_ratio": 2.0,
+    "C3_min_switches": 1,
+    "pass_fraction_required": 0.6666666666666666,
+    "ratios_sweep": [
+      0.1,
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ]
+  },
+  "n_seeds": 3,
+  "n_seeds_pass": 0,
+  "smoke": false,
+  "metrics": {
+    "per_seed": [
+      {
+        "seed": 42,
+        "conditions": [
+          {
+            "ratio": 0.1,
+            "mean_dwell": 151.0,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 3000,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 0.5,
+            "mean_dwell": 151.0,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 3000,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 1.0,
+            "mean_dwell": 143.75,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2855,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 1.5,
+            "mean_dwell": 130.65,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2593,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 2.0,
+            "mean_dwell": 143.95,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2859,
+            "n_episodes": 20
+          }
+        ],
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": false
+        },
+        "dwell_per_ratio": {
+          "0.1": 151.0,
+          "0.5": 151.0,
+          "1.0": 143.75,
+          "1.5": 130.65,
+          "2.0": 143.95
+        },
+        "p0_final_rv": 3.881265275400374e-07,
+        "p1_commitment_emerged": true,
+        "p1_committed_per_ep": 150.0,
+        "pass": false
+      },
+      {
+        "seed": 43,
+        "conditions": [
+          {
+            "ratio": 0.1,
+            "mean_dwell": 140.8,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2796,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 0.5,
+            "mean_dwell": 140.45,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2789,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 1.0,
+            "mean_dwell": 147.5,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2930,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 1.5,
+            "mean_dwell": 137.6,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2732,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 2.0,
+            "mean_dwell": 128.75,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2555,
+            "n_episodes": 20
+          }
+        ],
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": false
+        },
+        "dwell_per_ratio": {
+          "0.1": 140.8,
+          "0.5": 140.45,
+          "1.0": 147.5,
+          "1.5": 137.6,
+          "2.0": 128.75
+        },
+        "p0_final_rv": 5.541411583532947e-07,
+        "p1_commitment_emerged": true,
+        "p1_committed_per_ep": 150.0,
+        "pass": false
+      },
+      {
+        "seed": 44,
+        "conditions": [
+          {
+            "ratio": 0.1,
+            "mean_dwell": 138.75,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2755,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 0.5,
+            "mean_dwell": 124.15,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2463,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 1.0,
+            "mean_dwell": 124.05,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2461,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 1.5,
+            "mean_dwell": 117.25,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2325,
+            "n_episodes": 20
+          },
+          {
+            "ratio": 2.0,
+            "mean_dwell": 131.8,
+            "n_switches": 0,
+            "n_runs": 20,
+            "total_steps": 2616,
+            "n_episodes": 20
+          }
+        ],
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": false
+        },
+        "dwell_per_ratio": {
+          "0.1": 138.75,
+          "0.5": 124.15,
+          "1.0": 124.05,
+          "1.5": 117.25,
+          "2.0": 131.8
+        },
+        "p0_final_rv": 1.1801805604401087e-06,
+        "p1_commitment_emerged": true,
+        "p1_committed_per_ep": 150.0,
+        "pass": false
+      }
+    ]
+  },
+  "notes": "V3-EXQ-467b behavioural arm: MECH-266 mode stickiness / hold decay dose-response in a live competing-goals loop on CausalGridWorldV2 with GAP-3 dual-cue primitive ON (SD-049 multi-resource heterogeneity required). Sweeps MECH-266 hysteresis ratio r across five arms [0.10, 0.50, 1.00, 1.50, 2.00] and measures coordinator MODE-DWELL TIME after committed_mode_curriculum P0 warmup + P1 consolidation. Prediction: monotone non-increasing dwell with r: low r = OCD-axis over-binding = long dwell (stuck-in-mode); high r = depression/ADHD-axis under-binding = short dwell (readily flips). Dose-response distinguishes the two ends of the MECH-266 hysteresis axis in an ecologically-valid agent loop. Behavioral successor to V3-EXQ-467 (substrate-only parametric sweep on synthetic signal sequences). Plan: commitment_closure_plan.md GAP-4 Phase 4/5 OCD cohort.",
+  "machine": "ree-cloud-2",
+  "evidence_direction_note": "Behavioural successor V3-EXQ-467b ran to completion but could not test MECH-266/SD-032a: the mode-dwell hysteresis dose-response is degenerate -- n_switches=0 at every ratio r in [0.1,0.5,1.0,1.5,2.0] (no mode switches at any operating point), so the predicted monotone dwell-vs-r curve cannot form. Identical substrate-not-engaged ceiling as its sibling V3-EXQ-464b (no reachable goal -> no internal mode to switch into); same goal-achievement layer (scaffolded_sd054_onboarding). non_contributory + pending_retest_after_substrate; not claim pressure. Cluster member of confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04 (ran after artifact written; folded in by governance 2026-06-04).",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}

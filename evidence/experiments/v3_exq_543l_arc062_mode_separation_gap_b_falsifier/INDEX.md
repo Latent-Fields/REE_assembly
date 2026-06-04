@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_543l_arc062_mode_separation_gap_b_falsifier
 
-Generated: `2026-06-03T19:56:19.970633Z`
+Generated: `2026-06-04T06:33:49.692075Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

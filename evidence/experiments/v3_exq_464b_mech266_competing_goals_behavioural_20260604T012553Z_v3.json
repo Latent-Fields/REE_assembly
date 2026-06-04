@@ -1,1 +1,202 @@
-{"schema_version": "v1", "run_id": "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3", "experiment_type": "v3_exq_464b_mech266_competing_goals_behavioural", "queue_id": "V3-EXQ-464b", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-04T01:25:53.468019Z", "experiment_purpose": "evidence", "claim_ids": ["MECH-266", "SD-032a"], "result": "FAIL", "outcome": "FAIL", "evidence_direction": "weakens", "evidence_direction_per_claim": {"MECH-266": "weakens", "SD-032a": "weakens"}, "thresholds": {"C1_occupancy_margin": 0.1, "C3_min_switches": 1, "sticky_exit": 0.05, "loose_exit": 0.9, "sticky_mode": "external_task", "pass_fraction_required": 0.6666666666666666}, "n_seeds": 3, "n_seeds_pass": 0, "smoke": false, "metrics": {"per_seed": [{"seed": 42, "ARM_SYMMETRIC": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 130.9, "n_runs": 20, "mode_step_counts": {"external_task": 2598, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2598, "n_episodes": 20}, "ARM_ASYM_STICKY_TASK": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 143.8, "n_runs": 20, "mode_step_counts": {"external_task": 2856, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2856, "n_episodes": 20}, "ARM_FORCED_RV_ON": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 137.35, "n_runs": 20, "mode_step_counts": {"external_task": 2727, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2727, "n_episodes": 20}, "criteria": {"C1": false, "C2": true, "C3": false}, "p0_final_rv": 5.038751803844362e-07, "p1_commitment_emerged": true, "p1_committed_per_ep": 150.0, "pass": false}, {"seed": 43, "ARM_SYMMETRIC": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 139.7, "n_runs": 20, "mode_step_counts": {"external_task": 2774, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2774, "n_episodes": 20}, "ARM_ASYM_STICKY_TASK": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 141.45, "n_runs": 20, "mode_step_counts": {"external_task": 2809, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2809, "n_episodes": 20}, "ARM_FORCED_RV_ON": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 144.2, "n_runs": 20, "mode_step_counts": {"external_task": 2864, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2864, "n_episodes": 20}, "criteria": {"C1": false, "C2": true, "C3": false}, "p0_final_rv": 7.41966675139111e-07, "p1_commitment_emerged": true, "p1_committed_per_ep": 150.0, "pass": false}, {"seed": 44, "ARM_SYMMETRIC": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 133.7, "n_runs": 20, "mode_step_counts": {"external_task": 2654, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2654, "n_episodes": 20}, "ARM_ASYM_STICKY_TASK": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 108.35, "n_runs": 20, "mode_step_counts": {"external_task": 2147, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2147, "n_episodes": 20}, "ARM_FORCED_RV_ON": {"fraction_in_external_task": 1.0, "n_switches": 0, "mean_dwell": 113.35, "n_runs": 20, "mode_step_counts": {"external_task": 2247, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "total_steps": 2247, "n_episodes": 20}, "criteria": {"C1": false, "C2": true, "C3": false}, "p0_final_rv": 1.3241769628354619e-06, "p1_commitment_emerged": true, "p1_committed_per_ep": 128.0, "pass": false}]}, "notes": "V3-EXQ-464b behavioural successor to the V3-EXQ-464 substrate-readiness diagnostic (which is NOT superseded -- its UC1-UC5 Schmitt-rail arithmetic evidence on synthetic signal sequences stands). This arm validates the ocd4 competing-goals switch-cost asymmetry in a live committed_mode_curriculum loop on CausalGridWorldV2 with the GAP-3 dual-cue primitive ON (SD-049 multi-resource heterogeneity required): a per-mode sticky exit rail on external_task raises task-mode occupancy and suppresses mode switches relative to the symmetric MECH-259 baseline (empty rails). O-2 forced-rv contrast included per the GAP-11 committed_mode_curriculum mandatory-contrast rule. Plan: commitment_closure_plan.md GAP-4 Phase 4/5 cohort.", "machine": "ree-cloud-2"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3",
+  "experiment_type": "v3_exq_464b_mech266_competing_goals_behavioural",
+  "queue_id": "V3-EXQ-464b",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-04T01:25:53.468019Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "result": "FAIL",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "non_contributory"
+  },
+  "thresholds": {
+    "C1_occupancy_margin": 0.1,
+    "C3_min_switches": 1,
+    "sticky_exit": 0.05,
+    "loose_exit": 0.9,
+    "sticky_mode": "external_task",
+    "pass_fraction_required": 0.6666666666666666
+  },
+  "n_seeds": 3,
+  "n_seeds_pass": 0,
+  "smoke": false,
+  "metrics": {
+    "per_seed": [
+      {
+        "seed": 42,
+        "ARM_SYMMETRIC": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 130.9,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2598,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2598,
+          "n_episodes": 20
+        },
+        "ARM_ASYM_STICKY_TASK": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 143.8,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2856,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2856,
+          "n_episodes": 20
+        },
+        "ARM_FORCED_RV_ON": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 137.35,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2727,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2727,
+          "n_episodes": 20
+        },
+        "criteria": {
+          "C1": false,
+          "C2": true,
+          "C3": false
+        },
+        "p0_final_rv": 5.038751803844362e-07,
+        "p1_commitment_emerged": true,
+        "p1_committed_per_ep": 150.0,
+        "pass": false
+      },
+      {
+        "seed": 43,
+        "ARM_SYMMETRIC": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 139.7,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2774,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2774,
+          "n_episodes": 20
+        },
+        "ARM_ASYM_STICKY_TASK": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 141.45,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2809,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2809,
+          "n_episodes": 20
+        },
+        "ARM_FORCED_RV_ON": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 144.2,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2864,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2864,
+          "n_episodes": 20
+        },
+        "criteria": {
+          "C1": false,
+          "C2": true,
+          "C3": false
+        },
+        "p0_final_rv": 7.41966675139111e-07,
+        "p1_commitment_emerged": true,
+        "p1_committed_per_ep": 150.0,
+        "pass": false
+      },
+      {
+        "seed": 44,
+        "ARM_SYMMETRIC": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 133.7,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2654,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2654,
+          "n_episodes": 20
+        },
+        "ARM_ASYM_STICKY_TASK": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 108.35,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2147,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2147,
+          "n_episodes": 20
+        },
+        "ARM_FORCED_RV_ON": {
+          "fraction_in_external_task": 1.0,
+          "n_switches": 0,
+          "mean_dwell": 113.35,
+          "n_runs": 20,
+          "mode_step_counts": {
+            "external_task": 2247,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "total_steps": 2247,
+          "n_episodes": 20
+        },
+        "criteria": {
+          "C1": false,
+          "C2": true,
+          "C3": false
+        },
+        "p0_final_rv": 1.3241769628354619e-06,
+        "p1_commitment_emerged": true,
+        "p1_committed_per_ep": 128.0,
+        "pass": false
+      }
+    ]
+  },
+  "notes": "V3-EXQ-464b behavioural successor to the V3-EXQ-464 substrate-readiness diagnostic (which is NOT superseded -- its UC1-UC5 Schmitt-rail arithmetic evidence on synthetic signal sequences stands). This arm validates the ocd4 competing-goals switch-cost asymmetry in a live committed_mode_curriculum loop on CausalGridWorldV2 with the GAP-3 dual-cue primitive ON (SD-049 multi-resource heterogeneity required): a per-mode sticky exit rail on external_task raises task-mode occupancy and suppresses mode switches relative to the symmetric MECH-259 baseline (empty rails). O-2 forced-rv contrast included per the GAP-11 committed_mode_curriculum mandatory-contrast rule. Plan: commitment_closure_plan.md GAP-4 Phase 4/5 cohort.",
+  "machine": "ree-cloud-2",
+  "evidence_direction_note": "Behavioural successor V3-EXQ-464b ran to completion but could not test MECH-266/SD-032a: all arms sit at 100% external_task occupancy with 0 mode switches (0 steps in internal_planning/replay/consolidation), so the switch-cost asymmetry is measured against a degenerate no-switch baseline -- the script's own C3 non-vacuous guard fired. With no reachable goals there is no internal mode to switch into; same goal-pipeline ceiling (scaffolded_sd054_onboarding) one layer out from closure. non_contributory + pending_retest_after_substrate; not claim pressure. Confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04; governance 2026-06-04.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}

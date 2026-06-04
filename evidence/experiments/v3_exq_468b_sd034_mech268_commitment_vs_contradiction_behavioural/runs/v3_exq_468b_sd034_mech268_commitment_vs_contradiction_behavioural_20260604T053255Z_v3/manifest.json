@@ -1,0 +1,53 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_468b_sd034_mech268_commitment_vs_contradiction_behavioural",
+  "run_id": "v3_exq_468b_sd034_mech268_commitment_vs_contradiction_behavioural_20260604T053255Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-04T05:32:55.847590Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-268",
+    "MECH-090"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory",
+    "MECH-268": "non_contributory",
+    "MECH-090": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Behavioural successor V3-EXQ-468b ran to completion but could not test SD-034/MECH-268/MECH-090: beta_release_events=0, episodes_with_contradiction=0, had_contradiction=false in every arm -- the GAP-3 counter-evidence-injection never triggered a contradiction and commitment never released, so the commitment-vs-contradiction dissociation cannot express. Identical substrate-not-engaged ceiling as its sibling V3-EXQ-460b (agent commits but never tolerance-completes / never hits a contradiction); same goal-achievement layer (scaffolded_sd054_onboarding). MECH-268 is independently and genuinely supported by the contemporaneous V3-EXQ-463b (dACC saturation, PASS) -- this non_contributory result does not bear on that. non_contributory + pending_retest_after_substrate; not claim pressure. Cluster member of confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04 (ran after artifact written; folded in by governance 2026-06-04).",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}

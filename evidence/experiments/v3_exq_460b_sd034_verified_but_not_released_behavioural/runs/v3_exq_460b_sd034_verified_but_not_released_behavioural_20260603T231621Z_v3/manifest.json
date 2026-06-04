@@ -1,0 +1,53 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_460b_sd034_verified_but_not_released_behavioural",
+  "run_id": "v3_exq_460b_sd034_verified_but_not_released_behavioural_20260603T231621Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-03T23:16:21.237310Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-260",
+    "MECH-261"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory",
+    "MECH-260": "non_contributory",
+    "MECH-261": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Behavioural successor V3-EXQ-460b ran to completion but could not test SD-034/MECH-260/MECH-261: in the live committed_mode_curriculum loop the agent commits (beta latch engages, p1_commitment_emerged=true seeds 43/44) but never tolerance-completes a waypoint, so n_closures=0 in every arm including ARM_EMERGENT_ON; beta_release and nogo_install are gated on a closure event that never fires. Predecessor hand-poke diagnostic exercises emit_closure; the gap is the goal-achievement layer tracked by substrate_queue scaffolded_sd054_onboarding. Reclassified non_contributory + pending_retest_after_substrate; surviving support is narrow (single hand-poke pathway) -- not conflict resolution. Confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04; governance 2026-06-04.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}

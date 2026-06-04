@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_464b_mech266_competing_goals_behavioural",
+  "run_id": "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-04T01:25:53.468019Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Behavioural successor V3-EXQ-464b ran to completion but could not test MECH-266/SD-032a: all arms sit at 100% external_task occupancy with 0 mode switches (0 steps in internal_planning/replay/consolidation), so the switch-cost asymmetry is measured against a degenerate no-switch baseline -- the script's own C3 non-vacuous guard fired. With no reachable goals there is no internal mode to switch into; same goal-pipeline ceiling (scaffolded_sd054_onboarding) one layer out from closure. non_contributory + pending_retest_after_substrate; not claim pressure. Confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04; governance 2026-06-04.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural",
+  "run_id": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural_20260604T035511Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-04T03:55:11.887825Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-094"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory",
+    "MECH-094": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "Behavioural successor V3-EXQ-466b ran to completion but could not test SD-034/MECH-094: n_closures=0 and discharge_events=0 in every arm (including the positive arm) because the agent never tolerance-completes a waypoint; C3 (closure-OFF n_closures==0) passes only trivially. Predecessor V3-EXQ-466 hand-poke exercises discharge_domain; the gap is the goal-achievement layer (scaffolded_sd054_onboarding). non_contributory + pending_retest_after_substrate; not claim pressure. Confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04; governance 2026-06-04.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}

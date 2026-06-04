@@ -1,13 +1,17 @@
 {
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-06-04T05:54:00Z",
-  "scope": "cluster",
+  "scope": "cluster | EXTENDED 2026-06-04: V3-EXQ-467b + V3-EXQ-468b folded in by governance (same cluster, ran after artifact; user-approved 'same cluster, apply inline').",
   "status": "confirmed",
   "targets": [
     {
       "run_id": "v3_exq_460b_sd034_verified_but_not_released_behavioural_20260603T231621Z_v3",
       "queue_id": "V3-EXQ-460b",
-      "claim_ids": ["SD-034", "MECH-260", "MECH-261"],
+      "claim_ids": [
+        "SD-034",
+        "MECH-260",
+        "MECH-261"
+      ],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
         "claim_alignment": "intact -- closure never fired so claim could not express; weakens misattributes the layer",
@@ -21,7 +25,11 @@
       },
       "biological_reference": {
         "closest_mechanism": "basal-ganglia rule-completion 'done' signal + end-of-sequence beta-band drop (commitment release)",
-        "dependencies": ["completable task / reachable goal", "goal achievement at runtime", "stable rule_state at completion"],
+        "dependencies": [
+          "completable task / reachable goal",
+          "goal achievement at runtime",
+          "stable rule_state at completion"
+        ],
         "is_formal_import": false,
         "divergence": "none -- faithful translation; failure matches missing-dependency (no completable goal) signature",
         "lit_status": "present-enough; no lit-pull indicated"
@@ -32,7 +40,10 @@
       "recommended_substrate_queue_entry": {
         "action": "amend",
         "target_sd_id": "scaffolded_sd054_onboarding",
-        "unblocks_claims_add": ["SD-034", "MECH-261"],
+        "unblocks_claims_add": [
+          "SD-034",
+          "MECH-261"
+        ],
         "failure_record_entry": {
           "run_id": "v3_exq_460b_sd034_verified_but_not_released_behavioural_20260603T231621Z_v3",
           "experiment_type": "v3_exq_460b_sd034_verified_but_not_released_behavioural",
@@ -51,7 +62,11 @@
     {
       "run_id": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural_20260604T001229Z_v3",
       "queue_id": "V3-EXQ-461b",
-      "claim_ids": ["MECH-090", "SD-033a", "SD-034"],
+      "claim_ids": [
+        "MECH-090",
+        "SD-033a",
+        "SD-034"
+      ],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
         "claim_alignment": "intact -- no Hold-resolution window ever formed",
@@ -65,7 +80,10 @@
       },
       "biological_reference": {
         "closest_mechanism": "sustained beta latch over a delay + rule_state persistence to delayed resolution (lateral PFC working-memory hold)",
-        "dependencies": ["a delayed resolution event (requires completion)", "completable held goal"],
+        "dependencies": [
+          "a delayed resolution event (requires completion)",
+          "completable held goal"
+        ],
         "is_formal_import": false,
         "divergence": "none",
         "lit_status": "present-enough"
@@ -76,7 +94,10 @@
       "recommended_substrate_queue_entry": {
         "action": "amend",
         "target_sd_id": "scaffolded_sd054_onboarding",
-        "unblocks_claims_add": ["MECH-090", "SD-033a"],
+        "unblocks_claims_add": [
+          "MECH-090",
+          "SD-033a"
+        ],
         "failure_record_entry": {
           "run_id": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural_20260604T001229Z_v3",
           "experiment_type": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural",
@@ -94,7 +115,10 @@
     {
       "run_id": "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3",
       "queue_id": "V3-EXQ-464b",
-      "claim_ids": ["MECH-266", "SD-032a"],
+      "claim_ids": [
+        "MECH-266",
+        "SD-032a"
+      ],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
         "claim_alignment": "intact -- asymmetry unmeasurable against a degenerate no-switch baseline",
@@ -108,7 +132,10 @@
       },
       "biological_reference": {
         "closest_mechanism": "cingulate salience coordinator / dACC mode arbitration with per-mode hysteresis (Schmitt rails)",
-        "dependencies": ["mode diversity (internal planning/replay reachable)", "reachable goals to plan toward"],
+        "dependencies": [
+          "mode diversity (internal planning/replay reachable)",
+          "reachable goals to plan toward"
+        ],
         "is_formal_import": false,
         "divergence": "none -- monostrategy is the same goal-pipeline root one layer out (per user judgment: same ceiling, not a separate mode-arbitration substrate)",
         "lit_status": "present-enough"
@@ -119,7 +146,10 @@
       "recommended_substrate_queue_entry": {
         "action": "amend",
         "target_sd_id": "scaffolded_sd054_onboarding",
-        "unblocks_claims_add": ["MECH-266", "SD-032a"],
+        "unblocks_claims_add": [
+          "MECH-266",
+          "SD-032a"
+        ],
         "failure_record_entry": {
           "run_id": "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3",
           "experiment_type": "v3_exq_464b_mech266_competing_goals_behavioural",
@@ -138,7 +168,10 @@
     {
       "run_id": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural_20260604T035511Z_v3",
       "queue_id": "V3-EXQ-466b",
-      "claim_ids": ["SD-034", "MECH-094"],
+      "claim_ids": [
+        "SD-034",
+        "MECH-094"
+      ],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
         "claim_alignment": "intact -- no closure so no residue discharge could be measured",
@@ -152,7 +185,10 @@
       },
       "biological_reference": {
         "closest_mechanism": "completion-triggered residue discharge (ResidueField.discharge_domain) -- satisficing vs over-checking",
-        "dependencies": ["a closure event (requires completion)", "stable rule_state at completion"],
+        "dependencies": [
+          "a closure event (requires completion)",
+          "stable rule_state at completion"
+        ],
         "is_formal_import": false,
         "divergence": "none",
         "lit_status": "present-enough"
@@ -163,7 +199,10 @@
       "recommended_substrate_queue_entry": {
         "action": "amend",
         "target_sd_id": "scaffolded_sd054_onboarding",
-        "unblocks_claims_add": ["SD-034", "MECH-094"],
+        "unblocks_claims_add": [
+          "SD-034",
+          "MECH-094"
+        ],
         "failure_record_entry": {
           "run_id": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural_20260604T035511Z_v3",
           "experiment_type": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural",
@@ -177,14 +216,83 @@
         "466b-C3 trivially-passing while C1/C2 fail is the substrate-ceiling negative-control tell"
       ],
       "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_467b_mech266_mode_stickiness_behavioural_20260604T041909Z_v3",
+      "queue_id": "V3-EXQ-467b",
+      "claim_ids": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "failed_criterion": "discrimination",
+      "folded_in_by": "governance-cycle-20260604T0624Z (ran 04:19Z, after artifact generated 05:54Z; identical signature to sibling V3-EXQ-464b)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_epistemic_category": "substrate_ceiling",
+      "pending_retest_after_substrate": true,
+      "recommended_evidence_quality_note": "Behavioural successor V3-EXQ-467b: mode-dwell hysteresis dose-response degenerate -- n_switches=0 at every ratio r in [0.1,0.5,1.0,1.5,2.0], so the predicted monotone dwell-vs-r curve cannot form. Identical substrate-not-engaged ceiling as sibling V3-EXQ-464b (no reachable goal -> no internal mode to switch into); goal-achievement layer scaffolded_sd054_onboarding. non_contributory + pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "unblocks_claims_add": [
+          "MECH-266",
+          "SD-032a"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_467b_mech266_mode_stickiness_behavioural_20260604T041909Z_v3",
+          "experiment_type": "v3_exq_467b_mech266_mode_stickiness_behavioural",
+          "metric": "n_switches=0 at every hysteresis ratio r in [0.1,0.5,1.0,1.5,2.0]; mean_dwell flat ~130-151 (no dose-response because no switching)",
+          "target": "n_switches >= 1 at >= 1 ratio AND monotone non-increasing mean_dwell vs r once mode diversity emerges"
+        }
+      },
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_468b_sd034_mech268_commitment_vs_contradiction_behavioural_20260604T053255Z_v3",
+      "queue_id": "V3-EXQ-468b",
+      "claim_ids": [
+        "SD-034",
+        "MECH-268",
+        "MECH-090"
+      ],
+      "failed_criterion": "discrimination",
+      "folded_in_by": "governance-cycle-20260604T0624Z (ran 05:32Z, after artifact generated 05:54Z boundary; identical signature to sibling V3-EXQ-460b). NOTE MECH-268 independently+genuinely supported by contemporaneous V3-EXQ-463b PASS -- this non_contributory does not bear on that.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_epistemic_category": "substrate_ceiling",
+      "pending_retest_after_substrate": true,
+      "recommended_evidence_quality_note": "Behavioural successor V3-EXQ-468b: beta_release_events=0, episodes_with_contradiction=0, had_contradiction=false in every arm -- the GAP-3 counter-evidence-injection never triggered a contradiction and commitment never released. Identical substrate-not-engaged ceiling as sibling V3-EXQ-460b; goal-achievement layer scaffolded_sd054_onboarding. non_contributory + pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "unblocks_claims_add": [
+          "SD-034",
+          "MECH-268",
+          "MECH-090"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_468b_sd034_mech268_commitment_vs_contradiction_behavioural_20260604T053255Z_v3",
+          "experiment_type": "v3_exq_468b_sd034_mech268_commitment_vs_contradiction_behavioural",
+          "metric": "beta_release_events=0 / beta_release_near_contradiction=0 / episodes_with_contradiction=0 in every arm (contradiction injection never triggers; commitment never releases)",
+          "target": "ARM_SUBSTRATE_ON beta_release_near_contradiction >= 1 with episodes_with_contradiction >= 1 once goal completions/contradictions occur"
+        }
+      },
+      "routing": "implement-substrate"
     }
   ],
   "cluster_pattern": {
     "shape": "Behavioural successors of passing hand-poke diagnostics: API-correct mechanisms that stay silent in the live committed_mode_curriculum loop because the agent commits (beta latch engages) but never tolerance-completes a waypoint -- so the SD-034 closure event never fires (n_closures=0 in every arm including positive arms) and every closure-triggered OCD-axis behaviour (beta release, No-Go install, residue discharge, delayed-resolution coupling, mode switching) cannot express. 464b is the same root one layer out: no reachable goal -> no internal mode -> degenerate no-switch baseline.",
     "is_independent_bugs": false,
     "structural_property": "The committed_mode_curriculum + CausalGridWorldV2 + GAP-3 tolerance-band completion does not yet produce goal completions at runtime; the goal-achievement/foraging-competence layer (z_goal stays zero-init) is the missing prerequisite. Same ceiling as the 603e/626a/634b cluster, tracked by substrate_queue scaffolded_sd054_onboarding (priority 1).",
-    "readings": ["substrate_enrichment_goal_achievement_layer"],
+    "readings": [
+      "substrate_enrichment_goal_achievement_layer"
+    ],
     "folds_into": "scaffolded_sd054_onboarding",
-    "related_autopsies": ["failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03", "failure_autopsy_V3-EXQ-634b_2026-06-03"]
+    "related_autopsies": [
+      "failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03",
+      "failure_autopsy_V3-EXQ-634b_2026-06-03"
+    ],
+    "folded_in_later": [
+      "V3-EXQ-467b",
+      "V3-EXQ-468b"
+    ]
   }
 }

@@ -1,1 +1,139 @@
-{"schema_version": "v1", "run_id": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural_20260604T035511Z_v3", "experiment_type": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural", "queue_id": "V3-EXQ-466b", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-04T03:55:11.887825Z", "experiment_purpose": "evidence", "claim_ids": ["SD-034", "MECH-094"], "result": "FAIL", "outcome": "FAIL", "evidence_direction": "weakens", "evidence_direction_per_claim": {"SD-034": "weakens", "MECH-094": "weakens"}, "thresholds": {"C1_min_closures": 1, "C2_min_discharge_events": 1, "pass_fraction_required": 0.6666666666666666}, "n_seeds": 3, "n_seeds_pass": 0, "smoke": false, "metrics": {"per_seed": [{"seed": 42, "ARM_EMERGENT_ON": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 618, "n_eval_episodes": 30, "closure_present": true}, "ARM_FORCED_RV_ON": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 653, "n_eval_episodes": 30, "closure_present": true}, "ARM_CLOSURE_OFF": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 522, "n_eval_episodes": 30, "closure_present": false}, "criteria": {"C1": false, "C2": false, "C3": true}, "p1_commitment_emerged": false, "pass": false}, {"seed": 43, "ARM_EMERGENT_ON": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 5429, "n_eval_episodes": 30, "closure_present": true}, "ARM_FORCED_RV_ON": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 5049, "n_eval_episodes": 30, "closure_present": true}, "ARM_CLOSURE_OFF": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 5616, "n_eval_episodes": 30, "closure_present": false}, "criteria": {"C1": false, "C2": false, "C3": true}, "p1_commitment_emerged": true, "pass": false}, {"seed": 44, "ARM_EMERGENT_ON": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 3606, "n_eval_episodes": 30, "closure_present": true}, "ARM_FORCED_RV_ON": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 4630, "n_eval_episodes": 30, "closure_present": true}, "ARM_CLOSURE_OFF": {"n_closures": 0, "discharge_events": 0, "mean_residue_weight_reduction": 0.0, "total_committed_steps": 3646, "n_eval_episodes": 30, "closure_present": false}, "criteria": {"C1": false, "C2": false, "C3": true}, "p1_commitment_emerged": true, "pass": false}]}, "notes": "V3-EXQ-466b behavioural successor to the V3-EXQ-466 substrate-readiness diagnostic (which is NOT superseded -- its UC1-UC5 residue-discharge API evidence stands). This arm validates the ocd4 satisficing/residue-discharge dissociation in a live committed_mode_curriculum loop on CausalGridWorldV2 with GAP-3 tolerance-band completion: closure operator ON discharges rule-domain residue at tolerance-completed waypoints; closure OFF (same weights) accumulates residue without discharge (over-checking signature). O-2 forced-rv contrast included per the GAP-11 committed_mode_curriculum mandatory-contrast rule. Pilot lineage: the GAP-11 curriculum was proven by V3-EXQ-592. Plan: commitment_closure_plan.md GAP-4 Phase 4/5 cohort.", "machine": "ree-cloud-3"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural_20260604T035511Z_v3",
+  "experiment_type": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural",
+  "queue_id": "V3-EXQ-466b",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-04T03:55:11.887825Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-034",
+    "MECH-094"
+  ],
+  "result": "FAIL",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory",
+    "MECH-094": "non_contributory"
+  },
+  "thresholds": {
+    "C1_min_closures": 1,
+    "C2_min_discharge_events": 1,
+    "pass_fraction_required": 0.6666666666666666
+  },
+  "n_seeds": 3,
+  "n_seeds_pass": 0,
+  "smoke": false,
+  "metrics": {
+    "per_seed": [
+      {
+        "seed": 42,
+        "ARM_EMERGENT_ON": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 618,
+          "n_eval_episodes": 30,
+          "closure_present": true
+        },
+        "ARM_FORCED_RV_ON": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 653,
+          "n_eval_episodes": 30,
+          "closure_present": true
+        },
+        "ARM_CLOSURE_OFF": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 522,
+          "n_eval_episodes": 30,
+          "closure_present": false
+        },
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": true
+        },
+        "p1_commitment_emerged": false,
+        "pass": false
+      },
+      {
+        "seed": 43,
+        "ARM_EMERGENT_ON": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 5429,
+          "n_eval_episodes": 30,
+          "closure_present": true
+        },
+        "ARM_FORCED_RV_ON": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 5049,
+          "n_eval_episodes": 30,
+          "closure_present": true
+        },
+        "ARM_CLOSURE_OFF": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 5616,
+          "n_eval_episodes": 30,
+          "closure_present": false
+        },
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": true
+        },
+        "p1_commitment_emerged": true,
+        "pass": false
+      },
+      {
+        "seed": 44,
+        "ARM_EMERGENT_ON": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 3606,
+          "n_eval_episodes": 30,
+          "closure_present": true
+        },
+        "ARM_FORCED_RV_ON": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 4630,
+          "n_eval_episodes": 30,
+          "closure_present": true
+        },
+        "ARM_CLOSURE_OFF": {
+          "n_closures": 0,
+          "discharge_events": 0,
+          "mean_residue_weight_reduction": 0.0,
+          "total_committed_steps": 3646,
+          "n_eval_episodes": 30,
+          "closure_present": false
+        },
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": true
+        },
+        "p1_commitment_emerged": true,
+        "pass": false
+      }
+    ]
+  },
+  "notes": "V3-EXQ-466b behavioural successor to the V3-EXQ-466 substrate-readiness diagnostic (which is NOT superseded -- its UC1-UC5 residue-discharge API evidence stands). This arm validates the ocd4 satisficing/residue-discharge dissociation in a live committed_mode_curriculum loop on CausalGridWorldV2 with GAP-3 tolerance-band completion: closure operator ON discharges rule-domain residue at tolerance-completed waypoints; closure OFF (same weights) accumulates residue without discharge (over-checking signature). O-2 forced-rv contrast included per the GAP-11 committed_mode_curriculum mandatory-contrast rule. Pilot lineage: the GAP-11 curriculum was proven by V3-EXQ-592. Plan: commitment_closure_plan.md GAP-4 Phase 4/5 cohort.",
+  "machine": "ree-cloud-3",
+  "evidence_direction_note": "Behavioural successor V3-EXQ-466b ran to completion but could not test SD-034/MECH-094: n_closures=0 and discharge_events=0 in every arm (including the positive arm) because the agent never tolerance-completes a waypoint; C3 (closure-OFF n_closures==0) passes only trivially. Predecessor V3-EXQ-466 hand-poke exercises discharge_domain; the gap is the goal-achievement layer (scaffolded_sd054_onboarding). non_contributory + pending_retest_after_substrate; not claim pressure. Confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04; governance 2026-06-04.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}

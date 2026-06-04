@@ -1,1 +1,162 @@
-{"schema_version": "v1", "run_id": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural_20260604T001229Z_v3", "experiment_type": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural", "queue_id": "V3-EXQ-461b", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-04T00:12:29.721892Z", "experiment_purpose": "evidence", "claim_ids": ["MECH-090", "SD-033a", "SD-034"], "result": "FAIL", "outcome": "FAIL", "evidence_direction": "weakens", "evidence_direction_per_claim": {"MECH-090": "weakens", "SD-033a": "weakens", "SD-034": "weakens"}, "thresholds": {"min_delay_ticks": 3, "closure_window_ticks": 2, "C1_min_windows": 1, "C1_persist_floor": 0.5, "C2_min_coupled": 1, "pass_fraction_required": 0.6666666666666666}, "n_seeds": 3, "n_seeds_pass": 0, "smoke": false, "metrics": {"per_seed": [{"seed": 42, "ARM_EMERGENT_ON": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "ARM_FORCED_RV_ON": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "ARM_NO_HOLD_OFF": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "criteria": {"C1": false, "C2": false, "C3": false}, "p1_commitment_emerged": false, "pass": false}, {"seed": 43, "ARM_EMERGENT_ON": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "ARM_FORCED_RV_ON": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "ARM_NO_HOLD_OFF": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "criteria": {"C1": false, "C2": false, "C3": false}, "p1_commitment_emerged": true, "pass": false}, {"seed": 44, "ARM_EMERGENT_ON": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "ARM_FORCED_RV_ON": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "ARM_NO_HOLD_OFF": {"n_windows": 0, "n_delay_windows": 0, "mean_window_len": 0.0, "mean_persistence_ratio": 0.0, "n_resolutions": 0, "n_closure_coupled_resolutions": 0, "closure_present": true, "n_eval_episodes": 30}, "criteria": {"C1": false, "C2": false, "C3": false}, "p1_commitment_emerged": true, "pass": false}]}, "notes": "V3-EXQ-461b behavioural successor to the V3-EXQ-461 substrate-readiness diagnostic (which is NOT superseded -- its UC1-UC6 hand-poked hold-window / replay-gate / closure evidence stands). This is the FULL delayed-reward persistence behavioural arm the GAP-2 / GAP-4 plan owed once the GAP-3 CausalGridWorldV2 tolerance-band completion env + the GAP-11 committed_mode_curriculum landed. It measures, in a live curriculum loop: SD-033a rule_state PERSISTS across the MECH-090 Hold window (delay), and SD-034 closure fires within 2 ticks of the delayed RESOLUTION (beta release). The no-Hold contrast (bistable OFF) loses the sustained delay window. O-2 forced-rv contrast included per the GAP-11 committed_mode_curriculum mandatory-contrast rule. New ID (not a re-run of 461): V3-EXQ-461 was a substrate-readiness diagnostic and V3-EXQ-592 superseded it as the GAP-11 curriculum pilot. Plan: commitment_closure_plan.md GAP-4 Phase 4/5 cohort.", "machine": "ree-cloud-3"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural_20260604T001229Z_v3",
+  "experiment_type": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural",
+  "queue_id": "V3-EXQ-461b",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-04T00:12:29.721892Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-090",
+    "SD-033a",
+    "SD-034"
+  ],
+  "result": "FAIL",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-090": "non_contributory",
+    "SD-033a": "non_contributory",
+    "SD-034": "non_contributory"
+  },
+  "thresholds": {
+    "min_delay_ticks": 3,
+    "closure_window_ticks": 2,
+    "C1_min_windows": 1,
+    "C1_persist_floor": 0.5,
+    "C2_min_coupled": 1,
+    "pass_fraction_required": 0.6666666666666666
+  },
+  "n_seeds": 3,
+  "n_seeds_pass": 0,
+  "smoke": false,
+  "metrics": {
+    "per_seed": [
+      {
+        "seed": 42,
+        "ARM_EMERGENT_ON": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "ARM_FORCED_RV_ON": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "ARM_NO_HOLD_OFF": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": false
+        },
+        "p1_commitment_emerged": false,
+        "pass": false
+      },
+      {
+        "seed": 43,
+        "ARM_EMERGENT_ON": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "ARM_FORCED_RV_ON": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "ARM_NO_HOLD_OFF": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": false
+        },
+        "p1_commitment_emerged": true,
+        "pass": false
+      },
+      {
+        "seed": 44,
+        "ARM_EMERGENT_ON": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "ARM_FORCED_RV_ON": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "ARM_NO_HOLD_OFF": {
+          "n_windows": 0,
+          "n_delay_windows": 0,
+          "mean_window_len": 0.0,
+          "mean_persistence_ratio": 0.0,
+          "n_resolutions": 0,
+          "n_closure_coupled_resolutions": 0,
+          "closure_present": true,
+          "n_eval_episodes": 30
+        },
+        "criteria": {
+          "C1": false,
+          "C2": false,
+          "C3": false
+        },
+        "p1_commitment_emerged": true,
+        "pass": false
+      }
+    ]
+  },
+  "notes": "V3-EXQ-461b behavioural successor to the V3-EXQ-461 substrate-readiness diagnostic (which is NOT superseded -- its UC1-UC6 hand-poked hold-window / replay-gate / closure evidence stands). This is the FULL delayed-reward persistence behavioural arm the GAP-2 / GAP-4 plan owed once the GAP-3 CausalGridWorldV2 tolerance-band completion env + the GAP-11 committed_mode_curriculum landed. It measures, in a live curriculum loop: SD-033a rule_state PERSISTS across the MECH-090 Hold window (delay), and SD-034 closure fires within 2 ticks of the delayed RESOLUTION (beta release). The no-Hold contrast (bistable OFF) loses the sustained delay window. O-2 forced-rv contrast included per the GAP-11 committed_mode_curriculum mandatory-contrast rule. New ID (not a re-run of 461): V3-EXQ-461 was a substrate-readiness diagnostic and V3-EXQ-592 superseded it as the GAP-11 curriculum pilot. Plan: commitment_closure_plan.md GAP-4 Phase 4/5 cohort.",
+  "machine": "ree-cloud-3",
+  "evidence_direction_note": "Behavioural successor V3-EXQ-461b ran to completion but could not test MECH-090/SD-033a/SD-034: n_windows=0 in every arm because the beta latch never releases (no resolution event forms), so persistence-across-delay and closure-coupled-resolution cannot be measured. Predecessor V3-EXQ-461 diagnostic PASSED (hand-poke), confirming the mechanism API; the gap is the goal-achievement layer (scaffolded_sd054_onboarding). non_contributory + pending_retest_after_substrate; not claim pressure. Confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04; governance 2026-06-04.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_retest_after_substrate": true
+}
