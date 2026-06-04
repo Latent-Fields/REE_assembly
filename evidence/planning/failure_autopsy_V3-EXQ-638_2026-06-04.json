@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-04T16:06:27Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_638_scaffold_cue_recall_contact_ablation_20260604T142524Z_v3",
+      "queue_id": "V3-EXQ-638",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- no claim tagged; SD-057 cue-recall bridge never expressed itself",
+        "biological_reference": "clear -- Berridge incentive-salience wanting; token normally nursery/provisioning-seeded; failure matches a missing-formation-stage signature",
+        "prerequisites": "missing -- Stage-0 incentive-token formation absent, bank empty entering P1/P2",
+        "implementation": "partial/stub -- bridge wired but token never bound (symbol of mechanism, not functional role); bare except:pass masked the zero",
+        "environment": "adequate -- scaffold envs SD-049-enabled, 634c seeding regime present",
+        "measurement": "under-instrumented/misleading -- C1 read getattr(p2,'n_cue_recall_fires',0)=0 (no such aggregate); no cue_diag attribution",
+        "integration": "partially coupled -- formation stage decoupled from recall stage",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Berridge incentive-salience ('wanting') -- approach spur toward a perceived-but-uncontacted object via a stored incentive value",
+        "dependencies": ["incentive token must be formed before it can be recalled", "early value seeded by provisioning/parental feeding (nursery), not own foraging contact"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful biological translation; the failure is a missing formation-stage dependency, repaired",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_not_ready",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-638 (diagnostic, no claims) was cue-silent: C1 false, on_cue_fires=[0,0,0]. Root cause (code-confirmed): the IncentiveTokenBank was empty entering P1/P2 because Stage-0 forced feed was decoupled from typed contact, so no incentive token ever bound -- the cue-recall bridge could not bootstrap the very contact needed to form its token (chicken-and-egg), compounded by an except:pass that hid the zero and a C1 metric that read a non-existent aggregate. Instrumentation + formation gap (substrate_not_ready), not a claim or substrate-ceiling result. Fixed at the harness layer (a9ef0be + 636128a); validated by V3-EXQ-638a (running). non_contributory for governance weighting; contributory as a substrate-readiness finding.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "Fix is harness-level (scaffolded_sd054_onboarding cue-recall formation + instrumentation), landed in a9ef0be + 636128a. No substrate_queue entry needed; SD-057 substrate untouched.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Chicken-and-egg formation gap: IncentiveTokenBank only binds on real typed contact, but cue-recall was meant to bootstrap contact -> bank empty -> cue silent. Fixed by scaffold_stage0_bind_incentive_token (binds strongest-perceived type at Stage-0).",
+        "Silent-failure anti-pattern: bare except:pass in _maybe_cue_recall masked the zero; replaced with attributed cue_diag accumulator (non-fire reasons + substrate quantities).",
+        "Measurement bug: C1 read a non-existent aggregate field (always 0); 638a sources fires from cue_diag, 636128a adds the aggregate to P1/P2 results."
+      ],
+      "routing": "queue-experiment",
+      "routing_status": "already_executed",
+      "fix_commits": ["a9ef0be", "636128a"],
+      "validation_reissue": "V3-EXQ-638a (queued 0258238, running on ree-cloud-2)"
+    }
+  ],
+  "cluster_pattern": null
+}
