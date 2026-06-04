@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-04T15:21:40Z",
+  "last_tick_utc": "2026-06-04T15:36:47Z",
   "state": "running",
   "current_exq": "V3-EXQ-610e",
   "current_exq_started_utc": "2026-06-03T21:19:06.134425+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "INV-074",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_1_test",
-    "runs_done": 3,
+    "run_label": "Seed 43 / ARM_1_test",
+    "runs_done": 4,
     "runs_total": 6,
-    "episodes_done": 2400,
+    "episodes_done": 101,
     "episodes_total": 2500,
-    "overall_pct": 66.0
+    "overall_pct": 67.3
   },
-  "seconds_elapsed": 64955,
-  "seconds_remaining": 31566,
+  "seconds_elapsed": 65861,
+  "seconds_remaining": 31853,
   "recent_lines": [
-    "[INV-074] policy_optimizer rebuilt for expansion_parameters (4 expansion + 2 residue params)",
-    "[train] ARM_1_test ep 2100/2500 phase=3 ep_reward=-1.0238 rv=0.0308 pol_steps=2100 exp_steps=99 ewc_terms=99",
-    "[train] ARM_1_test ep 2200/2500 phase=3 ep_reward=-1.0749 rv=0.0314 pol_steps=2200 exp_steps=199 ewc_terms=199",
-    "[train] ARM_1_test ep 2300/2500 phase=3 ep_reward=-1.0483 rv=0.0346 pol_steps=2300 exp_steps=299 ewc_terms=299",
-    "[train] ARM_1_test ep 2400/2500 phase=3 ep_reward=-1.2775 rv=0.0417 pol_steps=2400 exp_steps=399 ewc_terms=399"
+    "verdict: PASS",
+    "Seed 43 Condition ARM_1_test",
+    "[V3-EXQ-610e] Starting ARM_1_test seed=43 crystallize=True",
+    "[train] ARM_1_test ep 100/2500 phase=0 ep_reward=-1.0527 rv=0.0005 pol_steps=100 exp_steps=0 ewc_terms=0",
+    "[train] ARM_1_test ep 101/2500 phase=1 ep_reward=-1.1643 rv=0.0006 pol_steps=101 exp_steps=0 ewc_terms=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
