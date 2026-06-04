@@ -82,11 +82,12 @@ closure_plan:
       depends_on: ["goal_pipeline:GAP-2"]
       proposed_claims: ["MECH-BIND-obj (L2 benefit->object-identity binding)", "MECH-INCENT-token (L3 per-object wanting amplitude / incentive token)", "MECH-GOALPTR (L4 z_goal written from token/affordance pointer)", "MECH-CUEWANT (L6 cue-triggered pre-consummatory wanting)", "MECH-CONSUME (L7 consumer readout wiring audit)"]
       registered: 2026-06-03
-      last_updated: 2026-06-03
+      last_updated: 2026-06-04
       source_artefact: "evidence/planning/thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md section 8 (L0-L9 closure map) + section 9 (proposed plan-of-record updates); lit anchor evidence/planning/literature_synthesis_2026-06-01_object_bound_incentive_salience.md"
       ratified_2026_06_03: "User ratified the section-9 GAP-7 proposal into the plan-of-record this session. Closure thesis (intake section 8): the goal stream's broken links are L2-L3 (the benefit signal at contact is never bound to OBJECT IDENTITY and there is no per-object incentive-salience / wanted-object TOKEN -- the substrate writes raw z_world/z_resource at contact with no binding step and no per-object wanting amplitude), plus the measurement/wiring around L1 (forced-seed positive control) and L7 (dACC/E3/commitment consumer readout, where dACC does NOT read z_goal directly). L0/L1/L5 are substrate-present; L6/L8 are present-but-starved. The minimal repair is the L2-L3 layer + a clean L1 positive control + an L7 wiring audit -- NOT a new mature goal ecology. Cross-evidence: V3-EXQ-623 (MECH-104 volatility interrupt) is the positive control that REE DOES turn a correctly-wired signal into behavioural consequence, so the goal-stream fault is upstream (signal never produced / never object-bound), not 'REE cannot convert signal to behaviour'. The 626 harness bug (Class-1 separation: positive-control arms with z_goal not actually engaged) must be fixed before L1/L7 are measurable. Distinct from GAP-2 (which is the developmental foraging-competence ceiling -- get the agent to CONTACT resources); GAP-7 is what happens to the benefit signal ONCE contact occurs (bind it to an object, mint an incentive token, read it out). The two are sequential: GAP-2 supplies reliable contact, GAP-7 makes that contact object-bound and behaviourally consequential. This node carries the L0-L9 closure map embedded in the plan body below."
-      resume_condition: "L1 sub-deliverable LANDED at the harness level (2026-06-03, see l1_2026_06_03 below): the 626-class Class-1 wiring defect is closed and a forced-seed positive control the harness can SEE is established (F0 unit contract 6/6 + V3-EXQ-626b queued). NEXT deliverable is L7 (consumer-readout wiring audit: does dACC/E3/commitment actually read z_goal -- today dACC does NOT read z_goal directly; route via /queue-experiment or an /implement-substrate wiring audit). Then the L2-L3 object-binding + incentive-token substrate (/implement-substrate design-discovery; no SD/MECH doc yet; proposed_claims are placeholders, NOT registered in claims.yaml). The full L9 wanting!=liking dissociation acceptance (currently 514k=0.0) depends on L2-L3 landing AND on GAP-2 supplying reliable foraging contact."
-      l1_2026_06_03: "L1 (forced seed -> non-zero, stable z_goal) re-established as a passing diagnostic, GAP-2-independent. (1) The 626 Class-1 harness defect (the bespoke loop never called agent.update_z_goal) is CLOSED -- 626a wired update_z_goal; the 2026-06-03 cluster autopsy V3-EXQ-603e-626a-622 confirms 'the goal-pipeline WIRING layer is closed and verified'. (2) The forced-seed L1 positive control passes at the UNIT level: ree-v3/tests/contracts/test_goalstate_forced_seed_positive_control.py 6/6 (forced supra-threshold seed -> non-zero, direction-stable z_goal). (3) V3-EXQ-626b (queued + ingested into coordinator DB 2026-06-03; supersedes 626a; claim_ids=[], diagnostic) adds a genuine FORCED-SEED positive-control arm to the developmental-window diagnostic itself -- benefit forced supra-threshold fed to update_z_goal every step (run_stage0_nursery pattern), DECOUPLED from foraging -- plus a no-benefit negative control and a z_goal-off parity control, so the harness can SEE a non-zero stable z_goal dependent ONLY on the harness fix + GoalState gate, NOT on the GAP-2 foraging-competence substrate. Dry-run smoke PASS (C1 forced-seed formation >=0.4 / C2 stability / C3 negative-control no-seed / C4 OFF-parity all True at 2-ep dry budget); full-run PASS pending a runner + governance review. KEY CORRECTION the L1 work makes precise: 626a's experiment-level positive control FAILED only because its ARM_A drew benefit from ecological foraging, so seeds that never foraged (a GAP-2 leak) showed z_goal=0 -- that is GAP-2's foraging-competence ceiling, NOT a harness defect. The forced-seed control removes that confound. L2-L3 object-binding + L7 consumer-readout audit remain open (node stays status:open)."
+      resume_condition: "L1 sub-deliverable LANDED at the harness level (2026-06-03, see l1_2026_06_03 below): the 626-class Class-1 wiring defect is closed and a forced-seed positive control the harness can SEE is established (F0 unit contract 6/6 + V3-EXQ-626b queued). The L7 consumer-readout AUDIT is now also done (see l7_audit_2026_06_04 below): z_goal's only behaviourally-consequential readout is the E3 goal_proximity scalar (goal_weight); dACC + the whole cingulate/regulator/policy/governance stack are z_goal-blind. The audit's payload is that the L7 'wire the missing readouts' sub-step is NOT a standalone no-new-substrate task -- it is entangled with and downstream of L2-L3, because there is no object-bound token to read until L2-L3 exists. NEXT deliverable is therefore the L2-L3 object-binding + incentive-token substrate (/implement-substrate design-discovery; no SD/MECH doc yet; proposed_claims MECH-BIND-obj / MECH-INCENT-token / MECH-GOALPTR / MECH-CUEWANT / MECH-CONSUME are placeholders, NOT registered in claims.yaml), with the L7/MECH-CONSUME readout-wiring folded INTO that design rather than queued standalone. The full L9 wanting!=liking dissociation acceptance (currently 514k=0.0) depends on L2-L3 landing AND on GAP-2 supplying reliable foraging contact."
+      l1_2026_06_03: "L1 (forced seed -> non-zero, stable z_goal) re-established as a passing diagnostic, GAP-2-independent. (1) The 626 Class-1 harness defect (the bespoke loop never called agent.update_z_goal) is CLOSED -- 626a wired update_z_goal; the 2026-06-03 cluster autopsy V3-EXQ-603e-626a-622 confirms 'the goal-pipeline WIRING layer is closed and verified'. (2) The forced-seed L1 positive control passes at the UNIT level: ree-v3/tests/contracts/test_goalstate_forced_seed_positive_control.py 6/6 (forced supra-threshold seed -> non-zero, direction-stable z_goal). (3) V3-EXQ-626b (queued + ingested into coordinator DB 2026-06-03; supersedes 626a; claim_ids=[], diagnostic) adds a genuine FORCED-SEED positive-control arm to the developmental-window diagnostic itself -- benefit forced supra-threshold fed to update_z_goal every step (run_stage0_nursery pattern), DECOUPLED from foraging -- plus a no-benefit negative control and a z_goal-off parity control, so the harness can SEE a non-zero stable z_goal dependent ONLY on the harness fix + GoalState gate, NOT on the GAP-2 foraging-competence substrate. Dry-run smoke PASS (C1 forced-seed formation >=0.4 / C2 stability / C3 negative-control no-seed / C4 OFF-parity all True at 2-ep dry budget). FULL RUN NOW LANDED + REVIEWED (2026-06-04): manifest v3_exq_626b_..._20260603T211703Z_v3.json outcome=PASS with all four acceptance criteria green at full budget -- C1 formation 3/3 seeds (peaks 0.464/0.551/0.615, floor 0.4); C2 stability 3/3 (last-window medians 0.457/0.543/0.595, floor 0.1); C3 negative control 3/3 (no-benefit arm peaks all 0.0, ceiling 0.05 -- proves the forced seed IS the signal, not a loop artifact); C4 z_goal-off parity 3/3 (peaks all 0.0). In review_tracker.json (v3_exq_626b) and walked in the 2026-06-04 governance cycle (c28e0ba209, '626b positive control' among the 4 PASS); not in pending_review.md. L1 is therefore CLOSED, not merely queued. KEY CORRECTION the L1 work makes precise: 626a's experiment-level positive control FAILED only because its ARM_A drew benefit from ecological foraging, so seeds that never foraged (a GAP-2 leak) showed z_goal=0 -- that is GAP-2's foraging-competence ceiling, NOT a harness defect. The forced-seed control removes that confound. L2-L3 object-binding + L7 consumer-readout audit remain open (node stays status:open)."
+      l7_audit_2026_06_04: "L7 (consumer-readout wiring audit) sub-deliverable DELIVERED as a source audit -- the 'does dACC/E3/commitment actually read z_goal' question is now answered with file:line precision against ree-v3/ree_core. FINDING: z_goal reaches behaviour through exactly ONE behaviourally-consequential path, and it is narrow. (1) WRITE: GoalState.update() / .with_injection() (ree_core/goal.py:148,240); exposed as the z_goal tensor via the .z_goal property (goal.py:144) and as the goal_proximity()=1/(1+MSE(z_world,z_goal)) scalar (goal.py:226). (2) E3 (the action-selection scorer) reads z_goal ONLY via goal_proximity -- a scalar -- gated on config.goal_weight>0 (ree_core/predictors/e3_selector.py:461,618-629; MECH-112/MECH-117 wanting term). This is the SOLE path by which z_goal biases which action is chosen. (3) E1 reads the z_goal TENSOR directly as LSTM conditioning (ree_core/agent.py:2642,2653; MECH-116) -- but that shapes world-model prediction, not action choice directly. (4) Action selection injects a norm FLOOR via with_injection (agent.py:3109, MECH-188) but still routes through the same goal_proximity scalar. (5) dACC does NOT read z_goal or goal_state at all -- forward() takes only drive_level:float + per_axis_drive (ree_core/cingulate/dacc.py:325-335); the plan's 'dACC does NOT read z_goal directly' claim is CONFIRMED. (6) The entire cingulate / regulator / governance / policy stack is z_goal-BLIND: salience_coordinator, broadcast_override (SD-037), pag/freeze_gate (MECH-279), policy/gated_policy (ARC-062), pfc/lateral_pfc_analog (SD-033a), pfc/ofc_analog (SD-033b), governance/closure_operator (SD-034) -- all read drive_level (collapsed scalar) / per_axis_drive / z_harm / z_world, never z_goal. (7) Indirect non-action consumers: ghost_goal_bank (MECH-292) and ghost-probes (MECH-293) read z_goal via stored cosine-matched snapshots. STRUCTURAL CONCLUSION (the audit's real payload): the only readout that makes a non-zero z_goal behaviourally consequential is the E3 goal_proximity term -- proximity of z_world to a SINGLE z_goal attractor point in z_world space. There is structurally NO surface today that could express per-object wanting, because z_goal is one attractor and proximity is to that point, not to an object identity. So the L7 'wire the missing readouts' sub-step is NOT a standalone no-new-substrate task as originally scoped: wiring dACC (the natural 'is this goal worth the effort' site) to read z_goal would only hand it the same single-attractor proximity scalar. L7-wiring is therefore ENTANGLED with and DOWNSTREAM of L2-L3 (object-binding + per-object incentive token) -- the readout cannot be made object-discriminative until there is an object-bound token to read. RECOMMENDATION surfaced for user: fold the MECH-CONSUME (L7) readout-wiring into the L2-L3 /implement-substrate design rather than queueing it standalone; the audit half of the L7 deliverable is done. Node stays status:open (L2-L3 substrate + the now-folded L7 wiring remain)."
 ---
 # Goal Pipeline Plan (wanting / liking / goal-seeding)
 
@@ -464,7 +465,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-4 | 4 | in-progress | 2-fork: (A) Tier-1 library rebuild + 483d/490g re-queue; (B) SD-XXX scaffolded SD-054 onboarding substrate | Two-fork disposition per 2026-05-29 cluster autopsy `failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` -- Fork A (483c+524a) routes to library rebuild + cohort re-queue; Fork B (603c, absorbed into 591 family) routes to scaffolded SD-054 onboarding substrate-design memo + /implement-substrate. Both spawned as session chips 2026-05-29. Governance application of autopsy recommendations spawned as a third chip 2026-05-29 (per-claim direction overrides + SD-037 evidence_quality_note + new SD-XXX substrate_queue entry; will NOT auto-surface because 483c/524a/603c manifests already have evidence_direction set). See 2026-05-29 decision-log entry below. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a, V3-EXQ-603c | 2026-05-29 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
-| GAP-7 | 7 | open | L7/L2-L3 only (L1 landed); goal_pipeline:GAP-2 foraging contact (for L9) | **L1 LANDED 2026-06-03** (see l1_2026_06_03 frontmatter + decision log): 626 Class-1 wiring defect closed (626a wired update_z_goal; cluster autopsy confirms wiring closed+verified), forced-seed L1 positive control re-established GAP-2-independent (F0 unit contract 6/6 + V3-EXQ-626b queued/ingested, dry-run PASS, full-run pending review). **NEXT: (2) L7 consumer-readout wiring audit** (does dACC/E3/commitment read z_goal -- today dACC does NOT), then (3) L2-L3 object-bound incentive-salience layer via /implement-substrate. proposed_claims are placeholders, NOT registered. | V3-EXQ-626b (L1); null (L7/L2-L3 design-discovery) | 2026-06-03 |
+| GAP-7 | 7 | open | L2-L3 substrate (+ folded L7 wiring); goal_pipeline:GAP-2 foraging contact (for L9) | **L1 CLOSED + L7 AUDIT DONE 2026-06-04.** L1: 626 Class-1 wiring defect closed; forced-seed positive control full-run LANDED + REVIEWED -- 626b manifest PASS, C1-C4 all green at full budget (formation 3/3, stability 3/3, negative-control 3/3 zero, OFF-parity 3/3 zero), in review_tracker + walked in governance cycle c28e0ba209. L7 audit (see l7_audit_2026_06_04 frontmatter): z_goal's only action-consequential readout is the E3 goal_proximity scalar (e3_selector.py:461,618; goal_weight); E1 reads the tensor for conditioning (agent.py:2642); dACC + the whole cingulate/regulator/policy/governance stack are z_goal-BLIND (dacc.py:325 forward() = drive_level+per_axis_drive only). Audit payload: L7 'wire the missing readouts' is NOT standalone -- it is downstream of L2-L3 (nothing object-bound to read yet), so MECH-CONSUME folds into the L2-L3 design. **NEXT: (3) L2-L3 object-bound incentive-salience layer via /implement-substrate** (with L7/MECH-CONSUME wiring folded in). proposed_claims are placeholders, NOT registered. | V3-EXQ-626b (L1, PASS); null (L2-L3 + folded-L7 design-discovery) | 2026-06-04 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`,
 `tracked`. A `paused` row carries a resume condition in the
@@ -575,6 +576,75 @@ under a `tracked` row.
 
 Append-only. Every architectural choice + every deviation pause / resume.
 
+### 2026-06-04 - GAP-7 L1 full-run confirmed closed + L7 consumer-readout audit delivered
+
+**Status:** Two GAP-7 sub-deliverables resolved this session. Node stays
+`status: open` (the L2-L3 object-binding + incentive-token substrate, with the
+L7 readout-wiring now folded into it, remains). No new substrate written; no
+claims registered; this session was audit + bookkeeping only.
+
+**L1 -- full run confirmed (closes the prior "pending review" status).** The
+V3-EXQ-626b full run had in fact landed: manifest
+`v3_exq_626b_goal_pipeline_forced_seed_positive_control_20260603T211703Z_v3.json`
+is `outcome: PASS` with all four acceptance criteria green at full budget:
+- C1 positive-control formation: 3/3 seeds clear (peaks 0.464 / 0.551 / 0.615, floor 0.4)
+- C2 stability: 3/3 (last-window medians 0.457 / 0.543 / 0.595, floor 0.1)
+- C3 negative control: 3/3 (no-benefit arm peaks all 0.0, ceiling 0.05) -- proves the forced seed IS the signal, not a loop artifact
+- C4 z_goal-off parity: 3/3 (peaks all 0.0)
+
+It is in `review_tracker.json` (`v3_exq_626b`) and was walked in the 2026-06-04
+governance cycle (`c28e0ba209`, "626b positive control" among the 4 PASS); it is
+not in `pending_review.md`. So L1 is CLOSED, not merely queued -- the earlier
+decision-log "full-run PASS pending a runner + governance review" line is
+superseded.
+
+**L7 -- consumer-readout wiring audit delivered (source audit against
+ree-v3/ree_core).** The "does dACC / E3 / commitment actually read z_goal"
+question is now answered with file:line precision:
+- **WRITE / exposure:** `GoalState.update()` / `.with_injection()`
+  (`ree_core/goal.py:148,240`); the z_goal tensor via the `.z_goal` property
+  (`goal.py:144`); the `goal_proximity()` = 1/(1+MSE(z_world, z_goal)) scalar
+  (`goal.py:226`).
+- **E3 (action-selection scorer)** reads z_goal ONLY via `goal_proximity` -- a
+  scalar -- gated on `config.goal_weight > 0`
+  (`ree_core/predictors/e3_selector.py:461,618-629`; MECH-112 / MECH-117 wanting
+  term). This is the SOLE path by which z_goal biases which action is chosen.
+- **E1** reads the z_goal TENSOR directly as LSTM conditioning
+  (`ree_core/agent.py:2642,2653`; MECH-116) -- shapes world-model prediction,
+  not action choice directly.
+- **Action selection** injects a norm FLOOR (`agent.py:3109`; MECH-188
+  `with_injection`) but still routes through the same goal_proximity scalar.
+- **dACC reads NEITHER z_goal NOR goal_state** -- `forward()` takes only
+  `drive_level: float` + `per_axis_drive` (`ree_core/cingulate/dacc.py:325-335`).
+  The plan's "dACC does NOT read z_goal directly" claim is CONFIRMED.
+- **The whole cingulate / regulator / governance / policy stack is z_goal-blind:**
+  `salience_coordinator`, `broadcast_override` (SD-037),
+  `pag/freeze_gate` (MECH-279), `policy/gated_policy` (ARC-062),
+  `pfc/lateral_pfc_analog` (SD-033a), `pfc/ofc_analog` (SD-033b),
+  `governance/closure_operator` (SD-034) -- all read `drive_level` (collapsed
+  scalar) / `per_axis_drive` / z_harm / z_world, never z_goal.
+- Indirect non-action consumers: `ghost_goal_bank` (MECH-292) and ghost-probes
+  (MECH-293) read z_goal via stored cosine-matched snapshots.
+
+**Audit payload (the architectural finding, not just the map):** the only
+readout that makes a non-zero z_goal behaviourally consequential is the E3
+goal_proximity term -- proximity of z_world to a SINGLE z_goal attractor point.
+There is structurally no surface today that could express *per-object* wanting,
+because z_goal is one attractor and proximity is to that point, not to an object
+identity. Therefore the L7 "wire the missing readouts" sub-step is NOT a
+standalone no-new-substrate task as originally scoped: wiring dACC (the natural
+"is this goal worth the effort" site) to read z_goal would only hand it the same
+single-attractor proximity scalar. L7-wiring is entangled with and downstream of
+L2-L3 (object-binding + per-object incentive token) -- the readout cannot be made
+object-discriminative until there is an object-bound token to read.
+
+**Decision:** fold the MECH-CONSUME (L7) readout-wiring into the L2-L3
+`/implement-substrate` design rather than queue it standalone. The AUDIT half of
+the L7 deliverable is done; the WIRING half is sequenced behind L2-L3. NEXT
+GAP-7 deliverable is therefore the L2-L3 object-bound incentive-salience layer
+(design-discovery; no SD/MECH doc yet; proposed_claims remain placeholders, NOT
+registered). Surfaced to user for the L2-L3 design-session go-ahead.
+
 ### 2026-06-03 - GAP-7 L1 landed: forced-seed positive control (V3-EXQ-626b) + 626-class harness defect closed
 
 **Status:** L1 sub-deliverable of GAP-7 delivered. Node stays `status: open`
@@ -601,8 +671,9 @@ fix NOT on GAP-2.
   z_goal-off parity control. So the harness can SEE a non-zero stable z_goal
   that depends ONLY on the harness fix + the GoalState gate, NOT on the GAP-2
   foraging-competence substrate. Dry-run smoke PASS (C1 forced-seed formation
-  >=0.4 / C2 stability / C3 negative-control no-seed / C4 OFF-parity all True);
-  full-run PASS pending a runner + governance review.
+  >=0.4 / C2 stability / C3 negative-control no-seed / C4 OFF-parity all True).
+  **[Updated 2026-06-04: full run landed PASS + reviewed -- see the 2026-06-04
+  decision-log entry above. This "pending" status is superseded.]**
 
 **The correction L1 makes precise:** 626a's experiment-level positive control
 FAILED on 2/3 seeds only because its ARM_A drew benefit from *ecological
