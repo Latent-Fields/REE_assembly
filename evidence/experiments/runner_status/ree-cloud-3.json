@@ -1,18 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 745,
-  "runner_started_at": "2026-06-04T07:30:37.060469+00:00",
-  "last_updated": "2026-06-04T07:30:39.189797+00:00",
+  "runner_pid": 744,
+  "runner_started_at": "2026-06-04T15:40:29.889794+00:00",
+  "last_updated": "2026-06-04T15:40:34.436518+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-490k",
+      "queue_id": "V3-EXQ-638a",
       "backlog_id": "",
-      "claim_id": "MECH-295",
-      "title": "MECH-295 modulatory-SUFFICIENCY probe (goal_pipeline:GAP-4 successor to terminal V3-EXQ-490j). E3 score_bias argmin-change probe: per tick where the MECH-295 cue fires, does subtracting the MECH-295 contribution from e3.last_scores change the committed argmin (does the modulation flip which action wins). 3 arms x 3 seeds.",
+      "claim_id": null,
+      "title": "SD-057 cue-recall contact ablation on the FORMATION-FIXED substrate (validates V3-EXQ-638 cue-silent fix). ARM_CUE_ON sets scaffold_stage0_bind_incentive_token=True so Stage-0 binds per-type tokens -> bank non-empty -> cue can fire; surfaces cue_diag (token_bank_size / nonfire reasons / drive_peak) per arm/seed. 2 arms x 3 seeds.",
       "description": "",
-      "estimated_minutes": 60.0,
+      "estimated_minutes": 188.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -1896,6 +1896,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_636_sd057_object_bound_incentive_mechanism/v3_exq_636_sd057_object_bound_incentive_mechanism_20260604T073038Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 2.0
+    },
+    {
+      "queue_id": "V3-EXQ-639",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "ARC-063 v1 CandidateRuleField substrate-readiness diagnostic (the non-Bayesian rule-creator resolving arc_062_rule_apprehension:GAP-B). C1 differentiated rule_state (>=2 distinct active rule vectors -- inverts 598b C3 trainable_not_monomodal) / C2 minting fires >=2 distinct context rules / C3 tolerance gate conflict-sensitive / C4 OFF bit-identical + ON populates SD-033a / UC5 MECH-094 sim gate.",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-639 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-639.json",
+      "started_at": "2026-06-04T15:40:30.153114+00:00",
+      "completed_at": "2026-06-04T15:40:34.435832+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 4.3
     }
   ]
 }
