@@ -465,7 +465,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-4 | 4 | in-progress | 2-fork: (A) Tier-1 library rebuild + 483d/490g re-queue; (B) SD-XXX scaffolded SD-054 onboarding substrate | Two-fork disposition per 2026-05-29 cluster autopsy `failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` -- Fork A (483c+524a) routes to library rebuild + cohort re-queue; Fork B (603c, absorbed into 591 family) routes to scaffolded SD-054 onboarding substrate-design memo + /implement-substrate. Both spawned as session chips 2026-05-29. Governance application of autopsy recommendations spawned as a third chip 2026-05-29 (per-claim direction overrides + SD-037 evidence_quality_note + new SD-XXX substrate_queue entry; will NOT auto-surface because 483c/524a/603c manifests already have evidence_direction set). See 2026-05-29 decision-log entry below. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a, V3-EXQ-603c | 2026-05-29 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
-| GAP-7 | 7 | open | L2-L3 substrate (+ folded L7 wiring); goal_pipeline:GAP-2 foraging contact (for L9) | **L1 CLOSED + L7 AUDIT DONE 2026-06-04.** L1: 626 Class-1 wiring defect closed; forced-seed positive control full-run LANDED + REVIEWED -- 626b manifest PASS, C1-C4 all green at full budget (formation 3/3, stability 3/3, negative-control 3/3 zero, OFF-parity 3/3 zero), in review_tracker + walked in governance cycle c28e0ba209. L7 audit (see l7_audit_2026_06_04 frontmatter): z_goal's only action-consequential readout is the E3 goal_proximity scalar (e3_selector.py:461,618; goal_weight); E1 reads the tensor for conditioning (agent.py:2642); dACC + the whole cingulate/regulator/policy/governance stack are z_goal-BLIND (dacc.py:325 forward() = drive_level+per_axis_drive only). Audit payload: L7 'wire the missing readouts' is NOT standalone -- it is downstream of L2-L3 (nothing object-bound to read yet), so MECH-CONSUME folds into the L2-L3 design. **NEXT: (3) L2-L3 object-bound incentive-salience layer via /implement-substrate** (with L7/MECH-CONSUME wiring folded in). proposed_claims are placeholders, NOT registered. | V3-EXQ-626b (L1, PASS); null (L2-L3 + folded-L7 design-discovery) | 2026-06-04 |
+| GAP-7 | 7 | open | L9 behavioural validation (gated on goal_pipeline:GAP-2 foraging contact); phase-2 L6 cue-recall + L7 dACC-wiring | **L1 CLOSED + L7 AUDIT DONE + L2-L3-L4 SUBSTRATE LANDED 2026-06-04.** L1: 626b forced-seed positive control PASS (full-run, reviewed). L7 audit: only E3 goal_proximity reads z_goal consequentially; dACC/cingulate/policy/governance stack z_goal-blind; L7 wiring folded into L2-L3 (nothing object-bound to read until then). **L2-L3-L4 LANDED: SD-057 (ree-v3 53f6427; claims 1f12a8e60f) -- IncentiveTokenBank in goal.py binds benefit to SD-049 object identity (L2 MECH-344), accrues a per-object slow-decay revaluable token with at-recall per-axis drive-specific wanting (L3 MECH-345), and seeds z_goal FROM the most-wanted object's embedding (L4 MECH-346; amends MECH-230). Default-OFF bit-identical, no trained params. Contracts 6/6 + 747/751 + 7/7 preflight.** Validation V3-EXQ-636 (forced-contact mechanism diagnostic, claim_ids=[], decoupled from GAP-2 a la 626b) queued + ingested into coordinator DB; dry-run PASS 4/4 (binds 2 types, 5/6 wanting!=liking events ON, 0 OFF, legacy seeding intact). **NEXT: (a) 636 full-run PASS; (b) GAP-2-gated L9 behavioural retest of MECH-229/MECH-117/ARC-030; (c) phase-2 within SD-057: L6 cue-recall (MECH-CUEWANT) + L7 dACC readout (MECH-CONSUME), both NOT yet registered.** | V3-EXQ-636 (L2-L4 mechanism); 626b (L1); null (L9 gated on GAP-2) | 2026-06-04 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`,
 `tracked`. A `paused` row carries a resume condition in the
@@ -575,6 +575,56 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-06-04 - GAP-7 L2-L3-L4 substrate LANDED (SD-057 object-bound incentive-salience layer)
+
+**Status:** The GAP-7 middle layer is built. Node stays `status: open` (the L9
+behavioural validation is GAP-2-gated, and phase-2 L6/L7 remain). This is the
+substantive deliverable the L7 audit (same day, entry below) sequenced as NEXT.
+
+**What landed.** `SD-057: drive.object_bound_incentive_salience` (ree-v3 commit
+53f6427; REE_assembly claims commit 1f12a8e60f). An `IncentiveTokenBank`
+(`ree-v3/ree_core/goal.py`) inserts a per-object incentive layer between the
+benefit pulse and z_goal:
+- **L2 (MECH-344):** on contact, benefit binds to the SD-049 per-type identity
+  tag k (`resource_type_at_agent`) via `bank.update(k, benefit, z_resource)`
+  -- the associative object->benefit node the legacy scalar gate lacked.
+- **L3 (MECH-345):** each type accrues `base_value[k]` (slow-decay, revaluable
+  EMA of received benefit) + `z_object[k]` (stored z_resource embedding).
+  Wanting at recall = `base_value[k] * (1 + kappa * per_axis_drive[k])` --
+  the Zhang 2009 multiplier relocated from the seeding gate onto the stored
+  per-object value, per-axis so wanting is drive-specific / identity-matched
+  (specific PIT).
+- **L4 (MECH-346; amends MECH-230):** z_goal seeded FROM the most-wanted
+  object's embedding (`argmax_k wanting[k]`) instead of the raw last-contacted
+  z_resource. The GoalState firing gate is unchanged -- only the seed SOURCE.
+
+**Why this is the closure of the middle layer.** Liking target (last-contacted)
+and wanting target (z_goal -> most-wanted) can now DIFFER -- e.g. contact food
+while thirsty -> z_goal points at water. The L9 `wanting!=liking_dissoc_fraction`
+(stuck at 0.0 because the single attractor forced wanting==liking) is now
+structurally expressible for the first time.
+
+**Validation.** The behavioural L9 acceptance is GATED on goal_pipeline:GAP-2
+supplying foraging contact, so SD-057's own validation is a forced-contact
+MECHANISM diagnostic decoupled from GAP-2 (mirroring how V3-EXQ-626b decoupled
+the L1 positive control): **V3-EXQ-636** (claim_ids=[], diagnostic) -- two
+resource types forced under opposing per-axis drive, bank ON vs OFF, testing
+`wanting_target != liking_target`. Queued + ingested into the coordinator DB;
+dry-run PASS 4/4 (C1 binds 2 types; C2 5/6 wanting!=liking events ON; C3 0
+events OFF; C4 legacy seeding intact). Contracts
+`test_sd_057_incentive_token_bank.py` 6/6 + 747/751 full + 7/7 preflight;
+default-OFF bit-identical, no trained parameters (no phased training).
+
+**Scope held / deferred.** v1 = L2+L3+L4 core (user-confirmed scope). Deferred
+to a phase-2 pass within SD-057, NOT registered: L6 cue-recall (MECH-CUEWANT --
+re-trigger wanting from a perceived cue before benefit) and L7 dACC readout
+wiring (MECH-CONSUME -- give dACC the object-bound goal readout). The L7 audit
+established these are downstream of L2-L3, which is now in place.
+
+**NEXT:** (a) V3-EXQ-636 full-run PASS; (b) the GAP-2-gated L9 behavioural
+retest of MECH-229 / MECH-117 / ARC-030 (all stay v3_pending until then);
+(c) phase-2 L6/L7.
 
 ### 2026-06-04 - GAP-7 L1 full-run confirmed closed + L7 consumer-readout audit delivered
 
