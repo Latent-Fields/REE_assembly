@@ -27779,7 +27779,7 @@
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: ARC-063
-  title: "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Implementation deferred to V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
+  title: "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md) -- the social in-face (ARC-077/MECH-337), sleep-vs-waking refinement asymmetry, and full per-action moral-residue evidence records remain V4-deferred. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
   claim_type: architectural_commitment
   subject: policy.rule_apprehension_layer.strong_reading
   polarity: asserts
@@ -27789,8 +27789,21 @@
   claim_level: architectural
   registered_utc: "2026-05-08"
   brought_forward_utc: "2026-05-18"
+  design_doc: docs/architecture/arc_063_candidate_rule_field.md
+  implementation_note: >
+    2026-06-04: V3-tractable design landed (docs/architecture/arc_063_candidate_rule_field.md),
+    DESIGN-ONLY (no code). Resolves arc_062_rule_apprehension:GAP-B's blocker via a mint-then-weight
+    split: a non-Bayesian rule-creator (bottom-up regularity-mint ARC-064 + top-down ARC-062 seed)
+    populates a subspace-partitioned CandidateRule field (Weber 2023 anti-monomodal geometry; Wallis
+    2001 rule cells), tolerance-gated availability (Cavanagh 2011 / Frank 2006; availability!=selection
+    Frank-O'Reilly 2001), cue-driven context retrieval (MECH-338), writing DIFFERENTIATED rule_state
+    into SD-033a (the literal 598b gap) with eligibility-trace credit (Brzosko 2015 / Kovach 2012). The
+    three pre-design lit gaps were closed by the 2026-06-04 A+B+C top-up pulls (lit-ready). Proposed V3
+    child claims (NOT yet registered): MECH-CRF-mint / -field / -tolerance / -credit. Status/flags
+    unchanged (still candidate + v3_pending); design landing does not promote. NEXT: /implement-substrate.
   depends_on:
     - MECH-309    # the diagnostic claim that motivates the rule-apprehension layer cluster
+    - ARC-064     # 2026-06-04 design: the bottom-up regularity-mint population source (the V3 creator)
     - ARC-062     # the V3 weak-reading first pass; ARC-063 is its biology-faithful elaboration or successor
     - ARC-077     # 2026-05-18 bring-forward: the socially-scaffolded rule-population pathway that fills this field (peer to ARC-062 top-down / ARC-064 bottom-up)
     - MECH-337    # child of ARC-077: caregiver-scaffolded rule-population mechanism (the "in" face of this field)
