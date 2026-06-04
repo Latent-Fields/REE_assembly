@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-04T15:28:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3",
+      "queue_id": "V3-EXQ-490k",
+      "claim_ids": ["MECH-295"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the probe could not let the narrowed-modulatory MECH-295 claim express. The argmin-flip metric is mathematically incapable of registering a flip when the MECH-295 bias vector is constant across candidates (subtracting a constant from all scores never changes the argmin), regardless of MECH-295's true modulatory strength. weakens misattributes the layer.",
+        "biological_reference": "clear -- NAcc shell hedonic hotspot + ventral pallidum + OFC pleasure coding (Berridge wanting/liking); not a formal-definition import; lit already covered (targeted_review_mech295_liking_approach_bridge), divergence none, no lit-pull needed.",
+        "prerequisites": "missing -- per-candidate z_world differentiation (SD-056 E2 action-conditional contrastive, default OFF in this run), structured z_goal (goal-pipeline GAP-2 foraging-competence ceiling; goal_norm_peak=0.193 weak), and modulatory-bias-selection-authority (landed 2026-06-03, default OFF in this run).",
+        "implementation": "complete at MECH-295 -- the bridge fires (bridge_cue_fires=145, mech295_fired_ticks=145 in 3/3 seeds); compute_approach_cue_score_bias returns a genuine per-candidate [K] vector. The gap is upstream substrate, not the bridge.",
+        "environment": "inadequate for this measurement -- the gap4_operating env (drive_floor=0.9, drive_ema_alpha=1.0, goal_stream=True, use_dacc=True) does not deliver structured per-candidate goal_proximity: candidates differ only in first action but collapse to near-identical z_world (E2 SD-056-unfixed), and z_goal is weak (0.193). Uniform proximities -> uniform MECH-295 bias.",
+        "measurement": "under-controlled -- the option-(c) argmin-flip probe is genuinely saturation-immune (it fixed the 490j approach_commit_rate ceiling) but it is defeated by a DIFFERENT upstream collapse it did not guard for: a range-zero bias. mech295_bias_range_mean=0.0 with mech295_fired_ticks=145 proves the bias is a uniform constant across candidates. The probe needs a pre-registered bias_range>0 precondition before any argmin-flip result is interpretable.",
+        "integration": "partially coupled -- the bridge computes a per-candidate bias but RECEIVES uniform per-candidate proximities (candidate-collapse + weak z_goal), so its [K] output collapses to a constant.",
+        "scale": "adequate (900 eval-step budget x 3 seeds; cue fired on all 3 seeds)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "nacc_shell_hedonic_hotspot_plus_ventral_pallidum_plus_ofc_pleasure_coding_berridge_incentive_salience",
+        "dependencies": ["SD-012", "SD-014", "SD-015", "SD-049", "SD-056", "MECH-117", "MECH-230", "modulatory-bias-selection-authority"],
+        "is_formal_import": false,
+        "divergence": "none -- biology supports the architecture; the failure is REE-substrate-specific (range-zero per-candidate bias from upstream candidate/z_goal collapse), not a biological signature.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-490k (MECH-295 modulatory-sufficiency argmin-flip probe; experiment_purpose=diagnostic) ran to completion (PASS, probe_ran=true) but could NOT test the narrowed-modulatory MECH-295 reading. grid_row=ROW_2_fires_but_never_flips: the MECH-295 cue fires at the substrate on all 3 seeds (bridge_cue_fires=145, mech295_fired_ticks=145) but argmin_flip_ticks=0 on every seed -- because mech295_bias_range_mean=0.0, i.e. the per-candidate bias vector is a uniform constant across candidates, so subtracting it can never change the argmin BY CONSTRUCTION. The option-(c) probe correctly removed the 490j approach_commit_rate ceiling-saturation contamination, but is defeated by a DIFFERENT upstream collapse: per-candidate goal_proximity is uniform because (a) candidates collapse to near-identical z_world (E2 action-conditional collapse, SD-056 default OFF in this run) and (b) z_goal is weak (goal_norm_peak=0.193, goal-pipeline GAP-2 foraging-competence ceiling); and the modulatory-bias-selection-authority substrate (landed 2026-06-03, default OFF) was not active to give the bias argmin-competitive authority. Reclassified non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate; this does NOT weaken the modulatory MECH-295 reading. narrow_supports_flag=true: MECH-295 carries substrate-firing support only (V3-EXQ-493 UC1-UC6, V3-EXQ-490j C6/C7/C9) and STILL has zero behavioural-sufficiency support -- non_contributory does not resolve that gap. Confirmed failure_autopsy_V3-EXQ-490k_2026-06-04; governance 2026-06-04.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "unblocks_claims_add": ["MECH-295"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_490k_mech295_modulatory_sufficiency_20260604T091944Z_v3",
+          "experiment_type": "v3_exq_490k_mech295_modulatory_sufficiency",
+          "metric": "mech295_bias_range_mean=0.0 with mech295_fired_ticks=145 in 3/3 seeds (per-candidate MECH-295 bias uniform across candidates); mech295_argmin_flip_fraction=0.0 all seeds; goal_norm_peak=0.193 (weak z_goal)",
+          "target": "490L retest on enriched substrate must first clear a pre-registered guard mech295_bias_range_mean > 0 (per-candidate bias non-uniform) BEFORE interpreting argmin flips; then mech295_argmin_flip_fraction > 0 on >= 2/3 seeds = modulatory contribution behaviourally consequential"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "A saturation-immune metric can still be defeated by a different upstream degeneracy: the 490k argmin-flip probe removed the 490j approach_commit_rate ceiling but was silently defeated by a range-zero per-candidate bias. Future modulatory-sufficiency probes MUST pre-register a bias-range>0 (input-non-degeneracy) guard, analogous to the headroom guard the 490j autopsy added.",
+        "MECH-295's per-candidate approach bias inherits the candidate-collapse and z_goal-collapse ceilings: with near-identical candidate z_world (SD-056 unfixed) and weak z_goal, goal_proximity is uniform across candidates, so the bias has zero range and cannot flip an argmin. This couples the MECH-295 behavioural retest to SD-056 + the GAP-2 foraging-competence substrate, not just to MECH-295's own gain.",
+        "The modulatory-bias-selection-authority substrate (landed 2026-06-03) is the named fix for 'fixed small modulatory magnitudes never change the argmin' -- but 490k ran with it OFF (default). The 490L retest must enable it (and SD-056 E2-contrastive) to give the bias argmin-competitive authority on a substrate where candidates are genuinely differentiated.",
+        "MECH-295 remains behaviourally unproven: substrate-firing support (493/490j) exists; behavioural-sufficiency support is still zero across the entire 490g/h/i/j/k lineage. narrow_supports_flag retained."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "single-target, but convergent with the goal-pipeline substrate-ceiling family: the modulatory-sufficiency probe is defeated by the same upstream candidate-collapse (SD-056) + z_goal-collapse (GAP-2 foraging-competence) ceiling that produced the 514l/632/634/603e and the 460b-468b *b-cohort non_contributory results. One structural property (the substrate does not deliver differentiated per-candidate goal structure), surfacing at the MECH-295 behavioural-sufficiency layer.",
+    "is_independent_bugs": false,
+    "structural_property": "per-candidate goal_proximity is uniform under the current substrate (candidate z_world collapse + weak z_goal), so any per-candidate goal-conditioned bias (MECH-295 here) has zero range and cannot change committed selection -- independent of the bias mechanism's own correctness.",
+    "readings": ["substrate_enrichment_goal_achievement_and_candidate_differentiation"],
+    "folds_into": "scaffolded_sd054_onboarding",
+    "related_autopsies": [
+      "failure_autopsy_V3-EXQ-490j_2026-05-31",
+      "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
+      "failure_autopsy_V3-EXQ-514l_2026-06-03"
+    ]
+  }
+}
