@@ -465,7 +465,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-4 | 4 | in-progress | 2-fork: (A) Tier-1 library rebuild + 483d/490g re-queue; (B) SD-XXX scaffolded SD-054 onboarding substrate | Two-fork disposition per 2026-05-29 cluster autopsy `failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` -- Fork A (483c+524a) routes to library rebuild + cohort re-queue; Fork B (603c, absorbed into 591 family) routes to scaffolded SD-054 onboarding substrate-design memo + /implement-substrate. Both spawned as session chips 2026-05-29. Governance application of autopsy recommendations spawned as a third chip 2026-05-29 (per-claim direction overrides + SD-037 evidence_quality_note + new SD-XXX substrate_queue entry; will NOT auto-surface because 483c/524a/603c manifests already have evidence_direction set). See 2026-05-29 decision-log entry below. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a, V3-EXQ-603c | 2026-05-29 |
 | GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
-| GAP-7 | 7 | open | L9 behavioural validation (gated on goal_pipeline:GAP-2 foraging contact); phase-2 L6 cue-recall + L7 dACC-wiring | **L1 CLOSED + L7 AUDIT DONE + L2-L3-L4 SUBSTRATE LANDED 2026-06-04.** L1: 626b forced-seed positive control PASS (full-run, reviewed). L7 audit: only E3 goal_proximity reads z_goal consequentially; dACC/cingulate/policy/governance stack z_goal-blind; L7 wiring folded into L2-L3 (nothing object-bound to read until then). **L2-L3-L4 LANDED: SD-057 (ree-v3 53f6427; claims 1f12a8e60f) -- IncentiveTokenBank in goal.py binds benefit to SD-049 object identity (L2 MECH-344), accrues a per-object slow-decay revaluable token with at-recall per-axis drive-specific wanting (L3 MECH-345), and seeds z_goal FROM the most-wanted object's embedding (L4 MECH-346; amends MECH-230). Default-OFF bit-identical, no trained params. Contracts 6/6 + 747/751 + 7/7 preflight.** Validation V3-EXQ-636 (forced-contact mechanism diagnostic, claim_ids=[], decoupled from GAP-2 a la 626b) queued + ingested into coordinator DB; dry-run PASS 4/4 (binds 2 types, 5/6 wanting!=liking events ON, 0 OFF, legacy seeding intact). **NEXT: (a) 636 full-run PASS; (b) GAP-2-gated L9 behavioural retest of MECH-229/MECH-117/ARC-030; (c) phase-2 within SD-057: L6 cue-recall (MECH-CUEWANT) + L7 dACC readout (MECH-CONSUME), both NOT yet registered.** | V3-EXQ-636 (L2-L4 mechanism); 626b (L1); null (L9 gated on GAP-2) | 2026-06-04 |
+| GAP-7 | 7 | open | L9 behavioural validation (gated on goal_pipeline:GAP-2 foraging contact); phase-2 L6 cue-recall + L7 dACC-wiring | **L1 CLOSED + L7 AUDIT DONE + L2-L3-L4 SUBSTRATE LANDED 2026-06-04.** L1: 626b forced-seed positive control PASS (full-run, reviewed). L7 audit: only E3 goal_proximity reads z_goal consequentially; dACC/cingulate/policy/governance stack z_goal-blind; L7 wiring folded into L2-L3 (nothing object-bound to read until then). **L2-L3-L4 LANDED: SD-057 (ree-v3 53f6427; claims 1f12a8e60f) -- IncentiveTokenBank in goal.py binds benefit to SD-049 object identity (L2 MECH-344), accrues a per-object slow-decay revaluable token with at-recall per-axis drive-specific wanting (L3 MECH-345), and seeds z_goal FROM the most-wanted object's embedding (L4 MECH-346; amends MECH-230). Default-OFF bit-identical, no trained params. Contracts 6/6 + 747/751 + 7/7 preflight.** V3-EXQ-636 (L2-L4 mechanism) PASS full-run 4/4 (binds 2 types, 5/6 wanting!=liking events ON, 0 OFF, legacy seeding intact). **PHASE-2 (L6+L7) LANDED 2026-06-04: SD-057 phase-2 (ree-v3 24f31e5; claims e79ef7207e) -- L6 MECH-347 cue-recall (GoalState.cue_pull + agent.cue_recall_wanting: a perceived cue raises wanting for the matched object before benefit, identity-matched/drive-specific; downstream MECH-295 approach + E3 goal_proximity unchanged) + L7 MECH-348 dACC object-discriminative readout (per-candidate goal_proximity -> dACC bundle goal_readout -> DACCtoE3Adapter bias; dACC no longer z_goal-blind). Default-OFF bit-identical, no trained params. Contracts: phase-2 5/5 + 750/757 + 7/7 preflight.** Validation V3-EXQ-637 (forced-cue diagnostic, claim_ids=[], decoupled from GAP-2) queued; dry-run PASS 4/4 (C1 cue fires; C2 identity-matched z_goal direction cos=1.0; C3 goal_readout reaches dACC; C4 OFF parity). **The full GAP-7 closure map (L0-L9 substrate) is now built. NEXT: (a) 637 full-run PASS; (b) the GAP-2-gated L9 behavioural retest of MECH-229/MECH-117/ARC-030 -- now the sole remaining critical-path dependency, owned by scaffolded_sd054_onboarding / goal_pipeline:GAP-2.** | V3-EXQ-636 (L2-L4) + V3-EXQ-637 (L6-L7); 626b (L1); null (L9 gated on GAP-2) | 2026-06-04 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`,
 `tracked`. A `paused` row carries a resume condition in the
@@ -575,6 +575,52 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-06-04 - GAP-7 phase-2 LANDED (SD-057 L6 cue-recall MECH-347 + L7 dACC readout MECH-348)
+
+**Status:** The full GAP-7 L0-L9 substrate is now built. Node stays `status:
+open` -- the only remaining work is the L9 behavioural validation, which is
+GAP-2-gated (foraging competence). Same-day follow-on to the L2-L3-L4 landing
+(entry below), at user request.
+
+**What landed.** SD-057 phase-2 (ree-v3 24f31e5; REE_assembly claims e79ef7207e):
+- **L6 (MECH-347 `incentive.cue_triggered_wanting`):** a PERCEIVED cue (no
+  benefit pulse) retrieves its incentive token and nudges z_goal toward that
+  object's stored embedding BEFORE consumption -- identity-matched (pulls toward
+  the cued object) and drive-specific (`base_value*(1+kappa*per_axis_drive)`).
+  New `GoalState.cue_pull` (a directional z_goal nudge with no benefit gate and
+  no token revaluation) + `agent.cue_recall_wanting`. The downstream MECH-295
+  approach bridge + E3 goal_proximity (unchanged) translate it into
+  pre-consummatory approach. The StepHarness auto-derives the strongest-perceived
+  type from SD-049 per-type proximity views; the primitive is callable directly
+  for forced-cue tests. Berridge 2009 / Corbit-Balleine specific PIT / Schultz
+  DA-transfer.
+- **L7 (MECH-348 `incentive.dacc_object_discriminative_readout`):** the dACC
+  consumer now reads per-candidate goal_proximity to the (object-bound, L4)
+  z_goal -- resolving the L7-audit finding that dACC was z_goal-blind.
+  `DACCAdaptiveControl.forward` gains `candidate_goal_proximity` -> bundle
+  `goal_readout` -> `DACCtoE3Adapter` adds an object-discriminative bias term,
+  independent of dacc_weight. Balleine & O'Doherty 2010.
+
+Both no-op-default (use_cue_recall / use_mech_consume), bit-identical OFF, no
+trained parameters (no phased training). Contracts: phase-2
+`test_sd_057_phase2_cue_recall_consume.py` 5/5 + 750/757 full (7 pre-existing
+local-git-env runner fails) + 7/7 preflight. Loud-not-silent preconditions:
+use_mech_consume requires use_dacc; use_cue_recall requires use_incentive_token_bank.
+
+**Validation.** V3-EXQ-637 (forced-cue diagnostic, claim_ids=[], decoupled from
+GAP-2 like 636/626b): phase-2 ON vs OFF. Dry-run PASS 4/4 -- C1 cue fires; C2
+identity-matched z_goal movement (direction cosine = 1.0; raw cosine-to-cued is
+degenerate in a non-navigated forced harness because z_object embeddings are
+near-identical across types, so the metric is the movement DIRECTION); C3
+goal_readout reaches the dACC bundle (len=K, finite); C4 OFF parity (no cue, no
+readout). Queued via /queue-experiment.
+
+**State of GAP-7.** L0-L9 substrate complete (L1 closed; L2-L3-L4 + L6-L7 landed;
+L7 audit done). The sole remaining deliverable is the **L9 wanting!=liking
+behavioural validation**, gated on goal_pipeline:GAP-2 supplying foraging contact
+(owned by scaffolded_sd054_onboarding). MECH-229 / MECH-117 / ARC-030 stay
+v3_pending until that retest runs.
 
 ### 2026-06-04 - GAP-7 L2-L3-L4 substrate LANDED (SD-057 object-bound incentive-salience layer)
 
