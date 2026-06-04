@@ -1,33 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-04T20:43:12Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-634c",
-  "current_exq_started_utc": "2026-06-03T22:04:56.869735+00:00",
-  "current_title": "scaffolded_sd054_onboarding seeding-calibration readiness (4-arm seeding-lever sweep)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_3_drivefloor_lowthr",
-    "runs_done": 11,
-    "runs_total": 12,
-    "episodes_done": 30,
-    "episodes_total": 235,
-    "overall_pct": 92.7
-  },
-  "seconds_elapsed": 81494,
-  "seconds_remaining": 6349,
-  "recent_lines": [
-    "[train] p2_measure seed=43 arm=ARM_3_drivefloor_lowthr ep 235/235 z_goal_frozen=0.4424 z_goal_at_contact=0.4424 contact_events=176 contact_rate=0.3788 hfa_used=0.30 gated=True decay_only=0 skipped=2089 refresh=176",
-    "verdict: PASS seed=43 arm=ARM_3_drivefloor_lowthr",
-    "Seed 44 Condition ARM_3_drivefloor_lowthr",
-    "[train] stage0_nursery seed=44 arm=ARM_3_drivefloor_lowthr ep 20/235 forced_benefit=1.00 z_goal_peak=0.4000 formed=True",
-    "[train] stage0b_consolidate seed=44 arm=ARM_3_drivefloor_lowthr ep 30/235 start=0.3928 end=0.3928 retention=0.982 gate=pass"
+  "last_tick_utc": "2026-06-04T21:13:01Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-610e",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-614c",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T12:45:10.737866+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-592f",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T19:43:26.170478+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603e",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T04:03:13.135462+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-614d",
+      "result": "PASS",
+      "completed_at": "2026-06-03T12:01:24.020537+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-634c",
+      "result": "FAIL",
+      "completed_at": "2026-06-04T21:05:12.984538+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 50481,
   "runner_version": null,
   "gpu": {
