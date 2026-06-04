@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-03T23:51:49Z",
+  "last_tick_utc": "2026-06-04T00:21:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-463b",
   "current_exq_started_utc": "2026-06-03T20:35:42.396210+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 43 / train_dacc_on",
     "runs_done": 1,
     "runs_total": 3,
-    "episodes_done": 80,
+    "episodes_done": 120,
     "episodes_total": 350,
-    "overall_pct": 41.0
+    "overall_pct": 44.8
   },
-  "seconds_elapsed": 11766,
-  "seconds_remaining": 10130,
+  "seconds_elapsed": 13574,
+  "seconds_remaining": 9477,
   "recent_lines": [
-    "verdict: PASS",
-    "Seed 43 Condition train_dacc_on",
-    "[P0 probe] ep 40/200  rv=0.00000  threshold=0.4  converging=True",
     "[P0 probe] ep 80/200  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/200  rv=0.00000  reward=-0.0534"
+    "[P0 train] ep 80/200  rv=0.00000  reward=-0.0534",
+    "[P0 probe] ep 120/200  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
+    "[train] seed=43 P0 ep 120/200 converged=True aborted=False rv=0.00000"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
