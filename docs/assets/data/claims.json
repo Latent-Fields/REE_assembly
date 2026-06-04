@@ -3447,6 +3447,24 @@
     "title": "difficulty_gated_proposal_entropy (controlled proposal-entropy widening under goal blockage). When goal progress stalls -- repeated failure to improve goal progress, high inter-candidate conflict, low E3 score margin, low committed-action diversity, plateau/stuck-state signal -- WITH goal salience preserved, the agent should transiently INCREASE proposal-generation entropy UPSTREAM of action selection (wider hippocampal/world-model rollout candidate set + higher within-class sampling temperature) while preserving goal/harm/constraint scoring and DELAYING commitment until one candidate clears the E3 score-margin / commitment threshold; entropy then NARROWS once a workable candidate is found -> committed action -> entropy decay. Asserted distinction (preserve this): a hard problem must trigger WIDER INTERNAL PROPOSALS -> more candidate diversity -> longer arbitration -> selective committed action (controlled entropy), NOT 'hard problem -> random behaviour' (noise). WORKING HYPOTHESIS -- no experimental evidence yet; not an established mechanism.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-344": {
+    "status": "candidate",
+    "subject": "incentive.benefit_object_identity_binding",
+    "title": "Benefit-to-object-identity binding (L2): at resource contact the benefit pulse is bound to the contacted object's identity (the SD-049 per-type tag) via an associative object->benefit node, rather than written as a raw scalar gate against the current world/resource latent. The amygdala/BLA-analog identity-binding node the legacy substrate lacked (cue_features was a V3 no-op stub).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-345": {
+    "status": "candidate",
+    "subject": "incentive.per_object_wanting_token",
+    "title": "Per-object incentive-salience token (L3): each resource identity accrues a slowly-decaying, revaluable base incentive value plus a stored identity embedding; wanting amplitude at recall = base_value * (1 + kappa * drive), with the drive multiplier relocated from the seeding gate onto the stored per-object value and computed per-axis so wanting is drive-specific / identity-matched (specific PIT).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-346": {
+    "status": "candidate",
+    "subject": "incentive.z_goal_from_token_pointer",
+    "title": "z_goal written from the incentive-token pointer (L4; amends MECH-230): z_goal is seeded FROM the most-wanted object's stored identity embedding (argmax over per-object wanting) rather than from the raw last-contacted z_resource. z_goal keeps its role as E1 conditioning vector and E3 goal_proximity target; only the seed SOURCE changes, making the attractor object-bound and the wanting target dissociable from the liking (last-contacted) target.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -4165,6 +4183,12 @@
     "status": "candidate",
     "subject": "e2.action_conditional_divergence_contrastive",
     "title": "E2 world-forward action-conditional divergence preservation via auxiliary InfoNCE-style contrastive loss. Substrate-level fix for the V3-EXQ-571 root cause finding (2026-05-25): with world_dim=32 and action_dim=4, action contributes ~11% of world_forward input dimensionality, and reconstruction-shaped training collapses to the state-dominated local minimum where action effect is fitted to zero. Measurement: cand_world_pairwise_dist = 0.0000 across K=8 candidates differing only in first action. Same root cause as 2026-05-17 ARC-062 GAP-B autopsy; GAP-B fix was scoped only to GatedPolicy first-action one-hot bypass. SD-056 is the architecturally-faithful generalisation -- fixes the predictor's training objective rather than bypassing the predictor at each consumer. Option (ii) lever B (contrastive next-state, Srivastava et al. 2021 style) chosen over PLSM-style MI factorisation (lever A) and SWIRL-style MI maximisation (lever C) per 2026-05-28 lit-pull SYNTHESIS verdict and user AskUserQuestion confirmation.",
+    "type": "design_decision"
+  },
+  "SD-057": {
+    "status": "candidate",
+    "subject": "drive.object_bound_incentive_salience",
+    "title": "Object-bound incentive-salience layer: insert a per-object incentive layer between the benefit pulse and z_goal. The legacy goal stream wrote a SINGLE z_goal attractor overwritten on every contact, conflating liking (hedonic impact at consumption) with wanting (incentive salience to a cue/object) and goal-location (where) with goal-object (what); wanting target always equalled liking target, so the L9 wanting!=liking dissociation was structurally inexpressible (514l C6=0.0 on all seeds). SD-057 adds (L2 MECH-344) benefit->object-identity binding on the SD-049 per-type tag, (L3 MECH-345) a per-object slow-decay revaluable incentive token with at-recall drive-specific wanting amplitude = base_value*(1+kappa*per_axis_drive), and (L4 MECH-346) z_goal seeded FROM the most-wanted object's stored embedding rather than the raw last-contacted z_resource. v1 = L2+L3+L4 core; L6 cue-recall (MECH-CUEWANT) + L7 dACC-readout-wiring (MECH-CONSUME) deferred to a phase-2 pass within this SD.",
     "type": "design_decision"
   }
 }

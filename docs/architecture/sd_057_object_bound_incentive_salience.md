@@ -1,0 +1,108 @@
+# SD-057: drive.object_bound_incentive_salience
+
+**Claim ID:** SD-057
+**Subject:** drive.object_bound_incentive_salience
+**Status:** IMPLEMENTED 2026-06-04 (v1 = L2+L3+L4 core; L6/L7 deferred to phase-2 within this SD)
+**Registered:** 2026-06-04
+**Depends on:** SD-049 (multi-resource heterogeneity + per-type identity tag + per-axis drive), SD-015 (z_resource object-type encoder), SD-012 (homeostatic drive), MECH-306 (sustained-drive trace), MECH-230 (z_goal latent structure -- AMENDED by this SD)
+**Blocks (substrate-readiness):** MECH-229 (wanting!=liking behavioural dissociation), MECH-117 (wanting/liking trajectory dissociation, non-degenerate retest), ARC-030 (approach-avoidance symmetry, goal-conditioned readout); goal_pipeline:GAP-7 L9 acceptance (514k currently 0.0)
+
+GAP-7 plan-of-record node: `evidence/planning/goal_pipeline_plan.md`.
+Source intake: `evidence/planning/thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md` sections 8-9 (L0-L9 closure map).
+Lit anchor: `evidence/planning/literature_synthesis_2026-06-01_object_bound_incentive_salience.md`.
+
+## Problem
+
+The goal stream commits a "mistaken abstraction" (intake section 2): `GoalState.update` (`ree-v3/ree_core/goal.py:148`) writes the agent's current world/resource latent into a SINGLE slow attractor on a scalar benefit gate:
+
+```python
+effective_benefit = benefit_exposure * z_goal_seeding_gain * (1 + drive_weight * drive_trace)
+if effective_benefit > benefit_threshold:
+    z_goal <- (1 - alpha_goal) * z_goal + alpha_goal * seed_latent   # seed = z_resource or z_world
+```
+
+`agent.update_z_goal` (`agent.py:4938`) chooses `seed_latent = z_resource` (SD-015 object-type latent) when available, else `z_world`. But z_goal is still ONE attractor, OVERWRITTEN on every contact by whatever type was last contacted. This conflates four things biology keeps separate (intake section 2; lit A1 Berridge/Robinson 1998):
+- **liking** (hedonic impact at consumption) with **wanting** (incentive salience attributed to a cue/object);
+- a **goal location** (where) with a **goal object/affordance** (what).
+
+Consequence: the wanting target always equals the liking target. The L9 `wanting_liking_dissoc_fraction` is **0.0 on every arm and seed** (V3-EXQ-514l, `..._20260602T170106Z_v3`; intake section 4). The substrate has the endpoints (benefit pulse L0, z_goal L4, approach bridge MECH-295 L6) but is **missing the middle layer**: object-identity binding (L2) and a per-object incentive token (L3).
+
+**Important reframe (failure record, 2026-06-03 autopsy of V3-EXQ-632 / 514l):** the 0.0 dissociation is currently CONFOUNDED by a foraging-competence ceiling (GAP-2): ~0.2% contact rate (23 contacts / 818 samples), so there is almost no reward-contact history to express a dissociation in. EXQ-632 seed-42 (the one foraging seed) was a CLEAN positive (z_goal_norm=3.0115 at contact, persists to t50, 0.0 under ablation). So single-object formation WORKS when contact happens. L2-L3 is the genuinely-missing middle layer, but its **behavioural** L9 validation is gated on GAP-2 supplying reliable contact. This SD's own validation is therefore a forced-contact MECHANISM diagnostic (decoupled from GAP-2, mirroring how V3-EXQ-626b decoupled the L1 positive control from GAP-2).
+
+## Solution
+
+Insert a per-object incentive layer between the benefit pulse and z_goal:
+
+```
+benefit pulse + resource_type_at_agent (k) + per_axis_drive   [SD-049, exists]
+   │
+   ├─(L2 MECH-344 BIND-obj) on contact: bind benefit to type k →
+   │      IncentiveTokenBank.update(k, benefit, z_resource_snapshot)
+   ▼
+IncentiveTokenBank  (L3 MECH-345 INCENT-token)   [NEW; stateful, NO trained params]
+   per type k:  base_value[k]   (slow-decay EMA of received benefit; revaluable)
+                z_object[k]      (stored z_resource identity embedding)
+   wanting[k] = base_value[k] * (1 + kappa_weight * drive_axis[k])   ← multiplier relocated to recall
+   │
+   ├─(L4 MECH-346 GOALPTR; MECH-230 amend) k* = argmax_k wanting[k]
+   │      z_goal seeded FROM z_object[k*]   (NOT raw z_world / last-contacted z_resource)
+   ▼
+E3 goal_proximity (e3_selector.py:461) → now object-discriminative (z_goal is object-bound)
+```
+
+### L2 -- MECH-344 (benefit -> object-identity binding)
+On a contact, the benefit pulse is bound to the SD-049 per-type tag `k` (`resource_type_at_agent` / `sd049_consumed_type_tag_this_tick`, 1..n_resource_types) rather than written as a raw scalar gate. Concretely: `IncentiveTokenBank.update(k, benefit, z_object=z_resource)` writes into the type-`k` bank entry. This is the associative `object -> benefit` node (lit B1 Cardinal/Everitt 2002; the BLA-analog identity-binding node). v1 keys on the SD-049 tag (lit E3: minimal object-centric substrate already present); a learned affordance embedding is the upgrade path, not v1.
+
+### L3 -- MECH-345 (per-object incentive token / wanting amplitude)
+A per-type bank (dict keyed by tag). Each entry holds:
+- `base_value[k]` -- a slowly-decaying, **revaluable** cached incentive value (lit A2 Robinson/Berridge 1993 persistence + object-directedness; lit B5 Balleine/Dickinson 1998 revaluation-sensitive, NOT write-once). Updated on contact by EMA toward received benefit; decays slowly between contacts.
+- `z_object[k]` -- the stored z_resource identity embedding for that type.
+
+**Wanting amplitude** for object `k` at recall = `base_value[k] * kappa(per_axis_drive[k])`, computed at cue/recall time -- the Zhang 2009 (lit A4) `V = r * kappa(drive)` mechanism, with the `(1 + drive_weight * drive_trace)` multiplier RELOCATED from the GoalState seeding gate onto the stored per-object value. Drive is **per-axis** (SD-049: hunger/thirst/curiosity), so wanting for food is amplified by hunger, water by thirst -- giving identity-matched, drive-specific wanting (specific PIT; lit B2 Corbit/Balleine 2005/2011).
+
+### L4 -- MECH-346 (z_goal written from the token pointer; MECH-230 amend)
+z_goal is written FROM the most-wanted object's stored embedding: `k* = argmax_k wanting[k]`; `seed_latent = z_object[k*]`. z_goal keeps its role as an E1 conditioning vector (lit E2 UVFA) and as the E3 goal_proximity target; only the SOURCE changes (lit E1 SF/SR what/where factorization; lit B3 Schoenbaum 2009 z_goal encodes outcome identity). MECH-230's seeding firing-gate semantics are UNCHANGED -- the benefit/drive event still gates whether z_goal updates; the bank only determines WHICH object's embedding is the seed.
+
+**The dissociation falls out:** liking = benefit at the object being consumed now (k_contact); wanting = z_goal points at k* = argmax(base_value x per-axis-drive), which can be a DIFFERENT object (e.g. just ate food while thirsty -> z_goal points at water). So wanting_target != liking_target becomes structurally expressible for the first time.
+
+### Deferred to phase-2 within this SD (NOT in v1)
+- **L6 -- MECH-CUEWANT** (cue-recall path: a perceived learned cue retrieves its token and raises wanting BEFORE any benefit pulse, identity-matched). Builds on MECH-295 (approach arm, isolation-PASS) + MECH-307 (DA-transfer analog).
+- **L7 -- MECH-CONSUME** (consumer-readout wiring: give dACC / commitment an object-discriminative goal readout). The 2026-06-04 L7 audit (goal_pipeline_plan.md) established that today only E3 goal_proximity reads z_goal consequentially and dACC is z_goal-blind; but wiring dACC to read z_goal is only meaningful ONCE z_goal is object-bound (L2-L4) -- so MECH-CONSUME is sequenced BEHIND this SD's core and folded into the phase-2 pass.
+
+## Architecture Context
+
+Sits between SD-012/MECH-306 (drive + sustained-drive trace -> benefit pulse, L0) and the existing E3 goal_proximity consumer (MECH-117/MECH-112 wanting term). Reuses the SD-049 per-type tag + per-axis drive and the SD-015 z_resource encoder unchanged. Closest existing per-item precedent is the SD-039 AnchorGoalPayload / MECH-292 ghost-goal bank (per-anchor z_goal snapshot), but that is an inactive-anchor retrospective store; the incentive token bank is a concurrent, drive-revaluable, per-OBJECT-TYPE store on the waking goal-seeding path.
+
+Distinct from neighbours: MECH-186/187/188 are serotonergic MAINTENANCE of wanting tone, explicitly NOT the binding gap (lit D2). ACh/plasticity-window is out of scope (lit D3). PFC maintenance (MECH-116, L5) is present-but-untuned, not the gap.
+
+## What This SD Enables
+
+- The L9 wanting!=liking dissociation acceptance (`wanting_liking_dissoc_fraction`, currently 0.0) becomes structurally expressible -> unblocks MECH-229 non-degenerate retest, MECH-117 non-degenerate retest, ARC-030 goal-conditioned readout.
+- Behavioural validation of L9 remains gated on GAP-2 (foraging contact); this SD validates the MECHANISM under a forced-contact diagnostic decoupled from GAP-2.
+
+## Implementation (v1)
+
+**Config (GoalConfig, all no-op defaults; bit-identical OFF):**
+| Param | Type | Default | Purpose |
+|---|---|---|---|
+| `use_incentive_token_bank` | bool | False | master switch |
+| `incentive_decay` | float | 0.005 | per-object base_value slow decay (matches decay_goal) |
+| `incentive_value_alpha` | float | 0.1 | EMA rate for revaluation on contact |
+| `incentive_drive_kappa_weight` | float | 2.0 | relocated drive_weight for value x kappa(drive) at recall |
+| `incentive_use_per_axis_drive` | bool | True | drive-specific wanting (food<->hunger) vs scalar drive |
+
+**New code:**
+- `ree_core/goal.py`: `IncentiveTokenBank` class (dict keyed by type tag; `update(k, benefit, z_object)`, `decay()`, `wanting(per_axis_drive, scalar_drive)`, `most_wanted(...) -> (k*, z_object, amp)`, `is_empty()`, `reset()`, `state_dict()/load_state_dict()`). `GoalState` gains an optional `bank` member, instantiated when `use_incentive_token_bank`.
+- `ree_core/agent.py` `update_z_goal`: gains optional `resource_type: Optional[int] = None` kwarg. When the bank is enabled AND `resource_type` is provided AND z_resource is available: `bank.update(resource_type, benefit_exposure, z_resource)`; then `seed_latent = bank.most_wanted(per_axis_drive)[1]` (the most-wanted object's embedding) instead of the raw single z_resource snapshot. The GoalState.update firing gate (benefit/drive threshold) is UNCHANGED.
+
+**Backward compatibility:** with `use_incentive_token_bank=False` (default) OR `resource_type` not supplied, `update_z_goal` takes the legacy single-attractor path bit-identically. The bank is a stateful EMA dict -- **no trainable parameters**, so NO phased training is required for v1 (a learned-affordance-embedding upgrade WOULD need P0/P1/P2).
+
+**MECH-094:** the bank updates only on WAKING contact (via `update_z_goal`, which experiment loops call on the waking stream). It writes no content during simulation/replay/sleep, so `hypothesis_tag` does not apply. Guardrail: if a future revision updates the bank during replay, the tag becomes required.
+
+## Validation (honest about the GAP-2 gate)
+
+The behavioural L9 acceptance (`wanting!=liking trajectory fraction >= 0.6`, identity-recovery probe > 0.6, per-axis-drive ANOVA p<0.01) is GATED on GAP-2 supplying foraging contact. The SD's own validation experiment is therefore a **forced-contact mechanism diagnostic** (mirroring V3-EXQ-626b's L1 decoupling): forced contacts on TWO resource types at OPPOSING drive states (e.g. sated-on-food + thirsty), bank ON vs OFF, measuring whether z_goal can point at a DIFFERENT object than the one just consumed (`wanting_target != liking_target > 0` with bank ON; `= 0` with bank OFF). Acceptance criteria from the failure record (goal_pipeline_plan.md): forced-seed formation, negative-control no-seed, OFF-parity, and a non-zero wanting!=liking event count under the bank. Full behavioural L9 stays behind GAP-2.
+
+## Related Claims
+
+MECH-344 (L2 BIND-obj), MECH-345 (L3 INCENT-token), MECH-346 (L4 GOALPTR; MECH-230 amend). Unblocks MECH-229, MECH-117, ARC-030. Reuses SD-049, SD-015, SD-012, MECH-306. Phase-2 (deferred): MECH-CUEWANT (L6), MECH-CONSUME (L7). Neighbours not to conflate: MECH-186/187/188 (5-HT maintenance), MECH-116 (PFC maintenance), MECH-295 (approach bridge), MECH-292/293 (ghost-goal bank, inactive-anchor store).
