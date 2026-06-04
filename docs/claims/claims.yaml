@@ -27515,6 +27515,24 @@
   title: "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063, V4-deferred). Architectural slot, not yet implemented."
   claim_type: architectural_commitment
   subject: policy.rule_apprehension_layer.weak_reading
+  ml_translation_note: >
+    ML-recognisability gloss (term deliberately NOT renamed; see
+    docs/architecture/rule_apprehension_layer.md "ML translation").
+    "Rule apprehension" = the policy layer's capacity to form and hold
+    multiple distinct behavioural regimes instead of collapsing to a single
+    averaged mode under gradient descent (the unimodal-policy mode-collapse /
+    mode-averaging failure that motivates multimodal policies -- MDNs,
+    diffusion policies, IBC). The V3 weak-reading instantiation (gated_policy)
+    is structurally a context-gated two-expert mixture-of-experts (two scoring
+    heads + a learned context discriminator emitting a soft gate w in [0,1]);
+    the regimes map most closely to the RL options framework (Sutton 1999;
+    targeted_review_rule_apprehension_vocabulary_mapping). The distinctive
+    claim (MECH-309) is NOT "use an MoE": it is that the regimes must be
+    CREATED by a non-Bayesian rule-creator, not merely WEIGHTED by a trainer
+    refining pre-given ones -- which is why a vanilla end-to-end MoE, itself
+    prone to router/expert collapse (the same equilibrium MECH-309 diagnoses),
+    is necessary-but-not-sufficient. "Apprehension" is retained to mark that
+    creation-vs-selection distinction, which standard ML labels flatten.
   polarity: asserts
   status: candidate
   implementation_phase: v3

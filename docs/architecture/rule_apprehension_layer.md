@@ -6,6 +6,26 @@ nav_exclude: true
 
 **Status:** registered architectural slot. Weak reading (ARC-062) at implementation_phase=v3 candidate, **BLOCKED** (GAP-B status=blocked; 543f/543g/543h falsifier cluster non_contributory, epistemic_category=substrate_ceiling; weak-route verdict in flight via V3-EXQ-543i /failure-autopsy + V3-EXQ-543j cross-machine confirm). Strong reading (ARC-063) **brought forward 2026-05-18** from implementation_phase=v4 to v3 candidate (user-directed, independent-need rationale). New socially-scaffolded rule-population pathway **ARC-077** (+ children MECH-337 / MECH-338) registered 2026-05-18 as structural slots, hard-gated on the GAP-L biology lit-pull. Falsifiable claim: MECH-309 (monomodal collapse as equilibrium without rule-apprehender).
 
+**ML translation (for readers from an ML background).** "Rule apprehension"
+is the policy layer's capacity to *form and hold multiple distinct behavioural
+regimes* rather than collapse to a single averaged mode under gradient descent
+-- the unimodal-policy **mode-collapse / mode-averaging** failure (a Gaussian
+policy facing a go-left-or-right choice picks the catastrophic average; the
+canonical motivation for multimodal policies -- MDNs, diffusion policies, IBC).
+The V3 weak-reading instantiation (ARC-062, `gated_policy`) is structurally a
+**context-gated two-expert mixture-of-experts**: two scoring heads share encoder
+features and a learned context discriminator emits a soft gate `w in [0,1]`; the
+nearest RL framing for the regimes themselves is the **options framework**
+(Sutton 1999; see the `targeted_review_rule_apprehension_vocabulary_mapping`
+lit-pull). **The distinctive claim is not "use an MoE."** MECH-309 asserts the
+regimes must be *created* by a non-Bayesian rule-*creator*, not merely *weighted*
+by a trainer that refines pre-given ones -- which is exactly why a vanilla
+end-to-end MoE, itself prone to **router/expert collapse** (the same equilibrium
+MECH-309 diagnoses), is necessary-but-not-sufficient. The cognitive-science word
+"apprehension" is retained deliberately to mark that creation-vs-selection
+distinction; the term is *not* renamed to a standard ML label precisely because
+the standard labels flatten it.
+
 **Origin:** this document was promoted from `docs/thoughts/2026-05-04_Waking_rule_apprehension_later_sleep_schema.md` to `docs/architecture/rule_apprehension_layer.md` on 2026-05-08 after the SD-054 substrate-purpose-validation discussion identified the rule-apprehension layer as the proximate next-stage architectural commitment that explains the EXQ-433e/f / 523-series non_contributory pattern. The body of the doc is preserved verbatim from the original intake; this preamble adds the cross-reference scaffolding.
 
 **Cross-references:**
