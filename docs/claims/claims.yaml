@@ -36079,6 +36079,14 @@
     instead of the raw last-contacted z_resource; the GoalState firing gate is
     unchanged. Liking target (last-contacted) and wanting target (z_goal ->
     most-wanted) can therefore differ, making the L9 dissociation expressible.
+  implementation_note: >
+    2026-06-04 phase-2 (L6+L7) LANDED on top of the v1 L2-L3-L4 core: L6 MECH-347
+    cue-recall path (GoalState.cue_pull + agent.cue_recall_wanting; perceived cue
+    raises wanting for the matched object before benefit, identity-matched /
+    drive-specific) + L7 MECH-348 dACC object-discriminative readout
+    (DACCAdaptiveControl candidate_goal_proximity -> bundle goal_readout ->
+    DACCtoE3Adapter goal-readout bias). Both no-op-default (use_cue_recall,
+    use_mech_consume), bit-identical OFF, no trained params. Validation V3-EXQ-637.
   evidence_quality_note: >
     SUBSTRATE IMPLEMENTED 2026-06-04 (ree-v3/ree_core/goal.py IncentiveTokenBank +
     GoalConfig flags; agent.py update_z_goal resource_type kwarg + L2/L3/L4 block;
@@ -36168,4 +36176,56 @@
     wanting_target (z_goal -> most-wanted) != liking_target (last-contacted)
     structurally expressible, unblocking the L9 dissociation acceptance for
     MECH-229 / MECH-117 / ARC-030 (which stay v3_pending until validated).
+  location: docs/architecture/sd_057_object_bound_incentive_salience.md
+
+- id: MECH-347
+  title: "Cue-triggered wanting / cue-recall (L6): a PERCEIVED cue/object type (with no benefit pulse) retrieves its SD-057 incentive token and nudges z_goal toward that object's stored identity embedding BEFORE consumption -- identity-matched (pulls toward the perceived cue's object) and drive-specific (amplitude = base_value*(1+kappa*per_axis_drive)). The downstream E3 goal_proximity + MECH-295 approach bridge then raise pre-consummatory approach toward the cued object. Distinct from the benefit-driven seed: no benefit pulse, no token revaluation, weaker (cue_recall_gain) pull."
+  claim_type: mechanism_hypothesis
+  subject: incentive.cue_triggered_wanting
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-06-04"
+  depends_on:
+    - SD-057
+    - MECH-345
+    - MECH-295
+    - SD-049
+  notes: >
+    SD-057 phase-2 L6. Implemented as GoalState.cue_pull(z_object, strength)
+    (a directional z_goal nudge with no benefit gate / no revaluation) +
+    agent.cue_recall_wanting(cue_type, drive_level, simulation_mode) in
+    ree-v3/ree_core/{goal.py,agent.py}. Config GoalConfig.use_cue_recall (False;
+    requires use_incentive_token_bank), cue_recall_gain (0.05), cue_recall_min_proximity
+    (0.0). StepHarness auto-derives the strongest-perceived type from SD-049 per-type
+    proximity field views and fires the primitive each step; forced-cue diagnostics
+    call it directly. MECH-094: simulation_mode=True is a no-op (replay must not move
+    z_goal via a cue). Biology: Berridge 2009 cue-triggered wanting; Corbit/Balleine
+    2005/2011 specific PIT; Schultz 1997/98 DA-transfer-to-cue. Validation V3-EXQ-637.
+  location: docs/architecture/sd_057_object_bound_incentive_salience.md
+
+- id: MECH-348
+  title: "dACC object-discriminative goal readout (L7): the dACC adaptive-control consumer reads per-candidate goal_proximity to the (SD-057 object-bound) z_goal, so its effort/value computation becomes object-discriminative -- approach_commit is goal-conditioned rather than z_goal-blind. Resolves the 2026-06-04 L7 audit finding that only E3 goal_proximity read z_goal consequentially and dACC was blind."
+  claim_type: mechanism_hypothesis
+  subject: incentive.dacc_object_discriminative_readout
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  registered_utc: "2026-06-04"
+  depends_on:
+    - SD-057
+    - MECH-346
+    - SD-032b
+  notes: >
+    SD-057 phase-2 L7. DACCAdaptiveControl.forward gains candidate_goal_proximity ->
+    bundle "goal_readout"; DACCtoE3Adapter adds bias -= dacc_goal_readout_weight *
+    goal_readout (proximity high -> favoured, REE lower-is-better), independent of
+    dacc_weight so a goal-conditioned consumer works even if the legacy dACC bias is
+    off. Wired in agent.select_action by passing the per-candidate goal_proximity to
+    the object-bound z_goal into dacc. Config REEConfig.use_mech_consume (False;
+    requires use_dacc) + dacc_goal_readout_weight (0.0; DACCConfig). Bit-identical OFF.
+    Biology: Balleine & O'Doherty 2010 (approach_commit goal-conditioned). MECH-094:
+    waking action selection only. Validation V3-EXQ-637.
   location: docs/architecture/sd_057_object_bound_incentive_salience.md

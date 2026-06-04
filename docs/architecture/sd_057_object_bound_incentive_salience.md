@@ -2,7 +2,7 @@
 
 **Claim ID:** SD-057
 **Subject:** drive.object_bound_incentive_salience
-**Status:** IMPLEMENTED 2026-06-04 (v1 = L2+L3+L4 core; L6/L7 deferred to phase-2 within this SD)
+**Status:** IMPLEMENTED 2026-06-04 (v1 = L2+L3+L4 core; phase-2 L6+L7 IMPLEMENTED 2026-06-04)
 **Registered:** 2026-06-04
 **Depends on:** SD-049 (multi-resource heterogeneity + per-type identity tag + per-axis drive), SD-015 (z_resource object-type encoder), SD-012 (homeostatic drive), MECH-306 (sustained-drive trace), MECH-230 (z_goal latent structure -- AMENDED by this SD)
 **Blocks (substrate-readiness):** MECH-229 (wanting!=liking behavioural dissociation), MECH-117 (wanting/liking trajectory dissociation, non-degenerate retest), ARC-030 (approach-avoidance symmetry, goal-conditioned readout); goal_pipeline:GAP-7 L9 acceptance (514k currently 0.0)
@@ -65,9 +65,40 @@ z_goal is written FROM the most-wanted object's stored embedding: `k* = argmax_k
 
 **The dissociation falls out:** liking = benefit at the object being consumed now (k_contact); wanting = z_goal points at k* = argmax(base_value x per-axis-drive), which can be a DIFFERENT object (e.g. just ate food while thirsty -> z_goal points at water). So wanting_target != liking_target becomes structurally expressible for the first time.
 
-### Deferred to phase-2 within this SD (NOT in v1)
-- **L6 -- MECH-CUEWANT** (cue-recall path: a perceived learned cue retrieves its token and raises wanting BEFORE any benefit pulse, identity-matched). Builds on MECH-295 (approach arm, isolation-PASS) + MECH-307 (DA-transfer analog).
-- **L7 -- MECH-CONSUME** (consumer-readout wiring: give dACC / commitment an object-discriminative goal readout). The 2026-06-04 L7 audit (goal_pipeline_plan.md) established that today only E3 goal_proximity reads z_goal consequentially and dACC is z_goal-blind; but wiring dACC to read z_goal is only meaningful ONCE z_goal is object-bound (L2-L4) -- so MECH-CONSUME is sequenced BEHIND this SD's core and folded into the phase-2 pass.
+### Phase-2 (L6 + L7) -- IMPLEMENTED 2026-06-04
+
+Both no-op-default, bit-identical OFF, no trained parameters (no phased training).
+
+- **L6 -- MECH-347 `incentive.cue_triggered_wanting`** (cue-recall path). A
+  PERCEIVED cue/object type (NO benefit pulse) retrieves its incentive token and
+  nudges z_goal toward that object's stored embedding BEFORE consumption --
+  identity-matched (pulls toward THIS cue's object), drive-specific (amplitude =
+  `base_value[k]*(1+kappa*per_axis_drive[k])`). New `GoalState.cue_pull(z_object,
+  strength)` (a directional nudge with no benefit gate and NO token revaluation)
+  + `agent.cue_recall_wanting(cue_type, drive_level, simulation_mode)`. The
+  downstream E3 goal_proximity + MECH-295 approach bridge (unchanged) then raise
+  pre-consummatory approach toward the cued object. Config (GoalConfig):
+  `use_cue_recall` (False; requires use_incentive_token_bank), `cue_recall_gain`
+  (0.05, separate from alpha_goal), `cue_recall_min_proximity` (0.0, auto-perception
+  floor). Trigger: the substrate primitive `cue_recall_wanting` is callable
+  directly (forced-cue diagnostic); the StepHarness auto-derives the
+  strongest-perceived type from the SD-049 per-type proximity field views
+  (`resource_field_view_<name>`) and fires it each step when use_cue_recall is set.
+  Biology: Berridge 2009 cue-triggered wanting; Corbit/Balleine specific PIT;
+  Schultz DA-transfer-to-cue. MECH-094: `simulation_mode=True` is a no-op (replay
+  must not move z_goal via a cue).
+
+- **L7 -- MECH-348 `incentive.dacc_object_discriminative_readout`** (consumer
+  wiring). The 2026-06-04 audit found dACC z_goal-blind. Now that z_goal is
+  object-bound (L4), dACC reads it: `DACCAdaptiveControl.forward` gains optional
+  `candidate_goal_proximity [K]` -> bundle `goal_readout`; `DACCtoE3Adapter` adds
+  `bias -= dacc_goal_readout_weight * goal_readout` (proximity-to-z_goal high ->
+  favoured), independent of dacc_weight so a goal-conditioned consumer works even
+  if the legacy dACC bias is off. Wired in `select_action` by passing the
+  per-candidate goal_proximity (to the object-bound z_goal) into dACC. Config:
+  REEConfig `use_mech_consume` (False; requires use_dacc) + `dacc_goal_readout_weight`
+  (0.0; DACCConfig). Biology: Balleine & O'Doherty 2010 (approach_commit should be
+  goal-conditioned). MECH-094: waking action selection only.
 
 ## Architecture Context
 
@@ -105,4 +136,4 @@ The behavioural L9 acceptance (`wanting!=liking trajectory fraction >= 0.6`, ide
 
 ## Related Claims
 
-MECH-344 (L2 BIND-obj), MECH-345 (L3 INCENT-token), MECH-346 (L4 GOALPTR; MECH-230 amend). Unblocks MECH-229, MECH-117, ARC-030. Reuses SD-049, SD-015, SD-012, MECH-306. Phase-2 (deferred): MECH-CUEWANT (L6), MECH-CONSUME (L7). Neighbours not to conflate: MECH-186/187/188 (5-HT maintenance), MECH-116 (PFC maintenance), MECH-295 (approach bridge), MECH-292/293 (ghost-goal bank, inactive-anchor store).
+MECH-344 (L2 BIND-obj), MECH-345 (L3 INCENT-token), MECH-346 (L4 GOALPTR; MECH-230 amend). Phase-2: MECH-347 (L6 cue-triggered wanting / cue-recall), MECH-348 (L7 dACC object-discriminative readout). Unblocks MECH-229, MECH-117, ARC-030. Reuses SD-049, SD-015, SD-012, MECH-306, MECH-295 (approach bridge, L6 downstream), dACC/SD-032b (L7 host). Neighbours not to conflate: MECH-186/187/188 (5-HT maintenance), MECH-116 (PFC maintenance), MECH-292/293 (ghost-goal bank, inactive-anchor store).

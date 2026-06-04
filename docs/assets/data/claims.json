@@ -3465,6 +3465,18 @@
     "title": "z_goal written from the incentive-token pointer (L4; amends MECH-230): z_goal is seeded FROM the most-wanted object's stored identity embedding (argmax over per-object wanting) rather than from the raw last-contacted z_resource. z_goal keeps its role as E1 conditioning vector and E3 goal_proximity target; only the seed SOURCE changes, making the attractor object-bound and the wanting target dissociable from the liking (last-contacted) target.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-347": {
+    "status": "candidate",
+    "subject": "incentive.cue_triggered_wanting",
+    "title": "Cue-triggered wanting / cue-recall (L6): a PERCEIVED cue/object type (with no benefit pulse) retrieves its SD-057 incentive token and nudges z_goal toward that object's stored identity embedding BEFORE consumption -- identity-matched (pulls toward the perceived cue's object) and drive-specific (amplitude = base_value*(1+kappa*per_axis_drive)). The downstream E3 goal_proximity + MECH-295 approach bridge then raise pre-consummatory approach toward the cued object. Distinct from the benefit-driven seed: no benefit pulse, no token revaluation, weaker (cue_recall_gain) pull.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-348": {
+    "status": "candidate",
+    "subject": "incentive.dacc_object_discriminative_readout",
+    "title": "dACC object-discriminative goal readout (L7): the dACC adaptive-control consumer reads per-candidate goal_proximity to the (SD-057 object-bound) z_goal, so its effort/value computation becomes object-discriminative -- approach_commit is goal-conditioned rather than z_goal-blind. Resolves the 2026-06-04 L7 audit finding that only E3 goal_proximity read z_goal consequentially and dACC was blind.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",

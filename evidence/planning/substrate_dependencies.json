@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-06-04T07:20:53Z",
+  "last_updated_utc": "2026-06-04T10:14:56Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -281,6 +281,21 @@
       ],
       "candidate_stale": [],
       "audit_note": "ADDITIVE / no-op-default (use_incentive_token_bank=False by default; resource_type defaults None). The object-bound seeding path is exercised only when the flag is ON; every prior experiment ran with the bank OFF (legacy single-attractor seeding), so no PASSED run's measured mechanism changed and none is made stale. KEEP all MECH-229/MECH-117/MECH-230/ARC-030 evidence. These claims stay v3_pending/substrate_ceiling; SD-057 unblocks their L9 retest but does not re-score existing evidence. Validation is the new SD-057 forced-contact mechanism diagnostic (claim_ids=[]), GATED behaviourally on goal_pipeline:GAP-2."
+    },
+    {
+      "substrate": "SD-057 phase-2 (L6 cue-recall MECH-347 + L7 dACC readout MECH-348)",
+      "landed_utc": "2026-06-04T10:14:56Z",
+      "description": "L6 cue-recall (GoalState.cue_pull + agent.cue_recall_wanting; perceived cue raises wanting for matched object before benefit) + L7 dACC object-discriminative readout (candidate_goal_proximity -> bundle goal_readout -> DACCtoE3Adapter bias). Both no-op-default (use_cue_recall, use_mech_consume), bit-identical OFF, no trained params. Contracts: phase-2 5/5 + SD-057 6/6 + dACC 5/5 + step-harness 7/7; 750/757 full (7 pre-existing local-git-env runner fails) + 7/7 preflight.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-347",
+        "MECH-348",
+        "MECH-229",
+        "MECH-117",
+        "ARC-030"
+      ],
+      "candidate_stale": [],
+      "audit_note": "ADDITIVE / no-op-default (use_cue_recall=False, use_mech_consume=False, cue_recall_gain unused, dacc_goal_readout_weight=0.0). The L6 cue path and L7 dACC goal readout are exercised only when the flags are ON; every prior experiment ran with both OFF, so no PASSED run's measured mechanism changed and none is made stale. KEEP all dependent evidence. MECH-229/117/ARC-030 stay v3_pending; phase-2 unblocks their L9 retest (still GAP-2-gated) but does not re-score existing evidence. Validation = SD-057 phase-2 forced-cue diagnostic V3-EXQ-637 (claim_ids=[])."
     }
   ]
 }
