@@ -1,0 +1,190 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-04T05:54:00Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_460b_sd034_verified_but_not_released_behavioural_20260603T231621Z_v3",
+      "queue_id": "V3-EXQ-460b",
+      "claim_ids": ["SD-034", "MECH-260", "MECH-261"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- closure never fired so claim could not express; weakens misattributes the layer",
+        "biological_reference": "clear -- BG completion 'done' + beta drop is contingent on a completable task",
+        "prerequisites": "missing -- goal-achievement/foraging-competence layer (scaffolded_sd054_onboarding) not runtime-functional",
+        "implementation": "complete -- SD-034 substrate implemented; predecessor hand-poke diagnostic exercises emit_closure",
+        "environment": "inadequate -- agent commits (beta latched 100% of committed steps) but never tolerance-completes a waypoint",
+        "measurement": "adequate -- n_closures=0 correctly reported in every arm",
+        "integration": "partially coupled -- commitment+latch couple; closure-trigger chain never armed",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia rule-completion 'done' signal + end-of-sequence beta-band drop (commitment release)",
+        "dependencies": ["completable task / reachable goal", "goal achievement at runtime", "stable rule_state at completion"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful translation; failure matches missing-dependency (no completable goal) signature",
+        "lit_status": "present-enough; no lit-pull indicated"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Behavioural successor V3-EXQ-460b ran to completion but could not test SD-034/MECH-260/MECH-261: in the live committed_mode_curriculum loop the agent commits (beta latch engages, p1_commitment_emerged=true seeds 43/44) but never tolerance-completes a waypoint, so n_closures=0 in every arm including ARM_EMERGENT_ON; beta_release and nogo_install are gated on a closure event that never fires. Predecessor hand-poke diagnostic exercises emit_closure; the gap is the goal-achievement layer tracked by substrate_queue scaffolded_sd054_onboarding. Reclassified non_contributory + pending_retest_after_substrate; surviving support is narrow (single hand-poke pathway) -- not conflict resolution.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "unblocks_claims_add": ["SD-034", "MECH-261"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_460b_sd034_verified_but_not_released_behavioural_20260603T231621Z_v3",
+          "experiment_type": "v3_exq_460b_sd034_verified_but_not_released_behavioural",
+          "metric": "n_closures=0 / beta_release_events=0 / nogo_installed_total=0 in ARM_EMERGENT_ON (positive arm); total_beta_elevated == total_committed_steps (latch never releases)",
+          "target": "ARM_EMERGENT_ON n_closures >= 1 AND beta_release_events >= 1 AND nogo_installed_total >= 1 once goal completions occur"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "API-correct hand-poke + loop-silent behavioural twin = trigger condition never produced, not mechanism wrong",
+        "SD-034 closure layer is end-to-end gated on goal completion"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural_20260604T001229Z_v3",
+      "queue_id": "V3-EXQ-461b",
+      "claim_ids": ["MECH-090", "SD-033a", "SD-034"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- no Hold-resolution window ever formed",
+        "biological_reference": "clear -- delayed-reward persistence requires a delayed resolution event, which requires a completion",
+        "prerequisites": "missing -- same goal-achievement layer",
+        "implementation": "complete -- predecessor V3-EXQ-461 diagnostic PASSED (hand-poked BetaGate hold + replay-gate + terminal closure)",
+        "environment": "inadequate -- beta latches but never releases, so no resolution event forms (n_windows=0)",
+        "measurement": "adequate",
+        "integration": "partially coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "sustained beta latch over a delay + rule_state persistence to delayed resolution (lateral PFC working-memory hold)",
+        "dependencies": ["a delayed resolution event (requires completion)", "completable held goal"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present-enough"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Behavioural successor V3-EXQ-461b ran to completion but could not test MECH-090/SD-033a/SD-034: n_windows=0 in every arm because the beta latch never releases (no resolution event forms), so persistence-across-delay and closure-coupled-resolution cannot be measured. Predecessor V3-EXQ-461 diagnostic PASSED (hand-poke), confirming the mechanism API; the gap is the goal-achievement layer (scaffolded_sd054_onboarding). non_contributory + pending_retest_after_substrate; not claim pressure.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "unblocks_claims_add": ["MECH-090", "SD-033a"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural_20260604T001229Z_v3",
+          "experiment_type": "v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural",
+          "metric": "n_windows=0 / n_resolutions=0 / n_closure_coupled_resolutions=0 in every arm (beta never releases; predecessor diagnostic V3-EXQ-461 PASSED)",
+          "target": "ARM_EMERGENT_ON n_windows >= 1 with mean_persistence_ratio >= 0.5 and >= 1 closure-coupled resolution once goal completions occur"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "Passing hand-poke diagnostic (461) + failing behavioural twin (461b) is the cleanest test-bed-ceiling signal in the cluster"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3",
+      "queue_id": "V3-EXQ-464b",
+      "claim_ids": ["MECH-266", "SD-032a"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- asymmetry unmeasurable against a degenerate no-switch baseline",
+        "biological_reference": "clear -- switch-cost asymmetry requires a baseline that actually switches between modes",
+        "prerequisites": "missing -- same goal-achievement layer; with no reachable goals there is no internal_planning/replay mode to switch into",
+        "implementation": "complete -- predecessor V3-EXQ-464 hand-poked per-mode Schmitt rails on synthetic signal",
+        "environment": "inadequate -- 100% external_task occupancy, 0 switches, 0 internal-mode steps (monostrategy)",
+        "measurement": "adequate -- C3 baseline-non-vacuous guard correctly fired",
+        "integration": "isolated -- salience coordinator never left external_task",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cingulate salience coordinator / dACC mode arbitration with per-mode hysteresis (Schmitt rails)",
+        "dependencies": ["mode diversity (internal planning/replay reachable)", "reachable goals to plan toward"],
+        "is_formal_import": false,
+        "divergence": "none -- monostrategy is the same goal-pipeline root one layer out (per user judgment: same ceiling, not a separate mode-arbitration substrate)",
+        "lit_status": "present-enough"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Behavioural successor V3-EXQ-464b ran to completion but could not test MECH-266/SD-032a: all arms sit at 100% external_task occupancy with 0 mode switches (0 steps in internal_planning/replay/consolidation), so the switch-cost asymmetry is measured against a degenerate no-switch baseline -- the script's own C3 non-vacuous guard fired. With no reachable goals there is no internal mode to switch into; same goal-pipeline ceiling (scaffolded_sd054_onboarding) one layer out from closure. non_contributory + pending_retest_after_substrate; not claim pressure.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "unblocks_claims_add": ["MECH-266", "SD-032a"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3",
+          "experiment_type": "v3_exq_464b_mech266_competing_goals_behavioural",
+          "metric": "fraction_in_external_task=1.0 / n_switches=0 / 0 steps in internal_planning|replay|consolidation in every arm (degenerate no-switch baseline; C3 guard fired)",
+          "target": "ARM_SYMMETRIC n_switches >= 1 (non-vacuous baseline) AND ARM_ASYM occupancy >= ARM_SYMMETRIC + 0.10 once mode diversity emerges"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "Monostrategy (single behavioural mode) is the same goal-pipeline ceiling expressed as a degenerate mode-arbitration baseline",
+        "464b's own C3 non-vacuous guard correctly intercepted the ceiling rather than reporting a spurious asymmetry"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural_20260604T035511Z_v3",
+      "queue_id": "V3-EXQ-466b",
+      "claim_ids": ["SD-034", "MECH-094"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- no closure so no residue discharge could be measured",
+        "biological_reference": "clear -- satisficing/over-checking dissociation requires a completion-triggered discharge",
+        "prerequisites": "missing -- same goal-achievement layer",
+        "implementation": "complete -- predecessor V3-EXQ-466 hand-poked discharge_domain UC1-UC5",
+        "environment": "inadequate -- n_closures=0, discharge_events=0, mean_residue_weight_reduction=0 in every arm",
+        "measurement": "adequate -- C3 (closure-OFF n_closures==0) passes trivially",
+        "integration": "partially coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "completion-triggered residue discharge (ResidueField.discharge_domain) -- satisficing vs over-checking",
+        "dependencies": ["a closure event (requires completion)", "stable rule_state at completion"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present-enough"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Behavioural successor V3-EXQ-466b ran to completion but could not test SD-034/MECH-094: n_closures=0 and discharge_events=0 in every arm (including the positive arm) because the agent never tolerance-completes a waypoint; C3 (closure-OFF n_closures==0) passes only trivially. Predecessor V3-EXQ-466 hand-poke exercises discharge_domain; the gap is the goal-achievement layer (scaffolded_sd054_onboarding). non_contributory + pending_retest_after_substrate; not claim pressure.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "unblocks_claims_add": ["SD-034", "MECH-094"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural_20260604T035511Z_v3",
+          "experiment_type": "v3_exq_466b_sd034_satisficing_residue_discharge_behavioural",
+          "metric": "n_closures=0 / discharge_events=0 / mean_residue_weight_reduction=0 in ARM_EMERGENT_ON (positive arm); C3 passes only trivially",
+          "target": "ARM_EMERGENT_ON n_closures >= 1 AND discharge_events >= 1 once goal completions occur"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "466b-C3 trivially-passing while C1/C2 fail is the substrate-ceiling negative-control tell"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Behavioural successors of passing hand-poke diagnostics: API-correct mechanisms that stay silent in the live committed_mode_curriculum loop because the agent commits (beta latch engages) but never tolerance-completes a waypoint -- so the SD-034 closure event never fires (n_closures=0 in every arm including positive arms) and every closure-triggered OCD-axis behaviour (beta release, No-Go install, residue discharge, delayed-resolution coupling, mode switching) cannot express. 464b is the same root one layer out: no reachable goal -> no internal mode -> degenerate no-switch baseline.",
+    "is_independent_bugs": false,
+    "structural_property": "The committed_mode_curriculum + CausalGridWorldV2 + GAP-3 tolerance-band completion does not yet produce goal completions at runtime; the goal-achievement/foraging-competence layer (z_goal stays zero-init) is the missing prerequisite. Same ceiling as the 603e/626a/634b cluster, tracked by substrate_queue scaffolded_sd054_onboarding (priority 1).",
+    "readings": ["substrate_enrichment_goal_achievement_layer"],
+    "folds_into": "scaffolded_sd054_onboarding",
+    "related_autopsies": ["failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03", "failure_autopsy_V3-EXQ-634b_2026-06-03"]
+  }
+}
