@@ -35375,6 +35375,102 @@
     - targeted_review_ghost_goal_search
   location: docs/architecture/ghost_goal_search.md
 
+- id: ARC-080
+  title: "Object identity is a cross-cutting representational primitive. An object is a token-bound identity representation that persists across time and perceptual gaps, generalising z_object/z_resource into an object-file/binding layer (ARC-006), defined by causal feature-coherence under intervention (MECH-278), and consumed by drive/goal (SD-057), hippocampal planning (MECH-262), and the self/other special-object cases. The four planned object capabilities -- (1) permanence, (2) self-as-object, (3) tools/affordances, (4) others-as-object -- are specialisations of one primitive, not four separate mechanisms."
+  claim_type: architectural_commitment
+  subject: representation.object_identity_primitive
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-06-04
+  depends_on:
+    - ARC-006    # representational substrate -- the object-file / binding layer (provisional, dormant; biology grounding via L1 pull in progress)
+    - MECH-278   # object DEFINITION -- causally-coherent feature bundle under intervention
+    - ARC-059    # developmental ordering -- self -> objects -> others
+    - SD-015     # live identity latent -- z_resource (location-invariant embedding)
+    - SD-049     # per-type identity tag + classifier head + per-axis drive
+    - SD-057     # live per-object incentive token (z_object = detached z_resource clone), the resource-bound spur this umbrella generalises
+  functional_restatement: >
+    ARC-080 is a THIN UMBRELLA / COHERENCE MAP, not new mechanism. It is the
+    "Option A" spine proposed in
+    evidence/planning/object_representation_thread_2026-06-04.md, adopted by the
+    user 2026-06-04. It introduces NO substrate code and changes NO V3 behaviour;
+    it names objects as a single cross-cutting representational primitive and
+    gives the scattered object-related fragments a registered parent so future
+    pillar work slots in cleanly via depends_on, instead of drifting into a
+    fourth blind per-item store.
+
+    PROBLEM IT RESOLVES (the gap). Object-ness already exists in the substrate but
+    in THREE disconnected lineages with no shared spine:
+    (A) a DORMANT representational layer -- ARC-006 "entities are sparse,
+        persistent, bindable" + MECH-044 relational binding + MECH-045 object-file
+        persistence (provisional, design-only, NOT in ree-v3 code, and -- until the
+        2026-06-04 L1/L2 pulls -- with NO biology lit-pull at all);
+    (B) a DEVELOPMENTAL-ORDERING layer -- ARC-059 (self->objects->others) +
+        MECH-276/277/278, where MECH-278 supplies the object DEFINITION but is
+        explicitly BYPASSED in V3 (z_world is engineered pre-split -- an
+        "architectural shortcut past stage 2");
+    (C) a LIVE resource-bound identity latent -- SD-015 -> SD-049 -> SD-057, which
+        actually runs (IncentiveTokenBank holds a per-object z_object = detached
+        z_resource clone + revaluable base_value) but on the narrow resource/drive
+        rail, and cites NEITHER (A) nor (B).
+    Three overlapping per-item stores result -- SD-057 IncentiveTokenBank (keyed by
+    resource TYPE tag), the SD-039/MECH-292/293 ghost-goal bank (keyed by spatial
+    ANCHOR, payload = goal-snapshot not object-token), and the ARC-006/MECH-045
+    object-file buffer (keyed by entity TOKEN, dormant) -- none citing the canonical
+    object-file layer.
+
+    THE CORE DISTINCTION. "Object" currently means at least three things in REE:
+    a TYPE/category (SD-049 tag; z_resource is location-invariant), a spatial
+    ANCHOR (ghost bank), and a feature-bundle TOKEN entity (MECH-278/ARC-006).
+    REE's LIVE object work is TYPE-level. True permanence, tools, self-as-object,
+    and others-as-object all need TOKEN-INSTANCE object-files ("this apple, tracked
+    through occlusion", not "apples"). That type-vs-token-vs-anchor choice is the
+    first design fork for any future substrate step and is a genuine
+    representational gap, not just a missing flag.
+
+    THE FOUR PILLARS (specialisations of the one primitive; existing/needed claims):
+    - PILLAR 1 permanence: NEW future child (token persistence through occlusion);
+      reactivate MECH-045; generalise the SD-039/MECH-292/293 ghost-goal bank from
+      goal-snapshot to object-token. [V3-straddle / V4]  -- documented as a future
+      child; NOT registered as a separate claim by this umbrella.
+    - PILLAR 2 self-as-object: z_self as a privileged object-file slot
+      (DR-10..DR-14, MECH-214/MECH-215, INV-064). [V4]
+    - PILLAR 3 tools/affordances: object->action binding; ground SD-016
+      cue_action_proj (currently UNGROUNDED -- V3-EXQ-449 0.0 gradient; EXP-0155
+      queued). [V3 substrate / V4 grounding]
+    - PILLAR 4 others-as-object: other-agent object-file slots (z_self_j,
+      z_harm_a_j); ARC-010 / ARC-047. [V4]
+    DEV-NEED-021 already treats object permanence as load-bearing for the social
+    pillar (otherness inference REQUIRES object persistence + self-stability), so
+    Pillars 1+2 are prerequisites for Pillar 4.
+
+    SCOPE / GUARD. epistemic_category inferred to substrate_coherence
+    (architectural_commitment) -- promote/demote suppressed; this is a coherence
+    map, not an empirical assertion to be gated. v3_pending + implementation_phase
+    v4: the doc-spine itself is V3-safe (touches no substrate, no critical-path
+    file), but the first real substrate step -- generalising z_object from a
+    type-tag store to a token-keyed object-file -- is V4 / late-V3 enrichment and
+    must NOT enter V3 closure. SD-057 stays resource-bound for V3; the GAP-7 L9
+    wanting!=liking retest is owned elsewhere (scaffolded_sd054_onboarding) and is
+    untouched. Registering this umbrella does NOT promote anything and does NOT
+    change any V3 behaviour.
+  biology_grounding_note: >
+    ARC-006/MECH-044/MECH-045 had NO biology lit-pull at registration of this
+    umbrella (sources were internal 2026-02 thoughts + DANIEL_README), which the
+    project rule (feedback_biology_before_formal_definitions) flags. That gap is
+    being closed concurrently: the L1 "object files & feature binding" pull
+    (Kahneman/Treisman/Gibbs 1992; Treisman & Gelade 1980 FIT) and the L2 "object
+    permanence" pull (Piaget; Baillargeon; Spelke core-knowledge; Kellman & Spelke
+    1983) were both ACTIVE as of 2026-06-04T16:03Z (sessions
+    litpull-object-files-feature-binding / litpull-object-permanence). Treat
+    ARC-006's biology grounding as IN PROGRESS pending those pulls' landing; L3
+    (affordances/Gibson), L4 (self-as-object/Gallagher/Botvinick), L5
+    (ToM/Woodward/Csibra) follow when their pillars are scheduled.
+  location: docs/architecture/arc_080_object_representation_primitive.md
+
 - id: MECH-340
   title: "The persistence/efficacy gate: a control/efficacy-detection signal that maintains an unresolved-goal bank entry as an active MECH-293 re-probe target. Its ABSENCE is the default (the entry stops being re-probed and decays in MECH-292 rank; the SD-039 trace is NOT erased). It is gated ON by an unattainability-negative / control-positive appraisal, NOT by accumulated failure, repeated suppression, bare effort-cost, or staleness."
   claim_type: mechanism_hypothesis

@@ -99,6 +99,20 @@ Entities should be tracked via **object‑file‑like buffers** that bind featur
 minimal persistence mechanism without requiring symbolic labels. These buffers are attention‑gated and update with
 precision‑weighted continuity constraints.
 
+> **Cross-ref (ARC-080 object-representation umbrella, 2026-06-04).** This layer is
+> the canonical **entity-TOKEN** object-file store, but it is currently dormant
+> (design-only, not in ree-v3 code). Two *live* per-item stores reinvented adjacent
+> machinery without citing it: the SD-057 `IncentiveTokenBank`
+> ([sd_057_object_bound_incentive_salience.md](sd_057_object_bound_incentive_salience.md)),
+> keyed by resource **TYPE tag**, and the SD-039 / MECH-292 / MECH-293 ghost-goal
+> bank ([sd_039_anchor_goal_payload.md](sd_039_anchor_goal_payload.md)), keyed by
+> spatial **ANCHOR**. The three are mapped as one primitive under
+> [ARC-080](arc_080_object_representation_primitive.md), which flags the
+> type-vs-token-vs-anchor distinction (true permanence needs token-instance, not
+> type) and the as-yet-missing wiring between these stores. Reactivating MECH-045
+> as a token-keyed object-file is a V4 / late-V3 substrate step -- not a V3-closure
+> item.
+
 ---
 
 ## Error Ownership
@@ -130,6 +144,9 @@ Further elaboration is needed to specify:
 - Latent stack: [l_space.md](l_space.md)
 - Coherence and temporal binding: [../invariants.md](../invariants.md) INV-002
 - Layer 3 commitments: [../../DANIEL_README.md](../../DANIEL_README.md)
+- Object-representation umbrella (objects as a cross-cutting primitive; the three per-item stores): [arc_080_object_representation_primitive.md](arc_080_object_representation_primitive.md) (ARC-080)
+- Live identity latent / per-object incentive token: [sd_057_object_bound_incentive_salience.md](sd_057_object_bound_incentive_salience.md) (SD-057)
+- Ghost-goal bank (per-anchor motivational persistence): [sd_039_anchor_goal_payload.md](sd_039_anchor_goal_payload.md) (SD-039 / MECH-292 / MECH-293)
 
 ---
 
@@ -150,6 +167,7 @@ Open items from preserved sources include entity emergence mechanisms; binding c
 - MECH-044
 - MECH-045
 - MECH-050
+- ARC-080 (object-representation umbrella; this layer is its representational-substrate dependency)
 
 ## References / Source Fragments
 

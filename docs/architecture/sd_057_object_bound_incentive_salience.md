@@ -137,3 +137,16 @@ The behavioural L9 acceptance (`wanting!=liking trajectory fraction >= 0.6`, ide
 ## Related Claims
 
 MECH-344 (L2 BIND-obj), MECH-345 (L3 INCENT-token), MECH-346 (L4 GOALPTR; MECH-230 amend). Phase-2: MECH-347 (L6 cue-triggered wanting / cue-recall), MECH-348 (L7 dACC object-discriminative readout). Unblocks MECH-229, MECH-117, ARC-030. Reuses SD-049, SD-015, SD-012, MECH-306, MECH-295 (approach bridge, L6 downstream), dACC/SD-032b (L7 host). Neighbours not to conflate: MECH-186/187/188 (5-HT maintenance), MECH-116 (PFC maintenance), MECH-292/293 (ghost-goal bank, inactive-anchor store).
+
+> **Cross-ref (ARC-080 object-representation umbrella, 2026-06-04).** The
+> `IncentiveTokenBank` is **one of three per-item object stores** in the substrate,
+> mapped under [ARC-080](arc_080_object_representation_primitive.md): this bank
+> (keyed by resource **TYPE tag**), the SD-039 / MECH-292 / MECH-293 ghost-goal
+> bank (keyed by spatial **ANCHOR** -- already distinguished above), and the dormant
+> ARC-006 / MECH-045 object-file buffer (keyed by entity **TOKEN**;
+> [entities_and_binding.md](entities_and_binding.md)). This SD's `z_object` is a
+> detached `z_resource` clone -- a **type-level** identity, not a token-instance
+> object-file; ARC-080 records that generalising it to a token-keyed object-file
+> (which would let the same store serve permanence, tools, self, and other) is a
+> V4 / late-V3 substrate step, NOT a V3-closure item. SD-057 stays resource-bound
+> for V3.

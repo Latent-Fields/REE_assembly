@@ -162,6 +162,18 @@ Remaining gaps:
 - DEV-NEED-010 through DEV-NEED-014: most gates require V4 multi-agent substrate; V3 proxies specified in `developmental_metrics.md` for sensorimotor and constructive play gates.
 - Thresholds marked TBD in DEV-NEED-029 require empirical calibration from dedicated experiments before becoming blocking gates.
 
+**Cross-ref (ARC-080 object-representation umbrella, 2026-06-04).** DEV-NEED-021
+(otherness inference after self-stability, which lists **object persistence** as a
+prerequisite) and DEV-NEED-033 (the ARC-059 self->objects->others ordering) both
+presuppose an object-representation layer. That layer is now mapped as a single
+cross-cutting primitive under
+[ARC-080](arc_080_object_representation_primitive.md): the four object capabilities
+(permanence, self-as-object, tools, others-as-object) are specialisations of one
+primitive, and ARC-080 records that the object *permanence* DEV-NEED-021
+presupposes is not yet built (only the SD-039 goal-snapshot ghost bank exists, not
+a token-instance object-file). Object-substrate work is V4 / late-V3 -- off the
+V3-closure path.
+
 ### Items Lacking Experiments
 
 - No dedicated developmental ablation currently validates the full infant-to-child gate.

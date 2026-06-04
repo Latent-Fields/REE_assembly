@@ -216,3 +216,14 @@ preflight (7/7) pass with the SD-039 surface in place but unused.
 - MECH-094 — call-site scoping for the population layer
 - `docs/architecture/ghost_goal_search.md` — the umbrella ghost-goal
   cluster design doc this substrate sits inside
+- [ARC-080](arc_080_object_representation_primitive.md) — object-representation
+  umbrella. This ghost-goal bank is **one of three per-item object stores** under
+  ARC-080: keyed by spatial **ANCHOR**, with a `z_goal_snapshot` payload, it is a
+  *motivational*-persistence primitive, NOT object permanence (no token-instance
+  tracking through occlusion). The other two are the SD-057 `IncentiveTokenBank`
+  (keyed by resource **TYPE tag**;
+  [sd_057_object_bound_incentive_salience.md](sd_057_object_bound_incentive_salience.md))
+  and the dormant ARC-006 / MECH-045 object-file buffer (keyed by entity **TOKEN**;
+  [entities_and_binding.md](entities_and_binding.md)). ARC-080 Pillar 1 (object
+  permanence) proposes generalising this bank from goal-snapshot to object-token —
+  a V4 / late-V3 step, NOT a V3-closure item.
