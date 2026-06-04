@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-04_arc_006_visual_indexing_pylyshyn1988",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "ARC-006",
+    "MECH-045"
+  ],
+  "source": {
+    "title": "Tracking multiple independent targets: Evidence for a parallel tracking mechanism.",
+    "authors": [
+      "Zenon W. Pylyshyn",
+      "Ron W. Storm"
+    ],
+    "year": 1988,
+    "venue": "Spatial Vision",
+    "doi": "10.1163/156856888X00122"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The foundational multiple-object-tracking demonstration: observers track ~4-5 target items among identical moving distractors, which Pylyshyn explains with FINST visual indexes -- a small set of pre-conceptual pointers that INDIVIDUATE and stick to objects across motion without encoding their features or locations. This grounds two ARC-006 properties at once: entities are SPARSE (a hard ~4-5 index limit) and PERSISTENT/bindable (the index sticks to the same token through motion). It also grounds the token-instance individuation MECH-045 needs. Held mid-band because the items are featureless identical dots (it isolates individuation/tracking but says nothing about feature BINDING per se), the capacity limit is debated, and it is human psychophysics.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The tracked items are identical featureless dots, so the paradigm isolates pure INDIVIDUATION+tracking and is silent on feature binding -- it cannot ground ARC-006's bindable-feature-bundle clause, only its sparse-persistent-token clause.",
+    "The ~4-5 index capacity is a strong, debated empirical limit; a REE that hard-codes a small fixed slot count would inherit a specific psychophysical number whose generality (and dependence on speed/spacing) is contested.",
+    "FINST indexes are pre-conceptual location-trackers that explicitly do NOT carry identity/feature content; treating them as full object files over-reads the construct -- indexing is necessary for, but distinct from, the object-file buffer."
+  ],
+  "tags": [
+    "arc-006",
+    "mech-045",
+    "visual_indexing",
+    "finst",
+    "multiple_object_tracking",
+    "individuation",
+    "sparse_persistent_tokens"
+  ],
+  "mapping": {
+    "source_claim_statement": "Observers can track up to ~4-5 independently and unpredictably moving target items among identical distractors far better than a serial location-updating algorithm predicts, implying a parallel pre-attentive mechanism (FINST indexes) that individuates a small number of objects and maintains their identity across motion without encoding their features or trajectories.",
+    "ree_translation": "ARC-006 says entities are 'sparse, persistent, bindable structures'. Pylyshyn & Storm supplies direct evidence for the SPARSE (a hard small-number index limit) and PERSISTENT (the same token tracked through motion) properties, via a mechanism -- visual indexing -- that individuates objects before any feature/identity is bound. For MECH-045 it grounds the prior step the object-file buffer depends on: you must first individuate and stick a pointer to a token before you can persist its features.",
+    "mapping_caveat": "FINST indexes track featureless tokens and carry NO feature/identity content, so this grounds individuation and persistence-of-pointer, not feature binding or the contents of an object file. The ~4-5 capacity is a contested empirical number REE should not hard-code as a fixed slot count. Human psychophysics to latent-stack agent transfer applies.",
+    "source_context": "Human visual psychophysics; tracking 4-5 of 10 identical randomly-moving dots and detecting a target-vs-distractor change."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Foundational MOT/FINST study. Mapping good for the sparse+persistent-token clauses of ARC-006; discounted because featureless dots isolate individuation and say nothing about feature binding, and the capacity number is debated."
+  }
+}

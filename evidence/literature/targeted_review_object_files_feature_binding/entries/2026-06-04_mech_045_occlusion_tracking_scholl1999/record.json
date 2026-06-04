@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-04_mech_045_occlusion_tracking_scholl1999",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "MECH-045"
+  ],
+  "source": {
+    "title": "Tracking multiple items through occlusion: Clues to visual objecthood.",
+    "authors": [
+      "Brian J. Scholl",
+      "Zenon W. Pylyshyn"
+    ],
+    "year": 1999,
+    "venue": "Cognitive Psychology",
+    "doi": "10.1006/cogp.1998.0698"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "The most pointed paper in the pull for the memo's exact gap: it shows object tracking SURVIVES complete occlusion when the disappearance/reappearance carries accretion-deletion cues at an occluding contour, but BREAKS when items vanish in non-occlusion ways (imploding/exploding). This is direct evidence that token persistence is computed from spatiotemporal continuity cues, not from continuous visibility -- exactly the 'this object tracked through occlusion' capability MECH-045's object-file buffer must provide and REE's type-tag store cannot. Held at 0.77 (not higher) because it is human psychophysics and because it specifies WHICH cues license persistence rather than a mechanism REE can directly implement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Persistence is conditional on specific cues: tracking survives occlusion ONLY with accretion/deletion along a fixed occluding contour and breaks under implosion/explosion -- a REE object-file buffer that persists tokens unconditionally (e.g. on any temporary absence) would over-generalise beyond what the visual system actually does.",
+    "It diagnoses the CUES that signal enduring objecthood, not the buffer mechanism; REE still has to choose a representation that consumes continuity cues, which this paper does not supply.",
+    "Human visual psychophysics with abstract moving items; transfer to a latent-stack foraging agent whose 'occlusion' is a different sensory regime is non-trivial."
+  ],
+  "tags": [
+    "mech-045",
+    "object_files",
+    "object_permanence",
+    "occlusion",
+    "spatiotemporal_continuity",
+    "token_instance",
+    "visual_objecthood"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across three experiments, multiple-object tracking was unimpaired when targets were briefly but completely occluded, PROVIDED the disappearance and reappearance carried accretion/deletion cues along fixed occluding contours; tracking was impaired when items disappeared and reappeared in non-occlusion ways (imploding/exploding into and out of existence) -- so the visual system computes enduring objecthood from spatiotemporal continuity cues, treating an occluded object as the SAME persisting token.",
+    "ree_translation": "MECH-045 asserts object-file-like buffers that 'bind features across time and motion' for minimal entity persistence. Scholl & Pylyshyn shows the strongest form of that persistence -- a token survives a total perceptual gap -- and pins down its trigger: continuity/occlusion cues, not continuous visibility. This is the precise 'this object tracked through occlusion' capability the object-representation memo flags as the token-vs-type gap: REE's live z_resource/z_object is a type tag that cannot track a particular instance across a gap, whereas this is exactly what an object-file buffer must do.",
+    "mapping_caveat": "The paper specifies the perceptual CUES that license persistence (accretion/deletion at an occluding contour); it does not supply the buffer mechanism, and persistence is CONDITIONAL not automatic. REE must choose a representation that consumes continuity cues; persisting tokens unconditionally would over-read the result. Human-psychophysics-to-agent transfer applies.",
+    "source_context": "Human visual psychophysics; multiple-object tracking with brief total occlusion vs non-occlusion (implosion/explosion) disappearances; 3 experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Directly targets the token-through-occlusion gap. High mapping fidelity to MECH-045's across-time/motion persistence clause; discounted because it characterises the triggering cues, not an implementable buffer, and persistence is cue-conditional."
+  }
+}

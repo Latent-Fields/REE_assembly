@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-04_mech_044_hippocampal_relational_binding_olsen2012",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "MECH-044",
+    "ARC-006"
+  ],
+  "source": {
+    "title": "The hippocampus supports multiple cognitive processes through relational binding and comparison.",
+    "authors": [
+      "Rosanna K. Olsen",
+      "Sandra N. Moses",
+      "Lily Riggs",
+      "Jennifer D. Ryan"
+    ],
+    "year": 2012,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2012.00146"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "A review whose thesis is, almost verbatim, MECH-044: the hippocampus rapidly, continuously and obligatorily forms associations among disparate elements across space and time AND enables comparison of stored representations against current input -- i.e. relational binding AND comparison, extending beyond long-term storage into ongoing cognition. The mapping to MECH-044 is the tightest in this pull. Held below the top band because it is a review (synthesis of eye-movement, amnesia, and fMRI evidence) rather than a single decisive experiment, and because 'continuous/obligatory online binding' is the strong end of the literature -- a falsifiable but not universally settled position.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 'obligatory, continuous, online' framing is the strong end of the hippocampal-function debate; conjunctive-coding and pure long-term-consolidation accounts contest whether binding/comparison is genuinely ONLINE or a retrieval artifact -- a REE design that wires hippocampal binding into the moment-to-moment loop adopts the contested strong reading.",
+    "The review aggregates human eye-movement, developmental-amnesia and fMRI evidence; it does not by itself isolate the binding-vs-comparison computations mechanistically, so it grounds THAT the hippocampus does relational binding+comparison, not a circuit-level HOW that REE could copy.",
+    "Relational binding here is across arbitrary elements (faces, scenes, items); it is not specifically about OBJECT-file token persistence, so it supports MECH-044 strongly but only indirectly supports the object-file clause of ARC-006/MECH-045."
+  ],
+  "tags": [
+    "mech-044",
+    "arc-006",
+    "hippocampus",
+    "relational_binding",
+    "relational_comparison",
+    "online_binding"
+  ],
+  "mapping": {
+    "source_claim_statement": "The hippocampus's critical role is to rapidly, continuously and obligatorily bind disparate elements across space and time and to compare internal representations against current perceptual input; this binding-and-comparison function reaches far beyond explicit long-term recognition memory into many ongoing cognitive operations.",
+    "ree_translation": "MECH-044 asserts 'hippocampal systems participate in relational binding and comparison, not only long-term storage', supporting early detection of relations and binding consistency across time and context. Olsen et al. is the direct biological grounding: it is the review that establishes relational binding AND comparison as a general, online hippocampal computation rather than a storage-only role -- exactly MECH-044's distinction. It also supports ARC-006's constraint that 'relational binding is first-class' and 'hippocampal systems may participate early in relational binding/comparison rather than only in long-term storage.'",
+    "mapping_caveat": "The review establishes the functional role at the systems level from human eye-movement/amnesia/fMRI evidence; it does not give a circuit-level mechanism REE can copy, and the 'obligatory online' reading is the strong (contested) end of the debate. Binding here is over arbitrary relational elements, not specifically object-file token persistence.",
+    "source_context": "Review/synthesis; human eye-movement (relational manipulation index), developmental and adult amnesia, and fMRI studies of hippocampal binding and comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.3,
+    "notes": "Very high mapping fidelity -- MECH-044's wording tracks this review's thesis. source_quality moderate-high (authoritative review, not a single decisive study); transfer_risk modest (human-to-agent, plus adopting the strong online-binding reading)."
+  }
+}

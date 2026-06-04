@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-04_mech_045_object_files_kahneman1992",
+  "timestamp_utc": "2026-06-04T16:06:42Z",
+  "claim_ids_tested": [
+    "MECH-045",
+    "ARC-006"
+  ],
+  "source": {
+    "title": "The reviewing of object files: Object-specific integration of information.",
+    "authors": [
+      "Daniel Kahneman",
+      "Anne Treisman",
+      "Brian J. Gibbs"
+    ],
+    "year": 1992,
+    "venue": "Cognitive Psychology",
+    "doi": "10.1016/0010-0285(92)90007-O"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The foundational empirical demonstration of the object file: a temporary, token-instance episodic buffer that links successive states of THE SAME object across time and motion. The object-specific preview benefit (faster naming when prime and target are bound to one continuing object) is exactly the minimal across-time entity-persistence buffer MECH-045 posits. Robust (7 experiments, 203 subjects, ~2148 citations) and the mapping to MECH-045 is near-literal -- 'object file' is the term of art MECH-045 borrows. Held below 0.9 because the paradigm is visual psychophysics in humans, whereas MECH-045 must instantiate the buffer in a latent-stack agent, and the object file here is purely token-instance whereas REE's live z_object lineage is type-level (the gap the pull was commissioned to expose).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The object file is strictly TOKEN-instance (this object, this episode); it provides no account of type/category abstraction, which is where REE's live z_resource/z_object lineage actually operates -- so this paper grounds the buffer REE does NOT yet have, not the one it has.",
+    "Object-specific benefit is fragile: it requires perceived spatiotemporal continuity of a single object; when continuity cues are removed the benefit collapses, so a REE object-file buffer cannot be a free-floating key-value store -- persistence must be gated on a continuity computation REE does not currently run.",
+    "Demonstrated for a single reviewed object across a brief preview-target interval; it does not establish persistence across long occlusions or many concurrent objects (Pylyshyn/Scholl entries cover capacity and occlusion)."
+  ],
+  "tags": [
+    "mech-045",
+    "arc-006",
+    "object_files",
+    "feature_binding",
+    "entity_persistence",
+    "token_instance",
+    "visual_attention"
+  ],
+  "mapping": {
+    "source_claim_statement": "Information about an object is stored in a temporary episodic representation -- an 'object file' -- indexed by the object's spatiotemporal continuity rather than its features or its identity; a target is named faster if it is perceived as a new state of the same object that earlier contained a matching prime (the object-specific preview benefit).",
+    "ree_translation": "MECH-045 posits 'object-file-like buffers' that bind features across time and motion to give minimal entity persistence without symbolic labels. Kahneman/Treisman/Gibbs is the source of that exact construct and supplies the behavioural signature (object-specific integration indexed by continuity, not by label) that a REE object-file buffer should reproduce. It also grounds ARC-006's 'persistent, bindable structures' clause: the file is the persistent bindable structure.",
+    "mapping_caveat": "The biological object file is TOKEN-instance and continuity-indexed; REE's implemented z_object/z_resource is TYPE-level and tag-indexed. So this paper grounds the REPRESENTATION MECH-045 describes but simultaneously marks the design fork the memo flags -- to honour the object-file construct REE must add a token-keyed, continuity-gated buffer, not reuse the type-tag store. Transfer from human visual psychophysics to a latent-stack agent is non-trivial.",
+    "source_context": "Human visual psychophysics; preview-target letter-naming and same/different tasks with moving framed objects; 7 experiments, 203 college students."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.4,
+    "notes": "Landmark, heavily replicated. High mapping fidelity because MECH-045 borrows the construct verbatim; transfer_risk elevated by the token-vs-type mismatch and human-to-agent gap."
+  }
+}
