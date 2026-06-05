@@ -1,0 +1,87 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-05T18:00:39Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_418m_sd016_cue_slot_tagger_20260605T165833Z_v3",
+      "queue_id": "V3-EXQ-418m",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim_ids=[]; SD-016 (vmPFC somatic-marker cue retrieval) unchallenged; the test could not let SD-016 express itself because the upstream z_world cross-context separation precondition was unmet",
+        "biological_reference": "partial/mislevelled -- vmPFC/OFC loads affective/safety/goal content into navigable state, but relational/event indexing + pattern completion over state/action/outcome traces is hippocampal (MECH-044, ARC-006/007, MECH-267). Current impl collapses index+load into one frontal feedforward MLP. Level-of-abstraction divergence, NOT a formal-import error",
+        "prerequisites": "missing (dominant) -- z_world cross-context separation precondition unmet; parked since 2026-04-28; V3-EXQ-418h confirmed unmet",
+        "implementation": "complete -- tagger wired, bit-identical OFF verified (OFF entropy == ln(16) exactly); not the locus",
+        "environment": "too sparse (dominant) -- CausalGridWorldV2 (size 8, 1-5 hazards, no SD-023 landmarks) does not generate cross-context z_world variance",
+        "measurement": "adequate/improved -- C1b context-divergence is the correct new instrument distinguishing static off-saddle from context-selective; C1 entropy alone would have been misleading",
+        "integration": "isolated by design -- retrieval->action_bias gated on SD-055/cue_action_proj, correctly excluded from the pass gate",
+        "scale": "adequate -- feedforward tagger not capacity-limited; deficit is input variance not model size"
+      },
+      "biological_reference": {
+        "closest_mechanism": "vmPFC/OFC cue-context somatic-marker retrieval (Bechara Iowa Gambling Task) as the cue-facing interface; hippocampal relational/event indexing + pattern completion over state/action/outcome traces as the selectable-unit substrate",
+        "dependencies": ["hippocampal relational binding (MECH-044)", "object/entity indexing (ARC-006/ARC-007)", "mode-conditioned hippocampal proposals (MECH-267)", "cross-context z_world separation in the encoder/env"],
+        "is_formal_import": false,
+        "divergence": "level-of-abstraction: SD-016 implements cue retrieval as frontal feedforward selection over 16 undifferentiated memory slots; the biological selectable unit may be a hippocampally-indexed event/context/action/outcome node. NOT yet discriminable from the 418m result because the z_world-collapse confound is upstream of both the slot path and any event path",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "diagnostic",
+      "recommended_evidence_quality_note": "V3-EXQ-418m (2026-06-05, diagnostic, claim_ids=[]): SD-016 Path 3 feedforward cue->slot tagger reproduced the ln(16) OFF saddle (C2 3/3) but did not break it ON (C1 0/3, entropy 2.7536 vs threshold 2.5; C1b context-divergence 0.0021 vs 0.1). Re-confirms the parked env-entropy precondition: a new selection mechanism over the same near-constant z_world (418f cosine 0.998) cannot be context-selective. Routing: amend SD-016 substrate_queue + queue z_world cross-context separation probe; hippocampal-indexed retrieval logged as a gated design note. No status/confidence change. Optional governance note only -- claim_ids=[] so 418m weights no claim.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-016",
+        "sd_id_suggested": "SD-016",
+        "title": "ContextMemory cue-indexed retrieval -- validation gated on env entropy precondition (2026-04-28); Path 3 tagger re-confirms parking (2026-06-05)",
+        "implementation_hint": "Append the 418m failure_record; reaffirm parked_pending_env_entropy_precondition (priority 5, ready false, status unchanged). Path 3 (feedforward cue->slot tagger) replaced the q.k slot-SELECTION mechanism but not the z_world selection INPUT, so it reproduced the 418f/g diagnosis: OFF entropy == ln(16) exactly, ON entropy moved only 0.019 (cosmetic, fixed non-uniform logits) and ON context-divergence stayed ~0.0021 (selection does not vary across contexts because z_world does not). Add a hippocampal-indexing design note (gated future branch): SD-016 stays the cue-facing interface but its selectable units may need to be hippocampal event/state/outcome nodes (MECH-044/ARC-006/007/MECH-267) rather than undifferentiated slots; revisit ONLY after (a) z_world cross-context separation is demonstrated AND (b) under separated z_world, slot selection is proven semantically arbitrary. Do NOT build the hippocampal substrate, a tagger LR/temperature/duration sweep, or a Path-2 VQ-VAE return now -- all consume the same near-constant z_world.",
+        "unblocks_claims": ["MECH-150", "MECH-151", "MECH-152", "ARC-041", "INV-040", "SD-017"],
+        "depends_on_unresolved": ["env-entropy: cross-context z_world cosine separation < 0.95 (V3-EXQ-418h FAIL; refresh probe queued)"],
+        "priority_suggested": 5,
+        "failure_record_entry": {
+          "run_id": "v3_exq_418m_sd016_cue_slot_tagger_20260605T165833Z_v3",
+          "experiment_type": "v3_exq_418m_sd016_cue_slot_tagger",
+          "metric": "C2 OFF entropy = 2.772588 = ln(16) exactly (saddle reproduced 3/3); C1 ON entropy mean 2.7536 (min 2.7319 max 2.7657) vs threshold 2.5 (0/3); C1b ON context-divergence mean 0.0021 vs 0.1 (0/3); action_bias_div ON 0.0099 <= OFF 0.0117 (non-gating). Path 3 changed the selection mechanism (q.k -> feedforward MLP) but not the selection input (z_world), which 418f localised as near-constant (cosine 0.998)",
+          "target": "ON sel_entropy_mean < 2.5 AND ON sel_context_divergence > 0.1 on >=2/3 seeds, with OFF reproducing the ln(16) saddle"
+        }
+      },
+      "recommended_next_experiment": {
+        "routing": "queue-experiment",
+        "kind": "diagnostic",
+        "claim_ids": [],
+        "title": "z_world cross-context separation probe (SD-023 landmarks ON vs OFF)",
+        "spec": "Refresh/scope the parked V3-EXQ-418h precondition gate: build safe-vs-dangerous z_world batches under SD-023 landmarks ON vs OFF, measure within-context vs cross-context pairwise cos(z_world); gate = absolute cross-context cos(z_world) < 0.95 in at least one env config. If a config clears the gate, the Section-6 discriminator (does the tagger become context-selective, or does selection vary but stay semantically arbitrary) becomes runnable; if not, SD-016 retrieval work stays parked pending broader env-enrichment scope (a larger V4-adjacent decision, not taken here).",
+        "rationale": "The smallest honest next step. A Path-3 training-strength sweep is contraindicated: the autopsy explains why a local tagger cannot become selective without a varying input. The real gate is upstream z_world separation."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Path 3 replaced the slot-SELECTION mechanism (q.k -> feedforward MLP) but not the selection INPUT (z_world); the z_world cross-context collapse (418f cosine 0.998) is upstream of every SD-016 selection path, so the mechanism swap could not help.",
+        "The slight entropy movement (ln(16)=2.7726 -> 2.7536) is cosmetic: a random-init MLP yields non-uniform but FIXED logits (off the static saddle), not context-selective logits. The C1b context-divergence instrument (~0.0021) is the load-bearing metric and is what a C1-entropy-only design would have missed.",
+        "418m cannot discriminate input-impoverishment from wrong-abstraction-level because the confound masks both; classification is ambiguous with impoverishment dominant and sufficient.",
+        "Biological refinement (load-bearing, recorded as design note not build): vmPFC/OFC loads content; relational/event INDEXING is hippocampal. SD-016's selectable units may need to be hippocampal event/outcome nodes, with SD-016 retained as the cue-facing interface. Gated behind z_world separation + a demonstrated semantic-arbitrariness signal.",
+        "A tagger LR/temperature/duration sweep would push C1 entropy down while making C1b WORSE (sharper fixed selection = less context dependence) -- contraindicated, not deferred.",
+        "Claim impact = none: claim_ids=[]; SD-016 stays implemented; substrate_queue stays parked_pending_env_entropy_precondition. Not a falsification of SD-016, not evidence against cue/action architecture globally."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "containment": {
+    "do_not_build": [
+      "Path-3 training-strength / learning-rate / temperature / duration sweep",
+      "stronger slot-selectivity aux loss or contrastive safe-vs-dangerous objective (same input confound)",
+      "return to Path 2 VQ-VAE / codebook (also consumes z_world)",
+      "hippocampal-indexed retrieval substrate (premature; gated)",
+      "interoceptive need-gating",
+      "orienting / surveying",
+      "safe-gradient following",
+      "CandidateRuleField activation as a fix"
+    ],
+    "scope_notes": [
+      "418m is NOT behavioural evidence -- retrieval-selectivity substrate readiness only",
+      "do NOT conflate SD-016 retrieval selectivity with V3-EXQ-640a cue-to-action authority",
+      "distinction ladder preserved: cue fires -> cue retrieves context selectively (418m, FAILED here for an upstream-input reason) -> cue pulls z_goal -> cue biases E2/E3 -> behaviour changes"
+    ]
+  }
+}
