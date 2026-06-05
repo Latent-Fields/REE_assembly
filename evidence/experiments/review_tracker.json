@@ -1,7 +1,11 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-04T16:20:17Z",
+  "last_review_utc": "2026-06-05T09:43:24Z",
   "discussed_experiment_dirs": [
+    "v3_exq_638a_scaffold_cue_recall_contact_ablation",
+    "v3_exq_638a_scaffold_cue_recall_contact_ablation_20260604T183612Z_v3",
+    "v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness",
+    "v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3",
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
     "v3_exq_592f_mech090_commitment_state_transition_probe",
     "V3-EXQ-008",
@@ -535,6 +539,8 @@
     "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z"
   ],
   "reviewed_run_ids": [
+    "v3_exq_638a_scaffold_cue_recall_contact_ablation_20260604T183612Z_v3",
+    "v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3",
     "v3_exq_592g_mech342_maintenance_release_probe_20260602T163547Z_v3",
     "v3_exq_592f_mech090_commitment_state_transition_probe_20260601T194325Z_v3",
     "v3_exq_592d_mech090_readiness_conjunction_validation_20260531T213852Z_v3",
@@ -3773,6 +3779,21 @@
         "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z"
       ],
       "subject": "/governance cycle 2026-06-04 (afternoon). 5 pending walked (3 PASS, 1 FAIL, 1 unclaimed manifest) -- all diagnostics/mechanism-probes. V3-EXQ-490k (MECH-295, the only claim-tagged item): confirmed failure_autopsy_V3-EXQ-490k applied verbatim (user-approved). ROW_2_fires_but_never_flips -- cue fires 145 ticks but mech295_bias_range_mean=0.0 (per-candidate bias uniform -> argmin cannot flip BY CONSTRUCTION), defeated by upstream collapsed z_world + weak z_goal (goal_norm_peak=0.193). Manifest weakens->non_contributory (flat, +note); MECH-295 epistemic_category=substrate_ceiling + pending_retest_after_substrate=true + dated evidence_quality_note; narrow_supports_flag=true (zero behavioural-sufficiency across 490g/h/i/j/k). substrate_queue AMEND scaffolded_sd054_onboarding (+490k failure_record, MECH-295 already in unblocks); 490L successor with mech295_bias_range_mean>0 guard. Four no-claim diagnostics cleared (claim_ids=[] -> weight no claim): V3-EXQ-636 SD-057 L2-L4 mechanism PASS (bank binds >=2 identities, wanting!=liking 5/6, OFF control 0); V3-EXQ-637 SD-057 phase-2 L6/L7 PASS (cue fires no-benefit, identity-matched cos~1.0, readout reaches dACC); V3-EXQ-638 FAIL cue-silent (confirmed failure_autopsy_V3-EXQ-638 substrate_not_ready -- Stage-0 forced-feed/token chicken-and-egg, fix a9ef0be+636128a landed, validation 638a running); V3-EXQ-639 ARC-063 CandidateRuleField readiness PASS (C1-C4+UC5; field substrate wired, OFF bit-identical, MECH-094 sim-gate). SD-057/MECH-344-348 + ARC-063 children stay v3_pending (behavioural successors GAP-2/GAP-B-gated). Promotion/demotion: 1 pending_user (ARC-080 hold_pending_v3_substrate, correct no-op -- architectural_commitment suppresses promote/demote). closure-drift 0 drifted; GAP-4 node repointed owner_exq 490j->490k. claims.json rebuilt (673); index rebuilt (1216 runs)."
+    },
+    {
+      "timestamp_utc": "2026-06-05T09:43:24Z",
+      "session_label": "governance-cycle-20260605T0943Z",
+      "reviewed_run_ids": [
+        "v3_exq_638a_scaffold_cue_recall_contact_ablation_20260604T183612Z_v3",
+        "v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_638a_scaffold_cue_recall_contact_ablation",
+        "v3_exq_638a_scaffold_cue_recall_contact_ablation_20260604T183612Z_v3",
+        "v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness",
+        "v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3"
+      ],
+      "subject": "/governance cycle 2026-06-05. 3 pending FAILs walked. TWO diagnostics cleared (claim_ids=[] -> weight no claim): V3-EXQ-638a (SD-057 cue-recall contact ablation) -- cue FORMS+FIRES (C1 1050/180/446, C2 silent-OFF PASS) but C3 contact-lift FAIL (ARM_CUE_ON contact [0,0,0.267] <= ARM_OFF [0,0.197,0.648] all 3 seeds, n_interoceptive=0); confirmed failure_autopsy_V3-EXQ-638a landed, routing = measurement-first V3-EXQ-640 (already queued, gates 638b); no claim impact. V3-EXQ-634c (seeding-calibration readiness) -- SPLIT: the 2026-06-03c seeding-calibration amend VALIDATED the z_goal half (seeded arms ARM_1/2/3 pass g3_zgoal, z_goal@contact ~0.40-0.44 on contacting seeds, resolving the 634b anti-correlation), residual FAIL = foraging-competence/reach-contact (seed-42 zero-contact every arm, g1_survival 1/3) = GAP-2 ceiling; explained by the already-autopsied 632/634/634b cluster (no fresh autopsy); substrate_queue AMEND scaffolded_sd054_onboarding (+634c failure_record [20 total], status -> seeding_calibration_amend_VALIDATED_zgoal_half / residual reach-contact, ready STAYS false, do NOT queue 603f). NOT marked reviewed -- left PENDING for /failure-autopsy: V3-EXQ-610e (INV-074/MECH-333/MECH-334 crystallization necessity, evidence FAIL, supersedes 610d). First HARNESS-FIXED run (fix_verification confirms policy trained 0.41->0.49 + expansion stepped 1249 + ewc in loss 0.268 + policy_trained_nonuniform=true -- the 610a/b/c/d+543h/i/k/l no-op resolved) but d2_control_shows_collapse=FALSE (delta -0.0105) + d1=FALSE (delta -0.0002): control never collapses so crystallization has nothing to preserve and the test is non-discriminative. Indexer blanket 'weakens' corrected to non_contributory (flat+nested, +per-claim, +note, pending_failure_autopsy=true, epistemic_category substrate_ceiling) so it does not stand against a universal invariant; index rebuilt (610e weakens-warning gone). INV-074 universal/substrate_ceiling + MECH-333/334 v3_pending, all already pending_retest_after_substrate, status unchanged. Promotion/demotion: 1 pending_user ARC-080 hold_pending_v3_substrate (architectural_commitment no-op, user-confirmed). closure_drift 0 drifted / 6 suppressed / 0 stale. 610e remains in pending_review until autopsy lands (expected)."
     }
   ]
 }

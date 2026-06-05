@@ -1,0 +1,53 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_610e_inv074_crystallization_necessity",
+  "run_id": "v3_exq_610e_inv074_crystallization_necessity_20260604T225319Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-04T22:53:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-074",
+    "MECH-334",
+    "MECH-333"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-074": "non_contributory",
+    "MECH-333": "non_contributory",
+    "MECH-334": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-06-05 (governance): blanket 'weakens' corrected to non_contributory pending /failure-autopsy. 610e is the FIRST harness-fixed crystallization-necessity run (fix_verification confirms policy genuinely trained init 0.41->0.49, expansion stepped 1249 params, ewc_penalty in loss 0.268, policy_trained_nonuniform=true) -- the harness no-op that explained 610a/b/c/d + 543h/i/k/l is resolved. But d2_control_shows_collapse=FALSE (delta -0.0105) and d1_crystallization_preserves_diversity=FALSE (delta -0.0002): ARM_0 control and ARM_1 crystallize end-phase entropies are essentially identical (~1.028 at phase 2). The control never collapses, so there is no diversity loss for crystallization to prevent and the experiment cannot discriminate INV-074's necessity claim. NOT a falsification; disambiguation of substrate-pressure-inadequacy vs genuine-failure-in-V3 requires /failure-autopsy. Parked non_contributory (no scoring weight) until the autopsy lands. INV-074 universal/substrate_ceiling, MECH-333/334 v3_pending -- all already pending_retest_after_substrate; status unchanged this cycle.",
+  "epistemic_category": "substrate_ceiling",
+  "pending_failure_autopsy": true
+}

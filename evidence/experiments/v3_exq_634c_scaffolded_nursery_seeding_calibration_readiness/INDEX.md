@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness
+
+Generated: `2026-06-05T09:59:16.009812Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3` | `2026-06-04T21:05:10Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3/summary.md) / [`manifest`](runs/v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3/manifest.json) / [`metrics`](runs/v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3/metrics.json) |

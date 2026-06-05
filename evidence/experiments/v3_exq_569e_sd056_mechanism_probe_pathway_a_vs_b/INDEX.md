@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_569e_sd056_mechanism_probe_pathway_a_vs_b
 
-Generated: `2026-06-04T17:05:36.095128Z`
+Generated: `2026-06-05T09:59:16.009812Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
