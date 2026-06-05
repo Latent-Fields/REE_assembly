@@ -1,0 +1,64 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-05T11:11:49Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_610e_inv074_crystallization_necessity_20260604T225319Z_v3",
+      "queue_id": "V3-EXQ-610e",
+      "supersedes": "V3-EXQ-610d",
+      "claim_ids": ["INV-074", "MECH-333", "MECH-334"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- INV-074's premise (collapse-without-crystallization) was never instantiated; not weakened, not falsified",
+        "biological_reference": "clear + faithful -- ocular-dominance critical period (Fagiolini & Hensch 2000 open window; Pizzorusso 2002 active closure); lit_conf 0.82; divergence is substrate-side (V3 carries always-on diversity floors biology lacks)",
+        "prerequisites": "present-but-confounding -- MECH-313 noise floor + MECH-341 E3 diversity + policy entropy bonus are always-on in BOTH arms; they hold the control's diversity up and mask crystallization's necessity",
+        "implementation": "complete -- the genuine advance over 610d: fix_verification confirms policy trained (0.410->0.491), expansion stepped (1249 params, 499 steps), ewc_penalty in loss (0.268; ARM_1 ewc_penalty_last 803/335/284)",
+        "environment": "adequate-but-sub-threshold -- IGW-20260601-023 Phase-3 pressure present and partially worked in 610d (+0.047); below the trained-policy diversity floor here (-0.0105)",
+        "measurement": "misleading -- D1/D2 measure a distribution the always-on entropy bonus holds up; the negative control is not a true negative",
+        "integration": "n/a",
+        "scale": "adequate (2500 episodes x 200 steps, 3 seeds)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ocular-dominance critical-period plasticity (open competitive window via E/I-balance/PV-GABA maturation, then active PNN/Otx2/Sema3A closure)",
+        "dependencies": ["a trained winner-take-all-prone policy", "absence of an always-on diversity regularizer so collapse can occur without crystallization"],
+        "is_formal_import": false,
+        "divergence": "none on the claim side; the divergence is substrate-side -- V3 carries redundant always-on diversity floors (MECH-313 noise floor + MECH-341 E3 diversity + policy entropy bonus) that biological cortex lacks, so V3 cannot reproduce the condition under which crystallization is necessary",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_note": "Governance applied substrate_ceiling on the manifest 2026-06-05 (pre-autopsy). Recommend RE-TAG to measurement_test_design_defect: the failure is a confounded negative control, fixable by experiment redesign WITHOUT substrate enrichment. This is a manifest-level diagnostic tag and does not change INV-074's own claims.yaml epistemic_category.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-074": "non_contributory",
+        "MECH-333": "non_contributory",
+        "MECH-334": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-610e (2026-06-05 failure-autopsy): FIRST behaviorally-live crystallization-necessity run -- fix_verification confirms the harness no-op that explained 543h/i/k/l + 610a/b/c/d is RESOLVED (policy trained 0.410->0.491, expansion stepped 1249 params/499 steps, ewc_penalty in loss 0.268, ARM_1 ewc_penalty_last 803/335/284, policy_trained_nonuniform=true). Despite this it CANNOT discriminate: d2_control_shows_collapse=FALSE (delta -0.0105, control entropy slightly rose) and d1_crystallization_preserves_diversity=FALSE (delta -0.0002). Root cause (verified in script lines 470-483, 398-400): the negative control (ARM_0) is CONFOUNDED -- MECH-313 stochastic noise floor (0.3) + MECH-341 E3 score-diversity + the policy entropy bonus (0.02, actively maximizing entropy) are always-on in BOTH arms; only crystallize_at_phase3 differs. The trained policy under an entropy-maximizing objective does not collapse, so INV-074's premise (collapse-without-crystallization) is never instantiated and crystallization has nothing to preserve. NOT a falsification: INV-074 is a biology-faithful universal invariant (OD critical period, lit_conf 0.82); the V3 substrate simply carries redundant diversity floors biology lacks. epistemic_category recommended measurement_test_design_defect (confounded control, redesign not substrate enrichment). pending_retest_after_substrate retained. Routing: V3-EXQ-610f with a TRUE-NEGATIVE control (entropy_bonus=0, noise_floor off, E3 diversity off in ARM_0) + entropy_bonus_weight sweep to map the collapse threshold. 9th non_contributory crystallization-arm result, but the FIRST with the harness fixed -- the cause has relocated from harness-no-op to confounded-control.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The substrate (IGW-20260601-023 destabilising env + the crystallization machinery: gated policy, expansion params, residue EWC) is verifiably present and live. The blocker is the experiment design -- the negative control retains an always-on diversity floor. The fix is a redesign (true-negative control + threshold sweep) via /queue-experiment, not a substrate_queue entry."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "Not applicable in the usual sense: INV-074 has no genuine 'supports' to narrow -- its premise has never been instantiated across the entire 543/610 lineage. Separately, the control's non-collapse is CONSISTENT with robust MECH-341/MECH-313 (the pre-registered fork-(c) positive reading) but MUST NOT be scored as support: those claims are not in claim_ids and the experiment was not designed to test them (claim_ids accuracy rule). 610f should run an explicit floor-on vs floor-off contrast to test MECH-341/313 honestly.",
+      "learning_extracted": [
+        "Harness no-op RESOLVED -- 610e is the first behaviorally-live crystallization run; all three fixes verified.",
+        "Fixing the harness relocated the failure to a CONFOUNDED negative control: MECH-313 + MECH-341 + policy entropy bonus are always-on in both arms, so ARM_0 is not a true negative.",
+        "A trained policy under an entropy-maximizing objective does not collapse under IGW-023 pressure (control collapse 610d +0.047 untrained -> 610e -0.0105 trained-with-bonus).",
+        "INV-074's necessity premise is untestable while diversity is over-determined; the control must isolate crystallization as the sole diversity-preserving mechanism.",
+        "INV-074 (universal invariant) not weakened -- biology supports it; V3 cannot instantiate the collapse without stripping its own diversity floors.",
+        "D3-passes / D1+D2-fail is the substrate-ceiling shape, but here the cause is a test-design confound, not a too-coarse substrate -> recommended epistemic_category measurement_test_design_defect."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control/sanity criterion (D3) passes while every discrimination criterion (D1, D2) fails",
+    "is_independent_bugs": false,
+    "structural_property": "Across the 543h/i/k/l + 610a/b/c/d/e lineage, a trained WTA-prone policy has never been measured collapsing in a control where crystallization is the ONLY diversity-preserving mechanism. 610a-d + 543: harness no-op (machinery never live). 610e (inflection): machinery now live, but the control retains an always-on diversity floor (MECH-313/341 + entropy bonus) so it cannot collapse. Fixing the harness exposed the next, deeper design layer.",
+    "readings": ["confounded_control_test_design_defect", "v3_diversity_floor_robust_fork_c_positive_for_MECH-341_313"],
+    "not_in_cluster": ["V3-EXQ-632", "V3-EXQ-634", "V3-EXQ-634b", "V3-EXQ-634c"]
+  }
+}
