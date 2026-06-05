@@ -27974,6 +27974,216 @@
     no-op. Validation V3-EXQ-639 (credit loop exercised).
   location: docs/architecture/arc_063_candidate_rule_field.md
 
+- id: MECH-353
+  title: "Blocked-agency / control-failure affect stream (z_block): an integrated readout on the SD-029 agency comparator applied to the action-outcome channel. z_block rises when an intended action repeatedly fails to produce its forward-model-predicted outcome (MECH-112 z_goal supplies the expectation), the mismatch is attributed to an EXTERNAL constraint (not own motor error), AND goal/capacity-belief is RETAINED. It is a distinct affect stream from harm (SD-011: no noxious input required), from suffering (SD-019b/Q-036: OPPOSITE controllability pole -- capacity-retained drives ASSERT, capacity-collapsed drives WITHDRAW), from residue (MECH-056: action-prevented, not action-taken-at-cost), and from licit commitment-hold (MECH-090: externally-imposed block, not self-imposed gate)."
+  claim_type: mechanism_hypothesis
+  subject: affect.blocked_agency_control_failure_stream
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-06-05"
+  depends_on:
+    - SD-029    # agency comparator (the detector: residual = observed - E2-predicted action outcome)
+    - MECH-112  # structured latent goal / wanting (supplies the expected outcome)
+    - MECH-342  # maintenance-time decommit (the consumer reached when assertion fails)
+    - ARC-016   # commitment-threshold (prefrontal-analogue gate on assert -> decommit)
+    - MECH-320  # tonic vigor (the assert / escalate-effort behavioural pole)
+    - SD-011    # dual nociceptive harm streams (differentiated-from: z_block needs no noxious input)
+    - SD-019b   # suffering accumulator (differentiated-from: opposite controllability pole)
+  functional_restatement: >
+    Mechanism hypothesis. REE represents harm (SD-011), suffering (SD-019b,
+    the capacity-collapsed withdraw pole gated by Q-036 escapability), residue
+    (MECH-056), and licit self-imposed commitment-holds (MECH-090). It does NOT
+    represent the affect that arises when an intended, predicted-to-succeed
+    action is repeatedly BLOCKED while the goal and the agent's capacity-belief
+    are retained -- the energised "assert / restore" pole.
+
+    MECH-353 asserts a single derived signal z_block, layered on substrate REE
+    already has: (1) the detector is the SD-029 agency comparator applied to the
+    action-outcome / goal channel (intended effect predicted by the E2 forward
+    model, realised effect diverges); (2) the expectation is z_goal / wanting
+    (MECH-112); (3) the new computation is the readout plus two gates --
+    integrate the comparator mismatch over a window, fire only when the mismatch
+    is attributed to an EXTERNAL constraint (not own motor error), and gate on
+    RETAINED goal/capacity. Consumers: assert / escalate-effort (raise MECH-320
+    vigor, search an alternative action that restores the intended outcome) and,
+    if assertion fails across the window, DECOMMIT (MECH-342) gated by the
+    commitment-threshold (ARC-016). Withdrawal is NOT native to this stream; it
+    is reached only by hand-off to the suffering accumulator (SD-019b) when
+    capacity-belief collapses.
+
+    Falsifiable: in an environment that repeatedly blocks an intended,
+    predicted-to-succeed action while harm and goal-value are held constant, an
+    REE substrate with z_block enabled should produce an assert/persist response
+    (effort escalation / alternative-action search) that is behaviourally
+    distinct from the suffering withdraw signature, and z_block should dissociate
+    from z_harm_a under a matched controllability manipulation. If no such signal
+    is needed -- if blocked-action behaviour is fully explained by existing harm
+    + suffering + decommit machinery -- the claim is falsified.
+  notes: >
+    Registered 2026-06-05 from the blocked-agency lit-pull (chip task_64c2e558).
+    This is Stream A (V3-tractable, single-agent) of a two-stream split surfaced
+    by the verdict; Stream B (coercion / domination / injustice) is V4-social
+    (needs a model of an other-agent coercer; psychological reactance) and is
+    deferred, NOT registered here. Anger is the shared affective READOUT; the two
+    streams that feed it differ in antecedent and scope -- registering one
+    emotion-named "anger" primitive would repeat the SD-010 -> SD-011
+    philosophy-right / mechanism-wrong error (feedback_biology_before_formal_definitions).
+    The biology already shows the convergence: Panksepp's RAGE fires when SEEKING
+    is BLOCKED, which is frustrative non-reward. Affect-register row:
+    docs/architecture/affect_primitives.md (Extension Register, blocked_agency).
+  evidence_quality_note: |
+    Registered candidate 2026-06-05. Lit-pull anchor:
+    evidence/literature/targeted_review_blocked_agency_anger_stream/VERDICT.md
+    (5 entries, all supports). Anchors: Davis & Montag 2019 Front Neurosci
+    10.3389/fnins.2018.01025 (RAGE distinct primary-process system, 0.72);
+    Papini et al. 2024 J Neurosci 10.1523/JNEUROSCI.1021-24.2024 (frustrative
+    non-reward = expected-minus-obtained antecedent, no noxious input, 0.80);
+    Bertsch et al. 2020 Curr Psychiatry Rep 10.1007/s11920-020-01208-6
+    (reactive-aggression assert channel + prefrontal-gated inhibition; reactive
+    != proactive, 0.74); Carruthers 2012 Conscious Cogn 10.1016/j.concog.2010.08.005
+    (comparator model = the SD-029 detector, 0.66). NO experimental evidence yet.
+    v3_pending=true until the smallest-V3 blocked-action discriminative experiment
+    lands (env repeatedly blocks an intended predicted-to-succeed action, harm +
+    goal held constant; measure assert-vs-withdraw dissociation from z_harm_a under
+    matched controllability). Based on articles retrieved from PubMed.
+  location: evidence/literature/targeted_review_blocked_agency_anger_stream/VERDICT.md
+
+- id: MECH-354
+  title: "Effort/fatigue stop-recover homeostatic accumulator: a two-bound (hysteretic) leaky cost-evidence accumulator on the SD-012 homeostatic-drive side (substrate-hosted by the SD-048 interoceptive channel). F accumulates with effort / time-on-task and dissipates with rest; at the upper bound it emits STOP / disengage, recovering to a lower bound before re-engaging. Two time-constants: a fast within-task accumulator and a slow sleep-pressure (Process-S) variant whose recover phase is offline (SD-017 sleep). The in-task STOP feeds the MECH-342 release actuator as a new deficit input and the ARC-078 goal-disengagement consumer via a cost/benefit (non-aversive) channel; the recover / re-accumulation half lives on the SD-012 / SD-017 side. Distinct from suffering / learned-helplessness (SD-011 side): fatigue is controllability-independent, incentive-reversible, and -- decisively -- recovers with rest, which helplessness does not."
+  claim_type: mechanism_hypothesis
+  subject: affect.fatigue_stop_recover_homeostatic_accumulator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-06-05"
+  depends_on:
+    - SD-012    # homeostatic drive (home: fatigue is a second deficit variable alongside hunger)
+    - SD-048    # interoceptive noise dynamics (substrate host; its restatement names 'fatigue drift')
+    - MECH-342  # commit-maintenance release (the shared in-task STOP actuator; fatigue is a new deficit input)
+    - ARC-078   # goal-disengagement (cost/benefit consumer, reached from the non-aversive antecedent)
+    - SD-017    # sleep (offline recover phase for the slow Process-S variant)
+    - SD-011    # dual nociceptive harm streams (differentiated-from: fatigue is NOT a z_harm stream)
+  functional_restatement: >
+    Mechanism hypothesis. Fatigue / stop-recover and suffering / learned-
+    helplessness converge behaviourally on stop/disengage but from OPPOSITE
+    antecedents: "I am depleted" (homeostatic, controllability-independent,
+    accumulates from your own successful effort) vs "this is hopeless/painful"
+    (aversive, controllability-gated). The decisive dissociator is recovery:
+    fatigue is a stop-AND-recover signal with an offline reset; helplessness-
+    withdrawal is a stop with no rest-recovery (needs controllability experience
+    or pharmacological reversal). Modelling fatigue as a nociceptive harm stream
+    would import the wrong antecedent (aversion), the wrong gate (controllability),
+    and the wrong dynamics (no recovery) -- the DEV-NEED-002 conflation the split
+    is meant to cure.
+
+    MECH-354 asserts the smallest computational form (Meyniel 2013): a two-bound
+    leaky cost-evidence accumulator -- F += Se*effort during exertion, F -= Sr
+    during rest; emit STOP at the upper bound, recover to the lower bound before
+    re-engaging; Se/Sr/bound-gap incentive-modulated. Two variants share the form
+    but not the time-constant: a fast within-task accumulator and a slow sleep-
+    pressure (Process-S) accumulator whose recover phase is offline (SD-017). The
+    in-task STOP feeds MECH-342 as a new deficit input (alongside the R-c
+    execution-readiness deficit) and ARC-078 via a cost/benefit channel; the
+    recover half is on SD-012 / SD-017, NOT in MECH-342.
+
+    Falsifiable: an REE substrate with fatigue enabled should disengage from a
+    long effortful task at a rate that (a) rises with time-on-task independent of
+    harm/controllability, (b) is reduced by incentive (incentive-reversibility,
+    which a pure-depletion account mispredicts), and (c) RECOVERS after a
+    rest/offline phase -- a signature absent from the suffering/helplessness
+    withdraw pathway.
+  notes: >
+    Registered 2026-06-05 from the fatigue-vs-helplessness lit-pull (chip
+    task_93a719b6). Belongs with hunger/drive on the homeostatic family (SD-012),
+    NOT on the SD-011 suffering pathway. The release ACTUATOR is shared with the
+    suffering pole (MECH-342 in-task disengage) but the SIGNAL is distinct.
+    V3-minimal but GATED: build the transient state-fatigue accumulator behind the
+    in-flight cue-authority / z_goal work (containment-only ethos; over-persistence
+    prevention is real but not the current critical path). Multidimensional
+    (physical/mental/motivational, MFI-20) and trait/chronic fatigue shading toward
+    anhedonia are V4-completeness, deferred. Affect-register row:
+    docs/architecture/affect_primitives.md (Extension Register, effort/fatigue).
+  evidence_quality_note: |
+    Registered candidate 2026-06-05. Lit-pull anchor:
+    evidence/literature/targeted_review_fatigue_vs_helplessness_dissociation/VERDICT.md
+    (5 entries, all supports). Anchors: Meyniel et al. 2013 PNAS
+    10.1073/pnas.1211925110 (two-bound cost-evidence accumulator = the smallest
+    form); Boksem & Tops 2008 Brain Res Rev 10.1016/j.brainresrev.2008.07.001
+    (fatigue = cost/benefit recalibration, not depletion); Borbely et al. 2016
+    J Sleep Res 10.1111/jsr.12371 (Process-S homeostatic accumulator, adenosine,
+    offline reset); Muller & Apps 2019 Neuropsychologia
+    10.1016/j.neuropsychologia.2018.04.030 (state-vs-trait scoping); contrast
+    anchor Maier & Watkins 2005 Neurosci Biobehav Rev 10.1016/j.neubiorev.2005.03.021
+    (the suffering pole: uncontrollable-aversion, DRN 5-HT/CRF, no rest-recovery).
+    NO experimental evidence yet. v3_pending=true until a discriminative experiment
+    lands (time-on-task disengage independent of harm/controllability, incentive-
+    reversible, with a rest-recovery phase). Based on articles retrieved from PubMed.
+  location: evidence/literature/targeted_review_fatigue_vs_helplessness_dissociation/VERDICT.md
+
+- id: MECH-355
+  title: "Soothing/comfort autonomic state-gain modulator: a present-tense down-regulation of the ONGOING aversive/stress state (lowers the gain or speeds the recovery of the active trajectory), canonically socially gated (conspecific buffering; oxytocinergic + parasympathetic/HPA + prefrontal regulation). Proposed home is a modulator on MECH-219 (suffering accumulator) decay + SD-012 (drive) + SD-032e (pACC autonomic coupling). Distinct from relief (MECH-302: past-offset phasic reinforcer), from safety (MECH-303/304: future inhibitory predictor), and from wanting (MECH-112: appetite): soothing acts on the present stress trajectory via autonomic state-gain, not reinforcement, prediction, or appetite. V4-social (the canonical trigger is an other-agent, which V3 cannot represent); an optional V3-minimal non-social autonomic-recovery hook is noted but not built."
+  claim_type: mechanism_hypothesis
+  subject: affect.soothing_comfort_autonomic_state_gain_modulator
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: false
+  epistemic_category: substrate_conditional
+  claim_level: mechanistic
+  registered_utc: "2026-06-05"
+  depends_on:
+    - MECH-219  # suffering accumulator (the decay/gain target soothing modulates)
+    - SD-012    # homeostatic drive
+    - SD-032e   # pACC autonomic coupling (drive_level write-back layer)
+    - SD-011    # dual nociceptive harm streams (the ongoing stress state being down-regulated)
+  functional_restatement: >
+    Mechanism hypothesis (V4-social). Soothing/comfort is the third member of the
+    relief/safety/soothing triple and is dissociable from both: it acts on the
+    PRESENT stress trajectory (vs relief's past-offset, safety's future-prediction),
+    its substrate is oxytocin/parasympathetic/HPA (vs NAc/VTA for relief, cortico-
+    amygdalar for safety), and its computational role is a state-gain / recovery
+    modulator that lowers the magnitude or speeds the recovery of the active
+    aversive state -- not a reinforcer (relief), not a predictor (safety), not
+    appetite (MECH-112). The canonical trigger is a conspecific (social buffering),
+    which V3 cannot represent; the substrate is therefore conditional on the V4
+    social model (epistemic_category substrate_conditional -- promote/demote
+    suppressed until that substrate exists).
+
+    Proposed REE home: a modulator on MECH-219 (suffering accumulator) decay/gain
+    + SD-012 drive + SD-032e pACC autonomic coupling -- a soothing input LOWERS the
+    gain / SPEEDS the recovery of the active aversive trajectory, mechanistically a
+    modulator on these, not a new harm/reward channel. Do NOT fold into Relief
+    (MECH-302) or Safety (MECH-303/304), and NOT into MECH-112. An optional
+    V3-minimal non-social autonomic-recovery hook (parasympathetic down-regulation
+    of ongoing arousal) is noted but explicitly NOT on the V3 critical path.
+  notes: >
+    Registered 2026-06-05 from the relief/safety/soothing lit-pull (chip
+    task_3ab79018). This is the genuine UNREGISTERED gap that pull surfaced --
+    relief (MECH-302) and safety (MECH-303/304) were already registered; soothing
+    was not. V4-social primary scope. The exact update rule (gain-reduction vs
+    decay-acceleration vs setpoint-shift on MECH-219/SD-012) needs a design pass,
+    not more lit. Affect-register row: docs/architecture/affect_primitives.md
+    (Extension Register, soothing/comfort).
+  evidence_quality_note: |
+    Registered candidate 2026-06-05. Lit-pull anchor:
+    evidence/literature/targeted_review_affect_stream_relief_safety_soothing/verdict.md
+    (differentiation conf 0.82). Soothing-specific entries: Hostinar, Sullivan &
+    Gunnar 2014 Psychol Bull 10.1037/a0032671 (social buffering = dampened HPA in
+    the presence/assistance of a conspecific; oxytocinergic + prefrontal; supports
+    the differentiation, 0.78); Heinrichs et al. 2003 Biol Psychiatry
+    10.1016/S0006-3223(03)00465-7 (oxytocin x social support suppress cortisol +
+    subjective anxiety to acute stress; causal human anchor, 0.76). REE-mapping
+    fidelity is moderate-low (no V3 other-agent model, no HPA axis -- V4-bound,
+    analogical mapping); promote/demote suppressed via substrate_conditional. NO
+    experimental evidence; registration of the V4 substrate + the update rule is a
+    later design decision. Based on articles retrieved from PubMed.
+  location: evidence/literature/targeted_review_affect_stream_relief_safety_soothing/verdict.md
+
 - id: ARC-063
   title: "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
   claim_type: architectural_commitment

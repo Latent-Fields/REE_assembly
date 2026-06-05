@@ -3525,6 +3525,24 @@
     "title": "CandidateRule eligibility-trace credit (ARC-063 CREDIT face): each rule active when an action was taken leaves a decaying eligibility trace; the subsequent outcome/PE updates the rule's availability (raise on success, lower on exception), recency-weighted, with slow availability decay and retire-below-floor. The 'weight' half of mint-then-weight -- credit refines an existing rule's availability, it does not create rules.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-353": {
+    "status": "candidate",
+    "subject": "affect.blocked_agency_control_failure_stream",
+    "title": "Blocked-agency / control-failure affect stream (z_block): an integrated readout on the SD-029 agency comparator applied to the action-outcome channel. z_block rises when an intended action repeatedly fails to produce its forward-model-predicted outcome (MECH-112 z_goal supplies the expectation), the mismatch is attributed to an EXTERNAL constraint (not own motor error), AND goal/capacity-belief is RETAINED. It is a distinct affect stream from harm (SD-011: no noxious input required), from suffering (SD-019b/Q-036: OPPOSITE controllability pole -- capacity-retained drives ASSERT, capacity-collapsed drives WITHDRAW), from residue (MECH-056: action-prevented, not action-taken-at-cost), and from licit commitment-hold (MECH-090: externally-imposed block, not self-imposed gate).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-354": {
+    "status": "candidate",
+    "subject": "affect.fatigue_stop_recover_homeostatic_accumulator",
+    "title": "Effort/fatigue stop-recover homeostatic accumulator: a two-bound (hysteretic) leaky cost-evidence accumulator on the SD-012 homeostatic-drive side (substrate-hosted by the SD-048 interoceptive channel). F accumulates with effort / time-on-task and dissipates with rest; at the upper bound it emits STOP / disengage, recovering to a lower bound before re-engaging. Two time-constants: a fast within-task accumulator and a slow sleep-pressure (Process-S) variant whose recover phase is offline (SD-017 sleep). The in-task STOP feeds the MECH-342 release actuator as a new deficit input and the ARC-078 goal-disengagement consumer via a cost/benefit (non-aversive) channel; the recover / re-accumulation half lives on the SD-012 / SD-017 side. Distinct from suffering / learned-helplessness (SD-011 side): fatigue is controllability-independent, incentive-reversible, and -- decisively -- recovers with rest, which helplessness does not.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-355": {
+    "status": "candidate",
+    "subject": "affect.soothing_comfort_autonomic_state_gain_modulator",
+    "title": "Soothing/comfort autonomic state-gain modulator: a present-tense down-regulation of the ONGOING aversive/stress state (lowers the gain or speeds the recovery of the active trajectory), canonically socially gated (conspecific buffering; oxytocinergic + parasympathetic/HPA + prefrontal regulation). Proposed home is a modulator on MECH-219 (suffering accumulator) decay + SD-012 (drive) + SD-032e (pACC autonomic coupling). Distinct from relief (MECH-302: past-offset phasic reinforcer), from safety (MECH-303/304: future inhibitory predictor), and from wanting (MECH-112: appetite): soothing acts on the present stress trajectory via autonomic state-gain, not reinforcement, prediction, or appetite. V4-social (the canonical trigger is an other-agent, which V3 cannot represent); an optional V3-minimal non-social autonomic-recovery hook is noted but not built.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",

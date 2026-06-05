@@ -152,10 +152,20 @@ V4-social + optional V3-min autonomic-recovery hook on MECH-219/SD-012/SD-032e, 
 NOT-302/303/304/112), **Effort/fatigue stop-recover** (SD-012 side + SD-048 host, two-bound Meyniel
 accumulator, shares MECH-342 release actuator, own recover integrator, V3-minimal-gated, NOT SD-011),
 plus the existing **blocked_agency** (`z_block`, V3-candidate) and **coercion/injustice** (V4 stub).
-Each row carries its neighbour-differentiation. REMAINING gated `claims.yaml` registrations (governance
-follow-ups, NOT done): Soothing claim (V4, dep MECH-219+SD-012+SD-032e), Fatigue/stop-recover MECH
-(SD-012 side, + MECH-342 deficit-input wiring), and the `z_block` SD/MECH. Relief + Safety already
-have claims (MECH-302/303/304) -- no new claim needed, only the doc-sync now done.
+Each row carries its neighbour-differentiation.
+
+**Status update 2026-06-05 (claims minted):** the three previously-unbacked streams now have
+`claims.yaml` claims (all `candidate`, lit-grounded, mirroring the MECH-302 lit-pull precedent):
+**MECH-353** blocked_agency / control-failure (`z_block`; V3, `v3_pending`, dep SD-029 + MECH-112 +
+MECH-342 + ARC-016 + MECH-320, diff-from SD-011/SD-019b); **MECH-354** effort/fatigue stop-recover
+(V3-minimal, `v3_pending`, SD-012 side, dep SD-012 + SD-048 + MECH-342 + ARC-078 + SD-017, NOT SD-011);
+**MECH-355** soothing/comfort autonomic state-gain modulator (V4-social, `epistemic_category:
+substrate_conditional`, dep MECH-219 + SD-012 + SD-032e, NOT 302/303/304/112). Relief + Safety keep
+their existing claims (MECH-302 / MECH-303 / MECH-304). Coercion/domination/injustice (blocked-agency
+Stream B) remains an un-minted V4 stub (no claim) -- it needs the V4 other-agent substrate first.
+REMAINING (NOT done, gated): the V3 discriminative experiments for MECH-353 (blocked-action assert-vs-
+withdraw) and MECH-354 (time-on-task disengage with rest-recovery), and the V4 design pass for the
+MECH-355 update rule. claims.json rebuilt; validator clean.
 
 ## 8. Cross-references
 

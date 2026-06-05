@@ -171,10 +171,10 @@ claim (a follow-up governance decision, not done here).
 | Benefit / resource | `z_benefit` / `z_goal` | MECH-112 (wanting) | V4-deferred (full benefit register) |
 | **Relief** | offset/derivative of harm stream | **MECH-302** | V3 (registered claim) |
 | **Safety** | learned threat-absence predictor | **MECH-303** (contextual) + **MECH-304** (cue-specific) | V3 (registered claims) |
-| **Soothing / comfort** | autonomic state-gain modulator (proposed) | — (gated) | V4-social (+ optional V3-minimal hook) |
-| **Blocked agency (control-failure)** | `z_block` (new) | — (gated) | V3-candidate (lit-grounded) |
+| **Soothing / comfort** | autonomic state-gain modulator | **MECH-355** (candidate, V4-social) | V4-social (+ optional V3-minimal hook) |
+| **Blocked agency (control-failure)** | `z_block` (new) | **MECH-353** (candidate, V3) | V3-candidate (lit-grounded; pending experiment) |
 | **Coercion / domination / injustice** | (not yet specified) | — | V4-deferred (social; needs other-agent model) |
-| **Effort / fatigue (stop-recover)** | `drive_level` (SD-012) + SD-048 interoceptive | — (gated; SD-012 side) | V3-minimal, gated |
+| **Effort / fatigue (stop-recover)** | `drive_level` (SD-012) + SD-048 interoceptive | **MECH-354** (candidate, V3) | V3-minimal, gated |
 | Social harm | (not yet specified) | — | Research phase |
 
 Each stream is differentiated from its neighbours below. The differentiations honour
@@ -207,8 +207,8 @@ node. *Evidence:* `targeted_review_affect_stream_relief_safety_soothing/` (verdi
 
 | Field | Value |
 |-------|-------|
-| **REE signal** | proposed autonomic state-gain modulator (unregistered) |
-| **Status** | **gated** — no `claims.yaml` claim; V4-social primary scope |
+| **REE signal** | autonomic state-gain modulator (`MECH-355`) |
+| **Status** | **MECH-355** (candidate; V4-social, `substrate_conditional`) — registered 2026-06-05; V4 substrate + update rule are later design decisions |
 | **Character** | **Down-regulation of the ongoing stress response** (present-tense), canonically via a conspecific (social buffering) |
 | **Biological analogue** | oxytocinergic + parasympathetic/HPA + prefrontal regulation (Hostinar et al. 2014; Heinrichs et al. 2003) |
 
@@ -230,8 +230,8 @@ claim must depend on MECH-219 + SD-012 + SD-032e and be explicitly NOT-302/303/3
 
 | Field | Value |
 |-------|-------|
-| **REE signal** | `drive_level` (SD-012) + SD-048 interoceptive channel — a second homeostatic deficit alongside hunger |
-| **Status** | **gated** — no `claims.yaml` claim yet (candidate MECH on the SD-012 side is a follow-up); V3-minimal, build gated behind in-flight cue-authority/z_goal work |
+| **REE signal** | `drive_level` (SD-012) + SD-048 interoceptive channel — a second homeostatic deficit alongside hunger (`MECH-354`) |
+| **Status** | **MECH-354** (candidate, V3-minimal) — registered 2026-06-05; `v3_pending` until a discriminative experiment; build gated behind in-flight cue-authority/z_goal work |
 | **Character** | A **stop-AND-recover** signal: accumulates with effort/time-on-task, **recovers with rest/sleep** |
 | **Antecedent** | Cumulative **effort / time-on-task**, controllability-INDEPENDENT — accumulates from your own *successful* effort (Boksem & Tops 2008; Meyniel et al. 2013; Borbély et al. 2016) |
 | **Biological analogue** | interoceptive cost-accumulator (posterior insula) + ACC effort-valuation; adenosine/Process-S for the slow sleep-pressure variant |
@@ -262,8 +262,8 @@ it belongs on the SD-012 / SD-017 side. *Evidence:*
 
 | Field | Value |
 |-------|-------|
-| **REE signal** | `z_block` (blocked-agency / control-failure stream) |
-| **Status** | V3-candidate — lit-grounded 2026-06-05; **not yet a claims.yaml claim and not yet experimentally validated** |
+| **REE signal** | `z_block` (blocked-agency / control-failure stream; `MECH-353`) |
+| **Status** | **MECH-353** (candidate, V3) — registered 2026-06-05; lit-grounded, `v3_pending` until the discriminative experiment lands |
 | **Character** | Rises when an intended/expected action-outcome is **repeatedly blocked** while the goal and the agent's capacity-belief are retained |
 | **Antecedent** | A **negative disparity between expected and realised action-outcome** — an expectation/agency violation, **not** noxious input (frustrative non-reward; Papini et al. 2024) |
 | **Time constant** | Medium — integrates blocked attempts over a window; distinct from instantaneous harm |
