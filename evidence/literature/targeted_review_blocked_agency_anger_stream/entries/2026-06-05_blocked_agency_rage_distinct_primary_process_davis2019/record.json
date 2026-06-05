@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_blocked_agency_anger_stream",
+  "entry_id": "2026-06-05_blocked_agency_rage_distinct_primary_process_davis2019",
+  "timestamp_utc": "2026-06-05T19:50:20Z",
+  "claim_ids_tested": ["CANDIDATE-blocked-agency-stream"],
+  "source": {
+    "title": "Selected Principles of Pankseppian Affective Neuroscience",
+    "authors": ["Kenneth L. Davis", "Christian Montag"],
+    "year": 2019,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/fnins.2018.01025"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical articulation of the Pankseppian seven-system framework, in which RAGE/Anger is one of the genetically-conserved primary-process emotional systems, neuroanatomically and functionally dissociable from FEAR and PANIC/GRIEF. This is the biology-before-formal-definitions anchor for the verdict's core claim: at the most basic mammalian level the brain treats anger as its OWN command system with its own subcortical circuit (medial amygdala -> medial hypothalamus -> dorsal PAG, hierarchically organised), not a flavour of nociception or fear. Source is a high-quality review but secondary/theory-laden (ESB-evoked affect framework), and the mapping is to the DISTINCTNESS premise rather than to a numeric REE metric -- hence confidence held below 0.8.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses anger/blocked-agency into the harm register (SD-011) it contradicts the primary-process dissociation: RAGE is abolished by lesions at a DIFFERENT hierarchical locus (hypothalamus/PAG for attack) than the nociceptive medial pathway, and is evolutionarily a separate command system -- merging them repeats the SD-010->SD-011 philosophy-right/mechanism-wrong error.",
+    "RAGE (affective attack) is explicitly dissociated from SEEKING-driven 'quiet-bite' predatory behaviour; a model that conflates appetitive/instrumental pursuit with reactive anger would mis-assign the affect."
+  ],
+  "tags": ["candidate-blocked-agency-stream", "rage", "panksepp", "primary_process_affect", "anger", "affect_primitive_distinctness", "sd-011_differentiation"],
+  "mapping": {
+    "source_claim_statement": "RAGE/Anger is one of seven primary-process (genetically provided) emotional systems, with a distinct hierarchically-organised subcortical circuit (medial amygdala, medial hypothalamus, dorsal periaqueductal gray) that is dissociable from the FEAR and PANIC/GRIEF systems despite all three sharing negative valence.",
+    "ree_translation": "Grounds the verdict's biology-first premise that a boundary-violation/blocked-agency/anger signal is a candidate DISTINCT affect stream, not reducible to the harm register (SD-011) or a generic aversion. REE should treat anger as a separate affective READOUT with its own antecedent computation, registered as a new affect_primitives.md row rather than folded into z_harm_*.",
+    "mapping_caveat": "Panksepp's framework is grounded in electrical-brain-stimulation and cross-species lesion data and is theory-committed (affect = subcortical command system); it establishes that anger is biologically distinct but says little about the COMPUTATIONAL antecedent (expectation/agency violation) that REE needs -- that detail comes from the frustrative-non-reward and comparator anchors, not this one. REE has no PAG/hypothalamus homolog; the transfer is at the level of 'distinct affect class', not circuit import.",
+    "source_context": "Theoretical review of affective neuroscience; rodent/mammalian electrical-stimulation and lesion evidence for seven primary-process emotional systems."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "High-quality canonical review but secondary and framework-committed. mapping_fidelity good for the DISTINCTNESS premise (the load-bearing claim for verdict (a)) but does not deliver the computational antecedent. transfer_risk moderate-high: ESB/lesion rodent affect -> REE substrate with no subcortical homolog; the importable claim is the category boundary, not the circuit."
+  }
+}

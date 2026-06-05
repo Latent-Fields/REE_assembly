@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_614c_mech341_stratified_within_class_temperature_sweep
 
-Generated: `2026-06-05T19:48:58.563837Z`
+Generated: `2026-06-05T19:55:38.181573Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

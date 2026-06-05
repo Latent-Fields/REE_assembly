@@ -1,0 +1,19 @@
+# Frustrative non-reward: the expectation-violation antecedent (Papini et al. 2024)
+
+**Source:** Papini, M.R., Green, T.A., Mármol Contreras, Y., Torres, C., Ogawa, M. & Li, Z. (2024). Frustrative Nonreward: Behavior, Circuits, Neurochemistry, and Disorders. *Journal of Neuroscience*, 44(40):e1021242024. DOI [10.1523/JNEUROSCI.1021-24.2024](https://doi.org/10.1523/JNEUROSCI.1021-24.2024).
+
+## What the paper does
+
+This is an integrative review of the frustrative-non-reward (FNR) construct that Abram Amsel pioneered in the 1950s, brought up to date with circuit, neurochemical, and clinical data. FNR is the emotional/behavioural response to the omission or down-shift of an *expected* reward. The authors are explicit about the antecedent: "What made nonreward frustrating was the negative disparity between obtained and expected reward, whether in quantity or quality." FNR is "an emotional response with aversive motivational properties" comprising primary (unconditioned) and secondary (conditioned) frustration. The empirical workhorse is successive negative contrast (consummatory cSNC and operant oSNC), where an animal shifted from a rich to a lean reward behaves worse than one that only ever had the lean reward — the gap, not the absolute value, drives the response.
+
+## Findings relevant to the candidate stream
+
+Two findings are load-bearing for the verdict. First, **the antecedent is an expectation/agency violation, not noxious input**. No pain, no hazard, no tissue threat is needed — a merely-omitted reward produces the aversive-motivational state. This is what dissociates the candidate stream from the harm register (SD-011), whose antecedent is nociceptive contact. Second, **the response is energised, not collapsed**: FNR deactivates reward circuitry (OFC, ventral striatum, posterior cingulate) while *activating* midcingulo-insular regions, amygdala, thalamus and PAG, and the authors highlight a "Type-2" dopamine population that *increases* firing after unexpected non-reward, sustaining continued reward-seeking despite frustration. Clinically, aberrant FNR is the substrate of irritability — "elevated proneness to anger relative to peers" — across DMDD, ODD, intermittent explosive disorder, ADHD, ASD, bipolar, MDD and anxiety. So the same computation that drives normal persistence-after-blocking becomes pathological anger when dysregulated.
+
+## How it maps to REE
+
+This is the strongest anchor for the **V3-tractable core** of the candidate. REE already represents reward/goal expectation (z_goal, wanting — MECH-112) and already has an agency comparator (SD-029: residual = observed − predicted). A blocked-agency signal is the integral of "expected outcome minus achieved outcome" on the *action-outcome* channel — exactly FNR's expected-minus-obtained disparity, generalised from reward-omission to action-effect-omission. The retained-seeking finding is what grounds the verdict's key dissociation from the suffering accumulator (z_harm_a / SD-019b): blocked-expectation **with motivation intact** drives *assert / persist / escalate*, whereas the suffering pole (controllability-belief collapsed, Q-036) drives *withdraw / mode-switch*. REE currently encodes only the withdraw pole; FNR is the evidence that the assert pole is a real, separable signal.
+
+## Limitations and confidence
+
+The paradigms are rodent ingestive-reward contrast tasks; REE has no dopamine or habenula homolog and represents reward abstractly. The transfer is at the level of the antecedent computation (expected-minus-obtained) and the dynamics (aversive but motivated), not circuit or neurochemistry. There is also a faithful-but-broadening step: the literature's FNR is reward-omission, while REE's blocked-*agency* extends it to intended-action-effect omission — defensible (both are expectation violations) but worth flagging. I score this 0.80: near-ceiling source quality, high mapping fidelity for the antecedent, moderate transfer risk.

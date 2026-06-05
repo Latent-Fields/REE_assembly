@@ -1497,7 +1497,7 @@
       }
     },
     "ARC-025": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.65, lit_conf=0.701",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.649, lit_conf=0.701",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -1514,8 +1514,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.65,
-      "experimental_confidence_decoupled": 0.65,
+      "experimental_confidence": 0.649,
+      "experimental_confidence_decoupled": 0.649,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -5584,6 +5584,130 @@
         "literature": 5
       }
     },
+    "CANDIDATE-blocked-agency-stream": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.854",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 5,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:connectome_mechanistic_review": 2,
+        "lit:theoretical_review": 3
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020",
+      "latest_timestamp_utc": "2026-06-05T19:50:20Z",
+      "literature_confidence": 0.854,
+      "literature_confidence_parallel": 0.854,
+      "overall_confidence": 0.854,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-blocked-agency-stream",
+          "confidence": 0.66,
+          "confidence_rationale": "Supplies the DETECTION MECHANISM for the V3 proxy and ties it to REE's existing substrate. The comparator model holds that the sense of agency arises when (and only when) the comparator detects that predicted sensory feedback matches actual feedback; mismatch yields loss/attribution-elsewhere of agency. REE already instantiates exactly this form in SD-029 (residual = observed - predicted action outcome). A blocked-agency signal is the sustained/integrated comparator MISMATCH on the action-outcome channel attributed to external constraint. The paper genuinely supports SD-029's comparator role, so SD-029 is co-tagged. Confidence held at 0.66: it is a theoretical/philosophy paper defending the comparator account (vs Synofzik's multifactorial weighting), focused on schizophrenic alien-control rather than blocked action per se, so the mapping is by mechanism-analogy.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_blocked_agency_anger_stream",
+          "failure_signatures": [
+            "The comparator yields a binary-ish agency/no-agency readout; a blocked-agency AFFECT signal additionally requires (a) attributing the mismatch to an EXTERNAL constraint rather than own motor error, and (b) gating on RETAINED goal/capacity -- a bare comparator mismatch is necessary but not sufficient, so REE must add the attribution + capacity gate on top of SD-029.",
+            "Synofzik et al.'s multifactorial-weighting critique (that actual sensory consequences are not always needed for the sense of agency) is a live alternative; if agency in REE is sometimes inferred from intention/context rather than realised-outcome comparison, a pure comparator-mismatch detector would miss or misfire on those cases."
+          ],
+          "run_id": "2026-06-05_blocked_agency_comparator_sense_of_agency_carruthers2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-05T19:50:20Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-blocked-agency-stream",
+          "confidence": 0.8,
+          "confidence_rationale": "The single strongest anchor for the V3-tractable core of the candidate stream. The Amsel-lineage frustrative-non-reward (FNR) construct is defined by the NEGATIVE DISPARITY BETWEEN OBTAINED AND EXPECTED reward -- an expectation/agency-violation antecedent, NOT noxious input -- and it carries 'aversive motivational properties' with a primary (unconditioned) component, and drives irritability/anger/aggression. That is precisely the smallest computational form the verdict proposes: a blocked-expected-outcome signal distinct from harm, with retained motivation. High source_quality (J Neurosci integrative review); mapping_fidelity high because FNR's antecedent maps almost one-to-one onto REE's z_goal/wanting-vs-realised-outcome discrepancy; transfer_risk moderate (rodent successive-negative-contrast paradigms -> REE).",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_blocked_agency_anger_stream",
+          "failure_signatures": [
+            "FNR is generated with ZERO noxious input -- a merely-omitted or down-shifted reward -- so any REE model that requires z_harm_s/z_harm_un activation to produce a blocked-agency signal contradicts the construct; the antecedent is expectation-violation, not nociception.",
+            "FNR is dissociable from the suffering/helplessness pole: it engages reward-circuit deactivation (OFC/ventral striatum/PCC) plus midcingulo-insular/amygdala/PAG ACTIVATION with retained reward-seeking (Type-2 dopamine neurons sustain seeking after non-reward) -- a model that routes blocked-expected-reward straight into withdrawal/shutdown mis-assigns the energised assert pole."
+          ],
+          "run_id": "2026-06-05_blocked_agency_frustrative_nonreward_expectation_violation_papini2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-05T19:50:20Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-blocked-agency-stream",
+          "confidence": 0.62,
+          "confidence_rationale": "Anchors the V4-SOCIAL scope boundary and supplies the verdict's cleanest dissociation. Psychological reactance is 'an unpleasant motivational arousal that emerges when people experience a threat to or loss of their free behaviors,' driving restoration of the threatened freedom; it carries anger/hostility, and crucially has 'energizing and behavior-directing properties, distinguishing reactance from learned helplessness by maintaining the individual's sense of capacity to alter their situation.' That single sentence is the controllability-axis dissociation the verdict rests on: blocked-agency-with-capacity-retained (reactance/assert) is the OPPOSITE pole to suffering/helplessness (withdraw). Human social-psychology review, explicitly V4 (needs an other-agent/source of restriction), so transfer_risk is high and confidence is held at 0.62.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_blocked_agency_anger_stream",
+          "failure_signatures": [
+            "Reactance is explicitly NOT learned helplessness: it preserves the sense of capacity to alter the situation and energizes freedom-restoration. A REE model that routes autonomy-threat / blocked-agency into the suffering accumulator (capacity-collapse, withdraw) inverts the phenomenon.",
+            "Reactance requires a threatened FREEDOM and (typically) an agent/source imposing the restriction; the four restoration strategies (direct, by-implication, aggression-at-source, subjective reappraisal) are SOCIAL/other-agent consumers -- importing them into a single-agent V3 substrate that has no model of a coercing other would be premature (V4-scope)."
+          ],
+          "run_id": "2026-06-05_blocked_agency_psychological_reactance_autonomy_threat_steindl2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-05T19:50:20Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-blocked-agency-stream",
+          "confidence": 0.72,
+          "confidence_rationale": "Canonical articulation of the Pankseppian seven-system framework, in which RAGE/Anger is one of the genetically-conserved primary-process emotional systems, neuroanatomically and functionally dissociable from FEAR and PANIC/GRIEF. This is the biology-before-formal-definitions anchor for the verdict's core claim: at the most basic mammalian level the brain treats anger as its OWN command system with its own subcortical circuit (medial amygdala -> medial hypothalamus -> dorsal PAG, hierarchically organised), not a flavour of nociception or fear. Source is a high-quality review but secondary/theory-laden (ESB-evoked affect framework), and the mapping is to the DISTINCTNESS premise rather than to a numeric REE metric -- hence confidence held below 0.8.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_blocked_agency_anger_stream",
+          "failure_signatures": [
+            "If REE collapses anger/blocked-agency into the harm register (SD-011) it contradicts the primary-process dissociation: RAGE is abolished by lesions at a DIFFERENT hierarchical locus (hypothalamus/PAG for attack) than the nociceptive medial pathway, and is evolutionarily a separate command system -- merging them repeats the SD-010->SD-011 philosophy-right/mechanism-wrong error.",
+            "RAGE (affective attack) is explicitly dissociated from SEEKING-driven 'quiet-bite' predatory behaviour; a model that conflates appetitive/instrumental pursuit with reactive anger would mis-assign the affect."
+          ],
+          "run_id": "2026-06-05_blocked_agency_rage_distinct_primary_process_davis2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-05T19:50:20Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-blocked-agency-stream",
+          "confidence": 0.74,
+          "confidence_rationale": "Anchors the CONSUMER and REGULATION side of the candidate stream. Reactive aggression is 'a response to social threat, provocation, or frustration, strongly associated with anger,' instantiated by the amygdala-hypothalamus-PAG acute-threat circuit and INHIBITED by prefrontal control (vmPFC/vlPFC/dlPFC); it is categorically distinct from proactive/instrumental aggression (planned, goal-directed, low-arousal). That maps onto the verdict's consumer set: the blocked-agency signal drives an assert/escalate response that must be gated by a regulatory channel (REE commitment-threshold / decommit, MECH-342), and the reactive-vs-proactive split warns REE not to conflate frustration-driven assertion with planned goal pursuit. Human clinical/review source, good quality; mapping is to the consumer architecture, hence 0.74.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_blocked_agency_anger_stream",
+          "failure_signatures": [
+            "Reactive aggression (frustration/threat-triggered, high-arousal, anger) is doubly dissociated from proactive/instrumental aggression (planned, low-arousal, goal-directed); a REE model that routes a blocked-agency signal through the ordinary goal-pursuit/E3 trajectory machinery without a distinct high-arousal assert channel would mis-model the reactive response.",
+            "Reactive aggression is normally held in check by prefrontal inhibition (reduced vmPFC volume -> more physical aggression); a blocked-agency consumer with no regulatory/decommit gate would produce unchecked escalation -- the pathological (intermittent-explosive) phenotype, not adaptive assertion."
+          ],
+          "run_id": "2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-05T19:50:20Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
+      }
+    },
     "DEV-NEED-009": {
       "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.887",
       "direction_counts": {
@@ -6320,7 +6444,7 @@
       }
     },
     "INV-029": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.305, lit_conf=0.786",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.304, lit_conf=0.786",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -6336,8 +6460,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.305,
-      "experimental_confidence_decoupled": 0.305,
+      "experimental_confidence": 0.304,
+      "experimental_confidence_decoupled": 0.304,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -6350,7 +6474,7 @@
       "latest_timestamp_utc": "2026-03-29T14:55:00Z",
       "literature_confidence": 0.786,
       "literature_confidence_parallel": 0.786,
-      "overall_confidence": 0.666,
+      "overall_confidence": 0.665,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -35440,19 +35564,19 @@
       }
     },
     "SD-029": {
-      "confidence_rationale": "exp=5 entry(s), lit=11 entry(s), exp_conf=0.633, lit_conf=0.853",
+      "confidence_rationale": "exp=5 entry(s), lit=12 entry(s), exp_conf=0.633, lit_conf=0.856",
       "direction_counts": {
         "mixed": 4,
-        "supports": 9,
+        "supports": 10,
         "unknown": 0,
         "weakens": 3
       },
-      "entries_total": 16,
+      "entries_total": 17,
       "evidence_class_counts": {
         "exp:simulation": 5,
         "lit:behavioral_human": 4,
         "lit:connectome_mechanistic_review": 2,
-        "lit:theoretical_review": 5
+        "lit:theoretical_review": 6
       },
       "evidence_level_counts": {
         "C": 5
@@ -35468,31 +35592,13 @@
         "unknown": 0,
         "weakens": 3
       },
-      "latest_run_id": "2026-05-17_sd_029_pain_precision_signal_seymour2019",
-      "latest_timestamp_utc": "2026-05-17T11:40:08Z",
-      "literature_confidence": 0.853,
-      "literature_confidence_parallel": 0.853,
-      "overall_confidence": 0.743,
+      "latest_run_id": "2026-06-05_blocked_agency_comparator_sense_of_agency_carruthers2012",
+      "latest_timestamp_utc": "2026-06-05T19:50:20Z",
+      "literature_confidence": 0.856,
+      "literature_confidence_parallel": 0.856,
+      "overall_confidence": 0.745,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-029",
-          "confidence": 0.78,
-          "confidence_rationale": "This is the canonical primate-substrate review of corollary discharge (CD) -- the efference-copy infrastructure that any forward-model comparator architecture (SD-029, MECH-256, and the SD-003-prereq substrate work generally) presupposes. Crapse and Sommer survey single-unit, microstimulation, and inactivation evidence across saccadic, vocalisation, locomotor, and reach systems and arrive at the unifying claim: copies of motor commands are routed to sensory and parietal structures so that predicted sensory consequences can be subtracted from incoming reafference. That is precisely the architectural shape SD-003-prereq has to instantiate -- an efference-copy pathway feeding a forward model whose output is differenced against the realised stream. Confidence is high on source quality (Curr Opin Neurobiol, NIH-funded, widely cited) and moderate-to-high on mapping fidelity: the paper directly evidences the substrate (a_actual must be distributed to the forward model alongside the realised stream), but it stops short of formalising the comparator residual the way MECH-256 does, and it makes no architectural commitment about whether the forward model is single-pass or two-pass.",
-          "evidence_class": "lit:connectome_mechanistic_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_sd_003",
-          "failure_signatures": [
-            "When CD pathways are silenced (e.g. inactivation of the MD thalamic relay carrying the saccadic CD), monkeys lose the ability to compensate for self-generated sensory change -- they treat reafferent shifts as if they were externally caused. This is the substrate-level instantiation of the SD-003 failure mode: without an efference-copy input, the comparator cannot distinguish self-caused from world-caused change.",
-            "CD signals are distributed across many circuits with different latencies and modality profiles; a single forward model is unlikely to suffice across streams. This supports MECH-256's stream-agnostic framing (one comparator per reafferent stream) over a monolithic E2 comparator.",
-            "The review notes that CD does not always equate to a clean efference copy -- some signals are pre-motor predictions, others are post-motor. A comparator architecture that assumes a_actual is the only input may miss intention-level prediction signals that the brain actually uses."
-          ],
-          "run_id": "2026-04-27_sd_003_prereq_corollary_discharge_crapse2008",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-28T02:31:07Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-029",
@@ -35559,12 +35665,29 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-17T11:40:08Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-029",
+          "confidence": 0.66,
+          "confidence_rationale": "Supplies the DETECTION MECHANISM for the V3 proxy and ties it to REE's existing substrate. The comparator model holds that the sense of agency arises when (and only when) the comparator detects that predicted sensory feedback matches actual feedback; mismatch yields loss/attribution-elsewhere of agency. REE already instantiates exactly this form in SD-029 (residual = observed - predicted action outcome). A blocked-agency signal is the sustained/integrated comparator MISMATCH on the action-outcome channel attributed to external constraint. The paper genuinely supports SD-029's comparator role, so SD-029 is co-tagged. Confidence held at 0.66: it is a theoretical/philosophy paper defending the comparator account (vs Synofzik's multifactorial weighting), focused on schizophrenic alien-control rather than blocked action per se, so the mapping is by mechanism-analogy.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_blocked_agency_anger_stream",
+          "failure_signatures": [
+            "The comparator yields a binary-ish agency/no-agency readout; a blocked-agency AFFECT signal additionally requires (a) attributing the mismatch to an EXTERNAL constraint rather than own motor error, and (b) gating on RETAINED goal/capacity -- a bare comparator mismatch is necessary but not sufficient, so REE must add the attribution + capacity gate on top of SD-029.",
+            "Synofzik et al.'s multifactorial-weighting critique (that actual sensory consequences are not always needed for the sense of agency) is a live alternative; if agency in REE is sometimes inferred from intention/context rather than realised-outcome comparison, a pure comparator-mismatch detector would miss or misfire on those cases."
+          ],
+          "run_id": "2026-06-05_blocked_agency_comparator_sense_of_agency_carruthers2012",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-05T19:50:20Z"
         }
       ],
-      "runs_total": 16,
+      "runs_total": 17,
       "source_counts": {
         "experimental": 5,
-        "literature": 11
+        "literature": 12
       }
     },
     "SD-032a": {
@@ -105414,6 +105537,108 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-blocked-agency-stream",
+      "confidence": 0.66,
+      "confidence_rationale": "Supplies the DETECTION MECHANISM for the V3 proxy and ties it to REE's existing substrate. The comparator model holds that the sense of agency arises when (and only when) the comparator detects that predicted sensory feedback matches actual feedback; mismatch yields loss/attribution-elsewhere of agency. REE already instantiates exactly this form in SD-029 (residual = observed - predicted action outcome). A blocked-agency signal is the sustained/integrated comparator MISMATCH on the action-outcome channel attributed to external constraint. The paper genuinely supports SD-029's comparator role, so SD-029 is co-tagged. Confidence held at 0.66: it is a theoretical/philosophy paper defending the comparator account (vs Synofzik's multifactorial weighting), focused on schizophrenic alien-control rather than blocked action per se, so the mapping is by mechanism-analogy.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_blocked_agency_anger_stream",
+      "failure_signatures": [
+        "The comparator yields a binary-ish agency/no-agency readout; a blocked-agency AFFECT signal additionally requires (a) attributing the mismatch to an EXTERNAL constraint rather than own motor error, and (b) gating on RETAINED goal/capacity -- a bare comparator mismatch is necessary but not sufficient, so REE must add the attribution + capacity gate on top of SD-029.",
+        "Synofzik et al.'s multifactorial-weighting critique (that actual sensory consequences are not always needed for the sense of agency) is a live alternative; if agency in REE is sometimes inferred from intention/context rather than realised-outcome comparison, a pure comparator-mismatch detector would miss or misfire on those cases."
+      ],
+      "run_id": "2026-06-05_blocked_agency_comparator_sense_of_agency_carruthers2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-05T19:50:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-blocked-agency-stream",
+      "confidence": 0.8,
+      "confidence_rationale": "The single strongest anchor for the V3-tractable core of the candidate stream. The Amsel-lineage frustrative-non-reward (FNR) construct is defined by the NEGATIVE DISPARITY BETWEEN OBTAINED AND EXPECTED reward -- an expectation/agency-violation antecedent, NOT noxious input -- and it carries 'aversive motivational properties' with a primary (unconditioned) component, and drives irritability/anger/aggression. That is precisely the smallest computational form the verdict proposes: a blocked-expected-outcome signal distinct from harm, with retained motivation. High source_quality (J Neurosci integrative review); mapping_fidelity high because FNR's antecedent maps almost one-to-one onto REE's z_goal/wanting-vs-realised-outcome discrepancy; transfer_risk moderate (rodent successive-negative-contrast paradigms -> REE).",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_blocked_agency_anger_stream",
+      "failure_signatures": [
+        "FNR is generated with ZERO noxious input -- a merely-omitted or down-shifted reward -- so any REE model that requires z_harm_s/z_harm_un activation to produce a blocked-agency signal contradicts the construct; the antecedent is expectation-violation, not nociception.",
+        "FNR is dissociable from the suffering/helplessness pole: it engages reward-circuit deactivation (OFC/ventral striatum/PCC) plus midcingulo-insular/amygdala/PAG ACTIVATION with retained reward-seeking (Type-2 dopamine neurons sustain seeking after non-reward) -- a model that routes blocked-expected-reward straight into withdrawal/shutdown mis-assigns the energised assert pole."
+      ],
+      "run_id": "2026-06-05_blocked_agency_frustrative_nonreward_expectation_violation_papini2024",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-05T19:50:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-blocked-agency-stream",
+      "confidence": 0.62,
+      "confidence_rationale": "Anchors the V4-SOCIAL scope boundary and supplies the verdict's cleanest dissociation. Psychological reactance is 'an unpleasant motivational arousal that emerges when people experience a threat to or loss of their free behaviors,' driving restoration of the threatened freedom; it carries anger/hostility, and crucially has 'energizing and behavior-directing properties, distinguishing reactance from learned helplessness by maintaining the individual's sense of capacity to alter their situation.' That single sentence is the controllability-axis dissociation the verdict rests on: blocked-agency-with-capacity-retained (reactance/assert) is the OPPOSITE pole to suffering/helplessness (withdraw). Human social-psychology review, explicitly V4 (needs an other-agent/source of restriction), so transfer_risk is high and confidence is held at 0.62.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_blocked_agency_anger_stream",
+      "failure_signatures": [
+        "Reactance is explicitly NOT learned helplessness: it preserves the sense of capacity to alter the situation and energizes freedom-restoration. A REE model that routes autonomy-threat / blocked-agency into the suffering accumulator (capacity-collapse, withdraw) inverts the phenomenon.",
+        "Reactance requires a threatened FREEDOM and (typically) an agent/source imposing the restriction; the four restoration strategies (direct, by-implication, aggression-at-source, subjective reappraisal) are SOCIAL/other-agent consumers -- importing them into a single-agent V3 substrate that has no model of a coercing other would be premature (V4-scope)."
+      ],
+      "run_id": "2026-06-05_blocked_agency_psychological_reactance_autonomy_threat_steindl2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-05T19:50:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-blocked-agency-stream",
+      "confidence": 0.72,
+      "confidence_rationale": "Canonical articulation of the Pankseppian seven-system framework, in which RAGE/Anger is one of the genetically-conserved primary-process emotional systems, neuroanatomically and functionally dissociable from FEAR and PANIC/GRIEF. This is the biology-before-formal-definitions anchor for the verdict's core claim: at the most basic mammalian level the brain treats anger as its OWN command system with its own subcortical circuit (medial amygdala -> medial hypothalamus -> dorsal PAG, hierarchically organised), not a flavour of nociception or fear. Source is a high-quality review but secondary/theory-laden (ESB-evoked affect framework), and the mapping is to the DISTINCTNESS premise rather than to a numeric REE metric -- hence confidence held below 0.8.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_blocked_agency_anger_stream",
+      "failure_signatures": [
+        "If REE collapses anger/blocked-agency into the harm register (SD-011) it contradicts the primary-process dissociation: RAGE is abolished by lesions at a DIFFERENT hierarchical locus (hypothalamus/PAG for attack) than the nociceptive medial pathway, and is evolutionarily a separate command system -- merging them repeats the SD-010->SD-011 philosophy-right/mechanism-wrong error.",
+        "RAGE (affective attack) is explicitly dissociated from SEEKING-driven 'quiet-bite' predatory behaviour; a model that conflates appetitive/instrumental pursuit with reactive anger would mis-assign the affect."
+      ],
+      "run_id": "2026-06-05_blocked_agency_rage_distinct_primary_process_davis2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-05T19:50:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-blocked-agency-stream",
+      "confidence": 0.74,
+      "confidence_rationale": "Anchors the CONSUMER and REGULATION side of the candidate stream. Reactive aggression is 'a response to social threat, provocation, or frustration, strongly associated with anger,' instantiated by the amygdala-hypothalamus-PAG acute-threat circuit and INHIBITED by prefrontal control (vmPFC/vlPFC/dlPFC); it is categorically distinct from proactive/instrumental aggression (planned, goal-directed, low-arousal). That maps onto the verdict's consumer set: the blocked-agency signal drives an assert/escalate response that must be gated by a regulatory channel (REE commitment-threshold / decommit, MECH-342), and the reactive-vs-proactive split warns REE not to conflate frustration-driven assertion with planned goal pursuit. Human clinical/review source, good quality; mapping is to the consumer architecture, hence 0.74.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_blocked_agency_anger_stream",
+      "failure_signatures": [
+        "Reactive aggression (frustration/threat-triggered, high-arousal, anger) is doubly dissociated from proactive/instrumental aggression (planned, low-arousal, goal-directed); a REE model that routes a blocked-agency signal through the ordinary goal-pursuit/E3 trajectory machinery without a distinct high-arousal assert channel would mis-model the reactive response.",
+        "Reactive aggression is normally held in check by prefrontal inhibition (reduced vmPFC volume -> more physical aggression); a blocked-agency consumer with no regulatory/decommit gate would produce unchecked escalation -- the pathological (intermittent-explosive) phenotype, not adaptive assertion."
+      ],
+      "run_id": "2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-05T19:50:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-029",
+      "confidence": 0.66,
+      "confidence_rationale": "Supplies the DETECTION MECHANISM for the V3 proxy and ties it to REE's existing substrate. The comparator model holds that the sense of agency arises when (and only when) the comparator detects that predicted sensory feedback matches actual feedback; mismatch yields loss/attribution-elsewhere of agency. REE already instantiates exactly this form in SD-029 (residual = observed - predicted action outcome). A blocked-agency signal is the sustained/integrated comparator MISMATCH on the action-outcome channel attributed to external constraint. The paper genuinely supports SD-029's comparator role, so SD-029 is co-tagged. Confidence held at 0.66: it is a theoretical/philosophy paper defending the comparator account (vs Synofzik's multifactorial weighting), focused on schizophrenic alien-control rather than blocked action per se, so the mapping is by mechanism-analogy.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_blocked_agency_anger_stream",
+      "failure_signatures": [
+        "The comparator yields a binary-ish agency/no-agency readout; a blocked-agency AFFECT signal additionally requires (a) attributing the mismatch to an EXTERNAL constraint rather than own motor error, and (b) gating on RETAINED goal/capacity -- a bare comparator mismatch is necessary but not sufficient, so REE must add the attribution + capacity gate on top of SD-029.",
+        "Synofzik et al.'s multifactorial-weighting critique (that actual sensory consequences are not always needed for the sense of agency) is a live alternative; if agency in REE is sometimes inferred from intention/context rather than realised-outcome comparison, a pure comparator-mismatch detector would miss or misfire on those cases."
+      ],
+      "run_id": "2026-06-05_blocked_agency_comparator_sense_of_agency_carruthers2012",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-05T19:50:20Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -105447,7 +105672,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-05T19:48:58.563837Z",
+  "generated_at_utc": "2026-06-05T19:55:38.181573Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
@@ -106038,6 +106263,13 @@
       "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-06-05T12:58:02Z"
+    },
+    {
+      "experiment_type": "targeted_review_affect_stream_relief_safety_soothing",
+      "run_id": "2026-06-05_soothing_oxytocin_social_support_cortisol_heinrichs2003",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-05T19:45:43Z"
     },
     {
       "experiment_type": "targeted_review_affect_stream_relief_safety_soothing",

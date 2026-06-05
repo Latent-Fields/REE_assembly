@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-05T19:50:50.354470Z`
+Generated: `2026-06-05T19:55:38.181573Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -32,6 +32,7 @@ Generated: `2026-06-05T19:50:50.354470Z`
 | `targeted_review_arc_068_opportunity_cost` | [`2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/record.json) | 6 | [`summary`](targeted_review_arc_068_opportunity_cost/entries/2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007/summary.md) |
 | `targeted_review_arc_070_decomposition` | [`2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/record.json) | 7 | [`summary`](targeted_review_arc_070_decomposition/entries/2026-05-10_arc_070_rostro_caudal_hierarchy_badre_desposito_2009/summary.md) |
 | `targeted_review_arc_071_composition` | [`2026-05-10_arc_071_visuomotor_chunk_size_sakai2003`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/record.json) | 9 | [`summary`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/summary.md) |
+| `targeted_review_blocked_agency_anger_stream` | [`2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020`](targeted_review_blocked_agency_anger_stream/entries/2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020/record.json) | 5 | [`summary`](targeted_review_blocked_agency_anger_stream/entries/2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020/summary.md) |
 | `targeted_review_candidate_rule_field_representation` | [`2026-06-04_arc_063_subspace_partitioning_weber2023`](targeted_review_candidate_rule_field_representation/entries/2026-06-04_arc_063_subspace_partitioning_weber2023/record.json) | 3 | [`summary`](targeted_review_candidate_rule_field_representation/entries/2026-06-04_arc_063_subspace_partitioning_weber2023/summary.md) |
 | `targeted_review_candidate_support_preserving_cem` | [`2026-05-14_arc_065_information_theoretic_mpc_williams2017`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/record.json) | 5 | [`summary`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |

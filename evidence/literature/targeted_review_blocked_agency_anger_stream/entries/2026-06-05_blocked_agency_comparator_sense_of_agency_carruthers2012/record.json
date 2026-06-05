@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_blocked_agency_anger_stream",
+  "entry_id": "2026-06-05_blocked_agency_comparator_sense_of_agency_carruthers2012",
+  "timestamp_utc": "2026-06-05T19:50:20Z",
+  "claim_ids_tested": ["CANDIDATE-blocked-agency-stream", "SD-029"],
+  "source": {
+    "title": "The case for the comparator model as an explanation of the sense of agency and its breakdowns",
+    "authors": ["Glenn Carruthers"],
+    "year": 2012,
+    "venue": "Consciousness and Cognition",
+    "doi": "10.1016/j.concog.2010.08.005"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Supplies the DETECTION MECHANISM for the V3 proxy and ties it to REE's existing substrate. The comparator model holds that the sense of agency arises when (and only when) the comparator detects that predicted sensory feedback matches actual feedback; mismatch yields loss/attribution-elsewhere of agency. REE already instantiates exactly this form in SD-029 (residual = observed - predicted action outcome). A blocked-agency signal is the sustained/integrated comparator MISMATCH on the action-outcome channel attributed to external constraint. The paper genuinely supports SD-029's comparator role, so SD-029 is co-tagged. Confidence held at 0.66: it is a theoretical/philosophy paper defending the comparator account (vs Synofzik's multifactorial weighting), focused on schizophrenic alien-control rather than blocked action per se, so the mapping is by mechanism-analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The comparator yields a binary-ish agency/no-agency readout; a blocked-agency AFFECT signal additionally requires (a) attributing the mismatch to an EXTERNAL constraint rather than own motor error, and (b) gating on RETAINED goal/capacity -- a bare comparator mismatch is necessary but not sufficient, so REE must add the attribution + capacity gate on top of SD-029.",
+    "Synofzik et al.'s multifactorial-weighting critique (that actual sensory consequences are not always needed for the sense of agency) is a live alternative; if agency in REE is sometimes inferred from intention/context rather than realised-outcome comparison, a pure comparator-mismatch detector would miss or misfire on those cases."
+  ],
+  "tags": ["candidate-blocked-agency-stream", "sd-029", "comparator_model", "sense_of_agency", "efference_copy", "agency_violation", "v3_proxy_mechanism"],
+  "mapping": {
+    "source_claim_statement": "On the comparator model, the sense of agency arises when and only when a comparator detects that predicted sensory feedback (from an efference copy / forward model) is identical to actual sensory feedback; mismatch produces absence of agency or attribution to an external agent, and the model explains agency breakdowns (e.g. delusions of alien control).",
+    "ree_translation": "Identifies the substrate REE already has for DETECTING blocked agency: SD-029's comparator (residual = observed - E2-predicted action outcome). A blocked-agency signal is the integrated comparator mismatch on the action-outcome channel -- intended effect predicted, realised effect repeatedly diverges -- attributed to external constraint while goal/capacity is retained. So the V3 proxy is not a new sensor; it is an affective READOUT layered on the existing comparator plus an attribution + capacity gate.",
+    "mapping_caveat": "Theoretical/philosophy paper defending the comparator account against a multifactorial-weighting rival; its empirical reference is schizophrenic alien-control, not environmentally-blocked action. The mapping is mechanism-by-analogy (same comparator form), and the model itself is contested -- REE should treat comparator-mismatch as the necessary detection primitive but not assume agency in REE reduces to it.",
+    "source_context": "Philosophy of cognitive science; comparison of the Frith-lineage comparator model with Synofzik et al.'s multifactorial weighting model, using healthy and delusion-of-control self-attribution data."
+  },
+  "confidence_components": {
+    "source_quality": 0.66,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate (single-author theoretical paper, but well-cited and rigorous). mapping_fidelity good: the comparator form maps almost exactly onto SD-029, which is the load-bearing point (REE already has the detection substrate). transfer_risk moderate: the model is contested and its empirical anchor is alien-control delusion, not blocked action -- the comparator is necessary-not-sufficient for the affect."
+  }
+}

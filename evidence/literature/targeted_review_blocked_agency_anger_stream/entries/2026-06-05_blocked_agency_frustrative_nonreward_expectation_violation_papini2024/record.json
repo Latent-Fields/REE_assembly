@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_blocked_agency_anger_stream",
+  "entry_id": "2026-06-05_blocked_agency_frustrative_nonreward_expectation_violation_papini2024",
+  "timestamp_utc": "2026-06-05T19:50:20Z",
+  "claim_ids_tested": ["CANDIDATE-blocked-agency-stream"],
+  "source": {
+    "title": "Frustrative Nonreward: Behavior, Circuits, Neurochemistry, and Disorders",
+    "authors": ["Mauricio R. Papini", "Thomas A. Green", "Yndira Marmol Contreras", "Carmen Torres", "Masashi Ogawa", "Zhicheng Li"],
+    "year": 2024,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1021-24.2024"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "The single strongest anchor for the V3-tractable core of the candidate stream. The Amsel-lineage frustrative-non-reward (FNR) construct is defined by the NEGATIVE DISPARITY BETWEEN OBTAINED AND EXPECTED reward -- an expectation/agency-violation antecedent, NOT noxious input -- and it carries 'aversive motivational properties' with a primary (unconditioned) component, and drives irritability/anger/aggression. That is precisely the smallest computational form the verdict proposes: a blocked-expected-outcome signal distinct from harm, with retained motivation. High source_quality (J Neurosci integrative review); mapping_fidelity high because FNR's antecedent maps almost one-to-one onto REE's z_goal/wanting-vs-realised-outcome discrepancy; transfer_risk moderate (rodent successive-negative-contrast paradigms -> REE).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "FNR is generated with ZERO noxious input -- a merely-omitted or down-shifted reward -- so any REE model that requires z_harm_s/z_harm_un activation to produce a blocked-agency signal contradicts the construct; the antecedent is expectation-violation, not nociception.",
+    "FNR is dissociable from the suffering/helplessness pole: it engages reward-circuit deactivation (OFC/ventral striatum/PCC) plus midcingulo-insular/amygdala/PAG ACTIVATION with retained reward-seeking (Type-2 dopamine neurons sustain seeking after non-reward) -- a model that routes blocked-expected-reward straight into withdrawal/shutdown mis-assigns the energised assert pole."
+  ],
+  "tags": ["candidate-blocked-agency-stream", "frustrative_nonreward", "amsel", "expectation_violation", "irritability", "anger", "v3_proxy", "successive_negative_contrast", "sd-011_differentiation"],
+  "mapping": {
+    "source_claim_statement": "Frustrative non-reward is an emotional response with aversive motivational properties arising from a negative disparity between obtained and expected reward (in quantity or quality); it has primary (unconditioned) and secondary (conditioned) components, engages amygdala/insula/nucleus-accumbens/lateral-habenula/PAG, and is the mechanism whose aberrant form yields irritability ('elevated proneness to anger') across many disorders.",
+    "ree_translation": "Supplies the V3-tractable, single-agent core of the candidate stream: a 'blocked-agency / control-failure' signal whose antecedent is REE's own expected-vs-realised outcome discrepancy (z_goal/wanting MECH-112 predicted outcome minus achieved outcome), computed off the existing agency comparator (SD-029), distinct from harm (SD-011) because no noxious input is required. The retained-seeking finding grounds the verdict's controllability-axis split: blocked-expected-reward with motivation INTACT drives assert/persist, not withdrawal.",
+    "mapping_caveat": "Rodent consummatory/operant successive-negative-contrast and downshift paradigms; REE has no dopamine/habenula homolog and represents reward expectation abstractly via z_goal/wanting rather than ingestive reward. The transfer is at the level of ANTECEDENT (expected-minus-obtained disparity) and DYNAMICS (aversive-but-motivated), not circuit or neurochemistry. FNR in the literature is reward-omission; REE's blocked-AGENCY extends this to action-outcome omission (intended effect not achieved) -- a faithful but slightly broadened mapping.",
+    "source_context": "Integrative review of the frustrative-non-reward literature: consummatory (cSNC) and operant (oSNC) successive-negative-contrast, reward downshift, c-Fos mapping, dopamine heterogeneity, and human irritability fMRI."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.35,
+    "notes": "Near-ceiling source quality (J Neurosci, canonical Amsel lineage, cross-species convergence noted). mapping_fidelity high: FNR's expected-minus-obtained antecedent and retained-motivation dynamics are exactly what the V3 proxy needs and dissociate it from harm. transfer_risk moderate: ingestive-reward rodent paradigms -> abstract REE reward-expectation, but the load-bearing antecedent transfers cleanly as a computation."
+  }
+}

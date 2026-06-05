@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_blocked_agency_anger_stream",
+  "entry_id": "2026-06-05_blocked_agency_psychological_reactance_autonomy_threat_steindl2015",
+  "timestamp_utc": "2026-06-05T19:50:20Z",
+  "claim_ids_tested": ["CANDIDATE-blocked-agency-stream"],
+  "source": {
+    "title": "Understanding Psychological Reactance: New Developments and Findings",
+    "authors": ["Christina Steindl", "Eva Jonas", "Sandra Sittenthaler", "Eva Traut-Mattausch", "Jeff Greenberg"],
+    "year": 2015,
+    "venue": "Zeitschrift fur Psychologie",
+    "doi": "10.1027/2151-2604/a000222"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Anchors the V4-SOCIAL scope boundary and supplies the verdict's cleanest dissociation. Psychological reactance is 'an unpleasant motivational arousal that emerges when people experience a threat to or loss of their free behaviors,' driving restoration of the threatened freedom; it carries anger/hostility, and crucially has 'energizing and behavior-directing properties, distinguishing reactance from learned helplessness by maintaining the individual's sense of capacity to alter their situation.' That single sentence is the controllability-axis dissociation the verdict rests on: blocked-agency-with-capacity-retained (reactance/assert) is the OPPOSITE pole to suffering/helplessness (withdraw). Human social-psychology review, explicitly V4 (needs an other-agent/source of restriction), so transfer_risk is high and confidence is held at 0.62.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reactance is explicitly NOT learned helplessness: it preserves the sense of capacity to alter the situation and energizes freedom-restoration. A REE model that routes autonomy-threat / blocked-agency into the suffering accumulator (capacity-collapse, withdraw) inverts the phenomenon.",
+    "Reactance requires a threatened FREEDOM and (typically) an agent/source imposing the restriction; the four restoration strategies (direct, by-implication, aggression-at-source, subjective reappraisal) are SOCIAL/other-agent consumers -- importing them into a single-agent V3 substrate that has no model of a coercing other would be premature (V4-scope)."
+  ],
+  "tags": ["candidate-blocked-agency-stream", "psychological_reactance", "autonomy_threat", "coercion", "freedom_restoration", "energised_assert_pole", "reactance_vs_helplessness", "v4_social"],
+  "mapping": {
+    "source_claim_statement": "Reactance is an aversive motivational arousal triggered by threat to or loss of a free behavior; it intermingles negative affect (anger, hostility) with cognition, motivates restoration of the threatened freedom (directly, by implication, by aggression toward the source, or by subjective reappraisal), and has energizing/behavior-directing properties that distinguish it from learned helplessness because the person retains a sense of capacity to change the situation.",
+    "ree_translation": "Defines the V4-SOCIAL boundary of the candidate stream (anti-coercion / anti-domination / autonomy-threat needs a model of an OTHER agent imposing the restriction) AND supplies the controllability-axis split the V3 proxy reuses: capacity-RETAINED + goal-retained -> assert/restore (reactance pole), vs capacity-COLLAPSED -> withdraw (suffering pole, SD-019b/Q-036). It is the clearest evidence that REE's existing withdraw-only response (suffering -> mode-switch) is missing its complementary assert pole.",
+    "mapping_caveat": "Human social-cognitive theory about freedom, autonomy, and an imposing source; REE-V3 is single-agent with no representation of an other-agent coercer, so the reactance CONSTRUCT proper is V4-deferred. Only its abstract dissociation (energised-assert-with-retained-capacity vs collapsed-helplessness) transfers to V3, and even that is an analogy, not a measured mechanism. High transfer risk.",
+    "source_context": "Review of psychological reactance theory (Brehm lineage) and recent experimental/physiological findings in human social psychology."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.60,
+    "notes": "Solid review of a well-established theory but secondary and human-social. mapping_fidelity moderate: the reactance-vs-helplessness dissociation maps tightly onto the verdict's controllability axis, but the construct proper (autonomy/coercion/freedom) is V4-social. transfer_risk high: single-agent V3 has no other-agent model, so the full construct does not transfer -- only the energised-assert-pole dissociation does."
+  }
+}

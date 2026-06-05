@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_blocked_agency_anger_stream",
+  "entry_id": "2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020",
+  "timestamp_utc": "2026-06-05T19:50:20Z",
+  "claim_ids_tested": ["CANDIDATE-blocked-agency-stream"],
+  "source": {
+    "title": "Understanding Brain Mechanisms of Reactive Aggression",
+    "authors": ["Katja Bertsch", "Julian Florange", "Sabine C. Herpertz"],
+    "year": 2020,
+    "venue": "Current Psychiatry Reports",
+    "doi": "10.1007/s11920-020-01208-6"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Anchors the CONSUMER and REGULATION side of the candidate stream. Reactive aggression is 'a response to social threat, provocation, or frustration, strongly associated with anger,' instantiated by the amygdala-hypothalamus-PAG acute-threat circuit and INHIBITED by prefrontal control (vmPFC/vlPFC/dlPFC); it is categorically distinct from proactive/instrumental aggression (planned, goal-directed, low-arousal). That maps onto the verdict's consumer set: the blocked-agency signal drives an assert/escalate response that must be gated by a regulatory channel (REE commitment-threshold / decommit, MECH-342), and the reactive-vs-proactive split warns REE not to conflate frustration-driven assertion with planned goal pursuit. Human clinical/review source, good quality; mapping is to the consumer architecture, hence 0.74.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reactive aggression (frustration/threat-triggered, high-arousal, anger) is doubly dissociated from proactive/instrumental aggression (planned, low-arousal, goal-directed); a REE model that routes a blocked-agency signal through the ordinary goal-pursuit/E3 trajectory machinery without a distinct high-arousal assert channel would mis-model the reactive response.",
+    "Reactive aggression is normally held in check by prefrontal inhibition (reduced vmPFC volume -> more physical aggression); a blocked-agency consumer with no regulatory/decommit gate would produce unchecked escalation -- the pathological (intermittent-explosive) phenotype, not adaptive assertion."
+  ],
+  "tags": ["candidate-blocked-agency-stream", "reactive_aggression", "amygdala_hypothalamus_pag", "prefrontal_regulation", "consumer_assert_decommit", "reactive_vs_proactive", "mech-342_decommit"],
+  "mapping": {
+    "source_claim_statement": "Reactive aggression is a response to social threat, provocation, or frustration, strongly associated with anger and high arousal, mediated by the amygdala-hypothalamus-periaqueductal-gray acute-threat circuit and regulated/inhibited by prefrontal cortex (vmPFC, vlPFC for emotional action control, dlPFC for holding control goals); it differs fundamentally from proactive/instrumental aggression, which is planned and goal-directed.",
+    "ree_translation": "Grounds the consumer side of the candidate stream. The blocked-agency signal should drive an ASSERT/escalate response (the adaptive analogue of reactive aggression) that is explicitly GATED by a regulatory/decommit channel -- REE's commitment-threshold adjustment (ARC-016) and maintenance-time decommit (MECH-342). The reactive-vs-proactive dissociation tells REE the assert channel is distinct from ordinary z_goal-driven planned pursuit, supporting a separate affect row rather than a tweak to goal salience.",
+    "mapping_caveat": "Human clinical/personality-disorder review of overt aggression; REE is a single-agent V3 substrate with no 'aggression' behaviour and no social target. The transfer is to the abstract CONSUMER architecture (high-arousal assert + prefrontal-gated inhibition/decommit), not to aggressive action. The SOCIAL-threat/provocation triggers in this paper are V4-scope; only the frustration trigger and the assert/regulate consumer split are V3-relevant.",
+    "source_context": "Review of the neurobiology of reactive aggression in healthy and clinical (e.g. borderline, antisocial) populations; fMRI/structural and circuit evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "Good source quality (Current Psychiatry Reports review). mapping_fidelity moderate: maps cleanly to the consumer/regulation architecture but the paper's behaviour (overt aggression) and several triggers (social provocation) are V4-scope, so only part of it bears on the V3 proxy. transfer_risk moderate-high: human social aggression -> single-agent REE assert/decommit."
+  }
+}
