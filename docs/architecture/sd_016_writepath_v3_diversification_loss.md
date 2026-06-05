@@ -167,6 +167,14 @@ Path 1 at this weight. The follow-up would be either (a) larger weights
 (EXQ-418f sweep at 1.0, 2.0, 5.0) or (b) Path 2 / Path 3 from the original
 3-path proposal (VQ-VAE codebook or feedforward tagger).
 
+> **RESOLVED 2026-06-05.** Path (a) was taken: **V3-EXQ-418i** swept the
+> diversification weight at 1.0 / 2.0 / 5.0 and FAILed C1 at every weight,
+> concluding *"Path 1 alone is insufficient regardless of weight; the
+> attention bottleneck is categorically in query selectivity, not slot
+> orthogonality."* Path 1 is therefore exhausted. **Path 3 (feedforward
+> tagger)** was selected over Path 2 (VQ-VAE codebook, more invasive) and is
+> implemented as of 2026-06-05 -- see Section 7 below.
+
 A FAIL on C3 with C1+C2 PASS would mean diversification works at the
 slot level but doesn't propagate to behaviour -- the cue_action_proj path
 is still uninformative even with non-uniform attention. That would
@@ -201,3 +209,65 @@ experiments (e.g. A1_writes_only-style) run cleanly.
 - SD-016 cluster doc: REE_assembly/docs/architecture/sd_016_frontal_cue_integration.md
 - EXQ-418d manifest: REE_assembly/evidence/experiments/v3_exq_418d_sd016_writepath_modes_comparison_20260425T141932Z_v3.json
 - Substrate queue entry: REE_assembly/evidence/planning/substrate_queue.json (SD-016 implemented_but_failing_validation, priority 1)
+
+## 7. Path 3: Feedforward cue->slot tagger (implemented 2026-06-05)
+
+**Why Path 1 and Path 4 were not enough.** Path 1 (auxiliary slot
+diversification loss) was swept across weights 1.0/2.0/5.0 by **V3-EXQ-418i**
+and FAILed C1 at every weight: *the attention bottleneck is categorically in
+query selectivity, not slot orthogonality.* Path 4 (learnable attention
+temperature) gives the optimiser a selectivity knob but still routes through
+the same `world_query_proj -> key_proj(memory)` scoring, which is the
+saddle: with `memory` init 0.01 the slot keys are near-identical, the softmax
+over them is near-uniform, and the softmax Jacobian at uniform is flat, so
+`terrain_loss` gradient cannot push the attention off the `ln(num_slots)`
+rail.
+
+**Mechanism.** Path 3 replaces ONLY the slot-**selection** scoring inside
+`extract_cue_context`. A fresh feedforward MLP
+
+```
+cue_slot_tagger:  z_world [world_dim]
+                  -> Linear(world_dim, hidden) -> ReLU
+                  -> Linear(hidden, num_slots)
+                  -> slot_logits [num_slots]
+selection_weights = softmax(slot_logits / temperature)
+context = selection_weights @ value_proj(memory)
+```
+
+produces non-uniform logits from random init, so it sits **off** the saddle.
+The slot-**content** path (`value_proj` -> `output_proj` -> `cue_context`) and
+both downstream projections (`cue_action_proj`, retaining the EXQ-449a
+`z_world` concat band-aid; `cue_terrain_proj`) are unchanged. The tagger is
+trained by the **existing** `terrain_loss` gradient that already supervises
+`cue_terrain_proj` -- no new supervised target is invented. Because the
+tagger is not stuck at a flat saddle, that gradient now shapes contextual
+selectivity (which it could not do through the attention scoring).
+
+**Config (E1Config + REEConfig.from_dims; all no-op defaults):**
+
+| Param | Default | Purpose |
+|-------|---------|---------|
+| `sd016_cue_slot_tagger` | `False` | master switch (requires `sd016_enabled=True`) |
+| `sd016_cue_slot_tagger_hidden` | `32` | tagger MLP hidden width |
+| `sd016_cue_slot_tagger_temperature` | `1.0` | softmax temp on tagger logits |
+
+When `sd016_cue_slot_tagger=False` the legacy q.k attention branch runs
+verbatim (bit-identical; verified OFF selection entropy == `ln(16)` exactly).
+`extract_cue_context` caches the last selection distribution on
+`E1DeepPredictor._last_cue_slot_weights` as a read-only diagnostic for the
+validation experiment's selection-entropy metric.
+
+**Scope honesty.** Path 3 restores RETRIEVAL (`cue_context`) selectivity.
+Full behavioural `action_bias_div >= 0.05` propagation additionally depends on
+`cue_action_proj`, whose gradient path is the separate **SD-055**
+differentiable-CEM concern; the validation measures `action_bias_div` as a
+secondary diagnostic, gated on SD-055.
+
+**Validation.** Substrate-readiness diagnostic (`claim_ids=[]`), OFF vs ON
+ablation. PRIMARY acceptance: mean selection entropy `< 2.5` (vs the pinned
+`ln(16)=2.773`) with the tagger ON, on the real env where V3-EXQ-418i measured
+the legacy attention stuck at ~2.76. SECONDARY: `cue_context` per-channel std +
+safe-vs-dangerous `action_bias_div`. Implementation entry +
+contracts (`tests/contracts/test_sd016_cue_slot_tagger.py`) recorded in
+`ree-v3/CLAUDE.md`.
