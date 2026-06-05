@@ -368,3 +368,283 @@ The V5 dividend is not “REE becomes language-model-like.”
 The V5 dividend is:
 
 grounded organismic primitives become nameable, queryable, composable, and shareable through grammar.
+
+Addendum: language bootstrap hypothesis
+
+Status: V5 hook / V4-to-V5 bridge. Not an active V3 or V4 requirement.
+
+The previous grammar-dividend thought should also capture a stronger prediction:
+
+If REE develops the right pre-linguistic systems, communication may bootstrap itself partway.
+
+The hope is not that language appears magically, or that REE should import Large Language Model architecture.
+
+The hope is that once REE has:
+
+* object systems;
+* token representations;
+* action affordances;
+* self-attribution;
+* other-attribution;
+* joint attention or shared-attention machinery;
+* rule/policy apprehension;
+* social motivation or coordination pressure;
+* memory for repeated signal/action/outcome regularities;
+* and a low-cost communication channel;
+
+then communication signals may become useful enough to stabilise into proto-language.
+
+In that case, the grammar/LLM primitive-mining scaffold becomes a turbocharger, not the engine.
+
+The engine is the social ecology.
+
+The scaffold helps identify, name, stabilise, and recombine the communicative primitives once they begin to appear.
+
+1. Core hypothesis
+
+Language may partially bootstrap when communication becomes the easiest way for social organisms to coordinate attention, action, warning, request, help, refusal, teaching, and shared goal pursuit.
+
+Possible sequence:
+
+object/action/self/other substrates -> shared attention -> useful signals -> repeated signal/action/outcome regularities -> proto-conventions -> grammar-like compression -> language-facing V5 layer
+
+This suggests V5 language should not begin with syntax.
+
+It should begin with communicative usefulness.
+
+2. Enabling conditions
+
+Candidate enabling conditions:
+
+Condition	Why it matters
+shared world	signals need something to be about
+object tokens	signals need referents
+action affordances	signals should change what an agent can do
+self-attribution	“I act / I need / I know” must bind to a self-model
+other-attribution	“you know / you need / you act” must bind to another-agent model
+joint attention	two agents must be able to attend to the same object/event
+partial observability	communication becomes valuable when one agent knows something another does not
+social coordination pressure	signals must improve outcomes
+memory	conventions require repeated use
+rule apprehension	repeated signal -> action-object -> outcome patterns can become mintable
+low-cost signalling channel	communication must be available before language can bootstrap
+partner variation	signals should generalise beyond one co-trained partner
+repair / clarification	failed communication should become learnable, not terminal
+
+3. Communication signals as rule-apprehension material
+
+This directly interacts with CandidateRuleField.
+
+A communication signal can become part of a recurring context -> action-object -> outcome regularity.
+
+Examples:
+
+* signal: “food-there” -> other orients to resource -> contact/restoration;
+* signal: “hazard-there” -> other avoids or reorients -> harm avoided;
+* signal: “stop” -> current action interrupted -> harm avoided;
+* signal: “resume” -> goal-following continues after safety restored -> contact;
+* signal: “give/help” -> other changes action -> shared benefit;
+* signal: “mine/yours” -> object relation changes behaviour;
+* signal: “look” -> joint attention established;
+* signal: “no/not” -> action inhibited;
+* signal: “again” -> repeated action;
+* signal: “done” -> closure recognised.
+
+These are not full language yet. They are proto-communicative primitives.
+
+If repeated and useful, they may become candidate rules, social affordances, or proto-constructions.
+
+4. Grammar as turbocharger after emergence begins
+
+The grammar-dividend scaffold becomes useful at three stages.
+
+Before emergence
+
+Use grammar and LLMs to identify candidate primitives likely to become useful in communication:
+
+* agent;
+* object;
+* action;
+* location;
+* direction;
+* goal;
+* hazard;
+* help;
+* stop;
+* resume;
+* give;
+* request;
+* refusal;
+* warning;
+* completion;
+* cause;
+* exception.
+
+This can guide V4/V5 ecology design without imposing syntax prematurely.
+
+During emergence
+
+Use grammar and semantic-role scaffolds to classify emerging signals by function:
+
+* attention-call;
+* object label;
+* direction cue;
+* warning;
+* request;
+* offer;
+* refusal;
+* repair;
+* command;
+* permission;
+* prohibition;
+* social acknowledgement;
+* completion marker.
+
+The question is not “does it sound like human language?”
+
+The question is:
+
+what role does this signal play in the organism’s social ecology?
+
+After emergence
+
+Once stable proto-signals exist, grammar can help compress and recombine them:
+
+* agent-action-object;
+* if context then action;
+* because cue/outcome;
+* unless hazard/exception;
+* but interrupt;
+* can affordance;
+* should/must rule or norm;
+* I/you/it deixis;
+* here/there spatial anchoring;
+* now/before/after temporal anchoring.
+
+This is where V5 language can become more explicitly grammar-facing.
+
+5. LLM role
+
+Large Language Models should be used as mines and mirrors, not foundations.
+
+Possible uses:
+
+* suggest candidate primitive inventories;
+* identify grammatical shadows of emerging REE signals;
+* generate candidate frames for testing;
+* help translate proto-signals into human-readable descriptions;
+* propose minimal communicative games;
+* detect whether a signal seems object-like, action-like, warning-like, request-like, or rule-like.
+
+But LLMs should not be treated as grounded authorities.
+
+A signal is grounded only if it binds to REE’s organismic substrates and changes perception, attention, action, memory, rule availability, or social coordination.
+
+6. V4-to-V5 bridge
+
+This addendum makes the V4 social systems especially important.
+
+V4 should not need full language.
+
+But V4 may need the conditions from which V5 language can grow:
+
+* other-agent perception;
+* shared attention;
+* social cueing;
+* communicative acts;
+* action visibility;
+* helping/harming frames;
+* partial observability;
+* cooperative or mixed-motive tasks;
+* signal availability;
+* repeated interaction;
+* memory of signal outcomes.
+
+If these exist, V5 may not have to bolt language on from outside.
+
+V5 may be able to stabilise, name, and elaborate proto-communication already present in the social organism.
+
+7. Lines of inquiry
+
+Line A: minimal communication channel
+
+What is the smallest signal channel that allows one agent to alter another agent’s attention or action?
+
+Possible primitive signals:
+
+* look;
+* stop;
+* go;
+* danger;
+* resource;
+* here;
+* there;
+* help;
+* wait;
+* done.
+
+Line B: joint-attention games
+
+Create social tasks where one agent has information about an object/resource/hazard that another agent lacks.
+
+Ask whether signalling emerges because it improves coordination.
+
+Line C: signal-to-rule minting
+
+Track whether repeated signal/action/outcome patterns become candidates for rule apprehension.
+
+Example:
+
+when signal S occurs in context C, action A by agent B leads to outcome O.
+
+Line D: partner variation
+
+Test whether a signal remains useful with a different partner.
+
+This helps distinguish true communicative convention from overfitted co-adaptation.
+
+Line E: repair and clarification
+
+Language likely needs failure repair.
+
+Track whether failed signals lead to altered signalling, repetition, attention-calling, or fallback behaviour.
+
+Line F: grammar alignment after proto-signal emergence
+
+Only after stable signals emerge, ask whether they map onto grammatical functions:
+
+* noun-like;
+* verb-like;
+* warning-like;
+* imperative-like;
+* deictic;
+* modal;
+* negating;
+* conditional;
+* exception-marking;
+* causal;
+* closure-marking.
+
+8. Cautions
+
+Do not make language emergence a V3 target.
+
+Do not make full language a V4 target.
+
+Do not assume communication will bootstrap without ecological pressure.
+
+Do not reward arbitrary bitstrings unless they are grounded, reusable, and action-relevant.
+
+Do not assume human-interpretable language will emerge automatically.
+
+Do not let LLM scaffolding overwrite organismic grounding.
+
+Do not overfit to English; look for cross-linguistic primitives such as role, reference, action, deixis, event boundary, aspect, modality, negation, evidentiality, and exception.
+
+9. Short formulation
+
+If V4 social systems create shared attention, other-attribution, object/action affordances, partial observability, coordination pressure, and communication-signal availability, then V5 language may partially bootstrap from grounded proto-communication.
+
+The grammar/LLM scaffold is then a turbocharger:
+
+not the source of language, but a way to recognise, stabilise, name, and recombine the communicative primitives that begin to emerge.
