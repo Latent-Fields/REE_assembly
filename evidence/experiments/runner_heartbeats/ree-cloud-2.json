@@ -1,47 +1,33 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-05T15:04:31Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-05T15:23:05Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-640a",
+  "current_exq_started_utc": "2026-06-05T15:20:43.797376+00:00",
+  "current_title": "SD-057 cue-AUTHORITY GAIN SWEEP (measurement successor to V3-EXQ-640): 2-axis factorial cue_recall_gain {0.2,1.0,5.0} x incentive_drive_kappa_weight {2.0,10.0} on scaffolded_sd054_onboarding (same ARM_OFF/ARM_CUE_ON family, behaviourally instrumented). Pre-registered: does per-cue-fire cue_zgoal_pull_norm AND post-cue approach-rate lift over within-run background rise monotonically with gain + token strength? 7 conditions (1 ARM_OFF + 6 cue-on cells) x 3 seeds. Diagnostic, claim_ids=[].",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-628",
-      "result": "PASS",
-      "completed_at": "2026-06-02T19:16:25.419036+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-633",
-      "result": "PASS",
-      "completed_at": "2026-06-03T07:20:43.038394+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485b",
-      "result": "PASS",
-      "completed_at": "2026-06-03T20:10:54.651843+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490k",
-      "result": "PASS",
-      "completed_at": "2026-06-04T09:19:45.172966+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-637",
-      "result": "PASS",
-      "completed_at": "2026-06-04T10:25:46.312696+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_OFF",
+    "runs_done": 0,
+    "runs_total": 21,
+    "episodes_done": 30,
+    "episodes_total": 235,
+    "overall_pct": 0.6
+  },
+  "seconds_elapsed": 140,
+  "seconds_remaining": 66618,
+  "recent_lines": [
+    "[v3_exq_640a_scaffold_cue_authority_gain_sweep] starting (dry_run=False)",
+    "Seed 42 Condition ARM_OFF",
+    "[train] stage0 seed=42 arm=ARM_OFF ep 20/235 z_goal_peak=0.4504 formed=True token_bank_size_end=0",
+    "[train] stage0b seed=42 arm=ARM_OFF ep 30/235 retention=0.968 gate=pass"
   ],
-  "runner_pid": 668,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 666,
   "runner_version": null,
   "gpu": {
     "available": false
