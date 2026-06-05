@@ -1,46 +1,30 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-05T18:38:18Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-05T19:04:07Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-641",
+  "current_exq_started_utc": "2026-06-05T18:59:15.600313+00:00",
+  "current_title": "Coherence-ablation: is C(tau) non-reducible to E(tau)? Settles thought_intake_2026-04-23_binding.md + _path_integral_constraints_search.md (shared discriminator). Paired A/B selectors over identical hippocampal-rollout candidate pools: A = pure error-minimiser argmin E (the existing softmax(-E/T) rule); B = coherence-weighted argmin(E + lam*(-log C)) with GAP-RELATIVE authority (coherence-term range == gain*range(E); == argmax exp(-beta E)*C in the soft-beta regime). C(tau) computed in-harness from per-candidate Trajectory.world_states (z_world) / .states (z_self) / .action_objects streams = cross-system temporal/phase consistency, independent of E/outcome. No ree_core change. 3 conditions (real_C_clean primary / rand_C_control specificity / real_C_perturb rebinding) x 3 seeds. Diagnostic, claim_ids=[].",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-640a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-592f",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T19:43:26.170478+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603e",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T04:03:13.135462+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614d",
-      "result": "PASS",
-      "completed_at": "2026-06-03T12:01:24.020537+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-634c",
-      "result": "FAIL",
-      "completed_at": "2026-06-04T21:05:12.984538+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-418m",
-      "result": "FAIL",
-      "completed_at": "2026-06-05T16:58:38.076936+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / real_C_clean",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 65,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 292,
+  "seconds_remaining": 21600,
+  "recent_lines": [
+    "Seed 42 Condition real_C_clean",
+    "(P0=40 ep, P1=25 ep, steps_per_episode=120, authority_gain=0.5, dry_run=False)"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 50481,
   "runner_version": null,
   "gpu": {
