@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-05T10:01:29Z",
+  "last_tick_utc": "2026-06-05T10:31:37Z",
   "state": "running",
   "current_exq": "V3-EXQ-640",
   "current_exq_started_utc": "2026-06-05T09:42:23.464052+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 43 / ARM_OFF",
     "runs_done": 0,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 235,
-    "overall_pct": 0.0
+    "overall_pct": 2.1
   },
-  "seconds_elapsed": 1146,
-  "seconds_remaining": 13200,
+  "seconds_elapsed": 2954,
+  "seconds_remaining": 23629,
   "recent_lines": [
-    "[train] p0 seed=42 arm=ARM_OFF ep 150/235 mean_len=30.5",
-    "[train] p1 seed=42 arm=ARM_OFF ep 220/235 survival=FAIL refresh=0",
     "[train] p2 seed=42 arm=ARM_OFF ep 235/235 contact_rate=0.0000 cue_fires=0 pc_fire_steps=0 pc_windows=0 post_cue_approach=None bg_approach=0.1214574898785425 zgoal_delta=None",
     "verdict: seed=42 arm=ARM_OFF pc_fire_steps=0 pc_windows=0",
-    "Seed 43 Condition ARM_OFF"
+    "Seed 43 Condition ARM_OFF",
+    "[train] stage0 seed=43 arm=ARM_OFF ep 20/235 z_goal_peak=0.4574 formed=True token_bank_size_end=0",
+    "[train] stage0b seed=43 arm=ARM_OFF ep 30/235 retention=0.975 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
