@@ -1,46 +1,33 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-05T16:37:52Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-640a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-614c",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T12:45:10.737866+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-592f",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T19:43:26.170478+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603e",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T04:03:13.135462+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614d",
-      "result": "PASS",
-      "completed_at": "2026-06-03T12:01:24.020537+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-634c",
-      "result": "FAIL",
-      "completed_at": "2026-06-04T21:05:12.984538+00:00"
-    }
+  "last_tick_utc": "2026-06-05T16:53:27Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-418m",
+  "current_exq_started_utc": "2026-06-05T16:48:34.362963+00:00",
+  "current_title": "SD-016 Path 3 feedforward cue->slot tagger substrate-readiness: 2-arm ablation OFF (legacy q.k attention, the V3-EXQ-418i uniform saddle) vs ON (Path 3 tagger) x 3 seeds, matched terrain_loss training. PRIMARY C1 = ON slot-selection entropy < 2.5 on majority seeds (breaks the ln(16)=2.773 saddle Path 1 could not); C1b anti-degeneracy = ON selection differs safe-vs-dangerous; C2 control = OFF stays on the saddle. Diagnostic, claim_ids=[].",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / A1_ON",
+    "runs_done": 3,
+    "runs_total": 6,
+    "episodes_done": 0,
+    "episodes_total": 60,
+    "overall_pct": 50.0
+  },
+  "seconds_elapsed": 293,
+  "seconds_remaining": 270,
+  "recent_lines": [
+    "[train] A0_OFF seed=44 ep 60/60",
+    "[arm A0_OFF seed 44] sel_entropy=2.7726 sel_ctx_div=0.0000 action_bias_std=0.003709 action_bias_div=0.0157",
+    "verdict: PASS",
+    "Seed 42 Condition A1_ON",
+    "[arm A1_ON seed 42] cue_slot_tagger=True p0=20 p1=40"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 50481,
   "runner_version": null,
   "gpu": {
