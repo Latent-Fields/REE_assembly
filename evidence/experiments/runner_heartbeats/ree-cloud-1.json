@@ -1,33 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-05T12:32:06Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-640",
-  "current_exq_started_utc": "2026-06-05T09:42:23.464052+00:00",
-  "current_title": "SD-057 cue-recall post-cue action/gradient measurement-only diagnostic (gates 638b)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_CUE_ON",
-    "runs_done": 0,
-    "runs_total": 6,
-    "episodes_done": 30,
-    "episodes_total": 235,
-    "overall_pct": 2.1
-  },
-  "seconds_elapsed": 10183,
-  "seconds_remaining": 52546,
-  "recent_lines": [
-    "[train] p2 seed=43 arm=ARM_CUE_ON ep 235/235 contact_rate=0.0000 cue_fires=296 pc_fire_steps=296 pc_windows=296 post_cue_approach=0.05693950177935943 bg_approach=0.05405405405405406 zgoal_delta=7.66966793988202e-06",
-    "verdict: seed=43 arm=ARM_CUE_ON pc_fire_steps=296 pc_windows=296",
-    "Seed 44 Condition ARM_CUE_ON",
-    "[train] stage0 seed=44 arm=ARM_CUE_ON ep 20/235 z_goal_peak=0.4341 formed=True token_bank_size_end=3",
-    "[train] stage0b seed=44 arm=ARM_CUE_ON ep 30/235 retention=0.965 gate=pass"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-06-05T13:02:04Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-632",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T10:31:04.762341+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-634",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T16:33:57.686093+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-626b",
+      "result": "PASS",
+      "completed_at": "2026-06-03T21:17:04.191567+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-610e",
+      "result": "FAIL",
+      "completed_at": "2026-06-04T22:53:20.206305+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-640",
+      "result": "PASS",
+      "completed_at": "2026-06-05T12:58:02.556862+00:00"
+    }
+  ],
   "runner_pid": 2199291,
   "runner_version": null,
   "gpu": {

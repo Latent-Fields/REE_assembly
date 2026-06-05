@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 2199291,
   "runner_started_at": "2026-06-03T06:06:50.999872+00:00",
-  "last_updated": "2026-06-03T21:17:04.192453+00:00",
+  "last_updated": "2026-06-05T12:58:02.557410+00:00",
   "idle": false,
   "current": null,
   "queue": [],
@@ -3248,6 +3248,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_626b_goal_pipeline_forced_seed_positive_control/v3_exq_626b_goal_pipeline_forced_seed_positive_control_20260603T211703Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 4201.4
+    },
+    {
+      "queue_id": "V3-EXQ-610e",
+      "backlog_id": "EVB-0270",
+      "claim_id": "INV-074",
+      "title": "INV-074/MECH-333/MECH-334 crystallization-necessity retest (HARNESS-FIXED, startup-assertion-gated): real REINFORCE on gated_policy (Phases 0-2) + stepped expansion_parameters() optimizer post-crystallize (Phase 3) + residue_field.ewc_penalty() summed into the Phase-3 loss. 2-arm/3-seed, IGW-023 Phase-3 pressure. Supersedes 610d (untrained-policy no-op).",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Verdict: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-610e -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-610e.json",
+      "started_at": "2026-06-03T21:19:06.134425+00:00",
+      "completed_at": "2026-06-04T22:53:20.206305+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_610e_inv074_crystallization_necessity_20260604T225319Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 92054.1
+    },
+    {
+      "queue_id": "V3-EXQ-640",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-057 cue-recall post-cue action/gradient measurement-only diagnostic (gates 638b)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: seed=44 arm=ARM_CUE_ON pc_fire_steps=548 pc_windows=548 | [v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic] C1_cue_fires_on=True C2_postcue_trace_captured=True outcome=PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-640 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-640.json",
+      "started_at": "2026-06-05T09:42:23.464052+00:00",
+      "completed_at": "2026-06-05T12:58:02.556862+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic/v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic_20260605T125802Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 11739.1
     }
   ]
 }
