@@ -142,10 +142,20 @@ and **Stream B coercion/domination/injustice (V4-social)**. **Stream A is now re
 no noxious input; consumers assert + decommit/MECH-342 gated by ARC-016; capacity-axis opposite
 pole to Q-036/z_harm_a withdraw). **Stream B deferred to V4** (stub row added; needs other-agent
 model; cross-link `musings_on_v4`). GATED next steps (NOT done): a `claims.yaml` SD/MECH backing
-`z_block` + the smallest-V3 blocked-action experiment (per VERDICT). The other two chips'
-register rows remain a separate doc-sync: `task_3ab79018` (Safety rows MECH-303/304 + Soothing
-V4 gap) and `task_93a719b6` (fatigue on the SD-012 side) -- pulls landed, `affect_primitives.md`
-rows for those not yet written.
+`z_block` + the smallest-V3 blocked-action experiment (per VERDICT).
+
+**Status update 2026-06-05 (register consolidation):** ALL THREE pulls' confirmed-distinct streams
+are now written into the `affect_primitives.md` Extension Register (previously only blocked-agency
+was). Added/sharpened rows: **Relief**->MECH-302 (V3), **Safety**->MECH-303+MECH-304 (V3, doc-sync
+of existing claims + Silva-2021 thalamic-relay enrichment flag), **Soothing/comfort** (NEW row,
+V4-social + optional V3-min autonomic-recovery hook on MECH-219/SD-012/SD-032e, explicitly
+NOT-302/303/304/112), **Effort/fatigue stop-recover** (SD-012 side + SD-048 host, two-bound Meyniel
+accumulator, shares MECH-342 release actuator, own recover integrator, V3-minimal-gated, NOT SD-011),
+plus the existing **blocked_agency** (`z_block`, V3-candidate) and **coercion/injustice** (V4 stub).
+Each row carries its neighbour-differentiation. REMAINING gated `claims.yaml` registrations (governance
+follow-ups, NOT done): Soothing claim (V4, dep MECH-219+SD-012+SD-032e), Fatigue/stop-recover MECH
+(SD-012 side, + MECH-342 deficit-input wiring), and the `z_block` SD/MECH. Relief + Safety already
+have claims (MECH-302/303/304) -- no new claim needed, only the doc-sync now done.
 
 ## 8. Cross-references
 

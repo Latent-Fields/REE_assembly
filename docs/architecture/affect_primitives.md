@@ -158,19 +158,105 @@ The Löffler dissociation establishes that **controllability** is load-determini
 
 ## Extension Register: Beyond Harm
 
-The harm register is V3-complete (or nearly so). The structures in other affect classes are
-noted here. Most are V4-deferred stubs; one — **blocked_agency** — is a V3-tractable candidate
-grounded by the 2026-06-05 lit-pull (`targeted_review_blocked_agency_anger_stream`) and specified
-in full below.
+The harm register is V3-complete (or nearly so). The affect classes beyond harm are consolidated
+here. This register was reconciled on **2026-06-05** against the three proto-feelings audit
+lit-pulls (`thought_intake_2026-06-01_protofeelings_audit_register.md` §7) so that **every
+confirmed-distinct stream is represented** — previously the table listed only a single under-specified
+"Relief" row and had not caught up to the registered safety cluster (MECH-303/304) or the newer
+streams. `claims.yaml` status is tracked per row; rows marked **gated** still need a `claims.yaml`
+claim (a follow-up governance decision, not done here).
 
-| Affect class | REE signal | Primitive split | Status |
-|-------------|-----------|----------------|--------|
-| Benefit / resource | `z_benefit` / `z_goal` | intensity / wanting / satisfaction | V4-deferred |
-| Relief | (termination of harm stream) | relief_spike / relief_sustained | V4-deferred |
-| **Blocked agency (control-failure)** | `z_block` (new) | intended-but-blocked / assert / decommit | **V3-candidate (lit-grounded; pending claim + experiment)** |
-| Coercion / domination / injustice | (not yet specified) | autonomy-threat / boundary-violation | V4-deferred (social; needs other-agent model) |
+| Affect class | REE signal | Claim backing | Status / scope |
+|-------------|-----------|--------------|----------------|
+| Benefit / resource | `z_benefit` / `z_goal` | MECH-112 (wanting) | V4-deferred (full benefit register) |
+| **Relief** | offset/derivative of harm stream | **MECH-302** | V3 (registered claim) |
+| **Safety** | learned threat-absence predictor | **MECH-303** (contextual) + **MECH-304** (cue-specific) | V3 (registered claims) |
+| **Soothing / comfort** | autonomic state-gain modulator (proposed) | — (gated) | V4-social (+ optional V3-minimal hook) |
+| **Blocked agency (control-failure)** | `z_block` (new) | — (gated) | V3-candidate (lit-grounded) |
+| **Coercion / domination / injustice** | (not yet specified) | — | V4-deferred (social; needs other-agent model) |
+| **Effort / fatigue (stop-recover)** | `drive_level` (SD-012) + SD-048 interoceptive | — (gated; SD-012 side) | V3-minimal, gated |
 | Social harm | (not yet specified) | — | Research phase |
-| Effort / fatigue | `drive_level` + SD-032b dACC | effort_cost / fatigue_load | Partially implemented |
+
+Each stream is differentiated from its neighbours below. The differentiations honour
+`feedback_biology_before_formal_definitions`: distinct biological systems get distinct rows, never
+one merged primitive (the SD-010→SD-011 *philosophy-right/mechanism-wrong* failure). The three
+2026-06-05 pulls are: `targeted_review_affect_stream_relief_safety_soothing` (relief/safety/soothing),
+`targeted_review_fatigue_vs_helplessness_dissociation` (fatigue/stop-recover vs suffering), and
+`targeted_review_blocked_agency_anger_stream` (blocked-agency/anger). *Based on articles retrieved
+from PubMed.*
+
+### Extension Primitive (V3, registered): relief / safety
+
+**Relief** (`MECH-302`) is an **event-locked, phasic, value-coding reinforcement** signal at the
+**offset** of an aversive event — it reuses the reward/goal machinery (NAc/VTA; D1+NMDA coincidence,
+Bergado Acosta et al. 2017) reading the SD-011 suffering derivative. It tags "this reduced suffering."
+
+**Safety** (`MECH-303` contextual passive + `MECH-304` cue-specific conditioned inhibition) is a
+**learned prospective predictor that threat is absent** — an active prefrontal-hippocampal-thalamic
+representation (mPFC IL/PL; nucleus reuniens→BLA, Silva et al. 2021; Corches et al. 2019), **not**
+mere low harm. It licenses commitment-release and approach.
+
+**Differentiation:** relief is *past-offset / phasic / appetitive* (reinforcer); safety is
+*future / tonic / inhibitory* (predictor/gate). Neither is the other, and neither is `z_goal`/wanting
+(MECH-112) — safety is inhibitory prediction, not appetite. **Enrichment flag (not contradiction):**
+Silva 2021 implicates a midline-**thalamic** relay (reuniens) and a remote-vs-recent time dependence
+absent from MECH-303/304's stated anatomy; a future MECH-303/304 revision should consider the thalamic
+node. *Evidence:* `targeted_review_affect_stream_relief_safety_soothing/` (verdict, conf 0.82).
+
+### Extension Primitive (V4-social; V3-minimal hook optional): soothing / comfort
+
+| Field | Value |
+|-------|-------|
+| **REE signal** | proposed autonomic state-gain modulator (unregistered) |
+| **Status** | **gated** — no `claims.yaml` claim; V4-social primary scope |
+| **Character** | **Down-regulation of the ongoing stress response** (present-tense), canonically via a conspecific (social buffering) |
+| **Biological analogue** | oxytocinergic + parasympathetic/HPA + prefrontal regulation (Hostinar et al. 2014; Heinrichs et al. 2003) |
+
+**Computational role:** a state-gain / recovery modulator that **lowers the gain or speeds the
+recovery** of the active aversive trajectory — proposed home is MECH-219 (suffering accumulator)
+decay + SD-012 (drive) + SD-032e (pACC autonomic coupling).
+
+**Differentiation:** soothing acts on the **present** stress trajectory, where relief is *past-offset*
+and safety is *future-prediction*; its substrate is oxytocin/parasympathetic/HPA (vs NAc/VTA for
+relief, vs cortico-amygdalar for safety); its role is state-gain modulation (vs reinforcer, vs
+predictor). It is **socially gated** — the canonical trigger is a conspecific, which V3 cannot
+represent. **Do NOT fold into Relief (MECH-302) or Safety (MECH-303/304), and NOT into MECH-112.**
+Scope: **V4-social** primary; an optional V3-minimal non-social autonomic-recovery hook (parasympathetic
+down-regulation acting on MECH-219 decay / SD-012) is noted but **not built**. When registered, the
+claim must depend on MECH-219 + SD-012 + SD-032e and be explicitly NOT-302/303/304/112.
+*Evidence:* `targeted_review_affect_stream_relief_safety_soothing/` (verdict, conf 0.82).
+
+### Extension Primitive (V3-minimal, gated): effort / fatigue (stop-recover)
+
+| Field | Value |
+|-------|-------|
+| **REE signal** | `drive_level` (SD-012) + SD-048 interoceptive channel — a second homeostatic deficit alongside hunger |
+| **Status** | **gated** — no `claims.yaml` claim yet (candidate MECH on the SD-012 side is a follow-up); V3-minimal, build gated behind in-flight cue-authority/z_goal work |
+| **Character** | A **stop-AND-recover** signal: accumulates with effort/time-on-task, **recovers with rest/sleep** |
+| **Antecedent** | Cumulative **effort / time-on-task**, controllability-INDEPENDENT — accumulates from your own *successful* effort (Boksem & Tops 2008; Meyniel et al. 2013; Borbély et al. 2016) |
+| **Biological analogue** | interoceptive cost-accumulator (posterior insula) + ACC effort-valuation; adenosine/Process-S for the slow sleep-pressure variant |
+
+**Smallest computational form (Meyniel 2013):** a two-bound (hysteretic) leaky cost-evidence
+accumulator — `F += Se*effort` during exertion, `F -= Sr` during rest; emit STOP at the upper bound,
+recover to the lower bound before re-engaging. Two time-constants: a fast within-task accumulator and
+a slow sleep-pressure accumulator (offline reset via SD-017 sleep). `Se`/`Sr`/bound-gap are
+incentive-modulated (incentive → work closer to exhaustion).
+
+**Differentiation (vs suffering / learned helplessness, SD-011 side):** they converge behaviourally
+on *stop/disengage* but separate on four axes — antecedent (effort-depletion vs uncontrollable
+aversion), substrate (interoceptive cost-accumulator vs DRN 5-HT/CRF), computation (value
+recalibration, incentive-reversible vs escape-failure), and **decisively recovery: fatigue remits
+with rest, helplessness does NOT** (needs controllability/pharmacological reversal). **Do NOT wire
+fatigue as a `z_harm` / SD-011 nociceptive stream** — that imports the wrong antecedent, gate, and
+dynamics. This is the upstream fix for the DEV-NEED-002 conflation ("harm, hunger, fatigue blur
+together").
+
+**Consumers:** the **in-task STOP** feeds MECH-342 (commit-maintenance release) as a *new deficit
+input* (alongside the R-c execution-readiness deficit) and the ARC-078 goal-disengagement consumer
+via a cost/benefit (not aversive) channel — the **release actuator is shared** with the suffering
+pole, reached from the opposite antecedent. The **recover / re-accumulation half is NOT in MECH-342**;
+it belongs on the SD-012 / SD-017 side. *Evidence:*
+`targeted_review_fatigue_vs_helplessness_dissociation/` (VERDICT).
 
 ### Extension Primitive (V3-candidate): blocked_agency
 
@@ -220,4 +306,8 @@ alternative-action search) distinct from the withdraw signature, and whether it 
 | harm_intensity | Strong (SD-011 targeted reviews) | — |
 | harm_unpleasantness | Partial (Rainville 1997 in SD-019 pulls; SD-019a not yet targeted) | Needed — medial pathway fast component, ACC/insula unpleasantness encoding |
 | harm_suffering | Moderate (Q-036 pull 2026-04-20, 3 entries) | Needed — inescapability / learned helplessness; prediction error in suffering |
+| relief | Strong (`relief_completion_mechanism` 2026-05-03 + `affect_stream_relief_safety_soothing` 2026-06-05) | — (MECH-302 grounded) |
+| safety | Strong (`affect_stream_relief_safety_soothing`, 2026-06-05) | — for MECH-303/304; consider thalamic-relay (reuniens) enrichment |
+| soothing / comfort | Strong (`affect_stream_relief_safety_soothing`, 2026-06-05, 2 entries) | — (V4-social; claim registration is the gated next step) |
+| effort / fatigue (stop-recover) | Strong (`fatigue_vs_helplessness_dissociation`, 2026-06-05, 5 entries) | — (SD-012-side MECH registration is the gated next step) |
 | blocked_agency | Strong (`targeted_review_blocked_agency_anger_stream`, 2026-06-05, 5 entries) | — for the V3 row; Stream B (coercion/injustice) is a V4 pull when the social substrate exists |
