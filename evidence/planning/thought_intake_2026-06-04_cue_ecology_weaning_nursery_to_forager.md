@@ -148,6 +148,38 @@ This keeps the 638a/638b discriminator (sections 5-6) clean -- those experiments
 *recall -> contact*; the safe-weaning layer tests *contact -> autonomous survival* -- and
 prevents a survival regression from being misattributed to the cue bridge.
 
+## 8b. 638a result + measurement-gap correction (added 2026-06-05)
+
+638a returned **C1 PASS + C3 FAIL** (cue fires 1050/180/446 in P2, token bank
+0->3, but contact does not lift). Section 5 routes this branch straight to
+"Cue has no behavioural authority -> build interoceptive need-gating + 638b."
+The 638a data forces a correction before that build:
+
+1. **The cue is not behaviourally neutral -- it is mildly counterproductive.**
+   ARM_CUE_ON contact `[0.0, 0.0, 0.267]` is <= ARM_OFF `[0.0, 0.197, 0.648]` on
+   EVERY matched seed (0/3 show ON > OFF). Wild seeding alone reaches contact;
+   firing the cue produced less. **Displacement hypothesis:** cue recall pulls
+   z_goal toward a weak token (`matched_token_strength ~ 0.2`, 0.023 on seed 44)
+   and may overwrite the stronger wild-seeded attractor -- net-negative authority,
+   not merely a missing one.
+2. **drive_peak = 0.28 on the zero-contact seed 42** (depleted, not well-fed),
+   with 1050 fires and a matched token, still 0 contact. This WEAKENS the pure
+   interoceptive reading (Section 4's "well-fed so the cue fires soft") as the
+   proximate cause of the seed-42 zero.
+3. **638a cannot discriminate** cue-to-action authority / gradient-following /
+   interoceptive / orienting / hazard-interrupt, because it logged no post-cue
+   action trace -- only `n_cue_recall_fires` and `contact_rate`, nothing between.
+
+**Consequence (user-confirmed 2026-06-05):** do NOT build the 638b interoceptive
+substrate yet. The smallest next step is a **measurement-only** post-cue
+action/gradient diagnostic (proposed **V3-EXQ-640**) that re-runs the ablation
+behaviourally unchanged with per-cue-fire instrumentation (`post_cue_z_goal_norm_delta`,
+`cue_action_bias_magnitude`, `post_cue_selected_action_approach_rate`,
+`post_cue_manhattan_distance_delta_to_resource`, `salience_interrupt_count_after_cue`,
+`cue_to_first_gradient_improving_move_latency`). **640 GATES 638b.** Full diagnosis,
+branch ranking, and discriminator map in
+`failure_autopsy_V3-EXQ-638a_2026-06-05.{md,json}`.
+
 ## 9. Cross-references
 
 - `scaffolded_sd054_onboarding` cue-recall bridge + formation-fix amend (ree-v3/CLAUDE.md).

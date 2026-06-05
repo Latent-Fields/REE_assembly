@@ -1,0 +1,90 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-05T09:03:44Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_638a_scaffold_cue_recall_contact_ablation_20260604T183612Z_v3",
+      "queue_id": "V3-EXQ-638a",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (diagnostic, claim_ids=[]; no governance weighting)",
+        "biological_reference": "partial -- state-dependent incentive salience (Berridge/Toates/Cabanac); REE cue is state-independent; biology supports both candidate bridges (authority + interoception), adjudicates neither",
+        "prerequisites": "formation present (Stage-0 bank 0->3); cue->action authority and interoceptive binding untested",
+        "implementation": "partial -- cue_recall_wanting + z_goal + MECH-295 wired; interoceptive (n_interoceptive=0) and joint (n_joint=0) pathways not exercised",
+        "environment": "adequate / unknown for 4-direction gradient approach (multi-step axis search)",
+        "measurement": "under-instrumented (DOMINANT gap) -- measures cue_fires and contact_rate, nothing in between: no post-cue z_goal delta, action_bias magnitude, approach rate, gradient/distance delta, hazard-interrupt count",
+        "integration": "partially coupled / possibly negative -- cue fires but effect on action selection unmeasured; ON contact <= OFF contact suggests displacement",
+        "scale": "unknown -- matched_token_strength ~0.2 (0.023 on seed 44) may be sub-threshold for MECH-295 approach"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cue-triggered incentive salience / Pavlovian-instrumental transfer",
+        "dependencies": ["interoceptive/drive state (state-dependent wanting)", "action/approach authority pathway", "gradient-following / axis-decomposed search in 4-dir grid"],
+        "is_formal_import": false,
+        "divergence": "REE SD-057 cue is exteroceptive-only (state-independent); biology incentive salience is state-dependent. Load-bearing but already captured as the Layer-2 design. The proximate 638a failure is NOT the interoceptive gap per se -- it is that the fired cue has unverified (possibly negative) action authority.",
+        "lit_status": "absent -- targeted_review_object_bound_incentive_salience referenced by thought-intake doc does NOT exist; Layer-2 Berridge/Toates/Cabanac pull is a prerequisite IF 640 routes to interoceptive build"
+      },
+      "recommended_epistemic_category": "n/a (claim_ids=[]); finding is measurement_gap + behavioural diagnostic, NOT substrate_ceiling, NOT falsification",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-638a (diagnostic, no claims) validated the 638 formation fix (C1 cue fires, C2 OFF silent, Stage-0 token bank 0->3) but FAILED C3 contact-lift: ARM_CUE_ON P2 contact [0.0, 0.0, 0.267] <= ARM_OFF [0.0, 0.197, 0.648] on all 3 matched seeds (0/3 show ON>OFF), with n_interoceptive_need_cues=0 / n_joint_cues=0 throughout and drive_peak=0.28 on the zero-contact seed 42. The fired cue is exteroceptive-only and behaviourally inert-to-counterproductive. CRITICAL: 638a cannot discriminate cue-to-action authority / gradient-following / interoceptive / orienting / hazard-interrupt because it logged no post-cue action trace (cue_fires and contact_rate only). non_contributory for governance; contributory as a behavioural-diagnostic finding that the cue->contact failure is most likely a cue-to-action authority / displacement problem (weak ~0.2 token attractor overwriting the wild-seeded one), NOT yet established as an interoceptive-meaning gap. Next step is a measurement-only post-cue diagnostic (proposed V3-EXQ-640) that gates the planned 638b interoceptive build.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": "(no substrate entry -- next step is measurement, not substrate)",
+        "implementation_hint": "Do not write a substrate_queue entry. The smallest next step is a measurement-only post-cue action/gradient diagnostic (proposed V3-EXQ-640) re-running scaffolded_sd054_onboarding behaviourally unchanged with per-cue-fire instrumentation. Only after 640 attributes the failure should any substrate (interoceptive need-gating / gradient-following / orienting) be queued.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "638a settled branch (b) only at 'fires vs contact' resolution; cannot distinguish cue-to-action authority / gradient-following / interoceptive / orienting / hazard-interrupt (no post-cue action trace).",
+        "ON<=OFF contact (0/3 seeds ON>OFF) raises a displacement hypothesis: weak ~0.2 token attractor overwriting the wild-seeded z_goal attractor -> net-negative authority.",
+        "Building 638b interoceptive substrate now would add Layer-2 meaning on top of an unestablished Layer-1 behavioural authority.",
+        "Contact competence exists in the substrate (ARM_OFF reaches 0.648); the open question is recruitment/authority, not reachability.",
+        "Berridge/Toates/Cabanac (state-dependent incentive salience) lit-pull is a prerequisite only IF 640 routes to the interoceptive build; the referenced targeted_review does not yet exist."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "context_runs": {
+    "V3-EXQ-634c": "FAIL non_contributory -- seeding calibration alone did not clear nursery-to-forager; NOT goal-formation impossibility; does not dominate this autopsy.",
+    "V3-EXQ-610e": "FAIL crystallization-necessity (INV-074/MECH-333/MECH-334; d1_preserves_diversity=false, d2_control_collapse=false). Separate diversity-preservation cluster; per user instruction does not drive this autopsy.",
+    "V3-EXQ-639": "PASS ARC-063 CandidateRuleField substrate-readiness. Downstream-ready, not the current nursery-to-forager blocker."
+  },
+  "proposed_next_experiment": {
+    "suggested_queue_id": "V3-EXQ-640",
+    "type": "measurement-only post-cue action/gradient diagnostic",
+    "purpose": "diagnostic",
+    "claim_ids": [],
+    "behavioural_change": "none (re-run scaffolded_sd054_onboarding ARM_OFF/ARM_CUE_ON ablation unchanged; instrumentation-only)",
+    "new_metrics": [
+      "post_cue_z_goal_norm_delta",
+      "cue_action_bias_magnitude",
+      "post_cue_selected_action_approach_rate",
+      "post_cue_manhattan_distance_delta_to_resource",
+      "salience_interrupt_count_after_cue",
+      "post_cue_hazard_salience_spike_count",
+      "cue_to_first_gradient_improving_move_latency",
+      "oscillation_rate_after_cue",
+      "context_action_outcome_tuple_count (optional, CandidateRuleField OFF)"
+    ],
+    "gates": "V3-EXQ-638b (interoceptive OFF/EXTERNAL_ONLY/JOINT arms) is GATED behind 640's attribution",
+    "do_not_do_yet": [
+      "638b interoceptive substrate build",
+      "orienting/surveying mode",
+      "safe-gradient-following primitive",
+      "hazard-clearance scaffold",
+      "four-direction forced-choice env",
+      "stable->moving ecology curriculum",
+      "safe-weaning scaffold",
+      "activating ARC-063 CandidateRuleField as the fix",
+      "tuning to pass C3"
+    ]
+  }
+}
