@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-05T15:02:48Z",
+  "last_tick_utc": "2026-06-05T15:17:59Z",
   "state": "running",
   "current_exq": "V3-EXQ-610f",
   "current_exq_started_utc": "2026-06-05T14:58:58.174612+00:00",
@@ -9,19 +9,21 @@
   "current_claim_id": "INV-074",
   "current_description": "",
   "progress": {
-    "run_label": "starting...",
+    "run_label": "Seed 42 / ARM_0_stripped_control",
     "runs_done": 0,
     "runs_total": 15,
-    "episodes_done": 0,
+    "episodes_done": 101,
     "episodes_total": 2500,
-    "overall_pct": 0.0
+    "overall_pct": 0.3
   },
-  "seconds_elapsed": 230,
-  "seconds_remaining": 127800,
+  "seconds_elapsed": 1141,
+  "seconds_remaining": 130449,
   "recent_lines": [
-    "[V3-EXQ-610f] INV-074 crystallization necessity test (EVB-0270, TRUE-NEGATIVE control + phase-3 entropy sweep + MECH-341/313 floor contrast; supersedes V3-EXQ-610e)",
-    "[V3-EXQ-610f][ASSERT] verifying the three fixes are wired...",
-    "[V3-EXQ-610f][ASSERT] FIX 1 OK: grad_seen=True params_changed=True init_entropy=0.4101 -> trained_entropy=0.4913 (< 1.04; uniform ln5=1.6094)"
+    "[V3-EXQ-610f][ASSERT] all three fixes wired + verified.",
+    "Seed 42 Condition ARM_0_stripped_control",
+    "[V3-EXQ-610f] Starting ARM_0_stripped_control seed=42 crystallize=False p3_eb=0.0 noise_floor=False e3_div=False",
+    "[train] ARM_0_stripped_control ep 100/2500 phase=0 ep_eb=0.0200 ep_reward=-1.1240 rv=0.0022 pol_steps=100 exp_steps=0 ewc_terms=0",
+    "[train] ARM_0_stripped_control ep 101/2500 phase=1 ep_eb=0.0200 ep_reward=-1.0022 rv=0.0027 pol_steps=101 exp_steps=0 ewc_terms=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
