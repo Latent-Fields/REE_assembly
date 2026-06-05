@@ -86,7 +86,54 @@ P3 out-of-scope: lust.
    that thought's risk note + memory `feedback_psychosis_confabulation_distinction` (guilt != shame
    != self-condemnation).
 
-## 7. Cross-references
+## 7. Lit-check verdict + spawned /lit-pulls (2026-06-05)
+
+A user-prompted question -- "are the P0 gaps best placed in the Developmental Needs Register, or
+are they really commitment-boundary phenomena or their own streams (like goal/harm stream)?" --
+led to a placement correction and a PubMed scouting check. **Two findings, both confirming the
+gaps are DISTINCT streams, not duplicates of existing rows (collapsing them would repeat the
+SD-010->SD-011 "philosophy-right/mechanism-wrong" error; see memory
+`feedback_biology_before_formal_definitions`):**
+
+1. **Placement correction.** These are standing control signals (streams), NOT developmental-stage
+   gates. The architecturally-correct home is the **`affect_primitives.md` "Extension Register:
+   Beyond Harm"** (which already carries V4-deferred rows like Relief), with consumer cross-notes
+   to commitment-closure (MECH-342 decommit) and control_plane -- NOT new DEV-NEED rows, NOT GAP
+   nodes in the active V3 closure map. Curiosity is excluded (already ARC-065 + DEV-NEED-029).
+
+2. **"safety/soothing" is THREE distinct systems, none identical to the existing Relief row:**
+   - RELIEF = appetitive signal at the OFFSET of an aversive event; NAc dopamine-D1 + NMDA
+     (Bergado Acosta et al. 2016, Neuropharmacology, DOI 10.1016/j.neuropharm.2016.11.022). REE's
+     existing Relief row.
+   - SAFETY = a LEARNED PREDICTOR of threat-absence (active inhibition, prospective); nucleus
+     reuniens->BLA (Silva et al. 2021, Nat Neurosci, DOI 10.1038/s41593-021-00856-y) + PL/IL mPFC
+     ensembles (Corches et al. 2018, Behav Brain Res, DOI 10.1016/j.bbr.2018.11.042). NEW stream.
+   - SOOTHING/COMFORT = down-regulation of an ONGOING stress response (social buffering;
+     parasympathetic/oxytocin). NEW stream, V4-social.
+
+3. **"fatigue/stop-recover" != suffering-withdrawal:** learned helplessness is uncontrollable-
+   AVERSIVE-stress -> dorsal-raphe 5-HT + CRF (Maier & Watkins 2005, Neurosci Biobehav Rev, DOI
+   10.1016/j.neubiorev.2005.03.021; Hashimoto et al. 2021, Brain Commun, DOI
+   10.1093/braincomms/fcab285) = SD-011 / z_harm_a territory. Central/mental fatigue is a
+   metabolic/effort-depletion construct (MFI-20 multidimensional). They CONVERGE on "stop/disengage"
+   but from opposite antecedents. **Fatigue therefore belongs on the SD-012 homeostasis side, NOT
+   the SD-011 suffering pathway** -- which REE's own DEV-NEED-002 ("Harm, hunger, fatigue ... blur
+   together" = failure) and the SD-011/SD-012 split already predict. The stop/disengage CONSUMER may
+   be shared with MECH-342 (maintenance-time decommit) but the SIGNAL is distinct.
+
+**Registration is GATED on three spawned /lit-pull chips (do not write rows into
+`affect_primitives.md` before these land, per biology-before-formal-definitions):**
+- `task_3ab79018` -- safety vs relief vs soothing differentiation.
+- `task_93a719b6` -- fatigue/stop-recover vs suffering-withdrawal (SD-012 vs SD-011).
+- `task_64c2e558` -- boundary-violation / blocked-agency / anger(RAGE) stream (frustrative
+  non-reward, sense-of-agency, reactance/coercion; V4-social with possible V3 blocked-action proxy).
+
+When the pulls land: register confirmed-distinct streams as new `affect_primitives.md` Extension
+Register rows, each explicitly differentiated from its neighbour (safety!=relief!=soothing;
+fatigue!=suffering), with consumer cross-notes. Attribution: *Based on articles retrieved from
+PubMed.*
+
+## 8. Cross-references
 
 - Raw: `docs/thoughts/2026-06-01_ProtoFeelings_implementation_timing.md`.
 - Claims/docs: `affect_primitives.md`, MECH-112, SD-011, MECH-056, MECH-061, MECH-090, ARC-065,
