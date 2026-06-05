@@ -1,0 +1,70 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-05T14:34:59Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic_20260605T125802Z_v3",
+      "queue_id": "V3-EXQ-640",
+      "claim_ids": [],
+      "manifest_outcome": "PASS",
+      "manifest_outcome_note": "PASS is measurement-success only (C1 cue fires + C2 post-cue trace captured); evidence_direction=non_contributory is the diagnosis-pending signal this autopsy resolves by applying the 638a discriminator grid.",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- diagnostic, claim_ids=[]; no governance weighting",
+        "biological_reference": "clear (magnitude gap) -- sign-tracking / Pavlovian-instrumental transfer; cue->approach authority is real and strong in biology; REE cue->z_goal->approach gain set ~3 orders too low",
+        "prerequisites": "present (token formation + cue recall both fire) / under-gained (cue->z_goal pull magnitude)",
+        "implementation": "present-but-under-powered -- GoalState.cue_pull + MECH-347 wired and firing 1557x; pull magnitude ~0.002 vs ||z_goal||~0.45 (~0.4%)",
+        "environment": "adequate -- ARM_OFF reaches contact, env supports approach",
+        "measurement": "resolved -- 640 captured the post-cue z_goal/approach trace that 638a lacked (this is why 640 PASSed C1/C2)",
+        "integration": "near-zero coupling (DOMINANT gap) -- cue fires hard but effect on z_goal (~0.4%) and approach (== background) is negligible",
+        "scale": "likely insufficient -- cue_recall_gain 0.2 x token value ~0.2 -> sub-threshold pull"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cue-triggered incentive salience / sign-tracking / Pavlovian-instrumental transfer (Berridge & Robinson; Schultz DA-transfer-to-cue; Corbit & Balleine specific PIT)",
+        "dependencies": ["token formation (Stage-0 bind, 638a)", "cue recall firing (MECH-347, confirmed 1557x)", "cue->z_goal pull gain (the under-powered link)", "z_goal->approach conversion (MECH-295 / E3 goal_proximity, untested until z_goal moves)"],
+        "is_formal_import": false,
+        "divergence": "faithful-but-partial translation: recall event present, but cue->z_goal->approach gain ~3 orders too low to produce the behavioural authority biology shows. Magnitude/wiring gap, not falsification.",
+        "lit_status": "absent (targeted_review_object_bound_incentive_salience does not exist; not needed yet -- Layer-2 Berridge/Toates/Cabanac pull is a prerequisite only IF a successor routes interoceptive)"
+      },
+      "recommended_epistemic_category": "n/a (claim_ids=[]); finding is behavioural-diagnostic / integration-and-gain gap, NOT substrate_ceiling and NOT falsification",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-640 is a measurement-success diagnostic (claim_ids=[]); no claim weighting. Discriminator-grid read (638a Sections 7-8): cue-to-action AUTHORITY missing (grid row 1) -- cue fires 1557x (713/296/548) but moves z_goal ~0.4% (cue_zgoal_pull_norm ~0.002 vs ||z_goal||~0.45) and post-cue approach rate == cue-independent background (0.089 vs 0.090; 0.057 vs 0.054; 0.101 vs 0.117), with ARM_CUE_ON contact == ARM_OFF contact on every seed. The 638a DISPLACEMENT hypothesis is REFUTED (||z_goal|| at fire equal-or-higher than the ARM_OFF attractor norm). The interoceptive reading is not the proximate cause (seed 42: 713 fires, z_goal preserved, zero approach lift). Root: cue_recall_gain (0.2) x weak token value (~0.2) -> sub-threshold z_goal pull. n_cue_action_bias_present=0 is the SD-016 cue_action_proj channel (EXP-0155/EXQ-449 ungrounded) which the SD-057 cue does not use -- expected-absent, not the finding.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The GoalState.cue_pull + MECH-295/E3 approach pathways already exist; this is a gain/parameter question on the existing substrate (cue_recall_gain + token strength), not a missing primitive. The next step is a measurement sweep via /queue-experiment, not a substrate build. A substrate entry becomes appropriate only if the cue-authority sweep shows z_goal pull does not rise even at high gain (cue_pull mechanism itself under-powered/clipped)."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "640 resolves the 638a un-discriminated branch at action-trace resolution: cue-to-action AUTHORITY missing (grid row 1).",
+        "638a displacement hypothesis REFUTED: ||z_goal|| at cue fire is equal-or-higher than the ARM_OFF attractor norm; cue moves z_goal only ~0.4%.",
+        "Cue is behaviourally INERT, not counterproductive: ARM_CUE_ON contact == ARM_OFF contact and approach == background on every seed.",
+        "Interoceptive reading is NOT the proximate cause: seed 42 fired 713x with z_goal preserved and still zero approach lift -- the failure is gain/authority not need-gating.",
+        "cue->z_goal link is near-zero; z_goal->approach link is untestable until z_goal actually moves -- the successor sweep must move z_goal to separate the two links.",
+        "638b interoceptive build remains correctly gated (Layer-2 meaning on a cue with no Layer-1 authority is premature, now confirmed with the action trace)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "routing_summary": {
+    "confirmed_with_user": true,
+    "routing": "queue-experiment: cue-authority strengthening diagnostic (cue_recall_gain and/or token-strength sweep + re-measure post_cue_approach_rate vs background) that gates V3-EXQ-638b",
+    "successor_discriminator": {
+      "zgoal_pull_rises_and_approach_lifts": "cue->z_goal->approach bridge works, was under-gained -> promote authority bridge, THEN consider 638b interoceptive",
+      "zgoal_pull_rises_but_approach_flat": "z_goal->approach link (MECH-295 / E3 goal_proximity) is the real gap -> diagnose that link before 638b",
+      "zgoal_pull_does_not_rise_at_high_gain": "cue_pull mechanism itself under-powered/clipped -> substrate-level cue-authority bridge revisit"
+    },
+    "disposition": "diagnostic cleared, no claim impact (no claim weighting, no manifest edit, no demotion, no substrate_queue write, no lit-pull yet)",
+    "do_not_do_yet": [
+      "638b interoceptive need-gating substrate (gate behind the cue-authority sweep)",
+      "orienting/surveying mode, safe-gradient primitive, hazard-clearance scaffold, 4-dir forced-choice env, stable->moving curriculum, safe-weaning",
+      "ARC-063 CandidateRuleField as the nursery-to-forager fix",
+      "treating n_cue_action_bias_present=0 (SD-016 channel) as the finding",
+      "tuning to pass"
+    ],
+    "gates": "V3-EXQ-638b (interoceptive build)"
+  }
+}
