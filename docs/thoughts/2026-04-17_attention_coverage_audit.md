@@ -1,3 +1,13 @@
+Status: processed
+
+Processed in:
+- `docs/claims/claims.yaml` (SD-026 + MECH-251/252/253; H1/H2/H3 holes cited as Decomposition source at claims.yaml:18464/18696/18827)
+- `evidence/planning/GOVERNANCE_AGENDA.md`
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 # Attention Coverage Audit
 
 Date: 2026-04-17

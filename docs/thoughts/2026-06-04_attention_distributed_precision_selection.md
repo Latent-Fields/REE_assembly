@@ -1,3 +1,13 @@
+Status: processed
+
+Processed in:
+- (processed directly into canonical form -- this file IS the canonical unification paragraph over the existing distributed-attention mechanisms: MECH-251/254/255/259/261/347, SD-032a, SD-057, ARC-062/063; containment-only for V3, no new claim)
+- `evidence/planning/failure_autopsy_V3-EXQ-638a_2026-06-05.md` (cited)
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 # Attention as distributed precision-selection control
 
 **Date:** 2026-06-04

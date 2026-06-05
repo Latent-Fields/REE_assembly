@@ -1,3 +1,13 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/goal_pipeline_plan.md` (ARC-065 behavioural-diversity completion ladder; MECH-313/314/320 cluster)
+- `evidence/calibration/calibration_debt_index.md`
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 # Thought Intake: Completing the Curiosity System in ree-v3
 **Date:** 2026-05-13  
 **Status:** Candidate completion plan / integration intake  

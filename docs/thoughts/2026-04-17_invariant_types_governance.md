@@ -1,3 +1,13 @@
+Status: processed
+
+Processed in:
+- `docs/architecture/invariant_types.md` (invariant universal/emergent/grey_zone schema + governance rule)
+- `docs/governance/invariant_classification_audit.md`
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 # Invariant Types and Governance — Planning Doc
 
 **Status:** draft for review

@@ -1,3 +1,12 @@
+Status: processed
+
+Processed in:
+- `evidence/calibration/calibration_debt_index.md` (the calibration-debt programme this intake spawned; Work Package A done)
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 # Thought Intake: Calibration Debt Map for REE-v3
 **Date:** 2026-05-13  
 **Status:** Cross-substrate calibration intake / project-unblocking map  

@@ -1,3 +1,12 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/goal_pipeline_plan.md` (goal-stream seam-closure: predictive wanting / sustained-drive / read-side consumer; SD-012/014/015 + MECH-112/216/295)
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 
 # Thought Intake: Enabling the Goal Stream in ree-v3
 **Date:** 2026-05-13

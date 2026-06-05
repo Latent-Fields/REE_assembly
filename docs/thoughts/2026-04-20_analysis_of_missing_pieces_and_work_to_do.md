@@ -1,3 +1,14 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/sd033_governance_plan.md`
+- `evidence/planning/commitment_closure_plan.md`
+- `docs/architecture/sd_034_governance_closure_operator.md`
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 
 
 REE-V3 GAP MEMO

@@ -1,3 +1,14 @@
+Status: processed
+
+Processed in:
+- `docs/claims/claims.yaml` (MECH-343 + Q-056; location: 2026-06-03_difficulty_gated_proposal_entropy.md at claims.yaml:36365)
+- `docs/architecture/modulatory_bias_selection_authority.md`
+- `evidence/planning/experiment_proposals.v1.json` (EXP-0176, deferred to /queue-experiment)
+
+<!-- incorporated-but-unmarked (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 # Difficulty-gated proposal entropy
 
 **Status:** WORKING HYPOTHESIS — not an established mechanism. Available for future
