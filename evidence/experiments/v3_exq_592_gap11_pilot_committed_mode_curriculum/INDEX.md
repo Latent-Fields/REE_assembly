@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_592_gap11_pilot_committed_mode_curriculum
 
-Generated: `2026-06-05T09:59:16.009812Z`
+Generated: `2026-06-05T14:54:56.648942Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -34312,6 +34312,20 @@
     waking dynamics set gate 1 (consolidation instructions); if gate 1 is corrupted by
     WTA, sleep cannot reconstruct diverse signals at gate 2.
   evidence_quality_note: >
+    2026-06-05 (governance, failure_autopsy_V3-EXQ-610e CONFIRMED): V3-EXQ-610e is the FIRST behaviorally-live
+    crystallization-necessity run -- the harness no-op that explained 543h/i/k/l + 610a/b/c/d is RESOLVED (policy
+    trained 0.410->0.491, expansion stepped 1249 params/499 steps, ewc_penalty in loss 0.268, policy_trained_nonuniform=true).
+    It STILL cannot discriminate (d2_control_shows_collapse=FALSE delta -0.0105, d1=FALSE delta -0.0002) because the
+    negative control is CONFOUNDED: MECH-313 noise floor (0.3) + MECH-341 E3 score-diversity + the policy entropy bonus
+    (0.02) are always-on in BOTH arms, so the trained policy under an entropy-maximizing objective never collapses and
+    crystallization has nothing to preserve. NOT a falsification -- INV-074 is a biology-faithful universal invariant
+    (OD critical period, lit_conf 0.82); the V3 substrate merely carries redundant diversity floors biology lacks.
+    non_contributory; epistemic_category measurement_test_design_defect (manifest, not substrate_ceiling -- confounded
+    control, redesign not substrate enrichment); pending_retest_after_substrate retained. Routing: /queue-experiment
+    V3-EXQ-610f true-negative control (entropy_bonus=0, noise floor off, E3 diversity off in ARM_0) + entropy_bonus_weight
+    sweep to map the collapse threshold. 9th non_contributory crystallization-arm result, FIRST with the harness fixed --
+    cause relocated from harness-no-op to confounded-control.
+
     2026-06-03 (governance, failure_autopsy_V3-EXQ-610c): V3-EXQ-610c (crystallization-necessity retest, supersedes 610b) re-tagged non_contributory + measurement_test_design_defect (manifest-level) + pending_retest_after_substrate. Root cause is HARNESS-level, NOT env: the experiment never trains the gated policy (policy_optimizer.step never called; REINFORCE explicitly passed), crystallize() freezes never-trained heads, ewc_penalty never added to loss -> crystallization is a behavioral no-op and the predicted WTA monostrategy collapse is never instantiated (D1 -0.013, D2 +0.047 below 0.10 floor; both arms near-uniform). 7th non_contributory crystallization-arm result (543h/i/k/l + 610a/b/c). INV-074 (universal invariant, lit_conf 0.82) NOT weakened; epistemic_category substrate_ceiling unchanged. Routed to /queue-experiment redesign V3-EXQ-610d (train the policy, step expansion_parameters, add ewc_penalty; pre-registered substrate-ceiling fork where a trained-policy control that still does not collapse strengthens MECH-341/MECH-313, not weakens INV-074).
     Registered 2026-05-17. V3 experimental support via EXQ-569/571 (indirect --
     confirms F-dominance pattern; does not directly test the invariant's causal claim).
@@ -34474,6 +34488,7 @@
     plasticity asymmetry never resolves and the system remains in a permanently tilted
     training regime.
   evidence_quality_note: >
+    2026-06-05 (governance, failure_autopsy_V3-EXQ-610e CONFIRMED): V3-EXQ-610e (first harness-fixed crystallization run -- policy trained 0.410->0.491, expansion stepped 1249 params, ewc_penalty in loss 0.268) STILL non_contributory: d2_control_shows_collapse=FALSE because the negative control is CONFOUNDED (MECH-313 noise floor + MECH-341 E3 diversity + policy entropy bonus 0.02 always-on in BOTH arms), so the MECH-333 open-phase mechanism is never exercised -- D1/D2 non-discriminative by construction, not falsification. epistemic_category measurement_test_design_defect (manifest); pending_retest_after_substrate retained. Routing: /queue-experiment V3-EXQ-610f true-negative control (entropy_bonus=0, noise floor off, E3 diversity off in ARM_0) + entropy_bonus sweep.
     2026-06-03 (governance, failure_autopsy_V3-EXQ-610c): V3-EXQ-610c re-tagged non_contributory + measurement_test_design_defect (manifest) + pending_retest_after_substrate. Crystallization is a behavioral no-op in this harness (policy never trained; crystallize() freezes untrained heads; ewc_penalty never in loss), so the open-phase/closure mechanism is never exercised -- D1/D2 non-discriminative by construction. Not a falsification. Routed to /queue-experiment V3-EXQ-610d (trained-policy redesign).
     Registered 2026-05-17. No V3 implementation exists; MECH-333 is a design
     prescription derived from the EXQ-569/571 audit and the 2026-05-17 lit pull.
@@ -34616,6 +34631,7 @@
     within an open window. Both are required but neither implements crystallization
     by itself.
   evidence_quality_note: >
+    2026-06-05 (governance, failure_autopsy_V3-EXQ-610e CONFIRMED): V3-EXQ-610e (first harness-fixed crystallization run -- policy trained 0.410->0.491, expansion stepped 1249 params, ewc_penalty in loss 0.268) STILL non_contributory: d2_control_shows_collapse=FALSE because the negative control is CONFOUNDED (MECH-313 noise floor + MECH-341 E3 diversity + policy entropy bonus 0.02 always-on in BOTH arms), so the MECH-334 closure/crystallization mechanism is never exercised -- D1/D2 non-discriminative by construction, not falsification. epistemic_category substrate_ceiling unchanged on the claim; manifest tagged measurement_test_design_defect; pending_retest_after_substrate retained. Routing: /queue-experiment V3-EXQ-610f true-negative control (entropy_bonus=0, noise floor off, E3 diversity off in ARM_0) + entropy_bonus sweep.
     2026-06-03 (governance, failure_autopsy_V3-EXQ-610c): V3-EXQ-610c re-tagged non_contributory + measurement_test_design_defect (manifest) + pending_retest_after_substrate. Harness defect (policy never trained, ewc_penalty never added to loss) -> crystallization/closure never exercised; D1/D2 non-discriminative by construction. epistemic_category substrate_ceiling unchanged; not a falsification. Routed to /queue-experiment V3-EXQ-610d.
     Registered 2026-05-17. No V3 implementation exists. MECH-334 is logically
     dependent on MECH-333. Lit pull completed 2026-05-17 -- PNN/Lynx1/NgR1 three-

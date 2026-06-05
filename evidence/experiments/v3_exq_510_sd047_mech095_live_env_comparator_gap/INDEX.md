@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_510_sd047_mech095_live_env_comparator_gap
 
-Generated: `2026-06-05T09:59:16.009812Z`
+Generated: `2026-06-05T14:54:56.648942Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

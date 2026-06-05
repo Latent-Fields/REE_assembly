@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-05T10:01:21Z`  
-Last review: `2026-06-05T09:43:24Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Generated: `2026-06-05T14:55:43Z`  
+Last review: `2026-06-05T14:42:00Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_610e_inv074_crystallization_necessity_20260604T225319Z_v3` | 2026-06-04T22:53 | INV-074, MECH-333, MECH-334 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 
