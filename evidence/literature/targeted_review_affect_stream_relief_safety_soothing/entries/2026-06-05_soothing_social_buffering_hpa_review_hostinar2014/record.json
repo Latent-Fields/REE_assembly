@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_affect_stream_relief_safety_soothing",
+  "entry_id": "2026-06-05_soothing_social_buffering_hpa_review_hostinar2014",
+  "timestamp_utc": "2026-06-05T19:45:43Z",
+  "claim_ids_tested": [],
+  "source": {
+    "title": "Psychobiological mechanisms underlying the social buffering of the hypothalamic-pituitary-adrenocortical axis: a review of animal models and human studies across development",
+    "authors": ["Camelia E Hostinar", "Regina M Sullivan", "Megan R Gunnar"],
+    "year": 2014,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/a0032671",
+    "url": "https://doi.org/10.1037/a0032671",
+    "pmid": "23607429",
+    "volume_pages": "140(1):256-282"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Authoritative cross-species, cross-development review establishing social buffering -- a dampened HPA-axis stress response in the presence/assistance of a conspecific -- as a distinct psychobiological process mediated by oxytocinergic systems and prefrontal networks, shaped by early experience. Supports the differentiation verdict's central claim that SOOTHING/COMFORT is a mechanistically separate system from relief (reward-circuit offset) and safety (cortico-amygdalar prediction): it operates on the ONGOING neuroendocrine/autonomic stress state via an external (social) regulator, not as event reinforcement or prospective threat-absence prediction. claim_ids_tested intentionally empty -- REE has no registered soothing/social-buffering mechanism; this entry grounds a PROPOSED extension-register row, not an existing claim. Source quality high (Psychological Bulletin integrative review); mapping fidelity to REE moderate-low (REE V3 lacks a conspecific/other-model, so the canonical social trigger is V4); transfer risk moderate-high.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Social buffering is gated by a CONSPECIFIC's presence/assistance -- REE V3 has no other-model, so the canonical trigger cannot be instantiated until V4-social; building soothing in V3 by emotion-name would be premature.",
+    "The mediators are oxytocinergic + prefrontal + developmentally-shaped attachment, not the value-coding dopamine of relief nor the conditioned-inhibition prediction of safety -- folding soothing into MECH-302 (relief) or MECH-303/304 (safety) would mis-assign the substrate.",
+    "Early-experience dependence: buffering capacity is shaped by developmental attachment history -- a state REE has no representation of."
+  ],
+  "tags": ["soothing", "comfort", "social_buffering", "hpa_axis", "oxytocin", "parasympathetic", "co_regulation", "attachment", "v4_social", "unregistered_gap", "affect_stream_differentiation"],
+  "mapping": {
+    "source_claim_statement": "Social buffering is a cross-species process consisting of a dampened HPA-axis stress response to threat/challenge in the presence or with the assistance of a conspecific; its putative mediators are oxytocinergic systems and prefrontal neural networks, and early experience is critical in shaping later social buffering effects.",
+    "ree_translation": "Proposed SOOTHING/COMFORT affect stream (NOT yet registered): an autonomic/neuroendocrine down-regulation of the ONGOING stress/drive state, externally (socially) triggered, that reduces the magnitude and recovery time of the active suffering/drive trajectory. In REE terms it would act as a state-GAIN/recovery modulator on the suffering accumulator (MECH-219) and homeostatic drive (SD-012, SD-032e pACC autonomic coupling) -- distinct from relief's offset reinforcement (MECH-302) and safety's prospective prediction (MECH-303/304).",
+    "mapping_caveat": "The canonical mechanism requires a conspecific (social buffering), which REE V3 cannot represent (no other-model) -- this is the basis for the V4-social scope recommendation. A non-social autonomic-recovery core (parasympathetic down-regulation of ongoing arousal) could in principle be a minimal V3 hook, but that is an extrapolation beyond what this social-buffering review tests. claim_ids_tested is empty because no soothing mechanism is registered; this entry is forward-looking grounding for the extension-register decision.",
+    "source_context": "Integrative review across rodent models and human studies, infancy to adulthood; HPA-axis cortisol/corticosterone outcomes; oxytocin and prefrontal mediation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High-quality canonical review; the differentiation verdict it supports is strong, but REE-mapping fidelity is held down by the absence of any V3 other-model and the developmental-attachment dependence. Net 0.78 for 'soothing is a distinct system'; lower if read as direct REE-implementation evidence."
+  }
+}

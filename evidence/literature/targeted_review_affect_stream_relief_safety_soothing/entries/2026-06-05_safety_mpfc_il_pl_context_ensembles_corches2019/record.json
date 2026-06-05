@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_affect_stream_relief_safety_soothing",
+  "entry_id": "2026-06-05_safety_mpfc_il_pl_context_ensembles_corches2019",
+  "timestamp_utc": "2026-06-05T19:45:43Z",
+  "claim_ids_tested": ["MECH-303"],
+  "source": {
+    "title": "Differential fear conditioning generates prefrontal neural ensembles of safety signals",
+    "authors": ["Alex Corches", "Alex Hiroto", "Tyler W Bailey", "John H Speigel 3rd", "Justin Pastore", "Mark Mayford", "Edward Korzus"],
+    "year": 2019,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2018.11.042",
+    "url": "https://doi.org/10.1016/j.bbr.2018.11.042",
+    "pmid": "30502356",
+    "volume_pages": "360:169-184"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Activity-dependent ensemble mapping shows the prelimbic mPFC codes context-danger associations while differential conditioning recruits additional PL+IL ensembles tied to inhibition of generalized fear -- i.e. learned context-safety is an active prefrontal representation, not mere absence of threat. Directly supports MECH-303's prefrontal substrate for a contextual passive safety store (IL expression gating; cortical contextual representation). Source quality good (ensemble-level mapping, behavioural discrimination). Mapping fidelity moderate-high: Corches evidences the prefrontal/contextual safety substrate but does not isolate the slow diffuse contextual-exposure update rule MECH-303 specifies, nor the vHipp-PL store. Transfer risk moderate (rodent differential fear conditioning to REE context-safety representation).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PL codes context-DANGER and IL/PL code inhibition of GENERALIZED fear -- if REE collapsed safety into a single 'low-harm' scalar, it would miss that danger-monitoring and safety-discrimination are separable prefrontal ensembles.",
+    "Safety here is built by differential conditioning (discriminating a safe-but-similar cue from a dangerous one), not by passive non-occurrence alone -- a pure passive-exposure update rule (MECH-303 as written) may under-specify the discrimination demand this paper documents."
+  ],
+  "tags": ["safety", "mech_303", "prefrontal", "infralimbic", "prelimbic", "context_safety", "conditioned_inhibition", "fear_discrimination", "affect_stream_differentiation"],
+  "mapping": {
+    "source_claim_statement": "Prefrontal neuronal ensembles code functional context-danger and context-safety relationships: the prelimbic mPFC monitors context-danger associations to conditioned fear, while differential conditioning sparks additional PL and IL ensembles associated with the inhibition of generalized fear; safety learning is active prefrontal representation that is gradually updated and rebalanced.",
+    "ree_translation": "MECH-303: a context-bound passive safety representation ('this environment predicts absence of suffering') with a prefrontal substrate (IL for expression gating). Corches grounds the prefrontal/contextual locus and confirms safety is an active learned representation distinct from the threat representation -- precisely the relief-vs-safety dissociation: safety is a prospective inhibitory predictor, not the offset reinforcement event of MECH-302.",
+    "mapping_caveat": "Corches studies discriminative fear conditioning (distinguishing a safe similar cue from a dangerous one), which is closer to cue/context conditioned inhibition than to MECH-303's pure passive-exposure-without-harm update rule; it also does not test the vHipp-PL contextual store MECH-303 names. It supports the prefrontal safety substrate and the safety-as-active-representation premise, not MECH-303's specific diffuse update dynamics.",
+    "source_context": "Mouse, activity-dependent neuronal ensemble tagging (Mayford TetTag-style), differential auditory/contextual fear conditioning, PL/IL subdivisions of mPFC."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.34,
+    "notes": "Strong on the prefrontal safety locus and the danger/safety ensemble separation; the gap is between discriminative-conditioning safety (tested) and passive-contextual safety (MECH-303 as written). Weighted toward mapping_fidelity for this architectural claim."
+  }
+}

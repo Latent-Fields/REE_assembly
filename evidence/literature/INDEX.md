@@ -1,12 +1,12 @@
 # Literature Evidence Index
 
-Generated: `2026-06-05T19:48:58.563837Z`
+Generated: `2026-06-05T19:50:50.354470Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
 | `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
 | `targeted_review_action_policy_decomposition` | [`2026-04-28_action_policy_motor_primitives_mussa_ivaldi2000`](targeted_review_action_policy_decomposition/entries/2026-04-28_action_policy_motor_primitives_mussa_ivaldi2000/record.json) | 5 | [`summary`](targeted_review_action_policy_decomposition/entries/2026-04-28_action_policy_motor_primitives_mussa_ivaldi2000/summary.md) |
-| `targeted_review_affect_stream_relief_safety_soothing` | [`2026-06-05_soothing_social_buffering_hpa_review_hostinar2014`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/record.json) | 4 | [`summary`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/summary.md) |
+| `targeted_review_affect_stream_relief_safety_soothing` | [`2026-06-05_soothing_social_buffering_hpa_review_hostinar2014`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/record.json) | 5 | [`summary`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/summary.md) |
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
 | `targeted_review_arc_014` | [`2026-04-05_arc014_rangel_camerer_montague_2008`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/record.json) | 3 | [`summary`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/summary.md) |
 | `targeted_review_arc_022` | [`2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/record.json) | 6 | [`summary`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/summary.md) |
