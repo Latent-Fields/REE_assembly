@@ -83,7 +83,7 @@ closure_plan:
       depends_on: ["goal_pipeline:GAP-2"]
       proposed_claims: ["MECH-BIND-obj (L2 benefit->object-identity binding)", "MECH-INCENT-token (L3 per-object wanting amplitude / incentive token)", "MECH-GOALPTR (L4 z_goal written from token/affordance pointer)", "MECH-CUEWANT (L6 cue-triggered pre-consummatory wanting)", "MECH-CONSUME (L7 consumer readout wiring audit)"]
       registered: 2026-06-03
-      last_updated: 2026-06-04
+      last_updated: 2026-06-05
       source_artefact: "evidence/planning/thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md section 8 (L0-L9 closure map) + section 9 (proposed plan-of-record updates); lit anchor evidence/planning/literature_synthesis_2026-06-01_object_bound_incentive_salience.md"
       ratified_2026_06_03: "User ratified the section-9 GAP-7 proposal into the plan-of-record this session. Closure thesis (intake section 8): the goal stream's broken links are L2-L3 (the benefit signal at contact is never bound to OBJECT IDENTITY and there is no per-object incentive-salience / wanted-object TOKEN -- the substrate writes raw z_world/z_resource at contact with no binding step and no per-object wanting amplitude), plus the measurement/wiring around L1 (forced-seed positive control) and L7 (dACC/E3/commitment consumer readout, where dACC does NOT read z_goal directly). L0/L1/L5 are substrate-present; L6/L8 are present-but-starved. The minimal repair is the L2-L3 layer + a clean L1 positive control + an L7 wiring audit -- NOT a new mature goal ecology. Cross-evidence: V3-EXQ-623 (MECH-104 volatility interrupt) is the positive control that REE DOES turn a correctly-wired signal into behavioural consequence, so the goal-stream fault is upstream (signal never produced / never object-bound), not 'REE cannot convert signal to behaviour'. The 626 harness bug (Class-1 separation: positive-control arms with z_goal not actually engaged) must be fixed before L1/L7 are measurable. Distinct from GAP-2 (which is the developmental foraging-competence ceiling -- get the agent to CONTACT resources); GAP-7 is what happens to the benefit signal ONCE contact occurs (bind it to an object, mint an incentive token, read it out). The two are sequential: GAP-2 supplies reliable contact, GAP-7 makes that contact object-bound and behaviourally consequential. This node carries the L0-L9 closure map embedded in the plan body below."
       resume_condition: "L1 sub-deliverable LANDED at the harness level (2026-06-03, see l1_2026_06_03 below): the 626-class Class-1 wiring defect is closed and a forced-seed positive control the harness can SEE is established (F0 unit contract 6/6 + V3-EXQ-626b queued). The L7 consumer-readout AUDIT is now also done (see l7_audit_2026_06_04 below): z_goal's only behaviourally-consequential readout is the E3 goal_proximity scalar (goal_weight); dACC + the whole cingulate/regulator/policy/governance stack are z_goal-blind. The audit's payload is that the L7 'wire the missing readouts' sub-step is NOT a standalone no-new-substrate task -- it is entangled with and downstream of L2-L3, because there is no object-bound token to read until L2-L3 exists. NEXT deliverable is therefore the L2-L3 object-binding + incentive-token substrate (/implement-substrate design-discovery; no SD/MECH doc yet; proposed_claims MECH-BIND-obj / MECH-INCENT-token / MECH-GOALPTR / MECH-CUEWANT / MECH-CONSUME are placeholders, NOT registered in claims.yaml), with the L7/MECH-CONSUME readout-wiring folded INTO that design rather than queued standalone. The full L9 wanting!=liking dissociation acceptance (currently 514k=0.0) depends on L2-L3 landing AND on GAP-2 supplying reliable foraging contact."
@@ -576,6 +576,64 @@ under a `tracked` row.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-06-05 - GAP-7 cue-recall contact-bridge thread routed (638a -> 640 -> 640a; 638b gated)
+
+**Status:** Plan-of-record catch-up. Node stays `status: open`. This records the
+SD-057 L6 cue-recall *behavioural* validation thread -- the GAP-2-gated arm the
+phase-2 landing entry below flagged as the sole remaining deliverable -- run via
+scaffolded_sd054_onboarding. No substrate change and no claim weighting: all
+three experiments are diagnostics (`claim_ids=[]`), and both autopsies below are
+already confirmed + governance-consumed (the routing here is recorded, not
+re-decided).
+
+**The thread (all on scaffolded_sd054_onboarding, ARM_OFF vs ARM_CUE_ON):**
+
+- **V3-EXQ-638** (cue->contact bridge, first issue): cue-SILENT FAIL, C1 fired 0x.
+  Root cause: `IncentiveTokenBank` empty entering P1/P2 (Stage-0 forced feed
+  bound no token; `rt=_contacted_resource_type` ~always None). Formation fix
+  `scaffold_stage0_bind_incentive_token=True` (ree-v3 a9ef0be) binds the Stage-0
+  token to the strongest-perceived type; smoke showed the bank populating.
+- **V3-EXQ-638a** (re-issue WITH the formation fix): FAIL, non_contributory.
+  C1 cue fires (1050/180/446) + C2 OFF silent + token bank 0->3 all PASS
+  (formation fix worked); **C3 contact-lift FAIL** -- ARM_CUE_ON contact
+  `[0.0, 0.0, 0.267]` <= ARM_OFF `[0.0, 0.197, 0.648]` on every matched seed,
+  drive adequate (0.28) on a zero-contact seed. Measurement-reliability check:
+  the `n_cue_recall_fires` aggregation fix (ree-v3 636128a, 2026-06-04 15:50Z)
+  PREDATES the 638a manifest (18:36Z), so the cue-fire counts are read through
+  the fixed path, not the buggy `getattr(...,0)=0` path -- the numbers are
+  reliable. Autopsy `failure_autopsy_V3-EXQ-638a_2026-06-05.{md,json}`
+  (d7b316d859): cue is inert-to-counterproductive; 638a CANNOT discriminate
+  authority / gradient-following / interoceptive / orienting because no post-cue
+  action trace was logged. Routing = measurement-first.
+- **V3-EXQ-640** (measurement-only post-cue instrumentation, ree-v3 ffaeda5;
+  behaviourally identical to 638a + per-cue-fire trace): SETTLED the branch.
+  Autopsy `failure_autopsy_V3-EXQ-640_2026-06-05.{md,json}` (f2a65e1d0d):
+  **cue-to-action AUTHORITY missing** -- cue fired 713/296/548x but moved z_goal
+  ~0.4% (`cue_zgoal_pull_norm` ~0.002 vs `||z_goal||` ~0.45) and post-cue
+  approach == background; ARM_CUE_ON contact == ARM_OFF every seed. The 638a
+  DISPLACEMENT hypothesis is REFUTED (z_goal norm at fire equal-or-higher than
+  the ARM_OFF attractor norm); the cue is INERT, not counterproductive.
+  Interoceptive reading is NOT the proximate cause (seed 42: 713 fires, z_goal
+  preserved, zero approach lift). Proximate cause: `cue_recall_gain` 0.2 x weak
+  token ~0.2 -> sub-threshold `cue_pull`.
+- **V3-EXQ-640a** (cue-authority gain sweep, ree-v3 e4a25e5): **IN-FLIGHT**
+  (priority 330). 2-axis factorial `cue_recall_gain` {0.2,1.0,5.0} x
+  `incentive_drive_kappa_weight` {2.0,10.0}; gain=5.0 cells drive `cue_pull` to
+  its clamp ceiling (z_goal snaps to z_object) -- decisive probe of whether even
+  a full snap lifts approach over the within-run background rise. Diagnostic,
+  `claim_ids=[]`.
+
+**NEXT (gating chain -- recorded, not re-decided):** 640a routes the cue-recall
+thread. **V3-EXQ-638b (interoceptive need-gating arms:
+OFF / EXTERNAL_ONLY / INTEROCEPTIVE+EXTERNAL) stays GATED behind 640a** -- do not
+build the interoceptive substrate until the gain sweep settles whether
+cue-to-action authority is reachable by strengthening the existing pull. If 640a
+shows even a full z_goal snap does not lift contact, the bottleneck is GAP-2
+foraging competence (the z_goal->approach->contact leg), not cue-recall, and the
+thread hands back to goal_pipeline:GAP-2. This is the L9 wanting!=liking
+behavioural-validation arm; MECH-229 / MECH-117 / ARC-030 stay v3_pending until
+it resolves.
 
 ### 2026-06-04 - GAP-7 phase-2 LANDED (SD-057 L6 cue-recall MECH-347 + L7 dACC readout MECH-348)
 
