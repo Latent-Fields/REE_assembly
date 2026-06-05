@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-05-04_fast_empathy_stream_binding.md` (intake; process as a cluster with the two sibling social/language thoughts; A/B/C/D cooperation experiment gated behind the other-model substrate)
+
+---
+
 Thought Intake: Developmental Binding of Motivational-Affective Streams into Fast Empathy
 
 Purpose

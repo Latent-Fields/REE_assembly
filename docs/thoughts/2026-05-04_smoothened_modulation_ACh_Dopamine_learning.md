@@ -1,4 +1,11 @@
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-05-04_smoothened_da_ach.md` (intake; striatal DA-ACh write-window -- folds into the gated_plasticity cluster, instance of MECH-083; E3/BG commitment + persistence-vs-flexibility + sleep-refinement)
+
+---
+
 Thought Intake: Smoothened Modulation of Dopamine–Acetylcholine Timing Windows in Striatal Learning
 
 Source

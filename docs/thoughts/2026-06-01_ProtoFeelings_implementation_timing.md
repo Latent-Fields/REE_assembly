@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-01_protofeelings_audit_register.md` (intake; 17-signal proto-affective audit register extending affect_primitives.md; P0 V3-gaps = curiosity/fatigue/safety/boundary; guilt-shame side cross-links musings_on_V4)
+
+---
+
 # REE Thought Intake: Proto-feelings and implementation timing
 
 ## Title

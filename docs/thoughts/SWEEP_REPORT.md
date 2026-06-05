@@ -1,12 +1,12 @@
 # Thought Sweep Report
 
-Generated: `2026-06-05T18:27:31.613833Z`
+Generated: `2026-06-05T18:33:39.394648Z`
 
 | metric | count |
 |---|---|
 | total thought files | 104 |
-| processed | 92 |
-| unprocessed | 12 |
+| processed | 96 |
+| unprocessed | 8 |
 | processed missing `Processed in` links | 4 |
 
 ## Unprocessed Queue
@@ -14,10 +14,6 @@ Generated: `2026-06-05T18:27:31.613833Z`
 - `2026-04-20` `2026-04-20_ocd4.md` (status=`unprocessed`)
 - `2026-04-28` `2026-04-28_action_object_type_abstraction.md` (status=`unprocessed`)
 - `2026-04-28` `2026-04-28_action_policy_and_multi_goal.md` (status=`unprocessed`)
-- `2026-05-04` `2026-05-04_Empathy_development.md` (status=`unprocessed`)
-- `2026-05-04` `2026-05-04_Theory_of_mind_v_language.md` (status=`unprocessed`)
-- `2026-05-04` `2026-05-04_smoothened_modulation_ACh_Dopamine_learning.md` (status=`unprocessed`)
-- `2026-06-01` `2026-06-01_ProtoFeelings_implementation_timing.md` (status=`unprocessed`)
 - `2026-06-01` `2026-06-01_Therapy_and_Action_Pressure.md` (status=`unprocessed`)
 - `2026-06-01` `2026-06-01_plasticity_window_neuromodulators.md` (status=`unprocessed`)
 - `2026-06-04` `2026-06-04_Orienting_surveying_drive.md` (status=`unprocessed`)
@@ -114,11 +110,15 @@ Generated: `2026-06-05T18:27:31.613833Z`
 - `2026-04-20_ocd3.md` (2 link(s) in `Processed in`)
 - `2026-04-23_binding.md` (1 link(s) in `Processed in`)
 - `2026-04-23_path_integral_constraints_search.md` (1 link(s) in `Processed in`)
+- `2026-05-04_Empathy_development.md` (1 link(s) in `Processed in`)
+- `2026-05-04_Theory_of_mind_v_language.md` (1 link(s) in `Processed in`)
+- `2026-05-04_smoothened_modulation_ACh_Dopamine_learning.md` (1 link(s) in `Processed in`)
 - `2026-05-13_calibration_debt.md` (1 link(s) in `Processed in`)
 - `2026-05-13_curiosity_stream_completion.md` (2 link(s) in `Processed in`)
 - `2026-05-13_goal_stream_completion.md` (1 link(s) in `Processed in`)
 - `2026-05-21_Gated_plasticity.md` (1 link(s) in `Processed in`)
 - `2026-05-31_musings_on_V4.md` (1 link(s) in `Processed in`)
+- `2026-06-01_ProtoFeelings_implementation_timing.md` (1 link(s) in `Processed in`)
 - `2026-06-01_goal_wanting_liking_stream_repair.md` (0 link(s) in `Processed in`)
 - `2026-06-03_difficulty_gated_proposal_entropy.md` (3 link(s) in `Processed in`)
 - `2026-06-04_Non_terminal_need_launch.md` (1 link(s) in `Processed in`)

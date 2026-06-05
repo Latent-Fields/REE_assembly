@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-05-04_language_tom_dissociation.md` (intake; cluster with language_lateralisation + fast_empathy_stream_binding; V4-scope architectural constraint, fluency!=ethics flagged for earlier registration)
+
+---
+
 Thought intake: early dissociation of language and theory of mind as a constraint on later Reflective–Ethical Engine development
 
 Source trigger
