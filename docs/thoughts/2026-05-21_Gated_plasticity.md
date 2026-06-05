@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-05-21_gated_plasticity.md` (intake; candidate cluster, not yet registered in claims.yaml -- V4-leaning, reconcile with MECH-083 / INV-056 / INV-074 + 2026-06-01 plasticity-window note)
+
+---
+
 Thought Intake: Plasticity Governance, Developmental Reuse, and Acetylcholine-Gated Learning in REE
 
 0. Intake status

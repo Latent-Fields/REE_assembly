@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-04-16_language_lateralisation.md` (intake; process as a cluster with the two 2026-05-04 social/language thoughts; lit-pull before registering)
+
+---
+
 THOUGHT INTAKE: Hemispheric Separation of Affective Coupling and Symbolic Routing
 Core Observation
 

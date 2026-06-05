@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-05-31_musings_on_v4.md` (intake; coherent V4 moral-self/repair cluster -- 6 stubs, register at V4 governance citing ARC-015 / SD-003 / moral-residue; do NOT register on the V3 line)
+
+---
+
 - id: ARC-TBD-ATTRIBUTION-ONTOLOGY
   type: architectural_commitment
   subject: attribution.typed_causal_ontology

@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-04_non_terminal_need_launch.md` (intake; V4/transfer-world design note, off the V3 critical path; novel = four-grade failure taxonomy + minimal launch kit)
+
+---
+
 Thought intake: non-terminal need pressure and minimal launch scaffolds
 
 Date: 2026-06-04

@@ -1,5 +1,12 @@
 
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-04-23_path_integral_constraints_search.md` (intake; structural analogy, no claim until the coherence-ablation runs -- shared discriminator with the binding intake)
+
+---
+
 📄 REE Thought Intake
 
 Title: Trajectory Selection via Constraint Coherence — Mapping Least Action to REE Dynamics

@@ -1,17 +1,16 @@
 # Thought Sweep Report
 
-Generated: `2026-04-29T06:06:24.873195Z`
+Generated: `2026-06-05T18:21:07.582431Z`
 
 | metric | count |
 |---|---|
-| total thought files | 86 |
-| processed | 73 |
-| unprocessed | 13 |
-| processed missing `Processed in` links | 3 |
+| total thought files | 104 |
+| processed | 80 |
+| unprocessed | 24 |
+| processed missing `Processed in` links | 4 |
 
 ## Unprocessed Queue
 
-- `2026-04-16` `2026-04-16_language_system_development_and_affective_expression_lateralisation.md` (status=`unprocessed`)
 - `2026-04-17` `2026-04-17_attention_coverage_audit.md` (status=`unprocessed`)
 - `2026-04-17` `2026-04-17_invariant_types_governance.md` (status=`unprocessed`)
 - `2026-04-20` `2026-04-20_analysis_of_missing_pieces_and_work_to_do.md` (status=`unprocessed`)
@@ -20,16 +19,29 @@ Generated: `2026-04-29T06:06:24.873195Z`
 - `2026-04-20` `2026-04-20_ocd2.md` (status=`unprocessed`)
 - `2026-04-20` `2026-04-20_ocd3.md` (status=`unprocessed`)
 - `2026-04-20` `2026-04-20_ocd4.md` (status=`unprocessed`)
-- `2026-04-23` `2026-04-23_binding.md` (status=`unprocessed`)
-- `2026-04-23` `2026-04-23_path_integral_constraints_search.md` (status=`unprocessed`)
 - `2026-04-28` `2026-04-28_action_object_type_abstraction.md` (status=`unprocessed`)
 - `2026-04-28` `2026-04-28_action_policy_and_multi_goal.md` (status=`unprocessed`)
+- `2026-05-04` `2026-05-04_Empathy_development.md` (status=`unprocessed`)
+- `2026-05-04` `2026-05-04_Theory_of_mind_v_language.md` (status=`unprocessed`)
+- `2026-05-04` `2026-05-04_smoothened_modulation_ACh_Dopamine_learning.md` (status=`unprocessed`)
+- `2026-05-13` `2026-05-13_calibration_debt.md` (status=`unprocessed`)
+- `2026-05-13` `2026-05-13_curiosity_stream_completion.md` (status=`unprocessed`)
+- `2026-05-13` `2026-05-13_goal_stream_completion.md` (status=`unprocessed`)
+- `2026-06-01` `2026-06-01_ProtoFeelings_implementation_timing.md` (status=`unprocessed`)
+- `2026-06-01` `2026-06-01_Therapy_and_Action_Pressure.md` (status=`unprocessed`)
+- `2026-06-01` `2026-06-01_plasticity_window_neuromodulators.md` (status=`unprocessed`)
+- `2026-06-03` `2026-06-03_difficulty_gated_proposal_entropy.md` (status=`unprocessed`)
+- `2026-06-04` `2026-06-04_Orienting_surveying_drive.md` (status=`unprocessed`)
+- `2026-06-04` `2026-06-04_attention_distributed_precision_selection.md` (status=`unprocessed`)
+- `2026-06-05` `2026-06-05_Cross_Version_missing_bits.md` (status=`unprocessed`)
+- `2026-06-05` `2026-06-05_Grammar_and_LLMS_as_V5_primitive-mining_scaffolds.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
 - `2026-04-05_steve_dog_emotional_mirroring.md`
 - `2026-04-06_steve_signal_legibility_language_bootstrap.md`
 - `2026-04-07_cosmic_ethical_threshold.md`
+- `2026-06-01_goal_wanting_liking_stream_repair.md`
 
 ## Processed Snapshot
 
@@ -104,5 +116,12 @@ Generated: `2026-04-29T06:06:24.873195Z`
 - `2026-04-07_phase_segregation_perception_imagination.md` (1 link(s) in `Processed in`)
 - `2026-04-08_wanting_proxy_goals_schema_binding.md` (1 link(s) in `Processed in`)
 - `2026-04-09_verisimilitude.md` (1 link(s) in `Processed in`)
+- `2026-04-16_language_system_development_and_affective_expression_lateralisation.md` (1 link(s) in `Processed in`)
+- `2026-04-23_binding.md` (1 link(s) in `Processed in`)
+- `2026-04-23_path_integral_constraints_search.md` (1 link(s) in `Processed in`)
+- `2026-05-21_Gated_plasticity.md` (1 link(s) in `Processed in`)
+- `2026-05-31_musings_on_V4.md` (1 link(s) in `Processed in`)
+- `2026-06-01_goal_wanting_liking_stream_repair.md` (0 link(s) in `Processed in`)
+- `2026-06-04_Non_terminal_need_launch.md` (1 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
