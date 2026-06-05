@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-05_grammar_llms_v5_primitive_mining.md` (intake; V5 design compass; novel = grammar->substrate mining table + predicate-argument-event bridge to ARC-063 + language-bootstrap-from-ecology; mine-not-import; twin of cross_version intake; containment-only)
+
+---
+
 Thought intake: grammar and Large Language Models as V5 primitive-mining scaffolds
 
 Date: 2026-06-05

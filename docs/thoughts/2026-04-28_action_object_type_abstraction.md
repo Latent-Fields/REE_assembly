@@ -1,3 +1,13 @@
+Status: processed
+
+Processed in:
+- `docs/claims/claims.yaml` (candidate type-prototype substrate cluster registered FROM this thought; multiple `location:` cites at claims.yaml:25041/25086/25181/25904/25949)
+- `evidence/planning/GOVERNANCE_AGENDA.md`
+
+<!-- incorporated-but-unmarked PARTIAL (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 📄 REE Thought Intake
 
 Title: Action Primitives, Object Types, and Sleep-Driven Type Abstraction

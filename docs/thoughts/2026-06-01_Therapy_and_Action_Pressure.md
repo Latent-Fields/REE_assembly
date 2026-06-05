@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md` (intake; proto-feeling audit content DUPLICATES ProtoFeelings -- cross-linked not re-processed; novel contribution = therapy-as-symbolic-commit bridge + commit-type taxonomy + rumination-as-mismatchless-loop)
+
+---
+
 # Reflective Ethical Engine Thought Intake: Proto-feelings as drive-weighted control signals, with dual thresholds
 
 ## Title

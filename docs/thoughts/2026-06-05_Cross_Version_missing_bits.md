@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-05_cross_version_missing_bits.md` (intake; cross-version closure-map scaffold; registerable insight = ActionEventArc spine [initiate/persist/interrupt/reorient/resume/closure]; twin of grammar_llms_v5 intake; containment-only)
+
+---
+
 Thought intake: cross-version missing bridges and closure-map risks
 
 Date: 2026-06-05

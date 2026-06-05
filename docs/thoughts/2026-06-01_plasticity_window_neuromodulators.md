@@ -1,3 +1,14 @@
+Status: processed
+
+Processed in:
+- (processed directly into canonical form -- this file IS the canonical framing paragraph for the plasticity-window OPENING side; deliberately unregistered per its own Status header)
+- `evidence/planning/thought_intake_2026-05-21_gated_plasticity.md` + `evidence/planning/thought_intake_2026-05-04_smoothened_da_ach.md` (the plasticity-governance cluster that cites this as the ACh/PV/BDNF opening-side sibling)
+- `evidence/planning/goal_pipeline_developmental_window_diagnostic_memo_2026-06-01.md`; memory `project_plasticity_window_neuromodulators`
+
+<!-- incorporated-but-unmarked PARTIAL (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 # Plasticity-window neuromodulators (ACh / PV-interneuron / BDNF / state-dependent gain)
 
 **Date:** 2026-06-01

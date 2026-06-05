@@ -1,3 +1,10 @@
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-04_orienting_surveying_drive.md` (intake; distinct pre-approach active-sensing candidate MECH gated behind the 638a/640 result pattern; routing table preserved)
+
+---
+
 Thought intake: orienting/surveying drive as pre-approach active sensing
 
 Date: 2026-06-04

@@ -1,3 +1,13 @@
+Status: processed
+
+Processed in:
+- `docs/claims/claims.yaml` (action-decomposition + multi-goal candidates SD-045/SD-046 registered FROM this thought; `location:` cites at claims.yaml:25135/25219/25282/25331/25371)
+- `docs/architecture/psychiatric_failure_modes.md`
+
+<!-- incorporated-but-unmarked PARTIAL (sweep marker-fixup 2026-06-05); see audit in WORKSPACE_STATE.md -->
+
+---
+
 📄 REE Thought Intake
 
 Title: Action-Policy Decomposition and Multi-Goal Parallel Maintenance
