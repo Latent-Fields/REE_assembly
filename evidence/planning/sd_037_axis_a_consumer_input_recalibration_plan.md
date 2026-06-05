@@ -1,5 +1,55 @@
 ---
 nav_exclude: true
+closure_plan:
+  id: sd_037_axis_a
+  title: "SD-037 Axis (a): Consumer-Input-Threshold Recalibration"
+  registered: 2026-05-31
+  last_updated: 2026-06-05
+  scope_claims: [SD-037, MECH-280, MECH-281]
+  sibling_plans: [sd_037_axis_b]
+  nodes:
+    - id: "sd_037_axis_a:P1"
+      title: "Phase 1 -- substrate-readiness diagnostic: log per-step consumer-input distributions (BLA/CeA/PAG/dACC gates) at fishtank baseline, broadcast OFF"
+      phase: 1
+      status: done
+      severity: load-bearing
+      owner_exq: "V3-EXQ-620"
+      unblocks_claims: [SD-037, MECH-281]
+      depends_on: []
+      last_updated: 2026-06-01
+      completion_note: "V3-EXQ-620 ran 20260531T175254Z (outcome PASS measurement-gate; evidence_direction=superseded). Pooled n=2939 distributions identically zero across all six consumer-input quantities -- the deterministic p70 rule could produce no per-knob override. Measurement succeeded; the substrate did not deliver a non-zero signal to recalibrate against."
+    - id: "sd_037_axis_a:P2"
+      title: "Phase 2 -- deterministic p70 recalibration rule over the Phase-1 manifest; emit per-knob override block"
+      phase: 2
+      status: done
+      severity: load-bearing
+      owner_exq: null
+      unblocks_claims: [SD-037]
+      depends_on: ["sd_037_axis_a:P1"]
+      last_updated: 2026-06-01
+      completion_note: "sd_037_axis_a_phase2_recalibration_block.md (2026-06-01): the override block was computed but is INERT -- every input distribution was zero, so no threshold could be lowered to admit an upper tail that does not exist. Verdict: axis (a) empirically unmeetable on fishtank baseline. Routed to axis (b) sustained-threat curriculum (sd_037_axis_b_sustained_threat_curriculum_plan.md)."
+    - id: "sd_037_axis_a:P3"
+      title: "Phase 3 -- verification diagnostic: confirm recalibrated thresholds lift consumer outputs above zero (acceptance gate for queuing V3-EXQ-483f)"
+      phase: 3
+      status: deferred
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-037, MECH-280, MECH-281]
+      depends_on: ["sd_037_axis_a:P2"]
+      cross_plan_link: ["sd_037_axis_b:P3"]
+      last_updated: 2026-06-01
+      completion_note: "Never reached -- axis (a) was abandoned at Phase 2 (inert override block). Deferred; the verification work re-applies on the axis (b) substrate (sd_037_axis_b:P3)."
+    - id: "sd_037_axis_a:P4"
+      title: "Phase 4 -- V3-EXQ-483f behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/ON_ON on recalibrated substrate)"
+      phase: 4
+      status: deferred
+      severity: high
+      owner_exq: "V3-EXQ-483f"
+      unblocks_claims: [SD-037, MECH-280, MECH-281]
+      depends_on: ["sd_037_axis_a:P3"]
+      cross_plan_link: ["sd_037_axis_b:P4"]
+      last_updated: 2026-06-01
+      completion_note: "Deferred with Phase 3. A PASS would clear SD-037/MECH-280/MECH-281 pending_retest_after_substrate. The behavioural validation is shared with axis (b) Phase 4 and now sits behind the axis (b) substrate-readiness chain."
 ---
 
 # SD-037 Axis (a): Consumer-Input-Threshold Recalibration Plan

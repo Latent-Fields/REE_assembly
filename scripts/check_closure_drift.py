@@ -87,6 +87,8 @@ KNOWN_PLANS = [
     "sd033_governance_plan.md",
     "sleep_substrate_plan.md",
     "behavioral_diversity_isolation_plan.md",
+    "sd_037_axis_a_consumer_input_recalibration_plan.md",
+    "sd_037_axis_b_sustained_threat_curriculum_plan.md",
 ]
 
 NON_TERMINAL_STATUSES = {

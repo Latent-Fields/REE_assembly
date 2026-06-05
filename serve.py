@@ -1616,6 +1616,8 @@ CLOSURE_KNOWN_PLANS = [
     "self_attribution_plan.md",
     "sd033_governance_plan.md",
     "sleep_substrate_plan.md",
+    "sd_037_axis_a_consumer_input_recalibration_plan.md",
+    "sd_037_axis_b_sustained_threat_curriculum_plan.md",
 ]
 
 CLOSURE_STATUS_WEIGHTS = {

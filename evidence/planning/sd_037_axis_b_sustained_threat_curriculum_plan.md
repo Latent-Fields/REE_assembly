@@ -1,5 +1,55 @@
 ---
 nav_exclude: true
+closure_plan:
+  id: sd_037_axis_b
+  title: "SD-037 Axis (b): Sustained-Threat Env Curriculum"
+  registered: 2026-06-01
+  last_updated: 2026-06-05
+  scope_claims: [SD-037, MECH-280, MECH-281]
+  sibling_plans: [sd_037_axis_a]
+  nodes:
+    - id: "sd_037_axis_b:P1b"
+      title: "Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under SD-029 scheduled-external-hazard curriculum (env-kwarg overlay; no new ree-v3 module)"
+      phase: 1
+      status: blocked_pending_substrate
+      severity: load-bearing
+      owner_exq: "V3-EXQ-625c"
+      unblocks_claims: [SD-037, MECH-281]
+      depends_on: []
+      cross_plan_link: ["behavioral_diversity_isolation:GAP-A"]
+      blocked_by: "Behavioural-diversity substrate cluster, NOT the env curriculum. V3-EXQ-625b (sustained-window 1/3) and V3-EXQ-625c (dynamic-crossings 0/3, supersedes 625b) proved the SD-029 env overlay DOES lift z_harm_a above the per-tick consumer gates (zero_fraction=0 all seeds; seed 7 sustained). But the agent locks into a monostrategy so z_harm_a never oscillates: C3 dynamic-crossings 0/3, and the single 922-tick run on seed 7 is the catatonic-lock signature, not a pass. dacc_pe is structurally zero (deterministic injections -> no novelty -> no PE). Confirmed failure_autopsy_V3-EXQ-625b_2026-06-02 (user-routed Step 8) FALSIFIED all four plan-doc Section 5 env-kwarg fallbacks including Section 5.4/axis (c) -- a heavier env curriculum will not fix this. Primary routing: /implement-substrate AMEND on the behavioural-diversity cluster."
+      resume_condition: "RESUME the Phase 1b gate (or its successor) once the behavioural-diversity substrate amend lands and the agent generates oscillating, non-monostrategy z_harm_a under the axis-(b) env overlay. SD-037 status is unchanged: the substrate_ceiling diagnosis at the consumer-input-threshold layer stands; 625b/625c are upstream of that gating layer. Do NOT pursue a heavier env curriculum or an axis (c) sustained-threat scheduler -- Section 5.4 was falsified (seed 7 proves the env is capable)."
+      last_updated: 2026-06-05
+      governance_2026_06_05: "Closure-map onboarding. owner_exq advanced V3-EXQ-625b -> V3-EXQ-625c (latest lineage; 625c supersedes 625b, FAIL non_contributory, C3 dynamic-crossings 0/3). The plan body Section 10 records only the 625b result; the 625c dynamic-crossings redesign and the confirmed 625b autopsy re-route (behavioural-diversity cluster, NOT env Section 5) post-date the body and are captured here. Case 3 in closure-drift terms: legitimately non-terminal pending the upstream behavioural-diversity substrate amend."
+    - id: "sd_037_axis_b:P2"
+      title: "Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b manifest; emit a non-empty per-knob override block"
+      phase: 2
+      status: blocked
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-037]
+      depends_on: ["sd_037_axis_b:P1b"]
+      last_updated: 2026-06-05
+      completion_note: "Gated behind P1b. Re-applies the axis-(a) Phase 2 rule on the curriculum-engaged distributions; expected to yield a non-empty override block (in contrast to axis-(a)'s inert block) once z_harm_a oscillates."
+    - id: "sd_037_axis_b:P3"
+      title: "Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lift consumer outputs above zero; acceptance gate for V3-EXQ-483f"
+      phase: 3
+      status: blocked
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-037, MECH-280, MECH-281]
+      depends_on: ["sd_037_axis_b:P2"]
+      last_updated: 2026-06-05
+    - id: "sd_037_axis_b:P4"
+      title: "Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate"
+      phase: 4
+      status: blocked
+      severity: high
+      owner_exq: "V3-EXQ-483f"
+      unblocks_claims: [SD-037, MECH-280, MECH-281]
+      depends_on: ["sd_037_axis_b:P3"]
+      last_updated: 2026-06-05
+      completion_note: "Terminal validation shared with axis (a) Phase 4. A PASS clears SD-037/MECH-280/MECH-281 pending_retest_after_substrate and routes to governance for promotion candidacy."
 ---
 
 # SD-037 Axis (b): Sustained-Threat Env Curriculum Plan
