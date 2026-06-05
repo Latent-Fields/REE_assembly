@@ -163,6 +163,48 @@ Ng & Sangha 2023 (Cereb Cortex): IL single-unit recordings show cells that encod
 conditioned inhibitors specifically -- the expression substrate has dedicated
 representational support.
 
+### Anatomical enrichment (2026-06-05, Silva et al. 2021)
+
+Silva et al. 2021 (*Nat Neurosci* 24(7):964-974, DOI
+[10.1038/s41593-021-00856-y](https://doi.org/10.1038/s41593-021-00856-y); PMID
+34017129) -- from the `targeted_review_affect_stream_relief_safety_soothing`
+lit-pull -- adds two elements to MECH-304 (**enrichment, not contradiction**):
+
+1. **A midline-thalamic transmission node: nucleus reuniens (NRe) -> basolateral
+   amygdala (BLA).** Combining viral tracing, fiber photometry, chemogenetics and
+   closed-loop optogenetics in mice, Silva shows NRe *registers and actively
+   transmits* safety signals to the BLA: NRe->BLA activity rises shortly before
+   freezing cessation, pathway-specific inhibition impairs and activation
+   facilitates the suppression of an established threat representation. This is the
+   cleanest available causal, bidirectional demonstration that cue-specific safety
+   prediction is its own functional system acting *on* the fear circuit (not low
+   harm, not relief's reward-offset reinforcement). In REE terms the reuniens relay
+   is an **additional node on the safety-expression pathway** (parallel to IL->CeA)
+   feeding the `beta_gate` commitment-release.
+
+2. **Remote-vs-recent (time-since-encoding) dependence.** The NRe->BLA relay is
+   recruited specifically for the extinction of **remote** (systems-consolidated,
+   ~30-day) aversive memories, **not** recent (~1-day) ones. This is a new
+   functional axis orthogonal to the context-vs-cue axis separating MECH-303 from
+   MECH-304: it indexes how *consolidated* the suppressed fear is. Recent-memory
+   safety expression is handled by the existing MECH-303/304 machinery; suppressing
+   an already-consolidated fear appears to require this distinct thalamo-amygdalar
+   relay.
+
+**Candidate third safety sub-mechanism (flagged, not registered).** The
+consolidation-age axis -- "extinguishing an already-consolidated (remote) aversive
+memory requires a thalamo-amygdalar relay that recent-memory safety expression does
+not" -- is a candidate for a future third safety sub-mechanism that would interface
+REE's consolidation/replay machinery (MECH-092 SWR replay; sleep cluster) with the
+safety-expression pathway. It is deliberately **not minted now**: single rodent
+anchor (Silva 2021, conf 0.80), off the V3 critical path, no consolidation-interface
+substrate design. Promote only when (a) a second independent anchor lands and (b) a
+consolidation-state-conditional safety-expression design exists. Guards the
+over-split mirror of the philosophy-right/mechanism-wrong failure mode.
+
+Neither the reuniens relay nor the remote/recent axis is implemented in the SD-051
+`ConditionedSafetyStore` -- this enrichment is documentation-only.
+
 ## Related Claims
 
 MECH-304 (cue-specific conditioned safety prediction -- the claim this SD implements),

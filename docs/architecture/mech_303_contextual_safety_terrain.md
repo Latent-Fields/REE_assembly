@@ -110,6 +110,38 @@ All defaults are no-op. `from_dims(use_contextual_safety_terrain=True)` auto-ena
   experiment (MECH-303 ablated: extinction slower for contextual safety;
   MECH-304 ablated: extinction slower for cue-specific safety)
 
+## Anatomical enrichment (2026-06-05, Silva et al. 2021)
+
+The `targeted_review_affect_stream_relief_safety_soothing` lit-pull (2026-06-05)
+surfaced **Silva et al. 2021** (*Nat Neurosci* 24(7):964-974, DOI
+[10.1038/s41593-021-00856-y](https://doi.org/10.1038/s41593-021-00856-y)),
+which causally establishes a **midline-thalamic relay -- nucleus reuniens (NRe)
+-> basolateral amygdala (BLA)** -- that registers and actively *transmits* safety
+signals onto the fear circuit (NRe->BLA activity rises before freezing cessation;
+pathway-specific inhibition impairs and activation facilitates extinction).
+
+This is **enrichment, not contradiction**. Two points apply to MECH-303:
+
+1. **Cluster-level anatomy.** The safety cluster's expression machinery is
+   prefrontal-hippocampal-**thalamic**, not prefrontal-hippocampal alone. Silva's
+   causal evidence bears most directly on the sister claim **MECH-304** (the
+   active, cue-specific safety signal that acts *on* the fear circuit), so MECH-303
+   carries only the lighter cluster-level note that the contextual safety
+   representation's downstream expression shares this thalamo-amygdalar relay. The
+   MECH-303 vHipp-to-PL contextual store + IL expression anatomy stands unchanged.
+
+2. **Remote-vs-recent (time-since-encoding) dependence.** Silva's NRe->BLA relay is
+   recruited for the extinction of **remote** (systems-consolidated, ~30-day)
+   aversive memories and not recent (~1-day) ones. This indexes how *consolidated*
+   the suppressed fear is -- a new axis orthogonal to the context-vs-cue axis that
+   separates MECH-303 from MECH-304. It is tracked on **MECH-304** as a **candidate
+   third safety sub-mechanism** (consolidation-age-conditional safety expression),
+   deliberately not minted as a claim yet (single rodent anchor, off the V3 critical
+   path, no consolidation-interface design). See MECH-304 `notes`.
+
+Neither the thalamic relay nor the remote/recent axis is implemented in the SD-052
+substrate -- this enrichment is documentation-only.
+
 ## Related claims
 
 - MECH-303 (this claim): contextual_passive_substrate

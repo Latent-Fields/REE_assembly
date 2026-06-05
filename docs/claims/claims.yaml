@@ -26384,7 +26384,7 @@
   v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-05-03
-  revised_utc: 2026-05-04
+  revised_utc: 2026-06-05
   depends_on:
     - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 tracks)
     - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising over time)
@@ -26415,6 +26415,21 @@
     for 'feeling safe at home' -- a diffuse reduction in vigilance
     tone driven by context, not by a specific cue signal.
 
+    Cluster-level anatomical enrichment (2026-06-05, Silva et al.
+    2021 Nat Neurosci): the safety cluster's expression machinery is
+    prefrontal-hippocampal-THALAMIC, not prefrontal-hippocampal alone
+    -- a midline-thalamic relay (nucleus reuniens -> BLA) actively
+    transmits safety signals onto the fear circuit. Silva's causal
+    evidence bears most directly on the sister claim MECH-304 (the
+    active, cue-specific safety signal); for MECH-303 it is recorded
+    as a cluster-level note that the contextual safety representation's
+    downstream expression shares this thalamo-amygdalar relay. Silva
+    also surfaces a remote-vs-recent (time-since-encoding) dependence
+    -- the relay is recruited for extinction of REMOTE, consolidated
+    fear; this axis is tracked on MECH-304 as a candidate third
+    sub-mechanism and is orthogonal to the context-vs-cue axis that
+    separates MECH-303 from MECH-304.
+
     Falsifiable: an REE substrate with MECH-303 enabled should show
     slower extinction of context-conditioned safety than cue-
     conditioned safety (MECH-304). MECH-303-ablated agents should
@@ -26439,6 +26454,18 @@
     safe'. Clinical counterpart: PTSD patients who can cognitively
     identify safety but cannot achieve physiological calm.
 
+    Enrichment 2026-06-05 (Silva et al. 2021 Nat Neurosci, DOI
+    10.1038/s41593-021-00856-y; affect_stream_relief_safety_soothing
+    lit-pull): added a cluster-level note that the safety-expression
+    machinery is prefrontal-hippocampal-thalamic (nucleus reuniens ->
+    BLA relay), and flagged the remote-vs-recent (time-since-encoding)
+    dependence -- tracked on sister claim MECH-304 as a candidate
+    third sub-mechanism. ENRICHMENT, not contradiction: MECH-303's
+    vHipp-to-PL contextual store + IL expression anatomy stands; Silva
+    bears most directly on the active cue-specific pole (MECH-304), so
+    MECH-303 carries the lighter cluster note. The thalamic relay and
+    remote/recent axis are UNIMPLEMENTED (documentation-only).
+
   implementation_note: |
     IMPLEMENTED 2026-05-04 as SD-052 (contextual_passive_substrate).
     ResidueField extended: safety_terrain_rbf_field (RBFLayer),
@@ -26460,7 +26487,21 @@
     (conditioned inhibition paradigm). Substrate implemented 2026-05-04
     (SD-052). v3_pending=true until V3-EXQ-520 context-conditioned
     safety extinction discriminative-pair experiment completes.
+    Cluster-level enrichment anchor 2026-06-05: Silva et al. 2021 Nat
+    Neurosci (DOI 10.1038/s41593-021-00856-y; nucleus reuniens -> BLA
+    safety transmission; conf 0.80) -- bears primarily on MECH-304;
+    recorded on MECH-303 as a cluster-level note that the safety-
+    expression machinery is prefrontal-hippocampal-thalamic. Thalamic
+    relay + remote/recent axis UNIMPLEMENTED (documentation-only).
   location: evidence/literature/targeted_review_connectome_mech_303/
+  enrichment_anchors:
+    - source: "Silva et al. 2021 Nat Neurosci 24(7):964-974"
+      doi: "10.1038/s41593-021-00856-y"
+      adds: "cluster-level note: safety-expression machinery is prefrontal-hippocampal-thalamic (nucleus reuniens -> BLA); remote-vs-recent dependence tracked on MECH-304"
+      lit_entry: "evidence/literature/targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_safety_reuniens_bla_remote_extinction_silva2021/"
+      pull: "targeted_review_affect_stream_relief_safety_soothing"
+      confidence: 0.80
+      kind: enrichment_not_contradiction
 
 - id: MECH-304
   title: "Cue-specific conditioned safety prediction: a discrete predictive structure encodes 'this stimulus actively predicts that suffering will be omitted', updated by explicit MECH-302 relief-completion events as its teaching signal. Encoding substrate is cortico-striatal (dorsal striatum + dlPFC). Expression/output pathway is IL-to-CeA. This is the conditioned-inhibition mechanism: when a specific cue co-occurs with relief, a separate learned prediction forms that can gate avoidance commitment release when the cue is later present. Sister claim to MECH-303 (contextual passive safety representation)."
@@ -26472,6 +26513,7 @@
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-05-04
+  revised_utc: 2026-06-05
   depends_on:
     - MECH-302    # provides the teaching signal: the relief-completion event that trains the MECH-304 store
     - MECH-094    # hypothesis-tag write gate (the tag from MECH-302 is the MECH-304 update trigger)
@@ -26491,6 +26533,36 @@
     inhibition substrate: the specific cue that co-occurred with
     relief onset drives a learned prediction that overrides ongoing
     avoidance commitment when the cue is present.
+
+    Anatomical enrichment (2026-06-05, Silva et al. 2021 Nat Neurosci):
+    the safety-transmission/expression pathway includes a midline-
+    THALAMIC relay -- nucleus reuniens (NRe) -> basolateral amygdala
+    (BLA) -- in addition to the IL-to-CeA output named above. Silva
+    provides causal, bidirectional evidence (fiber photometry +
+    chemogenetics + closed-loop optogenetics) that NRe registers and
+    actively TRANSMITS safety signals to the BLA: NRe-to-BLA activity
+    rises shortly before freezing cessation, pathway-specific inhibition
+    impairs and activation facilitates the suppression of an established
+    threat representation. This is the cleanest available demonstration
+    that cue-specific safety prediction is its own functional system
+    that acts ON the fear circuit (not a byproduct of low harm, not the
+    reward-offset reinforcement of relief). In REE terms the reuniens
+    relay is an additional node on the safety-EXPRESSION pathway that
+    feeds the commitment-release gate (output 1 below), parallel to the
+    IL-to-CeA route.
+
+    Time-since-encoding (remote-vs-recent) dependence: the NRe->BLA
+    relay is recruited specifically for the extinction of REMOTE
+    (systems-consolidated, ~30-day) aversive memories and NOT recent
+    (~1-day) ones. This is a NEW functional axis orthogonal to the
+    context-vs-cue axis that separates MECH-303 from MECH-304: it
+    indexes how CONSOLIDATED the aversive memory being suppressed is,
+    not whether the safety signal is contextual or cue-specific.
+    Recent-memory safety expression is handled by the existing
+    MECH-303/304 expression machinery; suppressing an already-
+    consolidated fear appears to require this distinct thalamo-
+    amygdalar relay. This axis is NOT yet operationalised in REE; see
+    the candidate-third-mechanism flag in notes.
 
     MECH-304 is cue-specific and event-driven, in contrast to
     MECH-303 which is context-diffuse and passive. The two systems
@@ -26539,6 +26611,35 @@
     safe at home but I cannot use safety signals to calm down'. This
     maps onto a distinct PTSD phenotype from MECH-303 failure.
 
+    Enrichment 2026-06-05 (Silva et al. 2021 Nat Neurosci, DOI
+    10.1038/s41593-021-00856-y; affect_stream_relief_safety_soothing
+    lit-pull): added the midline-thalamic relay (nucleus reuniens ->
+    BLA) to the safety-expression pathway and the remote-vs-recent
+    (time-since-encoding) dependence to the functional_restatement.
+    This is ENRICHMENT, not contradiction -- the existing cortico-
+    striatal encoding / IL-to-CeA expression anatomy stands; the
+    reuniens relay is an additional, causally-demonstrated transmission
+    node, and the remote/recent axis is a new dimension neither
+    MECH-303 nor MECH-304 previously named. Silva most directly bears
+    on MECH-304 (the active, cue-specific safety signal that acts ON
+    the fear circuit); MECH-303 carries a lighter cluster-level note.
+
+    CANDIDATE THIRD SUB-MECHANISM (flagged, NOT yet registered): the
+    consolidation-age axis -- "extinguishing an already-consolidated
+    (remote) aversive memory requires a thalamo-amygdalar relay that
+    recent-memory safety expression does not" -- is orthogonal to the
+    context (MECH-303) vs cue (MECH-304) axis and is a candidate for a
+    future third safety sub-mechanism that would interface REE's
+    consolidation/replay machinery (MECH-092 SWR replay; sleep cluster)
+    with the safety-expression pathway. It is deliberately NOT minted
+    as a claim now: the evidence is a single rodent anchor (Silva 2021,
+    conf 0.80), it is off the V3 critical path, and there is no
+    consolidation-interface substrate design yet. Promote to a third
+    claim only when (a) a second independent anchor lands and (b) a
+    consolidation-state-conditional safety-expression design exists.
+    Guards the over-split mirror of the philosophy-right/mechanism-wrong
+    failure mode (feedback_biology_before_formal_definitions).
+
   implementation_note: |
     SD-051 IMPLEMENTED 2026-05-04. ConditionedSafetyStore in
     ree_core/safety/conditioned_safety_store.py. Config:
@@ -26557,11 +26658,26 @@
     Ng & Sangha 2023 Neuropsychopharmacol (IL->CeA required for
     conditioned safety expression; IL->BLA not required), Ng & Sangha
     2023 Cereb Cortex (IL single-unit encodes conditioned inhibitors
-    specifically). Substrate IMPLEMENTED 2026-05-04 (SD-051,
-    ConditionedSafetyStore). v3_pending=true until V3-EXQ-519
+    specifically). Enrichment anchor 2026-06-05: Silva et al. 2021 Nat
+    Neurosci 24(7):964-974 (DOI 10.1038/s41593-021-00856-y; nucleus
+    reuniens -> BLA causally registers and transmits safety signals
+    driving REMOTE fear extinction; conf 0.80, supports) adds the
+    midline-thalamic transmission node + the remote-vs-recent
+    (time-since-encoding) dependence. Substrate IMPLEMENTED 2026-05-04
+    (SD-051, ConditionedSafetyStore). v3_pending=true until V3-EXQ-519
     validation PASS (conditioned-inhibition discriminative-pair gated
-    by EXQ-517 PASS).
+    by EXQ-517 PASS). The reuniens relay + remote/recent axis remain
+    UNIMPLEMENTED (enrichment is documentation-only; see notes
+    candidate-third-mechanism flag).
   location: evidence/literature/targeted_review_connectome_mech_303/
+  enrichment_anchors:
+    - source: "Silva et al. 2021 Nat Neurosci 24(7):964-974"
+      doi: "10.1038/s41593-021-00856-y"
+      adds: "midline-thalamic relay (nucleus reuniens -> BLA) on the safety-expression pathway; remote-vs-recent (time-since-encoding) dependence"
+      lit_entry: "evidence/literature/targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_safety_reuniens_bla_remote_extinction_silva2021/"
+      pull: "targeted_review_affect_stream_relief_safety_soothing"
+      confidence: 0.80
+      kind: enrichment_not_contradiction
 
 - id: MECH-305
   title: "z_harm_a requires a controllability-modulated weighting term beyond MECH-219 temporal hysteresis: perceived uncontrollability or inescapability amplifies the affective load integrator, while perceived controllability suppresses it. Biological locus is dorsal ACC, which integrates noxious stimulus input with controllability context and projects to the medial suffering pathway (ACC/insula, overlapping with salience network)."

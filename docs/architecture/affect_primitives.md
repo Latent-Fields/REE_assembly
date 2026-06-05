@@ -198,10 +198,17 @@ mere low harm. It licenses commitment-release and approach.
 
 **Differentiation:** relief is *past-offset / phasic / appetitive* (reinforcer); safety is
 *future / tonic / inhibitory* (predictor/gate). Neither is the other, and neither is `z_goal`/wanting
-(MECH-112) — safety is inhibitory prediction, not appetite. **Enrichment flag (not contradiction):**
-Silva 2021 implicates a midline-**thalamic** relay (reuniens) and a remote-vs-recent time dependence
-absent from MECH-303/304's stated anatomy; a future MECH-303/304 revision should consider the thalamic
-node. *Evidence:* `targeted_review_affect_stream_relief_safety_soothing/` (verdict, conf 0.82).
+(MECH-112) — safety is inhibitory prediction, not appetite. **Enrichment APPLIED 2026-06-05 (not
+contradiction):** Silva 2021 (NRe→BLA, conf 0.80) implicated a midline-**thalamic** relay (nucleus
+reuniens) and a remote-vs-recent (time-since-encoding) dependence absent from MECH-303/304's stated
+anatomy. Both are now folded into the claims: MECH-304 carries the reuniens transmission node + the
+remote/recent axis (Silva bears most directly on the active cue-specific pole); MECH-303 carries the
+lighter cluster-level note that the safety-expression machinery is prefrontal-hippocampal-**thalamic**.
+The consolidation-age axis is recorded on MECH-304 as a **candidate third safety sub-mechanism**
+(consolidation-state-conditional safety expression interfacing the MECH-092/sleep replay machinery),
+deliberately not minted yet (single rodent anchor, off the V3 critical path, no consolidation-interface
+design). Thalamic relay + remote/recent axis are documentation-only (UNIMPLEMENTED in SD-051/SD-052).
+*Evidence:* `targeted_review_affect_stream_relief_safety_soothing/` (verdict, conf 0.82).
 
 ### Extension Primitive (V4-social; V3-minimal hook optional): soothing / comfort
 
@@ -307,7 +314,7 @@ alternative-action search) distinct from the withdraw signature, and whether it 
 | harm_unpleasantness | Partial (Rainville 1997 in SD-019 pulls; SD-019a not yet targeted) | Needed — medial pathway fast component, ACC/insula unpleasantness encoding |
 | harm_suffering | Moderate (Q-036 pull 2026-04-20, 3 entries) | Needed — inescapability / learned helplessness; prediction error in suffering |
 | relief | Strong (`relief_completion_mechanism` 2026-05-03 + `affect_stream_relief_safety_soothing` 2026-06-05) | — (MECH-302 grounded) |
-| safety | Strong (`affect_stream_relief_safety_soothing`, 2026-06-05) | — for MECH-303/304; consider thalamic-relay (reuniens) enrichment |
+| safety | Strong (`affect_stream_relief_safety_soothing`, 2026-06-05) | — thalamic-relay (reuniens→BLA) + remote/recent enrichment APPLIED 2026-06-05 to MECH-303/304; candidate third (consolidation-age) sub-mechanism flagged, not minted |
 | soothing / comfort | Strong (`affect_stream_relief_safety_soothing`, 2026-06-05, 2 entries) | — (V4-social; claim registration is the gated next step) |
 | effort / fatigue (stop-recover) | Strong (`fatigue_vs_helplessness_dissociation`, 2026-06-05, 5 entries) | — (SD-012-side MECH registration is the gated next step) |
 | blocked_agency | Strong (`targeted_review_blocked_agency_anger_stream`, 2026-06-05, 5 entries) | — for the V3 row; Stream B (coercion/injustice) is a V4 pull when the social substrate exists |
