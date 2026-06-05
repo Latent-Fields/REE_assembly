@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_fatigue_vs_helplessness_dissociation",
+  "entry_id": "2026-06-05_fatigue_cost_evidence_accumulator_meyniel2013",
+  "timestamp_utc": "2026-06-05T19:44:17Z",
+  "claim_ids_tested": ["SD-012", "MECH-342"],
+  "source": {
+    "title": "Neurocomputational account of how the human brain decides when to have a break",
+    "authors": ["Florent Meyniel", "Claire Sergent", "Lionel Rigoux", "Jean Daunizeau", "Mathias Pessiglione"],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.1211925110"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Directly supplies the SMALLEST COMPUTATIONAL FORM of a fatigue/stop-recover signal: a scalar 'cost evidence' that accumulates during effort and dissipates during rest, with an UPPER bound triggering stop and a LOWER bound triggering resume -- a hysteretic two-bound accumulator. fMRI+MEG localise it to posterior insula / ventromedial thalamus (proprioceptive-interoceptive, not aversive-mood circuitry). High mapping_fidelity to the proposed REE primitive because the model IS the proposed primitive; transfer_risk low because it is already an abstract control-theoretic accumulator, not a species-specific circuit.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE registered fatigue as a single-threshold flag rather than a two-bound hysteretic accumulator, it would lose the 'recover' half (no lower bound to gate re-engagement) and could chatter at the stop threshold -- the model shows stop AND resume are distinct bound-crossings.",
+    "Incentive does not abolish the accumulator; it rescales slopes/bounds (lets the agent 'work closer to exhaustion'). A model where high reward simply switches fatigue off would contradict the data."
+  ],
+  "tags": ["sd-012", "mech-342", "cost_evidence", "accumulator", "stop_recover", "posterior_insula", "effort", "fatigue_dissociation", "smallest_computational_form"],
+  "mapping": {
+    "source_claim_statement": "Decisions to cease and resume work are triggered by a cost-evidence accumulation signal reaching upper and lower bounds, respectively. The signal accumulates (slope Se) during effort and dissipates (slope Sr) during rest; the gap between bounds is amplitude A. Task difficulty selectively increases Se (shorter work bouts); monetary incentive slows Se, speeds Sr, and widens A (work closer to exhaustion). The signal is expressed in posterior insula and ventromedial thalamus -- proprioception/pain-matrix regions, not reward or aversive-mood circuitry.",
+    "ree_translation": "This is the recommended smallest computational form for a fatigue/stop-recover control signal on the SD-012 homeostatic side: a scalar F with F += Se*effort during exertion and F -= Sr during rest; F >= F_upper emits stop/disengage; F is allowed to recover until F <= F_lower before re-engagement. Drive (SD-012 drive_level) and incentive-token strength can modulate the slopes/bounds. The two-bound hysteresis maps structurally onto MECH-342's graded drift-to-a-release-bound, so fatigue can feed the MECH-342 commit-maintenance-release accumulator as a new deficit input while keeping a distinct SIGNAL.",
+    "mapping_caveat": "Human button-press squeeze-force task over minutes; the accumulator is a phenomenological fit, not a metabolic measurement. REE's 'effort' is not yet operationalised (action cost? compute? plan depth?), so Se must be defined before the model can be instantiated. The model captures the WITHIN-task break decision; the longer-horizon sleep-pressure variant (Process S, Borbely 2016 in this directory) is a slower second accumulator, not the same variable.",
+    "source_context": "Healthy adults; physical effort (handgrip) and an analogous cognitive task; behavioural model fit + fMRI + MEG."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.22,
+    "notes": "PNAS, converging fMRI+MEG, formal model with identifiable parameters. Mapping_fidelity high because the paper's model is essentially the proposed REE primitive in control-theoretic form. Transfer_risk low: the object is already a domain-general accumulator; the main open question is REE's definition of per-step effort, not species transfer."
+  }
+}

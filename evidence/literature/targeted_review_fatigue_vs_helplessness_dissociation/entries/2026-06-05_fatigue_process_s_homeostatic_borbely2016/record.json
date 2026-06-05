@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_fatigue_vs_helplessness_dissociation",
+  "entry_id": "2026-06-05_fatigue_process_s_homeostatic_borbely2016",
+  "timestamp_utc": "2026-06-05T19:44:17Z",
+  "claim_ids_tested": ["SD-012"],
+  "source": {
+    "title": "The two-process model of sleep regulation: a reappraisal",
+    "authors": ["Alexander A. Borbely", "Serge Daan", "Anna Wirz-Justice", "Tom Deboer"],
+    "year": 2016,
+    "venue": "Journal of Sleep Research",
+    "doi": "10.1111/jsr.12371"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Canonical homeostatic-accumulator model: Process S rises monotonically as a function of prior wakefulness and falls during sleep, indexed by EEG slow-wave activity and linked to adenosine accumulation -- a homeostatic deficit variable whose antecedent is TIME-ON-TASK / metabolic expenditure, explicitly independent of aversive experience or controllability. Grounds the slow, sleep-pressure variant of fatigue/stop-recover on the SD-012 homeostatic side and supplies the recovery dynamic that suffering-withdrawal lacks. Foundational model; mapping is to the antecedent/dynamics, not a REE metric.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Any account that lets a suffering/SD-011 stop signal recover by 'sleeping it off' borrows Process S dynamics it does not have: Process S recovery is specific to the homeostatic accumulator, not to aversive-uncontrollable stress.",
+    "Modelling fatigue with no recovery integrator (stop-only) omits the defining feature of Process S -- the exponential decline during sleep that resets the accumulator; fatigue without a recover phase is mis-specified."
+  ],
+  "tags": ["sd-012", "sd-017", "process_s", "two_process_model", "adenosine", "sleep_pressure", "homeostatic_accumulator", "fatigue_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Sleep is regulated by a homeostatic Process S and a circadian Process C. Process S increases monotonically during wakefulness and decreases during sleep; its level tracks the duration of prior wakefulness, is indexed physiologically by EEG slow-wave activity (which rises with time awake and dissipates across non-REM sleep), and is mechanistically linked to the accumulation of adenosine during waking and its clearance during sleep.",
+    "ree_translation": "Grounds the SLOW, sleep-pressure variant of a fatigue/stop-recover signal on the SD-012 homeostatic side (and its consumer on the SD-017 sleep-timing side): a homeostatic accumulator whose antecedent is cumulative waking/effort, not aversion, and whose RECOVER phase is offline (sleep) rather than mere task-switching. This is the second, slower accumulator complementing Meyniel's within-task break accumulator -- both homeostatic, neither aversive.",
+    "mapping_caveat": "Sleep biology; REE's SD-017/sleep substrate is partial and v3-pending, and REE has no adenosine homolog. The transfer is the abstract homeostatic-accumulator dynamic (monotone rise with waking, exponential reset in sleep), not the molecular substrate. Two time-constants (within-task break vs across-day sleep pressure) should not be collapsed into one variable.",
+    "source_context": "Human/animal sleep EEG; reappraisal of the canonical two-process model."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.28,
+    "notes": "Foundational, repeatedly validated model. Mapping_fidelity good for the homeostatic-accumulator dynamics and the offline-recovery half; transfer_risk moderate -- molecular substrate (adenosine) does not import, but the rise-with-waking / reset-in-sleep dynamic is the relevant, transferable abstraction for the SD-012/SD-017 fatigue variant."
+  }
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_543h_arc062_crystallization_falsifier
 
-Generated: `2026-06-05T14:54:56.648942Z`
+Generated: `2026-06-05T19:48:58.563837Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

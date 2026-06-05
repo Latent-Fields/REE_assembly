@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_fatigue_vs_helplessness_dissociation",
+  "entry_id": "2026-06-05_fatigue_mental_fatigue_costbenefit_boksem2008",
+  "timestamp_utc": "2026-06-05T19:44:17Z",
+  "claim_ids_tested": ["SD-012", "ARC-078"],
+  "source": {
+    "title": "Mental fatigue: Costs and benefits",
+    "authors": ["Maarten A. S. Boksem", "Mattie Tops"],
+    "year": 2008,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/j.brainresrev.2008.07.001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Well-cited review reframing mental fatigue as an adaptive cost/benefit recalibration -- fatigue signals that the energetical cost of continued effort now outweighs expected reward, motivating disengagement toward more rewarding alternatives, rather than reflecting depleted resources or aversive mood. Grounds fatigue's antecedent (accumulated effort + opportunity cost) and its disengagement consumer (ARC-078) as DISTINCT from suffering's aversive-uncontrollable antecedent. Source quality good (review, not primary data); mapping is conceptual.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Treating fatigue as pure resource depletion ('out of fuel') rather than a cost/benefit signal predicts fatigue should be insensitive to incentive -- contradicted; fatigue-driven disengagement is reversible by raising reward, which is the signature of a value-recalibration, not an empty tank.",
+    "If fatigue were a negative-valence aversive signal (suffering-like), it would not preferentially redirect behaviour toward MORE rewarding alternatives; the data frame it as an opportunity-cost reallocation."
+  ],
+  "tags": ["sd-012", "arc-078", "mental_fatigue", "cost_benefit", "opportunity_cost", "disengagement", "anterior_cingulate", "fatigue_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Mental fatigue is best understood as an adaptive signal arising from an integrated evaluation of the expected rewards and the energetical costs of continued performance. As fatigue mounts, the cost side rises and/or the represented value of the current activity falls, motivating a shift away from effortful goal pursuit toward behaviours with a better cost/benefit ratio. Anterior cingulate / medial frontal cost-benefit machinery is implicated.",
+    "ree_translation": "Supports fatigue's place on the SD-012 homeostatic-drive side and its routing into the ARC-078 goal-disengagement consumer via a cost/benefit (not aversive) channel. In REE terms, accumulated effort down-weights the effective value of the current committed goal (an opportunity-cost modulation of z_goal salience / E3 scoring), producing disengagement -- the same behavioural output as helplessness-withdrawal but from a value-recalibration antecedent, not a controllability-gated harm signal.",
+    "mapping_caveat": "A conceptual/integrative review, not a single decisive experiment; 'energetical cost' is loosely specified and REE has no fixed effort metric yet. The opportunity-cost framing overlaps existing REE grounding (ARC-068 Kurzban 2013; ARC-078 disengagement cluster) -- this entry adds the explicit fatigue-as-cost-signal antecedent, not a new consumer.",
+    "source_context": "Human cognitive-performance and ERP literature on sustained mental effort; integrative review."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Influential review but secondary synthesis rather than primary data; docks source_quality. Mapping_fidelity good for the antecedent claim (effort+opportunity-cost, not aversion). Transfer_risk moderate: the cost/benefit framing is domain-general and aligns with REE's existing value-arbitration machinery."
+  }
+}

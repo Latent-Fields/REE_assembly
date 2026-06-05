@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_501_sd035_amygdala_analog_vs_binary
 
-Generated: `2026-06-05T14:54:56.648942Z`
+Generated: `2026-06-05T19:48:58.563837Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

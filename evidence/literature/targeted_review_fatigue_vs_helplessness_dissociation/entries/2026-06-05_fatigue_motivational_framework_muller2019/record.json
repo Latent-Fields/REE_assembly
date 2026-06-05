@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_fatigue_vs_helplessness_dissociation",
+  "entry_id": "2026-06-05_fatigue_motivational_framework_muller2019",
+  "timestamp_utc": "2026-06-05T19:44:17Z",
+  "claim_ids_tested": ["SD-012", "ARC-078"],
+  "source": {
+    "title": "Motivational fatigue: A neurocognitive framework for the impact of effortful exertion on subsequent motivation",
+    "authors": ["Tanja Muller", "Matthew A. J. Apps"],
+    "year": 2019,
+    "venue": "Neuropsychologia",
+    "doi": "10.1016/j.neuropsychologia.2018.04.030"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Neurocognitive framework casting fatigue as a MOTIVATIONAL signal (effort/opportunity-cost recalibration in dACC/anterior insula/lateral PFC) rather than energy depletion, and distinguishing transient STATE fatigue (waxes/wanes with cognitive or motor exertion) from persistent TRAIT fatigue/chronic exhaustion -- the state/trait split that separates a recoverable homeostatic stop from clinical aversive-mood conditions. Directly supports fatigue's distinctness from suffering/depression and its SD-012 placement. Review-level evidence; mapping conceptual.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Modelling fatigue as energy depletion mispredicts its recovery profile and its incentive-sensitivity; the framework requires fatigue to act as a value/cost signal feeding effort-based decision systems.",
+    "Collapsing transient state-fatigue into trait/clinical exhaustion (or into anhedonia/depression) erases the recoverable-stop-recover dynamic that distinguishes the homeostatic signal from suffering-driven withdrawal."
+  ],
+  "tags": ["sd-012", "arc-078", "motivational_fatigue", "state_vs_trait", "effort_based_decision", "anterior_cingulate", "dopamine", "fatigue_dissociation"],
+  "mapping": {
+    "source_claim_statement": "Fatigue arising from effortful behaviour is a motivational signal, not a pure energy-depletion mechanism: rising fatigue reduces the perceived value of continued effort within cost-benefit decision systems (dACC, anterior insula, lateral PFC, with basal-ganglia/dopamine contributions), lowering performance. The framework separates transient STATE fatigue (waxes and wanes during extended cognitive control or motor output, affecting speed/accuracy/force) from persistent TRAIT fatigue (a chronic feeling of exhaustion).",
+    "ree_translation": "Supports registering fatigue/stop-recover as a recoverable, value-modulating control signal on the SD-012 homeostatic side, feeding the ARC-078 disengagement consumer. The state/trait distinction maps onto REE's V3-vs-V4 scope: transient state-fatigue (the recoverable accumulator) is the V3-minimal target; trait/chronic and affectively-coloured fatigue (toward depression/anhedonia) is V4-completeness territory and should NOT be modelled as an SD-011 harm signal.",
+    "mapping_caveat": "Framework/review, not a single experiment; the dopamine and basal-ganglia attributions are integrative. REE has no dopaminergic effort-valuation module per se; the transfer is to REE's existing value-arbitration / E3 scoring, where an effort term would down-weight continued pursuit. State-vs-trait is a useful scoping heuristic, not a hard REE boundary.",
+    "source_context": "Human effort-based decision-making and cognitive-fatigue literature; neurocognitive review."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Strong, well-aimed framework but review-level. Mapping_fidelity good for the state/trait scoping and the motivational-not-depletion claim. Transfer_risk moderate: dopamine attributions don't import directly, but the cost/value framing aligns with REE's arbitration layer."
+  }
+}

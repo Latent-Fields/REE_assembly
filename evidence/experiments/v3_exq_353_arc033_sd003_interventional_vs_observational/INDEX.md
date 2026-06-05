@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_353_arc033_sd003_interventional_vs_observational
 
-Generated: `2026-06-05T14:54:56.648942Z`
+Generated: `2026-06-05T19:48:58.563837Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

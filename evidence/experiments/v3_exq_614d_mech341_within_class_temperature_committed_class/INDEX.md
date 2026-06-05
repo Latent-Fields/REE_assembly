@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_614d_mech341_within_class_temperature_committed_class
 
-Generated: `2026-06-05T14:54:56.648942Z`
+Generated: `2026-06-05T19:48:58.563837Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
