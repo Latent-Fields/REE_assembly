@@ -133,6 +133,20 @@ Register rows, each explicitly differentiated from its neighbour (safety!=relief
 fatigue!=suffering), with consumer cross-notes. Attribution: *Based on articles retrieved from
 PubMed.*
 
+**Status update 2026-06-05:** chip `task_64c2e558` (boundary-violation / blocked-agency / anger)
+LANDED -- `evidence/literature/targeted_review_blocked_agency_anger_stream/` (5 entries + VERDICT).
+Verdict: distinct stream warranted, splits into **Stream A blocked-agency/control-failure (V3)**
+and **Stream B coercion/domination/injustice (V4-social)**. **Stream A is now registered** as the
+`blocked_agency` (`z_block`) V3-candidate row in `affect_primitives.md` Extension Register
+(detector = SD-029 comparator; antecedent = frustrative-non-reward expected-minus-realised,
+no noxious input; consumers assert + decommit/MECH-342 gated by ARC-016; capacity-axis opposite
+pole to Q-036/z_harm_a withdraw). **Stream B deferred to V4** (stub row added; needs other-agent
+model; cross-link `musings_on_v4`). GATED next steps (NOT done): a `claims.yaml` SD/MECH backing
+`z_block` + the smallest-V3 blocked-action experiment (per VERDICT). The other two chips'
+register rows remain a separate doc-sync: `task_3ab79018` (Safety rows MECH-303/304 + Soothing
+V4 gap) and `task_93a719b6` (fatigue on the SD-012 side) -- pulls landed, `affect_primitives.md`
+rows for those not yet written.
+
 ## 8. Cross-references
 
 - Raw: `docs/thoughts/2026-06-01_ProtoFeelings_implementation_timing.md`.

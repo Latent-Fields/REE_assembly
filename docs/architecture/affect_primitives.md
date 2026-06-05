@@ -158,15 +158,58 @@ The Löffler dissociation establishes that **controllability** is load-determini
 
 ## Extension Register: Beyond Harm
 
-The harm register is V3-complete (or nearly so). For reference, the analogous structures in
-other affect classes are noted here as V4-deferred stubs:
+The harm register is V3-complete (or nearly so). The structures in other affect classes are
+noted here. Most are V4-deferred stubs; one — **blocked_agency** — is a V3-tractable candidate
+grounded by the 2026-06-05 lit-pull (`targeted_review_blocked_agency_anger_stream`) and specified
+in full below.
 
 | Affect class | REE signal | Primitive split | Status |
 |-------------|-----------|----------------|--------|
 | Benefit / resource | `z_benefit` / `z_goal` | intensity / wanting / satisfaction | V4-deferred |
 | Relief | (termination of harm stream) | relief_spike / relief_sustained | V4-deferred |
+| **Blocked agency (control-failure)** | `z_block` (new) | intended-but-blocked / assert / decommit | **V3-candidate (lit-grounded; pending claim + experiment)** |
+| Coercion / domination / injustice | (not yet specified) | autonomy-threat / boundary-violation | V4-deferred (social; needs other-agent model) |
 | Social harm | (not yet specified) | — | Research phase |
 | Effort / fatigue | `drive_level` + SD-032b dACC | effort_cost / fatigue_load | Partially implemented |
+
+### Extension Primitive (V3-candidate): blocked_agency
+
+| Field | Value |
+|-------|-------|
+| **REE signal** | `z_block` (blocked-agency / control-failure stream) |
+| **Status** | V3-candidate — lit-grounded 2026-06-05; **not yet a claims.yaml claim and not yet experimentally validated** |
+| **Character** | Rises when an intended/expected action-outcome is **repeatedly blocked** while the goal and the agent's capacity-belief are retained |
+| **Antecedent** | A **negative disparity between expected and realised action-outcome** — an expectation/agency violation, **not** noxious input (frustrative non-reward; Papini et al. 2024) |
+| **Time constant** | Medium — integrates blocked attempts over a window; distinct from instantaneous harm |
+| **Controllability dependence** | High, but **opposite polarity to suffering**: `z_block` is the **capacity-RETAINED** pole (assert), where `z_harm_a` is the **capacity-COLLAPSED** pole (withdraw) |
+| **Biological analogue** | RAGE as a distinct primary-process system (Davis & Montag 2019); frustrative non-reward circuit (Papini et al. 2024); reactive-aggression assert channel under prefrontal gating (Bertsch et al. 2020) |
+
+**Computational form (smallest):** `z_block` is layered on substrate REE already has —
+1. **Detector (exists):** the agency comparator (SD-029) applied to the *action-outcome / goal channel* — intended effect predicted by the forward model (E2), realised effect diverges (the comparator-model account of agency and its breakdown; Carruthers 2012).
+2. **Expectation (exists):** z_goal / wanting (MECH-112) supplies the "expected outcome."
+3. **New work — readout + two gates:** integrate comparator mismatch over a window → `z_block ↑`; an **attribution gate** (mismatch caused by *external constraint*, not own motor error); a **capacity gate** (fires as *assert* only while goal/capacity is retained; hands off to `z_harm_a` as capacity-belief collapses).
+
+**Differentiation (each neighbour, explicitly):**
+- **vs harm (SD-011, `z_harm_*`):** harm's antecedent is noxious contact; `z_block` fires with **zero noxious input** (a merely-blocked/omitted outcome). Distinct antecedent, distinct biology (RAGE circuit vs nociceptive medial pathway). Collapsing them would repeat the SD-010→SD-011 *philosophy-right/mechanism-wrong* error.
+- **vs suffering (SD-019b, `z_harm_a` + Q-036):** same controllability axis, **opposite pole**. Capacity-belief collapsed → withdraw (suffering, already in REE); capacity-belief retained → assert (`z_block`). REE currently encodes only the withdraw pole — the **energised assert pole is the piece this primitive adds.**
+- **vs residue (MECH-056):** residue is the trace of an action *taken* at a value-cost; `z_block` is an action *prevented*. Opposite causal structure, different consumer.
+- **vs commitment-hold (MECH-090 beta-gate):** MECH-090 is the **licit, self-imposed** gating of E3→action during a committed sequence; `z_block` is an **externally-imposed** block against a live goal. Self-hold (licit) vs external-block (the new signal).
+
+**Consumers it drives:**
+- **Assert / escalate-effort / try-different** (new behavioural pole) — raise drive/vigor (MECH-320), search an alternative action that restores the intended outcome (reactance direct-restoration; the adaptive analogue of reactive aggression).
+- **Decommit (MECH-342)** — if assertion fails across the window, release the blocked commitment rather than escalate unboundedly; gated by the commitment-threshold (ARC-016), the prefrontal-analogue of reactive-aggression inhibition (Bertsch et al. 2020).
+- **Withdraw** — *not* native to this stream; reached only via hand-off to `z_harm_a` when capacity-belief collapses.
+
+**Scope:** V3-tractable as a **single-agent proxy** — "an intended, predicted-to-succeed action is repeatedly blocked by the environment/constraint." The **coercion / domination / injustice** extension (Stream B below) requires modelling an *other agent* as the source of the restriction and is **V4-deferred** (psychological reactance / autonomy-threat, Steindl et al. 2015; injustice/norm-violation appraisal). Anti-domination and anti-exploitation are inherently other-agent — defer; cross-link the V4 ethics cluster (`thought_intake_2026-05-31_musings_on_v4.md`).
+
+**Smallest V3 test (gated; not yet queued):** an environment that repeatedly blocks an intended,
+predicted-to-succeed action while harm and goal-value are held constant; measure whether a
+comparator-mismatch readout rises, whether it drives *assert/persist* (effort escalation /
+alternative-action search) distinct from the withdraw signature, and whether it dissociates from
+`z_harm_a` under matched controllability.
+
+*Evidence:* `evidence/literature/targeted_review_blocked_agency_anger_stream/` (5 entries + VERDICT).
+*Based on articles retrieved from PubMed.*
 
 ---
 
@@ -177,3 +220,4 @@ other affect classes are noted here as V4-deferred stubs:
 | harm_intensity | Strong (SD-011 targeted reviews) | — |
 | harm_unpleasantness | Partial (Rainville 1997 in SD-019 pulls; SD-019a not yet targeted) | Needed — medial pathway fast component, ACC/insula unpleasantness encoding |
 | harm_suffering | Moderate (Q-036 pull 2026-04-20, 3 entries) | Needed — inescapability / learned helplessness; prediction error in suffering |
+| blocked_agency | Strong (`targeted_review_blocked_agency_anger_stream`, 2026-06-05, 5 entries) | — for the V3 row; Stream B (coercion/injustice) is a V4 pull when the social substrate exists |
