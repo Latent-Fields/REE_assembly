@@ -28165,6 +28165,27 @@
     lands (env repeatedly blocks an intended predicted-to-succeed action, harm +
     goal held constant; measure assert-vs-withdraw dissociation from z_harm_a under
     matched controllability). Based on articles retrieved from PubMed.
+  implementation_note: >
+    Substrate IMPLEMENTED 2026-06-06 (ree-v3). z_block is a pure-arithmetic
+    regulator (ree_core/affect/blocked_agency.py) plus a LatentState.z_block
+    field. Detector = SD-029 agency comparator on the action-outcome / z_world
+    channel (E2.world_forward predicted effect vs realised, normalised by the
+    predicted-effect magnitude with a floor) + an external-attribution gate
+    (motor_agency on the z_self channel via E2.predict_next_self) + a capacity
+    gate (assert while capacity-belief retained; hand off to z_harm_a as it
+    collapses). Consumers: ASSERT score-bias (escalate-effort + alternative-action
+    search, the MECH-320 vigor effect) and ARC-016-gated DECOMMIT (MECH-342
+    actuator). Env substrate: CausalGridWorldV2 scheduled_action_block_* (external
+    move-cancel, no damage, no layout change). Config:
+    REEConfig.use_blocked_agency (default False; bit-identical OFF). 803/803
+    ree-v3 contracts + 9/9 new MECH-353 contracts PASS; OFF action stream
+    bit-identical. Phased training N/A. MECH-094: update() no-op on
+    simulation_mode. v3_pending stays TRUE: cleared only when the smallest-V3
+    blocked-action discriminative experiment PASSes. NOTE: the action-outcome
+    comparator is only discriminative once the encoder + action-conditional
+    world_forward (SD-056) are trained -- the validation experiment trains both
+    in P0. Doc: docs/architecture/mech_353_blocked_agency_zblock.md;
+    ree-v3 entry: ree-v3/CLAUDE.md (MECH-353 section).
   location: evidence/literature/targeted_review_blocked_agency_anger_stream/VERDICT.md
 
 - id: MECH-354
