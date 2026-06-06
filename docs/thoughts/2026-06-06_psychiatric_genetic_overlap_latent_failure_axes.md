@@ -1,0 +1,149 @@
+Status: unprocessed
+Source email date: 2026-03-31
+Source email subject: REE: Mapping the genetic landscape across 14 psychiatric disorders - Nature
+Source saved-item attribution: Daniel Golden
+Current action: preserve as thought intake only
+Primary source status: source-check partial; direct share.google link not opened, but secondary coverage identifies the Nature paper and key findings
+Near-term relevance: psychiatry / failure-mode architecture compass; not a REE-v3 implementation target unless later linked to existing failure-mode claims
+
+---
+
+# THOUGHT INTAKE: Psychiatric genetic overlap as latent vulnerability-axis evidence
+
+## 0. Summary claim
+
+A saved REE email pointed to a Nature-linked item titled "Mapping the genetic landscape across 14 psychiatric disorders". The direct `share.google` link was not opened during intake. Secondary coverage identifies a Nature study reporting large-scale genetic overlap across 14 psychiatric disorders, grouping them into several broad genomic factors rather than clean one-disorder / one-cause categories.
+
+The REE-relevant point is not genetic determinism.
+
+The useful architectural idea is:
+
+> psychiatric categories may be surface expressions of overlapping latent vulnerability axes rather than discrete boxes.
+
+This fits REE's existing framing of psychiatric pathology as failure modes of an architecture: breakdowns in prediction, control-plane modulation, self-other coupling, residue integration, commitment gating, precision routing, and offline integration may combine in different proportions to produce different clinical syndromes.
+
+---
+
+## 1. Why this belongs in REE_assembly
+
+This belongs in `REE_assembly` as a psychiatry / architecture thought because it supports an important modelling stance:
+
+- do not force psychiatric failure modes into one-to-one modules
+- do not treat diagnoses as clean natural kinds
+- model vulnerability as interacting latent axes
+- preserve transdiagnostic mechanisms
+- treat named syndromes as emergent clusters in cognifold/control-plane failure space
+
+This may eventually inform REE's failure-mode documentation, but should not create immediate substrate work.
+
+---
+
+## 2. Proposed classification
+
+Likely classifications:
+
+- **open question:** should REE failure-mode predictions be represented as latent axis combinations rather than diagnosis-specific mappings?
+- **mechanism hypothesis:** psychiatric phenotypes may emerge from overlapping disruptions to control-plane, prediction, residue, salience, agency, and commitment systems.
+- **architecture note candidate:** REE failure-mode docs should distinguish mechanistic axes from diagnostic labels.
+
+This should not be promoted directly to an invariant.
+
+---
+
+## 3. Relation to existing REE architecture
+
+Potential mappings:
+
+| Psychiatric-genetics framing | REE analogue |
+|---|---|
+| broad genetic overlap across diagnoses | shared vulnerability axes across failure modes |
+| genomic factors | latent failure dimensions |
+| p-factor / general psychopathology | global instability / broad control-plane vulnerability |
+| disorder-specific surface syndromes | emergent attractors in symptom/failure-mode space |
+| pleiotropy | one mechanism influencing multiple REE capacities |
+| comorbidity | overlapping failure-axis activation |
+| genetic risk not equal to disease inevitability | predisposition + environment + developmental timing + plasticity |
+
+---
+
+## 4. REE-specific hypothesis
+
+REE's psychiatry predictions may become stronger if diagnoses are treated as surface clusters rather than primary explanatory units.
+
+For example:
+
+- psychosis may involve precision-routing and commitment-threshold instability, but not all psychosis has the same axis weights
+- depression may involve residue accumulation and offline-integration failure, but also motivational, interoceptive, social, or fatigue axes
+- mania may involve commitment-gating collapse, but may also include goal-stream amplification, reward/salience dominance, sleep/offline disruption, and reduced decommit friction
+- obsessive-compulsive presentations may involve excessive threat/residue persistence, failed decommit, and over-weighted action responsibility, but the same axes may participate elsewhere
+
+The architectural stance should be:
+
+> diagnoses are useful clinical handles, but REE should model the underlying interacting failure axes.
+
+---
+
+## 5. Important cautions
+
+Do not reduce psychiatric illness to genetics.
+
+Do not treat genetic overlap as proof that diagnoses are meaningless.
+
+Do not imply that individual clinical presentations can be read from polygenic categories.
+
+Do not treat genomic factors as direct equivalents of REE mechanisms.
+
+Do not make this a REE-v3 implementation target without a clear link to existing failure-mode claims.
+
+The useful extraction is:
+
+> psychiatric categories may be emergent clusters over overlapping latent vulnerability axes.
+
+---
+
+## 6. External anchors
+
+Secondary coverage checked during intake:
+
+- Live Science, "5 genetic 'signatures' underpin a range of psychiatric conditions". Reports that a Nature study published 2025-12-10 analysed more than 1 million participants and grouped 14 psychiatric conditions into five major genetic groups. https://www.livescience.com/health/genetics/5-genetic-signatures-underpin-a-range-of-psychiatric-conditions
+- Washington Post, "Science shows very different psychiatric disorders might have the same cause". Reports that the study analysed data from more than 6 million people including over 1 million with psychiatric diagnoses, identified 238 genetic variants, and found five broad categories including substance use, internalising, neurodevelopmental, compulsive, and psychotic-mood groupings. https://www.washingtonpost.com/health/2026/01/01/psychiatric-disorders-genetic-bipolar-schizophrenia/
+
+Primary lookup terms for future agent:
+
+```text
+Andrew Grotzinger Nature 2025 14 psychiatric disorders five genomic factors 238 variants chromosome 11 DRD2
+```
+
+Primary source still needs direct verification before claim extraction.
+
+---
+
+## 7. Proposed next extraction
+
+If the Nature paper is verified, consider adding a failure-mode architecture note:
+
+```text
+docs/architecture/psychiatric_failure_axes.md
+```
+
+Questions for that note:
+
+- Should REE maintain diagnosis labels only as surface examples?
+- What are the core latent failure axes already present in the architecture?
+- Can each clinical syndrome be represented as a weighted combination of axis failures?
+- Does REE need a transdiagnostic vulnerability map?
+- How should comorbidity be represented without exploding the claim registry?
+
+---
+
+## 8. Guardrail for future agents
+
+If a future agent tries to convert this into a genetic-determinist claim, stop and reframe.
+
+The correct near-term extraction is:
+
+> model psychiatric failure modes as overlapping latent vulnerability axes.
+
+The incorrect extraction is:
+
+> map each diagnosis to one gene, one circuit, or one REE module.
