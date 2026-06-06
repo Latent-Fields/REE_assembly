@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BRAIN_MAP_VERSION: 2026-06-06.5 -->
+<!-- BRAIN_MAP_VERSION: 2026-06-06.6 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -108,6 +108,12 @@
   #host_3d .r3d-hull { fill: none; stroke: #2d333b; stroke-width: 0.7; }
   #host_3d .r3d-gnomon text { fill: var(--muted); font-size: 9px; }
   #host_3d .r3d-gnomon line { stroke: var(--muted); stroke-width: 1; }
+  #host_3d .r3d-label { fill: #f0f6fc; font-size: 12px; font-weight: 600; text-anchor: middle;
+    paint-order: stroke; stroke: #0a0d12; stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+  .r3d-btn { font: inherit; font-size: 10px; margin-left: auto; padding: 2px 8px; cursor: pointer;
+    background: var(--bg-2); color: var(--text); border: 1px solid var(--border); border-radius: 4px; }
+  .r3d-btn:hover { border-color: var(--accent); }
+  .plane-3d h3 .axhint { margin-left: 8px; }
   svg .r3d-sphere { stroke: #0a0d12; stroke-width: 0.5; cursor: pointer; transition: stroke .12s; }
   svg .r3d-sphere:hover { stroke: var(--accent); stroke-width: 1.6; }
   svg .r3d-sphere.linked-hover { stroke: var(--accent); stroke-width: 1.8; }
@@ -151,7 +157,7 @@
         <div class="host" id="host_axial"></div>
         <div class="cap">MNI152 template (TemplateFlow, ICBM 152)</div></div>
       <div class="substrate"><h3>Substrate</h3><div class="nodes" id="substrateNodes"></div></div>
-      <div class="plane plane-3d"><h3>3D &mdash; MNI space<span class="axhint">drag to rotate</span></h3>
+      <div class="plane plane-3d"><h3>3D &mdash; MNI space<button id="reset3d" class="r3d-btn" type="button">reset view</button><span class="axhint">drag to rotate &middot; scroll to zoom</span></h3>
         <div class="host" id="host_3d"></div>
         <div class="cap">Regions as spheres in MNI mm; same coverage colors. Functional analogy, not surface anatomy.</div></div>
     </div>
@@ -166,7 +172,8 @@
   const IMPL_DIM = { full: 1, partial: 0.65, claim_only: 0.35 };
   const TIER_RGB = { expressed: [46,160,67], claimed: [210,153,34], frontier: [163,113,247], absent: [72,79,88] };
   let payload = null, nodeById = {}, selectedId = null, regions3d = null;
-  let yaw3d = -0.62, pitch3d = -0.32, inited3d = false;
+  const YAW0 = -0.62, PITCH0 = -0.32;
+  let yaw3d = YAW0, pitch3d = PITCH0, zoom3d = 1, inited3d = false, hover3dId = null;
   const $ = (id) => document.getElementById(id);
 
   async function load() {
@@ -207,6 +214,8 @@
   function setHover(id, el) {
     document.querySelectorAll(".linked-hover").forEach((e) => e.classList.remove("linked-hover"));
     clearGuides();
+    hover3dId = id || null;
+    updateLabel(hover3dId);
     if (!id) return;
     elementsFor(id).forEach((e) => e.classList.add("linked-hover"));
     if (el) drawGuides(el);
@@ -305,7 +314,8 @@
     let x1 = x * cy - y * sy, y1 = x * sy + y * cy;          // yaw about vertical (Z)
     const cp = Math.cos(pitch3d), sp = Math.sin(pitch3d);
     let y2 = y1 * cp - z * sp, z2 = y1 * sp + z * cp;        // pitch about screen-x
-    return { px: V3.W / 2 + x1 * V3.scale, py: V3.H / 2 - z2 * V3.scale, depth: y2 };
+    const s = V3.scale * zoom3d;
+    return { px: V3.W / 2 + x1 * s, py: V3.H / 2 - z2 * s, depth: y2 };
   }
   function ringSvg(pts) {
     return '<polyline class="r3d-hull" points="' +
@@ -353,7 +363,7 @@
       reg.spheres.forEach((sp) => {
         const P = project3d(sp.c);
         items.push({ id: reg.id, px: P.px, py: P.py, depth: P.depth,
-          r: sp.r * V3.scale, fill, op: reg.opacity, ghost: reg.ghost });
+          r: sp.r * V3.scale * zoom3d, fill, op: reg.opacity, ghost: reg.ghost });
       });
     });
     items.sort((a, b) => a.depth - b.depth);  // far first (painter's)
@@ -367,8 +377,22 @@
         '" cy="' + it.py.toFixed(1) + '" r="' + it.r.toFixed(1) + '" fill="' + it.fill +
         '" fill-opacity="' + op.toFixed(2) + '"/>';
     }).join("");
-    host.querySelector("svg").innerHTML = hullSvg() + blobs + gnomonSvg();
+    host.querySelector("svg").innerHTML = hullSvg() + blobs + gnomonSvg() + '<g id="r3d-labels"></g>';
     bind3dRegionEvents();
+    updateLabel(hover3dId);  // restore label after a drag rebuild
+  }
+  // hover label drawn into a separate <g> so we never rebuild spheres on hover
+  function updateLabel(id) {
+    const host = $("host_3d"); if (!host) return;
+    const g = host.querySelector("#r3d-labels"); if (!g) return;
+    const node = id && nodeById[id];
+    if (!node) { g.innerHTML = ""; return; }
+    const sph = [...host.querySelectorAll('.r3d-sphere[data-region="' + cssEsc(id) + '"]')];
+    if (!sph.length) { g.innerHTML = ""; return; }
+    const top = sph.reduce((a, b) => (+a.getAttribute("cy") < +b.getAttribute("cy") ? a : b));
+    const cx = +top.getAttribute("cx"), cy = +top.getAttribute("cy"), r = +top.getAttribute("r");
+    g.innerHTML = '<text class="r3d-label" x="' + cx.toFixed(1) + '" y="' + (cy - r - 5).toFixed(1) + '">' +
+      esc(node.label || id) + "</text>";
   }
   function bind3dRegionEvents() {
     $("host_3d").querySelectorAll(".r3d-sphere").forEach((el) => {
@@ -394,6 +418,13 @@
     const stop = () => { drag = false; };
     svg.addEventListener("pointerup", stop);
     svg.addEventListener("pointercancel", stop);
+    svg.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      zoom3d = Math.max(0.4, Math.min(3.5, zoom3d * Math.exp(-e.deltaY * 0.0015)));
+      render3d();
+    }, { passive: false });
+    const reset = $("reset3d");
+    if (reset) reset.addEventListener("click", () => { yaw3d = YAW0; pitch3d = PITCH0; zoom3d = 1; render3d(); });
     inited3d = true;
   }
 
