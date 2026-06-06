@@ -157,6 +157,40 @@ def _compute_adjudication(interpretation: Any, status: str,
     return label, "verified"
 
 
+# Canonical set of adjudication flags that BLOCK a diagnostic/baseline self-route
+# from driving a governance action. Keyed STRICTLY on the active-failure flags --
+# NEVER include "unverified". A legacy manifest with no preconditions[] is
+# `unverified`, and treating absence as blocking would fire against the entire
+# pre-convention record (hundreds of runs, incl. past legitimate gate-clears).
+# `unverified` is surfaced-not-blocked; the retrospective audit handles legacy.
+BLOCKING_ADJUDICATIONS = ("precondition_unmet", "vacuous_pass")
+
+
+def adjudication_blocks_governance_action(adjudication: str) -> tuple[bool, str]:
+    """Headless-governance guard: may a diagnostic with this adjudication flag
+    drive a governance action (clear/keep a v3_pending, mint/AMEND a
+    substrate_queue entry, close/route a thought-intake)?
+
+    Returns (blocked, reason). Strictly keyed on BLOCKING_ADJUDICATIONS so it is
+    inert against the legacy `unverified` population and never breaks the pipeline
+    against the pre-convention record. This is the single source of truth the
+    future headless-governance path calls; the interactive /governance walk and
+    generate_pending_review's flagged-filter mirror the same set. DORMANT today
+    (no automated gate-clearing exists yet) -- landed keyed-correctly so the
+    headless path inherits the footgun-free version. See
+    evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+    """
+    flag = str(adjudication or "")
+    if flag == "precondition_unmet":
+        return True, ("self-route premise unmet -- adjudicate via /failure-autopsy "
+                      "before acting (do NOT trust the self-routed label)")
+    if flag == "vacuous_pass":
+        return True, ("PASS rests on a degenerate criterion -- do NOT clear a gate "
+                      "or mint a task; adjudicate via /failure-autopsy")
+    # verified / unverified / n/a / unknown -> not blocked (absence is not blocking).
+    return False, ""
+
+
 @dataclass
 class LiteratureRecord:
     literature_type: str
@@ -1361,10 +1395,33 @@ def _write_claim_evidence_matrix(
 
     claim_to_entries: dict[str, list[dict[str, Any]]] = defaultdict(list)
 
+    # Diagnostic adjudication gate -- non-blocking headless visibility (2026-06-06).
+    # Count diagnostic/baseline runs whose self-route is `unverified` (manifest
+    # declared no preconditions[]/criteria_non_degenerate). Per-run WARN only for
+    # runs authored ON/AFTER the convention date (compact-timestamp lexicographic
+    # compare) -- legacy runs are immutable and handled by the retrospective audit,
+    # so warning on all would flood every governance run. The aggregate count is
+    # printed once after the loop so headless logs show the backlog size.
+    # Cutoff is the day AFTER the gate landed (2026-06-06): every run authored on
+    # that day predates the gate code, so it counts as legacy (aggregate only, no
+    # per-run nag) -- only runs from 2026-06-07 on could have known the convention.
+    _ADJ_CONVENTION_DATE = "20260607"
+    _adj_unverified_total = 0
+    _adj_unverified_post_convention = 0
+
     for run in exp_runs:
         inferred_direction = run.evidence_direction
         if inferred_direction == "unknown" and not run.direction_explicitly_set:
             inferred_direction = "supports" if run.final_status == "PASS" else "weakens"
+
+        if run.experiment_purpose in ("diagnostic", "baseline") and run.adjudication == "unverified":
+            _adj_unverified_total += 1
+            if (run.timestamp_raw or "")[:8] >= _ADJ_CONVENTION_DATE:
+                _adj_unverified_post_convention += 1
+                print(f"  WARNING: {run.run_id} is a {run.experiment_purpose} run with no "
+                      f"interpretation.preconditions[]/criteria_non_degenerate -> adjudication "
+                      f"'unverified' (self-route not machine-checkable). Add the fields per the "
+                      f"diagnostic adjudication gate (queue-experiment SKILL.md).")
 
         if not run.claim_ids_tested:
             matrix["unlinked_runs"].append(
@@ -1454,6 +1511,13 @@ def _write_claim_evidence_matrix(
                 continue
 
             claim_to_entries[claim_id].append(entry)
+
+    if _adj_unverified_total:
+        print(f"  adjudication: {_adj_unverified_total} diagnostic/baseline run(s) "
+              f"`unverified` (no interpretation.preconditions[]); "
+              f"{_adj_unverified_post_convention} authored on/after the "
+              f"{_ADJ_CONVENTION_DATE} convention (fix those). Legacy runs are "
+              f"immutable -- see the retrospective self-route audit.")
 
     for lit in lit_entries:
         if not lit.claim_ids_tested:

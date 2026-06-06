@@ -51,6 +51,13 @@ CLAIMS_YAML = ROOT / "docs" / "claims" / "claims.yaml"
 RECOMMENDATIONS_MD = EVIDENCE_DIR / "promotion_demotion_recommendations.md"
 SUBSTRATE_STATUS_SNAPSHOT = EVIDENCE_DIR / "substrate_status_snapshot.json"
 
+# Adjudication flags that block a diagnostic self-route from driving a governance
+# action. Mirror of build_experiment_indexes.BLOCKING_ADJUDICATIONS (the canonical
+# source + adjudication_blocks_governance_action() guard). Kept as a local literal
+# to avoid importing the 4k-line indexer module just for one tuple. STRICTLY excludes
+# "unverified" -- absence is surfaced-not-blocked (do not flood on the legacy record).
+BLOCKING_ADJUDICATIONS = ("precondition_unmet", "vacuous_pass")
+
 SUBSTRATE_CLAIM_TYPES = {
     "design_decision",
     "architectural_commitment",
@@ -365,7 +372,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     # table for the normal review flow; this is a focused callout so governance
     # does not act on the label before it is adjudicated.
     flagged = [r for r in runs
-               if r.get("adjudication") in ("precondition_unmet", "vacuous_pass")]
+               if r.get("adjudication") in BLOCKING_ADJUDICATIONS]
 
     total_pending = len(runs) + len(runner_undiscussed) + len(unclaimed)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
