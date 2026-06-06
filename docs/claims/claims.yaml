@@ -30962,10 +30962,11 @@
     lit-pull on SWR-and-cortical-arbitration-weight-update
     coupling would deepen confidence (or disconfirm).
 
-    Not yet experimentally tested. V3 falsification path
-    (artificial-write-channel-routing config flag) is V3-
-    EXQ-543c-tractable; cellular-level falsification is V4-
-    bound and pharmacology-dependent.
+    First experimentally tested 2026-06-02 (V3-EXQ-628 PASS,
+    supports -- see governance entry below). V3 falsification path
+    (artificial-write-channel-routing config flag) was V3-
+    EXQ-543c-tractable and is now exercised; cellular-level
+    falsification remains V4-bound and pharmacology-dependent.
 
     SUBSTRATE LANDED 2026-05-10. status candidate -> candidate_
     substrate_landed. Module: ree_core/regulators/simulation_mode_
@@ -31003,6 +31004,61 @@
     deferred AFTER MECH-313 / MECH-314 / MECH-318 sibling
     substrates land. Design doc: docs/architecture/mech_319_
     simulation_mode_rule_gate.md.
+
+    FIRST CONTRIBUTORY EVIDENCE 2026-06-06 (governance fold of
+    V3-EXQ-628). The deferred V3-EXQ-543c-successor falsifier
+    RAN and LANDED PASS: run_id v3_exq_628_mech319_simulation_
+    mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z
+    (ree-cloud-2, 2026-06-02; experiment_purpose=evidence;
+    claim_ids=[MECH-319]; evidence_direction=supports;
+    3/3 seeds, required 2). It constructs the replay-driven
+    invocation path select_action never exercises (effective_
+    simulation_mode(simulation_mode=True, site=lateral_pfc) +
+    conditional LateralPFCAnalog.update) and measures rule_state
+    divergence between BLOCK (admit_writes=False) and ADMIT
+    (admit_writes=True) arms replaying the SAME captured early-
+    waking latent. PASS = BLOCK suppresses the simulation write
+    (replay delta ~0) AND ADMIT admits it (mean replay delta
+    ~0.31) AND the arms diverge AND the waking path is bit-
+    identical across arms with zero simulation firings (the load-
+    bearing C4 falsifier). This is the first evidence-grade
+    confirmation of the rule_state-level write-suppression
+    consequence MECH-319 asserts on the real consumer; the
+    predecessor V3-EXQ-546 was diagnostic/non_contributory
+    (truth-table + wiring only, never touched rule_state).
+    Indexer now scores 1 supporting experimental entry,
+    exp_conf=0.766, evidence_quadrant=novel_discovery,
+    conflict_ratio=0.
+
+    STATUS HELD at candidate_substrate_landed (NO promotion).
+    Two independent governance gates block promotion to
+    provisional on this single PASS, both correctly: (1)
+    candidate_to_provisional requires min_experimental_entries=2
+    -- MECH-319 has exactly 1 contributory entry, so a second
+    contributory V3 entry is required before the exp_conf=0.766
+    (> the 0.62 bar) can promote; (2) v3_pending stays true as a
+    belt-and-braces hold until that second entry lands and is
+    reviewed. The V3-pending gate's evidence-condition (V3
+    experiment provides evidence) is now FIRST SATISFIED by 628,
+    but the promotion bar is not yet met.
+
+    DATA-QUALITY NOTE (does not change the verdict): 628's
+    run_id places the `_v3` marker BEFORE the runner timestamp
+    (`..._evidence_v3_20260602T191625Z`) rather than at the end
+    (`..._<timestamp>_v3`, the convention sibling V3-EXQ-633
+    follows). The genuine-evidence detector keys on
+    run_id.endswith("_v3"), so it under-counts 628 as
+    non-genuine (auto-recommendation reads collect_genuine_
+    evidence / synthetic). The entry IS scored (exp_conf 0.766);
+    only the genuine sub-classification mis-fires. Net effect on
+    promotion is nil because min_experimental_entries=2 already
+    holds the claim. INDEXER NOTE: the canonical
+    runs/<run_id>/manifest.json pack for 628 was reconstructed
+    2026-06-06 from the authoritative coordinator flat manifest
+    (the cloud-2 Phase-3 result landed as a flat manifest only;
+    its runs/ pack never synced, so build_experiment_indexes.py
+    -- which scans **/runs/**/manifest.json -- never scored it;
+    that is why this PASS sat un-folded since 2026-06-02).
   notes: >
     Pull 4 R3 KEEP-AS-IS verdict: MECH-094 stays as-is (the
     architectural principle); MECH-319 is registered as the

@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-06-06T20:18:13.225165Z`
+Generated: `2026-06-06T20:48:58.003680Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -88,6 +88,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-316` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-317` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-318` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-319` | `candidate_substrate_landed` | Genuine evidence required before any status change | `collect_genuine_evidence` | `pending_user` |
 | `MECH-320` | `candidate_substrate_landed` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-332` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-334` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -790,7 +791,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-186
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.241, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.24, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1544,6 +1545,22 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-05-10T12:24:30Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: Rule-state abstraction substrate (Wang 2018 + Duan 2016 RL^2). Absorption check completed 2026-05-10 verdict B partial (W1+W3+W4 borne by SD-033a + ARC-062 Phase 1; W2+W5 not absorbed). No new V3 substrate commissioned; empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate.
+
+### MECH-319
+- Current status: `candidate_substrate_landed`
+- Decision needed: Genuine evidence required before any status change
+- Why this decision is needed: All experimental evidence for MECH-319 is from synthetic substrates (ree-v2 / ree-experiments-lab). Genuine ree-v1-minimal run count: 0. Total synthetic exp entries: 1. Confidence scores and conflict ratios are unreliable. Collect ≥1 genuine experimental run on ree-v1-minimal before treating this claim as a promotion or demotion candidate.; directions supports=1, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Recommendation: `collect_genuine_evidence`
+- ⚠️ **Synthetic data flag**: All experimental evidence is from synthetic substrates (ree-v2 / ree-experiments-lab). Confidence scores unreliable. Collect genuine ree-v1-minimal runs before treating as promotion/demotion candidate.
+- Options (pros/cons):
+  - Run the highest-priority EVB item for this claim on ree-v1-minimal (recommended).
+  - Demote to legacy and re-open when genuine evidence is available.
+  - Keep current status and suppress recommendations until genuine run completes.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
 
 ### MECH-320
 - Current status: `candidate_substrate_landed`

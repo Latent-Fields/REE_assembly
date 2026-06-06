@@ -1,0 +1,44 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z",
+  "experiment_type": "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-02T19:16:25.159308Z",
+  "experiment_purpose": "evidence",
+  "claim_ids_tested": [
+    "MECH-319"
+  ],
+  "status": "PASS",
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-319": "supports"
+  },
+  "failure_signatures": [],
+  "predecessor": "V3-EXQ-546",
+  "diagnostic_interpretation": {
+    "PASS": "MECH-319 supported: categorical simulation-mode tag gates the arbitration rule_state write on the real LateralPFCAnalog consumer; admit_writes is the load-bearing falsifier control; waking path unaffected. evidence_direction=supports.",
+    "C0_fail": "Path not exercised / waking rule_state ~0: harness defect, NOT a MECH-319 result -> non_contributory; /diagnose-errors.",
+    "C4_fail": "Waking path not bit-identical (admit_writes leaked into waking): substrate BUG violating bit-identical-waking commitment -> /diagnose-errors.",
+    "C1_fail": "BLOCK does not suppress the simulation write -> MECH-319 falsified -> weakens / does_not_support.",
+    "C2_fail": "ADMIT does not admit (falsifier flag inert) -> MECH-319 falsifiable structure vacuous -> does_not_support / non_contributory.",
+    "C3_fail": "No divergence with C1/C2 ok -> gate has no functional consequence -> does_not_support."
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "queue_id": "V3-EXQ-628",
+  "machine": "ree-cloud-2",
+  "notes": "MECH-319 simulation-mode rule-write gate EVIDENCE (replay/caller_sim falsifier). Constructs the V3-EXQ-543c replay-driven invocation path (gate.effective_simulation_mode(simulation_mode=True, site=lateral_pfc) + conditional lateral_pfc.update -- the agent.py:3356-3404 wiring with the literal False replaced by True) that select_action never exercises, and measures rule_state divergence between BLOCK (admit_writes=False) and ADMIT (admit_writes=True) arms replaying the SAME captured early-waking latent. PASS = BLOCK suppresses (delta~0) AND ADMIT admits (delta>0) AND arms diverge AND the waking path is bit-identical across arms with zero simulation firings (the load-bearing C4 falsifier). Predecessor V3-EXQ-546 was diagnostic/non_contributory (truth-table + waking wiring; never touched rule_state); this is the evidence-grade successor demonstrating the rule_state-level write-suppression consequence MECH-319 asserts. See ree-v3/CLAUDE.md 'MECH-319 (arc_062 GAP-K)' and docs/architecture/mech_319_simulation_mode_rule_gate.md.",
+  "provenance_note": "Canonical runs/ pack reconstructed 2026-06-06 from the authoritative coordinator flat manifest (evidence/experiments/<run_id>.json). The cloud-2 Phase-3 result landed as a flat manifest only; its runs/ pack never synced, so build_experiment_indexes.py (which scans **/runs/**/manifest.json) never scored it. Pack mirrors the sibling V3-EXQ-633 cloud-2 pack structure; all scored fields copied verbatim from the flat manifest."
+}
