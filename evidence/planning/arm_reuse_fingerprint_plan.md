@@ -250,18 +250,19 @@ A reused manifest must be **indistinguishable in rigor** from a freshly-run one:
 
 ---
 
-## 7. Open decisions (need user input before Phase 0 build)
+## 7. Decisions (RESOLVED 2026-06-06 by user)
 
-1. **Determinism regime:** ship Regime A (distributional, same-machine-class) as
-   recommended, or invest in Regime B (bit-exact, cross-machine) up front?
-2. **Stopping phase:** authorise Phase 0 (instrument + measure) only, and decide
-   1/2 after seeing real would-be-savings data? (Recommended.) Or pre-authorise
-   through Phase 1?
-3. **Config-slice declaration:** require authors to declare the OFF-path config
-   slice (more savings, more author burden), or always hash the whole config
-   (safer, fewer hits)? Recommend: whole-config default, opt-in narrowing.
-4. **Where the cache index lives** (Phase 2 only): coordinator DB vs a committed
-   index file under `evidence/`.
+1. **Determinism regime: Regime A** (distributional reuse, same machine-class).
+   No torch determinism flags. Cross-machine reuse deferred to a future Regime-B
+   opt-in only if a concrete need appears.
+2. **Stopping phase: Phase 0 only authorised.** Build instrument + measure
+   (fingerprint emission + would-be-savings report); decide Phase 1/2 after
+   seeing real redundancy data. No reuse executed until Phase 0 data is reviewed.
+3. **Config-slice: whole-config default**, opt-in narrowing. Authors are not
+   required to declare the OFF-path slice; the whole resolved config is hashed
+   unless an author deliberately narrows it (narrowing only raises hit rate).
+4. **Cache index location (Phase 2 only): DEFERRED** -- decide if/when Phase 2 is
+   authorised. Candidates unchanged: coordinator DB vs committed `evidence/` index.
 
 ---
 
