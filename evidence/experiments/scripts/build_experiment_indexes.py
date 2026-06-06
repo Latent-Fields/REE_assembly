@@ -2105,6 +2105,37 @@ def _recommendation_for_claim(
         if str(e.get("claim_id", "")) == claim_id
         and str(e.get("run_id", "")).endswith("_v3")
     ) if matrix is not None else 0
+    # V4-architectural sub-case: a claim that is BOTH v3_pending AND explicitly
+    # implementation_phase=v4 is not "waiting for V3 substrate" -- it is
+    # deliberately deferred to V4 by an architectural commitment (e.g. a thin
+    # umbrella / coherence-map like ARC-080). Routing it to hold_pending_v3_substrate
+    # mislabels it and parks it in the V3-substrate decision queue forever (the
+    # 2026-04-27 misclassification flagged in WORKSPACE_STATE; insights 2026-06-06).
+    # Give it its own recommendation that is structurally "applied" (no V3-substrate
+    # decision is pending) so it leaves the pending_user queue and the morning digest.
+    if _v3_pending and _impl_phase == "v4":
+        return {
+            "claim_id": claim_id,
+            "current_status": current_status,
+            "decision_needed": "Held by V4 architectural commitment (no V3-substrate decision required)",
+            "recommendation": "held_v4_by_architectural_commitment",
+            "rationale": (
+                "Claim is v3_pending AND implementation_phase=v4: it is deferred to "
+                "V4 by an architectural commitment, not awaiting V3 substrate. "
+                "Promotion/demotion stays suppressed; no V3-substrate decision is "
+                "pending. Revisit when V4 substrate work is scheduled."
+            ),
+            "options": [
+                "Keep held under the V4 architectural commitment (correct path).",
+                "Re-scope to implementation_phase=v3 if the claim becomes V3-tractable.",
+                "Mark legacy/superseded if the commitment is withdrawn.",
+            ],
+            "discussion_prompts": [
+                "Is this claim genuinely V4-scoped, or has a V3 substrate since made it tractable?",
+                "Which V4 substrate milestone unblocks this claim?",
+            ],
+            "decision_status": "applied",
+        }
     if _v3_pending or (_impl_phase == "v3" and _v3_run_ct == 0):
         _hold_reason = (
             "Claim is flagged v3_pending (explicit manual gate). "

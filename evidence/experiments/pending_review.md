@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-06T05:12:20Z`  
+Generated: `2026-06-06T07:54:36Z`  
 Last review: `2026-06-06T05:09:45Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_642_blocked_agency_zblock_discriminative_20260606T055351Z_v3` | 2026-06-06T05:53 | (no claim tags) | — |
 
 ---
 
