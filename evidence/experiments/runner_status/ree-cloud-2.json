@@ -1,29 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 663,
-  "runner_started_at": "2026-06-04T10:25:42.318003+00:00",
-  "last_updated": "2026-06-04T10:25:46.313250+00:00",
+  "runner_pid": 666,
+  "runner_started_at": "2026-06-05T15:20:43.785785+00:00",
+  "last_updated": "2026-06-06T01:36:15.225371+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-634c",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "scaffolded_sd054_onboarding seeding-calibration readiness (4-arm seeding-lever sweep)",
-      "description": "",
-      "estimated_minutes": 376.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-610e",
+      "queue_id": "V3-EXQ-610f",
       "backlog_id": "EVB-0270",
       "claim_id": "INV-074",
-      "title": "INV-074/MECH-333/MECH-334 crystallization-necessity retest (HARNESS-FIXED, startup-assertion-gated): real REINFORCE on gated_policy (Phases 0-2) + stepped expansion_parameters() optimizer post-crystallize (Phase 3) + residue_field.ewc_penalty() summed into the Phase-3 loss. 2-arm/3-seed, IGW-023 Phase-3 pressure. Supersedes 610d (untrained-policy no-op).",
+      "title": "INV-074/MECH-334/MECH-333 crystallization-necessity TRUE-NEGATIVE-CONTROL retest (+MECH-341/313 floor contrast): strip the always-on diversity floor (noise_floor/E3-diversity/dACC-suppression off; structured curiosity decoupled from crystallize) so crystallization is the SOLE phase-3 diversity route in ARM_1; phase-dependent entropy bonus (0.02 generator in phases 0-2, swept {0,0.005,0.02} in phase 3) maps the collapse threshold; ARM_4 floor-on (MECH-341/313). 5 conditions x 3 seeds, IGW-023 Phase-3 pressure. Supersedes 610e (confounded control).",
       "description": "",
-      "estimated_minutes": 2000.0,
+      "estimated_minutes": 5000.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2529,6 +2518,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_637_sd057_phase2_cue_recall_consume/v3_exq_637_sd057_phase2_cue_recall_consume_20260604T102546Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 4.0
+    },
+    {
+      "queue_id": "V3-EXQ-640a",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "SD-057 cue-AUTHORITY GAIN SWEEP (measurement successor to V3-EXQ-640): 2-axis factorial cue_recall_gain {0.2,1.0,5.0} x incentive_drive_kappa_weight {2.0,10.0} on scaffolded_sd054_onboarding (same ARM_OFF/ARM_CUE_ON family, behaviourally instrumented). Pre-registered: does per-cue-fire cue_zgoal_pull_norm AND post-cue approach-rate lift over within-run background rise monotonically with gain + token strength? 7 conditions (1 ARM_OFF + 6 cue-on cells) x 3 seeds. Diagnostic, claim_ids=[].",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: seed=44 arm=ARM_CUE_g5_k10 pc_fire_steps=315 pc_windows=315 | [v3_exq_640a_scaffold_cue_authority_gain_sweep] C1_cue_fires_on=True C2_sweep_trace_captured=True outcome=PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-640a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-640a.json",
+      "started_at": "2026-06-05T15:20:43.797376+00:00",
+      "completed_at": "2026-06-06T01:36:15.224659+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_640a_scaffold_cue_authority_gain_sweep/v3_exq_640a_scaffold_cue_authority_gain_sweep_20260606T013614Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 36929.9
     }
   ]
 }
