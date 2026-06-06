@@ -1,0 +1,85 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-06T09:47:32Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness_20260531T230932Z_v3",
+      "queue_id": "V3-EXQ-621a",
+      "supersedes": "V3-EXQ-621",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "outcome": "PASS",
+      "adjudication": "vacuous_pass",
+      "failed_criterion": "C2_z_goal_floor (load-bearing) -- false; PASS carried by degenerate C1 (baseline-inflated 6/12, real scaffolded survival 3/9) + vacuous C3 (approach_commit_lift attributed to a goal cascade at z_goal=0)",
+      "vacuity_detail": {
+        "overall_pass": true,
+        "acceptance_rule": "C1 AND (C2 OR C3)",
+        "C1_cells_completed": true,
+        "C1_n_completed": 6,
+        "C1_n_total": 12,
+        "C1_degenerate_reason": "3 of 6 completed cells are ARM_0_ALL_OFF baseline cells hardcoded cell_completed=True; real scaffolded survival = 3/9 (ARM_1 0/3, ARM_2 2/3, ARM_3 1/3)",
+        "C2_z_goal_floor_met": false,
+        "C2_load_bearing": true,
+        "C2_z_goal_norm_peak_max_all_cells": 0.0,
+        "C3_cascade_consequential": true,
+        "C3_reason": "approach_commit_lift in ARM_2_SCAFFOLD_AND_ANNEAL",
+        "C3_vacuous_reason": "approach_commit_rate 1.0 (ARM_2) attributed to the goal pipeline while z_goal is identically 0; ARM_0 vs scaffold rates are measured by different code paths (measure_arm0_baseline beta-gate count vs scheduler.run_p2); no goal-pipeline output exists for the cascade to be consequential of"
+      },
+      "root_cause": {
+        "class": "precondition_unmet / harness-wiring + config (same fault class as V3-EXQ-642)",
+        "z_goal_zero_by_construction": true,
+        "reasons": [
+          "Scheduler ScaffoldedSD054OnboardingScheduler never called agent.update_z_goal at the 2026-05-31 run date (wiring amend landed 2026-06-02); GoalState.update never reached; substrate_queue confirms 'zero update_z_goal matches in the module'.",
+          "Agent built via REEConfig.from_dims WITHOUT z_goal_enabled=True / drive_weight (build_agent line 124); goal_state is None and update_z_goal early-returns regardless of the wiring."
+        ],
+        "confirmed_by": "failure_autopsy_V3-EXQ-603d_2026-06-01 (Class-1 harness/wiring; 'This is the true content of 621a z_goal feeding not yet wired')"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- z_goal=0 means the goal/approach cascade the tagged trio bears on never ran; correctly recorded non_contributory; no status moved",
+        "biological_reference": "n/a -- substrate-readiness wiring diagnostic, not a formal-import-vs-biology claim test; no lit-pull warranted",
+        "prerequisites": "missing -- update_z_goal seeding call absent from the 2026-05-31 scheduler; z_goal_enabled/drive_weight unset in the agent build",
+        "implementation": "stub at run time -- 2026-05-31 scheduler had no z_goal seeding path; fixed by the 2026-06-02 wiring amend and later nursery/developmental-window/seeding-calibration/foraging-competence amends",
+        "environment": "adequate-but-hard -- P2 hazard_food_attraction=0.7 starves benefit; 2/3 scaffold seeds die in P1 (3/9 survival); secondary to the z_goal wiring gap",
+        "measurement": "misleading -- overall_pass=true with load-bearing C2 false; C1 baseline-inflated; C3 attributes a goal cascade at z_goal=0; the OR makes the load-bearing criterion bypassable",
+        "integration": "isolated -- goal pipeline never engaged (z_goal=0); downstream consumers could not be goal-driven",
+        "scale": "insufficient budget (P0/P1=30/30 vs 603c 100/50) but secondary to the wiring gap"
+      },
+      "biological_reference": {
+        "closest_mechanism": "developmental scaffolding of goal/incentive learning (nursery onboarding); not load-bearing here",
+        "dependencies": ["update_z_goal seeding call", "z_goal_enabled GoalState", "drive_weight"],
+        "is_formal_import": false,
+        "divergence": "none -- failure is a wiring/precondition artifact, not a biology divergence",
+        "lit_status": "n-a"
+      },
+      "recommended_epistemic_category": "none (claimless-in-effect substrate-readiness diagnostic; already non_contributory; characterise as measurement/precondition-unmet test-design artifact; do NOT record substrate_ceiling)",
+      "recommended_evidence_direction": "non_contributory (unchanged -- already correct)",
+      "recommended_evidence_quality_note": "Correction (failure_autopsy_V3-EXQ-621a_2026-06-06): V3-EXQ-621a overall_pass=true was a VACUOUS_PASS -- the load-bearing C2 z_goal floor was FALSE (z_goal=0 across all 12 cells) and z_goal=0 was guaranteed by construction (the 2026-05-31 scheduler never called update_z_goal AND the agent was built without z_goal_enabled). The PASS rested on a baseline-inflated C1 (real scaffolded survival 3/9) and a vacuous C3 (approach-commit lift attributed to a goal cascade that cannot exist at z_goal=0). 621a did NOT actually clear substrate-readiness or GAP-C prereq (2); that gate remains the pending full-scale run (ready=false). The V3-EXQ-621 supersession stands (runner-emit_outcome-misclassification recovery; independent of the vacuity). The fault was confirmed and re-opened by failure_autopsy_V3-EXQ-603d_2026-06-01 (Class-1 harness/wiring); no claim confidence moved (run non_contributory / scoring_excluded).",
+      "governance_impact": {
+        "clear_event_utc": "2026-06-01T05:50Z",
+        "declared": ["cleared substrate-readiness diagnostic", "prereq (2) of behavioral_diversity_isolation:GAP-C cleared", "V3-EXQ-621 superseded by V3-EXQ-621a", "V3-EXQ-603d/591b queueable", "Q-045/MECH-313/MECH-260 reclassified non_contributory (NOT promoted)", "pending_retest_after_substrate retained"],
+        "unjustified_declaration": "prereq (2) cleared (prereq 2 == produces non-trivial z_goal; z_goal was 0)",
+        "claim_confidence_moved": false,
+        "substrate_queue_ready_flipped": false,
+        "self_corrected_by": "failure_autopsy_V3-EXQ-603d_2026-06-01 (2026-06-01T17:56Z cycle) re-opened the substrate amend_pending within ~12h; GAP-C stayed blocked_pending_substrate; ready stayed false",
+        "lingering_residue": "overclaiming language in two evidence_quality_note blocks (claims.yaml ~L19989 and ~L29286) and substrate_queue.json 621a note (L3658)"
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The substrate gap (missing z_goal seeding) was already diagnosed by failure_autopsy_V3-EXQ-603d_2026-06-01 and the amend chain has landed (update_z_goal wiring 2026-06-02 -> nursery -> developmental window -> seeding calibration -> foraging-competence residual). The genuine substrate-readiness gate is the pending full-scale run that substrate_queue.ready=false already enforces (z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). No new or amended substrate task is owed by this autopsy."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "rerun_621a_recommended": false,
+      "supersession_of_621_stands": true,
+      "learning_extracted": [
+        "An acceptance rule C1 AND (C2 OR C3) can pass with the only substantive criterion (C2) false when C1 is structurally inflated and C3 is vacuous; the OR makes a load-bearing criterion bypassable.",
+        "z_goal=0 here is precondition_unmet (missing update_z_goal call + agent built without z_goal_enabled), not a substrate ceiling; assert a non-triviality positive control before reading the criterion (the 2026-06-02 Stage-0 forced-feed positive control is exactly this).",
+        "C1 'cells complete' must exclude by-construction baseline auto-completions from the survival fraction (3/9 was inflated to 6/12).",
+        "A vacuous substrate-readiness PASS that drives a 'prereq cleared' declaration is a governance hazard even when the run is non_contributory; the clear should not have been issued from 621a alone -- it was bounded only because the immediately-queued 603d re-exposed the fault."
+      ],
+      "routing": "implement-substrate (action=none) + governance evidence_quality_note correction"
+    }
+  ],
+  "cluster_pattern": null
+}
