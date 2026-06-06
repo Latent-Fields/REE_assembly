@@ -385,12 +385,24 @@ silently drift it. This is the safest form of opt-in narrowing.
   `reset_all_rng`s at entry) -> `compute_arm_fingerprint(config_slice=off_path_config_slice(),
   rng_fully_reset=True, config_slice_declared=True)`. Phase-0 emit-only. `--dry-run`
   PASS, `reuse_eligible=True`; `validate_experiments` + `validate_queue` clean.
-- **Queued (low priority 10):** `V3-EXQ-646` -> `ree-cloud-2`. **643 moved to the
-  cloud machine-class** (constraint 1 above; 643a ran on `DLAPTOP-4`/`darwin-arm64`,
-  which a cloud 643b could never reuse). Confirmed `present` in the coordinator DB.
-  Runner not started; cloud-2 idle. (Single-instance: the cross-instance determinism
+- **Queued (low priority 10):** `V3-EXQ-646` -> `ree-cloud-4` (re-affinitied from
+  cloud-2 2026-06-06T16:17Z, confirmed upserted in the coordinator DB). **643 moved
+  to the cloud machine-class** (constraint 1 above; 643a ran on `DLAPTOP-4`/`darwin-arm64`,
+  which a cloud 643b could never reuse). (Single-instance: the cross-instance determinism
   check is being established by the 610 cloud-2/cloud-3 pair; 643's OFF baseline rides
   on that Regime-A confirmation rather than re-running the same check.)
+- **Why cloud-4, and the 643b plan (user-directed 2026-06-06):** cloud-2/3 are busy
+  with the 610 baselines (`V3-EXQ-644`/`645`); cloud-4 frees up as 643a finishes on
+  the Mac. **The 643a successor (`643b`, if 643a's result needs one) will ALSO be
+  pinned to `ree-cloud-4`** -- co-locating the 643 OFF baseline + 643b on one box.
+  Reuse-validity is unaffected by the choice of which CX22 (the `machine_class` tag is
+  coarse `linux-x86_64-pyX.Y`, identical across cloud-2/3/4); this is operational
+  routing. **cloud-4 (`ree-worker-4`) is cloud-scaler mode `surge`** -- it will NOT
+  auto-start for a single pending item, so it was **woken manually** for this run
+  (`hcloud server poweron ree-worker-4`, 2026-06-06T16:18Z). Once 646 is `claimed`
+  the scaler's held-by-self veto keeps cloud-4 up; after it completes the scaler may
+  shut cloud-4 down again, so **643b will need cloud-4 woken the same way** when it is
+  queued (the surge-mode worker is not auto-started by a low backlog).
 - **Consumption (643b actually skipping the OFF arm) is the Phase 1 consumer + refuse
   gate (section 9), gated on the determinism check passing.** This mint only *records*.
 
