@@ -1,46 +1,33 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-06T04:41:04Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-06T04:51:30Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-642",
+  "current_exq_started_utc": "2026-06-06T04:47:19.599394+00:00",
+  "current_title": "MECH-353 blocked-agency (z_block) discriminative diagnostic. Static landmark env (z_world tracks position; harm + goal-value held constant) repeatedly blocks an intended predicted-to-succeed action. ARM_BLOCK vs ARM_CONTROL, same trained agent. Per seed: P0 trains E2.world_forward on the one-hot discrete executed action so the SD-029 action-outcome comparator discriminates; P1a scripted-driver readout of z_block / outcome_mismatch / z_harm_a; P1b policy-driver readout of assert-vs-withdraw behaviour. Measures (a) z_block rises under block, (b) drives assert/persist distinct from withdraw, (c) DISSOCIATES from z_harm_a (zero noxious input). 2 conditions x 3 seeds. Diagnostic, claim_ids=[].",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-603e",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T04:03:13.135462+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614d",
-      "result": "PASS",
-      "completed_at": "2026-06-03T12:01:24.020537+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-634c",
-      "result": "FAIL",
-      "completed_at": "2026-06-04T21:05:12.984538+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-418m",
-      "result": "FAIL",
-      "completed_at": "2026-06-05T16:58:38.076936+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-641",
-      "result": "FAIL",
-      "completed_at": "2026-06-06T02:14:00.803157+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_BLOCK",
+    "runs_done": 0,
+    "runs_total": 6,
+    "episodes_done": 0,
+    "episodes_total": 60,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 251,
+  "seconds_remaining": 5400,
+  "recent_lines": [
+    "[train] seed42 ep 30/60 wf_mse=0.000031",
+    "[train] seed42 ep 40/60 wf_mse=0.000026",
+    "[train] seed42 ep 50/60 wf_mse=0.000035",
+    "[train] seed42 ep 60/60 wf_mse=0.000023",
+    "Seed 42 Condition ARM_BLOCK"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 50481,
   "runner_version": null,
   "gpu": {
