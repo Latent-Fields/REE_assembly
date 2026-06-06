@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-06T06:42:06Z",
+  "last_tick_utc": "2026-06-06T07:12:14Z",
   "state": "running",
   "current_exq": "V3-EXQ-641a",
   "current_exq_started_utc": "2026-06-06T05:55:47.292506+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": null,
   "current_description": "",
   "progress": {
-    "run_label": "Seed 46 / real_C_clean",
-    "runs_done": 4,
+    "run_label": "Seed 43 / shuffle_C_control",
+    "runs_done": 7,
     "runs_total": 18,
-    "episodes_done": 10,
+    "episodes_done": 0,
     "episodes_total": 65,
-    "overall_pct": 23.1
+    "overall_pct": 38.9
   },
-  "seconds_elapsed": 2779,
-  "seconds_remaining": 8715,
+  "seconds_elapsed": 4586,
+  "seconds_remaining": 6987,
   "recent_lines": [
-    "[train] seed=45 cond=real_C_clean ep 60/65 phase=P1 p1_steps=254 gated=254 flips=67 state_div_gated=68",
-    "[train] seed=45 cond=real_C_clean ep 65/65 phase=P1 p1_steps=388 gated=388 flips=110 state_div_gated=145",
+    "[train] seed=42 cond=shuffle_C_control ep 50/65 phase=P1 p1_steps=165 gated=165 flips=47 state_div_gated=117",
+    "[train] seed=42 cond=shuffle_C_control ep 60/65 phase=P1 p1_steps=396 gated=396 flips=91 state_div_gated=348",
+    "[train] seed=42 cond=shuffle_C_control ep 65/65 phase=P1 p1_steps=462 gated=462 flips=108 state_div_gated=414",
     "verdict: PASS",
-    "Seed 46 Condition real_C_clean",
-    "[train] seed=46 cond=real_C_clean ep 10/65 phase=P0 p1_steps=0 gated=0 flips=0 state_div_gated=0"
+    "Seed 43 Condition shuffle_C_control"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
