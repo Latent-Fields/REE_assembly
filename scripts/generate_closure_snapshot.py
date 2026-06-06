@@ -1,0 +1,324 @@
+#!/usr/bin/env python3
+"""Generate a committed, server-free snapshot of the REE-v3 closure map.
+
+The authoritative closure aggregation normally only exists when serve.py is
+running (`/api/closure` -> closure.html). An agent reading the static repo --
+no dev server -- has to discover and parse every evidence/planning/*_plan.md
+frontmatter block by hand to answer "what still has to happen to close v3".
+
+This script writes that rollup to evidence/planning/closure_status.md so the
+answer is one committed file. It mirrors serve.py's read_closure() aggregation
+(same CLOSURE_STATUS_WEIGHTS, same auto-discovery of every *_plan.md), reusing
+check_closure_drift.parse_plan_frontmatter so the parse behaviour cannot drift
+between the two scripts.
+
+It is a hint/snapshot, NOT a gate: it never blocks the governance pipeline and
+always exits 0. Accuracy auditing (node status vs. actual experiment terminal
+state) is the job of check_closure_drift.py; this script links to that report
+rather than re-deriving it.
+
+Usage (from REE_assembly/ root):
+    /opt/local/bin/python3 scripts/generate_closure_snapshot.py
+"""
+
+from __future__ import annotations
+
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+# Reuse the drift checker's frontmatter parser so parse behaviour stays in lockstep.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from check_closure_drift import parse_plan_frontmatter
+except Exception:  # pragma: no cover - fallback keeps the snapshot self-contained
+    parse_plan_frontmatter = None  # type: ignore
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+PLANNING_DIR = REPO_ROOT / "evidence" / "planning"
+SNAPSHOT = PLANNING_DIR / "closure_status.md"
+DRIFT_REPORT = PLANNING_DIR / "closure_drift.md"
+
+# Mirror of serve.py CLOSURE_STATUS_WEIGHTS. None == excluded from the progress
+# denominator (deferred work is not part of "what closes v3").
+STATUS_WEIGHTS = {
+    "done": 1.0,
+    "partial": 0.5,
+    "in_progress": 0.4,
+    "blocked": 0.1,
+    "upstream_blocked": 0.1,
+    "blocked_pending_substrate": 0.1,
+    "tracked": 0.2,
+    "pending_governance_stamp": 0.4,
+    "open": 0.0,
+    "deferred": None,
+    "deferred_v4": None,
+}
+
+# Deferred == not required for v3 closure (excluded from the progress denominator).
+DEFERRED_STATUSES = {"deferred", "deferred_v4"}
+# "Remaining" is computed exhaustively as: not done and not deferred. That way a
+# new/unforeseen status string (the snapshot has been bitten by
+# blocked_pending_substrate before) always lands in a visible bucket instead of
+# vanishing from every categorized section.
+
+
+def _norm_status(s) -> str:
+    if not s:
+        return "open"
+    return str(s).strip().lower().replace(" ", "_").replace("-", "_")
+
+
+def _fallback_parse(path: Path):
+    """Minimal frontmatter parse if check_closure_drift import failed."""
+    try:
+        import yaml
+    except ImportError:
+        return None
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError:
+        return None
+    if not text.startswith("---\n"):
+        return None
+    end = text.find("\n---\n", 4)
+    if end < 0:
+        return None
+    try:
+        fm = yaml.safe_load(text[4:end])
+    except Exception:
+        return None
+    return fm if isinstance(fm, dict) else None
+
+
+def _parse(path: Path):
+    if parse_plan_frontmatter is not None:
+        return parse_plan_frontmatter(path)
+    return _fallback_parse(path)
+
+
+def _blocker(node: dict) -> str:
+    """Short human-readable active blocker for a node."""
+    for key in ("blocking_on", "resume_condition"):
+        v = node.get(key)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    ext = node.get("blocking_external")
+    if isinstance(ext, list) and ext:
+        return "ext: " + ", ".join(str(x) for x in ext)
+    dep = node.get("depends_on")
+    if isinstance(dep, list) and dep:
+        return "depends_on: " + ", ".join(str(x) for x in dep)
+    return ""
+
+
+def _cell(v) -> str:
+    """Sanitise a value for a markdown table cell."""
+    if v is None:
+        return ""
+    return str(v).replace("|", "\\|").replace("\n", " ").strip()
+
+
+def main() -> int:
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    plan_files = sorted(PLANNING_DIR.glob("*_plan.md")) if PLANNING_DIR.exists() else []
+
+    plans = []                 # per-plan rollup dicts
+    no_frontmatter = []        # *_plan.md with no closure_plan block
+    all_nodes = []             # flattened node records with plan context
+
+    for path in plan_files:
+        fm = _parse(path)
+        plan = fm.get("closure_plan") if isinstance(fm, dict) else None
+        if not isinstance(plan, dict):
+            no_frontmatter.append(path.name)
+            continue
+
+        nodes = [n for n in (plan.get("nodes") or []) if isinstance(n, dict) and n.get("id")]
+        counts: dict[str, int] = {}
+        w_done = w_total = 0.0
+        for n in nodes:
+            st = _norm_status(n.get("status"))
+            counts[st] = counts.get(st, 0) + 1
+            w = STATUS_WEIGHTS.get(st, 0.0)
+            if w is not None:
+                w_total += 1.0
+                w_done += w
+            rec = dict(n)
+            rec["_status"] = st
+            rec["_plan_id"] = str(plan.get("id") or path.stem)
+            rec["_plan_file"] = path.name
+            all_nodes.append(rec)
+
+        plans.append({
+            "id": str(plan.get("id") or path.stem),
+            "title": plan.get("title") or path.stem,
+            "file": path.name,
+            "last_updated": plan.get("last_updated"),
+            "node_count": len(nodes),
+            "counts": counts,
+            "progress": (w_done / w_total) if w_total else 0.0,
+        })
+
+    # Overall weighted progress across all non-deferred nodes, all plans.
+    o_done = o_total = 0.0
+    tally: dict[str, int] = {}
+    for n in all_nodes:
+        st = n["_status"]
+        tally[st] = tally.get(st, 0) + 1
+        w = STATUS_WEIGHTS.get(st, 0.0)
+        if w is not None:
+            o_total += 1.0
+            o_done += w
+    overall = (o_done / o_total) if o_total else 0.0
+
+    done = [n for n in all_nodes if n["_status"] == "done"]
+    deferred = [n for n in all_nodes if n["_status"] in DEFERRED_STATUSES]
+    remaining = [n for n in all_nodes
+                 if n["_status"] != "done" and n["_status"] not in DEFERRED_STATUSES]
+
+    # Order remaining by phase then severity so the "do next" items float up.
+    sev_rank = {"load-bearing": 0, "load_bearing": 0, "high": 1, "medium": 2, "low": 3}
+
+    def _phase_key(n):
+        ph = n.get("phase")
+        try:
+            ph = int(ph)
+        except (TypeError, ValueError):
+            ph = 99
+        return (ph, sev_rank.get(str(n.get("severity") or "medium").lower(), 2))
+
+    remaining.sort(key=_phase_key)
+
+    L: list[str] = []
+    L.append("# REE-v3 Closure Status (snapshot)")
+    L.append("")
+    L.append(f"Generated: {now_iso}")
+    L.append("")
+    L.append(
+        "GENERATED FILE -- do not edit by hand. This is a static, server-free "
+        "snapshot of the closure map that serve.py serves live at `/api/closure` "
+        "-> `/closure`. It is rebuilt from the `closure_plan` frontmatter of "
+        "every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). "
+        "Regenerate with `python scripts/generate_closure_snapshot.py` (runs "
+        "automatically in `governance.sh`)."
+    )
+    L.append("")
+    L.append(
+        "ACCURACY: this snapshot reports each node's self-declared `status`. "
+        "Whether that status matches the actual terminal state of its experiments "
+        "is audited separately by `check_closure_drift.py` -> "
+        "[`closure_drift.md`](closure_drift.md). Read both together."
+    )
+    L.append("")
+
+    L.append("## Overall")
+    L.append("")
+    L.append(
+        f"- Weighted progress: **{overall * 100:.1f}%** across {int(o_total)} "
+        f"non-deferred nodes in {len(plans)} plan(s) with closure frontmatter."
+    )
+    L.append(f"- Remaining (open/in-progress/blocked/partial): **{len(remaining)}** nodes.")
+    L.append(f"- Deferred (not required for v3 closure): {len(deferred)} nodes.")
+    L.append(f"- Done: {len(done)} nodes.")
+    tally_str = "  ".join(f"{k}={v}" for k, v in sorted(tally.items()))
+    L.append(f"- Status tally: {tally_str}")
+    L.append("")
+
+    L.append("## Plans")
+    L.append("")
+    L.append("| plan | title | nodes | progress | status counts | last_updated |")
+    L.append("|------|-------|-------|----------|---------------|--------------|")
+    for p in sorted(plans, key=lambda x: x["progress"]):
+        cstr = " ".join(f"{k}:{v}" for k, v in sorted(p["counts"].items()))
+        L.append(
+            f"| `{p['file']}` | {_cell(p['title'])} | {p['node_count']} | "
+            f"{p['progress'] * 100:.0f}% | {_cell(cstr)} | {_cell(p['last_updated'])} |"
+        )
+    L.append("")
+
+    L.append(f"## Remaining work to close v3 ({len(remaining)})")
+    L.append("")
+    L.append("Ordered by phase, then severity. This is the answer to \"what is left.\"")
+    L.append("")
+    if not remaining:
+        L.append("_None -- all non-deferred nodes are done._")
+    else:
+        L.append("| plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |")
+        L.append("|------|------|-------|--------|-------|-----|-----------|----------------|--------------|")
+        for n in remaining:
+            L.append(
+                "| {pl} | `{nid}` | {title} | {st} | {ph} | {sev} | {exq} | {blk} | {lu} |".format(
+                    pl=n["_plan_file"],
+                    nid=_cell(n.get("id")),
+                    title=_cell(n.get("title"))[:80],
+                    st=n["_status"],
+                    ph=_cell(n.get("phase")),
+                    sev=_cell(n.get("severity") or "medium"),
+                    exq=_cell(n.get("owner_exq"))[:48],
+                    blk=_cell(_blocker(n))[:90],
+                    lu=_cell(n.get("last_updated")),
+                )
+            )
+    L.append("")
+
+    L.append(f"## Deferred -- not required for v3 closure ({len(deferred)})")
+    L.append("")
+    if not deferred:
+        L.append("_None._")
+    else:
+        L.append("| plan | node | title | status | reason / blocker |")
+        L.append("|------|------|-------|--------|------------------|")
+        for n in deferred:
+            L.append(
+                "| {pl} | `{nid}` | {title} | {st} | {blk} |".format(
+                    pl=n["_plan_file"],
+                    nid=_cell(n.get("id")),
+                    title=_cell(n.get("title"))[:80],
+                    st=n["_status"],
+                    blk=_cell(_blocker(n))[:90],
+                )
+            )
+    L.append("")
+
+    L.append(f"## Done ({len(done)})")
+    L.append("")
+    if not done:
+        L.append("_None._")
+    else:
+        for n in sorted(done, key=lambda x: (x["_plan_file"], str(x.get("id")))):
+            title = _cell(n.get("title"))[:90]
+            L.append(f"- `{n['_plan_file']}` `{_cell(n.get('id'))}` -- {title}")
+    L.append("")
+
+    L.append(f"## Plans WITHOUT closure_plan frontmatter ({len(no_frontmatter)})")
+    L.append("")
+    L.append(
+        "These `*_plan.md` files exist but carry no `closure_plan` block, so "
+        "their gaps are invisible to the structured closure map (they show as "
+        "empty placeholder cards in the dashboard). Retrofit frontmatter to "
+        "fold them in."
+    )
+    L.append("")
+    if not no_frontmatter:
+        L.append("_None -- every plan doc is mapped._")
+    else:
+        for name in no_frontmatter:
+            L.append(f"- `evidence/planning/{name}`")
+    L.append("")
+
+    SNAPSHOT.write_text("\n".join(L) + "\n", encoding="utf-8")
+
+    print(f"Closure snapshot written: {SNAPSHOT.relative_to(REPO_ROOT)}")
+    print(
+        f"  plans_mapped={len(plans)}  remaining={len(remaining)}  "
+        f"deferred={len(deferred)}  done={len(done)}  "
+        f"plans_without_frontmatter={len(no_frontmatter)}  "
+        f"overall_progress={overall * 100:.1f}%"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

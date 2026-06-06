@@ -151,6 +151,8 @@ The fastest way to see the whole system is the Explorer, not a tour of folders.
 
 Related dashboards: **Closure** (`/closure`) for plan-of-record gaps; **Machines** (`/machines`) for multi-host runners; **Brain map** (`/brain-map`) for region overlays.
 
+No server running? The closure map has a committed, static rollup at [`evidence/planning/closure_status.md`](../evidence/planning/closure_status.md) (regenerated each `governance.sh` run) -- "what is left to close v3" without `serve.py`. Its accuracy is audited by [`evidence/planning/closure_drift.md`](../evidence/planning/closure_drift.md); read the two together.
+
 ---
 
 ## Vocabulary (public labels)
