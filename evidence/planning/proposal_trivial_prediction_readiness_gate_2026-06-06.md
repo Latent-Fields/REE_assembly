@@ -1,7 +1,16 @@
 # Proposal: Readiness / Non-Degeneracy Auto-Detection -- catch the trivial-prediction self-route the author cannot see
 
-- **Status:** PROPOSAL -- sign-off-gated. NO skill / pipeline / `ree_core` edits made. Awaiting
-  user decision on the four open questions (Section 7) before any implementation lands.
+- **Status:** ACCEPTED 2026-06-06 -- user confirmed all four leans (Section 7): (Q1) reuse the
+  landed `preconditions[]` (readiness-kind entries carry `measured`+`threshold`; indexer recomputes
+  `met`) rather than a new `readiness[]` array; (Q2) `SUBSTRATE_VERDICT_LABELS =
+  {substrate_ceiling, substrate_conditional, does_not_support}` + suffix patterns
+  `*_nondiscriminative` / `*_unmeetable`, excluding `non_contributory`; (Q3) WARN-then-ERROR (ERROR
+  gated on a cycle of real post-convention diagnostics, per the parent proposal's condition);
+  (Q4) defer the Part-4 retrospective sweep. Implementation chip spawned; NOT yet built -- this doc
+  records the design + sign-off; the implement session will flip this to IMPLEMENTED.
+  NOTE on Q1: because we reuse `preconditions[]`, the convention's field is a precondition entry of
+  the *readiness kind* carrying `measured`+`threshold`+`control`; Section 3's `readiness[]` examples
+  should be read as that specialization, not a separate array.
 - **Author session:** proposal-trivial-prediction-readiness-gate-20260606T0945Z
 - **Generated (UTC):** 2026-06-06T09:45:34Z
 - **Parent:** `proposal_diagnostic_adjudication_gate_2026-06-06.md` (ACCEPTED + IMPLEMENTED
