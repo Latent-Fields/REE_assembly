@@ -1,47 +1,30 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-06T12:58:05Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-634c",
-      "result": "FAIL",
-      "completed_at": "2026-06-04T21:05:12.984538+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-418m",
-      "result": "FAIL",
-      "completed_at": "2026-06-05T16:58:38.076936+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-641",
-      "result": "FAIL",
-      "completed_at": "2026-06-06T02:14:00.803157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-642",
-      "result": "FAIL",
-      "completed_at": "2026-06-06T05:53:53.953287+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-643",
-      "result": "FAIL",
-      "completed_at": "2026-06-06T11:31:35.455258+00:00"
-    }
+  "last_tick_utc": "2026-06-06T13:24:14Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-643a",
+  "current_exq_started_utc": "2026-06-06T13:19:20.680958+00:00",
+  "current_title": "modulatory-bias-selection-authority re-validation after the float32 catastrophic-cancellation fix (e3_selector explicit modulatory accumulator, 2026-06-06) + SD-056 rollout-norm clamp harness stability. 3 arms (authority OFF / ON gain0.5 / ON gain0.8) x 3 seeds. Supersedes V3-EXQ-643.",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_A",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 80,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 294,
+  "seconds_remaining": 21600,
+  "recent_lines": [
+    "Seed 42 Condition ARM_A"
   ],
-  "runner_pid": 50481,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 95278,
   "runner_version": null,
   "gpu": {
     "available": false
