@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-06T17:24:53Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-620b",
-      "result": "PASS",
-      "completed_at": "2026-06-01T19:01:27.728456+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-592g",
-      "result": "PASS",
-      "completed_at": "2026-06-02T16:35:47.260335+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-063a",
-      "result": "PASS",
-      "completed_at": "2026-06-02T17:25:31.731586+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-463b",
-      "result": "PASS",
-      "completed_at": "2026-06-04T03:09:03.625506+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-646",
-      "result": "PASS",
-      "completed_at": "2026-06-06T17:24:51.898531+00:00"
-    }
+  "last_tick_utc": "2026-06-06T17:55:36Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-647",
+  "current_exq_started_utc": "2026-06-06T17:26:54.361622+00:00",
+  "current_title": "643a reconstructed on cloud-4 via arm-reuse: REUSE the V3-EXQ-646 control arm (ARM_A authority OFF) + run ONLY the experimental arms (ARM_B gain0.5 / ARM_C gain0.8) fresh, assemble a full 643a + run 643a's evaluator. Arm-reuse system test + cloud-class replication of V3-EXQ-643a.",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 43 / ARM_B",
+    "runs_done": 4,
+    "runs_total": 9,
+    "episodes_done": 10,
+    "episodes_total": 80,
+    "overall_pct": 45.8
+  },
+  "seconds_elapsed": 1722,
+  "seconds_remaining": 1654,
+  "recent_lines": [
+    "[train] arm=ARM_B seed=42 phase=P1 ep 70/80",
+    "[train] arm=ARM_B seed=42 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_B",
+    "[train] arm=ARM_B seed=43 phase=P0 ep 10/80"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 670,
   "runner_version": null,
   "gpu": {
