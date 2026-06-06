@@ -168,9 +168,31 @@ the ARC-007 residue graph; MECH-094/MECH-261 remain the *gates* this policy actu
 3. **V4/V5:** build explicit allocation policy; separate trace *creation* from trace *integration*; add
    reality-coherence cost to linking; track false-linking risk; pair with MECH-147 (DG separation) and
    an MEC-analog indexing layer.
-4. **Lit:** a `/lit-pull` on hippocampal pattern-separation / schema-gated integration (de Sousa 2026,
-   plus systems-consolidation / CLS anchors already cited by MECH-272/273) would back the V4 design when
-   commissioned -- not now.
+4. **Lit: DONE 2026-06-06.** The `/lit-pull` on hippocampal pattern-separation / schema-gated
+   integration has been run. **Verdict:**
+   `evidence/literature/targeted_review_contextual_memory_allocation_gate/VERDICT.md`
+   (5 entries: de Sousa 2026 anchor + Cai 2016 / Bakker 2008 / Tse 2007 / Sahay 2011; all *supports*,
+   mean ~0.73, no weakening; candidate-isolated, zero registered-claim contamination). The candidate
+   claims **survive comparison** as enrichment + one new cost term (not a standalone mechanism). The
+   three gated next steps below are the verdict's recommendations -- **all require user/governance
+   decision; none executed.**
+
+### 7a. Gated next steps (from the 2026-06-06 lit-pull verdict -- resume here)
+
+- **G1 (claims, V4).** Amend **MECH-261** with an explicit *allocation-decision stage*
+  (inputs: `context_similarity x temporal_distance x schema_fit`; outputs: integrate / partial_overlap /
+  separate), citing de Sousa 2026 + Cai 2016 + Bakker 2008. Do **not** mint a new INV (subsumed by
+  MECH-094/261 + INV-039).
+- **G2 (claims, V4).** Mint **one** new candidate only -- a *false-linking-risk / reality-coherence
+  cost* term -- as `substrate_conditional` (no V3 substrate to test it on). This is the single aspect
+  with no existing REE home. Verdict caveat: the cost is so far *one-sided* (Sahay evidences only the
+  under-separation pole); the V4 design must price **both** over- and under-linking.
+- **G3 (design).** Revise this intake's Section-5 `allocate_memory_trace` sketch so `temporal_distance`
+  x `context_similarity` is an **interaction**, not additive (de Sousa: similar contexts link even at
+  7 days; temporal distance is overridable by similarity).
+- **Pre-conditions unchanged:** G1-G3 stay V4/V5, off the V3 critical path. Pair the build with
+  **MECH-147** (DG separation) + an MEC-analog indexing layer (SD-016). V3 relevance still conditional
+  on Q2 (Section 6).
 5. **Object-representation thread** (memory `project_object_representation_thread`) is an adjacent
    V4-leaning spine; if an ARC-OBJ umbrella is ever minted, this gate is a natural child.
 
