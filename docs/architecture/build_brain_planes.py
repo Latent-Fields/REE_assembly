@@ -19,7 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # (image file, viewBox W, viewBox H) -- image is drawn at 0,0 filling the viewBox,
 # so region coords below are in source-pixel space for that plane.
 PLANES = {
-    "sagittal": {"img": "brain_sagittal.jpg", "w": 522, "h": 560,
+    "sagittal": {"img": "brain_sagittal.jpg", "w": 690, "h": 630,
                  "label": "Sagittal (midline)", "credit": "(c) O. Stollmann, Wikimedia, CC-attribution"},
     "coronal":  {"img": "brain_coronal.jpg",  "w": 600, "h": 500,
                  "label": "Coronal (thalamus)", "credit": "(c) 511KeV, Wikimedia, CC BY-SA 4.0"},
@@ -34,31 +34,34 @@ OPACITY = {"astrocyte": 0.38, "default_mode": 0.55, "harm_stream": 0.65}
 
 # Per-region placement. value = {plane: [ (cx,cy,rx,ry), ... ]}  (>1 blob = bilateral)
 # Sagittal/axial coords are in their source-pixel viewBox (anterior: sagittal=left,
-# axial=top). CORONAL coords are kept in the legacy 420x520 layout space (image at
+# axial=top). The sagittal backdrop was re-cropped 2026-06-06 from the same
+# O. Stollmann 900x900 original to include the frontal pole (now 690x630, was
+# 522x560); the prior coords were shifted +90 x / +10 y to track the new window.
+# CORONAL coords are kept in the legacy 420x520 layout space (image at
 # x=-70 y=13 w=560 h=467) -- reused verbatim from the prior single-plane map -- and
 # transformed to the 600x500 plane viewBox by _coronal_xform() at build time.
 REGIONS = {
     "pfc": {
-        "sagittal": [(135, 165, 70, 48)],
+        "sagittal": [(193, 188, 78, 52)],
         "axial":    [(205, 82, 82, 44)],
     },
     "motor": {
-        "sagittal": [(255, 92, 40, 28)],
+        "sagittal": [(345, 102, 40, 28)],
         "coronal":  [(262, 98, 30, 22)],
         "axial":    [(150, 132, 36, 20), (262, 132, 36, 20)],
     },
     "cingulate": {
-        "sagittal": [(216, 178, 82, 24)],
+        "sagittal": [(306, 188, 82, 24)],
         "coronal":  [(210, 162, 48, 18)],
         "axial":    [(205, 136, 40, 20)],
     },
     "default_mode": {
-        "sagittal": [(248, 235, 96, 56)],
+        "sagittal": [(338, 245, 96, 56)],
         "coronal":  [(210, 206, 28, 56)],
         "axial":    [(205, 250, 42, 120)],
     },
     "astrocyte": {
-        "sagittal": [(250, 285, 100, 92)],
+        "sagittal": [(340, 295, 100, 92)],
         "coronal":  [(210, 262, 78, 66)],
         "axial":    [(205, 255, 112, 120)],
     },
@@ -67,16 +70,16 @@ REGIONS = {
         "axial":   [(150, 182, 34, 40), (266, 182, 34, 40)],
     },
     "thalamus": {
-        "sagittal": [(255, 305, 30, 26)],
+        "sagittal": [(345, 315, 30, 26)],
         "coronal":  [(193, 264, 15, 16), (227, 264, 15, 16)],
         "axial":    [(180, 235, 28, 30), (238, 235, 28, 30)],
     },
     "sleep": {
-        "sagittal": [(248, 338, 22, 18)],
+        "sagittal": [(338, 348, 22, 18)],
         "coronal":  [(210, 300, 24, 18)],
     },
     "neuromodulation": {
-        "sagittal": [(245, 378, 20, 22)],
+        "sagittal": [(335, 388, 20, 22)],
         "coronal":  [(210, 345, 20, 22)],
     },
     "amygdala": {
@@ -88,12 +91,12 @@ REGIONS = {
         "axial":   [(152, 286, 28, 22), (266, 286, 28, 22)],
     },
     "pag": {
-        "sagittal": [(262, 342, 18, 20)],
+        "sagittal": [(352, 352, 18, 20)],
         "coronal":  [(210, 372, 19, 22)],
         "axial":    [(209, 276, 20, 22)],
     },
     "respiratory": {
-        "sagittal": [(228, 448, 22, 16)],
+        "sagittal": [(318, 458, 22, 16)],
         "coronal":  [(210, 430, 24, 15)],
     },
     "harm_stream": {
@@ -109,7 +112,7 @@ REGIONS = {
         "axial":   [(95, 320, 20, 24)],
     },
     "visual_streams": {
-        "sagittal": [(435, 275, 30, 40)],
+        "sagittal": [(525, 285, 30, 40)],
         "axial":    [(205, 446, 60, 40)],
     },
     # --- ghost / out-of-scope ---
@@ -122,7 +125,7 @@ REGIONS = {
         "axial":   [(95, 250, 22, 20)],
     },
     "ghost_cerebellum": {
-        "sagittal": [(372, 416, 50, 42)],
+        "sagittal": [(462, 426, 50, 42)],
         "coronal":  [(210, 462, 46, 17)],
     },
 }
