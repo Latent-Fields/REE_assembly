@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "close-stale-infantcurriculum-h_pos-queue-entry-20260606T0417Z",
-  "last_updated_utc": "2026-06-06T05:09:45Z",
+  "last_updated_utc": "2026-06-06T10:34:51Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -3939,6 +3939,39 @@
           "note": "IMPLEMENTED 2026-06-03 via /implement-substrate (approach b gap-relative scaling, user-confirmed). config.py (E3Config + REEConfig mirror + from_dims: use_modulatory_selection_authority / modulatory_authority_gain=0.5 / min_range_floor=1e-6); e3_selector.select (additive-chain + MECH-341 bonus combined rescale to gain*raw_score_range, precedence over normalize_score_bias_to_e3_range); e3_score_diversity.stratified_select (across-class unit-range normalization, 614d C2 fix). Primary scores NOT modified (commit/variance/softmax/MECH-090 semantics unchanged). 734/734 contracts + 7/7 preflight PASS flag-OFF under 2 random orderings; bit-identical baseline. Curiosity lever necessary-but-not-sufficient (604a curiosity_bias=0.0 genuinely zero -> validation guards curiosity_bias_abs_mean>0). Concurrency: collided with auto-spawned IGW-024 (gate-clear side-effect); converged on identical design; landed from interactive session; igw-024 stood down. Validation: substrate-readiness diagnostic EXQ via /queue-experiment (next step)."
         }
       ]
+    },
+    {
+      "sd_id": "cross_stream_binding_substrate",
+      "title": "Bound multi-stream representation substrate: world_states<->states carry co-varying binding info so cross-stream coherence C(tau) can be non-reducible to E",
+      "status": "pending_implementation",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "MECH-089 theta-gamma nesting",
+        "MECH-094 hypothesis-tag write gate",
+        "MECH-270 ephaptic coupling",
+        "binding intake + path_integral intake (gated on this substrate)"
+      ],
+      "unblocks_claims": [
+        "entities/selection.coherence_nonreducibility (candidate, unregistered)",
+        "INV-002 (coherence includes temporal/phase binding)"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
+          "experiment_type": "v3_exq_641a_coherence_ablation_nonreducibility",
+          "metric": "coherence-specificity (real_frac_state_div_gated > shuffle_frac_state_div_gated by margin >= 0.05)",
+          "target": ">=4/6 seeds coherence_specific (got 1/6; shuffle diverged >= real in 4/6 seeds)"
+        }
+      ],
+      "implementation_hint": "641a showed that with a fair contrast-matched control, cross-stream phase-alignment over the current z_world (world_states) and z_self (states) streams carries no selection info beyond E (SPEC 1/6; shuffle diverges >= real in 4/6). Build a substrate where the two streams are genuinely bound -- e.g. a shared latent factor / event-segmented co-encoding / theta-gamma-style nesting per MECH-089/094/270 -- so that real cross-stream coherence is informative and shuffling it destroys structure. Retest is the same 641a harness (E-orthogonal read, shuffle-of-real-C control) on the enriched substrate.",
+      "priority": 2,
+      "priority_note": "Autopsy suggested 2 (V4-leaning cross-stream binding, off the V3 critical path); strict rule (>=1 fresh failure record) = 1. User confirmed priority 2 in governance cycle 2026-06-06.",
+      "added_session": "governance-cycle-20260606T1030Z",
+      "last_seen_session": "governance-cycle-20260606T1030Z",
+      "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-641a_2026-06-06.json",
+      "pending_retest_after_substrate": true,
+      "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the enriched bound-multi-stream substrate"
     }
   ],
   "schema_version": "substrate_queue/v2"
