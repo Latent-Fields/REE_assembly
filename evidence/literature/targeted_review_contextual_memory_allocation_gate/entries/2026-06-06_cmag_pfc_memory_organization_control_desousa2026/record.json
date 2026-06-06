@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_contextual_memory_allocation_gate",
+  "entry_id": "2026-06-06_cmag_pfc_memory_organization_control_desousa2026",
+  "timestamp_utc": "2026-06-06T06:15:08Z",
+  "claim_ids_tested": ["CANDIDATE-contextual-memory-allocation-gate"],
+  "source": {
+    "title": "The prefrontal cortex controls memory organization in the hippocampus",
+    "authors": ["Andre F. de Sousa", "et al."],
+    "year": 2026,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-026-02231-1",
+    "url": "https://www.nature.com/articles/s41593-026-02231-1"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Causal circuit study (Nature Neuroscience) with optogenetic/chemogenetic manipulation establishing that a higher-order cortical region (vmPFC) actively controls whether hippocampal traces are linked or kept separate, gated by contextual similarity and temporal distance. Strong source quality and direct support for the EXISTENCE of a top-down memory-allocation gate. Confidence held below 0.8 because the paper demonstrates the gate and its controller but does NOT specify a decision ALGORITHM (the genuinely novel REE lever), and the mapping from a mouse contextual-fear circuit to a REE control-plane write policy carries real transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper shows top-down CONTROL of linking-vs-separation but does not formalize a decision rule with explicit weighted inputs; it cannot adjudicate which gating variables REE should use beyond contextual similarity and temporal distance.",
+    "Psychiatric framing (schizophrenia, bipolar false association) is explicitly speculative translation from mouse circuit work -- no human or clinical data; must not be cited as evidence for any reality-coherence cost in humans.",
+    "Within-hours experiences merge regardless of vmPFC activity (vmPFC silencing at ~5 h apart changed nothing), so the gate is NOT a universal write controller -- it is recruited selectively over a days timescale, bounding the scope of any REE analogue."
+  ],
+  "tags": ["candidate-contextual-memory-allocation-gate", "memory-allocation", "pattern-separation", "memory-linking", "vmpfc", "entorhinal-cortex", "neurogliaform", "top-down-control"],
+  "mapping": {
+    "source_claim_statement": "The ventromedial prefrontal cortex is recruited over time to control memory integration in the dorsal hippocampus according to contextual similarity, via projections to the medial entorhinal cortex that modulate entorhinal activity, dorsal-CA1 ensemble overlap, memory linking and neurogliaform-cell-gated memory allocation; silencing vmPFC fails to change linking for experiences hours apart but determines linking-vs-separation for experiences days apart.",
+    "ree_translation": "Biological proof-of-existence for the Contextual Memory Allocation Gate intake: memory organization is an active, top-down-regulated control problem, not a passive store. The vmPFC->MEC->dCA1 axis maps onto REE's prefrontal control plane (ARC-035 vmPFC, SD-033 PFC subdivisions) -> memory interface (SD-016) -> hippocampal relational graph (ARC-007). The neurogliaform gatekeeper is the biological analogue of REE's categorical write gate (MECH-094) / mode-conditioned write gating (MECH-261). What the paper adds beyond REE's existing GATES is that a higher-order context model actively DECIDES overlap-vs-separation using contextual similarity and temporal distance -- the allocation POLICY REE does not yet own.",
+    "mapping_caveat": "The paper evidences that the gate exists and is top-down controlled; it does NOT supply the decision algorithm, the weighting of inputs, or a reality-coherence cost term. Mapping a rodent contextual-fear memory-linking circuit onto a REE artificial-agent write policy is an architectural analogy, not a measured correspondence. Treat as constraint-inspiration (intake Section 1), not as evidence that any specific REE implementation is correct.",
+    "source_context": "Mouse; contextual memory linking paradigm (distinct environments encoded hours vs days apart); calcium imaging of dCA1 ensembles + causal vmPFC and pathway manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (top venue, causal manipulation, multi-level: behavior + ensemble imaging + interneuron identification). Mapping fidelity moderate-high for the EXISTENCE of a top-down allocation gate and for context-similarity + temporal-distance as gating variables; low for the decision-algorithm and cost-term aspects, which the paper does not address. Transfer risk moderate (mouse fear-context circuit -> REE write policy; the psychiatric extrapolation raises it further and is quarantined to speculation)."
+  }
+}

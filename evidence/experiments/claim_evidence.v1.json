@@ -525,7 +525,7 @@
       }
     },
     "ARC-014": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.782",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.781",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -551,9 +551,9 @@
       },
       "latest_run_id": "2026-04-05_arc014_rangel_camerer_montague_2008",
       "latest_timestamp_utc": "2026-04-05T18:00:00Z",
-      "literature_confidence": 0.782,
-      "literature_confidence_parallel": 0.782,
-      "overall_confidence": 0.782,
+      "literature_confidence": 0.781,
+      "literature_confidence_parallel": 0.781,
+      "overall_confidence": 0.781,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -748,7 +748,7 @@
       }
     },
     "ARC-017": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.377, lit_conf=0.806",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.376, lit_conf=0.806",
       "direction_counts": {
         "mixed": 2,
         "supports": 2,
@@ -765,8 +765,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.377,
-      "experimental_confidence_decoupled": 0.377,
+      "experimental_confidence": 0.376,
+      "experimental_confidence_decoupled": 0.376,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -779,7 +779,7 @@
       "latest_timestamp_utc": "2026-03-29T03:24:42Z",
       "literature_confidence": 0.806,
       "literature_confidence_parallel": 0.806,
-      "overall_confidence": 0.592,
+      "overall_confidence": 0.591,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -5815,6 +5815,135 @@
         "literature": 5
       }
     },
+    "CANDIDATE-contextual-memory-allocation-gate": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.864",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 5,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 4,
+        "lit:fmri_connectivity": 1
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-06_cmag_temporal_distance_memory_linking_cai2016",
+      "latest_timestamp_utc": "2026-06-06T06:15:08Z",
+      "literature_confidence": 0.864,
+      "literature_confidence_parallel": 0.864,
+      "overall_confidence": 0.864,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+          "confidence": 0.78,
+          "confidence_rationale": "High-resolution human fMRI dissociating a strong pattern-separation bias localized to CA3/dentate gyrus from a pattern-completion bias in CA1/subiculum/entorhinal/parahippocampal cortex. Strong, human, anatomically specific evidence that the DG performs the separation operation REE plans as MECH-147. Held below 0.85 because fMRI infers the computation from a repetition-suppression signature rather than recording sparse codes directly, and the candidate gate is about the POLICY over separation, of which DG separation is only the separate-pole effector.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+          "failure_signatures": [
+            "fMRI shows a separation-vs-completion bias by region but does not record the sparse orthogonalized codes directly; the DG sparse-encoding mechanism is inferred, not observed at single-trace resolution.",
+            "Demonstrates the separation EFFECTOR (DG) but not a control policy deciding WHEN to separate vs integrate -- supports MECH-147 (substrate) more than the allocation-gate policy.",
+            "Pattern completion in CA1/EC means the same circuit that separates also actively re-integrates; a REE design that builds separation without the complementary completion/integration pole would mis-model the system."
+          ],
+          "run_id": "2026-06-06_cmag_dg_pattern_separation_bakker2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-06T06:15:08Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+          "confidence": 0.7,
+          "confidence_rationale": "Causal Nature study: genetically increasing adult dentate neurogenesis is sufficient to improve behavioural discrimination of similar contexts, and the literature frames impaired separation as driving OVERGENERALIZATION (linking distinct experiences that should stay distinct). This biologically motivates the intake's reality-coherence / false-linking-risk cost: insufficient separation has a real, measurable behavioural cost. Held at 0.70 because the readout is fear-context discrimination, an indirect proxy for the 'false linking' cost, and the cost is demonstrated as a failure of the separation EFFECTOR rather than as a control-plane cost term.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+          "failure_signatures": [
+            "The cost of failed separation is shown as poor contextual fear DISCRIMINATION (overgeneralization), an indirect proxy for the intake's 'inappropriate linking of unrelated traces' rather than a direct demonstration of false association.",
+            "Improvement comes from boosting a substrate (neurogenesis-driven DG separation), evidencing the cost of a weak EFFECTOR -- it does not show a control plane explicitly PRICING false-linking risk at allocation time, which is the novel REE lever.",
+            "Over-separation costs (failure to generalize) are not measured here, so the paper supports only one of the two failure poles the intake brackets; a one-sided cost term would bias the gate toward separation."
+          ],
+          "run_id": "2026-06-06_cmag_pattern_separation_overgeneralization_sahay2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-06T06:15:08Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+          "confidence": 0.72,
+          "confidence_rationale": "Causal circuit study (Nature Neuroscience) with optogenetic/chemogenetic manipulation establishing that a higher-order cortical region (vmPFC) actively controls whether hippocampal traces are linked or kept separate, gated by contextual similarity and temporal distance. Strong source quality and direct support for the EXISTENCE of a top-down memory-allocation gate. Confidence held below 0.8 because the paper demonstrates the gate and its controller but does NOT specify a decision ALGORITHM (the genuinely novel REE lever), and the mapping from a mouse contextual-fear circuit to a REE control-plane write policy carries real transfer risk.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+          "failure_signatures": [
+            "The paper shows top-down CONTROL of linking-vs-separation but does not formalize a decision rule with explicit weighted inputs; it cannot adjudicate which gating variables REE should use beyond contextual similarity and temporal distance.",
+            "Psychiatric framing (schizophrenia, bipolar false association) is explicitly speculative translation from mouse circuit work -- no human or clinical data; must not be cited as evidence for any reality-coherence cost in humans.",
+            "Within-hours experiences merge regardless of vmPFC activity (vmPFC silencing at ~5 h apart changed nothing), so the gate is NOT a universal write controller -- it is recruited selectively over a days timescale, bounding the scope of any REE analogue."
+          ],
+          "run_id": "2026-06-06_cmag_pfc_memory_organization_control_desousa2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-06T06:15:08Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+          "confidence": 0.68,
+          "confidence_rationale": "Landmark Science paper showing that a pre-existing associative schema causally accelerates assimilation of new, schema-consistent traces (one-trial encoding that becomes hippocampus-independent within 48 h). Strong support that schema_fit is a real determinant of how a new trace is integrated. Held at 0.68 because the paper measures consolidation SPEED and hippocampal-independence, not the link-vs-separate allocation decision per se; the schema_fit -> integration-pressure mapping is an inference about a related but not identical operation.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+          "failure_signatures": [
+            "The paper measures schema-accelerated consolidation (rate of hippocampal disengagement), not the binary allocate-overlapping-vs-separate decision; equating fast assimilation with the gate's integrate output is an inference.",
+            "Schema benefit is shown for schema-CONSISTENT items; the paper does not characterize how schema mismatch triggers active separation, leaving the separate-pole of schema_fit under-specified.",
+            "Rodent spatial paired-associate task; the schema construct is a learned flavour-place associative structure, narrower than the general schema_fit variable the intake proposes."
+          ],
+          "run_id": "2026-06-06_cmag_schema_gated_integration_tse2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-06T06:15:08Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+          "confidence": 0.76,
+          "confidence_rationale": "Nature paper with in-vivo miniscope imaging of CA1 ensembles plus causal excitability manipulation, directly demonstrating that TEMPORAL DISTANCE between two encoding episodes determines hippocampal ensemble overlap (linking within a day vs separation across a week). This is the most direct empirical grounding for temporal distance as a first-class gating variable. Held below 0.8 because it isolates the excitability/temporal-window mechanism (a bottom-up allocation rule) rather than the top-down PFC policy, and the mapping to a REE temporal-gap weight is by analogy.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+          "failure_signatures": [
+            "The temporal-window linking here is driven by intrinsic neuronal excitability dynamics, NOT by a top-down control decision -- so this paper supports temporal distance as a VARIABLE but is silent on whether a control plane should set its weight; over-reading it as evidence for the POLICY would be a category error.",
+            "Increased excitability and short-window linking are absent in aged animals, indicating the temporal-distance effect is itself substrate-conditional and not a fixed law -- a REE temporal_gap term would inherit that state-dependence.",
+            "The effect is a memory-linking (co-recall) bias, not a demonstration of harmful false association; mapping it to a reality-coherence cost requires the separate over-generalization literature."
+          ],
+          "run_id": "2026-06-06_cmag_temporal_distance_memory_linking_cai2016",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-06T06:15:08Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
+      }
+    },
     "DEV-NEED-009": {
       "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.887",
       "direction_counts": {
@@ -6859,7 +6988,7 @@
       }
     },
     "INV-044": {
-      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.719, lit_conf=0.882",
+      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.718, lit_conf=0.882",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -6879,8 +7008,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.719,
-      "experimental_confidence_decoupled": 0.719,
+      "experimental_confidence": 0.718,
+      "experimental_confidence_decoupled": 0.718,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -6893,7 +7022,7 @@
       "latest_timestamp_utc": "2026-04-19T07:58:04Z",
       "literature_confidence": 0.882,
       "literature_confidence_parallel": 0.882,
-      "overall_confidence": 0.817,
+      "overall_confidence": 0.816,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -7845,7 +7974,7 @@
       }
     },
     "INV-054": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.321, lit_conf=0.85",
+      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.32, lit_conf=0.85",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -7864,8 +7993,8 @@
         "C": 3
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.321,
-      "experimental_confidence_decoupled": 0.321,
+      "experimental_confidence": 0.32,
+      "experimental_confidence_decoupled": 0.32,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -7878,7 +8007,7 @@
       "latest_timestamp_utc": "2026-05-05T22:55:18Z",
       "literature_confidence": 0.85,
       "literature_confidence_parallel": 0.85,
-      "overall_confidence": 0.586,
+      "overall_confidence": 0.585,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -9623,7 +9752,7 @@
       }
     },
     "MECH-033": {
-      "confidence_rationale": "exp=8 entry(s), lit=22 entry(s), exp_conf=0.811, lit_conf=0.858",
+      "confidence_rationale": "exp=8 entry(s), lit=22 entry(s), exp_conf=0.81, lit_conf=0.858",
       "direction_counts": {
         "mixed": 1,
         "supports": 27,
@@ -9647,8 +9776,8 @@
         "C": 8
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.811,
-      "experimental_confidence_decoupled": 0.811,
+      "experimental_confidence": 0.81,
+      "experimental_confidence_decoupled": 0.81,
       "fail_runs": 1,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -11625,7 +11754,7 @@
       }
     },
     "MECH-070": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.351, lit_conf=0.735",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.35, lit_conf=0.735",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -11642,8 +11771,8 @@
         "C": 4
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.351,
-      "experimental_confidence_decoupled": 0.351,
+      "experimental_confidence": 0.35,
+      "experimental_confidence_decoupled": 0.35,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -11656,7 +11785,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.850551Z",
       "literature_confidence": 0.735,
       "literature_confidence_parallel": 0.735,
-      "overall_confidence": 0.543,
+      "overall_confidence": 0.542,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -11875,7 +12004,7 @@
       }
     },
     "MECH-072": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.718, lit_conf=0.805",
+      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.717, lit_conf=0.805",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -11894,8 +12023,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.718,
-      "experimental_confidence_decoupled": 0.718,
+      "experimental_confidence": 0.717,
+      "experimental_confidence_decoupled": 0.717,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -13473,7 +13602,7 @@
       }
     },
     "MECH-094": {
-      "confidence_rationale": "exp=2 entry(s), lit=25 entry(s), exp_conf=0.819, lit_conf=0.849",
+      "confidence_rationale": "exp=2 entry(s), lit=25 entry(s), exp_conf=0.818, lit_conf=0.849",
       "direction_counts": {
         "mixed": 2,
         "supports": 24,
@@ -13499,8 +13628,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.819,
-      "experimental_confidence_decoupled": 0.819,
+      "experimental_confidence": 0.818,
+      "experimental_confidence_decoupled": 0.818,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -13606,7 +13735,7 @@
       }
     },
     "MECH-095": {
-      "confidence_rationale": "exp=10 entry(s), lit=24 entry(s), exp_conf=0.531, lit_conf=0.836",
+      "confidence_rationale": "exp=10 entry(s), lit=24 entry(s), exp_conf=0.53, lit_conf=0.836",
       "direction_counts": {
         "mixed": 8,
         "supports": 20,
@@ -13632,8 +13761,8 @@
         "C": 10
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.531,
-      "experimental_confidence_decoupled": 0.531,
+      "experimental_confidence": 0.53,
+      "experimental_confidence_decoupled": 0.53,
       "fail_runs": 9,
       "genuine_exp_count": 10,
       "genuine_exp_direction_counts": {
@@ -16755,7 +16884,7 @@
       }
     },
     "MECH-153": {
-      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.356, lit_conf=0.844",
+      "confidence_rationale": "exp=4 entry(s), lit=7 entry(s), exp_conf=0.355, lit_conf=0.844",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -16775,8 +16904,8 @@
         "C": 4
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.356,
-      "experimental_confidence_decoupled": 0.356,
+      "experimental_confidence": 0.355,
+      "experimental_confidence_decoupled": 0.355,
       "fail_runs": 3,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -20651,7 +20780,7 @@
       }
     },
     "MECH-204": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.514, lit_conf=0.856",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.513, lit_conf=0.856",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -20668,8 +20797,8 @@
         "C": 3
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.514,
-      "experimental_confidence_decoupled": 0.514,
+      "experimental_confidence": 0.513,
+      "experimental_confidence_decoupled": 0.513,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -20682,7 +20811,7 @@
       "latest_timestamp_utc": "2026-05-09T13:17:40Z",
       "literature_confidence": 0.856,
       "literature_confidence_parallel": 0.856,
-      "overall_confidence": 0.685,
+      "overall_confidence": 0.684,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -20773,7 +20902,7 @@
       }
     },
     "MECH-205": {
-      "confidence_rationale": "exp=3 entry(s), lit=8 entry(s), exp_conf=0.861, lit_conf=0.855",
+      "confidence_rationale": "exp=3 entry(s), lit=8 entry(s), exp_conf=0.86, lit_conf=0.855",
       "direction_counts": {
         "mixed": 0,
         "supports": 11,
@@ -20792,8 +20921,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.861,
-      "experimental_confidence_decoupled": 0.861,
+      "experimental_confidence": 0.86,
+      "experimental_confidence_decoupled": 0.86,
       "fail_runs": 1,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -20806,7 +20935,7 @@
       "latest_timestamp_utc": "2026-06-02T16:09:28.820330Z",
       "literature_confidence": 0.855,
       "literature_confidence_parallel": 0.855,
-      "overall_confidence": 0.858,
+      "overall_confidence": 0.857,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -21025,7 +21154,7 @@
       }
     },
     "MECH-220": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.218, lit_conf=0.862",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.217, lit_conf=0.862",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -21042,8 +21171,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.218,
-      "experimental_confidence_decoupled": 0.218,
+      "experimental_confidence": 0.217,
+      "experimental_confidence_decoupled": 0.217,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -32833,7 +32962,7 @@
       }
     },
     "Q-054": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.468, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.467, lit_conf=0",
       "direction_counts": {
         "mixed": 1,
         "supports": 0,
@@ -32848,8 +32977,8 @@
         "C": 1
       },
       "evidence_quadrant": "speculative",
-      "experimental_confidence": 0.468,
-      "experimental_confidence_decoupled": 0.468,
+      "experimental_confidence": 0.467,
+      "experimental_confidence_decoupled": 0.467,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -32862,7 +32991,7 @@
       "latest_timestamp_utc": "2026-05-31T14:15:08Z",
       "literature_confidence": 0.0,
       "literature_confidence_parallel": 0.0,
-      "overall_confidence": 0.468,
+      "overall_confidence": 0.467,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -33125,7 +33254,7 @@
       }
     },
     "SD-003-prereq": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.591, lit_conf=0.803",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.59, lit_conf=0.803",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -33142,8 +33271,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.591,
-      "experimental_confidence_decoupled": 0.591,
+      "experimental_confidence": 0.59,
+      "experimental_confidence_decoupled": 0.59,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -34960,7 +35089,7 @@
       }
     },
     "SD-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.191, lit_conf=0.745",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.19, lit_conf=0.745",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -34976,8 +35105,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.191,
-      "experimental_confidence_decoupled": 0.191,
+      "experimental_confidence": 0.19,
+      "experimental_confidence_decoupled": 0.19,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -105814,6 +105943,96 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+      "confidence": 0.78,
+      "confidence_rationale": "High-resolution human fMRI dissociating a strong pattern-separation bias localized to CA3/dentate gyrus from a pattern-completion bias in CA1/subiculum/entorhinal/parahippocampal cortex. Strong, human, anatomically specific evidence that the DG performs the separation operation REE plans as MECH-147. Held below 0.85 because fMRI infers the computation from a repetition-suppression signature rather than recording sparse codes directly, and the candidate gate is about the POLICY over separation, of which DG separation is only the separate-pole effector.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+      "failure_signatures": [
+        "fMRI shows a separation-vs-completion bias by region but does not record the sparse orthogonalized codes directly; the DG sparse-encoding mechanism is inferred, not observed at single-trace resolution.",
+        "Demonstrates the separation EFFECTOR (DG) but not a control policy deciding WHEN to separate vs integrate -- supports MECH-147 (substrate) more than the allocation-gate policy.",
+        "Pattern completion in CA1/EC means the same circuit that separates also actively re-integrates; a REE design that builds separation without the complementary completion/integration pole would mis-model the system."
+      ],
+      "run_id": "2026-06-06_cmag_dg_pattern_separation_bakker2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-06T06:15:08Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+      "confidence": 0.7,
+      "confidence_rationale": "Causal Nature study: genetically increasing adult dentate neurogenesis is sufficient to improve behavioural discrimination of similar contexts, and the literature frames impaired separation as driving OVERGENERALIZATION (linking distinct experiences that should stay distinct). This biologically motivates the intake's reality-coherence / false-linking-risk cost: insufficient separation has a real, measurable behavioural cost. Held at 0.70 because the readout is fear-context discrimination, an indirect proxy for the 'false linking' cost, and the cost is demonstrated as a failure of the separation EFFECTOR rather than as a control-plane cost term.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+      "failure_signatures": [
+        "The cost of failed separation is shown as poor contextual fear DISCRIMINATION (overgeneralization), an indirect proxy for the intake's 'inappropriate linking of unrelated traces' rather than a direct demonstration of false association.",
+        "Improvement comes from boosting a substrate (neurogenesis-driven DG separation), evidencing the cost of a weak EFFECTOR -- it does not show a control plane explicitly PRICING false-linking risk at allocation time, which is the novel REE lever.",
+        "Over-separation costs (failure to generalize) are not measured here, so the paper supports only one of the two failure poles the intake brackets; a one-sided cost term would bias the gate toward separation."
+      ],
+      "run_id": "2026-06-06_cmag_pattern_separation_overgeneralization_sahay2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-06T06:15:08Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+      "confidence": 0.72,
+      "confidence_rationale": "Causal circuit study (Nature Neuroscience) with optogenetic/chemogenetic manipulation establishing that a higher-order cortical region (vmPFC) actively controls whether hippocampal traces are linked or kept separate, gated by contextual similarity and temporal distance. Strong source quality and direct support for the EXISTENCE of a top-down memory-allocation gate. Confidence held below 0.8 because the paper demonstrates the gate and its controller but does NOT specify a decision ALGORITHM (the genuinely novel REE lever), and the mapping from a mouse contextual-fear circuit to a REE control-plane write policy carries real transfer risk.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+      "failure_signatures": [
+        "The paper shows top-down CONTROL of linking-vs-separation but does not formalize a decision rule with explicit weighted inputs; it cannot adjudicate which gating variables REE should use beyond contextual similarity and temporal distance.",
+        "Psychiatric framing (schizophrenia, bipolar false association) is explicitly speculative translation from mouse circuit work -- no human or clinical data; must not be cited as evidence for any reality-coherence cost in humans.",
+        "Within-hours experiences merge regardless of vmPFC activity (vmPFC silencing at ~5 h apart changed nothing), so the gate is NOT a universal write controller -- it is recruited selectively over a days timescale, bounding the scope of any REE analogue."
+      ],
+      "run_id": "2026-06-06_cmag_pfc_memory_organization_control_desousa2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-06T06:15:08Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+      "confidence": 0.68,
+      "confidence_rationale": "Landmark Science paper showing that a pre-existing associative schema causally accelerates assimilation of new, schema-consistent traces (one-trial encoding that becomes hippocampus-independent within 48 h). Strong support that schema_fit is a real determinant of how a new trace is integrated. Held at 0.68 because the paper measures consolidation SPEED and hippocampal-independence, not the link-vs-separate allocation decision per se; the schema_fit -> integration-pressure mapping is an inference about a related but not identical operation.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+      "failure_signatures": [
+        "The paper measures schema-accelerated consolidation (rate of hippocampal disengagement), not the binary allocate-overlapping-vs-separate decision; equating fast assimilation with the gate's integrate output is an inference.",
+        "Schema benefit is shown for schema-CONSISTENT items; the paper does not characterize how schema mismatch triggers active separation, leaving the separate-pole of schema_fit under-specified.",
+        "Rodent spatial paired-associate task; the schema construct is a learned flavour-place associative structure, narrower than the general schema_fit variable the intake proposes."
+      ],
+      "run_id": "2026-06-06_cmag_schema_gated_integration_tse2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-06T06:15:08Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "CANDIDATE-contextual-memory-allocation-gate",
+      "confidence": 0.76,
+      "confidence_rationale": "Nature paper with in-vivo miniscope imaging of CA1 ensembles plus causal excitability manipulation, directly demonstrating that TEMPORAL DISTANCE between two encoding episodes determines hippocampal ensemble overlap (linking within a day vs separation across a week). This is the most direct empirical grounding for temporal distance as a first-class gating variable. Held below 0.8 because it isolates the excitability/temporal-window mechanism (a bottom-up allocation rule) rather than the top-down PFC policy, and the mapping to a REE temporal-gap weight is by analogy.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_contextual_memory_allocation_gate",
+      "failure_signatures": [
+        "The temporal-window linking here is driven by intrinsic neuronal excitability dynamics, NOT by a top-down control decision -- so this paper supports temporal distance as a VARIABLE but is silent on whether a control plane should set its weight; over-reading it as evidence for the POLICY would be a category error.",
+        "Increased excitability and short-window linking are absent in aged animals, indicating the temporal-distance effect is itself substrate-conditional and not a fixed law -- a REE temporal_gap term would inherit that state-dependence.",
+        "The effect is a memory-linking (co-recall) bias, not a demonstration of harmful false association; mapping it to a reality-coherence cost requires the separate over-generalization literature."
+      ],
+      "run_id": "2026-06-06_cmag_temporal_distance_memory_linking_cai2016",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-06T06:15:08Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
       "confidence": 0.0,
       "confidence_rationale": "non_contributory -- excluded from scoring",
@@ -105847,7 +106066,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-06T05:03:37.313514Z",
+  "generated_at_utc": "2026-06-06T06:20:06.418523Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-06T05:03:37.313514Z`
+Generated: `2026-06-06T06:20:06.418523Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -122,6 +122,7 @@ Generated: `2026-06-06T05:03:37.313514Z`
 | `targeted_review_connectome_sd_011` | [`2026-04-08_sd_011_predictive_coding_pain_chen2023`](targeted_review_connectome_sd_011/entries/2026-04-08_sd_011_predictive_coding_pain_chen2023/record.json) | 12 | [`summary`](targeted_review_connectome_sd_011/entries/2026-04-08_sd_011_predictive_coding_pain_chen2023/summary.md) |
 | `targeted_review_connectome_sd_020` | [`2026-04-09_sd_020_pain_matrix_salience_iannetti2010`](targeted_review_connectome_sd_020/entries/2026-04-09_sd_020_pain_matrix_salience_iannetti2010/record.json) | 4 | [`summary`](targeted_review_connectome_sd_020/entries/2026-04-09_sd_020_pain_matrix_salience_iannetti2010/summary.md) |
 | `targeted_review_connectome_sd_021` | [`2026-04-09_sd_021_placebo_opioid_eippert2009`](targeted_review_connectome_sd_021/entries/2026-04-09_sd_021_placebo_opioid_eippert2009/record.json) | 4 | [`summary`](targeted_review_connectome_sd_021/entries/2026-04-09_sd_021_placebo_opioid_eippert2009/summary.md) |
+| `targeted_review_contextual_memory_allocation_gate` | [`2026-06-06_cmag_temporal_distance_memory_linking_cai2016`](targeted_review_contextual_memory_allocation_gate/entries/2026-06-06_cmag_temporal_distance_memory_linking_cai2016/record.json) | 5 | [`summary`](targeted_review_contextual_memory_allocation_gate/entries/2026-06-06_cmag_temporal_distance_memory_linking_cai2016/summary.md) |
 | `targeted_review_critical_period_crystallization` | [`2026-05-19_mech_334_sleep_two_stage_gate_aton2013`](targeted_review_critical_period_crystallization/entries/2026-05-19_mech_334_sleep_two_stage_gate_aton2013/record.json) | 6 | [`summary`](targeted_review_critical_period_crystallization/entries/2026-05-19_mech_334_sleep_two_stage_gate_aton2013/summary.md) |
 | `targeted_review_dementia_attribution_pipeline` | [`2026-04-06_mech172_procedural_memory_preserved_heindel1989`](targeted_review_dementia_attribution_pipeline/entries/2026-04-06_mech172_procedural_memory_preserved_heindel1989/record.json) | 7 | [`summary`](targeted_review_dementia_attribution_pipeline/entries/2026-04-06_mech172_procedural_memory_preserved_heindel1989/summary.md) |
 | `targeted_review_developmental_exploration_hippocampal_retrieval` | [`2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007`](targeted_review_developmental_exploration_hippocampal_retrieval/entries/2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007/record.json) | 19 | [`summary`](targeted_review_developmental_exploration_hippocampal_retrieval/entries/2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007/summary.md) |

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_contextual_memory_allocation_gate",
+  "entry_id": "2026-06-06_cmag_dg_pattern_separation_bakker2008",
+  "timestamp_utc": "2026-06-06T06:15:08Z",
+  "claim_ids_tested": ["CANDIDATE-contextual-memory-allocation-gate"],
+  "source": {
+    "title": "Pattern separation in the human hippocampal CA3 and dentate gyrus",
+    "authors": ["Arnold Bakker", "C. Brock Kirwan", "Michael Miller", "Craig E. L. Stark"],
+    "year": 2008,
+    "venue": "Science",
+    "doi": "10.1126/science.1152882",
+    "url": "https://www.science.org/doi/10.1126/science.1152882"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High-resolution human fMRI dissociating a strong pattern-separation bias localized to CA3/dentate gyrus from a pattern-completion bias in CA1/subiculum/entorhinal/parahippocampal cortex. Strong, human, anatomically specific evidence that the DG performs the separation operation REE plans as MECH-147. Held below 0.85 because fMRI infers the computation from a repetition-suppression signature rather than recording sparse codes directly, and the candidate gate is about the POLICY over separation, of which DG separation is only the separate-pole effector.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "fMRI shows a separation-vs-completion bias by region but does not record the sparse orthogonalized codes directly; the DG sparse-encoding mechanism is inferred, not observed at single-trace resolution.",
+    "Demonstrates the separation EFFECTOR (DG) but not a control policy deciding WHEN to separate vs integrate -- supports MECH-147 (substrate) more than the allocation-gate policy.",
+    "Pattern completion in CA1/EC means the same circuit that separates also actively re-integrates; a REE design that builds separation without the complementary completion/integration pole would mis-model the system."
+  ],
+  "tags": ["candidate-contextual-memory-allocation-gate", "pattern-separation", "dentate-gyrus", "ca3", "pattern-completion", "mech-147"],
+  "mapping": {
+    "source_claim_statement": "In humans, high-resolution fMRI during incidental encoding of similar (lure) and repeated stimuli shows a strong bias toward pattern separation confined to the CA3/dentate gyrus, while CA1, subiculum, entorhinal and parahippocampal cortices show a bias toward pattern completion.",
+    "ree_translation": "Empirical, human-anatomical backing for the separate-pole of the allocation gate and specifically for REE's planned MECH-147 (DG sparse, non-redundant encoding of similar z_world before rollout). The DG/CA3 separation-vs-completion dissociation is the substrate over which a Contextual Memory Allocation Gate would arbitrate: separation = allocate a fresh trace; completion/integration = reuse an existing one. Confirms that separation is a dedicated, regionally specialized operation rather than a side effect of failed retrieval.",
+    "mapping_caveat": "fMRI infers the separation/completion computation from a repetition-suppression contrast, not from direct observation of sparse codes; the mapping to a discrete REE z_world orthogonalization is by analogy. This paper supports the EXISTENCE and localization of the separation effector (MECH-147), not the control policy that decides when to engage it -- the gate's novelty lies in the latter.",
+    "source_context": "Human; high-resolution fMRI of medial temporal lobe subfields during an incidental encoding task with novel, repeated, and similar-lure stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.20,
+    "notes": "High source quality (Science, human, subfield-resolved fMRI, foundational). Mapping fidelity high to MECH-147 (DG separation substrate); lower to the allocation-gate policy. Transfer risk low (human data; the cross-domain step is to a computational z_world code, which is conceptually close to the orthogonalization the DG is modelled to perform)."
+  }
+}

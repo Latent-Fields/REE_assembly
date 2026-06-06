@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_contextual_memory_allocation_gate",
+  "entry_id": "2026-06-06_cmag_temporal_distance_memory_linking_cai2016",
+  "timestamp_utc": "2026-06-06T06:15:08Z",
+  "claim_ids_tested": ["CANDIDATE-contextual-memory-allocation-gate"],
+  "source": {
+    "title": "A shared neural ensemble links distinct contextual memories encoded close in time",
+    "authors": ["Denise J. Cai", "Daniel Aharoni", "Tristan Shuman", "Justin Shobe", "et al.", "Alcino J. Silva"],
+    "year": 2016,
+    "venue": "Nature",
+    "doi": "10.1038/nature17955",
+    "url": "https://www.nature.com/articles/nature17955"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Nature paper with in-vivo miniscope imaging of CA1 ensembles plus causal excitability manipulation, directly demonstrating that TEMPORAL DISTANCE between two encoding episodes determines hippocampal ensemble overlap (linking within a day vs separation across a week). This is the most direct empirical grounding for temporal distance as a first-class gating variable. Held below 0.8 because it isolates the excitability/temporal-window mechanism (a bottom-up allocation rule) rather than the top-down PFC policy, and the mapping to a REE temporal-gap weight is by analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The temporal-window linking here is driven by intrinsic neuronal excitability dynamics, NOT by a top-down control decision -- so this paper supports temporal distance as a VARIABLE but is silent on whether a control plane should set its weight; over-reading it as evidence for the POLICY would be a category error.",
+    "Increased excitability and short-window linking are absent in aged animals, indicating the temporal-distance effect is itself substrate-conditional and not a fixed law -- a REE temporal_gap term would inherit that state-dependence.",
+    "The effect is a memory-linking (co-recall) bias, not a demonstration of harmful false association; mapping it to a reality-coherence cost requires the separate over-generalization literature."
+  ],
+  "tags": ["candidate-contextual-memory-allocation-gate", "temporal-distance", "memory-linking", "ensemble-overlap", "ca1", "memory-allocation"],
+  "mapping": {
+    "source_claim_statement": "Two distinct contexts encoded within a day share a higher-overlap CA1 ensemble (and become behaviourally linked: recall of one biases recall of the other) than contexts encoded a week apart; the linking is mediated by a learning-triggered transient increase in neuronal excitability that biases allocation of the second memory toward the first memory's ensemble.",
+    "ree_translation": "Direct empirical support for the intake's `temporal_distance` (days-vs-hours) gating variable: the time gap between two encoding episodes is a real, measurable determinant of whether traces are allocated to overlapping or separate representations. In REE terms this grounds the `temporal_gap_weight(estimate_temporal_distance(...))` term in the allocate_memory_trace sketch -- short gap -> integration pressure, long gap -> separation -- and identifies an excitability/allocation-bias mechanism (cf. MECH-261 awake-reactivation bias) as the substrate the temporal term would actuate.",
+    "mapping_caveat": "This is a BOTTOM-UP allocation rule (intrinsic excitability time-window), complementary to but distinct from the de Sousa TOP-DOWN PFC policy. It justifies temporal distance as an input variable; it does not show a control plane setting the temporal weight. The REE translation to a tunable temporal_gap_weight is an architectural analogy, and the effect's absence in aged animals means the weight is state-conditional, not constant.",
+    "source_context": "Mouse; open-field / fear-context memory-linking paradigm with encoding episodes 5 h to 7 days apart; head-mounted miniature-microscope CA1 calcium imaging + CREB/excitability manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.38,
+    "notes": "High source quality (Nature, longitudinal single-cell ensemble imaging + causal excitability manipulation, foundational and well-cited). Mapping fidelity high for the temporal-distance variable specifically -- this is close to a 1:1 grounding of the temporal_gap term. Transfer risk moderate (rodent ensemble allocation -> REE trace allocation; state-conditional effect)."
+  }
+}

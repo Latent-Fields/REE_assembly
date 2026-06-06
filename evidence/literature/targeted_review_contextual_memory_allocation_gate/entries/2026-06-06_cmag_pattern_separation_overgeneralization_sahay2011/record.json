@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_contextual_memory_allocation_gate",
+  "entry_id": "2026-06-06_cmag_pattern_separation_overgeneralization_sahay2011",
+  "timestamp_utc": "2026-06-06T06:15:08Z",
+  "claim_ids_tested": ["CANDIDATE-contextual-memory-allocation-gate"],
+  "source": {
+    "title": "Increasing adult hippocampal neurogenesis is sufficient to improve pattern separation",
+    "authors": ["Amar Sahay", "Kimberly N. Scobie", "Alexis S. Hill", "Colin M. O'Carroll", "Mazen A. Kheirbek", "Nesha S. Burghardt", "Andre A. Fenton", "Alex Dranovsky", "Rene Hen"],
+    "year": 2011,
+    "venue": "Nature",
+    "doi": "10.1038/nature09817",
+    "url": "https://www.nature.com/articles/nature09817"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Causal Nature study: genetically increasing adult dentate neurogenesis is sufficient to improve behavioural discrimination of similar contexts, and the literature frames impaired separation as driving OVERGENERALIZATION (linking distinct experiences that should stay distinct). This biologically motivates the intake's reality-coherence / false-linking-risk cost: insufficient separation has a real, measurable behavioural cost. Held at 0.70 because the readout is fear-context discrimination, an indirect proxy for the 'false linking' cost, and the cost is demonstrated as a failure of the separation EFFECTOR rather than as a control-plane cost term.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The cost of failed separation is shown as poor contextual fear DISCRIMINATION (overgeneralization), an indirect proxy for the intake's 'inappropriate linking of unrelated traces' rather than a direct demonstration of false association.",
+    "Improvement comes from boosting a substrate (neurogenesis-driven DG separation), evidencing the cost of a weak EFFECTOR -- it does not show a control plane explicitly PRICING false-linking risk at allocation time, which is the novel REE lever.",
+    "Over-separation costs (failure to generalize) are not measured here, so the paper supports only one of the two failure poles the intake brackets; a one-sided cost term would bias the gate toward separation."
+  ],
+  "tags": ["candidate-contextual-memory-allocation-gate", "pattern-separation", "overgeneralization", "neurogenesis", "dentate-gyrus", "false-linking-risk", "reality-coherence"],
+  "mapping": {
+    "source_claim_statement": "Genetically increasing survival of adult-born dentate granule cells is sufficient to improve pattern separation, measured as better behavioural discrimination between two similar contexts in contextual fear conditioning; conversely, impaired neurogenesis/separation is associated with overgeneralization, a transdiagnostic endophenotype of mood, anxiety and trauma disorders.",
+    "ree_translation": "Biological motivation for the intake's reality-coherence / false-linking-risk COST term. When separation is too weak, distinct experiences are over-linked (overgeneralization) -- a real, costly failure, not a neutral outcome. This grounds the `estimate_false_linking_risk(...)` penalty in the allocate_memory_trace sketch: the gate should price the risk that integrating a new trace corrupts the distinctness of an existing one. The transdiagnostic overgeneralization framing also supports (cautiously) the intake's psychiatric speculation that weak separation + high salience underlies false association.",
+    "mapping_caveat": "The cost is demonstrated as the failure of a separation EFFECTOR (DG neurogenesis), not as an explicit control-plane cost term -- the REE novelty (pricing false-linking risk at allocation time) is not what the paper shows. The readout (fear-context discrimination) is an indirect proxy for 'false linking of unrelated memories.' And the paper measures only the under-separation pole; the complementary over-separation cost (failure to generalize) must come from other sources, else a REE cost term modelled on it would bias toward separation.",
+    "source_context": "Mouse; transgenic enhancement of adult hippocampal neurogenesis; contextual fear discrimination between similar contexts; touchscreen spatial discrimination."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "High source quality (Nature, causal genetic manipulation, foundational for the neurogenesis-pattern-separation-overgeneralization link). Mapping fidelity moderate -- it motivates a false-linking COST but via an effector-failure readout, not a control cost term, and only the under-separation pole. Transfer risk moderate-to-high (rodent fear discrimination -> general reality-coherence cost in a REE agent; the clinical/transdiagnostic framing adds risk)."
+  }
+}

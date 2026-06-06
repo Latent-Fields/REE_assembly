@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_contextual_memory_allocation_gate",
+  "entry_id": "2026-06-06_cmag_schema_gated_integration_tse2007",
+  "timestamp_utc": "2026-06-06T06:15:08Z",
+  "claim_ids_tested": ["CANDIDATE-contextual-memory-allocation-gate"],
+  "source": {
+    "title": "Schemas and memory consolidation",
+    "authors": ["Dorothy Tse", "Rosamund F. Langston", "Masaki Kakeyama", "Ingrid Bethus", "Patrick A. Spooner", "Emma R. Wood", "Menno P. Witter", "Richard G. M. Morris"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1135935",
+    "url": "https://www.science.org/doi/abs/10.1126/science.1135935"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Landmark Science paper showing that a pre-existing associative schema causally accelerates assimilation of new, schema-consistent traces (one-trial encoding that becomes hippocampus-independent within 48 h). Strong support that schema_fit is a real determinant of how a new trace is integrated. Held at 0.68 because the paper measures consolidation SPEED and hippocampal-independence, not the link-vs-separate allocation decision per se; the schema_fit -> integration-pressure mapping is an inference about a related but not identical operation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper measures schema-accelerated consolidation (rate of hippocampal disengagement), not the binary allocate-overlapping-vs-separate decision; equating fast assimilation with the gate's integrate output is an inference.",
+    "Schema benefit is shown for schema-CONSISTENT items; the paper does not characterize how schema mismatch triggers active separation, leaving the separate-pole of schema_fit under-specified.",
+    "Rodent spatial paired-associate task; the schema construct is a learned flavour-place associative structure, narrower than the general schema_fit variable the intake proposes."
+  ],
+  "tags": ["candidate-contextual-memory-allocation-gate", "schema", "schema-fit", "integration", "systems-consolidation", "memory-assimilation"],
+  "mapping": {
+    "source_claim_statement": "Once an associative schema has been learned, new schema-consistent paired associates can be encoded in a single trial and become hippocampus-independent within 48 hours; lesion and learning manipulations show the schema plays a causal role in rapid assimilation of new traces.",
+    "ree_translation": "Empirical grounding for the intake's `schema_fit` gating variable: how well a new experience matches a pre-existing structure causally determines how it is integrated (fast assimilation when it fits). In REE this connects to INV-039 (schema-primed rapid assimilation, rate gated by map stability) and supports schema_fit as a legitimate input to the allocation gate -- high fit -> integration pressure toward an existing trace; the control plane could read schema fit to bias overlap.",
+    "mapping_caveat": "The paper operationalizes schema benefit as consolidation SPEED / hippocampal-independence, not as the link-vs-separate allocation choice; mapping fast assimilation onto the gate's 'integrate' output is an inference about a related operation. It evidences the integrate-pole of schema_fit but is largely silent on schema-mismatch-driven separation. The schema here is a specific learned associative structure in rats, narrower than the general schema_fit the intake envisions.",
+    "source_context": "Rat; hippocampus-dependent flavour-place paired-associate task with a gradually learned spatial schema; hippocampal lesions at varying post-encoding delays; one-trial new-associate learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (Science, causal lesion design, foundational schema-consolidation paper). Mapping fidelity moderate -- it backs schema_fit as a variable and the integrate-pole, but measures consolidation rate rather than the allocation decision. Transfer risk moderate (rat associative schema -> general REE schema_fit term)."
+  }
+}
