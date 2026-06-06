@@ -4,9 +4,21 @@ nav_exclude: true
 
 # MECH-314a Phase-2 Novelty-Source Architecture Design
 
-**Status:** DESIGN. No code change, no claim registration, no experiment
-queued from this doc. Recommendation requires user assent before any
-landing session.
+**Status:** IMPLEMENTED 2026-06-05 (Candidate 5A). User assent on
+Candidate 5A granted 2026-06-05; the implementation landed via the
+`MECH-314a-Phase-2-impl` substrate_queue entry (status
+`implemented_pending_validation`) by session
+`implement-mech314a-phase2-cand5a-20260605T2016Z`. Module changes:
+`ree-v3/ree_core/agent.py` (rolling z_world visitation buffer, MECH-094-gated),
+`ree-v3/ree_core/policy/structured_curiosity.py` (`_compute_novelty` extended
+for the visitation source + first-action one-hot augmentation),
+`ree-v3/ree_core/utils/config.py` (6 bit-identical-OFF knobs). Contract test
+`ree-v3/tests/contracts/test_mech_314a_phase2.py` (14/14 PASS); 826 contracts +
+7 preflight PASS (bit-identical OFF). The section-8 governance/claims updates
+remain GATED on validation acceptance and are NOT applied. The validation
+EXPERIMENT (section 6 falsifier sketch, 3 arms x 3 seeds x 30 episodes) is the
+remaining gate; on PASS the follow-on is `/queue-experiment` V3-EXQ-590b
+Goldilocks retest.
 
 **Authoring session:** mech314a-phase2-novelty-source-arch-design-20260531T125133Z
 (TASK_CLAIMS).
