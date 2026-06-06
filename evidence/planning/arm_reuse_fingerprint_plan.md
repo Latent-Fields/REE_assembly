@@ -343,3 +343,117 @@ Phase 0, smallest useful unit:
    hits + compute saved. **No reuse executed.**
 
 Nothing in Phase 0 can invalidate an experiment -- it only adds fields and a report.
+
+---
+
+## 9. Phase 1 consumer design (scoped 2026-06-06; build = chip)
+
+Phase 0 *records* fingerprinted baselines. The Phase 1 **consumer** is what turns
+those records into actual compute savings: it lets a new iteration (643b / 610g)
+**skip re-training its OFF baseline arm** by reusing a previously-minted cell --
+under a strict refuse-by-default gate so it can never substitute a non-identical
+baseline.
+
+### 9.0 Hard prerequisite gate (do not build/enable before this passes)
+
+The consumer MUST NOT be enabled until the **cross-instance determinism check**
+(Phase 0 step §7b.4: mint the 610 baseline on cloud-2 AND cloud-3) has come back
+**agreeing within a written tolerance**. Reason: Regime A reuse treats a cached
+cell as a *representative draw* for (substrate, config_slice, seed) on a
+machine-class. That is only sound if two instances of the same machine-class
+actually produce the same draw. If cloud-2 vs cloud-3 diverge beyond tolerance,
+Regime A is invalid as built and reuse must wait for Regime B (bit-exact) instead.
+Record the measured divergence + the chosen tolerance in §7b before enabling.
+
+### 9.1 Lookup index (built by the indexer)
+
+Add a fingerprint index materialised by `build_experiment_indexes.py` (so it
+refreshes every governance run):
+
+```
+evidence/experiments/arm_fingerprint_index.json
+  { "<arm_fingerprint>": {
+      "run_id", "manifest_path", "experiment_type", "machine_class",
+      "reuse_eligible", "outcome", "cell_keys": [...],   # metric keys recorded for the cell
+      "superseded": bool                                 # mirrors manifest evidence_direction
+  }, ... }
+```
+
+Only cells with `reuse_eligible: true` and a non-ERROR parent outcome are
+indexed. Multiple runs sharing a fingerprint collapse to one entry (they are by
+construction the same random variable); prefer the newest non-superseded run.
+
+### 9.2 The consumer helper (refuse-by-default)
+
+`experiments/_lib/arm_reuse.py :: try_reuse_cell(config_slice, seed, script_path,
+needed_keys, cite_run_id=None) -> dict | None`
+
+It recomputes the requesting cell's fingerprint (same function Phase 0 emits) and
+returns a cached cell **only if ALL hold**, else `None` (caller then runs the arm):
+
+1. An index entry exists for that exact fingerprint. (Fingerprint equality
+   already implies same substrate_hash + config_slice + seed + machine_class +
+   regime -- so the machine-class guard and substrate guard are intrinsic: a
+   Mac-run iteration cannot match a cloud-minted baseline; it simply re-runs.)
+2. `cite_run_id`, if given, matches the index entry's run_id (explicit-cite mode,
+   Phase 1 default -- auditable, low blast radius). Automatic any-match is a
+   later opt-in.
+3. Cached `reuse_eligible: true` and parent `outcome != ERROR` and not
+   `superseded`.
+4. **`set(needed_keys) subset of set(cell_keys)`** -- the cached cell actually
+   recorded every metric this experiment reads off its OFF arm. (If 643b measures
+   a NEW OFF-arm quantity the mint didn't record, reuse cannot supply it -> refuse
+   -> re-run. This is the easiest correctness trap to miss.)
+5. Schema version matches (`arm_fp/v1`).
+
+On reuse, the returned cell is stamped with provenance:
+`reused_from_run_id`, `reused_fingerprint`, `reused_at_utc`.
+
+### 9.3 Provenance + governance (a reused run must be as rigorous as a fresh one)
+
+- Every reused cell in the consuming manifest carries the provenance fields above
+  so it is self-describing and a reviewer sees exactly what was fresh vs reused.
+- **No double-counting:** the indexer treats a reused cell as a pointer, not new
+  independent evidence (moot for `baseline`/`diagnostic` arms which are already
+  scoring-excluded, but enforce the rule generally).
+- **Supersession back-reference:** maintain a reverse index run_id -> [runs that
+  reused it]. If a source run is later marked superseded/invalidated, flag every
+  downstream consumer `pending_reuse_revalidation` (analogous to
+  `pending_substrate_reconfirmation`). A consumer must re-run the arm to clear it.
+- Reuse NEVER changes how `outcome` / acceptance criteria are computed -- the
+  criteria run over the (possibly reused) cells identically.
+
+### 9.4 Opt-in path (/queue-experiment)
+
+A new iteration opts in by: (a) constructing its OFF arm from the lineage's
+**canonical baseline module** (§7b) -- this is what makes the fingerprint match by
+construction; and (b) declaring `reuse_baseline_from: <mint_run_id>` in the queue
+entry. The script calls `try_reuse_cell(..., cite_run_id=<that run_id>,
+needed_keys=<the OFF metrics it reads>)`; on `None` it runs the arm normally and
+logs `reuse_refused: <reason>`. Add this as a documented (checklist) step in the
+skill, mirrored to both skill dirs.
+
+### 9.5 Build checklist (the chip)
+
+1. Gate-check: cross-instance determinism (§9.0) passed + tolerance recorded.
+2. `arm_fingerprint_index.json` writer in `build_experiment_indexes.py` (+ run in
+   `governance.sh`).
+3. `experiments/_lib/arm_reuse.py :: try_reuse_cell` with all §9.2 refuse rules;
+   unit-test each refuse branch (fingerprint mismatch, ineligible, ERROR,
+   superseded, missing needed_keys, schema mismatch, cite mismatch).
+4. Provenance stamping + indexer non-double-count + supersession reverse-index +
+   `pending_reuse_revalidation` flag.
+5. `/queue-experiment` opt-in step (both dirs) + extend `arm_reuse_report.py` with
+   a consumed-vs-fresh audit (and a refused-with-reason tally).
+6. First live use: write 643b (or 610g) via `/queue-experiment` citing the mint;
+   confirm in its manifest that the OFF cell shows `reused_from_run_id` and the
+   treatment arms ran fresh -- and that flipping one config byte flips it back to
+   a fresh run (the refuse path actually fires).
+
+### 9.6 Stop conditions / non-goals
+
+- If §9.0 fails, STOP -- do not ship Regime A reuse; escalate the Regime A vs B
+  decision to the user.
+- Still whole-cell reuse only (no partial/warm-start). Still same-machine-class.
+- Keep the refuse path the default everywhere: a false miss is cheap, a false hit
+  corrupts science (plan §2).
