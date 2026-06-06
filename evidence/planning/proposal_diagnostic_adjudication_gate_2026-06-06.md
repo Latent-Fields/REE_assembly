@@ -1,6 +1,6 @@
 # Proposal: Diagnostic Adjudication Gate -- verify the self-route before it drives governance
 
-- **Status:** PROPOSAL -- awaiting user sign-off. No skill, manifest-schema, or pipeline code has been changed by this document.
+- **Status:** ACCEPTED + IMPLEMENTED 2026-06-06. User signed off the design and all four open questions (Section 7) on the recommended path: (Q1) keep `/failure-autopsy`, add `/diagnostic-autopsy` alias; (Q2) checklist-first enforcement (harden to `validate_queue.py` later); (Q3) gate all three actions incl. thought-intake; (Q4) cover `diagnostic` + `baseline`. Implemented in session `implement-diagnostic-adjudication-gate-20260606T0828Z`. **Implementation note (discovered during build):** the indexer reads the *sync-normalized* `runs/**/manifest.json`, not the flat script manifest, so `interpretation` had to be carried through `sync_v3_results.py` (a 5th edit beyond the 4 parts below); governance.sh Step 2 DOES run that sync (its "no sync needed" comment is stale). Parts B+C+sync are read-only/backward-compatible and landed in code; Parts A+D landed in the three skills (both `.claude` + `.agents`). The validator-hardening (Q2 step 2) and the optional governance.sh hard-block remain future work.
 - **Author session:** proposal-diagnostic-adjudication-gate-20260606T0825Z
 - **Generated (UTC):** 2026-06-06T08:24:58Z
 - **Motivating run:** V3-EXQ-642 (`failure_autopsy_V3-EXQ-642_2026-06-06.{md,json}`)

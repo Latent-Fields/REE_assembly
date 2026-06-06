@@ -84,6 +84,17 @@ class RunRecord:
     architecture_epoch: str = ""
     adapter_signals_path: Path | None = None
     experiment_purpose: str = "evidence"
+    # Diagnostic adjudication gate (2026-06-06): the self-routed
+    # interpretation.label is a HYPOTHESIS, not a verdict. interpretation_label
+    # carries it for surfacing; adjudication is the machine-derived trust flag
+    # in {verified, precondition_unmet, vacuous_pass, unverified, n/a} computed
+    # by _compute_adjudication() from interpretation.preconditions[] +
+    # interpretation.criteria_non_degenerate{}. Only diagnostic/baseline runs
+    # are flagged; evidence runs carry "n/a". Absent structures => "unverified"
+    # (legacy, surfaced-but-not-blocked). See evidence/planning/
+    # proposal_diagnostic_adjudication_gate_2026-06-06.md.
+    interpretation_label: str = ""
+    adjudication: str = "n/a"
     adapter_contract_status: str = "n/a"
     adapter_contract_errors: list[str] = field(default_factory=list)
     evidence_level: str = "C"
@@ -104,6 +115,46 @@ class RunRecord:
     #   superseded_by_substrate_per_claim: {"SD-049": "SD-049@2026-05-31"}
     pending_retest_after_substrate_per_claim: list[str] = field(default_factory=list)
     superseded_by_substrate_per_claim: dict[str, str] = field(default_factory=dict)
+
+
+def _compute_adjudication(interpretation: Any, status: str,
+                          experiment_purpose: str) -> tuple[str, str]:
+    """Diagnostic adjudication gate -- derive the trust flag for a self-routed run.
+
+    Returns (interpretation_label, adjudication_flag). The flag is one of:
+      - "n/a"             -- not a diagnostic/baseline run (evidence runs are
+                             adjudicated by the normal claim-confidence path).
+      - "unverified"      -- diagnostic/baseline run whose manifest declares
+                             NEITHER preconditions[] NOR criteria_non_degenerate
+                             (legacy; surfaced but not blocked).
+      - "precondition_unmet" -- any interpretation.preconditions[].met is false
+                             (the self-route's assumption did not hold -- the
+                             label is untrustworthy regardless of PASS/FAIL).
+      - "vacuous_pass"    -- overall PASS but some criteria_non_degenerate value
+                             is false (a criterion passed for a trivial reason).
+      - "verified"        -- declared structure(s) present and all checks hold.
+
+    See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md and
+    the V3-EXQ-642 autopsy for the motivating failure modes.
+    """
+    interp = interpretation if isinstance(interpretation, dict) else {}
+    label = str(interp.get("label", "") or "")
+    if experiment_purpose not in ("diagnostic", "baseline"):
+        return label, "n/a"
+    preconditions = interp.get("preconditions")
+    preconditions = preconditions if isinstance(preconditions, list) else []
+    crit = interp.get("criteria_non_degenerate")
+    crit = crit if isinstance(crit, dict) else {}
+    if not preconditions and not crit:
+        return label, "unverified"
+    # An unmet precondition invalidates the self-route's premise -> highest priority.
+    for p in preconditions:
+        if isinstance(p, dict) and p.get("met") is False:
+            return label, "precondition_unmet"
+    # A PASS that rests on a degenerate criterion clears a gate on nothing.
+    if str(status).upper() == "PASS" and any(v is False for v in crit.values()):
+        return label, "vacuous_pass"
+    return label, "verified"
 
 
 @dataclass
@@ -402,6 +453,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # auto-inferred (e.g. design-inconclusive experiments marked "unknown").
         direction_explicitly_set = bool(manifest.get("evidence_direction_note"))
         experiment_purpose = str(manifest.get("experiment_purpose", "evidence")).strip() or "evidence"
+        interpretation_label, adjudication = _compute_adjudication(
+            manifest.get("interpretation"), status, experiment_purpose)
         evidence_level = _normalize_evidence_level(manifest.get("evidence_level"))
         # Substrate-staleness gate: honor manually-set manifest fields that mark
         # this run as mechanistically stale after a downstream substrate change.
@@ -441,6 +494,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 evidence_direction_per_claim=evidence_direction_per_claim,
                 direction_explicitly_set=direction_explicitly_set,
                 experiment_purpose=experiment_purpose,
+                interpretation_label=interpretation_label,
+                adjudication=adjudication,
                 architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
                 evidence_level=evidence_level,
@@ -1319,6 +1374,9 @@ def _write_claim_evidence_matrix(
                     "run_id": run.run_id,
                     "timestamp_utc": run.timestamp_raw,
                     "status": run.final_status,
+                    "experiment_purpose": run.experiment_purpose,
+                    "interpretation_label": run.interpretation_label,
+                    "adjudication": run.adjudication,
                 }
             )
             continue
@@ -1353,6 +1411,9 @@ def _write_claim_evidence_matrix(
                 "failure_signatures": run.failure_signatures,
                 "experiment_purpose": run.experiment_purpose,
             }
+            if run.experiment_purpose in ("diagnostic", "baseline"):
+                entry["interpretation_label"] = run.interpretation_label
+                entry["adjudication"] = run.adjudication
             if run.architecture_epoch:
                 entry["architecture_epoch"] = run.architecture_epoch
             matrix["entries"].append(entry)

@@ -177,6 +177,15 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
         "failure_signatures": [],
     }
 
+    # Diagnostic adjudication gate (2026-06-06): carry the script's self-routed
+    # interpretation block (label + preconditions[] + criteria_non_degenerate)
+    # through to the runs/ manifest so build_experiment_indexes._compute_adjudication
+    # can flag an untrustworthy self-route. Conditional add => legacy flat
+    # manifests without an interpretation block produce byte-identical output.
+    interpretation = data.get("interpretation")
+    if isinstance(interpretation, dict) and interpretation:
+        manifest["interpretation"] = interpretation
+
     # Build metrics.json
     raw_metrics = data.get("metrics", {})
     metrics_doc = {

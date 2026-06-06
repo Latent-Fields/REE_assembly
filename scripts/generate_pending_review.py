@@ -96,6 +96,12 @@ def _accumulate_pending_run(by_run: dict, e: dict, default_claim: str) -> None:
             "status": e.get("status", "?"),
             "claims": [],
             "failure_signatures": [],
+            # Diagnostic adjudication gate (2026-06-06): the indexer attaches
+            # adjudication in {verified, precondition_unmet, vacuous_pass,
+            # unverified, n/a} to diagnostic/baseline runs. Surfaced below so a
+            # flagged self-route is visible before governance acts on it.
+            "adjudication": e.get("adjudication", "n/a"),
+            "interpretation_label": e.get("interpretation_label", ""),
         }
     claim = e.get("claim_id") or default_claim
     if claim not in by_run[run_id]["claims"]:
@@ -354,6 +360,12 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                          last_review_utc: str) -> None:
     passes = [r for r in runs if r["status"] == "PASS"]
     fails  = [r for r in runs if r["status"] != "PASS"]
+    # Diagnostic adjudication gate: diagnostics/baselines whose self-route the
+    # indexer flagged as untrustworthy. These still appear in their FAIL/PASS
+    # table for the normal review flow; this is a focused callout so governance
+    # does not act on the label before it is adjudicated.
+    flagged = [r for r in runs
+               if r.get("adjudication") in ("precondition_unmet", "vacuous_pass")]
 
     total_pending = len(runs) + len(runner_undiscussed) + len(unclaimed)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -366,7 +378,8 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         f"Pending: **{total_pending}** item(s)"
         f" -- {len(passes)} PASS, {len(fails)} FAIL,"
         f" {len(runner_undiscussed)} runner-only (ERROR/UNKNOWN/smoke),"
-        f" {len(unclaimed)} unclaimed manifest(s)",
+        f" {len(unclaimed)} unclaimed manifest(s)"
+        f"; {len(flagged)} diagnostic self-route(s) flagged for adjudication",
         "",
     ]
 
@@ -392,6 +405,30 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                 claims = ", ".join(sorted(set(r["claims"])))
                 ts = r["timestamp_utc"][:16] if r["timestamp_utc"] else "?"
                 lines.append(f"| `{r['run_id']}` | {ts} | {claims} |")
+            lines.append("")
+
+        if flagged:
+            lines += ["## Diagnostic adjudication required (self-route unverified)", ""]
+            lines += [
+                "These diagnostic/baseline runs carry a self-routed "
+                "`interpretation.label`, but the indexer flagged it as untrustworthy: "
+                "`precondition_unmet` (a declared precondition's `met` is false -- the "
+                "self-route's premise did not hold) or `vacuous_pass` (an overall PASS "
+                "rests on a degenerate criterion). The label must NOT drive a governance "
+                "action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / "
+                "close-or-route a thought-intake) until adjudicated -- run "
+                "`/failure-autopsy` on the run (it accepts a flagged PASS target too). "
+                "See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.",
+                "",
+                "| Run ID | Status | Self-route label | Adjudication |",
+                "|--------|--------|------------------|--------------|",
+            ]
+            for r in flagged:
+                label = r.get("interpretation_label") or "—"
+                lines.append(
+                    f"| `{r['run_id']}` | {r['status']} | {label} | "
+                    f"**{r['adjudication']}** |"
+                )
             lines.append("")
 
         if unclaimed:
@@ -447,6 +484,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         "- PASS/FAIL runs (claim-tagged): add run IDs to `reviewed_run_ids` in review_tracker.json",
         "- ERROR/UNKNOWN/smoke: add queue_id or dir_name to `discussed_experiment_dirs` in review_tracker.json",
         "- Unclaimed manifests (PASS/FAIL, no claim tags): add the manifest stem (filename minus `.json`) to `discussed_experiment_dirs`",
+        "- Diagnostic self-route flagged (`precondition_unmet` / `vacuous_pass`): adjudicate via `/failure-autopsy` before the label drives a governance action; clearing the run for review does not clear the adjudication flag (the manifest's `interpretation` is the source of truth -- a re-queued successor supersedes it).",
         "- Update `last_review_utc`, then re-run this script to confirm the list clears.",
         "",
         "```bash",
