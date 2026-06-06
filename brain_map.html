@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BRAIN_MAP_VERSION: 2026-06-06.3 -->
+<!-- BRAIN_MAP_VERSION: 2026-06-06.4 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -37,7 +37,7 @@
      the whole sheet; column widths are locked to each plane's source aspect ratio so
      the SVGs fill their cells with no letterboxing and shared axes line up to the pixel. */
   .planes { --rowH: 340px; display: grid; position: relative;
-    grid-template-columns: calc(var(--rowH) * 600 / 500) calc(var(--rowH) * 690 / 630);
+    grid-template-columns: var(--rowH) calc(var(--rowH) * 229 / 193);
     grid-template-rows: auto auto; gap: 14px 16px;
     justify-content: start; align-items: start; }
   /* projection guide overlay: axis-aligned crosshair bands drawn on hover so a
@@ -111,8 +111,8 @@
   </div>
 </header>
 <div class="disclaimer" id="disclaimer">
-  Functional analogy only -- not biological homology. Each region is drawn in the plane(s) where it is anatomically
-  visible; colors show REE claim density, substrate implementation, and experiment evidence -- not neuroanatomical accuracy.
+  Functional analogy only -- not biological homology. The three planes are orthogonal slices of one co-registered
+  MNI152 template; colors show REE claim density, substrate implementation, and experiment evidence -- not neuroanatomical accuracy.
 </div>
 <div class="toolbar">
   <label><input type="checkbox" id="layerImpl" checked> Implementation</label>
@@ -128,13 +128,13 @@
       <svg id="guideOverlay" aria-hidden="true"></svg>
       <div class="plane plane-coronal"><h3>Coronal &mdash; thalamus level<span class="axhint">L&ndash;R &times; sup&ndash;inf</span></h3>
         <div class="host" id="host_coronal"></div>
-        <div class="cap">MRI: 511KeV, Wikimedia, CC BY-SA 4.0</div></div>
+        <div class="cap">MNI152 template (TemplateFlow, ICBM 152)</div></div>
       <div class="plane plane-sagittal"><h3>Sagittal &mdash; midline<span class="axhint">ant&ndash;post &times; sup&ndash;inf</span></h3>
         <div class="host" id="host_sagittal"></div>
-        <div class="cap">MRI: O. Stollmann, Wikimedia, CC-attribution</div></div>
+        <div class="cap">MNI152 template (TemplateFlow, ICBM 152)</div></div>
       <div class="plane plane-axial"><h3>Axial &mdash; basal ganglia level<span class="axhint">L&ndash;R &times; ant&ndash;post</span></h3>
         <div class="host" id="host_axial"></div>
-        <div class="cap">MRI: Novaksean, Wikimedia, CC BY-SA 4.0</div></div>
+        <div class="cap">MNI152 template (TemplateFlow, ICBM 152)</div></div>
       <div class="substrate"><h3>Substrate</h3><div class="nodes" id="substrateNodes"></div></div>
     </div>
   </div>

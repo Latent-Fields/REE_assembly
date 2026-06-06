@@ -1,30 +1,45 @@
 #!/usr/bin/env python3
-"""Generate the three linked brain-plane SVGs (sagittal / coronal / axial) for the
-REE brain map from a single region table.
+"""Generate the three co-registered brain-plane SVGs (sagittal / coronal / axial)
+for the REE brain map.
 
-Each region is placed in the plane(s) where it is anatomically visible; naturally
-bilateral structures are rendered as symmetric L/R pairs. Region elements carry
-data-region="<id>" (and namespaced ids <plane>_region_<id>) so brain_map.html can
-fill / select a region across every plane it appears in.
+2026-06-06 rebuild: the three backdrops are now slices of ONE template volume
+(TemplateFlow tpl-MNI152NLin2009cAsym, res-01, 1 mm, ICBM 152) cut at fixed
+voxel indices. Because the planes share a single voxel grid, the views are
+co-registered by construction -- coronal/axial share the left-right (X) voxel
+count and coronal/sagittal share the superior-inferior (Z) voxel count, so the
+orthographic projection in brain_map.html lines up to the pixel.
 
-Functional analogy only -- not biological homology. Run from this directory:
-    /opt/local/bin/python3 build_brain_planes.py
-Re-run after editing REGIONS / placements; commit the emitted *.svg files.
+Each region is defined ONCE as an ellipsoid in MNI millimetre space and
+projected into every plane it is shown in, so a structure's position is
+consistent across all three views (real orthographic tracing, not three
+independently-placed drawings). `planes` curates which views a region appears
+in; the (cx, cy, rx, ry) of each blob is computed from the 3D centre.
+
+  Run:  /opt/local/bin/python3 build_brain_planes.py
+
+Functional analogy, not homology -- colours/coverage are applied by the page.
 """
-import base64
 import os
+import base64
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-# (image file, viewBox W, viewBox H) -- image is drawn at 0,0 filling the viewBox,
-# so region coords below are in source-pixel space for that plane.
+# --- volume geometry (MNI152 1 mm, RAS+, affine is identity + translation) ---
+# voxel index = mm + OFF along each axis: i = x+96 (R), j = y+132 (A), k = z+78 (S)
+NX, NY, NZ = 193, 229, 193
+OFF = (96, 132, 78)
+# fixed voxel index sliced for each plane (sagittal x=0, coronal y=-18, axial z=+6)
+SLICE_VOX = {"sagittal": 96, "coronal": 114, "axial": 84}
+SLICE_MM = {"sagittal": ("x", 0), "coronal": ("y", -18), "axial": ("z", 6)}
+
+CREDIT = "MNI152 template (TemplateFlow / ICBM 152), co-registered slices"
 PLANES = {
-    "sagittal": {"img": "brain_sagittal.jpg", "w": 690, "h": 630,
-                 "label": "Sagittal (midline)", "credit": "(c) O. Stollmann, Wikimedia, CC-attribution"},
-    "coronal":  {"img": "brain_coronal.jpg",  "w": 600, "h": 500,
-                 "label": "Coronal (thalamus)", "credit": "(c) 511KeV, Wikimedia, CC BY-SA 4.0"},
-    "axial":    {"img": "brain_axial.jpg",    "w": 418, "h": 520,
-                 "label": "Axial (basal ganglia)", "credit": "(c) Novaksean, Wikimedia, CC BY-SA 4.0"},
+    "sagittal": {"img": "brain_sagittal.jpg", "w": NY, "h": NZ,
+                 "label": "Sagittal (x=0)", "credit": CREDIT},
+    "coronal":  {"img": "brain_coronal.jpg",  "w": NX, "h": NZ,
+                 "label": "Coronal (y=-18)", "credit": CREDIT},
+    "axial":    {"img": "brain_axial.jpg",    "w": NX, "h": NY,
+                 "label": "Axial (z=+6)", "credit": CREDIT},
 }
 
 GHOST = {"ghost_insula", "ghost_language", "ghost_cerebellum"}
@@ -32,110 +47,75 @@ GHOST = {"ghost_insula", "ghost_language", "ghost_cerebellum"}
 # large diffuse fields kept faint so they don't swamp the discrete nuclei
 OPACITY = {"astrocyte": 0.38, "default_mode": 0.55, "harm_stream": 0.65}
 
-# Per-region placement. value = {plane: [ (cx,cy,rx,ry), ... ]}  (>1 blob = bilateral)
-# Sagittal/axial coords are in their source-pixel viewBox (anterior: sagittal=left,
-# axial=top). The sagittal backdrop was re-cropped 2026-06-06 from the same
-# O. Stollmann 900x900 original to include the frontal pole (now 690x630, was
-# 522x560); the prior coords were shifted +90 x / +10 y to track the new window.
-# CORONAL coords are kept in the legacy 420x520 layout space (image at
-# x=-70 y=13 w=560 h=467) -- reused verbatim from the prior single-plane map -- and
-# transformed to the 600x500 plane viewBox by _coronal_xform() at build time.
+# Region model -- one ellipsoid in MNI mm: (x, y, z, rx, ry, rz).
+# x:+right  y:+anterior  z:+superior. `bilateral` mirrors the blob across x=0
+# (two blobs in coronal/axial; they coincide on the midline-sagittal slice).
+# `planes` = curated coverage; positions are projected from the 3D centre so
+# the same structure lands at consistent coordinates in every view it shows in.
 REGIONS = {
-    "pfc": {
-        "sagittal": [(193, 188, 78, 52)],
-        "axial":    [(205, 82, 82, 44)],
-    },
-    "motor": {
-        "sagittal": [(345, 102, 40, 28)],
-        "coronal":  [(262, 98, 30, 22)],
-        "axial":    [(150, 132, 36, 20), (262, 132, 36, 20)],
-    },
-    "cingulate": {
-        "sagittal": [(306, 188, 82, 24)],
-        "coronal":  [(210, 162, 48, 18)],
-        "axial":    [(205, 136, 40, 20)],
-    },
-    "default_mode": {
-        "sagittal": [(338, 245, 96, 56)],
-        "coronal":  [(210, 206, 28, 56)],
-        "axial":    [(205, 250, 42, 120)],
-    },
-    "astrocyte": {
-        "sagittal": [(340, 295, 100, 92)],
-        "coronal":  [(210, 262, 78, 66)],
-        "axial":    [(205, 255, 112, 120)],
-    },
-    "basal_ganglia": {
-        "coronal": [(150, 228, 26, 30), (270, 228, 26, 30)],
-        "axial":   [(150, 182, 34, 40), (266, 182, 34, 40)],
-    },
-    "thalamus": {
-        "sagittal": [(345, 315, 30, 26)],
-        "coronal":  [(193, 264, 15, 16), (227, 264, 15, 16)],
-        "axial":    [(180, 235, 28, 30), (238, 235, 28, 30)],
-    },
-    "sleep": {
-        "sagittal": [(338, 348, 22, 18)],
-        "coronal":  [(210, 300, 24, 18)],
-    },
-    "neuromodulation": {
-        "sagittal": [(335, 388, 20, 22)],
-        "coronal":  [(210, 345, 20, 22)],
-    },
-    "amygdala": {
-        "coronal": [(152, 330, 15, 13), (268, 330, 15, 13)],
-        "axial":   [(160, 255, 18, 16), (256, 255, 18, 16)],
-    },
-    "hippocampus": {
-        "coronal": [(135, 360, 24, 17), (285, 360, 24, 17)],
-        "axial":   [(152, 286, 28, 22), (266, 286, 28, 22)],
-    },
-    "pag": {
-        "sagittal": [(352, 352, 18, 20)],
-        "coronal":  [(210, 372, 19, 22)],
-        "axial":    [(209, 276, 20, 22)],
-    },
-    "respiratory": {
-        "sagittal": [(318, 458, 22, 16)],
-        "coronal":  [(210, 430, 24, 15)],
-    },
-    "harm_stream": {
-        "coronal": [(318, 258, 14, 46)],
-        "axial":   [(320, 235, 16, 46)],
-    },
-    "tpj": {
-        "coronal": [(314, 150, 19, 13)],
-        "axial":   [(312, 330, 24, 18)],
-    },
-    "peripersonal_space": {
-        "coronal": [(74, 252, 16, 20)],
-        "axial":   [(95, 320, 20, 24)],
-    },
-    "visual_streams": {
-        "sagittal": [(525, 285, 30, 40)],
-        "axial":    [(205, 446, 60, 40)],
-    },
+    "pfc":            {"planes": ["sagittal", "axial"],            "blob": (0, 52, 8, 34, 16, 22)},
+    "motor":          {"planes": ["sagittal", "coronal", "axial"], "blob": (10, -22, 58, 12, 14, 12), "bilateral": True},
+    "cingulate":      {"planes": ["sagittal", "coronal", "axial"], "blob": (0, 8, 26, 8, 42, 16)},
+    "default_mode":   {"planes": ["sagittal", "coronal", "axial"], "blob": (0, -48, 30, 12, 38, 28)},
+    "astrocyte":      {"planes": ["sagittal", "coronal", "axial"], "blob": (0, -12, 18, 42, 52, 46)},
+    "basal_ganglia":  {"planes": ["coronal", "axial"],             "blob": (22, 4, 4, 11, 15, 13), "bilateral": True},
+    "thalamus":       {"planes": ["sagittal", "coronal", "axial"], "blob": (9, -18, 8, 8, 12, 9), "bilateral": True},
+    "sleep":          {"planes": ["sagittal", "coronal"],          "blob": (0, -6, -8, 6, 8, 8)},
+    "neuromodulation": {"planes": ["sagittal", "coronal"],         "blob": (0, -28, -20, 6, 10, 12)},
+    "amygdala":       {"planes": ["coronal", "axial"],             "blob": (23, -4, -18, 8, 8, 7), "bilateral": True},
+    "hippocampus":    {"planes": ["coronal", "axial"],             "blob": (28, -20, -12, 9, 14, 8), "bilateral": True},
+    "pag":            {"planes": ["sagittal", "coronal", "axial"], "blob": (0, -30, -8, 5, 6, 8)},
+    "respiratory":    {"planes": ["sagittal", "coronal"],          "blob": (0, -40, -48, 6, 8, 9)},
+    "harm_stream":    {"planes": ["coronal", "axial"],             "blob": (40, -12, 8, 8, 34, 18)},
+    "tpj":            {"planes": ["coronal", "axial"],             "blob": (52, -52, 26, 12, 14, 12)},
+    "peripersonal_space": {"planes": ["coronal", "axial"],         "blob": (-48, -40, 46, 12, 16, 14)},
+    "visual_streams": {"planes": ["sagittal", "axial"],            "blob": (0, -90, 4, 18, 16, 22)},
     # --- ghost / out-of-scope ---
-    "ghost_insula": {
-        "coronal": [(92, 272, 14, 20), (328, 272, 14, 20)],
-        "axial":   [(110, 205, 16, 30), (308, 205, 16, 30)],
-    },
-    "ghost_language": {
-        "coronal": [(86, 208, 20, 18)],
-        "axial":   [(95, 250, 22, 20)],
-    },
-    "ghost_cerebellum": {
-        "sagittal": [(462, 426, 50, 42)],
-        "coronal":  [(210, 462, 46, 17)],
-    },
+    "ghost_insula":   {"planes": ["coronal", "axial"],             "blob": (38, 4, 2, 6, 12, 16), "bilateral": True},
+    "ghost_language": {"planes": ["coronal"],                      "blob": (-52, 16, 16, 10, 12, 12)},
+    "ghost_cerebellum": {"planes": ["sagittal"],                   "blob": (0, -66, -32, 24, 22, 18)},
 }
 
+# draw order: diffuse fields first (painted behind), then nuclei, then ghosts
+ORDER = ["default_mode", "astrocyte", "pfc", "motor", "cingulate", "tpj",
+         "basal_ganglia", "thalamus", "sleep", "neuromodulation",
+         "amygdala", "hippocampus", "pag", "respiratory", "harm_stream",
+         "peripersonal_space", "visual_streams",
+         "ghost_insula", "ghost_language", "ghost_cerebellum"]
 
-def _coronal_xform(blob):
-    """legacy 420x520 layout (image at x=-70,y=13,w=560,h=467) -> 600x500 plane viewBox."""
-    cx, cy, rx, ry = blob
-    sx, sy = 600 / 560.0, 500 / 467.0
-    return ((cx + 70) * sx, (cy - 13) * sy, rx * sx, ry * sy)
+
+def project(plane, blob):
+    """MNI-mm ellipsoid -> (cx, cy, rx, ry) in the plane's source-pixel viewBox.
+
+    Pixel maps (voxel i=x+96, j=y+132, k=z+78):
+      sagittal: cx = NY-1-j,  cy = NZ-1-k,  (rx,ry)=(ry_mm,rz_mm)
+      coronal:  cx = i,       cy = NZ-1-k,  (rx,ry)=(rx_mm,rz_mm)
+      axial:    cx = i,       cy = NY-1-j,  (rx,ry)=(rx_mm,ry_mm)
+    """
+    x, y, z, rx, ry, rz = blob
+    i, j, k = x + OFF[0], y + OFF[1], z + OFF[2]
+    if plane == "sagittal":
+        return (NY - 1 - j, NZ - 1 - k, ry, rz)
+    if plane == "coronal":
+        return (i, NZ - 1 - k, rx, rz)
+    return (i, NY - 1 - j, rx, ry)  # axial
+
+
+def blobs_for(region, plane):
+    base = region["blob"]
+    raw = [base]
+    if region.get("bilateral"):
+        x, y, z, rx, ry, rz = base
+        raw = [(x, y, z, rx, ry, rz), (-x, y, z, rx, ry, rz)]
+    out, seen = [], set()
+    for b in raw:
+        p = project(plane, b)
+        key = (round(p[0]), round(p[1]))  # dedupe coincident bilateral (sagittal)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(p)
+    return out
 
 
 def ellipse_path(cx, cy, rx, ry):
@@ -163,23 +143,16 @@ def build_plane(plane, cfg):
     img_path = os.path.join(HERE, cfg["img"])
     b64 = base64.b64encode(open(img_path, "rb").read()).decode()
     W, H = cfg["w"], cfg["h"]
-    # order: diffuse fields first (painted behind), then nuclei, then ghosts
-    order = ["default_mode", "astrocyte", "pfc", "motor", "cingulate", "tpj",
-             "basal_ganglia", "thalamus", "sleep", "neuromodulation",
-             "amygdala", "hippocampus", "pag", "respiratory", "harm_stream",
-             "peripersonal_space", "visual_streams",
-             "ghost_insula", "ghost_language", "ghost_cerebellum"]
     parts = []
-    for rid in order:
-        blobs = REGIONS.get(rid, {}).get(plane)
-        if blobs:
-            if plane == "coronal":
-                blobs = [_coronal_xform(b) for b in blobs]
-            parts.append(region_svg(plane, rid, blobs))
+    for rid in ORDER:
+        region = REGIONS.get(rid)
+        if not region or plane not in region["planes"]:
+            continue
+        parts.append(region_svg(plane, rid, blobs_for(region, plane)))
     regions_svg = "\n".join(parts)
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <!-- GENERATED by build_brain_planes.py (do not hand-edit; edit the generator + re-run).
-     {plane.capitalize()} plane. Ghosted real MRI backdrop {cfg['credit']}.
+     {plane.capitalize()} plane. Backdrop: {cfg['credit']}.
      Functional analogy, not homology. -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid meet"
@@ -206,12 +179,8 @@ def build_plane(plane, cfg):
 '''
 
 
-def main():
+if __name__ == "__main__":
     for plane, cfg in PLANES.items():
         out = os.path.join(HERE, f"brain_plane_{plane}.svg")
         open(out, "w").write(build_plane(plane, cfg))
         print(f"wrote {out} ({os.path.getsize(out)//1024} KB)")
-
-
-if __name__ == "__main__":
-    main()

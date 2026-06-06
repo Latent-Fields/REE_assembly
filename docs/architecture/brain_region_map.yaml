@@ -5,14 +5,15 @@ schema_version: 1
 disclaimer: >-
   Regions denote computational roles inspired by neuroscience naming in REE.
   Coverage reflects claims, substrate code, and experiment evidence -- not
-  biological completeness or anatomical accuracy. The three planes are arranged
-  as an orthographic projection sheet: coronal (front) above axial (top) sharing
-  the left-right axis, sagittal (side) beside coronal sharing the
-  superior-inferior axis -- hover a region to trace it across views. Plane
-  alignment is calibrated to each backdrop's frame, not a shared anatomical
-  atlas. Region placement is still catching up to the founder layout intent
-  (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in
-  founder_ontology.md.
+  biological completeness or anatomical accuracy. The three planes are
+  orthogonal slices of one co-registered MNI152 template volume, arranged as an
+  orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6)
+  sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the
+  superior-inferior axis -- so a region lines up across views and can be traced.
+  Each region is placed once in MNI space and projected into every plane it
+  appears in. Region placement follows the founder layout intent (E1=cerebrum,
+  E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is
+  still being refined.
 founder_ontology: docs/architecture/founder_ontology.md
 
 # Prefixes that must map to a region or engineering bucket (validate script).
