@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
-  "runner_pid": 670,
-  "runner_started_at": "2026-06-06T16:21:05.232229+00:00",
-  "last_updated": "2026-06-06T17:24:51.899061+00:00",
+  "runner_pid": 667,
+  "runner_started_at": "2026-06-06T20:38:30.296078+00:00",
+  "last_updated": "2026-06-06T23:06:57.321953+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -1879,6 +1879,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3.json",
       "completed_by": "ree-cloud-4",
       "actual_secs": 3825.3
+    },
+    {
+      "queue_id": "V3-EXQ-643b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Corrected-C2 modulatory-authority re-validation (reuse-preserving): REUSE the V3-EXQ-646 ARM_A OFF baseline by explicit cite (config UNCHANGED -> byte-reusable on cloud-4) + run ARM_B/ARM_C fresh via 643a's verbatim _run_seed_arm; ONLY the evaluator differs. Replaces the confounded ON-minus-OFF rank-change C2 with a within-ON-arm C2a (authority-path carves committed selection: active AND bias_changed_selection_frac>floor on >=2/3 seeds) + C2b dose-response-on-flips (informative). Drops 'sweep gain higher'. Corrects the C2 design shared by V3-EXQ-643a/647.",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "Result written to: /home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3.json | Outcome: PASS  label: authority_carves_selection_dose_flat_near_tie_bound | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-643b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-643b.json",
+      "started_at": "2026-06-06T20:38:30.316920+00:00",
+      "completed_at": "2026-06-06T23:06:57.321370+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 8905.9
     }
   ]
 }
