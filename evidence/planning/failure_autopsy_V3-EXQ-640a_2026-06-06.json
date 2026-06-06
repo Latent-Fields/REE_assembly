@@ -1,0 +1,69 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-06T04:08:44Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_640a_scaffold_cue_authority_gain_sweep_20260606T013614Z_v3",
+      "queue_id": "V3-EXQ-640a",
+      "claim_ids": [],
+      "implicit_claims_probed": ["SD-057", "MECH-347", "MECH-346", "MECH-295"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (diagnostic, claim_ids=[]); mechanism DID express (cue fired every step, z_goal elevated) so the negative result is contributory about the propagation layer, NOT a falsification of the cue-recall claim",
+        "biological_reference": "PIT / cue-triggered wanting (Berridge 2009; Corbit & Balleine): cue->incentive-retrieval->z_goal lands; incentive->approach (instrumental transfer / PIT expression) silent -- missing-dependency signature on the MECH-295/E3 instrumental pathway",
+        "prerequisites": "missing/immature -- GAP-2 foraging competence (2/3 seeds zero contact under harsh P2 env)",
+        "implementation": "partial -- cue_pull->z_goal works (z_goal elevated ~0.5 vs 0.42 OFF); MECH-295/E3 goal_proximity lacks selection authority over E3; SD-016 cue_action_proj separately ungrounded (null cue_action_bias)",
+        "environment": "wrong pressures for this measure -- P2 hazard_food_attraction=0.7 makes cued food hazard-attracting; hazard_interrupt_rate 0.41-0.92 penalises the measured approach",
+        "measurement": "partially misleading -- per-fire cue_zgoal_pull_norm saturates (cue fires every step) and is the wrong instrument for 'does the cue reach z_goal'; absolute zgoal_norm_at_cue_fire is the truer readout and shows elevation",
+        "integration": "isolated -- HEADLINE: z_goal elevated but does not propagate to E3 action selection across the full 25x gain x 5x kappa sweep",
+        "scale": "adequate -- 25x gain / 5x kappa ruled magnitude out; this was the designed near-full-snap probe"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Pavlovian-instrumental transfer (PIT) / cue-triggered wanting / sign-tracking",
+        "dependencies": ["instrumental action-selection pathway with authority over choice (MECH-295 liking-bridge)", "E3 goal_proximity selection authority", "foraging competence to reach a resource at all (GAP-2)"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; faithful PIT translation. The cue->z_goal (incentive salience) step is intact; the z_goal->approach (instrumental transfer expression) step is the discovered prerequisite gap",
+        "lit_status": "present (SD-057 design doc + targeted reviews; Berridge 2009, Corbit & Balleine 2005/2011)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-640a (cue-authority gain sweep, diagnostic, claim_ids=[]) confirmed SD-057 cue-recall reaches z_goal (absolute zgoal_norm_at_cue_fire ~0.5 vs 0.42 OFF; cue fires every step) but a 25x cue_recall_gain x 5x incentive_drive_kappa sweep produced NO post-cue approach-lift over within-run background in any of 6 cells -- the z_goal->approach propagation (MECH-295 liking-bridge / E3 goal_proximity) lacks selection authority over E3. Same selection-authority shape as the 604a/624a/614d modulatory-bias-selection-authority cluster. Magnitude at the cue-pull stage ruled out. epistemic_category substrate_ceiling on the propagation layer; pending_retest_after_substrate (modulatory-bias-selection-authority validation) AND blocked on GAP-2 foraging competence (2/3 seeds zero contact). NOT evidence against the cue-recall claim (cue->z_goal intact); NOT a 638b build trigger.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "sd_id_suggested": "modulatory-bias-selection-authority",
+        "title": "Gap-relative E3.select authority -- add cue-recall/MECH-295 approach bias to the validation surface",
+        "implementation_hint": "The MECH-295 liking-bridge + cue-driven z_goal approach bias is another modulatory channel that needs the gap-relative selection authority this substrate provides. V3-EXQ-640a showed z_goal elevated but approach flat across a 25x5 sweep (the drowning shape). The substrate's validation should exercise the cue-recall approach channel: with modulatory authority ON, an elevated object-bound z_goal should produce post-cue approach-lift > 0 in a contact-making env.",
+        "unblocks_claims": ["MECH-295", "SD-057", "MECH-346", "MECH-347", "MECH-314", "MECH-320", "MECH-341"],
+        "depends_on_unresolved": ["scaffolded_sd054_onboarding (GAP-2 foraging competence -- non-zero contact required for a clean approach-lift re-test)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_640a_scaffold_cue_authority_gain_sweep_20260606T013614Z_v3",
+          "experiment_type": "v3_exq_640a_scaffold_cue_authority_gain_sweep",
+          "metric": "post-cue approach-lift over within-run background flat/negative (-0.006 .. -0.00001) across the full cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} sweep despite zgoal_norm_at_cue_fire ~0.5 vs 0.42 OFF and cue firing every step",
+          "target": "post-cue approach-lift > 0 over within-run background on >= 2/3 seeds in a contact-making env once modulatory selection authority is active"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "retest_blocked_by": ["modulatory-bias-selection-authority (validation pending)", "scaffolded_sd054_onboarding (GAP-2 foraging competence; 2/3 seeds zero contact)"],
+      "narrow_supports_flag": false,
+      "hard_constraint_confirmed": "Do NOT build V3-EXQ-638b -- cue authority over z_goal is present and magnitude is not the bottleneck; 638b gates cue firing, which would not fix a z_goal->approach propagation gap.",
+      "learning_extracted": [
+        "SD-057 cue-recall reaches z_goal (absolute z_goal elevated ~0.5 vs 0.42 OFF; cue fires every step) -- positive evidence the L6 cue->z_goal wiring is intact; the cue-recall claim is NOT falsified",
+        "Bottleneck is z_goal->approach propagation: approach lift flat/negative across a 25x gain x 5x kappa sweep; cue-pull-stage magnitude ruled out",
+        "Same selection-authority drowning shape as the 604a/624a/614d modulatory-bias-selection-authority cluster",
+        "per-fire cue_zgoal_pull_norm saturates (cue every step) and is the wrong instrument for 'does the cue reach z_goal'; use absolute z_goal-at-cue-fire vs OFF reference",
+        "Clean propagation re-test confounded by GAP-2 foraging competence (2/3 seeds zero contact) and hazard-attracting P2 env penalising the measured approach"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "modulatory bias elevated but no authority over the committed E3 selection -- elevated z_goal does not propagate to approach (the 'drowning' shape)",
+    "is_independent_bugs": false,
+    "structural_property": "the z_goal->approach / modulatory-bias selection-authority layer at E3.select does not carry behavioural authority at the granularity the consumer claims (MECH-295/SD-057 cue-recall, MECH-314 curiosity, MECH-320 vigor, MECH-341 diversity) require",
+    "readings": ["substrate_enrichment (selection-authority layer)", "gap2_foraging_competence_confound"]
+  }
+}
