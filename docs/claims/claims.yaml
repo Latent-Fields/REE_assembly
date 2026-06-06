@@ -28300,6 +28300,96 @@
     later design decision. Based on articles retrieved from PubMed.
   location: evidence/literature/targeted_review_affect_stream_relief_safety_soothing/verdict.md
 
+- id: MECH-356
+  title: "Endogenous parasympathetic recovery / autonomic rebound: an active, offset-triggered, transient acceleration of return-to-baseline for the affective/autonomic stress state, fired by the agent's OWN stressor offset (the z_harm_a derivative going negative -- the MECH-302 SufferingDerivativeComparator signal) with NO conspecific and NO prediction. Shares the effector/update rule of MECH-355 soothing (decay-acceleration on the recovery side: a transient state-scaled multiplier on the MECH-219 z_harm_a recovery_rate + the SD-032e drive_bias leak) but differs by TRIGGER (endogenous offset vs conspecific). The V3-tractable sibling of MECH-355 that closes REE's sympathetic-rich / parasympathetic-poor asymmetry (dense escalation: MECH-219 onset, SD-032e accumulation, SD-037 override, MECH-091 urgency, MECH-279 freeze; thin recovery: only passive recovery_rate + offline-only drive_bias decay). Distinct from passive MECH-219 recovery (active overshoot, not decay), from MECH-302 relief (shared offset trigger, different output -- relief writes a reinforcer, rebound boosts recovery rate), from MECH-303/304 safety (no prediction), and from MECH-355 soothing (endogenous trigger, not social)."
+  claim_type: mechanism_hypothesis
+  subject: affect.endogenous_parasympathetic_recovery_autonomic_rebound
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-06-06"
+  depends_on:
+    - MECH-219  # z_harm_a hysteretic integrator -- the recovery_rate this transiently boosts
+    - SD-032e   # pACC autonomic drive_bias -- the leak side this accelerates (negative-relaxation the live tick never reaches)
+    - MECH-302  # suffering-derivative comparator -- supplies the shared offset trigger (z_harm_a derivative < 0)
+    - SD-011    # dual nociceptive harm streams (the ongoing stress state being recovered from)
+  distinct_from:
+    - MECH-355  # soothing: SAME effector/update rule, differs only by trigger (endogenous offset vs conspecific) -- sibling, not fold-in
+    - MECH-302  # relief: shared offset trigger but different output (reinforcer write vs recovery-rate boost)
+    - MECH-303  # contextual safety: future predictor, not present-state recovery
+    - MECH-304  # cue-specific safety: future predictor, not present-state recovery
+    - MECH-112  # wanting/appetite: orthogonal
+  functional_restatement: >
+    Mechanism hypothesis (V3-tractable). Recovery from an aversive episode is an
+    ACTIVE process, not the passive decay of the aversive signal: the literature
+    shows a parasympathetic surge that rises ABOVE baseline at stressor offset while
+    sympathetic drive is still elevated (vagal rebound). MECH-356 instantiates this
+    as an endogenous, offset-triggered, TRANSIENT boost to the recovery side of REE's
+    two slow affective accumulators -- recovery_rate_eff = recovery_rate * (1 + nu_R
+    * R) on the MECH-219 z_harm_a integrator (recovery side only; onset untouched so
+    a recovering agent still detects a fresh injury at full sensitivity), and
+    drive_bias *= (1 - leakR * R) per waking tick on SD-032e (the active waking analog
+    of the dormant offline_decay hook, using the negative-relaxation direction the cap
+    already permits but the live tick never reaches). R(t) in [0,1] rises when the
+    z_harm_a derivative goes negative (the MECH-302 comparator signal), optionally
+    gated to fire only after a supra-threshold episode, and decays back to 0 over a
+    short post-offset window. The rule is multiplicative on EXISTING accumulated state,
+    so it has zero effect on a calm agent (recovery != sedation, inherited from the
+    MECH-355 design pass). It NEVER writes SD-012 base drive_level (a recovered agent
+    is still hungry), z_harm_s (SD-010), or z_harm_un (SD-019a). MECH-094: waking-only
+    -- an offset detected during replay/simulation must not trigger rebound.
+
+    This is the SAME effector and update rule as MECH-355 soothing; the two are
+    dissociable by TRIGGER (endogenous offset vs conspecific), not by effector --
+    the literature shows social support modulates the same vagal-rebound variable.
+    Register as a sibling of MECH-355, NOT a fold-in: MECH-356 is the endogenous,
+    V3-tractable arm; MECH-355 is the social, V4 arm. Together they close the
+    sympathetic-rich / parasympathetic-poor asymmetry.
+
+    Falsifiable (smallest V3 experiment): drive a supra-threshold z_harm_a episode
+    then release it; rebound-ON returns z_harm_a / drive_bias to baseline faster than
+    rebound-OFF, with onset/peak UNCHANGED (not a gain reduction), with ZERO effect on
+    a never-stressed control (load-proportionality), and with NO conspecific present
+    (the MECH-355 confound control). A faster z_harm_a decay should also lower the
+    MECH-091 urgency-interrupt rate (a recovered agent less prone to panic-abort).
+  notes: >
+    Registered 2026-06-06 from the autonomic-rebound lit-pull (session
+    litpull-autonomic-rebound-parasympathetic-recovery-20260606T0402Z). Surfaced by
+    the MECH-355 soothing design pass
+    (evidence/planning/mech_355_soothing_update_rule_and_scope_design_2026-06-05.md
+    section 3.2 / 5), which kept it explicitly OUT of MECH-355 to keep the social
+    claim clean and gated its registration on this lit-pull (biology-before-formal-
+    definitions). epistemic_category=standard (NOT substrate_conditional like
+    MECH-355) because it is V3-tractable and therefore earns experimental gating.
+    V3-minimal but build is GATED behind the in-flight cue-authority / z_goal work
+    (containment-only ethos; off the V3 critical path). Affect-register row:
+    docs/architecture/affect_primitives.md (Extension Register, autonomic rebound /
+    endogenous parasympathetic recovery). Whether MECH-356 and MECH-355 eventually
+    collapse into one module with two trigger inputs is a post-validation refactor
+    question, not a registration-time one.
+  evidence_quality_note: |
+    Registered candidate 2026-06-06. Lit-pull anchor:
+    evidence/literature/targeted_review_autonomic_rebound_parasympathetic_recovery/verdict.md
+    (4 entries, conf 0.74). Anchors: Mezzacappa et al. 2001 Psychosom Med
+    10.1097/00006842-200107000-00018 (vagal rebound rises above baseline DESPITE
+    residual sympathetic activation -> active recovery distinct from passive decay --
+    the decisive entry); Thayer & Brosschot 2005 Psychoneuroendocrinology
+    10.1016/j.psyneuen.2005.04.014 (central autonomic network: endogenous prefrontal-
+    vagal recovery driver, no external cue needed); Tung et al. 2021 Psychophysiology
+    10.1111/psyp.13808 (emotional support MODULATES vagal rebound -> rebound + soothing
+    converge on one recovery variable, dissociable by trigger not effector -- validates
+    sibling-not-fold; direction mixed); Cunha et al. 2015 SpringerPlus
+    10.1186/s40064-015-0882-1 (parasympathetic reactivation has its own state-conditioned
+    KINETICS -> recovery is a tunable rate, supports the smallest-form; exercise transfer
+    caveat). NO experimental evidence yet (exp_conf=0). v3_pending=true until the
+    drive-then-release recovery-rate discriminative experiment lands (faster recovery
+    ON vs OFF with onset/peak unchanged + zero effect on never-stressed control + no
+    conspecific). Based on articles retrieved from PubMed.
+  location: evidence/literature/targeted_review_autonomic_rebound_parasympathetic_recovery/verdict.md
+
 - id: ARC-063
   title: "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
   claim_type: architectural_commitment

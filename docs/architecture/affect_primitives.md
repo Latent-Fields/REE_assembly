@@ -172,6 +172,7 @@ claim (a follow-up governance decision, not done here).
 | **Relief** | offset/derivative of harm stream | **MECH-302** | V3 (registered claim) |
 | **Safety** | learned threat-absence predictor | **MECH-303** (contextual) + **MECH-304** (cue-specific) | V3 (registered claims) |
 | **Soothing / comfort** | autonomic state-gain modulator | **MECH-355** (candidate, V4-social) | V4-social (+ optional V3-minimal hook) |
+| **Autonomic rebound (endogenous parasympathetic recovery)** | offset-triggered recovery-rate boost (MECH-219 recovery + SD-032e leak) | **MECH-356** (candidate, V3) | V3-tractable sibling of MECH-355 (endogenous trigger; gated build) |
 | **Blocked agency (control-failure)** | `z_block` (new) | **MECH-353** (candidate, V3) | V3-candidate (lit-grounded; pending experiment) |
 | **Coercion / domination / injustice** | (not yet specified) | — | V4-deferred (social; needs other-agent model) |
 | **Effort / fatigue (stop-recover)** | `drive_level` (SD-012) + SD-048 interoceptive | **MECH-354** (candidate, V3) | V3-minimal, gated |
@@ -228,10 +229,39 @@ and safety is *future-prediction*; its substrate is oxytocin/parasympathetic/HPA
 relief, vs cortico-amygdalar for safety); its role is state-gain modulation (vs reinforcer, vs
 predictor). It is **socially gated** — the canonical trigger is a conspecific, which V3 cannot
 represent. **Do NOT fold into Relief (MECH-302) or Safety (MECH-303/304), and NOT into MECH-112.**
-Scope: **V4-social** primary; an optional V3-minimal non-social autonomic-recovery hook (parasympathetic
-down-regulation acting on MECH-219 decay / SD-012) is noted but **not built**. When registered, the
-claim must depend on MECH-219 + SD-012 + SD-032e and be explicitly NOT-302/303/304/112.
-*Evidence:* `targeted_review_affect_stream_relief_safety_soothing/` (verdict, conf 0.82).
+Scope: **V4-social** primary. The non-social V3-minimal autonomic-recovery hook that the verdict
+left optional is now split out as its **own sibling claim, MECH-356** (endogenous parasympathetic
+recovery / autonomic rebound) — same effector/update rule, endogenous offset trigger instead of a
+conspecific. MECH-355 stays the social, V4 arm; do NOT fold the two together. When the MECH-355
+substrate is built it must depend on MECH-219 + SD-032e (the affective/autonomic `drive_bias`
+component, NOT base SD-012 drive_level) and be explicitly NOT-302/303/304/112.
+*Evidence:* `targeted_review_affect_stream_relief_safety_soothing/` (verdict, conf 0.82). Update-rule
++ scope design pass: `evidence/planning/mech_355_soothing_update_rule_and_scope_design_2026-06-05.md`.
+
+### Extension Primitive (V3-candidate; sibling of soothing): autonomic rebound / endogenous parasympathetic recovery
+
+| Field | Value |
+|-------|-------|
+| **REE signal** | offset-triggered transient boost to the recovery side of the slow affective accumulators (`MECH-356`) |
+| **Status** | **MECH-356** (candidate; V3, `epistemic_category: standard`, `v3_pending`) — registered 2026-06-06; build gated behind in-flight cue-authority / z_goal work (off the V3 critical path) |
+| **Character** | **Active, present-tense acceleration of return-to-baseline** after the agent's OWN stressor ends — not the passive fade of the aversive signal |
+| **Biological analogue** | vagal rebound at stressor offset despite residual sympathetic activation; central-autonomic-network (prefrontal-vagal) recovery driver (Mezzacappa et al. 2001; Thayer & Brosschot 2005; Cunha et al. 2015) |
+
+**Computational role:** the same decay-acceleration effector as MECH-355 soothing — a transient,
+state-scaled multiplier on the MECH-219 `z_harm_a` `recovery_rate` (recovery side only; onset
+untouched) and the SD-032e `drive_bias` leak — but driven by an **endogenous** trigger:
+offset-detection (`d||z_harm_a||/dt < 0`, the MECH-302 SufferingDerivativeComparator signal), with
+**no conspecific** and **no prediction**. Load-proportional (multiplicative on existing state →
+zero effect on a calm agent → recovery ≠ sedation). Never writes base SD-012 `drive_level`,
+`z_harm_s`, or `z_harm_un`. MECH-094 waking-only.
+
+**Differentiation:** sibling of MECH-355 (same effector, endogenous trigger vs conspecific —
+register as siblings, not a fold-in: the literature shows social support modulates the same
+vagal-rebound variable, Tung et al. 2021). Distinct from passive MECH-219 recovery (active
+overshoot, not decay), from MECH-302 relief (shared offset trigger, different output — relief
+writes a reinforcer, rebound boosts recovery rate), and from MECH-303/304 safety (no prediction).
+Closes REE's **sympathetic-rich / parasympathetic-poor asymmetry**.
+*Evidence:* `targeted_review_autonomic_rebound_parasympathetic_recovery/` (verdict, conf 0.74).
 
 ### Extension Primitive (V3-minimal, gated): effort / fatigue (stop-recover)
 
