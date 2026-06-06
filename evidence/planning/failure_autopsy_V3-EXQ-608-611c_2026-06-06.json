@@ -1,0 +1,90 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-06T09:50:16Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "interactive_gate_answer": "Accept as stated (verdict); handoff notes 1+3 included, 2 skipped per autopsy judgment",
+  "targets": [
+    {
+      "run_id": "v3_exq_608_mech341_e3_score_collapse_diagnostic_20260526T025832Z_v3",
+      "queue_id": "V3-EXQ-608",
+      "claim_ids": ["MECH-341"],
+      "claim_weighting": "non_contributory (experiment_purpose=diagnostic; tagged but non-weighting)",
+      "outcome": "PASS",
+      "self_route_label": "R2a_e3_collapse_confirmed_large_gap (majority 2/3, not unanimous)",
+      "failed_criterion": "none (PASS); the labeling metric is the defect",
+      "per_seed_mean_top2_class_gap": {"42": 0.378, "43": 0.269, "44": 0.597},
+      "per_seed_label": {"42": "R2a_collapse_confirmed_large_gap", "43": "R2a_collapse_confirmed_large_gap", "44": "inconclusive_resample_heavier"},
+      "audit_claim_rebuttal": "The audit's near-zero seed (0.0076) is a per-TICK gap value (seed 42 tick 25), not a per-seed figure. No seed is near-zero; the dissenting seed (44) has the LARGEST mean gap.",
+      "measurement_defect": "frac_e3_collapse_above_eps uses epsilon = 5% of each seed's OWN observed gap range (script:537-539); non-monotonic in gap magnitude. In 611 ARM_0, seed 44 (mean gap 1.97, largest) -> epsilon 1.33 -> labeled R2b_e3_preserves_diversity. The 'pre-registered, never derived from this run' docstring claim is true only of the 0.05 multiplier, false of the operative epsilon value.",
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "608 routing decision (do MECH-341 work) is sound in direction: large within-tick score gap + low selection entropy (0.34-0.96 nats) hold on every seed regardless of epsilon.",
+        "The frac_e3_collapse R2a/R2b label is ill-posed for reuse: replace the self-referential per-seed epsilon with an absolute / fixed-reference threshold before the R2 metric stack is reused."
+      ],
+      "routing": "governance-record-only"
+    },
+    {
+      "run_id": "v3_exq_611_mech341_substrate_readiness_4arm_20260527T130213Z_v3",
+      "queue_id": "V3-EXQ-611",
+      "claim_ids": ["MECH-341"],
+      "claim_weighting": "non_contributory",
+      "outcome": "FAIL",
+      "failed_criterion": "C1_substrate_fires_in_on_arms (instrumentation)",
+      "root_cause": "stratified_select gated to the committed branch, never entered during measurement -> n_stratified_fired=0 across all 3 seeds; entropy_bonus_max_abs 0.023-0.044 << observed gap 0.27-1.96 at bias_scale=0.1.",
+      "read": "Honest FAIL; routed the legitimate call-site fix (not a substrate-inadequacy finding).",
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "routing": "governance-record-only"
+    },
+    {
+      "run_id": "v3_exq_611c_mech341_retune_6arm_20260529T184549Z_v3",
+      "queue_id": "V3-EXQ-611c",
+      "supersedes": "V3-EXQ-611b",
+      "claim_ids": ["MECH-341"],
+      "claim_weighting": "non_contributory",
+      "outcome": "PASS",
+      "failed_criterion": "C2_entropy_bonus_scale_commensurate (efficacy) FALSE; PASS carried by C1(fires)+C3(near-vacuous)",
+      "vacuous_pass_structure": "PASS gate = c1_holds AND (c2_holds OR c3_holds) = TRUE AND (FALSE OR TRUE) = TRUE. C1 = substrate fires (wiring). C2 = bonus scale-commensurate with the gap (efficacy) = FALSE. C3 = >=2 selected classes (near-vacuous; true with substrate OFF). The (C2 OR C3) disjunction lets near-vacuous C3 substitute for failed efficacy C2.",
+      "decisive_tell": "mean_selected_class_entropy byte-identical across bias_scale 1.0 vs 2.0 in every arm (0.583/0.582/0.590) and barely above OFF baseline (~0.56); every arm still routes R2a_collapse_confirmed. Scale knob has zero causal effect.",
+      "threshold_fitting": "NO. decision_rule_thresholds byte-identical to 611 (0.8/0.5/0.2/0.05). The retune (call-site expansion to both branches) is a legitimate bug fix. The defect is the acceptance disjunction, not a moved threshold.",
+      "post_pass_unvalidated_change": "After the PASS, defaults bumped entropy_lambda 0.05->0.5 and bias_scale 0.1->1.0 -- an unvalidated config change riding on the vacuous pass.",
+      "recommended_epistemic_category": "vacuous_pass",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_substrate_queue_entry": {"action": "none", "rationale": "modulatory-bias-selection-authority substrate (2026-06-03, ready=true) already lists MECH-341 in unblocks_claims; the committed-diversity efficacy re-test is already gated there per the 614d review. Minting a new entry would duplicate it."},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "'Substrate fires' is not 'substrate works': the (C2 OR C3) disjunction let a wiring criterion + a near-vacuous diversity criterion carry a PASS while the efficacy criterion FAILED. This is the vacuous_pass mode the 2026-06-06 diagnostic-adjudication gate names.",
+        "608/611c are early under-adjudicated members of the modulatory-bias-selection-authority convergent cluster (with 604a/624a/614d); the gap-relative-authority substrate (2026-06-03) is the structural fix and already gates the MECH-341 efficacy re-test."
+      ],
+      "routing": "governance-record-only"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "additive score-diversity biases (entropy bonus, stratified select, within-class temperature) fire but have no authority over the committed argmin because they are small additive perturbations on a primary score with a much larger raw gap.",
+    "is_independent_bugs": false,
+    "structural_property": "the modulatory-bias-selection-authority gap -- one structural property, fixed by the gap-relative-scaling substrate (2026-06-03). 608/611c are early members alongside 604a (curiosity), 624a (vigor), 614d (within-class temperature).",
+    "readings": ["measurement_test_design_defect", "vacuous_pass"]
+  },
+  "master_merge_adjudication": {
+    "verdict": "appropriately-scoped substrate landing",
+    "rationale": "the merge landed e3_score_diversity.py + e3_selector.py (contracts pass, bit-identical OFF); claim MECH-341 stayed candidate/v3_pending; rests on 'code is correct and wired', not on the diagnostic interpretation. Low-stakes substrate-landing class."
+  },
+  "r2c_routing_adjudication": {
+    "verdict": "questionable premise, no durable harm, self-corrected downstream",
+    "rationale": "R2.c routing to V3-EXQ-614 rested on the 611c 'fires => preserves' premise. Load-bearing on no claim status. Self-corrected by 614a (PASS_C2_C3_only, in-stack only), 614b/616 (uniform additive bias cannot move a single-class proposer), 614d (within-class lever ACTIVE but ZERO authority -- third convergent instance of the modulatory-bias-selection-authority gap). The fix substrate (2026-06-03) now lists MECH-341 in unblocks_claims."
+  },
+  "claim_status_impact": "none -- MECH-341 candidate/v3_pending throughout; never falsely promoted by this chain.",
+  "handoff_notes": [
+    "INCLUDED: flag the 608/611 frac_e3_collapse self-referential per-seed epsilon as ill-posed (non-monotonic in gap magnitude) before any reuse of the R2 readiness-diagnostic metric stack.",
+    "SKIPPED (redundant): a fresh MECH-341 evidence_quality_note addendum flagging 611c as wiring-not-efficacy -- the existing note already records C2=False and the 614a/b/616/614d trail recharacterises MECH-341 as a score-layer preserver, not in-isolation generator.",
+    "INCLUDED: confirm 608/611c belong to the modulatory-bias-selection-authority convergent cluster, justifying recommended_substrate_queue_entry.action=none and preventing a duplicate substrate mint."
+  ]
+}
