@@ -1,13 +1,12 @@
 # Proposal: Readiness / Non-Degeneracy Auto-Detection -- catch the trivial-prediction self-route the author cannot see
 
-- **Status:** ACCEPTED 2026-06-06 -- user confirmed all four leans (Section 7): (Q1) reuse the
+- **Status:** IMPLEMENTED 2026-06-06 (built on the ACCEPTED 2026-06-06 sign-off) -- user confirmed all four leans (Section 7): (Q1) reuse the
   landed `preconditions[]` (readiness-kind entries carry `measured`+`threshold`; indexer recomputes
   `met`) rather than a new `readiness[]` array; (Q2) `SUBSTRATE_VERDICT_LABELS =
   {substrate_ceiling, substrate_conditional, does_not_support}` + suffix patterns
   `*_nondiscriminative` / `*_unmeetable`, excluding `non_contributory`; (Q3) WARN-then-ERROR (ERROR
   gated on a cycle of real post-convention diagnostics, per the parent proposal's condition);
-  (Q4) defer the Part-4 retrospective sweep. Implementation chip spawned; NOT yet built -- this doc
-  records the design + sign-off; the implement session will flip this to IMPLEMENTED.
+  (Q4) defer the Part-4 retrospective sweep.
   NOTE on Q1: because we reuse `preconditions[]`, the convention's field is a precondition entry of
   the *readiness kind* carrying `measured`+`threshold`+`control`; Section 3's `readiness[]` examples
   should be read as that specialization, not a separate array.
@@ -19,6 +18,33 @@
   cross-cutting finding -- the trivial-prediction signature recurs across **V3-EXQ-642, 264, 620**.
 - **Scope:** governance machinery only. One manifest convention + one static-lint script + one
   indexer function. No claim-confidence math, no lit/exp, no `ree_core` change. Backward-compatible.
+- **Build note (2026-06-06, IMPLEMENTED):** all three in-scope parts landed; Part 4 excluded.
+  - *Part 1 (indexer):* `build_experiment_indexes._compute_adjudication` now runs two author-free
+    checks AHEAD of the legacy author-trusted path: **(3a)** for any `preconditions[]` entry with
+    numeric `measured`+`threshold` it RECOMPUTES `met := measured >= threshold` and returns
+    `precondition_unmet` when below-floor, ignoring the author's `met` (the legacy met-loop now
+    skips those numeric entries -- recompute is authoritative); **(3b)** an overall PASS with any
+    `criteria[]` entry tagged `load_bearing:true` and `passed:false` returns `vacuous_pass` (the
+    V3-EXQ-621a pattern). New helper `_is_number` excludes bool. Legacy manifests (none of the new
+    fields) are unchanged -> still `unverified`. Unit-tested across all branches; a full V3
+    `sync -> build -> pending` ran clean with 0 regression (regen artifacts not committed).
+  - *Part 2 (`/queue-experiment` convention):* added the P0 readiness-assert rule (readiness-kind
+    `preconditions[]` entry carrying `measured`+`threshold`+`control`; below-floor self-routes to
+    `substrate_not_ready_requeue`, never a verdict label; load-bearing criterion tagged
+    `load_bearing:true`) + one Step-3.5 checklist question. Mirrored byte-identical to BOTH
+    `.claude/skills/queue-experiment/SKILL.md` and `.agents/skills/queue-experiment/SKILL.md`.
+  - *Part 3 (`ree-v3/validate_experiments.py`):* added a WARN-only `readiness_lint` (Q3
+    warn-then-error; never affects exit code, incl. `--strict`). It fires on a `diagnostic` /
+    `baseline` script that routes to a `SUBSTRATE_VERDICT_LABELS` label (or a `*_nondiscriminative`
+    / `*_unmeetable` suffix) but declares no readiness-kind precondition (`measured`+`threshold`)
+    and/or no `load_bearing` criterion. **Limitation:** `validate_experiments.py` did not statically
+    parse interpretation grids, so this is the lightest viable check -- an AST/string scan over the
+    script's literals (detects `experiment_purpose` / `EXPERIMENT_PURPOSE` constant assignments and
+    verdict-label string constants). It can MISS a label assembled at runtime (f-string /
+    concatenation) and OVER-FIRE if a verdict label or the keys appear only in a comment/docstring.
+    Verified: AST-OK; 0 warnings on the live tree (782 scripts); WARN fires on a synthetic
+    verdict-label-without-readiness script and stays silent on the three controls (readiness present
+    / non-diagnostic / no verdict label), then torn down.
 
 ---
 

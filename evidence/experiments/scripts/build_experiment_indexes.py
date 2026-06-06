@@ -117,6 +117,11 @@ class RunRecord:
     superseded_by_substrate_per_claim: dict[str, str] = field(default_factory=dict)
 
 
+def _is_number(value: Any) -> bool:
+    """True for a real int/float (excludes bool, which is an int subclass)."""
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
 def _compute_adjudication(interpretation: Any, status: str,
                           experiment_purpose: str) -> tuple[str, str]:
     """Diagnostic adjudication gate -- derive the trust flag for a self-routed run.
@@ -127,15 +132,27 @@ def _compute_adjudication(interpretation: Any, status: str,
       - "unverified"      -- diagnostic/baseline run whose manifest declares
                              NEITHER preconditions[] NOR criteria_non_degenerate
                              (legacy; surfaced but not blocked).
-      - "precondition_unmet" -- any interpretation.preconditions[].met is false
-                             (the self-route's assumption did not hold -- the
-                             label is untrustworthy regardless of PASS/FAIL).
-      - "vacuous_pass"    -- overall PASS but some criteria_non_degenerate value
-                             is false (a criterion passed for a trivial reason).
+      - "precondition_unmet" -- a self-route premise did not hold. Fired by
+                             EITHER (3a) a readiness-kind precondition entry whose
+                             RECOMPUTED met (measured >= threshold) is false --
+                             author-free, catches the trivial-prediction signature
+                             the author cannot see -- OR the legacy author-trusted
+                             interpretation.preconditions[].met == false.
+      - "vacuous_pass"    -- overall PASS that clears a gate on nothing. Fired by
+                             EITHER (3b) a criterion tagged load_bearing:true with
+                             passed:false (the V3-EXQ-621a aggregation-vacuity
+                             pattern) OR the legacy criteria_non_degenerate value
+                             being false.
       - "verified"        -- declared structure(s) present and all checks hold.
 
-    See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md and
-    the V3-EXQ-642 autopsy for the motivating failure modes.
+    The (3a)/(3b) author-free checks run AHEAD of the legacy author-trusted
+    checks; the legacy path remains the fallback. (3a) RECOMPUTES met from numeric
+    measured+threshold and does NOT trust an author-supplied `met` when both are
+    present (the legacy met-loop skips those entries -- recompute is authoritative).
+
+    See evidence/planning/proposal_trivial_prediction_readiness_gate_2026-06-06.md
+    (Q1-Q4 sign-off), its parent proposal_diagnostic_adjudication_gate_2026-06-06.md,
+    and the V3-EXQ-642 / V3-EXQ-621a autopsies for the motivating failure modes.
     """
     interp = interpretation if isinstance(interpretation, dict) else {}
     label = str(interp.get("label", "") or "")
@@ -143,13 +160,48 @@ def _compute_adjudication(interpretation: Any, status: str,
         return label, "n/a"
     preconditions = interp.get("preconditions")
     preconditions = preconditions if isinstance(preconditions, list) else []
+
+    # (3a) Readiness recompute (proposal_trivial_prediction_readiness_gate_2026-06-06,
+    # Q1). For any precondition entry carrying numeric measured+threshold (a
+    # readiness-kind entry), RECOMPUTE met := measured >= threshold and do NOT
+    # trust the author-supplied `met`. A below-floor measured value is the
+    # trivial-prediction signature the author cannot see (V3-EXQ-642 pred_mag<floor
+    # masked by a low wf_mse; 264 pred_norm~0; 620 identically-zero distributions).
+    for p in preconditions:
+        if not isinstance(p, dict):
+            continue
+        m, t = p.get("measured"), p.get("threshold")
+        if (_is_number(m) and _is_number(t) and m < t):
+            return label, "precondition_unmet"
+
+    # (3b) Aggregation-vacuity (the V3-EXQ-621a pattern). An overall PASS while a
+    # criterion explicitly tagged load_bearing:true did not pass clears a gate on
+    # nothing. Gated on the explicit load_bearing tag so it never over-fires on a
+    # legitimate M-of-N pass.
+    if str(status).upper() == "PASS":
+        criteria = interp.get("criteria")
+        if isinstance(criteria, list):
+            for c in criteria:
+                if (isinstance(c, dict)
+                        and c.get("load_bearing") is True
+                        and c.get("passed") is False):
+                    return label, "vacuous_pass"
+
+    # --- legacy author-trusted checks (fallback for declarations that expose no
+    # numeric measured/threshold or load_bearing tag) ---
     crit = interp.get("criteria_non_degenerate")
     crit = crit if isinstance(crit, dict) else {}
     if not preconditions and not crit:
         return label, "unverified"
     # An unmet precondition invalidates the self-route's premise -> highest priority.
+    # Skip readiness-kind entries already governed by the (3a) numeric recompute
+    # above (recompute is authoritative when measured+threshold are present).
     for p in preconditions:
-        if isinstance(p, dict) and p.get("met") is False:
+        if not isinstance(p, dict):
+            continue
+        if _is_number(p.get("measured")) and _is_number(p.get("threshold")):
+            continue
+        if p.get("met") is False:
             return label, "precondition_unmet"
     # A PASS that rests on a degenerate criterion clears a gate on nothing.
     if str(status).upper() == "PASS" and any(v is False for v in crit.values()):
