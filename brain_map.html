@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BRAIN_MAP_VERSION: 2026-06-06.6 -->
+<!-- BRAIN_MAP_VERSION: 2026-06-06.7 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -411,8 +411,8 @@
     svg.addEventListener("pointerdown", (e) => { drag = true; lx = e.clientX; ly = e.clientY; svg.setPointerCapture(e.pointerId); });
     svg.addEventListener("pointermove", (e) => {
       if (!drag) return;
-      yaw3d += (e.clientX - lx) * 0.01;
-      pitch3d = Math.max(-1.45, Math.min(1.45, pitch3d + (e.clientY - ly) * 0.01));
+      yaw3d -= (e.clientX - lx) * 0.01;   // direct-manipulation: grabbed point follows the cursor
+      pitch3d = Math.max(-1.45, Math.min(1.45, pitch3d - (e.clientY - ly) * 0.01));
       lx = e.clientX; ly = e.clientY; render3d();
     });
     const stop = () => { drag = false; };
