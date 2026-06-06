@@ -19009,7 +19009,8 @@
   subject: self_attribution.comparator_z_world
   polarity: asserts
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v3
+  v3_pending: true
   claim_level: architectural
   registered_utc: 2026-04-18
   instantiates: MECH-256
@@ -19018,12 +19019,12 @@
     - SD-010           # harm-stream separation (ensures z_world remains distinct from z_harm)
     - MECH-256         # general comparator mechanism
   functional_restatement: >
-    V4-scoped analogue on the world-state reafferent stream. z_world captures
-    the causal footprint of the agent's actions on external world state --
-    non-harm, non-self consequences ("I moved the block," "the door opened
-    because of me"). Self-attribution on this stream is the basis for moral
-    attribution of non-harm consequences and for ResidueField-style causal
-    tracking.
+    Single-pass comparator on the world-state reafferent stream. z_world
+    captures the causal footprint of the agent's actions on external world
+    state -- non-harm, non-self consequences ("I moved the block," "the door
+    opened because of me"). Self-attribution on this stream is the basis for
+    moral attribution of non-harm consequences and for ResidueField-style
+    causal tracking.
 
       residual_world = z_world_observed - E2_world(z_world_{t-1}, a_actual)
 
@@ -19032,15 +19033,35 @@
     (Sommer & Wurtz) that track self-caused external changes. Also overlaps
     with the ACC/insula outcome-attribution pathway.
 
-    V3 currently treats z_world attribution implicitly through ResidueField
-    updates; SD-031 would make it an explicit comparator-structured signal.
+    V3 previously treated z_world attribution implicitly through ResidueField
+    updates; SD-031 makes it an explicit comparator-structured signal.
   notes: >
-    V3 does not run this claim. It is registered to make the per-stream
-    topology complete: harm (SD-029, active), self (SD-030, V4), world
-    (SD-031, V4). Without SD-031 on the roadmap, moral attribution of
-    non-harm consequences would have no explicit substrate claim.
+    Rescoped v4 -> v3 on 2026-06-06: SD-031 is a named dependency of a V3
+    completion retest (the z_world discriminative-granularity question in
+    failure_autopsy_zworld-integration-cluster_2026-06-06, V3-EXQ-177's
+    counterfactual-attribution arm), so it is V3-scoped by definition (a
+    V3-completion dependency reclassifies its dep to V3; the implementation_phase
+    field is a prediction, not a permission gate). Substrate landed the same day
+    (E2WorldForward, ree-v3/ree_core/predictors/e2_world.py). Completes the
+    per-stream comparator topology: harm (SD-029, active), world (SD-031, V3),
+    self (SD-030, still V4 -- no V3 driver; V3 lacks a clean z_self stream with
+    its own forward model).
   evidence_quality_note: >
-    No V3 evidence expected. V4 target. Registered pre-implementation.
+    Substrate IMPLEMENTED 2026-06-06 (E2WorldForward; the z_world instantiation
+    of MECH-256, sibling to ARC-033 on z_harm_s). Config:
+    LatentStackConfig.use_e2_world_forward (default False). v3_pending until the
+    discriminative/attribution arm PASSes its validation experiment. CRITICAL
+    GATE: the comparator's discriminative arm requires world_dim >= 128
+    (E2WorldForward hard-asserts this) -- the 2026-06-06 cluster autopsy
+    established z_world at world_dim=32 is a competent bulk predictor
+    (world_forward_r2 0.72-0.94) but lacks discriminative granularity, so a
+    dim=32 comparator yields a vacuous zero attribution gap. Validation must run
+    at world_dim >= 128 AND with ARC-065 behavioral diversity active (balanced
+    agent-caused vs externally-caused events); running before both halves are in
+    place reproduces the dim=32 + monostrategy + (formerly) unbuilt-comparator
+    confound. Activation smoke 2026-06-06 at world_dim=128: world_forward_r2
+    0.969, single-pass comparator self-caused residual ~2.0 vs externally-caused
+    ~22.6 (correct attribution gap).
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: MECH-255
@@ -19179,6 +19200,14 @@
     [2026-05-08 governance]: EXQ-537/537a non_contributory. Same architectural read as SD-029: single-pass comparator capacity ceiling, not feature failure. C3 falsification works. Defer until sleep + curiosity training substrates land.
 
     [2026-05-08 diagnose-errors]: V3-EXQ-433f reclassified non_contributory per-claim. C0 trials-sufficient gate FAILed in 3/4 seeds (agent_caused_trials 15/7/20/3 vs target 20) -- same monomodal V_s monostrategy substrate-ceiling pattern as 433/433a/433b/470/433d. SD-050 reef enrichment did not break monostrategy at 8x8 scale. Hold remains gated on MECH-269/MECH-269b V_s landing.
+
+    [2026-06-06 substrate]: SD-031 (z_world instantiation) IMPLEMENTED -- the
+    comparator mechanism is now instantiated on TWO streams in code (z_harm_s
+    via ARC-033/SD-029, z_world via SD-031/E2WorldForward). MECH-256 stays
+    v3_pending: the z_harm_s arm is still V_s-monostrategy-blocked, and the
+    z_world arm's discriminative validation is gated on world_dim>=128 +
+    ARC-065 behavioral diversity (failure_autopsy_zworld-integration-cluster_2026-06-06).
+    No evidence accrued yet on either stream.
   location: docs/architecture/self_attribution_per_stream.md
 
 - id: MECH-257

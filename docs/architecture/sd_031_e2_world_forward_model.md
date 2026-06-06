@@ -6,11 +6,58 @@ nav_exclude: true
 
 **Claim ID:** SD-031
 **Subject:** self_attribution.comparator_z_world
-**Status:** CANDIDATE (V4-scoped)
+**Status:** IMPLEMENTED (V3; v3_pending) -- substrate landed 2026-06-06
 **Registered:** 2026-04-18
 **Depends on:** SD-005 (self/world latent split), SD-010 (harm-stream separation), MECH-256 (general comparator mechanism)
 **Instantiates:** MECH-256 on the z_world stream
 **Parent roadmap:** [self_attribution_per_stream.md](self_attribution_per_stream.md)
+
+## Implementation status (2026-06-06) -- supersedes the "V4 target" framing below
+
+SD-031 was **rescoped v4 -> v3 and implemented on 2026-06-06.** The trigger was
+the cluster failure-autopsy `failure_autopsy_zworld-integration-cluster_2026-06-06`
+(V3-EXQ-177/145/170/215): it named SD-031 as a missing dependency of the V3
+z_world discriminative-granularity retest (V3-EXQ-177's counterfactual-attribution
+arm). A claim that a V3-completion retest depends on is V3-scoped by definition --
+the `implementation_phase` field is a roadmap prediction, not a permission gate.
+The "V4 target" / "V3 does not run this claim" statements in the sections below are
+historical and superseded by this note.
+
+**What landed:** `ree-v3/ree_core/predictors/e2_world.py` -- `E2WorldForward` +
+`E2WorldConfig`, the z_world instantiation of the MECH-256 single-pass comparator
+(sibling to ARC-033 `e2_harm_s.py`). It reuses `ResidualHarmForward` (the generic
+residual-delta module), is gated on `LatentStackConfig.use_e2_world_forward`
+(default False, bit-identical OFF), and reads `z_world_dim` from
+`config.latent.world_dim` (never a literal). Agent wiring mirrors `e2_harm_s`
+(agent-level `self.e2_world`, no new `LatentState` field). `forward()` is the
+unrestricted evaluator/rollout read (MECH-257); `comparator_residual()` is the
+MECH-094-gated single-pass agency read.
+
+**Carry-forward guard (load-bearing):** `E2WorldForward.__init__` HARD-ASSERTS
+`world_dim >= 128` (the `REEConfig.large` preset). The 2026-06-06 autopsy
+established that z_world at `world_dim=32` is a competent *bulk* predictor
+(world_forward_r2 0.72-0.94) but lacks the *discriminative/spatial granularity*
+the attribution arm needs -- so a dim=32 comparator would emit a vacuous zero
+attribution gap. An explicit `allow_subthreshold_dim` escape hatch (default False)
+permits bulk-only/ablation construction below threshold but reports
+`attribution_ready=False` and returns a zeroed sentinel residual.
+
+**Validation (gated, NOT yet queued):** the discriminative/attribution experiment
+must run at `world_dim >= 128` AND with ARC-065 behavioral diversity active
+(balanced agent-caused vs externally-caused events; ARC-065 is currently phase_1
+only). P0 must train the z_world encoder (SD-009 event-contrastive + SD-018
+resource proximity) before the forward model -- a random encoder yields a
+near-position-invariant z_world and a trivially-identity world-forward (the
+MECH-353 / V3-EXQ-642 vacuous-comparator lesson). Running before both halves are
+in place reproduces the dim=32 + monostrategy confound. Hand to `/queue-experiment`.
+
+**Activation smoke (2026-06-06, world_dim=128):** world_forward_r2 0.969;
+single-pass comparator self-caused residual ~2.0 vs externally-caused ~22.6
+(correct attribution gap). 9/9 contracts (`tests/contracts/test_e2_world_forward.py`)
++ 845/845 full contract suite + 7/7 preflight PASS with the flag OFF.
+
+SD-030 (z_self) remains V4 -- no V3 driver (V3 has no clean z_self stream with its
+own forward model; E2 operates on combined z_gamma).
 
 ## Problem
 

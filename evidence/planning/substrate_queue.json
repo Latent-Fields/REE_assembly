@@ -950,19 +950,24 @@
     },
     {
       "added_session": "governance-2026-04-24T08:10",
-      "depends_on_unresolved": [
-        "SD-005",
-        "MECH-256"
-      ],
+      "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_031_e2_world_forward_model.md",
       "failure_record": [],
-      "implementation_hint": "No V3 evidence expected. V4 target. Registered pre-implementation.\n",
-      "last_seen_session": "governance-2026-04-24T08:10",
+      "implementation_hint": "IMPLEMENTED 2026-06-06 (E2WorldForward, ree-v3/ree_core/predictors/e2_world.py). Single-pass MECH-256 comparator on z_world (residual = z_world_obs - E2_world(z_world_prev, a_actual); NO counterfactual). Reuses ResidualHarmForward; gated on LatentStackConfig.use_e2_world_forward (default False, bit-identical OFF); z_world_dim read from config.latent.world_dim. CARRY-FORWARD GUARD: E2WorldForward hard-asserts world_dim>=128 (the dim=32 granularity ceiling from failure_autopsy_zworld-integration-cluster_2026-06-06). Validation NOT yet run: gated on world_dim>=128 AND ARC-065 balanced-event behavioral diversity (currently phase_1 only); hand to /queue-experiment. P0 must train the z_world encoder (SD-009 + SD-018) before the forward model -- a random encoder gives a vacuous zero comparator (MECH-353/V3-EXQ-642 lesson). Activation smoke 2026-06-06 at world_dim=128: world_forward_r2 0.969, comparator self-caused residual ~2.0 vs externally-caused ~22.6.",
+      "implementation_status": "implemented",
+      "implemented_session": "implement-substrate-sd031-comparator-zworld-20260606T1327Z",
+      "implemented_utc": "2026-06-06T13:27:16Z",
+      "last_seen_session": "implement-substrate-sd031-comparator-zworld-20260606T1327Z",
       "priority": 3,
       "ready": false,
+      "ready_blocked_by": "discriminative/attribution validation gated on world_dim>=128 AND ARC-065 behavioral diversity (failure_autopsy_zworld-integration-cluster_2026-06-06); substrate landed, validation experiment not yet queued",
       "sd_id": "SD-031",
+      "status": "implemented",
       "title": "self_attribution.comparator_z_world",
-      "unblocks_claims": []
+      "unblocks_claims": [
+        "MECH-256",
+        "zworld-granularity-retest"
+      ]
     },
     {
       "added_session": "governance-2026-04-24T08:10",
