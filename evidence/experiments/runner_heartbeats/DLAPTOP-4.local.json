@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-06T05:56:49Z",
+  "last_tick_utc": "2026-06-06T06:11:55Z",
   "state": "running",
   "current_exq": "V3-EXQ-643",
   "current_exq_started_utc": "2026-06-06T05:55:03.136578+00:00",
@@ -12,14 +12,18 @@
     "run_label": "Seed 42 / ARM_A",
     "runs_done": 0,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 40,
     "episodes_total": 80,
-    "overall_pct": 0.0
+    "overall_pct": 5.6
   },
-  "seconds_elapsed": 107,
-  "seconds_remaining": 9000,
+  "seconds_elapsed": 1012,
+  "seconds_remaining": 10530,
   "recent_lines": [
-    "Seed 42 Condition ARM_A"
+    "Seed 42 Condition ARM_A",
+    "[train] arm=ARM_A seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_A seed=42 phase=P0 ep 20/80",
+    "[train] arm=ARM_A seed=42 phase=P0 ep 30/80",
+    "[train] arm=ARM_A seed=42 phase=P0 ep 40/80"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
