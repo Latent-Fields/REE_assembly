@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-06T04:51:30Z",
+  "last_tick_utc": "2026-06-06T05:06:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-642",
   "current_exq_started_utc": "2026-06-06T04:47:19.599394+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": null,
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_BLOCK",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_CONTROL",
+    "runs_done": 1,
     "runs_total": 6,
     "episodes_done": 0,
     "episodes_total": 60,
-    "overall_pct": 0.0
+    "overall_pct": 16.7
   },
-  "seconds_elapsed": 251,
-  "seconds_remaining": 5400,
+  "seconds_elapsed": 1155,
+  "seconds_remaining": 3581,
   "recent_lines": [
-    "[train] seed42 ep 30/60 wf_mse=0.000031",
-    "[train] seed42 ep 40/60 wf_mse=0.000026",
-    "[train] seed42 ep 50/60 wf_mse=0.000035",
     "[train] seed42 ep 60/60 wf_mse=0.000023",
-    "Seed 42 Condition ARM_BLOCK"
+    "Seed 42 Condition ARM_BLOCK",
+    "ARM_BLOCK: z_block_peak=0.000 z_harm_a_mean=0.000 action_rate=0.948",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_CONTROL"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
