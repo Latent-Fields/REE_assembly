@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-06T10:34:51Z",
+  "last_review_utc": "2026-06-06T14:11:54Z",
   "discussed_experiment_dirs": [
     "v3_exq_642_blocked_agency_zblock_discriminative_20260606T055351Z_v3",
     "v3_exq_418m_sd016_cue_slot_tagger",
@@ -549,7 +549,9 @@
     "v3_exq_639_arc063_candidate_rule_field_readiness",
     "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z",
     "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
-    "v3_exq_641a_coherence_ablation_nonreducibility"
+    "v3_exq_641a_coherence_ablation_nonreducibility",
+    "v3_exq_643_modulatory_authority_validation",
+    "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_418m_sd016_cue_slot_tagger_20260605T165833Z_v3",
@@ -2805,7 +2807,8 @@
     "v3_exq_637_sd057_phase2_cue_recall_consume_20260604T102546Z_v3",
     "v3_exq_638_scaffold_cue_recall_contact_ablation_20260604T142524Z_v3",
     "v3_exq_642_blocked_agency_zblock_discriminative_20260606T055351Z_v3",
-    "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3"
+    "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
+    "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3832,6 +3835,18 @@
         "v3_exq_641_coherence_ablation_nonreducibility_20260606T021359Z_v3"
       ],
       "subject": "/governance cycle 2026-06-06. 3 pending experiments walked -- ALL diagnostic (claim_ids=[] -> weight no claim), each with a CONFIRMED failure_autopsy artifact; user accepted all 3 autopsies verbatim. (1) V3-EXQ-418m (SD-016 Path 3 feedforward cue->slot tagger, FAIL diagnostic) -- C2 control on-saddle 3/3 PASS but C1 tagger-breaks-saddle 0/3 (ON entropy 2.7536 vs 2.5; C1b context-div 0.0021 vs 0.1). Autopsy: upstream z_world cross-context separation precondition unmet (418f cosine 0.998) -> a new selection mechanism over near-constant z_world cannot be context-selective. evidence_direction=diagnostic, epistemic_category=substrate_ceiling, pending_retest_after_substrate=true, routing=/implement-substrate. substrate_queue AMEND SD-016 (reaffirm parked_pending_env_entropy_precondition, +418m failure_record, gated hippocampal-indexing design note); no claims.yaml change. (2) V3-EXQ-640a (cue-authority gain sweep, PASS=measurement-gates-only, non_contributory) -- 25x cue_recall_gain x 5x incentive_drive_kappa (6 cells); cue->z_goal INTACT (abs zgoal_norm_at_cue_fire ~0.5 vs 0.42 OFF, cue fires every step) but ZERO post-cue approach-lift in all 6 cells (magnitude ruled out). Bottleneck = z_goal->approach propagation (MECH-295 liking-bridge / E3 goal_proximity) lacking selection authority -- same drowning shape as 604a/624a/614d. NOT evidence against cue-recall; NOT a 638b build trigger. epistemic_category=substrate_ceiling, routing=/implement-substrate. substrate_queue AMEND modulatory-bias-selection-authority (add cue-recall/MECH-295 approach bias to validation surface, +640a failure_record, priority 1; unblocks MECH-295/SD-057/346/347/314/320/341; depends_on_unresolved scaffolded_sd054_onboarding GAP-2 foraging competence). (3) V3-EXQ-641 (coherence-ablation non-reducibility, FAIL diagnostic, non_contributory) -- SPEC coherence-specificity passed 1/3 seeds (need 2/3; D1 2/3, D3 3/3); majority_label C_changes_selection_specificity_unproven_route_followup. bears_on_not_tagged INV-002/ARC-018/MECH-061/MECH-269/MECH-270 (no weight). Autopsy: measurement/test-design gap NOT substrate gap; routing=/queue-experiment (V3-EXQ-641a sharper read), pending_retest_after_substrate=false, substrate_queue action=none; annotate the two 2026-04-23 intakes (binding + path-integral) as OPEN/gated pending 641a. No claims.yaml status/confidence changes this cycle (all 3 claim_ids=[]). Promotion/demotion: 2 pending_user (ARC-080 + MECH-342, both hold_pending_v3_substrate, no-op holds, user-acknowledged); nothing promoted/demoted. closure_drift 0 drifted / 6 suppressed / 0 stale / 0 missing last_updated. Two stale (>6h) active claims cleared with user authorization at cycle start (implement-mech353-zblock + land-spec-doc-cleanup)."
+    },
+    {
+      "timestamp_utc": "2026-06-06T14:11:54Z",
+      "session_label": "governance-cycle-20260606T1407Z",
+      "reviewed_run_ids": [
+        "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_643_modulatory_authority_validation",
+        "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3"
+      ],
+      "subject": "/governance cycle 2026-06-06T14:07Z. 1 pending experiment walked -- V3-EXQ-643 (modulatory_authority_validation, FAIL, DIAGNOSTIC claim_ids=[] -> weights no claim) with a CONFIRMED failure_autopsy_V3-EXQ-643_2026-06-06 (+ code-confirmed correction 13:27Z). User accepted: correct the manifest self-route does_not_support -> non_contributory. Adjudication = PRECONDITION_UNMET not falsification: C1 authority never fired because float32 CATASTROPHIC CANCELLATION (643 trains SD-056 online -> primary E3 scores ~1e32; modulatory_total = scores - scores_raw annihilates the real ~0.17 MECH-341 entropy-bonus range below the float32 ULP ~1e25). Substrate modulatory-bias-selection-authority NOT falsified; stays implemented_pending_validation; pending_retest_after_substrate. Fix already landed ree-v3 654ccc8; V3-EXQ-643a queued (supersedes 643, range-based P0 readiness gate + SD-056 rollout clamp); substrate_queue failure_record already amended this session (643 present). No claims.yaml status/confidence change (claim_ids=[]). Promotion/demotion: 1 pending_user MECH-342 (hold_pending_v3_substrate, no-op V3-pending hold) acknowledged -> applied via record_decision.py; nothing promoted/demoted. closure_drift 0 drifted / 6 suppressed / 0 stale / 0 missing last_updated."
     }
   ]
 }

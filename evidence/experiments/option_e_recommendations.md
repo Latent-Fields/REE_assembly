@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-06-06T07:54:38.261767Z`
+Generated: `2026-06-06T14:07:55.861685Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -53,7 +53,7 @@ Total: **183** discrepant claims (standard-gating only).
 | `INV-046` | invariant | candidate | 0.703 | 0.000 | 0.703 | 0 | 1 | plausible_unproven |
 | `INV-047` | derived_prediction | candidate | 0.703 | 0.000 | 0.703 | 0 | 1 | plausible_unproven |
 | `INV-048` | derived_prediction | candidate | 0.859 | 0.000 | 0.859 | 0 | 4 | plausible_unproven |
-| `INV-050` | invariant | candidate | 0.842 | 0.000 | 0.842 | 0 | 3 | plausible_unproven |
+| `INV-050` | invariant | candidate | 0.841 | 0.000 | 0.841 | 0 | 3 | plausible_unproven |
 | `INV-051` | invariant | candidate | 0.726 | 0.000 | 0.726 | 0 | 2 | plausible_unproven |
 | `INV-055` | invariant | candidate | 0.852 | 0.000 | 0.852 | 0 | 5 | plausible_unproven |
 | `INV-060` | invariant | candidate | 0.774 | 0.000 | 0.774 | 0 | 2 | plausible_unproven |
@@ -63,13 +63,13 @@ Total: **183** discrepant claims (standard-gating only).
 | `MECH-044` | mechanism_hypothesis | provisional | 0.745 | 0.000 | 0.745 | 0 | 1 | plausible_unproven |
 | `MECH-045` | mechanism_hypothesis | provisional | 0.867 | 0.000 | 0.867 | 0 | 8 | plausible_unproven |
 | `MECH-046` | mechanism_hypothesis | provisional | 0.878 | 0.000 | 0.878 | 0 | 4 | plausible_unproven |
-| `MECH-053` | mechanism_hypothesis | provisional | 0.750 | 0.000 | 0.750 | 0 | 2 | plausible_unproven |
+| `MECH-053` | mechanism_hypothesis | provisional | 0.749 | 0.000 | 0.749 | 0 | 2 | plausible_unproven |
 | `MECH-054` | mechanism_hypothesis | provisional | 0.757 | 0.000 | 0.757 | 0 | 2 | plausible_unproven |
 | `MECH-057` | mechanism_hypothesis | candidate | 0.819 | 0.000 | 0.819 | 0 | 7 | plausible_unproven |
 | `MECH-057b` | - | - | 0.859 | 0.000 | 0.859 | 0 | 4 | plausible_unproven |
 | `MECH-058` | mechanism_hypothesis | retired | 0.846 | 0.000 | 0.846 | 0 | 9 | plausible_unproven |
 | `MECH-063` | mechanism_hypothesis | provisional | 0.770 | 0.000 | 0.770 | 0 | 2 | plausible_unproven |
-| `MECH-068` | mechanism_hypothesis | candidate | 0.683 | 0.000 | 0.683 | 0 | 1 | plausible_unproven |
+| `MECH-068` | mechanism_hypothesis | candidate | 0.682 | 0.000 | 0.682 | 0 | 1 | plausible_unproven |
 | `MECH-074` | mechanism_hypothesis | provisional | 0.881 | 0.000 | 0.881 | 0 | 9 | plausible_unproven |
 | `MECH-074a` | - | - | 0.828 | 0.000 | 0.828 | 0 | 3 | plausible_unproven |
 | `MECH-074c` | - | - | 0.770 | 0.000 | 0.770 | 0 | 2 | plausible_unproven |
@@ -78,7 +78,7 @@ Total: **183** discrepant claims (standard-gating only).
 | `MECH-077` | mechanism_hypothesis | candidate | 0.765 | 0.000 | 0.765 | 0 | 2 | plausible_unproven |
 | `MECH-092` | mechanism_hypothesis | candidate | 0.879 | 0.000 | 0.879 | 0 | 16 | plausible_unproven |
 | `MECH-096` | mechanism_hypothesis | candidate | 0.798 | 0.000 | 0.798 | 0 | 2 | plausible_unproven |
-| `MECH-103` | mechanism_hypothesis | candidate | 0.834 | 0.000 | 0.834 | 0 | 3 | plausible_unproven |
+| `MECH-103` | mechanism_hypothesis | candidate | 0.833 | 0.000 | 0.833 | 0 | 3 | plausible_unproven |
 | `MECH-121` | mechanism_hypothesis | candidate | 0.925 | 0.000 | 0.925 | 0 | 5 | plausible_unproven |
 | `MECH-122` | mechanism_hypothesis | provisional | 0.887 | 0.000 | 0.887 | 0 | 4 | plausible_unproven |
 | `MECH-123` | mechanism_hypothesis | candidate | 0.848 | 0.000 | 0.848 | 0 | 5 | plausible_unproven |
@@ -89,14 +89,14 @@ Total: **183** discrepant claims (standard-gating only).
 | `MECH-168` | mechanism_hypothesis | candidate | 0.867 | 0.000 | 0.867 | 0 | 4 | plausible_unproven |
 | `MECH-169` | mechanism_hypothesis | candidate | 0.781 | 0.000 | 0.781 | 0 | 2 | plausible_unproven |
 | `MECH-171` | mechanism_hypothesis | candidate | 0.872 | 0.000 | 0.872 | 0 | 4 | plausible_unproven |
-| `MECH-172` | mechanism_hypothesis | candidate | 0.884 | 0.000 | 0.884 | 0 | 6 | plausible_unproven |
+| `MECH-172` | mechanism_hypothesis | candidate | 0.883 | 0.000 | 0.883 | 0 | 6 | plausible_unproven |
 | `MECH-173` | mechanism_hypothesis | candidate | 0.768 | 0.000 | 0.768 | 0 | 2 | plausible_unproven |
 | `MECH-174` | mechanism_hypothesis | candidate | 0.738 | 0.000 | 0.738 | 0 | 2 | plausible_unproven |
 | `MECH-175` | mechanism_hypothesis | candidate | 0.818 | 0.000 | 0.818 | 0 | 3 | plausible_unproven |
 | `MECH-176` | mechanism_hypothesis | candidate | 0.776 | 0.000 | 0.776 | 0 | 2 | plausible_unproven |
 | `MECH-177` | mechanism_hypothesis | candidate | 0.761 | 0.000 | 0.761 | 0 | 2 | plausible_unproven |
-| `MECH-178` | mechanism_hypothesis | candidate | 0.792 | 0.000 | 0.792 | 0 | 3 | plausible_unproven |
-| `MECH-179` | mechanism_hypothesis | candidate | 0.792 | 0.000 | 0.792 | 0 | 3 | plausible_unproven |
+| `MECH-178` | mechanism_hypothesis | candidate | 0.791 | 0.000 | 0.791 | 0 | 3 | plausible_unproven |
+| `MECH-179` | mechanism_hypothesis | candidate | 0.791 | 0.000 | 0.791 | 0 | 3 | plausible_unproven |
 | `MECH-180` | mechanism_hypothesis | candidate | 0.889 | 0.000 | 0.889 | 0 | 4 | plausible_unproven |
 | `MECH-181` | mechanism_hypothesis | candidate | 0.708 | 0.000 | 0.708 | 0 | 2 | plausible_unproven |
 | `MECH-182` | mechanism_hypothesis | candidate | 0.733 | 0.000 | 0.733 | 0 | 3 | plausible_unproven |
@@ -114,7 +114,7 @@ Total: **183** discrepant claims (standard-gating only).
 | `MECH-198` | mechanism_hypothesis | candidate | 0.872 | 0.000 | 0.872 | 0 | 8 | plausible_unproven |
 | `MECH-200` | mechanism_hypothesis | candidate | 0.769 | 0.000 | 0.769 | 0 | 2 | plausible_unproven |
 | `MECH-201` | mechanism_hypothesis | candidate | 0.769 | 0.000 | 0.769 | 0 | 2 | plausible_unproven |
-| `MECH-203` | mechanism_hypothesis | candidate | 0.880 | 0.000 | 0.880 | 0 | 7 | plausible_unproven |
+| `MECH-203` | mechanism_hypothesis | candidate | 0.879 | 0.000 | 0.879 | 0 | 7 | plausible_unproven |
 | `MECH-244` | mechanism_hypothesis | candidate | 0.771 | 0.000 | 0.771 | 0 | 2 | plausible_unproven |
 | `MECH-245` | mechanism_hypothesis | candidate | 0.766 | 0.000 | 0.766 | 0 | 2 | plausible_unproven |
 | `MECH-257` | mechanism_hypothesis | candidate | 0.763 | 0.000 | 0.763 | 0 | 2 | plausible_unproven |
@@ -174,46 +174,46 @@ Total: **183** discrepant claims (standard-gating only).
 | `SD-049` | design_decision | candidate | 0.800 | 0.000 | 0.800 | 0 | 11 | plausible_unproven |
 | `SD-054` | design_decision | candidate | 0.877 | 0.000 | 0.877 | 0 | 6 | plausible_unproven |
 | `MECH-118` | mechanism_hypothesis | candidate | 0.645 | 0.170 | 0.803 | 1 | 3 | plausible_unproven |
-| `MECH-165` | mechanism_hypothesis | candidate | 0.662 | 0.188 | 0.820 | 1 | 3 | plausible_unproven |
-| `MECH-188` | mechanism_hypothesis | candidate | 0.648 | 0.192 | 0.800 | 1 | 3 | plausible_unproven |
+| `MECH-165` | mechanism_hypothesis | candidate | 0.662 | 0.187 | 0.820 | 1 | 3 | plausible_unproven |
+| `MECH-188` | mechanism_hypothesis | candidate | 0.648 | 0.191 | 0.800 | 1 | 3 | plausible_unproven |
+| `SD-023` | design_decision | candidate | 0.701 | 0.216 | 0.863 | 1 | 4 | plausible_unproven |
 | `MECH-220` | mechanism_hypothesis | candidate | 0.701 | 0.217 | 0.862 | 1 | 4 | plausible_unproven |
-| `SD-023` | design_decision | candidate | 0.702 | 0.217 | 0.863 | 1 | 4 | plausible_unproven |
-| `SD-032c` | - | - | 0.650 | 0.222 | 0.792 | 1 | 3 | plausible_unproven |
-| `MECH-091` | mechanism_hypothesis | candidate | 0.689 | 0.223 | 0.844 | 1 | 6 | plausible_unproven |
-| `MECH-120` | mechanism_hypothesis | candidate | 0.640 | 0.242 | 0.905 | 2 | 11 | plausible_unproven |
-| `SD-047` | design_decision | provisional | 0.686 | 0.253 | 0.831 | 1 | 10 | plausible_unproven |
-| `MECH-334` | mechanism_hypothesis | candidate | 0.723 | 0.282 | 0.870 | 1 | 3 | plausible_unproven |
-| `MECH-047` | mechanism_hypothesis | provisional | 0.723 | 0.308 | 0.862 | 1 | 4 | plausible_unproven |
-| `MECH-026` | mechanism_hypothesis | provisional | 0.729 | 0.332 | 0.861 | 1 | 6 | plausible_unproven |
-| `MECH-029` | mechanism_hypothesis | provisional | 0.732 | 0.332 | 0.865 | 1 | 6 | plausible_unproven |
+| `SD-032c` | - | - | 0.649 | 0.221 | 0.792 | 1 | 3 | plausible_unproven |
+| `MECH-091` | mechanism_hypothesis | candidate | 0.689 | 0.222 | 0.844 | 1 | 6 | plausible_unproven |
+| `MECH-120` | mechanism_hypothesis | candidate | 0.639 | 0.241 | 0.905 | 2 | 11 | plausible_unproven |
+| `SD-047` | design_decision | provisional | 0.686 | 0.252 | 0.831 | 1 | 10 | plausible_unproven |
+| `MECH-334` | mechanism_hypothesis | candidate | 0.723 | 0.281 | 0.870 | 1 | 3 | plausible_unproven |
+| `MECH-047` | mechanism_hypothesis | provisional | 0.723 | 0.307 | 0.862 | 1 | 4 | plausible_unproven |
+| `MECH-026` | mechanism_hypothesis | provisional | 0.729 | 0.331 | 0.861 | 1 | 6 | plausible_unproven |
+| `MECH-029` | mechanism_hypothesis | provisional | 0.731 | 0.331 | 0.865 | 1 | 6 | plausible_unproven |
 | `MECH-022` | mechanism_hypothesis | provisional | 0.733 | 0.334 | 0.866 | 1 | 5 | plausible_unproven |
-| `MECH-025` | mechanism_hypothesis | candidate | 0.746 | 0.337 | 0.882 | 1 | 7 | plausible_unproven |
-| `MECH-099` | mechanism_hypothesis | candidate | 0.626 | 0.360 | 0.892 | 6 | 7 | plausible_unproven |
-| `MECH-295` | mechanism_hypothesis | candidate | 0.668 | 0.362 | 0.872 | 2 | 6 | plausible_unproven |
-| `MECH-075` | mechanism_hypothesis | candidate | 0.638 | 0.403 | 0.872 | 5 | 6 | plausible_unproven |
+| `MECH-025` | mechanism_hypothesis | candidate | 0.745 | 0.336 | 0.882 | 1 | 7 | plausible_unproven |
+| `MECH-099` | mechanism_hypothesis | candidate | 0.626 | 0.359 | 0.892 | 6 | 7 | plausible_unproven |
+| `MECH-295` | mechanism_hypothesis | candidate | 0.668 | 0.361 | 0.872 | 2 | 6 | plausible_unproven |
+| `MECH-075` | mechanism_hypothesis | candidate | 0.637 | 0.402 | 0.872 | 5 | 6 | plausible_unproven |
 | `MECH-113` | mechanism_hypothesis | candidate | 0.626 | 0.426 | 0.826 | 3 | 3 | plausible_unproven |
-| `SD-032b` | - | - | 0.660 | 0.443 | 0.877 | 10 | 14 | plausible_unproven |
-| `MECH-102` | mechanism_hypothesis | active | 0.648 | 0.457 | 0.840 | 24 | 9 | plausible_unproven |
-| `MECH-307` | mechanism_hypothesis | candidate_substrate_landed | 0.784 | 0.472 | 0.888 | 1 | 5 | plausible_unproven |
-| `ARC-030` | architecture_hypothesis | candidate | 0.696 | 0.488 | 0.903 | 7 | 10 | plausible_unproven |
+| `SD-032b` | - | - | 0.660 | 0.442 | 0.877 | 10 | 14 | plausible_unproven |
+| `MECH-102` | mechanism_hypothesis | active | 0.648 | 0.456 | 0.840 | 24 | 9 | plausible_unproven |
+| `MECH-307` | mechanism_hypothesis | candidate_substrate_landed | 0.784 | 0.471 | 0.888 | 1 | 5 | plausible_unproven |
+| `ARC-030` | architecture_hypothesis | candidate | 0.695 | 0.487 | 0.903 | 7 | 10 | plausible_unproven |
 | `MECH-313` | mechanism_hypothesis | candidate_substrate_landed | 0.705 | 0.505 | 0.838 | 2 | 3 | plausible_unproven |
 | `MECH-204` | mechanism_hypothesis | candidate | 0.684 | 0.513 | 0.856 | 3 | 5 | plausible_unproven |
 | `MECH-095` | mechanism_hypothesis | active | 0.683 | 0.530 | 0.836 | 10 | 24 | plausible_unproven |
-| `SD-016` | design_decision | implemented | 0.656 | 0.532 | 0.780 | 6 | 3 | plausible_unproven |
-| `SD-004` | design_decision | implemented | 0.723 | 0.552 | 0.893 | 7 | 14 | plausible_unproven |
+| `SD-016` | design_decision | implemented | 0.655 | 0.531 | 0.780 | 6 | 3 | plausible_unproven |
+| `SD-004` | design_decision | implemented | 0.722 | 0.551 | 0.893 | 7 | 14 | plausible_unproven |
 | `MECH-098` | mechanism_hypothesis | candidate | 0.731 | 0.559 | 0.903 | 19 | 9 | plausible_unproven |
 | `MECH-262` | mechanism_hypothesis | candidate | 0.756 | 0.578 | 0.874 | 2 | 8 | plausible_unproven |
-| `MECH-216` | mechanism | provisional | 0.755 | 0.582 | 0.870 | 2 | 5 | plausible_unproven |
-| `ARC-024` | architecture_hypothesis | provisional | 0.697 | 0.585 | 0.808 | 28 | 3 | plausible_unproven |
+| `MECH-216` | mechanism | provisional | 0.754 | 0.581 | 0.870 | 2 | 5 | plausible_unproven |
+| `ARC-024` | architecture_hypothesis | provisional | 0.696 | 0.584 | 0.808 | 28 | 3 | plausible_unproven |
+| `MECH-056` | mechanism_hypothesis | provisional | 0.791 | 0.589 | 0.859 | 1 | 15 | plausible_unproven |
 | `MECH-059` | mechanism_hypothesis | active | 0.754 | 0.589 | 0.809 | 1 | 11 | plausible_unproven |
-| `MECH-056` | mechanism_hypothesis | provisional | 0.792 | 0.590 | 0.859 | 1 | 15 | plausible_unproven |
-| `MECH-060` | mechanism_hypothesis | provisional | 0.774 | 0.590 | 0.836 | 1 | 18 | plausible_unproven |
-| `MECH-061` | mechanism_hypothesis | active | 0.781 | 0.590 | 0.845 | 1 | 8 | plausible_unproven |
+| `MECH-060` | mechanism_hypothesis | provisional | 0.773 | 0.589 | 0.835 | 1 | 18 | plausible_unproven |
+| `MECH-061` | mechanism_hypothesis | active | 0.781 | 0.589 | 0.845 | 1 | 8 | plausible_unproven |
 | `SD-003-prereq` | - | - | 0.750 | 0.590 | 0.803 | 1 | 3 | plausible_unproven |
 | `MECH-057a` | - | - | 0.781 | 0.591 | 0.844 | 1 | 5 | plausible_unproven |
-| `SD-003` | design_decision | superseded | 0.720 | 0.606 | 0.834 | 83 | 7 | plausible_unproven |
-| `MECH-089` | mechanism_hypothesis | active | 0.737 | 0.615 | 0.859 | 12 | 9 | plausible_unproven |
-| `SD-015` | design_decision | candidate | 0.714 | 0.617 | 0.810 | 9 | 13 | plausible_unproven |
+| `SD-003` | design_decision | superseded | 0.719 | 0.605 | 0.833 | 83 | 7 | plausible_unproven |
+| `MECH-089` | mechanism_hypothesis | active | 0.737 | 0.614 | 0.859 | 12 | 9 | plausible_unproven |
+| `SD-015` | design_decision | candidate | 0.713 | 0.616 | 0.810 | 9 | 13 | plausible_unproven |
 
 _Suppressed by gating: 38 substrate_coherence (ARC + universal invariant), 33 answer_state (open_question). These cross the gate under one regime but not the other; the discrepancy is not actionable under their evidence rules. See suppressed sections below._
 
@@ -238,8 +238,8 @@ These don't need experiments. They're foundational design choices (ARC) or unive
 | `ARC-005` | architectural_commitment | active | 0.796 | 3 |
 | `ARC-014` | architectural_commitment | active | 0.781 | 3 |
 | `ARC-011` | architectural_commitment | active | 0.773 | 1 |
-| `ARC-001` | architectural_commitment | active | 0.683 | 1 |
-| `INV-014` | invariant | active | 0.683 | 1 |
+| `ARC-001` | architectural_commitment | active | 0.682 | 1 |
+| `INV-014` | invariant | active | 0.682 | 1 |
 
 ### Implementation cohort with no exp -- suppressed (answer_state)
 
@@ -262,7 +262,7 @@ Total: **3**.
 | claim | status | exp_conf | lit_conf | n_exp | n_lit |
 |---|---|---:|---:|---:|---:|
 | `MECH-341` | candidate | 0.811 | 0.000 | 2 | 0 |
-| `MECH-306` | provisional | 0.767 | 0.000 | 1 | 0 |
+| `MECH-306` | provisional | 0.766 | 0.000 | 1 | 0 |
 | `onboarding` | - | 0.646 | 0.000 | 1 | 0 |
 
 ## New flags (would replace `low_overall_confidence` at cutover)
@@ -274,35 +274,35 @@ Total: **41**.
 | claim | status | exp_conf | n_exp |
 |---|---|---:|---:|
 | `MECH-118` | candidate | 0.170 | 1 |
-| `MECH-150` | candidate | 0.177 | 1 |
-| `MECH-165` | candidate | 0.188 | 1 |
+| `MECH-150` | candidate | 0.176 | 1 |
+| `MECH-165` | candidate | 0.187 | 1 |
 | `SD-018` | implemented | 0.190 | 1 |
-| `MECH-188` | candidate | 0.192 | 1 |
+| `MECH-188` | candidate | 0.191 | 1 |
+| `SD-023` | candidate | 0.216 | 1 |
+| `ARC-032` | candidate | 0.217 | 2 |
+| `MECH-116` | candidate | 0.217 | 2 |
 | `MECH-220` | candidate | 0.217 | 1 |
-| `SD-023` | candidate | 0.217 | 1 |
-| `ARC-032` | candidate | 0.218 | 2 |
-| `MECH-116` | candidate | 0.218 | 2 |
-| `SD-032c` | - | 0.222 | 1 |
-| `MECH-091` | candidate | 0.223 | 1 |
-| `MECH-120` | candidate | 0.242 | 2 |
-| `MECH-186` | candidate | 0.242 | 2 |
-| `MECH-155` | candidate | 0.244 | 2 |
-| `SD-047` | provisional | 0.253 | 1 |
-| `MECH-128` | candidate | 0.277 | 3 |
-| `MECH-334` | candidate | 0.282 | 1 |
-| `MECH-047` | provisional | 0.308 | 1 |
+| `SD-032c` | - | 0.221 | 1 |
+| `MECH-091` | candidate | 0.222 | 1 |
+| `MECH-120` | candidate | 0.241 | 2 |
+| `MECH-186` | candidate | 0.241 | 2 |
+| `MECH-155` | candidate | 0.243 | 2 |
+| `SD-047` | provisional | 0.252 | 1 |
+| `MECH-128` | candidate | 0.276 | 3 |
+| `MECH-334` | candidate | 0.281 | 1 |
+| `MECH-047` | provisional | 0.307 | 1 |
 | `INV-054` | candidate | 0.320 | 3 |
-| `SD-021` | candidate | 0.322 | 3 |
-| `MECH-026` | provisional | 0.332 | 1 |
-| `MECH-029` | provisional | 0.332 | 1 |
+| `SD-021` | candidate | 0.321 | 3 |
+| `MECH-026` | provisional | 0.331 | 1 |
+| `MECH-029` | provisional | 0.331 | 1 |
 | `MECH-022` | provisional | 0.334 | 1 |
-| `MECH-025` | candidate | 0.337 | 1 |
+| `MECH-025` | candidate | 0.336 | 1 |
 | `MECH-070` | retiring | 0.350 | 4 |
 | `MECH-153` | candidate | 0.355 | 4 |
-| `MECH-099` | candidate | 0.360 | 6 |
-| `MECH-295` | candidate | 0.362 | 2 |
-| `MECH-097` | candidate | 0.384 | 1 |
-| `MECH-075` | candidate | 0.403 | 5 |
+| `MECH-099` | candidate | 0.359 | 6 |
+| `MECH-295` | candidate | 0.361 | 2 |
+| `MECH-097` | candidate | 0.383 | 1 |
+| `MECH-075` | candidate | 0.402 | 5 |
 | ... | ... | ... | ... (11 more) |
 
 
@@ -336,15 +336,15 @@ Claims with literature support and no experiment yet. These are candidates for t
 | `MECH-288` | candidate | 0.885 | 11 |
 | `MECH-293` | candidate | 0.885 | 12 |
 | `MECH-030` | provisional | 0.884 | 4 |
-| `MECH-172` | candidate | 0.884 | 6 |
 | `SD-014` | candidate | 0.884 | 13 |
+| `MECH-172` | candidate | 0.883 | 6 |
 | `MECH-314` | candidate_substrate_landed | 0.883 | 6 |
 | `ARC-049` | candidate | 0.882 | 27 |
 | `MECH-191` | candidate | 0.882 | 4 |
 | `MECH-074` | provisional | 0.881 | 9 |
-| `MECH-203` | candidate | 0.880 | 7 |
 | `DEV-NEED-012` | - | 0.879 | 6 |
 | `MECH-092` | candidate | 0.879 | 16 |
+| `MECH-203` | candidate | 0.879 | 7 |
 | `MECH-046` | provisional | 0.878 | 4 |
 | `MECH-316` | candidate | 0.877 | 9 |
 | `SD-054` | candidate | 0.877 | 6 |

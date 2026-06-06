@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_431_sd003_causal_discrimination
 
-Generated: `2026-06-06T05:03:37.313514Z`
+Generated: `2026-06-06T14:11:07.565862Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
