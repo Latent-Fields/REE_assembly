@@ -5,9 +5,14 @@ schema_version: 1
 disclaimer: >-
   Regions denote computational roles inspired by neuroscience naming in REE.
   Coverage reflects claims, substrate code, and experiment evidence -- not
-  biological completeness or anatomical accuracy. Layout intent (E1=cerebrum,
-  E2=cerebellum, E3=BG commitment) is documented in founder_ontology.md; the
-  current SVG may not yet match that layout.
+  biological completeness or anatomical accuracy. The three planes are arranged
+  as an orthographic projection sheet: coronal (front) above axial (top) sharing
+  the left-right axis, sagittal (side) beside coronal sharing the
+  superior-inferior axis -- hover a region to trace it across views. Plane
+  alignment is calibrated to each backdrop's frame, not a shared anatomical
+  atlas. Region placement is still catching up to the founder layout intent
+  (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in
+  founder_ontology.md.
 founder_ontology: docs/architecture/founder_ontology.md
 
 # Prefixes that must map to a region or engineering bucket (validate script).

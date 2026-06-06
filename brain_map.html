@@ -36,10 +36,16 @@
      bottom-left sharing the left-right axis with coronal (equal width). --rowH drives
      the whole sheet; column widths are locked to each plane's source aspect ratio so
      the SVGs fill their cells with no letterboxing and shared axes line up to the pixel. */
-  .planes { --rowH: 340px; display: grid;
+  .planes { --rowH: 340px; display: grid; position: relative;
     grid-template-columns: calc(var(--rowH) * 600 / 500) calc(var(--rowH) * 522 / 560);
     grid-template-rows: auto auto; gap: 14px 16px;
     justify-content: start; align-items: start; }
+  /* projection guide overlay: axis-aligned crosshair bands drawn on hover so a
+     region can be traced from the front (coronal) view down to axial (shared
+     left-right axis) and across to sagittal (shared superior-inferior axis). */
+  #guideOverlay { position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 5; overflow: visible; }
+  #guideOverlay line { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 5 4; opacity: 0.55; }
   .plane-coronal  { grid-area: 1 / 1; }
   .plane-sagittal { grid-area: 1 / 2; }
   .plane-axial    { grid-area: 2 / 1; }
@@ -119,6 +125,7 @@
 <div class="layout">
   <div class="planes-wrap">
     <div class="planes">
+      <svg id="guideOverlay" aria-hidden="true"></svg>
       <div class="plane plane-coronal"><h3>Coronal &mdash; thalamus level<span class="axhint">L&ndash;R &times; sup&ndash;inf</span></h3>
         <div class="host" id="host_coronal"></div>
         <div class="cap">MRI: 511KeV, Wikimedia, CC BY-SA 4.0</div></div>
@@ -168,14 +175,49 @@
     host.querySelectorAll(".brain-region").forEach((el) => {
       const rid = el.getAttribute("data-region");
       el.addEventListener("click", (ev) => { ev.stopPropagation(); selectNode(rid); });
-      el.addEventListener("mouseenter", () => setHover(rid));
+      el.addEventListener("mouseenter", () => setHover(rid, el));
       el.addEventListener("mouseleave", () => setHover(null));
     });
   }
 
-  function setHover(id) {
-    document.querySelectorAll(".linked-hover").forEach((el) => el.classList.remove("linked-hover"));
-    if (id) elementsFor(id).forEach((el) => el.classList.add("linked-hover"));
+  function setHover(id, el) {
+    document.querySelectorAll(".linked-hover").forEach((e) => e.classList.remove("linked-hover"));
+    clearGuides();
+    if (!id) return;
+    elementsFor(id).forEach((e) => e.classList.add("linked-hover"));
+    if (el) drawGuides(el);
+  }
+
+  function clearGuides() { const o = $("guideOverlay"); if (o) o.innerHTML = ""; }
+
+  function svgRect(plane, O) {
+    const host = $("host_" + plane), s = host && host.querySelector("svg");
+    if (!s) return null;
+    const r = s.getBoundingClientRect();
+    return { left: r.left - O.left, right: r.right - O.left, top: r.top - O.top, bottom: r.bottom - O.top };
+  }
+  function lineSvg(x1, y1, x2, y2) {
+    return '<line x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) +
+      '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '"/>';
+  }
+
+  // Draw orthographic projection bands from the hovered region: a vertical X-band
+  // (its left/right edges) down through the coronal<->axial column, and a horizontal
+  // Z-band (its top/bottom edges) across the coronal<->sagittal row.
+  function drawGuides(el) {
+    const overlay = $("guideOverlay"), planesEl = document.querySelector(".planes");
+    if (!overlay || !planesEl || typeof el.getBoundingClientRect !== "function") return;
+    const plane = el.closest(".plane");
+    if (!plane) return;
+    const O = planesEl.getBoundingClientRect(), r = el.getBoundingClientRect();
+    const cor = svgRect("coronal", O), sag = svgRect("sagittal", O), ax = svgRect("axial", O);
+    const L = r.left - O.left, R = r.right - O.left, T = r.top - O.top, B = r.bottom - O.top;
+    const inCol1 = plane.classList.contains("plane-coronal") || plane.classList.contains("plane-axial");
+    const inRow1 = plane.classList.contains("plane-coronal") || plane.classList.contains("plane-sagittal");
+    const frag = [];
+    if (inCol1 && cor && ax) frag.push(lineSvg(L, cor.top, L, ax.bottom), lineSvg(R, cor.top, R, ax.bottom));
+    if (inRow1 && cor && sag) frag.push(lineSvg(cor.left, T, sag.right, T), lineSvg(cor.left, B, sag.right, B));
+    overlay.innerHTML = frag.join("");
   }
 
   function renderSubstrate() {
