@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BRAIN_MAP_VERSION: 2026-06-06.4 -->
+<!-- BRAIN_MAP_VERSION: 2026-06-06.5 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -98,6 +98,21 @@
   .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; font-size: 10px; color: var(--muted); }
   .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
   @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .sidebar { border-left: none; border-top: 1px solid var(--border); } }
+  /* lightweight 3D view -- spans the full sheet width below the three planes */
+  .plane-3d { grid-column: 1 / -1; }
+  .plane-3d h3 .axhint { font-weight: 400; }
+  #host_3d { width: 100%; }
+  #host_3d svg { width: 100%; height: var(--rowH); display: block; background: #0a0d12;
+    cursor: grab; touch-action: none; }
+  #host_3d svg:active { cursor: grabbing; }
+  #host_3d .r3d-hull { fill: none; stroke: #2d333b; stroke-width: 0.7; }
+  #host_3d .r3d-gnomon text { fill: var(--muted); font-size: 9px; }
+  #host_3d .r3d-gnomon line { stroke: var(--muted); stroke-width: 1; }
+  svg .r3d-sphere { stroke: #0a0d12; stroke-width: 0.5; cursor: pointer; transition: stroke .12s; }
+  svg .r3d-sphere:hover { stroke: var(--accent); stroke-width: 1.6; }
+  svg .r3d-sphere.linked-hover { stroke: var(--accent); stroke-width: 1.8; }
+  svg .r3d-sphere.selected { stroke: #f0f6fc; stroke-width: 1.8; }
+  svg .r3d-sphere.hidden-layer { opacity: 0.08 !important; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -136,6 +151,9 @@
         <div class="host" id="host_axial"></div>
         <div class="cap">MNI152 template (TemplateFlow, ICBM 152)</div></div>
       <div class="substrate"><h3>Substrate</h3><div class="nodes" id="substrateNodes"></div></div>
+      <div class="plane plane-3d"><h3>3D &mdash; MNI space<span class="axhint">drag to rotate</span></h3>
+        <div class="host" id="host_3d"></div>
+        <div class="cap">Regions as spheres in MNI mm; same coverage colors. Functional analogy, not surface anatomy.</div></div>
     </div>
   </div>
   <aside class="sidebar" id="sidebar">
@@ -147,7 +165,8 @@
   const PLANES = ["sagittal", "coronal", "axial"];
   const IMPL_DIM = { full: 1, partial: 0.65, claim_only: 0.35 };
   const TIER_RGB = { expressed: [46,160,67], claimed: [210,153,34], frontier: [163,113,247], absent: [72,79,88] };
-  let payload = null, nodeById = {}, selectedId = null;
+  let payload = null, nodeById = {}, selectedId = null, regions3d = null;
+  let yaw3d = -0.62, pitch3d = -0.32, inited3d = false;
   const $ = (id) => document.getElementById(id);
 
   async function load() {
@@ -159,7 +178,12 @@
     (payload.regions || []).forEach((n) => { nodeById[n.id] = n; });
     (payload.engineering_nodes || []).forEach((n) => { nodeById[n.id] = n; });
     renderSubstrate();
+    if (!regions3d) {
+      try { regions3d = await fetch("/docs/architecture/brain_regions_3d.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()); }
+      catch (e) { regions3d = null; }
+    }
     await Promise.all(PLANES.map(loadPlane));
+    init3d();
     applyLayers();
     const params = new URLSearchParams(location.search);
     const region = params.get("region"), claim = params.get("claim");
@@ -269,6 +293,108 @@
       });
     });
     applyAnatomy();
+    render3d();
+  }
+
+  // ---- lightweight 3D view (pure SVG, orthographic, drag to rotate) ----
+  const V3 = { W: 600, H: 380, scale: 1.7 };  // viewBox + mm->px scale
+  function project3d(p) {
+    const h = regions3d.hull.center;
+    let x = p[0] - h[0], y = p[1] - h[1], z = p[2] - h[2];
+    const cy = Math.cos(yaw3d), sy = Math.sin(yaw3d);
+    let x1 = x * cy - y * sy, y1 = x * sy + y * cy;          // yaw about vertical (Z)
+    const cp = Math.cos(pitch3d), sp = Math.sin(pitch3d);
+    let y2 = y1 * cp - z * sp, z2 = y1 * sp + z * cp;        // pitch about screen-x
+    return { px: V3.W / 2 + x1 * V3.scale, py: V3.H / 2 - z2 * V3.scale, depth: y2 };
+  }
+  function ringSvg(pts) {
+    return '<polyline class="r3d-hull" points="' +
+      pts.map((p) => p.px.toFixed(1) + "," + p.py.toFixed(1)).join(" ") + '"/>';
+  }
+  function hullSvg() {
+    const s = regions3d.hull.semi, parts = [];
+    const ring = (fn) => { const pts = []; for (let a = 0; a <= 360; a += 15) pts.push(project3d(fn(a * Math.PI / 180))); return ringSvg(pts); };
+    for (let lon = 0; lon < 180; lon += 30) {            // longitude half-rings
+      const cl = Math.cos(lon * Math.PI / 180), sl = Math.sin(lon * Math.PI / 180);
+      parts.push(ring((t) => [s[0] * Math.cos(t) * cl + regions3d.hull.center[0],
+                              s[1] * Math.cos(t) * sl + regions3d.hull.center[1],
+                              s[2] * Math.sin(t) + regions3d.hull.center[2]]));
+    }
+    for (const lat of [-45, 0, 45]) {                     // latitude rings
+      const cl = Math.cos(lat * Math.PI / 180), sz = Math.sin(lat * Math.PI / 180);
+      parts.push(ring((a) => [s[0] * cl * Math.cos(a) + regions3d.hull.center[0],
+                              s[1] * cl * Math.sin(a) + regions3d.hull.center[1],
+                              s[2] * sz + regions3d.hull.center[2]]));
+    }
+    return parts.join("");
+  }
+  function gnomonSvg() {
+    const o = [70, -95, -55];  // mm anchor (front-left-bottom)
+    const O = project3d(o), ax = [["R", [25, 0, 0]], ["A", [0, 25, 0]], ["S", [0, 0, 25]]];
+    let s = '<g class="r3d-gnomon">';
+    ax.forEach(([lbl, d]) => {
+      const P = project3d([o[0] + d[0], o[1] + d[1], o[2] + d[2]]);
+      s += '<line x1="' + O.px.toFixed(1) + '" y1="' + O.py.toFixed(1) + '" x2="' + P.px.toFixed(1) + '" y2="' + P.py.toFixed(1) + '"/>';
+      s += '<text x="' + P.px.toFixed(1) + '" y="' + P.py.toFixed(1) + '">' + lbl + "</text>";
+    });
+    return s + "</g>";
+  }
+  function render3d() {
+    const host = $("host_3d");
+    if (!host || !regions3d || !payload) return;
+    const showGhost = $("layerGhost").checked;
+    const claimsOff = !$("layerClaims").checked && !$("layerEvidence").checked;
+    const items = [];
+    regions3d.regions.forEach((reg) => {
+      const node = nodeById[reg.id];
+      if (!node) return;
+      if (reg.ghost && !showGhost) return;
+      const fill = claimsOff ? "rgba(48,54,60,0.4)" : regionFill(node);
+      reg.spheres.forEach((sp) => {
+        const P = project3d(sp.c);
+        items.push({ id: reg.id, px: P.px, py: P.py, depth: P.depth,
+          r: sp.r * V3.scale, fill, op: reg.opacity, ghost: reg.ghost });
+      });
+    });
+    items.sort((a, b) => a.depth - b.depth);  // far first (painter's)
+    const dmin = items.length ? items[0].depth : 0, dmax = items.length ? items[items.length - 1].depth : 1;
+    const span = (dmax - dmin) || 1;
+    const blobs = items.map((it) => {
+      const t = (it.depth - dmin) / span;            // 0 far .. 1 near
+      let op = (it.op != null ? it.op : 0.92) * (0.45 + 0.55 * t);
+      const cls = "r3d-sphere" + (it.id === selectedId ? " selected" : "");
+      return '<circle class="' + cls + '" data-region="' + it.id + '" cx="' + it.px.toFixed(1) +
+        '" cy="' + it.py.toFixed(1) + '" r="' + it.r.toFixed(1) + '" fill="' + it.fill +
+        '" fill-opacity="' + op.toFixed(2) + '"/>';
+    }).join("");
+    host.querySelector("svg").innerHTML = hullSvg() + blobs + gnomonSvg();
+    bind3dRegionEvents();
+  }
+  function bind3dRegionEvents() {
+    $("host_3d").querySelectorAll(".r3d-sphere").forEach((el) => {
+      const rid = el.getAttribute("data-region");
+      el.addEventListener("mouseenter", () => setHover(rid));
+      el.addEventListener("mouseleave", () => setHover(null));
+      el.addEventListener("click", (ev) => { ev.stopPropagation(); selectNode(rid); });
+    });
+  }
+  function init3d() {
+    if (inited3d || !regions3d) return;
+    const host = $("host_3d");
+    host.innerHTML = '<svg viewBox="0 0 ' + V3.W + " " + V3.H + '" preserveAspectRatio="xMidYMid meet" aria-label="REE brain map 3D view"></svg>';
+    const svg = host.querySelector("svg");
+    let drag = false, lx = 0, ly = 0;
+    svg.addEventListener("pointerdown", (e) => { drag = true; lx = e.clientX; ly = e.clientY; svg.setPointerCapture(e.pointerId); });
+    svg.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      yaw3d += (e.clientX - lx) * 0.01;
+      pitch3d = Math.max(-1.45, Math.min(1.45, pitch3d + (e.clientY - ly) * 0.01));
+      lx = e.clientX; ly = e.clientY; render3d();
+    });
+    const stop = () => { drag = false; };
+    svg.addEventListener("pointerup", stop);
+    svg.addEventListener("pointercancel", stop);
+    inited3d = true;
   }
 
   function applyAnatomy() {

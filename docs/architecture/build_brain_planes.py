@@ -20,9 +20,13 @@ in; the (cx, cy, rx, ry) of each blob is computed from the 3D centre.
 Functional analogy, not homology -- colours/coverage are applied by the page.
 """
 import os
+import json
 import base64
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+# brain hull ellipsoid (MNI mm) used by the 3D view as anatomical context
+HULL = {"center": [0, -17, 12], "semi": [72, 90, 64]}
 
 # --- volume geometry (MNI152 1 mm, RAS+, affine is identity + translation) ---
 # voxel index = mm + OFF along each axis: i = x+96 (R), j = y+132 (A), k = z+78 (S)
@@ -179,8 +183,33 @@ def build_plane(plane, cfg):
 '''
 
 
+def regions_3d():
+    """Resolved 3D region geometry (MNI mm) for the lightweight 3D view in
+    brain_map.html. Each region -> one or two spheres (bilateral mirrored across
+    x=0); sphere radius is the mean of the ellipsoid radii. Colours/coverage are
+    applied by the page from /api/brain-map, so only geometry is emitted here."""
+    out = []
+    for rid in ORDER:
+        region = REGIONS.get(rid)
+        if not region:
+            continue
+        x, y, z, rx, ry, rz = region["blob"]
+        r = round((rx + ry + rz) / 3.0, 1)
+        centers = [[x, y, z]]
+        if region.get("bilateral"):
+            centers = [[x, y, z], [-x, y, z]]
+        out.append({"id": rid, "ghost": rid in GHOST,
+                    "opacity": OPACITY.get(rid),
+                    "spheres": [{"c": c, "r": r} for c in centers]})
+    return out
+
+
 if __name__ == "__main__":
     for plane, cfg in PLANES.items():
         out = os.path.join(HERE, f"brain_plane_{plane}.svg")
         open(out, "w").write(build_plane(plane, cfg))
         print(f"wrote {out} ({os.path.getsize(out)//1024} KB)")
+    data = {"frame": "MNI152 1mm; x=R y=A z=S (mm)", "hull": HULL, "regions": regions_3d()}
+    j = os.path.join(HERE, "brain_regions_3d.json")
+    open(j, "w").write(json.dumps(data, indent=1))
+    print(f"wrote {j} ({len(data['regions'])} regions)")
