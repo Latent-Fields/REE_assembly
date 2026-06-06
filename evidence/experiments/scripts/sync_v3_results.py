@@ -98,50 +98,44 @@ def _parse_timestamp(ts: str | None) -> str:
         return ts
 
 
-def convert_flat_to_runpack(flat_path: Path) -> str:
+def _derive_experiment_type_and_dir(flat_path: Path, data: dict,
+                                    evidence_dir: Path = EVIDENCE_DIR):
+    """Resolve (experiment_type, exp_dir) for a flat manifest.
+
+    Mirrors the original convert_flat_to_runpack logic exactly: a flat file
+    living directly in evidence/experiments/ derives experiment_type from the
+    experiment_type field (or run_id stem); one living in a per-experiment
+    subdir uses that dir name. `evidence_dir` is parametrised so an external
+    caller (the Phase-3 git writer on the coordinator hub) can resolve paths
+    against its OWN checkout root rather than this module's __file__.
     """
-    Convert a flat V3 JSON file to a run-pack directory.
-    Returns the run_id if conversion happened, '' if skipped.
-    """
-    try:
-        data = json.loads(flat_path.read_text(encoding="utf-8"))
-    except Exception as exc:
-        print(f"  [skip] {flat_path.name}: read error -- {exc}", flush=True)
-        return ""
-
-    if not _is_flat_v3(data):
-        return ""
-
-    run_id = str(data["run_id"])
-
-    # Prefer the experiment_type field; fall back to parent dir name.
-    # If the file lives directly in evidence/experiments/ (parent IS the base dir),
-    # derive experiment_type from the run_id stem instead.
+    evidence_dir = Path(evidence_dir)
     parent_name = flat_path.parent.name
-    if parent_name == EVIDENCE_DIR.name:
-        # File is at top level -- derive experiment_type from run_id
+    if parent_name == evidence_dir.name:
+        # File is at top level -- derive experiment_type from the
+        # experiment_type field (or run_id stem):
         # run_id format: {experiment_type}_{timestamp}_v3  OR
         #                {timestamp}_{experiment_type}_v3
-        # Use the data field if present; otherwise strip trailing timestamp+_v3 suffix
-        raw = str(data.get("experiment_type", run_id))
+        raw = str(data.get("experiment_type", str(data.get("run_id", ""))))
         # strip trailing _v3 and timestamp component
-        import re as _re
-        experiment_type = _re.sub(r'_\d{8}T\d{6}Z_v3$', '', raw)
-        experiment_type = _re.sub(r'_v3$', '', experiment_type)
-        # create a subdirectory for this experiment under EVIDENCE_DIR
-        exp_dir = EVIDENCE_DIR / experiment_type
-        exp_dir.mkdir(parents=True, exist_ok=True)
+        experiment_type = re.sub(r'_\d{8}T\d{6}Z_v3$', '', raw)
+        experiment_type = re.sub(r'_v3$', '', experiment_type)
+        exp_dir = evidence_dir / experiment_type
     else:
         experiment_type = str(data.get("experiment_type", parent_name))
         exp_dir = flat_path.parent
+    return experiment_type, exp_dir
 
-    # Destination: exp_dir/runs/{run_id}/
-    run_dir = exp_dir / "runs" / run_id
-    if (run_dir / "manifest.json").exists():
-        return ""  # already converted
 
-    run_dir.mkdir(parents=True, exist_ok=True)
+def build_runpack_docs(data: dict, experiment_type: str):
+    """Pure field mapping: flat manifest dict -> (manifest, metrics_doc, summary).
 
+    This is the single source of truth for the run-pack byte shape. Both the
+    local converter (convert_flat_to_runpack, run by governance.sh) and the
+    cloud coordinator's Phase-3 git writer (sync_daemon.phase3_git_writer, via
+    runpack_for_flat) call it, so a pack materialised on the hub is byte-
+    identical to one materialised locally. Reads `data`; writes nothing.
+    """
     # Build manifest.json
     ts_compact = str(data.get("run_timestamp") or data.get("timestamp_utc") or "")
     if not ts_compact:
@@ -188,7 +182,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
         "schema_version": "experiment_pack/v1",
         "architecture_epoch": data.get("architecture_epoch", "ree_hybrid_guardrails_v1"),
         "experiment_type": experiment_type,
-        "run_id": run_id,
+        "run_id": str(data["run_id"]),
         "status": status,
         "timestamp_utc": ts_iso,
         "source_repo": {"name": "ree-v3", "commit": "", "branch": "main"},
@@ -242,6 +236,69 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
         if n_total:
             summary += f"  ({n_pass}/{n_total} criteria)"
         summary += "\n"
+
+    return manifest, metrics_doc, summary
+
+
+def runpack_for_flat(flat_path, evidence_dir):
+    """External-caller entry point (Phase-3 coordinator git writer).
+
+    Given a flat manifest already written on disk at `flat_path` and the
+    evidence/experiments directory it lives under (`evidence_dir`, the caller's
+    own checkout root), return
+        (run_dir, manifest_doc, metrics_doc, summary)
+    for the canonical runs/<run_id>/ pack, or None if the flat manifest is not
+    an eligible V3 run (same `_is_flat_v3` gate convert_flat_to_runpack uses).
+
+    Pure: reads `flat_path` but writes nothing and creates no directories. The
+    caller owns the write + git-add mechanics and the skip-if-pack-exists
+    decision. Reuses the SAME field mapping (build_runpack_docs) and directory
+    derivation (_derive_experiment_type_and_dir) as convert_flat_to_runpack so
+    the pack byte-shape is identical whether materialised locally by
+    governance.sh or on the hub by the Phase-3 writer.
+    """
+    flat_path = Path(flat_path)
+    try:
+        data = json.loads(flat_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if not _is_flat_v3(data):
+        return None
+    run_id = str(data.get("run_id", ""))
+    if not run_id:
+        return None
+    experiment_type, exp_dir = _derive_experiment_type_and_dir(
+        flat_path, data, evidence_dir)
+    run_dir = exp_dir / "runs" / run_id
+    manifest, metrics_doc, summary = build_runpack_docs(data, experiment_type)
+    return (run_dir, manifest, metrics_doc, summary)
+
+
+def convert_flat_to_runpack(flat_path: Path) -> str:
+    """
+    Convert a flat V3 JSON file to a run-pack directory.
+    Returns the run_id if conversion happened, '' if skipped.
+    """
+    try:
+        data = json.loads(flat_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"  [skip] {flat_path.name}: read error -- {exc}", flush=True)
+        return ""
+
+    if not _is_flat_v3(data):
+        return ""
+
+    run_id = str(data["run_id"])
+    experiment_type, exp_dir = _derive_experiment_type_and_dir(flat_path, data)
+
+    # Destination: exp_dir/runs/{run_id}/
+    run_dir = exp_dir / "runs" / run_id
+    if (run_dir / "manifest.json").exists():
+        return ""  # already converted
+
+    run_dir.mkdir(parents=True, exist_ok=True)
+
+    manifest, metrics_doc, summary = build_runpack_docs(data, experiment_type)
 
     (run_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     (run_dir / "metrics.json").write_text(json.dumps(metrics_doc, indent=2) + "\n", encoding="utf-8")
