@@ -1,0 +1,150 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-06T13:02:33Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_177_sd008_integration_test_20260329T215657Z_v3",
+      "queue_id": "V3-EXQ-177",
+      "claim_ids": ["SD-008"],
+      "claim_ids_accuracy": "mistag -- ran at alpha_world=0.9, presupposes SD-008 rather than testing it; weakens weight spurious",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- experiment does not test the tagged claim (SD-008 presupposed); non_contributory across tags pending retest",
+        "biological_reference": "clear -- cortical population code; dual predictive/discriminative property is dimensionality- and experience-dependent",
+        "prerequisites": "missing -- SD-031 (comparator_z_world) status None; ARC-065 behavioral-diversity phase_1 only",
+        "implementation": "partial -- world-forward complete (r2=0.94); discriminative/attribution heads partial/absent",
+        "environment": "adequate -- CausalGridWorldV2 produces the events; exposure imbalance is the issue (6.6:1 hazard:open)",
+        "measurement": "under-instrumented -- event_selectivity over 126 open steps is noisy",
+        "integration": "reframed -- NOT stack-interference (170/215 convergence rules it out)",
+        "scale": "likely insufficient -- world_dim=32; SD-005 higher-dim presets (128/256) exist but unused"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cortical sensory population code (V1/V2/parietal manifolds)",
+        "dependencies": ["sufficient representational dimensionality", "behaviorally-balanced experience over the discriminanda", "a dedicated attribution comparator (SD-031)"],
+        "is_formal_import": false,
+        "divergence": "none at the mechanism level; failure matches missing-dependency (dimensionality + balanced diet) signature",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-177 reclassified non_contributory (2026-06-06 cluster autopsy failure_autopsy_zworld-integration-cluster_2026-06-06): the run executed at alpha_world=0.9, i.e. it presupposes SD-008 and tests full-stack event-selectivity/attribution, not the alpha value. Its prior weakens weight was a misattribution. SD-008 isolated supports (EXQ-023, EXQ-040) remain definitive; stable status unaffected.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "blocked_by": ["ARC-065 behavioral-diversity validation", "SD-031 comparator_z_world implementation", "world_dim>=128 retest config"],
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "177's SD-008 weakens weight is a misattribution -- presupposes the claim it is tagged against",
+        "C3 attribution collapse partly an unbuilt-comparator artifact (SD-031 status None)",
+        "non_contributory across all tags pending dim=128 + balanced-policy retest"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3",
+      "queue_id": "V3-EXQ-145",
+      "claim_ids": ["SD-008", "SD-007", "SD-003"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- run blocked before discrimination test",
+        "biological_reference": "n/a",
+        "prerequisites": "missing -- same as 177",
+        "implementation": "partial -- reafference Phase-1 gate r2=0.076 (<0.08) blocked the run",
+        "environment": "adequate",
+        "measurement": "n/a -- selectivity never measured",
+        "integration": "n/a",
+        "scale": "likely insufficient (dim=32)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "same as V3-EXQ-177",
+        "dependencies": ["reafference predictor reaching gate r2"],
+        "is_formal_import": false,
+        "divergence": "none -- engineering bottleneck",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-145 confirmed non_contributory (2026-06-06 cluster autopsy): reafference Phase-1 gate r2=0.076 (<0.08) blocked the run before event-selectivity was measured -- engineering bottleneck, does not bear on any tagged claim. Folds into the dim=128 + balanced-policy integration retest.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "blocked_by": ["ARC-065 behavioral-diversity validation", "world_dim>=128 retest config"],
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": ["engineering gate blocked the test; non_contributory; folds into same retest"],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3",
+      "queue_id": "V3-EXQ-170",
+      "claim_ids": ["Q-002"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened-at-scale -- only at world_dim=32",
+        "biological_reference": "clear -- fine spatial residue field needs a spatially-organized z_world",
+        "prerequisites": "missing -- higher-dim z_world not used",
+        "implementation": "complete for the RBF read; bare read (no counterfactual stack)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated -- bare RBF read, no stack",
+        "scale": "likely insufficient (dim=32)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "place/grid spatial code in hippocampal-entorhinal RBF analog",
+        "dependencies": ["spatially-organized z_world manifold of sufficient dimensionality"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "2026-06-06 cluster autopsy: V3-EXQ-170 weakens the fine-resolution hypothesis only at world_dim=32. Convergent with V3-EXQ-177 (bare-RBF read, no counterfactual stack) -> one structural property: z_world at dim=32 is a competent bulk predictor but lacks discriminative/spatial granularity. pending_retest_after_substrate: re-run fine-vs-coarse residue at world_dim=128 with ARC-065 behavioral diversity active. Not a falsification of Q-002; a scale ceiling.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "blocked_by": ["world_dim>=128 retest config", "ARC-065 behavioral-diversity validation"],
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": ["bare-RBF fine-granularity collapse at dim=32; convergent with 177; scale ceiling not falsification"],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_215_q002_residue_resolution_pair_20260403T202434Z_v3",
+      "queue_id": "V3-EXQ-215",
+      "claim_ids": ["Q-002"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened-at-scale -- only at world_dim=32",
+        "biological_reference": "clear -- same as 170",
+        "prerequisites": "missing -- higher-dim z_world not used",
+        "implementation": "complete (e2_world_r2=0.72); high_res residue acc negative (-0.0097)",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- per-seed direction unstable",
+        "integration": "isolated -- bare RBF read",
+        "scale": "likely insufficient (dim=32)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "place/grid spatial code in hippocampal-entorhinal RBF analog",
+        "dependencies": ["spatially-organized z_world manifold of sufficient dimensionality"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "2026-06-06 cluster autopsy: V3-EXQ-215 weakens the fine-resolution hypothesis only at world_dim=32 (high_res residue accuracy negative, per-seed direction inconsistent). Convergent with V3-EXQ-170/177. pending_retest_after_substrate: dim=128 + ARC-065 balanced-policy retest. Scale ceiling, not falsification of Q-002.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "blocked_by": ["world_dim>=128 retest config", "ARC-065 behavioral-diversity validation"],
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": ["high_res residue accuracy negative at dim=32; per-seed unstable; convergent scale ceiling"],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Absolute/world-model criterion passes (world_forward_r2 0.72-0.94) while every discriminative read of z_world -- event-selectivity, counterfactual attribution, fine RBF residue accuracy -- collapses to ~0 or negative.",
+    "is_independent_bugs": false,
+    "structural_property": "z_world at world_dim=32 is a competent bulk dynamical predictor but lacks event-selective / spatially-organized discriminative structure at the granularity downstream claims require.",
+    "readings": ["substrate_granularity_ceiling_at_dim32 (SUPPORTED)", "destructive_stack_interference (RULED OUT by 170/215 bare-RBF convergence)", "v_s_monostrategy_measurement_confound (REAL but PARTIAL; addressed by ARC-065 phase_1 + MECH-313/314)"],
+    "load_bearing_signal": "170/215 use a bare RBF read of z_world spatial structure with no counterfactual stack, yet show the same fine-granularity failure as 177's full-stack selectivity collapse -- ruling out stack-composition interference and locating the property in z_world itself at dim=32.",
+    "forced_planning_decision": "Single substrate-gated re-run at world_dim=128 + ARC-065 behavioral diversity (and SD-031 for the attribution arm), measuring selectivity + attribution + fine-vs-coarse residue together; pending_retest_after_substrate. Not a demotion; not new substrate (presets exist)."
+  },
+  "do_not_reopen": ["SD-008 (stable, isolated supports EXQ-023/EXQ-040 untouched)", "SD-009", "MECH-100"]
+}
