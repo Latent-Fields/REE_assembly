@@ -333,6 +333,31 @@ silently drift it. This is the safest form of opt-in narrowing.
    (Phase-0-compatible); a minted baseline is at minimum an extra baseline run,
    never wasted.
 
+### Status -- 610 OFF baseline minted (2026-06-06)
+
+- **Canonical module landed:** `ree-v3/experiments/_lib/baselines/exq610_inv074_crystallization_baseline.py`
+  -- a faithful extraction of `v3_exq_610f` **ARM_0_stripped_control** (the OFF
+  baseline: `crystallize=False`, phase-3 entropy floor `0.0`, MECH-313/341/260
+  floors OFF, structured curiosity decoupled). Exposes `build_off_arm(seed)`,
+  `train_off_arm(...)`, `off_path_config_slice()`. It is auto-bound into the
+  fingerprint `substrate_hash` via the `experiments/_lib/**/*.py` glob, so any
+  drift refuses a stale reuse.
+- **Mint script landed:** `ree-v3/experiments/v3_exq_610_inv074_crystallization_baseline_mint.py`
+  (`experiment_purpose="baseline"`, `claim_ids=[]`). Per cell: `reset_all_rng(seed)`
+  -> build/train OFF arm -> `compute_arm_fingerprint(config_slice=off_path_config_slice(),
+  rng_fully_reset=True, config_slice_declared=True)`. Phase-0 emit-only.
+- **Queued twice (low priority 10):** `V3-EXQ-644` -> `ree-cloud-2`,
+  `V3-EXQ-645` -> `ree-cloud-3` (same script/config; the cross-instance
+  determinism check). Runner not started; cloud-2/3 idle.
+- **Cross-instance determinism result: PENDING both runs.** After `V3-EXQ-644`
+  and `V3-EXQ-645` complete, compare the two manifests' OFF metrics
+  (`arm_results[*].end_phase_2_entropy`, `end_phase_3_entropy`, `mean_reward`)
+  within tolerance. Agreement confirms separate CX22 instances are mutually
+  deterministic on CPU torch (the Regime-A assumption; Phase-0 zero-false-collision
+  exit). The `arm_fingerprint` hash is identical across the two **by construction**
+  (coarse `machine_class = linux-x86_64-pyX.Y`); the check is on the *metrics*.
+  _Record the numeric comparison + verdict here once both manifests land._
+
 ## 8. First concrete deliverable if approved
 
 Phase 0, smallest useful unit:
