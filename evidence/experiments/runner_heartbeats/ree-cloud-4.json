@@ -1,47 +1,37 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-06T20:14:17Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-592g",
-      "result": "PASS",
-      "completed_at": "2026-06-02T16:35:47.260335+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-063a",
-      "result": "PASS",
-      "completed_at": "2026-06-02T17:25:31.731586+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-463b",
-      "result": "PASS",
-      "completed_at": "2026-06-04T03:09:03.625506+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-646",
-      "result": "PASS",
-      "completed_at": "2026-06-06T17:24:51.898531+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-647",
-      "result": "FAIL",
-      "completed_at": "2026-06-06T19:54:10.666088+00:00"
-    }
+  "last_tick_utc": "2026-06-06T20:41:21Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-643b",
+  "current_exq_started_utc": "2026-06-06T20:38:30.316920+00:00",
+  "current_title": "Corrected-C2 modulatory-authority re-validation (reuse-preserving): REUSE the V3-EXQ-646 ARM_A OFF baseline by explicit cite (config UNCHANGED -> byte-reusable on cloud-4) + run ARM_B/ARM_C fresh via 643a's verbatim _run_seed_arm; ONLY the evaluator differs. Replaces the confounded ON-minus-OFF rank-change C2 with a within-ON-arm C2a (authority-path carves committed selection: active AND bias_changed_selection_frac>floor on >=2/3 seeds) + C2b dose-response-on-flips (informative). Drops 'sweep gain higher'. Corrects the C2 design shared by V3-EXQ-643a/647.",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_B",
+    "runs_done": 3,
+    "runs_total": 9,
+    "episodes_done": 10,
+    "episodes_total": 80,
+    "overall_pct": 34.7
+  },
+  "seconds_elapsed": 170,
+  "seconds_remaining": 17830,
+  "recent_lines": [
+    "Seed 42 Condition ARM_A (REUSED from v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3)",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_A (REUSED from v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3)",
+    "verdict: PASS",
+    "Seed 44 Condition ARM_A (REUSED from v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3)",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_B",
+    "[train] arm=ARM_B seed=42 phase=P0 ep 10/80"
   ],
-  "runner_pid": 670,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 667,
   "runner_version": null,
   "gpu": {
     "available": false
