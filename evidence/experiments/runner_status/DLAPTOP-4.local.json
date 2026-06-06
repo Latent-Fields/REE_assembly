@@ -1,11 +1,23 @@
 {
   "schema_version": "v1",
-  "runner_pid": 7964,
-  "runner_started_at": "2026-06-03T05:53:58.156192+00:00",
-  "last_updated": "2026-06-03T12:01:24.047428+00:00",
+  "runner_pid": 95278,
+  "runner_started_at": "2026-06-06T13:17:15.991881+00:00",
+  "last_updated": "2026-06-06T22:29:32.509039+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-610f",
+      "backlog_id": "EVB-0270",
+      "claim_id": "INV-074",
+      "title": "INV-074/MECH-334/MECH-333 crystallization-necessity TRUE-NEGATIVE-CONTROL retest (+MECH-341/313 floor contrast): strip the always-on diversity floor (noise_floor/E3-diversity/dACC-suppression off; structured curiosity decoupled from crystallize) so crystallization is the SOLE phase-3 diversity route in ARM_1; phase-dependent entropy bonus (0.02 generator in phases 0-2, swept {0,0.005,0.02} in phase 3) maps the collapse threshold; ARM_4 floor-on (MECH-341/313). 5 conditions x 3 seeds, IGW-023 Phase-3 pressure. Supersedes 610e (confounded control).",
+      "description": "",
+      "estimated_minutes": 5000.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -8260,6 +8272,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_614d_mech341_within_class_temperature_committed_class_20260603T120121Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 21975.5
+    },
+    {
+      "queue_id": "V3-EXQ-643a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "modulatory-bias-selection-authority re-validation after the float32 catastrophic-cancellation fix (e3_selector explicit modulatory accumulator, 2026-06-06) + SD-056 rollout-norm clamp harness stability. 3 arms (authority OFF / ON gain0.5 / ON gain0.8) x 3 seeds. Supersedes V3-EXQ-643.",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS  label: authority_validated | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-643a -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-643a.json",
+      "started_at": "2026-06-06T13:19:20.680958+00:00",
+      "completed_at": "2026-06-06T22:29:32.484692+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 33015.8
     }
   ]
 }
