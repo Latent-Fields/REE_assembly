@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-06T04:13:20Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_641_coherence_ablation_nonreducibility_20260606T021359Z_v3",
+      "queue_id": "V3-EXQ-641",
+      "claim_ids": [],
+      "bears_on_not_tagged": ["INV-002", "ARC-018", "MECH-061", "MECH-269", "MECH-270"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "SPEC (coherence-specificity: real_C_clean.frac_state_div >= rand_C_control.frac_state_div + 0.05) passed on only 1/3 seeds; need 2/3. D1 2/3, D3 3/3. majority_label=C_changes_selection_specificity_unproven_route_followup.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- candidate Q selection.coherence_nonreducibility is NOT registerable (SPEC gate uncleared) and NOT falsified (measurement gap); no registered claim touched (diagnostic, claim_ids=[]).",
+        "biological_reference": "partial / formal-import -- binding-by-coherence is a real class (INV-002/MECH-269/MECH-270) but path-integral is a formal import (philosophy-right/mechanism-wrong); the temporal-smoothness proxy is not a faithful translation of phase/binding coherence and partly reduces to E.",
+        "prerequisites": "degenerate -- 2/3 seeds reached zero benefit contacts; SD-054 reef-vs-forage two-mode tie distribution realised only in seed 42.",
+        "implementation": "symbol-not-role -- C has the symbol of coherence but at matched-E ties selects higher-C below chance (tie_higher_c_frac 0.34-0.44 real vs 0.56-0.59 random); rebinding instrument flat-zero.",
+        "environment": "too sparse as executed -- two-mode pressure present by design but only realised in seed 42's contact-rich rollout.",
+        "measurement": "under-instrumented / misleading -- low-contrast + E-correlated C (seed 43 corr=0.70); range-matched random control out-performs real C as a tie-breaker because gap-relative rescaling matches range but not contrast/distribution-shape; n_rebind_under_perturb=0 across all seeds.",
+        "integration": "n/a -- selection re-implemented in harness; no module-interaction failure.",
+        "scale": "insufficient -- 3 seeds, per-seed variance 177 vs 2673 P1 steps; n_seed_pass=1 vs required 2 within seed-noise."
+      },
+      "biological_reference": {
+        "closest_mechanism": "binding-by-coherence / phase-synchrony in cortical assemblies + hippocampal sequence coherence",
+        "dependencies": ["INV-002 temporal/phase binding", "MECH-269 verisimilitude anchor", "MECH-270 ephaptic coupling carrier", "ARC-018 rollout viability", "MECH-061 commitment boundary"],
+        "is_formal_import": true,
+        "divergence": "path-integral / least-action framing is a formal import; the harness coherence read (temporal-smoothness geometric mean) is a smoothness statistic partly co-linear with E, not a faithful translation of phase/binding coherence. The SPEC failure indicts the proxy, not the mechanism class.",
+        "lit_status": "present (binding/coherence biology already anchored in INV-002/MECH-269/MECH-270; no new lit-pull required -- the gap is harness instrumentation)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_gap (N/A for governance -- no claim; manifest evidence_direction already non_contributory and unchanged)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "None -- no registered claim and no manifest field change. evidence_direction stays non_contributory (diagnostic, claim_ids=[]). The only governance-adjacent action is annotating the two intakes as OPEN/gated pending the V3-EXQ-641a sharper-read follow-up; captured by failure_autopsy_V3-EXQ-641_2026-06-06.md.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "No ree_core substrate gap. The coherence read is harness-level; routing is /queue-experiment (test-redesign), not /implement-substrate. No substrate_queue write."
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_via_redesign": true,
+      "retest_id": "V3-EXQ-641a",
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Do NOT register candidate Q selection.coherence_nonreducibility -- the intakes' own SPEC gate is uncleared (firm regardless of follow-up).",
+        "Do NOT close the intakes yet -- SPEC failure is confounded by a low-contrast/E-leaking proxy that loses to random noise as a tie-breaker, 2/3 zero-contact seeds, and a flat-zero rebinding axis.",
+        "A range-matched random control is only a fair SPEC baseline if matched on contrast/distribution-shape, not just range -- gap-relative range normalization alone lets a high-contrast random control beat a near-flat real signal (generalisable test-design lesson).",
+        "Low per-candidate spread (cf. SD-056/V3-EXQ-571 E2-collapse lineage) propagates into any harness-level read; sparse-contact seeds shrink it further."
+      ],
+      "routing": "queue-experiment",
+      "redesign_spec": {
+        "new_id": "V3-EXQ-641a",
+        "id_rule": "alphabetic suffix -- same scientific question (coherence non-reducibility), redesigned instrumentation",
+        "intakes_status": "both kept OPEN (gated), annotated with this result",
+        "levers_user_selected_all_three": [
+          "L1 E-orthogonalized coherence read: residualize/whiten C against E per candidate-pool (or drop the temporal-smoothness term, keep cross-stream phase-alignment); fix the SPEC control to a shuffle-of-real-C (contrast/distribution-shape matched), not uniform-random. Targets seed-43 corr=0.70 leak + low-contrast distribution.",
+          "L2 Contact-gated window + more seeds: restrict measurement to contact-rich / two-mode-active steps; raise to 5-7 seeds so the SD-054 tie distribution is present and pass-count is above seed-noise.",
+          "L3 Stronger rebinding instrument: raise perturbation magnitude and/or apply at detected tie-ticks; n_rebind_under_perturb=0 across all seeds means the binding intake's own falsifiable prediction was never tested."
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
