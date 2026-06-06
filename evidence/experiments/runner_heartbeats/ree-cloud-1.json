@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-06T16:09:53Z",
+  "last_tick_utc": "2026-06-06T16:25:04Z",
   "state": "running",
   "current_exq": "V3-EXQ-610f",
   "current_exq_started_utc": "2026-06-05T14:58:58.174612+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 42 / ARM_2_control_eb005",
     "runs_done": 6,
     "runs_total": 15,
-    "episodes_done": 0,
+    "episodes_done": 101,
     "episodes_total": 2500,
-    "overall_pct": 40.0
+    "overall_pct": 40.3
   },
-  "seconds_elapsed": 90655,
-  "seconds_remaining": 135233,
+  "seconds_elapsed": 91566,
+  "seconds_remaining": 134626,
   "recent_lines": [
-    "[train] ARM_1_stripped_crystallize ep 2400/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0358 rv=0.0160 pol_steps=2400 exp_steps=399 ewc_terms=399",
-    "[train] ARM_1_stripped_crystallize ep 2500/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0198 rv=0.0163 pol_steps=2500 exp_steps=499 ewc_terms=499",
     "verdict: PASS",
     "Seed 42 Condition ARM_2_control_eb005",
-    "[V3-EXQ-610f] Starting ARM_2_control_eb005 seed=42 crystallize=False p3_eb=0.005 noise_floor=False e3_div=False"
+    "[V3-EXQ-610f] Starting ARM_2_control_eb005 seed=42 crystallize=False p3_eb=0.005 noise_floor=False e3_div=False",
+    "[train] ARM_2_control_eb005 ep 100/2500 phase=0 ep_eb=0.0200 ep_reward=-1.1240 rv=0.0022 pol_steps=100 exp_steps=0 ewc_terms=0",
+    "[train] ARM_2_control_eb005 ep 101/2500 phase=1 ep_eb=0.0200 ep_reward=-1.0022 rv=0.0027 pol_steps=101 exp_steps=0 ewc_terms=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
