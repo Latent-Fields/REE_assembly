@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-06_arc_006_temporal_correlation_binding_singer_gray1995",
+  "timestamp_utc": "2026-06-06T21:00:00Z",
+  "claim_ids_tested": ["ARC-006", "MECH-044"],
+  "source": {
+    "title": "Visual feature integration and the temporal correlation hypothesis",
+    "authors": ["Wolf Singer", "Charles M. Gray"],
+    "year": 1995,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.ne.18.030195.003011",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7605074/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Foundational and field-defining review establishing the temporal-correlation (binding-by-synchrony) hypothesis with strong cat/primate gamma-synchrony data. Direction is mixed rather than supports because the hypothesis has been seriously contested since (Shadlen & Movshon 1999 critique; debate over whether synchrony codes or merely accompanies binding). It is strong evidence that dynamic, relational binding via temporal structure is a real candidate mechanism (ARC-006), weaker as proof that synchrony IS the binding code.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Synchrony may be a by-product of recurrent connectivity rather than the binding code itself (Shadlen & Movshon 1999): a downstream reader needs a mechanism to actually exploit coincidence, or the correlation is epiphenomenal -- the same 'symbol without function' failure mode 641a found in REE's streams.",
+    "The hypothesis requires that bound features drive co-varying temporal structure; if a representation's features do not co-vary in time (REE's engineered pre-split z_world), there is no temporal correlation to read."
+  ],
+  "tags": ["arc_006", "mech_044", "binding_by_synchrony", "temporal_correlation_hypothesis", "feature_binding", "object_files"],
+  "mapping": {
+    "source_claim_statement": "Features belonging to the same object are bound by the temporal correlation (synchronization, especially in the gamma band) of the neurons that represent them; the relational structure 'these features belong together' is carried by WHEN cells fire relative to each other, not only by WHICH cells fire. Synchrony provides a flexible, on-the-fly grouping code that avoids the combinatorial cost of dedicated conjunction units.",
+    "ree_translation": "Directly grounds ARC-006 ('entities are sparse, persistent, BINDABLE structures') by giving a concrete neural proposal for what dynamic binding is, and bears on MECH-044 (relational binding/comparison). It is the historical root of the binding-by-coherence family that the Fries CTC entry generalises, and of REE's MECH-089/MECH-270. It also sharpens the substrate gap: binding-by-synchrony only works if a representation's features genuinely co-vary in time, which REE's engineered, pre-split z_world does not guarantee.",
+    "mapping_caveat": "The temporal-correlation hypothesis is contested (Shadlen & Movshon 1999 and successors argue synchrony may accompany rather than constitute binding). It grounds the EXISTENCE of a relational/temporal binding mechanism for ARC-006, not the stronger claim that REE's coherence term is a non-reducible selection factor -- which the V3-EXQ-641a fair-control null specifically failed to demonstrate in the current substrate. Cat/primate visual cortex synchrony does not transfer 1:1 to REE latent streams.",
+    "source_context": "Annual Review synthesis of single-unit and multi-unit recordings in cat and monkey visual cortex showing stimulus-specific gamma-band synchronization between neurons coding features of a common object."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (field-defining Annual Review). Mapping fidelity moderate and capped by the ongoing empirical controversy over whether synchrony is the binding code. Transfer risk from visual-cortex spiking to REE latents is real; the contested status is reflected in the 'mixed' direction."
+  }
+}

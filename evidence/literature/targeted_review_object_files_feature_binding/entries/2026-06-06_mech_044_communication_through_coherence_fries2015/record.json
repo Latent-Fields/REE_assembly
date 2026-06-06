@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-06_mech_044_communication_through_coherence_fries2015",
+  "timestamp_utc": "2026-06-06T21:00:00Z",
+  "claim_ids_tested": ["MECH-044", "ARC-006"],
+  "source": {
+    "title": "Rhythms for Cognition: Communication through Coherence",
+    "authors": ["Pascal Fries"],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.09.034",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(15)00823-5"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical, heavily-replicated framework from a leading lab (Neuron) for coherence as the substrate of selective neural communication; directly names the mechanism the V3-EXQ-641a autopsy cited as 'closest'. Confidence held below 0.8 because the mapping is to the CLASS (coherence-gated routing/binding) rather than to REE's specific hippocampal-relational-binding or theta-gamma-packaging instantiation, and because CTC describes inter-areal cortical communication, not the cross-stream latent coherence REE's selection rule reads.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CTC asserts that communication is effective only when sending and receiving groups are coherent; a coherence read over streams that are NOT genuinely phase/feature-bound (the V3-EXQ-641a finding: world_states<->states carry the symbol but not the bound information) would register coherence that does not gate anything causally -- exactly the 'functionally redundant with E' result.",
+    "Coherence in CTC is a consequence of rhythmic excitability windows; if REE's streams have no analog of a shared excitability rhythm, a coherence term is decorative rather than mechanistic."
+  ],
+  "tags": ["arc_006", "mech_044", "mech_089", "mech_270", "binding_by_coherence", "communication_through_coherence", "object_files"],
+  "mapping": {
+    "source_claim_statement": "Neuronal communication is mechanistically subserved by neuronal coherence: rhythmic synchronization opens recurring windows of excitability, and two groups exchange information effectively only when their excitability windows are coherent (aligned). Coherence is thus a dynamically reconfigurable substrate that selects WHICH groups talk, not merely a correlate of activity.",
+    "ree_translation": "Grounds the CLASS to which MECH-044 (hippocampal relational binding/comparison) and the coherence machinery REE already owns -- MECH-089 (theta-gamma nesting packages E1 for E3), MECH-270 (ephaptic coupling), MECH-094 (hypothesis-tag write gate) -- belong: coherence is a legitimate, biologically central mechanism for selecting and binding which representations are jointly read. Also bears on ARC-006 (entities as bindable structures) by supplying the 'how' of dynamic binding. Critically, it frames the candidate Q-claim entities/selection.coherence_nonreducibility positively at the class level while making the V3-EXQ-641a null result interpretable: in CTC, coherence only does work when the underlying groups carry genuinely co-varying (bound) information.",
+    "mapping_caveat": "CTC is inter-areal cortical gamma/beta communication measured electrophysiologically; REE's coherence read is over engineered latent streams in a selection rule, not over spiking populations with shared excitability rhythms. The paper supports the TARGET (a bound-representation substrate over which coherence could gate selection), NOT the claim that REE's CURRENT V3 streams realize it -- 641a is evidence they do not. Treat as class-level grounding, not a substrate validation.",
+    "source_context": "Theoretical/empirical review of macaque and human electrophysiology (LFP/spike coherence, gamma- and beta-band) on selective attention and inter-areal communication."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality near-ceiling (canonical Neuron review, thousands of citations, well-replicated CTC phenomenology). Mapping fidelity moderate: class-level, not mechanism-identical to MECH-044. Transfer risk elevated by the cortical-spiking -> REE-latent-stream gap that 641a made concrete."
+  }
+}
