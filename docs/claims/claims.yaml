@@ -19999,6 +19999,21 @@
     (recovered manifest from runner emit_outcome misclassification) marked
     superseded by V3-EXQ-621a per CLAUDE.md supersession rule.
 
+    Correction (failure_autopsy_V3-EXQ-621a_2026-06-06): V3-EXQ-621a
+    overall_pass=true was a VACUOUS_PASS -- the load-bearing C2 z_goal floor
+    was FALSE (z_goal=0 across all 12 cells) and z_goal=0 was guaranteed by
+    construction (the 2026-05-31 scheduler never called update_z_goal AND the
+    agent was built without z_goal_enabled). The PASS rested on a
+    baseline-inflated C1 (real scaffolded survival 3/9) and a vacuous C3
+    (approach-commit lift attributed to a goal cascade that cannot exist at
+    z_goal=0). 621a did NOT actually clear substrate-readiness or GAP-C prereq
+    (2); that gate remains the pending full-scale run (ready=false). The
+    V3-EXQ-621 supersession stands (runner-emit_outcome-misclassification
+    recovery; independent of the vacuity). The fault was confirmed and
+    re-opened by failure_autopsy_V3-EXQ-603d_2026-06-01 (Class-1
+    harness/wiring); no claim confidence moved (run non_contributory /
+    scoring_excluded).
+
     [2026-06-01T17:56Z governance cycle, confirmed failure_autopsy_V3-EXQ-603d]:
     First behavioural retest on the IMPLEMENTED scaffolded_sd054_onboarding
     substrate. FAIL non_contributory. LOAD-BEARING finding:
@@ -29295,6 +29310,21 @@
     flag retained until behavioural successor returns. Predecessor V3-EXQ-621
     (recovered manifest from runner emit_outcome misclassification) marked
     superseded by V3-EXQ-621a per CLAUDE.md supersession rule.
+
+    Correction (failure_autopsy_V3-EXQ-621a_2026-06-06): V3-EXQ-621a
+    overall_pass=true was a VACUOUS_PASS -- the load-bearing C2 z_goal floor
+    was FALSE (z_goal=0 across all 12 cells) and z_goal=0 was guaranteed by
+    construction (the 2026-05-31 scheduler never called update_z_goal AND the
+    agent was built without z_goal_enabled). The PASS rested on a
+    baseline-inflated C1 (real scaffolded survival 3/9) and a vacuous C3
+    (approach-commit lift attributed to a goal cascade that cannot exist at
+    z_goal=0). 621a did NOT actually clear substrate-readiness or GAP-C prereq
+    (2); that gate remains the pending full-scale run (ready=false). The
+    V3-EXQ-621 supersession stands (runner-emit_outcome-misclassification
+    recovery; independent of the vacuity). The fault was confirmed and
+    re-opened by failure_autopsy_V3-EXQ-603d_2026-06-01 (Class-1
+    harness/wiring); no claim confidence moved (run non_contributory /
+    scoring_excluded).
 
     [2026-06-01T17:56Z governance cycle, confirmed failure_autopsy_V3-EXQ-603d]:
     First behavioural retest on the IMPLEMENTED scaffolded_sd054_onboarding
