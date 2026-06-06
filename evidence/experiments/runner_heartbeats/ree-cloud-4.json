@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-06T21:35:36Z",
+  "last_tick_utc": "2026-06-06T22:05:43Z",
   "state": "running",
   "current_exq": "V3-EXQ-643b",
   "current_exq_started_utc": "2026-06-06T20:38:30.316920+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_B",
-    "runs_done": 5,
+    "run_label": "Seed 42 / ARM_C",
+    "runs_done": 6,
     "runs_total": 9,
-    "episodes_done": 20,
+    "episodes_done": 40,
     "episodes_total": 80,
-    "overall_pct": 58.3
+    "overall_pct": 72.2
   },
-  "seconds_elapsed": 3425,
-  "seconds_remaining": 6486,
+  "seconds_elapsed": 5232,
+  "seconds_remaining": 3468,
   "recent_lines": [
     "Seed 42 Condition ARM_A (REUSED from v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3)",
     "verdict: PASS",
@@ -47,7 +47,19 @@
     "verdict: PASS",
     "Seed 44 Condition ARM_B",
     "[train] arm=ARM_B seed=44 phase=P0 ep 10/80",
-    "[train] arm=ARM_B seed=44 phase=P0 ep 20/80"
+    "[train] arm=ARM_B seed=44 phase=P0 ep 20/80",
+    "[train] arm=ARM_B seed=44 phase=P0 ep 30/80",
+    "[train] arm=ARM_B seed=44 phase=P0 ep 40/80",
+    "[train] arm=ARM_B seed=44 phase=P0 ep 50/80",
+    "[train] arm=ARM_B seed=44 phase=P0 ep 60/80",
+    "[train] arm=ARM_B seed=44 phase=P1 ep 70/80",
+    "[train] arm=ARM_B seed=44 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_C",
+    "[train] arm=ARM_C seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_C seed=42 phase=P0 ep 20/80",
+    "[train] arm=ARM_C seed=42 phase=P0 ep 30/80",
+    "[train] arm=ARM_C seed=42 phase=P0 ep 40/80"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
