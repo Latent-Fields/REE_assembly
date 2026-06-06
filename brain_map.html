@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BRAIN_MAP_VERSION: 2026-06-03.8 -->
+<!-- BRAIN_MAP_VERSION: 2026-06-06.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -31,15 +31,33 @@
   .toolbar label:hover { background: #262c36; }
   .layout { display: grid; grid-template-columns: 1fr 320px; min-height: calc(100vh - 132px); }
   .planes-wrap { padding: 12px; overflow: auto; }
-  .planes { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
-  .plane { flex: 1 1 240px; min-width: 220px; max-width: 360px; background: var(--bg-0);
-    border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  /* Orthographic projection sheet (third-angle): coronal (front) top-left, sagittal
+     (side) top-right sharing the superior-inferior axis (equal height), axial (top)
+     bottom-left sharing the left-right axis with coronal (equal width). --rowH drives
+     the whole sheet; column widths are locked to each plane's source aspect ratio so
+     the SVGs fill their cells with no letterboxing and shared axes line up to the pixel. */
+  .planes { --rowH: 340px; display: grid;
+    grid-template-columns: calc(var(--rowH) * 600 / 500) calc(var(--rowH) * 522 / 560);
+    grid-template-rows: auto auto; gap: 14px 16px;
+    justify-content: start; align-items: start; }
+  .plane-coronal  { grid-area: 1 / 1; }
+  .plane-sagittal { grid-area: 1 / 2; }
+  .plane-axial    { grid-area: 2 / 1; }
+  .planes .substrate { grid-area: 2 / 2; align-self: start; width: 100%; }
+  .plane { background: var(--bg-0); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden; }
   .plane h3 { font-size: 11px; margin: 0; padding: 6px 8px; color: var(--text);
-    background: var(--bg-1); border-bottom: 1px solid var(--border); font-weight: 600; }
-  .plane .host { width: 100%; }
-  .plane .host svg { width: 100%; height: auto; display: block; }
+    background: var(--bg-1); border-bottom: 1px solid var(--border); font-weight: 600;
+    display: flex; align-items: baseline; gap: 6px; }
+  .plane h3 .axhint { font-size: 9px; font-weight: 400; color: var(--muted); margin-left: auto; }
+  .plane .host { width: 100%; line-height: 0; }
+  .plane .host svg { width: 100%; display: block; }
+  .plane-coronal  .host svg, .plane-sagittal .host svg { height: var(--rowH); }
+  .plane-axial    .host svg { height: auto; }
   .plane .cap { font-size: 9px; color: var(--muted); opacity: 0.6; padding: 2px 8px 5px; }
-  .substrate { flex: 0 0 132px; min-width: 120px; }
+  @media (max-width: 1280px) { .planes { --rowH: 280px; } }
+  @media (max-width: 1040px) { .planes { --rowH: 230px; } }
+  .substrate { min-width: 120px; }
   .substrate h3 { font-size: 11px; margin: 0; padding: 6px 8px; color: var(--text);
     background: var(--bg-1); border: 1px solid var(--border); border-bottom: none; border-radius: 6px 6px 0 0; }
   .substrate .nodes { border: 1px solid var(--border); border-radius: 0 0 6px 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px; }
@@ -49,6 +67,9 @@
   .substrate button.selected { outline: 2px solid #f0f6fc; }
   svg .brain-region { stroke: #30363d; stroke-width: 1.2; cursor: pointer; transition: fill .15s, stroke .15s, opacity .15s; }
   svg .brain-region:hover { stroke: var(--accent); stroke-width: 2; }
+  /* synchronized hover: same region lights up across all planes + substrate */
+  svg .brain-region.linked-hover { stroke: var(--accent); stroke-width: 2.4; filter: brightness(1.4); }
+  .substrate button.linked-hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
   svg .brain-region.selected { stroke: #f0f6fc; stroke-width: 2.4; }
   svg .ghost.hidden-layer { opacity: 0.1; pointer-events: none; }
   .sidebar { overflow-y: auto; padding: 14px 16px; background: var(--bg-1); border-left: 1px solid var(--border); }
@@ -98,11 +119,14 @@
 <div class="layout">
   <div class="planes-wrap">
     <div class="planes">
-      <div class="plane"><h3>Sagittal &mdash; midline</h3><div class="host" id="host_sagittal"></div>
-        <div class="cap">MRI: O. Stollmann, Wikimedia, CC-attribution</div></div>
-      <div class="plane"><h3>Coronal &mdash; thalamus level</h3><div class="host" id="host_coronal"></div>
+      <div class="plane plane-coronal"><h3>Coronal &mdash; thalamus level<span class="axhint">L&ndash;R &times; sup&ndash;inf</span></h3>
+        <div class="host" id="host_coronal"></div>
         <div class="cap">MRI: 511KeV, Wikimedia, CC BY-SA 4.0</div></div>
-      <div class="plane"><h3>Axial &mdash; basal ganglia level</h3><div class="host" id="host_axial"></div>
+      <div class="plane plane-sagittal"><h3>Sagittal &mdash; midline<span class="axhint">ant&ndash;post &times; sup&ndash;inf</span></h3>
+        <div class="host" id="host_sagittal"></div>
+        <div class="cap">MRI: O. Stollmann, Wikimedia, CC-attribution</div></div>
+      <div class="plane plane-axial"><h3>Axial &mdash; basal ganglia level<span class="axhint">L&ndash;R &times; ant&ndash;post</span></h3>
+        <div class="host" id="host_axial"></div>
         <div class="cap">MRI: Novaksean, Wikimedia, CC BY-SA 4.0</div></div>
       <div class="substrate"><h3>Substrate</h3><div class="nodes" id="substrateNodes"></div></div>
     </div>
@@ -142,8 +166,16 @@
     const host = $("host_" + plane);
     host.innerHTML = text;
     host.querySelectorAll(".brain-region").forEach((el) => {
-      el.addEventListener("click", (ev) => { ev.stopPropagation(); selectNode(el.getAttribute("data-region")); });
+      const rid = el.getAttribute("data-region");
+      el.addEventListener("click", (ev) => { ev.stopPropagation(); selectNode(rid); });
+      el.addEventListener("mouseenter", () => setHover(rid));
+      el.addEventListener("mouseleave", () => setHover(null));
     });
+  }
+
+  function setHover(id) {
+    document.querySelectorAll(".linked-hover").forEach((el) => el.classList.remove("linked-hover"));
+    if (id) elementsFor(id).forEach((el) => el.classList.add("linked-hover"));
   }
 
   function renderSubstrate() {
@@ -153,6 +185,8 @@
       b.setAttribute("data-region", n.id);
       b.textContent = n.label || n.id;
       b.addEventListener("click", () => selectNode(n.id));
+      b.addEventListener("mouseenter", () => setHover(n.id));
+      b.addEventListener("mouseleave", () => setHover(null));
       box.appendChild(b);
     });
   }
