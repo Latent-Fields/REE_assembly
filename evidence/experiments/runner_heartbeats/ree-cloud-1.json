@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-06T07:42:21Z",
+  "last_tick_utc": "2026-06-06T08:12:28Z",
   "state": "running",
   "current_exq": "V3-EXQ-610f",
   "current_exq_started_utc": "2026-06-05T14:58:58.174612+00:00",
@@ -12,18 +12,18 @@
     "run_label": "Seed 42 / ARM_1_stripped_crystallize",
     "runs_done": 3,
     "runs_total": 15,
-    "episodes_done": 1900,
+    "episodes_done": 2200,
     "episodes_total": 2500,
-    "overall_pct": 25.1
+    "overall_pct": 25.9
   },
-  "seconds_elapsed": 60203,
-  "seconds_remaining": 169161,
+  "seconds_elapsed": 62010,
+  "seconds_remaining": 167355,
   "recent_lines": [
-    "[train] ARM_1_stripped_crystallize ep 1500/2500 phase=2 ep_eb=0.0200 ep_reward=-1.0448 rv=0.0238 pol_steps=1500 exp_steps=0 ewc_terms=0",
-    "[train] ARM_1_stripped_crystallize ep 1600/2500 phase=2 ep_eb=0.0200 ep_reward=-1.0692 rv=0.0249 pol_steps=1600 exp_steps=0 ewc_terms=0",
-    "[train] ARM_1_stripped_crystallize ep 1700/2500 phase=2 ep_eb=0.0200 ep_reward=-0.6729 rv=0.0253 pol_steps=1700 exp_steps=0 ewc_terms=0",
-    "[train] ARM_1_stripped_crystallize ep 1800/2500 phase=2 ep_eb=0.0200 ep_reward=-1.0315 rv=0.0265 pol_steps=1800 exp_steps=0 ewc_terms=0",
-    "[train] ARM_1_stripped_crystallize ep 1900/2500 phase=2 ep_eb=0.0200 ep_reward=-1.0322 rv=0.0220 pol_steps=1900 exp_steps=0 ewc_terms=0"
+    "[MECH-334] residue_field.snapshot_ewc_anchor() fired",
+    "[train] ARM_1_stripped_crystallize ep 2001/2500 phase=3 ep_eb=0.0200 ep_reward=-0.6624 rv=0.0294 pol_steps=2001 exp_steps=0 ewc_terms=0",
+    "[INV-074] policy_optimizer rebuilt for expansion_parameters (4 expansion + 2 residue params)",
+    "[train] ARM_1_stripped_crystallize ep 2100/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0238 rv=0.0308 pol_steps=2100 exp_steps=99 ewc_terms=99",
+    "[train] ARM_1_stripped_crystallize ep 2200/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0749 rv=0.0314 pol_steps=2200 exp_steps=199 ewc_terms=199"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
