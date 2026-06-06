@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autonomic_rebound_parasympathetic_recovery",
+  "entry_id": "2026-06-06_autonomic_rebound_parasympathetic_reactivation_kinetics_cunha2015",
+  "timestamp_utc": "2026-06-06T04:06:09Z",
+  "claim_ids_tested": ["CANDIDATE-autonomic-rebound-parasympathetic-recovery"],
+  "source": {
+    "title": "Parasympathetic reactivation after maximal CPET depends on exercise modality and resting vagal activity in healthy men.",
+    "authors": ["Felipe A Cunha", "Adrian W Midgley", "Thiago Goncalves", "Pedro P Soares", "Paulo Farinatti"],
+    "year": 2015,
+    "venue": "SpringerPlus",
+    "doi": "10.1186/s40064-015-0882-1"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Quantifies parasympathetic reactivation as a process with its own KINETICS (heart-rate recovery + 30-s windowed rMSSD trajectories) whose RATE is set by resting vagal tone -- direct support for modelling recovery as a tunable rate parameter (the smallest-form question). Discounted because the stressor is maximal exercise, not an aversive/psychological stressor, so the transfer to a suffering-recovery process is by analogy on the autonomic-recovery-rate construct only.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Parasympathetic reactivation rate depended on the exercise modality AND on resting vagal activity -- recovery rate is not a fixed constant but a context- and baseline-conditioned parameter, so a single hard-coded REE recovery_rate would mis-model agents in different states.",
+    "Reactivation was slower when resting vagal tone was lower -- a depleted baseline predicts impaired recovery, the same coupling Thayer/Mezzacappa report; a REE rebound that ignored current state would over-recover a depleted agent."
+  ],
+  "tags": ["autonomic_rebound", "parasympathetic_recovery", "recovery_kinetics", "recovery_rate", "mech_219", "sd_032e"],
+  "mapping": {
+    "source_claim_statement": "After maximal cardiopulmonary exercise, parasympathetic reactivation (indexed by heart-rate recovery and 30-s-windowed rMSSD) follows a measurable time course whose magnitude/rate depends on exercise modality and on resting cardiac autonomic control; delta-rMSSD into recovery correlated positively with resting HF/rMSSD/SDNN and negatively with resting LF:HF.",
+    "ree_translation": "Recovery of autonomic state is a process with its own KINETICS -- a rate, not an instantaneous reset -- and that rate is conditioned by the agent's baseline state. This directly supports the candidate's smallest computational form: an offset-triggered TRANSIENT MULTIPLIER on the MECH-219 recovery_rate / SD-032e drive_bias leak, scaled by current state, rather than a fixed decay constant. The baseline-tone dependence maps onto making the rebound boost a function of current accumulator/drive state.",
+    "mapping_caveat": "The stressor is maximal physical exercise, not an aversive/psychological event; parasympathetic reactivation after exercise and recovery from an aversive episode are not the same physiology. The paper is used only for the GENERIC point that autonomic recovery has a tunable, baseline-conditioned rate -- not for any quantitative parameter value. Healthy young men only.",
+    "source_context": "20 healthy men (17-28 yr); three maximal CPET modalities (cycling, walking, running); HRR at 1-3 min post-exercise and rMSSD in consecutive 30-s windows during recovery."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.55,
+    "notes": "Solid kinetics measurement supporting 'recovery is a tunable, baseline-conditioned rate'. Higher transfer risk: exercise-recovery physiology, not aversive-state recovery; used for the rate-parameter principle only, not values."
+  }
+}

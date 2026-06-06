@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autonomic_rebound_parasympathetic_recovery",
+  "entry_id": "2026-06-06_autonomic_rebound_central_autonomic_network_thayer2005",
+  "timestamp_utc": "2026-06-06T04:06:09Z",
+  "claim_ids_tested": ["CANDIDATE-autonomic-rebound-parasympathetic-recovery"],
+  "source": {
+    "title": "Psychosomatics and psychopathology: looking up and down from the brain.",
+    "authors": ["Julian F Thayer", "Jos F Brosschot"],
+    "year": 2005,
+    "venue": "Psychoneuroendocrinology",
+    "doi": "10.1016/j.psyneuen.2005.04.014"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical statement of the neurovisceral-integration / central-autonomic-network (CAN) framework: a prefrontal-driven reciprocal-inhibitory cortico-subcortical circuit actively maintains parasympathetic tone and is withdrawn (releasing sympathetic dominance) when the prefrontal cortex goes offline. Establishes that the recovery/restraint driver is an ENDOGENOUS CENTRAL system, not a stimulus or a conspecific -- the key premise for an offset-triggered, non-social, non-prediction recovery mechanism. It is a conceptual review (not a direct test of offset-triggered rebound), so confidence is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When the prefrontal cortex is taken offline, parasympathetic inhibitory action is withdrawn and sympathetic dominance is released -- a REE rebound mechanism that depends on a prefrontal-analog driver would FAIL exactly when that analog is suppressed (e.g. under high load / committed states), so it cannot be assumed always-on.",
+    "Sustained low parasympathetic tone (low HRV) is framed as pathogenic -- a chronically failing recovery process is the disease signature, implying the REE analog must be able to fail (perseverative non-recovery) as a modelled failure mode, not just succeed."
+  ],
+  "tags": ["autonomic_rebound", "parasympathetic_recovery", "neurovisceral_integration", "central_autonomic_network", "endogenous_driver", "mech_355_sibling"],
+  "mapping": {
+    "source_claim_statement": "A central autonomic network (CAN), overlapping prefrontal executive/affective circuitry, regulates autonomic balance via a reciprocal inhibitory cortico-subcortical circuit; prefrontal activity maintains parasympathetic (vagal) tone and restrains defensive/sympathetic circuits, and its withdrawal releases sympathetic dominance. Low HRV indexes this prefrontal-parasympathetic restraint failing.",
+    "ree_translation": "The recovery/restraint driver in REE is ENDOGENOUS and CENTRAL -- it does not require an external stimulus or a conspecific. This grounds the candidate claim's trigger as internal (offset-detection on the agent's own z_harm_a derivative) and locates the eventual driver alongside REE's prefrontal-analog control (ARC-016 precision / SD-033a lateral-PFC), while the minimal V3 form needs only the offset-triggered recovery-rate boost. It cleanly separates the recovery mechanism from MECH-355 soothing (whose driver is a conspecific) and from MECH-303/304 safety (a learned predictor).",
+    "mapping_caveat": "This is a conceptual/review framework, not a measurement of offset-triggered rebound; it supports the EXISTENCE and CENTRAL-ENDOGENOUS LOCATION of an active parasympathetic-recovery driver, not the specific REE update rule. The prefrontal-vagal anatomy maps only analogically onto REE's precision/PFC-analog control; the minimal V3 rebound mechanism deliberately does not instantiate the full CAN.",
+    "source_context": "Review/theory in psychoneuroendocrinology spanning human and animal evidence; HRV as the index of central parasympathetic regulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "High-citation canonical framework review; supports the endogenous-central-driver premise but is conceptual, so I weight it as framing evidence rather than a direct test. Transfer risk moderate-high (prefrontal-vagal anatomy -> REE precision/PFC-analog is an analogy)."
+  }
+}

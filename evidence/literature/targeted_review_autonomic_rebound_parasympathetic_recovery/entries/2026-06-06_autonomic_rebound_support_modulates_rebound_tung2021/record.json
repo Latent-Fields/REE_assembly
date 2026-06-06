@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autonomic_rebound_parasympathetic_recovery",
+  "entry_id": "2026-06-06_autonomic_rebound_support_modulates_rebound_tung2021",
+  "timestamp_utc": "2026-06-06T04:06:09Z",
+  "claim_ids_tested": ["CANDIDATE-autonomic-rebound-parasympathetic-recovery"],
+  "source": {
+    "title": "Cardiac vagal control in response to acute stress during pregnancy: Associations with life stress and emotional support.",
+    "authors": ["Irene Tung", "Robert T Krafty", "Meaghan L Delcourt", "Nadine M Melhem", "J Richard Jennings", "Kate Keenan", "Alison E Hipwell"],
+    "year": 2021,
+    "venue": "Psychophysiology",
+    "doi": "10.1111/psyp.13808"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly relevant double-edged anchor: it (i) confirms vagal rebound (HRV recovery) as a discrete, separately-modelled recovery axis via piecewise growth-curve modelling of reactivity vs recovery slopes, AND (ii) shows emotional support modulates the rebound. For the candidate (endogenous, NON-social rebound) this is 'mixed': it validates the shared recovery variable and its dissociability from reactivity, but its experimental lever is social support -- which is the MECH-355 soothing side, not the endogenous trigger. That is exactly why it supports the ARCHITECTURE (sibling claims sharing one recovery target via distinct triggers) while not isolating the endogenous trigger.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Greater vagal rebound was evident ONLY for women reporting high emotional support -- demonstrating that a social input can be the proximate modulator of rebound, so an endogenous-rebound experiment must hold social inputs fixed/absent to isolate the offset-triggered component (confound between MECH-355 and the sibling if not controlled).",
+    "Higher life stress predicted both greater reactivity AND faster vagal rebound (adaptation to anticipated high-stress environments) -- rebound magnitude is history-dependent, so a fixed-rate REE rebound would mis-model chronically-stressed agents."
+  ],
+  "tags": ["autonomic_rebound", "parasympathetic_recovery", "vagal_rebound", "social_support", "mech_355", "mech_355_sibling"],
+  "mapping": {
+    "source_claim_statement": "In pregnant women, piecewise growth-curve modelling separated reactivity and recovery slopes of HRV (RMSSD) across the Trier Social Stress Test; life stress predicted greater HRV reactivity and greater HRV recovery (vagal rebound), but the rebound association held only among women reporting high emotional support.",
+    "ree_translation": "Vagal rebound is a separately-modellable recovery axis (distinct slope from reactivity) -- supporting that an endogenous-recovery mechanism is a real, isolable target -- AND a social input (emotional support) modulates that same recovery axis. In REE this is the precise warrant for the design-pass architecture: register the endogenous, offset-triggered rebound as a SIBLING of MECH-355 soothing that shares the recovery target (MECH-219 recovery_rate / SD-032e drive_bias leak) but is driven by an internal offset signal rather than a conspecific. The two inputs converge on one variable; they are dissociable by trigger, not by effector.",
+    "mapping_caveat": "The experimental manipulation here is SOCIAL (emotional support), so the paper most directly evidences the MECH-355 soothing input; it supports the endogenous-rebound claim only at the level of 'rebound is a discrete recovery axis that multiple inputs can drive'. It does not isolate an endogenous, non-social trigger. Pregnant-women sample + TSST; transfer to a non-social REE agent is by analogy on the shared-recovery-variable structure.",
+    "source_context": "191 pregnant women (predominantly Black, urban, high public-assistance); Trier Social Stress Test; HR and RMSSD across preparation/task/recovery; piecewise growth-curve modelling of reactivity and recovery slopes."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Well-powered, modern modelling that explicitly separates recovery from reactivity slopes -- strong on the 'recovery is its own axis' point. Direction is mixed because its lever is social support (MECH-355 side); it evidences the sibling architecture more than the endogenous trigger per se."
+  }
+}

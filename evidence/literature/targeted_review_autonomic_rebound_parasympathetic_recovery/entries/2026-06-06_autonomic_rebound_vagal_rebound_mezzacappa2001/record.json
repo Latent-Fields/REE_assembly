@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autonomic_rebound_parasympathetic_recovery",
+  "entry_id": "2026-06-06_autonomic_rebound_vagal_rebound_mezzacappa2001",
+  "timestamp_utc": "2026-06-06T04:06:09Z",
+  "claim_ids_tested": ["CANDIDATE-autonomic-rebound-parasympathetic-recovery"],
+  "source": {
+    "title": "Vagal rebound and recovery from psychological stress.",
+    "authors": ["E S Mezzacappa", "R M Kelsey", "E S Katkin", "R P Sloan"],
+    "year": 2001,
+    "venue": "Psychosomatic Medicine",
+    "doi": "10.1097/00006842-200107000-00018"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Direct, canonical empirical demonstration that recovery from an acute stressor is an ACTIVE parasympathetic process (a sharp vagal surge in the first minute of recovery) occurring DESPITE residual sympathetic activation -- i.e. recovery is not merely the passive decay of the stress signal. This is exactly the dissociation the candidate claim turns on. Human psychophysiology, two experiments, replicated rebound across tasks; mapping_fidelity high for 'active offset-triggered recovery distinct from passive decay'; transfer risk is the usual physiology->latent-substrate analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Vagal rebound was REDUCED in men (Exp 1) and in individuals with a family history of cardiovascular disease (Exp 2) -- the rebound is a dissociable individual-difference axis, not an automatic consequence of stressor offset; a REE rebound mechanism must therefore be a gated/parameterised process, not a fixed reflex.",
+    "Rebound was tied to baroreflex-sensitivity resetting at stress onset AND offset, implying the recovery process is coupled to a homeostatic set-point reset rather than to a generic decay timer."
+  ],
+  "tags": ["autonomic_rebound", "parasympathetic_recovery", "vagal_rebound", "mech_355_sibling", "mech_219", "sd_032e"],
+  "mapping": {
+    "source_claim_statement": "Cardiovascular recovery from psychological stress is associated with increased vagal (parasympathetic) modulation -- a sharp rise in heart-period variability in the first minute of recovery ('vagal rebound') -- that occurs despite continued pre-ejection-period shortening (residual sympathetic activation); diminished vagal rebound tracks cardiovascular-disease risk.",
+    "ree_translation": "Recovery of the affective/autonomic stress state is an ACTIVE, offset-triggered process, not the passive relaxation of the aversive signal. In REE this is a transient boost to the recovery side of the slow affective accumulators (MECH-219 z_harm_a recovery_rate; SD-032e drive_bias leak) that fires at stressor offset (z_harm_a derivative going negative) -- distinct from, and additive to, the passive MECH-219 recovery_rate. The 'despite residual sympathetic activation' finding is the decisive evidence that active recovery is separable from the still-elevated stress (accumulation) side.",
+    "mapping_caveat": "REE has no separate sympathetic vs parasympathetic effectors; 'vagal rebound vs residual sympathetic activation' is being mapped onto a single-axis distinction between the accumulation side (SD-032e write / MECH-219 onset) and the recovery side (drive_bias leak / MECH-219 recovery). The paper measures cardiac autonomic indices in humans, not a latent suffering accumulator; the claim borrows the active-recovery PRINCIPLE, not the cardiac specifics.",
+    "source_context": "Healthy adults; cold-pressor, mental-arithmetic, and Stroop tasks; HR, heart-period variability, pre-ejection period, blood pressure, baroreflex sensitivity across baseline/task/recovery."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.35,
+    "notes": "Peer-reviewed, two-experiment psychophysiology study; the active-recovery-distinct-from-passive-decay principle maps cleanly. Transfer risk moderate (human cardiac autonomics -> REE latent recovery parameter is an analogy, not an identity)."
+  }
+}
