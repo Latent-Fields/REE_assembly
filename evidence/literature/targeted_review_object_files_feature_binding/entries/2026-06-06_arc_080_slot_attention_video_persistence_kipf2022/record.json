@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-06_arc_080_slot_attention_video_persistence_kipf2022",
+  "timestamp_utc": "2026-06-06T21:21:00Z",
+  "claim_ids_tested": ["ARC-080", "MECH-045"],
+  "source": {
+    "title": "Conditional Object-Centric Learning from Video (SAVi)",
+    "authors": ["Thomas Kipf", "Gamaleldin F. Elsayed", "Aravindh Mahendran", "Austin Stone", "Sara Sabour", "Georg Heigold", "Rico Jonschkowski", "Alexey Dosovitskiy", "Klaus Greff"],
+    "year": 2022,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "doi": "10.48550/arXiv.2111.12594",
+    "url": "https://arxiv.org/abs/2111.12594"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Strong, reproduced ML existence proof that slots can be TRACKED across time -- each slot persists as the same object-token frame to frame, predicted forward by a transition model. This is the persistence half that vanilla slot-attention (Locatello 2020) lacks, and it maps onto REE's shape exactly: slots + a forward predictor = SAVi, and REE's E2 IS that predictor. Held at 0.71 by transfer risk: weakly-supervised (optical-flow target + first-frame conditioning cues), synthetic video, pixel-reconstruction-driven -- REE's z_object is value-coupled and reconstruction-free over engineered latents.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SAVi tracking is bootstrapped by weak supervision (optical flow as the prediction target; first-frame object-location/coordinate conditioning cues). Remove that scaffold and unsupervised temporal binding degrades -- REE would need a comparable conditioning signal (e.g. drive/goal salience seeding a slot) or the slots may not specialise/persist.",
+    "Slot persistence is maintained while the object is visible-and-tracked; full through-occlusion permanence (ARC-080 Pillar 1) is only partially addressed and remains the harder problem."
+  ],
+  "tags": ["arc_080", "mech_045", "savi", "slot_attention", "object_tracking", "object_permanence", "forward_model", "e2", "object_files"],
+  "mapping": {
+    "source_claim_statement": "Slot Attention extended to video (SAVi): a set of slots is initialised (optionally conditioned on a first-frame cue), and a learned transition/predictor module rolls the slots forward frame to frame while a corrector re-binds them to the current frame. Each slot tracks one object across time as a persistent entity; the model discovers, represents, and TRACKS individual entities, weakly supervised by optical flow.",
+    "ree_translation": "Grounds the BUILDABILITY of two ARC-080 pieces that vanilla slot-attention could not: (1) token-instance PERSISTENCE -- slots survive and stay bound to the same object across frames (MECH-045 object-file buffers / ARC-080 Pillar 1 permanence); (2) the architecture is slots + a FORWARD MODEL predicting them, which is REE-shaped -- REE's E2 is already a forward model, so 'object-file layer + E2 over slots' is a SAVi-like construction rather than a new paradigm. Directly relevant to the design-fork step 1 (build the slot layer) and to whether E2 can be the slot predictor.",
+    "mapping_caveat": "SAVi is weakly-supervised (optical-flow prediction target + first-frame conditioning) on synthetic video with a pixel/flow reconstruction objective; REE's z_object is value-coupled (SD-049/SD-057 drive/goal), reconstruction-free, and over engineered latents, not pixels. The persistence demonstrated is across visible tracking, not full through-occlusion permanence. Supports buildability + REE-shape, NOT a drop-in module.",
+    "source_context": "Machine learning: object discovery and tracking on synthetic and semi-realistic video (MOVi datasets), weakly supervised via optical flow and conditioned on first-frame object cues."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.5,
+    "notes": "High source quality (ICLR 2022, Google, heavily reproduced; spawned SAVi++ etc.). Mapping fidelity good for the slots+forward-model = E2-over-slots shape. Transfer risk elevated by the weak-supervision scaffold and the reconstruction-vs-value mismatch shared with the Locatello entry."
+  }
+}

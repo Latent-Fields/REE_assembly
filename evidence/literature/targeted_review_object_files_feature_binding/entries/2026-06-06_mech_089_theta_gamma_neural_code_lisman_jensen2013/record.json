@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013",
+  "timestamp_utc": "2026-06-06T21:21:00Z",
+  "claim_ids_tested": ["MECH-089", "ARC-080"],
+  "source": {
+    "title": "The Theta-Gamma Neural Code",
+    "authors": ["John E. Lisman", "Ole Jensen"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.03.007",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23522038/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, heavily-cited Neuron synthesis of the theta-gamma multiplexing code with broad hippocampal + cortical empirical support. Directly grounds MECH-089 (theta-gamma nesting packages E1 for E3) at near-mechanism fidelity and supplies the formal capacity argument (~7+/-2 = gamma-cycles-per-theta) that grounds the 'both mechanisms multiply representational capacity' claim in the object-binding design fork. Held below 0.8 because the capacity-extension mapping to ARC-080 is at the class level and because phase-coded multiplexing presupposes a slot/item layer REE does not yet have.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Theta-gamma multiplexing presupposes discrete items to assign to gamma subcycles; with no slot/token layer (REE's current state) there are no items to multiplex and the phase code has nothing to carry -- the capacity advantage is unrealizable until slots exist.",
+    "Capacity is bounded (~7+/-2 gamma cycles per theta cycle); the scheme extends, but does not remove, a hard simultaneous-item limit."
+  ],
+  "tags": ["mech_089", "arc_080", "theta_gamma", "phase_coding", "multiplexing", "working_memory_capacity", "object_files"],
+  "mapping": {
+    "source_claim_statement": "Neural information is organized by a dual oscillatory code: individual items are represented in gamma subcycles that are nested within a theta cycle, with the ORDER of items encoded by gamma phase within theta. This multiplexing both segments items (each gamma cycle = one item) and encodes their sequence, yielding a natural capacity of roughly the number of gamma cycles per theta cycle (~7).",
+    "ree_translation": "Near-direct grounding for MECH-089 (theta-gamma nesting packages E1 updates into theta-cycle summaries for E3 -- E3 never sees raw E1). Also supplies the formal backbone of the object-binding design-fork claim that synchrony/phase and slots are COMPLEMENTARY: phase-multiplexing makes effective capacity ~ (items/slots) x (phase bins) rather than just (slots). Bears on ARC-080 as the capacity-extension mechanism that a slot layer would be multiplexed by.",
+    "mapping_caveat": "The evidence base is hippocampal/cortical LFP and spike-phase coding in rodents (with human EEG/MEG support); REE's heartbeat is an engineered control-plane rhythm over latents, not spiking populations. The mapping to MECH-089 is strong at the class level (theta-gamma IS what MECH-089 names), but the capacity-multiplication benefit is unrealizable in REE until a slot/item layer exists for phase to organize -- exactly the gap the 641a null exposed.",
+    "source_context": "Review/perspective synthesizing rodent hippocampal and cortical electrophysiology plus human EEG/MEG on cross-frequency (theta-gamma) coupling and working-memory capacity."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "High source quality (canonical Neuron review). Mapping fidelity good for MECH-089 (theta-gamma is the named mechanism), moderate for the ARC-080 capacity claim. Transfer risk from spike-phase coding to REE's engineered heartbeat is real but bounded -- MECH-089 was designed as this analog."
+  }
+}

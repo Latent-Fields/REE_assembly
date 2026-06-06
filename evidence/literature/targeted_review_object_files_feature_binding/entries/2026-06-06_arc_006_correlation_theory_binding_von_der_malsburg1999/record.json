@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_object_files_feature_binding",
+  "entry_id": "2026-06-06_arc_006_correlation_theory_binding_von_der_malsburg1999",
+  "timestamp_utc": "2026-06-06T21:21:00Z",
+  "claim_ids_tested": ["ARC-006", "MECH-044"],
+  "source": {
+    "title": "The what and why of binding: the modeler's perspective",
+    "authors": ["Christoph von der Malsburg"],
+    "year": 1999,
+    "venue": "Neuron",
+    "doi": "10.1016/S0896-6273(00)80825-9",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10677030/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The foundational theoretical argument (correlation theory of brain function) for WHY binding needs a dynamic temporal tag at all: static feature-cell coding suffers a 'superposition catastrophe' when multiple objects are present, so a separate binding variable is required. Strong, canonical grounding for ARC-006's premise that entities are dynamically BINDABLE structures rather than fixed conjunction cells. Held at 0.68 because it is a theoretical/modeler's argument (not empirical) and the temporal-binding solution it argues for is contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The superposition-catastrophe argument shows static conjunction coding is INSUFFICIENT, but it does not by itself prove temporal correlation is THE solution -- competing solutions (e.g. competitive slot allocation, attention) also avoid the catastrophe. So it motivates a binding variable without uniquely selecting synchrony.",
+    "A modeler's-perspective theoretical paper: it argues for what a binding mechanism must accomplish, not what the brain demonstrably does -- empirical adjudication is elsewhere (and contested, per Shadlen & Movshon 1999)."
+  ],
+  "tags": ["arc_006", "mech_044", "binding_problem", "correlation_theory", "superposition_catastrophe", "temporal_binding", "object_files"],
+  "mapping": {
+    "source_claim_statement": "The 'what and why' of binding: a representation built only from feature-detector activity cannot express WHICH features belong together when several objects are present simultaneously -- distinct objects' features superpose ambiguously (the 'superposition catastrophe'). A binding mechanism must therefore add a variable that tags co-belonging; von der Malsburg argues this is dynamic temporal correlation (synchrony), giving a flexible, on-the-fly grouping that fixed conjunction units cannot.",
+    "ree_translation": "Grounds the PREMISE of ARC-006 ('entities are sparse, persistent, BINDABLE structures') and MECH-044 (relational binding) by giving the principled reason a binding variable is necessary at all: without one, a multi-object representation is ambiguous. This is the 'why' beneath the whole object-binding design fork -- it establishes that SOME binding mechanism is required, while leaving open WHICH (synchrony vs competitive slot allocation), which is exactly the fork the design memo frames.",
+    "mapping_caveat": "Theoretical/modeler's-perspective argument, not empirical data; and the superposition-catastrophe motivates a binding variable without uniquely selecting temporal synchrony as the answer (competitive slot-attention also resolves it). So it supports ARC-006's NEED for binding strongly, but is neutral between the two candidate mechanisms in the design fork. Transfer to REE latents is at the level of the principle, not an implementation.",
+    "source_context": "Theoretical review / position piece in Neuron's 1999 binding special issue, arguing the computational necessity and form of a neural binding mechanism."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (canonical Neuron binding-issue piece by the originator of correlation theory). Mapping fidelity moderate: grounds the NEED for binding (ARC-006 premise) cleanly but is neutral on mechanism. Transfer risk low-moderate because it is a principle-level argument, not species/task-specific data."
+  }
+}
