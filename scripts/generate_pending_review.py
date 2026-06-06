@@ -362,6 +362,75 @@ def load_unclaimed_manifests(reviewed: set, discussed: set,
     return sorted(out, key=lambda r: (r["timestamp_utc"], r["run_id"]))
 
 
+def flat_only_silent_drop_guard(indexed_run_ids: set) -> list[str]:
+    """WARN on evidence-grade flat-only manifests the indexer never scored.
+
+    An evidence-grade run (experiment_purpose 'evidence', >=1 non-empty claim id,
+    not a dry run) whose canonical runs/<run_id>/manifest.json pack is absent AND
+    whose run_id is missing from claim_evidence has been silently dropped from
+    scoring -- the V3-EXQ-628 failure mode (a cloud Phase-3 result landed flat-only
+    when its runs/ pack failed to sync, so build_experiment_indexes.py, which scans
+    **/runs/**/manifest.json, never saw it and the claim sat at exp_conf=0 with no
+    evidence). governance.sh runs sync_v3_results.py + build_experiment_indexes.py
+    BEFORE this script, so a non-empty result here means an evidence run slipped
+    through both -- repair it (reconstruct the runs/ pack) before closing the cycle.
+
+    Returns the offending run_ids and prints a WARNING per run plus a summary.
+    ASCII-only output (Windows cp1252 safe).
+    """
+    if not EVIDENCE_DIR.is_dir():
+        return []
+    offenders = []
+    for f in sorted(EVIDENCE_DIR.glob("*.json")):
+        if f.name in _NON_MANIFEST_FILES:
+            continue
+        try:
+            d = json.loads(f.read_text())
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        run_id = d.get("run_id")
+        if not run_id:
+            continue
+        # Evidence-grade only: experiment_purpose 'evidence' with >=1 claim id.
+        if str(d.get("experiment_purpose", "evidence")).strip() != "evidence":
+            continue
+        cids = d.get("claim_ids") or d.get("claim_ids_tested") or []
+        if not (isinstance(cids, list) and any(str(c).strip() for c in cids)):
+            continue
+        # Dry-run / smoke artifacts are never scored by design -- skip.
+        if (str(d.get("dry_run", "")).strip().lower() in ("true", "1", "yes")
+                or str(run_id).endswith("_dry")):
+            continue
+        et = d.get("experiment_type") or ""
+        has_pack = bool(et) and (EVIDENCE_DIR / et / "runs" / run_id / "manifest.json").exists()
+        if has_pack or run_id in indexed_run_ids:
+            continue
+        offenders.append({
+            "run_id": run_id,
+            "file": f.name,
+            "claim_ids": [str(c).strip() for c in cids if str(c).strip()],
+        })
+
+    for o in offenders:
+        print(
+            "WARNING: evidence-grade flat-only manifest never scored "
+            "(no runs/ pack, absent from claim_evidence): "
+            f"{o['run_id']} claims={o['claim_ids']} file={o['file']}. "
+            "Re-run sync_v3_results.py + build_experiment_indexes.py to ingest, "
+            "or reconstruct the canonical runs/ pack.",
+            file=sys.stderr,
+        )
+    if offenders:
+        print(
+            f"WARNING: {len(offenders)} evidence-grade flat-only manifest(s) "
+            "unscored -- silent-drop guard (see lines above).",
+            file=sys.stderr,
+        )
+    return [o["run_id"] for o in offenders]
+
+
 def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                          unclaimed: list[dict],
                          last_review_utc: str) -> None:
@@ -702,6 +771,7 @@ def append_substrate_change_section() -> None:
 def main():
     reviewed, discussed, last_review_utc = load_tracker()
     indexed_run_ids = load_indexed_run_ids()
+    flat_only_silent_drop_guard(indexed_run_ids)
     runs = load_pending_entries(reviewed)
     pending_run_ids = {r["run_id"] for r in runs}
     runner_undiscussed = load_runner_status_undiscussed(reviewed, discussed, indexed_run_ids)

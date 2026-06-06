@@ -2163,6 +2163,24 @@ def _write_decision_state(
     )
 
 
+# Some experiment scripts emit run_ids in the mis-ordered form
+# `..._v3_<timestamp>` instead of the canonical `..._<timestamp>_v3`
+# (e.g. V3-EXQ-628: v3_exq_628_..._evidence_v3_20260602T191625Z). A bare
+# run_id.endswith("_v3") check misses that ordering, which silently under-counts
+# the run as non-genuine (firing the contamination guard's collect_genuine_evidence
+# override on a real V3 PASS) and -- via sync_v3_results._is_flat_v3 -- blocked its
+# flat->pack conversion entirely (the silent-drop root cause). This matcher accepts
+# both orderings.
+_V3_MIDSTRING_RE = re.compile(r"_v3_\d{8}T\d{6,}Z?$")
+
+
+def _is_v3_run_id(run_id: str) -> bool:
+    """True for a V3 run_id in either ordering: the canonical `..._<ts>_v3`
+    (endswith) or the mis-ordered `..._v3_<ts>` form some scripts emit."""
+    rid = str(run_id)
+    return rid.endswith("_v3") or bool(_V3_MIDSTRING_RE.search(rid))
+
+
 def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
     """Count experiment entries for claim_id that come from genuine experimental runs.
 
@@ -2188,7 +2206,7 @@ def _genuine_run_count(claim_id: str, matrix: dict[str, Any]) -> int:
             epoch == "ree_v1_minimal_genuine_v1"
             or run_id.endswith("_ree_v1_minimal")
             or run_id.endswith("_v2")
-            or run_id.endswith("_v3")
+            or _is_v3_run_id(run_id)
         ):
             count += 1
     return count
@@ -2213,7 +2231,7 @@ def _is_genuine_experimental_entry(entry: dict[str, Any]) -> bool:
         epoch == "ree_v1_minimal_genuine_v1"
         or run_id.endswith("_ree_v1_minimal")
         or run_id.endswith("_v2")
-        or run_id.endswith("_v3")
+        or _is_v3_run_id(run_id)
     )
 
 
@@ -2280,7 +2298,7 @@ def _recommendation_for_claim(
     _v3_run_ct = sum(
         1 for e in (matrix or {}).get("entries", [])
         if str(e.get("claim_id", "")) == claim_id
-        and str(e.get("run_id", "")).endswith("_v3")
+        and _is_v3_run_id(str(e.get("run_id", "")))
     ) if matrix is not None else 0
     # V4-architectural sub-case: a claim that is BOTH v3_pending AND explicitly
     # implementation_phase=v4 is not "waiting for V3 substrate" -- it is

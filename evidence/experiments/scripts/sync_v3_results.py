@@ -19,6 +19,7 @@ Usage (from REE_assembly root):
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import timezone, datetime
@@ -35,11 +36,50 @@ SKIP_NAMES = {
 }
 
 
+# Mis-ordered run_id form `..._v3_<timestamp>` (e.g. V3-EXQ-628:
+# v3_exq_628_..._evidence_v3_20260602T191625Z) that the canonical
+# `endswith("_v3")` check misses. A cloud Phase-3 evidence result whose runs/
+# pack failed to sync lands as a flat manifest with this ordering and was NEVER
+# converted -> never scored (silent governance drop, confirmed 2026-06-02..06).
+_V3_MIDSTRING_RE = re.compile(r"_v3_\d{8}T\d{6,}Z?$")
+
+
+def _is_dry_run(data: dict) -> bool:
+    """True for a dry-run / smoke artifact that must never be scored."""
+    if str(data.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
+        return True
+    return str(data.get("run_id", "")).endswith("_dry")
+
+
+def _is_evidence_grade(data: dict) -> bool:
+    """Evidence-grade = experiment_purpose 'evidence' with >=1 non-empty claim id,
+    and not a dry run. Diagnostics / baselines / dry artifacts are excluded."""
+    if str(data.get("experiment_purpose", "evidence")).strip() != "evidence":
+        return False
+    cids = data.get("claim_ids") or data.get("claim_ids_tested") or []
+    if not (isinstance(cids, list) and any(str(c).strip() for c in cids)):
+        return False
+    return not _is_dry_run(data)
+
+
 def _is_flat_v3(data: dict) -> bool:
-    """Return True if this JSON looks like a V3 flat result file."""
-    run_id = str(data.get("run_id", ""))
+    """Return True if this JSON should be converted to a runs/ pack.
+
+    Canonical `..._v3`-suffixed run_ids convert unconditionally (unchanged
+    behaviour). The mis-ordered `..._v3_<timestamp>` form converts ONLY when it
+    is an evidence-grade casualty -- this closes the 628-class silent-drop gap
+    for evidence runs without sweeping the historical mid-string DIAGNOSTIC
+    backlog (claim_ids=[] or experiment_purpose=diagnostic) into pending_review.
+    """
     epoch = str(data.get("architecture_epoch", ""))
-    return run_id.endswith("_v3") and epoch == "ree_hybrid_guardrails_v1"
+    if epoch != "ree_hybrid_guardrails_v1":
+        return False
+    run_id = str(data.get("run_id", ""))
+    if run_id.endswith("_v3"):
+        return True
+    if _V3_MIDSTRING_RE.search(run_id) and _is_evidence_grade(data):
+        return True
+    return False
 
 
 def _parse_timestamp(ts: str | None) -> str:
