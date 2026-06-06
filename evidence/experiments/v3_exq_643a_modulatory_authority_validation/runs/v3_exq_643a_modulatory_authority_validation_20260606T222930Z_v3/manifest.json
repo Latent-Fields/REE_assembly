@@ -1,0 +1,75 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_643a_modulatory_authority_validation",
+  "run_id": "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-06T22:29:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "authority_validated",
+    "preconditions": [
+      {
+        "name": "modulatory_range_supra_floor",
+        "description": "gate's true cross-candidate modulatory range (modulatory_authority_range) clears the floor -- the SAME RANGE statistic the C1 authority criterion gates on (NOT a magnitude proxy)",
+        "control": "ON arms, ticks with >= 2 first-action classes (genuinely-differing candidates so the MECH-341 entropy bonus has non-zero per-candidate range)",
+        "measured": 0.221807,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "primary_scores_bounded",
+        "description": "fraction of ON-arm P1 ticks with e3_raw_score_range_mean < 1000.0 -- non-vacuity: an authority fire on ~1e26 scores is a degenerate artifact, not a real selection effect",
+        "control": "SD-056 rollout-norm clamp enabled (e2_rollout_output_norm_clamp_enabled)",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0": true,
+      "C1": true,
+      "C2": true
+    },
+    "criteria": [
+      {
+        "name": "C1_authority_active_on_bounded_scores",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
