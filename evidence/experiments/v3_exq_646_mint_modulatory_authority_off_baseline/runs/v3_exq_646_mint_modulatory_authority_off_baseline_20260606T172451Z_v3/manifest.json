@@ -1,0 +1,58 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_646_mint_modulatory_authority_off_baseline",
+  "run_id": "v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-06T17:24:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "baseline",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "baseline_minted",
+    "preconditions": [
+      {
+        "name": "all_off_cells_completed",
+        "description": "every OFF/baseline cell ran to completion without a non-finite action (error_note is None) so the recorded baseline is usable",
+        "measured": 3,
+        "threshold": 3,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "all_cells_ran": true,
+      "all_cells_reuse_eligible": true
+    }
+  }
+}

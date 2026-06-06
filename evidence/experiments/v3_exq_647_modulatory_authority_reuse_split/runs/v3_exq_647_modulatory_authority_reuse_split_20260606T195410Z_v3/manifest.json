@@ -1,0 +1,75 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_647_modulatory_authority_reuse_split",
+  "run_id": "v3_exq_647_modulatory_authority_reuse_split_20260606T195410Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-06T19:54:10Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "authority_active_no_behaviour_change",
+    "preconditions": [
+      {
+        "name": "modulatory_range_supra_floor",
+        "description": "gate's true cross-candidate modulatory range (modulatory_authority_range) clears the floor -- the SAME RANGE statistic the C1 authority criterion gates on",
+        "control": "ON arms, ticks with >= 2 first-action classes",
+        "measured": 0.22378833,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "primary_scores_bounded",
+        "description": "fraction of ON-arm P1 ticks with e3_raw_score_range_mean < 1000.0 -- non-vacuity guard",
+        "control": "SD-056 rollout-norm clamp enabled",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0": true,
+      "C1": true,
+      "C2": true
+    },
+    "criteria": [
+      {
+        "name": "C1_authority_active_on_bounded_scores",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
