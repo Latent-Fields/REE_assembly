@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-01.3 -->
+<!-- EXPLORER_VERSION: 2026-06-06.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2611,7 +2611,6 @@
       <button id="docsViewBtn" class="view-btn">Docs</button>
       <button id="mapViewBtn" class="view-btn">Map</button>
       <button id="processViewBtn" class="view-btn" title="Weekly claim growth and SCC-collapsed dependency process view">Process</button>
-      <button id="tripleViewBtn" class="view-btn">Triple View</button>
       <button id="governanceViewBtn" class="view-btn">Governance<span id="govConflictBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="experimentsViewBtn" class="view-btn">Experiments</button>
       <button id="archViewBtn" class="view-btn" title="Architecture diagram with substrate stability overlay">Architecture</button>
@@ -8939,13 +8938,6 @@ END CONFLICT RESOLUTION`;
         return;
       }
 
-      if (view === 'triple') {
-        if (els.tripleViewWrap) els.tripleViewWrap.style.display = 'block';
-        setPrimaryViewButton(els.tripleViewBtn);
-        renderTripleView(false);
-        return;
-      }
-
       if (view === 'governance') {
         if (els.governanceWrap) els.governanceWrap.style.display = 'block';
         setPrimaryViewButton(els.governanceViewBtn);
@@ -10287,9 +10279,6 @@ END CONFLICT RESOLUTION`;
       }
       if (els.processViewBtn) {
         els.processViewBtn.addEventListener('click', () => setView('process'));
-      }
-      if (els.tripleViewBtn) {
-        els.tripleViewBtn.addEventListener('click', () => setView('triple'));
       }
       if (els.governanceViewBtn) {
         els.governanceViewBtn.addEventListener('click', () => setView('governance'));
