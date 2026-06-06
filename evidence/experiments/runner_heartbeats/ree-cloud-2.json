@@ -1,47 +1,32 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-06T13:24:41Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-633",
-      "result": "PASS",
-      "completed_at": "2026-06-03T07:20:43.038394+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485b",
-      "result": "PASS",
-      "completed_at": "2026-06-03T20:10:54.651843+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-490k",
-      "result": "PASS",
-      "completed_at": "2026-06-04T09:19:45.172966+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-637",
-      "result": "PASS",
-      "completed_at": "2026-06-04T10:25:46.312696+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-640a",
-      "result": "PASS",
-      "completed_at": "2026-06-06T01:36:15.224659+00:00"
-    }
+  "last_tick_utc": "2026-06-06T16:09:55Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-644",
+  "current_exq_started_utc": "2026-06-06T16:05:50.161632+00:00",
+  "current_title": "arm-reuse Phase-0 MINT of the V3-EXQ-610 OFF/baseline arm (INV-074 crystallization necessity; ARM_0_stripped_control) on ree-cloud-2. OFF arm x 3 seeds, built from the canonical baseline module; records per-cell arm_fingerprint. Sibling to V3-EXQ-645 (ree-cloud-3) for the cross-instance determinism check.",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_stripped_control",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 0,
+    "episodes_total": 2500,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 245,
+  "seconds_remaining": 27000,
+  "recent_lines": [
+    "[V3-EXQ-610-MINT] OFF/baseline arm mint for V3-EXQ-610 (source arm: v3_exq_610f_inv074_crystallization_necessity.py ARM_0_stripped_control); queue_id=V3-EXQ-644",
+    "Seed 42 Condition ARM_0_stripped_control",
+    "[V3-EXQ-610-MINT] OFF cell seed=42 (crystallize=False, p3_eb=0.0, floors OFF; baseline_id=exq610_inv074_crystallization_off_v1)"
   ],
-  "runner_pid": 670,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 668,
   "runner_version": null,
   "gpu": {
     "available": false

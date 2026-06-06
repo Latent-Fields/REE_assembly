@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-06T15:39:41Z",
+  "last_tick_utc": "2026-06-06T16:09:53Z",
   "state": "running",
   "current_exq": "V3-EXQ-610f",
   "current_exq_started_utc": "2026-06-05T14:58:58.174612+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "INV-074",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_1_stripped_crystallize",
-    "runs_done": 5,
+    "run_label": "Seed 42 / ARM_2_control_eb005",
+    "runs_done": 6,
     "runs_total": 15,
-    "episodes_done": 2200,
+    "episodes_done": 0,
     "episodes_total": 2500,
-    "overall_pct": 39.2
+    "overall_pct": 40.0
   },
-  "seconds_elapsed": 88843,
-  "seconds_remaining": 136552,
+  "seconds_elapsed": 90655,
+  "seconds_remaining": 135233,
   "recent_lines": [
-    "[MECH-334] residue_field.snapshot_ewc_anchor() fired",
-    "[train] ARM_1_stripped_crystallize ep 2001/2500 phase=3 ep_eb=0.0200 ep_reward=-1.0870 rv=0.0135 pol_steps=2001 exp_steps=0 ewc_terms=0",
-    "[INV-074] policy_optimizer rebuilt for expansion_parameters (4 expansion + 2 residue params)",
-    "[train] ARM_1_stripped_crystallize ep 2100/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0563 rv=0.0163 pol_steps=2100 exp_steps=99 ewc_terms=99",
-    "[train] ARM_1_stripped_crystallize ep 2200/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0376 rv=0.0175 pol_steps=2200 exp_steps=199 ewc_terms=199"
+    "[train] ARM_1_stripped_crystallize ep 2400/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0358 rv=0.0160 pol_steps=2400 exp_steps=399 ewc_terms=399",
+    "[train] ARM_1_stripped_crystallize ep 2500/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0198 rv=0.0163 pol_steps=2500 exp_steps=499 ewc_terms=499",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_2_control_eb005",
+    "[V3-EXQ-610f] Starting ARM_2_control_eb005 seed=42 crystallize=False p3_eb=0.005 noise_floor=False e3_div=False"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
