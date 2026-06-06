@@ -9,7 +9,20 @@
       "queue_id": "V3-EXQ-643",
       "experiment_purpose": "diagnostic",
       "claim_ids": [],
-      "bears_on_not_tagged": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-295", "Q-044", "ARC-068", "SD-057", "MECH-346", "MECH-347"],
+      "bears_on_not_tagged": [
+        "MECH-314",
+        "MECH-314a",
+        "MECH-314b",
+        "MECH-314c",
+        "MECH-320",
+        "MECH-341",
+        "MECH-295",
+        "Q-044",
+        "ARC-068",
+        "SD-057",
+        "MECH-346",
+        "MECH-347"
+      ],
       "validates_substrate": "modulatory-bias-selection-authority",
       "failed_criterion": "absolute",
       "failed_criterion_detail": "C0 modulatory non-degeneracy PASS (3/3 seeds B and C; score_bias_abs_mean ~0.024-0.027). C1 authority_mechanism_active FAIL: modulatory_authority_active_frac=0.0 AND modulatory_authority_scale_factor_mean=0.0 in EVERY arm including authority-ON arms B (gain 0.5) and C (gain 0.8); c1_mechanism_active_seeds_B=0, c1_mechanism_active_seeds_C=0. C2 changes-selection FAIL (rank_change_seeds 0/0; bias_changed_selection_frac B=8.7e-5, C=0.006). C3 dose-response FAIL (scale_factor_B_mean=scale_factor_C_mean=0.0). The authority mechanism NEVER FIRED with its flag True, so C2/C3 were untestable.",
@@ -30,7 +43,9 @@
       },
       "biological_reference": {
         "closest_mechanism": "neuromodulatory (dACC curiosity / DA vigor) bias on committed action selection",
-        "dependencies": ["per-candidate value/state differentiation (options must be distinguishable to the valuation before a modulator can bias among them)"],
+        "dependencies": [
+          "per-candidate value/state differentiation (options must be distinguishable to the valuation before a modulator can bias among them)"
+        ],
         "is_formal_import": false,
         "divergence": "engineering range-rescale arbitration; biology biases toward differing options, which presupposes per-option contrast the substrate does not yet provide",
         "lit_status": "n/a"
@@ -65,5 +80,21 @@
       "routing": "implement-substrate"
     }
   ],
-  "cluster_pattern": null
+  "cluster_pattern": null,
+  "correction": {
+    "corrected_utc": "2026-06-06T13:27Z",
+    "corrected_by_session": "correct-643-autopsy-rootcause-20260606T1327Z",
+    "supersedes_section": "2 (root cause); also 4/5/7 mechanism attribution",
+    "kind": "root_cause_superseded_code_confirmed",
+    "summary": "Autopsy root cause 'modulatory bias uniform across the K candidates / range < 1e-6' is numerically WRONG. The MECH-341 entropy bonus keys on first-action class (not z_world) and carries a genuine ~0.17 cross-candidate range -- not uniform. Binding cause is float32 CATASTROPHIC CANCELLATION: the 643 harness trains SD-056 online, exploding primary E3 scores to ~1e32; the gate's modulatory_total = scores - scores_raw subtracts two ~1e32 floats and 0.17 is below the float32 ULP (~1e25) at 1e32, so it collapses to exactly 0.0 -> gate never fired. Probe: SD-056-training-OFF raw_score_range ~4.5 -> gate fires (modrange ~0.25, active=True); ON ~1e32 -> modrange 0.0. Substrate functionally correct at normal magnitude.",
+    "what_stays_valid": "Adjudication outcome unchanged: does_not_support was the wrong self-route; substrate NOT falsified; stays implemented_pending_validation, non_contributory, pending_retest_after_substrate. Only the attributed MECHANISM (per-candidate uniformity) is superseded.",
+    "fix": "ree-v3 654ccc8: e3_selector.select tracks modulatory contribution explicitly (small accumulator) instead of scores - scores_raw; new modulatory_authority_range diagnostic; bit-identical OFF + when scores small. Proof-of-fix probe: pre 0.000/0, post 1.000/0.16.",
+    "validation": "V3-EXQ-643a (supersedes 643): fix + SD-056 rollout-norm clamp (harness stability) + range/non-vacuity readiness gate (same-statistic rule).",
+    "evidence_direction_recommendation": "non_contributory stands (diagnostic, claim_ids=[]); does not weight MECH-314/320/341. The recommended manifest evidence_direction correction in Section 6/7 (does_not_support -> non_contributory) remains correct -- the run is precondition_unmet (now: numerical), not a falsification.",
+    "references": [
+      "docs/architecture/modulatory_bias_selection_authority.md (V3-EXQ-643a fix section)",
+      "evidence/planning/substrate_queue.json (modulatory entry failure_record.root_cause_2026_06_06 + implementation_log)",
+      "ree-v3/CLAUDE.md (modulatory-bias-selection-authority AMEND 2026-06-06)"
+    ]
+  }
 }

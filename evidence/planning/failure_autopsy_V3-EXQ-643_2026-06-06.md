@@ -145,3 +145,57 @@ delivering). No claim carries this — the run is claimless.
 > modulatory variance (same per-candidate-collapse root cause as
 > behavioral_diversity_isolation:GAP-B). non_contributory; does not weight
 > MECH-314/320/341. pending_retest_after_substrate.
+
+---
+
+## CORRECTION (2026-06-06T13:27Z, code-confirmed) — Section 2 root cause superseded
+
+**This autopsy's root cause is numerically wrong.** Section 2 / Section 7 state the
+modulatory contribution is "uniform across the K candidates to within 1e-6 (a per-tick
+scalar added equally, zero per-candidate range)". A live-code decomposition probe (643
+config + harness) **disproves** that:
+
+- The MECH-341 entropy bonus keys on per-candidate **first-action class** (NOT z_world),
+  so it carries a **genuine ~0.17 cross-candidate range** — it is **not** uniform. Probe:
+  the agent's own entropy bonus fired 100% of ticks with `max_abs ~0.22` over 4 first-action
+  classes; a standalone recompute on the same candidates gave range **0.17**.
+- The real binding cause is **float32 catastrophic cancellation**. The 643 harness trains
+  SD-056 **online**, which drives the primary E3 scores to **~1e32** (z_world instability;
+  the SD-056 rollout-norm clamp was OFF). The authority gate computes
+  `modulatory_total = scores - scores_raw` — subtracting two ~1e32 floats. 0.17 is far below
+  the float32 ULP (~1e25) at 1e32, so the subtraction collapses to **exactly 0.0** →
+  `modulatory_range < floor` → the gate never fired. Direct internal read confirmed
+  `DBG_modulatory_range = 0.0` while `DBG_mech341_range = 0.17` on the same tick.
+- Determinant measured directly: SD-056-training **OFF** → `raw_score_range ~4.5`, the gate
+  **fires correctly** (`modulatory_range ~0.25`, `active=True`); SD-056-training **ON** →
+  `raw_score_range ~1e32`, `modulatory_range = 0.0`, never fires. **The substrate is
+  functionally correct at normal score magnitude**; 643 failed from a harness-induced
+  numerical degeneracy, not from an absent per-candidate signal.
+
+**What stays valid:** the *adjudication outcome* (Section 3) is unchanged — `does_not_support`
+was the wrong self-route; the substrate was **not** falsified; it stays
+`implemented_pending_validation`, non_contributory, pending_retest_after_substrate. Only the
+*mechanism* attributed in Sections 2/4/5/7 (per-candidate uniformity / "the bottleneck is one
+layer up, per-candidate modulatory differentiation") is superseded: the bottleneck is the
+gate's own subtraction-at-large-magnitude, plus the harness exploding the scores.
+
+**Fix landed** (`ree-v3` `654ccc8`, 2026-06-06): `e3_selector.select` now tracks the modulatory
+contribution **explicitly** as a small accumulated tensor and the authority block measures it
+directly instead of reconstructing it as `scores - scores_raw` — immune to large-score
+cancellation; mathematically identical in exact arithmetic; bit-identical OFF and when scores
+are small. New `modulatory_authority_range` diagnostic. Proof-of-fix probe: pre-fix
+`active_frac=0.000 / modrange=0`; post-fix `active_frac=1.000 / modrange=0.16`.
+
+**Validation:** `V3-EXQ-643a` (supersedes 643) re-runs the design with the fix + the SD-056
+rollout-norm clamp (harness stability) + a readiness gate that asserts the **same range
+statistic** C1 routes on (modulatory_range > floor on a positive control) AND primary-score
+boundedness — below either → `substrate_not_ready_requeue`, never an authority verdict. See
+`docs/architecture/modulatory_bias_selection_authority.md` (V3-EXQ-643a fix section),
+`evidence/planning/substrate_queue.json` (modulatory entry: failure_record
+`root_cause_2026_06_06` + implementation_log), and `ree-v3/CLAUDE.md` (modulatory amend).
+
+The cross-cluster lesson the autopsy drew (604a/624a/614d/643 = "modulatory-layer signals carry
+no per-candidate variance at committed selection") is **partly mis-attributed for 643**: the
+z_world-derived channels (curiosity novelty, vigor) **are** uniform under `cand_pairwise=0`
+(the 571/GAP-B collapse, confirmed here), but the MECH-341 entropy bonus is **not** — and at
+the authority gate it was the **cancellation**, not uniformity, that zeroed the range.
