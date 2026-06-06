@@ -1,0 +1,60 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-06T08:06:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_642_blocked_agency_zblock_discriminative_20260606T055351Z_v3",
+      "queue_id": "V3-EXQ-642",
+      "claim_ids": [],
+      "bears_on": ["MECH-353", "SD-029", "MECH-112", "MECH-320", "MECH-342", "ARC-016", "SD-011", "SD-019b"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- z_block never rose above 0; MECH-353's affective claim never had a chance to express. Not weakened, not strengthened.",
+        "biological_reference": "clear -- RAGE/FNR assert-pole comparator (Carruthers 2012, Papini 2024, Davis & Montag 2019); grounded by the 2026-06-05 blocked-agency lit-pull. Detector is a faithful single-pass comparator (MECH-256 family), no formal-import divergence.",
+        "prerequisites": "missing -- SD-056 (e2_action_contrastive_enabled) OFF and encoder untrained (no SD-018/event-contrastive supervision), so the SD-029 z_world comparator is inert. Confirmed prerequisite, not falsification.",
+        "implementation": "complete -- BlockedAgency regulator + detector wired correctly (9/9 MECH-353 contracts, 803/803 ree-v3). Defect is in the experiment's P0, not the substrate.",
+        "environment": "adequate -- scheduled_action_block fired (~1180 blocked steps/seed in ARM_BLOCK, 0 in CONTROL); harm + goal held constant as designed.",
+        "measurement": "adequate-but-floored -- pred_mag < predicted_effect_floor (0.05) on every tick forced outcome_mismatch to identically 0. The floor performed its untrained-substrate fail-safe.",
+        "integration": "untested -- assert/decommit consumers never fired because z_block stayed 0.",
+        "scale": "insufficient -- random encoder + no SD-056 => z_world does not track single-cell moves at supra-floor magnitude. P0 episode budget is irrelevant until the encoder + SD-056 are trained."
+      },
+      "biological_reference": {
+        "closest_mechanism": "frustrative-non-reward / RAGE assert-pole action-outcome comparator (expected-minus-obtained on the action-effect channel)",
+        "dependencies": ["trained encoder representing agent position in z_world", "action-conditional world_forward (SD-056)", "goal expectation (MECH-112)", "z_self motor-agency comparator (external-attribution gate)"],
+        "is_formal_import": false,
+        "divergence": "none -- the SD-029 single-pass comparator is the biology-correct shape; no two-pass formal-import error (contrast SD-003).",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "none -- claimless diagnostic; characterise as a measurement / test-design gap, NOT substrate_ceiling. Do not record substrate_ceiling on any claim from this run.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-642 (2026-06-06) FAILed C0/C1/C2 with the comparator floored to outcome_mismatch=0 on every step. Failure autopsy (failure_autopsy_V3-EXQ-642_2026-06-06): untrained-substrate test-design artifact, NOT a falsification or substrate ceiling -- P0 trained world_forward on a frozen random encoder with SD-056 OFF, so pred_mag stayed below the 0.05 predicted-effect floor by construction (wf_mse~2e-5 is a low-variance-target fit, not a discriminative comparator). MECH-353 remains v3_pending pending V3-EXQ-642a (encoder trained to track position + e2_action_contrastive_enabled). pending_retest_after_substrate: true.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The substrate (encoder + SD-056) is implemented and contract-clean; it was simply not trained/enabled in the V3-EXQ-642 P0. No substrate enrichment is warranted until a corrected experiment (V3-EXQ-642a) trains it and STILL fails C0. The fix is a test redesign, not a substrate gap."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Confirmed prerequisite: the SD-029 z_world action-outcome comparator (MECH-353 detector) requires a trained encoder + action-conditional world_forward (SD-056) before it can discriminate a blocked move from a successful one -- exactly as the MECH-353 design doc predicted. Positive evidence for the dependency, not against MECH-353.",
+        "wf_mse is not a substrate-readiness signal on its own: a low wf_mse over a low-variance (position-insensitive) z_world target is fully compatible with degenerate pred_mag ~ 0. Use pred_mag / SD-056 cand_world_pairwise_dist as the readiness metric instead.",
+        "A self-routing diagnostic still needs an autopsy: the manifest's substrate_ceiling_comparator_nondiscriminative label is right about the symptom (C0 non-discriminative) but wrong about the cause (untrained, not coarse). The grid's 'C0 fail -> substrate_ceiling' branch assumed a trained substrate; this run did not meet that precondition.",
+        "C3 (assert-not-withdraw) passed 2/3 only vacuously: with z_block identically 0 both arms are bit-identical, so 'no withdrawal / no suffering' is trivially satisfied. The negative-control-passes / discrimination-fails shape is genuine, but its cause here is untrained substrate."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "successor_id": "V3-EXQ-642a",
+        "label": "alphabetic suffix; same scientific question (MECH-353 blocked-agency discrimination) with a corrected P0",
+        "required_changes": [
+          "Train the encoder so z_world tracks position: use_resource_proximity_head=True (SD-018) and/or event-contrastive supervision (SD-009), or a dedicated position-supervised encoder warmup in P0.",
+          "Enable SD-056: e2_action_contrastive_enabled=True (action-conditional world_forward divergence preservation).",
+          "Add a P0 readiness gate: assert pred_mag on a known successful move clears predicted_effect_floor (0.05) with margin before measuring C0; if it does not even with a trained encoder + SD-056, THEN self-route to a genuine substrate_ceiling finding (and only then mint a substrate-enrichment entry).",
+          "Keep the rest of the design unchanged (static landmark env, harm held constant, pinned z_goal, scripted + policy measurement, C0-C3 grid, 3 seeds)."
+        ],
+        "mech_353_status": "stays v3_pending; not falsified, not substrate_ceiling"
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
