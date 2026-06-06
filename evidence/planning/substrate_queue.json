@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "scaffolded-sd054-developmental-window-amend-20260603T1520Z",
-  "last_updated_utc": "2026-06-05T09:43:24Z",
+  "last_seen_session": "close-stale-infantcurriculum-h_pos-queue-entry-20260606T0417Z",
+  "last_updated_utc": "2026-06-06T04:19:19Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-04-27: cleared previous SD-037 pointer (SD-037 was implemented 2026-04-25 with V3-EXQ-483 failing validation; Q-040 factorial via V3-EXQ-490b is the live diagnostic distinguishing MECH-269b vs MECH-295 as the dominant cause of the EXQ-471 catatonic-lock signature). Next implement-substrate target is a governance decision pending Q-040 outcome. Genuinely-pending ready items in queue: SD-019a (gated socially on Q-036 controllability evidence), MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate; lower-priority follow-on after V3-EXQ-490b clears). Items not yet in queue but landed in substrate (worth back-filling on next reconcile): SD-034 closure operator (2026-04-20), SD-035 amygdala BLA+CeA (2026-04-21), MECH-272/273/275/279/284/285/287/288 (Phase 2/3 V_s + sleep aggregation cluster, 2026-04-22 -- 2026-04-25), MECH-290 backward credit sweep (2026-04-24), MECH-266 asymmetric hysteresis (2026-04-21).",
     "sd_id": null,
@@ -3351,12 +3351,15 @@
       "ready": false,
       "ready_blocked_by": "V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requires V3 substrate enrichment, not V4; z_goal collapses ~1e-7 across V3-EXQ-591 arms). Probable joint fix with this entry's exit-gate fix; cluster reading per failure_autopsy_V3-EXQ-591_2026-05-27. MECH-307 default-value recalibration prereq CLEARED 2026-05-15 by V3-EXQ-540g PASS+supports (criterion_fix; conjunction_fire_rate=32 in ARM_2); routing per failure_autopsy commit 2f96871335 'count 540g as supports for MECH-307+MECH-295 in governance'; session-land 128714f77b closed MECH-307 substrate-ready 2026-05-21 (IGW-20260521-023). V3-EXQ-540e FAIL 2026-05-12 was a measurement bug (seed44 truncation, 2/3 seeds cleared C2), superseded by 540g.",
       "sd_id": "ARC-046",
-      "status": "pending_implementation",
+      "status": "implemented",
       "title": "InfantCurriculumScheduler Phase 0->1 advancement signal substrate fix: tune H_POS_FRAC_OF_MAX from 0.70 to achievable substrate value (~0.20-0.30 of max) OR replace H_pos exit gate with z_goal-norm-based / residue-coverage-progression-based exit gate.",
       "unblocks_claims": [
         "ARC-046",
         "DEV-NEED-008"
-      ]
+      ],
+      "implementation_session": "close-stale-infantcurriculum-h_pos-queue-entry-20260606T0417Z",
+      "implementation_utc": "2026-06-06T04:19:19Z",
+      "implementation_note": "ALREADY IMPLEMENTED 2026-05-31 (commit da4a1bc, ree-v3/main; session IGW-20260531-009) via path (a): H_POS_FRAC_OF_MAX recalibrated 0.70 -> 0.20 in ree-v3/experiments/infant_curriculum.py. Threshold 0.20*ln(144) ~= 0.994 sits inside the V3-EXQ-591-measured rolling-mean H_pos band 0.03-1.08 (~9% margin below band top); legacy 0.70*ln(144) ~= 3.48 was structurally unreachable. Path (b) (z_goal-norm / residue-coverage progression gate) NOT taken: z_goal collapses to ~1e-7 (blocked on prereq(2) goal_pipeline:GAP-4) and residue_coverage saturates trivially to 1.0 -- both progression signals currently degenerate, so path (a) is the only data-supported substrate-side fix until prereq(2) clears. Verified 2026-06-06: 19/19 tests/contracts/test_infant_curriculum_gap9.py pass (incl C11 advancement contracts) + scheduler-advance smoke confirms Phase 0->1 fires at ep 100 on observed-band H_pos. Queue entry was stale (last_seen governance-20260529, two days pre-landing); status flipped pending_implementation -> implemented. ready stays FALSE: this exit-gate fix is necessary-but-not-sufficient for ARC-046 -- behavioural validation (V3-EXQ-591b/603d) remains gated on prereq(2) goal_pipeline:GAP-4 (z_goal collapse), per ready_blocked_by below. See ree-v3/CLAUDE.md 'InfantCurriculumScheduler Phase 0->1 H_pos Floor Recalibration (2026-05-31)'."
     },
     {
       "added_session": "governance-20260527T172644Z",
