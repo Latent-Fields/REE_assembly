@@ -211,3 +211,5 @@ The correct near-term extraction is:
 The incorrect extraction is:
 
 > compress all past experience into polished lessons and discard the original episodes.
+>
+> Of course REE has multiple "memory" like parts which may make this entire point somewhat moot
