@@ -1,7 +1,13 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-05T14:42:00Z",
+  "last_review_utc": "2026-06-06T05:09:45Z",
   "discussed_experiment_dirs": [
+    "v3_exq_418m_sd016_cue_slot_tagger",
+    "v3_exq_418m_sd016_cue_slot_tagger_20260605T165833Z_v3",
+    "v3_exq_640a_scaffold_cue_authority_gain_sweep",
+    "v3_exq_640a_scaffold_cue_authority_gain_sweep_20260606T013614Z_v3",
+    "v3_exq_641_coherence_ablation_nonreducibility",
+    "v3_exq_641_coherence_ablation_nonreducibility_20260606T021359Z_v3",
     "v3_exq_610e_inv074_crystallization_necessity",
     "v3_exq_610e_inv074_crystallization_necessity_20260604T225319Z_v3",
     "v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic",
@@ -543,6 +549,9 @@
     "v3_exq_639_arc063_candidate_rule_field_readiness_v3_20260604T154034Z"
   ],
   "reviewed_run_ids": [
+    "v3_exq_418m_sd016_cue_slot_tagger_20260605T165833Z_v3",
+    "v3_exq_640a_scaffold_cue_authority_gain_sweep_20260606T013614Z_v3",
+    "v3_exq_641_coherence_ablation_nonreducibility_20260606T021359Z_v3",
     "v3_exq_610e_inv074_crystallization_necessity_20260604T225319Z_v3",
     "v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic_20260605T125802Z_v3",
     "v3_exq_638a_scaffold_cue_recall_contact_ablation_20260604T183612Z_v3",
@@ -3800,6 +3809,24 @@
         "v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness_20260604T210510Z_v3"
       ],
       "subject": "/governance cycle 2026-06-05. 3 pending FAILs walked. TWO diagnostics cleared (claim_ids=[] -> weight no claim): V3-EXQ-638a (SD-057 cue-recall contact ablation) -- cue FORMS+FIRES (C1 1050/180/446, C2 silent-OFF PASS) but C3 contact-lift FAIL (ARM_CUE_ON contact [0,0,0.267] <= ARM_OFF [0,0.197,0.648] all 3 seeds, n_interoceptive=0); confirmed failure_autopsy_V3-EXQ-638a landed, routing = measurement-first V3-EXQ-640 (already queued, gates 638b); no claim impact. V3-EXQ-634c (seeding-calibration readiness) -- SPLIT: the 2026-06-03c seeding-calibration amend VALIDATED the z_goal half (seeded arms ARM_1/2/3 pass g3_zgoal, z_goal@contact ~0.40-0.44 on contacting seeds, resolving the 634b anti-correlation), residual FAIL = foraging-competence/reach-contact (seed-42 zero-contact every arm, g1_survival 1/3) = GAP-2 ceiling; explained by the already-autopsied 632/634/634b cluster (no fresh autopsy); substrate_queue AMEND scaffolded_sd054_onboarding (+634c failure_record [20 total], status -> seeding_calibration_amend_VALIDATED_zgoal_half / residual reach-contact, ready STAYS false, do NOT queue 603f). NOT marked reviewed -- left PENDING for /failure-autopsy: V3-EXQ-610e (INV-074/MECH-333/MECH-334 crystallization necessity, evidence FAIL, supersedes 610d). First HARNESS-FIXED run (fix_verification confirms policy trained 0.41->0.49 + expansion stepped 1249 + ewc in loss 0.268 + policy_trained_nonuniform=true -- the 610a/b/c/d+543h/i/k/l no-op resolved) but d2_control_shows_collapse=FALSE (delta -0.0105) + d1=FALSE (delta -0.0002): control never collapses so crystallization has nothing to preserve and the test is non-discriminative. Indexer blanket 'weakens' corrected to non_contributory (flat+nested, +per-claim, +note, pending_failure_autopsy=true, epistemic_category substrate_ceiling) so it does not stand against a universal invariant; index rebuilt (610e weakens-warning gone). INV-074 universal/substrate_ceiling + MECH-333/334 v3_pending, all already pending_retest_after_substrate, status unchanged. Promotion/demotion: 1 pending_user ARC-080 hold_pending_v3_substrate (architectural_commitment no-op, user-confirmed). closure_drift 0 drifted / 6 suppressed / 0 stale. 610e remains in pending_review until autopsy lands (expected)."
+    },
+    {
+      "timestamp_utc": "2026-06-06T05:09:45Z",
+      "session_label": "governance-cycle-20260606T0431Z",
+      "reviewed_run_ids": [
+        "v3_exq_418m_sd016_cue_slot_tagger_20260605T165833Z_v3",
+        "v3_exq_640a_scaffold_cue_authority_gain_sweep_20260606T013614Z_v3",
+        "v3_exq_641_coherence_ablation_nonreducibility_20260606T021359Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_418m_sd016_cue_slot_tagger",
+        "v3_exq_418m_sd016_cue_slot_tagger_20260605T165833Z_v3",
+        "v3_exq_640a_scaffold_cue_authority_gain_sweep",
+        "v3_exq_640a_scaffold_cue_authority_gain_sweep_20260606T013614Z_v3",
+        "v3_exq_641_coherence_ablation_nonreducibility",
+        "v3_exq_641_coherence_ablation_nonreducibility_20260606T021359Z_v3"
+      ],
+      "subject": "/governance cycle 2026-06-06. 3 pending experiments walked -- ALL diagnostic (claim_ids=[] -> weight no claim), each with a CONFIRMED failure_autopsy artifact; user accepted all 3 autopsies verbatim. (1) V3-EXQ-418m (SD-016 Path 3 feedforward cue->slot tagger, FAIL diagnostic) -- C2 control on-saddle 3/3 PASS but C1 tagger-breaks-saddle 0/3 (ON entropy 2.7536 vs 2.5; C1b context-div 0.0021 vs 0.1). Autopsy: upstream z_world cross-context separation precondition unmet (418f cosine 0.998) -> a new selection mechanism over near-constant z_world cannot be context-selective. evidence_direction=diagnostic, epistemic_category=substrate_ceiling, pending_retest_after_substrate=true, routing=/implement-substrate. substrate_queue AMEND SD-016 (reaffirm parked_pending_env_entropy_precondition, +418m failure_record, gated hippocampal-indexing design note); no claims.yaml change. (2) V3-EXQ-640a (cue-authority gain sweep, PASS=measurement-gates-only, non_contributory) -- 25x cue_recall_gain x 5x incentive_drive_kappa (6 cells); cue->z_goal INTACT (abs zgoal_norm_at_cue_fire ~0.5 vs 0.42 OFF, cue fires every step) but ZERO post-cue approach-lift in all 6 cells (magnitude ruled out). Bottleneck = z_goal->approach propagation (MECH-295 liking-bridge / E3 goal_proximity) lacking selection authority -- same drowning shape as 604a/624a/614d. NOT evidence against cue-recall; NOT a 638b build trigger. epistemic_category=substrate_ceiling, routing=/implement-substrate. substrate_queue AMEND modulatory-bias-selection-authority (add cue-recall/MECH-295 approach bias to validation surface, +640a failure_record, priority 1; unblocks MECH-295/SD-057/346/347/314/320/341; depends_on_unresolved scaffolded_sd054_onboarding GAP-2 foraging competence). (3) V3-EXQ-641 (coherence-ablation non-reducibility, FAIL diagnostic, non_contributory) -- SPEC coherence-specificity passed 1/3 seeds (need 2/3; D1 2/3, D3 3/3); majority_label C_changes_selection_specificity_unproven_route_followup. bears_on_not_tagged INV-002/ARC-018/MECH-061/MECH-269/MECH-270 (no weight). Autopsy: measurement/test-design gap NOT substrate gap; routing=/queue-experiment (V3-EXQ-641a sharper read), pending_retest_after_substrate=false, substrate_queue action=none; annotate the two 2026-04-23 intakes (binding + path-integral) as OPEN/gated pending 641a. No claims.yaml status/confidence changes this cycle (all 3 claim_ids=[]). Promotion/demotion: 2 pending_user (ARC-080 + MECH-342, both hold_pending_v3_substrate, no-op holds, user-acknowledged); nothing promoted/demoted. closure_drift 0 drifted / 6 suppressed / 0 stale / 0 missing last_updated. Two stale (>6h) active claims cleared with user authorization at cycle start (implement-mech353-zblock + land-spec-doc-cleanup)."
     }
   ]
 }
