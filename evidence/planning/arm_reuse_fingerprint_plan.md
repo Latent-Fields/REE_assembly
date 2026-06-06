@@ -266,6 +266,73 @@ A reused manifest must be **indistinguishable in rigor** from a freshly-run one:
 
 ---
 
+## 7b. Baseline pre-minting (added 2026-06-06, user-directed)
+
+**Idea (user):** while 643a / 610f run and further iterations (643b, 610g) are
+likely, use idle cloud workers (cloud-2/3) to pre-compute the OFF/baseline arms
+now so they are recorded and ready for reuse. "They may not be needed but we lose
+nothing by minting them on free machines."
+
+**Safety:** sound. The fingerprint gates reuse, so a stale pre-mint is *refused*
+and the arm re-runs normally -- a pre-mint can never corrupt a result. Cost on
+idle machines is acceptable. The only open question is hit-rate.
+
+### Three constraints found while scoping
+
+1. **Machine-class (Regime A reuses within one class only).**
+   - **610 = cloud lineage** (610b/c/d ran on cloud-2, 610e/f on cloud-1, all
+     `linux-x86_64`). Minting on cloud-2/3 is the correct class -> 610g (cloud)
+     can reuse. Clean fit.
+   - **643 = Mac lineage** (643a on DLAPTOP-4, `darwin-arm64`). A cloud mint is a
+     different class and would be refused for a Mac 643b. **User decision: run
+     643b on cloud** so a cloud-minted 643 baseline is reusable (and frees the Mac).
+
+2. **Whole-config hashing is too brittle for cross-iteration reuse.** A
+   letter-iteration almost always changes *something* in the config dict (proof:
+   643->643a changed only the ARM_A label string -- which whole-config would
+   treat as a mismatch and refuse). So whole-config (decision 3 default) would
+   make minting almost never hit. **This is exactly the opt-in-narrowing case
+   decision 3 anticipated, not a reversal of it.** The OFF baseline depends only
+   on: `env_kwargs` + schedule (`p0`/`p1`/`steps`) + the substrate-operating
+   config the OFF arm actually executes (in 643: SD-056 contrastive + curiosity,
+   which fire for ALL arms) + the OFF arm's own flags. NOT ON-arm gains,
+   acceptance thresholds, or labels.
+
+3. **Substrate drift.** The mint is reused only while `ree_core` + the OFF path
+   are unchanged when the next iteration runs. 610 has churned 7x; the
+   fingerprint refuses a stale mint automatically (safe), so drift only costs
+   (free) wasted compute, never correctness.
+
+### Design: canonical-baseline-module (robust narrowing)
+
+The risk of narrowing is *under-declaration* -> false hit -> corrupted science.
+Avoid hand-listed slices: extract each lineage's OFF baseline into a single
+**canonical baseline module** that 643a/643b/643c (and 610x) all construct their
+OFF arm from. The "slice" identity then = the **content hash of that shared
+module + the env/schedule it pins**, computed by `compute_substrate_hash` over
+the module path. Any change to the baseline correctly refuses; nothing else can
+silently drift it. This is the safest form of opt-in narrowing.
+
+### Plan
+
+1. Wire fingerprint emission into the experiment authoring path
+   (`/queue-experiment` skill + per-arm `compute_arm_fingerprint` call) so every
+   multi-arm run captures its OFF baseline for free, fingerprinted.
+2. Define `experiments/_lib/baselines/` canonical modules for the 643 and 610
+   OFF baselines (env + schedule + substrate-operating config + OFF flags).
+3. Create baseline-only **mint** experiment scripts (OFF arm x SEEDS only) via
+   `/queue-experiment`, `machine_affinity` pinned to a cloud worker, **low
+   priority** (so real science preempts), emitting fingerprints with the
+   canonical-baseline slice declared.
+4. Mint the 610 baseline on cloud-2 **and** cloud-3 simultaneously: if the two
+   results agree within tolerance, that confirms the cross-instance determinism
+   assumption Regime A rests on (this is Phase 0's "zero false-collision" exit
+   criterion, obtained for free).
+5. Consuming the mint (643b/610g actually skipping the arm) is the **Phase 1
+   consumer** + refuse-gate -- still to be built. Minting now only *records*
+   (Phase-0-compatible); a minted baseline is at minimum an extra baseline run,
+   never wasted.
+
 ## 8. First concrete deliverable if approved
 
 Phase 0, smallest useful unit:
