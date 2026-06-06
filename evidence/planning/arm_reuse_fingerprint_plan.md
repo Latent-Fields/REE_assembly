@@ -358,6 +358,42 @@ silently drift it. This is the safest form of opt-in narrowing.
   (coarse `machine_class = linux-x86_64-pyX.Y`); the check is on the *metrics*.
   _Record the numeric comparison + verdict here once both manifests land._
 
+### Status -- 643 OFF baseline minted (2026-06-06)
+
+- **Canonical module landed:** `ree-v3/experiments/_lib/baselines/exq643_modulatory_authority_baseline.py`
+  -- a faithful extraction of `v3_exq_643a` **ARM_A `authority_off_baseline`**
+  (`use_modulatory_selection_authority=False`, gate inert; the rest of the
+  substrate-operating config -- SD-056 online contrastive + MECH-314 curiosity
+  ALL_ON + MECH-341 entropy bonus + ARC-065 SP-CEM + V_s -- fires for ALL arms).
+  Exposes `make_off_env(seed)`, `make_off_agent(env)`, `run_off_cell(seed, ...)`,
+  `off_path_config_slice()`. **It is the content-hashed contract a future 643b/643c
+  must build its OFF arm from** (auto-bound into `substrate_hash` via the
+  `experiments/_lib/**/*.py` glob, so any drift refuses a stale reuse).
+- **Byte-for-byte fidelity to 643a ARM_A verified** (the under-declaration failure
+  mode the design warns about): `ENV_KWARGS` identical, *resolved* `REEConfig`
+  identical (full `from_dims` dict, OFF flags included), run-loop + SD-056 helpers
+  identical. The one intended change -- `run_off_cell` does the complete
+  `reset_all_rng(seed)` at cell entry vs 643a's `torch.manual_seed`+`np.random.seed`
+  -- is a *strict superset*: the OFF loop draws only from torch / numpy / a local
+  `random.Random(seed)`, never python-global `random` or the harness
+  `_action_random`, so the extra resets touch unused RNGs and leave the OFF draw
+  unchanged while making the cell order-independent (`reuse_eligible`). A reusing
+  643b must likewise `reset_all_rng` at cell entry (now required by the
+  `/queue-experiment` skill for all multi-arm experiments).
+- **Mint script landed:** `ree-v3/experiments/v3_exq_646_mint_modulatory_authority_off_baseline.py`
+  (`experiment_purpose="baseline"`, `claim_ids=[]`). Per cell: `run_off_cell` (which
+  `reset_all_rng`s at entry) -> `compute_arm_fingerprint(config_slice=off_path_config_slice(),
+  rng_fully_reset=True, config_slice_declared=True)`. Phase-0 emit-only. `--dry-run`
+  PASS, `reuse_eligible=True`; `validate_experiments` + `validate_queue` clean.
+- **Queued (low priority 10):** `V3-EXQ-646` -> `ree-cloud-2`. **643 moved to the
+  cloud machine-class** (constraint 1 above; 643a ran on `DLAPTOP-4`/`darwin-arm64`,
+  which a cloud 643b could never reuse). Confirmed `present` in the coordinator DB.
+  Runner not started; cloud-2 idle. (Single-instance: the cross-instance determinism
+  check is being established by the 610 cloud-2/cloud-3 pair; 643's OFF baseline rides
+  on that Regime-A confirmation rather than re-running the same check.)
+- **Consumption (643b actually skipping the OFF arm) is the Phase 1 consumer + refuse
+  gate (section 9), gated on the determinism check passing.** This mint only *records*.
+
 ## 8. First concrete deliverable if approved
 
 Phase 0, smallest useful unit:
