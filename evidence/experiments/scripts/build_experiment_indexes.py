@@ -4761,6 +4761,196 @@ def _write_planning_outputs(
     return backlog_items, proposals, architecture_items
 
 
+# ---------------------------------------------------------------------------
+# Arm-reuse fingerprint index (plan section 9.1)
+# ---------------------------------------------------------------------------
+#
+# Materialises evidence/experiments/arm_fingerprint_index.json so the Phase 1
+# arm-reuse consumer (ree-v3/experiments/_lib/arm_reuse.py) can look up a minted
+# OFF/baseline cell by its content-addressed arm_fingerprint. Refreshed on every
+# governance run (governance.sh -> build_experiment_indexes.py).
+#
+# Governance invariants (plan section 9.3):
+#   - Only cells with reuse_eligible: true and a non-ERROR, non-superseded parent
+#     are indexed as reusable SOURCES. Same-fingerprint runs collapse to one entry
+#     (they are by construction the same random variable); prefer the newest
+#     non-superseded run.
+#   - A REUSED cell (one carrying reused_from_run_id) is a POINTER, not new
+#     independent evidence: it is NOT re-indexed as a source (no double-count).
+#   - reverse_index maps source_run_id -> [consumer run_ids]; if a source is later
+#     superseded / ERROR / missing, every downstream consumer is flagged
+#     pending_reuse_revalidation (analogous to pending_substrate_reconfirmation).
+# This index NEVER feeds confidence/conflict scoring; it only enables reuse.
+
+_ARM_FP_INDEX_SCHEMA = "arm_fp_index/v1"
+
+
+def _arm_fp_manifest_timestamp(manifest: dict[str, Any], path: Path) -> str:
+    """A sortable timestamp string for collapse-prefer-newest. Best-effort."""
+    for key in ("timestamp_utc", "completed_at", "generated_at", "created_utc"):
+        val = manifest.get(key)
+        if isinstance(val, str) and val:
+            return val
+    # fall back to run_id compact stamp (…_YYYYMMDDTHHMMSSZ_v3) or mtime.
+    rid = str(manifest.get("run_id", path.stem))
+    m = re.search(r"(\d{8}T\d{6}Z)", rid)
+    if m:
+        return m.group(1)
+    try:
+        return datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc).isoformat()
+    except OSError:
+        return ""
+
+
+def _arm_fp_cell_keys(cell: dict[str, Any]) -> list[str]:
+    """Metric keys recorded for the cell = every key except the fingerprint sub-dict.
+
+    A key is in cell_keys iff its value is actually present in the recorded cell --
+    so the consumer's set(needed_keys) subset of set(cell_keys) check refuses
+    whenever the mint did not record a metric the new iteration reads (the
+    section-9.2 correctness trap). Conservative: never invent keys.
+    """
+    return sorted(k for k in cell.keys() if k != "arm_fingerprint")
+
+
+def _iter_manifests_with_arm_results(base_dir: Path):
+    """Yield (manifest_dict, path) for flat + run-pack manifests that have arm_results."""
+    seen: set[Path] = set()
+    flat = sorted(base_dir.glob("*.json"))
+    nested = sorted(base_dir.glob("**/runs/**/manifest.json"))
+    for path in flat + nested:
+        rp = path.resolve()
+        if rp in seen:
+            continue
+        seen.add(rp)
+        manifest = _load_json(path)
+        if not isinstance(manifest, dict):
+            continue
+        if isinstance(manifest.get("arm_results"), list):
+            yield manifest, path
+
+
+def _write_arm_fingerprint_index(base_dir: Path, generated_at: str) -> dict[str, Any]:
+    """Build and write arm_fingerprint_index.json. Returns the index dict."""
+    repo_root = base_dir.parent.parent  # REE_assembly root
+
+    by_fingerprint: dict[str, dict[str, Any]] = {}
+    # (fingerprint -> (timestamp, superseded) of the chosen entry) for collapse.
+    _chosen_meta: dict[str, tuple[str, bool]] = {}
+    reverse_index: dict[str, list[str]] = {}
+    # source_run_id -> superseded/ERROR/missing status, for pending flagging.
+    source_status: dict[str, dict[str, Any]] = {}
+    consumer_records: list[dict[str, Any]] = []
+
+    n_source_cells = 0
+    n_reused_cells = 0
+
+    for manifest, path in _iter_manifests_with_arm_results(base_dir):
+        run_id = str(manifest.get("run_id", path.stem))
+        experiment_type = str(manifest.get("experiment_type", path.parent.name))
+        outcome = str(manifest.get("status") or manifest.get("outcome", "UNKNOWN")).upper()
+        superseded = _normalize_direction(manifest.get("evidence_direction")) == "superseded"
+        ts = _arm_fp_manifest_timestamp(manifest, path)
+        try:
+            manifest_rel = str(path.resolve().relative_to(repo_root.resolve()))
+        except ValueError:
+            manifest_rel = str(path)
+
+        # Record this run's status as a potential reuse SOURCE (for consumer
+        # revalidation), regardless of whether it is currently indexable.
+        source_status[run_id] = {
+            "superseded": superseded,
+            "outcome": outcome,
+            "present": True,
+        }
+
+        for cell in manifest["arm_results"]:
+            if not isinstance(cell, dict):
+                continue
+            fp_obj = cell.get("arm_fingerprint")
+
+            # A reused cell is a POINTER, not a fresh source -> reverse-index only.
+            src = cell.get("reused_from_run_id")
+            if src:
+                n_reused_cells += 1
+                src = str(src)
+                reverse_index.setdefault(src, [])
+                if run_id not in reverse_index[src]:
+                    reverse_index[src].append(run_id)
+                consumer_records.append({
+                    "consumer_run_id": run_id,
+                    "source_run_id": src,
+                    "reused_fingerprint": cell.get("reused_fingerprint"),
+                })
+                continue  # never index a reused cell as a source (no double-count)
+
+            if not isinstance(fp_obj, dict):
+                continue
+            fingerprint = fp_obj.get("arm_fingerprint")
+            if not isinstance(fingerprint, str) or not fingerprint:
+                continue
+            # Index only reuse_eligible + non-ERROR + non-superseded cells.
+            if not bool(fp_obj.get("reuse_eligible", False)):
+                continue
+            if outcome == "ERROR":
+                continue
+            if superseded:
+                continue
+            if str(fp_obj.get("schema")) != "arm_fp/v1":
+                continue
+
+            n_source_cells += 1
+            candidate = {
+                "run_id": run_id,
+                "manifest_path": manifest_rel,
+                "experiment_type": experiment_type,
+                "machine_class": fp_obj.get("machine_class"),
+                "regime": fp_obj.get("regime"),
+                "reuse_eligible": True,
+                "outcome": outcome,
+                "cell_keys": _arm_fp_cell_keys(cell),
+                "superseded": False,
+                "fingerprint_schema": fp_obj.get("schema"),
+                "seed": fp_obj.get("seed", cell.get("seed")),
+            }
+            # Collapse same-fingerprint runs: prefer the newest (all non-superseded
+            # here by construction; tie-break on timestamp string).
+            prev = _chosen_meta.get(fingerprint)
+            if prev is None or ts >= prev[0]:
+                by_fingerprint[fingerprint] = candidate
+                _chosen_meta[fingerprint] = (ts, False)
+
+    # Flag consumers whose cited source is now superseded / ERROR / missing.
+    pending: list[dict[str, Any]] = []
+    for rec in consumer_records:
+        src = rec["source_run_id"]
+        st = source_status.get(src)
+        if st is None:
+            pending.append({**rec, "reason": "source_run_missing"})
+        elif st["superseded"]:
+            pending.append({**rec, "reason": "source_superseded"})
+        elif st["outcome"] == "ERROR":
+            pending.append({**rec, "reason": "source_outcome_error"})
+
+    index = {
+        "schema": _ARM_FP_INDEX_SCHEMA,
+        "regime": "A",
+        "generated_at": generated_at,
+        "fingerprint_schema": "arm_fp/v1",
+        "n_source_cells": n_source_cells,
+        "n_reused_cells": n_reused_cells,
+        "n_fingerprints": len(by_fingerprint),
+        "by_fingerprint": dict(sorted(by_fingerprint.items())),
+        "reverse_index": {k: sorted(v) for k, v in sorted(reverse_index.items())},
+        "pending_reuse_revalidation": pending,
+    }
+    (base_dir / "arm_fingerprint_index.json").write_text(
+        json.dumps(index, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return index
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build experiment evidence indexes.")
     parser.add_argument(
@@ -4869,6 +5059,21 @@ def main() -> None:
         planning_criteria=planning_criteria,
         scoring_exclusions=scoring_exclusions,
     )
+
+    # Arm-reuse fingerprint index (plan section 9.1). Independent of claim scoring;
+    # always refreshed (including --index-only) so the Phase 1 consumer's lookup
+    # table stays current after every governance run.
+    arm_fp_index = _write_arm_fingerprint_index(base_dir, generated_at)
+    if arm_fp_index["n_reused_cells"] or arm_fp_index["pending_reuse_revalidation"]:
+        print(
+            "[arm-reuse] fingerprints=%d source_cells=%d reused_cells=%d pending_revalidation=%d"
+            % (
+                arm_fp_index["n_fingerprints"],
+                arm_fp_index["n_source_cells"],
+                arm_fp_index["n_reused_cells"],
+                len(arm_fp_index["pending_reuse_revalidation"]),
+            )
+        )
 
     if args.index_only:
         total_runs = sum(len(runs) for runs in by_experiment.values())

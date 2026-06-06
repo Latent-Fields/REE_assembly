@@ -518,3 +518,55 @@ skill, mirrored to both skill dirs.
 - Still whole-cell reuse only (no partial/warm-start). Still same-machine-class.
 - Keep the refuse path the default everywhere: a false miss is cheap, a false hit
   corrupts science (plan §2).
+
+## 9.7 Build + gate status (2026-06-06)
+
+The Phase 1 consumer **machinery is built and unit-tested** but **reuse is NOT
+enabled** -- the §9.0 hard determinism gate has not yet passed.
+
+**Determinism gate (§9.0): HELD / PENDING.** The two 610 OFF-baseline mints
+(V3-EXQ-644 on ree-cloud-2, V3-EXQ-645 on ree-cloud-3; same
+`v3_exq_610_inv074_crystallization_baseline_mint.py`) are **queued but have not
+run** -- no mint manifests exist under `evidence/experiments/`. The cross-instance
+comparison therefore cannot be performed yet. **Action when both mints complete:**
+compare the two manifests' OFF cell metrics (`end_phase_2_entropy`,
+`end_phase_3_entropy`, `mean_reward`) within a written tolerance; record the
+measured divergence + chosen tolerance in §7b; if within tolerance, Regime A is
+confirmed and reuse may be enabled. If they diverge beyond tolerance, **STOP** --
+Regime A reuse is invalid as built; escalate the Regime A-vs-B decision to the
+user. Do **not** wire any experiment to skip an arm before this.
+
+**Built this session (inert until the gate passes):**
+
+1. `arm_fingerprint_index.json` writer -- `_write_arm_fingerprint_index` in
+   `evidence/experiments/scripts/build_experiment_indexes.py`, called from `main()`
+   so `governance.sh` refreshes it every run. Indexes only `reuse_eligible` +
+   non-ERROR + non-superseded cells; collapses same-fingerprint runs (prefers
+   newest); records `cell_keys`, `machine_class`, `outcome`, `superseded`. Builds
+   `reverse_index` (source_run_id -> consumers) and flags
+   `pending_reuse_revalidation` when a cited source is superseded / ERROR / missing.
+   A reused cell (carrying `reused_from_run_id`) is a pointer, **not** re-indexed as
+   a source (no double-count). Currently 0 fingerprints (no instrumented manifest
+   has landed yet).
+2. `ree-v3/experiments/_lib/arm_reuse.py` -- `try_reuse_cell(config_slice, seed,
+   script_path, needed_keys, cite_run_id=None) -> dict | None` (+ `evaluate_reuse`
+   returning a structured `ReuseDecision`). Refuse-by-default over every §9.2 rule;
+   stamps `reused_from_run_id` / `reused_fingerprint` / `reused_at_utc` on a hit.
+3. `ree-v3/tests/contracts/test_arm_reuse.py` -- 21 tests: every refuse branch
+   (fingerprint mismatch, config mismatch, ineligible, ERROR parent, superseded,
+   missing needed_keys, schema mismatch, cite mismatch, no-index,
+   manifest-unreadable) + happy path + the indexer writer (non-double-count,
+   reverse-index, pending flag, collapse-prefer-newest,
+   eligibility/ERROR/superseded exclusion). All pass.
+4. `/queue-experiment` opt-in step (mirrored to `.claude` + `.agents` skill dirs)
+   and `scripts/arm_reuse_report.py` consumed-vs-fresh + refused-with-reason audit.
+
+**Not done (gated):** the first live use (643b / 610g actually skipping the OFF
+arm) -- requires the gate to pass AND the relevant mint to have run.
+
+A note on the by-construction match: the Phase-0 mint folds its own
+`script_path=Path(__file__)` into `substrate_hash`, so a consumer must recompute
+the fingerprint with the **same `script_path` and `config_slice`** the mint used
+to get a HIT (the canonical baseline module supplies `off_path_config_slice()`).
+A consumer that passes its own driver script gets a different `substrate_hash` ->
+no index entry -> refuse (the safe outcome). The opt-in step documents this.

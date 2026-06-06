@@ -197,6 +197,76 @@ def report_approx(manifests) -> List[str]:
     return lines
 
 
+def report_consumed_vs_fresh(manifests, exp_dir: str) -> List[str]:
+    """Phase 1 audit: which OFF cells were REUSED (pointers) vs computed FRESH,
+    plus a refused-with-reason tally.
+
+    A reused cell carries `reused_from_run_id` (stamped by arm_reuse.try_reuse_cell).
+    A fresh source cell carries an `arm_fingerprint` sub-dict and no reuse stamp.
+    A refusal is recorded when a consuming script writes `reuse_refused` (the reason
+    string returned by the helper) onto the cell it then ran normally. The committed
+    `arm_fingerprint_index.json` (built by the indexer) supplies the reverse-index +
+    pending_reuse_revalidation view.
+    """
+    fresh = 0
+    consumed = 0
+    by_source: Dict[str, List[str]] = defaultdict(list)
+    refused: Dict[str, int] = defaultdict(int)
+
+    for fname, d in manifests:
+        run_id = d.get("run_id", fname)
+        for row in _extract_arm_rows(d):
+            src = row.get("reused_from_run_id")
+            if src:
+                consumed += 1
+                by_source[str(src)].append(str(run_id))
+                continue
+            reason = row.get("reuse_refused") or row.get("reuse_refused_reason")
+            if isinstance(reason, str) and reason:
+                refused[reason] += 1
+            if isinstance(row.get("arm_fingerprint"), dict):
+                fresh += 1
+
+    lines = ["", "=" * 70,
+             "[CONSUMED-vs-FRESH] Phase 1 reuse audit",
+             "=" * 70]
+    lines.append("  fresh source cells (computed, fingerprinted): %d" % fresh)
+    lines.append("  reused cells (pointers, not re-computed):      %d" % consumed)
+    if by_source:
+        lines.append("  reuse by source run:")
+        for src, consumers in sorted(by_source.items(), key=lambda kv: -len(kv[1])):
+            lines.append("    %s  -> %d consumer(s): %s"
+                         % (src, len(consumers), ", ".join(sorted(set(consumers))[:6])))
+    if refused:
+        lines.append("  refused (re-ran the arm) by reason:")
+        for reason, n in sorted(refused.items(), key=lambda kv: -kv[1]):
+            lines.append("    %-28s x%d" % (reason, n))
+    if not by_source and not refused:
+        lines.append("  No reuse consumed and no refusals recorded yet.")
+        lines.append("  (Populates once a gated opt-in experiment cites a mint.)")
+
+    # Index view (reverse-index + pending revalidation), if the indexer has run.
+    idx_path = os.path.join(exp_dir, "arm_fingerprint_index.json")
+    try:
+        with open(idx_path) as fh:
+            idx = json.load(fh)
+    except Exception:
+        idx = None
+    if isinstance(idx, dict):
+        rev = idx.get("reverse_index") or {}
+        pend = idx.get("pending_reuse_revalidation") or []
+        lines.append("  index: %d fingerprint(s); %d reverse-index source(s); "
+                     "%d pending_reuse_revalidation"
+                     % (idx.get("n_fingerprints", 0), len(rev), len(pend)))
+        for p in pend[:10]:
+            lines.append("    PENDING: consumer=%s source=%s reason=%s"
+                         % (p.get("consumer_run_id"), p.get("source_run_id"),
+                            p.get("reason")))
+    else:
+        lines.append("  (arm_fingerprint_index.json not found -- run governance.sh)")
+    return lines
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--exp-dir", default=_EXP_DIR,
@@ -204,15 +274,18 @@ def main() -> int:
     args = ap.parse_args()
 
     manifests = load_manifests(args.exp_dir)
-    print("arm-reuse report (Phase 0, READ-ONLY)  --  %d manifests" % len(manifests))
+    print("arm-reuse report (READ-ONLY)  --  %d manifests" % len(manifests))
     print("source: %s" % args.exp_dir)
     print()
     for ln in report_exact(manifests):
         print(ln)
     for ln in report_approx(manifests):
         print(ln)
+    for ln in report_consumed_vs_fresh(manifests, args.exp_dir):
+        print(ln)
     print()
-    print("Reminder: Phase 0 is measurement only. No reuse is executed anywhere.")
+    print("Reminder: reuse is refuse-by-default and gated (plan section 9.0). A false")
+    print("cache-MISS only wastes compute; a false cache-HIT corrupts science.")
     return 0
 
 
