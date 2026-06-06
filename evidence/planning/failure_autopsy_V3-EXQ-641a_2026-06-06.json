@@ -1,0 +1,77 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-06T09:56:59Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
+      "queue_id": "V3-EXQ-641a",
+      "supersedes": "V3-EXQ-641",
+      "experiment_purpose": "diagnostic",
+      "claim_ids": [],
+      "bears_on_not_tagged": ["INV-002", "ARC-018", "MECH-061", "MECH-269", "MECH-270"],
+      "settles_intakes": [
+        "thought_intake_2026-04-23_binding.md",
+        "thought_intake_2026-04-23_path_integral_constraints_search.md"
+      ],
+      "candidate_claim_not_registered": "entities/selection.coherence_nonreducibility",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "SPEC (coherence-specificity vs contrast-matched shuffle) 1/6 seeds, need 4; shuffle diverged >= real in 4/6. D1 6/6, D3 6/6.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- diagnostic, no tagged claim; candidate Q does NOT gain support, do not register",
+        "biological_reference": "clear for the class (binding-by-synchrony / communication-through-coherence); REE already owns coherence-gated selection, so separable-factor version is structural-analogy in this substrate",
+        "prerequisites": "missing -- world_states<->states streams not demonstrated to carry genuinely bound information; depends on MECH-089/MECH-094/MECH-270 binding mechanisms",
+        "implementation": "complete and fair -- harness ablation, no ree_core mod; redesign closed 641's three confounds, FAIL is trustworthy",
+        "environment": "possibly inadequate -- CausalGridWorldV2 may not generate binding pressure that makes cross-stream coherence informative",
+        "measurement": "divergence axis adequate (fair control); rebinding axis UNDER-instrumented (n_rebind=0 on all 6 seeds despite mag 0.5 + tie-boost)",
+        "integration": "n/a -- harness-level read",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "binding-by-synchrony / communication-through-coherence (Fries); theta-gamma binding",
+        "dependencies": ["MECH-089 theta-gamma nesting", "MECH-094 hypothesis-tag write gate", "MECH-270 ephaptic coupling", "genuinely bound multi-stream representations"],
+        "is_formal_import": true,
+        "divergence": "the read has the symbol of cross-stream coherence but the V3 streams need not carry the functional binding; SPEC failure matches the missing bound-representation prerequisite signature",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-641a (diagnostic, supersedes 641) ran the redesigned best-chance test (E-orthogonalized cross-stream-only coherence read, contrast-matched shuffle-of-real-C control, two-mode-gated divergence, 6 seeds, gap-relative authority). D1 (coherence changes selection) 6/6 and D3 (corr(E,C)<0.9) 6/6, but coherence-SPECIFICITY 1/6 (need 4): with a fair control the shuffle diverged >= real in 4/6 seeds, so C's structure is functionally redundant with E for selection in the current V3 substrate. Adjudicated (failure_autopsy_V3-EXQ-641a_2026-06-06) as substrate-ceiling, not falsification: the world_states<->states streams do not carry genuinely bound information, so the test could not let cross-stream coherence express itself. Both intakes (binding, path_integral) stay OPEN, gated on a bound-multi-stream substrate (recommended_substrate_queue_entry: create). Candidate Q entities/selection.coherence_nonreducibility NOT registered. Rebinding axis under-instrumented (n_rebind=0 on all 6 seeds despite mag 0.5 + tie-boost) -> binding intake stays open on the rebinding axis; route a substrate-level rebind probe. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "cross_stream_binding_substrate",
+        "title": "Bound multi-stream representation substrate: world_states<->states carry co-varying binding info so cross-stream coherence C(tau) can be non-reducible to E",
+        "implementation_hint": "641a showed that with a fair contrast-matched control, cross-stream phase-alignment over the current z_world (world_states) and z_self (states) streams carries no selection info beyond E (SPEC 1/6; shuffle diverges >= real in 4/6). Build a substrate where the two streams are genuinely bound -- e.g. a shared latent factor / event-segmented co-encoding / theta-gamma-style nesting per MECH-089/094/270 -- so that real cross-stream coherence is informative and shuffling it destroys structure. Retest is the same 641a harness (E-orthogonal read, shuffle-of-real-C control) on the enriched substrate.",
+        "unblocks_claims": ["entities/selection.coherence_nonreducibility (candidate, unregistered)", "INV-002 (coherence includes temporal/phase binding)"],
+        "depends_on_unresolved": ["MECH-089 theta-gamma nesting", "MECH-094 hypothesis-tag write gate", "MECH-270 ephaptic coupling", "binding intake + path_integral intake (gated on this substrate)"],
+        "priority_suggested": 2,
+        "priority_note": "Has 1 fresh failure record (641a), so the strict governance rule (>=1 fresh failure record = priority 1) would assign 1. Suggested 2 because this is V4-leaning binding work off the V3 critical path; governance to adjudicate.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
+          "experiment_type": "v3_exq_641a_coherence_ablation_nonreducibility",
+          "metric": "coherence-specificity (real_frac_state_div_gated > shuffle_frac_state_div_gated by margin >= 0.05)",
+          "target": ">=4/6 seeds coherence_specific (got 1/6; shuffle diverged >= real in 4/6 seeds)"
+        }
+      },
+      "secondary_routing": {
+        "routing": "queue-experiment",
+        "axis": "rebinding",
+        "spec": "Substrate-level rebind probe: n_rebind=0 on all 6 seeds (perturb mag 0.5 + tie-tick boost 1.0) means the binding intake's falsifier was never exercised. Route a probe that directly forces a cross-stream rebinding event (escalated perturbation and/or a dedicated rebinding instrument), gated on the bound-stream substrate so the probe is meaningful. Binding intake stays OPEN on the rebinding axis regardless of how the divergence axis resolves.",
+        "gated_on": "cross_stream_binding_substrate"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "n/a -- diagnostic with claim_ids=[]; no supports to assess. pending_retest_after_substrate paired per the illusory-conflict-resolution rule.",
+      "learning_extracted": [
+        "D3 (rank-correlation < 0.9) is a weak non-reducibility test; SPEC (contrast-matched structure) is load-bearing. Statistical non-linearity in E != functional non-reducibility.",
+        "With a fair control, a coherence read over unbound streams is functionally redundant with E; D1 'coherence changes selection' is an authority-gain injection artifact, not a separable factor.",
+        "The binding question is substrate-gated: undecidable until the substrate carries genuinely bound multi-stream representations. Both 2026-04-23 intakes are blocked on substrate, not test design.",
+        "The rebinding falsifier remains un-exercised (n_rebind=0); the binding intake's strongest discriminator needs a substrate-level instrument."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
