@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-05-21.2 -->
+<!-- CLOSURE_VERSION: 2026-06-07.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -258,6 +258,10 @@
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
   .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; stroke-width: 1.7; }
   .edge.cross-plan:hover { stroke: rgba(163,113,247,1.0); stroke-width: 3; stroke-dasharray: 4 3; }
+  /* hovering a node lights up just that node's cross-plan links so a single
+     purple strand can be traced end-to-end without clicking into the full
+     reachability view */
+  .edge.cross-plan.nbr-hi { stroke: rgba(190,150,255,1.0); stroke-width: 3.2; }
   /* resolved-lineage: predecessor is done/deferred so this edge is phase-order
      history, not an active blocker. Faded + dotted + thinner. Severity classes
      below still apply so a load-bearing dependent stays visible. */
@@ -502,6 +506,9 @@ let STATUS_FILTER = 'all';
 let NODES_BY_ID = {};
 let NEIGHBOURS_OF = {};   // id -> Set of directly-connected ids (any edge type)
 let READY_NODE_IDS = new Set();
+// display order of plan columns (seriated so cross-linked plans sit adjacent)
+let PLAN_ORDER = [];        // array of plan ids, left -> right
+let PLANS_ORDERED = [];     // array of plan objects in the same order
 
 async function load() {
   const r = await fetch('/api/closure');
@@ -511,6 +518,7 @@ async function load() {
     (CLOSURE.generated_at || '?') +
     ' ; ' + CLOSURE.nodes.length + ' nodes across ' + CLOSURE.plans.length + ' plans';
   computeDerivedSets();
+  computePlanOrder();
   renderOrientation();
   renderDualProgress();
   renderCuspRail();
@@ -660,6 +668,90 @@ function computeDerivedSets() {
   }
 }
 
+function computePlanOrder() {
+  // Seriate the plan columns so plans connected by cross-plan links sit next to
+  // each other. The default registry order scatters them, which forces the
+  // purple cross-plan edges to span the whole width (worst case: a 5-strand
+  // bundle from the right-most column to the left-most). This is a TSP-path
+  // greedy-edge heuristic over the plan-level weighted adjacency built from
+  // cross_links: take the heaviest plan-to-plan link first, grow open chains
+  // (degree <= 2, no cycles), then lay chains out heaviest-first. Plans with no
+  // cross-links keep their original relative order and trail the chains.
+  const plans = CLOSURE.plans || [];
+  const ids = plans.map(p => p.id);
+  const planById = {};
+  for (const p of plans) planById[p.id] = p;
+  const origIdx = {};
+  ids.forEach((id, i) => { origIdx[id] = i; });
+
+  // weighted undirected plan adjacency (count of cross-links between two plans)
+  const SEP = ' ';
+  const wkey = (a, b) => (a < b ? a + SEP + b : b + SEP + a);
+  const W = {};
+  const nbrW = {};
+  for (const id of ids) nbrW[id] = {};
+  for (const e of (CLOSURE.cross_links || [])) {
+    const f = NODES_BY_ID[e.from], t = NODES_BY_ID[e.to];
+    if (!f || !t) continue;
+    const a = f.plan_id, b = t.plan_id;
+    if (a === b || origIdx[a] == null || origIdx[b] == null) continue;
+    W[wkey(a, b)] = (W[wkey(a, b)] || 0) + 1;
+    nbrW[a][b] = (nbrW[a][b] || 0) + 1;
+    nbrW[b][a] = (nbrW[b][a] || 0) + 1;
+  }
+
+  const edges = Object.entries(W).map(([k, w]) => {
+    const [a, b] = k.split(SEP);
+    return { a, b, w };
+  });
+  // heaviest first; deterministic tie-break by original index
+  edges.sort((x, y) => y.w - x.w
+    || (origIdx[x.a] - origIdx[y.a])
+    || (origIdx[x.b] - origIdx[y.b]));
+
+  const deg = {}, link = {}, par = {};
+  for (const id of ids) { deg[id] = 0; link[id] = []; par[id] = id; }
+  const find = x => { while (par[x] !== x) { par[x] = par[par[x]]; x = par[x]; } return x; };
+  for (const { a, b } of edges) {
+    if (deg[a] >= 2 || deg[b] >= 2) continue;   // keep it a path, not a hub
+    if (find(a) === find(b)) continue;          // no cycles
+    link[a].push(b); link[b].push(a);
+    deg[a]++; deg[b]++;
+    par[find(a)] = find(b);
+  }
+
+  // walk each open chain from one of its endpoints (degree < 2)
+  const visited = new Set();
+  const chains = [];
+  for (const id of ids) {
+    if (visited.has(id) || deg[id] === 0 || deg[id] === 2) continue;
+    const chain = [];
+    let prev = null, cur = id;
+    while (cur != null && !visited.has(cur)) {
+      visited.add(cur);
+      chain.push(cur);
+      cur = link[cur].find(x => x !== prev && !visited.has(x));
+      prev = chain[chain.length - 1];
+    }
+    chains.push(chain);
+  }
+  const chainWeight = ch => {
+    let s = 0;
+    for (let i = 0; i + 1 < ch.length; i++) s += (nbrW[ch[i]][ch[i + 1]] || 0);
+    return s;
+  };
+  chains.sort((c1, c2) => chainWeight(c2) - chainWeight(c1) || origIdx[c1[0]] - origIdx[c2[0]]);
+
+  const order = [];
+  const placed = new Set();
+  for (const ch of chains) for (const id of ch) { order.push(id); placed.add(id); }
+  // plans with no placed cross-link: keep original relative order, trail the chains
+  for (const id of ids) if (!placed.has(id)) { order.push(id); placed.add(id); }
+
+  PLAN_ORDER = order;
+  PLANS_ORDERED = order.map(id => planById[id]).filter(Boolean);
+}
+
 function bfsReachable(startId) {
   const visited = new Set([startId]);
   const queue = [startId];
@@ -734,7 +826,7 @@ function renderOverall() {
 function renderPlans() {
   const row = document.getElementById('plans-row');
   row.innerHTML = '';
-  for (const p of CLOSURE.plans) {
+  for (const p of (PLANS_ORDERED.length ? PLANS_ORDERED : CLOSURE.plans)) {
     const card = document.createElement('div');
     card.className = 'plan-card' + (p.frontmatter_pending ? ' pending-fm' : '');
     card.dataset.planId = p.id;
@@ -771,7 +863,9 @@ function renderGraph() {
   const svg = document.getElementById('graph');
   while (svg.firstChild) svg.removeChild(svg.firstChild);
 
-  const planOrder = CLOSURE.plans.map(p => p.id);
+  const planOrder = PLAN_ORDER.length ? PLAN_ORDER : CLOSURE.plans.map(p => p.id);
+  const planByIdLocal = {};
+  for (const p of CLOSURE.plans) planByIdLocal[p.id] = p;
   const colW = 250;
   const colGap = 60;
   const yStart = 60;
@@ -804,7 +898,8 @@ function renderGraph() {
 
   // plan columns headers
   for (let i = 0; i < planOrder.length; i++) {
-    const p = CLOSURE.plans[i];
+    const p = planByIdLocal[planOrder[i]];
+    if (!p) continue;
     const t = el('text');
     t.setAttribute('x', xOf(i) + colW / 2);
     t.setAttribute('y', 22);
@@ -848,8 +943,9 @@ function renderGraph() {
   for (const e of CLOSURE.edges) {
     drawEdge(svg, nodePos[e.from], nodePos[e.to], false, nodesById[e.from], nodesById[e.to]);
   }
-  for (const e of CLOSURE.cross_links) {
-    drawEdge(svg, nodePos[e.from], nodePos[e.to], true, nodesById[e.from], nodesById[e.to]);
+  for (let ci = 0; ci < CLOSURE.cross_links.length; ci++) {
+    const e = CLOSURE.cross_links[ci];
+    drawEdge(svg, nodePos[e.from], nodePos[e.to], true, nodesById[e.from], nodesById[e.to], ci);
   }
 
   // nodes
@@ -938,9 +1034,9 @@ function renderGraph() {
       bx += bw + 4;
     }
 
-    g.addEventListener('mouseenter', (ev) => showTip(ev, n));
+    g.addEventListener('mouseenter', (ev) => { showTip(ev, n); highlightCrossEdges(n.id, true); });
     g.addEventListener('mousemove', (ev) => moveTip(ev));
-    g.addEventListener('mouseleave', hideTip);
+    g.addEventListener('mouseleave', () => { hideTip(); highlightCrossEdges(n.id, false); });
     // #3 click toggles selection; click the same node again clears
     g.addEventListener('click', (ev) => {
       ev.stopPropagation();
@@ -957,19 +1053,40 @@ function renderGraph() {
   });
 }
 
-function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode) {
+function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
   if (!fromPos || !toPos) return;
-  const x1 = fromPos.x + fromPos.w / 2;
-  const y1 = fromPos.y + fromPos.h;
-  const x2 = toPos.x + toPos.w / 2;
-  const y2 = toPos.y;
   let d;
-  if (Math.abs(x1 - x2) < 1) {
-    d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
+  if (isCross && Math.abs(fromPos.x - toPos.x) >= 1) {
+    // Cross-plan edges connect different columns. Routing them bottom-center ->
+    // top-center (as within-plan edges do) makes them dive vertically through
+    // the column flow and pile on top of each other -- unfollowable. Instead
+    // anchor on the node SIDE that faces the other column and draw a horizontal
+    // S-curve, so a cross-plan link reads as a sideways connector. A small
+    // per-edge vertical stagger fans bundles out (e.g. the diversity -> rule
+    // apprehension strands) so they stay individually traceable.
+    const goingRight = toPos.x > fromPos.x;
+    const stagger = ((crossIdx == null ? 0 : crossIdx) % 6 - 2.5) * 4;
+    const ax1 = goingRight ? fromPos.x + fromPos.w : fromPos.x;
+    const ay1 = fromPos.y + fromPos.h / 2 + stagger;
+    const ax2 = goingRight ? toPos.x : toPos.x + toPos.w;
+    const ay2 = toPos.y + toPos.h / 2 - stagger;
+    const bow = Math.max(40, Math.abs(ax2 - ax1) * 0.4);
+    const cx1 = ax1 + (goingRight ? bow : -bow);
+    const cx2 = ax2 + (goingRight ? -bow : bow);
+    d = 'M' + ax1 + ',' + ay1 +
+        ' C' + cx1 + ',' + ay1 + ' ' + cx2 + ',' + ay2 + ' ' + ax2 + ',' + ay2;
   } else {
-    const midY = (y1 + y2) / 2;
-    d = 'M' + x1 + ',' + y1 +
-        ' C' + x1 + ',' + midY + ' ' + x2 + ',' + midY + ' ' + x2 + ',' + y2;
+    const x1 = fromPos.x + fromPos.w / 2;
+    const y1 = fromPos.y + fromPos.h;
+    const x2 = toPos.x + toPos.w / 2;
+    const y2 = toPos.y;
+    if (Math.abs(x1 - x2) < 1) {
+      d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
+    } else {
+      const midY = (y1 + y2) / 2;
+      d = 'M' + x1 + ',' + y1 +
+          ' C' + x1 + ',' + midY + ' ' + x2 + ',' + midY + ' ' + x2 + ',' + y2;
+    }
   }
   const path = el('path');
   // #4 severity class: edges TO load-bearing or high nodes get thicker stroke
@@ -1031,6 +1148,16 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode) {
   }
 
   svg.appendChild(path);
+}
+
+function highlightCrossEdges(nodeId, on) {
+  const svg = document.getElementById('graph');
+  if (!svg) return;
+  for (const e of svg.querySelectorAll('.edge.cross-plan')) {
+    if (e.getAttribute('data-from') === nodeId || e.getAttribute('data-to') === nodeId) {
+      e.classList.toggle('nbr-hi', on);
+    }
+  }
 }
 
 function el(tag) { return document.createElementNS('http://www.w3.org/2000/svg', tag); }
