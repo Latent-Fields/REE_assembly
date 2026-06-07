@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-07T20:07:46Z",
+  "last_tick_utc": "2026-06-07T20:37:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-603h",
   "current_exq_started_utc": "2026-06-07T17:35:34.836121+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_INTACT_pag_gate",
-    "runs_done": 3,
+    "run_label": "Seed 44 / ARM_INTACT_pag_gate",
+    "runs_done": 5,
     "runs_total": 6,
-    "episodes_done": 170,
+    "episodes_done": 20,
     "episodes_total": 235,
-    "overall_pct": 62.1
+    "overall_pct": 84.8
   },
-  "seconds_elapsed": 9132,
-  "seconds_remaining": 5642,
+  "seconds_elapsed": 10941,
+  "seconds_remaining": 2267,
   "recent_lines": [
     "[v3_exq_603h_instrumental_avoidance_stageh_validation] starting (dry_run=False)",
     "Seed 42 Condition ARM_LESION_pag_no_gate",
@@ -44,7 +44,19 @@
     "Seed 42 Condition ARM_INTACT_pag_gate",
     "[train] stage0 ARM_INTACT_pag_gate seed=42 ep 20/235 z_goal_peak=0.5107",
     "[train] p0 ARM_INTACT_pag_gate seed=42 ep 130/235 mean_len=82.1 rv=0.00001",
-    "[train] hazard_avoidance ARM_INTACT_pag_gate seed=42 ep 170/235 median_last=34.5 survival_gate=FAIL pag_commits=318 eff=0.0000 n_credit=6 n_freeze_suppr=65"
+    "[train] hazard_avoidance ARM_INTACT_pag_gate seed=42 ep 170/235 median_last=34.5 survival_gate=FAIL pag_commits=318 eff=0.0000 n_credit=6 n_freeze_suppr=65",
+    "[train] p1 ARM_INTACT_pag_gate seed=42 ep 220/235 median_last=44.5 survival_gate=FAIL",
+    "[train] p2 ARM_INTACT_pag_gate seed=42 ep 235/235 contact_rate=0.0150",
+    "verdict: FAIL seed=42 arm=ARM_INTACT_pag_gate g_h=False g0=True g1=False g2=True eff_final=0.0000",
+    "Seed 43 Condition ARM_INTACT_pag_gate",
+    "[train] stage0 ARM_INTACT_pag_gate seed=43 ep 20/235 z_goal_peak=0.3998",
+    "[train] p0 ARM_INTACT_pag_gate seed=43 ep 130/235 mean_len=28.5 rv=0.00001",
+    "[train] hazard_avoidance ARM_INTACT_pag_gate seed=43 ep 170/235 median_last=11.0 survival_gate=FAIL pag_commits=130 eff=0.6770 n_credit=745 n_freeze_suppr=140",
+    "[train] p1 ARM_INTACT_pag_gate seed=43 ep 220/235 median_last=10.5 survival_gate=FAIL",
+    "[train] p2 ARM_INTACT_pag_gate seed=43 ep 235/235 contact_rate=0.0000",
+    "verdict: FAIL seed=43 arm=ARM_INTACT_pag_gate g_h=False g0=False g1=False g2=False eff_final=0.6329",
+    "Seed 44 Condition ARM_INTACT_pag_gate",
+    "[train] stage0 ARM_INTACT_pag_gate seed=44 ep 20/235 z_goal_peak=0.4590"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
