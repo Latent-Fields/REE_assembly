@@ -1,0 +1,79 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603f_scaffolded_sd054_substrate_readiness",
+  "run_id": "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T173332Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-07T17:33:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_engaged",
+    "readiness_route": "foraging_competence_open",
+    "preconditions": [
+      {
+        "name": "stage0_forced_feed_lights_zgoal",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit must light z_goal (>0.4 on >=2/3 seeds). This is the positive control that the goal-FORMATION substrate works, decoupled from foraging competence. Below-floor => substrate_not_ready_requeue (goal-formation broken), NOT a foraging-competence verdict.",
+        "control": "Stage-0 nursery feeds a forced supra-threshold benefit every step regardless of contact (run_stage0_nursery).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "G0_stage0": true,
+      "G1_survival": true,
+      "G2_contact": true
+    },
+    "criteria": [
+      {
+        "name": "G0_stage0_positive_control",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G1_p1_survival",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "G2_p2_contact",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  }
+}
