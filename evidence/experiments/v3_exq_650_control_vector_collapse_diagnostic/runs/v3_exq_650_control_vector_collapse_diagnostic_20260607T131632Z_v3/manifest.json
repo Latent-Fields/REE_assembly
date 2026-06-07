@@ -1,0 +1,68 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_650_control_vector_collapse_diagnostic",
+  "run_id": "v3_exq_650_control_vector_collapse_diagnostic_20260607T131632Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-07T13:16:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "control_vector_logging_ready_collapse_confirmed",
+    "preconditions": [
+      {
+        "name": "vt_positive_ticks_floored_arm",
+        "description": "ARM_ON_FLOORED logged >= VT_POS_FLOOR ticks with v_t>0 so the collapse identity is exercised on a non-degenerate scalar",
+        "measured": 400,
+        "threshold": 10,
+        "control": "tonic_vigor_v_t_floor=0.5 forces v_t>0 every tick",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C2_collapse_identity",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "notes": "Collapse is proven by the per-tick identity (C_time=w_passive*v_t, G_vigor=w_action*v_t for ONE v_t), robust to constant v_t. The across-tick correlation is exactly 1.0 when v_t varies (collinear) and reported degenerate when v_t is constant."
+  }
+}

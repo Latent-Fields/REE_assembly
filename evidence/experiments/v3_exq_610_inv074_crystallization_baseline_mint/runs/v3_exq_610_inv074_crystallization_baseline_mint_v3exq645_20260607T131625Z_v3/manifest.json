@@ -1,0 +1,66 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_610_inv074_crystallization_baseline_mint",
+  "run_id": "v3_exq_610_inv074_crystallization_baseline_mint_v3exq645_20260607T131625Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-07T13:16:25Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "baseline",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "criteria_non_degenerate": {
+      "all_reuse_eligible": true,
+      "fingerprints_emitted": true,
+      "off_cells_ran": true
+    },
+    "label": "off_baseline_minted_phase0_emit_only",
+    "preconditions": [
+      {
+        "description": "mint records arm_fingerprint + OFF metrics only; no cache consulted, no reuse executed (Phase 0)",
+        "measured": 1,
+        "met": true,
+        "name": "phase0_emit_only_no_reuse_executed",
+        "threshold": 1
+      },
+      {
+        "description": "every OFF (seed) cell ran to MAX_EPISODES and produced a finite end_phase_3 entropy",
+        "measured": 3,
+        "met": true,
+        "name": "all_off_cells_completed",
+        "threshold": 3
+      }
+    ]
+  }
+}
