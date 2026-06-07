@@ -23,9 +23,9 @@
     "MECH-341"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-341": "weakens"
+    "MECH-341": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": " | GOVERNANCE 2026-06-07T07:07Z: evidence_direction DEFERRED weakens->non_contributory pending /failure-autopsy. Clean non-vacuous FAIL (C1 substrate-operative + C3 readiness pass; C2 no committed-class lift) but unresolved whether this is a true falsifier of the within-class-temperature->committed-class-diversity sub-prediction or the monostrategy/behavioral_diversity:GAP-B substrate ceiling (no class diversity for E3 scoring to preserve). Not applied to MECH-341 this cycle; routed to /failure-autopsy for adjudication (user directive).",
+  "pending_failure_autopsy": true
 }

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-07T07:07:52.607863Z`
+Generated: `2026-06-07T07:47:18.670567Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -114,7 +114,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-016
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=15, weakens=13, conflict_ratio=0.929, exp_conf=0.629, lit_conf=0.871, overall_confidence_legacy=0.75
+- Evidence breakdown: supports=15, weakens=13, conflict_ratio=0.929, exp_conf=0.628, lit_conf=0.871, overall_confidence_legacy=0.749
 - Recent entries:
   - `2026-05-05T18:47:03Z` `experimental` `v3_exq_454a_arc016_adaptive_commitment_reef` direction=`weakens` confidence=0.75
   - `2026-05-07T21:42:46Z` `experimental` `v3_exq_530_arc016_precision_commit` direction=`non_contributory` confidence=0
@@ -412,11 +412,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, mixed_evidence
 - Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0, lit_conf=0.798, overall_confidence_legacy=0.798
 - Recent entries:
-  - `2026-05-10T19:50:07Z` `literature` `targeted_review_arc_068_opportunity_cost` direction=`weakens` confidence=0.72
   - `2026-05-10T19:50:07Z` `literature` `targeted_review_arc_068_opportunity_cost` direction=`supports` confidence=0.82
   - `2026-05-10T19:50:07Z` `literature` `targeted_review_arc_068_opportunity_cost` direction=`supports` confidence=0.74
   - `2026-05-10T19:50:07Z` `literature` `targeted_review_arc_068_opportunity_cost` direction=`supports` confidence=0.86
   - `2026-06-02T17:27:34Z` `experimental` `v3_exq_624a_arc068_mech320_niv_salamone_dissociation` direction=`non_contributory` confidence=0
+  - `2026-06-07T05:12:06Z` `experimental` `v3_exq_624b_arc068_mech320_niv_salamone_dissociation` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `If REE implements ARC-068 as a clean architectural separation from SD-032b (different substrate, different signals, different timescale), Kolling 2016's 'multiple signals in same cortical area' framing weakens that separation -- biology has the dACC computing several related signals at once, not separating them onto different substrates. The architectural separation may be a design choice rather than a biological commitment.` (1)
   - `Kolling 2016's 'search value' is computed from the AVERAGE environmental value (the value of alternatives currently available), not from the long-run REWARD HISTORY (Niv 2007). If REE picks the Niv kernel for ARC-068 and the Kolling kernel for SD-032b, the synthesis must explicitly separate the two -- Kolling's review does not separate them.` (1)
@@ -550,7 +550,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-073
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.765, lit_conf=0.671, overall_confidence_legacy=0.718
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.764, lit_conf=0.671, overall_confidence_legacy=0.717
 - Recent entries:
   - `2026-04-02T23:58:00Z` `literature` `targeted_review_q_020` direction=`weakens` confidence=0.74
   - `2026-04-02T23:59:00Z` `literature` `targeted_review_connectome_mech_074` direction=`supports` confidence=0.82
@@ -610,7 +610,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-090
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=14, weakens=9, conflict_ratio=0.783, exp_conf=0.708, lit_conf=0.689, overall_confidence_legacy=0.698
+- Evidence breakdown: supports=14, weakens=9, conflict_ratio=0.783, exp_conf=0.707, lit_conf=0.689, overall_confidence_legacy=0.698
 - Recent entries:
   - `2026-06-02T15:35:42Z` `literature` `targeted_review_mech_090_release_motor_cessation` direction=`mixed` confidence=0.7
   - `2026-06-02T15:35:42Z` `literature` `targeted_review_mech_090_release_motor_cessation` direction=`supports` confidence=0.78
@@ -1002,7 +1002,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-186
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, exp_conf=0.24, lit_conf=0.759, overall_confidence_legacy=0.551
+- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, exp_conf=0.239, lit_conf=0.759, overall_confidence_legacy=0.551
 - Recent entries:
   - `2026-04-06T19:47:55Z` `experimental` `v3_exq_251_mech186_valence_wanting_floor` direction=`weakens` confidence=0.75
   - `2026-04-07T08:06:51Z` `experimental` `v3_exq_251_mech186_valence_wanting_floor` direction=`weakens` confidence=0.75

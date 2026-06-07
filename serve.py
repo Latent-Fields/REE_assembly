@@ -23,6 +23,7 @@ API (POST, called by the Experiments tab in the explorer):
     /api/runner/status            -- JSON status of both runners (includes draining flag)
     /api/review/tracker        -- GET: reviewed/discussed state from review_tracker.json
     /api/review/discuss        -- POST {dir_name, discussed}: toggle discussed_experiment_dirs
+    /api/experiment/detail     -- GET ?script=&queue_id=: curated manifest detail for a Completed card
     /api/regression/preflight  -- GET: ree-v3 preflight suite result (cached 60s)
     /api/coordinator/phase3/preflight  -- GET: Phase 3 cutover pre-checks (cached 60s)
     /api/coordinator/phase3/writers    -- GET: Phase 3 sync_daemon writer health (cached 60s)
@@ -2638,6 +2639,146 @@ def scan_evidence_runs() -> dict:
     return result
 
 
+def _find_manifest_file(script_name: str = "", queue_id: str = ""):
+    """Locate the best (most-recent) manifest on local disk for a completed
+    experiment card.
+
+    Completed cards carry script_name (the evidence dir / flat-manifest stem)
+    and queue_id. The card's output_file is an absolute path from whatever
+    machine ran the experiment (Windows C:\\..., a different Mac root, etc.)
+    and is NOT usable on this filesystem -- so we resolve against the local
+    evidence/experiments tree by script_name, then fall back to queue_id.
+
+    Returns a Path or None. Covers all three layouts the runner/indexer emit:
+      * flat top-level:   evidence/experiments/<script>_<ts>.json  (V3 default)
+      * exact flat:       evidence/experiments/<script>.json
+      * per-dir flat:     evidence/experiments/<script>/*.json
+      * indexer run-pack: evidence/experiments/<script>/runs/*/manifest.json
+    """
+    def _is_manifest(p) -> bool:
+        return p.is_file() and not p.name.endswith("_episode_log.json")
+
+    if script_name:
+        # Prefer rich "flat" manifests (the runner's own output, with
+        # metrics/criteria/summary) over the indexer-built run-pack
+        # manifest.json (a lean schema that drops those bulky fields).
+        flat = []
+        runpack = []
+        for cfg in RUNNERS.values():
+            ev_dir = cfg["evidence_dir"]
+            if not ev_dir.exists():
+                continue
+            flat += [f for f in ev_dir.glob(f"{script_name}_*.json") if _is_manifest(f)]
+            exact = ev_dir / f"{script_name}.json"
+            if _is_manifest(exact):
+                flat.append(exact)
+            sub = ev_dir / script_name
+            if sub.is_dir():
+                sub_flat = [f for f in sub.glob("*.json") if _is_manifest(f)]
+                if sub_flat:
+                    flat += sub_flat
+                else:
+                    runpack += list((sub / "runs").glob("*/manifest.json"))
+        if flat:
+            # Filenames carry a sortable timestamp -> latest last.
+            return sorted(flat, key=lambda p: p.name)[-1]
+        if runpack:
+            # All named manifest.json -> order by the timestamped parent run-dir.
+            return sorted(runpack, key=lambda p: p.parent.name)[-1]
+
+    if queue_id:
+        # Derive a filename hint from the queue_id so we only parse a handful
+        # of files (e.g. "V3-EXQ-624b" -> "exq_624b") instead of every manifest.
+        hint = queue_id.lower()
+        for pfx in ("v3-", "v2-", "v1-"):
+            if hint.startswith(pfx):
+                hint = hint[len(pfx):]
+                break
+        hint = hint.replace("-", "_")
+        for cfg in RUNNERS.values():
+            ev_dir = cfg["evidence_dir"]
+            if not ev_dir.exists():
+                continue
+            matches = []
+            for f in ev_dir.glob(f"*{hint}*.json"):
+                if not _is_manifest(f):
+                    continue
+                try:
+                    m = json.loads(f.read_text())
+                except Exception:
+                    continue
+                if m.get("queue_id") == queue_id:
+                    matches.append(f)
+            if matches:
+                return sorted(matches, key=lambda p: p.name)[-1]
+    return None
+
+
+def _truncate_for_detail(obj, max_list: int = 8, max_str: int = 800, _depth: int = 0):
+    """Return a JSON-serialisable copy of obj with long lists/strings clipped,
+    so a manifest's bulky metric arrays don't blow up the detail payload."""
+    if _depth > 6:
+        return "..."
+    if isinstance(obj, str):
+        return obj if len(obj) <= max_str else obj[:max_str] + f"... (+{len(obj) - max_str} chars)"
+    if isinstance(obj, list):
+        out = [_truncate_for_detail(x, max_list, max_str, _depth + 1) for x in obj[:max_list]]
+        if len(obj) > max_list:
+            out.append(f"... (+{len(obj) - max_list} more items)")
+        return out
+    if isinstance(obj, dict):
+        return {k: _truncate_for_detail(v, max_list, max_str, _depth + 1) for k, v in obj.items()}
+    return obj
+
+
+def build_manifest_detail(m: dict) -> str:
+    """Human-readable, size-bounded rendering of a completed experiment's
+    manifest for the explorer Completed-card detail panel. Mirrors the
+    information density of the running card's scrollable stdout readout, but
+    drawn from the persistent manifest instead of ephemeral recent_lines."""
+    verdict, timestamp, _ = _normalize_manifest_fields(m)
+    lines = []
+    head = f"OUTCOME: {verdict or '?'}"
+    ed = m.get("evidence_direction")
+    if ed:
+        head += f"    evidence_direction: {ed}"
+    lines.append(head)
+    if m.get("run_id"):
+        lines.append(f"run_id: {m['run_id']}")
+    if timestamp:
+        lines.append(f"timestamp: {timestamp}")
+    claims = m.get("claim_ids_tested") or m.get("claim_ids")
+    if claims:
+        lines.append("claims: " + ", ".join(str(c) for c in claims))
+    edpc = m.get("evidence_direction_per_claim")
+    if isinstance(edpc, dict) and edpc:
+        lines.append("per-claim direction: " + ", ".join(f"{k}={v}" for k, v in edpc.items()))
+
+    def section(title: str, key: str):
+        val = m.get(key)
+        if val in (None, "", [], {}):
+            return
+        lines.append("")
+        lines.append(f"== {title} ==")
+        if isinstance(val, str):
+            lines.append(val if len(val) <= 4000 else val[:4000] + f"... (+{len(val) - 4000} chars)")
+        else:
+            lines.append(json.dumps(_truncate_for_detail(val), indent=2, default=str))
+
+    section("PURPOSE", "experiment_purpose")
+    section("SUMMARY", "summary")
+    section("CRITERIA", "criteria")
+    section("NOTES", "notes")
+    section("REGISTERED THRESHOLDS", "registered_thresholds")
+    section("METRICS", "metrics")
+    section("CONFIG", "config")
+    text = "\n".join(lines)
+    cap = 24000
+    if len(text) > cap:
+        text = text[:cap] + "\n... (detail truncated)"
+    return text
+
+
 def _default_runner_extra_env() -> dict | None:
     """Shadow env to inject when start_runner is called without explicit
     extra_env (i.e. the everyday /api/runner/v3/start path). Reads
@@ -3916,6 +4057,49 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 "reviewed_run_ids": data.get("reviewed_run_ids", []),
                 "last_review_utc": data.get("last_review_utc", ""),
             }).encode()
+            self._json_response(body)
+            return
+        if path == "/api/experiment/detail":
+            # Curated, size-bounded manifest detail for a Completed experiment
+            # card's expand panel. Resolves the on-disk manifest by script_name
+            # (preferred) or queue_id; output_file from the card is a foreign
+            # absolute path and is not consulted here.
+            from urllib.parse import parse_qs
+            qs = parse_qs(urlparse(self.path).query)
+            script_name = (qs.get("script", [""])[0] or "").strip()
+            queue_id = (qs.get("queue_id", [""])[0] or "").strip()
+            mf = _find_manifest_file(script_name, queue_id)
+            if mf is None:
+                body = json.dumps({
+                    "found": False,
+                    "message": "No manifest found on disk for this experiment.",
+                }).encode()
+                self._json_response(body)
+                return
+            try:
+                m = json.loads(mf.read_text())
+            except Exception as exc:  # noqa: BLE001
+                body = json.dumps({
+                    "found": False,
+                    "message": f"Manifest unreadable: {exc}",
+                }).encode()
+                self._json_response(body)
+                return
+            verdict, timestamp, _ = _normalize_manifest_fields(m)
+            try:
+                rel = str(mf.relative_to(SERVE_DIR))
+            except ValueError:
+                rel = mf.name
+            body = json.dumps({
+                "found": True,
+                "queue_id": m.get("queue_id", queue_id),
+                "run_id": m.get("run_id", ""),
+                "outcome": verdict,
+                "timestamp": timestamp,
+                "evidence_direction": m.get("evidence_direction"),
+                "manifest_path": rel,
+                "detail": build_manifest_detail(m),
+            }, default=str).encode()
             self._json_response(body)
             return
         super().do_GET()

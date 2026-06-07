@@ -1,6 +1,6 @@
 # Experiment Index: gap3_transient_benefit_validation
 
-Generated: `2026-06-07T07:07:52.607863Z`
+Generated: `2026-06-07T07:47:18.670567Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

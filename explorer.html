@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-07.1 -->
+<!-- EXPLORER_VERSION: 2026-06-07.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1556,6 +1556,18 @@
       color: var(--muted); cursor: pointer; line-height: 1.5;
     }
     .exp-discuss-btn:hover { background: var(--border); }
+    .exp-detail-btn {
+      font-size: 11px; padding: 2px 8px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--bg-2);
+      color: var(--muted); cursor: pointer; line-height: 1.5; margin-left: 6px;
+    }
+    .exp-detail-btn:hover { background: var(--border); }
+    .exp-detail-box {
+      font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      font-size: 11px; background: var(--bg-2); border-radius: 4px;
+      padding: 8px 10px; margin: 10px 0 0 0; white-space: pre-wrap;
+      color: var(--ink); max-height: 320px; overflow-y: auto;
+    }
     .exp-badge.needs-script { background: var(--bg-2); color: var(--muted); }
     .exp-badge.claimed     { background: #e3f0fb; color: #1565c0; }
     .exp-progress-bar {
@@ -7196,6 +7208,13 @@ END CONFLICT RESOLUTION`;
           ? `<span class="exp-badge discussed">&#10003;&nbsp;discussed</span>`
           : `<button class="exp-discuss-btn" data-dir="${escapeHtml(dirName)}">Mark discussed</button>`
         : '';
+      // Manifest-detail expander: lazy-loads the persistent on-disk manifest
+      // (summary / criteria / metrics / notes) so the Completed card carries the
+      // same depth of detail the running card shows in its scrollable readout.
+      const detailKey = c.script_name || c.queue_id || dirName || '';
+      const detailWidget = detailKey
+        ? `<button class="exp-detail-btn" data-detail-script="${escapeHtml(c.script_name || '')}" data-detail-qid="${escapeHtml(c.queue_id || '')}">Details</button>`
+        : '';
       return `
         <div class="exp-card ${resultClass}">
           <div class="exp-card-header">
@@ -7206,12 +7225,14 @@ END CONFLICT RESOLUTION`;
             ${versionChipHtml(inferVersion(c))}
             ${runCountHtml}
             ${discussWidget}
+            ${detailWidget}
           </div>
           <div class="exp-desc">${escapeHtml(c.description || '')}</div>
           ${c.result_summary ? `<div class="exp-result-summary">${escapeHtml(c.result_summary)}</div>` : ''}
           ${evidenceOnlyNote}
           ${completedLine}
           ${viewerLink}
+          ${detailWidget ? `<div class="exp-detail-box" style="display:none"></div>` : ''}
         </div>`;
     }
 
@@ -7566,6 +7587,40 @@ END CONFLICT RESOLUTION`;
             });
           } catch (_) {}
           renderExperiments();
+        });
+      });
+
+      // Wire Completed-card "Details" expanders — lazy-load the manifest detail
+      // panel on first open, then just toggle visibility (no auto-refresh churn:
+      // the panel content is fetched once and kept until the section re-renders).
+      expRoot.querySelectorAll('.exp-detail-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const box = btn.parentElement.parentElement.querySelector('.exp-detail-box');
+          if (!box) return;
+          if (box.style.display !== 'none') {
+            box.style.display = 'none';
+            btn.textContent = 'Details';
+            return;
+          }
+          btn.textContent = 'Hide details';
+          box.style.display = 'block';
+          if (box.dataset.loaded !== '1') {
+            box.textContent = 'Loading…';
+            const params = new URLSearchParams({
+              script: btn.dataset.detailScript || '',
+              queue_id: btn.dataset.detailQid || '',
+            });
+            try {
+              const resp = await fetch('/api/experiment/detail?' + params.toString());
+              const j = await resp.json();
+              box.textContent = j.found
+                ? j.detail
+                : (j.message || 'No manifest detail available for this experiment.');
+            } catch (_) {
+              box.textContent = 'Detail unavailable — is serve.py running?';
+            }
+            box.dataset.loaded = '1';
+          }
         });
       });
 
