@@ -122,6 +122,50 @@ def _is_number(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
+def _precondition_direction(p: dict) -> str:
+    """Resolve a precondition's bound DIRECTION for the (3a) numeric recompute.
+
+    Returns:
+      - "lower" -- a FLOOR; met := measured >= threshold. This is the default,
+                   and the semantics of the hundreds of legacy floor
+                   preconditions: a below-floor measured is the
+                   trivial-prediction signature the author cannot see.
+      - "upper" -- a CEILING; met := measured <= threshold. A "stayed below the
+                   explosion/instability ceiling" check (e.g.
+                   rolled_out_zworld_*_bounded, threshold 1e6). Here
+                   measured << threshold means the check PASSED, not failed --
+                   treating it as a floor false-flags it `precondition_unmet`
+                   (the 2026-06-07 V3-EXQ-648a / V3-EXQ-649 directionality bug).
+
+    Honours an explicit per-entry hint, in priority order:
+      1. `comparator`: the PASS comparison, i.e. met == (measured <comparator>
+         threshold). ">=" / ">" -> lower; "<=" / "<" -> upper.
+      2. `direction`:  "lower"/"floor"/"min" -> lower;
+                       "upper"/"ceiling"/"max" -> upper.
+    Anything unrecognised (or absent) falls back to "lower" so the existing
+    floor manifests keep their meaning with no edit. Authors of bounded-ceiling
+    preconditions MUST set direction:"upper" (or comparator:"<=") -- see the
+    queue-experiment SKILL.md adjudication-precondition guidance.
+    """
+    if not isinstance(p, dict):
+        return "lower"
+    comp = p.get("comparator")
+    if isinstance(comp, str):
+        c = comp.strip()
+        if c in (">=", ">"):
+            return "lower"
+        if c in ("<=", "<"):
+            return "upper"
+    direction = p.get("direction")
+    if isinstance(direction, str):
+        d = direction.strip().lower()
+        if d in ("lower", "floor", "min", "lower_bound"):
+            return "lower"
+        if d in ("upper", "ceiling", "max", "upper_bound"):
+            return "upper"
+    return "lower"
+
+
 def _compute_adjudication(interpretation: Any, status: str,
                           experiment_purpose: str) -> tuple[str, str]:
     """Diagnostic adjudication gate -- derive the trust flag for a self-routed run.
@@ -134,9 +178,12 @@ def _compute_adjudication(interpretation: Any, status: str,
                              (legacy; surfaced but not blocked).
       - "precondition_unmet" -- a self-route premise did not hold. Fired by
                              EITHER (3a) a readiness-kind precondition entry whose
-                             RECOMPUTED met (measured >= threshold) is false --
-                             author-free, catches the trivial-prediction signature
-                             the author cannot see -- OR the legacy author-trusted
+                             RECOMPUTED met is false -- a FLOOR fails below
+                             threshold (measured < threshold), a CEILING fails
+                             above it (measured > threshold), per
+                             _precondition_direction; author-free, catches the
+                             trivial-prediction signature the author cannot see --
+                             OR the legacy author-trusted
                              interpretation.preconditions[].met == false.
       - "vacuous_pass"    -- overall PASS that clears a gate on nothing. Fired by
                              EITHER (3b) a criterion tagged load_bearing:true with
@@ -163,15 +210,28 @@ def _compute_adjudication(interpretation: Any, status: str,
 
     # (3a) Readiness recompute (proposal_trivial_prediction_readiness_gate_2026-06-06,
     # Q1). For any precondition entry carrying numeric measured+threshold (a
-    # readiness-kind entry), RECOMPUTE met := measured >= threshold and do NOT
-    # trust the author-supplied `met`. A below-floor measured value is the
-    # trivial-prediction signature the author cannot see (V3-EXQ-642 pred_mag<floor
-    # masked by a low wf_mse; 264 pred_norm~0; 620 identically-zero distributions).
+    # readiness-kind entry), RECOMPUTE met from measured+threshold and do NOT
+    # trust the author-supplied `met`. The comparison RESPECTS the precondition's
+    # bound direction (_precondition_direction): a FLOOR is unmet when measured
+    # falls BELOW threshold (measured < threshold) -- the trivial-prediction
+    # signature the author cannot see (V3-EXQ-642 pred_mag<floor masked by a low
+    # wf_mse; 264 pred_norm~0; 620 identically-zero distributions); a CEILING is
+    # unmet only when measured rises ABOVE threshold (measured > threshold).
+    # Direction defaults to floor, so the hundreds of legacy floor preconditions
+    # are unaffected; without this, an upper-bound "stayed below the explosion
+    # ceiling" check (rolled_out_zworld_*_bounded, measured 0.19 vs threshold 1e6)
+    # was false-flagged precondition_unmet (V3-EXQ-648a / V3-EXQ-649, 2026-06-07).
     for p in preconditions:
         if not isinstance(p, dict):
             continue
         m, t = p.get("measured"), p.get("threshold")
-        if (_is_number(m) and _is_number(t) and m < t):
+        if not (_is_number(m) and _is_number(t)):
+            continue
+        if _precondition_direction(p) == "upper":
+            unmet = m > t
+        else:
+            unmet = m < t
+        if unmet:
             return label, "precondition_unmet"
 
     # (3b) Aggregation-vacuity (the V3-EXQ-621a pattern). An overall PASS while a
