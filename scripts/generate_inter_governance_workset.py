@@ -258,7 +258,8 @@ def _load_claims_meta() -> dict[str, dict]:
 
 
 _EPI_SUPPRESS_PROPOSAL = {
-    "substrate_coherence", "substrate_ceiling", "derivational", "out_of_domain",
+    "substrate_coherence", "substrate_ceiling", "substrate_conditional",
+    "derivational", "out_of_domain",
 }
 _CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
 
@@ -592,8 +593,11 @@ def _proposed_experiments(
         (e.g. Q-035 EXP-0087 -- claim already resolved),
       * its claim's resolved epistemic_category is one that promote/demote (and
         therefore experiment proposals) are inappropriate for:
-        substrate_coherence / substrate_ceiling / derivational / out_of_domain
-        (e.g. ARC-063 EXP-0084 -- architectural_commitment -> substrate_coherence),
+        substrate_coherence / substrate_ceiling / substrate_conditional /
+        derivational / out_of_domain
+        (e.g. ARC-063 EXP-0084 -- architectural_commitment -> substrate_coherence;
+        MECH-312 EXP-0110 -- depends on unbuilt ARC-063 rule-creator substrate
+        -> substrate_conditional),
       * the claim already shows genuine experimental evidence in
         claim_evidence.v1.json (proposal effectively executed but not marked).
 
