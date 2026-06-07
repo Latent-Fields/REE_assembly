@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-07T17:47:07Z",
+  "last_tick_utc": "2026-06-07T18:17:11Z",
   "state": "running",
   "current_exq": "V3-EXQ-603h",
   "current_exq_started_utc": "2026-06-07T17:35:34.836121+00:00",
@@ -9,19 +9,25 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_LESION_pag_no_gate",
-    "runs_done": 0,
+    "run_label": "Seed 43 / ARM_LESION_pag_no_gate",
+    "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 20,
+    "episodes_done": 0,
     "episodes_total": 235,
-    "overall_pct": 1.4
+    "overall_pct": 16.7
   },
-  "seconds_elapsed": 692,
-  "seconds_remaining": 22857,
+  "seconds_elapsed": 2497,
+  "seconds_remaining": 12391,
   "recent_lines": [
     "[v3_exq_603h_instrumental_avoidance_stageh_validation] starting (dry_run=False)",
     "Seed 42 Condition ARM_LESION_pag_no_gate",
-    "[train] stage0 ARM_LESION_pag_no_gate seed=42 ep 20/235 z_goal_peak=0.4999"
+    "[train] stage0 ARM_LESION_pag_no_gate seed=42 ep 20/235 z_goal_peak=0.4999",
+    "[train] p0 ARM_LESION_pag_no_gate seed=42 ep 130/235 mean_len=80.0 rv=0.00001",
+    "[train] hazard_avoidance ARM_LESION_pag_no_gate seed=42 ep 170/235 median_last=27.5 survival_gate=FAIL pag_commits=316 eff=0.0000 n_credit=0 n_freeze_suppr=0",
+    "[train] p1 ARM_LESION_pag_no_gate seed=42 ep 220/235 median_last=30.5 survival_gate=FAIL",
+    "[train] p2 ARM_LESION_pag_no_gate seed=42 ep 235/235 contact_rate=0.0000",
+    "verdict: FAIL seed=42 arm=ARM_LESION_pag_no_gate g_h=False g0=True g1=False g2=False eff_final=0.0000",
+    "Seed 43 Condition ARM_LESION_pag_no_gate"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
