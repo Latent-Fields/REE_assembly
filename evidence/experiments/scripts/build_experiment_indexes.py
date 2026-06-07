@@ -4171,6 +4171,39 @@ def _write_planning_outputs(
 
     proposals: list[dict[str, Any]] = []
     proposal_counter = 1
+    # Numeric proposal-id indices already hand-assigned in manual_proposals.v1.json
+    # (e.g. EXP-0085..EXP-0176). The auto counter below MUST skip these so an
+    # auto-generated EXP-/LIT-NNNN id never collides with a manual proposal id.
+    # The manual ids own the EXP-NNNN namespace and are referenced by governance
+    # docs; auto ids are positional/ephemeral (keyed for stability on backlog_id,
+    # not proposal_id). Reserve from BOTH prefixes because the EXP/LIT counter is
+    # shared -- a manual LIT-0099 must block auto EXP-0099 and LIT-0099 alike.
+    # (Fixes the 47 duplicate proposal_ids the old shared-namespace counter
+    # produced in the generated experiment_proposals.v1.json.)
+    _manual_reserved_idx: set[int] = set()
+    _manual_ids_path = planning_root / "manual_proposals.v1.json"
+    if _manual_ids_path.exists():
+        try:
+            _manual_ids_doc = json.loads(_manual_ids_path.read_text(encoding="utf-8"))
+            for _mp_item in _manual_ids_doc.get("items", []):
+                _mp_match = re.match(
+                    r"^(?:EXP|LIT)-(\d+)$",
+                    str((_mp_item or {}).get("proposal_id") or ""),
+                )
+                if _mp_match:
+                    _manual_reserved_idx.add(int(_mp_match.group(1)))
+        except Exception:
+            pass  # malformed manual file -- no reservations (skip silently)
+
+    def _alloc_proposal_idx() -> int:
+        """Next auto proposal index, skipping any manual-reserved numeric id."""
+        nonlocal proposal_counter
+        while proposal_counter in _manual_reserved_idx:
+            proposal_counter += 1
+        idx = proposal_counter
+        proposal_counter += 1
+        return idx
+
     for item in backlog_items:
         claim_id = str(item["claim_id"])
         reasons = [str(r) for r in item.get("reasons", [])]
@@ -4320,8 +4353,7 @@ def _write_planning_outputs(
                     proposal_patch = proposal_patch_candidate
 
             acceptance_checks = _dedupe_preserve_order(acceptance_checks)
-            proposal_id = f"EXP-{proposal_counter:04d}"
-            proposal_counter += 1
+            proposal_id = f"EXP-{_alloc_proposal_idx():04d}"
             proposal: dict[str, Any] = {
                 "proposal_id": proposal_id,
                 "backlog_id": item["backlog_id"],
@@ -4398,8 +4430,7 @@ def _write_planning_outputs(
                 lit_acceptance_checks.append(
                     "Complete adjudication-ready literature brief" + deadline_suffix + "."
                 )
-            proposal_id = f"LIT-{proposal_counter:04d}"
-            proposal_counter += 1
+            proposal_id = f"LIT-{_alloc_proposal_idx():04d}"
             proposals.append(
                 {
                     "proposal_id": proposal_id,
