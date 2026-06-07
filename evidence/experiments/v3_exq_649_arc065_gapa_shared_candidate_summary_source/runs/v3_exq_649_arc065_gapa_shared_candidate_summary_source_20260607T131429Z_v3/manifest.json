@@ -1,0 +1,86 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_649_arc065_gapa_shared_candidate_summary_source",
+  "run_id": "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-07T13:14:29Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "gapa_shared_channel_ready",
+    "preconditions": [
+      {
+        "name": "arm1_consumed_summary_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 (e2_world_forward source) per-candidate SPREAD of the CONSUMED cand_world_summaries (the representation the SHARED bias channels actually read) clears the floor -- a cross-candidate RANGE statistic, the SAME one C1/C2 route on, NOT a magnitude. Below floor => under-trained e2 / amend not wired => substrate_not_ready_requeue, never a substrate verdict.",
+        "control": "ARM_1: SD-056 contrastive trained online; SP-CEM multi-class candidates; candidate_summary_source=e2_world_forward",
+        "measured": 0.090488,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "rolled_out_zworld_spread_bounded",
+        "kind": "readiness",
+        "description": "Consumed-summary spread stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability; rollout-norm clamp ON).",
+        "control": "max consumed_summary_pairwise_dist across all arms",
+        "measured": 0.190288,
+        "threshold": 1000000.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_proposer_consumed_spread_collapsed",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_e2_world_forward_lifts_consumed_spread_over_proposer",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true
+    },
+    "routing": {
+      "gapa_shared_channel_ready": "PASS -> /queue-experiment MECH-341 within-class-representative-diversity retest",
+      "substrate_not_ready_requeue": "re-queue as V3-EXQ-649a at higher P0 budget (or fix e2/SD-056 wiring); do NOT weaken",
+      "gapa_shared_channel_inert": "FAIL -> /failure-autopsy on the failing criterion"
+    }
+  }
+}
