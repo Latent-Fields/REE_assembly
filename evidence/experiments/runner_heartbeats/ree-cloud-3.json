@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-07T15:46:31Z",
+  "last_tick_utc": "2026-06-07T16:16:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-603f",
   "current_exq_started_utc": "2026-06-07T15:45:45.307692+00:00",
@@ -12,15 +12,17 @@
     "run_label": "Seed 42 / ALL_LEVERS_ON",
     "runs_done": 0,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 195,
-    "overall_pct": 0.0
+    "overall_pct": 5.1
   },
-  "seconds_elapsed": 45,
-  "seconds_remaining": 12600,
+  "seconds_elapsed": 1850,
+  "seconds_remaining": 16786,
   "recent_lines": [
     "[v3_exq_603f_scaffolded_sd054_substrate_readiness] starting (dry_run=False)",
-    "Seed 42 Condition ALL_LEVERS_ON"
+    "Seed 42 Condition ALL_LEVERS_ON",
+    "[train] stage0_nursery seed=42 ep 20/195 z_goal_peak=0.4976 formed=True token_bank_size_end=3",
+    "[train] stage0b_consolidate seed=42 ep 30/195 retention=0.994 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
