@@ -1930,9 +1930,9 @@
       "agent_label": null,
       "source": "manual_ui",
       "assigned_at": "2026-06-07T10:39:06Z",
-      "released_at": null,
-      "released_by": null,
-      "released_reason": null,
+      "released_at": "2026-06-07T10:47:00Z",
+      "released_by": "claude_local",
+      "released_reason": "blocked_substrate (see release event rel-20260607T104700Z)",
       "note": null,
       "item_snapshot": {
         "skill": "/queue-experiment",
@@ -2007,6 +2007,29 @@
         "priority": 40,
         "claim_ids": [
           "ARC-078"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260607T104700Z-f38331a7-claude_local",
+      "stable_hash": "f38331a7cc0a",
+      "igw_id_at_assign": "IGW-20260607-046",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-06-07T10:39:06Z",
+      "released_at": "2026-06-07T10:47:00Z",
+      "released_by": "claude_local",
+      "released_reason": "Step 2.5 substrate-readiness gate FAILED -> blocked_substrate (no script, no queue entry). EXP-0110 (EVB-0219) asks for a targeted experimental probe of MECH-312, whose only falsification vehicle is the arbitration combination-rule test (multiplicative-gate vs additive-logit over the reliability/practice_maturity/affective/V_s factor channels). Untestable on current V3 substrate: (1) MECH-312 + sub-MECHs 312a/b/c/d all v3_pending (implementation_phase v3 = active design target, not V3-implementable now per rule_apprehension_layer.md:104); (2) factor channels not wired -- ree_core/policy/gated_policy.py is only the ARC-062 Phase-1 single-scalar two-head gate (w*h0+(1-w)*h1), not a multi-channel multiplicative gate; (3) upstream blocker arc_062_rule_apprehension:GAP-B is blocked_pending_substrate -- the rule-creator/discriminator that would populate DIFFERENTIATED competing rule states is design-only as of 2026-06-04 ('design is not implementation'), V3-EXQ-598b confirmed C3 trainable_not_monomodal FAIL, so with no competing rule states a combination-rule probe is vacuous (trivial-prediction hazard); (4) MECH-312 has ZERO entries in claim_evidence.v1.json and the claim's V3-EXQ-543b/c citation is a mis-citation (543b/c tagged ARC-062/MECH-309/SD-029, both FAIL, never tested the combination rule). Proposal marked blocked_substrate (blocked_by ARC-062 GAP-B rule-creator + MECH-312a/b/c/d). NEXT: /implement-substrate the ARC-063 rule-creator design (docs/architecture/arc_063_candidate_rule_field.md) -- background chip filed this session.",
+      "released_event_for": "asn-20260607T103906Z-f38331a7-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0110 (MECH-312)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-312"
         ]
       }
     }

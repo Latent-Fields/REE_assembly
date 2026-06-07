@@ -3774,7 +3774,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_312",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3783,7 +3783,15 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-062",
+        "MECH-312a",
+        "MECH-312b",
+        "MECH-312c",
+        "MECH-312d"
+      ],
+      "blocked_note": "Step 2.5 substrate-readiness gate (2026-06-07, IGW-20260607-046): MECH-312's combination-rule falsification vehicle (multiplicative-gate vs additive-logit over reliability/practice_maturity/affective/V_s channels) is untestable on the current V3 substrate. MECH-312 + sub-MECHs 312a/b/c/d are all v3_pending (implementation_phase v3 = active design target, not V3-implementable now per rule_apprehension_layer.md:104). Factor channels not wired (gated_policy.py is only the ARC-062 Phase-1 single-scalar two-head gate). Upstream blocker arc_062_rule_apprehension:GAP-B is blocked_pending_substrate: the rule-creator/discriminator that would populate DIFFERENTIATED competing rule states is design-only as of 2026-06-04 ('design is not implementation'); V3-EXQ-598b confirmed C3 trainable_not_monomodal FAIL -> no competing rule states -> combination-rule probe would be vacuous. MECH-312 has zero entries in claim_evidence.v1.json; the claim's V3-EXQ-543b/c citation is a mis-citation (those tagged ARC-062/MECH-309/SD-029, both FAIL, never tested the combination rule). Status persists by backlog_id across indexer regens; blocked_by/blocked_note drop on next full regen (durable reasoning in igw_assignments.json release event + WORKSPACE_STATE). Route: /implement-substrate the ARC-063 rule-creator design (docs/architecture/arc_063_candidate_rule_field.md)."
     },
     {
       "acceptance_checks": [
