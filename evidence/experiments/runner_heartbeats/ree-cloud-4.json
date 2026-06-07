@@ -1,47 +1,35 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-07T03:14:25Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-063a",
-      "result": "PASS",
-      "completed_at": "2026-06-02T17:25:31.731586+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-463b",
-      "result": "PASS",
-      "completed_at": "2026-06-04T03:09:03.625506+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-646",
-      "result": "PASS",
-      "completed_at": "2026-06-06T17:24:51.898531+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-643b",
-      "result": "PASS",
-      "completed_at": "2026-06-06T23:06:57.321370+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-648",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T02:54:18.392540+00:00"
-    }
+  "last_tick_utc": "2026-06-07T05:12:53Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-614e",
+  "current_exq_started_utc": "2026-06-07T05:10:31.949889+00:00",
+  "current_title": "MECH-341 within-class temperature clean retest (modulatory-bias-selection-authority ON)",
+  "current_claim_id": "MECH-341",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / within_class_legacy_argmin",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 40,
+    "episodes_total": 90,
+    "overall_pct": 3.7
+  },
+  "seconds_elapsed": 140,
+  "seconds_remaining": 12297,
+  "recent_lines": [
+    "Arm ARM_0_LEGACY (within_class_legacy_argmin) (P0=30 ep, P1=60 ep, steps_per_episode=200, authority=ON gain=0.5, dry_run=False)",
+    "Seed 42 Condition within_class_legacy_argmin",
+    "[train] arm=ARM_0_LEGACY seed=42 phase=P0 ep 10/90",
+    "[train] arm=ARM_0_LEGACY seed=42 phase=P0 ep 20/90",
+    "[train] arm=ARM_0_LEGACY seed=42 phase=P0 ep 30/90",
+    "[train] arm=ARM_0_LEGACY seed=42 phase=P1 ep 40/90"
   ],
-  "runner_pid": 667,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 670,
   "runner_version": null,
   "gpu": {
     "available": false
