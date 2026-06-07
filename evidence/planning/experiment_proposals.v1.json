@@ -4015,7 +4015,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_078",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4024,7 +4024,13 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gating_reason": "ARC-078 parent falsifiable signature has a BEHAVIORAL goal-recovery-flexibility half (recovery latency / re-approach of blocked goals) gated on goal_pipeline GAP-2 (z_goal formation / foraging contact). The ghost-goal bank substrate itself (C1 MECH-339 outshining / C2 MECH-292 additive channels / C3 MECH-340 non-closeable recoverability + MECH-293 ghost-seeded probes) is fully landed and each child substrate-readiness diagnostic PASSed (V3-EXQ-594/496/607/497), but anchors cannot yet form from real episodic experience with non-degenerate z_goal_snapshots, so a non-synthetic parent-claim evidence run is GAP-2-blocked. Deferred (user decision 2026-06-07, IGW-20260607-049).",
+      "release_condition": "goal_pipeline GAP-2 (z_goal formation / foraging contact) cleared so the agent forms goal anchors from real episodes with non-degenerate z_goal_snapshots (e.g. scaffolded_sd054_onboarding substrate-readiness PASS / V3-EXQ-603g lineage). Then queue the ARC-078 evidence battery: full-bank (C1+C2+C3) cued-recall vs field-only (ARC-060) vs outshining-violated vs closeable-recoverability-cutoff arms + the C2 three-state dissociation, with the behavioral recovery-latency readout the parent claim requires.",
+      "blocked_by": [
+        "goal_pipeline:GAP-2"
+      ],
+      "blocked_note": "Bank substrate ready (MECH-292/339/340/293 child-validated); ARC-078 PARENT claim's behavioral recovery-flexibility half is gated on goal_pipeline GAP-2 z_goal formation. Deferred per user decision (IGW-20260607-049) rather than queue a controlled-payload-only probe that would re-earn the why_now 'synthetic_signals_only' concern."
     },
     {
       "acceptance_checks": [
