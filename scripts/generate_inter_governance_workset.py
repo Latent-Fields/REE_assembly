@@ -212,6 +212,100 @@ def _claim_retest_ids() -> set[str]:
     return out
 
 
+def _strip_yaml_scalar(value: str) -> str:
+    """Strip an inline `# comment`, surrounding quotes, and whitespace."""
+    v = value.split("#", 1)[0].strip()
+    if len(v) >= 2 and v[0] == v[-1] and v[0] in ("'", '"'):
+        v = v[1:-1]
+    return v.strip()
+
+
+def _load_claims_meta() -> dict[str, dict]:
+    """claim_id -> {status, claim_type, epistemic_category, invariant_type}.
+
+    Line-based block parser (same shape as _claim_retest_ids) so we never pay a
+    full yaml.safe_load on the large registry. First occurrence of each field
+    inside a `- id:` block wins; inline `# comments` and quotes are stripped.
+    """
+    out: dict[str, dict] = {}
+    if not CLAIMS_YAML.exists():
+        return out
+    current: str | None = None
+    fields: dict[str, str] = {}
+    keys = ("status", "claim_type", "epistemic_category", "invariant_type")
+
+    def _flush() -> None:
+        if current:
+            out[current] = dict(fields)
+
+    for line in CLAIMS_YAML.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"^- id:\s*(\S+)", line)
+        if m:
+            _flush()
+            current = _strip_yaml_scalar(m.group(1))
+            fields = {}
+            continue
+        if current is None:
+            continue
+        for key in keys:
+            if key in fields:
+                continue
+            mm = re.match(r"^\s+" + key + r":\s*(.+)", line)
+            if mm:
+                fields[key] = _strip_yaml_scalar(mm.group(1))
+    _flush()
+    return out
+
+
+_EPI_SUPPRESS_PROPOSAL = {
+    "substrate_coherence", "substrate_ceiling", "derivational", "out_of_domain",
+}
+_CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
+
+
+def _resolve_epistemic_category(meta: dict | None) -> str:
+    """Resolved epistemic_category for a claim, mirroring the indexer's
+    _resolve_epistemic_category: explicit value wins, else infer from claim_type
+    + invariant_type. Unknown / missing -> 'standard'.
+    """
+    if not meta:
+        return "standard"
+    explicit = (meta.get("epistemic_category") or "").strip().lower()
+    if explicit:
+        return explicit
+    ctype = (meta.get("claim_type") or "").strip().lower()
+    itype = (meta.get("invariant_type") or "").strip().lower()
+    if ctype == "architectural_commitment":
+        return "substrate_coherence"
+    if ctype == "invariant" and itype == "universal":
+        return "substrate_coherence"
+    if ctype in ("open_question", "question"):
+        return "answer_state"
+    return "standard"
+
+
+def _claims_with_experimental_evidence() -> set[str]:
+    """Claim IDs that already carry genuine experimental evidence per
+    claim_evidence.v1.json (genuine_exp_count > 0). Used to suppress stale
+    `status: proposed` proposals whose experiment effectively already ran.
+    """
+    path = EVIDENCE / "claim_evidence.v1.json"
+    if not path.exists():
+        return set()
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return set()
+    claims = data.get("claims") if isinstance(data, dict) else None
+    if not isinstance(claims, dict):
+        return set()
+    out: set[str] = set()
+    for cid, summary in claims.items():
+        if isinstance(summary, dict) and (summary.get("genuine_exp_count") or 0) > 0:
+            out.add(str(cid))
+    return out
+
+
 def _queued_retest_coverage(queue_items: list[dict]) -> dict[str, str]:
     """claim_id -> queue_id mapping for claims covered by any queue entry.
 
@@ -256,6 +350,15 @@ _SUBSTRATE_RESOLVED_STATUSES = {
 }
 _SUBSTRATE_RESOLVED_PHASE_RE = re.compile(r"^phase_\d+_implemented$")
 
+# Terminal tokens for the FM2 fix. A genuinely-DONE substrate often carries a
+# rich free-text status (e.g. "amend_validated_v3_exq_614c_..." or
+# "substrate_landed_..._subsumed_by_scaffolded_sd054_603f") that the literal
+# resolved-set + phase regex above do NOT match, so the entry kept surfacing as
+# an "implement this substrate" task. When such a status contains one of these
+# tokens AND the entry is ready=True, treat it as resolved. Excludes any
+# "*pending*" status (wants a downstream validation step).
+_SUBSTRATE_TERMINAL_TOKENS = ("validated", "landed", "subsumed", "superseded", "closed")
+
 
 def _status_resolved(value: str) -> bool:
     """True if a single status string indicates a done/validated substrate.
@@ -276,6 +379,20 @@ def _status_resolved(value: str) -> bool:
         return True
     return False
 
+
+def _status_terminal(value: str) -> bool:
+    """True if a status string carries a terminal/done marker.
+
+    Used ONLY in combination with ready=True (see _substrate_resolved). This is
+    the looser, token-substring cousin of _status_resolved that catches the rich
+    free-text statuses the literal set misses (FM2: MECH-341, MECH-090). Excludes
+    any "*pending*" status, which explicitly wants a downstream validation step.
+    """
+    s = (value or "").strip().lower()
+    if not s or "pending" in s:
+        return False
+    return any(tok in s for tok in _SUBSTRATE_TERMINAL_TOKENS)
+
 _LEADING_CLAIM_TOKEN_RE = re.compile(r"^\s*([A-Z]+-\d+[a-z]?)\b")
 
 
@@ -295,17 +412,49 @@ def _substrate_by_id() -> dict[str, dict]:
 
 
 def _substrate_resolved(entry: dict | None) -> bool:
+    """True if a substrate_queue entry is genuinely DONE -- no longer a retest
+    blocker and no longer implementable.
+
+    `ready` is the AUTHORITY; the status string is only a hint. This is the
+    FM1+FM2 fix for the old status-string-only matcher.
+
+    NOT resolved (still a blocker, still implementable) whenever EITHER:
+      * `ready is False` -- regardless of how 'done' the status string reads.
+        Entries like ARC-046 (status='implemented', ready=False,
+        depends_on_unresolved names goal-pipeline enrichment) or SD-049
+        (status='phase_1_implemented', ready=False) were read as resolved off
+        the status string alone, which dropped them as retest blockers and
+        rendered their substrate_ceiling retests false-ready (FM1).
+      * a non-empty `depends_on_unresolved` -- unresolved prerequisites remain,
+        regardless of status.
+
+    Only once ready is not False AND there are no unresolved deps does the status
+    decide done-ness, via three signals (in order):
+      1. an explicit `done`/`landed` boolean True (structured; preferred -- see
+         the writeup note on the `ready` semantic overload),
+      2. the legacy implemented / phase_N / validated resolved-set
+         (_status_resolved), still consulting BOTH status fields so a custom
+         `implementation_status` variant cannot shadow a `validated` status
+         (MECH-302 regression, hash 994434ce5e5b, 2026-05-30),
+      3. ready is True AND a terminal token (validated/landed/subsumed/
+         superseded/closed) appears in either status field -- the FM2 fix for
+         rich free-text done statuses (MECH-341, MECH-090) that (2) misses.
+    """
     if not entry:
         return False
-    # Consult BOTH fields. Earlier bug: `implementation_status OR status` made
-    # the first truthy value win, so `implementation_status=implemented_env_curriculum_amend`
-    # (truthy, custom variant) shadowed `status=validated` and the entry never
-    # resolved, spawning a hourly /implement-substrate IGW loop (MECH-302, hash
-    # 994434ce5e5b, 2026-05-30).
-    return (
-        _status_resolved(entry.get("implementation_status") or "")
-        or _status_resolved(entry.get("status") or "")
-    )
+    if entry.get("ready") is False:
+        return False
+    if entry.get("depends_on_unresolved"):
+        return False
+    if entry.get("done") is True or entry.get("landed") is True:
+        return True
+    impl = entry.get("implementation_status") or ""
+    status = entry.get("status") or ""
+    if _status_resolved(impl) or _status_resolved(status):
+        return True
+    if entry.get("ready") is True and (_status_terminal(impl) or _status_terminal(status)):
+        return True
+    return False
 
 
 def _substrate_ready_items() -> list[dict]:
@@ -431,17 +580,54 @@ def _implement_substrate_blockers(
     return blockers
 
 
-def _proposed_experiments() -> list[dict]:
+def _proposed_experiments(
+    claims_meta: dict[str, dict] | None = None,
+    exp_evidence: set[str] | None = None,
+) -> list[dict]:
+    """`status: proposed` experiment proposals that are still actionable (FM4).
+
+    The old version returned every proposed entry, surfacing stale proposals
+    whose claim had moved on. We now skip a proposal when ANY of:
+      * its claim's claims.yaml status is resolved/superseded/deprecated
+        (e.g. Q-035 EXP-0087 -- claim already resolved),
+      * its claim's resolved epistemic_category is one that promote/demote (and
+        therefore experiment proposals) are inappropriate for:
+        substrate_coherence / substrate_ceiling / derivational / out_of_domain
+        (e.g. ARC-063 EXP-0084 -- architectural_commitment -> substrate_coherence),
+      * the claim already shows genuine experimental evidence in
+        claim_evidence.v1.json (proposal effectively executed but not marked).
+
+    Also deduplicates by proposal_id (the proposals file carries duplicate IDs --
+    two EXP-0085, two EXP-0087, etc.), keeping the first occurrence.
+    """
     if not PROPOSALS_JSON.exists():
         return []
     try:
         data = json.loads(PROPOSALS_JSON.read_text(encoding="utf-8"))
     except Exception:
         return []
-    return [
-        p for p in (data.get("items") or [])
-        if isinstance(p, dict) and p.get("status") == "proposed"
-    ][:15]
+    claims_meta = claims_meta if claims_meta is not None else _load_claims_meta()
+    exp_evidence = exp_evidence if exp_evidence is not None else _claims_with_experimental_evidence()
+    out: list[dict] = []
+    seen_ids: set[str] = set()
+    for p in data.get("items") or []:
+        if not isinstance(p, dict) or p.get("status") != "proposed":
+            continue
+        pid = str(p.get("proposal_id") or "")
+        if pid and pid in seen_ids:
+            continue
+        if pid:
+            seen_ids.add(pid)
+        cid = str(p.get("claim_id") or "")
+        meta = claims_meta.get(cid) or {}
+        if (meta.get("status") or "").strip().lower() in _CLAIM_DEAD_STATUSES:
+            continue
+        if _resolve_epistemic_category(meta) in _EPI_SUPPRESS_PROPOSAL:
+            continue
+        if cid in exp_evidence:
+            continue
+        out.append(p)
+    return out[:15]
 
 
 _EXQ_BASE_RE = re.compile(r"^(V3-EXQ-\d+)", re.IGNORECASE)
@@ -1000,6 +1186,8 @@ def build_workset() -> dict:
             unblocks=[],
         )
 
+    claims_meta = _load_claims_meta()
+    exp_evidence = _claims_with_experimental_evidence()
     retest_all = sorted(_claim_retest_ids())
     queued_coverage = _queued_retest_coverage(queue_items)
     auto_absorbed_retests: dict[str, str] = {
@@ -1008,13 +1196,35 @@ def build_workset() -> dict:
     retest = [cid for cid in retest_all if cid not in queued_coverage]
     for cid in retest[:10]:
         blocker_strs, structured_blockers = _retest_blockers(cid, substrate_by_id)
+        # FM5: a substrate_ceiling retest is genuinely awaiting substrate
+        # enrichment. It may render ready ONLY when its unblocking substrate is
+        # actually ready/landed (which fix 1 surfaces as an empty blocker list).
+        # If NO substrate_queue entry even targets the claim, we cannot confirm
+        # the enrichment landed, so keep it blocked rather than false-ready.
+        is_ceiling = _resolve_epistemic_category(claims_meta.get(cid)) == "substrate_ceiling"
+        if is_ceiling and not blocker_strs:
+            unblocking = [
+                e for e in substrate_by_id.values()
+                if cid in (e.get("unblocks_claims") or [])
+            ]
+            if not unblocking:
+                blocker_strs = [
+                    f"substrate_ceiling -- awaiting substrate enrichment "
+                    f"(no ready substrate_queue entry targets {cid})"
+                ]
         status = "blocked" if blocker_strs else "ready"
-        why_now = (
-            "claims.yaml pending_retest_after_substrate=true."
-            if status == "ready"
-            else f"Blocked by {len(blocker_strs)} unresolved substrate "
-                 f"prerequisite(s) -- see blocked_by."
-        )
+        if status == "ready":
+            why_now = "claims.yaml pending_retest_after_substrate=true."
+        elif is_ceiling:
+            why_now = (
+                f"substrate_ceiling -- awaiting substrate enrichment; blocked by "
+                f"{len(blocker_strs)} unresolved prerequisite(s). See blocked_by."
+            )
+        else:
+            why_now = (
+                f"Blocked by {len(blocker_strs)} unresolved substrate "
+                f"prerequisite(s) -- see blocked_by."
+            )
         add(
             lane="experiment",
             skill="/queue-experiment",
@@ -1079,7 +1289,7 @@ def build_workset() -> dict:
                 unblocks=list(entry.get("unblocks_claims") or [])[:6],
             )
 
-    for prop in _proposed_experiments()[:5]:
+    for prop in _proposed_experiments(claims_meta, exp_evidence)[:5]:
         pid = prop.get("proposal_id") or "?"
         cid = prop.get("claim_id") or ""
         add(
