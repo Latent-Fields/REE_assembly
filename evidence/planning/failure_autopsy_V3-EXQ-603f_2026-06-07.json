@@ -1,0 +1,63 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-06-07T05:48:39Z",
+ "scope": "single",
+ "status": "confirmed",
+ "targets": [
+  {
+   "run_id": "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T053934Z_v3",
+   "queue_id": "V3-EXQ-603f",
+   "claim_ids": [],
+   "failed_criterion": "absolute",
+   "self_route_label": "substrate_not_engaged / foraging_competence_open",
+   "self_route_trustworthy": true,
+   "self_route_check": "precondition stage0_forced_feed_lights_zgoal MET (2/3); criteria_non_degenerate all true; positive control + seed-44 ecological G3 confirm the chain. Not a vacuous fail (V3-EXQ-642 check applied).",
+   "four_layer_diagnosis": {
+    "claim_alignment": "N/A - claim-free substrate-readiness diagnostic; gates the GAP-2 cohort, tests no claim",
+    "biological_reference": "clear - altricial developmental provisioning / gradual weaning with a protected hazard-avoidance learning period; not a formal import; no lit-pull",
+    "prerequisites": "missing - hazard-avoidance / survival competence is never trained as its own stage; P1 loads goal-unfreeze + wean-to-hazard simultaneously",
+    "implementation": "partial - 2026-06-05 residual levers fire (reef-spawn 20 ep, auto-reconcile threshold, cue fires) but are necessary-not-sufficient for survival",
+    "environment": "wrong pressures - P1 hazard arrives before policy is survival-competent; hfa=0.3 makes foraging actively dangerous",
+    "measurement": "adequate - gate non-degenerate; positive control met; seed-44 ecological G3 0.45>0.4 confirms end-to-end chain",
+    "integration": "coupled (proven) - seed 44 contact->seed->z_goal@contact end-to-end",
+    "scale": "adequate - restored budget vs 603e; budget confound ruled out"
+   },
+   "biological_reference": {
+    "closest_mechanism": "altricial developmental provisioning: nursery -> gradual wean -> protected exploration acquiring hazard-avoidance before foraging-under-hazard",
+    "dependencies": ["safe goal-attainment competence", "hazard-avoidance competence trained in isolation", "graded wean into combined pressure"],
+    "is_formal_import": false,
+    "divergence": "none - curriculum-structure gap, not a concept divergence",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_conditional",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-603f (2026-06-07) substrate-readiness FAIL self-routed substrate_not_engaged/foraging_competence_open. Trustworthy (precondition met 2/3, criteria non-degenerate). The goal-formation + ecological-seeding chain is PROVEN end-to-end on seed 44 (P2 contact_rate 0.393, 85 events, z_goal_norm_at_contact_peak 0.450 > 0.4 gate); the 2026-06-05 foraging residual moved the substrate off 603e's z_goal=0-on-all-cells. The single remaining GAP-2 blocker is P1 survival/hazard-avoidance (G1 0/3, median episode len 12.5-38.0 vs gate 75; even the foraging seed 44 died at 28.5). Diagnosis: the curriculum couples goal-pipeline-unfreeze and wean-to-hazard in P1; the agent cannot acquire both at once. Route: implement-substrate amend scaffolded_sd054_onboarding to DECOMPOSE the curriculum into separately-trained competency stages (safe goal-attainment -> isolated hazard-avoidance -> combined wean), optionally a forced-choice micro-env (goal/hazard/free per adjacent cell). GAP-2 stays blocked_pending_substrate until a re-issued readiness run clears G1>=2/3 AND G2>=2/3 AND ecological G3>=2/3. The script's pre-registered 'cue-to-action selection-authority (640b) is next' routing is superseded for GAP-2: seed 44 foraged + seeded z_goal and still died, so cue-authority cannot fix the survival leg (640b remains valid only for the GAP-7 cue-authority claim).",
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "scaffolded_sd054_onboarding",
+    "sd_id_suggested": "scaffolded_sd054_onboarding",
+    "title": "Decompose wean-to-wild curriculum into separately-trained competency stages: safe goal-attainment -> isolated hazard-avoidance -> combined wean (P1 survival leg, GAP-2)",
+    "implementation_hint": "V3-EXQ-603f confirmed the GAP-2 wall is the P1 survival leg, not goal-formation/cue/contact-wiring (all proven: seed 44 foraged contact_rate 0.393 / 85 events and seeded z_goal 0.450 at contact, yet still died median 28.5 < 75 survival gate; G1 0/3). The current curriculum couples two competencies in P1 (goal-pipeline unfreeze + wean to hazard) and the agent cannot acquire both at once. Amend: insert a SEPARATE hazard-avoidance training stage between P0 (safe, goal-frozen warm-up) and P1 (combined wean): (1) extend/confirm a safe goal-attainment stage (hazard-free) until foraging is reliable on its own; (2) NEW stage - hazards present with minimal foraging pressure so the policy learns avoidance in isolation; (3) wean into combined foraging+hazard (existing P1/P2) entered by an already-survival-and-goal-competent policy. Optional structured variant: a forced-choice micro-env where each adjacent grid cell carries a distinct affordance (goal / hazard / free) for controlled balanced discrimination training. Curriculum-STRUCTURE amend (new stage), not stronger holds and not a goal-stream change; substrate code exists. Validate via a re-issued substrate-readiness run (V3-EXQ-603g) against the same G0/G1/G2/G3 gate.",
+    "unblocks_claims": ["SD-049", "SD-015", "MECH-229", "MECH-230", "MECH-117", "MECH-216", "ARC-030", "ARC-032", "Q-030"],
+    "depends_on_unresolved": [],
+    "priority_suggested": 1,
+    "failure_record_entry": {
+     "run_id": "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T053934Z_v3",
+     "experiment_type": "v3_exq_603f_scaffolded_sd054_substrate_readiness",
+     "metric": "G1 P1 survival 0/3 (median last-10 episode length 12.5/38.0/28.5 vs gate 75); G2 P2 contact 1/3; even the foraging seed (44) died at 28.5. G0 forced-feed positive control 2/3 PASS and seed-44 ecological G3 z_goal@contact 0.450>0.4 confirm goal-formation + seeding are sound.",
+     "target": "G1 survival >=2/3 AND G2 contact >=2/3 AND ecological G3 z_goal_norm_at_contact_peak>0.4 >=2/3"
+    }
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "Goal-formation + ecological-seeding chain proven end-to-end (seed 44: contact 0.393, 85 events, z_goal@contact 0.450>gate); the 2026-06-05 residual moved off 603e's z_goal=0-on-all-cells.",
+    "GAP-2's single load-bearing blocker is now P1 survival / hazard-avoidance (0/3, foraging seed died), not goal-formation, cue-recall, or contact wiring.",
+    "The curriculum couples goal-pipeline-unfreeze and wean-to-hazard in P1; the agent cannot acquire both competencies at once -> decompose into separately-trained stages.",
+    "The script's pre-registered 'selection-authority (640b) is the next blocker' routing is superseded for GAP-2: seed 44 foraged + seeded z_goal and still died, so cue-authority cannot fix the survival leg."
+   ],
+   "routing": "implement-substrate"
+  }
+ ],
+ "cluster_pattern": null
+}
