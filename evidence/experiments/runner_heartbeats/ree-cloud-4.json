@@ -1,47 +1,33 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-07T15:34:35Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-646",
-      "result": "PASS",
-      "completed_at": "2026-06-06T17:24:51.898531+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-643b",
-      "result": "PASS",
-      "completed_at": "2026-06-06T23:06:57.321370+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614e",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T07:07:01.808045+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-604b",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T11:01:15.134156+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-624c",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T15:14:28.051730+00:00"
-    }
+  "last_tick_utc": "2026-06-07T19:22:33Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-652",
+  "current_exq_started_utc": "2026-06-07T19:17:32.313845+00:00",
+  "current_title": "PARALLEL-RACE CLONE of V3-EXQ-640b on ree-cloud-4: identical SD-057/MECH-346/MECH-347 cue-authority gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds, use_modulatory_selection_authority=True+gain=0.5). Queued to run alongside the slow 640b instance on DLAPTOP-4.local; whichever finishes first is THE evidence.",
+  "current_claim_id": "SD-057",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_OFF",
+    "runs_done": 0,
+    "runs_total": 21,
+    "episodes_done": 30,
+    "episodes_total": 235,
+    "overall_pct": 0.6
+  },
+  "seconds_elapsed": 300,
+  "seconds_remaining": 36122,
+  "recent_lines": [
+    "[v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone] starting (dry_run=False) modulatory_authority=True gain=0.5",
+    "Seed 42 Condition ARM_OFF",
+    "[train] stage0 seed=42 arm=ARM_OFF ep 20/235 z_goal_peak=0.4415 formed=True token_bank_size_end=0",
+    "[train] stage0b seed=42 arm=ARM_OFF ep 30/235 retention=0.989 gate=pass"
   ],
-  "runner_pid": 670,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 668,
   "runner_version": null,
   "gpu": {
     "available": false
