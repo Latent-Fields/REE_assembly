@@ -3933,7 +3933,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_197",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3942,7 +3942,12 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "MECH-194",
+        "ARC-049"
+      ],
+      "blocked_note": "Step 2.5 substrate-readiness STOP (IGW-20260607-048, 2026-06-07): MECH-197 (play-type dependency-order progression: sensorimotor->constructive->pretend->rule-based->cooperative) is not V3-testable. The ree-v3 substrate implements NO play mode -- grep 'play' over ree_core/ is empty. Missing prerequisites: MECH-194 (play mode = synthetic z_goal/z_harm substitution with full E2/E3 learning flow), ARC-049 (bilateral play-frame tag), pretend-play commitment-in-synthetic-frame (MECH-094 x ARC-049 intersection), and multi-agent cooperative play. INV-058/INV-060 (play as structurally necessary / play dominates child phase) are also unbuilt. Right next step is substrate enrichment (play_mode), not an experiment on the current substrate. Recommend governance reclassify MECH-197 epistemic_category: substrate_conditional."
     },
     {
       "acceptance_checks": [
