@@ -1,22 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 668,
-  "runner_started_at": "2026-06-06T16:05:50.142529+00:00",
-  "last_updated": "2026-06-07T13:16:32.333406+00:00",
+  "runner_pid": 667,
+  "runner_started_at": "2026-06-07T13:45:38.393659+00:00",
+  "last_updated": "2026-06-07T19:30:29.566513+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-603g",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "scaffolded_sd054_onboarding substrate-readiness: curriculum decomposition (isolated hazard-avoidance Stage-H between P0 and P1) -- GAP-2 P1 survival leg; supersedes 603f",
-      "description": "",
-      "estimated_minutes": 94.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-610f",
       "backlog_id": "EVB-0270",
@@ -51,45 +40,12 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-598c",
-      "backlog_id": "",
-      "claim_id": "SD-033a",
-      "title": "SD-033a metric-redesign falsifier: direct rule_state cosine probes on held-out rule-context pairs (replaces 598b reef-visit-band behavioural metric). Teleport-sampled reef-context vs forage-context observation pool drives the rule_state EMA via the real sense->select_action->lateral_pfc.update path under sustained context; mean-centered cosine (RSA) measures rule_state context-discriminability. Independent of the blocked ARC-065/GAP-B behavioural-diversity work (random/teleport sampling sidesteps monomodal collapse). Same-statistic z_world discriminability is the non-vacuity readiness precondition.",
-      "description": "",
-      "estimated_minutes": 16.8,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-604b",
-      "backlog_id": "",
-      "claim_id": "MECH-314",
-      "title": "MECH-314 sub-flavour ablation on validated modulatory-bias-selection-authority (supersedes 604a)",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-624c",
       "backlog_id": "EVB-0237",
       "claim_id": "MECH-320",
       "title": "ARC-068/MECH-320 Niv-Salamone opportunity-cost dissociation -- no-op-rich re-spec (5 seeds + non-vacuous majority gate)",
       "description": "",
       "estimated_minutes": 346.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-645",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "arm-reuse Phase-0 MINT of the V3-EXQ-610 OFF/baseline arm (INV-074 crystallization necessity; ARM_0_stripped_control) on ree-cloud-3. Identical script/config to V3-EXQ-644 (ree-cloud-2); the second instance for the cross-instance determinism check.",
-      "description": "",
-      "estimated_minutes": 784.2,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2679,6 +2635,48 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_650_control_vector_collapse_diagnostic_20260607T131632Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 120.7
+    },
+    {
+      "queue_id": "V3-EXQ-603g",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "scaffolded_sd054_onboarding substrate-readiness: curriculum decomposition (isolated hazard-avoidance Stage-H between P0 and P1) -- GAP-2 P1 survival leg; supersedes 603f",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_603g_scaffolded_sd054_substrate_readiness] task_gate G0=True G1=False G2=False (G_H_diag=False) -> outcome=FAIL | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-603g -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-603g.json",
+      "started_at": "2026-06-07T13:45:38.403315+00:00",
+      "completed_at": "2026-06-07T15:00:57.444554+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_603g_scaffolded_sd054_substrate_readiness/v3_exq_603g_scaffolded_sd054_substrate_readiness_20260607T150056Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 4519.0
+    },
+    {
+      "queue_id": "V3-EXQ-651a",
+      "backlog_id": "EVB-0076",
+      "claim_id": "ARC-060",
+      "title": "ARC-060 blocked-goal recovery redesign: Phase-B agent displacement + non-degeneracy gate + behavioural re-approach readout",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | [v3_exq_651a] outcome=FAIL direction=weakens non_degenerate=True (33.4s) | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-651a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-651a.json",
+      "started_at": "2026-06-07T15:07:00.301069+00:00",
+      "completed_at": "2026-06-07T15:07:34.871710+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_651a_arc060_blocked_goal_recovery/v3_exq_651a_arc060_blocked_goal_recovery_20260607T150734Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 34.6
+    },
+    {
+      "queue_id": "V3-EXQ-604c",
+      "backlog_id": "",
+      "claim_id": "MECH-314",
+      "title": "MECH-314/Q-044 sub-flavour ablation on validated GAP-A substrate + selection authority (RANGE readiness gate); supersedes 604b",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS (label=curiosity_authority_supports_mech314) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-604c -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-604c.json",
+      "started_at": "2026-06-07T15:11:37.781425+00:00",
+      "completed_at": "2026-06-07T19:30:29.565842+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 15531.8
     }
   ]
 }
