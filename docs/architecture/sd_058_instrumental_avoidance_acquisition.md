@@ -263,3 +263,53 @@ Literature synthesis: `evidence/literature/targeted_review_hazard_avoidance_lear
 Plan-of-record: `evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md`,
 `evidence/planning/failure_autopsy_V3-EXQ-603g-624c-651a_2026-06-07.md`,
 `evidence/planning/substrate_queue.json` (`scaffolded_sd054_onboarding`).
+
+---
+
+## Implementation grounding corrections (2026-06-07)
+
+Three corrections surfaced during implementation (the substrate is unchanged; these
+sharpen the framing and the validation):
+
+1. **Distinct from the reflexive escape-from-freeze levers (NOT a duplicate).**
+   REE already has two reflexive escape mechanisms over the PAG freeze: **SD-037**
+   `override_signal` (orexin) raises the PAG **exit threshold** on drive+sustained-threat
+   (`agent.py` PAG block), and **MECH-281** lowers the **MECH-091 urgency-interrupt**
+   threshold. Both are **reflexive** threat/arousal-driven escape -- they fire as a
+   function of instantaneous state, not of anything learned. The ilPFC gate
+   (MECH-357) is categorically different: its freeze-suppression and action-bias scale
+   with a **LEARNED avoidance-efficacy** (the eligibility trace), bootstrapped by the
+   protective-scaffold floor. It is the *acquisition* of an instrumental avoidance
+   action by suppressing the Pavlovian reaction (Moscarello & LeDoux 2013), not a
+   reflex. This is recorded as `distinct_from: [SD-037, MECH-281, MECH-091]` on SD-058
+   and MECH-357 in `claims.yaml`.
+
+2. **The load-bearing prerequisite: the harm stream was never fed.** The legacy
+   `scaffolded_sd054_onboarding._train_episode` / `_eval_episode` call
+   `agent.sense(obs_body, obs_world)` with **no harm args**, so `z_harm_a` (and
+   `z_harm_s`) are **None across the entire curriculum**. Every harm-driven substrate
+   -- MECH-279 PAG freeze, SD-035 amygdala, AND this gate -- keys on `z_harm_a` and is
+   therefore **inert** in the failing curriculum: the agent navigates the hazard band
+   with no threat signal at all. The fix is a new flag `scaffold_feed_harm_stream`
+   (default False, bit-identical OFF) + helper `_sense_with_optional_harm` that feeds
+   `harm_obs` + `harm_obs_a` into `sense()`. With it on, `z_harm_a_norm` measures
+   ~0.34 in Stage-H -- enough for the gate to engage and (with tuned thresholds) for
+   PAG to freeze. This is the wiring that gives the agent a threat signal to learn
+   avoidance from; without it the whole defensive/acquisition stack does nothing.
+
+3. **The validation enables PAG so the freeze-suppression is the literal,
+   load-bearing mechanism.** `use_pag_freeze_gate` defaults False and the scaffold
+   does not set it, so half (b) (freeze-suppression over the MECH-279 override) is
+   otherwise unexercised. V3-EXQ-603h is therefore a literal Moscarello & LeDoux
+   **ilPFC-lesion vs intact** design: BOTH arms have PAG (tuned to `z_harm_a` ~0.34 --
+   `pag_duration_input_threshold` 0.2 < 0.34 so the duration counter accumulates,
+   `pag_theta_freeze` 0.8) + the fed harm stream; the only difference is the ilPFC gate.
+   ARM_LESION (PAG, no gate) freezes and cannot acquire avoidance; ARM_INTACT (PAG +
+   gate + protective-scaffold driver) suppresses the freeze and acquires instrumental
+   avoidance. The scaffold floor resolves the freeze->never-act->never-learn
+   chicken-and-egg: it bootstraps suppression from the start so the agent acts, accrues
+   avoidance experience, and the learned efficacy sustains the suppression as the floor
+   anneals. A probe confirms the full chain engages once the harm stream is fed (PAG
+   freezes; the gate suppresses `n_freeze_suppressed>0` and learns efficacy 0 -> ~0.6).
+   Non-vacuity preconditions on 603h: PAG must freeze on the lesion arm AND the gate
+   must engage+suppress on the intact arm, else `substrate_not_ready_requeue`.

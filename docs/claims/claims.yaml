@@ -37320,3 +37320,105 @@
     Biology: Balleine & O'Doherty 2010 (approach_commit goal-conditioned). MECH-094:
     waking action selection only. Validation V3-EXQ-637.
   location: docs/architecture/sd_057_object_bound_incentive_salience.md
+
+- id: SD-058
+  title: "Instrumental-avoidance acquisition: REE's defensive system needs an instrumental-ACQUISITION side, not only the defensive-REACTION side. SD-035 (amygdala BLA/CeA salience) + MECH-279 (PAG freeze gate) give REE the Pavlovian reaction (Tovote 2016: response EXECUTION, not learning); what is missing is the step from reaction to learned avoidance. Moscarello & LeDoux 2013: active avoidance learning is the RESOLUTION of a Pavlovian-instrumental conflict -- the freezing reaction and the instrumental avoidance action are mutually exclusive, and learning to avoid REQUIRES the infralimbic PFC to SUPPRESS central-amygdala-driven freezing (ilPFC lesion -> more freezing, less avoidance; CeA lesion -> opposite). A freeze-and-salience substrate with no reaction-suppression / instrumental-acquisition layer is the ilPFC-lesion animal: it freezes instead of learning to avoid -- the V3-EXQ-603g G_H 0/3 signature. SD-058 adds the architecture (an instrumental-avoidance action pathway + an ilPFC-analog freeze-suppression gate gated by learned avoidance-efficacy, staged under a protective scaffold); MECH-357 is the gate mechanism."
+  claim_type: design_decision
+  subject: defensive_action.instrumental_avoidance_acquisition
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: standard
+  claim_level: architectural
+  registered_utc: "2026-06-07"
+  depends_on:
+    - SD-035    # amygdala BLA/CeA salience -- the defensive-reaction side this builds the acquisition side onto
+    - MECH-279  # PAG freeze gate -- the freeze output the ilPFC gate suppresses
+    - SD-011    # z_harm_a affective stream -- the threat signal the gate reads
+  distinct_from:
+    - SD-037    # orexin override: REFLEXIVE arousal/drive-driven raise of the PAG exit threshold -- NOT learned avoidance acquisition
+    - MECH-281  # orexin motor-coupling: REFLEXIVE lower of the MECH-091 urgency-interrupt threshold -- escape reflex, not acquisition
+    - MECH-091  # urgency interrupt: z_harm threat reflex (interrupt a committed program), not learned avoidance
+  functional_restatement: >
+    Architectural decision (V3-tractable). REE's defensive machinery (SD-035 amygdala
+    salience + MECH-279 PAG freeze) is reaction-only. Active avoidance LEARNING
+    requires resolving the Pavlovian-instrumental conflict: an instrumental-avoidance
+    ACTION pathway plus an infralimbic-PFC-analog SUPPRESSION GATE over the freeze
+    output, with the suppression gated by a LEARNED avoidance-efficacy (eligibility
+    trace) that rises as the agent discovers directed action under threat reduces
+    z_harm_a, bootstrapped early by a protective scaffold (maternal-buffering /
+    Turchetta 2020 reset-curriculum analogue) that anneals as competence grows. This
+    is structurally distinct from the reflexive escape-from-freeze levers (SD-037
+    orexin raises the PAG exit threshold; MECH-281 lowers the urgency-interrupt) which
+    are instantaneous threat/arousal reflexes, not the gradual developmental
+    acquisition (Debiec & Sullivan 2017; Thompson 2008).
+  implementation_note: >
+    IMPLEMENTED 2026-06-07 (substrate; v3_pending until the Stage-H validation EXQ
+    PASSes). Mechanism is MECH-357 (ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py,
+    InstrumentalAvoidanceGate -- pure-arithmetic regulator behind
+    use_instrumental_avoidance, no-op default, bit-identical OFF). Wired into the
+    scaffolded_sd054_onboarding Stage-H as the avoidance-learning driver (protective-
+    scaffold floor anneal). LOAD-BEARING PREREQUISITE found this session: the legacy
+    scaffold fed no harm stream to sense() (z_harm_a None across the curriculum ->
+    MECH-279/SD-035/the gate all inert); fixed via scaffold_feed_harm_stream.
+  evidence_quality_note: >
+    Validation EXQ V3-EXQ-603h queued (diagnostic, claim_ids=[]): literal Moscarello &
+    LeDoux ilPFC-lesion vs intact (both arms MECH-279 PAG + fed harm; only the ilPFC
+    gate differs). Acceptance G_H_INTACT >= 2/3 AND INTACT > LESION; non-vacuity
+    preconditions (PAG freezes on lesion; gate engages+suppresses on intact). PASS
+    unblocks ARC-060 / MECH-320 / ARC-068 / SD-054-readiness retests. Not promotable
+    until the EXQ PASSes (v3_pending). Design doc:
+    docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
+  location: docs/architecture/sd_058_instrumental_avoidance_acquisition.md
+
+- id: MECH-357
+  title: "Infralimbic-PFC-analog freeze-suppression + instrumental-avoidance gate: the mechanism instantiating SD-058. A pure-arithmetic regulator (ree_core/pfc/infralimbic_avoidance_gate.py, sibling to SD-035 CeA/BLA, MECH-279 PAG, MECH-313/MECH-320 policy regulators) with three coordinated pieces, all behind use_instrumental_avoidance (no-op default): (a) an instrumental-avoidance ACTION pathway -- a per-candidate E3 score-bias that under threat penalises the no-op/freeze class proportional to effective avoidance-efficacy, RELEASING the instrumental action (it does not pick the escape direction; E3's harm gradient does -- ARC-007-strict-compatible); (b) an ilPFC freeze-SUPPRESSION gate that, when effective_efficacy*threat_scale >= threshold, overrides the MECH-279 freeze no-op so the agent acts instead of freezing; (c) an eligibility-trace avoidance-efficacy learner credited when a directed action under threat drops z_harm_a (Debiec & Sullivan 2017 gradual acquisition), bootstrapped by a protective-scaffold floor that anneals across Stage-H (Turchetta 2020)."
+  claim_type: mechanism_hypothesis
+  subject: prefrontal.infralimbic_freeze_suppression_avoidance_gate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-06-07"
+  depends_on:
+    - SD-058    # the architecture this mechanism instantiates
+    - MECH-279  # PAG freeze gate -- the freeze output piece (b) suppresses
+    - SD-035    # amygdala salience -- the defensive-reaction context
+    - SD-011    # z_harm_a affective stream -- the threat signal driving all three pieces
+  distinct_from:
+    - SD-037    # orexin override: reflexive arousal-driven PAG-exit-threshold raise -- MECH-357 suppression is LEARNED-efficacy-gated
+    - MECH-281  # orexin motor-coupling: reflexive urgency-interrupt lower -- not acquisition
+    - MECH-091  # urgency interrupt: threat reflex, not learned avoidance
+    - MECH-279  # PAG freeze: the REACTION; MECH-357 is the learned SUPPRESSION of it enabling instrumental avoidance
+  functional_restatement: >
+    Mechanism hypothesis (V3-tractable). avoidance_efficacy in [0,1] is an EMA
+    eligibility trace: a directed action under threat (z_harm_a_norm > threat_floor)
+    that drops z_harm_a credits it; freezing / failed avoidance decays it. The
+    effective efficacy consumed by both consumers is max(avoidance_efficacy,
+    scaffold_floor); the curriculum sets the scaffold_floor high early (protective
+    scaffold bootstrapping the freeze-suppression so the agent acts, accrues avoidance
+    experience, and learns) and anneals it down as the learned efficacy takes over.
+    The action-bias (a) penalises the no-op/freeze class under threat; the
+    freeze-suppression (b) overrides the MECH-279 no-op when effective_efficacy *
+    threat_scale >= suppression_threshold. Falsifiable: with the gate ON in an
+    isolated hazard-avoidance stage (PAG present), the survival leg trains
+    (G_H >= 2/3) where the ilPFC-lesion (gate OFF) freezes and dies; the suppression
+    must scale with LEARNED efficacy, not instantaneous arousal (the SD-037/MECH-281
+    distinction).
+  implementation_note: >
+    IMPLEMENTED 2026-06-07. ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py
+    (InstrumentalAvoidanceGate + Config + Output); agent.py wiring (update in sense(),
+    action-bias + freeze-suppression in select_action()); config.py flags (no-op
+    default). 912 contracts + 7/7 preflight PASS (bit-identical OFF); 7 MECH-357
+    contracts + 4 C13 + 2 C14 scaffold contracts. Pure-arithmetic regulator -- no
+    trained parameters, no phased training. MECH-094: no-op under simulation_mode.
+  evidence_quality_note: >
+    Validation V3-EXQ-603h (diagnostic, claim_ids=[]). Probe confirms the full chain
+    engages once the harm stream is fed: PAG freezes on lesion, the gate suppresses
+    (n_freeze_suppressed>0) + learns (efficacy 0 -> ~0.6) on intact. Not promotable
+    until the EXQ PASSes (v3_pending). Design doc:
+    docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
+  location: docs/architecture/sd_058_instrumental_avoidance_acquisition.md

@@ -3549,6 +3549,12 @@
     "title": "Endogenous parasympathetic recovery / autonomic rebound: an active, offset-triggered, transient acceleration of return-to-baseline for the affective/autonomic stress state, fired by the agent's OWN stressor offset (the z_harm_a derivative going negative -- the MECH-302 SufferingDerivativeComparator signal) with NO conspecific and NO prediction. Shares the effector/update rule of MECH-355 soothing (decay-acceleration on the recovery side: a transient state-scaled multiplier on the MECH-219 z_harm_a recovery_rate + the SD-032e drive_bias leak) but differs by TRIGGER (endogenous offset vs conspecific). The V3-tractable sibling of MECH-355 that closes REE's sympathetic-rich / parasympathetic-poor asymmetry (dense escalation: MECH-219 onset, SD-032e accumulation, SD-037 override, MECH-091 urgency, MECH-279 freeze; thin recovery: only passive recovery_rate + offline-only drive_bias decay). Distinct from passive MECH-219 recovery (active overshoot, not decay), from MECH-302 relief (shared offset trigger, different output -- relief writes a reinforcer, rebound boosts recovery rate), from MECH-303/304 safety (no prediction), and from MECH-355 soothing (endogenous trigger, not social).",
     "type": "mechanism_hypothesis"
   },
+  "MECH-357": {
+    "status": "candidate",
+    "subject": "prefrontal.infralimbic_freeze_suppression_avoidance_gate",
+    "title": "Infralimbic-PFC-analog freeze-suppression + instrumental-avoidance gate: the mechanism instantiating SD-058. A pure-arithmetic regulator (ree_core/pfc/infralimbic_avoidance_gate.py, sibling to SD-035 CeA/BLA, MECH-279 PAG, MECH-313/MECH-320 policy regulators) with three coordinated pieces, all behind use_instrumental_avoidance (no-op default): (a) an instrumental-avoidance ACTION pathway -- a per-candidate E3 score-bias that under threat penalises the no-op/freeze class proportional to effective avoidance-efficacy, RELEASING the instrumental action (it does not pick the escape direction; E3's harm gradient does -- ARC-007-strict-compatible); (b) an ilPFC freeze-SUPPRESSION gate that, when effective_efficacy*threat_scale >= threshold, overrides the MECH-279 freeze no-op so the agent acts instead of freezing; (c) an eligibility-trace avoidance-efficacy learner credited when a directed action under threat drops z_harm_a (Debiec & Sullivan 2017 gradual acquisition), bootstrapped by a protective-scaffold floor that anneals across Stage-H (Turchetta 2020).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -4279,6 +4285,12 @@
     "status": "candidate",
     "subject": "drive.object_bound_incentive_salience",
     "title": "Object-bound incentive-salience layer: insert a per-object incentive layer between the benefit pulse and z_goal. The legacy goal stream wrote a SINGLE z_goal attractor overwritten on every contact, conflating liking (hedonic impact at consumption) with wanting (incentive salience to a cue/object) and goal-location (where) with goal-object (what); wanting target always equalled liking target, so the L9 wanting!=liking dissociation was structurally inexpressible (514l C6=0.0 on all seeds). SD-057 adds (L2 MECH-344) benefit->object-identity binding on the SD-049 per-type tag, (L3 MECH-345) a per-object slow-decay revaluable incentive token with at-recall drive-specific wanting amplitude = base_value*(1+kappa*per_axis_drive), and (L4 MECH-346) z_goal seeded FROM the most-wanted object's stored embedding rather than the raw last-contacted z_resource. v1 = L2+L3+L4 core; L6 cue-recall (MECH-CUEWANT) + L7 dACC-readout-wiring (MECH-CONSUME) deferred to a phase-2 pass within this SD.",
+    "type": "design_decision"
+  },
+  "SD-058": {
+    "status": "candidate",
+    "subject": "defensive_action.instrumental_avoidance_acquisition",
+    "title": "Instrumental-avoidance acquisition: REE's defensive system needs an instrumental-ACQUISITION side, not only the defensive-REACTION side. SD-035 (amygdala BLA/CeA salience) + MECH-279 (PAG freeze gate) give REE the Pavlovian reaction (Tovote 2016: response EXECUTION, not learning); what is missing is the step from reaction to learned avoidance. Moscarello & LeDoux 2013: active avoidance learning is the RESOLUTION of a Pavlovian-instrumental conflict -- the freezing reaction and the instrumental avoidance action are mutually exclusive, and learning to avoid REQUIRES the infralimbic PFC to SUPPRESS central-amygdala-driven freezing (ilPFC lesion -> more freezing, less avoidance; CeA lesion -> opposite). A freeze-and-salience substrate with no reaction-suppression / instrumental-acquisition layer is the ilPFC-lesion animal: it freezes instead of learning to avoid -- the V3-EXQ-603g G_H 0/3 signature. SD-058 adds the architecture (an instrumental-avoidance action pathway + an ilPFC-analog freeze-suppression gate gated by learned avoidance-efficacy, staged under a protective scaffold); MECH-357 is the gate mechanism.",
     "type": "design_decision"
   }
 }
