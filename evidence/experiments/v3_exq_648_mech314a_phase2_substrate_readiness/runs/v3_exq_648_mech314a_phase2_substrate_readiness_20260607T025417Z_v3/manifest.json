@@ -1,0 +1,98 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_648_mech314a_phase2_substrate_readiness",
+  "run_id": "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-07T02:54:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "phase2_wiring_does_not_support",
+    "preconditions": [
+      {
+        "name": "sd056_candidate_zworld_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 (SD-056-trained positive control, SP-CEM multi-class candidate pool) per-candidate z_world SPREAD cand_world_pairwise_dist clears the floor -- the SAME cross-candidate range statistic C2 routes on (not a magnitude).",
+        "control": "ARM_1: SD-056 contrastive trained online; candidates differ in first action (SP-CEM)",
+        "measured": 0.114789,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.233834,
+        "threshold": 1000000.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_baseline_collapsed",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_visitation_lifts_per_candidate_bias_spread",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_augmentation_engages_when_needed",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C4_mech094_simulation_gate",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": true,
+      "C3": true,
+      "C4": true
+    },
+    "routing": {
+      "substrate_not_ready_requeue": "re-queue V3-EXQ-648a at higher P0 budget; do NOT weaken Phase-2",
+      "phase2_substrate_ready": "PASS -> /queue-experiment V3-EXQ-590b; apply section-8 updates",
+      "phase2_wiring_does_not_support": "FAIL -> /failure-autopsy on the failing criterion"
+    }
+  }
+}
