@@ -3886,13 +3886,10 @@
     {
       "sd_id": "modulatory-bias-selection-authority",
       "title": "Modulatory score-bias selection authority at E3.select",
-      "status": "implemented_pending_validation",
-      "ready": false,
+      "status": "implemented",
+      "ready": true,
       "design_doc": "docs/architecture/modulatory_bias_selection_authority.md",
-      "depends_on_unresolved": [
-        "scaffolded_sd054_onboarding (GAP-2 foraging competence -- non-zero contact required for a clean approach-lift re-test)",
-        "C2 validation-criterion redesign (V3-EXQ-643b: authority-attributable selection-flip, near-tie-scoped, not the legacy-confounded bias_changed_selection_frac delta)"
-      ],
+      "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-314",
         "MECH-314a",
@@ -3950,7 +3947,7 @@
       "implementation_hint": "Modulatory/secondary score-bias channels (MECH-314 curiosity bonus, MECH-320 vigor no-op penalty) are added to candidate scores at e3.select but are dominated by the primary harm/goal score term, so they never change argmax (604a bias=0.0 even ON, 624a v_t=0.05 both ON==OFF). Give modulatory biases competitive selection authority -- score normalization before bias addition, relative scaling of the bias to the candidate score gap, or a separate arbitration/gating channel -- so an enabled modulatory mechanism can change selection. Mirrors the z_goal-vs-harm salience gap (603e/626a/622) and the monostrategy 'diversity must act at/after E3 scoring' finding. [2026-06-03 update] V3-EXQ-614d adds a THIRD convergent instance: MECH-341's within-class sampling temperature also fires but leaves committed-class entropy invariant. The redesign should UNIFY the committed-action authority fix across all three scoring-layer levers (MECH-314 curiosity, MECH-320 vigor, MECH-341 within-class temperature/stratified-select) -- they share one bottleneck: scoring-layer signals do not reach the committed argmax. Build the arbitration/authority channel once, exercise it with all three.",
       "priority": 1,
       "added_session": "governance-cycle-20260603T063324Z",
-      "last_seen_session": "governance-cycle-20260606T2017Z",
+      "last_seen_session": "governance-cycle-20260607T0420Z",
       "depends_on_resolved_note": "ARC-065 (same E3.select arbitration layer) coordination gate CLEARED 2026-06-03: the MECH-341 E3-diversity validation the gate was waiting on landed (V3-EXQ-614d, diagnostic) and confirms MECH-341's within-class-temperature lever shares this exact committed-action-authority gap -- so they are addressed together, not serialized. MECH-341 substrate already implemented 2026-05-27; SD-056 landed + falsifiers passed (569d/617).",
       "implementation_log": [
         {
@@ -3967,8 +3964,15 @@
           "utc": "2026-06-06T20:17:00Z",
           "session": "governance-cycle-20260606T2017Z",
           "note": "GOVERNANCE AMEND 2026-06-06 (autopsy-driven, action=amend per failure_autopsy_V3-EXQ-647_2026-06-06). Appended the V3-EXQ-647 failure_record. The 2026-06-06 float32-cancellation fix is CONFIRMED working by 647: C1 (authority active, active_frac 0.97, scale dose-response 3.28->18.0, OFF silent) PASSES -- the dead-gate blocker (604a/643) is resolved. The ACTIVE blocker has MOVED to TEST-DESIGN: C2 rank-change (bias_changed_selection_frac delta) is confounded by a legacy-channel-saturated seed-variable OFF baseline and cannot measure a gain<1 gap-relative authority. ready stays FALSE; next_step -> V3-EXQ-643b (instrumentation-only C2 fix, authority-attributable near-tie-scoped selection-flip, reuses the 646 ARM_A baseline byte-for-byte on ree-cloud-4). priority kept at 1 (entry blocks 12 claims -> 6a-ii derivation overrides autopsy priority_suggested=2). 647 carries claim_ids=[] -> no claims.yaml change. status implemented_pending_validation unchanged."
+        },
+        {
+          "utc": "2026-06-07T04:20:09Z",
+          "session": "governance-cycle-20260607T0420Z",
+          "note": "VALIDATED 2026-06-07 (governance, user-confirmed flip). V3-EXQ-643a (modulatory_authority_validation, supersedes 643; diagnostic, claim_ids=[]) is a CLEAN VERIFIED PASS: readiness met (modulatory_authority_range 0.222 >> 1e-4 floor -- the SAME range statistic C1 gates on -- AND primary scores BOUNDED, raw_bounded_frac=1.0, max ~67-120 vs 643's ~1e32, via the SD-056 rollout-norm clamp); C0+C1+C2 all PASS and non-degenerate; C3 dose-response informative (scale 28.9->60.7, changed-selection 0.43->0.50, C>B). Per-arm: ARM_A off bit-identical silent (active_frac 0.0/range 0.0/scale 0.0); ARM_B/C on (active_frac 1.0, range 0.16, scale 28.9/60.7, changed-selection 0.43/0.50). The clean FULL run PASSES C2 where the 647 cloud reuse-split FAILed it on a test-design confound (legacy-channel-saturated seed-variable OFF baseline) -> 643a RESOLVES the 647 C2 confound and the planned V3-EXQ-643b instrumentation-only re-validation is now MOOT (not queued). status implemented_pending_validation -> implemented; ready false -> true. Unblocks the 12 per-claim retests (MECH-314/314a/b/c, Q-044, MECH-320, ARC-068, MECH-341, MECH-295, SD-057, MECH-346, MECH-347) -- those need their own tagged retest evidence (separate /queue-experiment), claims stay v3_pending until then. No evidence-staleness audit: the accumulator amend was bit-identical OFF / exact-arithmetic identical (numerical-robustness only), so no dependent-claim measurement changed."
         }
-      ]
+      ],
+      "validated_by": "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3",
+      "per_claim_retest_caveat": "Substrate VALIDATED + ready 2026-06-07 (V3-EXQ-643a PASS). Downstream per-claim retests (MECH-295/SD-057 cue-recall approach-lift, e.g. 640a successor) still need scaffolded_sd054_onboarding GAP-2 foraging competence (non-zero contact) for a clean approach-lift re-measure -- that is a per-claim retest condition, NOT a substrate blocker."
     },
     {
       "sd_id": "cross_stream_binding_substrate",

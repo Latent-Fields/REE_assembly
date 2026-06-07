@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-06T20:53:22Z",
+  "last_review_utc": "2026-06-07T04:20:09Z",
   "discussed_experiment_dirs": [
     "v3_exq_647_modulatory_authority_reuse_split_20260606T195410Z_v3",
     "v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3",
@@ -553,7 +553,9 @@
     "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
     "v3_exq_641a_coherence_ablation_nonreducibility",
     "v3_exq_643_modulatory_authority_validation",
-    "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3"
+    "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3",
+    "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3",
+    "v3_exq_643a_modulatory_authority_validation"
   ],
   "reviewed_run_ids": [
     "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z",
@@ -2813,7 +2815,8 @@
     "v3_exq_638_scaffold_cue_recall_contact_ablation_20260604T142524Z_v3",
     "v3_exq_642_blocked_agency_zblock_discriminative_20260606T055351Z_v3",
     "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
-    "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3"
+    "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3",
+    "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3852,6 +3855,18 @@
         "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3"
       ],
       "subject": "/governance cycle 2026-06-06T14:07Z. 1 pending experiment walked -- V3-EXQ-643 (modulatory_authority_validation, FAIL, DIAGNOSTIC claim_ids=[] -> weights no claim) with a CONFIRMED failure_autopsy_V3-EXQ-643_2026-06-06 (+ code-confirmed correction 13:27Z). User accepted: correct the manifest self-route does_not_support -> non_contributory. Adjudication = PRECONDITION_UNMET not falsification: C1 authority never fired because float32 CATASTROPHIC CANCELLATION (643 trains SD-056 online -> primary E3 scores ~1e32; modulatory_total = scores - scores_raw annihilates the real ~0.17 MECH-341 entropy-bonus range below the float32 ULP ~1e25). Substrate modulatory-bias-selection-authority NOT falsified; stays implemented_pending_validation; pending_retest_after_substrate. Fix already landed ree-v3 654ccc8; V3-EXQ-643a queued (supersedes 643, range-based P0 readiness gate + SD-056 rollout clamp); substrate_queue failure_record already amended this session (643 present). No claims.yaml status/confidence change (claim_ids=[]). Promotion/demotion: 1 pending_user MECH-342 (hold_pending_v3_substrate, no-op V3-pending hold) acknowledged -> applied via record_decision.py; nothing promoted/demoted. closure_drift 0 drifted / 6 suppressed / 0 stale / 0 missing last_updated."
+    },
+    {
+      "timestamp_utc": "2026-06-07T04:20:09Z",
+      "session_label": "governance-cycle-20260607T0420Z",
+      "reviewed_run_ids": [
+        "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3",
+        "v3_exq_643a_modulatory_authority_validation"
+      ],
+      "subject": "/governance cycle 2026-06-07T04:20Z. 1 indexed pending walked -- V3-EXQ-643a (modulatory_authority_validation, supersedes 643; PASS, DIAGNOSTIC claim_ids=[] -> weights no claim). CLEAN VERIFIED self-route (adjudication=verified, not flagged): readiness met (modulatory_authority_range 0.222 >> 1e-4 floor -- the same range statistic C1 gates on -- AND primary scores BOUNDED raw_bounded_frac=1.0 max ~67-120 vs 643's ~1e32 via the SD-056 rollout clamp); C0+C1+C2 PASS + non-degenerate; C3 dose-response informative. Per-arm: A off silent (active_frac/range/scale all 0); B/C on (active_frac 1.0, range 0.16, scale 28.9/60.7, changed-selection 0.43/0.50, C>B). The clean FULL run PASSES C2 where the V3-EXQ-647 cloud reuse-split FAILed it on a test-design confound -> 643a RESOLVES the 647 C2 confound; planned V3-EXQ-643b is MOOT (not queued). User decision (interactive): VALIDATE the modulatory-bias-selection-authority substrate -> substrate_queue flipped status implemented_pending_validation->implemented, ready false->true, depends_on_unresolved cleared, +validation implementation_log entry; unblocks the 12 per-claim retests (MECH-314/314a/b/c, Q-044, MECH-320, ARC-068, MECH-341, MECH-295, SD-057, MECH-346, MECH-347) which still need their own tagged retest evidence (claims stay v3_pending). Predecessor V3-EXQ-643 manifest marked evidence_direction superseded (was non_contributory/untagged; zero scoring weight either way). No claims.yaml status/confidence change. Promotion/demotion: 1 pending_user MECH-319 (hold_pending_v3_substrate, V3-pending no-op) acknowledged->applied via record_decision.py; nothing promoted/demoted. No evidence-staleness audit (accumulator amend bit-identical OFF / exact-arithmetic identical -- no dependent-claim measurement changed)."
     }
   ]
 }

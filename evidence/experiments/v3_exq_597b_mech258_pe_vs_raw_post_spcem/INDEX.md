@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_597b_mech258_pe_vs_raw_post_spcem
 
-Generated: `2026-06-06T20:48:58.003680Z`
+Generated: `2026-06-07T04:29:06.482767Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

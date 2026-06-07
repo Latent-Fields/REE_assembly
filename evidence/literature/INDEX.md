@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-06T20:48:58.003680Z`
+Generated: `2026-06-07T04:29:06.482767Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -195,7 +195,7 @@ Generated: `2026-06-06T20:48:58.003680Z`
 | `targeted_review_mech_318_rule_state_abstraction` | [`2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019`](targeted_review_mech_318_rule_state_abstraction/entries/2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019/record.json) | 4 | [`summary`](targeted_review_mech_318_rule_state_abstraction/entries/2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_medications_sleep_dementia` | [`2026-04-05_mech176_suvorexant_alzheimer_herring2020`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/record.json) | 10 | [`summary`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/summary.md) |
-| `targeted_review_object_files_feature_binding` | [`2026-06-04_mech_045_occlusion_tracking_scholl1999`](targeted_review_object_files_feature_binding/entries/2026-06-04_mech_045_occlusion_tracking_scholl1999/record.json) | 5 | [`summary`](targeted_review_object_files_feature_binding/entries/2026-06-04_mech_045_occlusion_tracking_scholl1999/summary.md) |
+| `targeted_review_object_files_feature_binding` | [`2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013`](targeted_review_object_files_feature_binding/entries/2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013/record.json) | 11 | [`summary`](targeted_review_object_files_feature_binding/entries/2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013/summary.md) |
 | `targeted_review_object_permanence` | [`2026-06-04_mech_045_occluded_object_unity_kellman_spelke1983`](targeted_review_object_permanence/entries/2026-06-04_mech_045_occluded_object_unity_kellman_spelke1983/record.json) | 5 | [`summary`](targeted_review_object_permanence/entries/2026-06-04_mech_045_occluded_object_unity_kellman_spelke1983/summary.md) |
 | `targeted_review_pacc_autonomic_coupling_write_target` | [`2026-04-19_sd_032e_sgacc_mood_setpoint_mayberg2005`](targeted_review_pacc_autonomic_coupling_write_target/entries/2026-04-19_sd_032e_sgacc_mood_setpoint_mayberg2005/record.json) | 4 | [`summary`](targeted_review_pacc_autonomic_coupling_write_target/entries/2026-04-19_sd_032e_sgacc_mood_setpoint_mayberg2005/summary.md) |
 | `targeted_review_pain_predictive_coding_substrate` | [`2026-04-19_pain_pc_temporal_spectral_strube2021`](targeted_review_pain_predictive_coding_substrate/entries/2026-04-19_pain_pc_temporal_spectral_strube2021/record.json) | 9 | [`summary`](targeted_review_pain_predictive_coding_substrate/entries/2026-04-19_pain_pc_temporal_spectral_strube2021/summary.md) |
