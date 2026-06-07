@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_333",
+  "entry_id": "2026-06-07_mech_333_otx2_pnn_pv_maturation_bernard2016",
+  "timestamp_utc": "2026-06-07T10:06:02Z",
+  "claim_ids_tested": ["MECH-333"],
+  "source": {
+    "title": "Otx2-PNN Interaction to Regulate Cortical Plasticity",
+    "authors": ["Bernard C", "Prochiantz A"],
+    "year": 2016,
+    "venue": "Neural Plasticity",
+    "doi": "10.1155/2016/7931693",
+    "url": "https://doi.org/10.1155/2016/7931693"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Review-level synthesis of the canonical mechanism MECH-333 invokes: maturation of parvalbumin inhibitory interneurons (gated by Otx2 transfer and perineuronal-net assembly) triggers critical-period onset, and the same machinery controls closure. Supports the inhibitory-maturation-opens-the-window premise but is a review (not primary data), so confidence is held below the empirical entries.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Critical-period onset is triggered specifically by parvalbumin-interneuron maturation and perineuronal-net consolidation; before that maturation the window does not open. A REE plasticity window keyed to a diversity/inhibitory element predicts no plasticity until that element reaches a threshold maturity -- a falsifiable timing prediction.",
+    "Perineuronal nets that consolidate around mature PV cells act to CLOSE the window and stabilize the circuit; disrupting them can reopen plasticity. The same structure that opens the window later enforces winner-take-all stabilization -- consistent with MECH-333's 'before winner-take-all capture' framing but implying the closing mechanism is an active brake, not mere decay."
+  ],
+  "tags": ["mech_333", "critical_period", "parvalbumin", "perineuronal_nets", "otx2", "inhibition", "plasticity_window", "review"],
+  "mapping": {
+    "source_claim_statement": "In the visual cortex, critical-period onset is triggered by the maturation of parvalbumin (PV) inhibitory interneurons, which become enwrapped by perineuronal nets (PNNs); the homeoprotein Otx2 is transferred specifically into PV interneurons and this transfer regulates both the onset and the closure of the critical period for binocular vision; the Otx2-PNN interaction regulates cortical plasticity during the critical period and into adulthood.",
+    "ree_translation": "MECH-333's plasticity window is explicitly the REE analog of the E/I shift and inhibitory (GABA/PV) maturation that opens biological critical periods. This review synthesizes the canonical evidence for that exact mechanism: PV-interneuron maturation as the onset trigger and PNN consolidation as the closure brake, with a molecular regulator (Otx2) controlling both ends. It supports MECH-333's choice to gate a bounded plasticity phase on the maturation of an inhibitory/diversity element, and adds the nuance that opening and closure are controlled by the SAME machinery at different maturity thresholds.",
+    "mapping_caveat": "This is a review, not primary data -- it consolidates the consensus mechanism but does not itself causally test it, so it carries less independent weight than the empirical entries (Priya 2019, Huang 2015). It also concerns the molecular/structural detail (Otx2, PNNs) that has no REE analog; only the higher-level 'inhibitory maturation opens, structural consolidation closes' logic transfers. Visual-cortex binocular plasticity -> REE policy/scoring window transfer applies.",
+    "source_context": "Review of rodent visual-cortex critical-period plasticity; Otx2 homeoprotein transfer into parvalbumin interneurons and perineuronal-net regulation of onset and closure."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.7 reflecting review status (synthesizes strong primary literature but is not itself a causal test). Mapping fidelity 0.6: directly supports the inhibitory-maturation-opens-the-window clause central to MECH-333. Provides the canonical mechanistic backbone (PV/PNN) that Priya 2019 tests causally and Huang 2015 partially contests, so the three entries together triangulate the claim's mechanism."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_341",
+  "entry_id": "2026-06-07_mech_341_context_gated_variability_kao2008",
+  "timestamp_utc": "2026-06-07T10:06:02Z",
+  "claim_ids_tested": ["MECH-341"],
+  "source": {
+    "title": "Neurons in a forebrain nucleus required for vocal plasticity rapidly switch between precise firing and variable bursting depending on social context",
+    "authors": ["Kao MH", "Wright BD", "Doupe AJ"],
+    "year": 2008,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2250-08.2008",
+    "url": "https://doi.org/10.1523/JNEUROSCI.2250-08.2008"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Single-unit LMAN recordings show the diversity signal is a state-gated variable -- the same neurons switch between precise single-spiking (low variability) and variable bursting (high variability) with social context, while the average song-locked signal is preserved. Directly evidences MECH-341's 'signal weight amplified to competitive parity' as a real, rapidly tunable knob. Indirect on the scoring locus; lower mapping fidelity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When the diversity channel is in its low-variability (directed-song) state, LMAN fires precise single spikes locked to song and trial-to-trial variability is minimal -- behaviour is near-deterministic. If a REE diversity circuit is left in a low-weight state, the candidate pool will not be carved into distinct classes at selection.",
+    "Different LMAN neurons in the same bird show distinct firing patterns, suggesting subsets jointly encode song features -- a single scalar 'exploration temperature' would under-describe the diversity signal, which is distributed and structured."
+  ],
+  "tags": ["mech_341", "lman", "context_gating", "variability_state_switch", "diversity_signal_weight", "exploration"],
+  "mapping": {
+    "source_claim_statement": "Individual LMAN neurons reversibly transform their signaling mode with social context: precise, reliable single-spiking locked to song when a male sings to a female ('directed'), versus prominent burst firing and high trial-to-trial variability when singing alone ('undirected'). The average song-locked signal is similar across contexts, indicating a common underlying signal modulated by a state-dependent variability component.",
+    "ree_translation": "MECH-341 requires not just that a diversity circuit exist but that its signal weight be amplifiable to competitive parity with the deterministic pathway -- i.e. that diversity is a controllable state rather than a fixed property. Kao et al. show the variability output of the basal-ganglia-loop nucleus LMAN is exactly such a rapidly switchable, context-gated state, dissociable from the underlying song-locked signal. This evidences the tunable-weight half of MECH-341: the same circuit can be driven toward exploration (high variability) or exploitation (precise, deterministic) on demand.",
+    "mapping_caveat": "This is about state-gating of an output-stage variability signal, not about a value-scoring aggregation step preserving candidate diversity; the link to MECH-341's named locus is indirect. The gating variable here is social context (a behavioural state), which has no direct REE analog beyond 'something modulates the diversity weight'. Songbird vocal system -> REE E3/CEM transfer.",
+    "source_context": "Adult male zebra finches; single-unit recordings in LMAN during directed vs undirected singing."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "High-quality single-unit work in a strong venue. Mapping fidelity is the lowest of the three MECH-341 entries (0.5) because the result is about context-gating of an output variability signal, one step further from the scoring locus than Kojima/Olveczky. Included because it is the cleanest evidence that the diversity 'weight' is a real, rapidly tunable state, which is the specific sub-clause of MECH-341 about amplifying the diversity circuit to parity."
+  }
+}

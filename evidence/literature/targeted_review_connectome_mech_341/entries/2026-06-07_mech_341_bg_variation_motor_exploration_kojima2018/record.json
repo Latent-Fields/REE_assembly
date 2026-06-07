@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_341",
+  "entry_id": "2026-06-07_mech_341_bg_variation_motor_exploration_kojima2018",
+  "timestamp_utc": "2026-06-07T10:06:02Z",
+  "claim_ids_tested": ["MECH-341"],
+  "source": {
+    "title": "The Avian Basal Ganglia Are a Source of Rapid Behavioral Variation That Enables Vocal Motor Exploration",
+    "authors": ["Kojima S", "Kao MH", "Doupe AJ", "Brainard MS"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2915-17.2018",
+    "url": "https://doi.org/10.1523/JNEUROSCI.2915-17.2018"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Causal lesion + electrical-perturbation evidence (J Neurosci) that a dedicated basal-ganglia pathway is the source of the behavioral variation that downstream selection acts on. Maps onto MECH-341's structural argument (a diversity-generating circuit must hold parity with the deterministic pathway) but at the motor-output / proposal stage rather than strictly at a value-scoring step, so mapping fidelity is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lesions of Area X (song-specific basal ganglia) permanently eliminate rapid within-syllable fundamental-frequency variation; without that variation, reinforcement-driven song learning loses its substrate. The REE analog: if the diversity circuit is ablated or down-weighted, the candidate pool collapses to a single deterministic class and there is nothing for E3 scoring to discriminate among.",
+    "Earlier Area X lesion studies found NO lasting effect on several measures of vocal variability -- the diversity contribution is specific to a particular variability channel (rapid within-syllable FF) and is easy to miss with the wrong readout. Cautions that measuring 'candidate diversity' at the wrong granularity can falsely conclude the diversity circuit is inert."
+  ],
+  "tags": ["mech_341", "basal_ganglia", "behavioral_variability", "motor_exploration", "action_selection", "diversity_preservation"],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia (via Area X -> LMAN) are an essential and dedicated source of rapid behavioral variation ('motor exploration') that forms the substrate for reinforcement-driven vocal learning; lesioning this pathway permanently abolishes the exploratory variability while leaving the stereotyped motor pathway intact.",
+    "ree_translation": "MECH-341 holds that E3 score aggregation over CEM-supplied candidates must actively preserve trajectory-class diversity rather than collapse a diverse pool onto one deterministic ranking. The songbird circuit instantiates the architectural precondition for that requirement: a dedicated variability-generating pathway (BG/LMAN) operating in parallel with a deterministic precision pathway (HVC), where the variability is what makes reinforcement selection possible. It evidences that diversity is not a free byproduct of a single ranking process -- it is produced and maintained by a structurally separate circuit, and removing/under-weighting that circuit collapses exploration.",
+    "mapping_caveat": "The BG-driven variation here is injected at the motor-output (action-proposal) stage, not at a downstream value-scoring step. MECH-341 is specifically about the SCORING/aggregation step preserving diversity that already exists in the proposal pool. The paper therefore evidences the general 'dedicated diversity circuit at parity' principle and the failure mode (ablation -> collapse) more than the precise locus MECH-341 names. Songbird vocal motor learning -> REE CEM/E3 candidate scoring is a substantial domain transfer.",
+    "source_context": "Adult and juvenile male zebra finches; Area X and LMAN excitotoxic lesions plus electrical microstimulation of LMAN; within-syllable fundamental-frequency variability as the readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Causal manipulations (lesion + stimulation) in a peer-reviewed systems-neuroscience venue give high source quality. Mapping fidelity is held to 0.6 because the locus (proposal-stage variability injection) is adjacent to, not identical with, MECH-341's scoring-stage diversity preservation. Transfer risk moderate: the songbird AFP is a canonical model of BG-dependent trial-and-error learning, which is a close conceptual match to REE's exploration substrate."
+  }
+}

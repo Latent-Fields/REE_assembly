@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_333",
+  "entry_id": "2026-06-07_mech_333_vgat_necessary_plasticity_priya2019",
+  "timestamp_utc": "2026-06-07T10:06:02Z",
+  "claim_ids_tested": ["MECH-333"],
+  "source": {
+    "title": "Vesicular GABA Transporter Is Necessary for Transplant-Induced Critical Period Plasticity in Mouse Visual Cortex",
+    "authors": ["Priya R", "Rakela B", "Kaneko M", "Spatazza J", "Larimer P", "Hoseini MS", "Hasenstaub AR", "Alvarez-Buylla A", "Stryker MP"],
+    "year": 2019,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1253-18.2019",
+    "url": "https://doi.org/10.1523/JNEUROSCI.1253-18.2019"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Causal genetic dissociation: VGAT-null transplanted interneurons migrate and mature normally but FAIL to induce a critical period, while control interneurons do. Directly supports MECH-333's premise that GABAergic (inhibitory) maturation is the trigger that OPENS a time-bounded plasticity window. Mapping fidelity moderate -- biology evidences the opening mechanism, less so REE's specific 'suppress dominant scoring pathway update magnitude' phrasing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Transplanted interneurons unable to load GABA into vesicles integrate into the host circuit but do NOT open a plasticity window -- the opening of the window is gated specifically on GABAergic transmission, not merely on the presence of inhibitory cells. The REE analog: simply adding a diversity/inhibitory element is insufficient; it must be functionally transmitting to gate the window open.",
+    "Timing of the induced plasticity is dictated by the maturation state of the transplanted GABAergic cells -- the window is yoked to a developmental clock of the inhibitory element, supporting MECH-333's 'time-bounded' framing."
+  ],
+  "tags": ["mech_333", "critical_period", "gaba", "vgat", "inhibition", "plasticity_window", "ocular_dominance"],
+  "mapping": {
+    "source_claim_statement": "Vesicular GABA transporter (VGAT)-dependent GABAergic transmission by transplanted MGE-derived interneurons is necessary to induce a critical period of ocular-dominance plasticity in mouse visual cortex; VGAT-null interneurons disperse and differentiate normally but fail to open the plasticity window, whose timing tracks the maturation of the transplanted cells.",
+    "ree_translation": "MECH-333 holds that a time-bounded plasticity-open window must exist during which the dominant (deterministic/scoring) pathway's effective update magnitude is suppressed or the diversity-circuit weight amplified to parity, before winner-take-all capture -- explicitly framed as the REE analog of the GABA-maturation E/I shift that opens biological critical periods. Priya et al. supply direct causal evidence for the biological side of that analogy: functional GABAergic transmission is the necessary trigger that opens the window, and the window is yoked to a developmental clock. This grounds MECH-333's choice of inhibitory/GABA maturation as the gate that opens a bounded plasticity phase.",
+    "mapping_caveat": "The paper evidences the OPENING of a plasticity window by inhibitory maturation; it does not speak to REE's specific mechanism of 'suppressing the dominant scoring pathway's update magnitude' or 'amplifying a diversity circuit to parity'. The mapping is from 'GABA maturation opens the window' (well-supported) to MECH-333's broader winner-take-all-prevention framing (inferred). Mouse visual-cortex ocular dominance -> REE policy/scoring crystallization is a substantial domain transfer.",
+    "source_context": "Postnatal mouse visual cortex; heterochronic transplantation of MGE-derived interneuron precursors, wild-type vs VGAT-knockout donors; ocular-dominance plasticity as the readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Clean genetic loss-of-function dissociation in a strong venue gives high source quality. Mapping fidelity 0.6: strongly supports the 'inhibitory maturation opens a bounded window' clause but only inferentially the 'suppress dominant pathway / amplify diversity to parity' clause. Transfer risk moderate; ocular-dominance plasticity is the canonical critical-period model."
+  }
+}

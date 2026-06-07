@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-07T09:27:19.242589Z`
+Generated: `2026-06-07T10:10:54.566279Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -115,6 +115,8 @@ Generated: `2026-06-07T09:27:19.242589Z`
 | `targeted_review_connectome_mech_281` | [`2026-04-27_mech_281_serotonin_amygdala_anticataplectic_hasegawa2017`](targeted_review_connectome_mech_281/entries/2026-04-27_mech_281_serotonin_amygdala_anticataplectic_hasegawa2017/record.json) | 4 | [`summary`](targeted_review_connectome_mech_281/entries/2026-04-27_mech_281_serotonin_amygdala_anticataplectic_hasegawa2017/summary.md) |
 | `targeted_review_connectome_mech_303` | [`2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023`](targeted_review_connectome_mech_303/entries/2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023/record.json) | 4 | [`summary`](targeted_review_connectome_mech_303/entries/2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023/summary.md) |
 | `targeted_review_connectome_mech_320` | [`2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/record.json) | 3 | [`summary`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/summary.md) |
+| `targeted_review_connectome_mech_333` | [`2026-06-07_mech_333_vgat_necessary_plasticity_priya2019`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/record.json) | 3 | [`summary`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/summary.md) |
+| `targeted_review_connectome_mech_341` | [`2026-06-07_mech_341_lman_variability_injection_olveczky2011`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/record.json) | 3 | [`summary`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_connectome_sd_004` | [`2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/record.json) | 4 | [`summary`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/summary.md) |
 | `targeted_review_connectome_sd_005` | [`2026-03-22_sd005_tpj_agency_attribution_farrer2002`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/record.json) | 4 | [`summary`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/summary.md) |

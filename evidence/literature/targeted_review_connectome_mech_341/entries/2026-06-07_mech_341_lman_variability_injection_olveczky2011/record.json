@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_341",
+  "entry_id": "2026-06-07_mech_341_lman_variability_injection_olveczky2011",
+  "timestamp_utc": "2026-06-07T10:06:02Z",
+  "claim_ids_tested": ["MECH-341"],
+  "source": {
+    "title": "Changes in the neural control of a complex motor sequence during learning",
+    "authors": ["Olveczky BP", "Otchy TM", "Goldberg JH", "Aronov D", "Fee MS"],
+    "year": 2011,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.00018.2011",
+    "url": "https://doi.org/10.1152/jn.00018.2011"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Single-unit recordings in RA plus pharmacological inactivation of LMAN show the basal-ganglia-forebrain pathway adds variability to a developing motor program, and that its relative contribution wanes as the circuit matures. Strong mechanistic support for a dedicated diversity channel held in balance against a precision channel; the developmental decline also bridges to the MECH-333 plasticity-window framing. Mapping fidelity moderate (proposal-stage variability vs MECH-341 scoring-stage diversity).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pharmacological inactivation of LMAN during singing makes RA firing adultlike in its stereotypy -- the variability channel can be switched off, and when it is, the motor program is deterministic. The REE analog: if the diversity-circuit signal weight is driven to zero, the selected trajectory class is fixed regardless of latent proposal diversity.",
+    "Removing HVC (the premotor/precision input) abolishes stereotypy entirely -- diversity and precision are carried by SEPARATE inputs whose balance sets the variability of the output. A single combined pathway cannot reproduce the controllable diversity-vs-precision trade-off."
+  ],
+  "tags": ["mech_341", "lman", "basal_ganglia", "motor_variability", "diversity_circuit", "developmental_window"],
+  "mapping": {
+    "source_claim_statement": "A basal-ganglia-forebrain circuit (via LMAN) drives the motor exploration required for trial-and-error learning by adding variability to the developing motor program in RA; as learning proceeds and the circuit matures, LMAN's relative contribution is reduced, allowing the precision input (HVC) to drive an increasingly stereotyped output.",
+    "ree_translation": "MECH-341 requires that the scoring step preserve trajectory-class diversity supplied by the proposal layer, with a diversity-circuit signal weight that can be amplified to competitive parity with the dominant deterministic pathway. Olveczky et al. show exactly such a two-input architecture in the song motor system: a diversity input (LMAN) and a precision input (HVC) converging on the output stage (RA), where the output's variability is set by the relative weight of the two. Inactivating the diversity input collapses the output to stereotypy. This evidences both the parity requirement and the tunable-weight mechanism MECH-341 posits.",
+    "mapping_caveat": "As with the Kojima study, the variability is injected at the motor-output convergence (RA), not at an explicit value-scoring stage; MECH-341 names the scoring step specifically. The developmental decline of LMAN's contribution is a finding about a plasticity window (closer to MECH-333) used here only as corroboration of the tunable-weight point. Songbird single-unit electrophysiology -> REE candidate scoring is a substantial transfer.",
+    "source_context": "Developing male zebra finches; chronic single-unit recordings in RA (motor-cortex analog) across learning; reversible pharmacological inactivation of LMAN and of HVC during singing."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.4,
+    "notes": "Chronic single-unit recording with reversible causal inactivation is high-quality mechanistic evidence. Mapping fidelity held below 0.6 for the same proposal-vs-scoring locus reason as Kojima 2018. The dissociable two-input (diversity vs precision) architecture is the most MECH-341-relevant feature and is what carries the support direction."
+  }
+}

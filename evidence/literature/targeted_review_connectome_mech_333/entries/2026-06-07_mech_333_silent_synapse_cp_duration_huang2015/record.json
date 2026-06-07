@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_333",
+  "entry_id": "2026-06-07_mech_333_silent_synapse_cp_duration_huang2015",
+  "timestamp_utc": "2026-06-07T10:06:02Z",
+  "claim_ids_tested": ["MECH-333"],
+  "source": {
+    "title": "Progressive maturation of silent synapses governs the duration of a critical period",
+    "authors": ["Huang X", "Stodieck SK", "Goetze B", "Cui L", "Wong MH", "Wenzel C", "Hosang L", "Dong Y", "Lowel S", "Schluter OM"],
+    "year": 2015,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1506488112",
+    "url": "https://doi.org/10.1073/pnas.1506488112"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Supports the existence and tunability of a time-bounded plasticity window (MECH-333's core), but WEAKENS the specific E/I-balance-centric mechanism MECH-333 invokes: the authors show silent-synapse (glutamatergic) maturation governs critical-period duration largely INDEPENDENT of inhibitory tone. Included deliberately as the disconfirming-mechanism counterpoint.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ocular-dominance plasticity here was 'largely independent of the inhibitory tone' -- contradicting the strong reading of MECH-333 that the window is opened/closed by E/I balance and GABA maturation specifically. A REE implementation that pins the plasticity window solely to an inhibition/diversity-weight knob may be mechanistically incomplete.",
+    "Loss of PSD-95 reinstated silent synapses and REOPENED juvenile-like plasticity after normal closure -- the window's closure is reversible and tied to a postsynaptic glutamatergic maturation marker, not an irreversible E/I set-point."
+  ],
+  "tags": ["mech_333", "critical_period", "silent_synapse", "psd95", "plasticity_window", "counterpoint", "ocular_dominance"],
+  "mapping": {
+    "source_claim_statement": "Experience-dependent maturation of silent (NMDA-only) glutamatergic synapses onto principal neurons, requiring PSD-95, governs the DURATION of the critical period for ocular-dominance plasticity. PSD-95 loss yields lifelong juvenile plasticity; restoring silent synapses after closure reopens plasticity. This silent-synapse mechanism was largely independent of inhibitory tone, whose maturation was itself PSD-95-independent.",
+    "ree_translation": "MECH-333 frames its plasticity window as governed by an E/I balance shift and GABA maturation. Huang et al. agree that a bounded, tunable plasticity window exists and that its open/closed state is mechanistically controllable -- supporting MECH-333's structural premise. But they locate the controlling variable in postsynaptic glutamatergic (silent-synapse/PSD-95) maturation rather than in inhibitory tone, and explicitly find ocular-dominance plasticity to be largely E/I-independent. For REE this is a caution: the 'window-open' state may be better modeled as a property of the EXCITATORY/scoring pathway's own maturation (e.g. consolidation of its representations) than as a separate inhibition/diversity knob -- or both mechanisms may coexist.",
+    "mapping_caveat": "Mixed direction is a statement about MECH-333's mechanism, not its existence. The paper supports 'there is a tunable bounded window' and weakens 'the window is gated by E/I balance / GABA maturation specifically'. Note the apparent tension with Priya et al. 2019 (GABA transmission necessary to OPEN a window): the two may be reconciled as inhibition gating ONSET while glutamatergic maturation governs DURATION/closure. Mouse visual cortex -> REE transfer applies.",
+    "source_context": "Mouse visual cortex; PSD-95 knockout and conditional manipulations; ocular-dominance plasticity and silent-synapse electrophysiology across and after the critical period."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Strong venue and clean genetic manipulations (source quality 0.85). Confidence held at 0.6 because the evidence cuts two ways relative to MECH-333: it corroborates the bounded-tunable-window premise while challenging the E/I-specific mechanism. Logged as mixed for governance honesty -- this is the kind of disconfirming-mechanism signal the claim should weigh before committing to an inhibition-only window model."
+  }
+}
