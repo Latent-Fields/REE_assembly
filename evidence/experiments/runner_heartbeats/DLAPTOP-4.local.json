@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-07T09:44:14Z",
+  "last_tick_utc": "2026-06-07T10:14:24Z",
   "state": "running",
   "current_exq": "V3-EXQ-640b",
   "current_exq_started_utc": "2026-06-07T05:41:27.154497+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "SD-057",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_OFF",
+    "run_label": "Seed 42 / ARM_CUE_g0",
     "runs_done": 0,
     "runs_total": 21,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 235,
-    "overall_pct": 0.6
+    "overall_pct": 0.0
   },
-  "seconds_elapsed": 14567,
-  "seconds_remaining": 93190,
+  "seconds_elapsed": 16378,
+  "seconds_remaining": 36000,
   "recent_lines": [
-    "[train] p2 seed=43 arm=ARM_OFF ep 235/235 gain=0.2 kappa=2 contact_rate=0.3020 cue_fires=0 pc_fire_steps=0 pc_windows=0 pull_norm=None post_cue_approach=None bg_approach=0.05580159433126661",
-    "verdict: seed=43 arm=ARM_OFF pc_fire_steps=0 pc_windows=0",
-    "Seed 44 Condition ARM_OFF",
-    "[train] stage0 seed=44 arm=ARM_OFF ep 20/235 z_goal_peak=0.4017 formed=True token_bank_size_end=0",
-    "[train] stage0b seed=44 arm=ARM_OFF ep 30/235 retention=0.983 gate=pass"
+    "[train] p0 seed=44 arm=ARM_OFF ep 150/235 mean_len=41.0",
+    "[train] p1 seed=44 arm=ARM_OFF ep 220/235 survival=FAIL refresh=505",
+    "[train] p2 seed=44 arm=ARM_OFF ep 235/235 gain=0.2 kappa=2 contact_rate=0.3617 cue_fires=0 pc_fire_steps=0 pc_windows=0 pull_norm=None post_cue_approach=None bg_approach=0.2872340425531915",
+    "verdict: seed=44 arm=ARM_OFF pc_fire_steps=0 pc_windows=0",
+    "Seed 42 Condition ARM_CUE_g0.2_k2"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
