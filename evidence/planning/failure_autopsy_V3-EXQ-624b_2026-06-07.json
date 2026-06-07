@@ -1,0 +1,56 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-07T07:55:01Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_624b_arc068_mech320_niv_salamone_dissociation_20260607T051206Z_v3",
+      "queue_id": "V3-EXQ-624b",
+      "supersedes": "V3-EXQ-624a",
+      "claim_ids": ["MECH-320", "ARC-068"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (narrow) -- C2 dissociation (the load-bearing R4 claim: w_passive insensitive to parametric movement cost, distinct from Salamone effort cost) PASSED on all 3 seeds. The FAIL is in the positive-control / non-vacuity conjunction (C1 Niv lift + C5 authority), which failed only on seed 42.",
+        "biological_reference": "clear -- Niv 2007 average-reward-rate opportunity-cost-on-time vigor regulation; distinct from Salamone & Correa 2003 dACC effort cost. The dissociation the experiment confirms is exactly the biologically-motivated separation.",
+        "prerequisites": "present -- modulatory-bias-selection-authority substrate (643a) is operative; vigor lift +0.10 mean appeared on 2/3 seeds.",
+        "implementation": "complete -- authority reached the argmin on seeds 43/44 (active_frac 0.629 mean, authority_range 6.29e-03, raw_score_range 5.87, scale 173.5); no score explosion.",
+        "environment": "too sparse (one seed) -- the well-fed-safe-familiar regime is no-op-opportunity-poor (mean action_density 0.865). Seed 42 had no no-op headroom -> w_passive bias = 0 -> authority inert (range 0) -> Niv lift 0.0.",
+        "measurement": "the all-seeds non-vacuity conjunction (C1 AND C5 must pass every seed) is correct as a guard but is brittle against a single env-degenerate seed; the run is non_contributory by that guard despite a clean C2.",
+        "integration": "coupled and stable on the seeds where a no-op opportunity existed.",
+        "scale": "adequate."
+      },
+      "biological_reference": {
+        "closest_mechanism": "mesolimbic-DA / average-reward-rate vigor regulation (Niv 2007 opportunity-cost-on-time), dissociated from dACC effort cost (Salamone & Correa 2003)",
+        "dependencies": ["modulatory-bias-selection-authority gate (643a, operative)", "an environment that reliably presents no-op / stationary candidates"],
+        "is_formal_import": false,
+        "divergence": "none -- the dissociation the experiment confirms is the biologically-motivated Niv-vs-Salamone separation; the failure is env-adequacy, not a translation error",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "environment_adequacy_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-07 autopsy (failure_autopsy_V3-EXQ-624b_2026-06-07, confirmed). V3-EXQ-624b (4-arm Niv-vs-Salamone dissociation with the modulatory-bias-selection-authority substrate ON, supersedes the 624a zeroed-lever FAIL) is non_contributory but carries a NARROW SUPPORTS signal. The load-bearing R4 dissociation (C2: w_passive insensitive to parametric movement cost, distinct from MECH-258/SD-032b effort cost) PASSED on all 3 seeds (|delta_arm2 - delta_arm1| = 0.042 << 0.5). The FAIL is in the positive-control / non-vacuity conjunction: C1 Niv lift and C5 authority failed ONLY on seed 42, which was environment-degenerate (well-fed-safe-familiar regime is no-op-opportunity-poor, mean action_density 0.865; seed 42 had no no-op headroom -> w_passive bias 0 -> authority inert -> Niv lift 0.0). Seeds 43/44 showed clear vigor lift (+0.259, +0.045) and operative authority, which is itself positive evidence the 643a authority fix works. NOT a substrate ceiling and NOT a falsification: an environment-adequacy / seed-robustness gap. ARC-068/MECH-320 movement-cost insensitivity is narrowly supported by the all-seeds C2 PASS; do NOT weaken. Re-test owed: a no-op-opportunity-rich regime (lower baseline action density / forced-wait pressure) and/or >= 5 seeds so the Niv positive control + authority express on every seed.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "sd_id_suggested": "",
+        "title": "",
+        "implementation_hint": "No substrate gap. The modulatory-bias-selection-authority substrate is implemented + ready and proven operative here on 2/3 seeds. The owed work is a test-bed/regime change handled via /queue-experiment (no-op-opportunity-rich env + more seeds), not a substrate build.",
+        "unblocks_claims": ["MECH-320", "ARC-068"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "The modulatory-bias-selection-authority substrate (643a) is proven operative for the vigor/no-op-penalty lever: vigor lift appeared on 2/3 seeds with operative authority -- a positive contrast to V3-EXQ-614e where the bottleneck is upstream (GAP-A).",
+        "The Niv-vs-Salamone dissociation (C2) is robust: it passed on ALL 3 seeds including the env-degenerate one, so movement-cost insensitivity is narrowly supported for ARC-068/MECH-320.",
+        "The well-fed-safe-familiar regime is no-op-opportunity-poor; the w_passive / opportunity-cost mechanism needs a regime that reliably presents stationary/no-op candidates to express on every seed.",
+        "An all-seeds non-vacuity conjunction is brittle against a single env-degenerate seed; for sparse-opportunity mechanisms prefer >= 5 seeds or a majority gate on the positive control while keeping the dissociation gate strict."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

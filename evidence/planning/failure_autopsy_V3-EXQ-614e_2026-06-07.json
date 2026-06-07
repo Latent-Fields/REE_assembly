@@ -1,0 +1,61 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-07T07:55:01Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_614e_mech341_within_class_temperature_authority_on_20260607T070701Z_v3",
+      "queue_id": "V3-EXQ-614e",
+      "supersedes": "V3-EXQ-614d",
+      "claim_ids": ["MECH-341"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-341 (e3_scoring_preserves_trajectory_class_diversity) was NOT tested under conditions where it could express itself. The within-class temperature lever is a within-class sub-axis (which representative of a committed class executes); committed_class_entropy is the across-class readout (which class is committed). With a monostrategic upstream candidate pool there is no committed-class diversity for the scoring layer to preserve. Do not weaken.",
+        "biological_reference": "partial -- the mechanism class (selection that does not collapse a diverse option set onto one deterministic ranking) has a clear biological existence proof (BG action-selection over a diverse cortico-striatal candidate set). The REE translation is sound; the failure is upstream candidate-pool impoverishment, not the scoring principle.",
+        "prerequisites": "missing -- ARC-065 (behavioral-diversity-generation slot, phase_1_implemented, ready=False) has not delivered class-level candidate diversity. GAP-A root cause: all K CEM candidates produce identical z_world after one E2 world-forward step (cand_world_pairwise_dist=0.0000) despite differing first actions -> the candidate pool is monostrategic at the class level.",
+        "implementation": "complete -- C1 confirms the within-class branch fires and the Site-2 across-class unit-range authority normalization fires; the V3-EXQ-643a float32 catastrophic-cancellation fix is validated and operative. The lever reaches committed selection (committed entropy shifted off legacy 1.035689 -> 1.033608).",
+        "environment": "adequate for the within-class lever but the candidate-generation pathway upstream of E3 does not produce class diversity in this env.",
+        "measurement": "under-instrumented for this lever -- committed_class_entropy (across-class axis) is byte-identical 1.033608 across T=0.5/1.0/2.0 (4x range, zero T-magnitude sensitivity). The within-class representative shift cannot move the across-class committed distribution by construction once the class is chosen; a within-class-representative-diversity readout (not committed-class entropy) would be the matched metric.",
+        "integration": "coupled but inert at the contended layer -- the within-class lever and the across-class authority gate both fire, but committed-class outcome is decided by class-level structure the representative shift never perturbs.",
+        "scale": "unknown -- not the dominant diagnosis."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia action selection over a diverse cortico-striatal candidate set; diversity preservation at the scoring/selection step rather than upstream proposal",
+        "dependencies": ["ARC-065 behavioral-diversity generation (candidate-pool class diversity)", "ARC-065 GAP-A E2-world-forward per-candidate signal preservation"],
+        "is_formal_import": false,
+        "divergence": "none at the principle level; the gap is a missing upstream substrate (candidate-pool class diversity), not a formal-definition import error",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-07 autopsy (failure_autopsy_V3-EXQ-614e_2026-06-07, confirmed). V3-EXQ-614e (within-class temperature {None,0.5,1.0,2.0} CLEAN RETEST with the V3-EXQ-643a-validated modulatory-bias-selection-authority substrate ON, supersedes 614d) FAILed C2 (committed_class_entropy byte-identical 1.033608 across T=0.5/1.0/2.0, 0/3 paired-lift seeds) with C1 substrate-operative=True and C3 readiness=True. Adjudicated non_contributory (NOT weakens) for MECH-341: this is a substrate_ceiling, not a falsifier of the within-class sub-axis. (1) The lever IS operative -- committed entropy shifted off legacy (1.035689 -> 1.033608), so the within-class representative reaches committed selection; but it is byte-identical across a 4x temperature range, i.e. the committed-CLASS distribution is insensitive to which within-class representative wins. (2) MECH-341 preserves trajectory-CLASS diversity (the across-class axis); within-class temperature is a within-class sub-axis tested against an across-class readout under a monostrategic candidate pool, so a committed-class lift is structurally impossible here. (3) This is the 4th convergent committed-action no-lift instance on behavioral_diversity_isolation:GAP-B (604a curiosity, 624a vigor, 614d within-class temp, 614e), but the first with authority PROVEN operative -- so the bottleneck has moved upstream to GAP-A candidate-pool class collapse (cand_world_pairwise_dist=0.0000). MECH-341 stays candidate / v3_pending=true; pending_retest_after_substrate gated on ARC-065/GAP-A candidate-pool class diversity. No confidence move.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-065",
+        "sd_id_suggested": "ARC-065",
+        "title": "Behavioral-diversity-generation slot (GAP-A): candidate-pool class diversity upstream of E3 scoring",
+        "implementation_hint": "MECH-341 within-class temperature cannot lift committed-class diversity because the candidate pool is monostrategic at the class level: all K CEM candidates collapse to identical z_world after one E2 world-forward step (cand_world_pairwise_dist=0.0000) despite differing first actions. The GAP-A E2-world-forward per-candidate signal preservation work (extend the 2026-05-17 ARC-062 GAP-B fix beyond GatedPolicy) is the prerequisite; only after class-level candidate diversity exists can the MECH-341 committed-class diversity re-test be non-vacuous.",
+        "unblocks_claims": ["MECH-341", "ARC-065"],
+        "depends_on_unresolved": ["ARC-065 GAP-A E2-world-forward per-candidate signal preservation", "behavioral_diversity_isolation:GAP-A (blocked_pending_substrate)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_614e_mech341_within_class_temperature_authority_on_20260607T070701Z_v3",
+          "experiment_type": "v3_exq_614e_mech341_within_class_temperature_authority_on",
+          "metric": "committed_class_entropy byte-identical 1.033608 across within-class T=0.5/1.0/2.0 (4x range, zero T-magnitude sensitivity); 0/3 paired-lift seeds per arm; C1 substrate-operative=True + C3 readiness=True (non-vacuous), authority substrate proven operative (643a)",
+          "target": ">= 1 per-seed paired committed_class_entropy lift of >= 0.05 nats over ARM_0_LEGACY on each positive-T arm"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "With the modulatory-bias-selection-authority substrate now PROVEN operative (643a), the committed-action no-lift signature persists -- proving the remaining bottleneck for committed-class diversity is upstream candidate-pool class collapse (GAP-A), not the authority gate (GAP-B-as-authority is resolved).",
+        "Committed-class entropy is the wrong matched readout for a within-class-representative lever; a within-class-representative-diversity metric is needed to test the within-class sub-axis directly.",
+        "byte-identical-across-temperature is the substrate-ceiling fingerprint for this lineage (614c/614d/614e all show it): the contended downstream measure is decided entirely upstream of the swept axis.",
+        "MECH-341's two sub-axes (within-class representative diversity vs across-class committed-class diversity) should be tested and scored separately; conflating them lets an across-class monostrategy ceiling masquerade as a within-class-lever falsification."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
