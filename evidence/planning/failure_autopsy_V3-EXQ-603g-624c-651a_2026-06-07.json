@@ -1,0 +1,144 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-07T15:35:39Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_603g_scaffolded_sd054_substrate_readiness_20260607T150056Z_v3",
+      "queue_id": "V3-EXQ-603g",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- substrate readiness, no claim tagged",
+        "biological_reference": "partial -- amygdala(BLA/CeA)/PAG avoidance learning exists in REE (SD-035, MECH-279) but is not wired as a curriculum avoidance-learning driver; no lit entry exists",
+        "prerequisites": "missing -- survival/hazard-avoidance learning leg not learnable even as an isolated Stage-H at budget (G_H 0/3)",
+        "implementation": "partial -- Stage-H wiring landed (85/85 contracts) but produces no learning",
+        "environment": "adequate -- midline-spawn hazard band is the intended pressure",
+        "measurement": "adequate -- G1/G2/G_H gates non-degenerate; G0 positive control 3/3",
+        "integration": "partially coupled -- goal formation isolates cleanly (G0 3/3); survival leg fails isolated AND combined",
+        "scale": "likely insufficient but user judgment: not merely budget -- a deeper mechanism is implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "amygdala fear-conditioning (BLA/CeA) + PAG defensive output; developmental gradual acquisition of avoidance with parental buffering",
+        "dependencies": ["SD-035 amygdala analogue", "MECH-279 PAG freeze gate", "shaped-aversion curriculum"],
+        "is_formal_import": false,
+        "divergence": "REE has the avoidance substrate components but does not drive avoidance LEARNING through the foraging curriculum; isolated-stage-plus-budget is judged the wrong shape",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-603g (Stage-H ON) re-failed the foraging-competence gate: G0 goal-formation 3/3, but G1 survival 0/3 and G_H isolated-hazard 0/3 -- the survival/hazard-avoidance learning leg does not train even as a dedicated isolated stage at this budget. User adjudication 2026-06-07: this is a DEEPER survival/aversion-learning substrate gap, not a budget tweak. Routed /lit-pull targeted_review_hazard_avoidance_learning BEFORE further curriculum work; scaffolded_sd054_onboarding ready stays false. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "sd_id_suggested": "scaffolded_sd054_onboarding",
+        "title": "Survival/hazard-avoidance learning leg -- deeper substrate gap (not budget)",
+        "implementation_hint": "603g proved goal FORMATION works (G0 3/3) and isolated the blocker to the P1 survival/hazard-avoidance LEARNING leg, which does not train even as a dedicated isolated Stage-H at budget (G_H 0/3). User adjudication: budget escalation is insufficient; a deeper avoidance-learning substrate mechanism is implicated. BLOCK further curriculum iteration on /lit-pull targeted_review_hazard_avoidance_learning (amygdala/PAG developmental avoidance acquisition; parental buffering; shaped-aversion RL curricula). ready stays false.",
+        "unblocks_claims": ["ARC-060", "MECH-320", "ARC-068", "SD-054", "ARC-030", "MECH-117", "MECH-295", "MECH-307", "Q-040", "Q-045", "MECH-090", "MECH-094", "MECH-261"],
+        "depends_on_unresolved": ["targeted_review_hazard_avoidance_learning (lit-pull, not yet commissioned)", "SD-035 amygdala analogue (wired as curriculum avoidance driver)", "MECH-279 PAG freeze gate"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603g_scaffolded_sd054_substrate_readiness_20260607T150056Z_v3",
+          "experiment_type": "v3_exq_603g_scaffolded_sd054_substrate_readiness",
+          "metric": "G1 P1-survival 0/3 (median last-window ep len 48/14.5/...; gate 75); G_H isolated-hazard survival 0/3 (44/15.5/11; gate 75); G2 contact 1/3",
+          "target": "G1>=2/3 AND G2>=2/3 AND ecological G3>=2/3 at the same gate"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Goal FORMATION works (G0 3/3); the blocker is isolated to the survival/hazard-avoidance LEARNING leg.",
+        "Isolating the leg as Stage-H proved the leg (not the budget) is the blocker; G_H 0/3.",
+        "User reframes the fix as a deeper avoidance-learning substrate mechanism; commission biology lit BEFORE more curriculum iteration (avoids SD-003-style iterate-the-caveat trap)."
+      ],
+      "routing": "lit-pull"
+    },
+    {
+      "run_id": "v3_exq_651a_arc060_blocked_goal_recovery_20260607T150734Z_v3",
+      "queue_id": "V3-EXQ-651a",
+      "claim_ids": ["ARC-060"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear-but-not-weakened -- test could not let the claim express (no strong goal to recover)",
+        "biological_reference": "clear -- hippocampal non-local replay biasing re-approach (Pfeiffer 2013, Gillespie 2021, Berridge wanting); lit present in targeted_review_ghost_goal_search",
+        "prerequisites": "missing -- robust z_goal formation, gated by scaffolded_sd054_onboarding GAP-2",
+        "implementation": "complete -- SD-039/MECH-292/293 bank substrate landed",
+        "environment": "adequate",
+        "measurement": "adequate -- ND non-degeneracy gate works (held 2/3)",
+        "integration": "isolated -- recovery cannot be measured without a formed goal upstream",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal ghost-goal / non-local replay biasing path search to a displaced goal",
+        "dependencies": ["robust z_goal formation (persistent wanting, Berridge)", "scaffolded_sd054_onboarding foraging competence"],
+        "is_formal_import": false,
+        "divergence": "none in mechanism -- failure is a missing upstream prerequisite (strong goal trace), the confirmed-dependency signature",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-651a self-emitted a weaken (C3 recovery 0/3 with ND 2/3) but it is confounded by weak z_goal formation (goal_norm 0.302/0.355/0.486, two below the 0.4 gate; the one bank-positive seed is the ND-false seed). On a barely-formed goal nothing re-approaches in either arm, so the null reflects weak z_goal, not discrete-bank inadequacy. ARC-060 NOT weakened this cycle; non_contributory; pending_retest_after_substrate (scaffolded_sd054_onboarding GAP-2). Adjudicated /failure-autopsy 2026-06-07.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "note": "Links to the existing scaffolded_sd054_onboarding entry (amended via 603g). No new substrate work; 651a retests once that gate clears and z_goal forms robustly on the clean seeds."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Blocked-goal recovery is only testable on a robustly-formed goal; weak z_goal = no trace to reactivate.",
+        "The single bank-positive seed (43) is the ND-false seed, so it does not count toward a weaken.",
+        "This is a confirmed prerequisite (positive-for-dependency), not an ARC-060 falsification."
+      ],
+      "routing": "governance-defer"
+    },
+    {
+      "run_id": "v3_exq_624c_arc068_mech320_niv_salamone_dissociation_20260607T110318Z_v3",
+      "queue_id": "V3-EXQ-624c",
+      "claim_ids": ["MECH-320", "ARC-068"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact-trending-supportive -- C2 dissociation held on every valid seed but cannot be certified",
+        "biological_reference": "clear -- tonic vigor / average-reward-rate opportunity cost (Niv 2007), distinct from Salamone 2003 effort cost",
+        "prerequisites": "missing -- a competitive no-op candidate on a majority of seeds, which depends on genuine foraging competence (GAP-2)",
+        "implementation": "complete -- MECH-320 w_passive substrate landed; modulatory-bias-selection-authority ON in all arms",
+        "environment": "too sparse / wrong pressures -- positive-control headroom insufficient; P0-warmup length is the dominant lever per the script's own probe",
+        "measurement": "adequate -- non-vacuous majority gate; C2 strict",
+        "integration": "partially coupled",
+        "scale": "P0 warmup likely the lever, but blocked behind foraging competence per user adjudication"
+      },
+      "biological_reference": {
+        "closest_mechanism": "tonic vigor coupling / opportunity-cost-on-time (Niv 2007)",
+        "dependencies": ["baseline foraging competence to yield low-density competitive-no-op states", "scaffolded_sd054_onboarding"],
+        "is_formal_import": false,
+        "divergence": "none -- mechanism fine; test bed must present neutral near-tie states on a majority of seeds",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-624c non_contributory: positive control (competitive no-op candidate) valid on only 2/5 seeds (majority >=3 not met), so the run cannot certify. The C2 Niv-vs-Salamone dissociation HELD on every valid seed (strict <0.5) -- a narrow positive signal for w_passive movement-cost insensitivity, NOT promotable (single-regime, sub-majority positive control). Per user adjudication 2026-06-07, blocked as pending_retest_after_substrate behind scaffolded_sd054_onboarding rather than a regime re-queue: positive-control headroom depends on genuine foraging competence (GAP-2).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "note": "User adjudication: block on the foraging-competence substrate rather than re-queue a regime tweak. The positive-control headroom (low baseline action_density + competitive no-op) depends on genuine foraging competence. Retest 624c once scaffolded_sd054_onboarding clears."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "The ARC-068/MECH-320 C2 dissociation held on every valid seed -- the science is trending supportive.",
+        "It cannot be certified until the positive control gets majority headroom, which depends on foraging competence.",
+        "P0-warmup length, not env density, is the identified headroom lever -- but blocked behind the substrate per user judgment."
+      ],
+      "routing": "governance-defer"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Positive control / precondition fails while the actual scientific discrimination either passes (624c C2, 603g G0) or cannot be read (651a recovery on an unformed goal). Substrate-ceiling fingerprint across three structurally-different probes.",
+    "is_independent_bugs": false,
+    "structural_property": "The goal-pipeline GAP-2 / scaffolded_sd054_onboarding foraging-and-survival-competence substrate is not ready -- specifically the P1 survival/hazard-avoidance LEARNING leg (603g G_H 0/3) -- and this single upstream gate renders ARC-060 recovery (651a) and MECH-320/ARC-068 vigor-bias (624c) non_contributory. User adjudication reframes the root as a deeper avoidance-learning substrate mechanism requiring a biology lit-pull before further curriculum iteration.",
+    "readings": ["substrate_enrichment", "test_design_ceiling"],
+    "selected_reading": "substrate_enrichment",
+    "lit_pull_commissioned": "targeted_review_hazard_avoidance_learning"
+  }
+}
