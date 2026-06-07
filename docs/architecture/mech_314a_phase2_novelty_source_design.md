@@ -20,6 +20,28 @@ EXPERIMENT (section 6 falsifier sketch, 3 arms x 3 seeds x 30 episodes) is the
 remaining gate; on PASS the follow-on is `/queue-experiment` V3-EXQ-590b
 Goldilocks retest.
 
+**AMEND 2026-06-07 (Candidate 1 source on the 5A machinery).** The first
+validation run, V3-EXQ-648, FAILed `precondition_unmet` (run
+`v3_exq_648_..._20260607T025417Z`; autopsy
+`evidence/planning/failure_autopsy_V3-EXQ-648_2026-06-07.{md,json}`): the
+landed 5A path computed the per-candidate novelty (and the auto-augmentation
+`_candidate_spread` key) from the hippocampal proposer's first-step z_world
+(`trajectory.world_states[:,0,:]`), whose cross-candidate spread collapses to
+<0.01 under monostrategy, while the readiness precondition measured a
+*different* representation (`e2.cand_world_pairwise_dist`=0.1147) -> false
+READY. Fix (this amend, session
+`mech314a-e2wf-novelty-amend-then-648a-20260607T0545Z`): a no-op-default
+config flag `curiosity_candidate_source` (`"proposer"` default, bit-identical |
+`"e2_world_forward"`) that rebuilds the consumed `candidate_world_summaries`
+from the SD-056-trained action-conditional `e2.world_forward(z0, a_i)`
+predictions -- i.e. **Candidate 1 (section 3) as the source for the landed
+Candidate-5A novelty/augmentation machinery**. `structured_curiosity.py` is
+unchanged (both `_compute_novelty` and `_candidate_spread` already key on the
+`candidate_world_summaries` argument). Re-validation is V3-EXQ-648a (supersedes
+648), enabling the flag and re-targeting the readiness precondition to the
+consumed representation. The section-8 governance/claims updates remain GATED
+on the 648a PASS.
+
 **Authoring session:** mech314a-phase2-novelty-source-arch-design-20260531T125133Z
 (TASK_CLAIMS).
 
