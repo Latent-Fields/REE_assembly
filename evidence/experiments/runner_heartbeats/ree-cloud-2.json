@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-07T07:13:33Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 6,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-490k",
-      "result": "PASS",
-      "completed_at": "2026-06-04T09:19:45.172966+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-637",
-      "result": "PASS",
-      "completed_at": "2026-06-04T10:25:46.312696+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-640a",
-      "result": "PASS",
-      "completed_at": "2026-06-06T01:36:15.224659+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-644",
-      "result": "PASS",
-      "completed_at": "2026-06-07T05:10:02.364133+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-624b",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T07:13:31.697215+00:00"
-    }
+  "last_tick_utc": "2026-06-07T07:43:41Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-648a",
+  "current_exq_started_utc": "2026-06-07T07:15:33.690071+00:00",
+  "current_title": "MECH-314a Phase-2 substrate-readiness diagnostic (CORRECTED): feed curiosity novelty + auto-augmentation _candidate_spread from the SD-056-trained e2.world_forward(z0,a_i) predictions (curiosity_candidate_source=e2_world_forward) instead of the collapsed proposer trajectory.world_states[:,0,:]. Supersedes V3-EXQ-648 (precondition_unmet FAIL). 4 arms x 3 seeds; readiness re-targeted to the consumed representation.",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 43 / ARM_0_BASELINE",
+    "runs_done": 1,
+    "runs_total": 12,
+    "episodes_done": 0,
+    "episodes_total": 80,
+    "overall_pct": 8.3
+  },
+  "seconds_elapsed": 1687,
+  "seconds_remaining": 16590,
+  "recent_lines": [
+    "[train] arm=ARM_0_BASELINE seed=42 phase=P0 ep 60/80",
+    "[train] arm=ARM_0_BASELINE seed=42 phase=P1 ep 70/80",
+    "[train] arm=ARM_0_BASELINE seed=42 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_0_BASELINE"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 668,
   "runner_version": null,
   "gpu": {
