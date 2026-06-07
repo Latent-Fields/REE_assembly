@@ -2844,8 +2844,12 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
             "retire": "Do not change git claiming or heartbeats.",
             "next": [
                 "On Mac: curl -s http://10.8.0.1:8787/health (expect ok:true).",
+                "If it times out, the Mac WireGuard tunnel is down -- bounce it: "
+                "sudo wg-quick down wg0 && sudo wg-quick up wg0.",
                 "On ree-cloud-1: systemctl status ree-coordinator wg-quick@wg0.",
-                "Fix network before starting a soak.",
+                "Coordinator + worker health are independent of this Mac's tunnel; "
+                "the fleet may still be running fine -- this only blocks this "
+                "panel's view.",
             ],
         }
     if verdict == "DIVERGENCE":
@@ -2994,7 +2998,8 @@ def read_shadow_status() -> dict:
     if not url or not tok:
         return {"verdict": "NOT_CONFIGURED", "color": "grey",
                 "detail": "coordinator.env missing COORDINATOR_URL / "
-                          "COORDINATOR_LOCAL_TOKEN"}
+                          "COORDINATOR_LOCAL_TOKEN",
+                "guide": _shadow_operator_guide("NOT_CONFIGURED")}
     import urllib.request
     import urllib.error
     try:
@@ -3005,10 +3010,12 @@ def read_shadow_status() -> dict:
             st = json.loads(r.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         return {"verdict": "UNREACHABLE", "color": "red",
-                "detail": f"HTTP {exc.code} from coordinator"}
+                "detail": f"HTTP {exc.code} from coordinator",
+                "guide": _shadow_operator_guide("UNREACHABLE")}
     except Exception as exc:  # noqa: BLE001 -- must not crash the request
         return {"verdict": "UNREACHABLE", "color": "red",
-                "detail": repr(exc)}
+                "detail": repr(exc),
+                "guide": _shadow_operator_guide("UNREACHABLE")}
     # Filter stale machines from the coordinator response before returning.
     # Uses the same TTL as read_machines() so both views are consistent.
     from datetime import datetime as _dt, timezone as _tz

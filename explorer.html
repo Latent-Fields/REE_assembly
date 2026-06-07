@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-06.3 -->
+<!-- EXPLORER_VERSION: 2026-06-07.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8324,7 +8324,21 @@ END CONFLICT RESOLUTION`;
       $("shadowVerdict").textContent = s.verdict || "?";
       $("shadowVerdict").style.color = COLORS[s.color] || "#777";
       if (s.verdict === "NOT_CONFIGURED" || s.verdict === "UNREACHABLE") {
-        $("shadowMeta").textContent = s.detail || "";
+        // Red/grey state is exactly when operator guidance is most useful, so
+        // render the guide here too (it was previously only shown on the
+        // reachable/green path -- the help was inverted).
+        var rparts = [];
+        if (s.detail) rparts.push("<div style=\"margin:2px 0;\">" + s.detail + "</div>");
+        var rg = s.guide;
+        if (rg) {
+          if (rg.phase_label) rparts.push("<div><b>" + rg.phase_label + "</b></div>");
+          if (rg.parallel) rparts.push("<div style=\"font-size:10px;\">" + rg.parallel + "</div>");
+          var rnext = (rg.next || []).map(function (x) {
+            return "<li>" + x + "</li>";
+          }).join("");
+          if (rnext) rparts.push("<ul style=\"margin:4px 0 0 14px;padding:0;\">" + rnext + "</ul>");
+        }
+        $("shadowMeta").innerHTML = rparts.join("");
         $("shadowMachines").textContent = "";
         return;
       }
