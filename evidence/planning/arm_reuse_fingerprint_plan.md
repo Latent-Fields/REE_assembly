@@ -411,12 +411,14 @@ silently drift it. This is the safest form of opt-in narrowing.
       claim), so it compared two *different* computations on seed 44. The
       fingerprint-scoped verdict is the correct scoping; the script's `--json`
       emits both. Reproduce: `python3 scripts/arm_reuse_determinism_check.py`.
-    - **GATE DISPOSITION: PASS pending user ratification** (the literal pre-registered
-      verdict was FAIL; the scoped PASS is a post-data refinement of the *predicate*,
-      principled but surfaced rather than self-applied). Conservative belt-and-suspenders
-      option offered: re-mint a single seed-44 cell on a quiesced cloud-3 tree for a
-      clean 3/3. If ratified, Regime-A reuse is sanctioned (retroactively legitimising
-      the 646->647/643b cloud-class reuse already exercised).
+    - **GATE DISPOSITION: PASS -- RATIFIED by user 2026-06-07T13:30Z.** The
+      fingerprint-scoped reading is accepted (2/2 comparable pairs within tolerance,
+      zero false collisions, seed-44 drift correctly excluded). The re-mint-seed-44
+      option was offered and declined. **Regime-A reuse is now SANCTIONED** on the
+      `linux-x86_64-py3.10` cloud machine-class, which retroactively legitimises the
+      `646 -> 647 / 643b` cloud-class reuse already exercised. Reuse remains
+      refuse-by-default per cell (every plan 9.2 rule still applies); the gate
+      lifting only removes the "do-not-enable" hold, it does not relax any guard.
 
 ### Status -- 643 OFF baseline minted (2026-06-06)
 
@@ -488,6 +490,10 @@ under a strict refuse-by-default gate so it can never substitute a non-identical
 baseline.
 
 ### 9.0 Hard prerequisite gate (do not build/enable before this passes)
+
+> **STATUS: PASSED -- user-ratified 2026-06-07T13:30Z. Reuse is now SANCTIONED**
+> on the `linux-x86_64-py3.10` cloud machine-class. See §9.7 and the §7b
+> "MEASURED RESULT" block. The rule below is preserved as the standing definition.
 
 The consumer MUST NOT be enabled until the **cross-instance determinism check**
 (Phase 0 step §7b.4: mint the 610 baseline on cloud-2 AND cloud-3) has come back
@@ -591,22 +597,27 @@ skill, mirrored to both skill dirs.
 - Keep the refuse path the default everywhere: a false miss is cheap, a false hit
   corrupts science (plan §2).
 
-## 9.7 Build + gate status (2026-06-06)
+## 9.7 Build + gate status (2026-06-06; gate CLOSED 2026-06-07)
 
-The Phase 1 consumer **machinery is built and unit-tested** but **reuse is NOT
-enabled** -- the §9.0 hard determinism gate has not yet passed.
+The Phase 1 consumer **machinery is built and unit-tested**, and as of
+2026-06-07 the §9.0 hard determinism gate has **PASSED (user-ratified)** --
+**Regime-A reuse is now SANCTIONED** on the `linux-x86_64-py3.10` cloud
+machine-class.
 
-**Determinism gate (§9.0): HELD / PENDING.** The two 610 OFF-baseline mints
-(V3-EXQ-644 on ree-cloud-2, V3-EXQ-645 on ree-cloud-3; same
-`v3_exq_610_inv074_crystallization_baseline_mint.py`) are **queued but have not
-run** -- no mint manifests exist under `evidence/experiments/`. The cross-instance
-comparison therefore cannot be performed yet. **Action when both mints complete:**
-compare the two manifests' OFF cell metrics (`end_phase_2_entropy`,
-`end_phase_3_entropy`, `mean_reward`) within a written tolerance; record the
-measured divergence + chosen tolerance in §7b; if within tolerance, Regime A is
-confirmed and reuse may be enabled. If they diverge beyond tolerance, **STOP** --
-Regime A reuse is invalid as built; escalate the Regime A-vs-B decision to the
-user. Do **not** wire any experiment to skip an arm before this.
+**Determinism gate (§9.0): PASSED -- ratified 2026-06-07T13:30Z.** Both 610
+OFF-baseline mints ran: V3-EXQ-644 (ree-cloud-2, PASS 2026-06-07T05:10Z) and
+V3-EXQ-645 (ree-cloud-3, PASS 2026-06-07T13:16Z), same
+`v3_exq_610_inv074_crystallization_baseline_mint.py`. Fingerprint-scoped
+comparison (only equal-fingerprint pairs -- the predicate §9.0 states):
+**seeds 42/43 agree to <= 1.56e-2, well within the pre-registered 0.05 tolerance;
+zero false collisions; Regime A (distributional) confirmed.** Seed 44 was
+excluded because cloud-3's source drifted mid-run (three `ree_core` commits pulled
+by the heartbeat autostash -> different `substrate_hash`), which the fingerprint
+correctly flagged (refuse, not false-hit). Full numbers + the literal positional
+FAIL-by-4.3e-3 (recorded for transparency) are in §7b "MEASURED RESULT". Verdict
+reproducible via `scripts/arm_reuse_determinism_check.py`. **Experiments MAY now
+opt in to skip a baseline arm** by citing a mint (plan §9.4), still under every
+refuse-by-default rule of §9.2.
 
 **Built this session (inert until the gate passes):**
 
