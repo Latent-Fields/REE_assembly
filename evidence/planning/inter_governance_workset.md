@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-07T09:06:47Z`
+Generated: `2026-06-07T09:17:32Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,13 +9,13 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **50** (ready 7, in_flight 0, blocked 27)
+- Items: **50** (ready 6, in_flight 0, blocked 28)
 - Pending review: **2**
 - Queue pending (unclaimed): **4**
 
 - Live EXQs: V3-EXQ-604b, V3-EXQ-610f, V3-EXQ-640b, V3-EXQ-645, V3-EXQ-648a
 
-- Auto-absorbed retests (queued, suppressed from workset): INV-074 -> V3-EXQ-610f, MECH-314 -> V3-EXQ-604b, MECH-314a -> V3-EXQ-604b, MECH-314b -> V3-EXQ-604b, MECH-314c -> V3-EXQ-604b, MECH-320 -> V3-EXQ-624c, Q-044 -> V3-EXQ-604b, SD-033a -> V3-EXQ-598c
+- Auto-absorbed retests (queued, suppressed from workset): ARC-068 -> V3-EXQ-624c, INV-074 -> V3-EXQ-610f, MECH-314 -> V3-EXQ-604b, MECH-314a -> V3-EXQ-604b, MECH-314b -> V3-EXQ-604b, MECH-314c -> V3-EXQ-604b, MECH-320 -> V3-EXQ-624c, Q-044 -> V3-EXQ-604b, SD-033a -> V3-EXQ-598c
 
 ## Work packages
 
@@ -112,7 +112,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-034 -- Implement substrate: SD-049 (unblocks MECH-229)
+### IGW-20260607-033 -- Implement substrate: SD-049 (unblocks MECH-229)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
@@ -121,7 +121,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-034
+REE inter-governance work item: IGW-20260607-033
 Title: Implement substrate: SD-049 (unblocks MECH-229)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -136,7 +136,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-035 -- Implement substrate: SD-049-PHASE-2 (unblocks MECH-229)
+### IGW-20260607-034 -- Implement substrate: SD-049-PHASE-2 (unblocks MECH-229)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3
@@ -145,7 +145,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-035
+REE inter-governance work item: IGW-20260607-034
 Title: Implement substrate: SD-049-PHASE-2 (unblocks MECH-229)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -160,7 +160,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-037 -- Implement substrate: scaffolded_sd054_onboarding (unblocks MECH-230)
+### IGW-20260607-036 -- Implement substrate: scaffolded_sd054_onboarding (unblocks MECH-230)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready_blocked_by: V3-EXQ-634c (seeding-calibrated nursery: gating floor matched to seeding floor + GoalConfig seeding-magnitude sweep + consumption-event-gated G3) must clear the substrate readiness gates on >=2/3 seed; SD-054 [candidate_v3_pending]; MECH-307 [implemented]
@@ -169,7 +169,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-037
+REE inter-governance work item: IGW-20260607-036
 Title: Implement substrate: scaffolded_sd054_onboarding (unblocks MECH-230)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -184,7 +184,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-038 -- Implement substrate: MECH-307 (unblocks MECH-230)
+### IGW-20260607-037 -- Implement substrate: MECH-307 (unblocks MECH-230)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready=false (no ready_blocked_by detail)
@@ -193,7 +193,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-038
+REE inter-governance work item: IGW-20260607-037
 Title: Implement substrate: MECH-307 (unblocks MECH-230)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -208,7 +208,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-042 -- Implement substrate: SD-033 (unblocks MECH-266)
+### IGW-20260607-041 -- Implement substrate: SD-033 (unblocks MECH-266)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready=false (no ready_blocked_by detail); MECH-094 [no-substrate-entry]: MECH-094; MECH-261 [no-substrate-entry]: MECH-261; ARC-035 [no-substrate-entry]: ARC-035; MECH-116 [no-substrate-entry]: MECH-116; MECH-151 [no-substrate-entry]: MECH-151; MECH-152 [no-substrate-entry]: MECH-152; MECH-235 [no-substrate-entry]: MECH-235
@@ -217,7 +217,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-042
+REE inter-governance work item: IGW-20260607-041
 Title: Implement substrate: SD-033 (unblocks MECH-266)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -232,7 +232,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-044 -- Implement substrate: SD-037 (unblocks MECH-280)
+### IGW-20260607-043 -- Implement substrate: SD-037 (unblocks MECH-280)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
 - **Blocked by:** ready=false (no ready_blocked_by detail)
@@ -241,7 +241,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-044
+REE inter-governance work item: IGW-20260607-043
 Title: Implement substrate: SD-037 (unblocks MECH-280)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -328,29 +328,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-032 -- Retest after substrate: ARC-068
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260607-032
-Title: Retest after substrate: ARC-068
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: ARC-068
-Why now: claims.yaml pending_retest_after_substrate=true.
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260607-033 -- Retest after substrate: MECH-229
+### IGW-20260607-032 -- Retest after substrate: MECH-229
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]
@@ -359,7 +337,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-033
+REE inter-governance work item: IGW-20260607-032
 Title: Retest after substrate: MECH-229
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -374,7 +352,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-036 -- Retest after substrate: MECH-230
+### IGW-20260607-035 -- Retest after substrate: MECH-230
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; scaffolded_sd054_onboarding [curriculum_decomposition_IMPLEMENTED_2026_06_07 (isolated hazard-avoidance Stage-H between P0 and P1: goal-frozen, hazards present, foraging minimal, hfa=0, midline spawn; ree-v3 harness-layer, 85/85 scaffold contracts + 7/7 preflight PASS, bit-identical OFF). 603f PROVED goal-formation+ecological-seeding sound (seed 44 foraged 0.393 + seeded z_goal 0.450) -> sole GAP-2 blocker is the P1 survival/hazard-avoidance leg (G1 0/3). ready STAYS false until V3-EXQ-603g (Stage-H ON) clears G1>=2/3 AND G2>=2/3 AND ecological G3>=2/3 against the SAME gate.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding)
@@ -383,7 +361,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-036
+REE inter-governance work item: IGW-20260607-035
 Title: Retest after substrate: MECH-230
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -398,7 +376,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-039 -- Retest after substrate: MECH-260
+### IGW-20260607-038 -- Retest after substrate: MECH-260
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** scaffolded_sd054_onboarding [curriculum_decomposition_IMPLEMENTED_2026_06_07 (isolated hazard-avoidance Stage-H between P0 and P1: goal-frozen, hazards present, foraging minimal, hfa=0, midline spawn; ree-v3 harness-layer, 85/85 scaffold contracts + 7/7 preflight PASS, bit-identical OFF). 603f PROVED goal-formation+ecological-seeding sound (seed 44 foraged 0.393 + seeded z_goal 0.450) -> sole GAP-2 blocker is the P1 survival/hazard-avoidance leg (G1 0/3). ready STAYS false until V3-EXQ-603g (Stage-H ON) clears G1>=2/3 AND G2>=2/3 AND ecological G3>=2/3 against the SAME gate.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding)
@@ -407,7 +385,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-039
+REE inter-governance work item: IGW-20260607-038
 Title: Retest after substrate: MECH-260
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -422,7 +400,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-040 -- Retest after substrate: MECH-262
+### IGW-20260607-039 -- Retest after substrate: MECH-262
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** ARC-062 [implemented]
@@ -431,7 +409,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-040
+REE inter-governance work item: IGW-20260607-039
 Title: Retest after substrate: MECH-262
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -446,7 +424,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-041 -- Retest after substrate: MECH-266
+### IGW-20260607-040 -- Retest after substrate: MECH-266
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-033 [unknown]; MECH-094 [no-substrate-entry] (transitive via SD-033): MECH-094; MECH-261 [no-substrate-entry] (transitive via SD-033): MECH-261; ARC-035 [no-substrate-entry] (transitive via SD-033): ARC-035; MECH-116 [no-substrate-entry] (transitive via SD-033): MECH-116; MECH-151 [no-substrate-entry] (transitive via SD-033): MECH-151; MECH-152 [no-substrate-entry] (transitive via SD-033): MECH-152; MECH-235 [no-substrate-entry] (transitive via SD-033): MECH-235; scaffolded_sd054_onboarding [curriculum_decomposition_IMPLEMENTED_2026_06_07 (isolated hazard-avoidance Stage-H between P0 and P1: goal-frozen, hazards present, foraging minimal, hfa=0, midline spawn; ree-v3 harness-layer, 85/85 scaffold contracts + 7/7 preflight PASS, bit-identical OFF). 603f PROVED goal-formation+ecological-seeding sound (seed 44 foraged 0.393 + seeded z_goal 0.450) -> sole GAP-2 blocker is the P1 survival/hazard-avoidance leg (G1 0/3). ready STAYS false until V3-EXQ-603g (Stage-H ON) clears G1>=2/3 AND G2>=2/3 AND ecological G3>=2/3 against the SAME gate.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding)
@@ -455,7 +433,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-041
+REE inter-governance work item: IGW-20260607-040
 Title: Retest after substrate: MECH-266
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -470,7 +448,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-043 -- Retest after substrate: MECH-280
+### IGW-20260607-042 -- Retest after substrate: MECH-280
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-037 [implemented]
@@ -479,7 +457,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-043
+REE inter-governance work item: IGW-20260607-042
 Title: Retest after substrate: MECH-280
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -494,7 +472,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-045 -- Retest after substrate: MECH-281
+### IGW-20260607-044 -- Retest after substrate: MECH-281
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
 - **Blocked by:** SD-037 [implemented]
@@ -503,13 +481,37 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260607-045
+REE inter-governance work item: IGW-20260607-044
 Title: Retest after substrate: MECH-281
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-281
 Blocked by: SD-037 [implemented]
 Why now: substrate_ceiling -- awaiting substrate enrichment; blocked by 1 unresolved prerequisite(s). See blocked_by.
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260607-045 -- Retest after substrate: MECH-295
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
+- **Blocked by:** MECH-307 [implemented]; scaffolded_sd054_onboarding [curriculum_decomposition_IMPLEMENTED_2026_06_07 (isolated hazard-avoidance Stage-H between P0 and P1: goal-frozen, hazards present, foraging minimal, hfa=0, midline spawn; ree-v3 harness-layer, 85/85 scaffold contracts + 7/7 preflight PASS, bit-identical OFF). 603f PROVED goal-formation+ecological-seeding sound (seed 44 foraged 0.393 + seeded z_goal 0.450) -> sole GAP-2 blocker is the P1 survival/hazard-avoidance leg (G1 0/3). ready STAYS false until V3-EXQ-603g (Stage-H ON) clears G1>=2/3 AND G2>=2/3 AND ecological G3>=2/3 against the SAME gate.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding)
+- **Why now:** substrate_ceiling -- awaiting substrate enrichment; blocked by 4 unresolved prerequisite(s). See blocked_by.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260607-045
+Title: Retest after substrate: MECH-295
+Lane: experiment | Skill: /queue-experiment
+Status: blocked
+Claims: MECH-295
+Blocked by: MECH-307 [implemented]; scaffolded_sd054_onboarding [curriculum_decomposition_IMPLEMENTED_2026_06_07 (isolated hazard-avoidance Stage-H between P0 and P1: goal-frozen, hazards present, foraging minimal, hfa=0, midline spawn; ree-v3 harness-layer, 85/85 scaffold contracts + 7/7 preflight PASS, bit-identical OFF). 603f PROVED goal-formation+ecological-seeding sound (seed 44 foraged 0.393 + seeded z_goal 0.450) -> sole GAP-2 blocker is the P1 survival/hazard-avoidance leg (G1 0/3). ready STAYS false until V3-EXQ-603g (Stage-H ON) clears G1>=2/3 AND G2>=2/3 AND ecological G3>=2/3 against the SAME gate.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding)
+Why now: substrate_ceiling -- awaiting substrate enrichment; blocked by 4 unresolved prerequisite(s). See blocked_by.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
