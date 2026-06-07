@@ -1,0 +1,164 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-07T14:20:26Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+      "queue_id": "V3-EXQ-604b",
+      "claim_ids": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "Q-044"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the claim was NOT tested under conditions where it could express itself. The candidate pool was class-uniform at run time, so a per-candidate curiosity bias has no cross-candidate range to act on regardless of MECH-314's truth.",
+        "biological_reference": "frontopolar exploration bonus / structured curiosity. The bonus is a real class of mechanism; the failure matches 'the controller cannot differentiate options' (an upstream perceptual-clustering deficit), not 'the bonus is wrong'.",
+        "prerequisites": "missing at run time -- ARC-065 GAP-A (action-conditional candidate diversity) was not yet validated. 604b ran 11:01; the GAP-A shared-channel fix validated 13:14 (V3-EXQ-649).",
+        "implementation": "complete on the authority side (modulatory-bias-selection-authority validated 643a) but the CONSUMED candidate representation was the collapsed proposer first-step z_world; the curiosity bias fired in magnitude (last_bias_max_abs=0.0177) with ~zero cross-candidate range.",
+        "environment": "adequate",
+        "measurement": "the readiness precondition checked curiosity bias MAGNITUDE (last_bias_max_abs >= 1e-4) not the cross-candidate RANGE that C1 actually routes on -- the canonical same-statistic confound (V3-EXQ-642/648).",
+        "integration": "partially coupled -- authority gate operative, upstream candidate-diversity channel collapsed.",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontopolar / rostrolateral PFC exploration bonus (structured curiosity)",
+        "dependencies": ["a differentiable candidate/option representation (action-conditional world prediction)", "selection authority at the commitment gate"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; this is a substrate-readiness gap, not a biology divergence",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-604b FAIL is NON-CONTRIBUTORY (substrate_ceiling), NOT a weakening of MECH-314/314a/314b/314c/Q-044. The run executed 2026-06-07T11:01Z, BEFORE the ARC-065 GAP-A action-conditional candidate-diversity fix was validated (V3-EXQ-649 PASS, 13:14Z). With a class-uniform candidate pool the structured-curiosity bias has magnitude (last_bias_max_abs=0.0177) but ~zero cross-candidate range, so it cannot move the E3 argmin even with the validated modulatory selection authority ON -- C1 (parent effect) fails for the same candidate-pool-collapse reason as the superseded 604a (covered by failure_autopsy_604a-624a-630). The readiness precondition checked bias magnitude, not the cross-candidate range C1 routes on (same-statistic confound, cf. V3-EXQ-642/648). pending_retest_after_substrate: re-queue as V3-EXQ-604c on the now-ready GAP-A substrate before any direction is weighed.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-065",
+        "sd_id_suggested": "ARC-065",
+        "title": "Behavioral-diversity-generation architectural slot (GAP-A action-conditional candidate diversity)",
+        "implementation_hint": "GAP-A shared-channel fix (candidate_summary_source=e2_world_forward) landed (ree-v3 71dfb2b) and is validated ready by V3-EXQ-649 (this cycle). 604b predates that validation; append it as a failure_record on the ARC-065 entry so the retest (604c) is linked to the substrate that unblocks it.",
+        "unblocks_claims": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "Q-044"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+          "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
+          "metric": "C1 parent effect (authority ON) FAIL; curiosity bias magnitude fired (last_bias_max_abs=0.0177) but cross-candidate range ~0 because the consumed candidate pool was class-uniform (pre-GAP-A). c1_mech314_parent_effect_authority_on passed=false.",
+          "target": "C1 parent effect PASS on a candidate pool with non-zero action-conditional cross-candidate spread (GAP-A validated, V3-EXQ-649)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A modulatory bias's readiness gate must check cross-candidate RANGE (the statistic the selection criterion routes on), not magnitude -- magnitude floors pass under candidate-pool collapse.",
+        "604b is the third confirmed instance (604a, 624a, 614d/614e, now 604b) of the candidate-pool-collapse confound masquerading as a per-claim null.",
+        "The GAP-A fix (validated by 649) is the substrate that makes the MECH-314 family testable; the retest is now unblocked."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_648a_mech314a_phase2_substrate_readiness_20260607T105407Z_v3",
+      "queue_id": "V3-EXQ-648a",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim_ids=[]; substrate-readiness diagnostic for MECH-314a Phase-2)",
+        "biological_reference": "n/a (readiness probe)",
+        "prerequisites": "present -- the MECH-314a Phase-2 amend landed (ree-v3 84c091c) and the consumed representation (e2.world_forward) carries action-conditional spread.",
+        "implementation": "load-bearing-ready: C2 (visitation lifts per-candidate bias spread) PASSED + all 3 readiness floors met (consumed spread 0.149>=0.05, bias-range 0.0206>=1e-4, magnitude bounded 0.315<=1e6). Secondary: C1 (baseline ARM_0 did NOT collapse to ~0) and C3 (augmentation engage-when-needed) failed; C3 degenerate (off-on engage frac diff = 0).",
+        "environment": "adequate",
+        "measurement": "the self-route label 'phase2_wiring_does_not_support' over-FAILs: it triggers on ANY of C1..C4 failing, but the LOAD-BEARING leg (C2) and all readiness floors passed. C3's augmentation-gate contrast is a genuine secondary probe gap (the conditional engage/disengage differential was not demonstrated).",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "novelty/visitation-driven curiosity signature (RBF over a rolling z_world visitation buffer)",
+        "dependencies": ["action-conditional candidate representation"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-648a is a substrate-readiness diagnostic (claim_ids=[]; does NOT weight claim confidence). The precondition_unmet adjudication flag is a FALSE POSITIVE -- the indexer treated the upper-bound rolled_out_zworld_magnitude_bounded ceiling (measured 0.315 vs 1e6) as a lower floor; the bug is fixed on origin (4cad6af514 + 639e9e0a59). On the science: the LOAD-BEARING criterion C2 (visitation source -> per-candidate-varying curiosity bias) PASSED and all three readiness floors cleared, so the MECH-314a Phase-2 consumed representation is load-bearing-ready. The overall FAIL is driven only by NON-load-bearing C1 (ARM_0 proposer baseline did not collapse to ~0 -- weakens the before/after contrast but is not a wiring failure) and C3 (the auto-augmentation engage-when-needed gate was degenerate: off-engage minus on-engage = 0). Treat 648a as substrate-ready in the load-bearing sense; the C3 augmentation-gate behaviour is an open secondary probe, optionally re-run as V3-EXQ-648b. Do NOT read 'phase2_wiring_does_not_support' as a Phase-2 substrate failure.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "MECH-314a-Phase-2-impl",
+        "sd_id_suggested": "MECH-314a-Phase-2-impl",
+        "title": "MECH-314a Phase-2 rolling z_world visitation buffer (already landed)",
+        "implementation_hint": "Phase-2 substrate already landed (ree-v3 84c091c) and is load-bearing-ready per this run's C2 PASS. No substrate write needed. The C3 augmentation-gate degeneracy is a probe/measurement issue, not a missing substrate.",
+        "unblocks_claims": ["MECH-314a"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_648a_mech314a_phase2_substrate_readiness_20260607T105407Z_v3",
+          "experiment_type": "v3_exq_648a_mech314a_phase2_substrate_readiness",
+          "metric": "Load-bearing C2 PASS; non-load-bearing C1 (baseline non-collapse) + C3 (augmentation gate degenerate, off-on engage diff=0) FAIL.",
+          "target": "C3 augmentation engage-when-needed contrast (SD-056-OFF engages, SD-056-ON disengages) demonstrated on >=2/3 seeds"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A readiness diagnostic whose label FAILs on ANY criterion (rather than the load-bearing one) will over-FAIL when a secondary contrast leg fails; the load-bearing leg is the verdict-bearing signal.",
+        "MECH-314a Phase-2 consumed representation is load-bearing-ready (C2 PASS); the candidate-diversity substrate is in place on the curiosity channel.",
+        "The C3 auto-augmentation engage-when-needed gate is not yet demonstrated -- a real secondary open item, separable from the Phase-2 readiness verdict."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3",
+      "queue_id": "V3-EXQ-649",
+      "claim_ids": [],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim_ids=[]; substrate-readiness diagnostic for ARC-065 GAP-A)",
+        "biological_reference": "n/a (readiness probe)",
+        "prerequisites": "present -- GAP-A shared-channel re-source (candidate_summary_source=e2_world_forward) landed (ree-v3 71dfb2b).",
+        "implementation": "verified ready: load-bearing C2 (e2_world_forward lifts consumed spread over proposer) PASSED; ARM_1 consumed-summary spread 0.090 >= 0.05 floor; bounded 0.190 <= 1e6 ceiling.",
+        "environment": "adequate",
+        "measurement": "the precondition_unmet flag is a FALSE POSITIVE (indexer upper-bound bug, fixed on origin). The manifest now carries direction:upper/comparator:<= annotations on the bounded check.",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "shared option-evaluation representation feeding multiple PFC/striatal bias channels (lateral_pfc / ofc / mech295 / gated_policy / tonic_vigor)",
+        "dependencies": ["SD-056 action-conditional contrastive world model"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ready",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-649 is a PASS substrate-readiness diagnostic (claim_ids=[]; does NOT weight claim confidence). The precondition_unmet adjudication flag is a FALSE POSITIVE -- the indexer treated the upper-bound rolled_out_zworld_spread_bounded ceiling (measured 0.190 vs 1e6) as a lower floor; fix landed on origin (4cad6af514 + 639e9e0a59) and the manifest now carries direction:upper/comparator:<=. The load-bearing C2 (e2_world_forward lifts consumed cand_world_summaries spread over the proposer source) PASSED with ARM_1 consumed-summary spread 0.090 >= the 0.05 floor. The ARC-065 GAP-A shared candidate-summary channel is therefore VERIFIED READY: it unblocks the V3-EXQ-604c MECH-314-family retest, the MECH-341 committed-class diversity retest, and the ARC-062/063 GAP-B rule-apprehension falsifier. Clears at the governance walk -- gate legitimately cleared, no degenerate criterion.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-065",
+        "sd_id_suggested": "ARC-065",
+        "title": "Behavioral-diversity-generation architectural slot -- GAP-A shared channel READY",
+        "implementation_hint": "GAP-A shared cand_world_summaries re-source validated ready by this run. Update the ARC-065 substrate entry's metric_trajectory / readiness to reflect GAP-A READY (consumed-summary spread 0.090 >= 0.05); this is the readiness checkpoint the dependent retests query for blocked_by clearance.",
+        "unblocks_claims": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-341", "Q-044"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3",
+          "experiment_type": "v3_exq_649_arc065_gapa_shared_candidate_summary_source",
+          "metric": "READINESS PASS: ARM_1 consumed_summary_pairwise_dist=0.090 >= 0.05 floor; C2 load-bearing lift over proposer PASS.",
+          "target": "n/a -- this is the readiness PASS that clears GAP-A blocked_by for dependents"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "GAP-A shared candidate-summary channel is verified ready (consumed spread 0.090 >= 0.05) -- the candidate-pool-collapse confound that produced four prior nulls (604a/624a/614d/614e) is resolved on the shared channel.",
+        "The precondition_unmet flags on 648a/649 were both indexer false-positives (upper-bound ceiling treated as lower floor); the fix is on origin and the next governance regen will clear pending_review.",
+        "649 is the unblocker for the entire downstream retest set (604c, MECH-341, ARC-062/063 GAP-B)."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Candidate-pool collapse: every CEM candidate produces an identical post-E2-world-forward representation (cand_world_pairwise_dist ~ 0) despite differing first actions, so every E3-side modulatory bias channel has magnitude but ~zero cross-candidate range and cannot move the argmin. Readiness gates that check bias MAGNITUDE pass while the discrimination criterion (which routes on cross-candidate RANGE) fails.",
+    "is_independent_bugs": false,
+    "structural_property": "A single upstream substrate property (action-conditional candidate diversity) gated the entire MECH-314 / ARC-065 / MECH-341 family. 604b is a pre-fix null (confound active). 648a (curiosity channel) and 649 (shared channel) are the two readiness probes confirming the fix: as of 2026-06-07 ~13:14 the consumed candidate representation carries action-conditional spread on both the curiosity channel (648a C2 PASS) and the shared bias channel (649 C2 PASS). The cluster is the resolution of the four-instance candidate-collapse confound (604a/624a/614d/614e), not four independent bugs.",
+    "readings": ["substrate_ceiling_pre_fix (604b)", "substrate_ready_post_fix (648a load-bearing + 649)"]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-07T14:20:26Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+      "queue_id": "V3-EXQ-651",
+      "claim_ids": ["ARC-060"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the claim was NOT tested under conditions where it could express itself. ARC-060 predicts FIELD_ONLY prematurely ABANDONS a blocked goal while FIELD+BANK recovers; the test never produced field-alone abandonment, so the bank's rescue advantage had nothing to act on.",
+        "biological_reference": "hippocampal/PFC maintenance of a deferred goal across gradient collapse (ghost-goal trace vs continuous wanting field). The class of mechanism is well-evidenced (working-memory + episodic reinstatement of an interrupted goal).",
+        "prerequisites": "present at the substrate level -- SD-039 (V3-EXQ-494), MECH-292 (V3-EXQ-496), MECH-293 (V3-EXQ-497) all PASS; the bank genuinely engaged here (C1 met 3/3, 130-146 ghost candidates admitted, goal_active_frac=1.0).",
+        "implementation": "complete -- both arms behaved as configured; the bank fired in the ON arm.",
+        "environment": "TOO SPARSE / wrong pressure -- the Phase-B invalidation (remove goal resource, stop re-seeding z_goal) did NOT force the FIELD_ONLY agent to drift away from the persisted goal. FIELD_ONLY Phase-C goal-proximity stayed ~0.98 (seed 42 early 0.990 -> late 0.972). The small grid + persisted z_goal field keep the agent near the old goal scene regardless of the bank.",
+        "measurement": "MISLEADING for this hypothesis -- goal_proximity is the latent proximity of current z_world to the persisted z_goal; it saturates near-ceiling in BOTH arms (FIELD_ONLY ~0.981, FIELD+BANK ~0.989; margin needed 0.01, observed deltas +0.008 / -0.0008). It does not capture behavioural abandonment/re-approach, which is what ARC-060 predicts the bank changes.",
+        "integration": "coupled",
+        "scale": "z_goal seeded at modest norm (goal_norm_after_phase_a=0.30) -- a stronger / object-bound goal gradient (SD-057 / goal_pipeline) might sharpen field-alone abandonment, but the decisive defect is the degenerate negative control, not scale."
+      },
+      "biological_reference": {
+        "closest_mechanism": "deferred-goal maintenance: continuous wanting field (vmPFC/striatal value landscape) + discrete reinstatable ghost-goal trace (hippocampal episodic goal snapshot)",
+        "dependencies": ["a goal whose LOCAL gradient genuinely collapses (so the field alone loses it)", "a behavioural readout of abandonment vs recovery (re-approach), not a saturating latent-proximity metric"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- this is a test-design / environment ceiling, not a biology divergence",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-651 FAIL is NON-CONTRIBUTORY (measurement / test-design defect), NOT a weakening of ARC-060. The discrete ghost-goal bank genuinely engaged (C1 met 3/3 seeds; 130-146 ghost candidates admitted; goal_active_frac=1.0), but the recovery margin was met on 0/3 seeds because the FIELD_ONLY NEGATIVE CONTROL never exhibited the premature abandonment ARC-060 predicts: Phase-C goal-proximity stayed near-ceiling in BOTH arms (FIELD_ONLY ~0.981, FIELD+BANK ~0.989; seed 42 FIELD_ONLY early 0.990 -> late 0.972). With the field-alone agent never losing the goal, the bank's rescue advantage has nothing to act on -- the discriminating condition (local-gradient collapse + abandonment) was never created. The latent goal_proximity-to-persisted-z_goal metric also saturates and does not read behavioural abandonment/re-approach. Re-queue as V3-EXQ-651a with (a) a Phase-B invalidation strong enough to force FIELD_ONLY drift (e.g. physically displace the agent far from the goal cell, or harden the invalidation), (b) a NON-DEGENERACY GATE requiring the FIELD_ONLY arm to show abandonment (late << early goal-proximity, or behavioural drop in re-approach) BEFORE the bank comparison is scored, and (c) a behavioural re-approach readout alongside the latent metric. pending_retest_after_substrate (test-design redesign).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-039",
+        "sd_id_suggested": "SD-039",
+        "title": "Anchor goal-snapshot payload / ghost-goal bank (already landed + child-validated)",
+        "implementation_hint": "ARC-060's substrate (SD-039 + MECH-292 + MECH-293) is landed and child-validated (494/496/497 PASS) and the bank engaged in this run. No substrate gap -- the defect is the test design (the negative control never abandoned). Route to /queue-experiment for the 651a redesign, not to substrate work.",
+        "unblocks_claims": ["ARC-060"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+          "experiment_type": "v3_exq_651_arc060_blocked_goal_recovery",
+          "metric": "C3 recovery margin met 0/3; FIELD_ONLY negative control never abandoned (Phase-C goal_prox ~0.98 both arms; delta +0.008/-0.0008 vs 0.01 margin). Bank engaged (C1 3/3).",
+          "target": "FIELD_ONLY arm shows premature abandonment (non-degeneracy gate) AND FIELD+BANK recovery margin >= 0.01 on >=2/3 seeds, on a behavioural re-approach readout"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "An OFF-vs-ON recovery test is only interpretable if the OFF (negative-control) arm first exhibits the failure mode the ON arm is meant to rescue -- 651 had no such gate, so a saturated negative control produced a spurious 0/3.",
+        "Latent goal_proximity-to-persisted-z_goal saturates near-ceiling and cannot discriminate abandonment from persistence in a small grid; ARC-060's prediction needs a behavioural abandonment/re-approach readout.",
+        "ARC-060's substrate (SD-039/MECH-292/MECH-293) is landed and the bank engages; the open question is a test-design one, not a substrate one.",
+        "Plausible secondary contributor: the modest seeded z_goal (norm 0.30) -- a stronger / SD-057 object-bound goal gradient may sharpen the field-alone abandonment the redesign needs."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
