@@ -1,11 +1,22 @@
 {
   "schema_version": "v1",
-  "runner_pid": 746,
-  "runner_started_at": "2026-06-06T16:05:54.695273+00:00",
-  "last_updated": "2026-06-07T13:16:25.684738+00:00",
+  "runner_pid": 743,
+  "runner_started_at": "2026-06-07T13:45:41.719782+00:00",
+  "last_updated": "2026-06-07T13:56:12.173721+00:00",
   "idle": false,
   "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-603g",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "scaffolded_sd054_onboarding substrate-readiness: curriculum decomposition (isolated hazard-avoidance Stage-H between P0 and P1) -- GAP-2 P1 survival leg; supersedes 603f",
+      "description": "",
+      "estimated_minutes": 94.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-610f",
       "backlog_id": "EVB-0270",
@@ -18,24 +29,35 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-643a",
+      "queue_id": "V3-EXQ-603f",
       "backlog_id": "",
       "claim_id": "",
-      "title": "modulatory-bias-selection-authority re-validation after the float32 catastrophic-cancellation fix (e3_selector explicit modulatory accumulator, 2026-06-06) + SD-056 rollout-norm clamp harness stability. 3 arms (authority OFF / ON gain0.5 / ON gain0.8) x 3 seeds. Supersedes V3-EXQ-643.",
+      "title": "scaffolded_sd054_onboarding FULL-SCALE substrate-readiness run (foraging-competence amend validation): single-arm all-levers-ON at restored budget P0=100/P1=50 (Stage0=20/Stage0b=10/P2=15, 200 steps/ep), z_goal_enabled=True + drive_weight=2.0. Cue-recall bridge + reef-spawn weaning 0.4 + auto-reconcile gating-to-seeding + 634c seeding calibration (gain1.5/thr0.02/drivefloor0.9) + developmental window. Gate G0 Stage-0 z_goal>0.4 + G1 P1 survival + G2 P2 contact>0, each >=2/3 seeds. Lynchpin blocking commitment_closure:GAP-4 / goal_pipeline:GAP-4 / infant 603-chain.",
       "description": "",
-      "estimated_minutes": 96.0,
+      "estimated_minutes": 78.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-644",
+      "queue_id": "V3-EXQ-640b",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "arm-reuse Phase-0 MINT of the V3-EXQ-610 OFF/baseline arm (INV-074 crystallization necessity; ARM_0_stripped_control) on ree-cloud-2. OFF arm x 3 seeds, built from the canonical baseline module; records per-cell arm_fingerprint. Sibling to V3-EXQ-645 (ree-cloud-3) for the cross-instance determinism check.",
+      "claim_id": "SD-057",
+      "title": "SD-057/MECH-346/MECH-347 cue-authority lineage CLEAN EVIDENCE retest: re-run the 640a scaffold cue-recall gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds) now that modulatory-bias-selection-authority is VALIDATED (V3-EXQ-643a PASS). use_modulatory_selection_authority=True+gain=0.5 on every arm so the cue->z_goal->MECH-295 approach bias has bounded authority over the E3.select argmin in the contact-making scaffold P2 env. Promotes 640a (diagnostic, flat lift, authority OFF) to EVIDENCE.",
       "description": "",
-      "estimated_minutes": 1000.0,
-      "status": "pending",
+      "estimated_minutes": 658.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-624c",
+      "backlog_id": "EVB-0237",
+      "claim_id": "MECH-320",
+      "title": "ARC-068/MECH-320 Niv-Salamone opportunity-cost dissociation -- no-op-rich re-spec (5 seeds + non-vacuous majority gate)",
+      "description": "",
+      "estimated_minutes": 346.7,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1924,6 +1946,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_610_inv074_crystallization_baseline_mint_v3exq645_20260607T131625Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 76230.2
+    },
+    {
+      "queue_id": "V3-EXQ-598c",
+      "backlog_id": "",
+      "claim_id": "SD-033a",
+      "title": "SD-033a metric-redesign falsifier: direct rule_state cosine probes on held-out rule-context pairs (replaces 598b reef-visit-band behavioural metric). Teleport-sampled reef-context vs forage-context observation pool drives the rule_state EMA via the real sense->select_action->lateral_pfc.update path under sustained context; mean-centered cosine (RSA) measures rule_state context-discriminability. Independent of the blocked ARC-065/GAP-B behavioural-diversity work (random/teleport sampling sidesteps monomodal collapse). Same-statistic z_world discriminability is the non-vacuity readiness precondition.",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: FAIL  n_reef=40 n_forage=40  zw_margin=0.1795 rule_margin=0.2545  rule_within=0.1177 rule_cross=-0.1368  rule_norm=0.0411 rule_std=0.00018 | outcome=PASS  evidence_direction=supports  label=rule_state_context_discriminable | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-598c -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-598c.json",
+      "started_at": "2026-06-07T13:45:41.933833+00:00",
+      "completed_at": "2026-06-07T13:56:12.172729+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 629.0
     }
   ]
 }
