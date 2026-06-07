@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_463b_mech268_dacc_conflict_saturation_behavioural
 
-Generated: `2026-06-07T07:47:18.670567Z`
+Generated: `2026-06-07T09:27:19.242589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

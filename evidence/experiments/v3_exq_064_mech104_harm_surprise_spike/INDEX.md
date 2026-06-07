@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_064_mech104_harm_surprise_spike
 
-Generated: `2026-06-07T07:47:18.670567Z`
+Generated: `2026-06-07T09:27:19.242589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

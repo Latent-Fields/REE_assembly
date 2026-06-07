@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_190_mech022_hypothesis_injection_probe
 
-Generated: `2026-06-07T07:47:18.670567Z`
+Generated: `2026-06-07T09:27:19.242589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

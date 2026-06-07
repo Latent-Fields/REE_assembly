@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_541a_mech204_precision_recalibration_f1
 
-Generated: `2026-06-07T07:47:18.670567Z`
+Generated: `2026-06-07T09:27:19.242589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

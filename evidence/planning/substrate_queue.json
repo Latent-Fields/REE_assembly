@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "failure-autopsy-V3-EXQ-648-mech314a-phase2-20260607T0458Z",
-  "last_updated_utc": "2026-06-07T04:58:08Z",
+  "last_updated_utc": "2026-06-07T09:27:09Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -2889,7 +2889,7 @@
         }
       ],
       "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor). || GAP-A 2026-06-07 (V3-EXQ-614e autopsy): MECH-341 within-class temperature cannot lift committed-class diversity because the candidate pool is monostrategic at the class level -- all K CEM candidates collapse to identical z_world after one E2 world-forward step (cand_world_pairwise_dist=0.0000) despite differing first actions, so every E3-side bias channel sees a class-uniform pool. The GAP-A E2-world-forward per-candidate signal preservation (extend the 2026-05-17 ARC-062 GAP-B first-action-onehot fix beyond GatedPolicy; shared-channel sibling of the MECH-314a Phase-2 curiosity fix) is the prerequisite. IMPLEMENTED 2026-06-07: ree-v3 REEConfig.candidate_summary_source (proposer|e2_world_forward, default proposer/bit-identical) re-sources the shared cand_world_summaries consumed by lateral_pfc/ofc/mech295/gated_policy/tonic_vigor from e2.world_forward(z0,a_i) (SD-056-trained, action-divergent). Composes with the modulatory-bias-selection-authority gate (V3-EXQ-643a) so the now-divergent bias reaches the committed argmin. Substrate-readiness validation V3-EXQ-649 queued. Only after class-level candidate diversity exists can the MECH-341 committed-class diversity re-test (within-class-REPRESENTATIVE-diversity readout, not committed-class entropy -- autopsy Learning #2) be non-vacuous.",
-      "last_seen_session": "arc065-failure-record-correction-20260526T064946Z",
+      "last_seen_session": "governance-cycle-20260607T0921Z",
       "pending_retests_downstream": [
         {
           "added_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
@@ -2914,7 +2914,8 @@
         "MECH-314",
         "MECH-314a",
         "MECH-314b",
-        "MECH-314c"
+        "MECH-314c",
+        "MECH-341"
       ]
     },
     {

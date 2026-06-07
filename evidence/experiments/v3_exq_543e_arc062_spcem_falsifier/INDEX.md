@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_543e_arc062_spcem_falsifier
 
-Generated: `2026-06-07T07:47:18.670567Z`
+Generated: `2026-06-07T09:27:19.242589Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
