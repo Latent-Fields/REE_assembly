@@ -230,8 +230,14 @@ def build_runpack_docs(data: dict, experiment_type: str):
     # Build summary.md
     summary = data.get("summary_markdown", "")
     if not summary:
-        n_pass = sum(1 for v in (data.get("criteria") or {}).values() if v)
-        n_total = len(data.get("criteria") or {})
+        crit = data.get("criteria") or {}
+        if isinstance(crit, list):
+            # Newer schema: criteria is a list of {name, load_bearing, passed} objects.
+            n_pass = sum(1 for c in crit if (c.get("passed") if isinstance(c, dict) else c))
+            n_total = len(crit)
+        else:
+            n_pass = sum(1 for v in crit.values() if v)
+            n_total = len(crit)
         summary = f"# {experiment_type}\n\nStatus: **{status}**"
         if n_total:
             summary += f"  ({n_pass}/{n_total} criteria)"

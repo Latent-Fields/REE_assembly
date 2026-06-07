@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_540a_mech307_optionb_3arm_conjunction_decomposition
 
-Generated: `2026-06-07T13:47:26.097465Z`
+Generated: `2026-06-07T14:39:07.798762Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

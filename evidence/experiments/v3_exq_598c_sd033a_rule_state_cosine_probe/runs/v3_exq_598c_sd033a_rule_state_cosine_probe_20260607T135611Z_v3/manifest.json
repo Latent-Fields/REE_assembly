@@ -1,0 +1,70 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_598c_sd033a_rule_state_cosine_probe",
+  "run_id": "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-07T13:56:11.544509Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-033a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "rule_state_context_discriminable",
+    "note": "rule_state is populated, within-context consistent, and cross-context discriminable -- SD-033a signatures (i) stimulus-abstracted representation and (ii) persistence delivered at the representational level, decoupled from policy behaviour.",
+    "preconditions": [
+      {
+        "name": "zworld_context_discriminable",
+        "description": "cosine discriminability margin (within - cross) of z_world across reef/forage contexts, measured on the SAME statistic the load-bearing rule_state criterion routes on; the positive control is the trained encoder output that rule_state is built from.",
+        "control": "P0-trained z_world encoder reading real reef/forage observations",
+        "measured": 0.308108,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "context_coverage_both_halves",
+        "description": "every scored seed reached MIN_SAMPLES_PER_CONTEXT in BOTH reef and forage contexts (else the cosine statistics are starved).",
+        "measured": 3,
+        "threshold": 2,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_rule_state_non_degenerate": true,
+      "C2_within_context_consistency": true,
+      "C3_cross_context_discriminable": true
+    }
+  }
+}

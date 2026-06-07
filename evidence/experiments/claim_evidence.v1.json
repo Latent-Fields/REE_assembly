@@ -3841,16 +3841,15 @@
       }
     },
     "ARC-060": {
-      "confidence_rationale": "exp=1 entry(s), lit=13 entry(s), exp_conf=0.325, lit_conf=0.873",
+      "confidence_rationale": "exp=0 entry(s), lit=13 entry(s), exp_conf=0, lit_conf=0.873",
       "direction_counts": {
         "mixed": 2,
         "supports": 11,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 14,
+      "entries_total": 13,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:behavioral_animal": 1,
         "lit:connectome_mechanistic_review": 1,
         "lit:connectome_primary_research": 1,
@@ -3858,27 +3857,44 @@
         "lit:meta_analysis": 1,
         "lit:theoretical_review": 5
       },
-      "evidence_level_counts": {
-        "C": 1
-      },
+      "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.325,
-      "experimental_confidence_decoupled": 0.325,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "latest_run_id": "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
-      "latest_timestamp_utc": "2026-06-07T13:19:28.081219Z",
+      "latest_run_id": "2026-05-18_ghost_goal_pit_goalmatch_wanting_corbit2005",
+      "latest_timestamp_utc": "2026-05-18T20:46:59Z",
       "literature_confidence": 0.873,
       "literature_confidence_parallel": 0.873,
-      "overall_confidence": 0.736,
+      "overall_confidence": 0.873,
       "pass_runs": 0,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-060",
+          "confidence": 0.75,
+          "confidence_rationale": "Canonical framework establishing that a blocked/extinguished trace is not erased but preserved and re-expressed under context change (renewal, spontaneous recovery, reinstatement, rapid reacquisition). Strongly validates ARC-060/SD-039's preserve-don't-erase architecture. Held at 0.75 because it simultaneously weakens the sub-claim that MECH-292's recoverability gate can be inhibition-only: biology shows that without an explicit erase path, rumination/intrusion is the predicted equilibrium, not an aberration.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_ghost_goal_search",
+          "failure_signatures": [
+            "A cue/behaviour judged 'extinguished' (zero response) re-expresses at full strength merely because the test context differs from the extinction context (renewal) -- a 'resolved' goal returns on context change with no new evidence.",
+            "Elapsed time alone reinstates the inactive trace (spontaneous recovery): suppression is treated as time-bounded.",
+            "A single outcome re-exposure (reinstatement) or one reinforced repetition (rapid reacquisition) snaps the whole inactive trace back -- small triggers produce disproportionate full return.",
+            "Inhibition is more context-specific than excitation, so the maladaptive original trace generalises across contexts better than its suppression -- the system is structurally biased toward relapse."
+          ],
+          "run_id": "2026-05-18_ghost_goal_extinction_renewal_bouton2004",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-18T20:46:59Z"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-060",
@@ -3949,27 +3965,11 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-18T20:46:59Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-060",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_651_arc060_blocked_goal_recovery",
-          "failure_signatures": [],
-          "run_id": "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-06-07T13:19:28.081219Z"
         }
       ],
-      "runs_total": 14,
+      "runs_total": 13,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 13
       }
     },
@@ -6983,7 +6983,7 @@
       }
     },
     "INV-044": {
-      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.716, lit_conf=0.881",
+      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.715, lit_conf=0.881",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -7003,8 +7003,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.716,
-      "experimental_confidence_decoupled": 0.716,
+      "experimental_confidence": 0.715,
+      "experimental_confidence_decoupled": 0.715,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -8450,7 +8450,7 @@
       }
     },
     "INV-059": {
-      "confidence_rationale": "exp=0 entry(s), lit=18 entry(s), exp_conf=0, lit_conf=0.88",
+      "confidence_rationale": "exp=0 entry(s), lit=18 entry(s), exp_conf=0, lit_conf=0.879",
       "direction_counts": {
         "mixed": 0,
         "supports": 18,
@@ -8481,9 +8481,9 @@
       },
       "latest_run_id": "2026-05-16_arc049_wenig2021_raven_play_emotional_contagion",
       "latest_timestamp_utc": "2026-05-16T12:28:47Z",
-      "literature_confidence": 0.88,
-      "literature_confidence_parallel": 0.88,
-      "overall_confidence": 0.88,
+      "literature_confidence": 0.879,
+      "literature_confidence_parallel": 0.879,
+      "overall_confidence": 0.879,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -12050,7 +12050,7 @@
       }
     },
     "MECH-072": {
-      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.715, lit_conf=0.805",
+      "confidence_rationale": "exp=3 entry(s), lit=6 entry(s), exp_conf=0.714, lit_conf=0.805",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -12069,8 +12069,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.715,
-      "experimental_confidence_decoupled": 0.715,
+      "experimental_confidence": 0.714,
+      "experimental_confidence_decoupled": 0.714,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -13647,7 +13647,7 @@
       }
     },
     "MECH-094": {
-      "confidence_rationale": "exp=2 entry(s), lit=25 entry(s), exp_conf=0.816, lit_conf=0.848",
+      "confidence_rationale": "exp=2 entry(s), lit=25 entry(s), exp_conf=0.815, lit_conf=0.848",
       "direction_counts": {
         "mixed": 2,
         "supports": 24,
@@ -13673,8 +13673,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.816,
-      "experimental_confidence_decoupled": 0.816,
+      "experimental_confidence": 0.815,
+      "experimental_confidence_decoupled": 0.815,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -17491,7 +17491,7 @@
       }
     },
     "MECH-165": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.185, lit_conf=0.82",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.185, lit_conf=0.819",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -17521,9 +17521,9 @@
       },
       "latest_run_id": "2026-04-06_mech165_salient_replay_priority_huelingo2023",
       "latest_timestamp_utc": "2026-04-06T00:00:00Z",
-      "literature_confidence": 0.82,
-      "literature_confidence_parallel": 0.82,
-      "overall_confidence": 0.661,
+      "literature_confidence": 0.819,
+      "literature_confidence_parallel": 0.819,
+      "overall_confidence": 0.66,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -20068,7 +20068,7 @@
       }
     },
     "MECH-194": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.752",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.751",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -20094,9 +20094,9 @@
       },
       "latest_run_id": "2026-05-16_devrobotics_sensorimotor_contingency_jacquey2019",
       "latest_timestamp_utc": "2026-05-16T12:28:16Z",
-      "literature_confidence": 0.752,
-      "literature_confidence_parallel": 0.752,
-      "overall_confidence": 0.752,
+      "literature_confidence": 0.751,
+      "literature_confidence_parallel": 0.751,
+      "overall_confidence": 0.751,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -20292,7 +20292,7 @@
       }
     },
     "MECH-197": {
-      "confidence_rationale": "exp=0 entry(s), lit=12 entry(s), exp_conf=0, lit_conf=0.869",
+      "confidence_rationale": "exp=0 entry(s), lit=12 entry(s), exp_conf=0, lit_conf=0.868",
       "direction_counts": {
         "mixed": 0,
         "supports": 12,
@@ -20319,9 +20319,9 @@
       },
       "latest_run_id": "2026-05-16_devrobotics_sensorimotor_contingency_jacquey2019",
       "latest_timestamp_utc": "2026-05-16T12:28:16Z",
-      "literature_confidence": 0.869,
-      "literature_confidence_parallel": 0.869,
-      "overall_confidence": 0.869,
+      "literature_confidence": 0.868,
+      "literature_confidence_parallel": 0.868,
+      "overall_confidence": 0.868,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -20422,7 +20422,7 @@
       }
     },
     "MECH-198": {
-      "confidence_rationale": "exp=0 entry(s), lit=8 entry(s), exp_conf=0, lit_conf=0.872",
+      "confidence_rationale": "exp=0 entry(s), lit=8 entry(s), exp_conf=0, lit_conf=0.871",
       "direction_counts": {
         "mixed": 1,
         "supports": 7,
@@ -20451,9 +20451,9 @@
       },
       "latest_run_id": "2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013",
       "latest_timestamp_utc": "2026-05-16T12:01:01Z",
-      "literature_confidence": 0.872,
-      "literature_confidence_parallel": 0.872,
-      "overall_confidence": 0.872,
+      "literature_confidence": 0.871,
+      "literature_confidence_parallel": 0.871,
+      "overall_confidence": 0.871,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -20825,7 +20825,7 @@
       }
     },
     "MECH-204": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.511, lit_conf=0.856",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.51, lit_conf=0.856",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -20842,8 +20842,8 @@
         "C": 3
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.511,
-      "experimental_confidence_decoupled": 0.511,
+      "experimental_confidence": 0.51,
+      "experimental_confidence_decoupled": 0.51,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -20947,7 +20947,7 @@
       }
     },
     "MECH-205": {
-      "confidence_rationale": "exp=3 entry(s), lit=8 entry(s), exp_conf=0.858, lit_conf=0.855",
+      "confidence_rationale": "exp=3 entry(s), lit=8 entry(s), exp_conf=0.857, lit_conf=0.855",
       "direction_counts": {
         "mixed": 0,
         "supports": 11,
@@ -20966,8 +20966,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.858,
-      "experimental_confidence_decoupled": 0.858,
+      "experimental_confidence": 0.857,
+      "experimental_confidence_decoupled": 0.857,
       "fail_runs": 1,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -21199,7 +21199,7 @@
       }
     },
     "MECH-220": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.215, lit_conf=0.861",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.214, lit_conf=0.861",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -21216,8 +21216,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.215,
-      "experimental_confidence_decoupled": 0.215,
+      "experimental_confidence": 0.214,
+      "experimental_confidence_decoupled": 0.214,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -21230,7 +21230,7 @@
       "latest_timestamp_utc": "2026-04-18T20:26:57Z",
       "literature_confidence": 0.861,
       "literature_confidence_parallel": 0.861,
-      "overall_confidence": 0.7,
+      "overall_confidence": 0.699,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -22521,16 +22521,16 @@
       }
     },
     "MECH-262": {
-      "confidence_rationale": "exp=2 entry(s), lit=8 entry(s), exp_conf=0.575, lit_conf=0.873",
+      "confidence_rationale": "exp=1 entry(s), lit=8 entry(s), exp_conf=0.683, lit_conf=0.873",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 10,
+      "entries_total": 9,
       "evidence_class_counts": {
-        "exp:simulation": 2,
+        "exp:simulation": 1,
         "lit:behavioral_animal": 1,
         "lit:connectome_mechanistic_review": 1,
         "lit:electrophysiology_lfp": 1,
@@ -22538,26 +22538,45 @@
         "lit:theoretical_review": 2
       },
       "evidence_level_counts": {
-        "C": 2
+        "C": 1
       },
-      "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.575,
-      "experimental_confidence_decoupled": 0.575,
-      "fail_runs": 1,
-      "genuine_exp_count": 2,
+      "evidence_quadrant": "confirmed_established",
+      "experimental_confidence": 0.683,
+      "experimental_confidence_decoupled": 0.683,
+      "fail_runs": 0,
+      "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 1,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "latest_run_id": "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3",
-      "latest_timestamp_utc": "2026-05-27T12:03:45.235770Z",
+      "latest_run_id": "2026-04-28_frontal_goal_grounding_md_thalamus_pfc_rule_schmitt2017",
+      "latest_timestamp_utc": "2026-04-28T03:57:38Z",
       "literature_confidence": 0.873,
       "literature_confidence_parallel": 0.873,
-      "overall_confidence": 0.754,
+      "overall_confidence": 0.825,
       "pass_runs": 1,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-262",
+          "confidence": 0.74,
+          "confidence_rationale": "Trends in Cognitive Sciences review of two decades of fMRI, lesion, intracranial recording, and effective-connectivity evidence on hierarchical control in lateral PFC. Distinct entry from the existing 2026-04-19 indexing (which tagged this paper for the PFC-subdivision-architecture question -- where rules go in lateral PFC). This entry addresses the orthogonal SD-033a A2 question: what training signal shapes the rule-bias projection? The review's most direct contribution to A2 is in Box 2 (corticostriatal gating), citing fMRI evidence that 'reward prediction errors related to learning a second order rule modulated fMRI activation in prePMd and a spatially proximate subregion of the caudate nucleus' -- i.e., RPE-driven training signal propagated through corticostriatal-thalamic loops, not through direct cortico-cortical credit assignment. The review's broader framing (separable frontal networks rather than a unitary controller) further constrains A2: a single-target training signal applied uniformly to a single bias head is an architectural mismatch; biology recruits multiple parallel networks each with its own learning dynamics. Confidence held at 0.74 because source quality is high (TiCS review, dual-author synthesis with strong methodological coverage) but the RPE-via-corticostriatal-loops finding is referenced rather than primary, and the network-separability framing does not uniquely identify SD-033a's A2 implementation choice -- it constrains the design space without selecting one option. Mixed direction reflects the dual reading: supports RPE-driven training (a specific A2 implementation choice) AND constrains the implementation away from a single uniform gradient (challenges any naive trained-head-with-one-target approach).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_sd_033a",
+          "failure_signatures": [
+            "Box 2's cited RPE-modulated prePMd/caudate finding is one fMRI study referenced within a broader review; if the underlying study has not been replicated cleanly across paradigms, the strength of the RPE-driven training-signal claim weakens. The review presents this as one piece of evidence in a converging picture, not as a settled finding.",
+            "The review's separable-networks framing argues against a unitary controller. If V3 implements SD-033a as a single trained head with a single target, this is a known biological mismatch -- biology likely uses multiple parallel networks with distinct learning rules. The review does not make the mismatch fatal (a unitary V3 head is a simplification, not a falsification of the architecture) but it does argue that any V3 implementation should be honest about the simplification.",
+            "The review focuses on hierarchical control and rostro-caudal abstraction in lateral frontal cortex as a whole, not on the specific question of how a projection from a rule-holding mid-DLPFC region to action-selection circuits is shaped by training. The transfer from 'corticostriatal loops mediate hierarchical control with RPE signals' to 'SD-033a's score_bias head should be trained by RPE' requires architectural inference beyond what the review directly tests.",
+            "The Outstanding Questions box explicitly flags 'How do learning and experience impact the hierarchical functional organization of the frontal lobes?' as an open question. The review does not claim to settle the training-signal question; it sketches the relevant evidence and identifies it as a future-research direction."
+          ],
+          "run_id": "2026-04-27_sd_033a_a2_corticostriatal_rpe_badrenee2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-04-27T15:28:01Z"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-262",
@@ -22631,27 +22650,11 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-28T03:57:38Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-262",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation",
-          "failure_signatures": [],
-          "run_id": "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-05-27T12:03:45.235770Z"
         }
       ],
-      "runs_total": 10,
+      "runs_total": 9,
       "source_counts": {
-        "experimental": 2,
+        "experimental": 1,
         "literature": 8
       }
     },
@@ -26590,41 +26593,55 @@
       }
     },
     "MECH-314": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.325, lit_conf=0.882",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.882",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 7,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:computational_model": 4,
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 1
       },
-      "evidence_level_counts": {
-        "C": 1
-      },
+      "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.325,
-      "experimental_confidence_decoupled": 0.325,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "latest_run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-      "latest_timestamp_utc": "2026-06-07T11:01:14Z",
+      "latest_run_id": "2026-05-16_rl_diversity_mapelites_mouret2015",
+      "latest_timestamp_utc": "2026-05-16T11:18:42Z",
       "literature_confidence": 0.882,
       "literature_confidence_parallel": 0.882,
-      "overall_confidence": 0.743,
+      "overall_confidence": 0.882,
       "pass_runs": 0,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-314",
+          "confidence": 0.82,
+          "confidence_rationale": "High-quality Nature Reviews Neuroscience paper providing the most current synthesis of primate circuits for curiosity. Directly supports the biological grounding of MECH-314a (novelty-based) and MECH-314b (uncertainty-driven) as distinct sub-mechanisms, not reducible to each other. The developmental angle -- how curiosity-related behaviours arise during postnatal development -- is directly relevant to the REE infant-stage question. High source quality, good mapping fidelity for the circuit-separation question (Q-044).",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_intrinsic_motivation_exploration",
+          "failure_signatures": [
+            "Curiosity circuits that only track novelty (recent vs. not-recent) are distinct from circuits that track uncertainty (resolution of predictive uncertainty) -- conflating the two produces mechanisms that each fail to capture the full biological function.",
+            "Curiosity-related behaviours in primates arise during postnatal development and are shaped by the richness of environmental experience -- the biological evidence implies that a fixed novelty bonus without environmental structure will not generate genuine curiosity-like exploration."
+          ],
+          "run_id": "2026-05-16_arc065_primate_curiosity_circuits_monosov2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-16T11:18:07Z"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-314",
@@ -26697,66 +26714,64 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-16T11:18:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-314",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
-          "failure_signatures": [],
-          "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-06-07T11:01:14Z"
         }
       ],
-      "runs_total": 7,
+      "runs_total": 6,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 6
       }
     },
     "MECH-314a": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.48, lit_conf=0.859",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.859",
       "direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
         "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 6,
+      "entries_total": 5,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:computational_model": 3,
         "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 1
       },
-      "evidence_level_counts": {
-        "C": 1
-      },
+      "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.48,
-      "experimental_confidence_decoupled": 0.48,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
         "supports": 0,
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-      "latest_timestamp_utc": "2026-06-07T11:01:14Z",
+      "latest_run_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
+      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
       "literature_confidence": 0.859,
       "literature_confidence_parallel": 0.859,
-      "overall_confidence": 0.764,
+      "overall_confidence": 0.859,
       "pass_runs": 0,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-314a",
+          "confidence": 0.82,
+          "confidence_rationale": "High-quality Nature Reviews Neuroscience paper providing the most current synthesis of primate circuits for curiosity. Directly supports the biological grounding of MECH-314a (novelty-based) and MECH-314b (uncertainty-driven) as distinct sub-mechanisms, not reducible to each other. The developmental angle -- how curiosity-related behaviours arise during postnatal development -- is directly relevant to the REE infant-stage question. High source quality, good mapping fidelity for the circuit-separation question (Q-044).",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_intrinsic_motivation_exploration",
+          "failure_signatures": [
+            "Curiosity circuits that only track novelty (recent vs. not-recent) are distinct from circuits that track uncertainty (resolution of predictive uncertainty) -- conflating the two produces mechanisms that each fail to capture the full biological function.",
+            "Curiosity-related behaviours in primates arise during postnatal development and are shaped by the richness of environmental experience -- the biological evidence implies that a fixed novelty bonus without environmental structure will not generate genuine curiosity-like exploration."
+          ],
+          "run_id": "2026-05-16_arc065_primate_curiosity_circuits_monosov2024",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-16T11:18:07Z"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-314a",
@@ -26821,63 +26836,44 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-28T17:17:26Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-314a",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
-          "failure_signatures": [],
-          "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-06-07T11:01:14Z"
         }
       ],
-      "runs_total": 6,
+      "runs_total": 5,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 5
       }
     },
     "MECH-314b": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.48, lit_conf=0.794",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.794",
       "direction_counts": {
-        "mixed": 2,
+        "mixed": 1,
         "supports": 1,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 3,
+      "entries_total": 2,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:computational_model": 1,
         "lit:connectome_mechanistic_review": 1
       },
-      "evidence_level_counts": {
-        "C": 1
-      },
+      "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.48,
-      "experimental_confidence_decoupled": 0.48,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
         "supports": 0,
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-      "latest_timestamp_utc": "2026-06-07T11:01:14Z",
+      "latest_run_id": "2026-05-16_mech314c_large_scale_curiosity_noisy_tv_burda2018",
+      "latest_timestamp_utc": "2026-05-16T11:18:07Z",
       "literature_confidence": 0.794,
       "literature_confidence_parallel": 0.794,
-      "overall_confidence": 0.689,
+      "overall_confidence": 0.794,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -26915,63 +26911,44 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-16T11:18:07Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-314b",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
-          "failure_signatures": [],
-          "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-06-07T11:01:14Z"
         }
       ],
-      "runs_total": 3,
+      "runs_total": 2,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 2
       }
     },
     "MECH-314c": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.48, lit_conf=0.826",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.826",
       "direction_counts": {
-        "mixed": 2,
+        "mixed": 1,
         "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 4,
+      "entries_total": 3,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:computational_model": 2,
         "lit:theoretical_review": 1
       },
-      "evidence_level_counts": {
-        "C": 1
-      },
+      "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.48,
-      "experimental_confidence_decoupled": 0.48,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
         "supports": 0,
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-      "latest_timestamp_utc": "2026-06-07T11:01:14Z",
+      "latest_run_id": "2026-05-16_mech314c_large_scale_curiosity_noisy_tv_burda2018",
+      "latest_timestamp_utc": "2026-05-16T11:18:07Z",
       "literature_confidence": 0.826,
       "literature_confidence_parallel": 0.826,
-      "overall_confidence": 0.739,
+      "overall_confidence": 0.826,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -27028,32 +27005,16 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-16T11:18:07Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-314c",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
-          "failure_signatures": [],
-          "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-06-07T11:01:14Z"
         }
       ],
-      "runs_total": 4,
+      "runs_total": 3,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 3
       }
     },
     "MECH-316": {
-      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.877",
+      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.876",
       "direction_counts": {
         "mixed": 1,
         "supports": 8,
@@ -27080,9 +27041,9 @@
       },
       "latest_run_id": "2026-05-11_mech_316_discovery_structural_form_kemp_tenenbaum_2008",
       "latest_timestamp_utc": "2026-05-11T17:59:23Z",
-      "literature_confidence": 0.877,
-      "literature_confidence_parallel": 0.877,
-      "overall_confidence": 0.877,
+      "literature_confidence": 0.876,
+      "literature_confidence_parallel": 0.876,
+      "overall_confidence": 0.876,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -32920,41 +32881,55 @@
       }
     },
     "Q-044": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.48, lit_conf=0.843",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.843",
       "direction_counts": {
-        "mixed": 2,
+        "mixed": 1,
         "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 6,
+      "entries_total": 5,
       "evidence_class_counts": {
-        "exp:simulation": 1,
         "lit:computational_model": 1,
         "lit:fmri_connectivity": 2,
         "lit:theoretical_review": 2
       },
-      "evidence_level_counts": {
-        "C": 1
-      },
+      "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.48,
-      "experimental_confidence_decoupled": 0.48,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
       "genuine_exp_direction_counts": {
-        "mixed": 1,
+        "mixed": 0,
         "supports": 0,
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-      "latest_timestamp_utc": "2026-06-07T11:01:14Z",
+      "latest_run_id": "2026-05-11_q_044_sn_vta_novelty_anticipation_wittmann2007",
+      "latest_timestamp_utc": "2026-05-11T08:41:19Z",
       "literature_confidence": 0.843,
       "literature_confidence_parallel": 0.843,
-      "overall_confidence": 0.752,
+      "overall_confidence": 0.843,
       "pass_runs": 0,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-044",
+          "confidence": 0.6,
+          "confidence_rationale": "The unification candidate. Friston et al. propose expected free energy as a single quantity from which both pragmatic (extrinsic) value and epistemic (intrinsic/curiosity) value derive as components. Under this framework, novelty bonuses, uncertainty bonuses, and learning-progress bonuses are all task-conditional readings of the same epistemic-value computation with different priors over which states are 'informative'. This is direct evidence for the COLLAPSE-ALL outcome of Q-044 \u2014 three flavours = one mechanism. The 'mixed' direction reflects that the framework is formal and unifying at the theoretical level but the empirical evidence that the brain implements expected-free-energy minimisation as a single unified computation (rather than as three parallel substrates) is much thinner.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_044",
+          "failure_signatures": [
+            "Active inference is a normative framework that explains why an optimal agent should compute a unified epistemic value. It does not establish that the brain actually implements this normative computation as a single substrate rather than as three parallel approximations. Empirical neural evidence for a unified epistemic-value signal is sparse; the more abundant evidence (Wittmann 2007, Daw 2006) supports SUBSTRATE-LEVEL distinctions across novelty and uncertainty even if the underlying normative quantity is unified.",
+            "The formal correspondence between expected free energy and Schmidhuber-style learning progress is loose; active-inference epistemic value is typically formulated as information gain (KL divergence between prior and posterior beliefs), not as expected decrease in prediction error per se. So even at the theoretical level, the collapse Friston 2015 proposes is between novelty-as-information and uncertainty-as-information, not necessarily collapsing learning-progress in."
+          ],
+          "run_id": "2026-05-11_q_044_active_inference_epistemic_value_friston2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-11T08:41:19Z"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "Q-044",
@@ -33022,27 +32997,11 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-11T08:41:19Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "Q-044",
-          "confidence": 0.5,
-          "confidence_rationale": "mixed direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "mixed",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
-          "failure_signatures": [],
-          "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-06-07T11:01:14Z"
         }
       ],
-      "runs_total": 6,
+      "runs_total": 5,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 0,
         "literature": 5
       }
     },
@@ -35377,7 +35336,7 @@
       }
     },
     "SD-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.188, lit_conf=0.745",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.187, lit_conf=0.745",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -35393,8 +35352,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.188,
-      "experimental_confidence_decoupled": 0.188,
+      "experimental_confidence": 0.187,
+      "experimental_confidence_decoupled": 0.187,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -36795,16 +36754,17 @@
       }
     },
     "SD-033a": {
-      "confidence_rationale": "exp=2 entry(s), lit=19 entry(s), exp_conf=0.79, lit_conf=0.875",
+      "confidence_rationale": "exp=3 entry(s), lit=19 entry(s), exp_conf=0.868, lit_conf=0.875",
       "direction_counts": {
         "mixed": 9,
+        "superseded": 1,
         "supports": 12,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 21,
+      "entries_total": 22,
       "evidence_class_counts": {
-        "exp:simulation": 2,
+        "exp:simulation": 3,
         "lit:behavioral_animal": 1,
         "lit:computational_model": 2,
         "lit:connectome_mechanistic_review": 1,
@@ -36815,43 +36775,27 @@
         "lit:theoretical_review": 4
       },
       "evidence_level_counts": {
-        "C": 2
+        "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.79,
-      "experimental_confidence_decoupled": 0.79,
+      "experimental_confidence": 0.868,
+      "experimental_confidence_decoupled": 0.868,
       "fail_runs": 1,
-      "genuine_exp_count": 2,
+      "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
         "mixed": 0,
+        "superseded": 1,
         "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-05-28_e2_action_divergence_plsm_saanum2024",
-      "latest_timestamp_utc": "2026-05-28T17:17:26Z",
+      "latest_run_id": "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+      "latest_timestamp_utc": "2026-06-07T13:56:11.544509Z",
       "literature_confidence": 0.875,
       "literature_confidence_parallel": 0.875,
-      "overall_confidence": 0.841,
-      "pass_runs": 1,
+      "overall_confidence": 0.872,
+      "pass_runs": 2,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-033a",
-          "confidence": 0.85,
-          "confidence_rationale": "Nature paper with three-region simultaneous recording (mPFC, nucleus reuniens, CA1) plus optogenetic silencing of reuniens, plus an elegant dissociation: trajectory-coding is abundant in CA1 (which receives reuniens input) and absent in CA3 (which does not). Direct evidence that mPFC sends goal-directed trajectory information DOWN through reuniens INTO CA1, where it shapes the hippocampal trajectory representation. This is the inverse of the Spellman 2015 direction and reverses the user's framing: in the goal-directed-navigation regime, PFC is the upstream goal-handle source and HPC is the downstream rich-trajectory generator. Confidence 0.85 reflects strong methodology and direct mapping onto the REE question -- only modest transfer risk because the goal-directed-navigation scope is explicit.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_frontal_goal_grounding",
-          "failure_signatures": [
-            "Trajectory-dependent firing in CA1 was substantially reduced -- but not abolished -- by reuniens silencing. There remains a residual HPC-internal contribution to trajectory representation independent of PFC top-down input. An architectural commitment to 'PFC is the sole goal-source for HPC trajectories' is over-strong.",
-            "Trajectory-dependent activity is essentially absent in CA3 (which lacks reuniens input). The substrate where goal-handles land in HPC is CA1, not CA3. REE's ResidueField + AnchorSet substrate must accept that the PFC -> reuniens -> HPC route is CA1-specific in the biology -- if REE wants this pathway, it needs an explicit CA1-analogue write target, not a generic hippocampal write."
-          ],
-          "run_id": "2026-04-28_frontal_goal_grounding_pfc_thalamo_hpc_trajectory_ito2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-28T03:57:38Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-033a",
@@ -36875,7 +36819,7 @@
           "confidence": 0.55,
           "confidence_rationale": "direction/status mismatch",
           "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
+          "evidence_direction": "superseded",
           "evidence_level": "C",
           "experiment_purpose": "evidence",
           "experiment_type": "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation",
@@ -36917,11 +36861,27 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-033a",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "evidence_level": "C",
+          "experiment_purpose": "evidence",
+          "experiment_type": "v3_exq_598c_sd033a_rule_state_cosine_probe",
+          "failure_signatures": [],
+          "run_id": "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-06-07T13:56:11.544509Z"
         }
       ],
-      "runs_total": 21,
+      "runs_total": 22,
       "source_counts": {
-        "experimental": 2,
+        "experimental": 3,
         "literature": 19
       }
     },
@@ -103579,15 +103539,16 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-262",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation",
       "failure_signatures": [],
       "run_id": "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-05-27T12:03:45.235770Z"
@@ -103598,7 +103559,7 @@
       "confidence": 0.55,
       "confidence_rationale": "direction/status mismatch",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "supports",
+      "evidence_direction": "superseded",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation",
@@ -107571,15 +107532,16 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-314",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
       "failure_signatures": [],
       "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-06-07T11:01:14Z"
@@ -107587,15 +107549,16 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-314a",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
       "failure_signatures": [],
       "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-06-07T11:01:14Z"
@@ -107603,15 +107566,16 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-314b",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
       "failure_signatures": [],
       "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-06-07T11:01:14Z"
@@ -107619,15 +107583,16 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-314c",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
       "failure_signatures": [],
       "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-06-07T11:01:14Z"
@@ -107635,15 +107600,16 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "Q-044",
-      "confidence": 0.5,
-      "confidence_rationale": "mixed direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "mixed",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
       "failure_signatures": [],
       "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-06-07T11:01:14Z"
@@ -107651,18 +107617,35 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-060",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_651_arc060_blocked_goal_recovery",
       "failure_signatures": [],
       "run_id": "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-06-07T13:19:28.081219Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-033a",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "evidence_level": "C",
+      "experiment_purpose": "evidence",
+      "experiment_type": "v3_exq_598c_sd033a_rule_state_cosine_probe",
+      "failure_signatures": [],
+      "run_id": "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-06-07T13:56:11.544509Z"
     },
     {
       "adjudication": "unverified",
@@ -107703,7 +107686,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-07T13:47:26.097465Z",
+  "generated_at_utc": "2026-06-07T14:39:07.798762Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
@@ -108677,7 +108660,7 @@
       "timestamp_utc": "2026-06-07T05:39:34Z"
     },
     {
-      "adjudication": "precondition_unmet",
+      "adjudication": "verified",
       "experiment_purpose": "diagnostic",
       "experiment_type": "v3_exq_648a_mech314a_phase2_substrate_readiness",
       "interpretation_label": "phase2_wiring_does_not_support",
@@ -108687,7 +108670,7 @@
       "timestamp_utc": "2026-06-07T10:54:07Z"
     },
     {
-      "adjudication": "precondition_unmet",
+      "adjudication": "verified",
       "experiment_purpose": "diagnostic",
       "experiment_type": "v3_exq_649_arc065_gapa_shared_candidate_summary_source",
       "interpretation_label": "gapa_shared_channel_ready",

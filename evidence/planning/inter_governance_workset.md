@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-07T13:47:29Z`
+Generated: `2026-06-07T14:27:55Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -10,28 +10,28 @@ UI: http://localhost:8000/workset
 ## Summary
 
 - Items: **51** (ready 7, in_flight 0, blocked 28)
-- Pending review: **6**
-- Queue pending (unclaimed): **1**
+- Pending review: **5**
+- Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-610f, V3-EXQ-624c, V3-EXQ-640b
+- Live EXQs: V3-EXQ-603g, V3-EXQ-610f, V3-EXQ-624c, V3-EXQ-640b
 
-- Auto-absorbed retests (queued, suppressed from workset): ARC-068 -> V3-EXQ-624c, INV-074 -> V3-EXQ-610f, MECH-320 -> V3-EXQ-624c, SD-033a -> V3-EXQ-598c
+- Auto-absorbed retests (queued, suppressed from workset): ARC-068 -> V3-EXQ-624c, INV-074 -> V3-EXQ-610f, MECH-320 -> V3-EXQ-624c
 
 ## Work packages
 
-### IGW-20260607-001 -- Complete governance review (6 pending)
+### IGW-20260607-001 -- Complete governance review (5 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1
-- **Why now:** pending_review.md lists 6 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 5 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260607-001
-Title: Complete governance review (6 pending)
+Title: Complete governance review (5 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 6 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 5 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -601,7 +601,7 @@ Instructions:
 
 </details>
 
-### IGW-20260607-027 -- Queue depth low (1 pending)
+### IGW-20260607-027 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -610,7 +610,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260607-027
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.

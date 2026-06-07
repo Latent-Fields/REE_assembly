@@ -1,1 +1,271 @@
-{"schema_version": "v1", "run_id": "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3", "experiment_type": "v3_exq_651_arc060_blocked_goal_recovery", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-07T13:19:28.081219Z", "experiment_purpose": "evidence", "backlog_id": "EVB-0076", "claim_ids": ["ARC-060"], "claim_ids_tested": ["ARC-060"], "evidence_class": "experimental", "evidence_direction": "weakens", "evidence_direction_per_claim": {"ARC-060": "weakens"}, "evidence_direction_note": "ARC-060 weakened: the discrete ghost-goal bank was genuinely engaged (C1 met on 3/3 seeds) but FIELD_PLUS_BANK did NOT improve Phase-C goal-proximity recovery over FIELD_ONLY by >= 0.01 on a majority of seeds (recovery margin met on only 0/3). The discrete-bank layer added no measurable blocked-goal recovery advantage over the continuous field alone.", "outcome": "FAIL", "elapsed_sec": 58.34221124649048, "seeds": [42, 43, 44], "arms": ["FIELD_ONLY", "FIELD_PLUS_BANK"], "pre_registered_thresholds": {"ghost_fire_min": 1, "goal_active_frac_min": 0.5, "goal_prox_margin": 0.01, "majority_seeds": 2}, "criteria_summary": {"n_seeds": 3, "n_c1_precondition_met": 3, "n_c2_off_arm_clean": 3, "n_c3_recovery_met": 0, "precondition_met": true}, "per_seed": [{"seed": 42, "c1_precondition_met": true, "c1_ghost_admitted_total": 130, "c1_goal_active_frac": 1.0, "c2_off_arm_clean": true, "off_mean_goal_prox": 0.981229230761528, "on_mean_goal_prox": 0.9891599208116532, "goal_prox_delta_on_minus_off": 0.007930690050125144, "c3_recovery_met": false}, {"seed": 43, "c1_precondition_met": true, "c1_ghost_admitted_total": 146, "c1_goal_active_frac": 1.0, "c2_off_arm_clean": true, "off_mean_goal_prox": 0.9912454217672348, "on_mean_goal_prox": 0.9904499217867851, "goal_prox_delta_on_minus_off": -0.0007954999804496987, "c3_recovery_met": false}, {"seed": 44, "c1_precondition_met": true, "c1_ghost_admitted_total": 120, "c1_goal_active_frac": 1.0, "c2_off_arm_clean": true, "off_mean_goal_prox": 0.9848128035664558, "on_mean_goal_prox": 0.9836349785327911, "goal_prox_delta_on_minus_off": -0.0011778250336647034, "c3_recovery_met": false}], "arm_results": [{"arm_label": "FIELD_ONLY", "bank_on": false, "seed": 42, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.30249515175819397, "goal_resource_cell": [2, 4], "bank_size_after_phase_a": 0, "mean_goal_prox_phase_c": 0.981229230761528, "early_goal_prox_phase_c": 0.9895536165971023, "late_goal_prox_phase_c": 0.9718635907539954, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 0, "ghost_fire_ticks_phase_c": 0, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "59b5b6f9011dfd128a69410d9a770f4795bb36fe96f5afb31616e4e0c687037c", "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_PLUS_BANK", "bank_on": true, "seed": 42, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.3014392852783203, "goal_resource_cell": [2, 4], "bank_size_after_phase_a": 3, "mean_goal_prox_phase_c": 0.9891599208116532, "early_goal_prox_phase_c": 0.9924816580919119, "late_goal_prox_phase_c": 0.9834535809663626, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 130, "ghost_fire_ticks_phase_c": 40, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "93f0a6c073e7509e5fc4d763dee786fe19e059dd614c6dd84a7bc80139f6cb33", "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_ONLY", "bank_on": false, "seed": 43, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.35475650429725647, "goal_resource_cell": [5, 5], "bank_size_after_phase_a": 0, "mean_goal_prox_phase_c": 0.9912454217672348, "early_goal_prox_phase_c": 0.9914738169083228, "late_goal_prox_phase_c": 0.9907460579505334, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 0, "ghost_fire_ticks_phase_c": 0, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "4adc85878ffd46d7f6bf4c3822f3b9066e217c4217db9730af62a7799d052547", "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_PLUS_BANK", "bank_on": true, "seed": 43, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.35545775294303894, "goal_resource_cell": [5, 5], "bank_size_after_phase_a": 3, "mean_goal_prox_phase_c": 0.9904499217867851, "early_goal_prox_phase_c": 0.9912775709078863, "late_goal_prox_phase_c": 0.990278775875385, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 146, "ghost_fire_ticks_phase_c": 40, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "0730b29bb409130d94ddec5ddaea4da031b98ea9704f9df9fe6ef7da8fcd3b45", "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_ONLY", "bank_on": false, "seed": 44, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.4855688512325287, "goal_resource_cell": [3, 3], "bank_size_after_phase_a": 0, "mean_goal_prox_phase_c": 0.9848128035664558, "early_goal_prox_phase_c": 0.9872353122784541, "late_goal_prox_phase_c": 0.983387869137984, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 0, "ghost_fire_ticks_phase_c": 0, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a6ec0de8cdf1fe16333e1b1a11eadbfeb9ee21ff3f518906b8c7c7cf54bdc4a6", "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_PLUS_BANK", "bank_on": true, "seed": 44, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.48573535680770874, "goal_resource_cell": [3, 3], "bank_size_after_phase_a": 3, "mean_goal_prox_phase_c": 0.9836349785327911, "early_goal_prox_phase_c": 0.9846947605793293, "late_goal_prox_phase_c": 0.9827160835266113, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 120, "ghost_fire_ticks_phase_c": 40, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "40b7d24fe071053849443c6160e8dd4146b17de2b4614d44a5d0adfc11ffd7ad", "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}], "dry_run": false, "queue_id": "V3-EXQ-651", "machine": "ree-cloud-3"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+  "experiment_type": "v3_exq_651_arc060_blocked_goal_recovery",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-07T13:19:28.081219Z",
+  "experiment_purpose": "evidence",
+  "backlog_id": "EVB-0076",
+  "claim_ids": [
+    "ARC-060"
+  ],
+  "claim_ids_tested": [
+    "ARC-060"
+  ],
+  "evidence_class": "experimental",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-060": "non_contributory"
+  },
+  "evidence_direction_note": "2026-06-07 governance (failure_autopsy_V3-EXQ-651): NON-CONTRIBUTORY (measurement/test-design defect), NOT a weakening of ARC-060. The discrete ghost-goal bank genuinely engaged (C1 3/3; 130-146 ghost candidates; goal_active_frac=1.0), but the FIELD_ONLY negative control never exhibited the premature abandonment ARC-060 predicts (Phase-C goal-proximity ~0.98 both arms; deltas +0.008/-0.0008 vs 0.01 margin), so the bank's rescue advantage had nothing to act on. The latent goal_proximity metric saturates and does not read behavioural abandonment/re-approach. Re-queue as V3-EXQ-651a with a non-degeneracy gate (FIELD_ONLY must abandon first) + behavioural re-approach readout. pending_retest_after_substrate (test-design redesign). Self-emitted weakens overridden.",
+  "outcome": "FAIL",
+  "elapsed_sec": 58.34221124649048,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "arms": [
+    "FIELD_ONLY",
+    "FIELD_PLUS_BANK"
+  ],
+  "pre_registered_thresholds": {
+    "ghost_fire_min": 1,
+    "goal_active_frac_min": 0.5,
+    "goal_prox_margin": 0.01,
+    "majority_seeds": 2
+  },
+  "criteria_summary": {
+    "n_seeds": 3,
+    "n_c1_precondition_met": 3,
+    "n_c2_off_arm_clean": 3,
+    "n_c3_recovery_met": 0,
+    "precondition_met": true
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "c1_precondition_met": true,
+      "c1_ghost_admitted_total": 130,
+      "c1_goal_active_frac": 1.0,
+      "c2_off_arm_clean": true,
+      "off_mean_goal_prox": 0.981229230761528,
+      "on_mean_goal_prox": 0.9891599208116532,
+      "goal_prox_delta_on_minus_off": 0.007930690050125144,
+      "c3_recovery_met": false
+    },
+    {
+      "seed": 43,
+      "c1_precondition_met": true,
+      "c1_ghost_admitted_total": 146,
+      "c1_goal_active_frac": 1.0,
+      "c2_off_arm_clean": true,
+      "off_mean_goal_prox": 0.9912454217672348,
+      "on_mean_goal_prox": 0.9904499217867851,
+      "goal_prox_delta_on_minus_off": -0.0007954999804496987,
+      "c3_recovery_met": false
+    },
+    {
+      "seed": 44,
+      "c1_precondition_met": true,
+      "c1_ghost_admitted_total": 120,
+      "c1_goal_active_frac": 1.0,
+      "c2_off_arm_clean": true,
+      "off_mean_goal_prox": 0.9848128035664558,
+      "on_mean_goal_prox": 0.9836349785327911,
+      "goal_prox_delta_on_minus_off": -0.0011778250336647034,
+      "c3_recovery_met": false
+    }
+  ],
+  "arm_results": [
+    {
+      "arm_label": "FIELD_ONLY",
+      "bank_on": false,
+      "seed": 42,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.30249515175819397,
+      "goal_resource_cell": [
+        2,
+        4
+      ],
+      "bank_size_after_phase_a": 0,
+      "mean_goal_prox_phase_c": 0.981229230761528,
+      "early_goal_prox_phase_c": 0.9895536165971023,
+      "late_goal_prox_phase_c": 0.9718635907539954,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 0,
+      "ghost_fire_ticks_phase_c": 0,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "59b5b6f9011dfd128a69410d9a770f4795bb36fe96f5afb31616e4e0c687037c",
+        "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_PLUS_BANK",
+      "bank_on": true,
+      "seed": 42,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.3014392852783203,
+      "goal_resource_cell": [
+        2,
+        4
+      ],
+      "bank_size_after_phase_a": 3,
+      "mean_goal_prox_phase_c": 0.9891599208116532,
+      "early_goal_prox_phase_c": 0.9924816580919119,
+      "late_goal_prox_phase_c": 0.9834535809663626,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 130,
+      "ghost_fire_ticks_phase_c": 40,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "93f0a6c073e7509e5fc4d763dee786fe19e059dd614c6dd84a7bc80139f6cb33",
+        "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_ONLY",
+      "bank_on": false,
+      "seed": 43,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.35475650429725647,
+      "goal_resource_cell": [
+        5,
+        5
+      ],
+      "bank_size_after_phase_a": 0,
+      "mean_goal_prox_phase_c": 0.9912454217672348,
+      "early_goal_prox_phase_c": 0.9914738169083228,
+      "late_goal_prox_phase_c": 0.9907460579505334,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 0,
+      "ghost_fire_ticks_phase_c": 0,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "4adc85878ffd46d7f6bf4c3822f3b9066e217c4217db9730af62a7799d052547",
+        "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_PLUS_BANK",
+      "bank_on": true,
+      "seed": 43,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.35545775294303894,
+      "goal_resource_cell": [
+        5,
+        5
+      ],
+      "bank_size_after_phase_a": 3,
+      "mean_goal_prox_phase_c": 0.9904499217867851,
+      "early_goal_prox_phase_c": 0.9912775709078863,
+      "late_goal_prox_phase_c": 0.990278775875385,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 146,
+      "ghost_fire_ticks_phase_c": 40,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "0730b29bb409130d94ddec5ddaea4da031b98ea9704f9df9fe6ef7da8fcd3b45",
+        "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_ONLY",
+      "bank_on": false,
+      "seed": 44,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.4855688512325287,
+      "goal_resource_cell": [
+        3,
+        3
+      ],
+      "bank_size_after_phase_a": 0,
+      "mean_goal_prox_phase_c": 0.9848128035664558,
+      "early_goal_prox_phase_c": 0.9872353122784541,
+      "late_goal_prox_phase_c": 0.983387869137984,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 0,
+      "ghost_fire_ticks_phase_c": 0,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a6ec0de8cdf1fe16333e1b1a11eadbfeb9ee21ff3f518906b8c7c7cf54bdc4a6",
+        "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_PLUS_BANK",
+      "bank_on": true,
+      "seed": 44,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.48573535680770874,
+      "goal_resource_cell": [
+        3,
+        3
+      ],
+      "bank_size_after_phase_a": 3,
+      "mean_goal_prox_phase_c": 0.9836349785327911,
+      "early_goal_prox_phase_c": 0.9846947605793293,
+      "late_goal_prox_phase_c": 0.9827160835266113,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 120,
+      "ghost_fire_ticks_phase_c": 40,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "40b7d24fe071053849443c6160e8dd4146b17de2b4614d44a5d0adfc11ffd7ad",
+        "substrate_hash": "de6fd9e4380b89f6df2b51875f1866cdaea2a08d689dfceb983c0a91f5fed913",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    }
+  ],
+  "dry_run": false,
+  "queue_id": "V3-EXQ-651",
+  "machine": "ree-cloud-3"
+}

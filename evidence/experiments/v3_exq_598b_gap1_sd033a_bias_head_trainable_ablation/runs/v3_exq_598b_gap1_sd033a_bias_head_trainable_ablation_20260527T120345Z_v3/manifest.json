@@ -26,8 +26,8 @@
   "evidence_class": "simulation",
   "evidence_direction": "mixed",
   "evidence_direction_per_claim": {
-    "SD-033a": "supports",
-    "MECH-262": "weakens"
+    "SD-033a": "superseded",
+    "MECH-262": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -44,5 +44,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-06-07 governance: SD-033a portion SUPERSEDED by V3-EXQ-598c (v3_exq_598c_sd033a_rule_state_cosine_probe), the redesigned direct rule_state cosine probe the 598 autopsy recommended. SD-033a entry excluded from scoring. MECH-262 set non_contributory to align with the 2026-05-29 reclassification (runpack was stale at weakens; flat already non_contributory)."
 }

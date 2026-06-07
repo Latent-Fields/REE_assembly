@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "failure-autopsy-V3-EXQ-648-mech314a-phase2-20260607T0458Z",
-  "last_updated_utc": "2026-06-07T09:27:09Z",
+  "last_updated_utc": "2026-06-07T14:26:51Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -2886,10 +2886,28 @@
           "metric": "committed_class_entropy byte-identical 1.033608 across within-class T=0.5/1.0/2.0 (4x range, zero T-magnitude sensitivity); 0/3 paired-lift seeds per arm; C1 substrate-operative=True + C3 readiness=True (non-vacuous), authority substrate proven operative (V3-EXQ-643a). 4th convergent committed-action no-lift instance on behavioral_diversity_isolation:GAP-B (604a/624a/614d/614e) -- the first AFTER the authority gate was proven operative, so it relocates the bottleneck to GAP-A candidate-pool class collapse (cand_world_pairwise_dist=0.0000).",
           "target": ">= 1 per-seed paired committed_class_entropy lift of >= 0.05 nats over ARM_0_LEGACY on each positive-T arm",
           "resolution": "GAP-A E2-world-forward per-candidate signal preservation -- shared cand_world_summaries e2.world_forward source IMPLEMENTED 2026-06-07 (ree-v3 candidate_summary_source flag, extends the curiosity-only MECH-314a Phase-2 fix to lateral_pfc/ofc/mech295/gated_policy/tonic_vigor). Substrate-readiness validation V3-EXQ-649 queued (claim_ids=[])."
+        },
+        {
+          "added_session": "governance-cycle-20260607T1426Z",
+          "added_utc": "2026-06-07T14:26:51Z",
+          "cross_ref": "evidence/planning/failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07.{md,json}",
+          "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
+          "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+          "metric": "C1 parent effect (authority ON) FAIL; curiosity bias magnitude fired (last_bias_max_abs=0.0177) but cross-candidate range ~0 because the consumed candidate pool was class-uniform (ran 11:01Z, pre-GAP-A-validation). c1_mech314_parent_effect_authority_on passed=false. NON-CONTRIBUTORY (substrate_ceiling), not a weakening.",
+          "target": "C1 parent effect PASS on a candidate pool with non-zero action-conditional cross-candidate spread (GAP-A validated, V3-EXQ-649). Re-queue as V3-EXQ-604c with a readiness gate on cross-candidate RANGE."
+        },
+        {
+          "added_session": "governance-cycle-20260607T1426Z",
+          "added_utc": "2026-06-07T14:26:51Z",
+          "cross_ref": "evidence/planning/failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07.{md,json}",
+          "experiment_type": "v3_exq_649_arc065_gapa_shared_candidate_summary_source",
+          "run_id": "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3",
+          "metric": "GAP-A READINESS PASS: ARM_1 consumed_summary_pairwise_dist=0.090 >= 0.05 floor; load-bearing C2 (e2_world_forward lifts consumed cand_world_summaries spread over proposer source) PASS; magnitude bounded 0.190 <= 1e6.",
+          "target": "n/a -- this is the readiness PASS that clears GAP-A blocked_by for dependents (604c, MECH-341 committed-class diversity, ARC-062/063 GAP-B)."
         }
       ],
-      "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor). || GAP-A 2026-06-07 (V3-EXQ-614e autopsy): MECH-341 within-class temperature cannot lift committed-class diversity because the candidate pool is monostrategic at the class level -- all K CEM candidates collapse to identical z_world after one E2 world-forward step (cand_world_pairwise_dist=0.0000) despite differing first actions, so every E3-side bias channel sees a class-uniform pool. The GAP-A E2-world-forward per-candidate signal preservation (extend the 2026-05-17 ARC-062 GAP-B first-action-onehot fix beyond GatedPolicy; shared-channel sibling of the MECH-314a Phase-2 curiosity fix) is the prerequisite. IMPLEMENTED 2026-06-07: ree-v3 REEConfig.candidate_summary_source (proposer|e2_world_forward, default proposer/bit-identical) re-sources the shared cand_world_summaries consumed by lateral_pfc/ofc/mech295/gated_policy/tonic_vigor from e2.world_forward(z0,a_i) (SD-056-trained, action-divergent). Composes with the modulatory-bias-selection-authority gate (V3-EXQ-643a) so the now-divergent bias reaches the committed argmin. Substrate-readiness validation V3-EXQ-649 queued. Only after class-level candidate diversity exists can the MECH-341 committed-class diversity re-test (within-class-REPRESENTATIVE-diversity readout, not committed-class entropy -- autopsy Learning #2) be non-vacuous.",
-      "last_seen_session": "governance-cycle-20260607T0921Z",
+      "implementation_hint": "Children MECH-313 (noise floor) + MECH-314 (structured curiosity) substrate-landed 2026-05-10 V3-EXQ-544/545 5/5 PASS. Q-043 calibration sweep + Q-044 three-arm ablation + Q-045 4-arm ablation are the empirical resolution paths. R1 BOTH-CHANNELS-NEEDED verdict from Pull 1 SYNTHESIS confirmed by V3-EXQ-141d cross-link (novelty alone insufficient without LC-NE noise floor). || GAP-A 2026-06-07 (V3-EXQ-614e autopsy): MECH-341 within-class temperature cannot lift committed-class diversity because the candidate pool is monostrategic at the class level -- all K CEM candidates collapse to identical z_world after one E2 world-forward step (cand_world_pairwise_dist=0.0000) despite differing first actions, so every E3-side bias channel sees a class-uniform pool. The GAP-A E2-world-forward per-candidate signal preservation (extend the 2026-05-17 ARC-062 GAP-B first-action-onehot fix beyond GatedPolicy; shared-channel sibling of the MECH-314a Phase-2 curiosity fix) is the prerequisite. IMPLEMENTED 2026-06-07: ree-v3 REEConfig.candidate_summary_source (proposer|e2_world_forward, default proposer/bit-identical) re-sources the shared cand_world_summaries consumed by lateral_pfc/ofc/mech295/gated_policy/tonic_vigor from e2.world_forward(z0,a_i) (SD-056-trained, action-divergent). Composes with the modulatory-bias-selection-authority gate (V3-EXQ-643a) so the now-divergent bias reaches the committed argmin. Substrate-readiness validation V3-EXQ-649 queued. Only after class-level candidate diversity exists can the MECH-341 committed-class diversity re-test (within-class-REPRESENTATIVE-diversity readout, not committed-class entropy -- autopsy Learning #2) be non-vacuous. || GAP-A READY 2026-06-07 (V3-EXQ-649 PASS, this governance cycle): shared cand_world_summaries re-source validated ready (ARM_1 consumed-summary spread 0.090 >= 0.05 floor; C2 load-bearing lift over proposer PASS). This is the readiness checkpoint dependent retests query for blocked_by clearance. 604b (run 11:01Z, pre-validation) appended as a pre-fix non_contributory null. The MECH-314a Phase-2 curiosity channel (648a) also confirmed load-bearing-ready (C2 PASS).",
+      "last_seen_session": "governance-cycle-20260607T1426Z",
       "pending_retests_downstream": [
         {
           "added_session": "substrate-queue-590a-pending-retest-20260525T194126Z",
@@ -2916,7 +2934,8 @@
         "MECH-314b",
         "MECH-314c",
         "MECH-341"
-      ]
+      ],
+      "gapA_status": "ready_validated_2026-06-07 (V3-EXQ-649 PASS): GAP-A shared candidate-summary channel VERIFIED READY (consumed spread 0.090>=0.05). Unblocks V3-EXQ-604c MECH-314-family retest, MECH-341 committed-class diversity retest, and ARC-062/063 GAP-B falsifier. Overall ARC-065 ready stays false (Q-044/Q-045 ablations still pending)."
     },
     {
       "added_session": "governance-cycle-2026-05-10T1224Z",

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-07T13:47:26.097465Z`
+Generated: `2026-06-07T14:39:07.798762Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -20,7 +20,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-041` | directional, source_disagreement | 2 | 1 | 0.667 | `2026-04-02_arc_041_vmpfc_cognitive_map_value_2025` | 3 |
 | `ARC-042` | directional, source_disagreement | 5 | 3 | 0.75 | `v3_exq_211_mech153_arc042_supervised_labeling_1775168828_v3` | 8 |
 | `ARC-058` | directional, mixed_evidence | 6 | 2 | 0.5 | `2026-05-04_sd_048_dyshomeostasis_fatigue_stephan2016` | 9 |
-| `ARC-060` | directional, source_disagreement, mixed_evidence | 11 | 1 | 0.167 | `v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3` | 14 |
 | `ARC-062` | directional, source_disagreement, mixed_evidence | 17 | 9 | 0.692 | `2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023` | 30 |
 | `ARC-064` | directional | 18 | 1 | 0.105 | `2026-05-10_vocab_mapping_rl_fast_slow_botvinick2019` | 19 |
 | `ARC-066` | directional, mixed_evidence | 5 | 1 | 0.333 | `2026-05-16_rl_diversity_imgep_forestier2017` | 8 |
@@ -62,9 +61,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-229` | directional, mixed_evidence | 9 | 1 | 0.2 | `2026-05-04_sd_049_temporal_community_schapiro2016` | 12 |
 | `MECH-230` | directional, mixed_evidence | 9 | 1 | 0.2 | `2026-05-04_sd_049_temporal_community_schapiro2016` | 12 |
 | `MECH-256` | directional, mixed_evidence | 9 | 3 | 0.5 | `2026-05-17_sd_029_pain_precision_signal_seymour2019` | 15 |
-| `MECH-262` | directional, mixed_evidence | 5 | 1 | 0.333 | `v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation_20260527T120345Z_v3` | 10 |
 | `MECH-295` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3` | 8 |
-| `MECH-314` | directional, source_disagreement, mixed_evidence | 5 | 1 | 0.333 | `v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3` | 7 |
 | `MECH-318` | directional | 7 | 1 | 0.25 | `2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019` | 8 |
 | `MECH-334` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-05-19_mech_334_sleep_two_stage_gate_aton2013` | 4 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
@@ -345,26 +342,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `A shared forward-model trunk that commingles signed sensory and affective PE should NOT support independent hypnotic modulation of intensity vs unpleasantness at the cortical level. Hofbauer 2001 + Rainville 1997 show such independent modulation exists (double dissociation: S1 modulated by intensity suggestion; ACC modulated by unpleasantness suggestion).` (1)
   - `A single-module architecture that computed only a shared unsigned magnitude could not produce a dissociable ACC unpleasantness signal that is independent of S1 intensity. The paired findings weaken strong ARC-058 and support at least dual signed-PE heads (consistent with weak ARC-058 or with ARC-033).` (1)
   - `If pain were fully captured by a single shared forward-model trunk with no per-stream heads, the SIIPS1 should be near-zero after controlling for nociceptive input. It is not: SIIPS1 explains trial-by-trial pain variance that NPS misses and mediates psychological manipulations of expectation and perceived control.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### ARC-060
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=11, weakens=1, conflict_ratio=0.167, exp_conf=0.325, lit_conf=0.873, overall_confidence_legacy=0.736
-- Recent entries:
-  - `2026-05-18T20:46:59Z` `literature` `targeted_review_ghost_goal_search` direction=`supports` confidence=0.8
-  - `2026-05-18T20:46:59Z` `literature` `targeted_review_ghost_goal_search` direction=`mixed` confidence=0.68
-  - `2026-05-18T20:46:59Z` `literature` `targeted_review_ghost_goal_search` direction=`supports` confidence=0.82
-  - `2026-05-18T20:46:59Z` `literature` `targeted_review_ghost_goal_search` direction=`supports` confidence=0.8
-  - `2026-06-07T13:19:28.081219Z` `experimental` `v3_exq_651_arc060_blocked_goal_recovery` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `If wanting collapsed to contact pleasure, preserving goal-linked payloads on inactive anchors would be unnecessary.` (1)
-  - `If intact local liking were sufficient for sustained goal pursuit, explicit unresolved-goal traces would add little architectural value.` (1)
-  - `If blocked goals left no continuing affective or motivational residue, a preserved ghost-goal trace would be harder to justify.` (1)
-  - `If hippocampal future sweeps were insensitive to remembered goals, ghost-goal-guided waking probes would have weak biological support.` (1)
-  - `A strict current-only seed policy predicts replay concentrated on imminent choice paths, which the paper does not find.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -692,7 +669,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-094
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=24, weakens=1, conflict_ratio=0.08, exp_conf=0.816, lit_conf=0.848, overall_confidence_legacy=0.835
+- Evidence breakdown: supports=24, weakens=1, conflict_ratio=0.08, exp_conf=0.815, lit_conf=0.848, overall_confidence_legacy=0.835
 - Recent entries:
   - `2026-05-28T17:17:26Z` `literature` `targeted_review_e2_forward_model_action_divergence` direction=`supports` confidence=0.74
   - `2026-05-28T17:17:26Z` `literature` `targeted_review_e2_forward_model_action_divergence` direction=`supports` confidence=0.7
@@ -1004,7 +981,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-165
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.185, lit_conf=0.82, overall_confidence_legacy=0.661
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.185, lit_conf=0.819, overall_confidence_legacy=0.66
 - Recent entries:
   - `2026-04-05T14:17:09Z` `experimental` `v3_exq_244_mech165_reverse_replay_diversity` direction=`non_contributory` confidence=0
   - `2026-04-06T00:00:00Z` `literature` `targeted_review_paper_fm2_replay_ordering` direction=`supports` confidence=0.78
@@ -1064,7 +1041,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-204
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.511, lit_conf=0.856, overall_confidence_legacy=0.683
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.51, lit_conf=0.856, overall_confidence_legacy=0.683
 - Recent entries:
   - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.78
   - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.74
@@ -1104,7 +1081,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-220
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.215, lit_conf=0.861, overall_confidence_legacy=0.7
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.214, lit_conf=0.861, overall_confidence_legacy=0.699
 - Recent entries:
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.8
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.72
@@ -1182,26 +1159,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### MECH-262
-- Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.575, lit_conf=0.873, overall_confidence_legacy=0.754
-- Recent entries:
-  - `2026-04-27T15:28:01Z` `literature` `targeted_review_sd_033a` direction=`mixed` confidence=0.78
-  - `2026-04-27T15:45:20Z` `literature` `targeted_review_sd_033a` direction=`mixed` confidence=0.78
-  - `2026-04-27T15:45:20Z` `literature` `targeted_review_sd_033a` direction=`mixed` confidence=0.74
-  - `2026-04-28T03:57:38Z` `literature` `targeted_review_frontal_goal_grounding` direction=`supports` confidence=0.78
-  - `2026-05-27T12:03:45.235770Z` `experimental` `v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `Both PFC and ITC showed category-selective responses, suggesting that stimulus-abstracted categorical coding is not exclusive to lateral PFC -- if the lateral-PFC-analog in REE loses rule selectivity, ITC-analog regions may still carry some form of categorical signal.` (1)
-  - `The category boundary was defined visually (a morph space between cats and dogs); abstract rule representations in MECH-262 are explicitly stimulus-independent and amodal. The visual grounding of the category signal in this study may limit transfer.` (1)
-  - `Lesion to principal sulcus impairs rule maintenance in working memory but also impairs other aspects of the WCST task; the deficit is not cleanly isolated to rule persistence under distraction as MECH-262 signature 2 requires.` (1)
-  - `Principal sulcus lesions in macaques may compensate over time via other frontal regions, so the acute lesion deficit may overstate the normal role of this region in rule maintenance.` (1)
-  - `The rule-differentiating delay state is a low-activity stable state, not persistent high-frequency firing -- if MECH-262 implementation requires sustained high firing rather than a reconfigured synaptic state, this paper does not support it.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### MECH-295
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.359, lit_conf=0.872, overall_confidence_legacy=0.667
@@ -1217,26 +1174,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `If MECH-295 strong reading were correct (liking activation NECESSARY for drive-to-approach), then any elevation of wanting/approach should be accompanied by elevated liking; Pecina 2003 shows wanting elevated with liking unchanged.` (1)
   - `If MECH-295 weak reading is correct (liking is the bridge that propagates drive into approach but baseline liking is sufficient -- only the LINK is necessary, not the level), then wanting can be amplified by tonic dopamine without further liking elevation; this paper is consistent with that reading.` (1)
   - `If drive amplification could produce approach without routing through experienced hedonic value, animals should reduce approach to a previously rewarded lever immediately upon a drive-state change (sated -> hungry not relevant; relevant: shift in outcome value); Dickinson & Balleine show they don't until they have experienced the outcome under the new state.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### MECH-314
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.325, lit_conf=0.882, overall_confidence_legacy=0.743
-- Recent entries:
-  - `2026-05-21T11:21:10Z` `experimental` `v3_exq_604_q044_mech314_subflavour_three_arm_ablation` direction=`non_contributory` confidence=0
-  - `2026-05-21T11:54:21Z` `experimental` `v3_exq_605_q043_noise_floor_curiosity_weight_sweep` direction=`non_contributory` confidence=0
-  - `2026-05-25T08:40:57Z` `experimental` `v3_exq_590_isef004_novelty_bonus_goldilocks` direction=`non_contributory` confidence=0
-  - `2026-06-02T20:28:14Z` `experimental` `v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate` direction=`non_contributory` confidence=0
-  - `2026-06-07T11:01:14Z` `experimental` `v3_exq_604b_q044_mech314_subflavour_ablation_authority_on` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `Pure novelty bonuses (visit novel states) do not produce emergent developmental stage ordering -- the agent visits all states equally and does not dwell in regions where learning is currently productive.` (1)
-  - `Learning-progress curiosity requires the environment to contain a natural difficulty gradient: if all tasks are equally hard or all equally easy, the progress signal is flat and provides no gradient for developmental sequencing.` (1)
-  - `The emergent curriculum observed in the robot experiments depended on environmental structure (objects with affordances, vocal interaction partners) that the agent could explore and gradually master -- in a featureless environment, no developmental structure emerged.` (1)
-  - `Curiosity circuits that only track novelty (recent vs. not-recent) are distinct from circuits that track uncertainty (resolution of predictive uncertainty) -- conflating the two produces mechanisms that each fail to capture the full biological function.` (1)
-  - `Curiosity-related behaviours in primates arise during postnatal development and are shaped by the richness of environmental experience -- the biological evidence implies that a fixed novelty bonus without environmental structure will not generate genuine curiosity-like exploration.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -1584,7 +1521,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-018
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.188, lit_conf=0.745, overall_confidence_legacy=0.559
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.187, lit_conf=0.745, overall_confidence_legacy=0.559
 - Recent entries:
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`supports` confidence=0.78
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`mixed` confidence=0.65

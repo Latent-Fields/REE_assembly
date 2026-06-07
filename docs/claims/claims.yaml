@@ -20459,6 +20459,18 @@
     rule-context pairs; rule-selective persistence measurement across
     forced internal_replay events. pending_retest_after_substrate=true.
     Autopsy: evidence/planning/failure_autopsy_V3-EXQ-598_2026-05-29.md.
+
+    2026-06-07 (V3-EXQ-598c, supports): the redesigned direct rule_state cosine
+    probe the 598 autopsy called for. Clean load-bearing PASS -- C3 cross-context
+    discriminable PASSED, all criteria non-degenerate, precondition met (z_world
+    context-discriminability margin 0.308 >= 0.15 positive control). Tests SD-033a
+    signatures (i) stimulus-abstracted representation + (ii) representational-level
+    persistence, DECOUPLED from policy behaviour (escapes the C3 downstream-
+    integration confound that contaminated 598/598b). Supersedes V3-EXQ-598b for
+    the SD-033a portion (598b SD-033a entry marked superseded; MECH-262 there
+    unchanged non_contributory). This is a clean support, but SD-033a stays
+    candidate/v3_pending (held); it does not on its own promote. supersedes:
+    V3-EXQ-598b.
   implementation_note: >
     IMPLEMENTED 2026-04-20 as additive bias-into-E3 substrate. Module:
     ree_core/pfc/lateral_pfc_analog.py (LateralPFCAnalog). Config:
@@ -24422,6 +24434,20 @@
     Section 0.3) as an open structural element, not an implementation
     detail. Interpretive reframe; status/phase/confidence unchanged; no
     new claim/experiment; no substrate change this pass.
+
+    [2026-06-07 governance: V3-EXQ-651 NON-CONTRIBUTORY, NOT a weakening]
+    (failure_autopsy_V3-EXQ-651_2026-06-07). The blocked-goal recovery test
+    FAILed on a measurement/test-design defect, not on ARC-060: the discrete
+    ghost-goal bank genuinely engaged (C1 3/3; 130-146 ghost candidates;
+    goal_active_frac=1.0), but the FIELD_ONLY negative control never exhibited
+    the premature abandonment ARC-060 predicts (Phase-C goal-proximity ~0.98 in
+    BOTH arms), so the bank's rescue advantage had nothing to act on. The latent
+    goal_proximity metric also saturates and does not read behavioural
+    abandonment/re-approach. Substrate (SD-039/MECH-292/MECH-293) is landed and
+    child-validated (494/496/497 PASS); the open item is test-design. Re-queue as
+    V3-EXQ-651a with a non-degeneracy gate (FIELD_ONLY must abandon first) + a
+    behavioural re-approach readout. Status/phase/confidence unchanged.
+  pending_retest_after_substrate: true
   location: docs/architecture/ghost_goal_search.md
 
 - id: ARC-061
@@ -29549,6 +29575,8 @@
     [2026-06-03 governance / cluster autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-604a re-tagged non_contributory: C0 PASS (SD-056 contrastive substrate fixed the 604 monomodal collapse, pairwise_dist 0.039>0.03) but curiosity_bias_abs_mean=0.0 in every arm incl ARM_ALL_ON and selected_entropy identical across all 5 arms -- the modulatory curiosity bias has zero authority at E3.select. NOT a falsification (the test could not let the claim express itself). substrate_ceiling (selection-authority sub-type); pending_retest_after_substrate -- blocked by substrate_queue CREATE 'modulatory-bias-selection-authority'. Convergent with 624a (MECH-320) and the z_goal salience gap (603e/626a).
 
     [2026-06-03 substrate landing] modulatory-bias-selection-authority IMPLEMENTED (ree-v3 e3_selector.select gap-relative rescale of the combined modulatory contribution to modulatory_authority_gain*raw_score_range + e3_score_diversity.stratified_select across-class unit-range normalization; config use_modulatory_selection_authority default OFF/bit-identical). Gives this claim's score-bias lever genuine BOUNDED authority at E3 committed selection (the 604a/624a/614d cluster showed the lever fired but never changed the committed argmin). 604a curiosity_bias_abs_mean=0.0 was the failure; NOTE necessary-but-not-sufficient -- curiosity bias was genuinely zero (314a no active residue centers + 314b/c broadcast-by-design), so the retest must guard curiosity_bias_abs_mean>0 before testing authority. Claim STAYS candidate/v3_pending -- substrate-readiness validation EXQ pending (claim_ids=[]); a per-claim EVIDENCE retest on the authority-ON substrate is the governance-weighting signal. Design doc docs/architecture/modulatory_bias_selection_authority.md; substrate_queue modulatory-bias-selection-authority status implemented_pending_validation.
+
+    [2026-06-07 governance: V3-EXQ-604b NON-CONTRIBUTORY for MECH-314/314a/314b/314c/Q-044, NOT a weakening] (failure_autopsy_gapA-cluster-604b-648a-649). 604b ran 11:01Z BEFORE the ARC-065 GAP-A action-conditional candidate-diversity fix was validated (V3-EXQ-649 PASS 13:14Z). With a class-uniform candidate pool the structured-curiosity bias had magnitude (last_bias_max_abs=0.0177) but ~zero cross-candidate RANGE, so C1 cannot move the E3 argmin even with selection authority ON (643a). 3rd confirmed instance of the candidate-pool-collapse confound (604a/624a/614d-e). The 604b manifest is set evidence_direction=non_contributory (self-emitted weakens overridden). The GAP-A fix is now VALIDATED READY (649) -- re-queue the MECH-314-family test as V3-EXQ-604c on the now-ready substrate, with a readiness gate on cross-candidate RANGE (not bias magnitude), before any direction is weighed. pending_retest_after_substrate already true.
   notes: >
     MECH-314 is the parent claim; MECH-314a/b/c are registered immediately
     after as sibling sub-claims. The parent's depends_on does not list the

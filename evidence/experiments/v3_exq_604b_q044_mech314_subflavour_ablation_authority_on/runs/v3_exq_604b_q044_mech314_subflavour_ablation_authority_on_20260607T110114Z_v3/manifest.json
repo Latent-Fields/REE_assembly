@@ -27,13 +27,13 @@
     "Q-044"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-314": "weakens",
-    "MECH-314a": "mixed",
-    "MECH-314b": "mixed",
-    "MECH-314c": "mixed",
-    "Q-044": "mixed"
+    "MECH-314": "non_contributory",
+    "MECH-314a": "non_contributory",
+    "MECH-314b": "non_contributory",
+    "MECH-314c": "non_contributory",
+    "Q-044": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -83,5 +83,6 @@
         "passed": false
       }
     ]
-  }
+  },
+  "evidence_direction_note": "2026-06-07 governance (failure_autopsy_gapA-cluster-604b-648a-649): NON-CONTRIBUTORY (substrate_ceiling), NOT a weakening of MECH-314/314a/314b/314c/Q-044. Ran 11:01Z BEFORE the ARC-065 GAP-A action-conditional candidate-diversity fix was validated (V3-EXQ-649 PASS 13:14Z). Class-uniform candidate pool: curiosity bias had magnitude (last_bias_max_abs=0.0177) but ~zero cross-candidate range, so C1 cannot move the E3 argmin even with selection authority ON (643a). 3rd confirmed instance of the candidate-pool-collapse confound (604a/624a/614d-e). pending_retest_after_substrate: re-queue as V3-EXQ-604c on the now-ready GAP-A substrate before any direction is weighed. Self-emitted weakens overridden."
 }

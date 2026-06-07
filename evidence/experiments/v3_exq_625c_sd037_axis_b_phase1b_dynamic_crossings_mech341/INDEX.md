@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_625c_sd037_axis_b_phase1b_dynamic_crossings_mech341
 
-Generated: `2026-06-07T13:47:26.097465Z`
+Generated: `2026-06-07T14:39:07.798762Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

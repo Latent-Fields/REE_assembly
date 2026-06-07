@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-07T13:55:31Z",
+  "last_review_utc": "2026-06-07T14:39:42Z",
   "discussed_experiment_dirs": [
     "v3_exq_610_inv074_crystallization_baseline_mint",
     "v3_exq_650_control_vector_collapse_diagnostic",
@@ -567,7 +567,17 @@
     "v3_exq_603f_scaffolded_sd054_substrate_readiness",
     "v3_exq_648_mech314a_phase2_substrate_readiness",
     "v3_exq_643b_modulatory_authority_corrected_c2",
-    "v3_exq_610_inv074_crystallization_baseline_mint"
+    "v3_exq_610_inv074_crystallization_baseline_mint",
+    "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+    "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+    "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+    "v3_exq_648a_mech314a_phase2_substrate_readiness_20260607T105407Z_v3",
+    "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3",
+    "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
+    "v3_exq_651_arc060_blocked_goal_recovery",
+    "v3_exq_598c_sd033a_rule_state_cosine_probe",
+    "v3_exq_648a_mech314a_phase2_substrate_readiness",
+    "v3_exq_649_arc065_gapa_shared_candidate_summary_source"
   ],
   "reviewed_run_ids": [
     "v3_exq_610_inv074_crystallization_baseline_mint_v3exq645_20260607T131625Z_v3",
@@ -2836,7 +2846,12 @@
     "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
     "v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3",
     "v3_exq_610_inv074_crystallization_baseline_mint_v3exq644_20260607T051001Z_v3",
-    "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T053934Z_v3"
+    "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T053934Z_v3",
+    "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+    "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+    "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+    "v3_exq_648a_mech314a_phase2_substrate_readiness_20260607T105407Z_v3",
+    "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3905,6 +3920,30 @@
         "v3_exq_610_inv074_crystallization_baseline_mint"
       ],
       "subject": "/governance cycle 2026-06-07T05:16Z. 3 indexed pending walked, ALL claim-free (claim_ids=[]) non_contributory diagnostics/baseline -> weight no claim. (1) V3-EXQ-648 (mech314a_phase2_substrate_readiness, FAIL, self-route phase2_wiring_does_not_support flagged precondition_unmet): CONFIRMED failure_autopsy_V3-EXQ-648_2026-06-07 already exists + its substrate_queue amends already applied (648 in MECH-314a-Phase-2-impl=validation_failed_pending_redesign AND cross-ref modulatory-bias-selection-authority failure_records). Adjudication RESOLVED by the confirmed autopsy: readiness precondition measured e2.cand_world_pairwise_dist=0.1147 but C2 routes on the proposer-summary curiosity bias (trajectory.world_states[:,0,:], spread <0.01) -> false READY; not falsification of MECH-314a. Routing implement-substrate; re-queue 648a DEFERRED until redesign (correctly not yet queued). No claims.yaml change. (2) V3-EXQ-643b (modulatory_authority_corrected_c2, PASS, supersedes 647): corrected within-ON-arm C2a (bias_changed_selection_frac>0.1) PASS 3/3 both ON arms; legacy cross-arm C2 explicitly superseded. Establishes authority PATH carves committed selection (rescaling-vs-native isolation deferred). modulatory-bias-selection-authority substrate already status=implemented (643a cycle); this PASS reaffirms, writes nothing. 647 already non_contributory/reviewed -> no de-weight. (3) V3-EXQ-644/run-610 (inv074_crystallization_baseline_mint, PASS, baseline): phase0 emit-only OFF-baseline mint, 3 OFF cells (seeds 42/43/44) ran to 2500 ep, reusable arm_fp/v1 fingerprints; provides controls for the INV-074 crystallization-necessity retest. Promotion/demotion: 0 actionable (all 112 decision-queue rows applied -- holds/V4-deferrals). closure_drift 0 drifted / 6 suppressed / 0 stale / 0 missing last_updated. No claims.yaml status/confidence change this cycle."
+    },
+    {
+      "timestamp_utc": "2026-06-07T14:39:42Z",
+      "session_label": "governance-cycle-20260607T1426Z",
+      "reviewed_run_ids": [
+        "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+        "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+        "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+        "v3_exq_648a_mech314a_phase2_substrate_readiness_20260607T105407Z_v3",
+        "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+        "v3_exq_651_arc060_blocked_goal_recovery_20260607T131928Z_v3",
+        "v3_exq_598c_sd033a_rule_state_cosine_probe_20260607T135611Z_v3",
+        "v3_exq_648a_mech314a_phase2_substrate_readiness_20260607T105407Z_v3",
+        "v3_exq_649_arc065_gapa_shared_candidate_summary_source_20260607T131429Z_v3",
+        "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
+        "v3_exq_651_arc060_blocked_goal_recovery",
+        "v3_exq_598c_sd033a_rule_state_cosine_probe",
+        "v3_exq_648a_mech314a_phase2_substrate_readiness",
+        "v3_exq_649_arc065_gapa_shared_candidate_summary_source"
+      ],
+      "subject": "/governance 2026-06-07T14:26Z. 5 pending walked; APPLIED 2 confirmed failure-autopsies (efd81673b2). GAP-A cluster 604b/648a/649=ONE structural property. 604b(MECH-314/314a/b/c/Q-044 FAIL)->non_contributory/substrate_ceiling (pre-GAP-A null; self-emitted weakens overridden flat+runpack; MECH-314 weakens 1->0; pending_retest 604c). 648a(claim-free FAIL)->non_contributory (load-bearing C2 PASS ready; precondition flag was indexer false-positive, fixed). 649(claim-free PASS)->non_contributory (GAP-A VERIFIED READY spread 0.090>=0.05; ARC-065 substrate_queue amended +604b/649 failure_records +gapA_status ready_validated). 651(ARC-060 FAIL)->non_contributory/test-design-defect (FIELD_ONLY never abandoned; weakens overridden 1->0; ARC-060 pending_retest set; redesign 651a). 598c(SD-033a PASS, supersedes 598b)=redesigned cosine probe per 598 autopsy; clean SUPPORT exp_conf 0.868, held v3_pending; 598b SD-033a->superseded, MECH-262 runpack weakens->non_contributory (1->0). claims.yaml notes on MECH-314/ARC-060/SD-033a. 0 pending_user. sync_v3_results list-criteria crash fixed."
     }
   ]
 }
