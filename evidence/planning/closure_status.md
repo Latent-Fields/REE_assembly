@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-07T14:27:56Z
+Generated: 2026-06-07T15:21:39Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,11 +8,11 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **70.6%** across 67 non-deferred nodes in 10 plan(s) with closure frontmatter.
+- Weighted progress: **71.0%** across 67 non-deferred nodes in 10 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **24** nodes.
 - Deferred (not required for v3 closure): 15 nodes.
 - Done: 43 nodes.
-- Status tally: blocked=7  blocked_pending_substrate=9  deferred=15  done=43  in_progress=4  open=1  partial=2  upstream_blocked=1
+- Status tally: blocked=7  blocked_pending_substrate=8  deferred=15  done=43  in_progress=5  open=1  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -20,7 +20,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 |------|-------|-------|----------|---------------|--------------|
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | blocked:3 blocked_pending_substrate:1 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
-| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 8 | 42% | blocked_pending_substrate:2 deferred:4 done:1 partial:1 | 2026-06-03 |
+| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 8 | 50% | blocked_pending_substrate:1 deferred:4 done:1 in_progress:1 partial:1 | 2026-06-07 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 12 | 58% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:1 partial:1 | 2026-05-30 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 58% | blocked_pending_substrate:1 deferred:1 done:3 in_progress:1 open:1 | 2026-06-04 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 15 | 82% | blocked_pending_substrate:3 done:12 | 2026-05-30 |
@@ -56,7 +56,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial | 2-3 | medium | V3-EXQ-544 + V3-EXQ-545 (done); V3-EXQ-604 + V3- | <!-- TODO: revise resume_condition to reflect V3-EXQ-544a state --> V3-EXQ-604/605 manifes | 2026-06-06 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate | 2-3 | medium | V3-EXQ-606b | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-03 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress | 2-3 | medium | V3-EXQ-546 (done, diagnostic/non_contributory);  | depends_on: arc_062_rule_apprehension:GAP-B, arc_062_rule_apprehension:GAP-H, arc_062_rule | 2026-06-06 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM  | blocked_pending_substrate | P1 falsifier blocked -> upstream substrate work | medium | V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_ | <!-- TODO: revise resume_condition to reflect V3-EXQ-544a + V3-EXQ-569c state --> V3-EXQ-5 | 2026-06-07 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM  | in_progress | substrate validated ready -> FP-2 falsifier work resumes | medium | V3-EXQ-649 PASS 2026-06-07T13:14Z (GAP-A shared- | <!-- TODO: revise resume_condition to reflect V3-EXQ-544a + V3-EXQ-569c state --> V3-EXQ-5 | 2026-06-07 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | blocked_pending_substrate | P1 | medium | V3-EXQ-544/545 substrate PASS 5/5 (2026-05-10);  | Cluster-absorbed (591 autopsy section 6: fourth member of the substrate-uniform z_goal-zer | 2026-05-31 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked | 2-3 | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
 

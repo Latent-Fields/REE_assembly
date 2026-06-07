@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_531_sd015_resource_encoder_ablation
 
-Generated: `2026-06-07T14:39:07.798762Z`
+Generated: `2026-06-07T15:51:53.439526Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

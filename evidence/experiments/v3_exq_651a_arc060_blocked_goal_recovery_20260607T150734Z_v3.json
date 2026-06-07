@@ -1,1 +1,361 @@
-{"schema_version": "v1", "run_id": "v3_exq_651a_arc060_blocked_goal_recovery_20260607T150734Z_v3", "experiment_type": "v3_exq_651a_arc060_blocked_goal_recovery", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-07T15:07:34.578482Z", "experiment_purpose": "evidence", "backlog_id": "EVB-0076", "supersedes": "V3-EXQ-651", "claim_ids": ["ARC-060"], "claim_ids_tested": ["ARC-060"], "evidence_class": "experimental", "evidence_direction": "weakens", "evidence_direction_per_claim": {"ARC-060": "weakens"}, "evidence_direction_note": "ARC-060 weakened: the discrete ghost-goal bank engaged (C1 met on 3/3 seeds) AND the FIELD_ONLY negative control abandoned the displaced goal (ND met on 2/3 seeds) -- the discriminating condition was genuinely created -- yet FIELD_PLUS_BANK did NOT improve behavioural re-approach over FIELD_ONLY by >= 0.15 on a majority of seeds (recovery met on only 0/3). The discrete-bank layer added no measurable blocked-goal recovery advantage over the continuous field alone under this test.", "non_degenerate": true, "outcome": "FAIL", "elapsed_sec": 33.382829427719116, "seeds": [42, 43, 44], "arms": ["FIELD_ONLY", "FIELD_PLUS_BANK"], "pre_registered_thresholds": {"ghost_fire_min": 1, "goal_active_frac_min": 0.5, "abandon_reapproach_max": 0.3, "reapproach_margin": 0.15, "goal_prox_margin": 0.01, "majority_seeds": 2}, "criteria_summary": {"n_seeds": 3, "n_c1_precondition_met": 3, "n_c2_off_arm_clean": 3, "n_nd_negative_control_abandons": 2, "n_c3_recovery_behavioural_met": 0, "c1_majority": true, "nd_majority": true, "non_degenerate": true}, "interpretation": {"non_degenerate": true, "criteria_non_degenerate": {"C1_bank_engaged": true, "ND_negative_control_abandons": true}, "note": "ND (non-degeneracy gate) requires the FIELD_ONLY negative control to abandon the displaced goal before the FIELD+BANK recovery comparison is scored. A weaken is reachable ONLY when BOTH C1 (bank engaged) and ND hold; otherwise the run is non_contributory and ARC-060 is not weakened."}, "per_seed": [{"seed": 42, "c1_precondition_met": true, "c1_ghost_admitted_total": 152, "c1_goal_active_frac": 1.0, "c2_off_arm_clean": true, "nd_negative_control_abandons": true, "off_reapproach_frac": 0.0, "on_reapproach_frac": 0.0, "reapproach_delta_on_minus_off": 0.0, "c3_recovery_behavioural_met": false, "off_late_goal_prox": 0.9778301945099463, "on_late_goal_prox": 0.9855549197930557, "goal_prox_delta_on_minus_off": 0.007724725283109302, "c3_recovery_latent_met": false}, {"seed": 43, "c1_precondition_met": true, "c1_ghost_admitted_total": 120, "c1_goal_active_frac": 1.0, "c2_off_arm_clean": true, "nd_negative_control_abandons": false, "off_reapproach_frac": 0.375, "on_reapproach_frac": 0.6442307692307692, "reapproach_delta_on_minus_off": 0.26923076923076916, "c3_recovery_behavioural_met": true, "off_late_goal_prox": 0.990503375346844, "on_late_goal_prox": 0.990929649426387, "goal_prox_delta_on_minus_off": 0.00042627407954298757, "c3_recovery_latent_met": false}, {"seed": 44, "c1_precondition_met": true, "c1_ghost_admitted_total": 120, "c1_goal_active_frac": 1.0, "c2_off_arm_clean": true, "nd_negative_control_abandons": true, "off_reapproach_frac": 0.0, "on_reapproach_frac": 0.0, "reapproach_delta_on_minus_off": 0.0, "c3_recovery_behavioural_met": false, "off_late_goal_prox": 0.9783170865132258, "on_late_goal_prox": 0.9803382158279419, "goal_prox_delta_on_minus_off": 0.002021129314716097, "c3_recovery_latent_met": false}], "arm_results": [{"arm_label": "FIELD_ONLY", "bank_on": false, "seed": 42, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.30249515175819397, "goal_resource_cell": [2, 4], "displaced_cell": [6, 1], "pre_displace_dist": 6, "bank_size_after_phase_a": 0, "phase_c_initial_dist": 7.0, "phase_c_final_dist": 7.0, "phase_c_min_dist": 7.0, "reapproach_frac": 0.0, "reapproach_frac_min": 0.0, "mean_goal_prox_phase_c": 0.9798529535531998, "early_goal_prox_phase_c": 0.9831692989055927, "late_goal_prox_phase_c": 0.9778301945099463, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 0, "ghost_fire_ticks_phase_c": 0, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "58bbc084b235db5b8835fab7a607381bd5f11d4bcd091791c799d55865abfb84", "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_PLUS_BANK", "bank_on": true, "seed": 42, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.3014392852783203, "goal_resource_cell": [2, 4], "displaced_cell": [6, 1], "pre_displace_dist": 6, "bank_size_after_phase_a": 3, "phase_c_initial_dist": 7.0, "phase_c_final_dist": 7.0, "phase_c_min_dist": 7.0, "reapproach_frac": 0.0, "reapproach_frac_min": 0.0, "mean_goal_prox_phase_c": 0.9864721059799194, "early_goal_prox_phase_c": 0.988258536045368, "late_goal_prox_phase_c": 0.9855549197930557, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 152, "ghost_fire_ticks_phase_c": 40, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "8dc77f5d42d7629db80264513303bc122e62468ae3fb0d179ea4269ed3aae2b2", "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_ONLY", "bank_on": false, "seed": 43, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.35475650429725647, "goal_resource_cell": [5, 5], "displaced_cell": [1, 1], "pre_displace_dist": 3, "bank_size_after_phase_a": 0, "phase_c_initial_dist": 8.0, "phase_c_final_dist": 5.0, "phase_c_min_dist": 4.0, "reapproach_frac": 0.375, "reapproach_frac_min": 0.5, "mean_goal_prox_phase_c": 0.9907306581735611, "early_goal_prox_phase_c": 0.9911797871956458, "late_goal_prox_phase_c": 0.990503375346844, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 0, "ghost_fire_ticks_phase_c": 0, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "4511e066a6b186aaa6780b36620851f07e1deec16692228a09364d03b0f25b7a", "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_PLUS_BANK", "bank_on": true, "seed": 43, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.35545775294303894, "goal_resource_cell": [5, 5], "displaced_cell": [1, 1], "pre_displace_dist": 3, "bank_size_after_phase_a": 3, "phase_c_initial_dist": 8.0, "phase_c_final_dist": 2.8461538461538463, "phase_c_min_dist": 1.0, "reapproach_frac": 0.6442307692307692, "reapproach_frac_min": 0.875, "mean_goal_prox_phase_c": 0.9909444451332092, "early_goal_prox_phase_c": 0.9916927539385282, "late_goal_prox_phase_c": 0.990929649426387, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 120, "ghost_fire_ticks_phase_c": 40, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "8b66f2df6cdbf71220b8db4e2c46539287055e71234bad9c3ba05a90e301e1f0", "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_ONLY", "bank_on": false, "seed": 44, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.4855688512325287, "goal_resource_cell": [3, 3], "displaced_cell": [6, 6], "pre_displace_dist": 4, "bank_size_after_phase_a": 0, "phase_c_initial_dist": 6.0, "phase_c_final_dist": 6.0, "phase_c_min_dist": 6.0, "reapproach_frac": 0.0, "reapproach_frac_min": 0.0, "mean_goal_prox_phase_c": 0.9804510042071343, "early_goal_prox_phase_c": 0.9842433287547185, "late_goal_prox_phase_c": 0.9783170865132258, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 0, "ghost_fire_ticks_phase_c": 0, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "06aba0dcffaf79566219bf030537c3d0c9f4e472c23f3a4a6b681405600ca9e0", "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}, {"arm_label": "FIELD_PLUS_BANK", "bank_on": true, "seed": 44, "z_goal_active_after_phase_a": true, "goal_norm_after_phase_a": 0.48573535680770874, "goal_resource_cell": [3, 3], "displaced_cell": [6, 6], "pre_displace_dist": 4, "bank_size_after_phase_a": 3, "phase_c_initial_dist": 6.0, "phase_c_final_dist": 6.0, "phase_c_min_dist": 6.0, "reapproach_frac": 0.0, "reapproach_frac_min": 0.0, "mean_goal_prox_phase_c": 0.9815709114074707, "early_goal_prox_phase_c": 0.9832289218902588, "late_goal_prox_phase_c": 0.9803382158279419, "goal_active_frac_phase_c": 1.0, "ghost_admitted_total_phase_c": 120, "ghost_fire_ticks_phase_c": 40, "n_goal_prox_samples": 40, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "da36f022d1c81368aa2a1865560d7512694dd87c71bd55afc18ce0532f82bf79", "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790", "substrate_n_files": 90, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": []}}], "dry_run": false, "queue_id": "V3-EXQ-651a", "machine": "ree-cloud-2"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_651a_arc060_blocked_goal_recovery_20260607T150734Z_v3",
+  "experiment_type": "v3_exq_651a_arc060_blocked_goal_recovery",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-07T15:07:34.578482Z",
+  "experiment_purpose": "evidence",
+  "backlog_id": "EVB-0076",
+  "supersedes": "V3-EXQ-651",
+  "claim_ids": [
+    "ARC-060"
+  ],
+  "claim_ids_tested": [
+    "ARC-060"
+  ],
+  "evidence_class": "experimental",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-060": "non_contributory"
+  },
+  "evidence_direction_note": "Self-emitted weakens DEFERRED to non_contributory pending /failure-autopsy per /governance 2026-06-07T1520Z (all 3 pending FAILs routed to autopsy). The test DESIGN is sound -- non_degenerate=true, ND non-degeneracy gate held 2/3 (FIELD_ONLY genuinely abandoned the displaced goal on the clean seeds) -- but the weaken is plausibly confounded by the unresolved goal_pipeline:GAP-2 foraging-competence ceiling: z_goal was weakly formed (goal_norm_after_phase_a 0.302/0.355/0.486, two of three below the 0.4 formation gate), and same-day V3-EXQ-603g reconfirms the scaffolded_sd054_onboarding survival/contact ceiling. On a barely-formed goal nothing re-approaches (bank or field alike; the one seed where the bank helped is the one where the off-arm did NOT abandon), so the null may reflect weak z_goal rather than discrete-bank inadequacy. ARC-060 NOT weakened this cycle; pending_retest_after_substrate (goal_pipeline GAP-2). Autopsy to adjudicate bank-inadequacy vs GAP-2 confound.",
+  "non_degenerate": true,
+  "outcome": "FAIL",
+  "elapsed_sec": 33.382829427719116,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "arms": [
+    "FIELD_ONLY",
+    "FIELD_PLUS_BANK"
+  ],
+  "pre_registered_thresholds": {
+    "ghost_fire_min": 1,
+    "goal_active_frac_min": 0.5,
+    "abandon_reapproach_max": 0.3,
+    "reapproach_margin": 0.15,
+    "goal_prox_margin": 0.01,
+    "majority_seeds": 2
+  },
+  "criteria_summary": {
+    "n_seeds": 3,
+    "n_c1_precondition_met": 3,
+    "n_c2_off_arm_clean": 3,
+    "n_nd_negative_control_abandons": 2,
+    "n_c3_recovery_behavioural_met": 0,
+    "c1_majority": true,
+    "nd_majority": true,
+    "non_degenerate": true
+  },
+  "interpretation": {
+    "non_degenerate": true,
+    "criteria_non_degenerate": {
+      "C1_bank_engaged": true,
+      "ND_negative_control_abandons": true
+    },
+    "note": "ND (non-degeneracy gate) requires the FIELD_ONLY negative control to abandon the displaced goal before the FIELD+BANK recovery comparison is scored. A weaken is reachable ONLY when BOTH C1 (bank engaged) and ND hold; otherwise the run is non_contributory and ARC-060 is not weakened."
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "c1_precondition_met": true,
+      "c1_ghost_admitted_total": 152,
+      "c1_goal_active_frac": 1.0,
+      "c2_off_arm_clean": true,
+      "nd_negative_control_abandons": true,
+      "off_reapproach_frac": 0.0,
+      "on_reapproach_frac": 0.0,
+      "reapproach_delta_on_minus_off": 0.0,
+      "c3_recovery_behavioural_met": false,
+      "off_late_goal_prox": 0.9778301945099463,
+      "on_late_goal_prox": 0.9855549197930557,
+      "goal_prox_delta_on_minus_off": 0.007724725283109302,
+      "c3_recovery_latent_met": false
+    },
+    {
+      "seed": 43,
+      "c1_precondition_met": true,
+      "c1_ghost_admitted_total": 120,
+      "c1_goal_active_frac": 1.0,
+      "c2_off_arm_clean": true,
+      "nd_negative_control_abandons": false,
+      "off_reapproach_frac": 0.375,
+      "on_reapproach_frac": 0.6442307692307692,
+      "reapproach_delta_on_minus_off": 0.26923076923076916,
+      "c3_recovery_behavioural_met": true,
+      "off_late_goal_prox": 0.990503375346844,
+      "on_late_goal_prox": 0.990929649426387,
+      "goal_prox_delta_on_minus_off": 0.00042627407954298757,
+      "c3_recovery_latent_met": false
+    },
+    {
+      "seed": 44,
+      "c1_precondition_met": true,
+      "c1_ghost_admitted_total": 120,
+      "c1_goal_active_frac": 1.0,
+      "c2_off_arm_clean": true,
+      "nd_negative_control_abandons": true,
+      "off_reapproach_frac": 0.0,
+      "on_reapproach_frac": 0.0,
+      "reapproach_delta_on_minus_off": 0.0,
+      "c3_recovery_behavioural_met": false,
+      "off_late_goal_prox": 0.9783170865132258,
+      "on_late_goal_prox": 0.9803382158279419,
+      "goal_prox_delta_on_minus_off": 0.002021129314716097,
+      "c3_recovery_latent_met": false
+    }
+  ],
+  "arm_results": [
+    {
+      "arm_label": "FIELD_ONLY",
+      "bank_on": false,
+      "seed": 42,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.30249515175819397,
+      "goal_resource_cell": [
+        2,
+        4
+      ],
+      "displaced_cell": [
+        6,
+        1
+      ],
+      "pre_displace_dist": 6,
+      "bank_size_after_phase_a": 0,
+      "phase_c_initial_dist": 7.0,
+      "phase_c_final_dist": 7.0,
+      "phase_c_min_dist": 7.0,
+      "reapproach_frac": 0.0,
+      "reapproach_frac_min": 0.0,
+      "mean_goal_prox_phase_c": 0.9798529535531998,
+      "early_goal_prox_phase_c": 0.9831692989055927,
+      "late_goal_prox_phase_c": 0.9778301945099463,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 0,
+      "ghost_fire_ticks_phase_c": 0,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "58bbc084b235db5b8835fab7a607381bd5f11d4bcd091791c799d55865abfb84",
+        "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_PLUS_BANK",
+      "bank_on": true,
+      "seed": 42,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.3014392852783203,
+      "goal_resource_cell": [
+        2,
+        4
+      ],
+      "displaced_cell": [
+        6,
+        1
+      ],
+      "pre_displace_dist": 6,
+      "bank_size_after_phase_a": 3,
+      "phase_c_initial_dist": 7.0,
+      "phase_c_final_dist": 7.0,
+      "phase_c_min_dist": 7.0,
+      "reapproach_frac": 0.0,
+      "reapproach_frac_min": 0.0,
+      "mean_goal_prox_phase_c": 0.9864721059799194,
+      "early_goal_prox_phase_c": 0.988258536045368,
+      "late_goal_prox_phase_c": 0.9855549197930557,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 152,
+      "ghost_fire_ticks_phase_c": 40,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "8dc77f5d42d7629db80264513303bc122e62468ae3fb0d179ea4269ed3aae2b2",
+        "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_ONLY",
+      "bank_on": false,
+      "seed": 43,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.35475650429725647,
+      "goal_resource_cell": [
+        5,
+        5
+      ],
+      "displaced_cell": [
+        1,
+        1
+      ],
+      "pre_displace_dist": 3,
+      "bank_size_after_phase_a": 0,
+      "phase_c_initial_dist": 8.0,
+      "phase_c_final_dist": 5.0,
+      "phase_c_min_dist": 4.0,
+      "reapproach_frac": 0.375,
+      "reapproach_frac_min": 0.5,
+      "mean_goal_prox_phase_c": 0.9907306581735611,
+      "early_goal_prox_phase_c": 0.9911797871956458,
+      "late_goal_prox_phase_c": 0.990503375346844,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 0,
+      "ghost_fire_ticks_phase_c": 0,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "4511e066a6b186aaa6780b36620851f07e1deec16692228a09364d03b0f25b7a",
+        "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_PLUS_BANK",
+      "bank_on": true,
+      "seed": 43,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.35545775294303894,
+      "goal_resource_cell": [
+        5,
+        5
+      ],
+      "displaced_cell": [
+        1,
+        1
+      ],
+      "pre_displace_dist": 3,
+      "bank_size_after_phase_a": 3,
+      "phase_c_initial_dist": 8.0,
+      "phase_c_final_dist": 2.8461538461538463,
+      "phase_c_min_dist": 1.0,
+      "reapproach_frac": 0.6442307692307692,
+      "reapproach_frac_min": 0.875,
+      "mean_goal_prox_phase_c": 0.9909444451332092,
+      "early_goal_prox_phase_c": 0.9916927539385282,
+      "late_goal_prox_phase_c": 0.990929649426387,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 120,
+      "ghost_fire_ticks_phase_c": 40,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "8b66f2df6cdbf71220b8db4e2c46539287055e71234bad9c3ba05a90e301e1f0",
+        "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_ONLY",
+      "bank_on": false,
+      "seed": 44,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.4855688512325287,
+      "goal_resource_cell": [
+        3,
+        3
+      ],
+      "displaced_cell": [
+        6,
+        6
+      ],
+      "pre_displace_dist": 4,
+      "bank_size_after_phase_a": 0,
+      "phase_c_initial_dist": 6.0,
+      "phase_c_final_dist": 6.0,
+      "phase_c_min_dist": 6.0,
+      "reapproach_frac": 0.0,
+      "reapproach_frac_min": 0.0,
+      "mean_goal_prox_phase_c": 0.9804510042071343,
+      "early_goal_prox_phase_c": 0.9842433287547185,
+      "late_goal_prox_phase_c": 0.9783170865132258,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 0,
+      "ghost_fire_ticks_phase_c": 0,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "06aba0dcffaf79566219bf030537c3d0c9f4e472c23f3a4a6b681405600ca9e0",
+        "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    },
+    {
+      "arm_label": "FIELD_PLUS_BANK",
+      "bank_on": true,
+      "seed": 44,
+      "z_goal_active_after_phase_a": true,
+      "goal_norm_after_phase_a": 0.48573535680770874,
+      "goal_resource_cell": [
+        3,
+        3
+      ],
+      "displaced_cell": [
+        6,
+        6
+      ],
+      "pre_displace_dist": 4,
+      "bank_size_after_phase_a": 3,
+      "phase_c_initial_dist": 6.0,
+      "phase_c_final_dist": 6.0,
+      "phase_c_min_dist": 6.0,
+      "reapproach_frac": 0.0,
+      "reapproach_frac_min": 0.0,
+      "mean_goal_prox_phase_c": 0.9815709114074707,
+      "early_goal_prox_phase_c": 0.9832289218902588,
+      "late_goal_prox_phase_c": 0.9803382158279419,
+      "goal_active_frac_phase_c": 1.0,
+      "ghost_admitted_total_phase_c": 120,
+      "ghost_fire_ticks_phase_c": 40,
+      "n_goal_prox_samples": 40,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "da36f022d1c81368aa2a1865560d7512694dd87c71bd55afc18ce0532f82bf79",
+        "substrate_hash": "2ee13c474a238fca189b92539250d91866bdf0b519bc7d860985672604bcf790",
+        "substrate_n_files": 90,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": []
+      }
+    }
+  ],
+  "dry_run": false,
+  "queue_id": "V3-EXQ-651a",
+  "machine": "ree-cloud-2"
+}

@@ -2,7 +2,7 @@
 
 **Claim ID:** SD-058 (architecture) + MECH-357 (mechanism)
 **Subject:** `defensive_action.instrumental_avoidance_acquisition`
-**Status:** PENDING
+**Status:** IMPLEMENTED 2026-06-07 (substrate; v3_pending until the Stage-H validation EXQ PASSes)
 **Registered:** 2026-06-07
 **Depends on:** SD-035 (amygdala BLA/CeA analogue), MECH-279 (PAG freeze-gate), SD-011 (z_harm_a affective stream)
 **Blocks:** `scaffolded_sd054_onboarding` Stage-H / P1 survival leg (goal_pipeline GAP-2);

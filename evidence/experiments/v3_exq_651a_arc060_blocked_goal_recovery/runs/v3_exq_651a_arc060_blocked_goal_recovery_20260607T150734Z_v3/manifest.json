@@ -23,9 +23,9 @@
     "ARC-060"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-060": "weakens"
+    "ARC-060": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -50,5 +50,6 @@
       "ND_negative_control_abandons": true
     },
     "note": "ND (non-degeneracy gate) requires the FIELD_ONLY negative control to abandon the displaced goal before the FIELD+BANK recovery comparison is scored. A weaken is reachable ONLY when BOTH C1 (bank engaged) and ND hold; otherwise the run is non_contributory and ARC-060 is not weakened."
-  }
+  },
+  "evidence_direction_note": "Self-emitted weakens DEFERRED to non_contributory pending /failure-autopsy per /governance 2026-06-07T1520Z (all 3 pending FAILs routed to autopsy). The test DESIGN is sound -- non_degenerate=true, ND non-degeneracy gate held 2/3 (FIELD_ONLY genuinely abandoned the displaced goal on the clean seeds) -- but the weaken is plausibly confounded by the unresolved goal_pipeline:GAP-2 foraging-competence ceiling: z_goal was weakly formed (goal_norm_after_phase_a 0.302/0.355/0.486, two of three below the 0.4 formation gate), and same-day V3-EXQ-603g reconfirms the scaffolded_sd054_onboarding survival/contact ceiling. On a barely-formed goal nothing re-approaches (bank or field alike; the one seed where the bank helped is the one where the off-arm did NOT abandon), so the null may reflect weak z_goal rather than discrete-bank inadequacy. ARC-060 NOT weakened this cycle; pending_retest_after_substrate (goal_pipeline GAP-2). Autopsy to adjudicate bank-inadequacy vs GAP-2 confound."
 }

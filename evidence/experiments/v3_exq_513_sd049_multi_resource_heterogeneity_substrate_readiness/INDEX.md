@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_513_sd049_multi_resource_heterogeneity_substrate_readiness
 
-Generated: `2026-06-07T14:39:07.798762Z`
+Generated: `2026-06-07T15:51:53.439526Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
