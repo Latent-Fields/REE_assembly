@@ -349,14 +349,37 @@ silently drift it. This is the safest form of opt-in narrowing.
 - **Queued twice (low priority 10):** `V3-EXQ-644` -> `ree-cloud-2`,
   `V3-EXQ-645` -> `ree-cloud-3` (same script/config; the cross-instance
   determinism check). Runner not started; cloud-2/3 idle.
-- **Cross-instance determinism result: PENDING both runs.** After `V3-EXQ-644`
-  and `V3-EXQ-645` complete, compare the two manifests' OFF metrics
-  (`arm_results[*].end_phase_2_entropy`, `end_phase_3_entropy`, `mean_reward`)
-  within tolerance. Agreement confirms separate CX22 instances are mutually
-  deterministic on CPU torch (the Regime-A assumption; Phase-0 zero-false-collision
-  exit). The `arm_fingerprint` hash is identical across the two **by construction**
-  (coarse `machine_class = linux-x86_64-pyX.Y`); the check is on the *metrics*.
-  _Record the numeric comparison + verdict here once both manifests land._
+- **Cross-instance determinism result: PENDING cloud-3.** `V3-EXQ-644` (cloud-2)
+  landed PASS 2026-06-07T05:10Z (3 OFF cells, seeds 42/43/44). `V3-EXQ-645`
+  (cloud-3) is **in-flight** -- seed 44 (final), episode 700/2500, overall 76% as
+  of 2026-06-07T08:13Z heartbeat; not wedged, just slow (CX22). The check is on
+  the *metrics*; the `arm_fingerprint` hash is identical across the two **by
+  construction** (coarse `machine_class = linux-x86_64-py3.10`).
+
+- **PRE-REGISTERED TOLERANCE + METHOD (fixed 2026-06-07T08:22Z, BEFORE V3-EXQ-645
+  metrics were visible).** Pre-registering avoids choosing the tolerance after
+  seeing the data, which would hollow out the gate. Method + tiers are encoded in
+  `REE_assembly/scripts/arm_reuse_determinism_check.py` (run it when 645 lands):
+  - Per seed `s in {42,43,44}`, per metric `m in {end_phase_2_entropy,
+    end_phase_3_entropy, mean_reward}`: `d = |cloud2[s,m] - cloud3[s,m]|`.
+  - **TIER 1 (bit-near):** all `d <= 1e-6` -> instances effectively bit-identical
+    on CPU torch; Regime A solid (approaches Regime B for free).
+  - **TIER 2 (distributional):** all entropy `d <= 0.05` AND all reward
+    `d <= 0.05` -> cached cell is a valid representative draw for matched-control
+    use. Rationale: `0.05` is ~7% of the ~`0.68` cross-**seed** entropy spread
+    (`0.67..1.35` in the 644 mint) -- the spread that defines the OFF arm's role
+    as a per-seed matched reference -- so a drift this small cannot change which
+    seed-arm comparison a treatment is measured against. Scientifically immaterial.
+  - **FAIL (any `d > 0.05`):** Regime A invalid as built -> **STOP**; escalate the
+    Regime A-vs-B decision to the user; leave NO experiment wired to skip an arm.
+  - **False-collision guard:** equal per-seed fingerprints WITH out-of-tolerance
+    metrics is the exact failure the gate exists to catch; the script flags it
+    loudly. (644 cloud-2 OFF metrics for reference: seed42 p2=1.347902 p3=1.349533
+    r=-1.019894; seed43 p2=0.669239 p3=0.691710 r=-1.146585; seed44 p2=1.162011
+    p3=1.144879 r=-1.076574; substrate_hash `cebea8b3...`.)
+  - _Record the measured worst `|diff|` + final verdict on the line below once 645
+    lands._
+  - **MEASURED RESULT:** _PENDING V3-EXQ-645._
 
 ### Status -- 643 OFF baseline minted (2026-06-06)
 
