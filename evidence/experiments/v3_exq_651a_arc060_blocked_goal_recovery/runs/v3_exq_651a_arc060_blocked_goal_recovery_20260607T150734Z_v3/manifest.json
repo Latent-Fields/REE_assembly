@@ -1,0 +1,54 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_651a_arc060_blocked_goal_recovery",
+  "run_id": "v3_exq_651a_arc060_blocked_goal_recovery_20260607T150734Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-07T15:07:34.578482Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-060"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-060": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "non_degenerate": true,
+    "criteria_non_degenerate": {
+      "C1_bank_engaged": true,
+      "ND_negative_control_abandons": true
+    },
+    "note": "ND (non-degeneracy gate) requires the FIELD_ONLY negative control to abandon the displaced goal before the FIELD+BANK recovery comparison is scored. A weaken is reachable ONLY when BOTH C1 (bank engaged) and ND hold; otherwise the run is non_contributory and ARC-060 is not weakened."
+  }
+}
