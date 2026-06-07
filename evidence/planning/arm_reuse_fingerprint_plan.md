@@ -379,7 +379,44 @@ silently drift it. This is the safest form of opt-in narrowing.
     p3=1.144879 r=-1.076574; substrate_hash `cebea8b3...`.)
   - _Record the measured worst `|diff|` + final verdict on the line below once 645
     lands._
-  - **MEASURED RESULT:** _PENDING V3-EXQ-645._
+  - **MEASURED RESULT (2026-06-07T13:16Z; V3-EXQ-645 landed PASS on cloud-3):**
+    - **FINGERPRINT-SCOPED VERDICT: PASS (TIER 2 distributional). Regime A confirmed.**
+      The gate's predicate (plan 9.0) is a claim about cells the reuse system would
+      actually collide -- equal-fingerprint pairs. Both such pairs agree well within
+      tolerance:
+      - seed 42 (fp `3dac296b…`, substrate `cebea8b3…` both instances): worst
+        `|diff|` = 8.32e-3 (p3_entropy).
+      - seed 43 (fp `c1c21648…`, substrate `cebea8b3…` both): worst `|diff|` =
+        1.56e-2 (p2_entropy).
+      - **scoped worst entropy `|diff|` = 1.56e-2, worst reward `|diff|` = 8.31e-3**
+        -- both << TIER2 `0.05`. **Zero false collisions** (Phase-0 exit criterion
+        met). Two CX22 instances are mutually *distributionally* deterministic
+        (NOT bit-exact -- diffs are 1e-3..1e-2, exactly the Regime-A regime; Regime
+        B is neither achieved nor claimed).
+    - **Seed 44 EXCLUDED -- substrate drift, not a failure.** cloud-3's seed-44 cell
+      ran against a DIFFERENT source (`substrate_hash` `8599c533…` vs cloud-2's
+      `cebea8b3…`, same 90 files -> content changed). Three `ree_core` commits landed
+      during seed-44's ~06:00-13:16Z window and were pulled in by the heartbeat
+      `git pull --rebase --autostash`: `71dfb2b` (ARC-065 GAP-A e2.world_forward
+      source), `84c091c` (MECH-314a Phase-2), `e3b5c9b` (ControlVector logging). The
+      fingerprint **correctly** gave seed 44 a different hash, so the reuse system
+      would refuse to collide it (cache MISS, not a false hit). Its positional
+      `|diff|` = 5.43e-2 is expected (different code -> different trajectory) and
+      harmless. This is a live demonstration that the fingerprint catches mid-run
+      drift -- a positive for the design.
+    - **POSITIONAL VERDICT (literal pre-registered, all 3 seed-pairs): FAIL** by
+      4.3e-3 on one metric (seed-44 p3_entropy 5.43e-2 > 0.05). Recorded for full
+      transparency. The positional comparison did not enforce the equal-fingerprint
+      precondition that plan 9.0's predicate requires (a same-`(substrate,config,seed)`
+      claim), so it compared two *different* computations on seed 44. The
+      fingerprint-scoped verdict is the correct scoping; the script's `--json`
+      emits both. Reproduce: `python3 scripts/arm_reuse_determinism_check.py`.
+    - **GATE DISPOSITION: PASS pending user ratification** (the literal pre-registered
+      verdict was FAIL; the scoped PASS is a post-data refinement of the *predicate*,
+      principled but surfaced rather than self-applied). Conservative belt-and-suspenders
+      option offered: re-mint a single seed-44 cell on a quiesced cloud-3 tree for a
+      clean 3/3. If ratified, Regime-A reuse is sanctioned (retroactively legitimising
+      the 646->647/643b cloud-class reuse already exercised).
 
 ### Status -- 643 OFF baseline minted (2026-06-06)
 
