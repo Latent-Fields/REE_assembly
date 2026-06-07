@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hazard_avoidance_learning",
+  "entry_id": "2026-06-07_sd_035_active_avoidance_pfc_suppression_moscarello2013",
+  "timestamp_utc": "2026-06-07T15:46:39Z",
+  "claim_ids_tested": ["SD-035"],
+  "source": {
+    "title": "Active avoidance learning requires prefrontal suppression of amygdala-mediated defensive reactions",
+    "authors": ["Moscarello, Justin M.", "LeDoux, Joseph E."],
+    "year": 2013,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2596-12.2013"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "Directly diagnostic for the 603g failure shape and the most decision-relevant entry in this review. It establishes that signaled active avoidance is a TWO-component problem -- Pavlovian freezing reactions and instrumental avoidance actions are mutually exclusive competing responses -- and that learning to avoid REQUIRES infralimbic prefrontal cortex to inhibit central-amygdala-driven freezing. Marked MIXED (not supports): it supports wiring the amygdala as an avoidance-learning driver, but it simultaneously shows the current REE substrate (SD-035 salience + MECH-279 freeze gate, with NO prefrontal reaction-suppression / instrumental-competition layer) would reproduce the un-trainable avoidance signature. Confidence 0.78: strong primary causal lesion study with clean statistics, conserved circuit; mixed direction reflects that the most important content is a missing-mechanism warning.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the freeze reaction is not actively suppressed, it competes with and blocks instrumental avoidance: ilPFC lesions (removing the suppression) INCREASED conditioned freezing (main effect of lesion F(1,14)=14.78, p=0.002) and decreased avoidance, while CeA lesions (removing the freeze source) reduced freezing and FACILITATED avoidance. A REE substrate with a freeze gate (MECH-279) but no reaction-suppression layer is the ilPFC-lesion condition -- it will freeze instead of learning to avoid (the 603g G_H 0/3 signature).",
+    "Avoidance learning is described as recruiting ilPFC to inhibit CeA-mediated defense; if REE's avoidance leg has no homologue for this prefrontal inhibitory gating, the Pavlovian-instrumental conflict ('early trials of AA training are characterized by a conflict between mutually exclusive responses to the CS') is never resolved and the instrumental response never consolidates."
+  ],
+  "tags": ["sd_035", "hazard_avoidance_learning", "active_avoidance", "instrumental", "pavlovian_instrumental_conflict", "prefrontal_suppression", "infralimbic_pfc", "central_amygdala"],
+  "mapping": {
+    "source_claim_statement": "Signaled active avoidance involves competing Pavlovian (freezing) and instrumental (avoidance action) responses that must be reconciled. Active-avoidance learning recruits infralimbic prefrontal cortex (ilPFC) to inhibit CeA-mediated defensive freezing. Pretraining ilPFC lesions increased conditioned freezing (F(1,14)=14.78, p=0.002) and reduced avoidance; CeA lesions reduced freezing and facilitated avoidance. Early AA trials are characterized by conflict between mutually exclusive responses to the CS.",
+    "ree_translation": "Pinpoints the precise missing mechanism behind the 603g survival/hazard-avoidance learning failure. REE has the amygdala salience stage (SD-035) and the PAG freeze gate (MECH-279) -- i.e. the Pavlovian reaction side -- but NOT the prefrontal layer that suppresses the freeze reaction so an instrumental avoidance action can be learned and consolidated. The biology says avoidance learning is not a single signal to train harder; it is the resolution of a Pavlovian-instrumental conflict, won by a top-down inhibitory gate over the freeze output. The REE fix implied is to add/wire an instrumental-avoidance pathway plus a reaction-suppression gate (an ilPFC-analog over MECH-279/CeA), not merely to extend curriculum budget on the existing freeze+salience substrate.",
+    "mapping_caveat": "Rodent lesion study of a specific signaled-active-avoidance paradigm; REE's failing leg is survival-under-hazard foraging, a richer task than two-way shuttle AA. The ilPFC-analog does not currently exist in REE as a named avoidance-suppression module, so the mapping identifies a gap rather than confirming an implemented component. Direction is mixed precisely because the same evidence both supports the amygdala-avoidance-driver design and warns that the current freeze-only wiring is insufficient.",
+    "source_context": "Rat signaled two-way active-avoidance conditioning with pretraining excitotoxic lesions of infralimbic PFC and central amygdala; freezing and avoidance measured across sessions."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.32,
+    "notes": "Strong primary causal study (LeDoux lab, J Neurosci) with clean lesion double-dissociation and reported statistics. Mapping fidelity high to the conceptual mechanism (Pavlovian-instrumental conflict resolved by prefrontal suppression). Transfer risk moderate: paradigm-specific and the suppression module is a gap, not an existing REE component."
+  }
+}

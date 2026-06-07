@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hazard_avoidance_learning",
+  "entry_id": "2026-06-07_sd_035_amygdala_plasticity_emergence_thompson2008",
+  "timestamp_utc": "2026-06-07T15:46:39Z",
+  "claim_ids_tested": ["SD-035"],
+  "source": {
+    "title": "Developmental emergence of fear learning corresponds with changes in amygdala synaptic plasticity",
+    "authors": ["Thompson, Jason V.", "Sullivan, Regina M.", "Wilson, Donald A."],
+    "year": 2008,
+    "venue": "Brain Research",
+    "doi": "10.1016/j.brainres.2008.01.057"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Primary mechanistic study pinning the developmental onset of fear/avoidance learning to a measurable substrate change: long-term synaptic plasticity becomes inducible in the basolateral amygdala only after PN10, gated by maturation of GABAergic inhibition (picrotoxin reverts mature slices to the immature, non-plastic state). This is the substrate-level correlate of the Debiec & Sullivan developmental review, and it directly supports the autopsy claim that the avoidance-learning leg is gated by a substrate property, not by training budget. Confidence 0.70: strong, specific mechanism, but slice electrophysiology in rat pups, and the GABAergic-gating story is one (well-supported) account among several maturational changes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If avoidance/fear learning could be induced before the amygdala substrate became plastic, the tight correspondence between learning onset (PN10-12) and the emergence of inducible LTP would be broken -- and the substrate-readiness framing of the 603g failure would lose its clearest mechanistic anchor.",
+    "If GABAergic inhibition were irrelevant to gating plasticity, the picrotoxin reversal (mature slices reverting to the immature non-plastic state) would not occur; this would weaken the specific 'inhibitory maturation gates avoidance learning' mechanism that REE could borrow."
+  ],
+  "tags": ["sd_035", "hazard_avoidance_learning", "amygdala_plasticity", "gabaergic_gating", "developmental_onset", "basolateral_amygdala"],
+  "mapping": {
+    "source_claim_statement": "Rat pups younger than PN10 cannot learn odor aversions; pups older than PN10-12 can. Tetanic stimulation induces significant long-term synaptic plasticity in the basolateral amygdala of post-sensitive-period pups but not in sensitive-period pups incapable of learning aversions. Blocking GABA-A receptors (picrotoxin) in mature slices reverts plasticity to the immature pattern, indicating that maturation of GABAergic inhibition gates the developmental emergence of amygdala plasticity and hence of fear/avoidance learning.",
+    "ree_translation": "The amygdala-analogue (SD-035) substrate that would drive REE's avoidance learning is, biologically, learnable only once a specific plasticity gate (GABAergic-inhibition maturation) is in place. Maps onto the 603g substrate-readiness reading: the survival/hazard-avoidance leg does not train because the substrate is not yet configured to support the relevant plasticity, not because the agent has had too few episodes. Suggests the REE fix is a substrate/architecture change that makes the avoidance signal learnable (analogous to installing the inhibitory gating that licenses plasticity), consistent with SD-035/MECH-279 wiring work rather than curriculum-budget escalation.",
+    "mapping_caveat": "REE's substrate has no literal GABAergic synapse or LTP; the transfer is at the level of 'a substrate-maturation gate must be in place before the avoidance signal is learnable'. Slice electrophysiology in developing rat amygdala; the specific molecular gate is unlikely to map directly. The study concerns Pavlovian odor-aversion, not instrumental survival behaviour.",
+    "source_context": "In vitro slice electrophysiology (tetanus-induced LTP) plus behavioural odor-aversion conditioning in rat pups across the PN8-PN12 sensitive-period boundary."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.64,
+    "transfer_risk": 0.4,
+    "notes": "Solid primary mechanistic paper (Sullivan/Wilson). Mapping fidelity moderate: the principle (substrate-maturation gate) transfers; the molecular mechanism does not. Transfer risk from slice/rodent and Pavlovian-to-instrumental."
+  }
+}

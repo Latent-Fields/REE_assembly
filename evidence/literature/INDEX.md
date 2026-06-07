@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-07T14:39:07.798762Z`
+Generated: `2026-06-07T15:51:53.439526Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -140,6 +140,7 @@ Generated: `2026-06-07T14:39:07.798762Z`
 | `targeted_review_games_with_rules_ef` | [`2026-05-16_q035_arc049_inv059_normative_structure_games_rakoczy2008`](targeted_review_games_with_rules_ef/entries/2026-05-16_q035_arc049_inv059_normative_structure_games_rakoczy2008/record.json) | 9 | [`summary`](targeted_review_games_with_rules_ef/entries/2026-05-16_q035_arc049_inv059_normative_structure_games_rakoczy2008/summary.md) |
 | `targeted_review_ghost_goal_search` | [`2026-05-18_ghost_goal_pit_goalmatch_wanting_corbit2005`](targeted_review_ghost_goal_search/entries/2026-05-18_ghost_goal_pit_goalmatch_wanting_corbit2005/record.json) | 16 | [`summary`](targeted_review_ghost_goal_search/entries/2026-05-18_ghost_goal_pit_goalmatch_wanting_corbit2005/summary.md) |
 | `targeted_review_goal_disengagement` | [`2026-05-19_disengage_unattainability_appraisal_wrosch2003`](targeted_review_goal_disengagement/entries/2026-05-19_disengage_unattainability_appraisal_wrosch2003/record.json) | 9 | [`summary`](targeted_review_goal_disengagement/entries/2026-05-19_disengage_unattainability_appraisal_wrosch2003/summary.md) |
+| `targeted_review_hazard_avoidance_learning` | [`2026-06-07_sd_054_safe_rl_curriculum_induction_turchetta2020`](targeted_review_hazard_avoidance_learning/entries/2026-06-07_sd_054_safe_rl_curriculum_induction_turchetta2020/record.json) | 5 | [`summary`](targeted_review_hazard_avoidance_learning/entries/2026-06-07_sd_054_safe_rl_curriculum_induction_turchetta2020/summary.md) |
 | `targeted_review_hippocampal_affect_stream_count` | [`2026-05-08_social_self_other_danjo2018`](targeted_review_hippocampal_affect_stream_count/entries/2026-05-08_social_self_other_danjo2018/record.json) | 10 | [`summary`](targeted_review_hippocampal_affect_stream_count/entries/2026-05-08_social_self_other_danjo2018/summary.md) |
 | `targeted_review_hippocampal_dopamine_gain` | [`2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/record.json) | 1 | [`summary`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/summary.md) |
 | `targeted_review_hippocampal_event_segmentation` | [`2026-04-02_arc_007_event_structure_segmentation_baldassano2017`](targeted_review_hippocampal_event_segmentation/entries/2026-04-02_arc_007_event_structure_segmentation_baldassano2017/record.json) | 1 | [`summary`](targeted_review_hippocampal_event_segmentation/entries/2026-04-02_arc_007_event_structure_segmentation_baldassano2017/summary.md) |

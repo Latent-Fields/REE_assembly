@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hazard_avoidance_learning",
+  "entry_id": "2026-06-07_sd_054_safe_rl_curriculum_induction_turchetta2020",
+  "timestamp_utc": "2026-06-07T15:46:39Z",
+  "claim_ids_tested": ["SD-054"],
+  "source": {
+    "title": "Safe Reinforcement Learning via Curriculum Induction",
+    "authors": ["Turchetta, Matteo", "Kolobov, Andrey", "Shah, Shital", "Krause, Andreas", "Agarwal, Alekh"],
+    "year": 2020,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS) 2020",
+    "doi": "10.48550/arXiv.2006.12136",
+    "url": "https://arxiv.org/abs/2006.12136"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Peer-reviewed (NeurIPS 2020) method paper demonstrating that an automatic instructor/teacher providing an adaptive intervention curriculum (a library of reset controllers, activated when the agent behaves dangerously) lets an RL agent learn a hazardous task safely and successfully where unscaffolded learning fails. This is the ML-side grounding for the scaffolded_sd054_onboarding curriculum design: it shows hazard-avoidance is learnable as a staged, externally-scaffolded competency. Confidence 0.62 (lowest in the review by design): it is a methods analogue informing curriculum engineering, not biological evidence for a REE claim, and the biology-before-formal-definitions principle means it must not by itself drive a substrate mechanism decision.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hazardous tasks were learnable by direct, unscaffolded RL, the curriculum-induction machinery would be unnecessary -- the paper's premise is that the agent must 'behave safely not only after but also while learning', which fails without an instructor; this is the ML mirror of the 603g isolated-stage failure.",
+    "The teacher here is an EXTERNAL monitor with reset controllers, analogous to the maternal-buffering scaffold in the developmental biology; if REE expects the agent to self-bootstrap avoidance with no external scaffold or protective regime, this paper predicts it will not learn safely within budget."
+  ],
+  "tags": ["sd_054", "hazard_avoidance_learning", "curriculum_learning", "safe_rl", "shaped_aversion", "reset_controllers", "scaffolded_sd054_onboarding"],
+  "mapping": {
+    "source_claim_statement": "In safety-critical settings an agent must behave safely while learning, not only after. Prior safe-RL relies on priors/smoothness assumptions that often fail. Instead, an automatic instructor (a monitor with a library of reset controllers that it activates when the agent starts behaving dangerously) prevents harm during exploration; the teacher learns, from observing the agent's progress, a policy over which reset controller to apply when -- a curriculum -- that optimises the agent's final policy reward. Demonstrated to induce curricula for safe and efficient learning in two environments.",
+    "ree_translation": "Maps to the scaffolded_sd054_onboarding curriculum design (SD-054 family): hazard-avoidance is learnable when an external scaffold intervenes during acquisition and is gradually withdrawn, rather than expecting the agent to learn survival in one unscaffolded isolated stage (the 603g Stage-H shape). The reset-controller/instructor is the ML analogue of the maternal-buffering scaffold in the developmental biology entries -- both supply protection-during-acquisition. Supports redesigning the onboarding as a staged, teacher/reset-scaffolded avoidance curriculum, with the protective intervention annealed as competence grows.",
+    "mapping_caveat": "This is a METHODS analogue, not biological evidence and not evidence for any REE assertion-claim. Per the project's biology-before-formal-definitions principle it must not, on its own, drive a substrate mechanism choice; its role is to show the curriculum shape is feasible and to constrain the engineering, while the SD-035/MECH-279 biology entries carry the mechanism question. The paper's environments (e.g. driving-like, gridworld) are not REE's foraging-under-hazard substrate, and the reset-controller abstraction may not have a clean REE homologue.",
+    "source_context": "Computational RL experiments in two simulated safety-critical environments; teacher-student (instructor + reset-controller) framework, NeurIPS 2020."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Strong venue (NeurIPS 2020). Mapping fidelity deliberately moderate -- it informs curriculum engineering, not substrate mechanism. Transfer risk elevated: ML method to REE substrate, and it is parallel/methodological evidence (lit signal), decoupled from experimental confidence per the lit/exp decoupling policy."
+  }
+}

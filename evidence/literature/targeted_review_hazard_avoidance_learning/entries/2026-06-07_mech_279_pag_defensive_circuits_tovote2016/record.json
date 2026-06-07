@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hazard_avoidance_learning",
+  "entry_id": "2026-06-07_mech_279_pag_defensive_circuits_tovote2016",
+  "timestamp_utc": "2026-06-07T15:46:39Z",
+  "claim_ids_tested": ["MECH-279"],
+  "source": {
+    "title": "Midbrain circuits for defensive behaviour",
+    "authors": ["Tovote, Philip", "Esposito, Maria Soledad", "Botta, Paolo", "Chaudun, Fabrice", "Fadok, Jonathan P.", "Markovic, Milica", "Wolff, Steffen B. E.", "Ramakrishnan, Charu", "Fenno, Lief", "Deisseroth, Karl", "Herry, Cyril", "Arber, Silvia", "Luthi, Andreas"],
+    "year": 2016,
+    "venue": "Nature",
+    "doi": "10.1038/nature17996"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Definitive optogenetic + electrophysiological + tracing study establishing the CeA -> ventrolateral PAG inhibitory pathway that produces freezing by disinhibition of vlPAG excitatory outputs to medullary premotor targets, plus the interaction of this freezing pathway with circuits mediating flight. This is the direct biological substrate for MECH-279 (PAG-analog freeze gate driven by amygdala input). High confidence (0.80): Nature, gold-standard causal methods, conserved circuit. The caveat that keeps it below 0.85 is that the paper is about defensive RESPONSE SELECTION (freeze vs flight execution), and only indirectly about avoidance LEARNING -- the topic this review was commissioned for.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If freezing and flight were produced by a single undifferentiated defensive output rather than dissociable CeA->vlPAG and flight-mediating circuits, MECH-279's design as a distinct PAG freeze gate (separate from active escape) would be unsupported.",
+    "The PAG circuit described here is an OUTPUT selector for innate/conditioned defensive responses; it does not by itself acquire avoidance. If REE wires MECH-279 (freeze gate) as the avoidance-LEARNING driver without an instrumental-action and reaction-suppression layer, the substrate will produce defensive freezing but still fail to LEARN to avoid -- precisely the 603g G_H 0/3 signature."
+  ],
+  "tags": ["mech_279", "hazard_avoidance_learning", "periaqueductal_gray", "freeze_gate", "cea_vlpag", "defensive_behaviour", "freeze_vs_flight"],
+  "mapping": {
+    "source_claim_statement": "An inhibitory pathway from the central nucleus of the amygdala (CeA) to the ventrolateral periaqueductal grey (vlPAG) produces freezing by disinhibition of vlPAG excitatory outputs to pre-motor targets in the magnocellular nucleus of the medulla. This freezing pathway interacts anatomically and functionally with long-range and local circuits mediating flight, so the midbrain PAG selects and executes the appropriate active or passive defensive response.",
+    "ree_translation": "Direct substrate for MECH-279: the PAG-analog freeze gate that commits to freeze on sustained amygdala (z_harm_a) drive and exits when the harm signal decays. The Tovote circuit confirms (i) the amygdala-to-PAG topology MECH-279 assumes (CeA upstream of the freeze gate, consistent with SD-035 -> MECH-279 dependency), and (ii) that freeze and flight are distinct, competing midbrain outputs -- which matters for any REE avoidance-learning design because the substrate must select between passive (freeze) and active (escape/avoid) responses.",
+    "mapping_caveat": "Crucial scope boundary: this paper is about defensive RESPONSE SELECTION AND EXECUTION, not about how avoidance is LEARNED. It supports MECH-279 as a freeze-output substrate but does NOT show that a freeze gate drives avoidance acquisition. Read against the 603g failure, it actually flags a risk -- a freeze-only output substrate is insufficient for the survival-learning leg; an instrumental-action/escape pathway and a mechanism to suppress the freeze reaction in favour of the learned action are also required (see Moscarello & LeDoux 2013 in this review).",
+    "source_context": "Optogenetic gain/loss-of-function, in vivo and in vitro electrophysiology, and neuroanatomical tracing in mice; innate and conditioned defensive behaviour (freezing, flight)."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Top-tier source (Nature, Luthi/Arber/Deisseroth; causal optogenetics). High mapping fidelity to MECH-279's freeze-gate design. Transfer risk low for the circuit topology (highly conserved); the residual risk is scope -- response execution vs avoidance learning."
+  }
+}

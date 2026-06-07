@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hazard_avoidance_learning",
+  "entry_id": "2026-06-07_sd_035_infancy_threat_acquisition_maternal_buffering_debiec2017",
+  "timestamp_utc": "2026-06-07T15:46:39Z",
+  "claim_ids_tested": ["SD-035"],
+  "source": {
+    "title": "The neurobiology of safety and threat learning in infancy",
+    "authors": ["Debiec, Jacek", "Sullivan, Regina M."],
+    "year": 2017,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2016.10.015"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical review (Sullivan group) establishing that mammalian hazard-avoidance learning is NOT present at birth but emerges gradually across postnatal development, gated by amygdala maturation (~PN10) and modulated by parental buffering of the HPA/corticosterone axis. This is direct biological grounding for the V3-EXQ-603g autopsy's core reading: the survival/hazard-avoidance LEARNING leg is a developmentally-acquired competency, not a property an agent has at substrate-init. Confidence held at 0.74 (not higher) because the mapping from a developmental sensitive-period switch to an RL curriculum stage is an analogy, not an isomorphism: REE has no homologue of the corticosterone/attachment switch, and the review is rodent-centric.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hazard-avoidance learning were available immediately at substrate initialisation (as the 603g Stage-H design implicitly assumed by expecting an isolated stage to train within budget), the strong developmental gating documented here (no amygdala-dependent avoidance learning before PN10; GABAergic/plasticity immaturity) would have no analogue and the developmental-curriculum reading would be unsupported.",
+    "If the survival leg's failure to train were purely a budget/episode-count problem rather than a missing developmental scaffold, the review's finding that the SUBSTRATE itself (amygdala plasticity) must first mature before any amount of conditioning produces avoidance would not apply."
+  ],
+  "tags": ["sd_035", "hazard_avoidance_learning", "developmental_acquisition", "maternal_buffering", "amygdala_maturation", "sensitive_period", "scaffolded_sd054_onboarding"],
+  "mapping": {
+    "source_claim_statement": "In newborn rat pups attachment learning is dominant and threat learning is quiescent; adult-like amygdala-dependent fear/avoidance learning emerges around PN10 (the amygdala fails to show learning-induced plasticity until ~10 days of age), with a PN10-PN15 transitional sensitive period during which maternal presence switches the pup between threat learning and attachment learning by suppressing threat-induced HPA-axis activation (blocking norepinephrine in the PVN and CORT release). From PN16 maternal presence loses the ability to fully abolish amygdala-dependent fear learning.",
+    "ree_translation": "Maps to the V3-EXQ-603g substrate-readiness finding: REE's hazard-avoidance learning leg (which would be driven by the SD-035 amygdala analogue) is a developmentally-acquired competency. The biology says avoidance learning is gated by (i) maturation of the amygdala substrate's plasticity and (ii) a scaffolding/buffering signal during acquisition -- it is not learnable as an isolated, unscaffolded stage at arbitrary budget. This supports treating scaffolded_sd054_onboarding as a genuine developmental curriculum (avoidance learning staged after, and scaffolded by, a protective regime) rather than a budget knob, and supports wiring SD-035 as the avoidance-LEARNING driver rather than only a salience stage.",
+    "mapping_caveat": "The corticosterone/attachment switch and the maternal-buffering mechanism have no current REE homologue; the transfer is at the level of 'avoidance learning is developmentally gated and scaffold-dependent', not a one-to-one mechanism map. Rodent infant data; the human section of the review is explicitly weaker (NE role in human attachment not directly demonstrated). The review concerns Pavlovian odor-aversion / fear learning, whereas REE's failing leg is closer to instrumental survival/foraging-under-hazard.",
+    "source_context": "Review of rodent (primarily rat pup) odor-shock conditioning, amygdala plasticity, and HPA-axis/CORT regulation across postnatal development; supplementary human attachment findings."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "High source quality (canonical Sullivan-group review, well-cited). Mapping fidelity moderate -- the developmental-gating principle transfers cleanly but the specific switch mechanism does not. Transfer risk elevated by rodent-to-REE and Pavlovian-to-instrumental gaps."
+  }
+}
