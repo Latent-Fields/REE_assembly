@@ -2731,11 +2731,47 @@ def _truncate_for_detail(obj, max_list: int = 8, max_str: int = 800, _depth: int
     return obj
 
 
+# Keys rendered in the detail header (or pure plumbing) -- not shown as sections.
+_DETAIL_HEADER_KEYS = {
+    "run_id", "queue_id", "timestamp_utc", "run_timestamp", "outcome", "verdict",
+    "result_verdict", "status", "claim_ids", "claim_ids_tested", "claim",
+    "evidence_direction", "evidence_direction_per_claim", "architecture_epoch",
+    "experiment_type", "schema_version", "machine", "runner", "source_repo",
+    "producer_capabilities", "stop_criteria_version", "evidence_class", "dry_run",
+    "supersedes", "proposal_id", "backlog_id", "pending_failure_autopsy",
+    "elapsed_seconds",
+}
+# Content keys rendered first, in this order, when present. `result` covers the
+# newer schema's nested results dict; summary/metrics/criteria/notes cover the
+# older inline schema. Any remaining content key is appended generically.
+_DETAIL_SECTION_ORDER = [
+    ("PURPOSE", "experiment_purpose"),
+    ("EVIDENCE DIRECTION NOTE", "evidence_direction_note"),
+    ("SUMMARY", "summary"),
+    ("RESULT", "result"),
+    ("CRITERIA", "criteria"),
+    ("METRICS", "metrics"),
+    ("NOTES", "notes"),
+    ("FAILURE SIGNATURES", "failure_signatures"),
+    ("REGISTERED THRESHOLDS", "registered_thresholds"),
+    ("CONFIG", "config"),
+    ("CONFIG SUMMARY", "config_summary"),
+    ("ENV KWARGS", "env_kwargs"),
+    ("ENVIRONMENT", "environment"),
+    ("ARTIFACTS", "artifacts"),
+]
+
+
 def build_manifest_detail(m: dict) -> str:
     """Human-readable, size-bounded rendering of a completed experiment's
     manifest for the explorer Completed-card detail panel. Mirrors the
     information density of the running card's scrollable stdout readout, but
-    drawn from the persistent manifest instead of ephemeral recent_lines."""
+    drawn from the persistent manifest instead of ephemeral recent_lines.
+
+    Schema-agnostic: handles both the inline-metrics manifest family
+    (summary/metrics/criteria/notes) and the nested-result family
+    (result/config_summary/env_kwargs/evidence_direction_note), and appends a
+    generic catch-all for any other content key so no schema drops detail."""
     verdict, timestamp, _ = _normalize_manifest_fields(m)
     lines = []
     head = f"OUTCOME: {verdict or '?'}"
@@ -2754,10 +2790,15 @@ def build_manifest_detail(m: dict) -> str:
     if isinstance(edpc, dict) and edpc:
         lines.append("per-claim direction: " + ", ".join(f"{k}={v}" for k, v in edpc.items()))
 
+    rendered = set()
+
     def section(title: str, key: str):
+        if key in rendered:
+            return
         val = m.get(key)
         if val in (None, "", [], {}):
             return
+        rendered.add(key)
         lines.append("")
         lines.append(f"== {title} ==")
         if isinstance(val, str):
@@ -2765,13 +2806,14 @@ def build_manifest_detail(m: dict) -> str:
         else:
             lines.append(json.dumps(_truncate_for_detail(val), indent=2, default=str))
 
-    section("PURPOSE", "experiment_purpose")
-    section("SUMMARY", "summary")
-    section("CRITERIA", "criteria")
-    section("NOTES", "notes")
-    section("REGISTERED THRESHOLDS", "registered_thresholds")
-    section("METRICS", "metrics")
-    section("CONFIG", "config")
+    for title, key in _DETAIL_SECTION_ORDER:
+        section(title, key)
+    # Catch-all: any content key not already shown and not pure header/plumbing.
+    for key in m:
+        if key in rendered or key in _DETAIL_HEADER_KEYS:
+            continue
+        section(key.replace("_", " ").upper(), key)
+
     text = "\n".join(lines)
     cap = 24000
     if len(text) > cap:

@@ -7563,7 +7563,38 @@ END CONFLICT RESOLUTION`;
         });
       }
       if (queueEl) queueEl.innerHTML = queueHtml;
+      // Snapshot any open Completed-card detail panels (keyed by script+queue_id)
+      // BEFORE the innerHTML swap so the 10s auto-refresh doesn't collapse a
+      // panel the user is mid-read. Restored (content + scroll) after the swap.
+      const openDetailPanels = {};
+      if (completedEl) {
+        completedEl.querySelectorAll('.exp-detail-btn').forEach(btn => {
+          const box = btn.parentElement.parentElement.querySelector('.exp-detail-box');
+          if (box && box.style.display !== 'none') {
+            const key = `${btn.dataset.detailScript}||${btn.dataset.detailQid}`;
+            openDetailPanels[key] = {
+              text: box.textContent,
+              loaded: box.dataset.loaded === '1',
+              scrollTop: box.scrollTop,
+            };
+          }
+        });
+      }
       if (completedEl) completedEl.innerHTML = completedHtml;
+      if (completedEl) {
+        completedEl.querySelectorAll('.exp-detail-btn').forEach(btn => {
+          const key = `${btn.dataset.detailScript}||${btn.dataset.detailQid}`;
+          const saved = openDetailPanels[key];
+          if (!saved) return;
+          const box = btn.parentElement.parentElement.querySelector('.exp-detail-box');
+          if (!box) return;
+          box.textContent = saved.text;
+          if (saved.loaded) box.dataset.loaded = '1';
+          box.style.display = 'block';
+          box.scrollTop = saved.scrollTop;
+          btn.textContent = 'Hide details';
+        });
+      }
       if (noteEl) noteEl.innerHTML = refreshNote;
 
       let restoreY = scrollY;
