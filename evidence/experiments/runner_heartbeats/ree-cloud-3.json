@@ -1,47 +1,31 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-07T15:18:50Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-610f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-485c",
-      "result": "PASS",
-      "completed_at": "2026-06-03T20:10:56.273229+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-636",
-      "result": "PASS",
-      "completed_at": "2026-06-04T07:30:39.189033+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-639",
-      "result": "PASS",
-      "completed_at": "2026-06-04T15:40:34.435832+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    }
+  "last_tick_utc": "2026-06-07T15:46:31Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603f",
+  "current_exq_started_utc": "2026-06-07T15:45:45.307692+00:00",
+  "current_title": "scaffolded_sd054_onboarding FULL-SCALE substrate-readiness run (foraging-competence amend validation): single-arm all-levers-ON at restored budget P0=100/P1=50 (Stage0=20/Stage0b=10/P2=15, 200 steps/ep), z_goal_enabled=True + drive_weight=2.0. Cue-recall bridge + reef-spawn weaning 0.4 + auto-reconcile gating-to-seeding + 634c seeding calibration (gain1.5/thr0.02/drivefloor0.9) + developmental window. Gate G0 Stage-0 z_goal>0.4 + G1 P1 survival + G2 P2 contact>0, each >=2/3 seeds. Lynchpin blocking commitment_closure:GAP-4 / goal_pipeline:GAP-4 / infant 603-chain.",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ALL_LEVERS_ON",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 0,
+    "episodes_total": 195,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 45,
+  "seconds_remaining": 12600,
+  "recent_lines": [
+    "[v3_exq_603f_scaffolded_sd054_substrate_readiness] starting (dry_run=False)",
+    "Seed 42 Condition ALL_LEVERS_ON"
   ],
-  "runner_pid": 745,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 747,
   "runner_version": null,
   "gpu": {
     "available": false
