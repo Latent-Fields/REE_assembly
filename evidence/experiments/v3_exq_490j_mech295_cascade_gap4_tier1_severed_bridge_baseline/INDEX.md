@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline
 
-Generated: `2026-06-07T04:29:06.482767Z`
+Generated: `2026-06-07T05:16:35.151603Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

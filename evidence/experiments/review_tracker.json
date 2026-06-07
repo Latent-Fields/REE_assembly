@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-07T04:20:09Z",
+  "last_review_utc": "2026-06-07T05:22:44Z",
   "discussed_experiment_dirs": [
     "v3_exq_647_modulatory_authority_reuse_split_20260606T195410Z_v3",
     "v3_exq_646_mint_modulatory_authority_off_baseline_20260606T172451Z_v3",
@@ -555,7 +555,13 @@
     "v3_exq_643_modulatory_authority_validation",
     "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3",
     "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3",
-    "v3_exq_643a_modulatory_authority_validation"
+    "v3_exq_643a_modulatory_authority_validation",
+    "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+    "v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3",
+    "v3_exq_610_inv074_crystallization_baseline_mint_v3exq644_20260607T051001Z_v3",
+    "v3_exq_648_mech314a_phase2_substrate_readiness",
+    "v3_exq_643b_modulatory_authority_corrected_c2",
+    "v3_exq_610_inv074_crystallization_baseline_mint"
   ],
   "reviewed_run_ids": [
     "v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z",
@@ -2816,7 +2822,10 @@
     "v3_exq_642_blocked_agency_zblock_discriminative_20260606T055351Z_v3",
     "v3_exq_641a_coherence_ablation_nonreducibility_20260606T092011Z_v3",
     "v3_exq_643_modulatory_authority_validation_20260606T113132Z_v3",
-    "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3"
+    "v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3",
+    "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+    "v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3",
+    "v3_exq_610_inv074_crystallization_baseline_mint_v3exq644_20260607T051001Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3867,6 +3876,24 @@
         "v3_exq_643a_modulatory_authority_validation"
       ],
       "subject": "/governance cycle 2026-06-07T04:20Z. 1 indexed pending walked -- V3-EXQ-643a (modulatory_authority_validation, supersedes 643; PASS, DIAGNOSTIC claim_ids=[] -> weights no claim). CLEAN VERIFIED self-route (adjudication=verified, not flagged): readiness met (modulatory_authority_range 0.222 >> 1e-4 floor -- the same range statistic C1 gates on -- AND primary scores BOUNDED raw_bounded_frac=1.0 max ~67-120 vs 643's ~1e32 via the SD-056 rollout clamp); C0+C1+C2 PASS + non-degenerate; C3 dose-response informative. Per-arm: A off silent (active_frac/range/scale all 0); B/C on (active_frac 1.0, range 0.16, scale 28.9/60.7, changed-selection 0.43/0.50, C>B). The clean FULL run PASSES C2 where the V3-EXQ-647 cloud reuse-split FAILed it on a test-design confound -> 643a RESOLVES the 647 C2 confound; planned V3-EXQ-643b is MOOT (not queued). User decision (interactive): VALIDATE the modulatory-bias-selection-authority substrate -> substrate_queue flipped status implemented_pending_validation->implemented, ready false->true, depends_on_unresolved cleared, +validation implementation_log entry; unblocks the 12 per-claim retests (MECH-314/314a/b/c, Q-044, MECH-320, ARC-068, MECH-341, MECH-295, SD-057, MECH-346, MECH-347) which still need their own tagged retest evidence (claims stay v3_pending). Predecessor V3-EXQ-643 manifest marked evidence_direction superseded (was non_contributory/untagged; zero scoring weight either way). No claims.yaml status/confidence change. Promotion/demotion: 1 pending_user MECH-319 (hold_pending_v3_substrate, V3-pending no-op) acknowledged->applied via record_decision.py; nothing promoted/demoted. No evidence-staleness audit (accumulator amend bit-identical OFF / exact-arithmetic identical -- no dependent-claim measurement changed)."
+    },
+    {
+      "timestamp_utc": "2026-06-07T05:22:44Z",
+      "session_label": "governance-cycle-20260607T0516Z",
+      "reviewed_run_ids": [
+        "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+        "v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3",
+        "v3_exq_610_inv074_crystallization_baseline_mint_v3exq644_20260607T051001Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+        "v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3",
+        "v3_exq_610_inv074_crystallization_baseline_mint_v3exq644_20260607T051001Z_v3",
+        "v3_exq_648_mech314a_phase2_substrate_readiness",
+        "v3_exq_643b_modulatory_authority_corrected_c2",
+        "v3_exq_610_inv074_crystallization_baseline_mint"
+      ],
+      "subject": "/governance cycle 2026-06-07T05:16Z. 3 indexed pending walked, ALL claim-free (claim_ids=[]) non_contributory diagnostics/baseline -> weight no claim. (1) V3-EXQ-648 (mech314a_phase2_substrate_readiness, FAIL, self-route phase2_wiring_does_not_support flagged precondition_unmet): CONFIRMED failure_autopsy_V3-EXQ-648_2026-06-07 already exists + its substrate_queue amends already applied (648 in MECH-314a-Phase-2-impl=validation_failed_pending_redesign AND cross-ref modulatory-bias-selection-authority failure_records). Adjudication RESOLVED by the confirmed autopsy: readiness precondition measured e2.cand_world_pairwise_dist=0.1147 but C2 routes on the proposer-summary curiosity bias (trajectory.world_states[:,0,:], spread <0.01) -> false READY; not falsification of MECH-314a. Routing implement-substrate; re-queue 648a DEFERRED until redesign (correctly not yet queued). No claims.yaml change. (2) V3-EXQ-643b (modulatory_authority_corrected_c2, PASS, supersedes 647): corrected within-ON-arm C2a (bias_changed_selection_frac>0.1) PASS 3/3 both ON arms; legacy cross-arm C2 explicitly superseded. Establishes authority PATH carves committed selection (rescaling-vs-native isolation deferred). modulatory-bias-selection-authority substrate already status=implemented (643a cycle); this PASS reaffirms, writes nothing. 647 already non_contributory/reviewed -> no de-weight. (3) V3-EXQ-644/run-610 (inv074_crystallization_baseline_mint, PASS, baseline): phase0 emit-only OFF-baseline mint, 3 OFF cells (seeds 42/43/44) ran to 2500 ep, reusable arm_fp/v1 fingerprints; provides controls for the INV-074 crystallization-necessity retest. Promotion/demotion: 0 actionable (all 112 decision-queue rows applied -- holds/V4-deferrals). closure_drift 0 drifted / 6 suppressed / 0 stale / 0 missing last_updated. No claims.yaml status/confidence change this cycle."
     }
   ]
 }
