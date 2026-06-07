@@ -1,0 +1,94 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-07T04:58:08Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+      "queue_id": "V3-EXQ-648",
+      "claim_ids": [],
+      "gated_substrate_queue_entry": "MECH-314a-Phase-2-impl",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C2 visitation_lifts_per_candidate_bias_spread (load_bearing): curiosity_bias_range_mean=0.0 and curiosity_std_across_K_mean=0.0 in every arm incl ARM_1 visitation positive control and ARM_2_ON Candidate-5A; c2_arm1_seeds_ok=0/3.",
+      "self_route_label_manifest": "phase2_wiring_does_not_support",
+      "adjudicated_self_route": "precondition_unmet",
+      "adjudication_rationale": "Readiness precondition measured e2.cand_world_pairwise_dist (SD-056 e2.world_forward spread, 0.1147) but C2 routes on the curiosity bias derived from candidate_world_summaries (trajectory.world_states[:,0,:]), a different representation whose spread is <0.01 (evidenced by 86-90% auto-augmentation engagement in ARM_2_ON despite e2 spread 0.1147). The precondition that matters (proposer-summary spread) is unmet and was never checked -> false READY -> the label mislabels a collapsed-input artifact as a wiring null. Canonical V3-EXQ-642 pattern.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim-free diagnostic; MECH-314 not under direct test)",
+        "biological_reference": "clear -- Wittmann 2008 striatal/hippocampal novelty; failure matches 'all options share one representation' missing-dependency signature, not falsification",
+        "prerequisites": "missing -- candidate-representation diversity at the proposer->novelty boundary; SD-056 divergence does not reach trajectory.world_states[:,0,:]",
+        "implementation": "partial -- visitation buffer wired + populating (15478 appends), augmentation engages, decomp records; novelty consumes the collapsed proposer representation (symbol-of-mechanism present, functional-role absent)",
+        "environment": "adequate -- harm-free env deliberate to test the visitation F1 fix; buffer non-empty so that part worked",
+        "measurement": "misleading -- readiness precondition measures e2.cand_world_pairwise_dist; C2 routes on the proposer-summary-derived bias; precondition is not the statistic C2 consumes despite claiming to be",
+        "integration": "broken at boundary -- SD-056 -> MECH-314a handoff; e2.world_forward divergence not inherited by the proposer first-step world summaries",
+        "scale": "adequate -- budget bumped to P0=60/P1=20; under-training ruled out; e2 trained (0.1147)"
+      },
+      "key_numbers": {
+        "readiness_arm1_pairwise_dist_mean": 0.114789,
+        "readiness_floor": 0.05,
+        "readiness_seeds_above_floor": 3,
+        "max_pairwise_dist_observed": 0.233834,
+        "curiosity_bias_range_mean_all_arms": 0.0,
+        "curiosity_std_per_arm_mean": {"ARM_0": 0.0, "ARM_1": 0.0, "ARM_2_ON": 1e-08, "ARM_2_OFF": 1e-08},
+        "augmentation_engage_frac": {"ARM_2_ON": 0.862188, "ARM_2_OFF": 0.900662},
+        "candidate_spread_threshold": 0.01,
+        "arm1_buffer_appends": [15478, 15179, 6216],
+        "c2_arm1_seeds_ok": 0,
+        "c4_waking_appends": 12,
+        "c4_simulation_appends": 0
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-314a striatal/hippocampal novelty (Wittmann 2008 VTA-hippocampal novelty, RPE-independent)",
+        "dependencies": ["candidate-representation diversity at the proposer->novelty boundary", "SD-056 action-conditional divergence reaching the consumed representation"],
+        "is_formal_import": false,
+        "divergence": "none at the mechanism level; the gap is the V3 representation handoff (proposer summaries vs e2.world_forward)",
+        "lit_status": "present (Wittmann 2008; no new pull warranted)"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-648 (MECH-314a Phase-2 readiness) FAILed C2 because the curiosity novelty consumed the hippocampal proposer's collapsed trajectory.world_states[:,0,:] (spread <0.01) rather than the SD-056-divergent e2.world_forward predictions (0.1147); the readiness precondition mis-measured the representation and gave a false READY. Not evidence against MECH-314a; pending retest V3-EXQ-648a on the amended substrate (novelty fed from e2.world_forward + precondition corrected).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-314a-Phase-2-impl",
+        "title": "MECH-314a Phase-2: feed novelty from SD-056-divergent e2.world_forward + correct readiness precondition",
+        "implementation_hint": "Amend StructuredCuriosity Phase-2 to compute per-candidate novelty (and the _candidate_spread auto-augmentation key) from the SD-056-trained e2.world_forward(z0, a_i) per-candidate predictions -- the representation the readiness gate already validates at 0.1147 -- instead of the hippocampal proposer's trajectory.world_states[:,0,:] (collapsed <0.01). Re-target the readiness precondition to gate on the SAME representation the curiosity bias consumes, so a collapsed candidate input self-routes substrate_not_ready_requeue rather than a false READY. The one-hot augmentation bypass cannot rescue a monostrategy-collapsed proposer (identical first actions -> identical one-hots).",
+        "unblocks_claims": ["MECH-314", "MECH-314a", "Q-044"],
+        "depends_on_unresolved": ["SD-056 e2.world_forward action-divergence (landed; reuse the validated representation)", "ARC-065 proposer behavioural diversity (orthogonal; not required if novelty is fed from e2.world_forward)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+          "experiment_type": "v3_exq_648_mech314a_phase2_substrate_readiness",
+          "metric": "C2 load-bearing FAIL: curiosity_bias_range_mean=0.0 and curiosity_std_across_K_mean=0.0 in every arm incl ARM_1 visitation positive control (c2_arm1_seeds_ok=0/3); auto-augmentation engaged 86-90% even at SD-056-ON e2 spread 0.1147, proving the consumed representation (candidate_world_summaries) spread is <0.01 while the readiness precondition measured a different representation (e2.cand_world_pairwise_dist=0.1147)",
+          "target": "a working impl must produce curiosity_bias_range > 0 across candidates on the SAME representation the readiness precondition validates, on >= 2/3 seeds (curiosity_std_positive_frac_past20 >= 0.80)"
+        }
+      },
+      "cross_reference_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "note": "Cross-reference only -- the fault is upstream (MECH-314a curiosity-bias generation), not the authority lever (validated V3-EXQ-643a PASS). V3-EXQ-648 confirms the boundary the 643a memo already flagged: curiosity bias is zero-RANGE before authority scaling, so the working authority lever has nothing to scale ('scaling zero is still zero'). Guard curiosity_bias_abs_mean>0 AND curiosity_bias_range>0 before the curiosity arm of any modulatory-authority validation.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_648_mech314a_phase2_substrate_readiness_20260607T025417Z_v3",
+          "experiment_type": "v3_exq_648_mech314a_phase2_substrate_readiness",
+          "metric": "curiosity_bias zero-RANGE upstream of authority (curiosity_std_across_K_mean=0.0 / curiosity_bias_range_mean=0.0 all arms); authority lever cannot manufacture range from a flat bias",
+          "target": "curiosity channel must reach E3.select with non-zero cross-candidate range before the modulatory-authority scaling can carve behaviour; cross-ref MECH-314a-Phase-2-impl for the upstream fix"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "MECH-314a Phase-2 curiosity novelty reads trajectory.world_states[:,0,:] (proposer summaries), not the SD-056-trained e2.world_forward(z0,a_i) predictions; the SD-056 -> MECH-314a handoff is broken at the representation boundary.",
+        "A substrate-readiness precondition must gate on the exact statistic the load-bearing criterion consumes; 648's precondition measured a different (SD-056-divergent) representation and produced a false READY.",
+        "The visitation buffer fixed F1 (empty comparison set) but cannot manufacture per-candidate differentiation from a collapsed candidate input; the one-hot bypass also fails under a monostrategy-collapsed proposer (identical first actions)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "re_queue": {
+    "via": "queue-experiment",
+    "new_queue_id_suggested": "V3-EXQ-648a",
+    "spec": "Substrate-readiness diagnostic on the amended MECH-314a Phase-2 substrate: novelty fed from e2.world_forward(z0,a_i); readiness precondition re-targeted to the consumed representation. Keep 4-cell x 3-seed design, P0=60/P1=20 budget, C1-C4 grid. PASS gates V3-EXQ-590b + section-8 MECH-314a/MECH-314/ARC-065 updates.",
+    "letter_vs_number_rationale": "alphabetic suffix (648a) -- same scientific question (does the Phase-2 substrate produce per-candidate-varying curiosity bias), corrected implementation/instrumentation; not a new hypothesis."
+  }
+}
