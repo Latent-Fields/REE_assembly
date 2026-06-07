@@ -1,47 +1,63 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-07T13:19:30Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 7,
-  "queue_id_at_head": "V3-EXQ-603g",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-485c",
-      "result": "PASS",
-      "completed_at": "2026-06-03T20:10:56.273229+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-636",
-      "result": "PASS",
-      "completed_at": "2026-06-04T07:30:39.189033+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-639",
-      "result": "PASS",
-      "completed_at": "2026-06-04T15:40:34.435832+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-651",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T13:19:28.442610+00:00"
-    }
+  "last_tick_utc": "2026-06-07T13:50:41Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-598c",
+  "current_exq_started_utc": "2026-06-07T13:45:41.933833+00:00",
+  "current_title": "SD-033a metric-redesign falsifier: direct rule_state cosine probes on held-out rule-context pairs (replaces 598b reef-visit-band behavioural metric). Teleport-sampled reef-context vs forage-context observation pool drives the rule_state EMA via the real sense->select_action->lateral_pfc.update path under sustained context; mean-centered cosine (RSA) measures rule_state context-discriminability. Independent of the blocked ARC-065/GAP-B behavioural-diversity work (random/teleport sampling sidesteps monomodal collapse). Same-statistic z_world discriminability is the non-vacuity readiness precondition.",
+  "current_claim_id": "SD-033a",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 1 / probe",
+    "runs_done": 1,
+    "runs_total": 3,
+    "episodes_done": 42,
+    "episodes_total": 42,
+    "overall_pct": 66.7
+  },
+  "seconds_elapsed": 298,
+  "seconds_remaining": 179,
+  "recent_lines": [
+    "Preflight PASS: lateral_pfc ON, discriminator_source OFF, gated_policy OFF, rule_dim=16",
+    "Seed 0 Condition probe",
+    "[train] probe seed phase=enc ep 10/42  reward=-1.389",
+    "[train] probe seed phase=enc ep 20/42  reward=-1.014",
+    "[train] probe seed phase=enc ep 30/42  reward=-1.092",
+    "[train] probe seed phase=collect ep 31/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 32/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 33/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 34/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 35/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 36/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 37/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 38/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 39/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 40/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 41/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 42/42  reef_obs=96 forage_obs=96",
+    "verdict: PASS  n_reef=40 n_forage=40  zw_margin=0.3910 rule_margin=0.4761  rule_within=0.2300 rule_cross=-0.2461  rule_norm=0.0426 rule_std=0.00019",
+    "Seed 1 Condition probe",
+    "[train] probe seed phase=enc ep 10/42  reward=-1.064",
+    "[train] probe seed phase=enc ep 20/42  reward=-0.534",
+    "[train] probe seed phase=enc ep 30/42  reward=-1.058",
+    "[train] probe seed phase=collect ep 31/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 32/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 33/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 34/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 35/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 36/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 37/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 38/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 39/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 40/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 41/42  reef_obs=96 forage_obs=96",
+    "[train] probe seed phase=collect ep 42/42  reef_obs=96 forage_obs=96"
   ],
-  "runner_pid": 746,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 743,
   "runner_version": null,
   "gpu": {
     "available": false
