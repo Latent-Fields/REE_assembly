@@ -1,0 +1,98 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready",
+  "run_id": "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-07T19:30:29Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-314",
+    "MECH-314a",
+    "MECH-314b",
+    "MECH-314c",
+    "Q-044"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-314": "supports",
+    "MECH-314a": "supports",
+    "MECH-314b": "mixed",
+    "MECH-314c": "mixed",
+    "Q-044": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "curiosity_authority_supports_mech314",
+    "preconditions": [
+      {
+        "name": "consumed_candidate_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_ALL_ON mean cand_world_pairwise_dist (the e2.world_forward per-candidate spread; post-GAP-A this IS the representation the curiosity novelty consumes) clears the floor -- a cross-candidate RANGE, the SAME statistic and floor V3-EXQ-649 cleared at 0.090.",
+        "control": "ARM_ALL_ON (all three sub-flavours on), P1 ticks; positive control = the arm where the curiosity channel is loudest; curiosity_candidate_source=e2_world_forward (SD-056-trained)",
+        "measured": 0.276286,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "curiosity_bias_range_supra_floor",
+        "kind": "readiness",
+        "description": "604c LOAD-BEARING same-statistic gate: ARM_ALL_ON mean per-candidate curiosity_bias_range (max-minus-min of the curiosity bias across the K candidates, from the score-bias decomposition) -- the EXACT cross-candidate RANGE C1 routes on and the authority rescales -- clears the floor. This is the leg 604b LACKED: 604b gated on bias MAGNITUDE (last_bias_max_abs), and a uniform per-tick offset has large magnitude but ~0 range, so the gate read READY while the argmin could not move (same-statistic confound behind 604a/624a/614d/614e/604b). Below-floor here -> the bias still collapsed (substrate not ready / source not wired) -> substrate_not_ready_requeue, NOT a MECH-314 falsification.",
+        "control": "ARM_ALL_ON positive control with curiosity_candidate_source=e2_world_forward; the SAME range statistic the load-bearing C1 consumes (not a magnitude / mean_abs proxy)",
+        "measured": 0.01529031,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "primary_scores_bounded_fraction_supra_floor",
+        "kind": "readiness",
+        "description": "fraction of P1 ticks (across all arms) with primary e3_raw_score_range_mean < 1000.0 -- non-vacuity: an authority fire on exploded SD-056-online scores is a degenerate artifact, not a real effect. A FLOOR on a fraction (measured >= threshold), so no upper-bound directionality trap.",
+        "control": "SD-056 rollout-norm clamp enabled (e2_rollout_output_norm_clamp_enabled, 643a stability)",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0": true,
+      "C1": true,
+      "C2": true
+    },
+    "criteria": [
+      {
+        "name": "C1_mech314_parent_effect_authority_on",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
