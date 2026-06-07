@@ -419,6 +419,14 @@ silently drift it. This is the safest form of opt-in narrowing.
       `646 -> 647 / 643b` cloud-class reuse already exercised. Reuse remains
       refuse-by-default per cell (every plan 9.2 rule still applies); the gate
       lifting only removes the "do-not-enable" hold, it does not relax any guard.
+    - **SCHEDULED RE-VERIFY (2026-06-07T19:14Z, arm-reuse-determinism-check task):**
+      Independent re-run of `scripts/arm_reuse_determinism_check.py` against both
+      manifests on origin/master reproduces the ratified numbers exactly
+      (fingerprint-scoped: 2 comparable pairs, scoped worst entropy |diff|=1.56e-2,
+      worst reward |diff|=8.31e-3, both << TIER2 0.05; seed 44 excluded for substrate
+      drift). SCOPED VERDICT PASS_TIER2_DISTRIBUTIONAL = POSITIONAL FAIL_REGIME_A_INVALID
+      (seed-44 p3_entropy 5.43e-2). No change to the gate disposition; this line is
+      an audit-trail confirmation that the scheduled check fired and concurred.
 
 ### Status -- 643 OFF baseline minted (2026-06-06)
 
