@@ -1,0 +1,87 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on",
+  "run_id": "v3_exq_604b_q044_mech314_subflavour_ablation_authority_on_20260607T110114Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-07T11:01:14Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-314",
+    "MECH-314a",
+    "MECH-314b",
+    "MECH-314c",
+    "Q-044"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-314": "weakens",
+    "MECH-314a": "mixed",
+    "MECH-314b": "mixed",
+    "MECH-314c": "mixed",
+    "Q-044": "mixed"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "curiosity_authority_does_not_change_selection",
+    "preconditions": [
+      {
+        "name": "curiosity_bias_supra_floor",
+        "description": "ARM_ALL_ON curiosity bias magnitude (last_bias_max_abs) clears the floor -- the curiosity channel must genuinely fire before authority can amplify it (scaling zero is still zero)",
+        "control": "ARM_ALL_ON (all three sub-flavours on), P1 ticks; positive control = the arm where the curiosity channel should be loudest",
+        "measured": 0.01773267,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "primary_scores_bounded",
+        "description": "fraction of P1 ticks with e3_raw_score_range_mean < 1000.0 -- non-vacuity: an authority fire on exploded scores is a degenerate artifact, not a real effect",
+        "control": "SD-056 rollout-norm clamp enabled (e2_rollout_output_norm_clamp_enabled)",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0": true,
+      "C1": true,
+      "C2": true
+    },
+    "criteria": [
+      {
+        "name": "C1_mech314_parent_effect_authority_on",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  }
+}
