@@ -1,0 +1,88 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-08T22:10:50Z",
+  "scope": "single",
+  "status": "confirmed",
+  "supersedes_provisional": "evidence/planning/provisional_failure_autopsy_V3-EXQ-603i_2026-06-08.md",
+  "targets": [
+    {
+      "run_id": "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
+      "queue_id": "V3-EXQ-603i",
+      "claim_ids": [],
+      "validates_claims": ["SD-059", "MECH-358"],
+      "depends_on": ["V3-EXQ-603h"],
+      "self_route_label": "substrate_not_ready_requeue",
+      "indexer_flag": "precondition_unmet",
+      "adjudication": "self_route_confirmed_and_refined",
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Two co-equal substrate failures, neither a bridge verdict: (1) readiness precondition each_enabled_bridge_half_fires_nonvacuously UNMET -- safety half credited 0/3 in every arm (relief half credited 2/3); (2) the nav-competence positive control ARM_NAV_CONTROL (spawn-in-reef, safety handed) also returns best_bridge_G_H=0.0 (best hazard median ~36 steps vs the >=75 gate), i.e. survival competence is unreachable even when navigation-to-safety is handed.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the test did NOT let SD-059/MECH-358 express themselves; the bridge was never adjudicable. Neither weakened nor strengthened. claim_ids=[] is correct; do not weight any claim.",
+        "biological_reference": "clear -- Moscarello & LeDoux 2013 (active avoidance requires the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response); Tovote 2016 (PAG freeze = execution not learning); Debiec & Sullivan 2017 (gradual avoidance acquisition). Faithful biological translation, NOT a formal-definition import. The failure matches the signature of a missing navigation-to-safety prerequisite, not a falsification.",
+        "prerequisites": "missing -- (a) navigation/survival-competence (scaffolded_sd054_onboarding P1/Stage-H survival leg, G1 still 0/3) is absent; (b) the SAFETY half's trained threat-absence predictor (MECH-303/304 substrate) is not wired, so the safety detector starves (0/3).",
+        "implementation": "partial -- bridge wired; relief half functional and non-vacuous (2/3); safety half present but starved (symbol-of-mechanism without functional input: no trained threat-absence signal feeds it).",
+        "environment": "wrong pressures / too-short budget -- the Stage-H survival ceiling (median >=75 steps) is unreachable at this budget even with safety handed in the reef refuge; survival competence, not the env per se, is the binding constraint.",
+        "measurement": "adequate -- the nav-competence positive control (ARM_NAV_CONTROL) + the each-enabled-half non-vacuity gate are exactly the instruments that separate bridge-insufficient from competence-ceiling. Well-instrumented diagnostic.",
+        "integration": "partially coupled -- base defensive chain (MECH-279 PAG freeze + SD-058/MECH-357 ilPFC gate) engaged and coupled (3/3); the bridge -> directed-escape -> Stage-H-survival leg is not coupled because navigation competence is absent upstream.",
+        "scale": "likely insufficient -- Stage-H training budget for survival-to-75-steps appears under-resourced (best median ~45 base / ~36 nav-control)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Amygdala (LA/BA) -> NAcc / ventral striatum relief and safety action-credit for active avoidance (Moscarello & LeDoux 2013); ilPFC freeze-suppression gating (SD-058/MECH-357).",
+        "dependencies": ["navigation-to-safety competence (instrumental/spatial)", "trained threat-absence predictor for the safety half (MECH-303/304)", "z_harm_a populated harm stream (feed_harm_stream)", "trained world-forward/encoder for the relief comparator (SD-056 e2 warmup)"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- the mechanism class has a working biological existence proof; the FAIL is a translation/prerequisite gap, not biology divergence.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-603i (diagnostic, claim_ids=[]) did NOT adjudicate the SD-059/MECH-358 relief/safety escape-affordance bridge and weights no claim. Self-route substrate_not_ready_requeue CONFIRMED and REFINED by /failure-autopsy 2026-06-08: two co-equal substrate gaps blocked adjudication, neither a bridge verdict. (1) PRIMARY -- navigation/survival-competence ceiling: the ARM_NAV_CONTROL positive control (spawn-in-reef, safety handed) returned G_H=0.0 (best hazard median ~36 vs the >=75 gate), so even with navigation-to-safety handed the agent cannot survive to the gate; per the script's own interpretation grid this routes to a navigation/competence substrate (scaffolded_sd054_onboarding P1/Stage-H survival leg, G1 0/3), NOT the bridge. (2) SECONDARY -- safety-half starvation: the safety detector credited 0/3 in every arm (relief half credited 2/3) because no trained threat-absence (MECH-303/304) predictor is wired into the escape-affordance-bridge safety half. Biology (Moscarello & LeDoux 2013) supports the mechanism class; this is a prerequisite/translation gap, not falsification. Do NOT weaken or validate SD-059/MECH-358. pending_retest_after_substrate: the SD-059/MECH-358 bridge retest (the 4-arm discriminative harness) is not informative until (1) the Stage-H navigation/survival-competence leg clears and (2) the safety-half threat-absence predictor is wired. V3-EXQ-653 (e2_escape_affordance_linker_readiness_microdiagnostic, queued by a parallel session) is the in-flight readiness predecessor.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "sd_id_suggested": null,
+        "title": "Navigation/survival-competence leg of Stage-H (P1 hazard-avoidance) -- 603i ARM_NAV_CONTROL nav-competence ceiling",
+        "implementation_hint": "603i's nav-competence positive control (ARM_NAV_CONTROL: bridge OFF, spawn IN the reef refuge so navigation-to-safety is handed) still failed Stage-H survival (G_H=0.0, best hazard median ~36 vs >=75). This isolates a navigation/survival-competence ceiling upstream of the SD-059/MECH-358 bridge: survival to the gate is unreachable at this budget/config even when safety is handed. The Stage-H survival leg (G1) must clear (>=2/3, median last-window >=75) before any escape-affordance-bridge retest can score G_H. Likely levers: Stage-H training budget, reef-refuge reachability shaping, hazard-avoidance curriculum tuning.",
+        "unblocks_claims": ["SD-059", "MECH-358", "SD-058", "MECH-357"],
+        "depends_on_unresolved": ["scaffolded_sd054_onboarding readiness (G1>=2/3 AND G2>=2/3)", "SD-056 e2 warmup (relief comparator world-forward)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
+          "experiment_type": "v3_exq_603i_escape_affordance_bridge_validation",
+          "metric": "ARM_NAV_CONTROL (spawn-in-reef, safety handed) G_H=0.0 (best hazard median ~36 vs >=75 gate); all 5 arms G_H=0.0",
+          "target": "Stage-H survival G1 >= 2/3 (median last-window episode length >= 75) with navigation-to-safety handed, before an escape-affordance-bridge retest can score G_H"
+        }
+      },
+      "secondary_substrate_queue_entries": [
+        {
+          "action": "amend",
+          "target_sd_id": "escape-affordance-bridge",
+          "title": "Safety-half starvation -- 603i safety credit 0/3 (relief 2/3); threat-absence predictor (MECH-303/304) not wired",
+          "implementation_hint": "On 603i the RELIEF half credited 2/3 (functional) but the SAFETY half credited 0/3 in every arm. The safety half needs a trained threat-absence (threat_scale<=0 after a directed action) signal -- the MECH-303/304 response-produced-safety predictor -- wired into the escape_affordance_bridge safety credit path. Until wired, the safety arm is structurally non-vacuous-failing and ARM_SAFETY/ARM_RELIEF_SAFETY cannot be scored.",
+          "unblocks_claims": ["SD-059", "MECH-358"],
+          "priority_suggested": 1,
+          "failure_record_entry": {
+            "run_id": "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
+            "experiment_type": "v3_exq_603i_escape_affordance_bridge_validation",
+            "metric": "safety_credit_frac=0.0 (0/3 all arms); relief_credit_frac=0.67 (2/3). each_enabled_bridge_half_fires_nonvacuously UNMET (measured 0.0 vs 0.667)",
+            "target": "Each enabled bridge half credits non-vacuously (>0 on >=2/3 seeds) -- requires a trained MECH-303/304 threat-absence predictor feeding the safety half"
+          }
+        }
+      ],
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "No 'supports' to narrow: the run weights no claim (claim_ids=[]); non_contributory recommendation is paired with pending_retest_after_substrate as required.",
+      "learning_extracted": [
+        "Navigation/survival-competence is a hard prerequisite upstream of the relief/safety escape-affordance bridge: the ARM_NAV_CONTROL positive control failing (G_H=0.0 with safety handed) proves the bridge is unscoreable until Stage-H survival competence clears.",
+        "The relief half is functional (credited 2/3) but the safety half is structurally starved (0/3) because no trained threat-absence (MECH-303/304) predictor is wired -- a symbol-of-mechanism-without-functional-input gap.",
+        "The nav-competence positive control + per-half non-vacuity gate are the load-bearing instruments that separated 'bridge insufficient' from 'competence ceiling' -- keep them in any retest harness.",
+        "substrate_not_ready_requeue self-routes can be CONFIRMED yet REFINED: the precondition (safety half) was genuinely unmet, but the autopsy's value-add is naming the dominant blocker (nav competence) that would block the retest even if both halves credited."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "coordination_notes": [
+    "Active governance-cycle session (governance-cycle-20260608T2151Z) holds substrate_queue.json / pending_review.md / claims.yaml -- it is the intended consumer that will amend the two substrate entries and mark 603i reviewed. This autopsy only produces the diagnosis artifact.",
+    "V3-EXQ-653 (e2_escape_affordance_linker_readiness_microdiagnostic) is being queued by a parallel session (queue-experiment-653-...-20260608T2117Z); it is the in-flight readiness predecessor the re-queue routing points to. Do not mint a duplicate successor."
+  ]
+}
