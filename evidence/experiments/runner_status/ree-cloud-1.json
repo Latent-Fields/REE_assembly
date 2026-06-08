@@ -2,10 +2,22 @@
   "schema_version": "v1",
   "runner_pid": 2199291,
   "runner_started_at": "2026-06-03T06:06:50.999872+00:00",
-  "last_updated": "2026-06-05T12:58:02.557410+00:00",
+  "last_updated": "2026-06-08T21:30:02.278376+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-640b",
+      "backlog_id": "",
+      "claim_id": "SD-057",
+      "title": "SD-057/MECH-346/MECH-347 cue-authority lineage CLEAN EVIDENCE retest: re-run the 640a scaffold cue-recall gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds) now that modulatory-bias-selection-authority is VALIDATED (V3-EXQ-643a PASS). use_modulatory_selection_authority=True+gain=0.5 on every arm so the cue->z_goal->MECH-295 approach bias has bounded authority over the E3.select argmin in the contact-making scaffold P2 env. Promotes 640a (diagnostic, flat lift, authority OFF) to EVIDENCE.",
+      "description": "",
+      "estimated_minutes": 658.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3276,6 +3288,48 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic/v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic_20260605T125802Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 11739.1
+    },
+    {
+      "queue_id": "V3-EXQ-610f",
+      "backlog_id": "EVB-0270",
+      "claim_id": "INV-074",
+      "title": "INV-074/MECH-334/MECH-333 crystallization-necessity TRUE-NEGATIVE-CONTROL retest (+MECH-341/313 floor contrast): strip the always-on diversity floor (noise_floor/E3-diversity/dACC-suppression off; structured curiosity decoupled from crystallize) so crystallization is the SOLE phase-3 diversity route in ARM_1; phase-dependent entropy bonus (0.02 generator in phases 0-2, swept {0,0.005,0.02} in phase 3) maps the collapse threshold; ARM_4 floor-on (MECH-341/313). 5 conditions x 3 seeds, IGW-023 Phase-3 pressure. Supersedes 610e (confounded control).",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Verdict: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-610f -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-610f.json",
+      "started_at": "2026-06-05T14:58:58.174612+00:00",
+      "completed_at": "2026-06-08T05:15:16.673468+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_610f_inv074_crystallization_necessity_20260608T051516Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 224178.5
+    },
+    {
+      "queue_id": "V3-EXQ-603i",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "SD-059/MECH-358 relief/safety escape-affordance bridge validation (closes the V3-EXQ-603h directed-escape gap). 4-arm discriminative Stage-H diagnostic + nav-competence positive control: ARM_BASE_IA_ONLY (bridge OFF = 603h INTACT) / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE (bridge halves) / ARM_NAV_CONTROL (bridge OFF, Stage-H spawns in reef refuge = reef-refuge-reachability survival-competence control). All arms on the 603h-INTACT base (MECH-279 PAG + SD-058/MECH-357 ilPFC gate + driver + fed harm stream + SD-056 e2 warmup). Non-vacuity: each enabled bridge half must credit >=2/3 seeds before G_H is scored (else substrate_not_ready_requeue -- the relief detector needs a trained encoder, the 603h n_credit 6/0 lesson).",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_603i_escape_affordance_bridge_validation] G_H base=0.00 relief=0.00 safety=0.00 both=0.00 nav_control=0.00 | relief_credit=0.67 safety_credit=0.00 | readiness_met=False -> outcome=FAIL route=substrate_not_ready_requeue | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-603i -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-603i.json",
+      "started_at": "2026-06-08T13:57:39.774997+00:00",
+      "completed_at": "2026-06-08T20:11:33.690996+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_603i_escape_affordance_bridge_validation/v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 22433.9
+    },
+    {
+      "queue_id": "V3-EXQ-653",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Post-603i E2 escape-affordance LINKER readiness microdiagnostic. Forced-choice 4-action probe (no-op/harm-worsening/escape/neutral) driving E2EscapeAffordanceLinker (ree_core/pfc/e2_escape_affordance_linker.py) DIRECTLY with controlled E2 consequence proxies + known outcomes; 4 arms x 3 seeds; readiness gates G0-G8. Validates ONLY that the post-603i linker/readout can learn a controlled 'where out is' signal and expose bounded threat-gated E3 bias. NOT the full 603 behavioural bridge validation; NO ecological survival claim.",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS (label=linker_readout_ready) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-653 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-653.json",
+      "started_at": "2026-06-08T21:29:56.302995+00:00",
+      "completed_at": "2026-06-08T21:30:02.277808+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic_20260608T213001Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 6.0
     }
   ]
 }
