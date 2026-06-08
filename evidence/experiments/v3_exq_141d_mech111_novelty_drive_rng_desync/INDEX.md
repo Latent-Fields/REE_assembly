@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_141d_mech111_novelty_drive_rng_desync
 
-Generated: `2026-06-07T15:51:53.439526Z`
+Generated: `2026-06-08T13:27:55.269767Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

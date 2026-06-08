@@ -12,6 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
+- `v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T173332Z_v3` at `2026-06-07T17:33:32Z` signatures: none
 - `v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T053934Z_v3` at `2026-06-07T05:39:34Z` signatures: none
 
 Recurring signatures:
