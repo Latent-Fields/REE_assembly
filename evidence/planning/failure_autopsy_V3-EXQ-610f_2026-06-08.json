@@ -1,0 +1,64 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-08T07:20:06Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_610f_inv074_crystallization_necessity_20260608T051516Z_v3",
+      "queue_id": "V3-EXQ-610f",
+      "supersedes": "V3-EXQ-610e",
+      "claim_ids": ["INV-074", "MECH-333", "MECH-334", "MECH-341", "MECH-313"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- test could not let the claim express (D2 precondition unmet)",
+        "biological_reference": "clear -- OD critical period (Hensch 2005), plasticity injection (Nikishin 2023), EWC (Kirkpatrick 2017); lit_conf 0.82",
+        "prerequisites": "missing -- a phase-3 regime that actually induces collapse-without-crystallization (task-distribution shift, not noise)",
+        "implementation": "complete -- fix_verification: policy trained (0.410->0.491 out of untrained band), expansion stepped (1249 params), EWC penalty 0.268-803 in loss",
+        "environment": "wrong pressure -- IGW-023 noise (SD-047 + SD-048 + accelerated drift) does not instantiate the necessity premise; threshold map ARM_0/2/3 all -0.010 to -0.012, no entropy floor load-bearing",
+        "measurement": "adequate -- selected_action_entropy non-degenerate; D3 sanity PASS",
+        "integration": "fine -- arms isolate cleanly",
+        "scale": "likely insufficient at test-design level -- stripped REINFORCE-on-grid does not collapse under added noise"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ocular-dominance critical-period plasticity crystallization",
+        "dependencies": ["a phase-3 task-distribution shift whose optimum conflicts with phases 0-2", "genuine catastrophic-forgetting pressure (not added observation noise)"],
+        "is_formal_import": false,
+        "divergence": "none -- mechanism class is biologically faithful; the gap is environmental-pressure, not a wrong mechanism",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-074": "non_contributory",
+        "MECH-333": "non_contributory",
+        "MECH-334": "non_contributory",
+        "MECH-341": "non_contributory",
+        "MECH-313": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-610f (6th necessity-test iteration; ARM_0 stripped to a true negative) re-FAILed D2: the stripped REINFORCE control did NOT collapse its action entropy under the IGW-023 phase-3 noise regime (delta -0.012; threshold map ARM_0/2/3 all -0.010 to -0.012, no entropy floor load-bearing), so the necessity premise (collapse-without-crystallization) was never instantiated and D1 is unreadable. Wiring verified-live (policy trained, expansion stepped, EWC penalty 283-803 in loss) and D3 sanity PASS, so this is a genuine test-design finding, not a harness no-op. INV-074 NOT weakened (universal invariant; OD critical-period existence proof; lit_conf 0.82). non_contributory; pending_retest_after_redesign (V3-EXQ task-shift successor replacing noise-only phase-3 with a conflicting task-distribution shift). MECH-341/MECH-313 D4 floor-contrast uninterpretable because D2 FAILed. User adjudication 2026-06-08: noise != catastrophic-forgetting pressure; route one task-shift redesign, decisive for the substrate-incapacity reading either way.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after_redesign": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Adding observation/interoceptive NOISE (IGW-023: SD-047 + SD-048 + drift) is not the destabilising pressure INV-074's necessity premise requires; a task-distribution SHIFT (phase-3 optimum conflicting with phases 0-2, forcing overwriting) is.",
+        "Six iterations converged on 'no entropy floor load-bearing / control never collapses under noise' -- a structural test-design property, not tuning noise.",
+        "610f wiring is verified-live (fix_verification) -- the FAIL is genuinely informative about test design, distinct from the 543h/610a-d harness-no-op lineage.",
+        "A universal invariant with a working biological existence proof cannot be weakened by a test that could not instantiate its premise; non_contributory is correct, pending the task-shift retest."
+      ],
+      "routing": "queue-experiment",
+      "redesign_spec": {
+        "replace": "IGW-023 noise-only phase-3 with a genuine task-distribution SHIFT whose reward/optimal-policy structure conflicts with phases 0-2 (e.g. resource/hazard layout or contingency reversal whose optimal first-action distribution is incompatible with the phase-0-2 policy)",
+        "preserve": "610f arm structure (ARM_0 stripped true-negative / ARM_1 stripped+crystallize / ARM_4 floor-on-control), verified wiring (policy trained, expansion stepped, EWC in loss), D3 non-vacuity sanity gate",
+        "acceptance": "D1 AND D2 AND D3 unchanged; D2 now reads collapse on the SHIFTED task; if D2 STILL fails on a genuine task-shift, that is the decisive substrate-incapacity finding -> accept INV-074 substrate_ceiling and STOP the cascade",
+        "supersedes": "V3-EXQ-610f",
+        "claim_ids_note": "re-evaluate from scratch; necessity test tags INV-074/MECH-333/MECH-334; D4 floor-contrast tags MECH-341/MECH-313",
+        "new_id": "not_assigned -- queue-experiment assigns at write time"
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
