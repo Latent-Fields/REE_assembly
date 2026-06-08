@@ -1,46 +1,31 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-08T13:35:33Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-08T14:02:15Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603i",
+  "current_exq_started_utc": "2026-06-08T13:57:39.774997+00:00",
+  "current_title": "SD-059/MECH-358 relief/safety escape-affordance bridge validation (closes the V3-EXQ-603h directed-escape gap). 4-arm discriminative Stage-H diagnostic + nav-competence positive control: ARM_BASE_IA_ONLY (bridge OFF = 603h INTACT) / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE (bridge halves) / ARM_NAV_CONTROL (bridge OFF, Stage-H spawns in reef refuge = reef-refuge-reachability survival-competence control). All arms on the 603h-INTACT base (MECH-279 PAG + SD-058/MECH-357 ilPFC gate + driver + fed harm stream + SD-056 e2 warmup). Non-vacuity: each enabled bridge half must credit >=2/3 seeds before G_H is scored (else substrate_not_ready_requeue -- the relief detector needs a trained encoder, the 603h n_credit 6/0 lesson).",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-640b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-634",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T16:33:57.686093+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-626b",
-      "result": "PASS",
-      "completed_at": "2026-06-03T21:17:04.191567+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-610e",
-      "result": "FAIL",
-      "completed_at": "2026-06-04T22:53:20.206305+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-640",
-      "result": "PASS",
-      "completed_at": "2026-06-05T12:58:02.556862+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-610f",
-      "result": "FAIL",
-      "completed_at": "2026-06-08T05:15:16.673468+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_BASE_IA_ONLY",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 20,
+    "episodes_total": 235,
+    "overall_pct": 0.6
+  },
+  "seconds_elapsed": 276,
+  "seconds_remaining": 29038,
+  "recent_lines": [
+    "[v3_exq_603i_escape_affordance_bridge_validation] starting (dry_run=False)",
+    "Seed 42 Condition ARM_BASE_IA_ONLY",
+    "[train] stage0 ARM_BASE_IA_ONLY seed=42 ep 20/235 z_goal_peak=0.5063"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 2199291,
   "runner_version": null,
   "gpu": {
