@@ -37426,3 +37426,116 @@
     until the EXQ PASSes (v3_pending). Design doc:
     docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
   location: docs/architecture/sd_058_instrumental_avoidance_acquisition.md
+
+- id: SD-059
+  title: "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism."
+  claim_type: design_decision
+  subject: defensive_action.escape_affordance_bridge
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: standard
+  claim_level: architectural
+  registered_utc: "2026-06-08"
+  depends_on:
+    - SD-058    # the instrumental-avoidance gate this extends (scalar -> affordance-indexed)
+    - MECH-357  # the freeze-suppression + scalar-efficacy mechanism the bridge directs
+    - MECH-302  # relief comparator (d(z_harm_a)/dt < 0) -- the relief-credit signal source
+    - MECH-303  # contextual safety prediction -- safety-credit consistency
+    - MECH-304  # cue-specific conditioned safety -- safety-credit consistency
+    - SD-011    # z_harm_a affective stream -- the threat signal the bridge reads
+    - MECH-279  # PAG freeze -- the reaction the avoidance gate suppresses
+  distinct_from:
+    - SD-037    # orexin override: REFLEXIVE arousal/drive-driven PAG-exit raise -- bridge credit is LEARNED-efficacy-gated DIRECTED approach
+    - MECH-281  # orexin motor-coupling: REFLEXIVE urgency-interrupt lower -- not directed escape affordance
+    - MECH-302  # relief comparator fires on the CURRENT state; the bridge binds an ACTION to relief for future-threat approach
+    - MECH-304  # safety store predicts threat-absence at CURRENT state; the bridge indexes by ACTION/direction
+  functional_restatement: >
+    Architectural decision (V3-tractable). MECH-357's scalar avoidance_efficacy
+    un-freezes the agent but binds no specific action to relief, so there is no escape
+    AFFORDANCE -- only a global "avoidance works" scalar (the V3-EXQ-603h FAIL). SD-059
+    adds an affordance-indexed (per-first-action-class) credit table with two
+    independently-toggleable halves: a RELIEF half (a directed action under threat that
+    drops z_harm_a credits relief_affordance[action_class], MECH-302-consistent) and a
+    SAFETY half (a directed action after which threat is absent credits
+    safety_affordance[action_class], MECH-303/304-consistent response-produced safety).
+    Under future threat, E3 receives a bounded, threat-context-gated NEGATIVE
+    (favoured) approach bias toward credited classes -- the DIRECTED escape. Three
+    guards keep it from swamping food/goal approach or forming pathological habit
+    loops: clamp to bias_scale, threat-context gate (zero when safe), per-tick leak.
+    Distinct from the reflexive escape-from-freeze levers (SD-037/MECH-281) and from
+    the generic relief/safety rows (MECH-302/303/304 fire on the current state).
+  implementation_note: >
+    IMPLEMENTED 2026-06-08 (substrate; v3_pending until the 4-arm validation EXQ
+    PASSes). Mechanism is MECH-358 (ree-v3/ree_core/pfc/escape_affordance_bridge.py,
+    EscapeAffordanceBridge -- pure-arithmetic regulator behind
+    use_escape_affordance_bridge, no-op default, bit-identical OFF). agent.py wiring:
+    update() in sense() (after the MECH-357 eligibility update), approach-bias in
+    select_action() (after the MECH-357 action-bias), action-class cache + reset.
+    HazardAvoidanceResult.escape_bridge_state surfaces the bridge state so the
+    validation manifest can gate non-vacuity. Routed by
+    failure_autopsy_V3-EXQ-603h_2026-06-08.
+  evidence_quality_note: >
+    Validation EXQ V3-EXQ-603i queued (diagnostic, claim_ids=[]): thought-intake
+    Section 5 4-arm (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE /
+    ARM_RELIEF_SAFETY_BRIDGE) + a nav-competence positive control so a flat G_H across
+    all bridge arms is attributable to a survival/navigation ceiling rather than the
+    bridge. Non-vacuity gate: each enabled bridge half must increment its credit before
+    G_H is scored. Acceptance G_H >= 2/3 AND improves over ARM_BASE_IA_ONLY; secondary
+    P1 survival transfer without over-avoidance/starvation. The relief detector reads
+    z_harm_a / the world-forward, so P0 keeps the SD-056 e2 contrastive warmup + a
+    readiness precondition (else credit re-starves like 603h). Not promotable until the
+    EXQ PASSes (v3_pending). Design doc: docs/architecture/sd_059_escape_affordance_bridge.md.
+  location: docs/architecture/sd_059_escape_affordance_bridge.md
+
+- id: MECH-358
+  title: "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak."
+  claim_type: mechanism_hypothesis
+  subject: prefrontal.relief_safety_escape_affordance_bridge
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-06-08"
+  depends_on:
+    - SD-059    # the architecture this mechanism instantiates
+    - MECH-357  # the scalar avoidance gate it extends to affordance-indexed
+    - MECH-302  # relief-credit signal (d(z_harm_a)/dt < 0)
+    - MECH-303  # contextual safety -- safety-credit consistency
+    - MECH-304  # cue-specific safety -- safety-credit consistency
+    - SD-011    # z_harm_a threat signal
+  distinct_from:
+    - MECH-357  # scalar efficacy penalises the no-op class; MECH-358 REWARDS the credited directed class (directed escape)
+    - SD-037    # reflexive orexin override -- not learned-efficacy-gated directed approach
+    - MECH-281  # reflexive urgency-interrupt lower -- not directed escape affordance
+  functional_restatement: >
+    Mechanism hypothesis (V3-tractable). Two per-action-class credit tables
+    (relief_affordance, safety_affordance), each an EMA toward 1 gated by its half
+    flag, both leaking per tick. Affordance-indexing is by FIRST-ACTION CLASS (the
+    directed escape direction in the discrete action space) -- the minimal V3
+    instantiation of escape_affordance[action]; location/policy indexing is a deferred
+    refinement the nav-competence positive control disambiguates. The approach bonus
+    is threat-context-gated and bias_scale-clamped so it cannot swamp food/goal
+    approach or dominate the additive score-bias chain. Falsifiable: with the RELIEF
+    and/or SAFETY half ON in the Stage-H survival leg, G_H lifts over the
+    SD-058/MECH-357-only baseline (ARM_BASE_IA_ONLY) AND a nav-competence positive
+    control rules out a survival/navigation ceiling; if neither half lifts G_H while
+    nav-control also fails, the gap is navigation, not the bridge.
+  implementation_note: >
+    IMPLEMENTED 2026-06-08. ree-v3/ree_core/pfc/escape_affordance_bridge.py
+    (EscapeAffordanceBridge + Config + Output); agent.py wiring (update in sense(),
+    approach-bias + action-class cache in select_action(), reset preserves tables);
+    config.py 13 no-op-default flags + from_dims; scaffolded_sd054_onboarding Stage-H
+    surfaces escape_bridge_state. 8 SD-059 contracts + bit-identical OFF. Pure-
+    arithmetic regulator -- no trained parameters, no phased training. MECH-094: no-op
+    under simulation_mode.
+  evidence_quality_note: >
+    Validation V3-EXQ-603i (diagnostic, claim_ids=[]). Unit + activation smoke confirm
+    relief + safety credit increment on directed harm-drop / threat-absence and the
+    approach bias favours credited classes only under threat (zero when safe). Not
+    promotable until the EXQ PASSes (v3_pending). Design doc:
+    docs/architecture/sd_059_escape_affordance_bridge.md.
+  location: docs/architecture/sd_059_escape_affordance_bridge.md
