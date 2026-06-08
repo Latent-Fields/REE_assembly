@@ -1,11 +1,22 @@
 {
   "schema_version": "v1",
-  "runner_pid": 667,
-  "runner_started_at": "2026-06-06T20:38:30.296078+00:00",
-  "last_updated": "2026-06-06T23:06:57.321953+00:00",
+  "runner_pid": 2100,
+  "runner_started_at": "2026-06-07T19:29:44.678090+00:00",
+  "last_updated": "2026-06-08T05:56:39.347369+00:00",
   "idle": false,
   "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-603h",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-058/MECH-357 instrumental-avoidance Stage-H validation (ilPFC-lesion vs intact: PAG freeze + ilPFC suppression; PASS = G_H_INTACT>=2/3 AND INTACT>LESION, readiness preconds met)",
+      "description": "",
+      "estimated_minutes": 188.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-610f",
       "backlog_id": "EVB-0270",
@@ -18,34 +29,23 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-643a",
+      "queue_id": "V3-EXQ-604c",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "modulatory-bias-selection-authority re-validation after the float32 catastrophic-cancellation fix (e3_selector explicit modulatory accumulator, 2026-06-06) + SD-056 rollout-norm clamp harness stability. 3 arms (authority OFF / ON gain0.5 / ON gain0.8) x 3 seeds. Supersedes V3-EXQ-643.",
+      "claim_id": "MECH-314",
+      "title": "MECH-314/Q-044 sub-flavour ablation on validated GAP-A substrate + selection authority (RANGE readiness gate); supersedes 604b",
       "description": "",
-      "estimated_minutes": 96.0,
+      "estimated_minutes": 160.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-644",
+      "queue_id": "V3-EXQ-640b",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "arm-reuse Phase-0 MINT of the V3-EXQ-610 OFF/baseline arm (INV-074 crystallization necessity; ARM_0_stripped_control) on ree-cloud-2. OFF arm x 3 seeds, built from the canonical baseline module; records per-cell arm_fingerprint. Sibling to V3-EXQ-645 (ree-cloud-3) for the cross-instance determinism check.",
+      "claim_id": "SD-057",
+      "title": "SD-057/MECH-346/MECH-347 cue-authority lineage CLEAN EVIDENCE retest: re-run the 640a scaffold cue-recall gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds) now that modulatory-bias-selection-authority is VALIDATED (V3-EXQ-643a PASS). use_modulatory_selection_authority=True+gain=0.5 on every arm so the cue->z_goal->MECH-295 approach bias has bounded authority over the E3.select argmin in the contact-making scaffold P2 env. Promotes 640a (diagnostic, flat lift, authority OFF) to EVIDENCE.",
       "description": "",
-      "estimated_minutes": 1000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-645",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "arm-reuse Phase-0 MINT of the V3-EXQ-610 OFF/baseline arm (INV-074 crystallization necessity; ARM_0_stripped_control) on ree-cloud-3. Identical script/config to V3-EXQ-644 (ree-cloud-2); the second instance for the cross-instance determinism check.",
-      "description": "",
-      "estimated_minutes": 1000.0,
+      "estimated_minutes": 658.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -1893,6 +1893,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_643b_modulatory_authority_corrected_c2_20260606T230656Z_v3.json",
       "completed_by": "ree-cloud-4",
       "actual_secs": 8905.9
+    },
+    {
+      "queue_id": "V3-EXQ-652",
+      "backlog_id": "",
+      "claim_id": "SD-057",
+      "title": "PARALLEL-RACE CLONE of V3-EXQ-640b on ree-cloud-4: identical SD-057/MECH-346/MECH-347 cue-authority gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds, use_modulatory_selection_authority=True+gain=0.5). Queued to run alongside the slow 640b instance on DLAPTOP-4.local; whichever finishes first is THE evidence.",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: seed=44 arm=ARM_CUE_g5_k10 pc_fire_steps=616 pc_windows=616 | [v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone] C1_cue_fires_on=True C2_trace_captured=True C_LIFT_PRIMARY(ARM_CUE_g5_k10)=True C_LIFT_ANY=True cells_passing_lift=['ARM_CUE_g1_k2', 'ARM_CUE_g5_k10'] outcome=PASS evidence_direction=supports | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-652 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-652.json",
+      "started_at": "2026-06-07T19:29:44.700786+00:00",
+      "completed_at": "2026-06-08T05:56:39.346759+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone/v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone_20260608T055638Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 37614.6
     }
   ]
 }
