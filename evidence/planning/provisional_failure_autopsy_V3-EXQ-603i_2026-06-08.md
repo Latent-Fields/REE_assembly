@@ -7,7 +7,8 @@
 **Route:** `substrate_not_ready_requeue`  
 **Evidence direction:** `non_contributory`  
 **Claim effect:** do **not** weaken SD-059 / MECH-358; do **not** validate SD-059 / MECH-358  
-**Return required:** yes — run a formal failure autopsy and biological-fidelity review when local token/compute budget allows.
+**Return required:** yes — run a formal failure autopsy and biological-fidelity review when local token/compute budget allows.  
+**Routing update:** the initial human placeholder sequence (`603j/603k/603l`) was superseded by the actual new-number readiness diagnostic `V3-EXQ-653`; do not treat those placeholder suffixes as queued experiment identities.
 
 ## Purpose
 
@@ -155,19 +156,29 @@ optional features for trainable relief/safety heads
 bounded threat-gated E3 bias
 ```
 
-The current successor work should not queue a full bridge re-run yet. The next experiment should first validate linker/readout readiness, not claim full ecological survival.
+The immediate readiness diagnostic was subsequently allocated a **new experiment identity**, `V3-EXQ-653`, because it tested a new substrate module rather than directly rerunning the 603 behavioural bridge test. Its queue commit reports `linker_readout_ready` after strict validation, dry-run, and 3-seed full-budget gate checks.
 
-## Suggested successor sequence
+## Current successor route after V3-EXQ-653
 
 ```text
-V3-EXQ-603j:
-    E2 escape-affordance linker/readout readiness microdiagnostic.
+V3-EXQ-603i:
+    fixed arithmetic relief/safety bridge could not be adjudicated;
+    route = substrate_not_ready_requeue.
 
-V3-EXQ-603k:
-    Relief/safety bridge re-run with linker features attached, if 603j passes.
+V3-EXQ-653:
+    new-number E2 escape-affordance linker/readout readiness microdiagnostic;
+    claim_ids = [];
+    reported linker_readout_ready.
 
-V3-EXQ-603l:
-    Full scaffolded goal + hazard + relief/safety integration, if 603j/k pass.
+Next local /queue-experiment step:
+    queue the next available V3-EXQ as a 603-lineage full behavioural bridge re-test
+    with E2 escape-affordance linker features attached to the trainable relief/safety heads.
+```
+
+A handoff request for that next local queue step is recorded at:
+
+```text
+REE_assembly/evidence/planning/queue_request_post_653_603_lineage_full_bridge_retest_2026-06-08.md
 ```
 
 ## Governance note
