@@ -1,0 +1,137 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic",
+  "run_id": "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic_20260608T213001Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-08T21:30:01Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "linker_readout_ready",
+    "preconditions": [
+      {
+        "name": "linker_optimizer_stepped",
+        "kind": "readiness",
+        "description": "Mean optimizer steps in ARM_LINKER_READOUT_ONLY (the positive control) -- the SAME exercise the load-bearing G1 salience delta routes on. Below floor => the linker never instantiated / never trained (a wiring regression) => substrate_not_ready_requeue, NOT a 'readout cannot learn' verdict.",
+        "control": "ARM_LINKER_READOUT_ONLY: forced-choice training over controlled E2 proxies",
+        "measured": 60.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "controlled_e2_proxies_distinct",
+        "kind": "readiness",
+        "description": "Min pairwise L2 distance among the non-noop controlled E2 proxy features. Guards G1 non-vacuity -- identical proxies would make the readout structurally unable to discriminate.",
+        "control": "harness E2FEAT proxies for classes {1,2,3}",
+        "measured": 1.2247,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "forced_choice_outcome_range",
+        "kind": "readiness",
+        "description": "Range of forced-choice outcome targets across action classes. Guards that a differentiated learning signal exists.",
+        "control": "harness OUTCOME targets",
+        "measured": 0.91,
+        "threshold": 0.1,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "G0_disabled_bit_stable",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G1_escape_readout_learns",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G2_noop_uncredited",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G3_harm_worsen_not_preferred",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G4_bias_points_to_escape",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G5_bias_zero_when_safe",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G6_sim_hypothesis_blocks_learning",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G7_weights_persist_across_reset",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G8_inputs_detached",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "G0": true,
+      "G1": true,
+      "G2": true,
+      "G3": true,
+      "G4": true,
+      "G5": true,
+      "G6": true,
+      "G7": true,
+      "G8": true
+    },
+    "routing": {
+      "linker_readout_ready": "PASS -> /queue-experiment a 603-lineage FULL behavioural bridge re-test with linker features attached to the trainable relief/safety heads (next 603-lineage suffix). Do NOT mark SD-059/MECH-358 validated.",
+      "substrate_not_ready_requeue": "re-queue as V3-EXQ-653a (fix the linker wiring / raise the training budget); do NOT weaken SD-059/MECH-358.",
+      "linker_readout_inert": "FAIL -> /failure-autopsy on THIS readiness diagnostic; localise to linker/readout learning (G1), E3 bias integration (G4), no-op/freeze exclusion (G2), hypothesis/simulation boundary (G6), detached-input safety (G8), or the reuse-E2 assumption. Do NOT rerun 603i; do NOT treat as bridge falsification."
+    }
+  }
+}
