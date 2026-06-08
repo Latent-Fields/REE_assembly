@@ -1,7 +1,8 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-08T14:01:16Z",
+  "last_review_utc": "2026-06-08T22:03:09Z",
   "discussed_experiment_dirs": [
+    "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic",
     "v3_exq_603h_instrumental_avoidance_stageh_validation",
     "v3_exq_610_inv074_crystallization_baseline_mint",
     "v3_exq_650_control_vector_collapse_diagnostic",
@@ -594,6 +595,7 @@
     "v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone"
   ],
   "reviewed_run_ids": [
+    "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic_20260608T213001Z_v3",
     "v3_exq_603h_instrumental_avoidance_stageh_validation_20260607T211923Z_v3",
     "v3_exq_610_inv074_crystallization_baseline_mint_v3exq645_20260607T131625Z_v3",
     "v3_exq_650_control_vector_collapse_diagnostic_20260607T131632Z_v3",
@@ -3995,6 +3997,18 @@
         "v3_exq_649_arc065_gapa_shared_candidate_summary_source"
       ],
       "subject": "/governance 2026-06-07T14:26Z. 5 pending walked; APPLIED 2 confirmed failure-autopsies (efd81673b2). GAP-A cluster 604b/648a/649=ONE structural property. 604b(MECH-314/314a/b/c/Q-044 FAIL)->non_contributory/substrate_ceiling (pre-GAP-A null; self-emitted weakens overridden flat+runpack; MECH-314 weakens 1->0; pending_retest 604c). 648a(claim-free FAIL)->non_contributory (load-bearing C2 PASS ready; precondition flag was indexer false-positive, fixed). 649(claim-free PASS)->non_contributory (GAP-A VERIFIED READY spread 0.090>=0.05; ARC-065 substrate_queue amended +604b/649 failure_records +gapA_status ready_validated). 651(ARC-060 FAIL)->non_contributory/test-design-defect (FIELD_ONLY never abandoned; weakens overridden 1->0; ARC-060 pending_retest set; redesign 651a). 598c(SD-033a PASS, supersedes 598b)=redesigned cosine probe per 598 autopsy; clean SUPPORT exp_conf 0.868, held v3_pending; 598b SD-033a->superseded, MECH-262 runpack weakens->non_contributory (1->0). claims.yaml notes on MECH-314/ARC-060/SD-033a. 0 pending_user. sync_v3_results list-criteria crash fixed."
+    },
+    {
+      "timestamp_utc": "2026-06-08T22:03:09Z",
+      "session_label": "governance-cycle-20260608T2151Z",
+      "reviewed_run_ids": [
+        "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic_20260608T213001Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic_20260608T213001Z_v3",
+        "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic"
+      ],
+      "subject": "/governance 2026-06-08T21:51Z. 2 pending walked, both claim-free diagnostics (no claims.yaml edits this cycle). 653 (E2 escape-affordance LINKER readiness microdiagnostic, PASS, claim_ids=[])->non_contributory: all gates G0-G8 3/3 seeds + secondary G_RS 3/3, overall_pass/readiness_ok true, self-route linker_readout_ready (clean, not flagged); positive control linker_optimizer_stepped=60. Implication noted: post-603i E2 escape-affordance linker substrate wired+learnable (detached-E2 readout into escape viability, bias->escape, noop uncredited, weights persist, inputs detached) = ready as substrate for the next behavioural bridge re-test. Marked reviewed per user. 603i (escape-affordance bridge validation, FAIL, claim_ids=[]) NOT marked reviewed: adjudication gate flagged precondition_unmet (load-bearing pag_freeze_and_ilpfc_gate_engage_on_base below floor -> 603h gate/freeze base inert this run, NOT a bridge verdict); existing autopsy is PROVISIONAL/not-applied; per gate, precondition_unmet blocks action until a CONFIRMED /failure-autopsy. Left pending (no evidence_direction beyond non_contributory; SD-059/MECH-358 neither validated nor weakened). 0 promotion/demotion (Decision Queue all-holds). closure_drift 0/0/0. Concurrency: ran alongside live queue-experiment-653 session (ree-v3 files only, no governance-collision-set overlap; user confirmed proceed)."
     }
   ]
 }

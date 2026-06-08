@@ -1,6 +1,6 @@
 # Planning Index
 
-Generated: `2026-06-08T14:22:51.072436Z`
+Generated: `2026-06-08T21:58:20.709490Z`
 
 - Evidence backlog: `evidence_backlog.v1.json` (263 item(s))
 - Experiment proposals: `experiment_proposals.v1.json` (335 item(s))

@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-06-08T16:52:38Z
+Generated: 2026-06-08T21:58:29Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -10,7 +10,7 @@ Warn-only -- this script never blocks the governance pipeline.
 
 _None._
 
-## Suppressed (legitimately non-terminal) (8)
+## Suppressed (legitimately non-terminal) (9)
 
 Nodes whose `owner_exq` reached a terminal state but where suppression rules say the node is legitimately non-terminal (Case-3 self-tag or non-contributory manifest evidence_direction). Listed here for audit; not counted as drift.
 
@@ -24,6 +24,7 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | upstream-blocked | V3-EXQ-265a | case_3_self_tag |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | in-progress | V3-EXQ-649 PASS 2026-06-07T13:14Z (GAP-A shared-channel substrate-readiness VALIDATED READY; consumed cand_world_summaries spread 0.090>=0.05 floor); V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30 | manifest_evidence_direction=non_contributory |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | partial | V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS; MECH-341 GAP-A-ready retest owed, not queued | case_3_self_tag |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | in-progress | V3-EXQ-603i claimed 2026-06-08 on ree-cloud-1 (escape-affordance bridge validation; claim_ids=[]); prior 603a/b/c/f/g/h lineage non_contributory substrate-ceiling | manifest_evidence_direction=non_contributory |
 
 ## Stale since last update -- review (0)
 
