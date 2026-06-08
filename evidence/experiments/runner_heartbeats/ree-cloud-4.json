@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-08T02:24:15Z",
+  "last_tick_utc": "2026-06-08T02:54:22Z",
   "state": "running",
   "current_exq": "V3-EXQ-652",
   "current_exq_started_utc": "2026-06-07T19:29:44.700786+00:00",
@@ -12,15 +12,13 @@
     "run_label": "Seed 44 / ARM_CUE_g0",
     "runs_done": 14,
     "runs_total": 21,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 235,
-    "overall_pct": 66.7
+    "overall_pct": 67.3
   },
-  "seconds_elapsed": 24871,
-  "seconds_remaining": 14224,
+  "seconds_elapsed": 26678,
+  "seconds_remaining": 13965,
   "recent_lines": [
-    "[v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone] starting (dry_run=False) modulatory_authority=True gain=0.5",
-    "Seed 42 Condition ARM_OFF",
     "[train] stage0 seed=42 arm=ARM_OFF ep 20/235 z_goal_peak=0.4451 formed=True token_bank_size_end=0",
     "[train] stage0b seed=42 arm=ARM_OFF ep 30/235 retention=0.987 gate=pass",
     "[train] p0 seed=42 arm=ARM_OFF ep 150/235 mean_len=30.1",
@@ -118,7 +116,9 @@
     "[train] p1 seed=43 arm=ARM_CUE_g0.2_k10 ep 220/235 survival=FAIL refresh=0",
     "[train] p2 seed=43 arm=ARM_CUE_g0.2_k10 ep 235/235 gain=0.2 kappa=10 contact_rate=0.0000 cue_fires=170 pc_fire_steps=170 pc_windows=170 pull_norm=0.003325452306717125 post_cue_approach=0.06451612903225806 bg_approach=0.058823529411764705",
     "verdict: seed=43 arm=ARM_CUE_g0.2_k10 pc_fire_steps=170 pc_windows=170",
-    "Seed 44 Condition ARM_CUE_g0.2_k10"
+    "Seed 44 Condition ARM_CUE_g0.2_k10",
+    "[train] stage0 seed=44 arm=ARM_CUE_g0.2_k10 ep 20/235 z_goal_peak=0.4403 formed=True token_bank_size_end=3",
+    "[train] stage0b seed=44 arm=ARM_CUE_g0.2_k10 ep 30/235 retention=0.947 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
