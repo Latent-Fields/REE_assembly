@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-08T00:53:56Z",
+  "last_tick_utc": "2026-06-08T01:24:03Z",
   "state": "running",
   "current_exq": "V3-EXQ-610f",
   "current_exq_started_utc": "2026-06-05T14:58:58.174612+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "INV-074",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_4_floor_on_control",
-    "runs_done": 13,
+    "run_label": "Seed 44 / ARM_4_floor_on_control",
+    "runs_done": 14,
     "runs_total": 15,
-    "episodes_done": 2300,
+    "episodes_done": 101,
     "episodes_total": 2500,
-    "overall_pct": 92.8
+    "overall_pct": 93.6
   },
-  "seconds_elapsed": 208498,
-  "seconds_remaining": 16444,
+  "seconds_elapsed": 210305,
+  "seconds_remaining": 14329,
   "recent_lines": [
-    "[train] ARM_4_floor_on_control ep 2000/2500 phase=2 ep_eb=0.0200 ep_reward=-1.3600 rv=0.0072 pol_steps=2000 exp_steps=0 ewc_terms=0",
-    "[train] ARM_4_floor_on_control ep 2001/2500 phase=3 ep_eb=0.0200 ep_reward=-1.0798 rv=0.0073 pol_steps=2001 exp_steps=0 ewc_terms=0",
-    "[train] ARM_4_floor_on_control ep 2100/2500 phase=3 ep_eb=0.0000 ep_reward=-1.2902 rv=0.0072 pol_steps=2100 exp_steps=0 ewc_terms=0",
-    "[train] ARM_4_floor_on_control ep 2200/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0212 rv=0.0106 pol_steps=2200 exp_steps=0 ewc_terms=0",
-    "[train] ARM_4_floor_on_control ep 2300/2500 phase=3 ep_eb=0.0000 ep_reward=-1.3709 rv=0.0115 pol_steps=2300 exp_steps=0 ewc_terms=0"
+    "verdict: PASS",
+    "Seed 44 Condition ARM_4_floor_on_control",
+    "[V3-EXQ-610f] Starting ARM_4_floor_on_control seed=44 crystallize=False p3_eb=0.0 noise_floor=True e3_div=True",
+    "[train] ARM_4_floor_on_control ep 100/2500 phase=0 ep_eb=0.0200 ep_reward=-0.8516 rv=0.0016 pol_steps=100 exp_steps=0 ewc_terms=0",
+    "[train] ARM_4_floor_on_control ep 101/2500 phase=1 ep_eb=0.0200 ep_reward=-1.0230 rv=0.0016 pol_steps=101 exp_steps=0 ewc_terms=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
