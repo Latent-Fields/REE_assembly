@@ -1,1 +1,251 @@
-{"run_id": "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T173332Z_v3", "experiment_type": "v3_exq_603f_scaffolded_sd054_substrate_readiness", "queue_id": "V3-EXQ-603f", "claim_ids": [], "experiment_purpose": "diagnostic", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260607T173332Z", "outcome": "FAIL", "evidence_direction": "non_contributory", "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)", "substrate": "scaffolded_sd054_onboarding (foraging-competence residual amend, 2026-06-05)", "condition": "ALL_LEVERS_ON", "naming_note": "V3-EXQ-603f label repurposed (user directive 2026-06-06) for the substrate-readiness run; the Q-045/MECH-313/MECH-260 4-arm ablation (experiment_proposals EXP-603F-POSTSUBSTRATE) is the downstream cohort that resumes after this readiness gate clears.", "predecessor": "2026-06-05 moderate-budget local readiness check (1/3 foraging axes); V3-EXQ-634c (seeding-half validated); V3-EXQ-603e (restored-budget FAIL).", "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "pre_registered_gates": {"g0_stage0_z_goal_gate": 0.4, "g1_p1_survival": "median episode length over last 10 P1 episodes >= 75", "g2_contact_gate": 0.0, "g3_canonical_consumption_gated": "z_goal_norm_at_contact_peak > 0.4 (reported; canonical design-doc gate, NOT the task PASS driver)", "min_fraction": 0.6666666666666666, "pass_rule": "PASS = G0 AND G1 AND G2 (each >= 2/3 seeds)"}, "scaffold_curriculum": {"stage0_budget": 20, "stage0b_budget": 10, "p0_budget": 100, "p1_budget": 50, "p2_budget": 15, "train_steps": 200, "p1_anneal_hold_fraction": 0.3, "p0_num_hazards": 1, "p2_hfa_guard": 0.3, "p1_reef_spawn_hold_fraction": 0.4, "auto_reconcile_gating_to_seeding": true, "seeding_gain": 1.5, "seeding_benefit_threshold": 0.02, "seeding_drive_floor": 0.9, "cue_recall_bridge_enabled": true, "cue_n_resource_types": 3, "stage0_bind_incentive_token": true, "cue_recall_gain": 0.2, "developmental_window_enabled": true, "stage0b_enabled": true, "contact_gated_goal_updates": true, "z_goal_enabled": true, "drive_weight": 2.0}, "substrate_gate_passed_task_three": false, "task_gate": {"g0_stage0_positive_control": true, "g1_p1_survival": false, "g2_p2_contact": false, "overall_pass": false, "min_fraction": 0.6666666666666666, "stage0_z_goal_gate": 0.4, "contact_gate": 0.0, "per_seed_g0": [true, true, true], "per_seed_g1": [false, false, false], "per_seed_g2": [false, false, true]}, "canonical_readiness_gate": {"substrate_gate_passed": false, "stage0_positive_control": true, "g1_survival": false, "g2_contact": false, "g3_zgoal": false, "z_goal_gate": 0.4, "contact_gate": 0.0, "min_fraction": 0.6666666666666666, "g3_source": "z_goal_norm_at_contact_peak"}, "interpretation": {"label": "substrate_not_engaged", "readiness_route": "foraging_competence_open", "preconditions": [{"name": "stage0_forced_feed_lights_zgoal", "kind": "readiness", "description": "Stage-0 forced supra-threshold benefit must light z_goal (>0.4 on >=2/3 seeds). This is the positive control that the goal-FORMATION substrate works, decoupled from foraging competence. Below-floor => substrate_not_ready_requeue (goal-formation broken), NOT a foraging-competence verdict.", "control": "Stage-0 nursery feeds a forced supra-threshold benefit every step regardless of contact (run_stage0_nursery).", "measured": 1.0, "threshold": 0.6666666666666666, "met": true}], "criteria_non_degenerate": {"G0_stage0": true, "G1_survival": true, "G2_contact": true}, "criteria": [{"name": "G0_stage0_positive_control", "load_bearing": true, "passed": true}, {"name": "G1_p1_survival", "load_bearing": true, "passed": false}, {"name": "G2_p2_contact", "load_bearing": true, "passed": false}]}, "per_seed": [{"seed": 42, "aborted_at": null, "abort_reason": "", "stage0_z_goal_norm_peak": 0.49763309955596924, "stage0_z_goal_formed": true, "stage0_token_bank_size_end": 3, "stage0b_retention_ratio": 0.9942046842589285, "stage0b_retention_gate_passed": true, "p0_mean_episode_length": 89.87, "p1_survival_pass": false, "p1_median_last_window_episode_length": 22.5, "p1_n_reef_spawn_episodes": 20, "p1_reconciled_gating_threshold": 0.004761904761904763, "p1_n_contact_refresh_updates": 0, "p1_n_decay_only_updates": 0, "p2_contact_rate": 0.0, "p2_contact_steps": 0, "p2_num_contact_events": 0, "p2_z_goal_norm_peak": 0.536737322807312, "p2_z_goal_norm_at_contact_peak": 0.0, "p2_n_cue_recall_fires": 467, "p2_hazard_food_attraction_used": 0.3, "g0_stage0_zgoal": true, "g1_p1_survival": false, "g2_p2_contact": false, "reached_p1": true, "reached_p2": true, "seed_pass": false}, {"seed": 43, "aborted_at": null, "abort_reason": "", "stage0_z_goal_norm_peak": 0.4069739580154419, "stage0_z_goal_formed": true, "stage0_token_bank_size_end": 3, "stage0b_retention_ratio": 0.9463668131736158, "stage0b_retention_gate_passed": true, "p0_mean_episode_length": 28.95, "p1_survival_pass": false, "p1_median_last_window_episode_length": 13.5, "p1_n_reef_spawn_episodes": 20, "p1_reconciled_gating_threshold": 0.004761904761904763, "p1_n_contact_refresh_updates": 0, "p1_n_decay_only_updates": 0, "p2_contact_rate": 0.0, "p2_contact_steps": 0, "p2_num_contact_events": 0, "p2_z_goal_norm_peak": 0.4293287396430969, "p2_z_goal_norm_at_contact_peak": 0.0, "p2_n_cue_recall_fires": 216, "p2_hazard_food_attraction_used": 0.3, "g0_stage0_zgoal": true, "g1_p1_survival": false, "g2_p2_contact": false, "reached_p1": true, "reached_p2": true, "seed_pass": false}, {"seed": 44, "aborted_at": null, "abort_reason": "", "stage0_z_goal_norm_peak": 0.4336722791194916, "stage0_z_goal_formed": true, "stage0_token_bank_size_end": 3, "stage0b_retention_ratio": 0.9916777690907003, "stage0b_retention_gate_passed": true, "p0_mean_episode_length": 95.21, "p1_survival_pass": false, "p1_median_last_window_episode_length": 26.5, "p1_n_reef_spawn_episodes": 20, "p1_reconciled_gating_threshold": 0.004761904761904763, "p1_n_contact_refresh_updates": 480, "p1_n_decay_only_updates": 0, "p2_contact_rate": 0.35807860262008734, "p2_contact_steps": 164, "p2_num_contact_events": 117, "p2_z_goal_norm_peak": 0.4505549967288971, "p2_z_goal_norm_at_contact_peak": 0.44929927587509155, "p2_n_cue_recall_fires": 458, "p2_hazard_food_attraction_used": 0.3, "g0_stage0_zgoal": true, "g1_p1_survival": false, "g2_p2_contact": true, "reached_p1": true, "reached_p2": true, "seed_pass": false}], "machine": "ree-cloud-3"}
+{
+  "run_id": "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T173332Z_v3",
+  "experiment_type": "v3_exq_603f_scaffolded_sd054_substrate_readiness",
+  "queue_id": "V3-EXQ-603f",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260607T173332Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)",
+  "substrate": "scaffolded_sd054_onboarding (foraging-competence residual amend, 2026-06-05)",
+  "condition": "ALL_LEVERS_ON",
+  "naming_note": "V3-EXQ-603f label repurposed (user directive 2026-06-06) for the substrate-readiness run; the Q-045/MECH-313/MECH-260 4-arm ablation (experiment_proposals EXP-603F-POSTSUBSTRATE) is the downstream cohort that resumes after this readiness gate clears.",
+  "predecessor": "2026-06-05 moderate-budget local readiness check (1/3 foraging axes); V3-EXQ-634c (seeding-half validated); V3-EXQ-603e (restored-budget FAIL).",
+  "stage_plan": [
+    {
+      "stage": "0",
+      "name": "nursery_forced_feed",
+      "method": "run_stage0_nursery",
+      "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"
+    },
+    {
+      "stage": "1",
+      "name": "guided_low_conflict",
+      "method": "run_p0",
+      "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"
+    },
+    {
+      "stage": "2",
+      "name": "easy_foraging",
+      "method": "run_p1 (early anneal)",
+      "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"
+    },
+    {
+      "stage": "3",
+      "name": "guarded_hazard",
+      "method": "run_p1 (late anneal)",
+      "desc": "hazard_food_attraction + proximity_harm ramp toward target"
+    },
+    {
+      "stage": "4",
+      "name": "mature_test",
+      "method": "run_p2",
+      "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"
+    }
+  ],
+  "pre_registered_gates": {
+    "g0_stage0_z_goal_gate": 0.4,
+    "g1_p1_survival": "median episode length over last 10 P1 episodes >= 75",
+    "g2_contact_gate": 0.0,
+    "g3_canonical_consumption_gated": "z_goal_norm_at_contact_peak > 0.4 (reported; canonical design-doc gate, NOT the task PASS driver)",
+    "min_fraction": 0.6666666666666666,
+    "pass_rule": "PASS = G0 AND G1 AND G2 (each >= 2/3 seeds)"
+  },
+  "scaffold_curriculum": {
+    "stage0_budget": 20,
+    "stage0b_budget": 10,
+    "p0_budget": 100,
+    "p1_budget": 50,
+    "p2_budget": 15,
+    "train_steps": 200,
+    "p1_anneal_hold_fraction": 0.3,
+    "p0_num_hazards": 1,
+    "p2_hfa_guard": 0.3,
+    "p1_reef_spawn_hold_fraction": 0.4,
+    "auto_reconcile_gating_to_seeding": true,
+    "seeding_gain": 1.5,
+    "seeding_benefit_threshold": 0.02,
+    "seeding_drive_floor": 0.9,
+    "cue_recall_bridge_enabled": true,
+    "cue_n_resource_types": 3,
+    "stage0_bind_incentive_token": true,
+    "cue_recall_gain": 0.2,
+    "developmental_window_enabled": true,
+    "stage0b_enabled": true,
+    "contact_gated_goal_updates": true,
+    "z_goal_enabled": true,
+    "drive_weight": 2.0
+  },
+  "substrate_gate_passed_task_three": false,
+  "task_gate": {
+    "g0_stage0_positive_control": true,
+    "g1_p1_survival": false,
+    "g2_p2_contact": false,
+    "overall_pass": false,
+    "min_fraction": 0.6666666666666666,
+    "stage0_z_goal_gate": 0.4,
+    "contact_gate": 0.0,
+    "per_seed_g0": [
+      true,
+      true,
+      true
+    ],
+    "per_seed_g1": [
+      false,
+      false,
+      false
+    ],
+    "per_seed_g2": [
+      false,
+      false,
+      true
+    ]
+  },
+  "canonical_readiness_gate": {
+    "substrate_gate_passed": false,
+    "stage0_positive_control": true,
+    "g1_survival": false,
+    "g2_contact": false,
+    "g3_zgoal": false,
+    "z_goal_gate": 0.4,
+    "contact_gate": 0.0,
+    "min_fraction": 0.6666666666666666,
+    "g3_source": "z_goal_norm_at_contact_peak"
+  },
+  "interpretation": {
+    "label": "substrate_not_engaged",
+    "readiness_route": "foraging_competence_open",
+    "preconditions": [
+      {
+        "name": "stage0_forced_feed_lights_zgoal",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit must light z_goal (>0.4 on >=2/3 seeds). This is the positive control that the goal-FORMATION substrate works, decoupled from foraging competence. Below-floor => substrate_not_ready_requeue (goal-formation broken), NOT a foraging-competence verdict.",
+        "control": "Stage-0 nursery feeds a forced supra-threshold benefit every step regardless of contact (run_stage0_nursery).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "G0_stage0": true,
+      "G1_survival": true,
+      "G2_contact": true
+    },
+    "criteria": [
+      {
+        "name": "G0_stage0_positive_control",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G1_p1_survival",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "G2_p2_contact",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "stage0_z_goal_norm_peak": 0.49763309955596924,
+      "stage0_z_goal_formed": true,
+      "stage0_token_bank_size_end": 3,
+      "stage0b_retention_ratio": 0.9942046842589285,
+      "stage0b_retention_gate_passed": true,
+      "p0_mean_episode_length": 89.87,
+      "p1_survival_pass": false,
+      "p1_median_last_window_episode_length": 22.5,
+      "p1_n_reef_spawn_episodes": 20,
+      "p1_reconciled_gating_threshold": 0.004761904761904763,
+      "p1_n_contact_refresh_updates": 0,
+      "p1_n_decay_only_updates": 0,
+      "p2_contact_rate": 0.0,
+      "p2_contact_steps": 0,
+      "p2_num_contact_events": 0,
+      "p2_z_goal_norm_peak": 0.536737322807312,
+      "p2_z_goal_norm_at_contact_peak": 0.0,
+      "p2_n_cue_recall_fires": 467,
+      "p2_hazard_food_attraction_used": 0.3,
+      "g0_stage0_zgoal": true,
+      "g1_p1_survival": false,
+      "g2_p2_contact": false,
+      "reached_p1": true,
+      "reached_p2": true,
+      "seed_pass": false
+    },
+    {
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "stage0_z_goal_norm_peak": 0.4069739580154419,
+      "stage0_z_goal_formed": true,
+      "stage0_token_bank_size_end": 3,
+      "stage0b_retention_ratio": 0.9463668131736158,
+      "stage0b_retention_gate_passed": true,
+      "p0_mean_episode_length": 28.95,
+      "p1_survival_pass": false,
+      "p1_median_last_window_episode_length": 13.5,
+      "p1_n_reef_spawn_episodes": 20,
+      "p1_reconciled_gating_threshold": 0.004761904761904763,
+      "p1_n_contact_refresh_updates": 0,
+      "p1_n_decay_only_updates": 0,
+      "p2_contact_rate": 0.0,
+      "p2_contact_steps": 0,
+      "p2_num_contact_events": 0,
+      "p2_z_goal_norm_peak": 0.4293287396430969,
+      "p2_z_goal_norm_at_contact_peak": 0.0,
+      "p2_n_cue_recall_fires": 216,
+      "p2_hazard_food_attraction_used": 0.3,
+      "g0_stage0_zgoal": true,
+      "g1_p1_survival": false,
+      "g2_p2_contact": false,
+      "reached_p1": true,
+      "reached_p2": true,
+      "seed_pass": false
+    },
+    {
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "stage0_z_goal_norm_peak": 0.4336722791194916,
+      "stage0_z_goal_formed": true,
+      "stage0_token_bank_size_end": 3,
+      "stage0b_retention_ratio": 0.9916777690907003,
+      "stage0b_retention_gate_passed": true,
+      "p0_mean_episode_length": 95.21,
+      "p1_survival_pass": false,
+      "p1_median_last_window_episode_length": 26.5,
+      "p1_n_reef_spawn_episodes": 20,
+      "p1_reconciled_gating_threshold": 0.004761904761904763,
+      "p1_n_contact_refresh_updates": 480,
+      "p1_n_decay_only_updates": 0,
+      "p2_contact_rate": 0.35807860262008734,
+      "p2_contact_steps": 164,
+      "p2_num_contact_events": 117,
+      "p2_z_goal_norm_peak": 0.4505549967288971,
+      "p2_z_goal_norm_at_contact_peak": 0.44929927587509155,
+      "p2_n_cue_recall_fires": 458,
+      "p2_hazard_food_attraction_used": 0.3,
+      "g0_stage0_zgoal": true,
+      "g1_p1_survival": false,
+      "g2_p2_contact": true,
+      "reached_p1": true,
+      "reached_p2": true,
+      "seed_pass": false
+    }
+  ],
+  "machine": "ree-cloud-3",
+  "evidence_quality_note": "V3-EXQ-603f (2026-06-07 17:33 re-run of the scaffolded_sd054 substrate-readiness diagnostic) self-routed substrate_not_engaged, claim-free. Same survival/hazard-avoidance learning gap diagnosed for the 05:39 sibling in confirmed failure_autopsy_V3-EXQ-603f_2026-06-07 and the 603g leg in failure_autopsy_V3-EXQ-603g-624c-651a_2026-06-07: G1 P1-survival does not train at this budget. non_contributory; weights no claim. pending_retest_after_substrate behind scaffolded_sd054_onboarding (GAP-2); downstream survival-leg substrate work (SD-058/MECH-357 instrumental-avoidance gate + SD-059/MECH-358 escape-affordance bridge) now addresses the gap. [Handled inline /governance 2026-06-08: explained by known substrate gap.]",
+  "evidence_direction_note": "governance 2026-06-08: set to non_contributory per confirmed failure_autopsy_V3-EXQ-603f_2026-06-07.",
+  "source_autopsy": "failure_autopsy_V3-EXQ-603f_2026-06-07",
+  "recommended_epistemic_category": "substrate_conditional"
+}

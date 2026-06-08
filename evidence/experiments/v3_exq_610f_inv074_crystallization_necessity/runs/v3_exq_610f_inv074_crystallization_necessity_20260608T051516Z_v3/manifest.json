@@ -27,13 +27,13 @@
     "MECH-313"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "INV-074": "unknown",
-    "MECH-313": "unknown",
-    "MECH-333": "unknown",
-    "MECH-334": "unknown",
-    "MECH-341": "unknown"
+    "INV-074": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-333": "non_contributory",
+    "MECH-334": "non_contributory",
+    "MECH-341": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -50,5 +50,9 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_quality_note": "V3-EXQ-610f (6th necessity-test iteration; ARM_0 stripped to a true negative) re-FAILed D2: the stripped REINFORCE control did NOT collapse its action entropy under the IGW-023 phase-3 noise regime (delta -0.012; threshold map ARM_0/2/3 all -0.010 to -0.012, no entropy floor load-bearing), so the necessity premise (collapse-without-crystallization) was never instantiated and D1 is unreadable. Wiring verified-live (policy trained, expansion stepped, EWC penalty 283-803 in loss) and D3 sanity PASS, so this is a genuine test-design finding, not a harness no-op. INV-074 NOT weakened (universal invariant; OD critical-period existence proof; lit_conf 0.82). non_contributory; pending_retest_after_redesign (V3-EXQ task-shift successor replacing noise-only phase-3 with a conflicting task-distribution shift). MECH-341/MECH-313 D4 floor-contrast uninterpretable because D2 FAILed. User adjudication 2026-06-08: noise != catastrophic-forgetting pressure; route one task-shift redesign, decisive for the substrate-incapacity reading either way. [Applied /governance 2026-06-08: corrected evidence_direction unknown->non_contributory per confirmed failure_autopsy_V3-EXQ-610f_2026-06-08; was blanket-weakening all 5 tagged claims.]",
+  "evidence_direction_note": "governance 2026-06-08: set to non_contributory per confirmed failure_autopsy_V3-EXQ-610f_2026-06-08.",
+  "source_autopsy": "failure_autopsy_V3-EXQ-610f_2026-06-08",
+  "recommended_epistemic_category": "substrate_ceiling"
 }

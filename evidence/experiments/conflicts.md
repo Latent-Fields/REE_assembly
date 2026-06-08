@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-08T13:27:55.269767Z`
+Generated: `2026-06-08T14:22:51.072436Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -26,7 +26,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-068` | directional, mixed_evidence | 4 | 1 | 0.4 | `2026-05-10_arc_068_tonic_dopamine_opportunity_cost_niv_2007` | 6 |
 | `ARC-071` | directional | 8 | 1 | 0.222 | `2026-05-10_arc_071_visuomotor_chunk_size_sakai2003` | 9 |
 | `INV-054` | directional, source_disagreement | 6 | 3 | 0.667 | `2026-05-05_inv_054_sudden_gains_tang1999` | 9 |
-| `INV-074` | directional, source_disagreement | 4 | 2 | 0.667 | `v3_exq_610f_inv074_crystallization_necessity_20260608T051516Z_v3` | 6 |
+| `INV-074` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-05-19_mech_334_sleep_two_stage_gate_aton2013` | 5 |
 | `MECH-033` | directional, mixed_evidence | 22 | 1 | 0.087 | `2026-05-15_topic2_hippo_prediction_imagination_buckner2010` | 24 |
 | `MECH-070` | directional, mixed_evidence | 1 | 6 | 0.286 | `v3_exq_212_mech070_e2_motor_model_pair_1775169288_v3` | 8 |
 | `MECH-071` | directional, mixed_evidence | 21 | 11 | 0.688 | `20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3` | 42 |
@@ -62,11 +62,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-230` | directional, mixed_evidence | 9 | 1 | 0.2 | `2026-05-04_sd_049_temporal_community_schapiro2016` | 12 |
 | `MECH-256` | directional, mixed_evidence | 9 | 3 | 0.5 | `2026-05-17_sd_029_pain_precision_signal_seymour2019` | 15 |
 | `MECH-295` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3` | 8 |
-| `MECH-313` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_610f_inv074_crystallization_necessity_20260608T051516Z_v3` | 6 |
 | `MECH-318` | directional | 7 | 1 | 0.25 | `2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019` | 8 |
-| `MECH-333` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `v3_exq_610f_inv074_crystallization_necessity_20260608T051516Z_v3` | 4 |
-| `MECH-334` | directional, source_disagreement | 3 | 2 | 0.8 | `v3_exq_610f_inv074_crystallization_necessity_20260608T051516Z_v3` | 5 |
-| `MECH-341` | directional | 5 | 1 | 0.333 | `v3_exq_610f_inv074_crystallization_necessity_20260608T051516Z_v3` | 6 |
+| `MECH-334` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-05-19_mech_334_sleep_two_stage_gate_aton2013` | 4 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 7 |
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
@@ -472,13 +469,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-074
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=2, conflict_ratio=0.667, exp_conf=0.374, lit_conf=0.919, overall_confidence_legacy=0.701
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.277, lit_conf=0.919, overall_confidence_legacy=0.759
 - Recent entries:
   - `2026-06-01T17:30:16.059818Z` `experimental` `v3_exq_610b_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
   - `2026-06-03T17:06:33.909812Z` `experimental` `v3_exq_610c_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
   - `2026-06-03T19:54:00.201885Z` `experimental` `v3_exq_610d_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
   - `2026-06-04T22:53:19Z` `experimental` `v3_exq_610e_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
-  - `2026-06-08T05:15:16Z` `experimental` `v3_exq_610f_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
+  - `2026-06-08T05:15:16Z` `experimental` `v3_exq_610f_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `The permanent impairment is demonstrated for input/stimulus deficits affecting low-level statistics; INV-074's specific failure mode is suppression of a competing diversity circuit by a high-variance dominant pathway. The mechanism (information-plasticity collapse) is shared, but Achille et al. do not directly instrument a diversity-vs-dominant-pathway competition, so the mapping to ARC-065 is structural, not literal.` (1)
   - `Deficit severity depends on network size and deficit timing -- a corollary INV-074 does not yet quantify: the crystallization-window requirement may itself scale with model capacity, which the claim should eventually address rather than treat as a fixed schedule.` (1)
@@ -632,7 +629,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-091
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.218, lit_conf=0.844, overall_confidence_legacy=0.688
+- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.217, lit_conf=0.844, overall_confidence_legacy=0.687
 - Recent entries:
   - `2026-04-08T17:00:00Z` `literature` `targeted_review_connectome_mech_091` direction=`supports` confidence=0.72
   - `2026-04-08T17:00:00Z` `literature` `targeted_review_connectome_mech_091` direction=`supports` confidence=0.74
@@ -692,7 +689,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-095
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=20, weakens=6, conflict_ratio=0.462, exp_conf=0.526, lit_conf=0.836, overall_confidence_legacy=0.681
+- Evidence breakdown: supports=20, weakens=6, conflict_ratio=0.462, exp_conf=0.525, lit_conf=0.836, overall_confidence_legacy=0.68
 - Recent entries:
   - `2026-05-03T04:20:44Z` `literature` `targeted_review_connectome_mech_095` direction=`supports` confidence=0.74
   - `2026-05-03T04:20:44Z` `literature` `targeted_review_connectome_mech_095` direction=`supports` confidence=0.82
@@ -786,7 +783,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-111
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=3, conflict_ratio=0.8, exp_conf=0.401, lit_conf=0.756, overall_confidence_legacy=0.543
+- Evidence breakdown: supports=2, weakens=3, conflict_ratio=0.8, exp_conf=0.401, lit_conf=0.755, overall_confidence_legacy=0.543
 - Recent entries:
   - `2026-04-02T02:18:31Z` `experimental` `v3_exq_073b_mech111_novelty_signal` direction=`superseded` confidence=0.55
   - `2026-05-08T15:31:00Z` `experimental` `v3_exq_141b_mech111_novelty_drive_corrected_substrate` direction=`weakens` confidence=0.75
@@ -1144,7 +1141,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-256
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.67, lit_conf=0.861, overall_confidence_legacy=0.765
+- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.669, lit_conf=0.861, overall_confidence_legacy=0.765
 - Recent entries:
   - `2026-05-08T18:02:53.257324Z` `experimental` `v3_exq_537b_sd029_decoupled_curricula` direction=`non_contributory` confidence=0
   - `2026-05-08T20:59:35.208807Z` `experimental` `v3_exq_537c_sd029_capacity_lift` direction=`non_contributory` confidence=0
@@ -1182,26 +1179,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### MECH-313
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.408, lit_conf=0.837, overall_confidence_legacy=0.623
-- Recent entries:
-  - `2026-05-31T20:23:07Z` `experimental` `v3_exq_621_scaffolded_sd054_onboarding_substrate_readiness` direction=`superseded` confidence=0.55
-  - `2026-05-31T23:09:32Z` `experimental` `v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness` direction=`non_contributory` confidence=0
-  - `2026-06-01T09:53:45Z` `experimental` `v3_exq_603d_q045_mech313_mech260_scaffolded_sd054` direction=`non_contributory` confidence=0
-  - `2026-06-03T04:03:10Z` `experimental` `v3_exq_603e_q045_mech313_mech260_scaffolded_sd054` direction=`non_contributory` confidence=0
-  - `2026-06-08T05:15:16Z` `experimental` `v3_exq_610f_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `If REE's MECH-313 (stochastic-noise-floor) and MECH-316 (cross-episode-regularity-extraction) cannot be unified into a single mutual-information objective like DIAYN's, the architectural-economy claim that ARC-065 and ARC-064 are one machinery in two readings is weakened.` (1)
-  - `DIAYN's discriminator-collapse failure mode (degenerate skills the discriminator cannot distinguish) is directly homologous to the option-collapse and monomodal-collapse patterns REE has hit; the mitigation literature transfers.` (1)
-  - `If REE's MECH-313 stochastic-noise-floor cannot be implemented as MaxEnt-RL-style policy-entropy regularisation, the inheritance pathway from SAC weakens. This is unlikely -- MaxEnt regularisation is a standard substrate-implementation technique.` (1)
-  - `SAC has known temperature-parameter sensitivity: too low, and the policy collapses to deterministic; too high, and the policy ignores the reward signal. REE's MECH-313 inherits this sensitivity. The temperature parameter is a hyperparameter to be calibrated, not derivable from first principles.` (1)
-  - `Pairwise distance-based diversity measures (e.g. mean L2 distance between policies) suffer from cycling: a population can have high mean pairwise distance but still cluster into a few degenerate modes. Volume-based measures are necessary to catch this failure mode.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### MECH-318
 - Conflict types: directional
 - Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0, lit_conf=0.839, overall_confidence_legacy=0.839
@@ -1222,61 +1199,21 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
-### MECH-333
-- Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.324, lit_conf=0.773, overall_confidence_legacy=0.661
-- Recent entries:
-  - `2026-06-04T22:53:19Z` `experimental` `v3_exq_610e_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
-  - `2026-06-07T10:06:02Z` `literature` `targeted_review_connectome_mech_333` direction=`supports` confidence=0.62
-  - `2026-06-07T10:06:02Z` `literature` `targeted_review_connectome_mech_333` direction=`mixed` confidence=0.6
-  - `2026-06-07T10:06:02Z` `literature` `targeted_review_connectome_mech_333` direction=`supports` confidence=0.72
-  - `2026-06-08T05:15:16Z` `experimental` `v3_exq_610f_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `Critical-period onset is triggered specifically by parvalbumin-interneuron maturation and perineuronal-net consolidation; before that maturation the window does not open. A REE plasticity window keyed to a diversity/inhibitory element predicts no plasticity until that element reaches a threshold maturity -- a falsifiable timing prediction.` (1)
-  - `Perineuronal nets that consolidate around mature PV cells act to CLOSE the window and stabilize the circuit; disrupting them can reopen plasticity. The same structure that opens the window later enforces winner-take-all stabilization -- consistent with MECH-333's 'before winner-take-all capture' framing but implying the closing mechanism is an active brake, not mere decay.` (1)
-  - `Ocular-dominance plasticity here was 'largely independent of the inhibitory tone' -- contradicting the strong reading of MECH-333 that the window is opened/closed by E/I balance and GABA maturation specifically. A REE implementation that pins the plasticity window solely to an inhibition/diversity-weight knob may be mechanistically incomplete.` (1)
-  - `Loss of PSD-95 reinstated silent synapses and REOPENED juvenile-like plasticity after normal closure -- the window's closure is reversible and tied to a postsynaptic glutamatergic maturation marker, not an irreversible E/I set-point.` (1)
-  - `Transplanted interneurons unable to load GABA into vesicles integrate into the host circuit but do NOT open a plasticity window -- the opening of the window is gated specifically on GABAergic transmission, not merely on the presence of inhibitory cells. The REE analog: simply adding a diversity/inhibitory element is insufficient; it must be functionally transmitting to gate the window open.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
 ### MECH-334
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=2, conflict_ratio=0.8, exp_conf=0.374, lit_conf=0.869, overall_confidence_legacy=0.671
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.277, lit_conf=0.869, overall_confidence_legacy=0.721
 - Recent entries:
   - `2026-06-01T17:30:16.059818Z` `experimental` `v3_exq_610b_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
   - `2026-06-03T17:06:33.909812Z` `experimental` `v3_exq_610c_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
   - `2026-06-03T19:54:00.201885Z` `experimental` `v3_exq_610d_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
   - `2026-06-04T22:53:19Z` `experimental` `v3_exq_610e_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
-  - `2026-06-08T05:15:16Z` `experimental` `v3_exq_610f_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
+  - `2026-06-08T05:15:16Z` `experimental` `v3_exq_610f_inv074_crystallization_necessity` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `Lynx1 knockout retains juvenile plasticity indefinitely -- removing a single brake is sufficient to prevent closure, so MECH-334's closure is not robust to omission of the locking mechanism: 'no closure' is the default, closure is the engineered addition.` (1)
   - `Lynx1 acts via nicotinic acetylcholine receptor signalling, partially redundant with the perineuronal-net lock (Pizzorusso 2002); MECH-334 modelled as a single closure mechanism may under-represent a biologically multi-lock architecture, with implications for how brittle a single-mechanism REE implementation would be.` (1)
   - `Plasticity reactivation required active enzymatic removal of the lock; spontaneous reopening did not occur -- MECH-334's closure must therefore be modelled as a maintained constraint, not a one-time event, or the crystallized distribution will not in fact be protected long-term.` (1)
   - `Closure timing tracked perineuronal-net assembly and was delayed (not abolished) by dark rearing -- closure is experience-modulated, so a MECH-334 implementation with a fixed closure epoch independent of the realised learning trajectory would diverge from the biology.` (1)
   - `The ocular-dominance shift was evident ONLY after post-deprivation sleep, not after waking deprivation alone -- if REE crystallizes the diversity distribution during the active phase without a subsequent consolidation/sleep step, it will not reproduce the biological crystallization and MECH-334 would be mis-implemented.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### MECH-341
-- Conflict types: directional
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.724, lit_conf=0.78, overall_confidence_legacy=0.752
-- Recent entries:
-  - `2026-06-07T07:07:01Z` `experimental` `v3_exq_614e_mech341_within_class_temperature_authority_on` direction=`non_contributory` confidence=0
-  - `2026-06-07T10:06:02Z` `literature` `targeted_review_connectome_mech_341` direction=`supports` confidence=0.7
-  - `2026-06-07T10:06:02Z` `literature` `targeted_review_connectome_mech_341` direction=`supports` confidence=0.6
-  - `2026-06-07T10:06:02Z` `literature` `targeted_review_connectome_mech_341` direction=`supports` confidence=0.68
-  - `2026-06-08T05:15:16Z` `experimental` `v3_exq_610f_inv074_crystallization_necessity` direction=`weakens` confidence=0.75
-- Recurring failure signatures:
-  - `Lesions of Area X (song-specific basal ganglia) permanently eliminate rapid within-syllable fundamental-frequency variation; without that variation, reinforcement-driven song learning loses its substrate. The REE analog: if the diversity circuit is ablated or down-weighted, the candidate pool collapses to a single deterministic class and there is nothing for E3 scoring to discriminate among.` (1)
-  - `Earlier Area X lesion studies found NO lasting effect on several measures of vocal variability -- the diversity contribution is specific to a particular variability channel (rapid within-syllable FF) and is easy to miss with the wrong readout. Cautions that measuring 'candidate diversity' at the wrong granularity can falsely conclude the diversity circuit is inert.` (1)
-  - `When the diversity channel is in its low-variability (directed-song) state, LMAN fires precise single spikes locked to song and trial-to-trial variability is minimal -- behaviour is near-deterministic. If a REE diversity circuit is left in a low-weight state, the candidate pool will not be carved into distinct classes at selection.` (1)
-  - `Different LMAN neurons in the same bird show distinct firing patterns, suggesting subsets jointly encode song features -- a single scalar 'exploration temperature' would under-describe the diversity signal, which is distributed and structured.` (1)
-  - `Pharmacological inactivation of LMAN during singing makes RA firing adultlike in its stereotypy -- the variability channel can be switched off, and when it is, the motor program is deterministic. The REE analog: if the diversity-circuit signal weight is driven to zero, the selected trajectory class is fixed regardless of latent proposal diversity.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -1603,7 +1540,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-021
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.317, lit_conf=0.895, overall_confidence_legacy=0.606
+- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.317, lit_conf=0.894, overall_confidence_legacy=0.606
 - Recent entries:
   - `2026-04-19T04:25:26Z` `experimental` `v3_exq_325a_sd021_descending_pain_modulation` direction=`weakens` confidence=0.75
   - `2026-04-19T10:23:04Z` `experimental` `v3_exq_325a_sd021_descending_pain_modulation` direction=`non_contributory` confidence=0
@@ -1643,7 +1580,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-029
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=10, weakens=3, conflict_ratio=0.462, exp_conf=0.627, lit_conf=0.855, overall_confidence_legacy=0.741
+- Evidence breakdown: supports=10, weakens=3, conflict_ratio=0.462, exp_conf=0.626, lit_conf=0.855, overall_confidence_legacy=0.74
 - Recent entries:
   - `2026-05-09T21:45:17.436275Z` `experimental` `v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier` direction=`non_contributory` confidence=0
   - `2026-05-10T17:25:58.458500Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`non_contributory` confidence=0
