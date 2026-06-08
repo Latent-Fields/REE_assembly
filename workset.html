@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-05-26.3 -->
+<!-- WORKSET_VERSION: 2026-06-08.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -951,13 +951,45 @@ function renderAll() {
   }
 }
 
-function copyText(text, btn) {
-  navigator.clipboard.writeText(text || '').then(() => {
+function markCopied(btn) {
     btn.classList.add('copied');
     btn.textContent = 'Copied';
     toast('Brief copied to clipboard');
     setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copy brief'; }, 1500);
-  }).catch(() => toast('Copy failed -- select text in brief panel'));
+}
+
+function copyViaTextarea(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text || '';
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  ta.style.top = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  let ok = false;
+  try {
+    ok = document.execCommand('copy');
+  } catch (_) {
+    ok = false;
+  } finally {
+    document.body.removeChild(ta);
+  }
+  return ok;
+}
+
+function copyText(text, btn) {
+  const payload = text || '';
+  if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(payload).then(() => markCopied(btn)).catch(() => {
+      if (copyViaTextarea(payload)) markCopied(btn);
+      else toast('Copy failed -- select text in brief panel');
+    });
+    return;
+  }
+  if (copyViaTextarea(payload)) markCopied(btn);
+  else toast('Copy failed -- select text in brief panel');
 }
 
 function toast(msg) {
