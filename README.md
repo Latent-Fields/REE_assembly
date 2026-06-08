@@ -77,6 +77,20 @@ These three engines are embedded in a broader system:
 
 ---
 
+## Emotion as anti-collapse architecture
+
+Current artificial intelligence often begins from optimisation: define an objective, maximise it, then add safety constraints afterward. REE begins from a different premise. A viable agent is not a single optimiser with a safety wrapper; it is a set of partially independent control systems that prevent any one gradient from taking over behaviour.
+
+Emotion-like systems are central to that architecture. Harm, relief, safety, wanting, liking, curiosity, blocked agency, salience, and commitment release are not decorative feelings. They are gates, biases, interrupts, and learning signals that shape what the agent notices, what it repeats, what it avoids, when it persists, and when it stops.
+
+This is why REE treats emotion as a source of behavioural diversity rather than irrational noise. Emotion prevents behavioural collapse: the agent does not simply chase food through fire, freeze forever, optimise one scalar, or keep acting when safe. It can switch, release, recover, explore, and remember consequence.
+
+Emotion is not an obstacle to optimisation. Emotion is how optimisation is prevented from becoming pathological.
+
+A longer thought note lives at [docs/thoughts/2026-06-08_emotion_as_anti_collapse_architecture.md](docs/thoughts/2026-06-08_emotion_as_anti_collapse_architecture.md).
+
+---
+
 ## The commitment boundary
 
 This is an important architectural necessity to allow for responsibility for actions.
