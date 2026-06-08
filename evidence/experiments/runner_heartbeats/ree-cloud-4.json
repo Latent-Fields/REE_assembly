@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-08T01:23:59Z",
+  "last_tick_utc": "2026-06-08T01:54:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-652",
   "current_exq_started_utc": "2026-06-07T19:29:44.700786+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-057",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_CUE_g5_k2",
-    "runs_done": 11,
+    "run_label": "Seed 42 / ARM_CUE_g0",
+    "runs_done": 12,
     "runs_total": 21,
     "episodes_done": 30,
     "episodes_total": 235,
-    "overall_pct": 53.0
+    "overall_pct": 57.8
   },
-  "seconds_elapsed": 21255,
-  "seconds_remaining": 19416,
+  "seconds_elapsed": 23063,
+  "seconds_remaining": 19376,
   "recent_lines": [
     "[v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone] starting (dry_run=False) modulatory_authority=True gain=0.5",
     "Seed 42 Condition ARM_OFF",
@@ -99,7 +99,14 @@
     "verdict: seed=43 arm=ARM_CUE_g5_k2 pc_fire_steps=183 pc_windows=183",
     "Seed 44 Condition ARM_CUE_g5_k2",
     "[train] stage0 seed=44 arm=ARM_CUE_g5_k2 ep 20/235 z_goal_peak=0.4344 formed=True token_bank_size_end=3",
-    "[train] stage0b seed=44 arm=ARM_CUE_g5_k2 ep 30/235 retention=0.983 gate=pass"
+    "[train] stage0b seed=44 arm=ARM_CUE_g5_k2 ep 30/235 retention=0.983 gate=pass",
+    "[train] p0 seed=44 arm=ARM_CUE_g5_k2 ep 150/235 mean_len=98.0",
+    "[train] p1 seed=44 arm=ARM_CUE_g5_k2 ep 220/235 survival=FAIL refresh=408",
+    "[train] p2 seed=44 arm=ARM_CUE_g5_k2 ep 235/235 gain=5 kappa=2 contact_rate=0.2172 cue_fires=396 pc_fire_steps=396 pc_windows=396 pull_norm=0.0070319528707809865 post_cue_approach=0.13385826771653545 bg_approach=0.1388888888888889",
+    "verdict: seed=44 arm=ARM_CUE_g5_k2 pc_fire_steps=396 pc_windows=396",
+    "Seed 42 Condition ARM_CUE_g0.2_k10",
+    "[train] stage0 seed=42 arm=ARM_CUE_g0.2_k10 ep 20/235 z_goal_peak=0.5029 formed=True token_bank_size_end=3",
+    "[train] stage0b seed=42 arm=ARM_CUE_g0.2_k10 ep 30/235 retention=0.925 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
