@@ -1,46 +1,33 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-09T05:16:13Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-640b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-640",
-      "result": "PASS",
-      "completed_at": "2026-06-05T12:58:02.556862+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-610f",
-      "result": "FAIL",
-      "completed_at": "2026-06-08T05:15:16.673468+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603i",
-      "result": "FAIL",
-      "completed_at": "2026-06-08T20:11:33.690996+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-653",
-      "result": "PASS",
-      "completed_at": "2026-06-08T21:30:02.277808+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603j",
-      "result": "PASS",
-      "completed_at": "2026-06-09T05:12:08.765661+00:00"
-    }
+  "last_tick_utc": "2026-06-09T05:31:56Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-655",
+  "current_exq_started_utc": "2026-06-09T05:22:15.673943+00:00",
+  "current_title": "INV-074 crystallization-necessity: task-distribution-shift phase-3 redesign (supersedes 610f)",
+  "current_claim_id": "INV-074",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_stripped_control",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 0,
+    "episodes_total": 2500,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 581,
+  "seconds_remaining": 132000,
+  "recent_lines": [
+    "[V3-EXQ-655][ASSERT] FIX 2 OK: crystallized=True n_expansion_params=1249 exp_grad_seen=True exp_changed=True",
+    "[V3-EXQ-655][ASSERT] FIX 3 OK: ewc_anchored=True ewc_penalty=0.222746 residue_grad_sum=0.890985 (fisher_sum=8.9098539352417)",
+    "[V3-EXQ-655][ASSERT] all three fixes wired + verified.",
+    "Seed 42 Condition ARM_0_stripped_control",
+    "[V3-EXQ-655] Starting ARM_0_stripped_control seed=42 crystallize=False p3_eb=0.0 noise_floor=False e3_div=False"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 2199291,
   "runner_version": null,
   "gpu": {
