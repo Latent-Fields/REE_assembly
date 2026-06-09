@@ -1,4 +1,10 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_laughter_cognitive_load_social_reconfiguration.md
+Source-check: RESOLVED 2026-06-09 -- Neuroscience News article located (neurosciencenews.com/laughter-cognitive-load-neuroscience-20755); underlying source = Dr. Jacqueline Harding, "The Brain That Loves to Laugh" (Routledge/Taylor & Francis), a cross-disciplinary popular-science synthesis, NOT a primary empirical study (compass-level, not citable evidence)
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_laughter_cognitive_load_social_reconfiguration.md (thought-intake-laughter-cognitive-load-social-reconfiguration-20260609T1956Z, 2026-06-09)
+
 Source email date: 2026-05-26
 Source email subject: REE Laughter Rewires Brain Architecture and Lowers Cognitive Load - Neuroscience News
 Source saved-item attribution: Daniel Golden
