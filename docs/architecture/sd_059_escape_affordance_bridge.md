@@ -155,6 +155,60 @@ secondary P1 survival transfer improves without over-avoidance/starvation. Inter
 grid: relief-only / safety-only / both-required / neither-helps-AND-nav-control-fails
 (route to a navigation/competence substrate, NOT the bridge).
 
+## Safety-half trained-signal amend (V3-EXQ-603i secondary gap, 2026-06-09)
+
+The 2026-06-08 landing wired the SAFETY half structurally but left it **starved**.
+On **V3-EXQ-603i** the safety half credited **0/3 in every arm** (relief half 2/3,
+functional) because its credit condition -- raw threat-absence `threat_scale(z_now)
+<= 0` (i.e. `z_harm_a` norm below `threat_floor`) -- almost never fires under
+Stage-H: the threat does not go fully absent after a single directed action. This is
+the **symbol-of-mechanism-without-functional-input** gap named in
+`failure_autopsy_V3-EXQ-603i_2026-06-08` (Section 4 Prerequisites (b), Section 6
+Learning #2). REE already owns the trained threat-absence predictors -- **MECH-303**
+(`ResidueField.evaluate_safety`, contextual RBF terrain) and **MECH-304**
+(`ConditionedSafetyStore`, EMA-prototype cosine->sigmoid) -- but they were unwired to
+the bridge.
+
+**The fix (no-op default, bit-identical OFF; the bridge itself stays OFF by default):**
+
+- `EscapeAffordanceBridgeConfig` gains `use_trained_safety_signal` (False) +
+  `safety_signal_threshold` (0.5). `EscapeAffordanceBridge.update()` gains
+  `safety_signal: Optional[float] = None`. The safety credit now fires on raw
+  threat-absence **OR** (when `use_trained_safety_signal`) a trained
+  `safety_signal >= safety_signal_threshold`. OR-composed -> the original raw
+  mechanism is retained as a fallback; the trained path stays **inside** the existing
+  under-threat (`prev > threat_floor`) + directed-action gate, so it credits genuine
+  **response-produced** safety, not generic safe-context. New diagnostic
+  `mech358_n_safety_credit_trained` attributes credits to the trained predictor (the
+  non-vacuity readout).
+- `ConditionedSafetyStore.predict(z_world)` -- a read-only cosine->sigmoid query (no
+  decay/EMA mutation), additive and never called by existing paths -> zero behaviour
+  change. Lets the agent read the MECH-304 prediction for the **current post-action**
+  state at the bridge-update site (the store's own `update()` runs later in the same
+  `sense()`, so the cached `_conditioned_safety_signal` is one tick stale).
+- `agent.py`: at the bridge-`update` site, when `escape_use_trained_safety_signal` is
+  on and not simulation, `_eab_safety_signal = max` over enabled trained predictors
+  (MECH-304 `predict` + MECH-303 `evaluate_safety(...).mean()`, both pure reads) ->
+  passed as `bridge.update(safety_signal=...)`. `None` when the flag is off ->
+  bit-identical.
+- `REEConfig.escape_use_trained_safety_signal` (False) +
+  `escape_safety_signal_threshold` (0.5), wired through `from_dims`.
+
+**Verification:** 7/7 preflight + 951 contracts PASS (2 new C9/C10 +
+the prior 8). Activation smoke (bridge + MECH-304 + flag ON, retained threat): the
+agent feeds a real trained signal (~0.375 on an untrained encoder), the under-threat
+gate opens, and the safety half credits 5x via the trained signal
+(`mech358_n_safety_credit_trained=5`); flag OFF reproduces the 603i 0/0.
+
+**Governance:** SD-059 / MECH-358 are **neither validated nor weakened** by this amend
+(stay `candidate` / `v3_pending` / `pending_retest_after_substrate`). V3-EXQ-603i
+state is untouched; `claims.yaml` not modified. Validation: **V3-EXQ-603j** claim-free
+safety-half-credit readiness microdiagnostic (OFF reproduces 603i `safety_credit~0`;
+ON -> `mech358_n_safety_credit_trained > 0` on >=2/3 seeds). The full 4-arm G_H
+behavioural retest stays gated on the **PRIMARY** nav/survival-competence ceiling
+(scaffolded_sd054_onboarding Stage-H leg / separate chip) -- a retest can only score
+G_H once nav competence clears too.
+
 ## Related claims
 
 SD-058 / MECH-357 (parent gate), MECH-302 / SD-050 (relief), MECH-303/304 /
