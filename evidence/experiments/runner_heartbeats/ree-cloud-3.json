@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-09T20:31:17Z",
+  "last_tick_utc": "2026-06-09T20:46:22Z",
   "state": "running",
   "current_exq": "V3-EXQ-654a",
   "current_exq_started_utc": "2026-06-09T18:45:44.404549+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / rule_creator_absent_legacy_collapsed_rule_state",
     "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 90,
+    "episodes_done": 120,
     "episodes_total": 160,
-    "overall_pct": 26.0
+    "overall_pct": 29.2
   },
-  "seconds_elapsed": 6333,
-  "seconds_remaining": 11782,
+  "seconds_elapsed": 7237,
+  "seconds_remaining": 11285,
   "recent_lines": [
     "Arm ARM_OFF (rule_creator_absent_legacy_collapsed_rule_state) (P0=60 ep e2-train, P1=40 ep bias-train, P2=60 ep measure, steps_per_episode=200, dry_run=False)",
     "Seed 42 Condition rule_creator_absent_legacy_collapsed_rule_state",
@@ -47,7 +47,10 @@
     "[train] arm=ARM_OFF seed=43 phase=P0 ep 60/160",
     "[train] arm=ARM_OFF seed=43 phase=P1 ep 70/160",
     "[train] arm=ARM_OFF seed=43 phase=P1 ep 80/160",
-    "[train] arm=ARM_OFF seed=43 phase=P1 ep 90/160"
+    "[train] arm=ARM_OFF seed=43 phase=P1 ep 90/160",
+    "[train] arm=ARM_OFF seed=43 phase=P1 ep 100/160",
+    "[train] arm=ARM_OFF seed=43 phase=P2 ep 110/160",
+    "[train] arm=ARM_OFF seed=43 phase=P2 ep 120/160"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
