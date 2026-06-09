@@ -1925,6 +1925,13 @@
   location: docs/architecture/entities_and_binding.md#mech-045
   source:
     - docs/thoughts/2026-02-10_object_file_persistence.md
+  evidence_quality_note: |
+    First genuine experimental support landed 2026-06-09 (V3-EXQ-658, run
+    v3_exq_658_mech045_object_file_persistence_..., PASS supports): token buffer
+    re-identifies an entity across motion (INTACT reid_frac=1.0 vs ABLATION_OFF=0.0,
+    SHUFFLE=0.3 on 3/3 seeds; feature term non-degenerate d_cos_min=0.919). exp_conf
+    now 0.775 (confirmed_established). Stays provisional -- provisional->stable needs
+    exp_conf>=0.80 AND >=4 experimental entries; this is the first.
 - id: MECH-046
   title: "CeA analogue writes a mode prior into the SalienceCoordinator from fast salience classification of z_harm_a."
   claim_type: mechanism_hypothesis
@@ -4005,6 +4012,13 @@
     Inverted-U and 30-min window are well-replicated; transfer risk primarily in
     mapping arousal-tagged noradrenergic signal to z_harm_a magnitude. v3_pending
     until EXQ-B queued and substrate implemented.
+    First genuine experimental support landed 2026-06-09 (V3-EXQ-659, run
+    v3_exq_659_mech074a_bla_encoding_gain_replay_bias_..., PASS supports):
+    arousal-over-representation contrast PRIMARY-minus-ABLATION clears the margin on
+    3/3 seeds (0.135/0.033/0.213) with ABLATION AOR flat (~0); encoding-gain biases
+    which traces enter replay. exp_conf now 0.775 (confirmed_established). Stays
+    provisional -- provisional->stable needs exp_conf>=0.80 AND >=4 experimental
+    entries; this is the first.
 - id: MECH-074b
   title: "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace retrieval weight vector (NOT a scalar gain) on hippocampal readout."
   claim_type: mechanism_hypothesis
