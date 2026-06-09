@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603k_stageh_harm_pathway_readiness",
+  "run_id": "v3_exq_603k_stageh_harm_pathway_readiness_20260609T181419Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-09T18:14:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "harm_pathway_training_lifts_stageh_survival",
+    "preconditions": [
+      {
+        "name": "harm_pathway_trained_supra_floor",
+        "description": "ARM_HARM_ON_NAV harm pathway actually ran optimizer steps (n_train_steps > 0); a zero means the amend did not engage and survival is not attributable to it.",
+        "measured": 6242.0,
+        "threshold": 1.0,
+        "control": "ARM_HARM_ON_NAV (harm pathway ON); n_train_steps from harm_pathway_diag",
+        "met": true
+      },
+      {
+        "name": "off_control_does_not_survive",
+        "description": "ARM_HARM_OFF_NAV (harm pathway OFF, same nav-handed spawn) must NOT clear the survival gate -- else the env is trivially survivable and the ON survival is not attributable to the harm-pathway training. Upper-bound ceiling: met when off G_H frac < 0.5.",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "ARM_HARM_OFF_NAV (= the 603i nav-competence positive control)",
+        "met": true
+      },
+      {
+        "name": "harm_eval_discriminative_supra_floor",
+        "description": "ARM_HARM_ON_NAV harm_eval(z_world) range lifts above the flat OFF baseline (603i probe: range ~0.002) -- the harm landscape became non-degenerate. Non-vacuity for the survival outcome.",
+        "measured": 0.13269159197807312,
+        "threshold": 0.005,
+        "control": "ARM_HARM_ON_NAV harm_discriminativeness.harm_eval_range",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "off_nav_reached_hazard": true,
+      "on_nav_reached_hazard": true,
+      "g_h_varies_across_arms": true,
+      "harm_landscape_lifted": true
+    },
+    "criteria": [
+      {
+        "name": "ARM_HARM_ON_NAV_G_H_clears_2of3",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "ARM_HARM_OFF_NAV_negative_control_dies",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "harm_pathway_trained",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "harm_eval_discriminative",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "routing_note": "PASS unblocks the SD-059/MECH-358 escape-affordance-bridge retest (survival must clear before the bridge can be scored) + the GAP-2 survival-leg cohort. substrate_queue ready stays false until PASS."
+  }
+}
