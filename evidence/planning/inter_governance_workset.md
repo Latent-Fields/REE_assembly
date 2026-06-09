@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-09T18:04:29Z`
+Generated: `2026-06-09T20:09:03Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -13,16 +13,16 @@ UI: http://localhost:8000/workset
 - Pending review: **0**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-603k, V3-EXQ-640b, V3-EXQ-655
+- Live EXQs: V3-EXQ-603l, V3-EXQ-640b, V3-EXQ-654a, V3-EXQ-655, V3-EXQ-659
 
-- Auto-absorbed retests (queued, suppressed from workset): INV-074 -> V3-EXQ-655
+- Auto-absorbed retests (queued, suppressed from workset): INV-074 -> V3-EXQ-655, MECH-309 -> V3-EXQ-654a, SD-059 -> V3-EXQ-603l
 
 ## Work packages
 
 ### IGW-20260609-001 -- Governance decision: ARC-046
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8
-- **Why now:** Standing hold_candidate_resolve_conflict on ARC-046 (promotion_demotion pending_user). /governance already ran 2026-06-09T17:45Z and kept the hold; no fresh evidence to adjudicate -- the conflict clears only when ARC-046 substrate retest (IGW-20260609-032, blocked) lands, not by re-running governance.
+- **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -32,7 +32,7 @@ Title: Governance decision: ARC-046
 Lane: governance | Skill: /governance
 Status: ready
 Claims: ARC-046
-Why now: Standing hold_candidate_resolve_conflict on ARC-046 (promotion_demotion pending_user). /governance already ran 2026-06-09T17:45Z and kept the hold; no fresh evidence to adjudicate -- the conflict clears only when ARC-046 substrate retest (IGW-20260609-032, blocked) lands, not by re-running governance.
+Why now: promotion_demotion recommends hold_candidate_resolve_conflict.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -545,33 +545,6 @@ Instructions:
 
 </details>
 
-### IGW-20260609-006 -- MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
-- **Gap(s):** arc_062_rule_apprehension:GAP-B
-- **Owner EXQ:** V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification. NEXT: /implement-substrate amend ree_core/policy/candidate_rule_field.py cross-episode rule persistence (impl target ARC-063), then re-queue 654a with a trained-bias-head P1 arm + propagation non-vacuity precondition.
-- **Why now:** V3-EXQ-654 RAN + FAILed non_contributory on the pre-registered C1-fail branch (substrate_not_ready_requeue); confirmed failure_autopsy_V3-EXQ-654_2026-06-09 applied 2026-06-09 (see governance_2026_06_09_pm). The C1c readiness FAIL is a Cand
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260609-006
-Title: MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness
-Lane: experiment | Skill: /queue-experiment
-Status: in_progress
-Gap(s): arc_062_rule_apprehension:GAP-B
-Owner EXQ: V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification. NEXT: /implement-substrate amend ree_core/policy/candidate_rule_field.py cross-episode rule persistence (impl target ARC-063), then re-queue 654a with a trained-bias-head P1 arm + propagation non-vacuity precondition.
-Claims: MECH-309, ARC-062
-Why now: V3-EXQ-654 RAN + FAILed non_contributory on the pre-registered C1-fail branch (substrate_not_ready_requeue); confirmed failure_autopsy_V3-EXQ-654_2026-06-09 applied 2026-06-09 (see governance_2026_06_09_pm). The C1c readiness FAIL is a Cand
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
 ### IGW-20260609-012 -- Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 30
@@ -621,6 +594,33 @@ Why now: RESUME the Phase 1b gate (or its successor) once the behavioural-divers
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260609-006 -- MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness
+
+- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 33
+- **Gap(s):** arc_062_rule_apprehension:GAP-B
+- **Owner EXQ:** V3-EXQ-654a QUEUED 2026-06-09 (priority 250, machine any; supersedes V3-EXQ-654) -- the gated re-run on the landed cross-episode rule-persistence amend (ree-v3 main 9797e84). Single-variable ARM_OFF vs ARM_ON with crf_persist_rules_across_episode_reset=True (matured pool clears the C1c 0.30 floor), a frozen-encoder P1 trained-bias-head REINFORCE phase (GAP-D), and a propagation non-vacuity precondition (ARM_ON bias != ARM_OFF, else substrate_not_ready_requeue); committed-class entropy PRIMARY DV. PREDECESSOR V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification.
+- **Why now:** BOTH routed steps are now DONE (see governance_2026_06_09_amend_and_requeue): the crf_persist amend LANDED (ree-v3 9797e84) and V3-EXQ-654a is QUEUED (priority 250, machine any). RESUME when V3-EXQ-654a RUNS + lands a manifest + is reviewed
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260609-006
+Title: MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness
+Lane: experiment | Skill: (monitor -- do not re-queue)
+Status: in_flight
+Gap(s): arc_062_rule_apprehension:GAP-B
+Owner EXQ: V3-EXQ-654a QUEUED 2026-06-09 (priority 250, machine any; supersedes V3-EXQ-654) -- the gated re-run on the landed cross-episode rule-persistence amend (ree-v3 main 9797e84). Single-variable ARM_OFF vs ARM_ON with crf_persist_rules_across_episode_reset=True (matured pool clears the C1c 0.30 floor), a frozen-encoder P1 trained-bias-head REINFORCE phase (GAP-D), and a propagation non-vacuity precondition (ARM_ON bias != ARM_OFF, else substrate_not_ready_requeue); committed-class entropy PRIMARY DV. PREDECESSOR V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification.
+Claims: MECH-309, ARC-062
+Why now: BOTH routed steps are now DONE (see governance_2026_06_09_amend_and_requeue): the crf_persist amend LANDED (ree-v3 9797e84) and V3-EXQ-654a is QUEUED (priority 250, machine any). RESUME when V3-EXQ-654a RUNS + lands a manifest + is reviewed
+
+Instructions:
+- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
+- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
@@ -804,7 +804,51 @@ Instructions:
 
 </details>
 
-### IGW-20260609-053 -- Proposal EXP-0117 (MECH-045)
+### IGW-20260609-053 -- Proposal EXP-0121 (MECH-316)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
+- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260609-053
+Title: Proposal EXP-0121 (MECH-316)
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: MECH-316
+Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260609-054 -- Proposal EXP-0122 (MECH-317)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
+- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260609-054
+Title: Proposal EXP-0122 (MECH-317)
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: MECH-317
+Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260609-055 -- Proposal EXP-0127 (MECH-CBBL-PROPOSED)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -812,11 +856,11 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260609-053
-Title: Proposal EXP-0117 (MECH-045)
+REE inter-governance work item: IGW-20260609-055
+Title: Proposal EXP-0127 (MECH-CBBL-PROPOSED)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-045
+Claims: MECH-CBBL-PROPOSED
 Why now: lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
@@ -826,51 +870,7 @@ Instructions:
 
 </details>
 
-### IGW-20260609-054 -- Proposal EXP-0118 (SD-033e)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260609-054
-Title: Proposal EXP-0118 (SD-033e)
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: SD-033e
-Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260609-055 -- Proposal EXP-0119 (MECH-074)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260609-055
-Title: Proposal EXP-0119 (MECH-074)
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-074
-Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260609-056 -- Proposal EXP-0120 (MECH-294)
+### IGW-20260609-056 -- Proposal EXP-0129 (MECH-172)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -879,10 +879,10 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260609-056
-Title: Proposal EXP-0120 (MECH-294)
+Title: Proposal EXP-0129 (MECH-172)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-294
+Claims: MECH-172
 Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
@@ -1141,6 +1141,33 @@ Instructions:
 
 </details>
 
+### IGW-20260609-013 -- Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
+- **Gap(s):** behavioral_diversity_isolation:GAP-C
+- **Owner EXQ:** V3-EXQ-603k (Stage-H harm-pathway training; queued 2026-06-09; owns the PRIMARY nav/survival-competence leg this node waits on). Predecessors absorbed: V3-EXQ-603i TERMINAL FAIL 2026-06-08 (non_contributory substrate_ceiling, autopsied + applied /governance 2026-06-09T04:30Z) surfaced two co-equal substrate gaps -- PRIMARY nav/survival-competence ceiling (-> 603k) + SECONDARY safety-half starvation, the latter now closed at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (safety-half trained-signal; safety_signal 0.89; claim_ids=[]). Prior 603a/b/c/f/g/h lineage non_contributory substrate-ceiling
+- **Why now:** IN FLIGHT 2026-06-08 on V3-EXQ-603i. Do not queue the Q-045/MECH-313/MECH-260 retest until 603i lands. On 603i PASS/non-vacuous readiness, queue the GAP-C successor retest; on FAIL or substrate_not_ready_requeue, route to failure-autopsy/im
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260609-013
+Title: Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)
+Lane: experiment | Skill: /queue-experiment
+Status: in_progress
+Gap(s): behavioral_diversity_isolation:GAP-C
+Owner EXQ: V3-EXQ-603k (Stage-H harm-pathway training; queued 2026-06-09; owns the PRIMARY nav/survival-competence leg this node waits on). Predecessors absorbed: V3-EXQ-603i TERMINAL FAIL 2026-06-08 (non_contributory substrate_ceiling, autopsied + applied /governance 2026-06-09T04:30Z) surfaced two co-equal substrate gaps -- PRIMARY nav/survival-competence ceiling (-> 603k) + SECONDARY safety-half starvation, the latter now closed at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (safety-half trained-signal; safety_signal 0.89; claim_ids=[]). Prior 603a/b/c/f/g/h lineage non_contributory substrate-ceiling
+Claims: MECH-313, MECH-260, Q-045
+Why now: IN FLIGHT 2026-06-08 on V3-EXQ-603i. Do not queue the Q-045/MECH-313/MECH-260 retest until 603i lands. On 603i PASS/non-vacuous readiness, queue the GAP-C successor retest; on FAIL or substrate_not_ready_requeue, route to failure-autopsy/im
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260609-015 -- SD-033b behavioural validation (devaluation + perceptual discrimination)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50
@@ -1244,33 +1271,6 @@ Why now: 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_su
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260609-013 -- Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)
-
-- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 53
-- **Gap(s):** behavioral_diversity_isolation:GAP-C
-- **Owner EXQ:** V3-EXQ-603k (Stage-H harm-pathway training; queued 2026-06-09; owns the PRIMARY nav/survival-competence leg this node waits on). Predecessors absorbed: V3-EXQ-603i TERMINAL FAIL 2026-06-08 (non_contributory substrate_ceiling, autopsied + applied /governance 2026-06-09T04:30Z) surfaced two co-equal substrate gaps -- PRIMARY nav/survival-competence ceiling (-> 603k) + SECONDARY safety-half starvation, the latter now closed at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (safety-half trained-signal; safety_signal 0.89; claim_ids=[]). Prior 603a/b/c/f/g/h lineage non_contributory substrate-ceiling
-- **Why now:** IN FLIGHT on V3-EXQ-603k (live; Stage-H harm-pathway, the PRIMARY nav/survival-competence leg GAP-C waits on). Predecessor V3-EXQ-603i landed TERMINAL FAIL 2026-06-08; do not re-queue the Q-045/MECH-313/MECH-260 GAP-C retest until 603k lands non-vacuous readiness, then queue the successor (FAIL/substrate_not_ready_requeue -> failure-autopsy/implement-substrate).
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260609-013
-Title: Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)
-Lane: experiment | Skill: (monitor -- do not re-queue)
-Status: in_flight
-Gap(s): behavioral_diversity_isolation:GAP-C
-Owner EXQ: V3-EXQ-603k (Stage-H harm-pathway training; queued 2026-06-09; owns the PRIMARY nav/survival-competence leg this node waits on). Predecessors absorbed: V3-EXQ-603i TERMINAL FAIL 2026-06-08 (non_contributory substrate_ceiling, autopsied + applied /governance 2026-06-09T04:30Z) surfaced two co-equal substrate gaps -- PRIMARY nav/survival-competence ceiling (-> 603k) + SECONDARY safety-half starvation, the latter now closed at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (safety-half trained-signal; safety_signal 0.89; claim_ids=[]). Prior 603a/b/c/f/g/h lineage non_contributory substrate-ceiling
-Claims: MECH-313, MECH-260, Q-045
-Why now: IN FLIGHT on V3-EXQ-603k (live; Stage-H harm-pathway, the PRIMARY nav/survival-competence leg GAP-C waits on). Predecessor V3-EXQ-603i landed TERMINAL FAIL 2026-06-08; do not re-queue the Q-045/MECH-313/MECH-260 GAP-C retest until 603k lands non-vacuous readiness, then queue the successor (FAIL/substrate_not_ready_requeue -> failure-autopsy/implement-substrate).
-
-Instructions:
-- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
-- Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md
 - Workset: http://localhost:8000/workset
 ```
 

@@ -221,18 +221,26 @@ def _strip_yaml_scalar(value: str) -> str:
 
 
 def _load_claims_meta() -> dict[str, dict]:
-    """claim_id -> {status, claim_type, epistemic_category, invariant_type}.
+    """claim_id -> {status, claim_type, epistemic_category, invariant_type,
+    implementation_phase, version_relevance}.
 
     Line-based block parser (same shape as _claim_retest_ids) so we never pay a
     full yaml.safe_load on the large registry. First occurrence of each field
     inside a `- id:` block wins; inline `# comments` and quotes are stripped.
+
+    implementation_phase / version_relevance feed _is_deferred_beyond_v3 so the
+    experiment-proposal lane can suppress claims scoped to V4+ (we work V3 until
+    it is finished, then reassess the roadmap before V4 work begins).
     """
     out: dict[str, dict] = {}
     if not CLAIMS_YAML.exists():
         return out
     current: str | None = None
     fields: dict[str, str] = {}
-    keys = ("status", "claim_type", "epistemic_category", "invariant_type")
+    keys = (
+        "status", "claim_type", "epistemic_category", "invariant_type",
+        "implementation_phase", "version_relevance",
+    )
 
     def _flush() -> None:
         if current:
@@ -262,6 +270,32 @@ _EPI_SUPPRESS_PROPOSAL = {
     "derivational", "out_of_domain",
 }
 _CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
+
+
+def _is_deferred_beyond_v3(meta: dict | None) -> bool:
+    """True when a claim is scoped to V4+ only (no V3 relevance).
+
+    Roadmap rule: we work V3 until it is finished enough, then reassess the whole
+    roadmap before opening V4 work. A V4/V5-only claim must NOT surface as a
+    `/queue-experiment` proposal in the meantime -- a probe against it self-routes
+    to a blocked_substrate STOP (vacuous), so it is operator noise, not work.
+
+    Suppress when implementation_phase is v4/v5 OR version_relevance names a v4+/v5
+    band with no v3 component. Deliberately does NOT suppress:
+      * implementation_phase v3 / v3_pending (the live V3 work),
+      * version_relevance that includes v3 (e.g. v3_v4 -- still V3-relevant).
+    This is independent of epistemic_category: a plain v4 mechanism_hypothesis that
+    is not substrate_conditional is still suppressed here.
+    """
+    if not meta:
+        return False
+    phase = (meta.get("implementation_phase") or "").strip().lower()
+    if phase.startswith("v4") or phase.startswith("v5"):
+        return True
+    vrel = (meta.get("version_relevance") or "").strip().lower()
+    if vrel and "v3" not in vrel and ("v4" in vrel or "v5" in vrel):
+        return True
+    return False
 
 # Promotion/demotion verdicts that are NOT a governance decision the operator
 # can act on in a /governance cycle. The verdict IS the decision: "hold". The
@@ -614,6 +648,12 @@ def _proposed_experiments(
         (e.g. ARC-063 EXP-0084 -- architectural_commitment -> substrate_coherence;
         MECH-312 EXP-0110 -- depends on unbuilt ARC-063 rule-creator substrate
         -> substrate_conditional),
+      * the claim is scoped to V4+ only (implementation_phase v4/v5 or a v4+/v5
+        version_relevance band with no v3 component -- _is_deferred_beyond_v3).
+        We work V3 until it is finished, then reassess the roadmap before V4
+        work; a V4-only proposal self-routes to a blocked_substrate STOP, so it
+        is operator noise. This catches plain v4 claims that are NOT also
+        substrate_conditional (e.g. MECH-362 / Q-057 happen to be both).
       * the claim already shows genuine experimental evidence in
         claim_evidence.v1.json (proposal effectively executed but not marked).
 
@@ -643,6 +683,8 @@ def _proposed_experiments(
         if (meta.get("status") or "").strip().lower() in _CLAIM_DEAD_STATUSES:
             continue
         if _resolve_epistemic_category(meta) in _EPI_SUPPRESS_PROPOSAL:
+            continue
+        if _is_deferred_beyond_v3(meta):
             continue
         if cid in exp_evidence:
             continue
