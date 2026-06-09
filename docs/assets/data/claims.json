@@ -3561,6 +3561,24 @@
     "title": "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-359": {
+    "status": "candidate",
+    "subject": "affect.candidate_differentiated_gradient",
+    "title": "Candidate-differentiated affect vector: for proto-affect to carve behaviour it must carry per-candidate (cross-candidate) range, not merely per-tick magnitude. Each E3 candidate trajectory carries a multi-channel affect vector (curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency) so the same world-state can support different candidate rankings (approach / inspect / retreat / persist / retry / rest / reorient) under different internal pressures. A scalar added equally to all K candidates cannot change an argmax; only a per-candidate-differentiated contribution can.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-360": {
+    "status": "candidate",
+    "subject": "expression.action_geometry_emergent_readout",
+    "title": "Affective expression begins as emergent action geometry: because candidate-differentiated affect (MECH-359) selects trajectories, it also shapes the visible STYLE of behaviour -- hesitation, latency, approach angle, retreat, repeated retry, stopping, resumption, oscillation between candidates, avoidance margin, decommitment, repair-seeking. Expression is therefore initially an emergent readout of candidate-level affective arbitration, not a separately-engineered output channel; a later social agent can infer internal state from HOW an action occurred, not only what action occurred.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-361": {
+    "status": "candidate",
+    "subject": "memory.candidate_gradient_episode_schema",
+    "title": "Candidate-gradient hippocampal episode schema: enrich the event trace from state -> action -> outcome to state -> candidates-considered -> affective gradients over candidates -> selected action -> outcome -> residue (relief / harm / blocked-agency / safety update), and use the affective gradient as a memory WRITE-WEIGHT and RETRIEVAL-QUERY variable -- high-gradient episodes are preferentially written, and later similar-gradient states retrieve prior action-affect-outcome arcs rather than undifferentiated state-action-outcome tuples.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",

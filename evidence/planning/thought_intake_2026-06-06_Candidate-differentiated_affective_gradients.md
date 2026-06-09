@@ -358,19 +358,19 @@
 
 ---
 
-## 5. Candidate claims FOR FUTURE REGISTRATION (do NOT register now)
+## 5. Candidate claims — registration status
 
-> All deferred. The V3-narrow item is **already operationalised** by 643a + GAP-A; registering it would duplicate live nodes. The V4/V5 items are explicitly DO-NOT-BUILD per the note and off the GAP-7 critical path. Listed here only so a future session can pick them up if routed by experiment.
+> **REGISTERED 2026-06-09** (user decision, overriding the intake's do-not-register default). The three V4/V5 claims are now in `claims.yaml` at `status: candidate` / `epistemic_category: substrate_conditional` / `implementation_phase: v4` (mirroring the play-mode cluster), with arch doc [docs/architecture/candidate_differentiated_affective_gradients.md](../../docs/architecture/candidate_differentiated_affective_gradients.md). They remain **DO-NOT-BUILD in V3**, off the GAP-7 critical path — registration records them in the claim graph; it does not authorise implementation. The V3-narrow item is **NOT** registered (would duplicate live nodes).
 
-1. **(V3-narrow — likely NOT needed as a new claim)** A cross-cutting note/INV that *"E3 affective/modulatory authority requires cross-candidate range, not magnitude; a range-readiness gate precedes any authority test."* — Most economically captured as an **evidence_quality_note / lesson on the existing modulatory-bias-selection-authority substrate + MECH-341**, NOT a new INV. Flag for governance only if the principle recurs across a third unrelated substrate.
+1. **(V3-narrow — NOT registered, by design)** The principle *"E3 affective/modulatory authority requires cross-candidate range, not magnitude; a range-readiness gate precedes any authority test"* is already operationalised by **V3-EXQ-643a** + `behavioral_diversity_isolation:GAP-A/B` + **MECH-341** + **SD-056**. Registering it as a new claim would duplicate those and corrupt their evidence records (per the `claim_ids` accuracy discipline). Captured as a lesson-note on those nodes instead.
 
-2. **(V4/V5)** `expression.action_geometry_emergent_readout` — affective expression begins as an emergent geometry of candidate-level arbitration (hesitation/latency/approach-angle/oscillation), observable by a later agent. Child or sibling of **MECH-041**. `implementation_phase: v4`, `substrate_conditional`.
+2. **REGISTERED → MECH-359** `affect.candidate_differentiated_gradient` — candidate affect vector (per-candidate multi-channel affect: curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency). The bridge primitive; MECH-360/361 depend on it. `depends_on: MECH-055, SD-011, MECH-341, SD-056`.
 
-3. **(V4/V5)** `memory.candidate_gradient_episode_schema` — hippocampal episode enriched to `state -> candidates -> affective gradients -> selected -> outcome -> residue`; affective gradient as the write-weight + retrieval-query variable. Amends **MECH-261** content schema + connects to **MECH-074** write-gain. `implementation_phase: v4/v5`, `substrate_conditional`.
+3. **REGISTERED → MECH-360** `expression.action_geometry_emergent_readout` — affective expression as emergent geometry of candidate-level arbitration (hesitation / latency / approach-angle / oscillation / decommitment), observable by a later agent. Complementary to **MECH-041** (broadcast framing), not a replacement. `depends_on: MECH-359, MECH-041`.
 
-4. **(V4/V5)** `affect.candidate_affect_vector` — a per-candidate, multi-channel affect vector (curiosity / safety / harm / effort / relief / blocked-agency) as the common substrate feeding selection, expression, and memory. Presupposes **MECH-055** channel separation. Most speculative; do not register until items 2–3 have any substrate.
+4. **REGISTERED → MECH-361** `memory.candidate_gradient_episode_schema` — hippocampal episode enriched to `state -> candidates -> affective gradients -> selected -> outcome -> residue`; affective gradient as write-weight + retrieval-query variable. Amends **MECH-261** content schema; sharpens **MECH-074** BLA write-gain; **MECH-094** provenance applies. `depends_on: MECH-359, MECH-261, MECH-074, MECH-094`.
 
-Routing tags for all of the above when/if registered: `v3_pending`-style hold not applicable (V4); use `substrate_conditional` (depends on upstream V4 substrate not yet built) per the epistemic-category schema; link `emergent_from` to SD-056 / SD-011 / MECH-341 as appropriate.
+All three are `substrate_conditional` (depend on a V4 per-candidate multi-channel affect substrate not yet built); promote/demote is suppressed; the correct response is to wait for the upstream substrate, not more experiments on the current single-channel modulatory path.
 
 ---
 
