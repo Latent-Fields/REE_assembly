@@ -1,0 +1,55 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-09T19:37:27Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_657_mech294_multi_content_theta_packet_readiness_20260609T190708Z_v3",
+      "queue_id": "V3-EXQ-657",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "G1 (vintage heterogeneity, non-degeneracy gate) short-circuited the verdict; C1/C2 (discrimination) also failed but were not reached in routing. Both are diagnostic metric/gate artifacts.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact - 657 is claim-free (readiness diagnostic); cannot express or falsify MECH-294",
+        "biological_reference": "clear - joint + Kay-alternation regimes both faithfully rendered; not implicated",
+        "prerequisites": "present - use_per_stream_vs=True wired; MECH-269 per_stream_vs populated in sense() before observe() in _e1_tick",
+        "implementation": "complete - substrate correct; contract C3 proves V_s-hold fires (V_s=0.1<0.4 -> snapshot substituted, stale, n_distinct_vintages>=2); ARM_2 alternation het=1.0 proves snapshot/hold/age machinery in the agent loop; 968 contracts pass",
+        "environment": "adequate-but-quiescent - 40-step stable forced-benefit run keeps every stream V_s>=0.4 (seeded 1.0, EMA tau 0.1), so the V_s-threshold hold path is never naturally exercised in joint mode; not a substrate defect",
+        "measurement": "under-instrumented/misleading - G1 measured on ARM_1_JOINT demands a secondary property the verisimilar regime correctly does not produce; _coherence() cosine readout discards magnitude and computes cross-cosine over heterogeneous latent spaces -> binding-mode-blind; under read-only-first there is no behavioural readout so the blind cosine is the only C1/C2 signal",
+        "integration": "coupled - packet seals at E3 boundary, exposed read-only as agent.last_theta_packet",
+        "scale": "adequate - 16-20 packets/cell sufficient for structural readouts"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Kay et al. 2020 theta content-packets; MECH-269/269b per-stream verisimilitude",
+        "dependencies": ["MECH-089 ThetaBuffer (composed)", "MECH-269 per_stream_vs", "GoalState.z_goal", "z_harm_s/z_harm_a (SD-010/SD-011)"],
+        "is_formal_import": false,
+        "divergence": "none - the diagnostic instrumentation failed, not the mechanism translation",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "n/a (claim-free diagnostic; MECH-294 stays candidate/v3_pending, untouched)",
+      "recommended_evidence_direction": "non_contributory (mark superseded after 657a runs)",
+      "recommended_evidence_quality_note": "V3-EXQ-657 FAILed on diagnostic instrumentation, not the substrate. G1 (vintage heterogeneity, measured on the joint arm) demanded a secondary property the verisimilar regime correctly does not produce (V_s never dropped below the 0.4 hold floor on the stable run); the V_s-hold path is proven by contract C3 and by ARM_2 alternation het=1.0. C1/C2 failed because the cosine coherence readout is binding-mode-blind (discards magnitude; cross-cosine over heterogeneous latent spaces) while the substrate produces structurally-distinct packets (non-vacuity norm-L1 0.29-0.48). Superseded by V3-EXQ-657a (corrected readout). Mark evidence_direction: superseded after 657a runs.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Substrate (ree_core/latent/multi_content_theta_packet.py) is correct - proven by contract C3, ARM_2 alternation het=1.0, and the non-vacuity + activation-smoke structural distances. The repair is entirely in the V3-EXQ-657 diagnostic readout/gate; no substrate work needed."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Under theta_packet_compose_into_e3_bias=False (read-only-first) the action stream is identical across arms by construction, so behavioural readouts (proposer/committed-class) are dead discriminators; a read-only readiness gate's C1/C2 must be packet-structure metrics.",
+        "A vintage-heterogeneity gate measured on the JOINT arm conflates 'V_s vintaging machinery is live' (true; C3 + ARM_2) with 'joint-mode packets show heterogeneous vintages on this run' (false by design in the verisimilar regime); exercise the V_s-threshold hold path directly via a forced-low-V_s probe.",
+        "The component-norm-signature L1 distance is the discriminator the substrate's structure actually supports (the non-vacuity gate already uses it); C1/C2 should be built on it, not on magnitude-blind cosine over heterogeneous latent spaces."
+      ],
+      "routing": "queue-experiment",
+      "successor_queue_id": "V3-EXQ-657a",
+      "successor_fix": {
+        "c1_c2_readout": "read-only structural separability: C1 = matched-cycle component-norm-signature L1 distance joint-vs-alternation; C2 = joint-vs-shuffled; each > discrimination margin AND > within-joint cross-seed baseline; corroborating cross-stream norm-covariation (joint co-varies same-cycle, shuffled decorrelated). Manifest reframed: readiness = modes non-degenerate + structurally separable; behavioural 'carries downstream signal' deferred to the compose-ON successor.",
+        "g1_fix": "G1 passes iff BOTH (a) a deterministic forced-low-V_s probe drives one stream V_s<0.4 and confirms the JOINT packet substitutes the snapshot + marks the component stale (exercises MECH-269b V_s consumption in joint mode), AND (b) ARM_2 alternation het>0 on >=2/3 seeds.",
+        "scope": "diagnostic experiment script only; no ree_core change; no claims.yaml change; supersedes V3-EXQ-657",
+        "does_not_force_pass": "657a still FAILs if structural distances do not exceed the cross-seed baseline (modes indistinguishable) or the forced-low-V_s probe does not hold."
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
