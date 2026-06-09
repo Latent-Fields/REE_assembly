@@ -440,3 +440,59 @@ SPARSE-BUT-NOT-FALSIFYING; the substrate is well-anchored, the four-stream
 within-cycle joint-binding specialisation is untested in the wet literature, and
 the within-cycle-vs-across-cycle question (Kay 2020) is the named promotion-blocker
 -- which the S7 discriminative experiment is built to settle on REE's own substrate.
+
+## 10. Compose-coherence amend (2026-06-09): the binding mode must reach behaviour
+
+**The gap.** The first substrate pass (2026-06-09) wired `compose_e3_bias` as a
+cosine of the candidate first action against the packet's `action_proposal` slot,
+gated behind `theta_packet_compose_into_e3_bias` (default `False`, read-only-first
+per S5). But `seal()` sets `action_proposal = self._win_action` **identically across
+all three binding modes** -- the mode only changes the goal/risk/state slots, which
+`compose_e3_bias` never consumed. So with compose ON, `joint` / `alternation` /
+`shuffled` produced **behaviourally identical** action streams (differing only from
+packet-OFF). That is exactly the S6 **C1-FAIL "wiring"** branch ("the downstream
+consumer is not conditioning on co-binding"), and it makes the behavioural
+mode-discrimination successor impossible: a reward comparison would FAIL C2/C3
+trivially and self-route a *false* "joint clause not isolated" weakening on an unmet
+precondition.
+
+**The fix (parameter-free; no trained head; bit-identical OFF).** The per-candidate
+action-grounding bias is now gated by the sealed packet's **within-cycle co-binding
+coherence** -- `ThetaPacket.currency_coherence()`, the fraction of the four V_s-gated
+content streams whose vintage `is_current` this cycle (the direct operationalisation
+of "the streams are bound co-temporally"):
+
+```
+coherence = mean over {goal, risk_sensory, risk_affective, state} of float(is_current)
+bias[i]   = clamp(-bias_scale * coherence * cosine(cand_first_action_i, action_proposal), +/-bias_scale)
+```
+
+- `joint`       -- all four current (high V_s)        -> coherence ~ 1.0 -> full grounding bias
+- `alternation` -- one live, three held (Kay-2020)    -> coherence ~ 0.25 -> weak bias
+- `shuffled`    -- every slot from a different cycle  -> coherence  0.0  -> no bias
+
+The binding regime therefore reaches E3 behaviour (the S6 discriminator). The
+per-candidate **ranking** stays an in-space action cosine -- no cross-semantic-space
+comparison, which the V3-EXQ-657a coherence-metric autopsy flagged as binding-mode-
+blind; only the **gate** is mode-derived. This realises S5's intent that the joint
+binding (not just the action slot) influence the E3 bias chain.
+
+`REEConfig.theta_packet_compose_use_joint_coherence` (default `True`) toggles the
+gating; `False` recovers the legacy action-only cosine (gate==1.0) bit-for-bit -- the
+validation ablation arm. Still no-op by default because
+`theta_packet_compose_into_e3_bias` defaults `False` (the compose block never runs).
+
+**Activation smoke (2026-06-09, compose ON):** JOINT coherence 1.000 (bias absmax
+0.100) / ALTERNATION 0.250 (0.025) / SHUFFLED 0.000 (0.000); JOINT committed-action
+histogram differs from the controls; coh-OFF recovers gate==1.0; compose-OFF fires no
+compose. 8/8 packet contracts + 7/7 preflight PASS.
+
+**Honest limitation.** The per-candidate term is action-alignment *gated by* coherence
+-- conjunctive via the gate (co-binding present), not via a learned same-cycle
+goal x risk x action readout. A richer learned joint-context reader is a future
+phased-training upgrade. The validation must guard candidate first-action diversity
+(if the proposer emits a single class, the gate has nothing to rank).
+
+**Governance.** MECH-294 is neither promoted nor weakened by this amend; it stays
+candidate / v3_pending. The 2026-04-26 hold stands until the behavioural successor
+PASSes. This pass only makes that successor *valid* to run.

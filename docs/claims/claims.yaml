@@ -24657,6 +24657,19 @@
     the 2026-04-26 governance hold (requires a substrate-side
     joint-vs-alternation falsification test) stands until the discriminative
     validation V3-EXQ-657 PASSes per the design-memo S7.3 interpretation grid.
+    AMEND 2026-06-09 (compose-coherence wiring): the read-only compose path
+    (theta_packet_compose_into_e3_bias, still default False) previously read
+    ONLY action_proposal -- identical across binding modes -- so the three
+    regimes were behaviourally indistinguishable and the behavioural successor
+    was unbuildable (it would self-route a false "joint clause not isolated"
+    weakening). compose_e3_bias now GATES the per-candidate action-grounding
+    bias by ThetaPacket.currency_coherence() (fraction of co-temporally-current
+    streams: joint ~1.0 / alternation ~0.25 / shuffled 0.0), so the binding
+    regime causally reaches E3 behaviour (the S6 discriminator). Parameter-free,
+    bit-identical OFF, no flag/confidence change. New no-op flag
+    theta_packet_compose_use_joint_coherence (default True; False = legacy
+    action-only ablation). Still candidate / v3_pending; this only makes the
+    behavioural mode-discrimination successor valid to run.
     See ree-v3/CLAUDE.md "MECH-294" entry and
     docs/architecture/mech_294_multi_content_theta_packet.md.
   depends_on:
