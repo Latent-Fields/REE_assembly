@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "governance-apply-603h-autopsy-20260608T0721Z",
-  "last_updated_utc": "2026-06-09T17:51:00Z",
+  "last_seen_session": "implement-substrate-mech045-objectfile-20260609T1842Z",
+  "last_updated_utc": "2026-06-09T19:00:09Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4145,6 +4145,50 @@
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-603h_2026-06-08.json",
       "pending_retest_after_substrate": true,
       "retest_harness": "thought-intake Section 5 4-arm discriminative EXQ (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE) with a nav-competence positive control (oracle/hand-shaped escape gradient or reef-refuge reachability under threat) and a non-vacuity gate requiring each enabled bridge half to credit non-vacuously before scoring G_H. Acceptance: G_H >= 2/3 AND G_H improves over ARM_BASE_IA_ONLY; bridge bonus threat-context bounded, must not swamp food/goal approach."
+    },
+    {
+      "sd_id": "mech-045-object-file-buffer",
+      "title": "Token-instance object-file / entity-persistence buffer: spatiotemporal-continuity data-association over z_world features assigning label-free per-entity token ids with attention-gated, precision-weighted feature buffers (ARC-006/MECH-045; the missing TOKEN store of the ARC-080 type/token/anchor triad)",
+      "status": "implemented",
+      "status_note": "Substrate landed 2026-06-09 behind no-op-default use_object_file_buffer (ree-v3 main: ree_core/entities/object_file_buffer.py + REEConfig flag + REEAgent.update_object_file_buffer). v1 standalone (no action-stream consumer; bit-identical OFF AND ON). ready stays FALSE until the discriminative validation V3-EXQ-658 clears the G0-G2 non-vacuity gates + C1-C3 at full scale on the fleet.",
+      "ready": false,
+      "design_doc": "docs/architecture/mech_045_object_file_buffer.md",
+      "scope_band": "v4_or_late_v3",
+      "priority": "low",
+      "off_critical_path": true,
+      "current_blocker": "V3-EXQ-658 discriminative persistence-vs-ablation validation not yet run at full scale on the fleet (local PASS only); requires world_dim>=128 substrate (the z_world dim=32 discriminative ceiling, config.py:156 / E2WorldForward floor).",
+      "depends_on_unresolved": [
+        "world_dim >= 128 substrate (z_world dim=32 discriminative ceiling, config.py:156; E2WorldForward floor)",
+        "candidate-entity proposal from SD-049 resource-field views + grid object/hazard cells (detector dependency, design memo Section 4.4)"
+      ],
+      "unblocks_claims": [
+        "MECH-045",
+        "ARC-006",
+        "ARC-080 Pillar 1 (object permanence; ghost-goal-bank token generalisation)"
+      ],
+      "wiring_targets": [
+        "SD-057 IncentiveTokenBank (TYPE -> per-token type_hint, backward-compatible)",
+        "SD-039 AnchorGoalPayload (ANCHOR -> optional token_id cross-reference)"
+      ],
+      "proposed_module": "ree-v3/ree_core/entities/object_file_buffer.py",
+      "validation_experiment": "V3-EXQ-658 (INTACT vs ABLATION-OFF vs ABLATION-SHUFFLE; G0-G2 non-vacuity gates incl dim=32 feature-degeneracy guard; re-queues EVB-0293/EXP-0117)",
+      "no_op_default": "use_object_file_buffer=False, bit-identical OFF; non-trainable (no phased training for v1)",
+      "mech_094": "waking-stream only; no-op under simulation_mode/replay/sleep",
+      "added_session": "implement-substrate-mech045-objectfile-20260609T1842Z",
+      "implemented_session": "implement-substrate-mech045-objectfile-20260609T1842Z",
+      "implemented_utc": "2026-06-09T19:00:09Z",
+      "last_seen_session": "implement-substrate-mech045-objectfile-20260609T1842Z",
+      "last_updated_utc": "2026-06-09T19:00:09Z",
+      "implementation_status": "implemented_pending_validation",
+      "implementation_log": [
+        {
+          "date_utc": "2026-06-09T19:00:09Z",
+          "session": "implement-substrate-mech045-objectfile-20260609T1842Z",
+          "scope": "v1 substrate landed: ObjectFileBuffer (DeepSORT-style data association: motion gate + precision-weighted appearance cost; per-token feature-EMA buffer C2; attention-gated births capped at obf_max_tokens C4; persistence-through-absence + eviction C3; precision weighting C5) behind no-op-default use_object_file_buffer; REEConfig + from_dims (8 knobs); REEAgent.update_object_file_buffer (MECH-094 no-op under hypothesis_tag) + reset. v1 standalone, NO action-stream consumer -> bit-identical OFF AND ON. 6/6 contracts + 7/7 preflight + 973 contracts PASS (1 control_vector C4 pre-existing flake). ree-v3 commit b00c83d.",
+          "validation_experiment": "V3-EXQ-658 (queued; full-scale fleet run pending). ready stays FALSE until it clears."
+        }
+      ],
+      "notes": "Resolves the ARC-080 type-vs-token-vs-anchor fork: token is the spine, the two live stores wire to consume it. v1 lands standalone (no wiring required) and is validatable in isolation. EVB-0293 flipped blocked_substrate->executed once V3-EXQ-658 queued. OFF the GAP-7 V3-closure path."
     }
   ],
   "schema_version": "substrate_queue/v2"

@@ -6,7 +6,7 @@ nav_exclude: true
 
 **Claim Type:** mechanism_hypothesis (substrate design)
 **Claims served:** MECH-045 (object-file-like persistence), ARC-006 (entities are sparse, persistent, bindable structures)
-**Status of substrate:** DORMANT -- design-only, not in ree-v3 code. This memo is the design that unblocks it.
+**Status of substrate:** IMPLEMENTED 2026-06-09 (v1, behind no-op-default `use_object_file_buffer`; `ree-v3/ree_core/entities/object_file_buffer.py` + `REEAgent.update_object_file_buffer`; ree-v3 commit b00c83d). Was DORMANT (design-only) when this memo was written. Validation experiment **V3-EXQ-658** queued (the EVB-0293/EXP-0117 re-queue); `substrate_queue.ready` stays FALSE until it clears the Section 6 gates at full scale. MECH-045/ARC-006 NOT yet promoted (governance applies after the run).
 **Scope band:** V4 / late-V3 substrate enrichment. **OFF the GAP-7 closure critical path.**
 **Registered:** 2026-06-09
 **Author context:** Unblock memo for the `/queue-experiment` Step-2.5 readiness gate (2026-06-09) that marked proposal **EVB-0293 / EXP-0117** `status=blocked_substrate`. This memo + the biology lit-pull are deliverable 1; the sibling `/implement-substrate` chip (gated on this memo) writes the `ree_core` code.
