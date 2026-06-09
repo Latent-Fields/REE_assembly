@@ -141,32 +141,38 @@ registered.
 
 ---
 
-## 5. Candidate claims FOR FUTURE REGISTRATION (NOT registered here)
+## 5. Candidate claims — REGISTERED 2026-06-09
 
-Seeds only — none entered into claims.yaml. Most are **amendments to existing claims**, which is the
-correct lighter-weight move:
+The genuinely-new strands were **registered** into claims.yaml at
+`candidate / epistemic_category:substrate_conditional / implementation_phase:v4 / version_relevance:v4_v5`
+— the convention REE uses to record a claim it is not yet building (precedent: play-mode cluster
+INV-058/MECH-194–199; sibling 2026-06-09 registrations MECH-359/360/361, MECH-362/Q-057). Home doc:
+[docs/architecture/laughter_social_load_release.md](../../docs/architecture/laughter_social_load_release.md).
+NO promotion/demotion; MECH-110/ARC-016/MECH-027 unchanged.
 
-1. **(Amend MECH-110) Laughter discharges E3 conflict/constraint load** — beyond per-cycle tag-clear,
-   iterated safe-confirmation produces a regime-level drop in active constraint pressure.
-   `mechanism_hypothesis`, likely `substrate_conditional` (needs an E3 conflict-load readout that V3
-   may not expose), `implementation_phase:v3?` pending substrate check.
-2. **(New bridge claim, or amend ARC-016) Laughter is an inter-regime boundary signal** — marks a
-   safe transition between control-plane regimes (threat-vigilant → exploratory/play). Ties the
-   respiratory-cluster laughter mechanism to the modes-cluster regime architecture.
-3. **(Amend MECH-027 / new failure claim) Absent reframe-release ⇒ mode-switching failure** — the §5
-   list (rigid overcommitment, social-threat overclassification, feedback entrapment, belief
-   fixation, repair failure, excessive literalism) as predictions of what breaks without the
-   laughter/release transition. Cross-link MECH-076.
-4. **(Caution claim) Laughter is not monotone-affiliative** — can exclude, dominate, mask distress,
-   or signal threat; required before any laughter-based social-guardrail substrate is built.
-5. **(Gap / future) Crying as a social-guardrail counterpart** — no claim exists; pairs with MECH-110
-   as the high-arousal / distress-signal side of the social-release axis. Likely deferred (V4/V5,
-   social-substrate-dependent).
+- **MECH-364** (REGISTERED) — *Laughter discharges accumulated E3 conflict/constraint load and thereby
+  marks a safe inter-regime control-plane transition.* The MACRO/regime-level claim distinct from
+  MECH-110's per-cycle tag-clear (the micro substrate); bridges MECH-110 ↔ ARC-016. The
+  load-release lens + the inter-regime-boundary role are unified in this one mechanism. The
+  laughter-absence **failure taxonomy** (rigid overcommitment, social-threat overclassification,
+  feedback entrapment, belief fixation, repair failure, excessive literalism) is captured as the
+  claim's predictions (cross-link MECH-027, MECH-076). depends_on MECH-110/MECH-107/ARC-016/MECH-027/MECH-076.
+- **Q-059** (REGISTERED) — *Does REE need a crying/distress-vocalisation social-guardrail analogue to
+  laughter, and how is social laughter adjudicated repair-vs-damage?* Carries the **non-affiliative
+  dark side** (laughter can exclude/dominate/mask distress) as its motivating tension, and the
+  **crying gap** (no crying claim exists). `substrate_conditional` set explicitly so
+  `narrow_open_question` does not fire. depends_on MECH-110/MECH-364.
 
-**Default stance:** do **not** register. The genuinely-new content is best handled as MECH-110 /
-ARC-016 / MECH-027 amendments if/when the user wants them, and only after a substrate check confirms
-an E3 conflict-load readout actually exists in V3 (otherwise candidates 1–3 are substrate-blocked
-exactly like the play-mode cluster). Off the GAP-7 / V3 critical path either way.
+**Deliberately NOT registered** (would duplicate or over-register): a restated laughter mechanism
+(= MECH-110); the social-synchrony strand (= MECH-110 V5 extension); the play-mode transition strand
+(= ARC-049/050 cluster, substrate-blocked); the non-affiliative dark side as a standalone assertion
+(folded into MECH-364's caveat + Q-059).
+
+**Substrate fork (MECH-364).** `load_release` needs an E3 conflict/constraint-load readout. ARC-016
+already exposes an E3-derived prediction-variance signal in V3, so a substrate check could
+reclassify MECH-364 toward `implementation_phase:v3`. Held at v4 pending that check; do not queue a
+V3 probe until a version decision routes it (a probe before the readout exists would be vacuous, cf.
+the play-mode cluster).
 
 ---
 
