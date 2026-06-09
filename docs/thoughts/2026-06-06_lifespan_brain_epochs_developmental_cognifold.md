@@ -1,8 +1,13 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_lifespan_brain_epochs_developmental_cognifold.md
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_lifespan_brain_epochs_developmental_cognifold.md
+
 Source email date: 2026-03-30
 Source email subject: REE developmental: First atlas of brain organization shows development over a lifetime
 Current action: preserve as thought intake only
-Primary source status: source-check pending; share.google link was not directly accessible from intake session
+Primary source status: source-check RESOLVED 2026-06-09 -- Mousley/Astle, Nature Communications 2025 (Cambridge MRC Cognition and Brain Sciences Unit; 3,802 scans aged 0-90; turning points 9/32/66/83). Original share.google link still not opened, but primary study located + verified via Cambridge Neuroscience / Gates Cambridge / EurekAlert / ScienceDaily.
 Near-term relevance: V4/V5 developmental architecture compass, not REE-v3 critical path
 
 ---
