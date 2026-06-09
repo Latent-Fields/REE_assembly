@@ -515,6 +515,24 @@
     "title": "REE's failure-mode taxonomy is indexed on TWO axes simultaneously: (1) named failure mode (the existing mechanistically-distinct entries -- psychosis/hypothesis-tag loss, confabulation, derealization, OCD, depressive attractor, catatonia subtypes, etc.) AND (2) a finite, named set of cross-cutting LATENT VULNERABILITY AXES that span the named entries (precision/confidence allocation; commitment-threshold/action-release authority; provenance/source tagging; agency attribution; residue/consequence persistence; goal/salience/incentive coupling; self-other coupling; offline integration/replay; social-contagion/cross-agent coupling; global instability). Named clinical syndromes are emergent clusters -- weighted combinations -- over these axes, not primitive natural kinds; comorbidity is overlapping axis activation and pleiotropy is one mechanism loading multiple axes. The axis layer is an INDEXING layer, never a merging layer: it does not collapse mechanistically-distinct failure modes into one another.",
     "type": "architectural_commitment"
   },
+  "ARC-087": {
+    "status": "candidate",
+    "subject": "perception.sense_specific_manifold_adaptor",
+    "title": "Sense-specific perceptual-manifold adaptor: each sensory modality requires its own adaptor transforming raw stimulus space into a perceptual-manifold (metric) space before shared-world-model entry; senses are not interchangeable raw streams.",
+    "type": "architectural_commitment"
+  },
+  "ARC-088": {
+    "status": "candidate",
+    "subject": "affect.anti_collapse_behavioral_diversity_map",
+    "title": "Emotion-as-anti-collapse architecture: emotion-like systems are a set of GATED, PARTIALLY INDEPENDENT evaluators (is-this-harmful / is-this-safe / did-this-reduce-suffering / am-I-pursuing-something-I-want / did-I-merely-like-the-last-thing / am-I-stuck / am-I-overcommitted / is-this-goal-stale / should-I-explore / should-I-stop / should-I-sleep-and-consolidate / should-I-release-the-policy) whose collective effect is to prevent behaviour from collapsing onto the currently dominant gradient. Affect is therefore the architectural SOURCE of structured behavioural diversity -- not decoration on a rational optimiser and not random exploration noise, but native modulatory control (gates, biases, interrupts, salience shifts, persistence regulators, release conditions, credit-assignment signals) that produces STRUCTURED deviations from naive optimisation. A unifying MAP over REE's already-owned affect machinery, not a new substrate; an optimise-then-bolt-on-safety design fails because these evaluators must be native, not added afterward.",
+    "type": "architectural_commitment"
+  },
+  "ARC-089": {
+    "status": "candidate",
+    "subject": "cognifold.substrate_independent_primitives",
+    "title": "Substrate-independent cognifold primitives: REE specifies its single cognifold (one interacting state-space, not a modular stack) in a hardware-neutral primitive vocabulary -- persistent state, history-dependent deformation, multi-timescale field dynamics, oscillatory propagation, stochastic transition, attractor transitions, residue-as-deformation-of-the-future-action-landscape, commitment as a real boundary between simulated and released action, and offline reintegration -- so that any FUTURE physical substrate is evaluated by whether it can INSTANTIATE these dynamics, not merely execute modular software. The primitives remain software-expressible now while also being legible as future physical-substrate affordances.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -3657,6 +3675,36 @@
     "title": "A global-instability / broad control-plane vulnerability axis (a p-factor / general-psychopathology-factor analogue) loads across ALL failure modes: a single broad dimension of control-plane regulatory fragility -- instability in precision/gain/threshold setpoint regulation (ARC-005) rather than any one specific comparator or stream -- raises joint susceptibility to multiple failure modes at once, distinct from and orthogonal to any single-axis failure. This is the axis with no existing REE home; it predicts that a subset of agents/patients carry elevated risk across the whole failure-mode space rather than along one axis.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-372": {
+    "status": "candidate",
+    "subject": "perception.modality_heterogeneity_adaptor_depth",
+    "title": "Modality-heterogeneity / adaptor-depth gradient: senses differ in how much transformation they need before world-model entry -- smell is a near-raw gradient primitive, sight needs a deep perceptual-manifold adaptor; gradient-like (low-adaptor-depth) senses enter earliest developmentally.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-373": {
+    "status": "candidate",
+    "subject": "language.affect_adaptor_uncertain_hypothesis",
+    "title": "A lightweight LanguageAffectAdaptor parses affect/emotion from user or agent LANGUAGE into the shared world model: a language-interface component that, when literal semantic content is insufficient to recover affect, converts text into PROBABILISTIC affect/emotion hypotheses (treated as uncertain latent-state estimates, NOT categorical emotion truths) and feeds those estimates into REE's wider agent-state and context modelling. It is an input/perception adaptor on the language channel -- distinct from REE's INTERNAL affective representation (Q-007 z_beta dimensions) -- supplying other-agent affect priors to the social/empathy modelling layer.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-374": {
+    "status": "candidate",
+    "subject": "cognifold.memristive_physical_substrate_candidate",
+    "title": "Memristive deformation as the physical analogue of residue/cognifold curvature: spintronic-memristive media (magnetic tunnel junctions, nanomagnet ensembles, domain walls, topological spin textures, spin waves / spin-Hall nano-oscillators) are physical substrates in which past activity alters future state-transition behaviour -- making 'residue is not merely stored memory but deformation of the future action landscape' physically literal in a way von Neumann computation does not. They are a candidate post-V5 physical cognifold substrate because they combine persistent state, history-dependent deformation, oscillatory dynamics, stochastic switching, attractor-like state-space trajectories, and possible low-power embodied operation in one medium.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-375": {
+    "status": "candidate",
+    "subject": "relief.trainable_relief_critic",
+    "title": "Trainable relief critic Q_relief(state, action, threat_context): a LEARNED PARAMETRIC head that predicts expected harm/suffering reduction following an action under threat -- negative-reinforcement credit assignment, distinct from generic reward / wanting. It is the trainable successor to the FIXED-ARITHMETIC per-first-action-class EMA credit table of the MECH-358 relief half, and is downstream of (NOT a duplicate of) the non-trainable MECH-302 / SD-050 relief-completion comparator that merely DETECTS relief on the current state. Q_relief is a function approximator generalising relief-credit across continuous state x action x threat-context, trained on action-contingent drops in z_harm_a: positive target when a directed action under threat is followed by a temporally-close, action-contingent z_harm_a drop not explained by passive environmental drift; negative / extinction target when the expected relief action fails to reduce harm. Feeds E3 as a bounded, threat-gated, extinguishable score-bias toward actions predicted to reduce harm -- never global reward, never fires when safe, never credits no-op / freeze unless explicitly modelling passive safety. MECH-094-safe: simulated relief in hypothesis mode must not train the waking critic unless authorised as play / training.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-376": {
+    "status": "candidate",
+    "subject": "safety_prediction.trainable_safety_predictor",
+    "title": "Trainable prospective safety predictor P_safety(state, cue, action, context): a LEARNED PARAMETRIC head predicting threat-ABSENCE / response-produced safety / conditioned inhibition, licensing commitment-release, approach to safety affordances, and recovery after threat. Distinct from z_goal (it predicts the ABSENCE of threat, not the PRESENCE of a goal) and from relief (it is a PROSPECTIVE threat-absence prediction, not an aversive-offset event). It is the trainable + contrastive successor that makes the MECH-303 (contextual passive safety) + MECH-304 (cue-specific conditioned inhibition) substrate learnable, replacing the FIXED-ARITHMETIC per-first-action-class EMA safety table of the MECH-358 safety half: positive target when a cue / context / action predicts threat absence or response-produced safety; negative target when 'safe' cues are followed by threat recurrence; CONTRASTIVE target to stop safety overgeneralising to stable background features that merely co-occurred with relief. Output supports commitment release, permits approach to safety affordances, stabilises recovery, and prevents persistent defensive mode when threat is genuinely absent.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -4027,6 +4075,24 @@
     "status": "candidate",
     "subject": "failure_modes.syndrome_as_axis_vector_representation",
     "title": "Should REE represent a clinical syndrome as a weighted VECTOR over the ARC-086 latent vulnerability axes (with comorbidity = axis-overlap and pleiotropy = one mechanism loading multiple axes), rather than as a diagnosis-specific locus mapping -- and if so, how is comorbidity represented without exploding the claim registry, and how is axis-predisposition (which axes are fragile) kept distinct from axis-expression (gated by REE's developmental / plasticity machinery)?",
+    "type": "open_question"
+  },
+  "Q-065": {
+    "status": "candidate",
+    "subject": "perception.adaptor_metric_origin_and_negotiability",
+    "title": "Per-sense adaptor specification and cross-modal negotiability: is each modality's perceptual metric learned or partly defined, and how are heterogeneous sense-specific geometries made mutually negotiable inside one shared world model?",
+    "type": "open_question"
+  },
+  "Q-066": {
+    "status": "candidate",
+    "subject": "cognifold.physical_substrate_auditability_safety_scaling",
+    "title": "Can spintronic-memristive media (or any candidate physical cognifold substrate) scale to embodied REE cognition WITHOUT losing auditability, stability, or the harm/safety boundaries that REE's software cognifold currently enforces -- and which cognifold primitives (ARC-089) does each candidate substrate genuinely instantiate versus merely approximate?",
+    "type": "open_question"
+  },
+  "Q-067": {
+    "status": "candidate",
+    "subject": "escape.relief_vs_safety_decomposition",
+    "title": "Relief/safety decomposition: when the fixed escape-affordance bridge is insufficient, is the missing structure relief-only (action-contingent escape credit), safety-only (prospective threat-absence prediction), or both-required -- and should a trainable successor (MECH-375 / MECH-376) train only the missing / weak component first?",
     "type": "open_question"
   },
   "RA-001": {

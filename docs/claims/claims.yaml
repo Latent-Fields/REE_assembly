@@ -38258,3 +38258,513 @@
     general-psychopathology-factor lit-pull (Caspi & Moffitt) would sharpen this before any promotion.
     Does not promote/demote any existing claim. Reaped from the 2026-06-06 psychiatric-genetic-overlap
     intake.
+- id: MECH-373
+  title: "A lightweight LanguageAffectAdaptor parses affect/emotion from user or agent LANGUAGE into the shared world model: a language-interface component that, when literal semantic content is insufficient to recover affect, converts text into PROBABILISTIC affect/emotion hypotheses (treated as uncertain latent-state estimates, NOT categorical emotion truths) and feeds those estimates into REE's wider agent-state and context modelling. It is an input/perception adaptor on the language channel -- distinct from REE's INTERNAL affective representation (Q-007 z_beta dimensions) -- supplying other-agent affect priors to the social/empathy modelling layer."
+  claim_type: mechanism_hypothesis
+  subject: language.affect_adaptor_uncertain_hypothesis
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-009
+    - ARC-010
+    - Q-007
+    - MECH-031
+  location: docs/architecture/language.md#mech-373
+  source:
+    - docs/thoughts/2026-06-07-language-affect-adaptor-slm-emotion-recognition.md
+  notes: >
+    Reaped from the 2026-06-07 LanguageAffectAdaptor thought (low-priority reference intake). SCOPE:
+    explicitly V5+ -- "probably around v5+", "a reference resource for later language-interface work,
+    not a REE-v3 assembly priority"; off the V3 / GAP-7 critical path; epistemic_category
+    substrate_conditional keeps it out of the IGW experiment-proposal lane (no language interface exists
+    in V3, so any probe would be vacuous; DO NOT build or queue in V3 until routed by an explicit
+    version decision). DESIGN COMMITMENTS captured from the thought: (1) parse affect from user/agent
+    language when literal semantic content is insufficient; (2) treat emotion labels as UNCERTAIN
+    latent-state hypotheses, not categorical truths -- a probability distribution over affect, not a
+    hard class; (3) feed affect estimates into REE's wider agent-state and context modelling (the
+    social/empathy layer), as priors over another agent's state. DISTINCTNESS: this is an INPUT adaptor
+    on the language channel turning external TEXT into affect priors; Q-007 is the orthogonal question
+    of REE's OWN internal affective representation (z_beta valence/arousal regimes). The uncertain-not-
+    categorical commitment is consistent with the Q-007 constructionist reframe (Barrett 2017/2019:
+    emotions are constructed categories, not natural kinds with fixed signatures), which is exactly why
+    parsed emotion labels must remain probabilistic hypotheses. depends_on: ARC-009 (language as the
+    symbolic mediation/coordination layer this adaptor plugs into), ARC-010 (social mirror-modelling /
+    coupling -- where the parsed affect priors are consumed for other-agent modelling), Q-007 (affect as
+    uncertain dimensional state, not categorical), MECH-031 (derived social tags / empathy coupling --
+    the agent-state tags the adaptor's estimates inform). REFERENCE RESOURCE (notes-level pointer, not
+    citable experimental evidence): Towards Data Science, "How to Fine-Tune an SLM for Emotion
+    Recognition" (https://towardsdatascience.com/how-to-fine-tune-an-slm-for-emotion-recognition/) --
+    motivates a small-language-model (SLM) emotion classifier as the lightweight adaptor's
+    implementation candidate. Also relates to the language/affect lateralisation intake
+    (2026-04-16, ventral affect-to-meaning binding) and the language-vs-theory-of-mind dissociation
+    intake (2026-05-04, language and fast-empathy as separable specialist systems) -- this adaptor sits
+    at that interface. Does not promote/demote or weaken any existing claim.
+
+- id: ARC-087
+  title: "Sense-specific perceptual-manifold adaptor: each sensory modality requires its own adaptor transforming raw stimulus space into a perceptual-manifold (metric) space before shared-world-model entry; senses are not interchangeable raw streams."
+  claim_type: architectural_commitment
+  subject: perception.sense_specific_manifold_adaptor
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-017
+    - MECH-103
+    - ARC-004
+    - ARC-005
+    - ARC-019
+  location: docs/architecture/sense_specific_perceptual_manifolds.md#arc-087
+  source:
+    - docs/thoughts/2026-06-07_sight_specific_perceptual_manifolds.md
+  notes: >
+    The architectural commitment from the sight-specific-perceptual-manifolds intake: a sense does
+    not contribute raw data directly to the shared world model -- it contributes a shaped GEOMETRY of
+    possible differences. The adaptor is the stage at which raw physical signal becomes a usable
+    geometry of difference (a perceptual metric / manifold); it is NOT an optional feature extractor.
+    Trigger = the Schrodinger colour-theory completion result: even a seemingly basic visual property
+    (hue / saturation / lightness) is not a simple physical-to-cognitive mapping but emerges from the
+    geometry of perceptual SIMILARITY -- the perceptual space itself is structured (may be curved,
+    compressed, asymmetric, non-additive, unlike the raw measurement space). Architecture pattern:
+    physical signal -> receptor encoding -> modality-specific adaptor -> perceptual metric / manifold ->
+    stable perceptual primitives -> shared world-model update -> action arbitration. RELATION TO OWNED
+    CLAIMS (cross-ref, not duplicate): MECH-103 already commits that each modality has its OWN encoder
+    pathway into the shared latent carrying complementary structure (vision = object identity / layout,
+    audition = events / temporal cues, somatosensory = surface / contact) and that fusion is multi-source
+    precision-weighted; ARC-017 owns the minimal sensory stream tags. ARC-087 ADDS the distinct claim
+    that the per-modality pathway is not merely a feature extractor but a METRIC / MANIFOLD constructor,
+    and that the depth and structure of that transformation is sense-specific and non-trivial (the
+    perceptual space's own geometry must be built before world-model entry). The shared world model is
+    therefore built from sense-specific geometries made mutually negotiable, NOT from interchangeable raw
+    sensory channels. epistemic_category substrate_conditional / V4 / version_relevance v4_v5: there is no
+    V4+ multimodal-perception substrate yet; off the V3 / GAP-7 critical path; V3 uses gradient-only /
+    smell-like sensing where a deep adaptor is unnecessary -- DO NOT build in V3 until routed by an
+    explicit version decision. Does not promote/demote any existing claim. Reaped from the 2026-06-07
+    sight-specific-perceptual-manifolds intake.
+
+- id: MECH-372
+  title: "Modality-heterogeneity / adaptor-depth gradient: senses differ in how much transformation they need before world-model entry -- smell is a near-raw gradient primitive, sight needs a deep perceptual-manifold adaptor; gradient-like (low-adaptor-depth) senses enter earliest developmentally."
+  claim_type: mechanism_hypothesis
+  subject: perception.modality_heterogeneity_adaptor_depth
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-087
+    - ARC-017
+    - ARC-019
+    - MECH-103
+  location: docs/architecture/sense_specific_perceptual_manifolds.md#mech-372
+  source:
+    - docs/thoughts/2026-06-07_sight_specific_perceptual_manifolds.md
+  notes: >
+    The heterogeneity principle under the ARC-087 adaptor architecture: sensory modalities differ in the
+    DEPTH of transformation they require before shared-world-model entry -- they are not interchangeable
+    raw streams of equal adaptor depth. SMELL sits near the raw end: it is naturally gradient-like
+    (stronger / weaker, nearer / farther, attractive / aversive, trail / no-trail, source-seeking /
+    source-avoiding) and can enter cognition as a near-raw primitive ORIENTATION signal -- a local
+    gradient that can be followed, escaped, strengthened, weakened, remembered, and associated with
+    outcome -- with a minimal adaptor. SIGHT sits at the deep end: visual material cannot enter as raw
+    signal; a sight adaptor must first construct perceptual distance metrics, colour geometry, edge /
+    boundary extraction, figure-ground separation, motion fields, depth relations, object persistence,
+    occlusion handling, invariances across lighting / angle / distance / motion, affordance extraction,
+    and agency / face / gaze salience. DEVELOPMENTAL-ORDERING COROLLARY: gradient-like (low-adaptor-depth)
+    senses are compatible with the EARLIEST world-model construction and plausibly come first
+    ('smell may have been the first sense'), while high-adaptor-depth senses (vision) require more
+    developmental scaffolding before they become cognitively useful -- ties into ARC-019's staged
+    curriculum (each sense admitted when its adaptor is mature, not all at once). For REE-v3, smell /
+    gradient-only sensing remains appropriate; for V4+ multimodal sensing must NOT be treated as 'add
+    more input channels' -- each sense needs its own preprocessing grammar. epistemic_category
+    substrate_conditional / V4 / v4_v5: off the V3 / GAP-7 critical path, DO NOT build in V3. Does not
+    promote/demote any existing claim. Reaped from the 2026-06-07 sight-specific-perceptual-manifolds
+    intake.
+
+- id: Q-065
+  title: "Per-sense adaptor specification and cross-modal negotiability: is each modality's perceptual metric learned or partly defined, and how are heterogeneous sense-specific geometries made mutually negotiable inside one shared world model?"
+  claim_type: open_question
+  subject: perception.adaptor_metric_origin_and_negotiability
+  polarity: asks
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-087
+    - MECH-372
+  location: docs/architecture/sense_specific_perceptual_manifolds.md#q-065
+  source:
+    - docs/thoughts/2026-06-07_sight_specific_perceptual_manifolds.md
+  notes: >
+    Two coupled open questions raised by the sense-specific-adaptor architecture (ARC-087) and the
+    adaptor-depth gradient (MECH-372). (1) ORIGIN OF THE METRIC: for each modality, is the perceptual
+    metric LEARNED from experience (self-organised from the statistics of perceptual similarity, e.g.
+    colour geometry emerging from similarity structure) or partly DEFINED / innate (a structural prior on
+    the manifold)? The Design invariant from the thought -- 'each sensory modality should define OR learn
+    its own perceptual metric before being admitted into the shared world model' -- leaves this fork open.
+    (2) CROSS-MODAL NEGOTIABILITY: how are heterogeneous sense-specific geometries made MUTUALLY
+    NEGOTIABLE so a single shared world model can integrate them -- smell's gradient geometry, sight's
+    perceptual-manifold geometry, touch's boundary / pressure / texture / resistance / contact geometry,
+    hearing's temporal-source / rhythm / pitch / localisation geometry, proprioception's body-state
+    transition geometry? This is the unification problem behind MECH-103's multi-source precision-weighted
+    fusion: fusion presupposes a common negotiation currency across structurally dissimilar manifolds.
+    epistemic_category substrate_conditional set EXPLICITLY so narrow_open_question does NOT fire (there is
+    no V4+ multimodal-perception substrate to test against; the right response is to wait for / design that
+    substrate, not to queue an experiment). Off the V3 / GAP-7 critical path. Reaped from the 2026-06-07
+    sight-specific-perceptual-manifolds intake.
+
+# Registered 2026-06-09 -- emotion-as-anti-collapse architecture (UNIFYING MAP, not new substrate).
+# The affect/relief/safety/harm/drive/persistence/behavioural-diversity primitives are ALREADY OWNED;
+# the only genuinely-new content is the organising framing: affect = a set of gated, partially
+# independent evaluators whose collective effect is to prevent behaviour collapsing onto the currently
+# dominant gradient (anti-monostrategy). Registered as ONE umbrella ARC claim depends_on the owned set;
+# NO redundant substrate claims. Same shape as the attention=distributed-precision-selection map and
+# ARC-084 signed-coupling map: REE owns the pieces, the new thing is the explicit map. Source thought's
+# governance note honoured: validates no claim, promotes no substrate, alters no experiment routing.
+# Source: docs/thoughts/2026-06-08_emotion_as_anti_collapse_architecture.md
+# Home doc: docs/architecture/emotion_as_anti_collapse_architecture.md
+- id: ARC-088
+  title: "Emotion-as-anti-collapse architecture: emotion-like systems are a set of GATED, PARTIALLY INDEPENDENT evaluators (is-this-harmful / is-this-safe / did-this-reduce-suffering / am-I-pursuing-something-I-want / did-I-merely-like-the-last-thing / am-I-stuck / am-I-overcommitted / is-this-goal-stale / should-I-explore / should-I-stop / should-I-sleep-and-consolidate / should-I-release-the-policy) whose collective effect is to prevent behaviour from collapsing onto the currently dominant gradient. Affect is therefore the architectural SOURCE of structured behavioural diversity -- not decoration on a rational optimiser and not random exploration noise, but native modulatory control (gates, biases, interrupts, salience shifts, persistence regulators, release conditions, credit-assignment signals) that produces STRUCTURED deviations from naive optimisation. A unifying MAP over REE's already-owned affect machinery, not a new substrate; an optimise-then-bolt-on-safety design fails because these evaluators must be native, not added afterward."
+  claim_type: architectural_commitment
+  subject: affect.anti_collapse_behavioral_diversity_map
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_coherence
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-06-09"
+  depends_on:
+    - ARC-065     # behavioural-diversity generation pathway -- prevent collapse to the smoothest single regime (parent prior art)
+    - MECH-359    # candidate-differentiated affect vector -- affect must carry cross-candidate range to carve behaviour
+    - SD-011      # dual nociceptive streams -- "is this harmful?" as a native separable stream
+    - SD-050      # suffering-derivative comparator -- relief substrate
+    - MECH-302    # relief-completion event -- "did this reduce suffering?" (action-contingent harm reduction)
+    - MECH-304    # conditioned safety store -- "is this safe?" / commitment-release gate
+    - SD-012      # homeostatic drive -- "am I pursuing something I want?" (wanting)
+    - ARC-079     # gated goal persistence; disengagement the ungated default -- "am I overcommitted / is this goal stale / should I release?"
+  location: docs/architecture/emotion_as_anti_collapse_architecture.md
+  notes: >
+    UNIFYING MAP, not a new substrate. Every constituent evaluator is already a registered REE claim;
+    ARC-088 asserts only that, TAKEN TOGETHER, they constitute REE's anti-collapse / behavioural-
+    diversity architecture, and that an optimise-then-bolt-on-safety design fails because harm, relief,
+    safety, blocked agency, curiosity, commitment release, uncertainty, drive, and care must be NATIVE
+    control systems (if not, they arrive too late). epistemic_category set substrate_coherence EXPLICITLY
+    (the architectural_commitment -> substrate_coherence default, made explicit) so promote/demote stays
+    suppressed and conflict-resolution alerts still fire -- consistent with the source thought's
+    governance note that the intake validates no claim, promotes no substrate, and alters no experiment
+    routing. The depends_on set is REPRESENTATIVE, not exhaustive: behavioural-diversity children
+    (MECH-313 noise-floor / MECH-314 structured-curiosity / MECH-320 tonic-vigor), boredom (ARC-067/
+    MECH-330), curiosity sub-flavours (MECH-314a/b/c), liking-vs-wanting, blocked-agency, and the
+    "should I sleep/consolidate" offline-integration evaluators (MECH-272/273 sleep cluster) all sit
+    under this umbrella and are reachable through the depends_on chain rather than re-listed.
+    ARCHITECTURAL CONSEQUENCE (load-bearing): do NOT merge all emotions into one value scalar -- the
+    OPPOSITE; preserve DISTINCT affective streams while letting them share INTERFACES where appropriate.
+    They may converge on shared CONSUMERS (E3 score bias, commitment gating, residue, offline
+    consolidation) but their LEARNING TARGETS and GATING CONDITIONS must stay distinct; reuse/gating
+    audits that touch any convergence point should reference ARC-088 to check distinctness is preserved.
+    603 LINEAGE as worked example: the agent could form goals, experience threat, and suppress freezing,
+    but did not learn directed escape until the missing affective-learning bridge (relief as action-
+    contingent harm reduction + safety as threat-absence prediction, both feeding bounded future-action
+    bias) was identified -- "optimise away from harm" was not enough. SCOPE: V3-grounded framing (harm
+    SD-010/SD-011, relief SD-050/MECH-302, safety MECH-303/304, drive SD-012, behavioural-diversity
+    ARC-065 stack are V3 substrate; the candidate-differentiated extension MECH-359 is V4, reached via
+    depends_on not a permission gate); implementation_phase v3 because the anti-collapse architecture is
+    substantially realised now and the framing is visitor-facing today. The visitor-facing formulation
+    ("AI begins from optimisation-then-safety-wrapper; REE begins from partially-independent control
+    systems that prevent any one gradient taking over") lives in the home doc as DOCUMENTATION and
+    registers no additional claim. NO promotion/demotion/weakening of any existing claim; NO substrate
+    code; NO experiment. New affect work attaches to the relevant owned child (or extends MECH-359), not
+    to this umbrella -- DO NOT invent redundant substrate claims under ARC-088.
+
+# Registered 2026-06-09 -- spintronic-memristive cognifold-substrate intake (docs/thoughts/2026-06-06_spintronic_memristive_cognifold_substrate.md). POST-V5 / future physical-instantiation compass; NOT on the V3 path and NOT queueable for V3. The load-bearing near-term target is specifying the cognifold in SUBSTRATE-INDEPENDENT primitives (ARC-089); the spintronic-memristive hardware (MECH-374) is a post-V5 physical-substrate candidate the primitives let us later evaluate. See docs/architecture/spintronic_memristive_cognifold_substrate.md and the raw thought. External anchors: Shao et al. arXiv:2112.02879 (spintronic memristors survey); TDK spin-memristor neuromorphic element (industry); arXiv:2009.06594 (memristive control of spin-Hall nano-oscillator synchronisation).
+- id: ARC-089
+  title: "Substrate-independent cognifold primitives: REE specifies its single cognifold (one interacting state-space, not a modular stack) in a hardware-neutral primitive vocabulary -- persistent state, history-dependent deformation, multi-timescale field dynamics, oscillatory propagation, stochastic transition, attractor transitions, residue-as-deformation-of-the-future-action-landscape, commitment as a real boundary between simulated and released action, and offline reintegration -- so that any FUTURE physical substrate is evaluated by whether it can INSTANTIATE these dynamics, not merely execute modular software. The primitives remain software-expressible now while also being legible as future physical-substrate affordances."
+  claim_type: architectural_commitment
+  subject: cognifold.substrate_independent_primitives
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: post_v5
+  version_relevance: post_v5
+  depends_on:
+    - ARC-013
+    - ARC-084
+    - MECH-090
+    - INV-049
+    - ARC-005
+  location: docs/architecture/spintronic_memristive_cognifold_substrate.md#arc-089
+  notes: >
+    From the spintronic-memristive cognifold-substrate intake (raw section 1-2 + section 3
+    "architectural commitment" classification). This is the LOAD-BEARING near-term target of the
+    note: the hardware discussion is post-V5, but it clarifies HOW REE should specify the cognifold
+    so a later physical instantiation is possible. NOT a new substrate to build: the primitives it
+    enumerates are ALREADY owned and remain software-expressible -- residue-as-curvature/cognitive-map
+    (ARC-013), the cognifold-as-single-interacting-field with signed coupling (ARC-084), the
+    commitment latch / real boundary between simulated and released action (MECH-090), offline
+    reintegration as a mathematical necessity for model-building agents (INV-049), the control plane
+    that supplies gain/precision/phase modulation (ARC-005). What is NEW is the explicit
+    architectural COMMITMENT to keep this primitive vocabulary substrate-independent and physically
+    legible -- a compass for future-substrate evaluation, not an implementation requirement.
+    epistemic_category set substrate_conditional EXPLICITLY (overriding the architectural_commitment
+    -> substrate_coherence inference): this is a candidate compass gated on a post-V5 physical
+    instantiation that does not exist, NOT the adopted V3 substrate; promote/demote suppressed.
+    GUARDRAIL (raw section 8): if a future agent tries to convert this into REE-v3 implementation work
+    (hardware targets, hardware-abstraction layers, android substrate tasks), STOP and reframe -- the
+    correct near-term extraction is "define and preserve cognifold primitives in software-neutral
+    terms." Does not promote/demote any existing claim. POST-V5; off the V3 critical path; NOT
+    queueable for V3.
+- id: MECH-374
+  title: "Memristive deformation as the physical analogue of residue/cognifold curvature: spintronic-memristive media (magnetic tunnel junctions, nanomagnet ensembles, domain walls, topological spin textures, spin waves / spin-Hall nano-oscillators) are physical substrates in which past activity alters future state-transition behaviour -- making 'residue is not merely stored memory but deformation of the future action landscape' physically literal in a way von Neumann computation does not. They are a candidate post-V5 physical cognifold substrate because they combine persistent state, history-dependent deformation, oscillatory dynamics, stochastic switching, attractor-like state-space trajectories, and possible low-power embodied operation in one medium."
+  claim_type: mechanism_hypothesis
+  subject: cognifold.memristive_physical_substrate_candidate
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: post_v5
+  version_relevance: post_v5
+  depends_on:
+    - ARC-089
+    - ARC-013
+    - MECH-363
+    - MECH-362
+  location: docs/architecture/spintronic_memristive_cognifold_substrate.md#mech-374
+  notes: >
+    From the spintronic-memristive intake (raw section 0 + section 3 "mechanism hypothesis"
+    classification + section 4 REE<->spintronic mapping table). The REE bridge: memristive
+    deformation = history-dependent change of the future conductance/state landscape, the physical
+    twin of residue-as-latent-curvature (ARC-013) and of the deformable competitive cognifold field
+    (MECH-363). Mapping (raw section 4): cognifold = single interacting state-space; residue field =
+    history-dependent landscape deformation; E1 = slow attractor structure; E2 = fast transition /
+    oscillatory propagation; E3 = thresholded commitment / switching between candidate and released
+    action; control plane = gain/precision/phase-coupling modulation; offline integration =
+    re-driving the field without action authority. External literature anchors preserved for a LATER
+    targeted lit-pull (NOT load-bearing for this candidate registration, NOT citable REE mechanism
+    evidence -- these are hardware surveys, out of REE's experimental domain): Shao et al.,
+    "Spintronic memristors for computing", arXiv:2112.02879; TDK spin-memristor neuromorphic element
+    (industry trend, CEA + Tohoku); "Memristive control of spin-Hall nano-oscillator
+    synchronisation", arXiv:2009.06594. IMPORTANT NON-CLAIMS (raw section 5): does NOT claim REE-v3
+    should target spintronic hardware, does NOT claim such hardware is android-ready, does NOT claim
+    future REE MUST run on spintronics. The useful weaker claim: IF REE is a single cognifold, future
+    physical substrates should be assessed by whether they instantiate persistent, deformable,
+    multi-timescale action-field dynamics rather than merely execute modular software. Should NOT be
+    promoted directly to an invariant (raw section 3). epistemic_category substrate_conditional /
+    POST-V5; off the V3 critical path; NOT queueable for V3.
+- id: Q-066
+  title: "Can spintronic-memristive media (or any candidate physical cognifold substrate) scale to embodied REE cognition WITHOUT losing auditability, stability, or the harm/safety boundaries that REE's software cognifold currently enforces -- and which cognifold primitives (ARC-089) does each candidate substrate genuinely instantiate versus merely approximate?"
+  claim_type: open_question
+  subject: cognifold.physical_substrate_auditability_safety_scaling
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: post_v5
+  version_relevance: post_v5
+  depends_on:
+    - ARC-089
+    - MECH-374
+    - INV-049
+    - Q-058
+  location: docs/architecture/spintronic_memristive_cognifold_substrate.md#q-066
+  notes: >
+    From the spintronic-memristive intake (raw section 3 "open question" classification + section 5
+    weaker-useful-claim). The auditability/stability/safety axis is the genuinely-open one: an analog
+    deformable physical medium may instantiate the dynamical primitives (ARC-089) while making the
+    commitment boundary (MECH-090), provenance/write gating, and harm-residue firewall harder to
+    inspect and guarantee than in software. Sub-questions: (1) can a physical cognifold preserve the
+    simulated-vs-released action boundary as a hard, auditable gate? (2) does an analog substrate's
+    stochastic switching threaten the stability that signed competitive coupling (Q-058) buys in the
+    software cognifold? (3) how is offline reintegration without action authority (INV-049)
+    physically realised and verified? epistemic_category set substrate_conditional EXPLICITLY
+    (overriding open_question -> answer_state) so narrow_open_question does NOT fire -- this is a
+    post-V5 question awaiting a physical-substrate decision, NOT a V3-tractable one to narrow by
+    experiment. POST-V5; off the V3 critical path; DO NOT queue an experiment against this in V3.
+
+- id: MECH-375
+  title: "Trainable relief critic Q_relief(state, action, threat_context): a LEARNED PARAMETRIC head that predicts expected harm/suffering reduction following an action under threat -- negative-reinforcement credit assignment, distinct from generic reward / wanting. It is the trainable successor to the FIXED-ARITHMETIC per-first-action-class EMA credit table of the MECH-358 relief half, and is downstream of (NOT a duplicate of) the non-trainable MECH-302 / SD-050 relief-completion comparator that merely DETECTS relief on the current state. Q_relief is a function approximator generalising relief-credit across continuous state x action x threat-context, trained on action-contingent drops in z_harm_a: positive target when a directed action under threat is followed by a temporally-close, action-contingent z_harm_a drop not explained by passive environmental drift; negative / extinction target when the expected relief action fails to reduce harm. Feeds E3 as a bounded, threat-gated, extinguishable score-bias toward actions predicted to reduce harm -- never global reward, never fires when safe, never credits no-op / freeze unless explicitly modelling passive safety. MECH-094-safe: simulated relief in hypothesis mode must not train the waking critic unless authorised as play / training."
+  claim_type: mechanism_hypothesis
+  subject: relief.trainable_relief_critic
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-06-09"
+  depends_on:
+    - MECH-358   # the fixed-arithmetic relief EMA credit table this makes trainable (per-action-class -> parametric Q_relief)
+    - SD-059     # the escape-affordance bridge architecture the fixed table instantiates
+    - MECH-302   # non-trainable relief-completion comparator: DETECTS relief on current state; Q_relief BINDS + GENERALISES relief-credit to action (teaching-signal source)
+    - SD-050     # suffering-derivative comparator substrate (provides the relief-completion event used as training target)
+    - MECH-357   # the scalar avoidance-efficacy gate the bridge sits on
+    - SD-058     # instrumental-avoidance acquisition architecture
+    - SD-011     # z_harm_a affective stream -- the threat / harm signal whose action-contingent drop is the training target
+    - MECH-094   # simulation / provenance gate: hypothesis-mode relief must not train the waking critic
+  distinct_from:
+    - MECH-302   # comparator fires on the CURRENT state (non-trainable rolling-window descent detector); MECH-375 is a TRAINABLE state x action x threat-context critic
+    - MECH-358   # FIXED per-action-class EMA credit table; MECH-375 is a LEARNED parametric function approximator generalising across continuous state / action / context
+    - SD-037     # orexin override: reflexive arousal-driven escape; Q_relief credit is learned negative-reinforcement, not a reflex
+    - MECH-376   # sister TRAINABLE safety predictor: prospective threat-absence; MECH-375 is action-contingent aversive-offset relief
+  location: docs/architecture/trainable_relief_safety_affordance_learners.md
+  source:
+    - docs/thoughts/2026-06-08_Trainable_Releif_and_Safety.md
+  functional_restatement: >
+    Mechanism hypothesis. The escape-affordance bridge (SD-059 / MECH-358) binds relief to escape via
+    a FIXED-ARITHMETIC per-first-action-class EMA credit table; the relief-completion machinery it
+    consumes (MECH-302 / SD-050) is a NON-TRAINABLE rolling-window comparator that detects a sustained
+    z_harm_a descent on the CURRENT state. Neither learns a generalising function of state x action x
+    threat-context. MECH-375 asserts a TRAINABLE relief critic Q_relief(state, action, threat_context)
+    -- a parametric head (gradient-trained function approximator) whose function is negative-reinforcement
+    CREDIT ASSIGNMENT: "this action reduced suffering / terminated harm", semantically distinct from
+    generic reward or appetitive wanting even though it may reuse reward / goal machinery.
+
+    Training target (action-contingency, not passive drift): a POSITIVE target when a directed action
+    under threat is followed by a drop in z_harm_a; a STRONGER target when the drop is temporally close,
+    action-contingent, and not explained by passive environmental drift; a NEGATIVE / EXTINCTION target
+    when the expected relief action fails to reduce harm. Candidate inputs (per the thought): current
+    z_world, z_self, the threat / harm streams (especially z_harm_a), the action class / candidate first
+    action, and possibly local trajectory features from E3.
+
+    Functional role: under FUTURE threat, bias E3 toward actions Q_relief predicts will reduce harm /
+    suffering; do NOT fire when safe; do NOT credit no-op / freeze unless explicitly modelling passive
+    safety. The bias enters E3 as a BOUNDED, THREAT-GATED, EXTINGUISHABLE score-bias (it cannot dominate
+    E3 scoring or become a global approach signal), mirroring the three guards already proven on the
+    fixed MECH-358 bridge (bias_scale clamp, threat-context gate, per-tick leak).
+
+    V3-NARROW (this claim): the MINIMAL trainable bridge -- a small parametric critic over the
+    already-built substrate (escape bridge, harm-derivative comparator, threat detector, discrete
+    first-action classes), replacing MECH-358's fixed EMA table with a learned generaliser. This is the
+    post-V3-EXQ-603i successor scaffold, close to the V3 critical path but NOT yet built. The V4 / V5-RICH
+    tier (expression-as-action-geometry, richer continuous state / policy / location indexing, hippocampal
+    affect-gradient indexing of relief) is OUT OF SCOPE here and OFF the V3 path -- see the home doc.
+  notes: >
+    Reaped from the 2026-06-08 trainable-relief/safety thought intake (post-V3-EXQ-603i successor
+    candidate). The genuinely-NEW structure vs the owned cluster is TRAINABILITY + parametric
+    generalisation + action-binding of relief credit: MECH-302 / SD-050 is a non-trainable comparator
+    (DETECTION on the current state) and MECH-358 is a fixed per-action-class EMA table (no generalising
+    function), so a learned Q_relief over state x action x threat-context is not a restatement of either.
+    epistemic_category substrate_conditional: the trainable parametric critic is PLANNED but NOT YET BUILT
+    (the current bridge is the fixed table), so promote / demote is suppressed and the claim is kept off
+    the IGW experiment-proposal lane until the head exists -- the right next step is to BUILD the trainable
+    head (a later decision), not to queue a vacuous probe on the fixed-table substrate. implementation_phase
+    v3 because the minimal trainable bridge is V3-tractable on the existing substrate. Design guardrails
+    (from the thought, all carried into the head): bounded (cannot dominate E3 scoring); threat-gated (no
+    bias when safe); extinguishable (failed relief predictions decay); action-bound (credits the
+    action / policy that produced harm reduction, not generic state value); MECH-094-safe (simulated
+    relief in hypothesis mode must not train the waking learner unless explicitly authorised as
+    play / training). Does NOT promote / demote / weaken any existing claim. Sister claim: MECH-376
+    (trainable safety predictor); open decomposition question: Q-067.
+
+- id: MECH-376
+  title: "Trainable prospective safety predictor P_safety(state, cue, action, context): a LEARNED PARAMETRIC head predicting threat-ABSENCE / response-produced safety / conditioned inhibition, licensing commitment-release, approach to safety affordances, and recovery after threat. Distinct from z_goal (it predicts the ABSENCE of threat, not the PRESENCE of a goal) and from relief (it is a PROSPECTIVE threat-absence prediction, not an aversive-offset event). It is the trainable + contrastive successor that makes the MECH-303 (contextual passive safety) + MECH-304 (cue-specific conditioned inhibition) substrate learnable, replacing the FIXED-ARITHMETIC per-first-action-class EMA safety table of the MECH-358 safety half: positive target when a cue / context / action predicts threat absence or response-produced safety; negative target when 'safe' cues are followed by threat recurrence; CONTRASTIVE target to stop safety overgeneralising to stable background features that merely co-occurred with relief. Output supports commitment release, permits approach to safety affordances, stabilises recovery, and prevents persistent defensive mode when threat is genuinely absent."
+  claim_type: mechanism_hypothesis
+  subject: safety_prediction.trainable_safety_predictor
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-06-09"
+  depends_on:
+    - MECH-358   # the fixed-arithmetic per-action-class EMA safety table this makes trainable + contrastive
+    - SD-059     # the escape-affordance bridge architecture the fixed table instantiates
+    - MECH-303   # contextual passive safety SUBSTRATE hypothesis -- the diffuse-context safety system P_safety makes trainable
+    - MECH-304   # cue-specific conditioned-inhibition SUBSTRATE hypothesis -- the cue-specific safety system P_safety makes trainable
+    - MECH-302   # relief-completion events are one teaching signal for response-produced safety
+    - MECH-357   # the scalar avoidance-efficacy gate the bridge sits on
+    - SD-058     # instrumental-avoidance acquisition architecture
+    - SD-011     # z_harm_a affective stream -- the threat signal whose absence P_safety predicts
+    - MECH-094   # simulation / provenance gate: hypothesis-mode safety must not train the waking predictor
+    - MECH-375   # sister trainable head: together = action-contingent relief (escape) + cue / context safety (recovery)
+  distinct_from:
+    - MECH-303   # contextual passive safety SUBSTRATE hypothesis; MECH-376 is the TRAINABLE + CONTRASTIVE parametric form
+    - MECH-304   # cue-specific safety SUBSTRATE hypothesis; MECH-376 generalises it parametrically with a contrastive target
+    - MECH-358   # FIXED per-action-class EMA safety table; MECH-376 is a LEARNED prospective predictor
+    - INV-034    # goal maintenance / z_goal: P_safety predicts threat ABSENCE, NOT goal PRESENCE -- must remain distinct from z_goal
+    - MECH-375   # sister relief critic: action-contingent aversive-offset; MECH-376 is prospective threat-absence / conditioned inhibition
+  location: docs/architecture/trainable_relief_safety_affordance_learners.md
+  source:
+    - docs/thoughts/2026-06-08_Trainable_Releif_and_Safety.md
+  functional_restatement: >
+    Mechanism hypothesis. Safety is NOT relief and NOT mere low harm: it is a PROSPECTIVE learned
+    predictor -- "this cue / context / action means threat is absent or likely to remain absent" -- that
+    licenses commitment-release, approach, and recovery, and must remain DISTINCT from z_goal. The owned
+    safety substrate (MECH-303 contextual passive store + MECH-304 cue-specific conditioned inhibition)
+    is a pair of substrate HYPOTHESES; the IMPLEMENTED V3 form (the MECH-358 safety half) is a
+    fixed-arithmetic per-action-class EMA credit table with no generalising function and no contrastive
+    discipline. MECH-376 asserts a TRAINABLE parametric predictor P_safety(state, cue, action, context)
+    that makes that substrate learnable.
+
+    Training target: POSITIVE when a cue / context / action predicts threat absence or response-produced
+    safety; NEGATIVE when a "safe" cue is followed by threat recurrence; CONTRASTIVE to prevent
+    overgeneralising safety to stable background features that merely co-occurred with relief (the failure
+    mode "safety == low harm" or "safety == recent relief"). Candidate inputs (per the thought): current
+    z_world, cue / context features, action class / recent action, threat history, time since threat
+    offset, and possibly a hippocampal context slot / rule representation.
+
+    Functional role: support COMMITMENT RELEASE; permit APPROACH to safety affordances; STABILISE
+    recovery after threat; PREVENT persistent defensive mode when threat is genuinely absent. Like the
+    relief critic the output enters E3 as a bounded, threat-context-gated, extinguishable bias, never a
+    global approach signal.
+
+    Why both heads (see Q-067): relief alone teaches "that action reduced harm" but need not produce a
+    stable prospective safety model; safety alone teaches "this context / cue is safe" but need not solve
+    action-specific escape under active threat. The mature avoidance system needs action-contingent relief
+    learning (MECH-375) for escape AND cue / context-contingent safety learning (MECH-376) for recovery,
+    inhibition of defensive mode, and future approach.
+
+    V3-NARROW (this claim): the MINIMAL trainable safety predictor over the already-built substrate,
+    replacing MECH-358's fixed safety EMA table with a learned + contrastive generaliser. The V4 / V5-RICH
+    tier (social safety attribution, rich hippocampal context / rule indexing, safety-as-action-geometry)
+    is OUT OF SCOPE here and OFF the V3 path -- see the home doc.
+  notes: >
+    Reaped from the 2026-06-08 trainable-relief/safety thought intake. The genuinely-NEW structure vs the
+    owned cluster is the TRAINABLE + CONTRASTIVE parametric form of safety prediction: MECH-303 / MECH-304
+    are substrate hypotheses and MECH-358's safety half is a fixed per-action-class EMA table, so a learned
+    P_safety with an explicit contrastive target (safety != low harm, safety != recent relief) is not a
+    restatement of either. Kept explicitly DISTINCT from z_goal / INV-034 (threat-absence prediction, not
+    goal presence). epistemic_category substrate_conditional: the trainable predictor is PLANNED but NOT
+    YET BUILT, so promote / demote is suppressed and the claim is kept off the IGW experiment-proposal lane
+    until built -- the right next step is to BUILD it (a later decision), not to queue a vacuous probe.
+    implementation_phase v3: the minimal trainable predictor is V3-tractable on the existing substrate.
+    Design guardrails carried in: bounded, threat-gated, extinguishable, CONTRASTIVE (safety cannot mean
+    "low harm" or "recent relief"), cue / context-bound (credits the cue / context / action that predicts
+    threat absence), MECH-094-safe. Does NOT promote / demote / weaken any existing claim. Sister claim:
+    MECH-375; open decomposition question: Q-067.
+
+- id: Q-067
+  title: "Relief/safety decomposition: when the fixed escape-affordance bridge is insufficient, is the missing structure relief-only (action-contingent escape credit), safety-only (prospective threat-absence prediction), or both-required -- and should a trainable successor (MECH-375 / MECH-376) train only the missing / weak component first?"
+  claim_type: open_question
+  subject: escape.relief_vs_safety_decomposition
+  polarity: asks
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  depends_on:
+    - MECH-375
+    - MECH-376
+    - SD-059
+    - MECH-358
+    - MECH-302
+    - MECH-303
+  location: docs/architecture/trainable_relief_safety_affordance_learners.md#q-067
+  source:
+    - docs/thoughts/2026-06-08_Trainable_Releif_and_Safety.md
+  notes: >
+    Raised by the 2026-06-08 trainable-relief/safety thought together with the V3-EXQ-603i outcome grid.
+    V3-EXQ-603i (the fixed first-action-class bridge) is the minimal diagnostic and should be allowed to
+    complete without mid-run reinterpretation. The decomposition fork: (1) if 603i PARTIALLY passes,
+    inspect whether a relief-only, safety-only, or both-required pattern emerged and have the trainable
+    successor train ONLY the missing / weak component first; (2) if 603i FAILS while non-vacuity fires, do
+    NOT conclude the relief/safety bridge is wrong -- the likely conclusion is that the fixed
+    first-action-class table is too crude and a TRAINABLE state-action / context-cue learner
+    (MECH-375 / MECH-376) is required; (3) if 603i fails because bridge credit never fires, route back to
+    SUBSTRATE READINESS (harm derivative, trained encoder, threat detector, action-contingency detection),
+    not to the trainable head. epistemic_category substrate_conditional set EXPLICITLY so
+    narrow_open_question does NOT fire: the trainable heads are not yet built and there is no substrate to
+    adjudicate the decomposition against until one is. Off the immediate V3 critical path but tied to it
+    via the 603i successor route. Reaped from the 2026-06-08 trainable-relief/safety intake.
