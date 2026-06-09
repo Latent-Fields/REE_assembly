@@ -1,0 +1,100 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_657a_mech294_multi_content_theta_packet_readiness",
+  "run_id": "v3_exq_657a_mech294_multi_content_theta_packet_readiness_20260609T195728Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-09T19:57:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "joint_binding_load_bearing",
+    "reading": "PASS -- the substrate builds a non-degenerate joint packet AND the three binding modes are structurally separable: joint differs from BOTH the alternation (Kay-2020) and shuffled controls beyond joint's own cycle-to-cycle drift, on >= 2/3 seeds. Read-only-first substrate-readiness gate cleared; queue the MECH-294 behavioural-evidence successor (compose ON) to test whether the co-binding carries DOWNSTREAM signal -- that is the successor's job, NOT this gate's. Cross-stream norm-covariation corroborates (joint > shuffled on >= 2/3 seeds): co-observation, not just four-streams-present.",
+    "preconditions": [
+      {
+        "name": "vs_hold_path_fires_in_joint",
+        "description": "Forced-low-V_s (0.1 < 0.4 hold) on one stream in a joint-mode packet must substitute the held snapshot and yield >= 2 distinct vintages -- the SAME n_distinct_vintages statistic G1 routes on. Directly exercises the MECH-269b V_s consumption the verisimilar agent-loop regime never reaches.",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "deterministic forced sub-hold V_s on risk_sensory, cycle 2",
+        "met": true
+      },
+      {
+        "name": "structural_distance_metric_live",
+        "description": "The matched-cycle component-norm-L1 distance metric (the SAME statistic C1/C2 route on) must register the known joint-vs-shuffled structural difference above the non-vacuity floor.",
+        "measured": 0.29446,
+        "threshold": 0.001,
+        "direction": "lower",
+        "control": "shuffled draws each stream from a different cycle = known structural difference",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "G0": true,
+      "G1": true,
+      "C1": true,
+      "C2": true
+    },
+    "criteria": [
+      {
+        "name": "C1_joint_vs_alternation_structurally_separable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_joint_vs_shuffled_structurally_separable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G0_completeness",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G1_vs_vintaging_live",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "grid": {
+      "joint_binding_load_bearing": "PASS -> queue the MECH-294 behavioural-evidence successor (compose ON). Read-only-first readiness = modes non-degenerate + structurally separable; downstream-signal is the successor's job. Do NOT promote MECH-294 here.",
+      "multi_content_yes_joint_not_isolated": "C2 FAIL -> 'four streams present' carries the structural signal, not the co-observation; refine the readout / behavioural successor; do NOT promote MECH-294's joint clause.",
+      "kay_parsimonious_survives": "C1 FAIL -> Kay-2020 parsimonious outcome survives on REE's substrate; /failure-autopsy; joint clause NOT promotable; 2026-04-26 hold stands.",
+      "substrate_not_ready_requeue": "G0/G1/non-vacuity FAIL -> packet degenerate (missing streams / V_s vintaging broken / shuffle-ties-joint). Route to the upstream blocker or re-queue; NOT a MECH-294 result."
+    }
+  }
+}
