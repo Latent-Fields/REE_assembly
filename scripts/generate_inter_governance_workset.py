@@ -263,6 +263,22 @@ _EPI_SUPPRESS_PROPOSAL = {
 }
 _CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
 
+# Promotion/demotion verdicts that are NOT a governance decision the operator
+# can act on in a /governance cycle. The verdict IS the decision: "hold". The
+# claim is gated on V3 substrate implementation (and a per-claim retest once the
+# substrate lands), or deliberately V4-deferred by architectural commitment.
+# These reach pending_user only because the hold recommendation has not yet been
+# stamped `applied`; stamping it is a no-op acknowledgement, not an adjudication.
+# Surfacing them as `ready` high-severity governance work packages mis-reads a
+# HOLD as a pending decision -- they are reframed as `blocked` substrate-lane
+# items so they stay visible without masquerading as decisions. Genuinely
+# actionable verdicts (narrow_open_question, hold_candidate_resolve_conflict,
+# promote_*, demote_*) are NOT in this set and keep their ready governance lane.
+_HELD_PENDING_RECS = {
+    "hold_pending_v3_substrate": "V3 substrate implementation / per-claim retest",
+    "held_v4_by_architectural_commitment": "V4 substrate (architectural commitment)",
+}
+
 
 def _resolve_epistemic_category(meta: dict | None) -> str:
     """Resolved epistemic_category for a claim, mirroring the indexer's
@@ -1074,6 +1090,36 @@ def build_workset() -> dict:
         )
 
     for rec in _pending_governance_recs()[:12]:
+        verdict = (rec.get("recommendation") or "").strip().lower()
+        if verdict in _HELD_PENDING_RECS:
+            # The verdict IS the decision (hold). Reframe as a blocked/held
+            # substrate item instead of a ready governance decision.
+            blocker = _HELD_PENDING_RECS[verdict]
+            held_v4 = verdict == "held_v4_by_architectural_commitment"
+            if held_v4:
+                why = (f"promotion_demotion verdict is `{verdict}` -- this claim is "
+                       f"deliberately V4-deferred by architectural commitment, not a "
+                       f"decision to make in /governance. No V3 action.")
+            else:
+                why = (f"promotion_demotion verdict is `{verdict}` -- governance is "
+                       f"HELD pending substrate, not a decision to make in /governance. "
+                       f"Unblocks when the substrate lands AND a per-claim retest "
+                       f"supplies V3 evidence.")
+            add(
+                lane="substrate",
+                skill="/implement-substrate",
+                status="blocked",
+                priority=60,
+                severity="low",
+                title=f"Held pending substrate: {rec['claim_id']}",
+                why_now=why,
+                gap_ids=[],
+                claim_ids=[rec["claim_id"]],
+                owner_exq=None,
+                blocked_by=[blocker],
+                unblocks=[rec["claim_id"]],
+            )
+            continue
         add(
             lane="governance",
             skill="/governance",
