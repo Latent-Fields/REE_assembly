@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_055",
+  "entry_id": "2026-06-09_sd_055_sparse_differentiable_topk_sander2023",
+  "timestamp_utc": "2026-06-09T09:05:28Z",
+  "claim_ids_tested": ["SD-055"],
+  "source": {
+    "title": "Fast, Differentiable and Sparse Top-k: a Convex Analysis Perspective",
+    "authors": ["Michael E. Sander", "Joan Puigcerver", "Josip Djolonga", "Gabriel Peyre", "Mathieu Blondel"],
+    "year": 2023,
+    "venue": "ICML 2023 (Proceedings of Machine Learning Research)",
+    "doi": "10.48550/arXiv.2302.01425",
+    "url": "https://arxiv.org/abs/2302.01425"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Directly relevant methods paper that situates SD-055's design choice within the wider differentiable-selection literature and exposes its main weakness. It supports the general premise (the discontinuous top-k/argsort selection blocks backprop and admits differentiable relaxations), but it argues that DENSE relaxations -- the softmax-weighted family SD-055 uses -- lack sparsity and therefore approximate true top-k elite selection less faithfully than the sparse operators it introduces. Mixed: it validates SD-055's direction while implying the specific softmax-mean is the loosest, least elite-preserving option. Confidence 0.68 -- strong venue and on-point, but the critique is indirect (it does not test SD-055 itself, and sparsity's benefit in REE's small-candidate CEM is unestablished).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A dense softmax-weighted mean over all candidates can wash out the elite signal, so SD-055's aggregate may track the candidate-set centroid rather than the best trajectory -- weakening the 'gradient reaches cue_action_proj usefully' premise if the centroid gradient is uninformative.",
+    "If sparsity is required to preserve top-k semantics (as this paper argues), SD-055's non-sparse relaxation would be a biased surrogate for the argsort elite-mean it replaces.",
+    "The paper's advantage is demonstrated on large-scale selection (MoE routing, ViT, pruning); its relevance to REE's small candidate pool is unproven, so the critique may not bite at REE's scale."
+  ],
+  "tags": ["sd_055", "differentiable_top_k", "sparse_relaxation", "softmax", "argmax_relaxation", "elite_selection", "permutahedron", "convex_analysis"],
+  "mapping": {
+    "source_claim_statement": "The top-k operator returns a sparse vector but is a discontinuous function, making it hard to embed in end-to-end backprop-trained networks. The paper formulates top-k as a linear program over the permutahedron and smooths it with a p-norm regularizer to obtain operators that are simultaneously differentiable AND sparse -- a combination prior relaxations (including softmax/entropy-smoothed, dense ones) did not achieve. Applications include weight pruning, ViT fine-tuning, and sparse mixture-of-experts routing.",
+    "ree_translation": "This paper places SD-055's softmax-weighted candidate mean within the family of differentiable relaxations of a discontinuous selection operator, and identifies its limitation. SD-055 replaces argsort elite-selection with a dense softmax mean over all candidates; this paper argues dense (entropy/softmax) relaxations sacrifice the sparsity that makes the relaxation a faithful surrogate for true top-k. For SD-055 that means the gradient is restored (good) but the soft aggregate may approximate the elite-mean loosely, potentially tracking a centroid rather than the best trajectory -- a known, principled caveat on the chosen approximation, and a concrete upgrade path (a sparse top-k operator) if SD-055's softmax-mean proves too diffuse.",
+    "mapping_caveat": "The paper does not test CEM planning or SD-055; its critique of dense relaxations is theoretical and demonstrated at large scale (thousands of experts/tokens). REE's CEM uses a small candidate pool where a dense softmax with low temperature may already approximate elite selection adequately, so the sparsity advantage may not transfer. The mapping is 'this is the principled weakness of SD-055's specific choice and its remedy', not 'SD-055 is wrong'.",
+    "source_context": "Machine-learning methods paper (ICML 2023) deriving fast, differentiable, sparse top-k operators via convex analysis over the permutahedron, motivated by neural-network applications needing faithful sparse selection."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "High source quality (ICML 2023, Blondel group). Mapping fidelity moderate: it speaks to the right operation (differentiable top-k relaxation) and exposes SD-055's dense-relaxation weakness, but does not study CEM or REE-scale candidate pools. Transfer risk elevated by the large-scale-to-small-pool gap."
+  }
+}

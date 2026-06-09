@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_046",
+  "entry_id": "2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018",
+  "timestamp_utc": "2026-06-09T09:05:28Z",
+  "claim_ids_tested": ["ARC-046"],
+  "source": {
+    "title": "Maternal regulation of the infant's hypothalamic-pituitary-adrenal axis stress response: Seymour 'Gig' Levine's legacy to neuroendocrinology.",
+    "authors": ["Suchecki D"],
+    "year": 2018,
+    "venue": "Journal of Neuroendocrinology",
+    "doi": "10.1111/jne.12610",
+    "pmid": "29774962",
+    "volume": "30",
+    "issue": "7",
+    "pages": "e12610"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Authoritative review (Levine-lineage) of the stress hyporesponsive period (SHRP), a well-replicated developmental window in which the neonatal HPA corticosterone stress response is actively attenuated while sensory and learning systems function normally. This is a near-direct biological precedent for ARC-046's core architectural commitment: harm/stress signals fire but their damaging downstream accumulation (corticosterone <-> residue) is held low during infancy, with caregiver presence providing 'imperfect protection'. Confidence held below 0.8 because the mapping is by analogy (HPA glucocorticoid load vs REE residue field is a translation, not an identity) and the evidence is predominantly rodent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the SHRP were shown to also blunt the sensory/learning response to threat (not just the glucocorticoid load), it would weaken ARC-046's requirement that z_harm_s/z_harm_a fire normally while only residue accumulation is attenuated.",
+    "If maternal buffering were shown to be all-or-none rather than graded/partial, it would undercut the INV-043 'imperfect protection' framing ARC-046 invokes.",
+    "If attenuated infant stress reactivity were purely passive immaturity rather than an actively regulated adaptive set-point, the 'designed protection mechanism' reading would be weaker."
+  ],
+  "tags": ["arc_046", "stress_hyporesponsive_period", "SHRP", "HPA_axis", "maternal_buffering", "development", "infant_hazard_protection", "residue_attenuation"],
+  "mapping": {
+    "source_claim_statement": "During the stress hyporesponsive period (roughly the first two postnatal weeks in rat), the neonate's HPA-axis corticosterone response to stressors is strongly suppressed, and maternal behaviours (anogenital licking/grooming, feeding) actively regulate and inhibit stress-induced ACTH/corticosterone release. Prolonged maternal deprivation disinhibits the stress response. This attenuation is interpreted as an adaptive protection of the developing brain from glucocorticoid exposure, while social relationships build later resilience or vulnerability.",
+    "ree_translation": "The SHRP is the biological analog of ARC-046's residue_scale_factor ~0.1: harm/stress detection pathways (in REE, z_harm_s and z_harm_a) remain functional during infancy, but the damaging accumulated load they would normally drive (corticosterone in biology, residue-field saturation in REE) is held to a fraction of the adult rate. Maternal regulation of the corticosterone response maps onto INV-043's caregiver 'imperfect protection: allow harm-learning without destruction', which in the single-agent CausalGridWorld is implemented by curriculum parameter rather than an explicit caregiver agent (ARC-047).",
+    "mapping_caveat": "This is an analogical mapping between a neuroendocrine load variable (glucocorticoid exposure) and an abstract architectural variable (residue accumulation). The SHRP literature does not measure anything called 'residue', and REE has no HPA axis. The review is also predominantly rodent; the human SHRP is more debated and less sharply bounded. The claim that attenuated corticosterone == attenuated residue while sensation stays intact is a design rationale supported by the analogy, not a measured equivalence.",
+    "source_context": "Review article in J Neuroendocrinol honouring Seymour Levine, synthesising decades of rodent and nonhuman-primate work on the SHRP, maternal deprivation paradigms, and the developmental origins of stress resilience vs susceptibility to psychiatric disorders."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (canonical review, well-replicated phenomenon). Mapping fidelity moderate: the SHRP gives a genuine 'attenuated harm-load while signalling intact' precedent, but residue is not glucocorticoid. Transfer risk elevated by rodent->REE and neuroendocrine->architectural double transfer; weighted into the aggregate below the source-quality score."
+  }
+}

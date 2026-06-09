@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_046",
+  "entry_id": "2026-06-09_arc_046_neonatal_critical_period_sensitization_hohmann2005",
+  "timestamp_utc": "2026-06-09T09:05:28Z",
+  "claim_ids_tested": ["ARC-046"],
+  "source": {
+    "title": "Neonatal chronic hind paw inflammation alters sensitization to intradermal capsaicin in adult rats: a behavioral and immunocytochemical study.",
+    "authors": ["Hohmann AG", "Neely MH", "Pina J", "Nackley AG"],
+    "year": 2005,
+    "venue": "The Journal of Pain",
+    "doi": "10.1016/j.jpain.2005.07.009",
+    "pmid": "16326368",
+    "volume": "6",
+    "issue": "12",
+    "pages": "798-808"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Strong, mechanistically detailed rodent study with a developmental-window dissociation (P0 inflammation permanently sensitizes adult pain; P14 inflammation does not). It cuts two ways for ARC-046: it confirms the failure mode ARC-046 is designed to prevent is real (unprotected early harm produces permanent, catastrophic sensitization -- 'residue saturation' that survives into adulthood), and it confirms a developmental WINDOW exists (supporting progressive removal of protection). But it also pressures the optimistic half of ARC-046 -- the assumption that early harm exposure can be reliably educative-without-damage -- by showing that timing alone determines whether identical insults are benign or permanently damaging. Hence mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Early (P0) nociceptive insult produces lasting adult hyperalgesia + central sensitization (Fos up-regulation in dorsal horn) -- i.e. harm exposure WITHOUT protection causes exactly the catastrophic residue saturation ARC-046 posits.",
+    "The benign-vs-damaging outcome depends entirely on developmental timing (P0 damages, P14 does not), so an infant-protection mechanism that mis-times the protection window would fail.",
+    "If REE's residue_scale_factor attenuation were applied uniformly rather than within a critical window, it would not match the window-specific biology this paper documents."
+  ],
+  "tags": ["arc_046", "neonatal_pain", "critical_period", "central_sensitization", "nociceptive_development", "hyperalgesia", "infant_hazard_protection", "residue_saturation"],
+  "mapping": {
+    "source_claim_statement": "Unilateral hind-paw inflammation (CFA) delivered on postnatal day 0 produces increased capsaicin-evoked thermal and mechanical hyperalgesia, allodynia, and increased dorsal-horn Fos expression in adulthood; the same insult delivered on P14 does not. Neonatal chronic inflammation initiated within a critical developmental period permanently alters adult pain sensitivity via lasting central sensitization.",
+    "ree_translation": "The neonatal nociceptive pathways are demonstrably active and plastic during infancy (consistent with ARC-046's z_harm_s/z_harm_a 'fire normally'), but an unprotected early harm insult does not merely teach harm geography -- it permanently raises the gain of the harm system into adulthood. This is the biological instantiation of 'catastrophic residue saturation': harm load during a sensitive window leaves a durable, maladaptive set-point. It therefore grounds the NEED for ARC-046's residue_scale_factor / reduced hazard_magnitude, while warning that the protection must be window-timed.",
+    "mapping_caveat": "The paper measures peripheral/spinal nociceptive sensitization, not a global 'residue field', and the damaging outcome here is hyperalgesia (raised gain), whereas ARC-046's residue saturation is framed as accumulation that exhausts behavioral plasticity. These are related but not identical failure modes. The P0-vs-P14 dissociation also concerns the rat spinal nociceptive system specifically; mapping its critical-period boundaries onto REE's infancy->childhood curriculum is qualitative. Direction is mixed, not 'supports', because the same data tension ARC-046's optimistic premise (educative-without-damage) against its protective premise (damage is real and must be clamped).",
+    "source_context": "Rodent behavioral + immunocytochemical study (J Pain) on developmental programming of adult pain by neonatal inflammatory insult, within the Fitzgerald-era literature on critical periods in the developing nociceptive system."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Good empirical rodent study with a clean within-paper developmental dissociation. Mapping fidelity moderate -- it speaks directly to the failure mode (catastrophic, lasting harm-system change) but via spinal hyperalgesia rather than a residue analog. Transfer risk elevated (rat spinal cord -> REE residue architecture)."
+  }
+}

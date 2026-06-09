@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_055",
+  "entry_id": "2026-06-09_sd_055_differentiable_cem_amos2020",
+  "timestamp_utc": "2026-06-09T09:05:28Z",
+  "claim_ids_tested": ["SD-055"],
+  "source": {
+    "title": "The Differentiable Cross-Entropy Method",
+    "authors": ["Brandon Amos", "Denis Yarats"],
+    "year": 2020,
+    "venue": "ICML 2020 (Proceedings of Machine Learning Research, vol. 119)",
+    "doi": "10.48550/arXiv.1909.12830",
+    "url": "https://arxiv.org/abs/1909.12830"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the canonical, peer-reviewed (ICML 2020) precedent for exactly SD-055's design move: replacing CEM's non-differentiable top-k / argsort elite-selection step with a temperature-controlled soft aggregate so gradients flow back through candidate selection to upstream parameters, and applying it to continuous control / planning. SD-055's softmax-weighted candidate mean (with temperature T) is a specific instance of DCEM's smooth top-k. High confidence: the mapping is structural and direct, the venue is strong, and the method is exactly the one SD-055 implements. Held below 0.9 because DCEM uses a more general smooth top-k (LML projection) whereas SD-055 uses the simplest softmax-mean special case, so DCEM validates the family but not the specific tightness of SD-055's approximation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the soft-selection gradient were shown to be too biased/high-variance to improve learning over the non-differentiable baseline, it would weaken SD-055's premise that restoring gradient to cue_action_proj is beneficial.",
+    "DCEM still relies on the objective being meaningfully differentiable w.r.t. the candidates; if SD-055's score->action_bias path through E2 rollouts has near-zero usable gradient, the differentiable selection would restore a path that carries no signal.",
+    "DCEM reports the soft relaxation helps in some control settings but is not uniformly better than vanilla CEM; a null or negative result in REE would be consistent with that variance."
+  ],
+  "tags": ["sd_055", "differentiable_cem", "cross_entropy_method", "soft_top_k", "elite_selection", "gradient_flow", "planning", "temperature", "model_based_rl"],
+  "mapping": {
+    "source_claim_statement": "The cross-entropy method's elite-selection step (hard top-k thresholding over candidate costs) is non-differentiable, which blocks end-to-end gradient-based learning of the objective's parameters. Replacing it with a temperature-scaled soft top-k operation makes the CEM output differentiable w.r.t. the objective parameters; as the temperature decreases the soft operation approaches the original hard selection. Applied to energy-based structured prediction and to fine-tuning CEM-based continuous controllers.",
+    "ree_translation": "DCEM is the direct ML precedent for SD-055. HippocampalModule.propose_trajectories() uses torch.argsort() to rank candidates and indexes elites by rank -- a zero-gradient barrier that severs action_bias (from SD-016 cue_action_proj) from the task-reward signal. SD-055 replaces argsort + indexed elite-mean with softmax(-scores/T) weighting over all candidates, exactly the temperature-controlled soft elite-selection DCEM formalises. The temperature T plays DCEM's role: low T concentrates weight near argmax, high T averages broadly. DCEM establishes that this move restores gradient to upstream parameters and is usable for planning/control.",
+    "mapping_caveat": "DCEM's soft top-k is the more general Limited-Multi-Label (LML) projection; SD-055 uses the simplest softmax-weighted mean over ALL candidates (the T-controlled top-1-style aggregate), which is a looser approximation of true elite selection. So DCEM supports the family and the rationale, but does not specifically validate that SD-055's dense softmax-mean preserves CEM's elite semantics tightly. DCEM also fine-tunes a controller; SD-055 keeps ARC-007's value-flat residue-terrain scoring (no new value head), so the objective being differentiated differs. The precedent is methodological, not a same-task result.",
+    "source_context": "Machine-learning methods paper (ICML 2020) on making CEM differentiable for end-to-end learning, with continuous-control / model-based RL experiments; reference implementation at github.com/facebookresearch/dcem."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.2,
+    "notes": "Strong venue (ICML), directly on-point method. Mapping fidelity high because SD-055 is essentially a special case of this method applied to the same class of operation (CEM elite selection in a planner). Transfer risk low -- this is ML->ML, same problem class; the only gap is general smooth top-k vs SD-055's softmax-mean special case."
+  }
+}
