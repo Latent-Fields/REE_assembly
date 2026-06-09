@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-09T07:32:31Z",
+  "last_tick_utc": "2026-06-09T08:02:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-603k",
   "current_exq_started_utc": "2026-06-09T05:45:42.454341+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / ARM_HARM_ON_NAV",
     "runs_done": 3,
     "runs_total": 9,
-    "episodes_done": 20,
+    "episodes_done": 130,
     "episodes_total": 235,
-    "overall_pct": 34.3
+    "overall_pct": 39.5
   },
-  "seconds_elapsed": 6408,
-  "seconds_remaining": 4792,
+  "seconds_elapsed": 8213,
+  "seconds_remaining": 4412,
   "recent_lines": [
     "Seed 42 Condition ARM_HARM_OFF_NAV",
     "[train] stage0 ARM_HARM_OFF_NAV seed=42 ep 20/235 z_goal_peak=0.5029",
@@ -41,7 +41,8 @@
     "[train] p2 ARM_HARM_OFF_NAV seed=44 ep 235/235",
     "verdict: FAIL seed=44 arm=ARM_HARM_OFF_NAV G_H=False",
     "Seed 42 Condition ARM_HARM_ON_NAV",
-    "[train] stage0 ARM_HARM_ON_NAV seed=42 ep 20/235 z_goal_peak=0.4857"
+    "[train] stage0 ARM_HARM_ON_NAV seed=42 ep 20/235 z_goal_peak=0.4857",
+    "[train] p0 ARM_HARM_ON_NAV seed=42 ep 130/235 mean_len=198.4 harm_enabled=True harm_steps=19839"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
