@@ -1,48 +1,36 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-09T08:38:52Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-655",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-650",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:32.332810+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603g",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T15:00:57.444554+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-651a",
-      "result": "FAIL",
-      "completed_at": "2026-06-07T15:07:34.871710+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-604c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T19:30:29.565842+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-654",
-      "result": "FAIL",
-      "completed_at": "2026-06-09T08:18:45.109010+00:00"
-    }
+  "last_tick_utc": "2026-06-09T18:50:26Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603l",
+  "current_exq_started_utc": "2026-06-09T18:45:41.523060+00:00",
+  "current_title": "SD-059/MECH-358 escape-affordance bridge BEHAVIOURAL re-test (scored evidence; successor to V3-EXQ-603i, the pending_retest_after_substrate). Full 4-arm + nav-control discriminative Stage-H run on the 603k+603j-fixed substrate: ARM_BASE_IA_ONLY (bridge OFF) / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE (bridge halves) / ARM_NAV_CONTROL (bridge OFF, spawn-in-reef nav-competence control). ALL arms turn ON the two now-validated substrate fixes: scaffold_train_harm_pathway=True (603k PASS -> clears the 603i PRIMARY nav/survival-competence ceiling; ARM_HARM_ON_NAV G_H 2/3 vs OFF 0/3, harm_eval range 0.133) and escape_use_trained_safety_signal=True + MECH-303 terrain + MECH-304 store + MECH-302 comparator (603j PASS -> the SAFETY half credits non-vacuously via the trained threat-absence signal, mean 0.89 >= 0.5 floor). PRIMARY DV best_bridge_G_H >= 2/3 AND > G_H_BASE. Per-half non-vacuity readiness preconditions retained as a SAFETY NET (each enabled bridge half credits >=2/3 before G_H scored; else self-route substrate_not_ready_requeue, NOT a false weakens).",
+  "current_claim_id": "SD-059",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_BASE_IA_ONLY",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 20,
+    "episodes_total": 235,
+    "overall_pct": 0.6
+  },
+  "seconds_elapsed": 285,
+  "seconds_remaining": 43046,
+  "recent_lines": [
+    "[v3_exq_603l_escape_affordance_bridge_behavioural_retest] starting (dry_run=False)",
+    "Seed 42 Condition ARM_BASE_IA_ONLY",
+    "/home/ree/REE_Working/ree-v3/ree_core/agent.py:3928: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.",
+    "Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)",
+    "if float(safety_pred.mean()) >= release_thresh:",
+    "[train] stage0 ARM_BASE_IA_ONLY seed=42 ep 20/235 z_goal_peak=0.4979"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 668,
-  "runner_version": null,
+  "runner_version": "r2929 dd8ab04 2026-06-09 (running r2921 d63ddbe)",
   "gpu": {
     "available": false
   },

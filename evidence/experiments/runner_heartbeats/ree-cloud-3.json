@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-09T18:34:30Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-655",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-636",
-      "result": "PASS",
-      "completed_at": "2026-06-04T07:30:39.189033+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-639",
-      "result": "PASS",
-      "completed_at": "2026-06-04T15:40:34.435832+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    }
+  "last_tick_utc": "2026-06-09T18:50:23Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-654a",
+  "current_exq_started_utc": "2026-06-09T18:45:44.404549+00:00",
+  "current_title": "ARC-062 GAP-B behavioural falsifier (MECH-309/ARC-062) GATED RE-RUN of V3-EXQ-654 on the crf_persist-matured CandidateRuleField substrate (amend ree-v3 9797e84). Single-variable ARM_OFF (use_candidate_rule_field=False, legacy collapsed rule_state) vs ARM_ON (use_candidate_rule_field=True + crf_persist_rules_across_episode_reset=True, MATURED differentiated crf_source) on the matched 649 GAP-A / 643a authority / SD-056 / SP-CEM / MECH-341 stack. THREE fixes vs 654: (1) crf_persist=True so the rule pool matures across episodes and crf_frac_active clears the 0.30 C1c floor (654 cold-started 0.12); (2) a frozen-encoder P1 phase that TRAINS the SD-033a rule_bias_head via outcome-coupled REINFORCE (GAP-D; mirrors v3_exq_598b) so propagation is not vacuous; (3) a propagation non-vacuity precondition (ARM_ON lateral_pfc bias differs from ARM_OFF, else substrate_not_ready_requeue). PRIMARY DV = committed-class entropy; within-class-representative entropy = secondary negative control.",
+  "current_claim_id": "MECH-309",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / rule_creator_absent_legacy_collapsed_rule_state",
+    "runs_done": 0,
+    "runs_total": 6,
+    "episodes_done": 10,
+    "episodes_total": 160,
+    "overall_pct": 1.0
+  },
+  "seconds_elapsed": 278,
+  "seconds_remaining": 18212,
+  "recent_lines": [
+    "Arm ARM_OFF (rule_creator_absent_legacy_collapsed_rule_state) (P0=60 ep e2-train, P1=40 ep bias-train, P2=60 ep measure, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition rule_creator_absent_legacy_collapsed_rule_state",
+    "[train] arm=ARM_OFF seed=42 phase=P0 ep 10/160"
   ],
-  "runner_pid": 745,
-  "runner_version": null,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 744,
+  "runner_version": "r2929 dd8ab04 2026-06-09 (running r2925 d6477b9)",
   "gpu": {
     "available": false
   },
