@@ -1,6 +1,6 @@
 # Arm-Reuse Fingerprint -- Design Plan
 
-**Status:** DESIGN / proposal. No code landed. Awaiting user decision on scope (see "Open Decisions").
+**Status:** IMPLEMENTED through Phase 1. Phase 0 instrument + Phase 1 consumer machinery landed and unit-tested; §9.0 determinism gate PASSED + user-ratified 2026-06-07; Regime-A reuse SANCTIONED on the cloud machine-class; explicit-cite live use exercised (V3-EXQ-647). Driver-`script_path` coupling fixed 2026-06-09 (§9.7) so the automated index-HIT path can fire. Remaining: first *automated* index-HIT in the wild (next genuinely-needed 610g/643c iteration; 610g gated on the 610f redesign successor V3-EXQ-656). Original decisions resolved in §7.
 **Created:** 2026-06-06T14:56Z
 **Author session:** arm-reuse-fingerprint-design-20260606T1456Z
 **Motivation chip:** user observation 2026-06-06 -- "some testing is repetitive with possible bit-identical arms for parts of the repeat experiments; could data be recorded so certain arms would not need re-running?"
@@ -573,12 +573,15 @@ On reuse, the returned cell is stamped with provenance:
 ### 9.4 Opt-in path (/queue-experiment)
 
 A new iteration opts in by: (a) constructing its OFF arm from the lineage's
-**canonical baseline module** (§7b) -- this is what makes the fingerprint match by
-construction; and (b) declaring `reuse_baseline_from: <mint_run_id>` in the queue
-entry. The script calls `try_reuse_cell(..., cite_run_id=<that run_id>,
-needed_keys=<the OFF metrics it reads>)`; on `None` it runs the arm normally and
-logs `reuse_refused: <reason>`. Add this as a documented (checklist) step in the
-skill, mirrored to both skill dirs.
+**canonical baseline module** (§7b); (b) passing
+`include_driver_script_in_hash=False` to BOTH the mint's `compute_arm_fingerprint`
+and the consumer's `try_reuse_cell` (the 2026-06-09 fix -- this is what makes the
+fingerprint match across the mint's and consumer's different driver scripts; see
+§9.7); and (c) declaring `reuse_baseline_from: <mint_run_id>` in the queue entry.
+The script calls `try_reuse_cell(..., cite_run_id=<that run_id>,
+include_driver_script_in_hash=False, needed_keys=<the OFF metrics it reads>)`; on
+`None` it runs the arm normally and logs `reuse_refused: <reason>`. Add this as a
+documented (checklist) step in the skill, mirrored to both skill dirs.
 
 ### 9.5 Build checklist (the chip)
 
@@ -652,12 +655,46 @@ refuse-by-default rule of §9.2.
 4. `/queue-experiment` opt-in step (mirrored to `.claude` + `.agents` skill dirs)
    and `scripts/arm_reuse_report.py` consumed-vs-fresh + refused-with-reason audit.
 
-**Not done (gated):** the first live use (643b / 610g actually skipping the OFF
-arm) -- requires the gate to pass AND the relevant mint to have run.
+**First live use -- DONE via explicit-cite (V3-EXQ-647, 2026-06-06), reconciled
+2026-06-09.** The earlier "Not done: first live use" reading here was stale and
+contradicted the section-7b "MEASURED RESULT" line ("646 -> 647 / 643b cloud-class
+reuse already exercised"). The accurate picture:
 
-A note on the by-construction match: the Phase-0 mint folds its own
-`script_path=Path(__file__)` into `substrate_hash`, so a consumer must recompute
-the fingerprint with the **same `script_path` and `config_slice`** the mint used
-to get a HIT (the canonical baseline module supplies `off_path_config_slice()`).
-A consumer that passes its own driver script gets a different `substrate_hash` ->
-no index entry -> refuse (the safe outcome). The opt-in step documents this.
+- **Explicit-cite consumer: EXERCISED.** `V3-EXQ-647`
+  (`v3_exq_647_modulatory_authority_reuse_split`, cloud-4, 2026-06-06,
+  user-supervised) reused all three OFF-baseline cells (ARM_A, seeds 42/43/44)
+  from the `V3-EXQ-646` mint with full section-9.3 provenance stamps
+  (`reused_from_run_id` / `reused_fingerprint` / `reused_at_utc` + the complete
+  `arm_fp/v1` block, `reuse_eligible: true`) and ran ARM_B/ARM_C fresh. So
+  section-9.5 step 6's core acceptance is met: the OFF cell shows
+  `reused_from_run_id`, treatment arms ran fresh.
+- **Automated index-HIT path: was the real remaining gap, now UNBLOCKED.** In
+  647 the automated `try_reuse_cell` REFUSED all 3 seeds (`fingerprint_not_in_index`)
+  because of the driver-`script_path` coupling below; the explicit-cite copy
+  carried the reuse instead. So the automated `arm_fingerprint_index.json` path had
+  produced zero real HITs.
+
+**Driver-`script_path` coupling -- FIXED 2026-06-09.** The Phase-0 mint folded its
+own `script_path=Path(__file__)` into `substrate_hash`, so a consumer with its own
+driver got a different `substrate_hash` -> no index entry -> refuse. This made the
+automated index-HIT path unreachable in practice (a real consumer never shares the
+mint's driver). Resolved by `include_driver_script_in_hash` (default `True` =
+legacy coupling, bit-identical; existing 644/645/646 fingerprints unchanged) in
+`experiments/_lib/arm_fingerprint.py` + `arm_reuse.py`. When BOTH the mint and the
+consumer pass `include_driver_script_in_hash=False`, the driver script is excluded
+from the reuse-critical hash and the OFF cell is anchored on the canonical baseline
+module under `experiments/_lib/**` (already in the substrate glob) + `config_slice`
++ `seed` + `machine_class` -- so two different drivers built from the same canonical
+module produce the SAME fingerprint and the automated consumer HITs. A discriminator
+enters the hash on the excluded path so excluded- and included-driver fingerprints
+can never collide (the two modes are isolated; mint and consumer must agree on the
+flag). The driver's content hash is still recorded (`driver_script_hash`,
+observability only). Regression: `tests/contracts/test_arm_reuse.py` 24/24
+(+3 new: cross-driver HIT enabled, default-mode cross-driver refuse, mode-isolation).
+
+**Still genuinely not done:** the first *automated* index-HIT in the wild -- i.e.
+the next genuinely-needed iteration (610g / 643c) re-minting its OFF baseline AND
+consuming it with `include_driver_script_in_hash=False`, confirming in its manifest
+that the OFF cell shows `reused_from_run_id` and that flipping one config byte flips
+it back to a fresh run. (610g is gated on the 610f autopsy's redesign successor
+`V3-EXQ-656`, which supersedes 610f and is already queued.)
