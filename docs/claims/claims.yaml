@@ -20610,6 +20610,20 @@
     oracle diagnostics). The oracle path is the MECH-263 prospective query
     substrate -- devaluation sensitivity and task-role discrimination
     remain deferred to env-extension EXQs.
+    Trained-OFC-head pathway landed 2026-06-09 (commitment_closure:GAP-8;
+    the SD-033b analogue of SD-033a GAP-D, ree-v3 382db2c):
+    OFCConfig.train_state_bias_head (REEConfig.ofc_train_state_bias_head,
+    default False -> last Linear zeroed, bit-identical OFF) un-zeros the
+    state_bias_head last Linear so it can be added to an experiment optimizer
+    via OFCAnalog.bias_head_parameters() and trained on the E3
+    score-aggregation gradient (E3 loss -> score_bias -> compute_bias() ->
+    head weights; no separate loss term). This makes the deferred
+    trained-OFC-head behavioural arm measurable -- the same mechanism that
+    closed the SD-033a Go-side silence (GAP-1). Status stays candidate; the
+    behavioural validation EXQ (devaluation + perceptual-discrimination on
+    the trained head) is the promotion gate -- 485b/485c PASSed only as
+    representation-level MECH-263 functional-signature diagnostics. No flag /
+    confidence change in this landing (substrate only).
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033c
   title: "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster."
