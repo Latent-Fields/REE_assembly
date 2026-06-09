@@ -1,0 +1,98 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603j_escape_bridge_safety_half_readiness",
+  "run_id": "v3_exq_603j_escape_bridge_safety_half_readiness_20260609T051208Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-09T05:12:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "safety_half_trained_signal_ready",
+    "preconditions": [
+      {
+        "name": "trained_safety_signal_clears_threshold",
+        "kind": "readiness",
+        "description": "Mean trained safety_signal the AGENT feeds the bridge in ARM_ON -- the SAME gate the load-bearing G1 (n_safety_credit_trained) routes on (safety_signal >= safety_signal_threshold). Below floor => the positive control never presented a clear trained-safe signal (probe-driver / predictor-population regression) => substrate_not_ready_requeue, NOT a 'safety half cannot credit' verdict.",
+        "control": "ARM_ON: MECH-304 prototype seeded to the agent's own z_world",
+        "measured": 0.89274,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "under_threat_gate_open_on",
+        "kind": "readiness",
+        "description": "Mean z_harm_a norm seen by the bridge in ARM_ON must exceed escape_threat_floor -- the under-threat gate that the safety credit path requires. Below floor => no retained threat (the whole credit path is starved for an unrelated reason) => substrate_not_ready_requeue.",
+        "control": "ARM_ON: sustained HARM_A_HIGH/LOW retained-threat pattern",
+        "measured": 0.583862,
+        "threshold": 0.1,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "G0_off_reproduces_starvation",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G1_on_safety_credits_via_trained_signal",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G2_on_safety_affordance_nonzero",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "G3_relief_unaffected_both_arms",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "G0": true,
+      "G1": true,
+      "G2": true,
+      "G3": true
+    },
+    "routing": {
+      "safety_half_trained_signal_ready": "PASS -> the SECONDARY 603i gap is closed at the substrate-readiness level. Route to the full 603-lineage behavioural bridge retest -- which is ALSO gated on the PRIMARY nav-competence ceiling (scaffolded_sd054_onboarding Stage-H leg), so it can only score G_H once nav competence clears too. Do NOT queue the behavioural retest here; do NOT mark SD-059/MECH-358 validated.",
+      "substrate_not_ready_requeue": "re-queue as V3-EXQ-603k (fix the probe's predictor-population / retained-threat driver -- the positive control did not present a clear trained-safe signal, or no retained threat); do NOT weaken SD-059/MECH-358.",
+      "safety_half_trained_signal_inert": "FAIL with readiness met -> /failure-autopsy on THIS readiness diagnostic: the agent fed a clear trained signal + the threat gate opened but the safety half did not credit -> a wiring regression in the bridge/agent safety-credit path. Do NOT rerun 603i; do NOT treat as bridge falsification."
+    }
+  }
+}
