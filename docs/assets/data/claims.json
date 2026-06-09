@@ -3633,6 +3633,18 @@
     "title": "Event-level write-authority gate: an explicit per-event transition from observed/represented to write-eligible over the DURABLE MODEL-UPDATE path (E1/E2 world-model and policy weights, not only episodic memory), conditioned on f(prediction_error, salience, pathway_state, residue_status, goal_relevance, plasticity_eligibility). The gate decides which individual events within an already-open write channel are licensed to durably deform the model; an event may be salient, real-provenance, and in a write-permitted mode yet still fail the gate. Without it, every prediction error in an open channel writes -- the undifferentiated-global-update / catastrophic-interference failure mode.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-369": {
+    "status": "candidate",
+    "subject": "compulsion.slow_modulatory_loop_stickiness",
+    "title": "Slow substrate-state modulator with authority over compulsive-loop stickiness: a slowly-varying, broadly-projecting modulatory state can bias the decommit-friction / commitment-threshold / action-release landscape so that certain action loops become sticky, urgent, or hard to release INDEPENDENTLY of represented goal value or fast prediction-error -- i.e. a compulsive loop can arise from field-state bias rather than from an endorsed reward, valued goal, or false belief. The modulator changes the release/threshold landscape, not the value estimate.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-370": {
+    "status": "candidate",
+    "subject": "compulsion.composite_risk_readout",
+    "title": "Composed compulsion-risk readout: compulsive vulnerability is best modelled not as a single scalar (reward, habit strength, or belief) but as a composition compulsion_risk = f(loop_reinforcement, threat_salience, residue_persistence, decommit_friction, slow_modulatory_state) over quantities REE already represents separately -- a multi-layer state in which the substrate can make certain loops difficult to release even when any single term looks benign.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3991,6 +4003,12 @@
     "status": "candidate",
     "subject": "plasticity.write_eligible_state_necessity",
     "title": "Is an EXPLICIT event-level write-eligible state (MECH-368) actually needed, or is the existing combination -- MECH-261 mode-conditioned channel gating + MECH-094 provenance gating + MECH-285 consolidation-priority by V_s residual -- already sufficient to prevent undifferentiated global model updates? This is the falsifier for MECH-368: if a substrate that gates only the channel (mode) and prioritises only at consolidation still avoids catastrophic interference on the online world-model/policy path, MECH-368 earns no keep.",
+    "type": "open_question"
+  },
+  "Q-063": {
+    "status": "candidate",
+    "subject": "compulsion.modulator_trapped_vs_valued_goal",
+    "title": "How does REE distinguish a high-value, legitimately-repeated goal from a slow-modulator-trapped compulsive loop -- i.e. a loop that persists because the decommit-friction / threshold landscape is biased (MECH-369) rather than because the goal is valued? What diagnostic separates value-driven persistence from field-state-driven stickiness, and can offline integration reduce loop stickiness without erasing legitimate residue (INV-004/INV-006 firewall)?",
     "type": "open_question"
   },
   "RA-001": {
