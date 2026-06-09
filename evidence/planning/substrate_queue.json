@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "governance-apply-603h-autopsy-20260608T0721Z",
-  "last_updated_utc": "2026-06-08T14:22:42Z",
+  "last_updated_utc": "2026-06-09T04:31:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -3700,6 +3700,12 @@
           "experiment_type": "v3_exq_603f_scaffolded_sd054_substrate_readiness",
           "metric": "17:33 re-run, substrate_not_engaged self-route: P1 survival/hazard-avoidance leg still untrained (same gap as 05:39 sibling + 603g). non_contributory, claim-free.",
           "target": "G1 survival >=2/3 AND G2 contact >=2/3 AND ecological G3 >=2/3"
+        },
+        {
+          "run_id": "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
+          "experiment_type": "v3_exq_603i_escape_affordance_bridge_validation",
+          "metric": "ARM_NAV_CONTROL (spawn-in-reef, safety handed) G_H=0.0 (best hazard median ~36 vs >=75 gate); all 5 arms G_H=0.0",
+          "target": "Stage-H survival G1 >= 2/3 (median last-window episode length >= 75) with navigation-to-safety handed, before an escape-affordance-bridge retest can score G_H"
         }
       ],
       "implementation_hint": "634b PROVED the Stage-0b protected window + contact-gating (G0b retention 3/3; n_decay_only_updates=0). The next blocker is two coupled gaps. (a) Benefit-magnitude/threshold mismatch: contact-gating skips only benefit<=scaffold_p2_contact_benefit_threshold(1e-6), but GoalState.update (goal.py:209-224) seeds z_goal only when effective_benefit = benefit_exposure * z_goal_seeding_gain(1.0) * (1 + drive_weight(2.0)*drive_trace) > benefit_threshold(0.1). Natural wild benefit obs_body[11] ~0.03 => effective_benefit <= ~0.09 < 0.1, so wild contact never fires the pull and the band (1e-6, ~0.1-effective) DECAYS the consolidated trace instead of refreshing it. Candidate levers (one or a combination, pick via a small sweep): raise z_goal_seeding_gain above 1.0; lower benefit_threshold below 0.1; apply drive_floor~0.9 (the EXQ-582a first-PASS arm, effective_benefit >= benefit*2.8); and/or raise the scaffold contact_threshold to the seeding floor so sub-seeding whiffs are PROTECTED (skipped) rather than decaying the trace. (b) Still-open foraging-competence half (634): strengthen/lengthen P0/P1 so >=2/3 seeds reach self-sustaining consumption (only seed 43 survives P1). (c) Test-design: redefine the mature-test z_goal acceptance readout to read AT genuine consumption events (632-style num_contact_events) rather than the forced-feed-calibrated frozen-peak G3>0.4, which is anti-correlated with foraging. Keep ready=false; do not queue 603f until a consumption-event-gated re-validation clears.",
@@ -3785,7 +3791,7 @@
           "detail": "SD-058 (architecture) + MECH-357 (ilPFC-analog freeze-suppression + instrumental-avoidance gate) registered candidate/v3_pending. ree-v3: ree_core/pfc/infralimbic_avoidance_gate.py (pure-arithmetic, no-op default, bit-identical OFF) + agent.py wiring + config flags; scaffold scaffold_feed_harm_stream (LOAD-BEARING prerequisite) + run_hazard_avoidance protective-scaffold anneal. 912 contracts + 7/7 preflight PASS. Validation V3-EXQ-603h (literal lesion-vs-intact). Distinct from reflexive SD-037/MECH-281."
         }
       ],
-      "last_seen_session": "governance-cycle-20260608T1401Z",
+      "last_seen_session": "governance-cycle-20260609T0425Z",
       "priority": 1,
       "ready": false,
       "sd_id": "scaffolded_sd054_onboarding",
@@ -4104,13 +4110,19 @@
           "experiment_type": "v3_exq_603h_instrumental_avoidance_stageh_validation",
           "metric": "G_H_INTACT_frac = 0.0 (vs gate 2/3) despite readiness_met=true; scalar avoidance_efficacy decoupled from survival (seed 43 efficacy 0.633 -> hazard median 11.0, worst of 6 runs)",
           "target": "G_H_INTACT >= 2/3 AND G_H_INTACT_frac > G_H_LESION_frac with the escape-affordance bridge enabled"
+        },
+        {
+          "run_id": "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
+          "experiment_type": "v3_exq_603i_escape_affordance_bridge_validation",
+          "metric": "safety_credit_frac=0.0 (0/3 all arms); relief_credit_frac=0.67 (2/3). each_enabled_bridge_half_fires_nonvacuously UNMET (measured 0.0 vs 0.667)",
+          "target": "Each enabled bridge half credits non-vacuously (>0 on >=2/3 seeds) -- requires a trained MECH-303/304 threat-absence predictor feeding the safety half"
         }
       ],
       "implementation_hint": "MECH-357 suppresses freeze but its avoidance_efficacy is a global scalar that only penalises the no-op class, so the agent un-freezes without acquiring a directed escape (603h seed-43: efficacy 0.633 -> worst survival). Add an affordance-indexed credit: a directed action that drops z_harm_a / terminates a threat cue emits phasic relief (MECH-302-consistent) and learned safety (MECH-303/304-consistent) that increments escape_affordance[action|location|policy]; under future threat E3 receives a bounded, threat-context-gated approach bonus toward that affordance. Build behind no-op-default flags (bit-identical OFF), distinct from reflexive escape (SD-037/MECH-281) and generic relief/safety rows. Bound it so it cannot create pathological avoidance/habit loops or globally swamp food/goal approach.",
       "priority": 1,
       "priority_note": "Autopsy priority_suggested=1; strict 6a-ii.6 rule agrees (>=1 fresh failure record from 603h). No override.",
       "added_session": "governance-apply-603h-autopsy-20260608T0721Z",
-      "last_seen_session": "governance-apply-603h-autopsy-20260608T0721Z",
+      "last_seen_session": "governance-cycle-20260609T0425Z",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-603h_2026-06-08.json",
       "pending_retest_after_substrate": true,
       "retest_harness": "thought-intake Section 5 4-arm discriminative EXQ (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE) with a nav-competence positive control (oracle/hand-shaped escape gradient or reef-refuge reachability under threat) and a non-vacuity gate requiring each enabled bridge half to credit non-vacuously before scoring G_H. Acceptance: G_H >= 2/3 AND G_H improves over ARM_BASE_IA_ONLY; bridge bonus threat-context bounded, must not swamp food/goal approach."

@@ -95,5 +95,15 @@
       "neither_and_nav_control_passes": "bridge insufficient (env survivable) -> /failure-autopsy",
       "neither_and_nav_control_fails": "navigation/survival-competence ceiling -> nav substrate, NOT the bridge"
     }
+  },
+  "evidence_quality_note": "V3-EXQ-603i (diagnostic, claim_ids=[]) did NOT adjudicate the SD-059/MECH-358 relief/safety escape-affordance bridge and weights no claim. Self-route substrate_not_ready_requeue CONFIRMED and REFINED by /failure-autopsy 2026-06-08: two co-equal substrate gaps blocked adjudication, neither a bridge verdict. (1) PRIMARY -- navigation/survival-competence ceiling: the ARM_NAV_CONTROL positive control (spawn-in-reef, safety handed) returned G_H=0.0 (best hazard median ~36 vs the >=75 gate), so even with navigation-to-safety handed the agent cannot survive to the gate; per the script's own interpretation grid this routes to a navigation/competence substrate (scaffolded_sd054_onboarding P1/Stage-H survival leg, G1 0/3), NOT the bridge. (2) SECONDARY -- safety-half starvation: the safety detector credited 0/3 in every arm (relief half credited 2/3) because no trained threat-absence (MECH-303/304) predictor is wired into the escape-affordance-bridge safety half. Biology (Moscarello & LeDoux 2013) supports the mechanism class; this is a prerequisite/translation gap, not falsification. Do NOT weaken or validate SD-059/MECH-358. pending_retest_after_substrate: the SD-059/MECH-358 bridge retest (the 4-arm discriminative harness) is not informative until (1) the Stage-H navigation/survival-competence leg clears and (2) the safety-half threat-absence predictor is wired. V3-EXQ-653 (e2_escape_affordance_linker_readiness_microdiagnostic, queued by a parallel session) is the in-flight readiness predecessor.",
+  "source_autopsy": {
+    "artifact": "evidence/planning/failure_autopsy_V3-EXQ-603i_2026-06-08.json",
+    "status": "confirmed",
+    "adjudication": "self_route_confirmed_and_refined",
+    "recommended_epistemic_category": "substrate_ceiling",
+    "pending_retest_after_substrate": true,
+    "applied_by": "governance-cycle-20260609T0425Z",
+    "applied_utc": "2026-06-09T04:30:00Z"
   }
 }
