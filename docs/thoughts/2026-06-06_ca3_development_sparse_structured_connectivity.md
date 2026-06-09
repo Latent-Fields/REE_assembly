@@ -1,4 +1,9 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_ca3_development_sparse_structured_connectivity.md
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_ca3_development_sparse_structured_connectivity.md
+
 Source email date: 2026-05-11
 Source email subject: REE Developmental emergence of sparse and structured synaptic connectivity in the hippocampal CA3 memory circuit - Nature Communications
 Source saved-item attribution: Daniel Golden
