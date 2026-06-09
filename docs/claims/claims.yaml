@@ -24520,6 +24520,24 @@
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-04-26
+  implementation_note: >
+    Substrate IMPLEMENTED 2026-06-09 behind the no-op-default flag
+    use_multi_content_theta_packet (bit-identical OFF). Sibling module
+    ree-v3/ree_core/latent/multi_content_theta_packet.py
+    (MultiContentThetaPacket) composes the MECH-089 ThetaBuffer for its
+    state_summary slot and gathers goal_latent (GoalState.z_goal),
+    action_proposal (hippocampal CEM first-action), risk_sensory (z_harm_s,
+    SD-010) and risk_affective (z_harm_a, SD-011) into one per-cycle
+    phase-aligned packet sealed at the E3-heartbeat boundary, with MECH-269b
+    per-stream V_s snapshot-or-hold vintaging and a joint-read interface
+    (joint_context / action_conditioned_on). Three binding regimes
+    (joint / alternation / shuffled) resolve the Kay-2020 cross-cycle
+    falsifier. NOT promoted or weakened: status stays candidate / v3_pending;
+    the 2026-04-26 governance hold (requires a substrate-side
+    joint-vs-alternation falsification test) stands until the discriminative
+    validation V3-EXQ-657 PASSes per the design-memo S7.3 interpretation grid.
+    See ree-v3/CLAUDE.md "MECH-294" entry and
+    docs/architecture/mech_294_multi_content_theta_packet.md.
   depends_on:
     - MECH-089   # cross-frequency coupling (theta-gamma nesting; the substrate primitive)
     - MECH-091   # phase-reset of E3 heartbeat clock by salient events

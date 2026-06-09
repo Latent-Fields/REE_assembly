@@ -1,7 +1,14 @@
 # MECH-294 Multi-Content Theta-Burst Packet -- Substrate Design Memo
 
-- **Status:** design memo (substrate not yet implemented). Plan-of-record for the
-  `/implement-substrate` pass that would unblock MECH-294.
+- **Status:** IMPLEMENTED 2026-06-09 (substrate landed behind the no-op-default
+  flag `use_multi_content_theta_packet`; bit-identical OFF). The
+  `/implement-substrate` pass that this memo specified is complete: sibling
+  module `ree-v3/ree_core/latent/multi_content_theta_packet.py`
+  (`MultiContentThetaPacket`), agent wiring (observe/seal at the E1/E3 ticks),
+  contracts (`tests/contracts/test_multi_content_theta_packet.py`, 8/8), and the
+  discriminative validation experiment V3-EXQ-657 queued. MECH-294 stays
+  candidate / `v3_pending`; the 2026-04-26 governance hold stands until the
+  C1/C2 discriminative test PASSes per S7.3. See `ree-v3/CLAUDE.md` "MECH-294".
 - **Author session:** `mech294-multi-content-theta-packet-memo` 2026-06-09.
 - **Routed by:** `/queue-experiment` substrate-readiness gate (Step 2.5) found
   MECH-294 `blocked_substrate` on 2026-06-09 -- the claim asks for a behavioural
