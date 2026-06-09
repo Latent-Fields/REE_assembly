@@ -4062,7 +4062,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_045",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4070,7 +4070,12 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-006",
+        "MECH-045"
+      ],
+      "blocked_note": "Step-2.5 substrate-readiness gate (2026-06-09): the token-instance object-file entity-persistence buffer (ARC-006/MECH-045) is dormant/design-only, not in ree-v3 code. MECH-045 asserts buffers that bind features across time AND motion WITHOUT symbolic labels (token-instance identity). The two live adjacent per-item stores test different claims: SD-057 IncentiveTokenBank is keyed by resource TYPE tag (type-generalization, ree_core/goal.py:163); SD-039/MECH-292 ghost-goal bank is keyed by spatial/temporal ANCHOR (no cross-motion re-identification). ARC-080 umbrella flags the type-vs-token-vs-anchor distinction (true permanence needs token-instance) and states reactivating MECH-045 as a token-keyed object-file is a V4/late-V3 substrate step, not a V3-closure item. A persistence-vs-ablation probe against the existing stores would be a vacuous probe. Unblock path: research-design + /implement-substrate the token-instance object-file buffer (chips spawned 2026-06-09), then re-queue this discriminative experiment."
     },
     {
       "acceptance_checks": [
