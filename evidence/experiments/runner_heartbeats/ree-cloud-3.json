@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-09T15:54:32Z",
+  "last_tick_utc": "2026-06-09T16:24:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-603k",
   "current_exq_started_utc": "2026-06-09T05:45:42.454341+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / ARM_HARM_ON_MIDLINE",
     "runs_done": 8,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 20,
     "episodes_total": 235,
-    "overall_pct": 88.9
+    "overall_pct": 89.8
   },
-  "seconds_elapsed": 36529,
-  "seconds_remaining": 5459,
+  "seconds_elapsed": 38333,
+  "seconds_remaining": 4994,
   "recent_lines": [
     "Seed 42 Condition ARM_HARM_OFF_NAV",
     "[train] stage0 ARM_HARM_OFF_NAV seed=42 ep 20/235 z_goal_peak=0.5029",
@@ -75,7 +75,8 @@
     "[train] p1 ARM_HARM_ON_MIDLINE seed=43 ep 220/235 survival_gate=pass",
     "[train] p2 ARM_HARM_ON_MIDLINE seed=43 ep 235/235",
     "verdict: PASS seed=43 arm=ARM_HARM_ON_MIDLINE G_H=True",
-    "Seed 44 Condition ARM_HARM_ON_MIDLINE"
+    "Seed 44 Condition ARM_HARM_ON_MIDLINE",
+    "[train] stage0 ARM_HARM_ON_MIDLINE seed=44 ep 20/235 z_goal_peak=0.3762"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
