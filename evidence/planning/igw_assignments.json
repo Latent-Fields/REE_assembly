@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-06-07T10:39:50Z",
+  "generated_at": "2026-06-09T04:58:20Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -2030,6 +2030,29 @@
         "priority": 40,
         "claim_ids": [
           "MECH-312"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260609T045820Z-c993034c-claude_local",
+      "stable_hash": "c993034c4a03",
+      "igw_id_at_assign": "IGW-20260609-004",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-06-09T04:58:20Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": null,
+      "item_snapshot": {
+        "skill": "(plan reconcile)",
+        "title": "MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness",
+        "lane": "plan",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-309",
+          "ARC-062"
         ]
       }
     }
