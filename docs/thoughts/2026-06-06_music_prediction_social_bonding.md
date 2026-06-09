@@ -1,9 +1,10 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_music_prediction_social_bonding.md
 Source email date: 2026-05-08
 Source email subject: REE: Scientists show how common chord progressions unlock social bonding in the brain
 Source saved-item attribution: Daniel Golden
 Current action: preserve as thought intake only
-Primary source status: source-check pending; share.google link not directly accessible and article title not located by web search during intake
+Primary source status: VERIFIED 2026-06-09 (Stage-2). Located: Watts DA, Allsop AZA, Compton S, Zhang X, Noah JA, Hirsch J, "Listening to a Consonant Chord Progression during Live Face-to-Face Gaze Enhances Neural Activity in Social Systems," J Neurosci 46(15):e1116252026 (Yale). fNIRS, 20 dyads; predictable chord progression + live face-gaze raised right angular gyrus / somatosensory association cortex / dlPFC and produced cross-brain neural synchrony; scrambled notes did not. Directly corroborates the shared-prediction + music-somatosensory intuition. (share.google link still not directly accessible; source found via title/web search.)
 Near-term relevance: social coupling / shared prediction / music-somatosensory connection compass; not REE-v3 critical path unless later linked to existing social or prediction claims
 
 ---
@@ -163,3 +164,9 @@ The correct near-term extraction is:
 The incorrect extraction is:
 
 > claim that chord progressions alone explain social bonding.
+
+---
+
+Processed in:
+
+- [evidence/planning/thought_intake_2026-06-06_music_prediction_social_bonding.md](../../evidence/planning/thought_intake_2026-06-06_music_prediction_social_bonding.md) (Stage-2 structured intake; primary source verified -- Watts et al., J Neurosci 2026)
