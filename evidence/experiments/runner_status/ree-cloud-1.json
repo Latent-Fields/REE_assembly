@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 2199291,
   "runner_started_at": "2026-06-03T06:06:50.999872+00:00",
-  "last_updated": "2026-06-08T21:30:02.278376+00:00",
+  "last_updated": "2026-06-09T05:12:08.766763+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -3330,6 +3330,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic_20260608T213001Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 6.0
+    },
+    {
+      "queue_id": "V3-EXQ-603j",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "SD-059/MECH-358 escape-affordance-bridge SAFETY-HALF readiness microdiagnostic (V3-EXQ-603i SECONDARY gap): 2-arm OFF/ON probe over a REAL agent under controlled retained threat with a seeded MECH-304 positive control. Validates that the bridge safety half now credits non-vacuously when fed a trained MECH-303/304 threat-absence signal (603i: safety half credited 0/3 because the raw threat_scale<=0 check almost never fires under Stage-H). claim-free diagnostic; NOT the full 4-arm G_H behavioural retest (which stays gated on the PRIMARY nav-competence ceiling).",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS (label=safety_half_trained_signal_ready) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-603j -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-603j.json",
+      "started_at": "2026-06-09T05:12:07.038684+00:00",
+      "completed_at": "2026-06-09T05:12:08.765661+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_603j_escape_bridge_safety_half_readiness_20260609T051208Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1.7
     }
   ]
 }
