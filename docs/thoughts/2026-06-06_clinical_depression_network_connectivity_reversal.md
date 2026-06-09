@@ -1,4 +1,10 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_clinical_depression_network_connectivity_reversal.md
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_clinical_depression_network_connectivity_reversal.md
+
+Processed note: 2026-06-09 -- source VERIFIED (Neuroscience News https://neurosciencenews.com/brain-network-connectivity-mdd-30745/ ; chronicity-dependent CEN-DMN coupling reversal past a ~24-month threshold). No claims.yaml registration -- psychiatric failure-axis compass, off V3 critical path.
 Source email date: 2026-05-23
 Source email subject: REE Long-Term Depression Reverses Brain Network Connectivity - Neuroscience News
 Source saved-item attribution: Daniel Golden

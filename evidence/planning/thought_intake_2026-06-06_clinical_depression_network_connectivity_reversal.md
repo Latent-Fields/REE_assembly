@@ -1,0 +1,271 @@
+Raw thought file: [docs/thoughts/2026-06-06_clinical_depression_network_connectivity_reversal.md](../../docs/thoughts/2026-06-06_clinical_depression_network_connectivity_reversal.md)
+Intake date: 2026-06-09
+Status: structured intake (Stage 2)
+Classification: psychiatric failure-axis architecture compass -- NOT a REE-v3 implementation target
+Registration: NONE (no claims.yaml entry; candidate claims below are FOR FUTURE REGISTRATION only)
+Terminology guardrail: "long-term depression" here = long-term CLINICAL depressive illness, NOT synaptic long-term depression (LTD). This distinction is load-bearing -- see Section 9.
+
+---
+
+# THOUGHT INTAKE (Stage 2): Long-term clinical depression and reversible brain-network connectivity patterns
+
+## 0. Source verification (resolves the raw note's "source-check pending" status)
+
+The raw thought recorded the primary source as **unverified** (the `share.google` link was not
+openable and exact-title / site-specific searches did not locate the article during capture).
+This intake **locates and verifies the article** via web search:
+
+- **Source (VERIFIED):** "Long-Term Depression Reverses Brain Network Connectivity" --
+  Neuroscience News, https://neurosciencenews.com/brain-network-connectivity-mdd-30745/
+- The Neuroscience News item is a press write-up of a major-depressive-disorder (MDD)
+  resting-state functional-connectivity study.
+
+**Findings as reported in the Neuroscience News coverage (verified at the press-summary level):**
+
+- MDD undergoes a structural/functional evolution after a **~24-month chronicity threshold**,
+  at which the functional-connectivity dynamics between the **Central Executive Network (CEN)**
+  and the **Default Mode Network (DMN)** **reverse**.
+- **Non-chronic (short-term) patients:** *stronger* CEN-DMN (precuneus) connectivity at low
+  symptom severity, *weaker* at high severity.
+- **Chronic (long-term) patients:** the **reverse** relationship -- connectivity *strengthens*
+  as symptoms worsen, described as trapping patients in a state of negative cognitive
+  **rumination**.
+- Framed by the coverage as giving drug developers / psychiatrists a roadmap for therapies
+  **tailored to illness duration** (duration-dependent, personalised treatment).
+
+**Important precision about the word "reverses" (do NOT overclaim):**
+
+- In this source, "reverses" denotes that the **sign of the connectivity-vs-severity relationship
+  flips** between non-chronic and chronic cohorts past the chronicity threshold. It is a
+  **cross-sectional, duration-dependent reversal of a coupling relationship**, observed in fMRI.
+- It is **NOT** a demonstration of *therapeutic reversibility* (i.e. that intervention returns a
+  chronic patient's network to the non-chronic regime). The raw thought's "possibly reversible"
+  framing must be read as a *hypothesis the finding makes plausible*, not as something the source
+  demonstrates. Keep this separation when any later architecture note cites this.
+
+**What could NOT be independently re-verified at intake:** the underlying peer-reviewed paper
+(authors, journal, DOI, exact sample sizes, the precise statistics behind the 24-month threshold)
+was not located -- only the Neuroscience News press summary. A future architecture-note author who
+wants quantitative anchors must trace the primary publication behind this press item. Treat the
+quantitative specifics (24-month threshold, precuneus locus) as press-reported, not paper-verified.
+
+---
+
+## 1. Verbatim thought (preserved)
+
+> A saved REE email pointed to a Neuroscience News item titled "Long-Term Depression Reverses Brain
+> Network Connectivity". The direct `share.google` link was not accessible during intake, and
+> exact-title plus site-specific searches did not locate the article. Therefore this note preserves
+> the possible REE-relevant architectural idea as source-check pending, not as verified evidence.
+>
+> Important terminology correction: in this saved item, **long-term depression refers to clinical
+> depressive illness**, not synaptic long-term depression.
+>
+> The useful REE idea is:
+>
+> > prolonged depressive states may correspond to altered, possibly reversible, large-scale network
+> > connectivity regimes rather than only low mood, negative belief content, or reward deficit.
+>
+> For REE, this suggests that depressive failure modes should be modelled as field-level state
+> changes involving connectivity, gain, salience, goal access, residue, fatigue, social access, and
+> offline integration -- not merely as isolated negative thoughts or low reward values.
+>
+> [Full raw note, including the seven candidate axes, the REE-analogue mapping table, the AI
+> cognitive-failure-taxonomy link, and the cautions/guardrails, is preserved in the raw thought
+> file linked at the top of this intake. Reproduced in condensed form in Sections 3-5 below.]
+
+The note's central computational primitive (verbatim):
+
+```text
+depressive_regime_risk = f(future_access, goal_coupling, residue_load,
+                           rumination_loop_gain, action_threshold,
+                           social_affordance, offline_repair_quality)
+```
+
+---
+
+## 2. What's New vs Existing REE Docs (novelty table)
+
+REE **already has a substantial clinical-depression cluster**. The grep below (verified against
+`docs/claims/claims.yaml`, 2026-06-09) is the relevant prior art. The novelty of this thought is
+**narrow and specific**: it is not "model depression as a state" (REE does that), it is the
+**chronicity-dependent reversal of large-scale network coupling** plus the **multi-axis network-regime
+vector** framing.
+
+| Idea in this thought | Already in REE? | Where | Genuinely new? |
+|---|---|---|---|
+| Depression is a *state/attractor*, not a scalar low-mood/low-reward | **YES** | INV-034 (goal-maintenance failure = depressive attractor, EXQ-237a "computational definition of the depressive attractor state"); MECH-082/086 ("depression = locked-in avoidant brain insensitive to sensory evidence"); MECH-088 ("Depression = 5-HT distal attractor inaccessibility + DA selection failure") | NO -- core framing already owned |
+| Rumination = self-amplifying recurrent loop with impaired decommitment | **YES** | MECH-124 (harm-trace replay -> consolidation -> option-space contraction; "treatment-resistant depression learned"); MECH-094 notes (rumination as repeated simulated-harm trajectories) | NO |
+| Anhedonia / reduced motivation = reduced goal/reward affordance access | **YES** | Q-021 (pure harm-avoidance -> behavioral flatness/quiescence; "clinical face = depression"); INV-053 (anhedonia prediction); INV-034 (wanting vs liking, schizophrenia negative-symptom profile) | NO |
+| Offline integration can *deepen* rather than *repair* a depressive regime | **YES** | MECH-124 (consolidation amplifies whatever dominates replay; self-amplifying loop); MECH-123 (REM recalibration) | NO |
+| Depression as one profile in a *multi-failure-mode* psychiatric taxonomy | **YES** | MECH-088 (four-plane neuromodulatory failures); IMPL-005 (failure-mode taxonomy); MECH-126 (state-abstraction failure modes) | NO |
+| **Chronicity-dependent REVERSAL of large-scale network coupling (CEN-DMN sign flip past a ~24-month threshold)** | **NO** | -- | **YES** -- REE has *no* claim that the *sign* of inter-system coupling flips as a function of illness *duration*; REE's depressive attractor is modelled as static-ish inaccessibility, not a duration-indexed bifurcation |
+| **A unified network-regime VECTOR** (the 7 axes: future_access, goal_coupling, residue_load, rumination_loop_gain, action_threshold, social_affordance, offline_repair_quality) as the *carrier* of the depressive state | **PARTIAL** | The individual axes exist scattered across INV-034 (goal_coupling), MECH-124 (residue/rumination/offline), Q-021 (action threshold/anhedonia), MECH-082/086 (future access). **No single claim composes them into one weighted vulnerability vector.** | **PARTIAL-NEW** -- the *composition into one vector* is new; the pieces are not |
+| Duration-dependent / personalised treatment roadmap (therapy tailored to chronicity) | **NO** (out of REE domain) | -- | Out-of-domain (clinical), not a REE substrate target |
+| Depression-analogue **AI cognitive-failure mode** (low action-initiation despite goals; negative-eval loops; future-trajectory suppression; NOT "sadness") | **NO** in REE; lives in sibling repo | `Latent-Fields/ai-cognitive-failure-taxonomy` (external) | NEW for that taxonomy; off REE critical path |
+
+**Net novelty verdict:** Two genuinely-new ideas (chronicity-dependent coupling *reversal*; the
+unified network-regime *vector*) and one cross-repo taxonomy seed. Everything else is a re-statement
+of the existing REE depression cluster. **None of it is V3-tractable** -- REE-v3 has no large-scale
+"named network" coupling substrate (no explicit CEN/DMN analogues whose inter-coupling sign could be
+measured), and no duration-indexed regime machinery. This is a **compass for the failure-axis
+architecture**, not an implementation target.
+
+---
+
+## 3. Key formulations
+
+1. **Depression as a network-regime, not a scalar.** The depressive state is a *pattern of coupling
+   and access* across self/goal/salience/action/memory fields that becomes self-maintaining --
+   consistent with REE's existing attractor framing (INV-034) but adding the explicit claim that the
+   regime is carried by *inter-field coupling structure*, not by a single low scalar.
+
+2. **Chronicity as a regime-bifurcation parameter (NEW).** Past a duration threshold (~24 months in
+   the source), the relationship between symptom severity and large-scale coupling *reverses sign*.
+   The REE-relevant abstraction: **illness duration is itself a state variable that can flip the
+   sign of a control coupling** -- a depressive regime is not one attractor but (at least) two,
+   selected by how long the system has been in the basin. REE currently has no duration-indexed
+   coupling-sign-flip primitive.
+
+3. **The seven-axis depressive-regime vector (PARTIAL-NEW as a composition).**
+   `depressive_regime_risk = f(future_access, goal_coupling, residue_load, rumination_loop_gain,
+   action_threshold, social_affordance, offline_repair_quality)`. Each axis maps to existing REE
+   machinery (see Section 4); the new content is treating them as **one weighted vulnerability
+   vector** whose *joint configuration* defines the regime, rather than as independent symptoms.
+
+4. **Reversibility is a hypothesis, not a finding.** The maladaptive regime *may* be reconfigurable
+   ("network-regime repair"), but the source demonstrates only a cross-sectional reversal of a
+   coupling relationship, not therapeutic reversibility. REE should hold reversibility as an open
+   question, not an asserted property.
+
+---
+
+## 4. Affected existing claims (REAL ids, verified against claims.yaml 2026-06-09)
+
+This thought **corroborates and extends** the existing depression cluster; it does **not contradict**
+any current claim. No claim status should change on the basis of this intake.
+
+| Claim | Title (abbrev.) | Relation to this thought |
+|---|---|---|
+| **MECH-088** | Psychiatric conditions as four-plane neuromodulatory control failures | Owns the depression *profile* ("Depression = 5-HT distal attractor inaccessibility + DA selection failure") AND the **psychosis/depression distinction** ("Psychosis = NA collapse of E1/E2 constraint + DA aberrant salience"). The network-regime framing is a **complementary level of description** (large-scale coupling) to MECH-088's neuromodulatory-plane level. Candidate cross-ref, not a change. |
+| **INV-034** | Goal maintenance necessary for ethical agency; depressive attractor | Owns "depressive attractor state = goal-maintenance failure" (EXQ-237a). The seven-axis vector's `goal_coupling` + `future_access` axes are this claim. Corroborated. |
+| **MECH-124** | Harm-trace replay -> consolidation -> option-space contraction | Owns the `residue_load` + `rumination_loop_gain` + `offline_repair_quality` axes (offline integration *deepening* the regime). Directly corroborated by the source's "trapped in negative cognitive rumination." |
+| **Q-021** | Harm-avoidance-only -> behavioral flatness | Owns the `action_threshold` / anhedonia axis ("clinical face = depression"). Corroborated. |
+| **MECH-082 / MECH-086** | Hippocampal map distortion; DA trajectory-selection gain ("depression = locked-in avoidant brain") | Owns `future_access` (distal-trajectory inaccessibility). Corroborated; the coupling-reversal idea is a new wrinkle these don't yet capture. |
+| **MECH-065** | Reality-coherence conflict lane; clinical analogue over_suppression -> anhedonia | Adjacent; `action_threshold` axis. |
+| **MECH-094** | Simulation/real distinction; confabulation; rumination distinct from psychosis | **Distinction anchor** -- preserves the precise separation this intake must not blur (rumination/depression vs confabulation vs psychosis/hallucination). |
+| **IMPL-005** | Failure-mode taxonomy | Parent taxonomy node; already sources the prior depression thought `2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md`. A network-regime axis would extend this taxonomy, not replace it. |
+| **MECH-126** | State-abstraction failure modes (overmerge/oversplit/...) | Adjacent failure-mode registry; network-regime depression is a different axis. |
+
+**Prior depression thought already in the tree:** `docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md` (sourced by IMPL-005). That note framed depression via *path pruning / hippocampal rollback*; this note adds the *large-scale coupling reversal* + *unified vector* angle. The two are complementary depression compasses, neither subsumes the other.
+
+---
+
+## 5. Candidate claims FOR FUTURE REGISTRATION (NOT registered here)
+
+Per scope (psychiatric failure-axis compass, off V3 critical path), **nothing is registered in
+claims.yaml**. If a future session, with the user's go-ahead, decides to formalise this, the
+candidates below are the shape -- most likely as **amendments to existing claims**, not new INVs,
+and all would carry `epistemic_category: out_of_domain` or `substrate_conditional` (no V3 substrate
+can deliver the named-network coupling distinction):
+
+1. **CANDIDATE-A (amend MECH-088 or new MECH):** *"Long-term clinical depression involves a
+   duration-dependent reversal of large-scale inter-network coupling (CEN-DMN sign flip past a
+   chronicity threshold); the depressive attractor is duration-indexed, not unitary."*
+   -- `out_of_domain` (clinical fMRI test domain; no REE substrate at any level distinguishes named
+   large-scale networks). Likely a `research_anchor` / `literature_synthesis` claim_type, not an
+   open_question, per the epistemic-category schema.
+
+2. **CANDIDATE-B (composition claim; amend INV-034 / new MECH):** *"The depressive failure mode is
+   carried by a multi-axis network-regime vector (future_access, goal_coupling, residue_load,
+   rumination_loop_gain, action_threshold, social_affordance, offline_repair_quality), not by a
+   scalar mood/reward value; the regime is defined by the joint configuration of these axes."*
+   -- `substrate_conditional` (the axes exist in V3 piecemeal but the *joint-vector* read-out is not
+   built). This is the most REE-tractable candidate of the set, but still V4-leaning.
+
+3. **CANDIDATE-C (open question):** *"Is a maladaptive depressive network-regime reversible
+   (reconfigurable) by REE's existing repair machinery -- offline integration, decommitment,
+   social-affordance re-access -- or does chronicity lock the regime past a threshold?"*
+   -- `answer_state` / open_question. Directly mirrors the source's chronicity threshold; cleanly
+   falsifiable only once a regime-vector substrate exists (depends on CANDIDATE-B).
+
+4. **CANDIDATE-D (cross-repo, NOT a REE claim):** depression-analogue AI cognitive-failure mode
+   (persistent low action-initiation despite available goals; negative-evaluation loops;
+   future-trajectory suppression; excessive failure-generalisation) -- belongs in
+   `Latent-Fields/ai-cognitive-failure-taxonomy`, handled with explicit anti-anthropomorphic
+   guardrails (the analogue is *network-state failure in trajectory generation and action
+   readiness*, NOT mood/sadness). Off REE critical path entirely.
+
+**Do NOT register any of these without (a) the user's explicit decision and (b) tracing the primary
+peer-reviewed publication behind the Neuroscience News item.**
+
+---
+
+## 6. Psychosis / depression failure-mode distinction (precision guardrail)
+
+This intake must keep three distinct REE failure modes separate (the request is explicit, and the
+existing cluster already encodes the distinction):
+
+- **Depression** = goal-maintenance failure / distal-attractor inaccessibility / DA selection
+  failure / self-maintaining rumination regime (INV-034, MECH-088 depression profile, MECH-124,
+  Q-021). This thought is about **this** mode.
+- **Psychosis** = NA collapse of E1/E2 constraint + DA aberrant salience on noisy input (MECH-088
+  psychosis profile); tag-MISassignment (MECH-094/MECH-115). A *prior-dominated precision failure*.
+- **Confabulation** = tag-LOSS / simulation-real source-monitoring failure (MECH-094) -- simulated
+  events encoded as real. Distinct from both above.
+
+The network-regime / coupling-reversal idea is a **depression-specific** compass. It must **not** be
+generalised into psychosis or confabulation, and "rumination" here is the depressive recurrent-loop
+sense (MECH-124), not psychotic content-intrusion. (Per memory `feedback_psychosis_confabulation_distinction`.)
+
+---
+
+## 7. Important cautions (carried from raw note)
+
+- Do **not** cite this as experimental evidence -- it is a press-summarised clinical finding plus an
+  architectural prompt. The peer-reviewed paper behind it was not located at intake.
+- Do **not** confuse this item with synaptic long-term depression (LTD).
+- Do **not** reduce clinical depression to connectivity alone, nor imply it is "merely a reversible
+  software state."
+- Do **not** over-map human depressive illness onto artificial systems (anti-anthropomorphic guard).
+- Do **not** make this a REE-v3 implementation target -- there is no V3 substrate for named
+  large-scale network coupling, and the claim is `out_of_domain` for V3 experiments.
+
+---
+
+## 8. Next steps (none on the V3 critical path)
+
+1. **(Optional, low priority)** Trace the primary peer-reviewed publication behind the Neuroscience
+   News press item to obtain paper-verified quantitative anchors (authors, journal, DOI, the
+   24-month threshold statistics, precuneus locus). Only needed if CANDIDATE-A/B are ever pursued.
+2. **(Deferred)** If/when the failure-axis architecture is formalised, fold the two genuinely-new
+   ideas (duration-indexed coupling reversal; unified network-regime vector) in as amendments to
+   MECH-088 / INV-034 rather than as standalone INVs -- and as `out_of_domain` /
+   `substrate_conditional`, never V3-promotable.
+3. **(Cross-repo)** Seed CANDIDATE-D into `Latent-Fields/ai-cognitive-failure-taxonomy` if/when that
+   taxonomy is next worked, with anti-anthropomorphic guardrails.
+4. **No experiment, no substrate, no claims.yaml edit** flows from this intake.
+
+If the source is ever fully verified and a specific REE gap is identified, the candidate architecture
+note is `docs/architecture/depressive_network_regimes_and_repair.md` (as the raw note proposed) --
+but only with user go-ahead.
+
+---
+
+## 9. Guardrail for future agents
+
+If a future agent tries to convert this into **synaptic long-term depression (LTD)**, stop and
+reframe: this is **long-term clinical depressive illness**.
+
+The correct near-term extraction is:
+
+> preserve long-term clinical depression as a candidate example of a *duration-dependent*,
+> possibly-reversible *large-scale network-coupling regime* -- carried by a multi-axis vulnerability
+> vector, not a scalar mood/reward value.
+
+The incorrect extractions are:
+
+> treat this as synaptic LTD; OR reduce clinical depression to simple low reward / sadness / negative
+> belief content; OR assert therapeutic reversibility (the source shows a coupling-sign reversal
+> across cohorts, not demonstrated reversal-by-treatment); OR generalise the depressive regime into
+> psychosis or confabulation.
