@@ -3627,6 +3627,12 @@
     "title": "The depressive failure mode is carried by a multi-axis network-regime VECTOR, not a scalar low-mood/low-reward value: depressive_regime_risk = f(future_trajectory_access, goal_stream_coupling, residue_load/self_weighting, rumination_loop_gain, action_threshold/energy_budget, social_affordance_access, offline_repair_quality). The depressive state is defined by the JOINT configuration of these coupling/access axes and is self-maintaining; scalar mood/reward is an insufficient representation.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-368": {
+    "status": "candidate",
+    "subject": "plasticity.event_level_write_authority_gate",
+    "title": "Event-level write-authority gate: an explicit per-event transition from observed/represented to write-eligible over the DURABLE MODEL-UPDATE path (E1/E2 world-model and policy weights, not only episodic memory), conditioned on f(prediction_error, salience, pathway_state, residue_status, goal_relevance, plasticity_eligibility). The gate decides which individual events within an already-open write channel are licensed to durably deform the model; an event may be salient, real-provenance, and in a write-permitted mode yet still fail the gate. Without it, every prediction error in an open channel writes -- the undifferentiated-global-update / catastrophic-interference failure mode.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -3979,6 +3985,12 @@
     "status": "candidate",
     "subject": "failure_modes.depressive_regime_reversibility",
     "title": "Is a maladaptive depressive network-regime (MECH-367) REVERSIBLE -- reconfigurable by REE's existing repair machinery (offline integration / MECH-124 replay rebalancing, decommitment from ruminative loops, re-access to social affordances, goal-stream re-coupling) -- or does chronicity lock the regime past a threshold (RA-001) such that the repair routes that work early fail or reverse-sign late?",
+    "type": "open_question"
+  },
+  "Q-062": {
+    "status": "candidate",
+    "subject": "plasticity.write_eligible_state_necessity",
+    "title": "Is an EXPLICIT event-level write-eligible state (MECH-368) actually needed, or is the existing combination -- MECH-261 mode-conditioned channel gating + MECH-094 provenance gating + MECH-285 consolidation-priority by V_s residual -- already sufficient to prevent undifferentiated global model updates? This is the falsifier for MECH-368: if a substrate that gates only the channel (mode) and prioritises only at consolidation still avoids catastrophic interference on the online world-model/policy path, MECH-368 earns no keep.",
     "type": "open_question"
   },
   "RA-001": {

@@ -38034,3 +38034,96 @@
     the MECH-367 vector substrate exists (V4/V5). Off the V3 critical path -- DO NOT queue a V3
     experiment against this. Hold the anti-overclaim guard: do not assert depression is "merely a
     reversible software state." Reaped from the 2026-06-06 clinical-depression intake.
+
+# Registered 2026-06-09 -- neuroimmune-modulation / compulsive-loops intake (Neuroscience News
+# "Brain Immune Cells Drive Compulsive Behavior"; primary study Nagarajan et al., Molecular
+# Psychiatry 2026-04-13, Hoxb8 microglia Ca2+ signaling). Slow non-symbolic substrate-state
+# modulation of compulsive-loop persistence. V4/V5 compass, off the V3 critical path. See
+# docs/architecture/slow_modulatory_state_and_compulsive_loops.md and
+# evidence/planning/thought_intake_2026-06-06_neuroimmune_modulation_compulsive_loops.md.
+- id: MECH-369
+  title: "Slow substrate-state modulator with authority over compulsive-loop stickiness: a slowly-varying, broadly-projecting modulatory state can bias the decommit-friction / commitment-threshold / action-release landscape so that certain action loops become sticky, urgent, or hard to release INDEPENDENTLY of represented goal value or fast prediction-error -- i.e. a compulsive loop can arise from field-state bias rather than from an endorsed reward, valued goal, or false belief. The modulator changes the release/threshold landscape, not the value estimate."
+  claim_type: mechanism_hypothesis
+  subject: compulsion.slow_modulatory_loop_stickiness
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - SD-037
+    - SD-036
+    - MECH-268
+    - SD-034
+    - ARC-016
+    - MECH-342
+    - SD-048
+  location: docs/architecture/slow_modulatory_state_and_compulsive_loops.md#mech-369
+  notes: "Empirical anchor (press-summary-verified, NOT read directly): Nagarajan et al., Molecular Psychiatry 2026-04-13 (Univ. of Louisville) -- Hoxb8 microglia intracellular Ca2+ signaling is a bidirectional optogenetic switch for anxiety/OCD-spectrum grooming. PRECISION GUARDRAIL: the paper's mechanism is a FAST/causal microglial Ca2+ switch, NOT a demonstrated slow tonic process; the 'slow modulation' framing is the REE-side abstraction the saved item prompted, not the paper's claim -- do NOT cite this as evidence for slowness, and do NOT reduce OCD/compulsion to inflammation or imply REE/AI have immune cells (the analogue is slow substrate-state modulation, not biology). DISTINCT FROM: MECH-268 (fast dACC PE-saturation / urgency accumulator -- a within-loop fast signal, not a slow background bias); SD-037 (orexin-analog broadcast gain modulator -- the closest existing slow-modulator slot, but it reweights z_harm and gates SD-012 drive->z_goal seeding, it does NOT carry explicit authority over decommit-friction / loop release); MECH-106 (valence->commitment-threshold -- value-driven, whereas MECH-369's whole point is value-INDEPENDENT stickiness). RELATED existing slow modulators it would sit alongside: SD-036 (GABA decay), MECH-186/187/188 (5-HT goal-pipeline gain). The harm-stream already has a slow-physiological-bias hook in SD-048 (inflammatory-sensitisation + allostatic-load analogs). Most naturally an AMENDMENT extending the slow-modulator layer (SD-037 cluster) with a decommit-friction authority channel, rather than a wholly free-standing substrate. V4/V5; off the V3 critical path. substrate_conditional on a slow-modulator-class distinction (value-independent stickiness authority) not yet built. DO NOT build it or queue an experiment in V3 until routed by an explicit version decision. Reaped from the 2026-06-06 neuroimmune-modulation/compulsive-loops intake."
+- id: MECH-370
+  title: "Composed compulsion-risk readout: compulsive vulnerability is best modelled not as a single scalar (reward, habit strength, or belief) but as a composition compulsion_risk = f(loop_reinforcement, threat_salience, residue_persistence, decommit_friction, slow_modulatory_state) over quantities REE already represents separately -- a multi-layer state in which the substrate can make certain loops difficult to release even when any single term looks benign."
+  claim_type: mechanism_hypothesis
+  subject: compulsion.composite_risk_readout
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - SD-045
+    - ARC-071
+    - MECH-268
+    - IMPL-005
+    - MECH-369
+    - ARC-016
+    - MECH-342
+  location: docs/architecture/slow_modulatory_state_and_compulsive_loops.md#mech-370
+  notes: "The five terms already exist in REE but are never composed into one diagnosable signal: loop_reinforcement ~ SD-045 (action-chunk runaway-chunking -> OCD ritual, Graybiel 2008) + ARC-071 (policy-composition-via-repeated-grounding slow accumulator); threat_salience ~ harm stream / MECH-268 dACC PE; residue_persistence ~ IMPL-005 (residue persistence as structural memory); decommit_friction ~ ARC-016 (commitment threshold) + MECH-342 (maintenance-time decommit) + SD-034 (closure operator); slow_modulatory_state ~ MECH-369 (the value-independent stickiness modulator) / SD-037 / SD-036. MECH-370 asserts the COMPOSITION is the right level of description for compulsion -- a readout that lets governance ask 'is this loop stuck because it is valued, or because the field is biased?'. Distinct from MECH-369 (one TERM of the function) and from any single failure-mode claim (it spans them). V4/V5; off the V3 critical path. substrate_conditional -- the terms exist but the unified readout has no substrate. DO NOT build it or queue an experiment in V3 until routed by an explicit version decision. Reaped from the 2026-06-06 neuroimmune-modulation/compulsive-loops intake."
+- id: Q-063
+  title: "How does REE distinguish a high-value, legitimately-repeated goal from a slow-modulator-trapped compulsive loop -- i.e. a loop that persists because the decommit-friction / threshold landscape is biased (MECH-369) rather than because the goal is valued? What diagnostic separates value-driven persistence from field-state-driven stickiness, and can offline integration reduce loop stickiness without erasing legitimate residue (INV-004/INV-006 firewall)?"
+  claim_type: open_question
+  subject: compulsion.modulator_trapped_vs_valued_goal
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-369
+    - MECH-370
+    - ARC-016
+    - SD-034
+  location: docs/architecture/slow_modulatory_state_and_compulsive_loops.md#q-063
+  notes: "The etiological discriminator the neuroimmune intake turns on. Sub-questions: (1) what signature separates a valued repeated goal (high z_goal salience, positive expected value) from a modulator-trapped loop (release blocked by decommit-friction, not by value)? (2) does the SD-034 closure operator firing-vs-failing-to-fire distinguish the two? (3) can offline integration (MECH-272/273 sleep cluster) reduce stickiness WITHOUT eroding the non-erasable harm residue protected by INV-004/INV-006? Set epistemic_category: substrate_conditional explicitly (overriding the open_question -> answer_state inference) so narrow_open_question does NOT fire -- this is a V4-parked question awaiting the MECH-369/MECH-370 substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical path. DO NOT queue an experiment against this in V3. Reaped from the 2026-06-06 neuroimmune-modulation/compulsive-loops intake."
+- id: MECH-368
+  title: "Event-level write-authority gate: an explicit per-event transition from observed/represented to write-eligible over the DURABLE MODEL-UPDATE path (E1/E2 world-model and policy weights, not only episodic memory), conditioned on f(prediction_error, salience, pathway_state, residue_status, goal_relevance, plasticity_eligibility). The gate decides which individual events within an already-open write channel are licensed to durably deform the model; an event may be salient, real-provenance, and in a write-permitted mode yet still fail the gate. Without it, every prediction error in an open channel writes -- the undifferentiated-global-update / catastrophic-interference failure mode."
+  claim_type: mechanism_hypothesis
+  subject: plasticity.event_level_write_authority_gate
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-261
+    - MECH-094
+    - INV-074
+    - SD-032a
+    - INV-034
+  location: docs/architecture/plasticity_write_authority_gating.md#mech-368
+  notes: "Reaped from the 2026-06-06 learning-onset intake (source: Schreiner/Brudner/Li/Pearson/Mooney, 'A synaptic locus of song learning', Nature 2026, DOI 10.1038/s41586-026-10510-x -- a cortico-basal-ganglia synapse class as the first-expression/maintenance locus of zebra-finch song learning; compass-level, not citable mechanism evidence). The genuinely-new piece is the ADMISSION side of plasticity: REE built the closure/protection side (INV-074 crystallization, MECH-334 EWC write-protect of already-written weights) but has no explicit per-event gate on what earns durable write in the first place. Distinct from and DOWNSTREAM of MECH-261, which gates the write CHANNEL at the operating-mode grain (which substrates can write per mode) but not per-event passage within an open channel; distinct from MECH-094 (provenance/source gate) and MECH-283 (recognition-for-recall, the retrieval-side analogue). The episodic-memory write path is already substantially covered (salience-tag -> replay candidacy -> MECH-285 consolidation-priority is an implicit write-eligibility pipeline); the under-covered path is the ONLINE world-model/policy weight-update one. goal_relevance input depends on a competitive z_goal (GAP-4 goal-pipeline), the main reason this is V4-scoped; a goal-free REDUCED form (gated on prediction_error + salience + provenance + plasticity_eligibility) could be pulled earlier if a specific failure motivates it -- see home doc. substrate_conditional: promote/demote suppressed, off V3/GAP-7 critical path. DO NOT build in V3 until routed by experiment (Q-062). Cross-references the 2026-06-01 plasticity-window-neuromodulators note (the WINDOW/state-grain opening side) -- sibling, not duplicate: a window-level plasticity gain can be open while a given event still fails this event-level gate."
+- id: Q-062
+  title: "Is an EXPLICIT event-level write-eligible state (MECH-368) actually needed, or is the existing combination -- MECH-261 mode-conditioned channel gating + MECH-094 provenance gating + MECH-285 consolidation-priority by V_s residual -- already sufficient to prevent undifferentiated global model updates? This is the falsifier for MECH-368: if a substrate that gates only the channel (mode) and prioritises only at consolidation still avoids catastrophic interference on the online world-model/policy path, MECH-368 earns no keep."
+  claim_type: open_question
+  subject: plasticity.write_eligible_state_necessity
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-368
+    - MECH-261
+    - MECH-285
+  location: docs/architecture/plasticity_write_authority_gating.md#q-062
+  notes: "Companion falsifier to MECH-368, reaped from the 2026-06-06 learning-onset intake. The decisive empirical question once a model-update substrate exists with an open online write channel: does per-event admission gating add anything over channel-gating (MECH-261) + provenance (MECH-094) + offline consolidation-priority (MECH-285)? epistemic_category set substrate_conditional EXPLICITLY (overriding open_question -> answer_state) so narrow_open_question does NOT fire -- this is a V4-parked question awaiting the model-update/online-write substrate, not a V3-tractable one to narrow by experiment. Sub-questions: (1) is the gate one mechanism or per-pathway (world-model vs policy vs residue)? (2) is 'write-eligible' a held intermediate STATE with its own entry/exit, or just the salience tag re-read? (3) does goal_relevance belong in the gate, or is that double-counting z_goal salience? V4/V5; off the V3 critical path. DO NOT queue a V3 experiment against this."

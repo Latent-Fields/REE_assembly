@@ -105,15 +105,19 @@ None require any status change. Listed as the touch-points a future registration
 
 ---
 
-## 7. Candidate claims FOR FUTURE REGISTRATION (do NOT register now)
+## 7. Candidate claims -- REGISTERED 2026-06-09 (per user judgment that the write-eligible gate is a needed thing)
 
-Recorded for a future session only. Per the standard thought-intake default and this thought's own guardrails, **none are registered in claims.yaml in this pass.** All are off the V3/GAP-7 critical path and substrate-leaning (V4 or late-V3).
+Per user direction (the write-eligible learning gate "seems like a needed thing"), the genuinely-new candidate was REGISTERED into claims.yaml -- as candidates, not commitments. Scope: `candidate / substrate_conditional / implementation_phase:v4 / version_relevance:v4_v5` (off V3/GAP-7 critical path; promote/demote suppressed; kept out of the IGW experiment-proposal lane). Home doc: [docs/architecture/plasticity_write_authority_gating.md](../../docs/architecture/plasticity_write_authority_gating.md).
 
-- **CANDIDATE Q (answer_state / open_question):** "Should REE represent a distinct **write-eligible** learning state between salience-flagging and durable write, or is mode-conditioned (MECH-261) + provenance (MECH-094) gating already sufficient?" Likely resolves as either *no new claim* (subsumed by MECH-261) or a child of MECH-261.
-- **CANDIDATE MECH (mechanism_hypothesis, substrate_conditional, V4):** event-local **write-authority gate** -- a per-event transition `observed -> write-eligible` conditioned on (prediction_error, salience, pathway_state, residue_status, goal_relevance, plasticity_eligibility); most naturally an extension of MECH-261, not a new top-level invariant.
-- **CANDIDATE Q (out_of_domain or substrate_conditional):** "Can harm **residue** open *write* authority without opening *action* authority?" -- posed against INV-011 / SD-010/SD-011.
+Sharpened framing on registration: the episodic-memory write path is already substantially covered (salience-tag -> replay candidacy -> MECH-285 consolidation-priority), so the registered claim is scoped to the **under-covered online world-model / policy weight-update path**, downstream of MECH-261's mode-grain channel gate -- the *admission* side that complements the INV-074/MECH-334 *protection* side.
 
-**Explicit non-registration of duplicates:** the four-state ladder's endpoints (Observed = perception/E1; Consolidated = sleep/replay cluster MECH-273/275/285) are already owned and must NOT be re-registered. Only the middle **Write-eligible** rung is genuinely under-represented.
+- **MECH-368** (mechanism_hypothesis, `plasticity.event_level_write_authority_gate`) -- REGISTERED. Per-event `observed -> write-eligible` transition over the durable model-update path, conditioned on f(prediction_error, salience, pathway_state, residue_status, goal_relevance, plasticity_eligibility). `depends_on` MECH-261, MECH-094, INV-074, SD-032a, INV-034. Registered as a NEW MECH downstream of MECH-261 (not an amendment), matching today's sibling-registration pattern.
+- **Q-062** (open_question, `plasticity.write_eligible_state_necessity`) -- REGISTERED. Falsifier: is an explicit write-eligible state needed, or is MECH-261 channel-gating + MECH-094 provenance + MECH-285 consolidation-priority already sufficient? `depends_on` MECH-368, MECH-261, MECH-285.
+
+**Held back (NOT registered, pending explicit user decision):**
+- **CANDIDATE Q:** "Can harm **residue** open *write* authority without opening *action* authority?" -- posed against INV-011 / SD-010 / SD-011. A separate axis; offered to the user.
+
+**Explicit non-registration of duplicates:** the four-state ladder's endpoints (Observed = perception/E1; Consolidated = sleep/replay cluster MECH-273/275/285) are already owned and were NOT re-registered. The episodic-side write-eligibility pipeline is also not re-registered (already implicit via salience-tag -> replay -> MECH-285).
 
 ---
 
