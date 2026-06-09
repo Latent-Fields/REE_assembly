@@ -2,9 +2,9 @@
 
 Raw thought file: [docs/thoughts/2026-06-06_neuroimmune_modulation_compulsive_loops.md](../../docs/thoughts/2026-06-06_neuroimmune_modulation_compulsive_loops.md)
 
-Stage-2 structured analysis. Compass-level intake — **no claims.yaml registration**, no substrate, no
-experiment. Off the V3 / GAP-7 critical path. Links the existing SD-033 OCD-axis / commitment-closure
-cluster to a slow-modulator framing.
+Stage-2 structured analysis. **Claims REGISTERED 2026-06-09** (§5: MECH-369, MECH-370, Q-063 — all
+`candidate` / `substrate_conditional` / `v4` / `v4_v5`), no substrate, no experiment. Off the V3 / GAP-7
+critical path. Links the existing SD-033 OCD-axis / commitment-closure cluster to a slow-modulator framing.
 
 ---
 
@@ -212,38 +212,48 @@ None change status. Cross-references for whoever later develops the slow-modulat
 
 ---
 
-## 5. Candidate claims FOR FUTURE REGISTRATION (NOT registered — do not add to claims.yaml)
+## 5. Reaped claims — REGISTERED 2026-06-09 (per user: knowledge must be reaped)
 
-Per scope (this is a compass intake), nothing is registered. If a future session, with the user's
-direction, decides to reap these, they would be V4-leaning and `substrate_conditional` / `answer_state`:
+The genuinely-new strands were **registered into claims.yaml** as `candidate` /
+`epistemic_category: substrate_conditional` / `implementation_phase: v4` / `version_relevance: v4_v5`,
+wired into the dependency graph. Home doc:
+[docs/architecture/slow_modulatory_state_and_compulsive_loops.md](../../docs/architecture/slow_modulatory_state_and_compulsive_loops.md).
 
-- **[Q-candidate]** *Should REE represent slow background substrate-state as a modulator class distinct
-  from immediate salience, goal value, and prediction error — with authority to bias loop stickiness and
-  decommit-friction independently of value?* (open_question / answer_state; nearest substrate SD-037;
-  depends_on SD-036/SD-037/MECH-268/SD-034.)
-- **[MECH-candidate]** *Unified compulsion-risk readout* composing `loop_reinforcement + threat_salience +
-  residue_persistence + decommit_friction + slow_modulatory_state` into one diagnosable signal
-  (mechanism_hypothesis; epistemic_category substrate_conditional — the terms exist but are not composed;
-  depends_on SD-045/ARC-071/MECH-268/IMPL-005/SD-037/ARC-016/MECH-342).
-- **[Q-candidate]** *Diagnostic discriminator: how does REE distinguish a high-value legitimate repeated
-  goal from a slow-modulator-trapped compulsive loop (decommit-friction-driven, not value-driven)?*
-  (open_question; the etiological distinction the thought turns on.)
-- **[cross-repo seed — NOT claims.yaml]** A *slow-modulator axis* beneath named failure modes in
-  `Latent-Fields/ai-cognitive-failure-taxonomy` (context-window pressure, memory weighting, tool-retry
-  pressure, unresolved alerts, resource constraints). Explicitly substrate-state, not biology.
+- **MECH-369** — *Slow substrate-state modulator with authority over compulsive-loop stickiness*: a
+  slowly-varying, broadly-projecting modulator biases the decommit-friction / threshold / release landscape
+  so loops become sticky **independently of represented goal value or fast PE** — compulsion as field-state
+  bias, not endorsed value. Distinct from MECH-268 (fast within-loop), SD-037 (gain over z_harm /
+  drive-seeding, no release authority), MECH-106 (value-driven threshold).
+  `depends_on`: SD-037, SD-036, MECH-268, SD-034, ARC-016, MECH-342, SD-048.
+- **MECH-370** — *Composed compulsion-risk readout*: `compulsion_risk = f(loop_reinforcement,
+  threat_salience, residue_persistence, decommit_friction, slow_modulatory_state)` unifying the five
+  scattered terms into one diagnosable signal. `depends_on`: SD-045, ARC-071, MECH-268, IMPL-005, MECH-369,
+  ARC-016, MECH-342.
+- **Q-063** — *Modulator-trapped loop vs valued repeated goal*: the etiological discriminator
+  (decommit-friction-driven vs value-driven), plus whether offline integration can reduce stickiness without
+  eroding the INV-004/INV-006 harm-residue firewall. `epistemic_category` set `substrate_conditional`
+  explicitly so `narrow_open_question` does not fire. `depends_on`: MECH-369, MECH-370, ARC-016, SD-034.
+
+> ID note: MECH-368 / Q-062 were taken by a concurrent sibling session at registration time; this cluster
+> uses MECH-369, MECH-370, Q-063 (re-verified max IDs at write time).
+
+- **[cross-repo seed — deliberately NOT in claims.yaml]** A *slow-modulator axis* beneath named failure
+  modes in `Latent-Fields/ai-cognitive-failure-taxonomy` (context-window pressure, memory weighting,
+  tool-retry pressure, unresolved alerts, resource constraints). Explicitly substrate-state, not biology;
+  tracked in that repo, not here.
 
 ---
 
 ## 6. Next steps (none mandatory; compass)
 
-1. **No claims.yaml registration, no substrate, no experiment** under this intake. The OCD-axis cluster
-   (SD-033/SD-034/MECH-266/267/268) is already governed by `sd033_governance_plan.md`; the slow-modulator
-   layer (SD-036/SD-037) is already implemented. A probe against the new conceptual strands would be
-   vacuous until a slow-modulator-class substrate distinction is actually built (V4-leaning).
-2. **If the user later wants to develop this:** the natural home doc is the one the raw note proposed,
-   `docs/architecture/slow_modulatory_state_and_compulsive_loops.md`, framed as a synthesis bridging the
-   SD-033 OCD cluster, the SD-036/SD-037 slow-modulator layer, and the SD-048 inflammatory/allostatic harm-
-   stream analog — *not* as an immune-causation claim (honour the raw note's section-9 guardrail).
+1. **Claims registered (§5): MECH-369, MECH-370, Q-063** — all `candidate` / `substrate_conditional` /
+   `v4` / `v4_v5`, so promote/demote and `narrow_open_question` are suppressed: **no V3 governance pressure,
+   no substrate, no experiment owed.** The OCD-axis cluster (SD-033/SD-034/MECH-266/267/268) remains governed
+   by `sd033_governance_plan.md`; the slow-modulator layer (SD-036/SD-037) is already implemented. A probe
+   against the reaped claims would be vacuous until the slow-modulator-class distinction is built (V4).
+2. **Home doc created:** `docs/architecture/slow_modulatory_state_and_compulsive_loops.md`, bridging the
+   SD-033 OCD cluster, the SD-036/SD-037 slow-modulator layer, and the SD-048 inflammatory/allostatic
+   harm-stream analog — *not* an immune-causation claim (honours the raw note's section-9 guardrail).
 3. **Cross-repo:** the AI-failure-taxonomy slow-modulator axis belongs in
    `Latent-Fields/ai-cognitive-failure-taxonomy`, tracked there, not here.
 4. **Lit anchor available if needed:** Nagarajan et al., *Molecular Psychiatry* (2026-04-13), Hoxb8
