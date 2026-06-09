@@ -1,0 +1,52 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_657_mech294_multi_content_theta_packet_readiness",
+  "run_id": "v3_exq_657_mech294_multi_content_theta_packet_readiness_20260609T190708Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-09T19:07:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "reading": "Single-vintage packets (G1 fail) -- the MECH-269b V_s vintaging is inert on this run. Substrate-ceiling / V_s wiring; not a pass.",
+    "grid": {
+      "joint_binding_load_bearing": "PASS -> queue the MECH-294 behavioural-evidence successor; the substrate-readiness gate that found MECH-294 blocked_substrate is cleared. Do NOT promote MECH-294 here (governance evidence is the successor's job).",
+      "multi_content_yes_joint_not_isolated": "C2 FAIL -> 'four streams present' carries the signal, not the co-observation. Refine the readout to a genuinely conjunctive one; do NOT promote MECH-294's joint clause.",
+      "kay_parsimonious_survives": "C1 FAIL -> Kay-2020 parsimonious outcome survives on REE's substrate; /failure-autopsy; joint clause NOT promotable; 2026-04-26 hold stands.",
+      "substrate_not_ready_requeue": "G0/G1/non-vacuity FAIL -> packet degenerate (missing streams / single-vintage / shuffle-ties-joint). Route to the upstream blocker (goal pipeline / V_s wiring) or re-queue; NOT a MECH-294 result."
+    }
+  }
+}

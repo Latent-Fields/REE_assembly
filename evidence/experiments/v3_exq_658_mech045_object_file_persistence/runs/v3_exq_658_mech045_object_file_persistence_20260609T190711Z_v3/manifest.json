@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_658_mech045_object_file_persistence",
+  "run_id": "v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-09T19:07:11Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-045"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "token_buffer_reidentifies_cross_motion",
+    "preconditions": [
+      {
+        "name": "G0_intact_maintains_token",
+        "kind": "readiness",
+        "description": "INTACT keeps >=1 live token for the target across the move on >=2/3 seeds",
+        "measured": 3,
+        "threshold": 2,
+        "control": "INTACT arm, target observed at t0",
+        "met": true
+      },
+      {
+        "name": "G1_feature_term_nondegenerate",
+        "kind": "readiness",
+        "description": "min over seeds of mean d_cos(target,distractor) -- the SAME feature statistic the re-identification criterion depends on (dim=32 guard)",
+        "measured": 0.9190990372601735,
+        "threshold": 0.1,
+        "control": "two same-type instances with distinct constructed appearances",
+        "met": true
+      },
+      {
+        "name": "G2_entity_moved",
+        "kind": "readiness",
+        "description": "target cell at re-observation differs from first observation on every scored trial",
+        "measured": 3,
+        "threshold": 3,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_reid_frac_intact_ge_0.6",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_ablation_contrast",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_feature_persistence",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    }
+  }
+}
