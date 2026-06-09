@@ -1,48 +1,34 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-09T19:29:19Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-603l",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-646",
-      "result": "PASS",
-      "completed_at": "2026-06-06T17:24:51.898531+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-643b",
-      "result": "PASS",
-      "completed_at": "2026-06-06T23:06:57.321370+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-652",
-      "result": "PASS",
-      "completed_at": "2026-06-08T05:56:39.346759+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-657",
-      "result": "FAIL",
-      "completed_at": "2026-06-09T19:07:08.966365+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-658",
-      "result": "PASS",
-      "completed_at": "2026-06-09T19:07:12.017186+00:00"
-    }
+  "last_tick_utc": "2026-06-09T19:55:58Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-657a",
+  "current_exq_started_utc": "2026-06-09T19:55:53.091451+00:00",
+  "current_title": "MECH-294 multi-content theta-packet substrate-readiness CORRECTED (structural separability + forced-V_s probe; supersedes 657)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_OFF",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 2,
+    "episodes_total": 4,
+    "overall_pct": 4.2
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 968,
+  "recent_lines": [
+    "vs_hold_probe: {'probe_n_distinct_vintages': 2, 'probe_risk_sensory_stale': True, 'probe_held_equals_prior_snapshot': True, 'probe_hold_fired': True}",
+    "Seed 42 Condition ARM_0_OFF",
+    "[run] arm=ARM_0_OFF seed=42 ep 1/4 packets=0",
+    "[run] arm=ARM_0_OFF seed=42 ep 2/4 packets=0"
   ],
-  "runner_pid": 669,
-  "runner_version": null,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 666,
+  "runner_version": "r2941 1985e58 2026-06-09 (running r2938 0a9df8e)",
   "gpu": {
     "available": false
   },
