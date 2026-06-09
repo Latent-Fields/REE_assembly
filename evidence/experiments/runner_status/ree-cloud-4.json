@@ -1,51 +1,40 @@
 {
   "schema_version": "v1",
-  "runner_pid": 2100,
-  "runner_started_at": "2026-06-07T19:29:44.678090+00:00",
-  "last_updated": "2026-06-08T05:56:39.347369+00:00",
+  "runner_pid": 669,
+  "runner_started_at": "2026-06-09T19:05:30.421333+00:00",
+  "last_updated": "2026-06-09T19:07:12.018237+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-603h",
+      "queue_id": "V3-EXQ-603l",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-058/MECH-357 instrumental-avoidance Stage-H validation (ilPFC-lesion vs intact: PAG freeze + ilPFC suppression; PASS = G_H_INTACT>=2/3 AND INTACT>LESION, readiness preconds met)",
+      "claim_id": "SD-059",
+      "title": "SD-059/MECH-358 escape-affordance bridge BEHAVIOURAL re-test (scored evidence; successor to V3-EXQ-603i, the pending_retest_after_substrate). Full 4-arm + nav-control discriminative Stage-H run on the 603k+603j-fixed substrate: ARM_BASE_IA_ONLY (bridge OFF) / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE (bridge halves) / ARM_NAV_CONTROL (bridge OFF, spawn-in-reef nav-competence control). ALL arms turn ON the two now-validated substrate fixes: scaffold_train_harm_pathway=True (603k PASS -> clears the 603i PRIMARY nav/survival-competence ceiling; ARM_HARM_ON_NAV G_H 2/3 vs OFF 0/3, harm_eval range 0.133) and escape_use_trained_safety_signal=True + MECH-303 terrain + MECH-304 store + MECH-302 comparator (603j PASS -> the SAFETY half credits non-vacuously via the trained threat-absence signal, mean 0.89 >= 0.5 floor). PRIMARY DV best_bridge_G_H >= 2/3 AND > G_H_BASE. Per-half non-vacuity readiness preconditions retained as a SAFETY NET (each enabled bridge half credits >=2/3 before G_H scored; else self-route substrate_not_ready_requeue, NOT a false weakens).",
       "description": "",
-      "estimated_minutes": 188.0,
+      "estimated_minutes": 470.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-610f",
+      "queue_id": "V3-EXQ-654a",
+      "backlog_id": "",
+      "claim_id": "MECH-309",
+      "title": "ARC-062 GAP-B behavioural falsifier (MECH-309/ARC-062) GATED RE-RUN of V3-EXQ-654 on the crf_persist-matured CandidateRuleField substrate (amend ree-v3 9797e84). Single-variable ARM_OFF (use_candidate_rule_field=False, legacy collapsed rule_state) vs ARM_ON (use_candidate_rule_field=True + crf_persist_rules_across_episode_reset=True, MATURED differentiated crf_source) on the matched 649 GAP-A / 643a authority / SD-056 / SP-CEM / MECH-341 stack. THREE fixes vs 654: (1) crf_persist=True so the rule pool matures across episodes and crf_frac_active clears the 0.30 C1c floor (654 cold-started 0.12); (2) a frozen-encoder P1 phase that TRAINS the SD-033a rule_bias_head via outcome-coupled REINFORCE (GAP-D; mirrors v3_exq_598b) so propagation is not vacuous; (3) a propagation non-vacuity precondition (ARM_ON lateral_pfc bias differs from ARM_OFF, else substrate_not_ready_requeue). PRIMARY DV = committed-class entropy; within-class-representative entropy = secondary negative control.",
+      "description": "",
+      "estimated_minutes": 128.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-655",
       "backlog_id": "EVB-0270",
       "claim_id": "INV-074",
-      "title": "INV-074/MECH-334/MECH-333 crystallization-necessity TRUE-NEGATIVE-CONTROL retest (+MECH-341/313 floor contrast): strip the always-on diversity floor (noise_floor/E3-diversity/dACC-suppression off; structured curiosity decoupled from crystallize) so crystallization is the SOLE phase-3 diversity route in ARM_1; phase-dependent entropy bonus (0.02 generator in phases 0-2, swept {0,0.005,0.02} in phase 3) maps the collapse threshold; ARM_4 floor-on (MECH-341/313). 5 conditions x 3 seeds, IGW-023 Phase-3 pressure. Supersedes 610e (confounded control).",
+      "title": "INV-074 crystallization-necessity: task-distribution-shift phase-3 redesign (supersedes 610f)",
       "description": "",
       "estimated_minutes": 5000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-604c",
-      "backlog_id": "",
-      "claim_id": "MECH-314",
-      "title": "MECH-314/Q-044 sub-flavour ablation on validated GAP-A substrate + selection authority (RANGE readiness gate); supersedes 604b",
-      "description": "",
-      "estimated_minutes": 160.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-640b",
-      "backlog_id": "",
-      "claim_id": "SD-057",
-      "title": "SD-057/MECH-346/MECH-347 cue-authority lineage CLEAN EVIDENCE retest: re-run the 640a scaffold cue-recall gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds) now that modulatory-bias-selection-authority is VALIDATED (V3-EXQ-643a PASS). use_modulatory_selection_authority=True+gain=0.5 on every arm so the cue->z_goal->MECH-295 approach bias has bounded authority over the E3.select argmin in the contact-making scaffold P2 env. Promotes 640a (diagnostic, flat lift, authority OFF) to EVIDENCE.",
-      "description": "",
-      "estimated_minutes": 658.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -1907,6 +1896,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone/v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone_20260608T055638Z_v3.json",
       "completed_by": "ree-cloud-4",
       "actual_secs": 37614.6
+    },
+    {
+      "queue_id": "V3-EXQ-657",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-294 multi-content theta-burst packet substrate-readiness diagnostic (joint vs alternation vs shuffled). Validates the MultiContentThetaPacket (landed this session behind use_multi_content_theta_packet, bit-identical OFF) builds a NON-DEGENERATE joint {goal_latent, action_proposal, risk_estimate(z_harm_s+z_harm_a), state_summary} packet within one theta cycle AND that the joint within-cycle co-binding is separable from the matched Kay-2020 alternation (one-stream-per-cycle) + shuffled (independent-content, matched-marginals) controls. 4 arms x 3 seeds, matched seeds+content, packet READ-ONLY (compose OFF). Gates: G0 packet completeness >=0.8 (ARM_1, >=2/3), G1 vintage heterogeneity >0 (ARM_1, >=2/3), NON-VACUITY (joint-vs-shuffled matched-cycle component-norm L1 > 1e-3 on >=2/3 -- the shuffle control must actually differ from intact else substrate_not_ready_requeue), C1 joint!=alternation + C2 joint!=shuffled on a conjunctive within-cycle coherence readout (>C_MARGIN AND > ARM_1 cross-seed baseline). Non-vacuously tests joint-within-cycle vs Kay-2020 cross-cycle alternation.",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Outcome: FAIL (label=substrate_not_ready_requeue) | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-657 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-657.json",
+      "started_at": "2026-06-09T19:05:30.446329+00:00",
+      "completed_at": "2026-06-09T19:07:08.966365+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_657_mech294_multi_content_theta_packet_readiness_20260609T190708Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 97.5
+    },
+    {
+      "queue_id": "V3-EXQ-658",
+      "backlog_id": "EVB-0293",
+      "claim_id": "MECH-045",
+      "title": "MECH-045 token-instance object-file buffer: discriminative persistence-vs-ablation (EVB-0293/EXP-0117). Tests whether the object-file buffer (landed this session, ree_core/entities/object_file_buffer.py, behind no-op-default use_object_file_buffer) assigns the SAME token id to an entity BEFORE and AFTER it moves to a new cell, with several SAME-TYPE distractors present so continuity (NOT type, NOT nearest-cell) must carry identity. 3 arms x 3 seeds [42,43,44], matched seeds + controlled per-instance appearances at world_dim=128 (memo S5.1 discriminative floor). ARM_INTACT (token from data-association) vs ARM_ABLATION_OFF (buffer off, reid floor) vs ARM_ABLATION_SHUFFLE (buffer on but token ids permuted each tick before readout -- isolates IDENTITY not buffer presence carries persistence). Readiness/non-vacuity gates (ALL before scoring, else substrate_not_ready_requeue): G0 INTACT maintains a live token across the move (>=2/3), G1 feature term non-degenerate d_cos(target,distractor)>=0.1 (the dim=32 guard; SAME statistic the reid criterion depends on), G2 entity actually moved every scored trial. Discriminators: C1 reid_frac_INTACT>=0.6 (PRIMARY, load-bearing), C2 INTACT>SHUFFLE+0.3 AND INTACT>OFF, C3 feature-persistence-through-occlusion (>=2/3).",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS (label=token_buffer_reidentifies_cross_motion, evidence=supports) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-658 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-658.json",
+      "started_at": "2026-06-09T19:07:10.427550+00:00",
+      "completed_at": "2026-06-09T19:07:12.017186+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 1.6
     }
   ]
 }
