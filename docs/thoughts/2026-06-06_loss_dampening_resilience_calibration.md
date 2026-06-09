@@ -1,4 +1,9 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_loss_dampening_resilience_calibration.md
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_loss_dampening_resilience_calibration.md (2026-06-09T20:15Z; primary source LOCATED+VERIFIED -- Rammensee, Heathcote & Basten 2026, J Neurosci, DOI 10.1523/JNEUROSCI.1734-25.2026, resolves the source-check-pending note; NO claims.yaml registration -- compass off V3/GAP-7 critical path; 2 genuinely-new candidates seeded for future reap: loss-valuation-dampening MECH + outcome-loss-vs-harm-residue firewall Q)
+
 Source email date: 2026-05-12
 Source email subject: REE How the Brain Dampens Losses to Support Mental Toughness - Neuroscience News
 Source saved-item attribution: Daniel Golden
