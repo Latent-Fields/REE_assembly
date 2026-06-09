@@ -99,14 +99,15 @@ closure_plan:
     - id: "infant_substrate:GAP-11"
       title: "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison"
       phase: 4
-      status: blocked_pending_substrate
+      status: in_progress
       severity: medium
-      owner_exq: "V3-EXQ-588b"
+      owner_exq: "V3-EXQ-588c"
       unblocks_claims: [DEV-NEED-006, MECH-189]
       depends_on: ["infant_substrate:GAP-3", "infant_substrate:GAP-5"]
-      blocked_by: "ContextMemory writes substrate (separate substrate work, not a re-queue of the 588 chain). The MECH-189 retest cannot proceed until ContextMemory writes are implemented per failure_autopsy_V3-EXQ-588_2026-05-19 + V3-EXQ-588b 20260521T053758Z FAIL non_contributory diagnostic confirmation."
-      resume_condition: "V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non_contributory for MECH-189 -- infant GoalState gate, not ContextMemory writes; env patches work (C2/C3). Do NOT re-queue 588. Follow-up V3-EXQ-588b goal-seeding pipeline diagnostic (claim_ids=[], supersedes 588) ran 20260521T053758Z FAIL non_contributory and confirmed the gating is upstream of the patch-seeding pipeline. MECH-189 retest deferred until ContextMemory writes substrate is implemented (route via /implement-substrate)."
-      last_updated: 2026-05-30
+      blocked_by: ""
+      resume_condition: "ContextMemory writes substrate IMPLEMENTED 2026-06-09 (/implement-substrate): the MECH-189 SuperOrdinalGoalMemory (agent-owned, cross-episode-persistent, cue-indexed key=z_world / value=z_goal; ree-v3 ree_core/goal.py + agent.update_z_goal WRITE child-phase + READ adult seeding; landed ree-v3 c7ac035). Validation V3-EXQ-588c queued (diagnostic, supersedes the 588 ISEF-002 framing; do NOT re-queue 588). Node closes on 588c LOAD-BEARING C1 = ARM_ON-vs-ARM_OFF adult z_goal seeding discrimination PASS (>=2/3 seeds). The 588/DEV-NEED-006 0.4 absolute crossing is ADVISORY on 588c (matured-z_goal anchor norm ceilings ~0.37 on the untrained-encoder readiness harness) -- a discrimination PASS with a 0.4 near-miss validates the substrate and routes the absolute governance gate to a trained-encoder MECH-189 evidence successor, NOT a failure."
+      last_updated: 2026-06-09
+      governance_2026_06_09: "ContextMemory writes substrate LANDED (/implement-substrate). The MECH-189 SuperOrdinalGoalMemory the node was blocked_pending_substrate on is implemented (ree-v3 c7ac035: ree_core/goal.py SuperOrdinalGoalMemory + agent.update_z_goal WRITE/READ hooks + set_super_ordinal_write_enabled freeze hook; 8 new contracts + 985 contract suite green; bit-identical OFF). claims.yaml MECH-189 carries an implementation_note (NEITHER promoted NOR weakened; stays candidate / conf 0.0). Design doc docs/architecture/mech_189_super_ordinal_goal_anchors.md. status blocked_pending_substrate -> in_progress; owner_exq V3-EXQ-588b -> V3-EXQ-588c (queued via /queue-experiment; supersedes the 588 ISEF-002 framing). blocked_by cleared. A smoke-test correction to the write gate (complexity gates new-anchor allocation only; reinforcement on salience) was applied (anchor norm 0.019 frozen -> 0.373 matured)."
       governance_2026_05_30: "Closure-drift reconcile: status blocked -> blocked_pending_substrate (terminal). V3-EXQ-588b terminal signal (manifest 20260521T053758Z FAIL non_contributory diagnostic, no claim tags) fully absorbed; closure now sits behind the ContextMemory writes substrate. blocked_by added. resume_condition consolidated (588b FAIL outcome folded in -- prior text said 'on PASS close GAP-11' which is no longer the live path). No claims.yaml / manifest / substrate_queue edits this session (plan-doc reconcile only)."
       governance_2026_05_29: "V3-EXQ-588b ran 20260521T053758Z FAIL non_contributory (diagnostic, no claim tags). GAP-11 blocked on the ContextMemory path prerequisite called out in the original resume_condition; the MECH-189 retest cannot proceed until ContextMemory writes are implemented (separate substrate work, not a re-queue of 588 chain)."
     - id: "infant_substrate:GAP-12"

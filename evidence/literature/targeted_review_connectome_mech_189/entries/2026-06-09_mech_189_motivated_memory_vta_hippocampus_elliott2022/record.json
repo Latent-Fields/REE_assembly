@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_189",
+  "entry_id": "2026-06-09_mech_189_motivated_memory_vta_hippocampus_elliott2022",
+  "timestamp_utc": "2026-06-09T22:20:30Z",
+  "claim_ids_tested": ["MECH-189"],
+  "source": {
+    "title": "Midbrain-Hippocampus Structural Connectivity Selectively Predicts Motivated Memory Encoding.",
+    "authors": ["Blake L. Elliott", "Kimberlee D'Ardenne", "Vishnu P. Murty", "Gene A. Brewer", "Samuel M. McClure"],
+    "year": 2022,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0945-22.2022",
+    "url": "https://doi.org/10.1523/JNEUROSCI.0945-22.2022"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the write gate is driven by a stimulus-novelty term divorced from value, it will miss value-modulated encoding: in humans, the strongest individual-difference predictor of motivated memory was SN/VTA-hippocampus tract density, a value pathway, not a generic novelty pathway.",
+    "Modelling gate (a) salience and gate (b) complexity as independent factors is at odds with the shared dopaminergic value/PE channel implicated here, where motivational value itself modulates the hippocampal encoding signal."
+  ],
+  "tags": ["mech-189", "dev-need-024", "motivated-memory", "reward-prediction-error", "vta-hippocampus", "value-encoding", "dti"],
+  "mapping": {
+    "source_claim_statement": "In humans, diffusion-weighted MRI tractography showed that SN/VTA-hippocampus (but not SN/VTA-striatum) pathway density was positively correlated with reward- and punishment-modulated source memory. Both reward and punishment enhanced source memory over neutral; the authors frame the mechanism as a competition between SN/VTA-NAc reward-prediction-error signals and SN/VTA-hippocampus signals underlying motivated memory encoding.",
+    "ree_translation": "MECH-189 writes a VALUE/goal anchor, not a neutral episodic trace, so the relevant biological gate is the motivated-memory / value-modulated encoding pathway -- which is dopaminergic and value-PE-linked. This supports super_ordinal_complexity_mode='external' driven by a value/prediction-error signal, and supports the salience gate being valence-symmetric (absolute benefit/harm magnitude, not signed valence).",
+    "mapping_caveat": "Structural connectivity is a between-subject individual-difference correlate, not a within-trial causal demonstration of the write signal; the study measures source memory for words under monetary incentive, not a cross-episode super-ordinal goal store. The reward-PE-vs-hippocampal-novelty competition is presented as unresolved here, so the paper licenses 'value-PE matters' more than it adjudicates PE-vs-novelty cleanly.",
+    "source_context": "Human adults; monetary-incentive source-memory paradigm; diffusion MRI + probabilistic tractography."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Strong human data with a value/goal-memory target that maps unusually well onto MECH-189. Mapping fidelity good but capped because structural-connectivity correlates are indirect for a within-trial write signal. Transfer risk relatively low: human, value-modulated, declarative-to-goal extrapolation is modest."
+  }
+}

@@ -524,7 +524,7 @@
       }
     },
     "ARC-014": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.781",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.78",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -550,9 +550,9 @@
       },
       "latest_run_id": "2026-04-05_arc014_rangel_camerer_montague_2008",
       "latest_timestamp_utc": "2026-04-05T18:00:00Z",
-      "literature_confidence": 0.781,
-      "literature_confidence_parallel": 0.781,
-      "overall_confidence": 0.781,
+      "literature_confidence": 0.78,
+      "literature_confidence_parallel": 0.78,
+      "overall_confidence": 0.78,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2378,7 +2378,7 @@
       }
     },
     "ARC-033": {
-      "confidence_rationale": "exp=17 entry(s), lit=20 entry(s), exp_conf=0.73, lit_conf=0.788",
+      "confidence_rationale": "exp=17 entry(s), lit=20 entry(s), exp_conf=0.729, lit_conf=0.788",
       "direction_counts": {
         "mixed": 8,
         "supports": 22,
@@ -2401,8 +2401,8 @@
         "C": 17
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.73,
-      "experimental_confidence_decoupled": 0.73,
+      "experimental_confidence": 0.729,
+      "experimental_confidence_decoupled": 0.729,
       "fail_runs": 9,
       "genuine_exp_count": 17,
       "genuine_exp_direction_counts": {
@@ -2752,7 +2752,7 @@
       }
     },
     "ARC-038": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.172, lit_conf=0.891",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.171, lit_conf=0.891",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -2771,8 +2771,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.172,
-      "experimental_confidence_decoupled": 0.172,
+      "experimental_confidence": 0.171,
+      "experimental_confidence_decoupled": 0.171,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4140,7 +4140,7 @@
       }
     },
     "ARC-063": {
-      "confidence_rationale": "exp=0 entry(s), lit=23 entry(s), exp_conf=0, lit_conf=0.863",
+      "confidence_rationale": "exp=0 entry(s), lit=23 entry(s), exp_conf=0, lit_conf=0.862",
       "direction_counts": {
         "mixed": 5,
         "supports": 18,
@@ -4171,9 +4171,9 @@
       },
       "latest_run_id": "2026-06-04_arc_063_subspace_partitioning_weber2023",
       "latest_timestamp_utc": "2026-06-04T15:00:09Z",
-      "literature_confidence": 0.863,
-      "literature_confidence_parallel": 0.863,
-      "overall_confidence": 0.863,
+      "literature_confidence": 0.862,
+      "literature_confidence_parallel": 0.862,
+      "overall_confidence": 0.862,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6895,6 +6895,61 @@
         "literature": 2
       }
     },
+    "INV-041": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.64",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theoretical_review": 1
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+      "latest_timestamp_utc": "2026-06-09T22:20:57Z",
+      "literature_confidence": 0.64,
+      "literature_confidence_parallel": 0.64,
+      "overall_confidence": 0.64,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-041",
+          "confidence": 0.58,
+          "confidence_rationale": "Gopnik argues -- across developmental, comparative and computational evidence -- that the long protected human childhood evolved as a dedicated EXPLORE phase: broad hypothesis search, high plasticity, neophilia and play, BEFORE the goal-directed EXPLOIT demands of adulthood set in. This is the most direct available grounding for the WHY of MECH-189: childhood is special precisely because it maximises the high-novelty, high-complexity contexts that the substrate's WRITE gate (b) (novelty-based complexity) requires, while adult routine contexts are low-novelty and do not trigger writes. It grounds INV-041 (childhood's constrained-but-supervised, exploration-rich affordances) and INV-056 (selective neoteny: a bounded plastic window that later closes for stability). Confidence 0.58 rather than higher because it is a theoretical/evolutionary synthesis, not a mechanistic demonstration, and the explore->exploit framing is about hypothesis/skill learning broadly, not about persistent goal-anchor writes specifically.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "Gopnik's explore-phase argument predicts childhood maximises BROAD exploration and hypothesis diversity. If a super-ordinal write gate fires too readily during this high-novelty phase, the store fills with many weakly-related anchors (over-exploration), and the adult goal hierarchy is diffuse rather than super-ordinal. The substrate's fixed 16-slot store + salience+complexity conjunction is the bound that must keep exploration from flooding the anchor set.",
+            "The explore->exploit transition is gradual and noisy in the biology, not a clean child->adult switch. The substrate freezes writes at a single discrete child->adult transition (set_super_ordinal_write_enabled(False)); if the real transition is graded, a hard freeze either truncates late-childhood anchor formation or, if set late, admits low-complexity adult routine contexts before the freeze."
+          ],
+          "run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "INV-043": {
       "confidence_rationale": "exp=0 entry(s), lit=7 entry(s), exp_conf=0, lit_conf=0.829",
       "direction_counts": {
@@ -7883,7 +7938,7 @@
       }
     },
     "INV-053": {
-      "confidence_rationale": "exp=7 entry(s), lit=5 entry(s), exp_conf=0.863, lit_conf=0.8",
+      "confidence_rationale": "exp=7 entry(s), lit=5 entry(s), exp_conf=0.862, lit_conf=0.8",
       "direction_counts": {
         "mixed": 3,
         "supports": 9,
@@ -7902,8 +7957,8 @@
         "C": 7
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.863,
-      "experimental_confidence_decoupled": 0.863,
+      "experimental_confidence": 0.862,
+      "experimental_confidence_decoupled": 0.862,
       "fail_runs": 0,
       "genuine_exp_count": 7,
       "genuine_exp_direction_counts": {
@@ -7916,7 +7971,7 @@
       "latest_timestamp_utc": "2026-04-20T07:15:42.478046Z",
       "literature_confidence": 0.8,
       "literature_confidence_parallel": 0.8,
-      "overall_confidence": 0.832,
+      "overall_confidence": 0.831,
       "pass_runs": 7,
       "recent_entries": [
         {
@@ -8263,6 +8318,61 @@
       "source_counts": {
         "experimental": 0,
         "literature": 5
+      }
+    },
+    "INV-056": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.64",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:theoretical_review": 1
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+      "latest_timestamp_utc": "2026-06-09T22:20:57Z",
+      "literature_confidence": 0.64,
+      "literature_confidence_parallel": 0.64,
+      "overall_confidence": 0.64,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-056",
+          "confidence": 0.58,
+          "confidence_rationale": "Gopnik argues -- across developmental, comparative and computational evidence -- that the long protected human childhood evolved as a dedicated EXPLORE phase: broad hypothesis search, high plasticity, neophilia and play, BEFORE the goal-directed EXPLOIT demands of adulthood set in. This is the most direct available grounding for the WHY of MECH-189: childhood is special precisely because it maximises the high-novelty, high-complexity contexts that the substrate's WRITE gate (b) (novelty-based complexity) requires, while adult routine contexts are low-novelty and do not trigger writes. It grounds INV-041 (childhood's constrained-but-supervised, exploration-rich affordances) and INV-056 (selective neoteny: a bounded plastic window that later closes for stability). Confidence 0.58 rather than higher because it is a theoretical/evolutionary synthesis, not a mechanistic demonstration, and the explore->exploit framing is about hypothesis/skill learning broadly, not about persistent goal-anchor writes specifically.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "Gopnik's explore-phase argument predicts childhood maximises BROAD exploration and hypothesis diversity. If a super-ordinal write gate fires too readily during this high-novelty phase, the store fills with many weakly-related anchors (over-exploration), and the adult goal hierarchy is diffuse rather than super-ordinal. The substrate's fixed 16-slot store + salience+complexity conjunction is the bound that must keep exploration from flooding the anchor set.",
+            "The explore->exploit transition is gradual and noisy in the biology, not a clean child->adult switch. The substrate freezes writes at a single discrete child->adult transition (set_super_ordinal_write_enabled(False)); if the real transition is graded, a hard freeze either truncates late-childhood anchor formation or, if set late, admits low-complexity adult routine contexts before the freeze."
+          ],
+          "run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
       }
     },
     "INV-057": {
@@ -9077,7 +9187,7 @@
       }
     },
     "MECH-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.327, lit_conf=0.865",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.326, lit_conf=0.865",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -9095,8 +9205,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.327,
-      "experimental_confidence_decoupled": 0.327,
+      "experimental_confidence": 0.326,
+      "experimental_confidence_decoupled": 0.326,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -10797,7 +10907,7 @@
       }
     },
     "MECH-057a": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.584, lit_conf=0.843",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.583, lit_conf=0.843",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -10815,8 +10925,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.584,
-      "experimental_confidence_decoupled": 0.584,
+      "experimental_confidence": 0.583,
+      "experimental_confidence_decoupled": 0.583,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -11139,7 +11249,7 @@
       }
     },
     "MECH-059": {
-      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.582, lit_conf=0.808",
+      "confidence_rationale": "exp=1 entry(s), lit=11 entry(s), exp_conf=0.581, lit_conf=0.808",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -11156,8 +11266,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.582,
-      "experimental_confidence_decoupled": 0.582,
+      "experimental_confidence": 0.581,
+      "experimental_confidence_decoupled": 0.581,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -11170,7 +11280,7 @@
       "latest_timestamp_utc": "2026-04-04T09:00:00Z",
       "literature_confidence": 0.808,
       "literature_confidence_parallel": 0.808,
-      "overall_confidence": 0.752,
+      "overall_confidence": 0.751,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -14111,7 +14221,7 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=19 entry(s), lit=9 entry(s), exp_conf=0.552, lit_conf=0.902",
+      "confidence_rationale": "exp=19 entry(s), lit=9 entry(s), exp_conf=0.551, lit_conf=0.902",
       "direction_counts": {
         "mixed": 7,
         "supports": 12,
@@ -14133,8 +14243,8 @@
         "C": 19
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.552,
-      "experimental_confidence_decoupled": 0.552,
+      "experimental_confidence": 0.551,
+      "experimental_confidence_decoupled": 0.551,
       "fail_runs": 16,
       "genuine_exp_count": 19,
       "genuine_exp_direction_counts": {
@@ -15333,7 +15443,7 @@
       }
     },
     "MECH-113": {
-      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.419, lit_conf=0.825",
+      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.418, lit_conf=0.825",
       "direction_counts": {
         "mixed": 3,
         "supports": 3,
@@ -15349,8 +15459,8 @@
         "C": 3
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.419,
-      "experimental_confidence_decoupled": 0.419,
+      "experimental_confidence": 0.418,
+      "experimental_confidence_decoupled": 0.418,
       "fail_runs": 3,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -15363,7 +15473,7 @@
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.825,
       "literature_confidence_parallel": 0.825,
-      "overall_confidence": 0.622,
+      "overall_confidence": 0.621,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -19754,17 +19864,21 @@
       }
     },
     "MECH-189": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.756",
+      "confidence_rationale": "exp=0 entry(s), lit=11 entry(s), exp_conf=0, lit_conf=0.835",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 2,
+        "mixed": 3,
+        "supports": 8,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 11,
       "evidence_class_counts": {
-        "lit:behavioral_human": 1,
-        "lit:connectome_mechanistic_review": 1
+        "lit:behavioral_animal": 2,
+        "lit:behavioral_human": 3,
+        "lit:computational_model": 1,
+        "lit:connectome_mechanistic_review": 2,
+        "lit:fmri_connectivity": 1,
+        "lit:theoretical_review": 2
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -19778,54 +19892,103 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-05-16_mech189_wanting_liking_dissociation_berridge1998",
-      "latest_timestamp_utc": "2026-05-16T11:20:37Z",
-      "literature_confidence": 0.756,
-      "literature_confidence_parallel": 0.756,
-      "overall_confidence": 0.756,
+      "latest_run_id": "2026-06-09_mech_189_schema_consolidation_tse2007",
+      "latest_timestamp_utc": "2026-06-09T22:20:57Z",
+      "literature_confidence": 0.835,
+      "literature_confidence_parallel": 0.835,
+      "overall_confidence": 0.835,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-189",
-          "confidence": 0.73,
-          "confidence_rationale": "Peer-reviewed empirical study, well-powered (experimental vs control design), published in the leading infancy journal. Key finding -- 83% of 6-month-olds increased vocal rate when vocalizations were contingently rewarded with visual feedback -- directly evidences the infant capacity for rapid accidental discovery of action-outcome contingencies. This is the mechanism MECH-189 and INV-073 depend on: accidental actions (first vocalizations, first kicks) discover beneficial contingencies, and the resulting association seeds goal-directed repetition. Confidence capped at 0.73: the study does not document the positive affect/valence change upon discovery, only the behavioral change, leaving the 'accidental benefit contact seeds z_goal' part of MECH-189 supported by inference rather than direct measurement.",
+          "confidence": 0.7,
+          "confidence_rationale": "Preregistered, four-experiment, Bayes-factor-quantified human study with a clean theoretical target (the SLIMM schema model). It is the single most decisive entry for the operationalisation verdict because it shows the encoding strength of an event is NON-monotonic in expectedness: memory is best for both highly expected (schema-congruent) AND highly unexpected (high prediction-error) items, and worst for neutral ones. This directly contradicts a monotonic '1 - similarity' novelty gate, which captures only the unexpected arm. Marked 'mixed' for MECH-189: it weakens the self-contained novelty proxy as currently formulated while supporting a prediction-error-magnitude / signed-PE formulation of gate (b).",
           "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_infant_affordance_valence_map",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_189",
           "failure_signatures": [
-            "The study uses a non-social visual reward (colorful shapes on iPad), showing the effect does not require social/caregiver contingency. This is relevant to REE's non-social training substrate design but also means we cannot assume affect-amplified discovery from this data alone.",
-            "No measurement of affective state change upon discovery: the study tracks vocalization rate only. The internal state change (motivation, wanting, goal formation) upon contingency detection is inferred, not measured.",
-            "The contingency is single-action-to-single-outcome: REE needs multi-action affordance repertoires, which the mobile/iPad paradigm cannot straightforwardly address."
+            "A monotonic novelty gate (complexity = 1 - max cosine to anchors; higher novelty -> more write) systematically fails to write schema-congruent high-value contacts, which the U-shape shows are encoded as well as the most surprising ones.",
+            "Operationalising 'contextual complexity' as raw dissimilarity confounds two distinct encoding regimes (congruent assimilation vs incongruent encoding) that the brain routes differently; the gate cannot distinguish 'neutral/moderate' (poorly encoded) from 'strongly congruent' (well encoded)."
           ],
-          "run_id": "2026-05-16_inv073_contingency_learning_mobile_kerenportnoy2021",
+          "run_id": "2026-06-09_mech_189_ushape_expectedness_memory_quent2022",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T11:20:37Z"
+          "timestamp_utc": "2026-06-09T22:20:30Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-189",
+          "confidence": 0.58,
+          "confidence_rationale": "Gopnik argues -- across developmental, comparative and computational evidence -- that the long protected human childhood evolved as a dedicated EXPLORE phase: broad hypothesis search, high plasticity, neophilia and play, BEFORE the goal-directed EXPLOIT demands of adulthood set in. This is the most direct available grounding for the WHY of MECH-189: childhood is special precisely because it maximises the high-novelty, high-complexity contexts that the substrate's WRITE gate (b) (novelty-based complexity) requires, while adult routine contexts are low-novelty and do not trigger writes. It grounds INV-041 (childhood's constrained-but-supervised, exploration-rich affordances) and INV-056 (selective neoteny: a bounded plastic window that later closes for stability). Confidence 0.58 rather than higher because it is a theoretical/evolutionary synthesis, not a mechanistic demonstration, and the explore->exploit framing is about hypothesis/skill learning broadly, not about persistent goal-anchor writes specifically.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "Gopnik's explore-phase argument predicts childhood maximises BROAD exploration and hypothesis diversity. If a super-ordinal write gate fires too readily during this high-novelty phase, the store fills with many weakly-related anchors (over-exploration), and the adult goal hierarchy is diffuse rather than super-ordinal. The substrate's fixed 16-slot store + salience+complexity conjunction is the bound that must keep exploration from flooding the anchor set.",
+            "The explore->exploit transition is gradual and noisy in the biology, not a clean child->adult switch. The substrate freezes writes at a single discrete child->adult transition (set_super_ordinal_write_enabled(False)); if the real transition is graded, a hard freeze either truncates late-childhood anchor formation or, if set late, admits low-complexity adult routine contexts before the freeze."
+          ],
+          "run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-189",
           "confidence": 0.72,
-          "confidence_rationale": "Canonical highly-cited review (~3000 citations) establishing the wanting/liking dissociation with strong experimental evidence. The dissociation is directly relevant to REE's SD-014 valence architecture (VALENCE_WANTING vs VALENCE_LIKING as distinct channels) and to MECH-189 (benefit contacts seed goal anchors). The key finding -- dopamine mediates incentive salience (wanting/approach motivation) but not hedonic pleasure (liking/consummatory affect) -- predicts that accidental benefit contacts in the infant stage should generate wanting-type activation that drives approach and goal formation, even before there is a well-calibrated liking signal. Confidence at 0.72: this is an adult/rodent neuroscience paper; the developmental (infant-stage) application is theoretical transfer. Positive hedonic reactions to sweet taste at birth are noted, but the wanting/liking dissociation in infants specifically is not tested here.",
-          "evidence_class": "lit:connectome_mechanistic_review",
+          "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+          "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_infant_affordance_valence_map",
+          "experiment_type": "targeted_review_mech_189",
           "failure_signatures": [
-            "The wanting/liking dissociation is established in adult animals and humans; its application to the infant learning window requires additional inference -- there is no direct evidence that these systems are independently operational in early infancy.",
-            "The paper focuses on pharmacological manipulation (dopamine depletion, benzodiazepines) -- the naturalistic developmental context of REE's infant stage is not directly addressed.",
-            "Hedonic 'liking' reactions to sucrose are present from birth, but whether the NAcc-mediated wanting signal is functional as early as 2-3 months (the critical mobile paradigm window) is not established here."
+            "If the write trigger keyed on a calibrated hedonic ('liking') value rather than on a dopaminergic salience signal, then super-ordinal anchors could not form before hedonic evaluation is mature -- but Berridge & Robinson show wanting is dissociable from and does not require liking, which is precisely what licenses MECH-329's claim that the first wave of anchors is approach-driven rather than preference-calibrated.",
+            "The paper offers no evidence that an incentive-salience event is ever consolidated into a persistent, context-addressed store. If salience attribution were purely transient and online (re-computed each encounter with no durable trace), MECH-189's cross-episode write/read architecture would have no biological analogue in this dataset."
           ],
-          "run_id": "2026-05-16_mech189_wanting_liking_dissociation_berridge1998",
+          "run_id": "2026-06-09_mech_189_incentive_salience_wanting_liking_berridge1998",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-05-16T11:20:37Z"
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-189",
+          "confidence": 0.6,
+          "confidence_rationale": "Rovee-Collier's mobile-conjugate-reinforcement programme is the canonical demonstration that pre-verbal infants (2-3 months) form durable operant goal biases from accidental contingency contacts -- the closest human-developmental analogue to MECH-189's 'high-salience benefit contact written as a goal anchor in childhood'. It supports two of MECH-189's pillars strongly: (i) infants encode action-outcome contingencies into memory that persists for days-to-weeks, and (ii) retrieval is sharply context-/cue-dependent, which is the empirical signature of a cue-indexed store. But the same body of work is the strongest single SOURCE OF TENSION for the claim: infant operant memories are highly context-specific and forgetting is typically complete within ~1-2 weeks unless periodically reactivated. That directly stresses MECH-189's assertion that childhood anchors 'bias adult z_goal seeding across NOVEL episodes'. Because the paper both supports the formation mechanism and weakens the across-novel-context persistence claim, direction is 'mixed' and confidence is held at 0.6.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "Infant operant memories are forgotten within ~1-2 weeks without a reactivation/reminder cue; persistence is not automatic. MECH-189's READ path retrieves an anchor only on cue-match, which is consistent -- but the claim that childhood anchors persist to bias ADULT seeding requires either (a) repeated reactivation across development or (b) a consolidation step that converts the labile infant trace into a stable one. The substrate currently models neither decay nor reactivation, so it over-states durability relative to this evidence.",
+            "Retrieval is so context-specific that changing the training context (mobile, crib liner, room) abolishes the response. If the super-ordinal store's READ match threshold is too sharp, childhood anchors will fail to generalise to genuinely NOVEL adult contexts -- the very transfer MECH-189 asserts. The novelty-vs-anchors complexity mode must be tuned so anchors are neither so specific they never fire in novel contexts nor so broad they fire everywhere."
+          ],
+          "run_id": "2026-06-09_mech_189_infant_operant_memory_roveecollier1999",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-189",
+          "confidence": 0.62,
+          "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "Rapid schema-assisted consolidation requires a PRE-EXISTING schema; the first associations into a novel schema consolidate slowly and remain hippocampus-dependent. MECH-189's bootstrap (empty store -> complexity=1.0 -> first contacts write) is the moment BEFORE any schema exists -- so the earliest super-ordinal anchors should be the slowest and least stable, not the most. The substrate writes them at full strength immediately, which over-states early-anchor stability relative to this evidence.",
+            "Schemas accelerate integration at the cost of memory specificity over time (the consolidated trace generalises and loses item detail). If super-ordinal anchors generalise the same way, their cue-index keys drift toward the schema centroid, and READ retrieval in a novel context may pull z_goal toward an over-general anchor rather than a context-appropriate one."
+          ],
+          "run_id": "2026-06-09_mech_189_schema_consolidation_tse2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 11,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 11
       }
     },
     "MECH-191": {
@@ -21913,7 +22076,7 @@
       }
     },
     "MECH-256": {
-      "confidence_rationale": "exp=6 entry(s), lit=9 entry(s), exp_conf=0.667, lit_conf=0.861",
+      "confidence_rationale": "exp=6 entry(s), lit=9 entry(s), exp_conf=0.666, lit_conf=0.861",
       "direction_counts": {
         "mixed": 3,
         "supports": 9,
@@ -21932,8 +22095,8 @@
         "C": 6
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.667,
-      "experimental_confidence_decoupled": 0.667,
+      "experimental_confidence": 0.666,
+      "experimental_confidence_decoupled": 0.666,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -26531,7 +26694,7 @@
       }
     },
     "MECH-313": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.498, lit_conf=0.837",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.497, lit_conf=0.837",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -26547,8 +26710,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.498,
-      "experimental_confidence_decoupled": 0.498,
+      "experimental_confidence": 0.497,
+      "experimental_confidence_decoupled": 0.497,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -27687,6 +27850,79 @@
         "literature": 5
       }
     },
+    "MECH-329": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.718",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:electrophysiology_single_unit": 1,
+        "lit:theoretical_review": 1
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-09_mech_189_wanting_liking_dissociation_smith2011",
+      "latest_timestamp_utc": "2026-06-09T22:20:57Z",
+      "literature_confidence": 0.718,
+      "literature_confidence_parallel": 0.718,
+      "overall_confidence": 0.718,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-329",
+          "confidence": 0.72,
+          "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "If the write trigger keyed on a calibrated hedonic ('liking') value rather than on a dopaminergic salience signal, then super-ordinal anchors could not form before hedonic evaluation is mature -- but Berridge & Robinson show wanting is dissociable from and does not require liking, which is precisely what licenses MECH-329's claim that the first wave of anchors is approach-driven rather than preference-calibrated.",
+            "The paper offers no evidence that an incentive-salience event is ever consolidated into a persistent, context-addressed store. If salience attribution were purely transient and online (re-computed each encounter with no durable trace), MECH-189's cross-episode write/read architecture would have no biological analogue in this dataset."
+          ],
+          "run_id": "2026-06-09_mech_189_incentive_salience_wanting_liking_berridge1998",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-329",
+          "confidence": 0.55,
+          "confidence_rationale": "Smith, Berridge & Aldridge provide the neural-recording confirmation that hedonic 'liking', incentive-salience 'wanting', and learned-prediction signals are separately tracked and independently modulable in ventral pallidum / nucleus-accumbens circuitry: an intra-accumbens opioid microinjection simultaneously raised liking reactions, raised firing to a reward-PROXIMAL incentive cue, but did NOT alter firing to a reward-DISTAL learned-prediction cue. This is the dissociation MECH-329 requires as a PREMISE -- that wanting (incentive salience) is a distinct, separately-controllable signal that can in principle operate ahead of, or independently of, calibrated liking. It tests MECH-329 (the wanting-before-liking child mechanism) and is tagged ONLY to MECH-329, not MECH-189 directly, because it speaks to the wanting/liking architecture, not to goal-anchor writes. Confidence 0.55: strong electrophysiology, but it is adult rat and -- critically -- it demonstrates SEPARABILITY, not DEVELOPMENTAL ORDERING, which is what MECH-329 actually asserts.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "The paper shows wanting and liking are SEPARABLE in the adult brain; it does NOT show wanting comes ONLINE first developmentally. MECH-329's specific claim -- that the wanting system seeds the first goal anchors before liking is calibrated -- is a developmental-ordering claim this adult electrophysiology cannot establish. The ordering premise is grounded only at the separability level here; the temporal-developmental half remains under-evidenced (and the registered anchor 'Keren-Portnoy & Tomasello 2021' could not be verified in this pass).",
+            "If incentive-salience firing required an intact learned-prediction signal (i.e. wanting could not be modulated without learning), then MECH-329's approach-drive-before-calibration ordering would be incoherent. The paper rules this out -- opioid modulation moved wanting and liking without moving the learned-prediction signal -- but a substrate that ties its salience write-gate to a learned value estimate would reintroduce exactly that unwanted coupling."
+          ],
+          "run_id": "2026-06-09_mech_189_wanting_liking_dissociation_smith2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
     "MECH-332": {
       "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.754",
       "direction_counts": {
@@ -28139,7 +28375,7 @@
       }
     },
     "MECH-341": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.804, lit_conf=0.779",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.803, lit_conf=0.779",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -28156,8 +28392,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.804,
-      "experimental_confidence_decoupled": 0.804,
+      "experimental_confidence": 0.803,
+      "experimental_confidence_decoupled": 0.803,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -32537,7 +32773,7 @@
       }
     },
     "Q-039": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.83",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.829",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -32563,9 +32799,9 @@
       },
       "latest_run_id": "2026-05-02_q_039_vns_ach_na_oscillations_kumagai2023",
       "latest_timestamp_utc": "2026-05-02T09:51:08Z",
-      "literature_confidence": 0.83,
-      "literature_confidence_parallel": 0.83,
-      "overall_confidence": 0.83,
+      "literature_confidence": 0.829,
+      "literature_confidence_parallel": 0.829,
+      "overall_confidence": 0.829,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -33225,7 +33461,7 @@
       }
     },
     "Q-045": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.498, lit_conf=0.892",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.497, lit_conf=0.892",
       "direction_counts": {
         "mixed": 3,
         "supports": 4,
@@ -33244,8 +33480,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.498,
-      "experimental_confidence_decoupled": 0.498,
+      "experimental_confidence": 0.497,
+      "experimental_confidence_decoupled": 0.497,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -34662,7 +34898,7 @@
       }
     },
     "SD-011": {
-      "confidence_rationale": "exp=8 entry(s), lit=36 entry(s), exp_conf=0.818, lit_conf=0.867",
+      "confidence_rationale": "exp=8 entry(s), lit=36 entry(s), exp_conf=0.817, lit_conf=0.867",
       "direction_counts": {
         "mixed": 4,
         "supports": 37,
@@ -34686,8 +34922,8 @@
         "C": 8
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.818,
-      "experimental_confidence_decoupled": 0.818,
+      "experimental_confidence": 0.817,
+      "experimental_confidence_decoupled": 0.817,
       "fail_runs": 4,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -36266,7 +36502,7 @@
       }
     },
     "SD-029": {
-      "confidence_rationale": "exp=5 entry(s), lit=12 entry(s), exp_conf=0.624, lit_conf=0.855",
+      "confidence_rationale": "exp=5 entry(s), lit=12 entry(s), exp_conf=0.623, lit_conf=0.855",
       "direction_counts": {
         "mixed": 4,
         "supports": 10,
@@ -36284,8 +36520,8 @@
         "C": 5
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.624,
-      "experimental_confidence_decoupled": 0.624,
+      "experimental_confidence": 0.623,
+      "experimental_confidence_decoupled": 0.623,
       "fail_runs": 5,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -108664,6 +108900,227 @@
       "timestamp_utc": "2026-06-09T20:07:51Z"
     },
     {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.6,
+      "confidence_rationale": "Causal rodent behavioral-tagging study: exposure to a NOVEL context around encoding converts an otherwise-decaying weak memory into a persistent one, and this is causally dopamine/VTA-dependent (VTA NMDA stimulation mimics novelty; VTA muscimol inhibition abolishes both the persistence and the hippocampal dopamine rise). Provides the CELLULAR/causal substrate for a novelty-gated write and confirms the dopaminergic conjunction at synaptic level. Held to 0.6 for the operationalisation verdict: it demonstrates that NOVELTY (an external contextual event) gates persistence, but does not arbitrate novelty-vs-PE nor address the goal/value-anchor specificity -- it is mechanistic grounding, not adjudication.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "Persistence of a weak memory required a dopaminergic novelty/salience event around encoding (behavioral tagging and capture); a write gate lacking any such modulatory-event term would let load-bearing-but-weak contacts decay -- the INV-075 self-extinguishing-signal failure mode.",
+        "VTA inhibition abolished both the novelty-induced persistence and the hippocampal dopamine increase, confirming the write gate is dopaminergically mediated and not a passive similarity computation."
+      ],
+      "run_id": "2026-06-09_mech_189_behavioral_tagging_novelty_persistence_lima2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.72,
+      "confidence_rationale": "Canonical, heavily-cited mechanistic review that directly establishes a novelty-gated write into long-term memory -- the exact function of the MECH-189 WRITE gate. Strongly supports the existence of gate (b) as a real biological control point. Counts as 'mixed' rather than 'supports' for the operationalisation question because the biology it describes diverges from the self-contained novelty-vs-anchors proxy in two ways: (i) the novelty signal is a hippocampal comparator mismatch against the FULL long-term store, not against a small goal-anchor subset; (ii) VTA firing (and hence the dopaminergic plasticity gate) is an explicit CONJUNCTION of novelty WITH salience and goal information, so complexity and salience are not orthogonal channels.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "If the write gate measures novelty only against the goal-anchor set (super_ordinal_complexity_mode='novelty'), it computes mismatch against the wrong reference: the biological comparator detects information 'not already stored in long-term memory', i.e. mismatch against the whole stored model.",
+        "Treating salience (gate a) and complexity/novelty (gate b) as independent multiplicands departs from the biology, where the same VTA dopaminergic signal integrates novelty, salience, and goal information into a single gate."
+      ],
+      "run_id": "2026-06-09_mech_189_hippocampal_vta_novelty_gate_lismangrace2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.74,
+      "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "If the write gate is driven by a stimulus-novelty term divorced from value, it will miss value-modulated encoding: in humans, the strongest individual-difference predictor of motivated memory was SN/VTA-hippocampus tract density, a value pathway, not a generic novelty pathway.",
+        "Modelling gate (a) salience and gate (b) complexity as independent factors is at odds with the shared dopaminergic value/PE channel implicated here, where motivational value itself modulates the hippocampal encoding signal."
+      ],
+      "run_id": "2026-06-09_mech_189_motivated_memory_vta_hippocampus_elliott2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.63,
+      "confidence_rationale": "Human study + biologically-plausible computational model showing that trial-by-trial reward-prediction-error MAGNITUDE and expected value INDEPENDENTLY improve associative memory encoding -- the most direct evidence that a quantitative, externally-computed PE signal is the operative encoding determinant, which is exactly what super_ordinal_complexity_mode='external' would consume. Confidence held to 0.63 because the paper is candid that prior studies found PE-vs-memory relationships that were positive, negative, OR null, and the effects here emerge only via modelling (not in collapsed standard analyses) and interact with individual reward/punishment sensitivity. That heterogeneity is itself an important caveat for any default.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "Prior literature reports the PE-vs-encoding relationship as positive, negative, or null depending on task and individual sensitivity -- so an external PE-driven complexity signal is not a free lunch; its sign and gain need calibration, and a naive |PE| default could behave inconsistently across regimes.",
+        "Reward anticipation (expected value) and reward delivery (PE) had dissociable, independent effects -- collapsing them into a single 'complexity' scalar discards structure the brain uses; a one-number complexity gate may be underspecified."
+      ],
+      "run_id": "2026-06-09_mech_189_prediction_error_magnitude_memory_aberg2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.7,
+      "confidence_rationale": "Preregistered, four-experiment, Bayes-factor-quantified human study with a clean theoretical target (the SLIMM schema model). It is the single most decisive entry for the operationalisation verdict because it shows the encoding strength of an event is NON-monotonic in expectedness: memory is best for both highly expected (schema-congruent) AND highly unexpected (high prediction-error) items, and worst for neutral ones. This directly contradicts a monotonic '1 - similarity' novelty gate, which captures only the unexpected arm. Marked 'mixed' for MECH-189: it weakens the self-contained novelty proxy as currently formulated while supporting a prediction-error-magnitude / signed-PE formulation of gate (b).",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "A monotonic novelty gate (complexity = 1 - max cosine to anchors; higher novelty -> more write) systematically fails to write schema-congruent high-value contacts, which the U-shape shows are encoded as well as the most surprising ones.",
+        "Operationalising 'contextual complexity' as raw dissimilarity confounds two distinct encoding regimes (congruent assimilation vs incongruent encoding) that the brain routes differently; the gate cannot distinguish 'neutral/moderate' (poorly encoded) from 'strongly congruent' (well encoded)."
+      ],
+      "run_id": "2026-06-09_mech_189_ushape_expectedness_memory_quent2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-041",
+      "confidence": 0.58,
+      "confidence_rationale": "Gopnik argues -- across developmental, comparative and computational evidence -- that the long protected human childhood evolved as a dedicated EXPLORE phase: broad hypothesis search, high plasticity, neophilia and play, BEFORE the goal-directed EXPLOIT demands of adulthood set in. This is the most direct available grounding for the WHY of MECH-189: childhood is special precisely because it maximises the high-novelty, high-complexity contexts that the substrate's WRITE gate (b) (novelty-based complexity) requires, while adult routine contexts are low-novelty and do not trigger writes. It grounds INV-041 (childhood's constrained-but-supervised, exploration-rich affordances) and INV-056 (selective neoteny: a bounded plastic window that later closes for stability). Confidence 0.58 rather than higher because it is a theoretical/evolutionary synthesis, not a mechanistic demonstration, and the explore->exploit framing is about hypothesis/skill learning broadly, not about persistent goal-anchor writes specifically.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "Gopnik's explore-phase argument predicts childhood maximises BROAD exploration and hypothesis diversity. If a super-ordinal write gate fires too readily during this high-novelty phase, the store fills with many weakly-related anchors (over-exploration), and the adult goal hierarchy is diffuse rather than super-ordinal. The substrate's fixed 16-slot store + salience+complexity conjunction is the bound that must keep exploration from flooding the anchor set.",
+        "The explore->exploit transition is gradual and noisy in the biology, not a clean child->adult switch. The substrate freezes writes at a single discrete child->adult transition (set_super_ordinal_write_enabled(False)); if the real transition is graded, a hard freeze either truncates late-childhood anchor formation or, if set late, admits low-complexity adult routine contexts before the freeze."
+      ],
+      "run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-056",
+      "confidence": 0.58,
+      "confidence_rationale": "Gopnik argues -- across developmental, comparative and computational evidence -- that the long protected human childhood evolved as a dedicated EXPLORE phase: broad hypothesis search, high plasticity, neophilia and play, BEFORE the goal-directed EXPLOIT demands of adulthood set in. This is the most direct available grounding for the WHY of MECH-189: childhood is special precisely because it maximises the high-novelty, high-complexity contexts that the substrate's WRITE gate (b) (novelty-based complexity) requires, while adult routine contexts are low-novelty and do not trigger writes. It grounds INV-041 (childhood's constrained-but-supervised, exploration-rich affordances) and INV-056 (selective neoteny: a bounded plastic window that later closes for stability). Confidence 0.58 rather than higher because it is a theoretical/evolutionary synthesis, not a mechanistic demonstration, and the explore->exploit framing is about hypothesis/skill learning broadly, not about persistent goal-anchor writes specifically.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "Gopnik's explore-phase argument predicts childhood maximises BROAD exploration and hypothesis diversity. If a super-ordinal write gate fires too readily during this high-novelty phase, the store fills with many weakly-related anchors (over-exploration), and the adult goal hierarchy is diffuse rather than super-ordinal. The substrate's fixed 16-slot store + salience+complexity conjunction is the bound that must keep exploration from flooding the anchor set.",
+        "The explore->exploit transition is gradual and noisy in the biology, not a clean child->adult switch. The substrate freezes writes at a single discrete child->adult transition (set_super_ordinal_write_enabled(False)); if the real transition is graded, a hard freeze either truncates late-childhood anchor formation or, if set late, admits low-complexity adult routine contexts before the freeze."
+      ],
+      "run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.58,
+      "confidence_rationale": "Gopnik argues -- across developmental, comparative and computational evidence -- that the long protected human childhood evolved as a dedicated EXPLORE phase: broad hypothesis search, high plasticity, neophilia and play, BEFORE the goal-directed EXPLOIT demands of adulthood set in. This is the most direct available grounding for the WHY of MECH-189: childhood is special precisely because it maximises the high-novelty, high-complexity contexts that the substrate's WRITE gate (b) (novelty-based complexity) requires, while adult routine contexts are low-novelty and do not trigger writes. It grounds INV-041 (childhood's constrained-but-supervised, exploration-rich affordances) and INV-056 (selective neoteny: a bounded plastic window that later closes for stability). Confidence 0.58 rather than higher because it is a theoretical/evolutionary synthesis, not a mechanistic demonstration, and the explore->exploit framing is about hypothesis/skill learning broadly, not about persistent goal-anchor writes specifically.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "Gopnik's explore-phase argument predicts childhood maximises BROAD exploration and hypothesis diversity. If a super-ordinal write gate fires too readily during this high-novelty phase, the store fills with many weakly-related anchors (over-exploration), and the adult goal hierarchy is diffuse rather than super-ordinal. The substrate's fixed 16-slot store + salience+complexity conjunction is the bound that must keep exploration from flooding the anchor set.",
+        "The explore->exploit transition is gradual and noisy in the biology, not a clean child->adult switch. The substrate freezes writes at a single discrete child->adult transition (set_super_ordinal_write_enabled(False)); if the real transition is graded, a hard freeze either truncates late-childhood anchor formation or, if set late, admits low-complexity adult routine contexts before the freeze."
+      ],
+      "run_id": "2026-06-09_mech_189_childhood_explore_exploit_gopnik2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.72,
+      "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "If the write trigger keyed on a calibrated hedonic ('liking') value rather than on a dopaminergic salience signal, then super-ordinal anchors could not form before hedonic evaluation is mature -- but Berridge & Robinson show wanting is dissociable from and does not require liking, which is precisely what licenses MECH-329's claim that the first wave of anchors is approach-driven rather than preference-calibrated.",
+        "The paper offers no evidence that an incentive-salience event is ever consolidated into a persistent, context-addressed store. If salience attribution were purely transient and online (re-computed each encounter with no durable trace), MECH-189's cross-episode write/read architecture would have no biological analogue in this dataset."
+      ],
+      "run_id": "2026-06-09_mech_189_incentive_salience_wanting_liking_berridge1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.6,
+      "confidence_rationale": "Rovee-Collier's mobile-conjugate-reinforcement programme is the canonical demonstration that pre-verbal infants (2-3 months) form durable operant goal biases from accidental contingency contacts -- the closest human-developmental analogue to MECH-189's 'high-salience benefit contact written as a goal anchor in childhood'. It supports two of MECH-189's pillars strongly: (i) infants encode action-outcome contingencies into memory that persists for days-to-weeks, and (ii) retrieval is sharply context-/cue-dependent, which is the empirical signature of a cue-indexed store. But the same body of work is the strongest single SOURCE OF TENSION for the claim: infant operant memories are highly context-specific and forgetting is typically complete within ~1-2 weeks unless periodically reactivated. That directly stresses MECH-189's assertion that childhood anchors 'bias adult z_goal seeding across NOVEL episodes'. Because the paper both supports the formation mechanism and weakens the across-novel-context persistence claim, direction is 'mixed' and confidence is held at 0.6.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "Infant operant memories are forgotten within ~1-2 weeks without a reactivation/reminder cue; persistence is not automatic. MECH-189's READ path retrieves an anchor only on cue-match, which is consistent -- but the claim that childhood anchors persist to bias ADULT seeding requires either (a) repeated reactivation across development or (b) a consolidation step that converts the labile infant trace into a stable one. The substrate currently models neither decay nor reactivation, so it over-states durability relative to this evidence.",
+        "Retrieval is so context-specific that changing the training context (mobile, crib liner, room) abolishes the response. If the super-ordinal store's READ match threshold is too sharp, childhood anchors will fail to generalise to genuinely NOVEL adult contexts -- the very transfer MECH-189 asserts. The novelty-vs-anchors complexity mode must be tuned so anchors are neither so specific they never fire in novel contexts nor so broad they fire everywhere."
+      ],
+      "run_id": "2026-06-09_mech_189_infant_operant_memory_roveecollier1999",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-189",
+      "confidence": 0.62,
+      "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "Rapid schema-assisted consolidation requires a PRE-EXISTING schema; the first associations into a novel schema consolidate slowly and remain hippocampus-dependent. MECH-189's bootstrap (empty store -> complexity=1.0 -> first contacts write) is the moment BEFORE any schema exists -- so the earliest super-ordinal anchors should be the slowest and least stable, not the most. The substrate writes them at full strength immediately, which over-states early-anchor stability relative to this evidence.",
+        "Schemas accelerate integration at the cost of memory specificity over time (the consolidated trace generalises and loses item detail). If super-ordinal anchors generalise the same way, their cue-index keys drift toward the schema centroid, and READ retrieval in a novel context may pull z_goal toward an over-general anchor rather than a context-appropriate one."
+      ],
+      "run_id": "2026-06-09_mech_189_schema_consolidation_tse2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-329",
+      "confidence": 0.72,
+      "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "If the write trigger keyed on a calibrated hedonic ('liking') value rather than on a dopaminergic salience signal, then super-ordinal anchors could not form before hedonic evaluation is mature -- but Berridge & Robinson show wanting is dissociable from and does not require liking, which is precisely what licenses MECH-329's claim that the first wave of anchors is approach-driven rather than preference-calibrated.",
+        "The paper offers no evidence that an incentive-salience event is ever consolidated into a persistent, context-addressed store. If salience attribution were purely transient and online (re-computed each encounter with no durable trace), MECH-189's cross-episode write/read architecture would have no biological analogue in this dataset."
+      ],
+      "run_id": "2026-06-09_mech_189_incentive_salience_wanting_liking_berridge1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-329",
+      "confidence": 0.55,
+      "confidence_rationale": "Smith, Berridge & Aldridge provide the neural-recording confirmation that hedonic 'liking', incentive-salience 'wanting', and learned-prediction signals are separately tracked and independently modulable in ventral pallidum / nucleus-accumbens circuitry: an intra-accumbens opioid microinjection simultaneously raised liking reactions, raised firing to a reward-PROXIMAL incentive cue, but did NOT alter firing to a reward-DISTAL learned-prediction cue. This is the dissociation MECH-329 requires as a PREMISE -- that wanting (incentive salience) is a distinct, separately-controllable signal that can in principle operate ahead of, or independently of, calibrated liking. It tests MECH-329 (the wanting-before-liking child mechanism) and is tagged ONLY to MECH-329, not MECH-189 directly, because it speaks to the wanting/liking architecture, not to goal-anchor writes. Confidence 0.55: strong electrophysiology, but it is adult rat and -- critically -- it demonstrates SEPARABILITY, not DEVELOPMENTAL ORDERING, which is what MECH-329 actually asserts.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "The paper shows wanting and liking are SEPARABLE in the adult brain; it does NOT show wanting comes ONLINE first developmentally. MECH-329's specific claim -- that the wanting system seeds the first goal anchors before liking is calibrated -- is a developmental-ordering claim this adult electrophysiology cannot establish. The ordering premise is grounded only at the separability level here; the temporal-developmental half remains under-evidenced (and the registered anchor 'Keren-Portnoy & Tomasello 2021' could not be verified in this pass).",
+        "If incentive-salience firing required an intact learned-prediction signal (i.e. wanting could not be modulated without learning), then MECH-329's approach-drive-before-calibration ordering would be incoherent. The paper rules this out -- opioid modulation moved wanting and liking without moving the learned-prediction signal -- but a substrate that ties its salience write-gate to a learned value estimate would reintroduce exactly that unwanted coupling."
+      ],
+      "run_id": "2026-06-09_mech_189_wanting_liking_dissociation_smith2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
       "adjudication": "unverified",
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
@@ -108702,7 +109159,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-09T21:08:07.674423Z",
+  "generated_at_utc": "2026-06-09T22:26:14.098810Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

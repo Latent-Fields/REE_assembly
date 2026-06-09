@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_189",
+  "entry_id": "2026-06-09_mech_189_prediction_error_magnitude_memory_aberg2017",
+  "timestamp_utc": "2026-06-09T22:20:30Z",
+  "claim_ids_tested": ["MECH-189"],
+  "source": {
+    "title": "Trial-by-Trial Modulation of Associative Memory Formation by Reward Prediction Error and Reward Anticipation as Revealed by a Biologically Plausible Computational Model.",
+    "authors": ["Kristoffer C. Aberg", "Julia Muller", "Sophie Schwartz"],
+    "year": 2017,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2017.00056",
+    "url": "https://doi.org/10.3389/fnhum.2017.00056"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "Human study + biologically-plausible computational model showing that trial-by-trial reward-prediction-error MAGNITUDE and expected value INDEPENDENTLY improve associative memory encoding -- the most direct evidence that a quantitative, externally-computed PE signal is the operative encoding determinant, which is exactly what super_ordinal_complexity_mode='external' would consume. Confidence held to 0.63 because the paper is candid that prior studies found PE-vs-memory relationships that were positive, negative, OR null, and the effects here emerge only via modelling (not in collapsed standard analyses) and interact with individual reward/punishment sensitivity. That heterogeneity is itself an important caveat for any default.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Prior literature reports the PE-vs-encoding relationship as positive, negative, or null depending on task and individual sensitivity -- so an external PE-driven complexity signal is not a free lunch; its sign and gain need calibration, and a naive |PE| default could behave inconsistently across regimes.",
+    "Reward anticipation (expected value) and reward delivery (PE) had dissociable, independent effects -- collapsing them into a single 'complexity' scalar discards structure the brain uses; a one-number complexity gate may be underspecified."
+  ],
+  "tags": ["mech-189", "dev-need-024", "prediction-error", "expected-value", "associative-memory", "computational-model", "dopamine"],
+  "mapping": {
+    "source_claim_statement": "Using a novel associative memory task with computational modelling, reward delivery (mediated by prediction-error magnitude) and reward anticipation (mediated by expected-value magnitude) independently improved memory, even when no effect was visible in standard trial-collapsed analyses. Effects interacted with individual reward/punishment sensitivity and with retention interval (20 min vs 24 h).",
+    "ree_translation": "This is the strongest direct support for super_ordinal_complexity_mode='external' driven by a prediction-error signal: a quantitative, trial-by-trial PE magnitude is a genuine encoding determinant for value-associated memory. It also suggests REE could derive the external complexity signal from its own E1/E2 world-model prediction error (and reuse the MECH-205 surprise-gated-replay machinery for consistency), and that expected value and PE may warrant separate terms.",
+    "mapping_caveat": "Reward PE here is a value/RL prediction error, not a perceptual world-model prediction error; REE's E1/E2 PE is a forward-model error, so the mapping assumes these surprise signals are functionally analogous for the write gate. The effects required computational modelling to surface and were modulated by personality traits and delay, so the signal is real but regime-dependent.",
+    "source_context": "Human adults; reinforcement-learning associative-memory task; biologically-plausible computational model of dopaminergic PE and expected value."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Good study, modest sample, single-lab. Mapping fidelity moderate: value-RL PE vs forward-model PE is an analogy, not an identity. Transfer risk elevated by the documented heterogeneity (positive/negative/null PE effects across the literature) and trait/delay interactions -- a caution flag for setting any fixed default gain."
+  }
+}

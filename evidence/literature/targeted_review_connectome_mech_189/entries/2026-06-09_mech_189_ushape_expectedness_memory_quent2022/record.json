@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_189",
+  "entry_id": "2026-06-09_mech_189_ushape_expectedness_memory_quent2022",
+  "timestamp_utc": "2026-06-09T22:20:30Z",
+  "claim_ids_tested": ["MECH-189"],
+  "source": {
+    "title": "Shape of U: The Nonmonotonic Relationship Between Object-Location Memory and Expectedness.",
+    "authors": ["Jorn Alexander Quent", "Andrea Greve", "Richard N. Henson"],
+    "year": 2022,
+    "venue": "Psychological Science",
+    "doi": "10.1177/09567976221109134",
+    "url": "https://doi.org/10.1177/09567976221109134"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Preregistered, four-experiment, Bayes-factor-quantified human study with a clean theoretical target (the SLIMM schema model). It is the single most decisive entry for the operationalisation verdict because it shows the encoding strength of an event is NON-monotonic in expectedness: memory is best for both highly expected (schema-congruent) AND highly unexpected (high prediction-error) items, and worst for neutral ones. This directly contradicts a monotonic '1 - similarity' novelty gate, which captures only the unexpected arm. Marked 'mixed' for MECH-189: it weakens the self-contained novelty proxy as currently formulated while supporting a prediction-error-magnitude / signed-PE formulation of gate (b).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A monotonic novelty gate (complexity = 1 - max cosine to anchors; higher novelty -> more write) systematically fails to write schema-congruent high-value contacts, which the U-shape shows are encoded as well as the most surprising ones.",
+    "Operationalising 'contextual complexity' as raw dissimilarity confounds two distinct encoding regimes (congruent assimilation vs incongruent encoding) that the brain routes differently; the gate cannot distinguish 'neutral/moderate' (poorly encoded) from 'strongly congruent' (well encoded)."
+  ],
+  "tags": ["mech-189", "dev-need-024", "schema", "prediction-error", "slimm", "nonmonotonic", "expectedness", "memory-encoding"],
+  "mapping": {
+    "source_claim_statement": "Across four preregistered virtual-reality experiments (137 adults), object-location memory was a U-shaped function of how congruent the location was with a kitchen schema: memory was better for highly expected and highly unexpected locations than for neutral ones, consistent with the SLIMM model's prediction that both schema assimilation and prediction-error-driven encoding strengthen memory.",
+    "ree_translation": "The 'high contextual complexity' term in MECH-189's WRITE gate should not be a monotonic novelty/dissimilarity measure. The biology favours an encoding signal driven by prediction-error MAGNITUDE (or a signed-PE term that admits both a schema-congruent and a schema-incongruent write regime), not 1 - similarity-to-anchors. An external PE signal naturally produces the unexpected-arm sensitivity; the congruent arm corresponds to MECH-189's adult-routine-stability intuition only if reformulated.",
+    "mapping_caveat": "This is object-LOCATION episodic memory in a spatial-schema task, not a cross-episode super-ordinal GOAL/value write. The U-shape is demonstrated for declarative item memory; whether value/goal anchors show the same nonmonotonicity is an inference, not a measured result. Transfer from a kitchen-schema VR task to z_world/z_goal anchors carries real risk.",
+    "source_context": "Human adults, immersive VR object-location memory, preregistered, Bayes-factor inference across 4 experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Excellent methodology (preregistered, BF-quantified, replicated across 4 experiments). Mapping fidelity moderate: the nonmonotonicity result is highly relevant to the GATE SHAPE but is measured on declarative location memory, not on a goal/value write. Transfer risk elevated because the super-ordinal goal store is a different memory system from spatial-schema episodic memory."
+  }
+}

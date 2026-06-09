@@ -13674,6 +13674,25 @@
     with EXQ-582 substrate-ceiling and EXQ-582a drive_floor=0.9. hold_candidate_resolve_conflict
     retained; conflict_ratio from does_not_support was illusory. pending_retest_after_substrate;
     follow-up V3-EXQ-588b goal-seeding pipeline diagnostic queued. lit/exp not blended.
+  implementation_note: |
+    2026-06-09 (/implement-substrate, infant_substrate:GAP-11): the "ContextMemory writes
+    substrate" the 588 retest was deferred to is now IMPLEMENTED in ree-v3 -- a new
+    agent-owned, cross-episode-persistent SuperOrdinalGoalMemory (ree_core/goal.py;
+    cue-indexed key=z_world context, value=z_goal anchor) wired at agent.update_z_goal.
+    WRITE (child phase only, write_enabled freeze hook) gated on the MECH-189 conjunction:
+    (a) high salience (drive-modulated benefit spike >= super_ordinal_salience_threshold)
+    AND (b) high contextual complexity (pluggable super_ordinal_complexity_mode; default
+    novelty-vs-anchors -- the DEV-NEED-024 open-question threshold, to be adjudicated by the
+    validation EXQ + a follow-on lit-pull, not hard-coded). READ: adult z_goal seeding readout
+    via GoalState.cue_pull toward the retrieved super-ordinal anchor when the live z_goal is
+    below super_ordinal_seed_below_norm (0.4). All no-op defaults / bit-identical OFF
+    (use_super_ordinal_goal_anchors=False); MECH-094 simulation no-op; no phased training.
+    985/985 contracts + 7/7 preflight PASS; 8 new contracts in
+    tests/contracts/test_mech_189_super_ordinal_goal_anchors.py. NEITHER promoted NOR weakened
+    -- stays candidate / confidence 0.0 / pending_retest_after_substrate. Validation: V3-EXQ-588c
+    (NEW letter; do NOT re-queue 588) measures adult z_goal seeding from childhood-formed anchors.
+    Design doc: docs/architecture/mech_189_super_ordinal_goal_anchors.md. ree-v3 CLAUDE.md
+    "MECH-189: Super-ordinal goal-anchor ContextMemory writes substrate".
 
 - id: ARC-047
   title: "Multi-agent gridworld with affective state leakage as gradient scent fields is the minimal substrate for empirically testing ARC-010 mirror modelling, MECH-041 affective expression, and cooperative behavior claims."
