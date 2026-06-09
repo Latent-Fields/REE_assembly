@@ -92,15 +92,16 @@ No claim is contradicted by this thought. No promotion/demotion implied.
 
 ---
 
-## 5. Candidate claims FOR FUTURE REGISTRATION (DO NOT register in this pass)
+## 5. Candidate claims -- REGISTERED 2026-06-09 (candidate / substrate_conditional / v4)
 
-All would be `status: candidate`, `epistemic_category: substrate_conditional`, `implementation_phase: v4`, off the GAP-7 critical path. Listed here so a future session has a starting point; **none registered**.
+Per user direction (the intake's do-not-register default was overridden: thought-intake exists to channel genuinely-new ideas into durable, version-scoped registered form, not to leave them as prose). The genuinely-new (not-already-owned) items are now registered in `claims.yaml` at `status: candidate`, `epistemic_category: substrate_conditional`, `implementation_phase: v4`, `version_relevance: v4_v5`, off the GAP-7 critical path. Architecture doc: [docs/architecture/autobiographical_temporality_and_future_simulation.md](../../docs/architecture/autobiographical_temporality_and_future_simulation.md).
 
-1. **(amend ARC-007 + ARC-018, or new ARC):** *Unified autobiographical event substrate* -- retrospective replay and prospective simulation share one self-tagged event-token store; rollout is event-token re-composition forward, replay is event-token reinstatement backward. Falsifier: a substrate where corrupting the shared store degrades *both* past-recall and future-simulation fidelity together (vs independent degradation under a two-store model).
-2. **(new Q / answer_state):** *Does REE need a distinct autobiographical event-memory type* separate from semantic and task/procedural memory, or does episodic->semantic consolidation (MECH-121) suffice? Open question, not an assertion.
-3. **(amend MECH-094 / MECH-037, or new MECH):** *Provenance-bearing event token* with explicit fields `{time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined}`; the commitment-status label is load-bearing for imagination safety.
-4. **(amend SD-005, or new SD/MECH):** *Perspective tag* (participant/first-person vs observer/third-person) on stored and replayed episodes.
-5. **(strengthen INV-011 as a guardrail invariant):** *Imagined-future tokens must never acquire committed-history status* -- a one-way provenance gate; any path that lets a simulated event accrue committed weight is a confabulation bug (MECH-094 failure mode).
+1. **ARC-085** -- *Unified autobiographical temporal event substrate*: retrospective replay (ARC-007) and prospective simulation (ARC-018) share one self-tagged event-token store; memory as identity-indexed event field. Falsifier: corrupting the shared store degrades both past-recall and future-simulation fidelity together. `depends_on: ARC-007, ARC-018`.
+2. **MECH-365** -- *Provenance-bearing event token* `{time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined}` + one-way committed-status gate (imagined futures never acquire committed-history status). Carries -- does not re-assert -- the safety property already owned by MECH-094/MECH-037/INV-011. `depends_on: ARC-085, MECH-094, MECH-037, INV-011`.
+3. **MECH-366** -- *Switchable episodic perspective tag* (participant/first-person vs observer/third-person) on episodes, switchable at retrieval. `depends_on: ARC-085, SD-005`.
+4. **Q-060** -- *Distinct autobiographical event-memory type* vs semantic/task memory, or is MECH-121 episodic->semantic consolidation sufficient? `depends_on: ARC-085, MECH-121`.
+
+**NOT registered (already owned -- would duplicate):** the imagined-vs-committed *safety* property itself (INV-011 imagination-without-belief, MECH-094 sim-vs-real/confabulation, MECH-037 Papez provenance gating, ARC-014 DMN safe imagination, SD-026 prospective write channel). MECH-365 carries this property as a data structure but does not re-assert it; these are `depends_on` cross-references only. No existing claim promoted or demoted.
 
 ---
 
