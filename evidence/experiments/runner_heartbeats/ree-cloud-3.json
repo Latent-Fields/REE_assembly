@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-09T21:41:47Z",
+  "last_tick_utc": "2026-06-09T22:11:57Z",
   "state": "running",
   "current_exq": "V3-EXQ-654a",
   "current_exq_started_utc": "2026-06-09T18:45:44.404549+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-309",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / rule_creator_absent_legacy_collapsed_rule_state",
-    "runs_done": 2,
+    "run_label": "Seed 42 / rule_creator_present_matured_persisted_crf_source",
+    "runs_done": 3,
     "runs_total": 6,
-    "episodes_done": 150,
+    "episodes_done": 100,
     "episodes_total": 160,
-    "overall_pct": 49.0
+    "overall_pct": 60.4
   },
-  "seconds_elapsed": 10563,
-  "seconds_remaining": 17911,
+  "seconds_elapsed": 12372,
+  "seconds_remaining": 6306,
   "recent_lines": [
     "Arm ARM_OFF (rule_creator_absent_legacy_collapsed_rule_state) (P0=60 ep e2-train, P1=40 ep bias-train, P2=60 ep measure, steps_per_episode=200, dry_run=False)",
     "Seed 42 Condition rule_creator_absent_legacy_collapsed_rule_state",
@@ -71,7 +71,21 @@
     "[train] arm=ARM_OFF seed=44 phase=P2 ep 120/160",
     "[train] arm=ARM_OFF seed=44 phase=P2 ep 130/160",
     "[train] arm=ARM_OFF seed=44 phase=P2 ep 140/160",
-    "[train] arm=ARM_OFF seed=44 phase=P2 ep 150/160"
+    "[train] arm=ARM_OFF seed=44 phase=P2 ep 150/160",
+    "[train] arm=ARM_OFF seed=44 phase=P2 ep 160/160",
+    "verdict: PASS",
+    "Arm ARM_ON (rule_creator_present_matured_persisted_crf_source) (P0=60 ep e2-train, P1=40 ep bias-train, P2=60 ep measure, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition rule_creator_present_matured_persisted_crf_source",
+    "[train] arm=ARM_ON seed=42 phase=P0 ep 10/160",
+    "[train] arm=ARM_ON seed=42 phase=P0 ep 20/160",
+    "[train] arm=ARM_ON seed=42 phase=P0 ep 30/160",
+    "[train] arm=ARM_ON seed=42 phase=P0 ep 40/160",
+    "[train] arm=ARM_ON seed=42 phase=P0 ep 50/160",
+    "[train] arm=ARM_ON seed=42 phase=P0 ep 60/160",
+    "[train] arm=ARM_ON seed=42 phase=P1 ep 70/160",
+    "[train] arm=ARM_ON seed=42 phase=P1 ep 80/160",
+    "[train] arm=ARM_ON seed=42 phase=P1 ep 90/160",
+    "[train] arm=ARM_ON seed=42 phase=P1 ep 100/160"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
