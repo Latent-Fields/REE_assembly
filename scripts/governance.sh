@@ -39,6 +39,13 @@ if ! "$PYTHON" scripts/validate_claims.py --strict; then
   exit 1
 fi
 
+echo "--- Step 0b: Claim phase-consistency (warn-only: phase-label-follows-dependency) ---"
+# Surfaces v3 build commitments that depend on v4+ claims (reclassification
+# candidates) per docs/architecture/claim_phase_provenance.md. Report-only; does
+# not edit claims.yaml. Promote to --strict (blocking) once the backlog is
+# adjudicated -- same trajectory validate_claims.py took. Never blocks today.
+"$PYTHON" scripts/check_claim_phase_consistency.py --warn || true
+
 if [ "$V2" -eq 1 ]; then
   echo "--- Step 1/7: Syncing V2 results from ree-v2/ ---"
   "$PYTHON" evidence/experiments/scripts/sync_v2_results.py
