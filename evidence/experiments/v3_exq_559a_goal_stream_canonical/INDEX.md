@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_559a_goal_stream_canonical
 
-Generated: `2026-06-08T21:58:20.709490Z`
+Generated: `2026-06-09T04:18:27.603952Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

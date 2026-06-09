@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_591_isef005_curriculum_vs_flat
 
-Generated: `2026-06-08T21:58:20.709490Z`
+Generated: `2026-06-09T04:18:27.603952Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
