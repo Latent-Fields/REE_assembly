@@ -1,10 +1,14 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_prelinguistic_activity_speech_circuit_scaffolding.md
 Source email date: 2026-05-23
 Source email subject: REE How early brain activity may shape speech-linked circuits before babies ever speak
 Source saved-item attribution: Daniel Golden
 Current action: preserve as thought intake only
-Primary source status: source-check pending; direct share.google link not accessible and article title not located by exact or broad web search during intake
+Primary source status: VERIFIED 2026-06-09 (raw note's "source-check pending" resolved) -- Medical Xpress 2026-05 "How early brain activity may shape speech-linked circuits before babies ever speak"; primary paper Chen & Kuo, "Activity-dependent development of vocal circuits in the neonatal rodent forebrain", EMBO Reports 2026-05-19, DOI 10.1038/s44319-026-00798-1 (NYCU Taiwan; vmPFC->striatum circuit, Foxp2, neonatal mouse USVs). Rodent study -- architectural analogy/compass, not human-infant-speech evidence.
 Near-term relevance: developmental architecture / endogenous activity / language-readiness compass; not REE-v3 critical path unless later linked to self-world or trajectory scaffolding claims
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_prelinguistic_activity_speech_circuit_scaffolding.md
 
 ---
 
