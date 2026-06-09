@@ -1,4 +1,9 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_hyperthymesia_autobiographical_temporality.md
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_hyperthymesia_autobiographical_temporality.md (2026-06-09T19:56Z; Neurocase primary source verified La Corte/Piolino/Cohen 2025 31(4):188-192; NO claims.yaml registration -- V4-leaning compass, off V3 critical path)
+
 Source email date: 2026-04-02
 Source email subject: REE: She Can Mentally Time Travel—One of the True Human Superpowers. Why Did Everyone Think She Was Lying?
 Source saved-item attribution: Daniel Golden
