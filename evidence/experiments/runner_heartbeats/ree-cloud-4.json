@@ -1,43 +1,48 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-09T20:01:05Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-659",
-  "current_exq_started_utc": "2026-06-09T19:57:30.570380+00:00",
-  "current_title": "MECH-074a BLA encoding-gain -> arousal-preferential replay probe (EXP-0119/EVB-0074)",
-  "current_claim_id": "MECH-074a",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 43 / PRIMARY",
-    "runs_done": 2,
-    "runs_total": 6,
-    "episodes_done": 0,
-    "episodes_total": 40,
-    "overall_pct": 33.3
-  },
-  "seconds_elapsed": 215,
-  "seconds_remaining": 421,
-  "recent_lines": [
-    "Seed 42 Condition PRIMARY",
-    "[train] mech074a seed=42 arm=PRIMARY ep 10/40",
-    "[train] mech074a seed=42 arm=PRIMARY ep 20/40",
-    "[train] mech074a seed=42 arm=PRIMARY ep 30/40",
-    "[train] mech074a seed=42 arm=PRIMARY ep 40/40",
-    "verdict: PASS",
-    "Seed 42 Condition ABLATION",
-    "[train] mech074a seed=42 arm=ABLATION ep 10/40",
-    "[train] mech074a seed=42 arm=ABLATION ep 20/40",
-    "[train] mech074a seed=42 arm=ABLATION ep 30/40",
-    "[train] mech074a seed=42 arm=ABLATION ep 40/40",
-    "verdict: PASS",
-    "Seed 43 Condition PRIMARY"
+  "last_tick_utc": "2026-06-09T20:30:00Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-603l",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-652",
+      "result": "PASS",
+      "completed_at": "2026-06-08T05:56:39.346759+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-657",
+      "result": "FAIL",
+      "completed_at": "2026-06-09T19:07:08.966365+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-658",
+      "result": "PASS",
+      "completed_at": "2026-06-09T19:07:12.017186+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-657a",
+      "result": "PASS",
+      "completed_at": "2026-06-09T19:57:29.093092+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-659",
+      "result": "PASS",
+      "completed_at": "2026-06-09T20:07:52.211261+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 666,
-  "runner_version": "r2941 1985e58 2026-06-09 (running r2938 0a9df8e)",
+  "runner_version": "r2945 4ccdfdf 2026-06-09 (running r2938 0a9df8e)",
   "gpu": {
     "available": false
   },
