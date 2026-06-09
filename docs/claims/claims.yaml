@@ -24930,7 +24930,7 @@
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-295
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07. [2026-06-04 governance / failure_autopsy_V3-EXQ-490k] V3-EXQ-490k (modulatory-sufficiency argmin-flip probe, diagnostic) ran to completion (PASS, probe_ran=true) but could NOT test the narrowed-modulatory reading: ROW_2_fires_but_never_flips -- the cue fires on all 3 seeds (mech295_fired_ticks=145) yet argmin_flip_ticks=0 because mech295_bias_range_mean=0.0 (per-candidate bias uniform across candidates -> subtracting it cannot change the argmin BY CONSTRUCTION). The option-(c) probe correctly removed the 490j saturation contamination but is defeated by a DIFFERENT upstream gap (collapsed candidate z_world + weak z_goal goal_norm_peak=0.193). non_contributory for governance weighting; epistemic_category set to substrate_ceiling; pending_retest_after_substrate via 490L on enriched substrate with a pre-registered mech295_bias_range_mean>0 guard before interpreting argmin flips. narrow_supports_flag=true: MECH-295 shows zero behavioural-sufficiency across the 490g/h/i/j/k lineage."
+  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07. [2026-06-04 governance / failure_autopsy_V3-EXQ-490k] V3-EXQ-490k (modulatory-sufficiency argmin-flip probe, diagnostic) ran to completion (PASS, probe_ran=true) but could NOT test the narrowed-modulatory reading: ROW_2_fires_but_never_flips -- the cue fires on all 3 seeds (mech295_fired_ticks=145) yet argmin_flip_ticks=0 because mech295_bias_range_mean=0.0 (per-candidate bias uniform across candidates -> subtracting it cannot change the argmin BY CONSTRUCTION). The option-(c) probe correctly removed the 490j saturation contamination but is defeated by a DIFFERENT upstream gap (collapsed candidate z_world + weak z_goal goal_norm_peak=0.193). non_contributory for governance weighting; epistemic_category set to substrate_ceiling; pending_retest_after_substrate via 490L on enriched substrate with a pre-registered mech295_bias_range_mean>0 guard before interpreting argmin flips. narrow_supports_flag=true: MECH-295 shows zero behavioural-sufficiency across the 490g/h/i/j/k lineage. [2026-06-09 governance / re-scope + GAP-4 close, user-approved] goal_pipeline:GAP-4 CLOSED by re-scoping MECH-295 to the modulatory reading rather than continuing to block on a V3-EXQ-490L successor. The behavioural-necessity reading is terminally falsified (490j); the modulatory reading stands and is substrate-supported; the modulatory-sufficiency behavioural retest (490L) is retained as an OPTIONAL, non-GAP-blocking future test gated on the scaffolded_sd054_onboarding substrate (owned elsewhere, in flight via the 603-line Stage-H programme). epistemic_category=substrate_ceiling and pending_retest_after_substrate=true preserved for that optional test; status stays candidate (no promotion)."
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   title: "The drive -> liking-stream -> approach-cue gain pathway is one of several drive->approach pathways in the REE substrate. It biases approach action scoring via a liking-specific per-candidate score_bias contribution, but is NOT the sole or necessary pathway by which drive amplification reaches approach action selection (narrowed 2026-05-31 from necessity to modulation per V3-EXQ-490j autopsy; original necessity title preserved in functional_restatement history). Parallel architecturally first-class drive->approach pathways operate in the same substrate: MECH-216 schema-readout wanting, MECH-290 backward credit sweep, MECH-307 anticipatory liking, and serotonin tonic_5ht benefit_salience."
@@ -25060,6 +25060,23 @@
     drive->approach pathways operating via different substrates).
     MECH-295 specifies the modulatory contribution of one of these
     pathways: the drive -> liking-stream -> approach-cue gain bridge.
+
+    RE-SCOPED + GAP CLOSED 2026-06-09 (user-approved governance
+    decision; closes goal_pipeline:GAP-4). The behavioural-necessity
+    reading is TERMINALLY FALSIFIED (V3-EXQ-490j, above). The committed
+    MECH-295 claim is the MODULATORY reading stated above, which is
+    substrate-supported (490j C6/C7/C9 + V3-EXQ-493 isolation). The
+    "scheduled" V3-EXQ-490k modulatory-sufficiency argmin-flip probe
+    RAN (2026-06-04) but could not exercise the reading: argmin_flip=0
+    because mech295_bias_range_mean=0.0 BY CONSTRUCTION, defeated by the
+    collapsed-candidate-pool / weak-z_goal substrate ceiling owned by
+    scaffolded_sd054_onboarding (NOT by MECH-295 / GAP-4). The remaining
+    behavioural-sufficiency test (a V3-EXQ-490L on enriched substrate
+    with a pre-registered mech295_bias_range_mean>0 guard) is retained
+    as an OPTIONAL, NON-GAP-BLOCKING future test, tracked via
+    epistemic_category=substrate_ceiling + pending_retest_after_substrate.
+    MECH-295 stays status=candidate (no promotion: substrate-firing
+    support is not behavioural validation).
   notes: >
     Registered 2026-04-26 from the architectural conversation around
     EXQ-483's catatonic-lock failure (override fires, PAG releases up,
