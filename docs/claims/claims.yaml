@@ -20588,6 +20588,15 @@
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
+  subsumes:
+    # Consolidation step taken 2026-06-09 (commitment_closure:GAP-9). These four
+    # pre-existing claims provide the computational function SD-033c names as the
+    # vmPFC-analog subdivision; each carries the reciprocal `instantiates: SD-033c`
+    # back-reference, so the subsumption is now a bidirectional edge in the graph.
+    - ARC-035          # vmPFC affective/normative state-preparation hub
+    - MECH-151         # cue-indexed E1->E2 action-affordance modulation (vmPFC->striatum/premotor)
+    - MECH-152         # cue-indexed E1->E3 terrain-precision modulation (vmPFC value gain)
+    - MECH-235         # vmPFC model-based/model-free arbitration (commitment/urgency)
   depends_on:
     - SD-033           # parent cluster
     - ARC-035          # existing vmPFC value-regulation hub claim
@@ -20634,6 +20643,20 @@
     Registered pre-implementation as a subdivision consolidating
     existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions.
     No new evidence requirement beyond what those claims already carry.
+
+    2026-06-09 (commitment_closure:GAP-9): the consolidation step is now
+    DONE, not merely declared. The reciprocal `subsumes:` edge was added
+    to this record and each of the four source claims already carries
+    `instantiates: SD-033c` (ARC-035 claims.yaml; MECH-151 / MECH-152 /
+    MECH-235 claims.yaml), so the subsumption is a closed bidirectional
+    edge in the claim graph rather than a one-directional dependency.
+    No new implementation, no status change, no new evidence requirement:
+    SD-033c remains the named graph address for the vmPFC value-integration
+    function already implemented across its four source claims. The
+    architecture doc (sd_033_pfc_subdivision_architecture.md, "Related
+    claims" + the SD-033c subdivision section) records the consolidation
+    as complete.
+  consolidation_status: complete    # commitment_closure:GAP-9, 2026-06-09 -- subsumes/instantiates edges closed both directions
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033d
   title: "Premotor/SMA-analog (sequence execution substrate): module that holds candidate action sequences, binds actions to states, and executes committed sequences. Largely implemented inside E3's existing trajectory-selection machinery; registered for claim-graph completeness."
@@ -20646,11 +20669,14 @@
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
+  design_doc: docs/architecture/sd_033d_premotor_sma_analog.md   # commitment_closure:GAP-9, 2026-06-09 -- maps existing E3 sequence-selection machinery onto premotor/SMA biology (no new substrate)
   depends_on:
     - SD-033           # parent cluster
     - SD-033a          # upstream rule/goal substrate
     - MECH-094         # hypothesis tag on sequence commits (specific case of MECH-261)
     - MECH-261         # mode-conditioned write gating on sequence updates
+    - MECH-090         # bistable commitment latch (sequence execution / committed-step stepping)
+    - ARC-028          # hippocampal completion -> BetaGate release (sequence-end signal)
   functional_restatement: >
     Downstream executive substrate that receives the rule/goal context
     from SD-033a and proposes, selects, and executes action sequences
@@ -20691,6 +20717,19 @@
     Registered pre-implementation as a graph-completeness subdivision
     mapping existing E3 sequence-selection machinery onto the
     primate/human premotor biology.
+
+    2026-06-09 (commitment_closure:GAP-9): the design_doc field was null
+    at registration; the dedicated design doc
+    docs/architecture/sd_033d_premotor_sma_analog.md is now written and
+    linked (design_doc above). It maps the EXISTING ree-v3 machinery --
+    E3 trajectory proposal/scoring/selection (E3TrajectorySelector),
+    MECH-090 committed-trajectory stepping (REEAgent.select_action
+    _committed_step_idx), the MECH-090 bistable BetaGate, and the
+    ARC-028/MECH-105 hippocampal-completion release -- onto the Tanji &
+    Hoshi 2008 pre-SMA / SMA / dorsal-premotor gradient. NO new substrate
+    is proposed; SD-033d stays a registration-only consolidation. The
+    doc records the falsifier (a split into SD-033d-i/ii/iii) for if/when
+    evidence shows E3 inadequately covers the premotor distinctions.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033e
   title: "Frontopolar-analog (parallel-goal deliberation substrate): V4-scope module maintaining counterfactual-value estimates for alternatives to the current course of action, mediating transitions between external engagement and internally-generated deliberation, enabling disengagement from the current task to explore novel alternatives, and monitoring relative importance across multiple active goals. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4."
@@ -20703,6 +20742,35 @@
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
+  v3_v4_boundary:
+    # commitment_closure:GAP-9, 2026-06-09 -- decision: formally DEFER the substrate.
+    # implementation_phase stays v4 (NOT pulled to v3): SD-033e's only reverse-
+    # dependents are MECH-264 / MECH-265, both v4, and NOTHING v3 depends on it.
+    # The GAP-9 V3-scope work here is graph/registration completeness, not a phase
+    # change. See feedback_phase_label_follows_dependency: phase is a prediction
+    # from dependencies, and SD-033e has no v3 dependency to reclassify it.
+    decision: defer_substrate_to_v4
+    v3_scope_present: >
+      Forward-compatibility HOOK ONLY (done). The MECH-261 operating_mode
+      vocabulary reserves the future mode name `parallel_goal_deliberation`
+      and MECH-261's gate logic is a dict keyed on arbitrary mode names (not a
+      fixed 4-tuple), so V4 can add the mode without a schema change. A no-op
+      STUB module is present in code (ree-v3/ree_core/pfc/frontopolar_analog.py)
+      reserving the module surface + the `sd_033e` write-gate target + the
+      MECH-264 / MECH-265 head interface; every method is a no-op (or raises
+      NotImplementedError) under the default `use_frontopolar_analog=False`, so
+      the default V3 path is bit-identical. This V3-scope graph/registration
+      work is COMPLETE -- nothing further is owed for GAP-9.
+    v4_scope_deferred: >
+      The actual substrate -- the MECH-264 counterfactual-value head + the
+      MECH-265 relative-importance monitor over K>=2 active goals -- is NOT
+      built and is deferred to V4. Prerequisites are V4-bound: MECH-163
+      hippocampal multi-step planning (1-step counterfactuals collapse MECH-264
+      to MECH-257) and a CausalGridWorldV2 dual-active-goal extension (MECH-265
+      is structurally inaccessible with a single resource cue). A follow-up
+      frontopolar lit-pull (Burgess; Boorman; Christoff; Mansouri 2015) and the
+      SD-033e design doc are V4-entry prerequisites, NOT V3 work.
+    reserved_mode_name: parallel_goal_deliberation   # live in ree-v3 salience_coordinator + frontopolar_analog stub
   depends_on:
     - SD-033           # parent cluster
     - SD-033a          # rostral extension of the lateral-PFC abstraction gradient
@@ -20848,6 +20916,23 @@
     2015 lesion phenotype). Phase 1.1 of SD-033e prep plan complete;
     next step is the design doc, NOT V3 implementation. Do not
     implement pre-V4.
+
+    2026-06-09 (commitment_closure:GAP-9): V3-vs-V4 boundary made
+    EXPLICIT (see the v3_v4_boundary field above). GAP-9 formally DEFERS
+    the substrate: implementation_phase stays v4 (unchanged) -- no genuine
+    v3 dependency on SD-033e was found, so there is nothing to reclassify.
+    What GAP-9 closes is the V3-scope graph/registration completeness: the
+    forward-compatibility hook (reserved `parallel_goal_deliberation` mode
+    name + keyed-dict MECH-261 gate logic + the no-op frontopolar_analog
+    stub reserving the module/write-gate/head surface) is present and
+    bit-identical-OFF, and that is the entirety of what V3 owes here. The
+    counterfactual-value substrate (MECH-264/MECH-265), its frontopolar
+    lit-pull, and the SD-033e design doc remain V4-entry prerequisites and
+    are NOT GAP-9 deliverables. The architecture doc reconciliation in this
+    pass also fixed a stale mode-name drift: sd_033_pfc_subdivision_architecture.md
+    had retained the old `deliberative_branching` placeholder in two places;
+    it now reads `parallel_goal_deliberation` to match this claim and the
+    ree-v3 code.
   location: evidence/literature/targeted_review_frontopolar_analog_prong_d/synthesis.md
 - id: SD-034
   title: "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied."

@@ -8,6 +8,7 @@ nav_exclude: true
 **Subject:** `pfc.subdivision_architecture`
 **Status:** candidate, v3_pending (pre-implementation; SD-033c/d are graph-consolidation only)
 **Registered:** 2026-04-19
+**GAP-9 graph-consolidation complete:** 2026-06-09 — SD-033c subsumption closed bidirectionally; SD-033d design doc written + linked ([`sd_033d_premotor_sma_analog.md`](./sd_033d_premotor_sma_analog.md)); SD-033e V3/V4 boundary made explicit (substrate stays V4). See [commitment_closure_plan.md](../../evidence/planning/commitment_closure_plan.md) node `commitment_closure:GAP-9`.
 **Depends on:** SD-032a, MECH-094, MECH-261, ARC-035, MECH-116, MECH-151, MECH-152, MECH-235
 **Paired with:** SD-032 (cingulate integration substrate) — together form the V3 cognitive-control backbone
 
@@ -59,7 +60,7 @@ The two framings are not alternatives; they are complementary. The cognitive map
 
 ### SD-033c — vmPFC-analog (subjective value integration)
 
-**Registration-only.** The computational function already exists in ree-v3 under ARC-035 / MECH-151 / MECH-152 / MECH-235. SD-033c registers it as a named subdivision of SD-033 so the PFC substrate graph is complete.
+**Registration-only. Consolidation complete (GAP-9, 2026-06-09).** The computational function already exists in ree-v3 under ARC-035 / MECH-151 / MECH-152 / MECH-235. SD-033c registers it as a named subdivision of SD-033 so the PFC substrate graph is complete. The consolidation is now a **closed bidirectional edge**: SD-033c carries a `subsumes:` list of the four source claims and each source carries the reciprocal `instantiates: SD-033c` (claims.yaml), so the subsumption is queryable from either direction. `consolidation_status: complete` on the claim record. No new implementation, no status change.
 
 Reads specific-outcome predictions from SD-033b, affective / harm signals from SD-032, and homeostatic drive from SD-012; produces the unified subjective-value signal downstream selection machinery consults. Scalar value rides on top of SD-033b's structured representation — SD-033c does not itself represent specific outcomes or task structure (per Rudebeck & Murray 2014 and Stalnaker et al 2015 dissociations).
 
@@ -67,9 +68,9 @@ Reads specific-outcome predictions from SD-033b, affective / harm signals from S
 
 ### SD-033d — Premotor/SMA-analog (sequence execution)
 
-**Registration-only.** Function already implemented inside E3's trajectory-proposal and selection machinery. Registered as a named subdivision so the claim graph mirrors the biology rather than implying a premotor-less architecture.
+**Registration-only. Design doc written (GAP-9, 2026-06-09): [`sd_033d_premotor_sma_analog.md`](./sd_033d_premotor_sma_analog.md)** (the `design_doc` field on the claim was null until this pass). Function already implemented inside E3's trajectory-proposal and selection machinery + the MECH-090 commitment loop. Registered as a named subdivision so the claim graph mirrors the biology rather than implying a premotor-less architecture.
 
-Corresponds to the Tanji & Hoshi 2008 pre-SMA (sequence planning, set-switching) + SMA (sequence execution) + dorsal premotor (stimulus-action binding) gradient, downstream of SD-033a. Finer-grained premotor subdivision is not registered here — if future evidence shows E3's trajectory machinery inadequately covers the pre-SMA / SMA / premotor distinctions, SD-033d can be split into SD-033d-i / d-ii / d-iii.
+Corresponds to the Tanji & Hoshi 2008 pre-SMA (sequence planning, set-switching) + SMA (sequence execution) + dorsal premotor (stimulus-action binding) gradient, downstream of SD-033a. The design doc gives the full machinery mapping: PMd→`propose_trajectories` / `action_object`; pre-SMA→`E3TrajectorySelector.select`; SMA→MECH-090 committed-step stepping (`_committed_step_idx` + bistable BetaGate); sequence-end→ARC-028/MECH-105 completion release. Finer-grained premotor subdivision is not registered here — if future evidence shows E3's trajectory machinery inadequately covers the pre-SMA / SMA / premotor distinctions, SD-033d can be split into SD-033d-i / d-ii / d-iii (the split trigger is recorded in the design doc).
 
 **MECH-261 gating profile.** Sequence-level writes are hypothesis-tagged via MECH-094 (the specific case): licensed during external_task and internal_planning; suppressed during internal_replay unless the hypothesis tag is explicitly set; consolidated during offline_consolidation.
 
@@ -77,9 +78,13 @@ Corresponds to the Tanji & Hoshi 2008 pre-SMA (sequence planning, set-switching)
 
 **V4 scope. Do not implement in V3.** Registered pre-emptively to (i) signal the architectural intent so V3 design choices stay forward-compatible, and (ii) prevent the SD-010/SD-011-style late-split failure mode from recurring at the V3/V4 boundary.
 
+**V3/V4 boundary (GAP-9, 2026-06-09 — made explicit).** GAP-9 formally **defers the substrate** and keeps `implementation_phase: v4` (it is *not* pulled to v3): SD-033e's only reverse-dependents are MECH-264/MECH-265, both v4, and nothing v3 depends on it, so there is no genuine v3 dependency to reclassify. The split is clean:
+- **V3-scope (present + complete):** the forward-compatibility *hook only* — the reserved `parallel_goal_deliberation` operating-mode name, MECH-261's keyed-dict gate logic, and the no-op `frontopolar_analog.py` stub reserving the module / `sd_033e` write-gate / MECH-264-MECH-265 head surface (bit-identical-OFF). This is all V3 owes; GAP-9 closes it.
+- **V4-scope (deferred):** the actual counterfactual-value substrate (MECH-264 head + MECH-265 monitor), its prerequisites (MECH-163 multi-step planning; a dual-active-goal env), the frontopolar lit-pull, and the SD-033e design doc — all V4-entry work, not GAP-9 deliverables.
+
 The substrate REE's V4 long-horizon ethical reasoning will eventually depend on — explicit counterfactual weighing of parallel policies is what Frankfurt-style reflective endorsement of first-order motivations requires, and Koechlin & Summerfield 2007 identify frontopolar cortex as the anatomical substrate for this function.
 
-**V3 forward-compatibility requirement.** The MECH-261 `operating_mode` vocabulary should reserve a future mode name — candidate: `deliberative_branching` — and MECH-261's gate logic should be implemented as a dictionary keyed on mode names (not a fixed 4-tuple) so V4 can be added without disruptive schema changes.
+**V3 forward-compatibility requirement (GAP-9: present + complete).** The MECH-261 `operating_mode` vocabulary reserves the future mode name `parallel_goal_deliberation` (renamed 2026-04-19 from the earlier `deliberative_branching` placeholder after the Prong D lit-pull), and MECH-261's gate logic is implemented as a dictionary keyed on mode names (not a fixed 4-tuple) so V4 can be added without disruptive schema changes. A no-op stub module (`ree-v3/ree_core/pfc/frontopolar_analog.py`) reserves the module surface, the `sd_033e` write-gate target, and the MECH-264/MECH-265 head interface; it is bit-identical-OFF under the default `use_frontopolar_analog=False`. This is the **entirety of the V3-scope work** for SD-033e — the substrate itself is V4 (see "V3/V4 boundary" below).
 
 **V4 prerequisite.** A follow-up lit-pull on frontopolar function (Burgess; Boorman; Christoff; Mansouri et al 2015 frontopolar review) is required before implementation. The Koechlin & Summerfield 2007 entry is the entry point, not the complete survey.
 
@@ -155,7 +160,7 @@ Ordered. Do not skip ahead.
 2. **SD-033b (OFC-analog).** Second priority. Give E2 a proper substrate address. Current E2 state carries both sensory prediction and harm prediction in an unstructured latent; SD-033b should carry the structured outcome representation explicitly and serve as the substrate E2's harm-prediction queries hit. Verify MECH-263 signatures (devaluation sensitivity; discrimination of same-value / different-outcome-identity states).
 3. **SD-033c (vmPFC-analog).** Register-only. No new implementation — existing ARC-035 / MECH-151 / MECH-152 / MECH-235 code is the substrate. Update cross-references so those claims point to SD-033c as their substrate address.
 4. **SD-033d (premotor/SMA-analog).** Register-only. No new implementation — existing E3 trajectory machinery is the substrate. Update cross-references. Finer-grained split is a follow-up if evidence demands.
-5. **SD-033e (frontopolar-analog).** Defer to V4. In V3, the only change is the MECH-261 schema forward-compatibility: operating_mode as a keyed dict (not a fixed tuple), and reserve a `deliberative_branching` mode name.
+5. **SD-033e (frontopolar-analog).** Defer to V4. In V3, the only change is the MECH-261 schema forward-compatibility: operating_mode as a keyed dict (not a fixed tuple), and reserve the `parallel_goal_deliberation` mode name. **GAP-9 (2026-06-09): this V3-scope hook is present and complete; the substrate stays V4.**
 
 **Steps 1–2** are the V3 implementation targets. Steps 3–4 are graph consolidation. Step 5 is a schema-only commitment with V4 follow-up lit-pull.
 
@@ -201,8 +206,9 @@ Two concrete interaction signatures expected to be visible in V3:
 - **SD-032, SD-032a–e** — paired cluster (coordinator + adaptive control)
 - **MECH-261** — mode-conditioned write gating (primary consumer of SD-033)
 - **MECH-094** — hypothesis tag (special case, specifically on SD-033d sequence commits)
-- **ARC-035** — vmPFC value-regulation hub (subsumed by SD-033c)
-- **MECH-151, MECH-152, MECH-235** — vmPFC value integration (folded into SD-033c)
+- **ARC-035** — vmPFC value-regulation hub (subsumed by SD-033c; bidirectional edge closed GAP-9: `SD-033c.subsumes` ↔ `ARC-035.instantiates: SD-033c`)
+- **MECH-151, MECH-152, MECH-235** — vmPFC value integration (folded into SD-033c; each carries `instantiates: SD-033c`, listed in `SD-033c.subsumes`)
+- **SD-033d design doc** — [`sd_033d_premotor_sma_analog.md`](./sd_033d_premotor_sma_analog.md) (E3/MECH-090 → premotor/SMA mapping, GAP-9)
 - **MECH-116** — dlPFC LSTM working memory (adjacent to SD-033a)
 - **ARC-038** — viability map (MECH-261 write target alongside SD-033)
 - **ARC-039** — entorhinal grid loop (offline consolidation target alongside SD-033)
