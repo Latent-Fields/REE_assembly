@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-09T06:02:08Z",
+  "last_tick_utc": "2026-06-09T06:32:15Z",
   "state": "running",
   "current_exq": "V3-EXQ-654",
   "current_exq_started_utc": "2026-06-09T05:35:50.963220+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / rule_creator_absent_legacy_collapsed_rule_state",
     "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 20,
+    "episodes_done": 100,
     "episodes_total": 120,
-    "overall_pct": 19.4
+    "overall_pct": 30.6
   },
-  "seconds_elapsed": 1577,
-  "seconds_remaining": 5434,
+  "seconds_elapsed": 3385,
+  "seconds_remaining": 4684,
   "recent_lines": [
     "Arm ARM_OFF (rule_creator_absent_legacy_collapsed_rule_state) (P0=60 ep e2-train, P1=60 ep measure, steps_per_episode=200, dry_run=False)",
     "Seed 42 Condition rule_creator_absent_legacy_collapsed_rule_state",
@@ -36,7 +36,15 @@
     "verdict: PASS",
     "Seed 43 Condition rule_creator_absent_legacy_collapsed_rule_state",
     "[train] arm=ARM_OFF seed=43 phase=P0 ep 10/120",
-    "[train] arm=ARM_OFF seed=43 phase=P0 ep 20/120"
+    "[train] arm=ARM_OFF seed=43 phase=P0 ep 20/120",
+    "[train] arm=ARM_OFF seed=43 phase=P0 ep 30/120",
+    "[train] arm=ARM_OFF seed=43 phase=P0 ep 40/120",
+    "[train] arm=ARM_OFF seed=43 phase=P0 ep 50/120",
+    "[train] arm=ARM_OFF seed=43 phase=P0 ep 60/120",
+    "[train] arm=ARM_OFF seed=43 phase=P1 ep 70/120",
+    "[train] arm=ARM_OFF seed=43 phase=P1 ep 80/120",
+    "[train] arm=ARM_OFF seed=43 phase=P1 ep 90/120",
+    "[train] arm=ARM_OFF seed=43 phase=P1 ep 100/120"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
