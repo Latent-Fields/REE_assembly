@@ -129,6 +129,24 @@ This guarantees `use_ofc_analog=True` is bit-identical to OFF until the head
 is deliberately trained, which makes pre-training experiments safe to enable
 the flag without risking baseline divergence.
 
+**GAP-8 trainable-head enrichment (2026-06-09, mirror of SD-033a GAP-D).**
+`OFCConfig.train_state_bias_head` (default `False`) gates the last-Linear
+zeroing: when `True` the last `Linear` keeps its random init so the head can be
+added to an experiment optimizer and trained via the E3 score-aggregation
+gradient (`E3 loss -> score_bias -> compute_bias() -> state_bias_head`).
+`OFCAnalog.bias_head_parameters()` exposes the head params; the flat
+`REEConfig.ofc_train_state_bias_head` wires through `from_dims` and the `agent.py`
+OFC build site (`getattr` fallback -> bit-identical when absent). Default `False`
+keeps the zeroed-head bit-identical landing. This is the substrate prerequisite
+for the deferred trained-OFC-head behavioural arm that closes
+`commitment_closure:GAP-8` (takes SD-033b from PARTIAL -- 485b/485c
+representation-level diagnostics PASS -- to the full candidate->provisional
+behavioural validation). The behavioural arm requires phased training (P0 encoder
+warmup, P1 frozen-encoder head training, P2 eval) and an AVERSIVE devaluation
+readout (`ofc_harm_dim>0`), since the OFC state_code reads only z_world + z_harm
+(no appetitive/drive input). Validation: V3-EXQ-485d substrate-readiness
+diagnostic (frozen vs trainable). See `ree-v3/CLAUDE.md` "SD-033b GAP-8".
+
 ### D2. Outcome-pool weight defaults active (0.5) but harm_dim defaults zero
 
 **Chosen:** outcome_pool_weight defaults to 0.5 (architectural shape preserved)
