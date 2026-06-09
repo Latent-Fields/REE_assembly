@@ -1,6 +1,10 @@
 # Thoughts: Meta-Agent Challenge, Self-Improvement, and Evaluation-Channel Integrity
 
-Status: unprocessed
+Status: processed
+Intake: docs/architecture/evaluation_channel_integrity.md
+Processed in:
+- `docs/claims/claims.yaml` (2026-06-09 thought-intake REAP: registered INV-077 governance invariant `meta.evaluation_channel_integrity` -- evaluation channels typed as evidence-producing boundaries, not world-state affordances, governance-mediated confidence; Q-069 `governance.agent_assisted_development_integrity` -- can a REE-style governance loop reduce evaluation-channel exploitation when agents drive their own development; EXT-008 `meta_agent.evaluation_boundary_exploitation` -- the MAC failure-mode anchor for arXiv:2606.04455. All status:candidate, wired into depends_on; INV-077 depends_on INV-020/INV-024/INV-070/INV-073/EXT-003)
+- `docs/architecture/evaluation_channel_integrity.md` (NEW governance home doc: the three-signal-class typing world/evidence/governance, the manifest->review->governance->claim anti-Goodhart pipeline, existing enforcement = Governance Verification Gate Check G HEARTBEAT_SCOPE_BLEED, and the un-registered future IMPL boundary-protocol + meta-agent-benchmark experiment surface)
 
 Source trigger:
 - Paper: *The Meta-Agent Challenge: Are Current Agents Capable of Autonomous Agent Development?*
