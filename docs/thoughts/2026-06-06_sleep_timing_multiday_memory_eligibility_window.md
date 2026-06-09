@@ -1,10 +1,14 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_sleep_timing_multiday_memory_eligibility_window.md
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_sleep_timing_multiday_memory_eligibility_window.md (2026-06-09; primary source VERIFIED -- Liu/Zhang/Calvo/Smolen/Byrne, J Neurosci 2026 46(17):e1981252026, DOI 10.1523/JNEUROSCI.1981-25.2026; NO claims.yaml registration -- compass only)
+
 Source email date: 2026-03-31
 Source email subject: REE timing for memory associated with sleep cycle
 Source saved-item attribution: Daniel Golden
 Gmail envelope sender: Eoin Mount
 Current action: preserve as thought intake only
-Primary source status: secondary article checked; original DOI/title identified but primary article not directly opened in intake session
+Primary source status: VERIFIED 2026-06-09 -- Liu, Zhang, Calvo, Smolen, Byrne, "The Right Time for a Synapse to Change: Windows and Mechanisms of Multiday Training Trials", J Neurosci 46(17):e1981252026, DOI 10.1523/JNEUROSCI.1981-25.2026
 Near-term relevance: offline integration / plasticity-window design compass; not REE-v3 critical path unless later linked to existing sleep/offline claims
 
 ---
