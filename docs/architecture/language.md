@@ -139,6 +139,47 @@ Source: `docs/processed/legacy_tree/architecture/language/language_functions.md`
 
 ---
 
+<a id="mech-373"></a>
+
+## Language Affect Adaptor (MECH-373) — V5+ candidate
+
+A lightweight **LanguageAffectAdaptor** is a planned language-interface component that runs in the
+*input* direction: it parses affect/emotion from user or agent **language** and supplies it to the
+shared world model. It is engaged when literal semantic content is insufficient to recover affect
+(tone, implied state, sub-text), and it produces **probabilistic affect/emotion hypotheses** rather
+than categorical labels.
+
+Design commitments (from the 2026-06-07 intake):
+
+- **Parse affect from language** when literal semantic content is insufficient.
+- **Emotion labels are uncertain latent-state hypotheses, not categorical truths** — a probability
+  distribution over affect, never a hard class. This is consistent with the constructionist reframe
+  behind Q-007 (Barrett 2017/2019: emotions are constructed categories, not natural kinds with fixed
+  signatures), which is precisely why parsed labels must remain hypotheses.
+- **Feed affect estimates into REE's wider agent-state and context modelling** — the parsed estimates
+  are priors over *another agent's* state, consumed by the social/empathy modelling layer (ARC-010,
+  MECH-031), not REE's own internal affective representation.
+
+Distinctness: MECH-373 is an **input adaptor on the language channel** (external text → affect
+priors). It is orthogonal to **Q-007**, which concerns REE's *own* internal affective representation
+(z_beta valence/arousal regimes). It plugs into the ARC-009 symbolic-mediation layer and sits at the
+language ↔ social-modelling interface flagged by the 2026-04-16 affect-lateralisation and 2026-05-04
+language-vs-theory-of-mind intakes.
+
+**Scope:** explicitly V5+ ("probably around v5+"), a reference resource for later language-interface
+work, **not** a REE-v3 assembly priority. `epistemic_category: substrate_conditional` — no language
+interface exists in V3, so a probe would be vacuous; do not build or queue in V3 until routed by an
+explicit version decision.
+
+**Reference resource (notes-level pointer, not citable evidence):** Towards Data Science, "How to
+Fine-Tune an SLM for Emotion Recognition"
+(<https://towardsdatascience.com/how-to-fine-tune-an-slm-for-emotion-recognition/>) — motivates a
+small-language-model emotion classifier as the lightweight adaptor's implementation candidate.
+
+Source: `docs/thoughts/2026-06-07-language-affect-adaptor-slm-emotion-recognition.md`
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.
@@ -151,6 +192,7 @@ None noted in preserved sources.
 - ARC-004
 - INV-003
 - INV-007
+- MECH-373 (Language Affect Adaptor — V5+ candidate; depends_on ARC-009/ARC-010/Q-007/MECH-031)
 
 ## References / Source Fragments
 

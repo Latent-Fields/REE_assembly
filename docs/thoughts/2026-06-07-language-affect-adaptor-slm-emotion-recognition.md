@@ -1,3 +1,11 @@
+Status: processed
+
+Processed in:
+- Registered as claim `MECH-373` (language.affect_adaptor_uncertain_hypothesis) in `docs/claims/claims.yaml` — candidate / substrate_conditional / implementation_phase v5 / version_relevance v4_v5; depends_on ARC-009/ARC-010/Q-007/MECH-031.
+- Home doc section: `docs/architecture/language.md#mech-373` (Language Affect Adaptor — V5+ candidate).
+
+---
+
 # Thought: Language Affect Adaptor from SLM emotion recognition
 
 Date: 2026-06-07
