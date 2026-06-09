@@ -63,7 +63,7 @@ proto-affect
 
 **Revisit trigger:** re-open after a downstream per-candidate-affective-variance readiness result on the GAP-A-ready substrate (the MECH-341 within-class-representative-diversity retest + GAP-A bias channels demonstrating per-candidate range bites at behavioural runtime). Only then consider a V4 build of MECH-359, with MECH-360/361 strictly after it.
 
-**Known governance cost:** `substrate_conditional` is not in the workset proposal-suppression set, so these claims may surface as IGW experiment-proposals that must be STOP'd as `blocked_substrate` (the same pattern as the play-mode cluster). That is expected; do not queue probes against them until the V4 substrate exists.
+**IGW visibility (verified 2026-06-09):** `epistemic_category: substrate_conditional` keeps these claims **out of** the inter-governance workset and the promotion/demotion queue while V3 work is in flight. It is in the IGW generator's `_EPI_SUPPRESS_PROPOSAL` set (`generate_inter_governance_workset.py`, with the proposal lane skipping such claims) and the indexer suppresses promote/demote for the category. Empirically the precedent `substrate_conditional` cluster (play-mode MECH-194..199) has 0 hits in the current workset and 0 rows in `promotion_demotion_recommendations.md`. The suppression lever is the epistemic category, not `implementation_phase: v4` (which is the scheduling/prediction label). So MECH-359/360/361 stay invisible to IGW during the V3 phase by construction; do not queue probes against them until the V4 substrate exists. They remain discoverable for the V4 phase via `implementation_phase: v4` in `claims.yaml` + this doc.
 
 ---
 
