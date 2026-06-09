@@ -1,47 +1,38 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-09T05:29:53Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-09T06:02:09Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603k",
+  "current_exq_started_utc": "2026-06-09T05:45:42.454341+00:00",
+  "current_title": "Stage-H harm-pathway training validation: 3-arm harm-pathway ablation (HARM_OFF_NAV negative control / HARM_ON_NAV headline / HARM_ON_MIDLINE) x 3 seeds -- does training the untrained hazard-avoidance valuation pathway (E3.harm_eval_head(z_world)+encoder, z_harm, z_harm_a, E2_harm_s) lift Stage-H survival from the 603i G_H=0 nav-competence ceiling?",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-655",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-485c",
-      "result": "PASS",
-      "completed_at": "2026-06-03T20:10:56.273229+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-636",
-      "result": "PASS",
-      "completed_at": "2026-06-04T07:30:39.189033+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-639",
-      "result": "PASS",
-      "completed_at": "2026-06-04T15:40:34.435832+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 43 / ARM_HARM_OFF_NAV",
+    "runs_done": 1,
+    "runs_total": 9,
+    "episodes_done": 20,
+    "episodes_total": 235,
+    "overall_pct": 12.1
+  },
+  "seconds_elapsed": 986,
+  "seconds_remaining": 6171,
+  "recent_lines": [
+    "Seed 42 Condition ARM_HARM_OFF_NAV",
+    "[train] stage0 ARM_HARM_OFF_NAV seed=42 ep 20/235 z_goal_peak=0.5029",
+    "[train] p0 ARM_HARM_OFF_NAV seed=42 ep 130/235 mean_len=22.2 harm_enabled=False harm_steps=0",
+    "[train] hazard ARM_HARM_OFF_NAV seed=42 ep 170/235 G_H=FAIL median_last_window=12.0 harm_eval_range=0.0000 harm_steps=0",
+    "[train] p1 ARM_HARM_OFF_NAV seed=42 ep 220/235 survival_gate=FAIL",
+    "[train] p2 ARM_HARM_OFF_NAV seed=42 ep 235/235",
+    "verdict: FAIL seed=42 arm=ARM_HARM_OFF_NAV G_H=False",
+    "Seed 43 Condition ARM_HARM_OFF_NAV",
+    "[train] stage0 ARM_HARM_OFF_NAV seed=43 ep 20/235 z_goal_peak=0.3818"
   ],
-  "runner_pid": 743,
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 745,
   "runner_version": null,
   "gpu": {
     "available": false
