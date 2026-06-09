@@ -6,6 +6,20 @@
 
 ## Status
 
+Status: processed
+
+Intake: reaped into claims.yaml 2026-06-09 (registration IS the point of intake). The V4 developmental cluster is candidate / substrate_conditional / v4 (off the V3 critical path, IGW-invisible); MECH-384 is the single V3-compatible reduced form (design_decision / substrate_coherence, post-green-board). Overlap with the existing play cluster (ARC-049/050, MECH-194-199, INV-058-060, Q-035), internal-DMN (ARC-014/MECH-029), and socially-scaffolded-rule (ARC-077/MECH-337) claims was cross-referenced via depends_on, not duplicated.
+
+Processed in:
+- ARC-090 -- Externalised Default Mode Operation umbrella
+- MECH-380 -- private speech as externalised cognitive-control scaffold + Vygotskian internalisation ladder
+- MECH-381 -- developmental compression ladder (externalise -> internalise)
+- MECH-382 -- distancing operator (system-state / third-person reframing)
+- MECH-383 -- labels as active top-down perceptual-control signals
+- Q-068 -- graded action-status vocabulary (simulated != intended != committed != acted)
+- MECH-384 -- lightweight V3 self-narration trace/debug scaffold (design_decision / substrate_coherence)
+- docs/architecture/externalised_dmn_play_private_speech.md -- home doc
+
 Developmental architecture thought.  
 Relevant to Reflective–Ethical Engine (REE) developmental theory.  
 Not an immediate REE-v3 scope expansion unless it can be implemented as a lightweight trace/debug scaffold.

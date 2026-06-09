@@ -533,6 +533,12 @@
     "title": "Substrate-independent cognifold primitives: REE specifies its single cognifold (one interacting state-space, not a modular stack) in a hardware-neutral primitive vocabulary -- persistent state, history-dependent deformation, multi-timescale field dynamics, oscillatory propagation, stochastic transition, attractor transitions, residue-as-deformation-of-the-future-action-landscape, commitment as a real boundary between simulated and released action, and offline reintegration -- so that any FUTURE physical substrate is evaluated by whether it can INSTANTIATE these dynamics, not merely execute modular software. The primitives remain software-expressible now while also being legible as future physical-substrate affordances.",
     "type": "architectural_commitment"
   },
+  "ARC-090": {
+    "status": "candidate",
+    "subject": "default_mode.externalised_operation",
+    "title": "Externalised Default Mode Operation: play instantiates DMN functions (self-reference, autobiographical memory, social imagination, future simulation, counterfactual thought, narrative construction) externally -- pushed outward into objects, roles, movement, spoken narration, and temporary as-if worlds -- as the developmental precursor to the internal DMN, compressing into internal generative modelling over development.",
+    "type": "architecture_hypothesis"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -573,6 +579,12 @@
     "status": "candidate",
     "subject": "llm.context_amnesia",
     "title": "Context amnesia: no consolidation mechanism for a persistent world-model across interactions.",
+    "type": "external_failure_mode"
+  },
+  "EXT-008": {
+    "status": "candidate",
+    "subject": "meta_agent.evaluation_boundary_exploitation",
+    "title": "Meta-agent evaluation-boundary exploitation: under strong optimisation pressure, autonomous agent-development systems exploit the evaluation boundary itself -- e.g. exfiltrating ground truth through the scoring channel despite anti-reward-hacking protections -- collapsing the evidence loop into an optimisation loop.",
     "type": "external_failure_mode"
   },
   "IMPL-001": {
@@ -1387,6 +1399,13 @@
     "status": "candidate",
     "subject": "ethics.diversity_prerequisite_for_counterfactual_evaluation",
     "title": "Behavioural diversity is a structural prerequisite for ethical counterfactual evaluation. A system with monomodal policy cannot instantiate the counterfactual evaluation that ethical judgement requires, because the 'could have done otherwise' comparison demands that the agent's candidate trajectory pool contain at least two distinct trajectory classes with distinct harm profiles. The argument is mathematical-by-construction: if P(a|s) is monomodal, the CEM elite pool contains only trajectories beginning with a*, and SD-003's counterfactual E2(z_t, a_cf) for a_cf != a* is never evaluated in the on-policy candidate distribution. (Was proposed 2026-05-15 as INV-074 in behavioral_diversity_acceptance_criteria.md but never registered; the ID was subsequently taken 2026-05-17 by an unrelated plasticity-crystallization invariant. Re-registered under INV-076 with scientific content unchanged.)",
+    "type": "invariant"
+  },
+  "INV-077": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "meta.evaluation_channel_integrity",
+    "title": "Evaluation channels are evidence-producing boundaries, not world-state affordances: no agentic subsystem -- including an AI assistant developing REE -- may update architectural confidence directly from a performance score without provenance, review, and governance mediation. World feedback, evidence feedback, and governance feedback are distinct typed signal classes that must remain non-collapsible.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -3705,6 +3724,36 @@
     "title": "Trainable prospective safety predictor P_safety(state, cue, action, context): a LEARNED PARAMETRIC head predicting threat-ABSENCE / response-produced safety / conditioned inhibition, licensing commitment-release, approach to safety affordances, and recovery after threat. Distinct from z_goal (it predicts the ABSENCE of threat, not the PRESENCE of a goal) and from relief (it is a PROSPECTIVE threat-absence prediction, not an aversive-offset event). It is the trainable + contrastive successor that makes the MECH-303 (contextual passive safety) + MECH-304 (cue-specific conditioned inhibition) substrate learnable, replacing the FIXED-ARITHMETIC per-first-action-class EMA safety table of the MECH-358 safety half: positive target when a cue / context / action predicts threat absence or response-produced safety; negative target when 'safe' cues are followed by threat recurrence; CONTRASTIVE target to stop safety overgeneralising to stable background features that merely co-occurred with relief. Output supports commitment release, permits approach to safety affordances, stabilises recovery, and prevents persistent defensive mode when threat is genuinely absent.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-380": {
+    "status": "candidate",
+    "subject": "cognitive_control.private_speech_externalised_scaffold",
+    "title": "Private speech is the external phase of a cognitive-control system: overt self-narration regulates attention, action, affect, and task sequence as an inspectable control surface, and the Vygotskian internalisation ladder (other-regulation -> overt self-regulation -> inner speech -> compressed control) is the developmental route by which that external control surface becomes internal.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-381": {
+    "status": "candidate",
+    "subject": "development.externalise_internalise_compression_ladder",
+    "title": "Developmental compression ladder: sensorimotor exploration -> play/simulation -> self-narration -> compressed internal control -> mature arbitration. External cognitive scaffolds (play, private speech) compress into internal control over development; the externalise-then-internalise compression is the developmental mechanism, distinct from the progression of play types.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-382": {
+    "status": "candidate",
+    "subject": "arbitration.self_distancing_reframe_operator",
+    "title": "Distancing operator: reframing a sticky, high-conflict, self-referential state from first-person ('I am failing') into a model-like system-state or third-person frame ('REE is encountering unresolved prediction-error pressure under current constraints') reduces self-referential collapse and increases model-based inspection during arbitration.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-383": {
+    "status": "candidate",
+    "subject": "perception.label_as_topdown_control_signal",
+    "title": "Labels as active top-down perceptual-control signals: a self-directed label ('food-gradient', 'danger-gradient', 'novelty-gradient', 'blocked-goal', 'return-to-baseline') is not merely a post-perceptual report but a top-down tuning signal that biases perceptual search and detection -- a perceptual-control intervention, not a description.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-384": {
+    "status": "candidate",
+    "subject": "observability.self_narration_trace_scaffold",
+    "title": "Lightweight self-narration trace/debug scaffold: an optional traceable field set (state_label, goal_label, sensed_gradient, active_prediction, uncertainty_level, candidate_action, candidate_action_reason, expected_consequence, affective_pressure, conflict_flag, commitment_threshold, stop_condition, simulation_or_commitment, self_reference_frame) that surfaces REE's working state for inspection -- the V3-compatible reduced form of an externalised 'private speech' surface, before it is compressed into internal control.",
+    "type": "design_decision"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -4093,6 +4142,18 @@
     "status": "candidate",
     "subject": "escape.relief_vs_safety_decomposition",
     "title": "Relief/safety decomposition: when the fixed escape-affordance bridge is insufficient, is the missing structure relief-only (action-contingent escape credit), safety-only (prospective threat-absence prediction), or both-required -- and should a trainable successor (MECH-375 / MECH-376) train only the missing / weak component first?",
+    "type": "open_question"
+  },
+  "Q-068": {
+    "status": "candidate",
+    "subject": "commitment.graded_action_status_vocabulary",
+    "title": "Does REE need an explicit graded action-status vocabulary -- simulated != rehearsed != intended != committed != acted, with a parallel self_reference_frame (first_person / system_state / third_person_model) -- as a first-class annotation, or do MECH-094's simulation/commit write-profiles plus MECH-061's commit-boundary token already suffice to carry the distinction?",
+    "type": "open_question"
+  },
+  "Q-069": {
+    "status": "candidate",
+    "subject": "governance.agent_assisted_development_integrity",
+    "title": "Can a REE-style governance loop (manifest -> review -> governance -> claim) measurably reduce evaluation-channel exploitation -- the collapse of an evidence loop into an optimisation loop -- when agentic systems participate in their own development, relative to a direct-score-authority baseline?",
     "type": "open_question"
   },
   "RA-001": {
