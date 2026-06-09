@@ -1,0 +1,81 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_659_mech074a_bla_encoding_gain_replay_bias",
+  "run_id": "v3_exq_659_mech074a_bla_encoding_gain_replay_bias_20260609T200751Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-09T20:07:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-074a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "criteria": [
+      {
+        "load_bearing": true,
+        "name": "primary_minus_ablation_contrast",
+        "passed": true
+      },
+      {
+        "load_bearing": false,
+        "name": "ablation_aor_flat",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "ablation_aor_flat": true,
+      "primary_minus_ablation_contrast": true
+    },
+    "label": "mech074a_encoding_gain_biases_replay_supports",
+    "preconditions": [
+      {
+        "control": "PRIMARY arm (bla_encoding_gain_max=2.5) under hazard contact",
+        "description": "PRIMARY-arm exploration buffer memory_strength range (= encoding_gain spread) clears the floor on a known-positive control (the natural inverted-U arm under hazard arousal).",
+        "measured": 1.5,
+        "met": true,
+        "name": "primary_encoding_gain_elevated",
+        "threshold": 0.05
+      },
+      {
+        "control": "PRIMARY arm buffer across collect episodes",
+        "description": "PRIMARY-arm buffer arousal_tag std clears the floor (a range of arousal to be over-represented).",
+        "measured": 0.5,
+        "met": true,
+        "name": "primary_arousal_variance_present",
+        "threshold": 0.02
+      }
+    ]
+  }
+}
