@@ -1,8 +1,19 @@
+Status: processed
+Intake: registered directly into claims.yaml as ARC-088 (see Processed in)
+
+Processed in:
+- docs/claims/claims.yaml (ARC-088 -- emotion-as-anti-collapse architecture, unifying MAP)
+- docs/architecture/emotion_as_anti_collapse_architecture.md (home doc + visitor-facing framing layer)
+
+---
+
 # Thought intake: emotion as anti-collapse architecture
 
 **Date:** 2026-06-08  
-**Status:** thought_intake / visitor-facing framing candidate  
+**Status:** processed  
 **Related:** REE-v3, affect primitives, E3 selection, behavioural diversity, optimisation critique, V3-EXQ-603 lineage, trainable relief/safety affordance learner
+
+**Processed in:** Registered as **ARC-088** (emotion-as-anti-collapse architecture; unifying MAP, not new substrate) in [docs/claims/claims.yaml](../claims/claims.yaml), home doc [docs/architecture/emotion_as_anti_collapse_architecture.md](../architecture/emotion_as_anti_collapse_architecture.md), on 2026-06-09. Adjudication: the affect / relief / safety / harm / drive / persistence / behavioural-diversity primitives are ALREADY OWNED (ARC-065 + MECH-313/314/320, MECH-359, SD-010/SD-011, SD-050/MECH-302, MECH-303/304, SD-012, ARC-079); the only genuinely-new content is the unifying framing, so it was registered as ONE umbrella ARC claim `depends_on` the owned set, with NO redundant substrate claims. The visitor-facing formulation lives in the home doc as documentation, not a claim. Per the governance note below, no claim validated, no substrate promoted, no experiment routing altered.
 
 ## Core thought
 
