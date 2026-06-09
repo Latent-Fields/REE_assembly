@@ -2,6 +2,8 @@
 
 Date: 2026-06-07
 
+Status: processed
+
 Source trigger: ScienceDaily article on completing Schrödinger's colour theory, linked from discussion: https://www.sciencedaily.com/releases/2026/06/260606015140.htm
 
 ## Core intuition
@@ -99,3 +101,23 @@ For REE-v6+, this becomes relevant as a future multimodal-adaptor principle.
 ## One-line summary
 
 Smell may enter the world model as gradient; sight must first become a perceptual manifold.
+
+---
+
+## Intake (2026-06-09)
+
+Reaped into claims.yaml as a V4/V5 perception cluster (candidate / substrate_conditional /
+implementation_phase v4 / version_relevance v4_v5), off the V3 / GAP-7 critical path. Already-owned
+machinery cross-referenced via `depends_on` rather than duplicated: ARC-017 (sensory stream tags),
+MECH-103 (per-modality encoder pathways + multi-source fusion), ARC-019 (staged curriculum). The
+genuinely-new content registered: the sense-specific perceptual-manifold *adaptor* architecture
+(metric/manifold constructor, not a feature extractor) and the modality-heterogeneity / adaptor-depth
+gradient (smell near-raw, sight deep) with its smell-first developmental ordering. Home doc:
+[docs/architecture/sense_specific_perceptual_manifolds.md](../architecture/sense_specific_perceptual_manifolds.md).
+
+Processed in:
+
+- docs/claims/claims.yaml#ARC-087 (sense-specific perceptual-manifold adaptor)
+- docs/claims/claims.yaml#MECH-372 (modality-heterogeneity / adaptor-depth gradient; smell-first ordering)
+- docs/claims/claims.yaml#Q-065 (per-sense metric origin + cross-modal negotiability open question)
+- docs/architecture/sense_specific_perceptual_manifolds.md (home doc)
