@@ -37736,3 +37736,33 @@
     - MECH-094
   location: docs/architecture/candidate_differentiated_affective_gradients.md
   notes: "Amends the CONTENT schema of MECH-261 (mode-conditioned write gating -- WHAT is written into the episodic trace), not the gate itself (WHETHER a substrate may write). The affect-gradient-as-write-weight seam is the sharper variable on top of MECH-074 (BLA arousal-modulated hippocampal write depth): here the write weight is the per-candidate affective GRADIENT, not generic arousal. MECH-094 provenance still applies (simulated candidates must not be indexed as real experience). Biological anchors for a later targeted review (none load-bearing for this candidate registration): McGaugh 2004 Annu Rev Neurosci; Cahill & McGaugh 1998 TINS; Dolcos, LaBar & Cabeza 2004 Neuron; Girardeau, Inema & Buzsaki 2017 Nat Neurosci 20:1634 (verified); Ballarini et al 2009 PNAS 106:14599 behavioural tagging (verified); Bechara et al 1994 Cognition + Damasio 1994 (somatic markers); Olafsdottir, Bush & Barry 2018 Curr Biol + Joo & Frank 2018 Nat Rev Neurosci (replay). V4/V5; off the V3 critical path. substrate_conditional on the MECH-359 per-candidate affect substrate. DO NOT build hippocampal write/retrieval integration in V3 until routed by experiment."
+
+# Registered 2026-06-09 -- CA3 developmental sparse/structured connectivity intake (Vargas-Barroso/Jonas Nat Commun 2026 s41467-026-71914-x). V4/V5 developmental compass, off the V3 critical path. See docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md and evidence/planning/thought_intake_2026-06-06_ca3_development_sparse_structured_connectivity.md.
+- id: MECH-362
+  title: "Subtractive developmental sparsification: mature sparse/structured memory connectivity emerges by pruning / down-weighting an initially over-connected, dense, near-random ('tabula plena') substrate, not by additively growing connections onto a sparse skeleton; correspondingly, mature recall requires convergent summation of several weak inputs rather than a single strong cue."
+  claim_type: mechanism_hypothesis
+  subject: development.subtractive_sparsification
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-120
+    - ARC-019
+  location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#mech-362
+  notes: "Empirical anchor (verified): Vargas-Barroso, Watson, Navas-Olive, Schlogl & Jonas, Nature Communications 2026, s41467-026-71914-x (ISTA) -- multicellular patch-clamp of up to 8 CA3 pyramidal neurons at P7-8/P18-25/P45-50; recurrent connectivity dense/strong/near-random -> distributed/sparse/structured; early a single synaptic event triggers a postsynaptic spike, mature requires spatial summation of several weaker inputs; authors' 'tabula plena' (start over-connected, refine by pruning) framing. Cross-species corroboration that the mature endpoint is structured: Tang et al, Cell 2024 (human CA3). DISTINCT FROM MECH-120 (SWS synaptic homeostasis / Tononi SHY): MECH-120 is nightly homeostatic weight down-scaling; MECH-362 is a one-way developmental connectivity trajectory (different timescale/directionality/function), though they may share down-weighting machinery. Most naturally AMENDS ARC-019 (staged developmental curriculum, currently additive) by adding a subtractive pruning stage, rather than standing fully alone. The convergent-weak-input-vs-single-strong-cue corollary is the one strand with present-day V3 relevance and is folded in as a DIAGNOSTIC LENS (not a separate V3 claim) in evidence/planning/modulatory_bias_selection_authority_design.md 'Developmental framing (compass)'; registering it as its own V3 claim would duplicate the active selection-authority/rule-apprehension claims (MECH-314/341, ARC-062). Pruning is not necessarily deletion -- down-weighting/gating/residue-tagged de-authorization are candidate analogues (see Q-057). V4/V5; off the V3 critical path. substrate_conditional on a developmental pruning/sparsification substrate not yet built. DO NOT build a developmental pruning substrate or queue an experiment in V3 until routed by an explicit version decision."
+- id: Q-057
+  title: "Should REE distinguish an early over-connected exploratory developmental substrate from a mature sparse/structured substrate -- and is developmental sparsification best modelled as deletion, down-weighting, gating, or residue-tagged de-authorization?"
+  claim_type: open_question
+  subject: development.exploratory_overconnectivity_vs_mature_sparsity
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-019
+    - MECH-362
+  location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#q-057
+  notes: "From the CA3 developmental intake (see MECH-362 anchor). Sub-questions: (1) does REE-v3's cue-authority problem partly reflect immature single-cue authority rather than mature convergent-weak-input recall? (2) can offline integration act as pruning/contextualisation rather than merely consolidation? (3) what developmental gates should exist before a memory trace can influence action release? Set epistemic_category: substrate_conditional explicitly (overriding the open_question -> answer_state inference) so the narrow_open_question recommendation does NOT fire -- this is a V4-parked question awaiting an upstream developmental substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical path. DO NOT queue an experiment against this in V3."

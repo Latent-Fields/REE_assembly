@@ -143,10 +143,25 @@ seeding) -- a probe there self-routes `blocked_substrate`. Note the linkage; do 
 
 ---
 
-## 5. Candidate claims FOR FUTURE REGISTRATION (NOT registered here)
+## 5. Candidate claims -- REGISTERED 2026-06-09 (V4/substrate_conditional)
 
-Recorded so a later session can register if/when this leaves the compass stage. **None of these
-are in claims.yaml. Do not register from this intake.**
+**UPDATE 2026-06-09:** per user decision (Q+MECH), two of these were registered into claims.yaml,
+scoped `implementation_phase: v4` / `version_relevance: v4_v5` / `epistemic_category:
+substrate_conditional` (promote/demote-suppressed -- no V3 governance pressure, no experiment
+owed). Home doc:
+[developmental_pruning_and_sparse_memory_cognifold.md](../../docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md).
+
+- **MECH-362** (registered) -- subtractive developmental sparsification (tabula plena -> pruning;
+  convergent-weak-input corollary). `depends_on` MECH-120/ARC-019.
+- **Q-057** (registered) -- distinguish early over-connected exploratory substrate from mature
+  sparse; how to model pruning. `depends_on` ARC-019/MECH-362.
+- **Convergent-weak-input vs single-strong-cue** -- deliberately NOT registered as its own claim
+  (would duplicate the active selection-authority/rule-apprehension claims MECH-314/341, ARC-062);
+  folded in as a diagnostic lens in
+  [modulatory_bias_selection_authority_design.md](modulatory_bias_selection_authority_design.md)
+  Related Work instead.
+
+The original candidate descriptions are retained below for the record. **Do not re-register.**
 
 - **Candidate MECH (subtractive developmental sparsification):** "Mature sparse/structured memory
   connectivity emerges by pruning / down-weighting an initially over-connected (`tabula plena`)
