@@ -1,10 +1,14 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_neuroimmune_modulation_compulsive_loops.md
 Source email date: 2026-05-17
 Source email subject: REE: Brain Immune Cells Drive Compulsive Behavior - Neuroscience News
 Source saved-item attribution: Daniel Golden
 Current action: preserve as thought intake only
-Primary source status: source-check pending; direct share.google link not accessible and article title not located by web search during intake
+Primary source status: RESOLVED at Stage-2 intake (2026-06-09) -- Neuroscience News "Brain Immune Cells Drive Compulsive Behavior" https://neurosciencenews.com/microglia-calcium-signaling-anxiety-ocd-30687/ ; primary study Nagarajan et al., Molecular Psychiatry 2026-04-13 (Hoxb8 microglia Ca2+ signaling). Press-summary-verified (peer-reviewed article not read directly). See intake for the precision guardrail (microglial Ca2+ is a fast/causal switch, NOT a demonstrated slow process -- "slow modulation" is the REE-side abstraction).
 Near-term relevance: compulsive-loop / slow control-plane / neuroimmune modulation compass; possible later link to AI cognitive failure taxonomy
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_neuroimmune_modulation_compulsive_loops.md
 
 ---
 
