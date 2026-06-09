@@ -1,3 +1,9 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_Candidate-differentiated_affective_gradients.md
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-06_Candidate-differentiated_affective_gradients.md`
+
 # Thought: Candidate-differentiated affective gradients as action-selection, expression, and hippocampal indexing primitives
 
 **Date:** 2026-06-06  
