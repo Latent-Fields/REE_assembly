@@ -2,7 +2,7 @@ Raw thought file: [docs/thoughts/2026-06-06_clinical_depression_network_connecti
 Intake date: 2026-06-09
 Status: structured intake (Stage 2)
 Classification: psychiatric failure-axis architecture compass -- NOT a REE-v3 implementation target
-Registration: NONE (no claims.yaml entry; candidate claims below are FOR FUTURE REGISTRATION only)
+Registration: REGISTERED 2026-06-09 (per user decision to reap, overriding the intake default). Section 5 candidates A/B/C registered into claims.yaml at status:candidate: RA-001 (research_anchor/out_of_domain), MECH-367 (mechanism_hypothesis/substrate_conditional/v4), Q-061 (open_question/answer_state). Anchor doc docs/architecture/depressive_network_regimes.md. Candidate D stays cross-repo (ai-cognitive-failure-taxonomy), NOT in claims.yaml. No promotion/demotion of any existing claim.
 Terminology guardrail: "long-term depression" here = long-term CLINICAL depressive illness, NOT synaptic long-term depression (LTD). This distinction is load-bearing -- see Section 9.
 
 ---
@@ -161,43 +161,49 @@ any current claim. No claim status should change on the basis of this intake.
 
 ---
 
-## 5. Candidate claims FOR FUTURE REGISTRATION (NOT registered here)
+## 5. Candidate claims -- REGISTERED 2026-06-09 (A/B/C); D stays cross-repo
 
-Per scope (psychiatric failure-axis compass, off V3 critical path), **nothing is registered in
-claims.yaml**. If a future session, with the user's go-ahead, decides to formalise this, the
-candidates below are the shape -- most likely as **amendments to existing claims**, not new INVs,
-and all would carry `epistemic_category: out_of_domain` or `substrate_conditional` (no V3 substrate
-can deliver the named-network coupling distinction):
+Per the user's decision to reap (overriding the intake default), candidates A, B, and C were
+registered into `claims.yaml` at `status: candidate`, with `epistemic_category` chosen so none can
+promote without the substrate/evidence it lacks. Anchor doc:
+[docs/architecture/depressive_network_regimes.md](../../docs/architecture/depressive_network_regimes.md).
+**No existing claim was promoted or demoted.**
 
-1. **CANDIDATE-A (amend MECH-088 or new MECH):** *"Long-term clinical depression involves a
-   duration-dependent reversal of large-scale inter-network coupling (CEN-DMN sign flip past a
-   chronicity threshold); the depressive attractor is duration-indexed, not unitary."*
-   -- `out_of_domain` (clinical fMRI test domain; no REE substrate at any level distinguishes named
-   large-scale networks). Likely a `research_anchor` / `literature_synthesis` claim_type, not an
-   open_question, per the epistemic-category schema.
+1. **CANDIDATE-A -> RA-001** (REGISTERED). `claim_type: research_anchor`,
+   `epistemic_category: out_of_domain`. *"Long-term clinical depression involves a
+   chronicity-dependent reversal of large-scale network coupling (CEN-DMN sign flip past a ~24-month
+   threshold); the depressive brain-state is duration-indexed, not unitary."* First of the new `RA-`
+   (research-anchor) prefix -- `research_anchor` is the claim_type `v4_spec.md` names for
+   out-of-domain anchors. Source verified at press-summary level only (peer-reviewed paper not
+   located); recorded in the claim notes.
 
-2. **CANDIDATE-B (composition claim; amend INV-034 / new MECH):** *"The depressive failure mode is
-   carried by a multi-axis network-regime vector (future_access, goal_coupling, residue_load,
-   rumination_loop_gain, action_threshold, social_affordance, offline_repair_quality), not by a
-   scalar mood/reward value; the regime is defined by the joint configuration of these axes."*
-   -- `substrate_conditional` (the axes exist in V3 piecemeal but the *joint-vector* read-out is not
-   built). This is the most REE-tractable candidate of the set, but still V4-leaning.
+2. **CANDIDATE-B -> MECH-367** (REGISTERED). `claim_type: mechanism_hypothesis`,
+   `epistemic_category: substrate_conditional`, `implementation_phase: v4`. *"The depressive failure
+   mode is carried by a multi-axis network-regime vector (future_trajectory_access,
+   goal_stream_coupling, residue_load, rumination_loop_gain, action_threshold, social_affordance,
+   offline_repair_quality), not a scalar mood/reward value; the regime is the joint configuration."*
+   The genuinely-new REE-architectural composition; `depends_on` INV-034 / MECH-124 / Q-021 /
+   MECH-088 / MECH-082 / RA-001. Registered as a NEW MECH (not an INV-034 amendment) per the user's
+   selection. V4/V5, off the V3 / GAP-7 critical path; do not build in V3.
 
-3. **CANDIDATE-C (open question):** *"Is a maladaptive depressive network-regime reversible
-   (reconfigurable) by REE's existing repair machinery -- offline integration, decommitment,
-   social-affordance re-access -- or does chronicity lock the regime past a threshold?"*
-   -- `answer_state` / open_question. Directly mirrors the source's chronicity threshold; cleanly
-   falsifiable only once a regime-vector substrate exists (depends on CANDIDATE-B).
+3. **CANDIDATE-C -> Q-061** (REGISTERED). `claim_type: open_question`,
+   `epistemic_category: answer_state`. *"Is a maladaptive depressive network-regime (MECH-367)
+   reversible by REE's repair machinery, or does chronicity lock the regime past a threshold
+   (RA-001)?"* `depends_on` MECH-367 / MECH-124 / INV-034 / RA-001. Resolvable in REE only once the
+   MECH-367 vector substrate exists; do not queue a V3 experiment against it.
 
-4. **CANDIDATE-D (cross-repo, NOT a REE claim):** depression-analogue AI cognitive-failure mode
-   (persistent low action-initiation despite available goals; negative-evaluation loops;
-   future-trajectory suppression; excessive failure-generalisation) -- belongs in
-   `Latent-Fields/ai-cognitive-failure-taxonomy`, handled with explicit anti-anthropomorphic
-   guardrails (the analogue is *network-state failure in trajectory generation and action
-   readiness*, NOT mood/sadness). Off REE critical path entirely.
+4. **CANDIDATE-D -- NOT registered in claims.yaml (cross-repo).** The depression-analogue AI
+   cognitive-failure mode (persistent low action-initiation despite available goals;
+   negative-evaluation loops; future-trajectory suppression; excessive failure-generalisation)
+   belongs in `Latent-Fields/ai-cognitive-failure-taxonomy`, handled with explicit
+   anti-anthropomorphic guardrails (the analogue is *network-state failure in trajectory generation
+   and action readiness*, NOT mood/sadness). The REE `EXT-` series (LLM external failure modes) is
+   the in-registry sibling pattern, should that taxonomy ever fold back. Per the user's selection,
+   D stays out of `claims.yaml`.
 
-**Do NOT register any of these without (a) the user's explicit decision and (b) tracing the primary
-peer-reviewed publication behind the Neuroscience News item.**
+**Caveat carried into the claims:** RA-001's notes flag that the underlying peer-reviewed paper was
+not located (press-summary verification only) -- trace it before citing the 24-month threshold /
+precuneus locus as paper-verified.
 
 ---
 

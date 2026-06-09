@@ -37937,3 +37937,94 @@
     - MECH-121
   location: docs/architecture/autobiographical_temporality_and_future_simulation.md#q-060
   notes: "From the hyperthymesia intake (raw thought's REE-specific hypothesis: a four-way split of semantic / task / autobiographical-event / prospective-autobiographical-simulation memory). REE currently owns only the episodic<->semantic axis via MECH-121 (NREM SWR episodic->semantic transfer) and the orthogonal stored-vs-active distinction (INV-037/INV-038); there is no claim asserting autobiographical event memory as a distinct type. Sub-questions: (1) does a distinct autobiographical layer earn its keep, or is it a tag on episodic content? (2) how does residue attach to autobiographical memories without contaminating imagined futures (ties to MECH-365)? (3) where is the boundary between replay, counterfactual simulation, and future trajectory planning? epistemic_category set substrate_conditional EXPLICITLY (overriding open_question -> answer_state) so narrow_open_question does NOT fire -- this is a V4-parked question awaiting the ARC-085 substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical path. DO NOT queue an experiment against this in V3."
+- id: RA-001
+  title: "Long-term clinical depression involves a chronicity-dependent reversal of large-scale network coupling: past a ~24-month chronicity threshold, the relationship between symptom severity and Central-Executive-Network (CEN) <-> Default-Mode-Network (DMN, precuneus) functional connectivity reverses sign (non-chronic: stronger CEN-DMN coupling at low severity, weaker at high; chronic: connectivity strengthens as symptoms worsen, co-occurring with entrenched rumination). The depressive brain-state is duration-indexed, not a single static regime."
+  claim_type: research_anchor
+  subject: clinical.depression_network_coupling_reversal
+  polarity: asserts
+  status: candidate
+  epistemic_category: out_of_domain
+  registered: "2026-06-09"
+  location: docs/architecture/depressive_network_regimes.md#ra-001
+  source:
+    - https://neurosciencenews.com/brain-network-connectivity-mdd-30745/
+    - docs/thoughts/2026-06-06_clinical_depression_network_connectivity_reversal.md
+    - evidence/planning/thought_intake_2026-06-06_clinical_depression_network_connectivity_reversal.md
+  notes: >
+    External empirical anchor for REE's clinical-depression model, NOT a REE substrate claim --
+    epistemic_category out_of_domain: the test domain is a clinical fMRI cohort; no REE substrate
+    at any level distinguishes named large-scale networks (CEN/DMN). First of the RA- (research
+    anchor) prefix; claim_type research_anchor is sanctioned by docs/architecture/v4_spec.md
+    ("Out-of-domain claims ... belong as research_anchor / literature_synthesis claim types").
+    Source VERIFIED at press-summary level (Neuroscience News, "Long-Term Depression Reverses
+    Brain Network Connectivity", https://neurosciencenews.com/brain-network-connectivity-mdd-30745/);
+    underlying peer-reviewed paper NOT located at registration -- treat the 24-month threshold +
+    precuneus locus as press-reported, not paper-verified. PRECISION: "reverses" = a cross-sectional
+    reversal of the connectivity-vs-severity relationship between non-chronic and chronic cohorts,
+    NOT a demonstrated therapeutic reversibility (that is the open question Q-061). GUARDRAIL: this
+    is long-term CLINICAL depression, NOT synaptic long-term depression (LTD). Grounds the existing
+    REE depression cluster (MECH-088 four-plane psychiatric profile incl the psychosis/depression
+    distinction; INV-034 depressive attractor / goal-maintenance failure; MECH-124 replay-driven
+    option-space contraction; Q-021 anhedonia/flatness; MECH-082/086 locked-in avoidant brain) and
+    motivates MECH-367 (the network-regime vector) + Q-061 (reversibility). Does not contradict any
+    existing claim; corroborates the cluster. Reaped from the 2026-06-06 clinical-depression intake.
+- id: MECH-367
+  title: "The depressive failure mode is carried by a multi-axis network-regime VECTOR, not a scalar low-mood/low-reward value: depressive_regime_risk = f(future_trajectory_access, goal_stream_coupling, residue_load/self_weighting, rumination_loop_gain, action_threshold/energy_budget, social_affordance_access, offline_repair_quality). The depressive state is defined by the JOINT configuration of these coupling/access axes and is self-maintaining; scalar mood/reward is an insufficient representation."
+  claim_type: mechanism_hypothesis
+  subject: failure_modes.depressive_network_regime_vector
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - INV-034
+    - MECH-124
+    - Q-021
+    - MECH-088
+    - MECH-082
+    - RA-001
+  location: docs/architecture/depressive_network_regimes.md#mech-367
+  notes: >
+    The genuinely-new REE-architectural claim from the clinical-depression intake. REE already
+    owns each axis individually -- INV-034 (goal_stream_coupling + future_trajectory_access; the
+    depressive attractor = goal-maintenance failure, EXQ-237a), MECH-124 (residue_load +
+    rumination_loop_gain + offline_repair_quality; replay-driven option-space contraction), Q-021
+    (action_threshold / anhedonia), MECH-082/086 (future-trajectory inaccessibility, locked-in
+    avoidant brain) -- but NO existing claim COMPOSES them into one weighted vulnerability vector
+    whose joint configuration IS the regime. This claim asserts that composition. Empirical anchor
+    RA-001 (duration-dependent CEN-DMN coupling reversal) motivates treating the regime as a
+    coupling-structure vector rather than a scalar. epistemic_category substrate_conditional: the
+    axes exist piecemeal in V3 but the joint-vector read-out is not built, and there is no named
+    large-scale-network coupling substrate; V4/V5, off the V3 / GAP-7 critical path. DO NOT build in
+    V3 until routed by experiment. PRECISION GUARDRAIL: keep the depression failure mode distinct
+    from psychosis (MECH-088 NA-collapse + DA aberrant-salience profile; tag-misassignment
+    MECH-094/115) and confabulation (MECH-094 tag-loss); "rumination" here is the depressive
+    recurrent-loop sense (MECH-124), not psychotic content-intrusion. Does not promote/demote any
+    existing claim. Reaped from the 2026-06-06 clinical-depression intake.
+- id: Q-061
+  title: "Is a maladaptive depressive network-regime (MECH-367) REVERSIBLE -- reconfigurable by REE's existing repair machinery (offline integration / MECH-124 replay rebalancing, decommitment from ruminative loops, re-access to social affordances, goal-stream re-coupling) -- or does chronicity lock the regime past a threshold (RA-001) such that the repair routes that work early fail or reverse-sign late?"
+  claim_type: open_question
+  subject: failure_modes.depressive_regime_reversibility
+  polarity: open
+  status: candidate
+  epistemic_category: answer_state
+  registered: "2026-06-09"
+  depends_on:
+    - MECH-367
+    - MECH-124
+    - INV-034
+    - RA-001
+  location: docs/architecture/depressive_network_regimes.md#q-061
+  notes: >
+    From the clinical-depression intake. RA-001 shows the connectivity-vs-severity relationship
+    REVERSES sign past a ~24-month chronicity threshold, but demonstrates only a cross-sectional
+    cohort reversal, NOT therapeutic reversibility -- so whether REE's repair machinery can
+    reconfigure a chronic depressive regime is genuinely open. The sharp sub-question is
+    duration-dependence: do offline-integration / decommitment / social-re-access repair routes
+    that reconfigure an EARLY depressive regime still work LATE, or does the MECH-124 self-
+    amplifying consolidation loop + the RA-001 coupling reversal make late repair require a
+    different mechanism? answer_state (a question, not an assertion); resolvable in REE only once
+    the MECH-367 vector substrate exists (V4/V5). Off the V3 critical path -- DO NOT queue a V3
+    experiment against this. Hold the anti-overclaim guard: do not assert depression is "merely a
+    reversible software state." Reaped from the 2026-06-06 clinical-depression intake.
