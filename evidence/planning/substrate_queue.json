@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "implement-substrate-mech045-objectfile-20260609T1842Z",
-  "last_updated_utc": "2026-06-09T19:00:09Z",
+  "last_updated_utc": "2026-06-09T19:07:30Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -3807,9 +3807,15 @@
           "detail": "Root cause (code trace + empirical probe 2026-06-09, NOT budget): the curriculum trains ONLY E1 + E2.world_forward; E3.harm_eval_head(z_world) -- the harm cost scoring every trajectory -- is a near-constant ~0.523 (random init, range [0.522,0.524] over 300 states), z_harm output is constant, env _harm_signal is discarded, so the agent navigates a RANDOM harm landscape and dies handed the reef (survival slope -0.94 steps/ep, 24/25 early deaths, median 23 vs gate 75). FIX (FULL scope, user-confirmed): train the existing-but-untrained harm pathway in P0+Stage-H -- (1) E3.harm_eval_head + z_world encoder co-train on hazard-proximity (SD-018 semantics; load-bearing), (2) HarmEncoder + harm_eval_z_harm_head (SD-010), (3) AffectiveHarmEncoder via compute_harm_accum_loss (SD-011; trains the threat signal MECH-279/SD-058/SD-059 key on), (4) E2_harm_s forward (ARC-033) on detached z_harm_s. Behind scaffold_train_harm_pathway (default False -> bit-identical). 97/97 scaffold contracts (+6 C15) + 7/7 preflight PASS. Activation smoke: harm ON -> survival_gate_passed=True, median_last_window=80.0 (vs OFF 23, gate 75), slope +0.19. ree_core UNTOUCHED (calls existing heads).",
           "validation_experiment": "V3-EXQ-603k",
           "ready_after": "V3-EXQ-603k clears Stage-H G_H>=2/3 (median last-window>=75, nav-to-safety handed) + non-vacuity (harm_eval discriminativeness lifts) + HARM_OFF arm reproduces G_H~0"
+        },
+        {
+          "utc": "2026-06-09T19:07:00Z",
+          "session": "governance-fold-603k-20260609T1906Z",
+          "action": "V3-EXQ-603k Stage-H harm-pathway readiness PASS recorded (survival/hazard leg validated in isolation)",
+          "detail": "V3-EXQ-603k (claim_ids=[], diagnostic, non_contributory; reviewed 2026-06-09) is a clean NON-VACUOUS PASS validating the 2026-06-09 harm-pathway training amend: ARM_HARM_ON_NAV harm pathway trained 6242 optimizer steps; harm_eval(z_world) range lifted to 0.133 (vs the flat ~0.002 603i defect); ARM_HARM_OFF_NAV (the 603i nav positive control) still dies (G_H frac 0.0); load-bearing ARM_HARM_ON_NAV_G_H clears 2/3; criteria_non_degenerate all true. This resolves the 603i PRIMARY nav/survival-competence ceiling AT THE HARM-PATHWAY LEVEL and, with V3-EXQ-603j PASS (safety-half trained-signal ready), unblocks the full SD-059/MECH-358 escape-affordance-bridge behavioural retest (queued via chip) + the GAP-2 survival-leg cohort. READY STAYS FALSE: 603k is a narrow harm-pathway-survival readiness probe (ARM_HARM_ON/OFF spawn-in-reef with nav-control), NOT the full scaffolded curriculum gate (G1 foraging >=2/3 AND G2 survival >=2/3 AND G3 ecological >=2/3 in one run, per the entry's ready criterion). The survival leg that was the sole remaining GAP-2 blocker is now strongly de-risked, but the full three-leg gate re-validation with scaffold_train_harm_pathway ON is owed before ready flips."
         }
       ],
-      "last_seen_session": "implement-substrate-stageh-harm-pathway-20260609T0456Z",
+      "last_seen_session": "governance-fold-603k-20260609T1906Z",
       "priority": 1,
       "ready": false,
       "sd_id": "scaffolded_sd054_onboarding",
