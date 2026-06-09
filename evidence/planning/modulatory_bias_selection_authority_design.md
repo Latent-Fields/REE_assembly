@@ -122,6 +122,25 @@ This ensures:
 
 All of these mechanisms now have bounded authority at selection via this substrate.
 
+**Developmental framing (compass) -- added 2026-06-09:**
+- The CA3 developmental finding (Vargas-Barroso/Watson/Navas-Olive/Schlogl/Jonas, *Nature
+  Communications* 2026, s41467-026-71914-x; intake
+  [thought_intake_2026-06-06_ca3_development_sparse_structured_connectivity.md](thought_intake_2026-06-06_ca3_development_sparse_structured_connectivity.md))
+  is the biological mirror of this doc's Problem Statement. **Immature** CA3 lets a *single
+  strong synapse* trigger a postsynaptic spike (single-strong-cue dominance -- exactly the
+  failure regime this substrate bounds: a fixed-magnitude bias channel that can swing argmin on
+  its own). **Mature** CA3 requires *spatial summation of several weaker inputs* (convergent
+  multi-cue selection -- the regime gap-relative rescaling is trying to produce: bounded
+  authority, no single channel dominating by raw magnitude alone). The "tabula plena -> pruning"
+  trajectory is the developmental route between the two.
+- **Use as a diagnostic lens** when tuning `modulatory_authority_gain` and the authority bound:
+  the target is convergent-weak-input arbitration, not max-single-cue. A symptom of getting it
+  wrong in the *over*-correction direction is a single rescaled bias channel newly dominating
+  selection (immature single-cue authority re-introduced at the modulatory stage).
+- This is a **V4-leaning compass note, NOT a claim or an experiment.** Off the V3 critical path;
+  do not register a claim or queue an experiment from it. It is recorded here (rather than left
+  in the intake's Next-Steps) so it surfaces to whoever next tunes selection authority.
+
 ---
 
 ## Commit Log

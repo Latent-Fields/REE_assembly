@@ -206,9 +206,12 @@ the primary issue is developmental memory architecture.
 
 1. **(Optional, if elevated)** Quantitative source pass: pull the per-stage connection-probability
    / EPSP-summation numbers from the Nature Comms article to anchor any future architecture note.
-2. **(Recommended, V3-relevant)** When next touching the cue-authority / rule-apprehension /
-   behavioural-diversity work, carry the **convergent-weak-input vs single-strong-cue** lens as a
-   diagnostic framing -- do NOT open a new claim line for it.
+2. **(DONE 2026-06-09, V3-relevant)** The **convergent-weak-input vs single-strong-cue** lens was
+   folded into the selection-authority work as a durable cross-reference: see the "Developmental
+   framing (compass)" block in
+   [modulatory_bias_selection_authority_design.md](modulatory_bias_selection_authority_design.md)
+   Related Work. It is a diagnostic lens for tuning `modulatory_authority_gain`, NOT a new claim
+   line (none opened).
 3. **(Deferred, V4)** If/when MECH-120 (SHY) or the play-mode exploratory substrate is built,
    revisit whether a *developmental* subtractive-sparsification stage should amend ARC-019.
 4. **(Compass)** Leave the raw thought's proposed
