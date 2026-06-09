@@ -4184,6 +4184,10 @@
       },
       "seed_policy": "distinct_seeds",
       "status": "blocked_substrate",
+      "blocked_by": [
+        "V3-EXQ-657-readiness"
+      ],
+      "blocked_note": "Updated 2026-06-09T19:26Z. Reason shifted from no-substrate to readiness-FAIL. The multi_content_theta_packet substrate landed + is genuinely EVAL-WIRED (observe() in _e1_tick, observe_action_proposal()+seal() in _e3_tick -> agent.last_theta_packet, compose_e3_bias() in select_action; flag use_multi_content_theta_packet). BUT the claim-free discriminative-readiness gate V3-EXQ-657 ran 2026-06-09T19:07Z and FAILed (substrate_not_ready_requeue): G1 vintage-heterogeneity inert 0/3 seeds (MECH-269b V_s vintaging produces single-vintage packets) AND C1 joint!=alternation 0/3 AND C2 joint!=shuffled 0/3 (conjunctive coherence joint~=alt~=shuffled; per-seed deltas ~0.007 << C_MARGIN 0.05). A claim-weighting primary-vs-ablation probe (claim_ids=[MECH-294]) would be VACUOUS -- the binding-mode contrast it depends on is currently degenerate. Per the MECH-294 2026-04-26 governance hold, the behavioural-evidence successor stays gated until V3-EXQ-657 (or a fixed 657a) PASSes per the design-memo S7.3 grid. Next step is substrate enrichment (diagnose-errors + failure-autopsy of the 657 cluster + implement-substrate on the V_s-vintaging / conjunctive-coherence wiring), NOT this probe.",
       "suggested_experiment_type": "claim_probe_mech_294",
       "target_repo": "ree-v3",
       "why_now": [

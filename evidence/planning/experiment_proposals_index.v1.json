@@ -1778,6 +1778,10 @@
       "proposal_id": "EXP-0120",
       "proposal_type": "experimental",
       "status": "blocked_substrate",
+      "blocked_by": [
+        "V3-EXQ-657-readiness"
+      ],
+      "blocked_note": "Updated 2026-06-09T19:26Z. Substrate eval-wired but V3-EXQ-657 discriminative-readiness gate FAILed (substrate_not_ready_requeue): G1 V_s vintaging inert 0/3 + C1 joint!=alternation 0/3 + C2 joint!=shuffled 0/3 (coherence joint~=alt~=shuffled, deltas ~0.007 << margin 0.05). Claim-weighting probe would be vacuous; successor stays gated on 657 (or 657a) PASS. Fix is substrate enrichment, not this probe.",
       "suggested_experiment_type": "claim_probe_mech_294",
       "target_repo": "ree-v3",
       "why_now": [
