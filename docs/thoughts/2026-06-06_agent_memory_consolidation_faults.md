@@ -1,4 +1,5 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_agent_memory_consolidation_faults.md
 Source email date: 2026-05-17
 Source email subject: REE Illinois+ Tsinghua University and other labs study finds that LLM agents still have unreliable memory...
 Source saved-item attribution: Daniel Golden
