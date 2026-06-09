@@ -1,4 +1,9 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_learning_onset_single_connection_gate.md
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_learning_onset_single_connection_gate.md
+
 Source email date: 2026-05-14
 Source email subject: REE Single Brain Connection Pinpointed as the Starting Point of Learning - Neuroscience News
 Source saved-item attribution: Daniel Golden
