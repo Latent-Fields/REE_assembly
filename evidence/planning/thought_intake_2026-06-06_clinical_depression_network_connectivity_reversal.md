@@ -43,11 +43,18 @@ This intake **locates and verifies the article** via web search:
   framing must be read as a *hypothesis the finding makes plausible*, not as something the source
   demonstrates. Keep this separation when any later architecture note cites this.
 
-**What could NOT be independently re-verified at intake:** the underlying peer-reviewed paper
-(authors, journal, DOI, exact sample sizes, the precise statistics behind the 24-month threshold)
-was not located -- only the Neuroscience News press summary. A future architecture-note author who
-wants quantitative anchors must trace the primary publication behind this press item. Treat the
-quantitative specifics (24-month threshold, precuneus locus) as press-reported, not paper-verified.
+**Primary peer-reviewed paper -- TRACED + VERIFIED 2026-06-09** (resolves the intake's original
+"not located" gap): Zanao T., Salvan P., Razza L. B., et al., "Chronicity moderates the impact of
+severity on central executive-default mode network functional interactions in depression,"
+*Scientific Reports* (2026), DOI **10.1038/s41598-026-40364-2**
+(https://www.nature.com/articles/s41598-026-40364-2 ; preprint medRxiv 10.64898/2026.01.28.26345027).
+- **Sample:** 46 patients (31 female, mean age 40.5); whole-brain network modelling + VBM.
+- **Severity:** Hamilton Depression Rating Scale. **Chronicity:** current episode > 24 months.
+- **Result:** chronicity *moderates* the severity->connectivity relationship. Non-chronic patients:
+  CEN-precuneus(DMN) connectivity DECREASES with severity (stronger at low severity, weaker at high).
+  Chronic patients: the reverse (connectivity INCREASES with severity).
+- The 24-month threshold and precuneus locus are therefore **paper-verified**, not merely press-reported.
+  (The Neuroscience News headline's "reverses" = this chronicity-moderated sign change between cohorts.)
 
 ---
 
@@ -174,8 +181,8 @@ promote without the substrate/evidence it lacks. Anchor doc:
    chronicity-dependent reversal of large-scale network coupling (CEN-DMN sign flip past a ~24-month
    threshold); the depressive brain-state is duration-indexed, not unitary."* First of the new `RA-`
    (research-anchor) prefix -- `research_anchor` is the claim_type `v4_spec.md` names for
-   out-of-domain anchors. Source verified at press-summary level only (peer-reviewed paper not
-   located); recorded in the claim notes.
+   out-of-domain anchors. Primary paper TRACED + verified (Zanao et al., *Scientific Reports* 2026,
+   DOI 10.1038/s41598-026-40364-2); recorded in the claim notes + source.
 
 2. **CANDIDATE-B -> MECH-367** (REGISTERED). `claim_type: mechanism_hypothesis`,
    `epistemic_category: substrate_conditional`, `implementation_phase: v4`. *"The depressive failure
@@ -201,9 +208,10 @@ promote without the substrate/evidence it lacks. Anchor doc:
    the in-registry sibling pattern, should that taxonomy ever fold back. Per the user's selection,
    D stays out of `claims.yaml`.
 
-**Caveat carried into the claims:** RA-001's notes flag that the underlying peer-reviewed paper was
-not located (press-summary verification only) -- trace it before citing the 24-month threshold /
-precuneus locus as paper-verified.
+**Source status:** RA-001's primary peer-reviewed paper was TRACED + verified 2026-06-09 (Zanao et
+al., *Scientific Reports* 2026, DOI 10.1038/s41598-026-40364-2; see Section 0) -- the 24-month
+threshold and precuneus locus are now paper-verified. The original "source-check pending" gap is
+closed.
 
 ---
 

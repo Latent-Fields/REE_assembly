@@ -25,10 +25,15 @@ Default-Mode-Network (DMN, precuneus) functional connectivity reverses sign:
 
 The depressive brain-state is **duration-indexed**, not a single static regime.
 
-**Status of the source.** Verified at the press-summary level (Neuroscience News,
-[Long-Term Depression Reverses Brain Network Connectivity](https://neurosciencenews.com/brain-network-connectivity-mdd-30745/)).
-The underlying peer-reviewed publication was **not** located at registration; treat the
-24-month threshold and precuneus locus as press-reported, not paper-verified.
+**Status of the source.** Press item: Neuroscience News,
+[Long-Term Depression Reverses Brain Network Connectivity](https://neurosciencenews.com/brain-network-connectivity-mdd-30745/).
+**Primary peer-reviewed paper TRACED + verified (2026-06-09):** Zanao T., Salvan P., Razza L. B.,
+et al., "Chronicity moderates the impact of severity on central executive-default mode network
+functional interactions in depression," *Scientific Reports* (2026), DOI
+[10.1038/s41598-026-40364-2](https://www.nature.com/articles/s41598-026-40364-2) (preprint medRxiv
+10.64898/2026.01.28.26345027) -- 46 patients, chronicity = episode > 24 months, HAM-D severity;
+CEN-precuneus(DMN) connectivity sign-moderated by chronicity. The 24-month threshold and precuneus
+locus are paper-verified.
 
 **Precision on "reverses".** This is a *cross-sectional* reversal of the
 connectivity-vs-severity relationship between non-chronic and chronic cohorts. It is **not** a
