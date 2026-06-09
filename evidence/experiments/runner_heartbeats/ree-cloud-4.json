@@ -1,48 +1,31 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-09T20:34:01Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-603l",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-652",
-      "result": "PASS",
-      "completed_at": "2026-06-08T05:56:39.346759+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-657",
-      "result": "FAIL",
-      "completed_at": "2026-06-09T19:07:08.966365+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-658",
-      "result": "PASS",
-      "completed_at": "2026-06-09T19:07:12.017186+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-657a",
-      "result": "PASS",
-      "completed_at": "2026-06-09T19:57:29.093092+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-659",
-      "result": "PASS",
-      "completed_at": "2026-06-09T20:07:52.211261+00:00"
-    }
+  "last_tick_utc": "2026-06-09T21:36:39Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-569f",
+  "current_exq_started_utc": "2026-06-09T21:35:43.733274+00:00",
+  "current_title": "ARC-065 GAP-A R1.b FP-2 matched-entropy action-contrastive behavioural falsifier on the V3-EXQ-649-validated shared-channel stack (REEConfig.candidate_summary_source). Successor to the 569 matched-entropy FP-2 lineage (frontier 569e); supersedes V3-EXQ-569d (pre-649, collapsed-proposer consumption). 3-arm single-variable design, 3 seeds: ARM_0_PROPOSER (candidate_summary_source=proposer, temperature=1.0; pre-649 baseline) / ARM_1_E2WF (candidate_summary_source=e2_world_forward, temperature=1.0; the 649 GAP-A fix, under test) / ARM_2_MATCHED_NOISE (proposer, temperature=2.5; FP-2 matched-entropy noise control). SP-CEM + shared E3-side bias channels (lateral_pfc + mech295) ON; SD-056 online contrastive trained on every arm with the 643a rollout-norm clamp ON. PRIMARY DV = selected_action_class_entropy: R1.b PASS = ARM_1 strictly above BOTH ARM_2_MATCHED_NOISE and ARM_0_PROPOSER per matched seed on >=2/3 seeds, with the ARM_1 consumed-summary spread readiness floor (the 649 statistic, 0.05) and the C1 e2.world_forward prediction-spread floor (0.03) both met.",
+  "current_claim_id": "ARC-065",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_PROPOSER",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 80,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 55,
+  "seconds_remaining": 15000,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_PROPOSER"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 666,
-  "runner_version": "r2945 4ccdfdf 2026-06-09 (running r2938 0a9df8e)",
+  "runner_version": "r2949 53d4c75 2026-06-09 (running r2945 4ccdfdf)",
   "gpu": {
     "available": false
   },
