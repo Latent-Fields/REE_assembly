@@ -220,44 +220,43 @@ would cross-reference; none are modified by this intake.
 
 ---
 
-## 5. Candidate claims — FOR FUTURE REGISTRATION ONLY (none registered)
+## 5. Candidate claims — REGISTERED 2026-06-09 (per user: registration is the point of intake)
 
-Per the raw note's section-9 guardrail and this session's scope, **nothing is written to
-`claims.yaml`.** These are recorded so a later registration pass (with user go-ahead) has the
-shape ready. All would be `status: candidate`, off the V3/GAP-7 critical path. The note's own
-classification ("should NOT be promoted directly to an invariant") is respected.
+Per user direction ("claims registration is the point of thought intake. You should do this"),
+the genuinely-new candidates A–D were **registered into `claims.yaml`** at `status: candidate`,
+wired into `depends_on`, in a single pass with the home doc
+`docs/architecture/psychiatric_failure_axes.md`. All are promotion-suppressed by epistemic category;
+none promote/demote any existing claim. The note's "should NOT be promoted directly to an invariant"
+classification is honoured (candidate + substrate_conditional/out_of_domain/answer_state). Candidate
+E is cross-repo and lives in `Latent-Fields/ai-cognitive-failure-taxonomy`, NOT `claims.yaml`.
 
-- **CANDIDATE-A (research_anchor, `out_of_domain`).** The Grotzinger 2025 _Nature Genetics_ finding
-  (five shared genomic factors / 238 variants across 14 disorders) as an external corroboration
-  anchor for the surface-cluster principle. `out_of_domain` because it is a human genetics cohort
-  result with no REE test surface. Would mirror the RA-001 pattern (research_anchor claim_type)
-  used for the depression network-regime intake. Cite DOI 10.1038/s41588-025-02494-7.
+- **CANDIDATE-A → `RA-002`** (research_anchor, `out_of_domain`). The Grotzinger 2025 _Nature
+  Genetics_ finding (five shared genomic factors / 238 variants across 14 disorders) as an external
+  corroboration anchor for the surface-cluster principle. Mirrors the RA-001 pattern. **REGISTERED.**
 
-- **CANDIDATE-B (architecture note / design_decision).** REE failure-mode documentation should
-  carry an explicit **two-axis index**: named failure mode × transdiagnostic vulnerability axis.
-  Would anchor a future `docs/architecture/psychiatric_failure_axes.md` and formalize the
-  candidate axis set in §3. Builds on IMPL-005 + the FAILURE coordinate-system doc + INV-061;
-  *amends* the taxonomy structure rather than asserting a new mechanism.
+- **CANDIDATE-B → `ARC-086`** (architectural_commitment, status candidate, `substrate_conditional`,
+  v4/v4_v5). The explicit **two-axis index**: named failure mode × transdiagnostic vulnerability
+  axis; syndromes as emergent weighted clusters over axes. Home doc `psychiatric_failure_axes.md`;
+  depends_on IMPL-005 / INV-061 / MECH-343 / RA-002. **REGISTERED.**
 
-- **CANDIDATE-C (open_question, `answer_state` or `substrate_conditional`).** Should REE represent a
-  syndrome as a **weighted vector over vulnerability axes** (with comorbidity = axis overlap),
-  rather than as a diagnosis-specific locus mapping? Open question about *representation*, not a
-  mechanism assertion. depends_on the future CANDIDATE-B note + INV-061 + MECH-343.
+- **CANDIDATE-C → `Q-064`** (open_question, `answer_state`). Should REE represent a syndrome as a
+  **weighted vector over vulnerability axes** (comorbidity = axis overlap)? depends_on ARC-086 /
+  INV-061 / MECH-343. **REGISTERED.**
 
-- **CANDIDATE-D (open_question / mechanism_hypothesis, p-factor analogue).** Does REE have — or
-  need — an explicit **global-instability / broad-control-plane-vulnerability** axis (the p-factor
-  analogue) that loads on every failure mode, distinct from any single-axis failure? This is the
-  one piece with **no existing home** in the registry. Likely `substrate_conditional` /
-  `implementation_phase: v4`. depends_on ARC-005 control-plane family.
+- **CANDIDATE-D → `MECH-371`** (mechanism_hypothesis, `substrate_conditional`, v4/v4_v5). The
+  **global-instability / broad-control-plane-vulnerability** axis (p-factor analogue) — the one
+  piece with **no existing home**. depends_on ARC-086 / ARC-005 / RA-002. **REGISTERED.**
 
-- **CANDIDATE-E (cross-repo — NOT `claims.yaml`).** A `docs/latent_vulnerability_axes.md` layer (or
-  an issue) in `Latent-Fields/ai-cognitive-failure-taxonomy` adding the axis layer beneath its
-  named entries (confabulatory completion, belief fixation, provenance collapse, etc.). Stays in
-  that repo per the raw note's framing; recorded here only so the link is not lost.
+- **CANDIDATE-E (cross-repo — NOT `claims.yaml`).** A `docs/latent_vulnerability_axes.md` axis layer
+  in `Latent-Fields/ai-cognitive-failure-taxonomy` beneath its named entries (confabulatory
+  completion, belief fixation, provenance collapse, etc.). Handled in that repo this session.
 
-**Explicitly NOT proposed as candidates** (already owned — would duplicate): the surface-cluster
-principle itself (IMPL-005 / FAILURE doc / INV-061), the one-loop-many-failures structure
-(MECH-343), and any per-syndrome mechanism (all already mapped in §4).
+**Explicitly NOT registered** (already owned — would duplicate; depends_on cross-ref only): the
+surface-cluster principle itself (IMPL-005 / FAILURE coordinate-system doc / INV-061), the
+one-loop-many-failures structure (MECH-343), and any per-syndrome mechanism (all mapped in §4).
+The nine axes other than global-instability are NOT registered as new claims — they map onto owned
+substrate (see the §4 axis-substrate list and the ARC-086 home-doc table); only the p-factor axis
+(MECH-371) needed a new claim.
 
 ---
 

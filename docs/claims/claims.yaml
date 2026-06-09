@@ -38127,3 +38127,134 @@
     - MECH-285
   location: docs/architecture/plasticity_write_authority_gating.md#q-062
   notes: "Companion falsifier to MECH-368, reaped from the 2026-06-06 learning-onset intake. The decisive empirical question once a model-update substrate exists with an open online write channel: does per-event admission gating add anything over channel-gating (MECH-261) + provenance (MECH-094) + offline consolidation-priority (MECH-285)? epistemic_category set substrate_conditional EXPLICITLY (overriding open_question -> answer_state) so narrow_open_question does NOT fire -- this is a V4-parked question awaiting the model-update/online-write substrate, not a V3-tractable one to narrow by experiment. Sub-questions: (1) is the gate one mechanism or per-pathway (world-model vs policy vs residue)? (2) is 'write-eligible' a held intermediate STATE with its own entry/exit, or just the salience tag re-read? (3) does goal_relevance belong in the gate, or is that double-counting z_goal salience? V4/V5; off the V3 critical path. DO NOT queue a V3 experiment against this."
+
+# Registered 2026-06-09 -- psychiatric-genetic-overlap / latent-failure-axes intake (saved item
+# "Mapping the genetic landscape across 14 psychiatric disorders"; primary source VERIFIED =
+# Grotzinger A. D. et al., "Genetic overlap across 14 psychiatric disorders", Nature Genetics 2025,
+# DOI 10.1038/s41588-025-02494-7). Reaped per user direction (registration IS the point of intake).
+# Cluster: RA-002 (genetic anchor) + ARC-086 (two-axis failure-mode index) + Q-064 (syndrome-as-
+# vector) + MECH-371 (p-factor analogue). NO promotion/demotion of any existing claim. Distinct
+# failure modes kept mechanistically separate (psychosis != confabulation != OCD != depression).
+- id: RA-002
+  title: "Clinically distinct psychiatric diagnoses share a small set of latent genomic factors that cut across diagnostic boundaries: large-scale genomic structural-equation modelling across 14 childhood- and adult-onset psychiatric disorders (>1 million individuals) finds that the majority of case-vs-control genetic variance is captured by FIVE shared genomic factors (Compulsive; Schizophrenia-bipolar / psychotic-mood; Neurodevelopmental; Internalizing; Substance-use) spanning 238 variants, with factor-specific biology (e.g. oligodendrocyte genes enriched in the Internalizing factor) acting early in brain development. Psychiatric categories are surface expressions over overlapping latent dimensions, not genetically discrete kinds."
+  claim_type: research_anchor
+  subject: clinical.psychiatric_genomic_factor_overlap
+  polarity: asserts
+  status: candidate
+  epistemic_category: out_of_domain
+  registered: "2026-06-09"
+  location: docs/architecture/psychiatric_failure_axes.md#ra-002
+  source:
+    - "Grotzinger A. D., et al. Genetic overlap across 14 psychiatric disorders. Nature Genetics (2025). DOI 10.1038/s41588-025-02494-7. https://www.nature.com/articles/s41588-025-02494-7"
+    - https://news.harvard.edu/gazette/story/2025/12/new-research-finds-5-genetic-signatures-shared-by-14-psychiatric-disorders/
+    - https://www.massgeneralbrigham.org/en/about/newsroom/press-releases/similar-genetic-factors-underlie-multiple-psychiatric-disorders
+    - docs/thoughts/2026-06-06_psychiatric_genetic_overlap_latent_failure_axes.md
+    - evidence/planning/thought_intake_2026-06-06_psychiatric_genetic_overlap_latent_failure_axes.md
+  notes: >
+    External empirical anchor, NOT a REE substrate claim -- epistemic_category out_of_domain: the
+    test domain is a human-genetics cohort; no REE substrate at any level distinguishes genomic
+    factors, and this must NEVER be cited as REE mechanism evidence (claim_type research_anchor,
+    second of the RA- prefix after RA-001; sanctioned by docs/architecture/v4_spec.md for
+    out-of-domain anchors). Source VERIFIED 2026-06-09 (raw intake had it source-check-partial; the
+    saved share.google link was never opened): the primary paper is Grotzinger et al., Nature
+    GENETICS 2025 (the saved item + popular coverage say "Nature"), DOI 10.1038/s41588-025-02494-7,
+    confirmed via the journal + Harvard Gazette + Mass General Brigham + Live Science + Washington
+    Post coverage; the paper itself was not read in full, so the five factor labels and 238-variant
+    count are from the abstract + four press summaries. GUARDRAIL (anti-determinism, per the intake's
+    section-6/9): genetic overlap is NOT proof diagnoses are meaningless, and individual presentations
+    cannot be read from polygenic factors -- the useful extraction is the SURFACE-CLUSTER principle
+    (categories are emergent clusters over overlapping latent axes), which REE already holds
+    (IMPL-005, the FAILURE-2026-02-12 coordinate-system doc, INV-061). This anchor MOTIVATES the
+    architectural axis layer (ARC-086), the syndrome-as-vector question (Q-064), and the p-factor
+    analogue (MECH-371); it does not contradict any existing claim. Reaped from the 2026-06-06
+    psychiatric-genetic-overlap intake.
+- id: ARC-086
+  title: "REE's failure-mode taxonomy is indexed on TWO axes simultaneously: (1) named failure mode (the existing mechanistically-distinct entries -- psychosis/hypothesis-tag loss, confabulation, derealization, OCD, depressive attractor, catatonia subtypes, etc.) AND (2) a finite, named set of cross-cutting LATENT VULNERABILITY AXES that span the named entries (precision/confidence allocation; commitment-threshold/action-release authority; provenance/source tagging; agency attribution; residue/consequence persistence; goal/salience/incentive coupling; self-other coupling; offline integration/replay; social-contagion/cross-agent coupling; global instability). Named clinical syndromes are emergent clusters -- weighted combinations -- over these axes, not primitive natural kinds; comorbidity is overlapping axis activation and pleiotropy is one mechanism loading multiple axes. The axis layer is an INDEXING layer, never a merging layer: it does not collapse mechanistically-distinct failure modes into one another."
+  claim_type: architectural_commitment
+  subject: failure_modes.transdiagnostic_vulnerability_axis_index
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - IMPL-005
+    - INV-061
+    - MECH-343
+    - RA-002
+  location: docs/architecture/psychiatric_failure_axes.md#arc-086
+  notes: >
+    The genuinely-new ORGANIZING contribution of the psychiatric-genetic-overlap intake. REE already
+    holds the surface-cluster STANCE -- IMPL-005 (computational-pathology failure-mode taxonomy), the
+    FAILURE-2026-02-12 coordinate-system doc ("orthogonal taxonomy organised by dynamical failure
+    geometry rather than historical narrative"), INV-061 ("different failure signatures of the same
+    undertrained mechanism"), and MECH-343/Q-056 (one loop, many syndrome-analogue failure modes) --
+    but there is NO registered, finite, named CROSS-CUTTING vulnerability-axis vocabulary as a second
+    formal index over the named failure modes. The FAILURE doc indexes by ARC component (ARC-001/003/
+    005/013/018), not by a transdiagnostic axis set. ARC-086 registers that axis vocabulary + the
+    two-axis simultaneous indexing as an architectural organizing commitment. epistemic_category set
+    substrate_conditional EXPLICITLY (overriding the architectural_commitment -> substrate_coherence
+    inference; same pattern as ARC-085): this is a CANDIDATE organizing principle, and the
+    syndrome-as-weighted-vector READ-OUT it implies (Q-064) has no substrate in V3 -- the documentation
+    indexing can begin now, but the vector substrate is V4/V5. Anchored by RA-002 (genetic-overlap
+    evidence that diagnoses share latent structure). PRECISION GUARDRAIL (per the intake + memory
+    feedback_psychosis_confabulation_distinction): two failure modes sharing an axis does NOT make them
+    the same failure -- psychosis (MECH-094/MECH-201), confabulation (MECH-094 recall/completion sense),
+    derealization (MECH-200), OCD (SD-034/045/046), depressive attractor (INV-053/054), and catatonia
+    subtypes (SD-036/MECH-279 vs MECH-343) stay mechanistically distinct. Does not promote/demote any
+    existing claim. Reaped from the 2026-06-06 psychiatric-genetic-overlap intake.
+- id: Q-064
+  title: "Should REE represent a clinical syndrome as a weighted VECTOR over the ARC-086 latent vulnerability axes (with comorbidity = axis-overlap and pleiotropy = one mechanism loading multiple axes), rather than as a diagnosis-specific locus mapping -- and if so, how is comorbidity represented without exploding the claim registry, and how is axis-predisposition (which axes are fragile) kept distinct from axis-expression (gated by REE's developmental / plasticity machinery)?"
+  claim_type: open_question
+  subject: failure_modes.syndrome_as_axis_vector_representation
+  polarity: open
+  status: candidate
+  epistemic_category: answer_state
+  registered: "2026-06-09"
+  depends_on:
+    - ARC-086
+    - INV-061
+    - MECH-343
+  location: docs/architecture/psychiatric_failure_axes.md#q-064
+  notes: >
+    The representation question from the psychiatric-genetic-overlap intake. Given ARC-086's axis
+    vocabulary, is a syndrome best modelled as a point/region in axis space (a weighted axis-failure
+    vector) rather than the current per-syndrome locus mappings in psychiatric_failure_modes.md?
+    answer_state (a question, not an assertion). The sharp sub-questions: (a) registry economy --
+    comorbidity as overlapping axis activation should NOT require a combinatorial blow-up of claim
+    entries; (b) the predisposition/expression factoring -- genetic-risk != inevitability maps to
+    axis-predisposition + environment + developmental timing + plasticity, so the representation must
+    separate "which axes are fragile" from "which failure mode is currently expressed". Resolvable in
+    REE only once the ARC-086 axis-vector substrate exists (V4/V5); off the V3 critical path -- DO NOT
+    queue a V3 experiment against this. Reaped from the 2026-06-06 psychiatric-genetic-overlap intake.
+- id: MECH-371
+  title: "A global-instability / broad control-plane vulnerability axis (a p-factor / general-psychopathology-factor analogue) loads across ALL failure modes: a single broad dimension of control-plane regulatory fragility -- instability in precision/gain/threshold setpoint regulation (ARC-005) rather than any one specific comparator or stream -- raises joint susceptibility to multiple failure modes at once, distinct from and orthogonal to any single-axis failure. This is the axis with no existing REE home; it predicts that a subset of agents/patients carry elevated risk across the whole failure-mode space rather than along one axis."
+  claim_type: mechanism_hypothesis
+  subject: failure_modes.global_instability_control_plane_vulnerability_axis
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-086
+    - ARC-005
+    - RA-002
+  location: docs/architecture/psychiatric_failure_axes.md#mech-371
+  notes: >
+    The one genuinely-new vulnerability AXIS from the psychiatric-genetic-overlap intake with no
+    existing claim home (the others map onto owned substrate: precision -> ARC-005/MECH-251; commitment
+    -> E3/MECH-090/342/SD-034; provenance -> MECH-094/037/INV-011; residue -> ARC-013/SD-010/011; goal/
+    salience -> INV-034/MECH-112/116/SD-012; self-other -> ARC-010; offline -> INV-045/049/MECH-121/273/
+    285). The p-factor analogue is the broad control-plane regulatory-stability dimension itself: REE has
+    the control plane (ARC-005 + the MECH-251 precision family) but no claim that a single broad
+    instability of setpoint regulation loads transdiagnostically. RA-002's finding that a large share of
+    cross-disorder genetic variance is shared (and the general-psychopathology / Caspi-Moffitt p-factor
+    literature) motivates the dimension. epistemic_category substrate_conditional / V4: there is no
+    substrate that exposes a measurable global control-plane-stability scalar in V3; off the V3 / GAP-7
+    critical path; DO NOT build in V3 until routed by an explicit version decision. PRECISION GUARDRAIL:
+    a global-instability axis does NOT erase the distinctness of the specific failure modes -- it is an
+    additional orthogonal loading, not a claim that all psychopathology is one thing. A brief
+    general-psychopathology-factor lit-pull (Caspi & Moffitt) would sharpen this before any promotion.
+    Does not promote/demote any existing claim. Reaped from the 2026-06-06 psychiatric-genetic-overlap
+    intake.
