@@ -33,3 +33,14 @@ persistent, consumer-readable wanted-object signal.
 
 See intake memo for the structured analysis, the 626 harness-bug finding, and the
 diagnostic ladder.
+
+---
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-01_goal_wanting_liking_stream_repair.md` (Stage-2 intake; planning only -- NO claims.yaml edits, all claim IDs PROPOSALS)
+- `evidence/planning/claim_gap_2026-06-01_goal_wanting_liking_stream.md`
+- `evidence/planning/literature_synthesis_2026-06-01_object_bound_incentive_salience.md`
+- `evidence/planning/goal_stream_repair_diagnostic_ladder_2026-06-01.md`
+- `evidence/planning/failure_autopsy_V3-EXQ-626_2026-06-01.md`
+- `docs/architecture/sd_057_object_bound_incentive_salience.md`
+- `evidence/planning/goal_pipeline_plan.md` (GAP-7 candidate)

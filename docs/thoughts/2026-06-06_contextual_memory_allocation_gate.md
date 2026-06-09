@@ -48,3 +48,9 @@ candidate claims + open questions in the Stage-2 intake linked above.
 Control plane (vmPFC / SD-033) -> hippocampal graph (ARC-007) write/allocation; pattern separation
 (MECH-147, V4); schema consolidation (MECH-272/273, INV-039, SD-017); write-gating (MECH-094/261);
 integration-vs-retrieval distinction (MECH-257, ARC-035).
+
+---
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-06_contextual_memory_allocation_gate.md` (Stage-2 structured intake; NOT promoted to claims)
+- `evidence/planning/memory_allocation_gate_candidate_claim_disposition_2026-06-06.md` (governance disposition; recommendation only)

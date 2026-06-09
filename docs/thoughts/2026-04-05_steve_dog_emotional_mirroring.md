@@ -125,3 +125,9 @@ happen to both target the same location.
 - **MECH-185** (candidate): Surprise-doubled approach gradient toward distressed other -- two
   simultaneous curiosity/approach gradients (own prediction error + leaked other-surprise)
   converge on approaching a distressed coupled agent.
+
+---
+
+Processed in:
+- `docs/claims/claims.yaml` (MECH-182, MECH-183, MECH-184, MECH-185)
+- `evidence/planning/thought_intake_2026-04-05_steve_dog_emotional_mirroring.md`

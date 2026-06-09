@@ -1,13 +1,13 @@
 # Thought Sweep Report
 
-Generated: `2026-06-09T20:52:56.344744Z`
+Generated: `2026-06-09T20:53:52.898842Z`
 
 | metric | count |
 |---|---|
 | total thought files | 127 |
 | processed | 125 |
 | unprocessed | 2 |
-| processed missing `Processed in` links | 6 |
+| processed missing `Processed in` links | 0 |
 
 ## Unprocessed Queue
 
@@ -16,12 +16,7 @@ Generated: `2026-06-09T20:52:56.344744Z`
 
 ## Processed Missing Links
 
-- `2026-04-05_steve_dog_emotional_mirroring.md`
-- `2026-04-06_steve_signal_legibility_language_bootstrap.md`
-- `2026-04-07_cosmic_ethical_threshold.md`
-- `2026-06-01_goal_wanting_liking_stream_repair.md`
-- `2026-06-06_agent_memory_consolidation_faults.md`
-- `2026-06-06_contextual_memory_allocation_gate.md`
+- _none_
 
 ## Processed Snapshot
 
@@ -89,9 +84,9 @@ Generated: `2026-06-09T20:52:56.344744Z`
 - `2026-04-01_Parietal_systems_thought.md` (3 link(s) in `Processed in`)
 - `2026-04-01_compressed_description_of_what_REE_is.md` (2 link(s) in `Processed in`)
 - `2026-04-01_love_hypothesis.md` (1 link(s) in `Processed in`)
-- `2026-04-05_steve_dog_emotional_mirroring.md` (0 link(s) in `Processed in`)
-- `2026-04-06_steve_signal_legibility_language_bootstrap.md` (0 link(s) in `Processed in`)
-- `2026-04-07_cosmic_ethical_threshold.md` (0 link(s) in `Processed in`)
+- `2026-04-05_steve_dog_emotional_mirroring.md` (2 link(s) in `Processed in`)
+- `2026-04-06_steve_signal_legibility_language_bootstrap.md` (2 link(s) in `Processed in`)
+- `2026-04-07_cosmic_ethical_threshold.md` (2 link(s) in `Processed in`)
 - `2026-04-07_dream_phenomenology_replay_types.md` (1 link(s) in `Processed in`)
 - `2026-04-07_phase_segregation_perception_imagination.md` (1 link(s) in `Processed in`)
 - `2026-04-08_wanting_proxy_goals_schema_binding.md` (1 link(s) in `Processed in`)
@@ -119,7 +114,7 @@ Generated: `2026-06-09T20:52:56.344744Z`
 - `2026-05-31_musings_on_V4.md` (1 link(s) in `Processed in`)
 - `2026-06-01_ProtoFeelings_implementation_timing.md` (1 link(s) in `Processed in`)
 - `2026-06-01_Therapy_and_Action_Pressure.md` (1 link(s) in `Processed in`)
-- `2026-06-01_goal_wanting_liking_stream_repair.md` (0 link(s) in `Processed in`)
+- `2026-06-01_goal_wanting_liking_stream_repair.md` (7 link(s) in `Processed in`)
 - `2026-06-01_plasticity_window_neuromodulators.md` (3 link(s) in `Processed in`)
 - `2026-06-03_difficulty_gated_proposal_entropy.md` (3 link(s) in `Processed in`)
 - `2026-06-04_Non_terminal_need_launch.md` (1 link(s) in `Processed in`)
@@ -128,11 +123,11 @@ Generated: `2026-06-09T20:52:56.344744Z`
 - `2026-06-05_Cross_Version_missing_bits.md` (1 link(s) in `Processed in`)
 - `2026-06-05_Grammar_and_LLMS_as_V5_primitive-mining_scaffolds.md` (1 link(s) in `Processed in`)
 - `2026-06-06_Candidate-differentiated_affective_gradients.md` (1 link(s) in `Processed in`)
-- `2026-06-06_agent_memory_consolidation_faults.md` (0 link(s) in `Processed in`)
+- `2026-06-06_agent_memory_consolidation_faults.md` (1 link(s) in `Processed in`)
 - `2026-06-06_ca3_development_sparse_structured_connectivity.md` (1 link(s) in `Processed in`)
 - `2026-06-06_clinical_depression_network_connectivity_reversal.md` (1 link(s) in `Processed in`)
 - `2026-06-06_competitive_interactions_cognifold_stability.md` (1 link(s) in `Processed in`)
-- `2026-06-06_contextual_memory_allocation_gate.md` (0 link(s) in `Processed in`)
+- `2026-06-06_contextual_memory_allocation_gate.md` (2 link(s) in `Processed in`)
 - `2026-06-06_hyperthymesia_autobiographical_temporality.md` (1 link(s) in `Processed in`)
 - `2026-06-06_laughter_cognitive_load_social_reconfiguration.md` (1 link(s) in `Processed in`)
 - `2026-06-06_learning_onset_single_connection_gate.md` (1 link(s) in `Processed in`)

@@ -150,3 +150,9 @@ not, then the language bootstrap requires building those states first.
 - **INV-057** (candidate): Cross-species signal legibility evidences functional specificity --
   when the same signal (yelp, whine) is legible across species, this is evidence that the
   underlying functional state is architecturally conserved, not conventionally learned.
+
+---
+
+Processed in:
+- `docs/claims/claims.yaml` (MECH-191, MECH-192, MECH-193, ARC-048, INV-057)
+- `evidence/planning/thought_intake_2026-04-06_steve_signal_legibility_language_bootstrap.md`

@@ -214,3 +214,8 @@ The incorrect extraction is:
 > compress all past experience into polished lessons and discard the original episodes.
 >
 > Of course REE has multiple "memory" like parts which may make this entire point somewhat moot
+
+---
+
+Processed in:
+- `evidence/planning/thought_intake_2026-06-06_agent_memory_consolidation_faults.md` (Stage-2 structured intake; candidate-claim seed, NOT registered in claims.yaml)
