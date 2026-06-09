@@ -1,4 +1,9 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_competitive_interactions_cognifold_stability.md
+
+Processed in:
+- evidence/planning/thought_intake_2026-06-06_competitive_interactions_cognifold_stability.md (2026-06-09; structured intake only, NO claims.yaml registration -- cognifold control-plane compass, off V3 critical path)
+
 Source email date: 2026-04-02
 Source email subject: REE: Competitive interactions shape mammalian brain network dynamics and computation | Nature Neuroscience
 Source saved-item attribution: Daniel Golden
