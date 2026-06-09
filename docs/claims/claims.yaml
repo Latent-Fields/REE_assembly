@@ -37766,3 +37766,114 @@
     - MECH-362
   location: docs/architecture/developmental_pruning_and_sparse_memory_cognifold.md#q-057
   notes: "From the CA3 developmental intake (see MECH-362 anchor). Sub-questions: (1) does REE-v3's cue-authority problem partly reflect immature single-cue authority rather than mature convergent-weak-input recall? (2) can offline integration act as pruning/contextualisation rather than merely consolidation? (3) what developmental gates should exist before a memory trace can influence action release? Set epistemic_category: substrate_conditional explicitly (overriding the open_question -> answer_state inference) so the narrow_open_question recommendation does NOT fire -- this is a V4-parked question awaiting an upstream developmental substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical path. DO NOT queue an experiment against this in V3."
+
+# Registered 2026-06-09 -- competitive-interactions / cognifold-stability intake (Luppi et al. Nature Neuroscience 29(4):915-933, 2026, DOI 10.1038/s41593-026-02205-3, verified). Signed competitive coupling as a first-class generative cognifold primitive. V4/V5 control-plane/cognifold compass, off the V3 critical path. See docs/architecture/cognifold_signed_coupling.md and evidence/planning/thought_intake_2026-06-06_competitive_interactions_cognifold_stability.md.
+- id: ARC-084
+  title: "Typed signed cognifold coupling: the cognifold represents inter-field coupling as a typed, signed edge -- cognifold_edge = {source, target, sign, gain, precision, gate, timescale, write_authority} -- with competition (sign < 0) as a FIRST-CLASS GENERATIVE coupling mode alongside cooperation (sign > 0) and gated-decoupling, not an emergent by-product of selection softmaxes. Three coupling modes: cooperative (binding, coherent trajectory, shared context), competitive (suppress incompatible trajectories, preserve boundaries, prevent runaway resonance, stop one field absorbing all others), gated-decoupling (isolate simulation / offline integration / unsafe candidates from release authority)."
+  claim_type: architectural_commitment
+  subject: cognifold.signed_coupling_edge
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-005
+  location: docs/architecture/cognifold_signed_coupling.md#arc-084
+  notes: "From the competitive-interactions intake. epistemic_category set substrate_conditional explicitly (overriding the architectural_commitment -> substrate_coherence inference): this is NOT yet the adopted substrate -- it is a candidate commitment gated on a V4 multi-field signed-edge layer that does not exist in V3. V3 REALITY (containment-only, do NOT build a parallel signed-edge module): competition is already present but LOCAL and IMPLICIT -- BG winner-take-all lateral inhibition + Cisek/Kalaska affordance-competition (MECH-090), symmetric Go/NoGo dMSN/iMSN competitive model (ARC-030), top-k competitive selection into E3 (MECH-254); gated-decoupling is the MECH-094 waking-only write gate / MECH-090 commitment latch. What is NEW is representing the SIGN as an explicit first-class edge property at the cognifold-field level. Same shape as the attention=distributed-precision-selection map (ARC-005/MECH-251/254/255/259/261/347/SD-032a): REE owns the pieces, lacks the explicit map; a unifying MAP, not a new module. CAUTIONS (Luppi et al.): competition != synaptic inhibition; a competitive edge is not intrinsically harmful/pathological/ethically-negative; competition != reward subtraction. biology-before-formal-definitions: any V4 SD/MECH operationalising signed coupling needs a biology lit-pull first. V4/V5; off the V3 critical path. DO NOT build in V3 until routed by an explicit version decision."
+- id: MECH-363
+  title: "Diffuse long-range competitive coupling is a generative stability requirement: stable, synergistic, hierarchical cognifold dynamics require signed competitive coupling -- specifically diffuse, long-range competition between distant fields with opposite profiles -- not merely local damping. An all-cooperative (all-positive) routed-field cognifold is unstable: every salient stream reinforces every other, producing runaway resonance / over-synchronisation / loss of modular segregation. Competition is the constructive ingredient that buys stabilisation, segregation, hierarchy, synergy, and subject-specificity."
+  claim_type: mechanism_hypothesis
+  subject: cognifold.long_range_competition_stability
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-084
+    - ARC-005
+  location: docs/architecture/cognifold_signed_coupling.md#mech-363
+  notes: "Empirical anchor (verified): Luppi, A. I. et al., 'Competitive interactions shape mammalian brain network dynamics and computation', Nature Neuroscience 29(4):915-933 (2026), DOI 10.1038/s41593-026-02205-3 -- whole-brain models combining modular cooperative + diffuse long-range competitive interactions reproduce human/macaque/mouse dynamics better than cooperative-only models (which over-synchronise); competition preferentially links regions with OPPOSITE cytoarchitecture/gene/receptor profiles and raises synergy + hierarchy + neuromorphic performance. Falsifiable in principle by a multi-field coupling ablation (cooperative-only vs cooperative+long-range-competitive on the same field set), but SUBSTRATE-GATED: V3 has no explicit multi-field signed-edge layer to ablate, so a probe today would be vacuous -> substrate_conditional (the right response is to wait for the ARC-084 V4 substrate, NOT more experiments on the current local-softmax competition). DISTINGUISH two NON-equivalent failure axes: (a) runaway POSITIVE coupling / hypersync -- this claim's target (REE analogues: feedback entrapment, shared delusional coupling, over-stabilised attractor MECH-076); (b) MONOSTRATEGY / regime-collapse (MECH-309, owned by ARC-062/063) -- the OPPOSITE pole (too little apprehended structure, not too much coupling). Do NOT conflate; signed-coupling damping addresses (a), the rule-apprehension layer addresses (b). V4/V5; off the V3 critical path. DO NOT build in V3."
+- id: Q-058
+  title: "Which REE subsystems require an EXPLICIT signed competitive edge (ARC-084) rather than emergent softmax / winner-take-all / scalar-gating competition alone -- and what are the safety differences between inhibition, competition, decommitment, and residue-based veto across waking action, simulation, and offline integration?"
+  claim_type: open_question
+  subject: cognifold.explicit_vs_emergent_competition_scope
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - ARC-084
+    - MECH-363
+  location: docs/architecture/cognifold_signed_coupling.md#q-058
+  notes: "From the competitive-interactions intake (section 2 open-question + section 8 design questions). Sub-questions: (1) which inter-field couplings genuinely need an explicit sign vs the existing local softmax/WTA (MECH-090/ARC-030/MECH-254)? (2) safety differences between inhibition, competition, decommitment (MECH-090/MECH-105), and residue-based veto (harm stream, SD-010/SD-011)? (3) how should competitive coupling differ across waking action vs simulation (MECH-094) vs offline integration (MECH-272/273 sleep cluster)? (4) should the AI-cognitive-failure taxonomy be re-indexed by missing/misweighted competitive coupling (cross-repo: Latent-Fields/ai-cognitive-failure-taxonomy, not REE_assembly)? epistemic_category set substrate_conditional explicitly (overriding open_question -> answer_state) so narrow_open_question does NOT fire -- this is a V4-parked question awaiting the ARC-084 substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical path. DO NOT queue an experiment against this in V3."
+
+# Registered 2026-06-09 -- laughter cognitive-load / social-reconfiguration intake (thought_intake_2026-06-06_laughter_cognitive_load_social_reconfiguration.md)
+- id: MECH-364
+  title: "Laughter discharges accumulated E3 conflict/constraint load and thereby marks a safe inter-regime control-plane transition: beyond the per-cycle hypothesis-tag clear (MECH-110), iterated safe-confirmation produces a regime-level drop in active constraint pressure that releases the system from a threat-vigilant/high-commitment regime into an exploratory/play regime -- making laughter a boundary signal between control-plane regimes (ARC-016), not merely reward expression."
+  claim_type: mechanism_hypothesis
+  subject: respiratory.laughter_load_release_regime_boundary
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-110
+    - MECH-107
+    - ARC-016
+    - MECH-027
+    - MECH-076
+  location: docs/architecture/laughter_social_load_release.md#mech-364
+  notes: >
+    From the laughter cognitive-load / social-reconfiguration intake. SOURCE-WEIGHT CAUTION: the
+    prompting article (Neuroscience News, "Laughter Rewires Brain Architecture and Lowers Cognitive
+    Load") summarises a cross-disciplinary popular-science SYNTHESIS (Dr. Jacqueline Harding, "The
+    Brain That Loves to Laugh", Routledge), NOT a primary empirical study -- this claim is a
+    compass-level hypothesis, not backed by citable experimental evidence. DISTINCT FROM MECH-110:
+    MECH-110 is the MICRO mechanism (each laughter exhalation = one plan-sweep clearing a single
+    threat-hypothesis tag, MECH-107); MECH-364 is the MACRO/regime-level consequence -- the
+    cumulative effect of iterated safe-confirmation is a drop in E3 active constraint/conflict
+    pressure (a regime-level load discharge), and that discharge is what marks/enables a safe
+    transition between control-plane regimes (ARC-016). The note's primitive
+    f(conflict_detected, threat_reclassified, social_safety, reframe_success, load_release,
+    shared_alignment) maps load_release + the regime-boundary role onto this claim; tag-clear maps
+    to MECH-110 and shared_alignment to MECH-110's V5 social-synchrony extension. PREDICTIONS
+    (laughter-absence failure taxonomy): a system that cannot run reframe -> load-release -> regime
+    re-open cannot soften rigid commitments after a benign reframe -> attractor lock-in (MECH-076),
+    pathological-regime persistence (MECH-027), social-threat overclassification, feedback
+    entrapment, belief fixation, excessive literalism. CAVEAT (non-affiliative): this is the BENIGN
+    case; the same signal is not monotone-affiliative -- laughter can exclude, dominate, mask
+    distress, or signal threat (see Q-059). SUBSTRATE NOTE: load_release requires an E3
+    conflict/constraint-load readout; ARC-016 already exposes an E3-derived prediction-variance
+    signal in V3, so a v3 substrate check could reclassify this toward implementation_phase v3 --
+    held at v4/substrate_conditional pending that check (do NOT build or queue a probe in V3 until
+    routed by an explicit version decision; a probe before the readout exists would be vacuous, cf.
+    the play-mode cluster). V4/V5; off the GAP-7 / V3 critical path. NO change to MECH-110/ARC-016/
+    MECH-027 (this claim depends on them, does not weaken or supersede them).
+- id: Q-059
+  title: "Does REE need a crying / distress-vocalisation social-guardrail analogue to laughter (MECH-110 / MECH-364), and how is social laughter adjudicated as social-field repair vs damage/exclusion -- given that laughter is not monotone-affiliative (it can exclude, dominate, mask distress, or signal threat)?"
+  claim_type: open_question
+  subject: social_guardrails.crying_analogue_and_laughter_valence
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-110
+    - MECH-364
+  location: docs/architecture/laughter_social_load_release.md#q-059
+  notes: >
+    From the laughter intake. GAP: REE owns a laughter mechanism (MECH-110, and now MECH-364) but
+    NO crying / tears / sobbing claim exists in claims.yaml (only "distress vocalisation" appears
+    inside the play-mode basic-expression catalog, INV-058). The raw thought pairs laughter with
+    crying as the two halves of a social-release / social-guardrail axis; this question asks
+    whether the high-arousal / distress-signal counterpart deserves its own claim, and how the
+    valence of social laughter is adjudicated (repair vs damage). Set epistemic_category:
+    substrate_conditional EXPLICITLY (overriding the open_question -> answer_state inference) so the
+    narrow_open_question recommendation does NOT fire -- this is a V4/V5-parked question awaiting a
+    social substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical
+    path. DO NOT queue an experiment against this in V3.

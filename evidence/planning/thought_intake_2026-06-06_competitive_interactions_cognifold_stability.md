@@ -140,17 +140,15 @@ None are contradicted. The thought *corroborates and offers a unifying lens over
 
 ---
 
-## 5. Candidate claims FOR FUTURE REGISTRATION (NOT registered this session)
+## 5. Claims reaped from this intake -- REGISTERED 2026-06-09
 
-Per task scope and the raw note's own guardrails, **nothing is registered in claims.yaml.** These are seeds for a future governance pass, if and only if a concrete V3 substrate gap or failure motivates them:
+The intake **reaps** these claims into `claims.yaml` at `status: candidate`, scoped to a REE version and wired into the dependency graph. Registration ≠ a commitment to design work; whether to take any of them into V4 design is a separate, later, explicit decision. All three: `epistemic_category: substrate_conditional`, `implementation_phase: v4`, `version_relevance: v4_v5` (V3 has no explicit multi-field signed-edge layer; containment-only for V3 -- see ARC-084 notes). Location anchor: [docs/architecture/cognifold_signed_coupling.md](../../docs/architecture/cognifold_signed_coupling.md).
 
-1. **(open_question candidate)** "Which REE subsystems require an *explicit signed competitive edge* rather than emergent softmax/WTA/scalar-gating competition alone?" -- the thought's section-2 open question, verbatim. Likely `epistemic_category: substrate_conditional` or `derivational` (answerable partly by working through the cognifold spec), `implementation_phase: v4`. This is the *decision* layer, not a new substrate.
+1. **ARC-084** (architectural_commitment) -- "Typed signed cognifold coupling": the cognifold represents inter-field coupling as a typed, signed edge `{source, target, sign, gain, precision, gate, timescale, write_authority}` with competition as a first-class generative mode (cooperative / competitive / gated-decoupling). `depends_on: ARC-005`.
+2. **MECH-363** (mechanism_hypothesis) -- "Diffuse long-range competitive coupling is a generative stability requirement": stable/synergistic/hierarchical dynamics require signed competition; an all-cooperative cognifold over-synchronises (Luppi et al., verified). `depends_on: ARC-084, ARC-005`.
+3. **Q-058** (open_question) -- "Which REE subsystems require an EXPLICIT signed competitive edge rather than emergent softmax/WTA/scalar gating, and the inhibition/competition/decommitment/residue-veto safety taxonomy across waking/simulation/offline." `depends_on: ARC-084, MECH-363`. epistemic_category set substrate_conditional explicitly so `narrow_open_question` does NOT fire.
 
-2. **(architectural_commitment candidate)** "The cognifold represents inter-field coupling as a typed, signed edge (cooperative / competitive / gated-decoupling), with competition as a first-class generative mode -- not an emergent by-product of selection softmaxes." Would most naturally **amend ARC-005** (control plane) rather than stand alone. `substrate_coherence` if ever adopted; off V3 critical path.
-
-3. **(mechanism_hypothesis candidate)** "Diffuse long-range competitive coupling between distant fields with opposite profiles is required for stable, synergistic, hierarchical cognifold dynamics; an all-cooperative cognifold over-synchronises." Falsifiable in principle (a multi-field coupling ablation: cooperative-only vs cooperative+long-range-competitive), but **substrate-gated** -- V3 has no explicit multi-field signed-edge layer to ablate, so a probe today would be vacuous. `epistemic_category: substrate_ceiling`, `implementation_phase: v4`.
-
-All three are **compass-grade**. The disciplined near-term move is the architecture note in Next Steps, not registration.
+No existing claim was promoted, demoted, or weakened. No substrate code, no experiment (substrate-gated -> a probe on the current V3 substrate would be vacuous; off the V3 / GAP-7 critical path).
 
 ---
 
@@ -169,7 +167,7 @@ From the raw note -- preserve for any future agent who picks this up:
 
 ## 7. Next steps
 
-1. **(Optional, when motivated) Architecture note.** The thought proposes `docs/architecture/cognifold_signed_coupling.md`. Defer until a concrete trigger exists (a failure attributable to all-positive coupling, or a V4 cognifold-edge spec pass). If written, it should: (a) inventory where REE already runs competition (MECH-090/ARC-030/MECH-254) vs where it relies on implicit softmax/scalar gating; (b) answer the candidate open question (#5.1) -- which edges genuinely need an explicit `sign`; (c) state the safety differences between inhibition, competition, decommitment (MECH-090/105), and residue-based veto (harm stream / SD-010/011); (d) specify how competitive coupling should differ across waking action vs simulation (MECH-094) vs offline integration (MECH-272/273 sleep cluster).
+1. **Architecture note -- stub created.** [docs/architecture/cognifold_signed_coupling.md](../../docs/architecture/cognifold_signed_coupling.md) now exists as the `location:` anchor for ARC-084 / MECH-363 / Q-058 (compass stub, not a build spec). Promotion to a V4 design spec requires an explicit version decision and a biology lit-pull on signed coupling first (biology-before-formal-definitions). The open design questions (inventory of existing vs needed explicit edges; the inhibition/competition/decommitment/residue-veto safety taxonomy; waking vs simulation vs offline differences) are carried by Q-058.
 2. **Fold into the attention-MAP work, not a parallel module.** This thought is the **same situation** as the [attention = distributed precision-selection control] note: REE owns the competitive pieces but lacks a unifying map. Treat "signed coupling" as a companion axis to that map; do **not** build a separate competitive-coupling module. Containment-only for V3.
 3. **No experiment queued.** Substrate-gated (#5.3); a probe on the current V3 substrate would be vacuous (no explicit multi-field signed-edge layer to ablate). Revisit only if/when a V4 cognifold-edge layer is specced.
 4. **Cross-repo pointer (not this session):** the AI-cognitive-failure-taxonomy re-indexing by competitive-coupling axis belongs in `Latent-Fields/ai-cognitive-failure-taxonomy`, not REE_assembly. Note as a future cross-repo item only.
