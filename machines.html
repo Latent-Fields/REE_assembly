@@ -202,6 +202,8 @@ async function refresh() {
         <span>${m.queue_depth ?? "-"}</span></div>
       <div class="row"><span class="label">runner pid</span>
         <span>${m.runner_pid || "-"}</span></div>
+      <div class="row"><span class="label">version</span>
+        <span style="font-family:monospace;font-size:12px">${m.runner_version || "-"}</span></div>
       ${gpu ? `<div class="row"><span class="label">gpu</span><span>${gpu}</span></div>` : ""}
       ${renderRecent(m.recent_completed)}
       ${renderActions(m.machine, m.fresh)}

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-07.2 -->
+<!-- EXPLORER_VERSION: 2026-06-09.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7413,7 +7413,10 @@ END CONFLICT RESOLUTION`;
         const srcHint = m.telemetry_source === 'git'
           ? ` <span style="color:var(--muted);font-weight:normal">(git mirror)</span>`
           : '';
-        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${srcHint}${staleTag} <span style="font-weight:normal">heartbeat ${ageLabel} ago</span></div>`;
+        const verHint = m.runner_version
+          ? ` <span style="font-weight:normal" title="runner code build (refreshes between runs)">&middot; ${escapeHtml(m.runner_version)}</span>`
+          : '';
+        return `<div class="exp-timing" style="margin-bottom:6px;color:var(--muted)">&#128187; ${escapeHtml(m.machine)}${srcHint}${staleTag} <span style="font-weight:normal">heartbeat ${ageLabel} ago</span>${verHint}</div>`;
       }
 
       let runningHtml = '';
