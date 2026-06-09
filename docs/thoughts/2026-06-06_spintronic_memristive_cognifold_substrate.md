@@ -1,8 +1,16 @@
-Status: unprocessed
+Status: processed
 Phase: post-V5 / future physical instantiation
 Current action: preserve as thought intake only
 Do not queue for REE-v3 implementation
 Near-term relevance: clarify substrate-independent cognifold primitives
+
+Intake: REGISTERED into claims.yaml on 2026-06-09 as POST-V5 candidate claims.
+Processed in:
+- ARC-089 (architectural_commitment, substrate_conditional, post_v5): substrate-independent cognifold primitives -- the load-bearing near-term target.
+- MECH-374 (mechanism_hypothesis, substrate_conditional, post_v5): memristive deformation as the physical analogue of residue/cognifold curvature -- the post-V5 spintronic-memristive physical-substrate candidate.
+- Q-066 (open_question, substrate_conditional): can a physical cognifold substrate scale without losing auditability/stability/safety boundaries.
+- Home doc: docs/architecture/spintronic_memristive_cognifold_substrate.md
+- External anchors (Shao arXiv:2112.02879, TDK spin-memristor, arXiv:2009.06594) preserved in the home doc + MECH-374 notes for a later lit-pull; NOT registered as a research-anchor claim (hardware surveys, out of REE's experimental domain). No promotion/demotion of any existing claim; no substrate code; no experiment.
 
 ---
 

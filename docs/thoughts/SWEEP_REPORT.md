@@ -1,36 +1,17 @@
 # Thought Sweep Report
 
-Generated: `2026-06-09T19:42:22.519100Z`
+Generated: `2026-06-09T20:52:56.344744Z`
 
 | metric | count |
 |---|---|
 | total thought files | 127 |
-| processed | 106 |
-| unprocessed | 21 |
+| processed | 125 |
+| unprocessed | 2 |
 | processed missing `Processed in` links | 6 |
 
 ## Unprocessed Queue
 
-- `2026-06-06` `2026-06-06_Candidate-differentiated_affective_gradients.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_ca3_development_sparse_structured_connectivity.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_clinical_depression_network_connectivity_reversal.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_competitive_interactions_cognifold_stability.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_hyperthymesia_autobiographical_temporality.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_laughter_cognitive_load_social_reconfiguration.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_learning_onset_single_connection_gate.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_lifespan_brain_epochs_developmental_cognifold.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_loss_dampening_resilience_calibration.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_music_prediction_social_bonding.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_neuroimmune_modulation_compulsive_loops.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_prelinguistic_activity_speech_circuit_scaffolding.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_psychiatric_genetic_overlap_latent_failure_axes.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_sleep_timing_multiday_memory_eligibility_window.md` (status=`unprocessed`)
-- `2026-06-06` `2026-06-06_spintronic_memristive_cognifold_substrate.md` (status=`unprocessed`)
-- `2026-06-07-language-affect-adaptor-slm-emotion-recognition.md` (status=`unprocessed`)
 - `2026-06-07` `2026-06-07_meta_agent_challenge_evaluation_channel_integrity.md` (status=`unprocessed`)
-- `2026-06-07` `2026-06-07_sight_specific_perceptual_manifolds.md` (status=`unprocessed`)
-- `2026-06-08` `2026-06-08_Trainable_Releif_and_Safety.md` (status=`unprocessed`)
-- `2026-06-08` `2026-06-08_emotion_as_anti_collapse_architecture.md` (status=`unprocessed`)
 - `2026-06-08` `2026-06-08_play_private_speech_externalised_dmn.md` (status=`unprocessed`)
 
 ## Processed Missing Links
@@ -146,7 +127,26 @@ Generated: `2026-06-09T19:42:22.519100Z`
 - `2026-06-04_attention_distributed_precision_selection.md` (2 link(s) in `Processed in`)
 - `2026-06-05_Cross_Version_missing_bits.md` (1 link(s) in `Processed in`)
 - `2026-06-05_Grammar_and_LLMS_as_V5_primitive-mining_scaffolds.md` (1 link(s) in `Processed in`)
+- `2026-06-06_Candidate-differentiated_affective_gradients.md` (1 link(s) in `Processed in`)
 - `2026-06-06_agent_memory_consolidation_faults.md` (0 link(s) in `Processed in`)
+- `2026-06-06_ca3_development_sparse_structured_connectivity.md` (1 link(s) in `Processed in`)
+- `2026-06-06_clinical_depression_network_connectivity_reversal.md` (1 link(s) in `Processed in`)
+- `2026-06-06_competitive_interactions_cognifold_stability.md` (1 link(s) in `Processed in`)
 - `2026-06-06_contextual_memory_allocation_gate.md` (0 link(s) in `Processed in`)
+- `2026-06-06_hyperthymesia_autobiographical_temporality.md` (1 link(s) in `Processed in`)
+- `2026-06-06_laughter_cognitive_load_social_reconfiguration.md` (1 link(s) in `Processed in`)
+- `2026-06-06_learning_onset_single_connection_gate.md` (1 link(s) in `Processed in`)
+- `2026-06-06_lifespan_brain_epochs_developmental_cognifold.md` (1 link(s) in `Processed in`)
+- `2026-06-06_loss_dampening_resilience_calibration.md` (1 link(s) in `Processed in`)
+- `2026-06-06_music_prediction_social_bonding.md` (1 link(s) in `Processed in`)
+- `2026-06-06_neuroimmune_modulation_compulsive_loops.md` (1 link(s) in `Processed in`)
+- `2026-06-06_prelinguistic_activity_speech_circuit_scaffolding.md` (1 link(s) in `Processed in`)
+- `2026-06-06_psychiatric_genetic_overlap_latent_failure_axes.md` (1 link(s) in `Processed in`)
+- `2026-06-06_sleep_timing_multiday_memory_eligibility_window.md` (1 link(s) in `Processed in`)
+- `2026-06-06_spintronic_memristive_cognifold_substrate.md` (5 link(s) in `Processed in`)
+- `2026-06-07-language-affect-adaptor-slm-emotion-recognition.md` (2 link(s) in `Processed in`)
+- `2026-06-07_sight_specific_perceptual_manifolds.md` (4 link(s) in `Processed in`)
+- `2026-06-08_Trainable_Releif_and_Safety.md` (5 link(s) in `Processed in`)
+- `2026-06-08_emotion_as_anti_collapse_architecture.md` (2 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
