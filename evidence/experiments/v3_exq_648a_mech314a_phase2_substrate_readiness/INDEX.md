@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_648a_mech314a_phase2_substrate_readiness
 
-Generated: `2026-06-09T04:34:33.900926Z`
+Generated: `2026-06-09T17:56:32.061833Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

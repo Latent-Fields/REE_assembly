@@ -44,5 +44,15 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_quality_note": "V3-EXQ-654 (arc_062 GAP-B falsifier, MECH-309/ARC-062) FAIL non_contributory, self-route substrate_not_ready_requeue (precondition_unmet). C1c arm_on_rule_field_differentiated FAILED: ARM_ON CandidateRuleField fired a non-zero rule_state on only ~12% of P1 ticks (frac_active 0.116/0.123/0.115 vs 0.30 floor); crf_max_pairwise_rule_dist 0.0 all seeds; seed-42 committed-class byte-identical to ARM_OFF. Code-grounded cause (failure_autopsy_V3-EXQ-654_2026-06-09): agent.reset()->candidate_rule_field.reset() (agent.py:1908) wipes the rule pool + recurrence counters every ~26-tick episode, so the field never matures a live differentiated pool (cumulative n_minted 131-408 but live pool cold-started each episode); compounded by the conflict gate forbidding >=2-rule co-activation and an untrained bias head washing out the live rule_state. NOT a falsification -- the falsifier never ran. V3-EXQ-639 PASS proves the field CAN differentiate when its pool matures. Route: implement-substrate (cross-episode rule-persistence flag on ARC-063 CandidateRuleField) then re-queue 654a with a trained-bias-head P1 arm + bias-non-vacuity precondition. MECH-309/ARC-062 stay candidate / v3_pending / pending_retest_after_substrate; do NOT weaken.",
+  "source_autopsy": {
+    "artifact": "evidence/planning/failure_autopsy_V3-EXQ-654_2026-06-09.json",
+    "status": "confirmed",
+    "adjudication": "self_route_confirmed",
+    "recommended_epistemic_category": "substrate_ceiling",
+    "pending_retest_after_substrate": true,
+    "applied_by": "governance-cycle-20260609T1745Z",
+    "applied_utc": "2026-06-09T17:50:00Z"
+  }
 }

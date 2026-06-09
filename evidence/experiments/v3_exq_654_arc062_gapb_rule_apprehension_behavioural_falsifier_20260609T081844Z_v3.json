@@ -1,1 +1,479 @@
-{"run_id": "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier_20260609T081844Z_v3", "experiment_type": "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier", "queue_id": "V3-EXQ-654", "claim_ids": ["MECH-309", "ARC-062"], "experiment_purpose": "evidence", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260609T081844Z", "outcome": "FAIL", "evidence_direction": "non_contributory", "evidence_direction_per_claim": {"MECH-309": "non_contributory", "ARC-062": "non_contributory"}, "evidence_direction_note": "V3-EXQ-654 arc_062 GAP-B behavioural falsifier (MECH-309 / ARC-062). Single-variable: ARM_OFF (use_candidate_rule_field=False, legacy collapsed rule_state) vs ARM_ON (use_candidate_rule_field=True, differentiated crf_source), both on the matched 649/643a/SD-056/SP-CEM/MECH-341 stack with the SD-033a bias head un-zeroed and e2 trained online in P0. PRIMARY DV = COMMITTED-CLASS entropy (the rule bias is class-keyed -- within-class-representative entropy is a SECONDARY negative control, expected ~null). C1 (non-vacuity) = committed-class axis exercisable AND GAP-A consumed-summary divergence real (both arms) AND ARM_ON minted distinct rules; C2 (PRIMARY) = paired-by-seed ARM_ON > ARM_OFF committed-class entropy lift (>= 2/3 seeds). interpretation_label=substrate_not_ready_requeue. C1=False, C2=False. C1-fail self-routes substrate_not_ready_requeue (NOT a falsification).", "dry_run": false, "env_kwargs": {"size": 12, "num_hazards": 4, "num_resources": 5, "hazard_harm": 0.05, "env_drift_interval": 5, "env_drift_prob": 0.1, "proximity_harm_scale": 0.1, "proximity_benefit_scale": 0.05, "proximity_approach_threshold": 0.2, "hazard_field_decay": 0.5, "resource_respawn_on_consume": true, "toroidal": false, "harm_history_len": 10, "reef_enabled": true, "n_reef_patches": 3, "reef_patch_radius": 2, "hazard_food_attraction": 0.7, "reef_bipartite_layout": true, "reef_bipartite_axis": "horizontal", "reef_bipartite_agent_band_radius": 1}, "config_summary": {"arms": "ARM_OFF (rule field off) vs ARM_ON (rule field on)", "swept_variable": "use_candidate_rule_field", "matched_stack": "SP-CEM + candidate_summary_source=e2_world_forward (GAP-A/649, e2 trained online in P0) + use_modulatory_selection_authority (643a) + MECH-341 stratified + MECH-313 noise floor + V_s minimal + use_gated_policy + use_lateral_pfc_analog (lateral_pfc_train_rule_bias_head=True) + SD-056 all levers", "primary_dv": "committed-class entropy (class-keyed rule bias)", "secondary_negative_control": "within-class-representative entropy (expected ~null)", "e2_trained_in_p0_frozen_in_p1": true, "use_modulatory_selection_authority": true, "modulatory_authority_gain": 0.5, "z_goal_enabled": true, "drive_weight": 2.0, "alpha_world": 0.9, "reef_enabled": true, "reef_bipartite_layout": true, "sd056_amend_active": true, "sd056_output_norm_clamp": true, "use_differentiable_cem": "NOT FLIPPED (default False; SD-055 safety note)"}, "result": {"outcome": "FAIL", "overall_direction": "non_contributory", "evidence_direction_per_claim": {"MECH-309": "non_contributory", "ARC-062": "non_contributory"}, "interpretation_label": "substrate_not_ready_requeue", "interpretation": {"label": "substrate_not_ready_requeue", "preconditions": [{"name": "committed_class_axis_exercisable_both_arms", "kind": "readiness", "description": "frac of P1 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in BOTH arms (committed-class entropy is structurally 0 otherwise). SAME-statistic family as C2 (class multiplicity bounds class entropy).", "control": "SP-CEM multi-class candidate pool, both arms", "measured": 1.0, "threshold": 0.3, "met": true}, {"name": "gapa_consumed_summary_divergence_both_arms", "kind": "readiness", "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor and stays bounded on a majority of seeds in BOTH arms -- the class bias is non-degenerate. Same range statistic the 649 GAP-A readiness asserts.", "control": "ARM_OFF + ARM_ON: SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward", "measured": 0.030979, "threshold": 0.05, "met": true}, {"name": "gapa_consumed_summary_bounded", "kind": "readiness", "description": "consumed-summary spread stayed below the 643a explosion ceiling (SD-056 online-training numerical stability; rollout-norm clamp ON).", "control": "max consumed_summary_pairwise_dist across all cells", "measured": 0.112619, "threshold": 1000000.0, "direction": "upper", "met": true}, {"name": "arm_on_rule_field_differentiated", "kind": "readiness", "description": "ARM_ON CandidateRuleField minted >= CRF_MIN_MINTED distinct rules (the by-construction differentiation) AND fired a non-zero rule_state on >= CRF_FRAC_ACTIVE_FLOOR of P1 ticks (not inert), on a majority of ARM_ON seeds. Positive control that the manipulation is live (else the rule_state is mostly zeros and the rule-creator contributes nothing -> substrate_not_ready).", "control": "ARM_ON crf frac-active (non-zero rule_state) + crf_n_minted_total", "measured": 0.123073, "threshold": 0.3, "met": false}], "criteria": [{"name": "C2_committed_class_entropy_lift", "load_bearing": true, "passed": false}], "criteria_non_degenerate": {"C1a_class_axis_exercisable": true, "C1b_gapa_divergence": true, "C1c_arm_on_differentiated": false, "C2_paired_lift": false}}, "seeds": [42, 43, 44], "n_arms": 2, "total_seeds_attempted": 6, "total_seeds_completed": 6, "p0_episodes": 60, "p1_episodes": 60, "steps_per_episode": 200, "decision_rule_thresholds": {"h_signature": 3, "c2_lift_margin_nats": 0.05, "c2_min_lift_seeds": 2, "frac_pre_ge2_floor": 0.3, "consumed_spread_floor": 0.05, "consumed_magnitude_ceil": 1000000.0, "crf_min_minted": 2, "crf_n_active_floor": 1, "crf_frac_active_floor": 0.3, "crf_dist_floor": 0.001, "min_ticks_per_class": 5, "min_seeds_for_pass": 2, "use_modulatory_selection_authority": true, "modulatory_authority_gain": 0.5, "sd056_weight": 0.05}, "acceptance_criteria": {"C1_substrate_exercisable_and_manipulation_live": false, "C1a_class_axis_exercisable_both_arms": true, "C1a_n_off_axis": 3, "C1a_n_on_axis": 3, "C1b_gapa_divergence_both_arms": true, "C1b_n_off_gapa": 2, "C1b_n_on_gapa": 2, "C1c_arm_on_rule_field_differentiated": false, "C1c_n_on_differentiated": 0, "C2_committed_class_lift": false, "C2_n_lift_seeds": 0, "C2_paired_lifts_by_seed": {"42": 0.0, "43": -0.030338, "44": 0.049953}, "C2_off_mean_committed_class_entropy": 0.900018, "C2_on_mean_committed_class_entropy": 0.906556}, "secondary_negative_control_not_load_bearing": {"note": "Within-class-representative entropy is a NEGATIVE CONTROL: the rule bias is class-keyed (per-candidate summary is first-action-keyed; compute_bias broadcasts one rule_state across K), so it cannot move within-class selection -> ARM_ON ~ ARM_OFF is EXPECTED here, confirming the rule-creator's signal lives in the committed-class axis (the load-bearing C2 DV).", "arm_off_within_class_rep_entropy_mean": 1.631379, "arm_on_within_class_rep_entropy_mean": 1.595454, "arm_off_selected_class_entropy_mean": 0.900018, "arm_on_selected_class_entropy_mean": 0.906556, "arm_off_lateral_pfc_bias_abs_mean": 0.071846, "arm_on_lateral_pfc_bias_abs_mean": 0.064645}, "interpretation_grid": {"PASS_C1_C2": "The non-Bayesian rule-creator's DIFFERENTIATED rule_state propagates to greater committed-class diversity than the collapsed legacy baseline on the GAP-A-fixed pool. supports MECH-309 (rule-creator necessity) + ARC-062 (V3 weak-reading instantiation). Route to /governance: MECH-309 / ARC-062 supports evidence; consider GAP-B closure + the trained-bias-head behavioural successor.", "FAIL_C1_holds_C2_fails": "Class axis exercisable, GAP-A divergence real, ARM_ON minted distinct rules, but the differentiated rule_state adds no marginal committed-class diversity over the collapsed baseline. weakens MECH-309 / ARC-062 on this eval-frozen readout; route to /governance + /failure-autopsy (does propagation require a TRAINED bias head, i.e. a P1 frozen-encoder bias-head training arm?).", "FAIL_C1_substrate_not_ready_requeue": "The committed-class axis was not exercisable (< 2 candidate classes) and/or GAP-A consumed-summary divergence was absent (under-trained e2) and/or ARM_ON minted no distinct rules. The falsifier could not run -- NOT an MECH-309 / ARC-062 falsification. Route to substrate enrichment / higher P0 budget and re-queue; do NOT weaken the claims."}, "arm_results": [{"arm_id": "ARM_OFF", "label": "rule_creator_absent_legacy_collapsed_rule_state", "seed": 42, "use_candidate_rule_field": false, "n_p0_ticks": 1392, "n_p1_ticks": 1569, "n_p0_contrastive_steps": 1375, "error_note": null, "committed_class_entropy_nats": 1.224698, "n_unique_committed_classes": 5, "committed_class_counts": {"0": 127, "1": 649, "2": 134, "3": 627, "4": 32}, "frac_pre_ge2": 1.0, "class_axis_exercisable": true, "consumed_summary_pairwise_dist_mean": 0.063901, "consumed_summary_pairwise_dist_max": 0.083869, "gapa_divergence": true, "crf_present": false, "crf_mean_n_active": 0.0, "crf_frac_active_ge_floor": 0.0, "crf_max_pairwise_rule_dist": 0.0, "crf_n_minted_total": 0, "crf_differentiated": false, "mean_within_class_rep_entropy_nats": 2.603028, "n_distinct_rep_signatures_total": 84, "selected_class_entropy_nats": 1.224698, "mean_lateral_pfc_bias_abs": 0.099945, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "8060173cf0a98dd2728d71f1c50c3d23f7739c49bd1c09d9a45a02357f560010", "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694", "substrate_n_files": 94, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["online_e2_training_stateful_per_cell"]}}, {"arm_id": "ARM_OFF", "label": "rule_creator_absent_legacy_collapsed_rule_state", "seed": 43, "use_candidate_rule_field": false, "n_p0_ticks": 11583, "n_p1_ticks": 11438, "n_p0_contrastive_steps": 11549, "error_note": null, "committed_class_entropy_nats": 0.619797, "n_unique_committed_classes": 3, "committed_class_counts": {"1": 7937, "2": 3495, "4": 6}, "frac_pre_ge2": 1.0, "class_axis_exercisable": true, "consumed_summary_pairwise_dist_mean": 0.030979, "consumed_summary_pairwise_dist_max": 0.0598, "gapa_divergence": false, "crf_present": false, "crf_mean_n_active": 0.0, "crf_frac_active_ge_floor": 0.0, "crf_max_pairwise_rule_dist": 0.0, "crf_n_minted_total": 0, "crf_differentiated": false, "mean_within_class_rep_entropy_nats": 1.359697, "n_distinct_rep_signatures_total": 14, "selected_class_entropy_nats": 0.619797, "mean_lateral_pfc_bias_abs": 0.040392, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "d6465a50ea0e852ae7e6d39792dd3f5fd81935ebe0b2127848fd3a9f9a270335", "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694", "substrate_n_files": 94, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["online_e2_training_stateful_per_cell"]}}, {"arm_id": "ARM_OFF", "label": "rule_creator_absent_legacy_collapsed_rule_state", "seed": 44, "use_candidate_rule_field": false, "n_p0_ticks": 2641, "n_p1_ticks": 2886, "n_p0_contrastive_steps": 2621, "error_note": null, "committed_class_entropy_nats": 0.855559, "n_unique_committed_classes": 3, "committed_class_counts": {"0": 942, "2": 1743, "4": 201}, "frac_pre_ge2": 1.0, "class_axis_exercisable": true, "consumed_summary_pairwise_dist_mean": 0.066583, "consumed_summary_pairwise_dist_max": 0.10776, "gapa_divergence": true, "crf_present": false, "crf_mean_n_active": 0.0, "crf_frac_active_ge_floor": 0.0, "crf_max_pairwise_rule_dist": 0.0, "crf_n_minted_total": 0, "crf_differentiated": false, "mean_within_class_rep_entropy_nats": 0.931413, "n_distinct_rep_signatures_total": 22, "selected_class_entropy_nats": 0.855559, "mean_lateral_pfc_bias_abs": 0.0752, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "98375b9318d416e82683ec32a547ebd9a5238e7dc221270cce38feb407cd2a52", "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694", "substrate_n_files": 94, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["online_e2_training_stateful_per_cell"]}}, {"arm_id": "ARM_ON", "label": "rule_creator_present_differentiated_crf_source", "seed": 42, "use_candidate_rule_field": true, "n_p0_ticks": 1392, "n_p1_ticks": 1569, "n_p0_contrastive_steps": 1375, "error_note": null, "committed_class_entropy_nats": 1.224698, "n_unique_committed_classes": 5, "committed_class_counts": {"0": 127, "1": 649, "2": 134, "3": 627, "4": 32}, "frac_pre_ge2": 1.0, "class_axis_exercisable": true, "consumed_summary_pairwise_dist_mean": 0.063901, "consumed_summary_pairwise_dist_max": 0.083869, "gapa_divergence": true, "crf_present": true, "crf_mean_n_active": 0.115997, "crf_frac_active_ge_floor": 0.115997, "crf_max_pairwise_rule_dist": 0.0, "crf_n_minted_total": 131, "crf_differentiated": false, "mean_within_class_rep_entropy_nats": 2.603028, "n_distinct_rep_signatures_total": 84, "selected_class_entropy_nats": 1.224698, "mean_lateral_pfc_bias_abs": 0.099989, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "040e893af53e2f3b6bf0af75b52e13fd479afefd6c806b603ffa819059eea5e9", "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694", "substrate_n_files": 94, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["online_e2_training_stateful_per_cell"]}}, {"arm_id": "ARM_ON", "label": "rule_creator_present_differentiated_crf_source", "seed": 43, "use_candidate_rule_field": true, "n_p0_ticks": 11565, "n_p1_ticks": 11806, "n_p0_contrastive_steps": 11531, "error_note": null, "committed_class_entropy_nats": 0.589459, "n_unique_committed_classes": 3, "committed_class_counts": {"1": 8553, "2": 3252, "4": 1}, "frac_pre_ge2": 1.0, "class_axis_exercisable": true, "consumed_summary_pairwise_dist_mean": 0.031232, "consumed_summary_pairwise_dist_max": 0.054234, "gapa_divergence": false, "crf_present": true, "crf_mean_n_active": 0.123073, "crf_frac_active_ge_floor": 0.123073, "crf_max_pairwise_rule_dist": 0.0, "crf_n_minted_total": 408, "crf_differentiated": false, "mean_within_class_rep_entropy_nats": 1.363801, "n_distinct_rep_signatures_total": 10, "selected_class_entropy_nats": 0.589459, "mean_lateral_pfc_bias_abs": 0.023968, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "614b058adf52ecdcf4355628e18d3fe6546dc56a3e0f830c79921db4283654f3", "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694", "substrate_n_files": 94, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["online_e2_training_stateful_per_cell"]}}, {"arm_id": "ARM_ON", "label": "rule_creator_present_differentiated_crf_source", "seed": 44, "use_candidate_rule_field": true, "n_p0_ticks": 2648, "n_p1_ticks": 2331, "n_p0_contrastive_steps": 2628, "error_note": null, "committed_class_entropy_nats": 0.905512, "n_unique_committed_classes": 3, "committed_class_counts": {"0": 1040, "2": 1118, "4": 173}, "frac_pre_ge2": 1.0, "class_axis_exercisable": true, "consumed_summary_pairwise_dist_mean": 0.078202, "consumed_summary_pairwise_dist_max": 0.112619, "gapa_divergence": true, "crf_present": true, "crf_mean_n_active": 0.115401, "crf_frac_active_ge_floor": 0.115401, "crf_max_pairwise_rule_dist": 0.0, "crf_n_minted_total": 145, "crf_differentiated": false, "mean_within_class_rep_entropy_nats": 0.819532, "n_distinct_rep_signatures_total": 23, "selected_class_entropy_nats": 0.905512, "mean_lateral_pfc_bias_abs": 0.069979, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "c1e4a572398f58c8d15a7b0b1e8c3b2de1e6ab4efbd5e49566616f034a470d1b", "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694", "substrate_n_files": 94, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["online_e2_training_stateful_per_cell"]}}]}, "machine": "ree-cloud-2"}
+{
+  "run_id": "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier_20260609T081844Z_v3",
+  "experiment_type": "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier",
+  "queue_id": "V3-EXQ-654",
+  "claim_ids": [
+    "MECH-309",
+    "ARC-062"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260609T081844Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-309": "non_contributory",
+    "ARC-062": "non_contributory"
+  },
+  "evidence_direction_note": "V3-EXQ-654 arc_062 GAP-B behavioural falsifier (MECH-309 / ARC-062). Single-variable: ARM_OFF (use_candidate_rule_field=False, legacy collapsed rule_state) vs ARM_ON (use_candidate_rule_field=True, differentiated crf_source), both on the matched 649/643a/SD-056/SP-CEM/MECH-341 stack with the SD-033a bias head un-zeroed and e2 trained online in P0. PRIMARY DV = COMMITTED-CLASS entropy (the rule bias is class-keyed -- within-class-representative entropy is a SECONDARY negative control, expected ~null). C1 (non-vacuity) = committed-class axis exercisable AND GAP-A consumed-summary divergence real (both arms) AND ARM_ON minted distinct rules; C2 (PRIMARY) = paired-by-seed ARM_ON > ARM_OFF committed-class entropy lift (>= 2/3 seeds). interpretation_label=substrate_not_ready_requeue. C1=False, C2=False. C1-fail self-routes substrate_not_ready_requeue (NOT a falsification).",
+  "dry_run": false,
+  "env_kwargs": {
+    "size": 12,
+    "num_hazards": 4,
+    "num_resources": 5,
+    "hazard_harm": 0.05,
+    "env_drift_interval": 5,
+    "env_drift_prob": 0.1,
+    "proximity_harm_scale": 0.1,
+    "proximity_benefit_scale": 0.05,
+    "proximity_approach_threshold": 0.2,
+    "hazard_field_decay": 0.5,
+    "resource_respawn_on_consume": true,
+    "toroidal": false,
+    "harm_history_len": 10,
+    "reef_enabled": true,
+    "n_reef_patches": 3,
+    "reef_patch_radius": 2,
+    "hazard_food_attraction": 0.7,
+    "reef_bipartite_layout": true,
+    "reef_bipartite_axis": "horizontal",
+    "reef_bipartite_agent_band_radius": 1
+  },
+  "config_summary": {
+    "arms": "ARM_OFF (rule field off) vs ARM_ON (rule field on)",
+    "swept_variable": "use_candidate_rule_field",
+    "matched_stack": "SP-CEM + candidate_summary_source=e2_world_forward (GAP-A/649, e2 trained online in P0) + use_modulatory_selection_authority (643a) + MECH-341 stratified + MECH-313 noise floor + V_s minimal + use_gated_policy + use_lateral_pfc_analog (lateral_pfc_train_rule_bias_head=True) + SD-056 all levers",
+    "primary_dv": "committed-class entropy (class-keyed rule bias)",
+    "secondary_negative_control": "within-class-representative entropy (expected ~null)",
+    "e2_trained_in_p0_frozen_in_p1": true,
+    "use_modulatory_selection_authority": true,
+    "modulatory_authority_gain": 0.5,
+    "z_goal_enabled": true,
+    "drive_weight": 2.0,
+    "alpha_world": 0.9,
+    "reef_enabled": true,
+    "reef_bipartite_layout": true,
+    "sd056_amend_active": true,
+    "sd056_output_norm_clamp": true,
+    "use_differentiable_cem": "NOT FLIPPED (default False; SD-055 safety note)"
+  },
+  "result": {
+    "outcome": "FAIL",
+    "overall_direction": "non_contributory",
+    "evidence_direction_per_claim": {
+      "MECH-309": "non_contributory",
+      "ARC-062": "non_contributory"
+    },
+    "interpretation_label": "substrate_not_ready_requeue",
+    "interpretation": {
+      "label": "substrate_not_ready_requeue",
+      "preconditions": [
+        {
+          "name": "committed_class_axis_exercisable_both_arms",
+          "kind": "readiness",
+          "description": "frac of P1 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in BOTH arms (committed-class entropy is structurally 0 otherwise). SAME-statistic family as C2 (class multiplicity bounds class entropy).",
+          "control": "SP-CEM multi-class candidate pool, both arms",
+          "measured": 1.0,
+          "threshold": 0.3,
+          "met": true
+        },
+        {
+          "name": "gapa_consumed_summary_divergence_both_arms",
+          "kind": "readiness",
+          "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor and stays bounded on a majority of seeds in BOTH arms -- the class bias is non-degenerate. Same range statistic the 649 GAP-A readiness asserts.",
+          "control": "ARM_OFF + ARM_ON: SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+          "measured": 0.030979,
+          "threshold": 0.05,
+          "met": true
+        },
+        {
+          "name": "gapa_consumed_summary_bounded",
+          "kind": "readiness",
+          "description": "consumed-summary spread stayed below the 643a explosion ceiling (SD-056 online-training numerical stability; rollout-norm clamp ON).",
+          "control": "max consumed_summary_pairwise_dist across all cells",
+          "measured": 0.112619,
+          "threshold": 1000000.0,
+          "direction": "upper",
+          "met": true
+        },
+        {
+          "name": "arm_on_rule_field_differentiated",
+          "kind": "readiness",
+          "description": "ARM_ON CandidateRuleField minted >= CRF_MIN_MINTED distinct rules (the by-construction differentiation) AND fired a non-zero rule_state on >= CRF_FRAC_ACTIVE_FLOOR of P1 ticks (not inert), on a majority of ARM_ON seeds. Positive control that the manipulation is live (else the rule_state is mostly zeros and the rule-creator contributes nothing -> substrate_not_ready).",
+          "control": "ARM_ON crf frac-active (non-zero rule_state) + crf_n_minted_total",
+          "measured": 0.123073,
+          "threshold": 0.3,
+          "met": false
+        }
+      ],
+      "criteria": [
+        {
+          "name": "C2_committed_class_entropy_lift",
+          "load_bearing": true,
+          "passed": false
+        }
+      ],
+      "criteria_non_degenerate": {
+        "C1a_class_axis_exercisable": true,
+        "C1b_gapa_divergence": true,
+        "C1c_arm_on_differentiated": false,
+        "C2_paired_lift": false
+      }
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_arms": 2,
+    "total_seeds_attempted": 6,
+    "total_seeds_completed": 6,
+    "p0_episodes": 60,
+    "p1_episodes": 60,
+    "steps_per_episode": 200,
+    "decision_rule_thresholds": {
+      "h_signature": 3,
+      "c2_lift_margin_nats": 0.05,
+      "c2_min_lift_seeds": 2,
+      "frac_pre_ge2_floor": 0.3,
+      "consumed_spread_floor": 0.05,
+      "consumed_magnitude_ceil": 1000000.0,
+      "crf_min_minted": 2,
+      "crf_n_active_floor": 1,
+      "crf_frac_active_floor": 0.3,
+      "crf_dist_floor": 0.001,
+      "min_ticks_per_class": 5,
+      "min_seeds_for_pass": 2,
+      "use_modulatory_selection_authority": true,
+      "modulatory_authority_gain": 0.5,
+      "sd056_weight": 0.05
+    },
+    "acceptance_criteria": {
+      "C1_substrate_exercisable_and_manipulation_live": false,
+      "C1a_class_axis_exercisable_both_arms": true,
+      "C1a_n_off_axis": 3,
+      "C1a_n_on_axis": 3,
+      "C1b_gapa_divergence_both_arms": true,
+      "C1b_n_off_gapa": 2,
+      "C1b_n_on_gapa": 2,
+      "C1c_arm_on_rule_field_differentiated": false,
+      "C1c_n_on_differentiated": 0,
+      "C2_committed_class_lift": false,
+      "C2_n_lift_seeds": 0,
+      "C2_paired_lifts_by_seed": {
+        "42": 0.0,
+        "43": -0.030338,
+        "44": 0.049953
+      },
+      "C2_off_mean_committed_class_entropy": 0.900018,
+      "C2_on_mean_committed_class_entropy": 0.906556
+    },
+    "secondary_negative_control_not_load_bearing": {
+      "note": "Within-class-representative entropy is a NEGATIVE CONTROL: the rule bias is class-keyed (per-candidate summary is first-action-keyed; compute_bias broadcasts one rule_state across K), so it cannot move within-class selection -> ARM_ON ~ ARM_OFF is EXPECTED here, confirming the rule-creator's signal lives in the committed-class axis (the load-bearing C2 DV).",
+      "arm_off_within_class_rep_entropy_mean": 1.631379,
+      "arm_on_within_class_rep_entropy_mean": 1.595454,
+      "arm_off_selected_class_entropy_mean": 0.900018,
+      "arm_on_selected_class_entropy_mean": 0.906556,
+      "arm_off_lateral_pfc_bias_abs_mean": 0.071846,
+      "arm_on_lateral_pfc_bias_abs_mean": 0.064645
+    },
+    "interpretation_grid": {
+      "PASS_C1_C2": "The non-Bayesian rule-creator's DIFFERENTIATED rule_state propagates to greater committed-class diversity than the collapsed legacy baseline on the GAP-A-fixed pool. supports MECH-309 (rule-creator necessity) + ARC-062 (V3 weak-reading instantiation). Route to /governance: MECH-309 / ARC-062 supports evidence; consider GAP-B closure + the trained-bias-head behavioural successor.",
+      "FAIL_C1_holds_C2_fails": "Class axis exercisable, GAP-A divergence real, ARM_ON minted distinct rules, but the differentiated rule_state adds no marginal committed-class diversity over the collapsed baseline. weakens MECH-309 / ARC-062 on this eval-frozen readout; route to /governance + /failure-autopsy (does propagation require a TRAINED bias head, i.e. a P1 frozen-encoder bias-head training arm?).",
+      "FAIL_C1_substrate_not_ready_requeue": "The committed-class axis was not exercisable (< 2 candidate classes) and/or GAP-A consumed-summary divergence was absent (under-trained e2) and/or ARM_ON minted no distinct rules. The falsifier could not run -- NOT an MECH-309 / ARC-062 falsification. Route to substrate enrichment / higher P0 budget and re-queue; do NOT weaken the claims."
+    },
+    "arm_results": [
+      {
+        "arm_id": "ARM_OFF",
+        "label": "rule_creator_absent_legacy_collapsed_rule_state",
+        "seed": 42,
+        "use_candidate_rule_field": false,
+        "n_p0_ticks": 1392,
+        "n_p1_ticks": 1569,
+        "n_p0_contrastive_steps": 1375,
+        "error_note": null,
+        "committed_class_entropy_nats": 1.224698,
+        "n_unique_committed_classes": 5,
+        "committed_class_counts": {
+          "0": 127,
+          "1": 649,
+          "2": 134,
+          "3": 627,
+          "4": 32
+        },
+        "frac_pre_ge2": 1.0,
+        "class_axis_exercisable": true,
+        "consumed_summary_pairwise_dist_mean": 0.063901,
+        "consumed_summary_pairwise_dist_max": 0.083869,
+        "gapa_divergence": true,
+        "crf_present": false,
+        "crf_mean_n_active": 0.0,
+        "crf_frac_active_ge_floor": 0.0,
+        "crf_max_pairwise_rule_dist": 0.0,
+        "crf_n_minted_total": 0,
+        "crf_differentiated": false,
+        "mean_within_class_rep_entropy_nats": 2.603028,
+        "n_distinct_rep_signatures_total": 84,
+        "selected_class_entropy_nats": 1.224698,
+        "mean_lateral_pfc_bias_abs": 0.099945,
+        "arm_fingerprint": {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "8060173cf0a98dd2728d71f1c50c3d23f7739c49bd1c09d9a45a02357f560010",
+          "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694",
+          "substrate_n_files": 94,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 42,
+          "config_slice_declared": false,
+          "reuse_eligible": false,
+          "reuse_ineligible_reasons": [
+            "online_e2_training_stateful_per_cell"
+          ]
+        }
+      },
+      {
+        "arm_id": "ARM_OFF",
+        "label": "rule_creator_absent_legacy_collapsed_rule_state",
+        "seed": 43,
+        "use_candidate_rule_field": false,
+        "n_p0_ticks": 11583,
+        "n_p1_ticks": 11438,
+        "n_p0_contrastive_steps": 11549,
+        "error_note": null,
+        "committed_class_entropy_nats": 0.619797,
+        "n_unique_committed_classes": 3,
+        "committed_class_counts": {
+          "1": 7937,
+          "2": 3495,
+          "4": 6
+        },
+        "frac_pre_ge2": 1.0,
+        "class_axis_exercisable": true,
+        "consumed_summary_pairwise_dist_mean": 0.030979,
+        "consumed_summary_pairwise_dist_max": 0.0598,
+        "gapa_divergence": false,
+        "crf_present": false,
+        "crf_mean_n_active": 0.0,
+        "crf_frac_active_ge_floor": 0.0,
+        "crf_max_pairwise_rule_dist": 0.0,
+        "crf_n_minted_total": 0,
+        "crf_differentiated": false,
+        "mean_within_class_rep_entropy_nats": 1.359697,
+        "n_distinct_rep_signatures_total": 14,
+        "selected_class_entropy_nats": 0.619797,
+        "mean_lateral_pfc_bias_abs": 0.040392,
+        "arm_fingerprint": {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "d6465a50ea0e852ae7e6d39792dd3f5fd81935ebe0b2127848fd3a9f9a270335",
+          "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694",
+          "substrate_n_files": 94,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 43,
+          "config_slice_declared": false,
+          "reuse_eligible": false,
+          "reuse_ineligible_reasons": [
+            "online_e2_training_stateful_per_cell"
+          ]
+        }
+      },
+      {
+        "arm_id": "ARM_OFF",
+        "label": "rule_creator_absent_legacy_collapsed_rule_state",
+        "seed": 44,
+        "use_candidate_rule_field": false,
+        "n_p0_ticks": 2641,
+        "n_p1_ticks": 2886,
+        "n_p0_contrastive_steps": 2621,
+        "error_note": null,
+        "committed_class_entropy_nats": 0.855559,
+        "n_unique_committed_classes": 3,
+        "committed_class_counts": {
+          "0": 942,
+          "2": 1743,
+          "4": 201
+        },
+        "frac_pre_ge2": 1.0,
+        "class_axis_exercisable": true,
+        "consumed_summary_pairwise_dist_mean": 0.066583,
+        "consumed_summary_pairwise_dist_max": 0.10776,
+        "gapa_divergence": true,
+        "crf_present": false,
+        "crf_mean_n_active": 0.0,
+        "crf_frac_active_ge_floor": 0.0,
+        "crf_max_pairwise_rule_dist": 0.0,
+        "crf_n_minted_total": 0,
+        "crf_differentiated": false,
+        "mean_within_class_rep_entropy_nats": 0.931413,
+        "n_distinct_rep_signatures_total": 22,
+        "selected_class_entropy_nats": 0.855559,
+        "mean_lateral_pfc_bias_abs": 0.0752,
+        "arm_fingerprint": {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "98375b9318d416e82683ec32a547ebd9a5238e7dc221270cce38feb407cd2a52",
+          "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694",
+          "substrate_n_files": 94,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 44,
+          "config_slice_declared": false,
+          "reuse_eligible": false,
+          "reuse_ineligible_reasons": [
+            "online_e2_training_stateful_per_cell"
+          ]
+        }
+      },
+      {
+        "arm_id": "ARM_ON",
+        "label": "rule_creator_present_differentiated_crf_source",
+        "seed": 42,
+        "use_candidate_rule_field": true,
+        "n_p0_ticks": 1392,
+        "n_p1_ticks": 1569,
+        "n_p0_contrastive_steps": 1375,
+        "error_note": null,
+        "committed_class_entropy_nats": 1.224698,
+        "n_unique_committed_classes": 5,
+        "committed_class_counts": {
+          "0": 127,
+          "1": 649,
+          "2": 134,
+          "3": 627,
+          "4": 32
+        },
+        "frac_pre_ge2": 1.0,
+        "class_axis_exercisable": true,
+        "consumed_summary_pairwise_dist_mean": 0.063901,
+        "consumed_summary_pairwise_dist_max": 0.083869,
+        "gapa_divergence": true,
+        "crf_present": true,
+        "crf_mean_n_active": 0.115997,
+        "crf_frac_active_ge_floor": 0.115997,
+        "crf_max_pairwise_rule_dist": 0.0,
+        "crf_n_minted_total": 131,
+        "crf_differentiated": false,
+        "mean_within_class_rep_entropy_nats": 2.603028,
+        "n_distinct_rep_signatures_total": 84,
+        "selected_class_entropy_nats": 1.224698,
+        "mean_lateral_pfc_bias_abs": 0.099989,
+        "arm_fingerprint": {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "040e893af53e2f3b6bf0af75b52e13fd479afefd6c806b603ffa819059eea5e9",
+          "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694",
+          "substrate_n_files": 94,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 42,
+          "config_slice_declared": false,
+          "reuse_eligible": false,
+          "reuse_ineligible_reasons": [
+            "online_e2_training_stateful_per_cell"
+          ]
+        }
+      },
+      {
+        "arm_id": "ARM_ON",
+        "label": "rule_creator_present_differentiated_crf_source",
+        "seed": 43,
+        "use_candidate_rule_field": true,
+        "n_p0_ticks": 11565,
+        "n_p1_ticks": 11806,
+        "n_p0_contrastive_steps": 11531,
+        "error_note": null,
+        "committed_class_entropy_nats": 0.589459,
+        "n_unique_committed_classes": 3,
+        "committed_class_counts": {
+          "1": 8553,
+          "2": 3252,
+          "4": 1
+        },
+        "frac_pre_ge2": 1.0,
+        "class_axis_exercisable": true,
+        "consumed_summary_pairwise_dist_mean": 0.031232,
+        "consumed_summary_pairwise_dist_max": 0.054234,
+        "gapa_divergence": false,
+        "crf_present": true,
+        "crf_mean_n_active": 0.123073,
+        "crf_frac_active_ge_floor": 0.123073,
+        "crf_max_pairwise_rule_dist": 0.0,
+        "crf_n_minted_total": 408,
+        "crf_differentiated": false,
+        "mean_within_class_rep_entropy_nats": 1.363801,
+        "n_distinct_rep_signatures_total": 10,
+        "selected_class_entropy_nats": 0.589459,
+        "mean_lateral_pfc_bias_abs": 0.023968,
+        "arm_fingerprint": {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "614b058adf52ecdcf4355628e18d3fe6546dc56a3e0f830c79921db4283654f3",
+          "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694",
+          "substrate_n_files": 94,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 43,
+          "config_slice_declared": false,
+          "reuse_eligible": false,
+          "reuse_ineligible_reasons": [
+            "online_e2_training_stateful_per_cell"
+          ]
+        }
+      },
+      {
+        "arm_id": "ARM_ON",
+        "label": "rule_creator_present_differentiated_crf_source",
+        "seed": 44,
+        "use_candidate_rule_field": true,
+        "n_p0_ticks": 2648,
+        "n_p1_ticks": 2331,
+        "n_p0_contrastive_steps": 2628,
+        "error_note": null,
+        "committed_class_entropy_nats": 0.905512,
+        "n_unique_committed_classes": 3,
+        "committed_class_counts": {
+          "0": 1040,
+          "2": 1118,
+          "4": 173
+        },
+        "frac_pre_ge2": 1.0,
+        "class_axis_exercisable": true,
+        "consumed_summary_pairwise_dist_mean": 0.078202,
+        "consumed_summary_pairwise_dist_max": 0.112619,
+        "gapa_divergence": true,
+        "crf_present": true,
+        "crf_mean_n_active": 0.115401,
+        "crf_frac_active_ge_floor": 0.115401,
+        "crf_max_pairwise_rule_dist": 0.0,
+        "crf_n_minted_total": 145,
+        "crf_differentiated": false,
+        "mean_within_class_rep_entropy_nats": 0.819532,
+        "n_distinct_rep_signatures_total": 23,
+        "selected_class_entropy_nats": 0.905512,
+        "mean_lateral_pfc_bias_abs": 0.069979,
+        "arm_fingerprint": {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "c1e4a572398f58c8d15a7b0b1e8c3b2de1e6ab4efbd5e49566616f034a470d1b",
+          "substrate_hash": "a157911eeaad14532896b4b18406bbc8af90d2f950e76ba0c73f770c2a71b694",
+          "substrate_n_files": 94,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 44,
+          "config_slice_declared": false,
+          "reuse_eligible": false,
+          "reuse_ineligible_reasons": [
+            "online_e2_training_stateful_per_cell"
+          ]
+        }
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "evidence_quality_note": "V3-EXQ-654 (arc_062 GAP-B falsifier, MECH-309/ARC-062) FAIL non_contributory, self-route substrate_not_ready_requeue (precondition_unmet). C1c arm_on_rule_field_differentiated FAILED: ARM_ON CandidateRuleField fired a non-zero rule_state on only ~12% of P1 ticks (frac_active 0.116/0.123/0.115 vs 0.30 floor); crf_max_pairwise_rule_dist 0.0 all seeds; seed-42 committed-class byte-identical to ARM_OFF. Code-grounded cause (failure_autopsy_V3-EXQ-654_2026-06-09): agent.reset()->candidate_rule_field.reset() (agent.py:1908) wipes the rule pool + recurrence counters every ~26-tick episode, so the field never matures a live differentiated pool (cumulative n_minted 131-408 but live pool cold-started each episode); compounded by the conflict gate forbidding >=2-rule co-activation and an untrained bias head washing out the live rule_state. NOT a falsification -- the falsifier never ran. V3-EXQ-639 PASS proves the field CAN differentiate when its pool matures. Route: implement-substrate (cross-episode rule-persistence flag on ARC-063 CandidateRuleField) then re-queue 654a with a trained-bias-head P1 arm + bias-non-vacuity precondition. MECH-309/ARC-062 stay candidate / v3_pending / pending_retest_after_substrate; do NOT weaken.",
+  "source_autopsy": {
+    "artifact": "evidence/planning/failure_autopsy_V3-EXQ-654_2026-06-09.json",
+    "status": "confirmed",
+    "adjudication": "self_route_confirmed",
+    "recommended_epistemic_category": "substrate_ceiling",
+    "pending_retest_after_substrate": true,
+    "applied_by": "governance-cycle-20260609T1745Z",
+    "applied_utc": "2026-06-09T17:50:00Z"
+  }
+}

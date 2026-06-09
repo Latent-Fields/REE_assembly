@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_076e_mech116_arc032_e1_goal_conditioning
 
-Generated: `2026-06-09T04:34:33.900926Z`
+Generated: `2026-06-09T17:56:32.061833Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

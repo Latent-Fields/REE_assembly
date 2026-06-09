@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-09T04:30:30Z",
+  "last_review_utc": "2026-06-09T17:52:00Z",
   "discussed_experiment_dirs": [
     "v3_exq_603i_escape_affordance_bridge_validation",
     "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic",
@@ -593,7 +593,9 @@
     "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3",
     "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready",
     "v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone_20260608T055638Z_v3",
-    "v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone"
+    "v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone",
+    "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier",
+    "v3_exq_603j_escape_bridge_safety_half_readiness"
   ],
   "reviewed_run_ids": [
     "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
@@ -2877,7 +2879,9 @@
     "v3_exq_651a_arc060_blocked_goal_recovery_20260607T150734Z_v3",
     "v3_exq_603f_scaffolded_sd054_substrate_readiness_20260607T173332Z_v3",
     "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3",
-    "v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone_20260608T055638Z_v3"
+    "v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone_20260608T055638Z_v3",
+    "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier_20260609T081844Z_v3",
+    "v3_exq_603j_escape_bridge_safety_half_readiness_20260609T051208Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4011,6 +4015,15 @@
         "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic"
       ],
       "subject": "/governance 2026-06-08T21:51Z. 2 pending walked, both claim-free diagnostics (no claims.yaml edits this cycle). 653 (E2 escape-affordance LINKER readiness microdiagnostic, PASS, claim_ids=[])->non_contributory: all gates G0-G8 3/3 seeds + secondary G_RS 3/3, overall_pass/readiness_ok true, self-route linker_readout_ready (clean, not flagged); positive control linker_optimizer_stepped=60. Implication noted: post-603i E2 escape-affordance linker substrate wired+learnable (detached-E2 readout into escape viability, bias->escape, noop uncredited, weights persist, inputs detached) = ready as substrate for the next behavioural bridge re-test. Marked reviewed per user. 603i (escape-affordance bridge validation, FAIL, claim_ids=[]) NOT marked reviewed: adjudication gate flagged precondition_unmet (load-bearing pag_freeze_and_ilpfc_gate_engage_on_base below floor -> 603h gate/freeze base inert this run, NOT a bridge verdict); existing autopsy is PROVISIONAL/not-applied; per gate, precondition_unmet blocks action until a CONFIRMED /failure-autopsy. Left pending (no evidence_direction beyond non_contributory; SD-059/MECH-358 neither validated nor weakened). 0 promotion/demotion (Decision Queue all-holds). closure_drift 0/0/0. Concurrency: ran alongside live queue-experiment-653 session (ree-v3 files only, no governance-collision-set overlap; user confirmed proceed)."
+    },
+    {
+      "utc": "2026-06-09T17:52:00Z",
+      "session": "governance-cycle-20260609T1745Z",
+      "runs": [
+        "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier_20260609T081844Z_v3",
+        "v3_exq_603j_escape_bridge_safety_half_readiness_20260609T051208Z_v3"
+      ],
+      "note": "654 (ARC-062/MECH-309 FAIL, non_contributory, confirmed autopsy applied -- substrate_ceiling, pending_retest, no weakening, substrate_queue ARC-062 amend); 603j (claim-free PASS safety-half readiness, user-cleared: SD-059 safety-half wired+ready)."
     }
   ]
 }

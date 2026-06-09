@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-09T04:27:56Z
+Generated: 2026-06-09T17:47:50Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,11 +8,11 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **71.3%** across 67 non-deferred nodes in 10 plan(s) with closure frontmatter.
+- Weighted progress: **71.9%** across 67 non-deferred nodes in 10 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **24** nodes.
 - Deferred (not required for v3 closure): 15 nodes.
 - Done: 43 nodes.
-- Status tally: blocked=7  blocked_pending_substrate=6  deferred=15  done=43  in_progress=6  open=2  partial=2  upstream_blocked=1
+- Status tally: blocked=7  blocked_pending_substrate=6  deferred=15  done=43  in_progress=7  open=1  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -20,9 +20,9 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 |------|-------|-------|----------|---------------|--------------|
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | blocked:3 blocked_pending_substrate:1 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
-| `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 12 | 57% | blocked:1 blocked_pending_substrate:1 deferred:3 done:4 in_progress:1 open:1 partial:1 | 2026-06-08 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 8 | 57% | deferred:4 done:1 in_progress:2 partial:1 | 2026-06-08 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 58% | blocked_pending_substrate:1 deferred:1 done:3 in_progress:1 open:1 | 2026-06-04 |
+| `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 12 | 61% | blocked:1 blocked_pending_substrate:1 deferred:3 done:4 in_progress:2 partial:1 | 2026-06-09 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 15 | 82% | blocked_pending_substrate:3 done:12 | 2026-05-30 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 11 | 85% | deferred:3 done:6 in_progress:2 | 2026-06-04 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 8 | 87% | deferred:1 done:6 upstream_blocked:1 | 2026-05-31 |
@@ -37,7 +37,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under | blocked_pending_substrate | 1 | load-bearing | V3-EXQ-625c | RESUME the Phase 1b gate (or its successor) once the behavioural-diversity substrate amend | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-06 |
-| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | open | 2 | load-bearing | GAP-B behavioural falsifier successor owed (not  | READY TO QUEUE 2026-06-08. Queue the GAP-B behavioural falsifier with ARM_OFF use_candidat | 2026-06-08 |
+| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654 (QUEUED 2026-06-09; arc_062 GAP-B beh | QUEUED 2026-06-09 as V3-EXQ-654 (priority 250, machine any; committed-class-diversity DV,  | 2026-06-09 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460b..468b (Phase 4/5 *b cohort; MECH-342 | MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes (2026-05-28 | 2026-06-04 |
 | goal_pipeline_plan.md | `goal_pipeline:GAP-2` | SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor) | blocked_pending_substrate | 2 | high | V3-EXQ-514l | RESUME once the scaffolded_sd054_onboarding substrate-readiness gates pass (substrate_queu | 2026-06-05 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_603j_escape_bridge_safety_half_readiness
 
-Generated: `2026-06-09T09:09:09.336971Z`
+Generated: `2026-06-09T17:56:32.061833Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
