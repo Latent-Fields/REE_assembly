@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_045_object_file",
+  "entry_id": "2026-06-09_mech_045_visual_index_pylyshyn2001",
+  "timestamp_utc": "2026-06-09T18:25:18Z",
+  "claim_ids_tested": ["MECH-045", "ARC-006"],
+  "source": {
+    "title": "Visual indexes, preconceptual objects, and situated vision",
+    "authors": ["Zenon W. Pylyshyn"],
+    "year": 2001,
+    "venue": "Cognition 80(1-2):127-158",
+    "doi": "10.1016/S0010-0277(00)00156-6",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11245842/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Pylyshyn's FINST / visual-index theory supplies the part of MECH-045's specification that the object-file literature leaves implicit: the KEY. A visual index individuates and tracks ~4-5 objects 'preconceptually' -- without encoding their identities or any conceptual label -- which is the cleanest available statement of MECH-045's 'WITHOUT symbolic/type labels'. The multiple-object-tracking paradigm it spawned is the direct behavioural test of tracking-through-motion. Confidence 0.78: high theoretical mapping fidelity, discounted because it is a framework + paradigm rather than a single decisive experiment, and because the index is a pure pointer (no feature buffer) -- it grounds the KEY but not the per-token feature store.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Visual indexes carry NO feature content -- they are bare pointers. A REE buffer modelled too literally on FINSTs would track identity but store nothing to bind, defeating the 'per-token feature buffer' half of MECH-045; the design must add the feature store the index theory deliberately omits.",
+    "The ~4-5 index capacity limit is a hard cap; MOT studies show tracking collapses when objects coincide/occlude or move too fast. A REE buffer with unbounded tokens would not reproduce the human capacity signature and would have no principled token-eviction policy.",
+    "Pylyshyn argues indexing is bottom-up and stimulus-driven, partly DIVORCED from attention; this is in mild tension with ARC-006/MECH-045's 'attention-gated' commitment, so the attention coupling REE proposes is an addition, not a borrowing."
+  ],
+  "tags": ["mech_045", "arc_006", "finst", "visual_index", "multiple_object_tracking", "preconceptual_reference", "label_free_individuation", "token_instance", "data_association"],
+  "mapping": {
+    "source_claim_statement": "A preconceptual visual-indexing mechanism (FINSTs -- 'fingers of instantiation') individuates and keeps track of about four or five visual objects, sticking to feature clusters and providing a demonstrative reference (like 'this' / 'that') to objects WITHOUT encoding their identities or properties. This indexing underlies multiple-object tracking, subitizing, and subset selection, and operates before conceptual categorisation.",
+    "ree_translation": "FINST theory is the specification for MECH-045's token KEY: a label-free, pre-categorical pointer that individuates and tracks an entity instance across motion by spatiotemporal continuity, independent of what the entity IS. This is precisely the 'no type label' constraint, and it is the property the live TYPE-keyed (SD-057) and ANCHOR-keyed (SD-039) stores lack. The MOT paradigm gives REE a behavioural template for the discriminative experiment: track an object that moves to a new location and verify identity is preserved across the move. REE's data-association over z_world is the computational instantiation of 'sticking an index to a feature cluster and following it'.",
+    "mapping_caveat": "FINSTs are pointers with no content; MECH-045 additionally requires a per-token FEATURE buffer, so REE must graft a feature store onto the index. The capacity (~4-5) and the bottom-up/attention-divorced character are human-vision specifics that REE need not reproduce literally. The mapping is 'the KEY mechanism (label-free individuation + tracking)', not 'the whole object-file'.",
+    "source_context": "Theoretical review + experimental paradigm (multiple-object tracking) in human vision; argues for a preconceptual individuation/tracking layer beneath conceptual object recognition."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.4,
+    "notes": "Influential, well-cited framework (Cognition 2001) with a robust behavioural paradigm behind it. Mapping fidelity high for the KEY (label-free individuation) but partial for the whole claim (no feature buffer). Transfer risk moderate -- human-vision capacity limits and the attention stance do not all carry over."
+  }
+}

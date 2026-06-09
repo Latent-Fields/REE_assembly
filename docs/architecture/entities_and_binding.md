@@ -112,6 +112,19 @@ precision‑weighted continuity constraints.
 > type) and the as-yet-missing wiring between these stores. Reactivating MECH-045
 > as a token-keyed object-file is a V4 / late-V3 substrate step -- not a V3-closure
 > item.
+>
+> **Substrate design memo (2026-06-09):** the token-instance object-file buffer is
+> now specified in [`mech_045_object_file_buffer.md`](mech_045_object_file_buffer.md)
+> -- biology grounding (object files, FINSTs, LEC object-trace cells, MEC
+> object-vector cells, data-association/re-identification), a proposed
+> `ree_core/entities/object_file_buffer.py` module (spatiotemporal-continuity
+> data-association over `z_world`, label-free token KEY, attention-gated
+> precision-weighted feature buffer), the type-vs-token-vs-anchor fork resolution
+> (token = spine; the two live stores wire to consume it), the `world_dim=32`
+> feasibility verdict, and a pre-registered persistence-vs-ablation experiment.
+> Written to unblock proposal EVB-0293 / EXP-0117 (`blocked_substrate`,
+> 2026-06-09). The buffer itself remains DORMANT until the sibling
+> `/implement-substrate` chip lands it.
 
 ---
 

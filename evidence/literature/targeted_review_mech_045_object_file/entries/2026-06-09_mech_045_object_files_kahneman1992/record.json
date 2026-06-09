@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_045_object_file",
+  "entry_id": "2026-06-09_mech_045_object_files_kahneman1992",
+  "timestamp_utc": "2026-06-09T18:25:18Z",
+  "claim_ids_tested": ["MECH-045", "ARC-006"],
+  "source": {
+    "title": "The reviewing of object files: Object-specific integration of information",
+    "authors": ["Daniel Kahneman", "Anne Treisman", "Brian J. Gibbs"],
+    "year": 1992,
+    "venue": "Cognitive Psychology 24(2):175-219",
+    "doi": "10.1016/0010-0285(92)90007-O",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/1582172/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The canonical, founding empirical source for the construct MECH-045 names verbatim ('object-file-like buffers'). It directly demonstrates the three properties the claim requires -- a per-object stable buffer, integration of information across TIME, and (critically) identity maintained across MOTION via shared relative position in a moving frame rather than via the object's features. The object-specific preview benefit is a token-instance signature (this object, not this type). Confidence high (0.82) for mapping fidelity -- this IS the construct -- but capped below 0.9 because it is human psychophysics, not a substrate/algorithm, so it grounds the FUNCTION REE must reproduce without prescribing the mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The object-specific preview benefit can be carried by LOCATION continuity rather than by a label-free identity token (cf. Mitroff & Alvarez 2007, 'integration by location'); if REE's data-association KEY collapses to 'nearest cell last tick' it would reproduce the benefit vacuously without true cross-motion re-identification -- the precise non-vacuity hazard the experiment precondition must rule out.",
+    "Object files in this paradigm reset / fail to update when motion is too fast or the object is fully occluded for too long; a REE buffer that never drops a token would over-bind and lose the falsifiable signature."
+  ],
+  "tags": ["mech_045", "arc_006", "object_file", "object_specific_preview_benefit", "feature_binding", "token_instance", "visual_short_term_memory", "binding_across_motion"],
+  "mapping": {
+    "source_claim_statement": "A preview feature appearing on an object is automatically encoded into a stable, object-specific representation -- a 'file' -- in visual short-term memory. Naming a later target feature is facilitated when it appears on the SAME object as the prime, where sameness is established by shared location, by shared relative position in a moving pattern, or by successive appearance in the same moving frame -- i.e. by spatiotemporal continuity, NOT by feature identity. The benefit is object-specific: it does not transfer to a different object carrying the same feature.",
+    "ree_translation": "This is the direct biological/cognitive grounding for MECH-045: entities are tracked by per-object buffers that bind features across time and across motion, keyed by a token instance whose continuity is spatiotemporal rather than symbolic. The 'object-specific' (not feature-specific, not type-specific) nature of the preview benefit is precisely the type-vs-token distinction ARC-080 flags: the file is bound to THIS object instance as it moves, not to 'objects like it'. It motivates a data-association KEY over z_world continuity with no type label, and the attention-gated, capacity-limited buffer ARC-006 calls for.",
+    "mapping_caveat": "Human visual psychophysics over sub-second timescales with explicit letter stimuli; it establishes the FUNCTION (object-specific integration across motion) but says nothing about how a latent-space agent should compute the data-association, nor whether z_world at dim=32 carries enough discriminative structure to support it. The mapping is 'this is the capacity REE must reproduce', not 'this is the algorithm'.",
+    "source_context": "Series of human naming-latency experiments; preview field of 2+ letters followed by a target letter; object linkage manipulated by shared location, shared relative position in a moving pattern, or shared moving frame."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.9,
+    "transfer_risk": 0.45,
+    "notes": "Foundational, heavily-replicated cognitive-psychology source (>5000 citations); it is the namesake construct, so mapping fidelity is near-maximal. Transfer risk elevated because it is a behavioural function in humans, not a mechanism in a latent-stack agent -- the gap from 'object-specific preview benefit' to 'data-association over z_world' is real."
+  }
+}

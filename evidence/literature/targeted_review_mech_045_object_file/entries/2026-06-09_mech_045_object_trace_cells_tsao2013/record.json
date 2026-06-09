@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_045_object_file",
+  "entry_id": "2026-06-09_mech_045_object_trace_cells_tsao2013",
+  "timestamp_utc": "2026-06-09T18:25:18Z",
+  "claim_ids_tested": ["MECH-045", "ARC-006"],
+  "source": {
+    "title": "Traces of Experience in the Lateral Entorhinal Cortex",
+    "authors": ["Albert Tsao", "May-Britt Moser", "Edvard I. Moser"],
+    "year": 2013,
+    "venue": "Current Biology 23(5):399-405",
+    "doi": "10.1016/j.cub.2013.01.036",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23434282/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Object-trace cells are the closest neural correlate of the PERSISTENCE half of MECH-045: LEC neurons that fire at the location where an object USED TO BE after it is removed. That firing-in-the-object's-absence is the single-unit signature of an entity buffer that outlives perceptual contact -- precisely 'minimal entity persistence across time'. Combined with LEC's role as the 'what/content' stream (vs MEC 'where'), it grounds the identity-content side that object-vector cells (MEC) do not. Confidence 0.72: a clean, on-point persistence signature, discounted because trace cells code a remembered object-PLACE (still partly location-bound) rather than a label-free token followed through motion, and because it is rodent single-unit data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Object-trace cells encode where an object WAS (object-place memory), so persistence here is still partly anchored to a remembered LOCATION; a REE buffer that only remembers last-seen position would reproduce trace-cell firing without re-identifying the object once it has MOVED -- the exact cross-motion gap that separates persistence-through-absence from token tracking.",
+    "Only a small subset of LEC cells show the trace property; the signal is sparse and the mechanism by which experience-history is written is not resolved -- so the paper licenses 'a persistence buffer exists' but not its update rule.",
+    "LEC object firing reflects higher-order experience history, not pure stimulus drive; disentangling genuine identity persistence from slow sensory adaptation requires the kind of ablation/shuffle control the REE experiment must build in."
+  ],
+  "tags": ["mech_045", "arc_006", "object_trace_cells", "lateral_entorhinal_cortex", "object_place_memory", "persistence_through_absence", "what_stream", "entity_persistence"],
+  "mapping": {
+    "source_claim_statement": "A subset of lateral entorhinal cortex (LEC) neurons fire at the positions where objects have previously been experienced -- 'object-trace cells' -- continuing to signal an object's former location after the object has been removed. LEC neurons show little spatial modulation in empty fields but fire near discrete objects; this firing reflects higher-order properties (history of experience), not pure stimulus drive. Trace cells are a cellular correlate of object-place memory.",
+    "ree_translation": "Object-trace cells are the neural witness for the PERSISTENCE requirement in MECH-045: a representation of an object that OUTLIVES perceptual contact and keeps firing in the object's absence. This is 'minimal entity persistence across time' at the single-cell level, and it sits in LEC, the 'what/content' stream -- complementing the MEC 'where' object-vector cells and grounding the identity-content side a token buffer must hold. It motivates REE's per-token feature buffer that maintains an entity's state when the entity is occluded or out of view, and supplies the biological precedent for the persistence-vs-ablation contrast the experiment tests.",
+    "mapping_caveat": "Trace cells code a remembered object-PLACE, so persistence is partly location-bound rather than a label-free token followed through motion; the analogy grounds persistence-through-absence but not yet cross-motion re-identification. Rodent single-unit data in open fields; the write rule for experience-history is unresolved. Tag is to MECH-045's persistence half + ARC-006, not to a complete token mechanism.",
+    "source_context": "Single-unit recordings in rat LEC during object exploration and after object removal; characterises object-responsive and object-trace firing and contrasts LEC's content-coding with MEC's spatial coding."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Strong source (Current Biology, Moser lab). Mapping fidelity good for the persistence-through-absence signature and the what-stream localisation, but partial because trace firing is object-place rather than a moved-token identity. Transfer risk moderate (rodent single-unit to latent agent)."
+  }
+}

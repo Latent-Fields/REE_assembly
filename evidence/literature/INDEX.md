@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-09T17:56:32.061833Z`
+Generated: `2026-06-09T18:29:32.211235Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -171,6 +171,7 @@ Generated: `2026-06-09T17:56:32.061833Z`
 | `targeted_review_mech285_sleep_replay_seed` | [`2026-04-24_mech_285_topological_replay_wu2014`](targeted_review_mech285_sleep_replay_seed/entries/2026-04-24_mech_285_topological_replay_wu2014/record.json) | 10 | [`summary`](targeted_review_mech285_sleep_replay_seed/entries/2026-04-24_mech_285_topological_replay_wu2014/summary.md) |
 | `targeted_review_mech294_theta_burst_packet` | [`2026-04-26_mech_294_theta_phase_encoding_retrieval_hasselmo2005`](targeted_review_mech294_theta_burst_packet/entries/2026-04-26_mech_294_theta_phase_encoding_retrieval_hasselmo2005/record.json) | 7 | [`summary`](targeted_review_mech294_theta_burst_packet/entries/2026-04-26_mech_294_theta_phase_encoding_retrieval_hasselmo2005/summary.md) |
 | `targeted_review_mech295_liking_approach_bridge` | [`2026-04-26_mech_295_vp_hedonic_coding_smith2011`](targeted_review_mech295_liking_approach_bridge/entries/2026-04-26_mech_295_vp_hedonic_coding_smith2011/record.json) | 6 | [`summary`](targeted_review_mech295_liking_approach_bridge/entries/2026-04-26_mech_295_vp_hedonic_coding_smith2011/summary.md) |
+| `targeted_review_mech_045_object_file` | [`2026-06-09_mech_045_visual_index_pylyshyn2001`](targeted_review_mech_045_object_file/entries/2026-06-09_mech_045_visual_index_pylyshyn2001/record.json) | 5 | [`summary`](targeted_review_mech_045_object_file/entries/2026-06-09_mech_045_visual_index_pylyshyn2001/summary.md) |
 | `targeted_review_mech_054` | [`2026-02-15_mech054_lhb_negative_reward_signal_nature2007`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/record.json) | 1 | [`summary`](targeted_review_mech_054/entries/2026-02-15_mech054_lhb_negative_reward_signal_nature2007/summary.md) |
 | `targeted_review_mech_057` | [`2026-04-04_mech_057_bg_sequence_parsing_jin2014`](targeted_review_mech_057/entries/2026-04-04_mech_057_bg_sequence_parsing_jin2014/record.json) | 8 | [`summary`](targeted_review_mech_057/entries/2026-04-04_mech_057_bg_sequence_parsing_jin2014/summary.md) |
 | `targeted_review_mech_058` | [`2026-02-15_mech058_lit-0017_completion`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/record.json) | 4 | [`summary`](targeted_review_mech_058/entries/2026-02-15_mech058_lit-0017_completion/summary.md) |

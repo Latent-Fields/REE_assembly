@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_045_object_file",
+  "entry_id": "2026-06-09_mech_045_data_association_reid_wojke2017",
+  "timestamp_utc": "2026-06-09T18:25:18Z",
+  "claim_ids_tested": ["MECH-045"],
+  "source": {
+    "title": "Simple Online and Realtime Tracking with a Deep Association Metric",
+    "authors": ["Nicolai Wojke", "Alex Bewley", "Dietrich Paulus"],
+    "year": 2017,
+    "venue": "IEEE International Conference on Image Processing (ICIP) 2017, pp. 3645-3649",
+    "doi": "10.1109/ICIP.2017.8296962",
+    "url": "https://arxiv.org/abs/1703.07402"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "DeepSORT is the engineering blueprint for MECH-045's token KEY: it maintains per-object tracks across time and occlusion by DATA ASSOCIATION combining a motion gate (Kalman/Mahalanobis spatiotemporal continuity) with an appearance embedding, assigning persistent track ids with NO category label. This is exactly REE's proposal -- spatiotemporal-continuity data-association over z_world features -- with z_world standing in for the appearance descriptor. It supplies the concrete update rule (predict -> gate -> match -> birth/death) the biological sources leave unspecified, and the identity-switch metric is the natural quantitative readout for the experiment. Confidence 0.7: high mechanistic mapping fidelity, discounted because it is engineering (not evidence the brain does this), relies on a SUPERVISED person-reID appearance metric REE does not have, and assumes a detector REE lacks.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DeepSORT's appearance metric is a SUPERVISED descriptor pre-trained on a large person-reID dataset; REE has no labelled identity data and must use unsupervised z_world. If z_world is not discriminative enough (the dim=32 ceiling), the appearance term degenerates and association falls back to motion-only -- which is the location-collapse vacuity mode in disguise.",
+    "It assumes an external object DETECTOR proposing bounding boxes each frame; REE has no detector, so the 'what counts as a trackable entity this tick' step (figure-ground / candidate proposal) is an unsolved upstream dependency the buffer cannot assume away.",
+    "Pure tracking-by-detection has no notion of value, attention-gating, or precision-weighting; it associates everything uniformly. MECH-045's attention-gated, precision-weighted continuity is an ADDITION to the DeepSORT recipe, not part of it."
+  ],
+  "tags": ["mech_045", "data_association", "re_identification", "deepsort", "multi_object_tracking", "kalman_gating", "track_management", "identity_switch", "token_instance", "spatiotemporal_continuity"],
+  "mapping": {
+    "source_claim_statement": "Multi-object tracking can be done online by tracking-by-detection: a Kalman filter predicts each existing track's next state; detections are associated to tracks by a cost combining a Mahalanobis MOTION gate with a cosine distance in a learned APPEARANCE-embedding space (a deep metric pre-trained on person re-identification); unmatched detections birth new tracks and unmatched tracks age out and die. Adding the appearance metric lets tracks survive long occlusions and sharply reduces identity switches versus motion-only SORT.",
+    "ree_translation": "DeepSORT is the computational instantiation of MECH-045's token KEY. Its predict->gate->match->birth/death loop IS the data-association mechanism REE proposes: assign a persistent token id to an entity by combining spatiotemporal continuity (the motion gate) with a feature match (the appearance term), with NO type/category label -- track ids are bare instance pointers. REE substitutes z_world for the appearance descriptor and gets a per-token feature buffer for free (the track's stored embedding). The identity-switch count and track-purity are the natural quantitative metrics for the persistence-vs-ablation experiment, and the appearance-vs-motion ablation in the paper is the methodological template for REE's intact-vs-shuffled-identity arms.",
+    "mapping_caveat": "Engineering system, not evidence about brains -- it shows the mechanism is SUFFICIENT for tracking, not that REE or biology implements it. It depends on a supervised reID appearance metric and an external detector, neither of which REE has; the biological plausibility and the unsupervised-z_world substitution are the open risks. The attention-gating and precision-weighting MECH-045 requires are not in DeepSORT.",
+    "source_context": "Computer-vision multi-object-tracking method (IEEE ICIP 2017); evaluated on the MOT pedestrian-tracking benchmark; the canonical appearance+motion data-association tracker."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.45,
+    "notes": "Widely-used, well-validated method (the de-facto baseline for appearance-based MOT). Mapping fidelity high because it is literally the proposed KEY mechanism. Source quality good but it is an applied conference method, not a controlled study of representation; transfer risk from supervised-reID + detector assumptions to REE's unsupervised detectorless setting is the main discount."
+  }
+}

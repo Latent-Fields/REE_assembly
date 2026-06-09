@@ -208,18 +208,19 @@
       }
     },
     "ARC-006": {
-      "confidence_rationale": "exp=0 entry(s), lit=12 entry(s), exp_conf=0, lit_conf=0.863",
+      "confidence_rationale": "exp=0 entry(s), lit=16 entry(s), exp_conf=0, lit_conf=0.866",
       "direction_counts": {
-        "mixed": 2,
-        "supports": 10,
+        "mixed": 3,
+        "supports": 13,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 12,
+      "entries_total": 16,
       "evidence_class_counts": {
-        "lit:behavioral_human": 7,
+        "lit:behavioral_human": 8,
         "lit:connectome_mechanistic_review": 1,
-        "lit:theoretical_review": 4
+        "lit:electrophysiology_single_unit": 2,
+        "lit:theoretical_review": 5
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -233,83 +234,13 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-06-06_arc_006_correlation_theory_binding_von_der_malsburg1999",
-      "latest_timestamp_utc": "2026-06-06T21:21:00Z",
-      "literature_confidence": 0.863,
-      "literature_confidence_parallel": 0.863,
-      "overall_confidence": 0.863,
+      "latest_run_id": "2026-06-09_mech_045_visual_index_pylyshyn2001",
+      "latest_timestamp_utc": "2026-06-09T18:25:18Z",
+      "literature_confidence": 0.866,
+      "literature_confidence_parallel": 0.866,
+      "overall_confidence": 0.866,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-006",
-          "confidence": 0.7,
-          "confidence_rationale": "Foundational and many-times-replicated demonstration that a hidden object is REPRESENTED as continuing to exist long before Piaget's manual-search criterion. Directly grounds the existence of a persistence buffer (MECH-045): permanence is a representational competence dissociable from action. Confidence held at 0.7 rather than higher because (a) the drawbridge paradigm specifically carries a documented low-level novelty/familiarity confound (Rivera/Wakeley/Langer 1999; Cashon & Cohen 2000), and (b) the mapping from looking-time surprise to a substrate-level buffer is conceptual, not mechanistic.",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_permanence",
-          "failure_signatures": [
-            "The drawbridge version of VOE has a known low-level confound: infants may simply prefer the larger/more-novel 180-degree rotation independent of any box representation (Rivera, Wakeley & Langer 1999). The permanence inference rests on the full VOE literature, not this paradigm alone.",
-            "Looking-time 'surprise' demonstrates that SOMETHING about the hidden object is represented; it does not specify whether the representation is a token-instance object-file, a spatial expectation, or a physical-event prediction. It cannot by itself adjudicate the token-vs-type question MECH-045 must answer.",
-            "A representation sufficient to drive differential looking is not necessarily sufficient to drive search/retrieval -- the competence (representation) / performance (action) gap (see Diamond 1985 entry) means MECH-045's buffer must be specified at the level it is consumed."
-          ],
-          "run_id": "2026-06-04_mech_045_object_permanence_5mo_baillargeon1985",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T16:06:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-006",
-          "confidence": 0.7,
-          "confidence_rationale": "Direct, clean evidence that infants represent a partly-hidden object as a single connected entity -- a token-level unity inference that bridges occlusion. This is the perceptual-completion sibling of full-occlusion permanence and grounds MECH-045's persistence buffer at the unit level. Confidence 0.7 because the binding CUE the paper isolates (common motion of the visible parts) is precisely the cue REE's anchor-keyed ghost bank does NOT use -- so the paper supports the capability while exposing a mechanism mismatch in REE's current implementation.",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_permanence",
-          "failure_signatures": [
-            "Unity was perceived from COMMON MOTION of the visible surfaces; with static, homogeneous, aligned, simple-shaped edges infants did NOT perceive a connected object. REE's persistence stores key on a spatial anchor (ghost bank) or a static type tag (SD-049), neither of which is the motion-based amodal-completion cue the infant uses.",
-            "The study tests completion of a CURRENTLY partly-visible object, not full occlusion across time -- it is the spatial-gap analog of permanence, one inferential step short of the temporal-gap (fully-hidden) case Baillargeon tests.",
-            "Common-motion binding is a perceptual-input grouping operation; it does not by itself establish a stored token that survives the object becoming fully invisible. MECH-045 must add the temporal-persistence step that this paradigm stops short of."
-          ],
-          "run_id": "2026-06-04_mech_045_occluded_object_unity_kellman_spelke1983",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T16:06:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-006",
-          "confidence": 0.66,
-          "confidence_rationale": "Foundational and field-defining review establishing the temporal-correlation (binding-by-synchrony) hypothesis with strong cat/primate gamma-synchrony data. Direction is mixed rather than supports because the hypothesis has been seriously contested since (Shadlen & Movshon 1999 critique; debate over whether synchrony codes or merely accompanies binding). It is strong evidence that dynamic, relational binding via temporal structure is a real candidate mechanism (ARC-006), weaker as proof that synchrony IS the binding code.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_object_files_feature_binding",
-          "failure_signatures": [
-            "Synchrony may be a by-product of recurrent connectivity rather than the binding code itself (Shadlen & Movshon 1999): a downstream reader needs a mechanism to actually exploit coincidence, or the correlation is epiphenomenal -- the same 'symbol without function' failure mode 641a found in REE's streams.",
-            "The hypothesis requires that bound features drive co-varying temporal structure; if a representation's features do not co-vary in time (REE's engineered pre-split z_world), there is no temporal correlation to read."
-          ],
-          "run_id": "2026-06-06_arc_006_temporal_correlation_binding_singer_gray1995",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-06T21:00:00Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-006",
-          "confidence": 0.72,
-          "confidence_rationale": "Canonical, heavily-replicated framework from a leading lab (Neuron) for coherence as the substrate of selective neural communication; directly names the mechanism the V3-EXQ-641a autopsy cited as 'closest'. Confidence held below 0.8 because the mapping is to the CLASS (coherence-gated routing/binding) rather than to REE's specific hippocampal-relational-binding or theta-gamma-packaging instantiation, and because CTC describes inter-areal cortical communication, not the cross-stream latent coherence REE's selection rule reads.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_files_feature_binding",
-          "failure_signatures": [
-            "CTC asserts that communication is effective only when sending and receiving groups are coherent; a coherence read over streams that are NOT genuinely phase/feature-bound (the V3-EXQ-641a finding: world_states<->states carry the symbol but not the bound information) would register coherence that does not gate anything causally -- exactly the 'functionally redundant with E' result.",
-            "Coherence in CTC is a consequence of rhythmic excitability windows; if REE's streams have no analog of a shared excitability rhythm, a coherence term is decorative rather than mechanistic."
-          ],
-          "run_id": "2026-06-06_mech_044_communication_through_coherence_fries2015",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-06T21:00:00Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-006",
@@ -326,12 +257,83 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-06-06T21:21:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-006",
+          "confidence": 0.82,
+          "confidence_rationale": "The canonical, founding empirical source for the construct MECH-045 names verbatim ('object-file-like buffers'). It directly demonstrates the three properties the claim requires -- a per-object stable buffer, integration of information across TIME, and (critically) identity maintained across MOTION via shared relative position in a moving frame rather than via the object's features. The object-specific preview benefit is a token-instance signature (this object, not this type). Confidence high (0.82) for mapping fidelity -- this IS the construct -- but capped below 0.9 because it is human psychophysics, not a substrate/algorithm, so it grounds the FUNCTION REE must reproduce without prescribing the mechanism.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_045_object_file",
+          "failure_signatures": [
+            "The object-specific preview benefit can be carried by LOCATION continuity rather than by a label-free identity token (cf. Mitroff & Alvarez 2007, 'integration by location'); if REE's data-association KEY collapses to 'nearest cell last tick' it would reproduce the benefit vacuously without true cross-motion re-identification -- the precise non-vacuity hazard the experiment precondition must rule out.",
+            "Object files in this paradigm reset / fail to update when motion is too fast or the object is fully occluded for too long; a REE buffer that never drops a token would over-bind and lose the falsifiable signature."
+          ],
+          "run_id": "2026-06-09_mech_045_object_files_kahneman1992",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T18:25:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-006",
+          "confidence": 0.72,
+          "confidence_rationale": "Object-trace cells are the closest neural correlate of the PERSISTENCE half of MECH-045: LEC neurons that fire at the location where an object USED TO BE after it is removed. That firing-in-the-object's-absence is the single-unit signature of an entity buffer that outlives perceptual contact -- precisely 'minimal entity persistence across time'. Combined with LEC's role as the 'what/content' stream (vs MEC 'where'), it grounds the identity-content side that object-vector cells (MEC) do not. Confidence 0.72: a clean, on-point persistence signature, discounted because trace cells code a remembered object-PLACE (still partly location-bound) rather than a label-free token followed through motion, and because it is rodent single-unit data.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_045_object_file",
+          "failure_signatures": [
+            "Object-trace cells encode where an object WAS (object-place memory), so persistence here is still partly anchored to a remembered LOCATION; a REE buffer that only remembers last-seen position would reproduce trace-cell firing without re-identifying the object once it has MOVED -- the exact cross-motion gap that separates persistence-through-absence from token tracking.",
+            "Only a small subset of LEC cells show the trace property; the signal is sparse and the mechanism by which experience-history is written is not resolved -- so the paper licenses 'a persistence buffer exists' but not its update rule.",
+            "LEC object firing reflects higher-order experience history, not pure stimulus drive; disentangling genuine identity persistence from slow sensory adaptation requires the kind of ablation/shuffle control the REE experiment must build in."
+          ],
+          "run_id": "2026-06-09_mech_045_object_trace_cells_tsao2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T18:25:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-006",
+          "confidence": 0.66,
+          "confidence_rationale": "Object-vector cells are the strongest single-unit evidence that the mammalian brain has a dedicated, object-anchored coding scheme that GENERALISES across distinct objects irrespective of their location -- a real neural substrate for object-relative representation, supporting the premise that entities are a first-class representational primitive (ARC-006). But the mapping to MECH-045's TOKEN-INSTANCE buffer is only partial and partly adverse: object-vector cells code a vectorial RELATION (distance + direction) to objects and are tuned 'equally to a spectrum of discrete objects', i.e. they are object-GENERIC and allocentric, NOT a per-token identity store that re-identifies THIS object across motion. Mixed, 0.66: confirms the brain reserves machinery for objects, but the specific cell type is closer to the ANCHOR/where axis (SD-039 lineage) than to the token KEY MECH-045 needs.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_045_object_file",
+          "failure_signatures": [
+            "Object-vector cells are tuned EQUALLY across discrete objects irrespective of identity -- they encode 'an object is HERE relative to me', not 'this is object #7 again'. Modelling MECH-045's token KEY on object-vector coding would yield a where-signal with no instance identity, reproducing the ANCHOR-keyed gap (SD-039) rather than closing the token gap.",
+            "The code is vectorial/allocentric (egocentric distance + allocentric direction to a confined object); REE's z_world is not an explicit spatial-vector code, so the substrate analogy is structural, not mechanistic -- the same 'structural-analogy-no-mechanism' failure mode flagged for the 641a coherence diagnostic.",
+            "Rodent foraging in open fields with discrete physical objects; no demonstration that a single object's IDENTITY is tracked through occlusion or relabelled after it moves."
+          ],
+          "run_id": "2026-06-09_mech_045_object_vector_cells_hoydal2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T18:25:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-006",
+          "confidence": 0.78,
+          "confidence_rationale": "Pylyshyn's FINST / visual-index theory supplies the part of MECH-045's specification that the object-file literature leaves implicit: the KEY. A visual index individuates and tracks ~4-5 objects 'preconceptually' -- without encoding their identities or any conceptual label -- which is the cleanest available statement of MECH-045's 'WITHOUT symbolic/type labels'. The multiple-object-tracking paradigm it spawned is the direct behavioural test of tracking-through-motion. Confidence 0.78: high theoretical mapping fidelity, discounted because it is a framework + paradigm rather than a single decisive experiment, and because the index is a pure pointer (no feature buffer) -- it grounds the KEY but not the per-token feature store.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_045_object_file",
+          "failure_signatures": [
+            "Visual indexes carry NO feature content -- they are bare pointers. A REE buffer modelled too literally on FINSTs would track identity but store nothing to bind, defeating the 'per-token feature buffer' half of MECH-045; the design must add the feature store the index theory deliberately omits.",
+            "The ~4-5 index capacity limit is a hard cap; MOT studies show tracking collapses when objects coincide/occlude or move too fast. A REE buffer with unbounded tokens would not reproduce the human capacity signature and would have no principled token-eviction policy.",
+            "Pylyshyn argues indexing is bottom-up and stimulus-driven, partly DIVORCED from attention; this is in mild tension with ARC-006/MECH-045's 'attention-gated' commitment, so the attention coupling REE proposes is an addition, not a borrowing."
+          ],
+          "run_id": "2026-06-09_mech_045_visual_index_pylyshyn2001",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T18:25:18Z"
         }
       ],
-      "runs_total": 12,
+      "runs_total": 16,
       "source_counts": {
         "experimental": 0,
-        "literature": 12
+        "literature": 16
       }
     },
     "ARC-007": {
@@ -1603,7 +1605,7 @@
       }
     },
     "ARC-026": {
-      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.641, lit_conf=0.792",
+      "confidence_rationale": "exp=3 entry(s), lit=5 entry(s), exp_conf=0.641, lit_conf=0.791",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -1634,9 +1636,9 @@
       },
       "latest_run_id": "v3_exq_507_arc026_capacity_scaling_20260503T014741Z_v3",
       "latest_timestamp_utc": "2026-05-03T01:47:41.344827Z",
-      "literature_confidence": 0.792,
-      "literature_confidence_parallel": 0.792,
-      "overall_confidence": 0.717,
+      "literature_confidence": 0.791,
+      "literature_confidence_parallel": 0.791,
+      "overall_confidence": 0.716,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -10090,18 +10092,19 @@
       }
     },
     "MECH-045": {
-      "confidence_rationale": "exp=0 entry(s), lit=10 entry(s), exp_conf=0, lit_conf=0.864",
+      "confidence_rationale": "exp=0 entry(s), lit=15 entry(s), exp_conf=0, lit_conf=0.866",
       "direction_counts": {
-        "mixed": 1,
-        "supports": 9,
+        "mixed": 2,
+        "supports": 13,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 10,
+      "entries_total": 15,
       "evidence_class_counts": {
-        "lit:behavioral_human": 7,
-        "lit:computational_model": 2,
-        "lit:theoretical_review": 1
+        "lit:behavioral_human": 8,
+        "lit:computational_model": 3,
+        "lit:electrophysiology_single_unit": 2,
+        "lit:theoretical_review": 2
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -10115,106 +10118,107 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-06-06_arc_080_slot_attention_video_persistence_kipf2022",
-      "latest_timestamp_utc": "2026-06-06T21:21:00Z",
-      "literature_confidence": 0.864,
-      "literature_confidence_parallel": 0.864,
-      "overall_confidence": 0.864,
+      "latest_run_id": "2026-06-09_mech_045_visual_index_pylyshyn2001",
+      "latest_timestamp_utc": "2026-06-09T18:25:18Z",
+      "literature_confidence": 0.866,
+      "literature_confidence_parallel": 0.866,
+      "overall_confidence": 0.866,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-045",
           "confidence": 0.7,
-          "confidence_rationale": "Foundational and many-times-replicated demonstration that a hidden object is REPRESENTED as continuing to exist long before Piaget's manual-search criterion. Directly grounds the existence of a persistence buffer (MECH-045): permanence is a representational competence dissociable from action. Confidence held at 0.7 rather than higher because (a) the drawbridge paradigm specifically carries a documented low-level novelty/familiarity confound (Rivera/Wakeley/Langer 1999; Cashon & Cohen 2000), and (b) the mapping from looking-time surprise to a substrate-level buffer is conceptual, not mechanistic.",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_permanence",
-          "failure_signatures": [
-            "The drawbridge version of VOE has a known low-level confound: infants may simply prefer the larger/more-novel 180-degree rotation independent of any box representation (Rivera, Wakeley & Langer 1999). The permanence inference rests on the full VOE literature, not this paradigm alone.",
-            "Looking-time 'surprise' demonstrates that SOMETHING about the hidden object is represented; it does not specify whether the representation is a token-instance object-file, a spatial expectation, or a physical-event prediction. It cannot by itself adjudicate the token-vs-type question MECH-045 must answer.",
-            "A representation sufficient to drive differential looking is not necessarily sufficient to drive search/retrieval -- the competence (representation) / performance (action) gap (see Diamond 1985 entry) means MECH-045's buffer must be specified at the level it is consumed."
-          ],
-          "run_id": "2026-06-04_mech_045_object_permanence_5mo_baillargeon1985",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T16:06:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-045",
-          "confidence": 0.7,
-          "confidence_rationale": "Direct, clean evidence that infants represent a partly-hidden object as a single connected entity -- a token-level unity inference that bridges occlusion. This is the perceptual-completion sibling of full-occlusion permanence and grounds MECH-045's persistence buffer at the unit level. Confidence 0.7 because the binding CUE the paper isolates (common motion of the visible parts) is precisely the cue REE's anchor-keyed ghost bank does NOT use -- so the paper supports the capability while exposing a mechanism mismatch in REE's current implementation.",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_permanence",
-          "failure_signatures": [
-            "Unity was perceived from COMMON MOTION of the visible surfaces; with static, homogeneous, aligned, simple-shaped edges infants did NOT perceive a connected object. REE's persistence stores key on a spatial anchor (ghost bank) or a static type tag (SD-049), neither of which is the motion-based amodal-completion cue the infant uses.",
-            "The study tests completion of a CURRENTLY partly-visible object, not full occlusion across time -- it is the spatial-gap analog of permanence, one inferential step short of the temporal-gap (fully-hidden) case Baillargeon tests.",
-            "Common-motion binding is a perceptual-input grouping operation; it does not by itself establish a stored token that survives the object becoming fully invisible. MECH-045 must add the temporal-persistence step that this paradigm stops short of."
-          ],
-          "run_id": "2026-06-04_mech_045_occluded_object_unity_kellman_spelke1983",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T16:06:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-045",
-          "confidence": 0.77,
-          "confidence_rationale": "The most pointed paper in the pull for the memo's exact gap: it shows object tracking SURVIVES complete occlusion when the disappearance/reappearance carries accretion-deletion cues at an occluding contour, but BREAKS when items vanish in non-occlusion ways (imploding/exploding). This is direct evidence that token persistence is computed from spatiotemporal continuity cues, not from continuous visibility -- exactly the 'this object tracked through occlusion' capability MECH-045's object-file buffer must provide and REE's type-tag store cannot. Held at 0.77 (not higher) because it is human psychophysics and because it specifies WHICH cues license persistence rather than a mechanism REE can directly implement.",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_files_feature_binding",
-          "failure_signatures": [
-            "Persistence is conditional on specific cues: tracking survives occlusion ONLY with accretion/deletion along a fixed occluding contour and breaks under implosion/explosion -- a REE object-file buffer that persists tokens unconditionally (e.g. on any temporary absence) would over-generalise beyond what the visual system actually does.",
-            "It diagnoses the CUES that signal enduring objecthood, not the buffer mechanism; REE still has to choose a representation that consumes continuity cues, which this paper does not supply.",
-            "Human visual psychophysics with abstract moving items; transfer to a latent-stack foraging agent whose 'occlusion' is a different sensory regime is non-trivial."
-          ],
-          "run_id": "2026-06-04_mech_045_occlusion_tracking_scholl1999",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T16:06:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-045",
-          "confidence": 0.7,
-          "confidence_rationale": "Strong, widely-reproduced existence proof that a token-instance object-centric representation (a set of exchangeable 'slots' that competitively bind to objects) is learnable end-to-end and is the natural ML realization of the object-file / generalised z_object that ARC-080 proposes. Held below 0.8 by transfer risk: slot attention is unsupervised object discovery on image/CNN features, not drive/goal-coupled binding over REE's engineered latent streams, and a single-frame slot set does not by itself give cross-time permanence.",
+          "confidence_rationale": "DeepSORT is the engineering blueprint for MECH-045's token KEY: it maintains per-object tracks across time and occlusion by DATA ASSOCIATION combining a motion gate (Kalman/Mahalanobis spatiotemporal continuity) with an appearance embedding, assigning persistent track ids with NO category label. This is exactly REE's proposal -- spatiotemporal-continuity data-association over z_world features -- with z_world standing in for the appearance descriptor. It supplies the concrete update rule (predict -> gate -> match -> birth/death) the biological sources leave unspecified, and the identity-switch metric is the natural quantitative readout for the experiment. Confidence 0.7: high mechanistic mapping fidelity, discounted because it is engineering (not evidence the brain does this), relies on a SUPERVISED person-reID appearance metric REE does not have, and assumes a detector REE lacks.",
           "evidence_class": "lit:computational_model",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_files_feature_binding",
+          "experiment_type": "targeted_review_mech_045_object_file",
           "failure_signatures": [
-            "Slot attention without a temporal/recurrent extension (e.g. SAVi) gives object-centric grouping WITHIN a frame but no token-instance persistence ACROSS occlusion -- so it grounds the binding/identity half of ARC-080 but not Pillar 1 (permanence) on its own.",
-            "Slots bind by competition over reconstruction of perceptual input; REE's z_object is detached from reconstruction and coupled to drive/goal value -- the binding pressure that makes slots specialise may be absent if REE supplies no comparable reconstruction or contrastive objective."
+            "DeepSORT's appearance metric is a SUPERVISED descriptor pre-trained on a large person-reID dataset; REE has no labelled identity data and must use unsupervised z_world. If z_world is not discriminative enough (the dim=32 ceiling), the appearance term degenerates and association falls back to motion-only -- which is the location-collapse vacuity mode in disguise.",
+            "It assumes an external object DETECTOR proposing bounding boxes each frame; REE has no detector, so the 'what counts as a trackable entity this tick' step (figure-ground / candidate proposal) is an unsolved upstream dependency the buffer cannot assume away.",
+            "Pure tracking-by-detection has no notion of value, attention-gating, or precision-weighting; it associates everything uniformly. MECH-045's attention-gated, precision-weighted continuity is an ADDITION to the DeepSORT recipe, not part of it."
           ],
-          "run_id": "2026-06-06_arc_080_slot_attention_object_centric_locatello2020",
+          "run_id": "2026-06-09_mech_045_data_association_reid_wojke2017",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-06-06T21:00:00Z"
+          "timestamp_utc": "2026-06-09T18:25:18Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-045",
-          "confidence": 0.71,
-          "confidence_rationale": "Strong, reproduced ML existence proof that slots can be TRACKED across time -- each slot persists as the same object-token frame to frame, predicted forward by a transition model. This is the persistence half that vanilla slot-attention (Locatello 2020) lacks, and it maps onto REE's shape exactly: slots + a forward predictor = SAVi, and REE's E2 IS that predictor. Held at 0.71 by transfer risk: weakly-supervised (optical-flow target + first-frame conditioning cues), synthetic video, pixel-reconstruction-driven -- REE's z_object is value-coupled and reconstruction-free over engineered latents.",
-          "evidence_class": "lit:computational_model",
+          "confidence": 0.82,
+          "confidence_rationale": "The canonical, founding empirical source for the construct MECH-045 names verbatim ('object-file-like buffers'). It directly demonstrates the three properties the claim requires -- a per-object stable buffer, integration of information across TIME, and (critically) identity maintained across MOTION via shared relative position in a moving frame rather than via the object's features. The object-specific preview benefit is a token-instance signature (this object, not this type). Confidence high (0.82) for mapping fidelity -- this IS the construct -- but capped below 0.9 because it is human psychophysics, not a substrate/algorithm, so it grounds the FUNCTION REE must reproduce without prescribing the mechanism.",
+          "evidence_class": "lit:behavioral_human",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_object_files_feature_binding",
+          "experiment_type": "targeted_review_mech_045_object_file",
           "failure_signatures": [
-            "SAVi tracking is bootstrapped by weak supervision (optical flow as the prediction target; first-frame object-location/coordinate conditioning cues). Remove that scaffold and unsupervised temporal binding degrades -- REE would need a comparable conditioning signal (e.g. drive/goal salience seeding a slot) or the slots may not specialise/persist.",
-            "Slot persistence is maintained while the object is visible-and-tracked; full through-occlusion permanence (ARC-080 Pillar 1) is only partially addressed and remains the harder problem."
+            "The object-specific preview benefit can be carried by LOCATION continuity rather than by a label-free identity token (cf. Mitroff & Alvarez 2007, 'integration by location'); if REE's data-association KEY collapses to 'nearest cell last tick' it would reproduce the benefit vacuously without true cross-motion re-identification -- the precise non-vacuity hazard the experiment precondition must rule out.",
+            "Object files in this paradigm reset / fail to update when motion is too fast or the object is fully occluded for too long; a REE buffer that never drops a token would over-bind and lose the falsifiable signature."
           ],
-          "run_id": "2026-06-06_arc_080_slot_attention_video_persistence_kipf2022",
+          "run_id": "2026-06-09_mech_045_object_files_kahneman1992",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-06-06T21:21:00Z"
+          "timestamp_utc": "2026-06-09T18:25:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-045",
+          "confidence": 0.72,
+          "confidence_rationale": "Object-trace cells are the closest neural correlate of the PERSISTENCE half of MECH-045: LEC neurons that fire at the location where an object USED TO BE after it is removed. That firing-in-the-object's-absence is the single-unit signature of an entity buffer that outlives perceptual contact -- precisely 'minimal entity persistence across time'. Combined with LEC's role as the 'what/content' stream (vs MEC 'where'), it grounds the identity-content side that object-vector cells (MEC) do not. Confidence 0.72: a clean, on-point persistence signature, discounted because trace cells code a remembered object-PLACE (still partly location-bound) rather than a label-free token followed through motion, and because it is rodent single-unit data.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_045_object_file",
+          "failure_signatures": [
+            "Object-trace cells encode where an object WAS (object-place memory), so persistence here is still partly anchored to a remembered LOCATION; a REE buffer that only remembers last-seen position would reproduce trace-cell firing without re-identifying the object once it has MOVED -- the exact cross-motion gap that separates persistence-through-absence from token tracking.",
+            "Only a small subset of LEC cells show the trace property; the signal is sparse and the mechanism by which experience-history is written is not resolved -- so the paper licenses 'a persistence buffer exists' but not its update rule.",
+            "LEC object firing reflects higher-order experience history, not pure stimulus drive; disentangling genuine identity persistence from slow sensory adaptation requires the kind of ablation/shuffle control the REE experiment must build in."
+          ],
+          "run_id": "2026-06-09_mech_045_object_trace_cells_tsao2013",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T18:25:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-045",
+          "confidence": 0.66,
+          "confidence_rationale": "Object-vector cells are the strongest single-unit evidence that the mammalian brain has a dedicated, object-anchored coding scheme that GENERALISES across distinct objects irrespective of their location -- a real neural substrate for object-relative representation, supporting the premise that entities are a first-class representational primitive (ARC-006). But the mapping to MECH-045's TOKEN-INSTANCE buffer is only partial and partly adverse: object-vector cells code a vectorial RELATION (distance + direction) to objects and are tuned 'equally to a spectrum of discrete objects', i.e. they are object-GENERIC and allocentric, NOT a per-token identity store that re-identifies THIS object across motion. Mixed, 0.66: confirms the brain reserves machinery for objects, but the specific cell type is closer to the ANCHOR/where axis (SD-039 lineage) than to the token KEY MECH-045 needs.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_mech_045_object_file",
+          "failure_signatures": [
+            "Object-vector cells are tuned EQUALLY across discrete objects irrespective of identity -- they encode 'an object is HERE relative to me', not 'this is object #7 again'. Modelling MECH-045's token KEY on object-vector coding would yield a where-signal with no instance identity, reproducing the ANCHOR-keyed gap (SD-039) rather than closing the token gap.",
+            "The code is vectorial/allocentric (egocentric distance + allocentric direction to a confined object); REE's z_world is not an explicit spatial-vector code, so the substrate analogy is structural, not mechanistic -- the same 'structural-analogy-no-mechanism' failure mode flagged for the 641a coherence diagnostic.",
+            "Rodent foraging in open fields with discrete physical objects; no demonstration that a single object's IDENTITY is tracked through occlusion or relabelled after it moves."
+          ],
+          "run_id": "2026-06-09_mech_045_object_vector_cells_hoydal2019",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T18:25:18Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-045",
+          "confidence": 0.78,
+          "confidence_rationale": "Pylyshyn's FINST / visual-index theory supplies the part of MECH-045's specification that the object-file literature leaves implicit: the KEY. A visual index individuates and tracks ~4-5 objects 'preconceptually' -- without encoding their identities or any conceptual label -- which is the cleanest available statement of MECH-045's 'WITHOUT symbolic/type labels'. The multiple-object-tracking paradigm it spawned is the direct behavioural test of tracking-through-motion. Confidence 0.78: high theoretical mapping fidelity, discounted because it is a framework + paradigm rather than a single decisive experiment, and because the index is a pure pointer (no feature buffer) -- it grounds the KEY but not the per-token feature store.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_045_object_file",
+          "failure_signatures": [
+            "Visual indexes carry NO feature content -- they are bare pointers. A REE buffer modelled too literally on FINSTs would track identity but store nothing to bind, defeating the 'per-token feature buffer' half of MECH-045; the design must add the feature store the index theory deliberately omits.",
+            "The ~4-5 index capacity limit is a hard cap; MOT studies show tracking collapses when objects coincide/occlude or move too fast. A REE buffer with unbounded tokens would not reproduce the human capacity signature and would have no principled token-eviction policy.",
+            "Pylyshyn argues indexing is bottom-up and stimulus-driven, partly DIVORCED from attention; this is in mild tension with ARC-006/MECH-045's 'attention-gated' commitment, so the attention coupling REE proposes is an addition, not a borrowing."
+          ],
+          "run_id": "2026-06-09_mech_045_visual_index_pylyshyn2001",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T18:25:18Z"
         }
       ],
-      "runs_total": 10,
+      "runs_total": 15,
       "source_counts": {
         "experimental": 0,
-        "literature": 10
+        "literature": 15
       }
     },
     "MECH-046": {
@@ -11716,7 +11720,7 @@
       }
     },
     "MECH-069": {
-      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.779, lit_conf=0.78",
+      "confidence_rationale": "exp=8 entry(s), lit=2 entry(s), exp_conf=0.778, lit_conf=0.78",
       "direction_counts": {
         "mixed": 6,
         "supports": 4,
@@ -11733,8 +11737,8 @@
         "C": 8
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.779,
-      "experimental_confidence_decoupled": 0.779,
+      "experimental_confidence": 0.778,
+      "experimental_confidence_decoupled": 0.778,
       "fail_runs": 6,
       "genuine_exp_count": 8,
       "genuine_exp_direction_counts": {
@@ -15433,7 +15437,7 @@
       }
     },
     "MECH-116": {
-      "confidence_rationale": "exp=2 entry(s), lit=7 entry(s), exp_conf=0.21, lit_conf=0.865",
+      "confidence_rationale": "exp=2 entry(s), lit=7 entry(s), exp_conf=0.21, lit_conf=0.864",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -15463,9 +15467,9 @@
       },
       "latest_run_id": "2026-04-19_pfc_cluster_integrative_theory_miller2001",
       "latest_timestamp_utc": "2026-04-19T11:26:11Z",
-      "literature_confidence": 0.865,
-      "literature_confidence_parallel": 0.865,
-      "overall_confidence": 0.603,
+      "literature_confidence": 0.864,
+      "literature_confidence_parallel": 0.864,
+      "overall_confidence": 0.602,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -16413,7 +16417,7 @@
       }
     },
     "MECH-124": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.64, lit_conf=0.873",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.639, lit_conf=0.873",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -16430,8 +16434,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.64,
-      "experimental_confidence_decoupled": 0.64,
+      "experimental_confidence": 0.639,
+      "experimental_confidence_decoupled": 0.639,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -23284,7 +23288,7 @@
       }
     },
     "MECH-268": {
-      "confidence_rationale": "exp=1 entry(s), lit=8 entry(s), exp_conf=0.763, lit_conf=0.843",
+      "confidence_rationale": "exp=1 entry(s), lit=8 entry(s), exp_conf=0.762, lit_conf=0.843",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
@@ -23304,8 +23308,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.763,
-      "experimental_confidence_decoupled": 0.763,
+      "experimental_confidence": 0.762,
+      "experimental_confidence_decoupled": 0.762,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -25180,7 +25184,7 @@
       }
     },
     "MECH-292": {
-      "confidence_rationale": "exp=0 entry(s), lit=24 entry(s), exp_conf=0, lit_conf=0.886",
+      "confidence_rationale": "exp=0 entry(s), lit=24 entry(s), exp_conf=0, lit_conf=0.885",
       "direction_counts": {
         "mixed": 3,
         "supports": 21,
@@ -25212,9 +25216,9 @@
       },
       "latest_run_id": "2026-05-19_disengage_impaired_disengagement_koster2011",
       "latest_timestamp_utc": "2026-05-19T01:00:53Z",
-      "literature_confidence": 0.886,
-      "literature_confidence_parallel": 0.886,
-      "overall_confidence": 0.886,
+      "literature_confidence": 0.885,
+      "literature_confidence_parallel": 0.885,
+      "overall_confidence": 0.885,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -108448,6 +108452,166 @@
       "timestamp_utc": "2026-06-09T09:05:28Z"
     },
     {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-006",
+      "confidence": 0.82,
+      "confidence_rationale": "The canonical, founding empirical source for the construct MECH-045 names verbatim ('object-file-like buffers'). It directly demonstrates the three properties the claim requires -- a per-object stable buffer, integration of information across TIME, and (critically) identity maintained across MOTION via shared relative position in a moving frame rather than via the object's features. The object-specific preview benefit is a token-instance signature (this object, not this type). Confidence high (0.82) for mapping fidelity -- this IS the construct -- but capped below 0.9 because it is human psychophysics, not a substrate/algorithm, so it grounds the FUNCTION REE must reproduce without prescribing the mechanism.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "The object-specific preview benefit can be carried by LOCATION continuity rather than by a label-free identity token (cf. Mitroff & Alvarez 2007, 'integration by location'); if REE's data-association KEY collapses to 'nearest cell last tick' it would reproduce the benefit vacuously without true cross-motion re-identification -- the precise non-vacuity hazard the experiment precondition must rule out.",
+        "Object files in this paradigm reset / fail to update when motion is too fast or the object is fully occluded for too long; a REE buffer that never drops a token would over-bind and lose the falsifiable signature."
+      ],
+      "run_id": "2026-06-09_mech_045_object_files_kahneman1992",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-006",
+      "confidence": 0.72,
+      "confidence_rationale": "Object-trace cells are the closest neural correlate of the PERSISTENCE half of MECH-045: LEC neurons that fire at the location where an object USED TO BE after it is removed. That firing-in-the-object's-absence is the single-unit signature of an entity buffer that outlives perceptual contact -- precisely 'minimal entity persistence across time'. Combined with LEC's role as the 'what/content' stream (vs MEC 'where'), it grounds the identity-content side that object-vector cells (MEC) do not. Confidence 0.72: a clean, on-point persistence signature, discounted because trace cells code a remembered object-PLACE (still partly location-bound) rather than a label-free token followed through motion, and because it is rodent single-unit data.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "Object-trace cells encode where an object WAS (object-place memory), so persistence here is still partly anchored to a remembered LOCATION; a REE buffer that only remembers last-seen position would reproduce trace-cell firing without re-identifying the object once it has MOVED -- the exact cross-motion gap that separates persistence-through-absence from token tracking.",
+        "Only a small subset of LEC cells show the trace property; the signal is sparse and the mechanism by which experience-history is written is not resolved -- so the paper licenses 'a persistence buffer exists' but not its update rule.",
+        "LEC object firing reflects higher-order experience history, not pure stimulus drive; disentangling genuine identity persistence from slow sensory adaptation requires the kind of ablation/shuffle control the REE experiment must build in."
+      ],
+      "run_id": "2026-06-09_mech_045_object_trace_cells_tsao2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-006",
+      "confidence": 0.66,
+      "confidence_rationale": "Object-vector cells are the strongest single-unit evidence that the mammalian brain has a dedicated, object-anchored coding scheme that GENERALISES across distinct objects irrespective of their location -- a real neural substrate for object-relative representation, supporting the premise that entities are a first-class representational primitive (ARC-006). But the mapping to MECH-045's TOKEN-INSTANCE buffer is only partial and partly adverse: object-vector cells code a vectorial RELATION (distance + direction) to objects and are tuned 'equally to a spectrum of discrete objects', i.e. they are object-GENERIC and allocentric, NOT a per-token identity store that re-identifies THIS object across motion. Mixed, 0.66: confirms the brain reserves machinery for objects, but the specific cell type is closer to the ANCHOR/where axis (SD-039 lineage) than to the token KEY MECH-045 needs.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "Object-vector cells are tuned EQUALLY across discrete objects irrespective of identity -- they encode 'an object is HERE relative to me', not 'this is object #7 again'. Modelling MECH-045's token KEY on object-vector coding would yield a where-signal with no instance identity, reproducing the ANCHOR-keyed gap (SD-039) rather than closing the token gap.",
+        "The code is vectorial/allocentric (egocentric distance + allocentric direction to a confined object); REE's z_world is not an explicit spatial-vector code, so the substrate analogy is structural, not mechanistic -- the same 'structural-analogy-no-mechanism' failure mode flagged for the 641a coherence diagnostic.",
+        "Rodent foraging in open fields with discrete physical objects; no demonstration that a single object's IDENTITY is tracked through occlusion or relabelled after it moves."
+      ],
+      "run_id": "2026-06-09_mech_045_object_vector_cells_hoydal2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-006",
+      "confidence": 0.78,
+      "confidence_rationale": "Pylyshyn's FINST / visual-index theory supplies the part of MECH-045's specification that the object-file literature leaves implicit: the KEY. A visual index individuates and tracks ~4-5 objects 'preconceptually' -- without encoding their identities or any conceptual label -- which is the cleanest available statement of MECH-045's 'WITHOUT symbolic/type labels'. The multiple-object-tracking paradigm it spawned is the direct behavioural test of tracking-through-motion. Confidence 0.78: high theoretical mapping fidelity, discounted because it is a framework + paradigm rather than a single decisive experiment, and because the index is a pure pointer (no feature buffer) -- it grounds the KEY but not the per-token feature store.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "Visual indexes carry NO feature content -- they are bare pointers. A REE buffer modelled too literally on FINSTs would track identity but store nothing to bind, defeating the 'per-token feature buffer' half of MECH-045; the design must add the feature store the index theory deliberately omits.",
+        "The ~4-5 index capacity limit is a hard cap; MOT studies show tracking collapses when objects coincide/occlude or move too fast. A REE buffer with unbounded tokens would not reproduce the human capacity signature and would have no principled token-eviction policy.",
+        "Pylyshyn argues indexing is bottom-up and stimulus-driven, partly DIVORCED from attention; this is in mild tension with ARC-006/MECH-045's 'attention-gated' commitment, so the attention coupling REE proposes is an addition, not a borrowing."
+      ],
+      "run_id": "2026-06-09_mech_045_visual_index_pylyshyn2001",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-045",
+      "confidence": 0.7,
+      "confidence_rationale": "DeepSORT is the engineering blueprint for MECH-045's token KEY: it maintains per-object tracks across time and occlusion by DATA ASSOCIATION combining a motion gate (Kalman/Mahalanobis spatiotemporal continuity) with an appearance embedding, assigning persistent track ids with NO category label. This is exactly REE's proposal -- spatiotemporal-continuity data-association over z_world features -- with z_world standing in for the appearance descriptor. It supplies the concrete update rule (predict -> gate -> match -> birth/death) the biological sources leave unspecified, and the identity-switch metric is the natural quantitative readout for the experiment. Confidence 0.7: high mechanistic mapping fidelity, discounted because it is engineering (not evidence the brain does this), relies on a SUPERVISED person-reID appearance metric REE does not have, and assumes a detector REE lacks.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "DeepSORT's appearance metric is a SUPERVISED descriptor pre-trained on a large person-reID dataset; REE has no labelled identity data and must use unsupervised z_world. If z_world is not discriminative enough (the dim=32 ceiling), the appearance term degenerates and association falls back to motion-only -- which is the location-collapse vacuity mode in disguise.",
+        "It assumes an external object DETECTOR proposing bounding boxes each frame; REE has no detector, so the 'what counts as a trackable entity this tick' step (figure-ground / candidate proposal) is an unsolved upstream dependency the buffer cannot assume away.",
+        "Pure tracking-by-detection has no notion of value, attention-gating, or precision-weighting; it associates everything uniformly. MECH-045's attention-gated, precision-weighted continuity is an ADDITION to the DeepSORT recipe, not part of it."
+      ],
+      "run_id": "2026-06-09_mech_045_data_association_reid_wojke2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-045",
+      "confidence": 0.82,
+      "confidence_rationale": "The canonical, founding empirical source for the construct MECH-045 names verbatim ('object-file-like buffers'). It directly demonstrates the three properties the claim requires -- a per-object stable buffer, integration of information across TIME, and (critically) identity maintained across MOTION via shared relative position in a moving frame rather than via the object's features. The object-specific preview benefit is a token-instance signature (this object, not this type). Confidence high (0.82) for mapping fidelity -- this IS the construct -- but capped below 0.9 because it is human psychophysics, not a substrate/algorithm, so it grounds the FUNCTION REE must reproduce without prescribing the mechanism.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "The object-specific preview benefit can be carried by LOCATION continuity rather than by a label-free identity token (cf. Mitroff & Alvarez 2007, 'integration by location'); if REE's data-association KEY collapses to 'nearest cell last tick' it would reproduce the benefit vacuously without true cross-motion re-identification -- the precise non-vacuity hazard the experiment precondition must rule out.",
+        "Object files in this paradigm reset / fail to update when motion is too fast or the object is fully occluded for too long; a REE buffer that never drops a token would over-bind and lose the falsifiable signature."
+      ],
+      "run_id": "2026-06-09_mech_045_object_files_kahneman1992",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-045",
+      "confidence": 0.72,
+      "confidence_rationale": "Object-trace cells are the closest neural correlate of the PERSISTENCE half of MECH-045: LEC neurons that fire at the location where an object USED TO BE after it is removed. That firing-in-the-object's-absence is the single-unit signature of an entity buffer that outlives perceptual contact -- precisely 'minimal entity persistence across time'. Combined with LEC's role as the 'what/content' stream (vs MEC 'where'), it grounds the identity-content side that object-vector cells (MEC) do not. Confidence 0.72: a clean, on-point persistence signature, discounted because trace cells code a remembered object-PLACE (still partly location-bound) rather than a label-free token followed through motion, and because it is rodent single-unit data.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "Object-trace cells encode where an object WAS (object-place memory), so persistence here is still partly anchored to a remembered LOCATION; a REE buffer that only remembers last-seen position would reproduce trace-cell firing without re-identifying the object once it has MOVED -- the exact cross-motion gap that separates persistence-through-absence from token tracking.",
+        "Only a small subset of LEC cells show the trace property; the signal is sparse and the mechanism by which experience-history is written is not resolved -- so the paper licenses 'a persistence buffer exists' but not its update rule.",
+        "LEC object firing reflects higher-order experience history, not pure stimulus drive; disentangling genuine identity persistence from slow sensory adaptation requires the kind of ablation/shuffle control the REE experiment must build in."
+      ],
+      "run_id": "2026-06-09_mech_045_object_trace_cells_tsao2013",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-045",
+      "confidence": 0.66,
+      "confidence_rationale": "Object-vector cells are the strongest single-unit evidence that the mammalian brain has a dedicated, object-anchored coding scheme that GENERALISES across distinct objects irrespective of their location -- a real neural substrate for object-relative representation, supporting the premise that entities are a first-class representational primitive (ARC-006). But the mapping to MECH-045's TOKEN-INSTANCE buffer is only partial and partly adverse: object-vector cells code a vectorial RELATION (distance + direction) to objects and are tuned 'equally to a spectrum of discrete objects', i.e. they are object-GENERIC and allocentric, NOT a per-token identity store that re-identifies THIS object across motion. Mixed, 0.66: confirms the brain reserves machinery for objects, but the specific cell type is closer to the ANCHOR/where axis (SD-039 lineage) than to the token KEY MECH-045 needs.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "Object-vector cells are tuned EQUALLY across discrete objects irrespective of identity -- they encode 'an object is HERE relative to me', not 'this is object #7 again'. Modelling MECH-045's token KEY on object-vector coding would yield a where-signal with no instance identity, reproducing the ANCHOR-keyed gap (SD-039) rather than closing the token gap.",
+        "The code is vectorial/allocentric (egocentric distance + allocentric direction to a confined object); REE's z_world is not an explicit spatial-vector code, so the substrate analogy is structural, not mechanistic -- the same 'structural-analogy-no-mechanism' failure mode flagged for the 641a coherence diagnostic.",
+        "Rodent foraging in open fields with discrete physical objects; no demonstration that a single object's IDENTITY is tracked through occlusion or relabelled after it moves."
+      ],
+      "run_id": "2026-06-09_mech_045_object_vector_cells_hoydal2019",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-045",
+      "confidence": 0.78,
+      "confidence_rationale": "Pylyshyn's FINST / visual-index theory supplies the part of MECH-045's specification that the object-file literature leaves implicit: the KEY. A visual index individuates and tracks ~4-5 objects 'preconceptually' -- without encoding their identities or any conceptual label -- which is the cleanest available statement of MECH-045's 'WITHOUT symbolic/type labels'. The multiple-object-tracking paradigm it spawned is the direct behavioural test of tracking-through-motion. Confidence 0.78: high theoretical mapping fidelity, discounted because it is a framework + paradigm rather than a single decisive experiment, and because the index is a pure pointer (no feature buffer) -- it grounds the KEY but not the per-token feature store.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_045_object_file",
+      "failure_signatures": [
+        "Visual indexes carry NO feature content -- they are bare pointers. A REE buffer modelled too literally on FINSTs would track identity but store nothing to bind, defeating the 'per-token feature buffer' half of MECH-045; the design must add the feature store the index theory deliberately omits.",
+        "The ~4-5 index capacity limit is a hard cap; MOT studies show tracking collapses when objects coincide/occlude or move too fast. A REE buffer with unbounded tokens would not reproduce the human capacity signature and would have no principled token-eviction policy.",
+        "Pylyshyn argues indexing is bottom-up and stimulus-driven, partly DIVORCED from attention; this is in mild tension with ARC-006/MECH-045's 'attention-gated' commitment, so the attention coupling REE proposes is an addition, not a borrowing."
+      ],
+      "run_id": "2026-06-09_mech_045_visual_index_pylyshyn2001",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T18:25:18Z"
+    },
+    {
       "adjudication": "unverified",
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
@@ -108486,7 +108650,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-09T17:56:32.061833Z",
+  "generated_at_utc": "2026-06-09T18:29:32.211235Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
@@ -109558,6 +109722,16 @@
       "source_type": "experimental",
       "status": "PASS",
       "timestamp_utc": "2026-06-09T05:12:08Z"
+    },
+    {
+      "adjudication": "verified",
+      "experiment_purpose": "diagnostic",
+      "experiment_type": "v3_exq_603k_stageh_harm_pathway_readiness",
+      "interpretation_label": "harm_pathway_training_lifts_stageh_survival",
+      "run_id": "v3_exq_603k_stageh_harm_pathway_readiness_20260609T181419Z_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-06-09T18:14:19Z"
     }
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_045_object_file",
+  "entry_id": "2026-06-09_mech_045_object_vector_cells_hoydal2019",
+  "timestamp_utc": "2026-06-09T18:25:18Z",
+  "claim_ids_tested": ["MECH-045", "ARC-006"],
+  "source": {
+    "title": "Object-vector coding in the medial entorhinal cortex",
+    "authors": ["Oyvind A. Hoydal", "Emilie R. Skytoen", "Sebastian O. Andersson", "May-Britt Moser", "Edvard I. Moser"],
+    "year": 2019,
+    "venue": "Nature 568(7752):400-404",
+    "doi": "10.1038/s41586-019-1077-7",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30944479/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Object-vector cells are the strongest single-unit evidence that the mammalian brain has a dedicated, object-anchored coding scheme that GENERALISES across distinct objects irrespective of their location -- a real neural substrate for object-relative representation, supporting the premise that entities are a first-class representational primitive (ARC-006). But the mapping to MECH-045's TOKEN-INSTANCE buffer is only partial and partly adverse: object-vector cells code a vectorial RELATION (distance + direction) to objects and are tuned 'equally to a spectrum of discrete objects', i.e. they are object-GENERIC and allocentric, NOT a per-token identity store that re-identifies THIS object across motion. Mixed, 0.66: confirms the brain reserves machinery for objects, but the specific cell type is closer to the ANCHOR/where axis (SD-039 lineage) than to the token KEY MECH-045 needs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Object-vector cells are tuned EQUALLY across discrete objects irrespective of identity -- they encode 'an object is HERE relative to me', not 'this is object #7 again'. Modelling MECH-045's token KEY on object-vector coding would yield a where-signal with no instance identity, reproducing the ANCHOR-keyed gap (SD-039) rather than closing the token gap.",
+    "The code is vectorial/allocentric (egocentric distance + allocentric direction to a confined object); REE's z_world is not an explicit spatial-vector code, so the substrate analogy is structural, not mechanistic -- the same 'structural-analogy-no-mechanism' failure mode flagged for the 641a coherence diagnostic.",
+    "Rodent foraging in open fields with discrete physical objects; no demonstration that a single object's IDENTITY is tracked through occlusion or relabelled after it moves."
+  ],
+  "tags": ["mech_045", "arc_006", "object_vector_cells", "medial_entorhinal_cortex", "vector_coding", "object_relative_representation", "anchor_vs_token", "neural_substrate"],
+  "mapping": {
+    "source_claim_statement": "A large fraction of medial entorhinal cortex (MEC) neurons fire when the animal is at a particular distance and direction from spatially confined objects. These 'object-vector cells' are tuned equally to a spectrum of discrete objects irrespective of object location and shape (from point-like objects to extended surfaces), and are distinct from grid cells (which use a distal reference frame). Vector coding to objects is a predominant form of position coding in MEC.",
+    "ree_translation": "Object-vector cells establish that the brain reserves dedicated, generalising machinery for representing objects as reference points -- direct neural support for ARC-006's premise that entities are sparse, persistent, bindable structures with their own coding scheme. For MECH-045 specifically, they map onto the WHERE / anchor axis (distance+direction to an object), which is the SD-039 ghost-goal-bank lineage, NOT the token KEY. They are the clearest neural witness that 'object as a thing to be coded relative to' is real, while also being a cautionary case: the cell type generalises across objects (object-generic), so it is the wrong template for instance identity.",
+    "mapping_caveat": "Allocentric vector code to physical objects in freely-moving rodents; tuned object-generically (no per-instance identity). REE's z_world is not an explicit vector code, so the analogy is structural. Tagging MECH-045 (not just ARC-006) is defensible only because the paper bears on WHERE the object-file's spatial-anchor coupling would live; it does NOT evidence the token-instance buffer itself.",
+    "source_context": "Single-unit recordings in MEC of freely-foraging mice with discrete objects placed in an open arena; new functional cell class characterised and dissociated from grid/border/head-direction cells."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "Top-tier source (Nature, Moser lab, definitive single-unit characterisation). Mapping fidelity only moderate: it grounds object-relative coding and the where-axis but is object-generic, so it is partly evidence for what MECH-045 is NOT (a type/anchor code) -- hence mixed direction. Transfer risk elevated by the rodent-spatial-vector to latent-stack gap."
+  }
+}
