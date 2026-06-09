@@ -1,9 +1,17 @@
 Thought intake: trainable relief/safety affordance learners
 
 Date: 2026-06-08
-Status: thought_intake / post-603i successor candidate
+Status: processed
+Phase: post-603i successor candidate (V3-narrow minimal trainable bridge; V4/V5-rich tier off the V3 path)
 Related: SD-059, MECH-358, MECH-302, MECH-303, MECH-304, SD-058, MECH-357, V3-EXQ-603h, V3-EXQ-603i
 Proposed follow-up: if V3-EXQ-603i is partial/fails, route to a trainable relief/safety affordance learner successor rather than treating the bridge concept as wrong.
+
+Processed in:
+- MECH-375 (trainable relief critic Q_relief(state, action, threat_context) -- learned parametric negative-reinforcement credit-assignment head) -- docs/claims/claims.yaml
+- MECH-376 (trainable prospective safety predictor P_safety(state, cue, action, context) -- learned threat-absence / conditioned-inhibition head, distinct from z_goal) -- docs/claims/claims.yaml
+- Q-067 (relief-only vs safety-only vs both-required decomposition; which component to train first per the V3-EXQ-603i outcome) -- docs/claims/claims.yaml
+- docs/architecture/trainable_relief_safety_affordance_learners.md (home doc)
+- Reaped 2026-06-09. ALREADY-OWNED cross-refs (depends_on, not duplicated): SD-050, MECH-302/303/304, SD-058/SD-059, MECH-357/358. All three new claims candidate / substrate_conditional / implementation_phase:v3.
 
 Core thought
 
