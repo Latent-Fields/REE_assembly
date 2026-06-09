@@ -1,9 +1,12 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-06-06_psychiatric_genetic_overlap_latent_failure_axes.md
+Processed in:
+- `evidence/planning/thought_intake_2026-06-06_psychiatric_genetic_overlap_latent_failure_axes.md` (Stage-2 structured intake; 2026-06-09; primary source VERIFIED = Grotzinger et al., Nature Genetics 2025, DOI 10.1038/s41588-025-02494-7; NO claims.yaml registration -- failure-mode-axis compass, candidates A-E recorded for future registration only)
 Source email date: 2026-03-31
 Source email subject: REE: Mapping the genetic landscape across 14 psychiatric disorders - Nature
 Source saved-item attribution: Daniel Golden
 Current action: preserve as thought intake only
-Primary source status: source-check partial; direct share.google link not opened, but secondary coverage identifies the Nature paper and key findings
+Primary source status: VERIFIED (was source-check partial) -- primary paper located: Grotzinger A. D. et al., "Genetic overlap across 14 psychiatric disorders," Nature Genetics 2025, DOI 10.1038/s41588-025-02494-7 (five genomic factors / 238 variants); the direct share.google link was still not opened but the paper + five-factor finding are confirmed via the journal + Harvard Gazette / Mass General Brigham / Live Science / WaPo coverage
 Near-term relevance: psychiatry / failure-mode architecture compass; not a REE-v3 implementation target unless later linked to existing failure-mode claims
 Downstream repo candidate: Latent-Fields/ai-cognitive-failure-taxonomy
 
