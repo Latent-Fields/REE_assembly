@@ -1,0 +1,64 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-09T17:31:34Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier_20260609T081844Z_v3",
+      "queue_id": "V3-EXQ-654",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "failed_criterion": "negative_control",
+      "failed_precondition": "C1c arm_on_rule_field_differentiated (frac_active 0.116/0.123/0.115 < 0.30 floor; crf_max_pairwise_rule_dist 0.0 all ARM_ON seeds; seed-42 committed-class byte-identical to ARM_OFF)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C2 falsifier DV never fairly tested; the C1c readiness precondition gated it out. Not a falsification of MECH-309 or ARC-062.",
+        "biological_reference": "clear; missing-dependency signature. Non-Bayesian PFC rule-creator (Bongard & Nieder 2010; Frank 2006 conflict-graded availability). Biology accumulates task-set rule structure across experiences and is NOT reset per trial (Collins & Frank 2014; Mansouri rule-selective persistence) -- the per-episode pool wipe is a translation failure, a discovered prerequisite.",
+        "prerequisites": "missing/immature -- agent.reset()->candidate_rule_field.reset() (agent.py:1908) wipes _rules + _recurrence every ~26-tick episode; recurrence-threshold mint (>=3 within one episode) + per-episode wipe means the live pool never matures; cumulative crf_n_minted 131-408 but live pool cold-started each episode.",
+        "implementation": "partial -- lateral_pfc rule_bias_head un-zeroed but UNTRAINED in this run (P1 frozen-encoder window, no E3-coupled bias-head optimizer); near-zero-norm rule_state maps through random head to near-legacy bias (seed-42 lateral_pfc bias 0.099945 OFF vs 0.099989 ON; committed-class byte-identical). Propagation washout.",
+        "environment": "adequate -- SD-054 bipartite reef/forage substrate is the intended falsifier env.",
+        "measurement": "adequate-but-incomplete -- C1c tests frac_active only; it does not test rule_state->bias non-vacuity, the seed-42 washout it missed. Recommend a propagation non-vacuity precondition for the re-queue.",
+        "integration": "partially coupled -- field -> lateral_pfc -> E3 wired (crf_source replaces legacy EMA source), but the field is inert and its live output washes out.",
+        "scale": "likely insufficient at the behavioural-runtime horizon -- short episodes + recurrence-threshold mint + per-episode wipe starve the rule pool."
+      },
+      "biological_reference": {
+        "closest_mechanism": "non-Bayesian PFC rule-creator / task-set rule learning",
+        "dependencies": ["cross-episode (cross-experience) rule consolidation", "conflict-graded availability gate (Frank 2006)", "trained rule-to-bias readout head"],
+        "is_formal_import": false,
+        "divergence": "Per-episode wipe of the rule pool denies the cross-experience consolidation biology relies on; conflict_gain=1.0 forbids >=2-rule co-activation (max_pairwise structurally 0). Biology is load-bearing in the correct direction: it predicts the per-episode wipe is wrong.",
+        "lit_status": "present (targeted_review_arc_062_rule_apprehension/ + refuge_forage_ecology/; no new lit-pull owed)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654 (arc_062 GAP-B falsifier, MECH-309/ARC-062) FAIL non_contributory, self-route substrate_not_ready_requeue (precondition_unmet). C1c arm_on_rule_field_differentiated FAILED: ARM_ON CandidateRuleField fired a non-zero rule_state on only ~12% of P1 ticks (frac_active 0.116/0.123/0.115 vs 0.30 floor); crf_max_pairwise_rule_dist 0.0 all seeds; seed-42 committed-class byte-identical to ARM_OFF. Code-grounded cause (failure_autopsy_V3-EXQ-654_2026-06-09): agent.reset()->candidate_rule_field.reset() (agent.py:1908) wipes the rule pool + recurrence counters every ~26-tick episode, so the field never matures a live differentiated pool (cumulative n_minted 131-408 but live pool cold-started each episode); compounded by the conflict gate forbidding >=2-rule co-activation and an untrained bias head washing out the live rule_state. NOT a falsification -- the falsifier never ran. V3-EXQ-639 PASS proves the field CAN differentiate when its pool matures. Route: implement-substrate (cross-episode rule-persistence flag on ARC-063 CandidateRuleField) then re-queue 654a with a trained-bias-head P1 arm + bias-non-vacuity precondition. MECH-309/ARC-062 stay candidate / v3_pending / pending_retest_after_substrate; do NOT weaken.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-062",
+        "title": "ARC-063 CandidateRuleField cross-episode rule persistence (GAP-B falsifier maturity)",
+        "implementation_hint": "Add a no-op-default cross-episode rule-persistence flag (e.g. crf_persist_rules_across_episode_reset) to ree_core/policy/candidate_rule_field.py so CandidateRuleField.reset() (called per episode from agent.py:1908) does NOT clear self._rules and self._recurrence when the flag is set. Default OFF = bit-identical to current per-episode wipe. With the flag ON, the field accumulates a live, differentiated rule pool across the P1 measurement episodes so crf_frac_active can clear the 0.30 C1c floor at behavioural-runtime episode lengths (~26 ticks). Biologically faithful: PFC/BG task-set rule learning is not reset per trial (Collins & Frank 2014; Mansouri). The trained-bias-head propagation arm and the bias-non-vacuity precondition are TEST-DESIGN (queue-experiment 654a), not substrate work -- GAP-D rule_bias_head trainability already landed 2026-05-17.",
+        "unblocks_claims": ["MECH-309", "ARC-062"],
+        "depends_on_unresolved": ["ARC-063 CandidateRuleField (implemented 2026-06-04; V3-EXQ-639 PASS) -- this amends its reset() semantics"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier_20260609T081844Z_v3",
+          "experiment_type": "v3_exq_654_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "C1c arm_on_rule_field_differentiated FAIL -- crf_frac_active 0.116/0.123/0.115 (< 0.30 floor) all ARM_ON seeds; crf_max_pairwise_rule_dist 0.0 all seeds; live pool cold-started every ~26-tick episode by candidate_rule_field.reset() despite cumulative n_minted 131-408; seed-42 ARM_ON committed-class byte-identical to ARM_OFF (propagation washout via untrained bias head).",
+          "target": "crf_frac_active >= 0.30 on a majority of ARM_ON seeds at the behavioural P1 budget (field matures a live differentiated pool across episodes), AND ARM_ON lateral_pfc bias differs from ARM_OFF on firing ticks (propagation non-vacuity) so the committed-class lift C2 can be fairly tested."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "New dependency discovered: CandidateRuleField needs cross-episode rule persistence to mature a differentiated pool at behavioural-runtime episode lengths; the per-episode reset() wipe is the load-bearing immaturity.",
+        "Bias-head propagation is a second latent precondition C1c does not test: even a live field produced a bias == legacy (seed-42 byte-identical). A trained bias head (or a bias-non-vacuity gate) is required so a future C1-pass is not itself vacuous.",
+        "The conflict gate (conflict_gain=1.0) forbids >=2-rule co-activation, so max_pairwise_rule_dist is structurally 0 and differentiation lives in the across-tick single-rule sequence -- frac_active is the correct binding readiness, confirming C1c's design."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "committed-action no-lift (modulatory/rule channel reaches E3 but does not move the committed argmin)",
+    "is_independent_bugs": false,
+    "structural_property": "654 shares the committed-action no-lift shape with 604a/624a/614d/614e and the 543 lineage, BUT its proximate cause is distinct: the rule-creator never reaches a live differentiated state (per-episode cold-start), upstream of the 643a modulatory-bias-selection-authority gate (which is enabled and operative here). Treat as single-target; cross-reference the cluster as shared shape only.",
+    "readings": ["substrate_immaturity_cross_episode_persistence", "propagation_washout_untrained_bias_head"]
+  }
+}
