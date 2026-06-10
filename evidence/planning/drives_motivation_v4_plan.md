@@ -28,7 +28,7 @@ closure_plan:
       status: open
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:non_terminal_drive_register", MECH-111]
+      unblocks_claims: ["SD-060", MECH-111]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
@@ -43,7 +43,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:multidrive_arbitration_policy", MECH-295]
+      unblocks_claims: ["MECH-394", MECH-295]
       depends_on: ["drives_motivation_v4:DRV-1"]
       cross_plan_link: []
       blocking_on: "Requires the DRV-1 register (multiple simultaneously-active drive axes) to exist before an arbitration policy across them is meaningful; today only the single SD-012 axis is live, so there is nothing to arbitrate."
@@ -60,7 +60,7 @@ closure_plan:
       status: open
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:multidrive_arbitration_policy", "NEWCLAIM:non_terminal_drive_register"]
+      unblocks_claims: ["MECH-394", "SD-060"]
       depends_on: ["drives_motivation_v4:DRV-1"]
       cross_plan_link: []
       readiness_gate:
@@ -74,7 +74,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:pre_approach_orienting_mode"]
+      unblocks_claims: ["MECH-395"]
       depends_on: ["drives_motivation_v4:DRV-1"]
       cross_plan_link: []
       blocking_on: "Gated on the live cue-recall diagnostic thread: register the orienting MECH only if V3-EXQ-640+ shows the discriminating pattern (cue fires, no contact, AND no orienting/surveying occurs). 640 must first separate missing-orienting from raw cue-to-action-authority failure."
@@ -91,7 +91,7 @@ closure_plan:
       status: deferred
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:non_terminal_failure_profile"]
+      unblocks_claims: ["Q-071"]
       depends_on: ["drives_motivation_v4:DRV-1"]
       cross_plan_link: []
       readiness_gate:

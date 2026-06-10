@@ -33,7 +33,7 @@ closure_plan:
       status: open
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:inference_belief_state_affordance_layer"]
+      unblocks_claims: ["ARC-091"]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
@@ -48,7 +48,7 @@ closure_plan:
       status: open
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:inferred_state_not_observation"]
+      unblocks_claims: ["INV-078"]
       depends_on: ["inference_belief_state_v4:INF-1"]
       cross_plan_link: []
       readiness_gate:
@@ -63,7 +63,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:belief_state_hypothesis_set"]
+      unblocks_claims: ["MECH-385"]
       depends_on: ["inference_belief_state_v4:INF-1", "inference_belief_state_v4:INF-2"]
       cross_plan_link: []
       blocking_on: "MECH-022 hypothesis injection is the V3 generator (control-plane gated). The belief-SET (multiple competing hypotheses each with confidence + predicted transitions, scored by E3 instead of a single collapsed state) is the V4 extension; cannot build the set until the single-hypothesis injection path is exercised and instrumented in V3."
@@ -79,7 +79,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:inferred_affordance_field"]
+      unblocks_claims: ["MECH-386"]
       depends_on: ["inference_belief_state_v4:INF-3"]
       cross_plan_link:
         - "object_representation_v4:OBJ-4"
@@ -96,7 +96,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:safety_route_inference"]
+      unblocks_claims: ["MECH-387"]
       depends_on: ["inference_belief_state_v4:INF-3", "inference_belief_state_v4:INF-4"]
       cross_plan_link: []
       blocking_on: "SD-059/MECH-358 escape-affordance bridge is candidate + pending_retest_after_substrate (2026-06-09 autopsy: retest gated on a Stage-H nav/survival-competence leg + MECH-303/304 threat-absence predictor wired; safety half 0/3 on V3-EXQ-603i). Safety-ROUTE inference cannot be built until the scalar escape-affordance bridge it generalises is itself substrate-confirmed."
@@ -112,7 +112,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:epistemic_action_pressure"]
+      unblocks_claims: ["MECH-388"]
       depends_on: ["inference_belief_state_v4:INF-3"]
       cross_plan_link: []
       blocking_on: "Q-044 (are striatal-novelty / uncertainty-curiosity / learning-progress three substrates or one?) is OPEN. Generalising curiosity into survival-relevant uncertainty reduction is unsound until the curiosity sub-flavour structure it builds on is adjudicated."
@@ -128,7 +128,7 @@ closure_plan:
       status: open
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:inference_failure_mode_register"]
+      unblocks_claims: ["Q-070"]
       depends_on: ["inference_belief_state_v4:INF-1"]
       cross_plan_link: []
       readiness_gate:

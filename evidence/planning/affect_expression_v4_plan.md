@@ -150,7 +150,7 @@ closure_plan:
       status: deferred
       severity: low
       owner_exq: null
-      unblocks_claims: [MECH-362, "NEWCLAIM:affect_developmental_sparsification_bridge"]
+      unblocks_claims: [MECH-362, "MECH-390"]
       depends_on:
         - "affect_expression_v4:AE-1"
         - "affect_expression_v4:AE-4"

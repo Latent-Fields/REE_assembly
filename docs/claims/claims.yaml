@@ -39280,3 +39280,774 @@
     existing manifest -> review -> governance -> claim loop and the HEARTBEAT_SCOPE_BLEED enforcement
     gate -- scores enter the epistemic ledger only through governance, never as direct reward. status
     candidate. Reaped from the 2026-06-07 meta-agent-challenge evaluation-channel-integrity intake.
+
+# ============================================================================
+# V4 closure-map wave 1 -- 26 candidate claims registered 2026-06-10.
+# Reaped from the 12 individual-mind V4 roadmap plans (generation: v4).
+# All substrate_conditional (depend on V4 substrate that is planned-but-unbuilt;
+# promote/demote suppressed). The three invariants are emergent (emergent_from
+# the substrate claims that give them subject matter). NEWCLAIM:<stub> tokens in
+# the corresponding evidence/planning/*_v4_plan.md unblocks_claims lists are
+# resolved to these IDs in the same pass. DO NOT build in V3.
+# ----------------------------------------------------------------------------
+
+# --- inference_belief_state_v4 cluster (ARC-091 umbrella + INV-078 + MECH-385..388 + Q-070) ---
+- id: ARC-091
+  title: "Inference / belief-state affordance layer: a named integrative function that constructs latent state hypotheses and inferred affordance fields from partial observation, memory, cue traces, candidate rules, affective gradients, uncertainty, and E2 action-consequence rollouts, so E3 selects trajectories under partial observability without requiring direct perception or oracle-like prior knowledge."
+  claim_type: architectural_commitment
+  subject: inference.belief_state_affordance_layer
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-004    # L-space / latent representational substrate
+    - ARC-007    # hippocampal completion / replay (single-hypothesis generator)
+    - ARC-018    # prospective simulation / rollout pathway
+    - MECH-022   # hypothesis injection into the latent state
+    - MECH-033   # kernel chaining
+    - ARC-062    # candidate rule field / rule apprehension
+    - ARC-063    # rule apprehension pillar
+    - SD-057     # cue recall / live per-object incentive token
+    - SD-059     # escape-affordance bridge (scalar precursor the inference layer generalises)
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  functional_restatement: >
+    The user explicitly names this the "inference pipeline". REE already owns all
+    the ingredients (L-space, hippocampal completion/rollout, hypothesis injection,
+    kernel chaining, rule apprehension, cue recall, escape bridge) but does not name
+    inference as a distinct integrative function. ARC-091 is the umbrella parent that
+    every other node in the inference_belief_state_v4 plan specialises: it constructs
+    latent state hypotheses and inferred affordance fields from partial observation,
+    memory, cue traces, candidate rules, affective gradients, uncertainty, and E2
+    action-consequence rollouts so E3 can select trajectories under partial
+    observability without direct perception or oracle-like prior knowledge. V3 scope
+    is name + route only; full implementation is V4. substrate_conditional: depends
+    on a V4 belief-state substrate not yet built; promote/demote suppressed.
+    DO NOT build in V3.
+
+- id: INV-078
+  title: "Under partial observability the perceived scene is evidence for state, not identical to state; a valid REE state must integrate observation with memory, temporal context, self-state, cue context, rule context, and uncertainty, and inferred/imagined trajectories must remain provenance-tagged as inferred until enacted and updated by committed outcome evidence."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-091
+    - MECH-385
+  pending_substrate_reconfirmation: true
+  subject: inference.inferred_state_invariant
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-091    # belief-state affordance layer -- the substrate this invariant constrains
+    - MECH-385   # belief-state hypothesis set -- the representational form provenance attaches to
+    - INV-035    # state is not raw appearance
+    - INV-036    # state must support transition / valence / uncertainty
+    - ARC-004    # L-space substrate
+    - ARC-007    # hippocampal completion
+    - ARC-018    # prospective simulation
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  notes: >
+    Existing INV-035/036 say state is not raw appearance and must support
+    transition/valence/uncertainty. INV-078 makes explicit the inference-specific
+    obligation: state must sometimes be INFERRED, and inferred trajectories must
+    carry provenance so inference does not become hallucinated certainty. It
+    constrains the inference substrate nodes rather than being tested by an
+    experiment. invariant_type emergent: it has no subject matter until the
+    belief-state substrate (ARC-091/MECH-385) exists, so emergent_from those
+    substrate claims (both also in depends_on per the validator subset rule);
+    pending_substrate_reconfirmation true because those substrates are candidate.
+    substrate_conditional. DO NOT build in V3.
+
+- id: MECH-385
+  title: "Belief-state hypothesis set: when observations are ambiguous or incomplete, REE maintains a bounded set of competing latent-state hypotheses, each carrying confidence/precision, predicted transitions, goal/antigoal relations, and uncertainty; E3 evaluates candidate trajectories over the hypothesis set rather than over a single collapsed state."
+  claim_type: mechanism_hypothesis
+  subject: inference.belief_state_hypothesis_set
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-091    # inference layer umbrella
+    - MECH-022   # single-hypothesis injection (the V3 precursor)
+    - ARC-007    # hippocampal completion (single-hypothesis generator)
+    - ARC-018    # prospective simulation
+    - MECH-033   # kernel chaining
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  notes: >
+    The core representational step of the inference layer. V3 has the
+    single-hypothesis generator (MECH-022 injection + ARC-007 completion); the V4
+    step is the bounded competing SET scored by E3. Blocked until the V3
+    single-hypothesis path is exercised and instrumented. substrate_conditional on
+    a V4 belief-state substrate not yet built; promote/demote suppressed.
+    DO NOT build in V3.
+
+- id: MECH-386
+  title: "Inferred affordance field: REE can infer affordances not directly perceived by combining current cues, hippocampal traces, E2 action-consequence predictions, CandidateRuleField content, affective gradients, and control-plane precision; these inferred affordances bias E3 candidate trajectories without overwriting perception and remain corrigible by action outcome."
+  claim_type: mechanism_hypothesis
+  subject: inference.inferred_affordance_field
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-385   # belief-state hypothesis set -- the state side this is the action-side counterpart of
+    - ARC-062    # candidate rule field
+    - ARC-063    # rule apprehension pillar
+    - SD-057     # cue recall / incentive token
+    - ARC-018    # prospective simulation / rollouts
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  notes: >
+    The action-side counterpart of the belief-state set. Combines the rule field
+    (ARC-062/063), cue recall (SD-057), and E2 rollouts (ARC-018) into affordances
+    the agent does not perceive. Cross-plan dependency on object_representation_v4
+    OBJ-4 (ARC-082) grounding because affordances over an ungrounded action space
+    (inert SD-016 cue_action_proj) are vacuous. substrate_conditional on a V4
+    inference substrate not yet built. DO NOT build in V3.
+
+- id: MECH-387
+  title: "Safety-route inference: under threat, REE can infer a likely route to safety from partial map, cue, gradient, and prior-trajectory evidence rather than requiring safety to be directly visible or navigation-handed; generalises the scalar per-action-class escape credit of SD-059/MECH-358 into an inferred route."
+  claim_type: mechanism_hypothesis
+  subject: inference.safety_route_inference
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-385   # belief-state hypothesis set
+    - MECH-386   # inferred affordance field
+    - SD-059     # escape-affordance bridge (scalar precursor this generalises)
+    - MECH-358   # escape-affordance bridge mechanism
+    - ARC-007    # hippocampal completion (partial-map evidence)
+    - ARC-018    # prospective simulation
+    - SD-057     # cue recall
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  notes: >
+    The behavioural payoff motivating the whole plan: the V3-EXQ-603k
+    ARM_HARM_ON_MIDLINE struggle = danger-sense without route. Blocked on SD-059 /
+    MECH-358 clearing pending_retest_after_substrate (the scalar precursor it
+    generalises must be substrate-confirmed first). Encodes the interpretation rule
+    that midline failure is progress, not harm-pathway falsification.
+    substrate_conditional on a V4 inference substrate not yet built.
+    DO NOT build in V3.
+
+- id: MECH-388
+  title: "Epistemic action pressure: when goal success or harm avoidance depends on hidden state, REE can assign action pressure to information-gathering transitions that reduce uncertainty, even when those actions are not immediately reward-maximising or harm-minimising; generalises Q-044 curiosity into a survival-relevant viability function under partial observability."
+  claim_type: mechanism_hypothesis
+  subject: inference.epistemic_action_pressure
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-385   # belief-state hypothesis set (uncertainty over hypotheses is what this acts on)
+    - Q-044      # curiosity sub-flavour independence open question this generalises
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  notes: >
+    Active-inference pragmatic + epistemic value: in a dangerous midline state the
+    intelligent action may be one that TESTS where safety is. Blocked on Q-044
+    (curiosity sub-flavour independence open) -- generalising curiosity is unsound
+    until its sub-flavour structure is adjudicated. substrate_conditional on a V4
+    inference substrate not yet built. DO NOT build in V3.
+
+- id: Q-070
+  title: "Inference failure-mode register: do the inference-specific failure modes (failure-to-infer-hidden-danger/safety, overconfident-wrong-hypothesis, premature-collapse, hypothesis-proliferation/apophenia, cue-hijack, rule-overreach, map-over/under-generalisation, epistemic-freezing, anti-epistemic-panic) reduce to the existing state-abstraction failure taxonomy (context loss, uncertainty collapse, valence mis-tagging, overmerge, oversplit, threat-spreading), and what biology grounding (hippocampal-prefrontal replay, cognitive maps, pattern-completion-vs-preplay, POMDP belief states, active inference) anchors the layer?"
+  claim_type: open_question
+  subject: inference.failure_mode_register
+  polarity: asks
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-091    # inference layer umbrella whose failure modes this enumerates
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  notes: >
+    Project rule (biology before formal definitions; canonical failures
+    SD-003/SD-010) requires lit grounding before the belief-state substrate is built.
+    Open-question framing because whether the new failure modes are genuinely
+    distinct vs reductions of the existing state-abstraction taxonomy is unsettled;
+    doubles as the diagnostic-design source for the eventual V4 safety-route-inference
+    experiment family. epistemic_category substrate_conditional set EXPLICITLY so
+    narrow_open_question does NOT fire -- there is no V4 inference substrate to test
+    against; the right response is to ground via literature and design the substrate,
+    not to queue a V3 experiment. DO NOT queue a V3 experiment against this.
+
+# --- goal_deliberation_v4 cluster (MECH-389) ---
+- id: MECH-389
+  title: "Interrupted-task resumption: a parked-goal persistence + capacity-keyed re-prioritisation mechanism that closes the event-arc interrupt->reorient->resume span. When a task is interrupted (hazard, capacity loss, higher-priority goal), its goal slot is PARKED (z_goal + progress context retained, not invalidated) rather than discarded; the parked slot carries a persistence/urgency signal (Zeigarnik-analog) that re-elevates its relative importance in the SD-033e/MECH-265 arbitrator when capacity returns, triggering reorient-and-resume rather than restart-from-scratch."
+  claim_type: mechanism_hypothesis
+  subject: goal.interrupted_task_resumption_parked_slot
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - SD-046     # goal substrate
+    - MECH-265   # goal arbitrator the parked slot re-enters
+    - MECH-163   # goal maintenance
+    - MECH-061   # commitment / action-arc beginning
+  distinct_from:
+    - MECH-320   # tonic-vigor / opportunity-cost: a target-free action-drive bias, NOT a parked-task return
+  location: evidence/planning/goal_deliberation_v4_plan.md
+  notes: >
+    REE has the action-arc BEGINNING (commit MECH-061) and END (completion MECH-057a,
+    V_s staleness) but not the interrupt->reorient->resume span; no claim currently
+    covers parked-goal persistence + capacity-keyed resumption. Distinct from V_s
+    world-staleness invalidation (which DISCARDS stale model state) and from MECH-320
+    (a registered tonic-vigor / opportunity-cost mechanism on a different subject --
+    the memory note's "candidate MECH-320 sketch" phrasing is wrong; MECH-320 must
+    NOT be reused). possible_overlap_with: MECH-320 -- review for merge (confirmed
+    distinct subject; cross-referenced via distinct_from rather than collapsed).
+    substrate_conditional on a V4 goal-deliberation substrate not yet built.
+    DO NOT build in V3.
+
+# --- affect_expression_v4 cluster (MECH-390) ---
+- id: MECH-390
+  title: "Subtractive developmental sparsification applies to the affect vector: mature candidate-differentiated affect arbitration (MECH-359) and the candidate-gradient episode store (MECH-361) reach their mature form by pruning an initially over-connected, dense affect/channel substrate, such that mature affect-driven selection requires convergent summation of several weak affective channels rather than a single strong dominant channel."
+  claim_type: mechanism_hypothesis
+  subject: affect.developmental_sparsification_of_affect_vector
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-362   # general subtractive-sparsification principle this is the affect-specific application of
+    - MECH-359   # candidate-differentiated affect vector (AE-1)
+    - MECH-361   # candidate-gradient episode store (AE-4)
+    - ARC-019    # staged developmental curriculum
+  location: evidence/planning/affect_expression_v4_plan.md
+  notes: >
+    MECH-362 names the general subtractive-sparsification principle (tabula plena ->
+    sparse/structured; convergent-weak-input vs single-strong-cue) and Q-057 asks how
+    to model it, but neither states the affect-specific application: whether the
+    per-candidate multi-channel affect vector (AE-1) and the candidate-gradient
+    episode store (AE-4) should mature via channel pruning so mature affect
+    arbitration uses convergent-weak-channel summation rather than
+    single-strong-channel authority. This is the AE-8 bridge between the
+    developmental-pruning compass and the affect substrate.
+    possible_overlap_with: MECH-362 -- review for merge (MECH-362 is the general
+    principle; MECH-390 is its affect-specific specialisation, kept distinct and
+    wired via depends_on). substrate_conditional on a V4 affect substrate not yet
+    built. DO NOT build in V3.
+
+# --- autobiographical_memory_v4 cluster (ARC-092) ---
+- id: ARC-092
+  title: "Imagination-learning constraint principle: simulated/imagined experience may license only LICIT forms of learning (consistency checking, plan optimisation, schema integration) and is FORBIDDEN from driving durable world-model updates, prediction validation, or novel-fact generation. The provenance gate (MECH-365 committed-vs-imagined field) is the mechanism that enforces this principle; the principle states WHAT learning imagination may and may not produce, independent of any single gate's implementation."
+  claim_type: architectural_commitment
+  subject: memory.imagination_learning_constraint_principle
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-365   # committed-vs-imagined provenance gate (the enforcing mechanism)
+    - MECH-094   # simulation-mode vs real-experience provenance
+    - INV-011    # imagination must be possible without belief update
+    - MECH-037   # Papez-like provenance gating / reality filtering
+  location: evidence/planning/autobiographical_memory_v4_plan.md
+  functional_restatement: >
+    REE owns substrate components that implicitly enforce what learning is licit from
+    imagination (MECH-094 provenance, MECH-272/MECH-273 sleep self-model aggregation,
+    MECH-365 committed-vs-imagined gate) but has NO explicit ARC-level claim
+    articulating the LICIT (consistency / plan-opt / schema-integration) vs FORBIDDEN
+    (durable world-model update / prediction-validation / novel-fact) principle.
+    ARC-092 is the natural parent of the MECH-365 one-way gate and the conceptual
+    complement of the MECH-368 write-authority gate (the FORBIDDEN list is the
+    durable-model-update path gated per-event). substrate_conditional on the V4
+    autobiographical-memory substrate not yet built; promote/demote suppressed.
+    DO NOT build in V3.
+
+# --- memory_lifecycle_v4 cluster (MECH-391..393 + INV-079/080) ---
+- id: MECH-391
+  title: "Contextual memory-allocation gate policy: a control-plane decision stage (context_similarity x temporal_distance interaction, schema_fit, salience, PE, uncertainty, goal_relevance) selecting integrate / partial_overlap / separate over the hippocampal graph."
+  claim_type: mechanism_hypothesis
+  subject: memory.allocation.gate_policy
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-261   # mode-conditioned write gating this amends with an allocation-decision stage
+    - MECH-094   # provenance / tag substrate
+    - ARC-035    # stored-vs-active distinction
+    - MECH-147   # pattern separation / completion gates
+    - SD-016     # cue/action projection substrate
+  location: evidence/planning/memory_lifecycle_v4_plan.md
+  notes: >
+    Verdict G1 recommends amending MECH-261 with an allocation-decision stage rather
+    than minting a new INV (subsumed by MECH-094/261 + INV-039). The control-plane
+    DECISION ALGORITHM for when to engage the existing gates is the single NOVEL aspect
+    of the de Sousa 2026 finding. The temporal_distance x context_similarity term must
+    be an INTERACTION, not additive (G3). possible_overlap_with: MECH-261 -- review
+    for merge (amends MECH-261's gating with a decision stage; kept distinct and wired
+    via depends_on). substrate_conditional on a V4 memory-lifecycle store not yet
+    built. DO NOT build in V3.
+
+- id: MECH-392
+  title: "Consolidation provenance + contradiction-flag + rollback: every consolidated summary carries transformation_history + contradiction_flags; a summary conflicting with its source is flagged not silently authoritative; retired schemas leave source episodes intact."
+  claim_type: mechanism_hypothesis
+  subject: memory.consolidation.provenance_required
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-094   # replay_origin audit-flag family this generalises to all consolidation transforms
+    - MECH-068   # consolidation substrate
+    - MECH-124   # schema / abstraction substrate
+    - MECH-273   # sleep self-model aggregation
+  location: evidence/planning/memory_lifecycle_v4_plan.md
+  notes: >
+    Consolidation-faults intake Section 2(c): the explicit transformation_history +
+    contradiction_flags + rollback layer is NOT a current claim. Generalises the
+    MECH-094 replay_origin audit-flag family from sim-vs-real to all consolidation
+    transformations. Needs the 6-state memory-lifecycle store to host the fields;
+    likely amends the MECH-094/MECH-261 audit family. possible_overlap_with: MECH-094
+    -- review for merge (generalises MECH-094's audit flags; kept distinct and wired
+    via depends_on). substrate_conditional on a V4 memory-lifecycle store not yet
+    built. DO NOT build in V3.
+
+- id: MECH-393
+  title: "Retrieval-scope vs action-authority split: retrieval for reflection is distinct from retrieval that confers action authority; a consolidated abstraction lacking source-episode grounding may inform reflection but not unilaterally drive committed action."
+  claim_type: mechanism_hypothesis
+  subject: memory.retrieval.scope_vs_authority
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-257   # read-mode arbitration (retrospective vs prospective) -- distinct axis
+    - ARC-035    # stored-vs-active distinction
+    - MECH-150   # retrieval substrate
+  distinct_from:
+    - MECH-257   # gates READ-MODE; MECH-393 gates AUTHORITY
+    - ARC-035    # gates stored-vs-active; MECH-393 gates what can DRIVE action
+  location: evidence/planning/memory_lifecycle_v4_plan.md
+  notes: >
+    Consolidation-faults intake Section 2: retrieval_scope vs action_authority as
+    distinct fields on a memory record is NOVEL (no current home). Distinct from
+    MECH-257's read-mode arbitration (retrospective vs prospective) -- this gates
+    AUTHORITY, not read-mode -- and from ARC-035's stored-vs-active distinction (this
+    gates what can DRIVE action). substrate_conditional on a V4 memory-lifecycle store
+    not yet built. DO NOT build in V3.
+
+- id: INV-079
+  title: "False-linking-risk / reality-coherence cost at memory-allocation time: viable cognition must price BOTH over-linking (delusion/false-association) and under-linking (failure to generalise) when deciding trace overlap."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - MECH-391
+  pending_substrate_reconfirmation: true
+  subject: memory.allocation.false_linking_cost
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-391   # memory-allocation gate policy -- the substrate that gives this cost its subject matter
+    - MECH-094   # provenance substrate
+    - MECH-147   # pattern separation / completion (the under-linking pole)
+  location: evidence/planning/memory_lifecycle_v4_plan.md
+  notes: >
+    Verdict G2: mint ONE new candidate as substrate_conditional -- the false-linking-risk
+    / reality-coherence cost is the ONLY proposal aspect with no existing REE home
+    (nothing currently prices false linking at allocation). Verdict caveat: the lit cost
+    is one-sided (Sahay 2011 only evidences under-separation); the design must price BOTH
+    poles. invariant_type emergent: it has no subject matter until the allocation gate
+    (MECH-391) exists, so emergent_from MECH-391 (also in depends_on per the validator
+    subset rule); pending_substrate_reconfirmation true because MECH-391 is candidate.
+    substrate_conditional (no V3 substrate to test on). DO NOT build in V3.
+
+- id: INV-080
+  title: "Raw-episode preservation: consolidation_output MUST NOT replace source_episode_evidence -- a consolidated abstraction must retain a pointer to, and must not delete, the episodes it abstracts."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - MECH-392
+  pending_substrate_reconfirmation: true
+  subject: memory.consolidation.raw_episode_preservation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-392   # consolidation provenance layer -- the substrate that carries source pointers
+    - ARC-007    # hippocampal completion / episode store
+    - ARC-020    # consolidation substrate
+    - MECH-094   # provenance substrate
+    - INV-049    # offline-phase necessity for model-building agents
+  location: evidence/planning/memory_lifecycle_v4_plan.md
+  notes: >
+    Consolidation-faults intake (arXiv:2605.12978, verified): memory utility rises then
+    degrades below the no-memory baseline; agents preserving raw episodes double the
+    accuracy of forced-consolidation. No current claim states this as a standing
+    invariant (intake Section 2: IMPLICIT only). May amend ARC-020/MECH-094 rather than
+    standing alone -- registered as a candidate emergent invariant pending that
+    decision. invariant_type emergent: the obligation has no subject matter until the
+    consolidation-provenance layer (MECH-392) exists, so emergent_from MECH-392 (also in
+    depends_on per the validator subset rule); pending_substrate_reconfirmation true
+    because MECH-392 is candidate. substrate_conditional. DO NOT build in V3.
+
+# --- drives_motivation_v4 cluster (SD-060 + MECH-394/395 + Q-071) ---
+- id: SD-060
+  title: "Non-terminal drive register: needs beyond hunger/thirst (exploration, play, social, learning, grooming, rest) are first-class drive axes, each carried as its own homeostatic-style integrator rather than collapsed into the single SD-012 energy scalar."
+  claim_type: design_decision
+  subject: drive.non_terminal_drive_register
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - SD-012     # the single food/energy axis this register generalises beyond
+    - MECH-111   # curiosity intrinsic seed
+    - ARC-073    # play-pressure seed
+  location: evidence/planning/drives_motivation_v4_plan.md
+  functional_restatement: >
+    A multi-axis non-food drive register is genuinely NEW framing. REE has only the
+    single SD-012 food/energy axis live plus scattered intrinsic seeds (MECH-111
+    curiosity, ARC-073 play-pressure) with no shared register. Each non-terminal need
+    (exploration, play, social, learning, grooming, rest) becomes a first-class drive
+    axis carried as its own homeostatic-style integrator. Prose-only today; this is the
+    precondition for arbitration (DRV-2, MECH-394) and the orienting drive (DRV-4,
+    MECH-395). substrate_conditional on a V4 multidrive substrate not yet built.
+    DO NOT build in V3.
+
+- id: MECH-394
+  title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
+  claim_type: mechanism_hypothesis
+  subject: drive.multidrive_arbitration
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - SD-060     # the multidrive register this arbitrates across
+    - SD-012     # single-axis baseline
+    - MECH-295   # approach mechanism
+    - MECH-216   # arbitration / competition substrate
+    - ARC-073    # play-vs-homeostatic single-axis competition
+  location: evidence/planning/drives_motivation_v4_plan.md
+  notes: >
+    Drives framed as orchestrated over context / satiation / competition / dev-phase.
+    REE has single-axis competition (ARC-073 play-vs-homeostatic, Pezzulo 2014) and a
+    soft-competitive arbitration vocabulary (Q-016 tri-loop) but no policy arbitrating
+    ACROSS a multidrive register. Prose-only; requires the SD-060 register to exist
+    first. substrate_conditional on a V4 multidrive substrate not yet built.
+    DO NOT build in V3.
+
+- id: MECH-395
+  title: "Pre-approach orienting/surveying mode: a cue-triggered, need-gated active-sensing control state entered when a cue/need is present but directional/affordance confidence is too low for reliable approach; it samples gradients (turn/scan, exploratory arcs) until a directional vector stabilises, then exits to approach."
+  claim_type: mechanism_hypothesis
+  subject: drive.pre_approach_orienting_mode
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - SD-057     # cue recall (the cue that triggers orienting)
+    - MECH-347   # precision / active-sensing substrate
+    - MECH-295   # approach mechanism this finds the vector for
+    - MECH-111   # curiosity (distinguished from, not reused)
+  location: evidence/planning/drives_motivation_v4_plan.md
+  notes: >
+    What FINDS the approach vector that MECH-295 assumes -- a distinct candidate
+    mechanism not captured by curiosity, cue recall, or approach. Currently a routing
+    hypothesis gated on the V3-EXQ-640 result pattern (cue fires, no contact, no
+    orienting); register only if 640+ shows that discriminating row. substrate_conditional
+    on a V4 drives substrate not yet built. DO NOT build in V3.
+
+- id: Q-071
+  title: "Transfer-world launch profile is evaluated on a four-grade non-terminal failure taxonomy (terminal / soft-rescue / developmental / autonomous): minimise terminal failure while preserving developmental failure as a real learning signal."
+  claim_type: design_decision
+  subject: transfer.non_terminal_failure_profile
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - SD-012     # energy/survival axis the failure grades sit on
+    - SD-054     # onboarding / scaffolded-training substrate
+  location: evidence/planning/drives_motivation_v4_plan.md
+  notes: >
+    The failure-grade taxonomy + minimal-launch-kit is NOVEL but explicitly self-scoped
+    as future transfer-world design off the V3 critical path. Captured as a deferred
+    design criterion (claim_type design_decision; id reserved in the Q-family slot per
+    the pre-allocation) so the framing is registered without entering the V3 build;
+    carries the open forgiveness-vs-drive tradeoff question. substrate_conditional on a
+    V4 transfer-world substrate not yet built. DO NOT build in V3.
+
+# --- perceptual_adaptors_v4 cluster (MECH-396/397) ---
+- id: MECH-396
+  title: "Cross-modal negotiation currency: a common precision-weighted representation that makes structurally dissimilar sense-specific geometries (smell gradient, sight manifold, touch boundary/contact, hearing temporal-source, proprioception body-state) mutually negotiable inside one shared world model."
+  claim_type: mechanism_hypothesis
+  subject: perception.cross_modal_negotiation_currency
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-087    # sense-specific perceptual manifolds
+    - MECH-372   # adaptor-depth gradient
+    - MECH-103   # multi-source precision-weighted fusion (which this underwrites)
+    - ARC-005    # control plane (natural home for the precision-arbitration layer)
+    - Q-065      # the open question this answers part (2) of
+  location: evidence/planning/perceptual_adaptors_v4_plan.md
+  notes: >
+    MECH-103 multi-source precision-weighted fusion already PRESUPPOSES a common
+    currency across dissimilar manifolds but no registered claim specifies what that
+    currency IS. Q-065 part (2) asks the question but is an open_question, not a
+    mechanism. PA-5 needs a concrete mechanism claim for the negotiation /
+    precision-arbitration layer (naturally homed in the ARC-005 control plane) --
+    distinct from MECH-103's fusion mechanism, which it underwrites.
+    possible_overlap_with: MECH-103 -- review for merge (MECH-396 specifies the
+    currency MECH-103's fusion presupposes; kept distinct and wired via depends_on).
+    substrate_conditional on a V4 multimodal-perception substrate not yet built.
+    DO NOT build in V3.
+
+- id: MECH-397
+  title: "Adaptor-maturity curriculum gate: each sense is admitted to the shared world model when its modality-specific adaptor is mature, ordered by adaptor depth (low-adaptor gradient senses first, deep-adaptor manifold senses later), specialising the staged developmental curriculum."
+  claim_type: mechanism_hypothesis
+  subject: developmental.adaptor_maturity_admission_gate
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-372   # adaptor-depth gradient whose developmental-ordering corollary this concretises
+    - ARC-019    # staged developmental curriculum this specialises
+    - ARC-087    # sense-specific perceptual manifolds
+  location: evidence/planning/perceptual_adaptors_v4_plan.md
+  notes: >
+    MECH-372's developmental-ordering corollary ("gradient-like senses enter earliest;
+    smell may have been the first sense") is currently prose folded into ARC-019's
+    generic curriculum-stages claim. PA-6 needs a concrete admission-criterion mechanism
+    keyed to adaptor maturity/depth -- a specialisation of ARC-019, not a duplicate of
+    it. possible_overlap_with: ARC-019 -- review for merge (specialises ARC-019's
+    curriculum with an adaptor-maturity admission gate; kept distinct and wired via
+    depends_on). substrate_conditional on a V4 multimodal-perception substrate not yet
+    built. DO NOT build in V3.
+
+# --- plasticity_neuromodulation_v4 cluster (ARC-093 + MECH-398/399/400 + Q-072) ---
+- id: ARC-093
+  title: "State-conditional plasticity gain: cortical encoder learning rates and residue-field write rates are multiplicatively gated by a state-conditional plasticity scalar, separately from the content signals carried by LC-NE / 5-HT / orexin."
+  claim_type: architectural_commitment
+  subject: learning.state_conditional_plasticity_gain_commitment
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-075    # infant-curriculum plasticity-magnitude asymmetry this likely extends
+    - INV-074    # plasticity-closure invariant
+    - MECH-333   # critical-period open-phase core
+  location: evidence/planning/plasticity_neuromodulation_v4_plan.md
+  functional_restatement: >
+    The ARC-level commitment that plasticity (gain) is a separately-gated process from
+    activity (content). Likely an EXTENSION of ARC-075 (infant-curriculum
+    plasticity-magnitude asymmetry) from scheduler-driven phase magnitudes to
+    state-driven gain, rather than a wholly new ARC -- flagged for governance to decide
+    amend-vs-new. The central architectural claim of the cluster.
+    possible_overlap_with: ARC-075 -- review for merge (extends ARC-075 from scheduler
+    magnitudes to state-driven gain; kept distinct and wired via depends_on).
+    substrate_conditional on a V4 plasticity-gain substrate not yet built.
+    DO NOT build in V3.
+
+- id: MECH-398
+  title: "ACh-analog basal-forebrain plasticity-gain gate: a state-conditional scalar in [0,1] multiplying cortical encoder learning rates and residue write magnitudes, driven by novelty/attention/arousal, distinct from LC-NE/5-HT/orexin content signals."
+  claim_type: mechanism_hypothesis
+  subject: learning.ach_analog_plasticity_gain_gate
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-093    # the state-conditional gain commitment this realises
+    - MECH-333   # open-phase core this is the opening-side analog of
+    - MECH-205   # surprise EMA driver (V3)
+    - SD-032a    # salience mode driver (V3)
+    - MECH-313   # neuromodulator content substrate this is distinct from
+  location: evidence/planning/plasticity_neuromodulation_v4_plan.md
+  notes: >
+    The opening-side analog of MECH-333's open phase, made state-conditional rather than
+    scheduler-driven. Bear & Singer 1986: ACh+NE pairing gates whether cortex
+    incorporates inputs into long-term representations. Drivers (MECH-205 surprise EMA,
+    SD-032a salience mode, drive_level) all live in V3. substrate_conditional on a V4
+    plasticity-gain substrate not yet built. DO NOT build in V3.
+
+- id: MECH-399
+  title: "PV-interneuron inhibitory-maturation analog: a time-since-onset accumulator that monotonically lowers the plasticity-gain ceiling, replacing the current binary critical-period phase transition."
+  claim_type: mechanism_hypothesis
+  subject: learning.pv_analog_window_closure_clock
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-333   # critical-period open phase
+    - MECH-334   # critical-period closure (the binary form this makes continuous)
+    - ARC-093    # state-conditional gain commitment (the ceiling this clamps)
+    - MECH-398   # the continuous gain scalar this clock clamps
+  location: evidence/planning/plasticity_neuromodulation_v4_plan.md
+  notes: >
+    Biology-faithful continuous form of the existing MECH-333/MECH-334 closure (today a
+    binary on_phase3_entry crystallize). Hensch 2005 / Deidda 2015 anchors. Deferred: a
+    closure CLOCK only matters once a continuous gain scalar (the ACh gate MECH-398)
+    exists to clamp. substrate_conditional on a V4 plasticity-gain substrate not yet
+    built. DO NOT build in V3.
+
+- id: MECH-400
+  title: "BDNF-analog trophic window-duration scalar: a duration multiplier on top of the plasticity-gain gate and closure clock."
+  claim_type: mechanism_hypothesis
+  subject: learning.bdnf_analog_window_duration_knob
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-333   # critical-period open phase
+    - MECH-398   # the gain gate this duration knob sits on top of
+    - MECH-399   # the closure clock this duration knob modulates
+  location: evidence/planning/plasticity_neuromodulation_v4_plan.md
+  notes: >
+    Lowest-priority pillar in the source sketch: the duration knob sitting on top of the
+    gain knob (MECH-398) and closure clock (MECH-399). Huang 1999 anchor (BDNF
+    precociously opens and closes the CP). Deferred until gain/closure pillars are
+    validated. substrate_conditional on a V4 plasticity-gain substrate not yet built.
+    DO NOT build in V3.
+
+- id: MECH-401
+  title: "Consolidation gated-write-authority: over-frequent rewriting of consolidated memory is a failure mode; the consolidation operator's authority to overwrite is gated by schema-stability / schedule-sensitivity, not run after every interaction."
+  claim_type: mechanism_hypothesis
+  subject: memory.consolidation.gated_write_authority
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-261   # mode-conditioned write gating this extends to the consolidation operator
+    - MECH-068   # consolidation substrate
+    - MECH-273   # sleep self-model aggregation operator whose rewrite frequency is gated
+    - INV-039    # schema-primed assimilation rate -- the schedule-sensitivity gate
+    - INV-049    # offline-update necessity -- the complementary law; this prices the corruption side
+    - MECH-392   # provenance sibling (tracks WHAT changed) vs this (WHETHER/how often to rewrite)
+  distinct_from:
+    - MECH-368   # event-level write-eligible gate governs which EVENTS are written; this governs consolidation REWRITE frequency
+  location: evidence/planning/memory_lifecycle_v4_plan.md
+  notes: >
+    Consolidation-faults intake Section 2: gated write-authority on the consolidation
+    operator -- over-frequent rewriting (consolidation run after every interaction) is a
+    failure mode. INV-049 makes offline update NECESSARY but the operator can corrupt;
+    this claim prices the corruption side via a schema-stability / schedule-sensitivity
+    gate (INV-039). Owning node: memory_lifecycle_v4:MEM-7. Distinct from MECH-392
+    (provenance: what changed) and MECH-368 (which events are write-eligible).
+    substrate_conditional on a V4 memory-lifecycle store + real consolidation schedule
+    not yet built. DO NOT build in V3.
+
+- id: Q-072
+  title: "Does plasticity-gain modulate identically across encoder / residue / hippocampal / E2-forward layers, or per-substrate (layer-specific gates)?"
+  claim_type: open_question
+  subject: learning.plasticity_gain_layer_specificity
+  polarity: asks
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-333   # critical-period substrate the gain gate parameterises
+    - ARC-093    # the gain commitment whose layer-scope this fork decides
+    - MECH-398   # the gain gate this question parameterises
+  location: evidence/planning/plasticity_neuromodulation_v4_plan.md
+  notes: >
+    The pivotal design fork for the whole cluster. Biology says layer-specific (distinct
+    cortical-area CP timings); REE must decide one global ACh scalar vs per-substrate
+    scalars before parameterising the gain gate/commitment. A single-substrate global
+    scalar is the V3-tractable form; full per-substrate is the V4-budget form.
+    epistemic_category substrate_conditional set EXPLICITLY so narrow_open_question does
+    NOT fire -- there is no V4 plasticity-gain substrate to test against; the right
+    response is to decide the fork during substrate design, not to queue a V3
+    experiment. DO NOT queue a V3 experiment against this.

@@ -88,7 +88,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: [Q-065, MECH-103, "NEWCLAIM:cross_modal_negotiation_currency"]
+      unblocks_claims: [Q-065, MECH-103, "MECH-396"]
       depends_on: ["perceptual_adaptors_v4:PA-2", "perceptual_adaptors_v4:PA-3"]
       cross_plan_link: []
       blocking_on: "Requires at least TWO structurally dissimilar adaptors live (a low-adaptor gradient sense, PA-2, AND a deep-adaptor manifold sense, PA-3) before a negotiation currency between them can be specified or tested."
@@ -97,14 +97,14 @@ closure_plan:
         - "MECH-103 multi-source precision-weighted fusion already PRESUPPOSES a common negotiation currency across dissimilar manifolds -- this node names and builds that currency (the unification problem behind fusion)"
         - "ARC-005 control plane (precision routing) is the natural home for the negotiation/precision-weighting layer that arbitrates across heterogeneous geometries"
       last_updated: 2026-06-10
-      completion_note: "The deepest open problem in the cluster: fusion (MECH-103) assumes a shared currency that no claim currently specifies. PILLAR C is that specification -- a new substrate primitive proposed as NEWCLAIM:cross_modal_negotiation_currency, not a duplicate of MECH-103's fusion mechanism."
+      completion_note: "The deepest open problem in the cluster: fusion (MECH-103) assumes a shared currency that no claim currently specifies. PILLAR C is that specification -- a new substrate primitive proposed as MECH-396, not a duplicate of MECH-103's fusion mechanism."
     - id: "perceptual_adaptors_v4:PA-6"
       title: "Adaptor-maturity curriculum gate: each sense admitted when its adaptor is mature, not all at once"
       phase: 2
       status: open
       severity: medium
       owner_exq: null
-      unblocks_claims: [MECH-372, ARC-019, "NEWCLAIM:adaptor_maturity_curriculum_gate"]
+      unblocks_claims: [MECH-372, ARC-019, "MECH-397"]
       depends_on: ["perceptual_adaptors_v4:PA-1"]
       cross_plan_link: []
       readiness_gate:
@@ -112,7 +112,7 @@ closure_plan:
         - "MECH-372 developmental-ordering corollary: low-adaptor-depth senses enter earliest; high-adaptor-depth (vision) require more scaffolding -- needs to become a concrete gate primitive (adaptor-maturity admission criterion) rather than prose"
         - "PA-1 fork resolved so adaptor depth per sense is known and orderable"
       last_updated: 2026-06-10
-      completion_note: "MECH-372's corollary ('smell may have been the first sense') is currently prose inside ARC-019's curriculum. The concrete gate -- an admission criterion keyed to adaptor maturity that orders senses by depth -- is a new mechanism proposed as NEWCLAIM:adaptor_maturity_curriculum_gate."
+      completion_note: "MECH-372's corollary ('smell may have been the first sense') is currently prose inside ARC-019's curriculum. The concrete gate -- an admission criterion keyed to adaptor maturity that orders senses by depth -- is a new mechanism proposed as MECH-397."
     - id: "perceptual_adaptors_v4:PA-7"
       title: "Biology grounding completion (perceptual-manifold / colour-geometry / multisensory-binding lit-pulls)"
       phase: 2

@@ -46,7 +46,7 @@ closure_plan:
       status: open
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:ach_analog_plasticity_gate", "NEWCLAIM:state_conditional_plasticity_gain"]
+      unblocks_claims: ["MECH-398", "ARC-093"]
       depends_on: ["plasticity_neuromodulation_v4:PLW-1"]
       cross_plan_link: []
       readiness_gate:
@@ -61,7 +61,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:ach_analog_plasticity_gate"]
+      unblocks_claims: ["MECH-398"]
       depends_on: ["plasticity_neuromodulation_v4:PLW-2"]
       cross_plan_link: []
       blocking_on: "MECH-333 open-phase mechanism is planned-but-unbuilt (epistemic_category substrate_conditional 2026-06-10; only the plastic-channel-injection option landed, the F-gradient-attenuation core never exercised -- V3-EXQ-610a..610e all non_contributory). The ACh gate is the state-conditional generalisation of MECH-333's open phase; building it before MECH-333's core exists is premature."
@@ -77,7 +77,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:state_conditional_plasticity_gain"]
+      unblocks_claims: ["ARC-093"]
       depends_on: ["plasticity_neuromodulation_v4:PLW-3"]
       cross_plan_link: []
       blocking_on: "Depends on PLW-3 (the ACh gate is the first concrete instance of the scalar this ARC-level claim generalises). No architectural commitment is honest before at least one gate instance exists."
@@ -93,7 +93,7 @@ closure_plan:
       status: deferred
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:pv_analog_closure_clock"]
+      unblocks_claims: ["MECH-399"]
       depends_on: ["plasticity_neuromodulation_v4:PLW-3"]
       cross_plan_link: []
       readiness_gate:
@@ -108,7 +108,7 @@ closure_plan:
       status: deferred
       severity: low
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:bdnf_analog_duration_knob"]
+      unblocks_claims: ["MECH-400"]
       depends_on: ["plasticity_neuromodulation_v4:PLW-5"]
       cross_plan_link: []
       readiness_gate:
@@ -123,7 +123,7 @@ closure_plan:
       status: open
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:plasticity_gain_layer_specificity_question"]
+      unblocks_claims: ["Q-072"]
       depends_on: ["plasticity_neuromodulation_v4:PLW-4"]
       cross_plan_link: []
       readiness_gate:
@@ -171,11 +171,11 @@ nodes carry no `owner_exq` and the drift checker stays dormant. The value is the
 |---|---|---|---|---|
 | (framing) opening-vs-closure | PLW-1 | INV-074 / MECH-333 | V4 (entry gate) | closure side built; decision-to-build gate: V3-conservative flag-toggle demonstrably insufficient |
 | (grounding) biology lit-pull | PLW-2 | NEWCLAIM (ACh, state-gain) | cross-cutting | /lit-pull Hensch / Bear-Singer / Froemke / Kilgard / Sale -- gated on PLW-1 |
-| A -- ACh-analog gain gate | PLW-3 | NEWCLAIM:ach_analog_plasticity_gate | V4 (gated on MECH-333) | MECH-333 open-phase core + readable drivers (MECH-205 / SD-032a / drive) |
-| B -- state-conditional gain | PLW-4 | NEWCLAIM:state_conditional_plasticity_gain | V4 | extends ARC-075; layer-specificity decided |
-| C -- PV closure clock | PLW-5 | NEWCLAIM:pv_analog_closure_clock | V4 (deferred) | continuous gain scalar exists to clamp (PLW-3) |
-| D -- BDNF duration knob | PLW-6 | NEWCLAIM:bdnf_analog_duration_knob | V4 (deferred, low) | gain knob + closure clock both exist |
-| (fork) layer-specificity | PLW-7 | NEWCLAIM:plasticity_gain_layer_specificity_question | V4 (open question) | decide global-vs-per-substrate before parameterising A/B |
+| A -- ACh-analog gain gate | PLW-3 | MECH-398 | V4 (gated on MECH-333) | MECH-333 open-phase core + readable drivers (MECH-205 / SD-032a / drive) |
+| B -- state-conditional gain | PLW-4 | ARC-093 | V4 | extends ARC-075; layer-specificity decided |
+| C -- PV closure clock | PLW-5 | MECH-399 | V4 (deferred) | continuous gain scalar exists to clamp (PLW-3) |
+| D -- BDNF duration knob | PLW-6 | MECH-400 | V4 (deferred, low) | gain knob + closure clock both exist |
+| (fork) layer-specificity | PLW-7 | Q-072 | V4 (open question) | decide global-vs-per-substrate before parameterising A/B |
 
 ---
 

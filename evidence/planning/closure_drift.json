@@ -1,10 +1,21 @@
 {
-  "generated_at": "2026-06-10T19:56:05Z",
+  "generated_at": "2026-06-10T20:16:22Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 0,
+    "stale_since": 1,
     "suppressed": 9
   },
   "drifted": [],
-  "stale_since": []
+  "stale_since": [
+    {
+      "node_id": "arc_062_rule_apprehension:GAP-B",
+      "plan": "arc_062_rule_apprehension_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": "V3-EXQ-654a QUEUED 2026-06-09 (priority 250, machine any; supersedes V3-EXQ-654) -- the gated re-run on the landed cross-episode rule-persistence amend (ree-v3 main 9797e84). Single-variable ARM_OFF vs ARM_ON with crf_persist_rules_across_episode_reset=True (matured pool clears the C1c 0.30 floor), a frozen-encoder P1 trained-bias-head REINFORCE phase (GAP-D), and a propagation non-vacuity precondition (ARM_ON bias != ARM_OFF, else substrate_not_ready_requeue); committed-class entropy PRIMARY DV. PREDECESSOR V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification.",
+      "node_last_updated": "2026-06-09",
+      "reasons": [
+        "owner_exq pins V3-EXQ-654a but later same-lineage sibling V3-EXQ-654b has terminal evidence (manifest `v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T200549Z_v3.json`)"
+      ]
+    }
+  ]
 }

@@ -539,6 +539,24 @@
     "title": "Externalised Default Mode Operation: play instantiates DMN functions (self-reference, autobiographical memory, social imagination, future simulation, counterfactual thought, narrative construction) externally -- pushed outward into objects, roles, movement, spoken narration, and temporary as-if worlds -- as the developmental precursor to the internal DMN, compressing into internal generative modelling over development.",
     "type": "architecture_hypothesis"
   },
+  "ARC-091": {
+    "status": "candidate",
+    "subject": "inference.belief_state_affordance_layer",
+    "title": "Inference / belief-state affordance layer: a named integrative function that constructs latent state hypotheses and inferred affordance fields from partial observation, memory, cue traces, candidate rules, affective gradients, uncertainty, and E2 action-consequence rollouts, so E3 selects trajectories under partial observability without requiring direct perception or oracle-like prior knowledge.",
+    "type": "architectural_commitment"
+  },
+  "ARC-092": {
+    "status": "candidate",
+    "subject": "memory.imagination_learning_constraint_principle",
+    "title": "Imagination-learning constraint principle: simulated/imagined experience may license only LICIT forms of learning (consistency checking, plan optimisation, schema integration) and is FORBIDDEN from driving durable world-model updates, prediction validation, or novel-fact generation. The provenance gate (MECH-365 committed-vs-imagined field) is the mechanism that enforces this principle; the principle states WHAT learning imagination may and may not produce, independent of any single gate's implementation.",
+    "type": "architectural_commitment"
+  },
+  "ARC-093": {
+    "status": "candidate",
+    "subject": "learning.state_conditional_plasticity_gain_commitment",
+    "title": "State-conditional plasticity gain: cortical encoder learning rates and residue-field write rates are multiplicatively gated by a state-conditional plasticity scalar, separately from the content signals carried by LC-NE / 5-HT / orexin.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -1406,6 +1424,40 @@
     "status": "candidate",
     "subject": "meta.evaluation_channel_integrity",
     "title": "Evaluation channels are evidence-producing boundaries, not world-state affordances: no agentic subsystem -- including an AI assistant developing REE -- may update architectural confidence directly from a performance score without provenance, review, and governance mediation. World feedback, evidence feedback, and governance feedback are distinct typed signal classes that must remain non-collapsible.",
+    "type": "invariant"
+  },
+  "INV-078": {
+    "emergent_from": [
+      "ARC-091",
+      "MECH-385"
+    ],
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "inference.inferred_state_invariant",
+    "title": "Under partial observability the perceived scene is evidence for state, not identical to state; a valid REE state must integrate observation with memory, temporal context, self-state, cue context, rule context, and uncertainty, and inferred/imagined trajectories must remain provenance-tagged as inferred until enacted and updated by committed outcome evidence.",
+    "type": "invariant"
+  },
+  "INV-079": {
+    "emergent_from": [
+      "MECH-391"
+    ],
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "memory.allocation.false_linking_cost",
+    "title": "False-linking-risk / reality-coherence cost at memory-allocation time: viable cognition must price BOTH over-linking (delusion/false-association) and under-linking (failure to generalise) when deciding trace overlap.",
+    "type": "invariant"
+  },
+  "INV-080": {
+    "emergent_from": [
+      "MECH-392"
+    ],
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "memory.consolidation.raw_episode_preservation",
+    "title": "Raw-episode preservation: consolidation_output MUST NOT replace source_episode_evidence -- a consolidated abstraction must retain a pointer to, and must not delete, the episodes it abstracts.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -3754,6 +3806,108 @@
     "title": "Lightweight self-narration trace/debug scaffold: an optional traceable field set (state_label, goal_label, sensed_gradient, active_prediction, uncertainty_level, candidate_action, candidate_action_reason, expected_consequence, affective_pressure, conflict_flag, commitment_threshold, stop_condition, simulation_or_commitment, self_reference_frame) that surfaces REE's working state for inspection -- the V3-compatible reduced form of an externalised 'private speech' surface, before it is compressed into internal control.",
     "type": "design_decision"
   },
+  "MECH-385": {
+    "status": "candidate",
+    "subject": "inference.belief_state_hypothesis_set",
+    "title": "Belief-state hypothesis set: when observations are ambiguous or incomplete, REE maintains a bounded set of competing latent-state hypotheses, each carrying confidence/precision, predicted transitions, goal/antigoal relations, and uncertainty; E3 evaluates candidate trajectories over the hypothesis set rather than over a single collapsed state.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-386": {
+    "status": "candidate",
+    "subject": "inference.inferred_affordance_field",
+    "title": "Inferred affordance field: REE can infer affordances not directly perceived by combining current cues, hippocampal traces, E2 action-consequence predictions, CandidateRuleField content, affective gradients, and control-plane precision; these inferred affordances bias E3 candidate trajectories without overwriting perception and remain corrigible by action outcome.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-387": {
+    "status": "candidate",
+    "subject": "inference.safety_route_inference",
+    "title": "Safety-route inference: under threat, REE can infer a likely route to safety from partial map, cue, gradient, and prior-trajectory evidence rather than requiring safety to be directly visible or navigation-handed; generalises the scalar per-action-class escape credit of SD-059/MECH-358 into an inferred route.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-388": {
+    "status": "candidate",
+    "subject": "inference.epistemic_action_pressure",
+    "title": "Epistemic action pressure: when goal success or harm avoidance depends on hidden state, REE can assign action pressure to information-gathering transitions that reduce uncertainty, even when those actions are not immediately reward-maximising or harm-minimising; generalises Q-044 curiosity into a survival-relevant viability function under partial observability.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-389": {
+    "status": "candidate",
+    "subject": "goal.interrupted_task_resumption_parked_slot",
+    "title": "Interrupted-task resumption: a parked-goal persistence + capacity-keyed re-prioritisation mechanism that closes the event-arc interrupt->reorient->resume span. When a task is interrupted (hazard, capacity loss, higher-priority goal), its goal slot is PARKED (z_goal + progress context retained, not invalidated) rather than discarded; the parked slot carries a persistence/urgency signal (Zeigarnik-analog) that re-elevates its relative importance in the SD-033e/MECH-265 arbitrator when capacity returns, triggering reorient-and-resume rather than restart-from-scratch.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-390": {
+    "status": "candidate",
+    "subject": "affect.developmental_sparsification_of_affect_vector",
+    "title": "Subtractive developmental sparsification applies to the affect vector: mature candidate-differentiated affect arbitration (MECH-359) and the candidate-gradient episode store (MECH-361) reach their mature form by pruning an initially over-connected, dense affect/channel substrate, such that mature affect-driven selection requires convergent summation of several weak affective channels rather than a single strong dominant channel.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-391": {
+    "status": "candidate",
+    "subject": "memory.allocation.gate_policy",
+    "title": "Contextual memory-allocation gate policy: a control-plane decision stage (context_similarity x temporal_distance interaction, schema_fit, salience, PE, uncertainty, goal_relevance) selecting integrate / partial_overlap / separate over the hippocampal graph.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-392": {
+    "status": "candidate",
+    "subject": "memory.consolidation.provenance_required",
+    "title": "Consolidation provenance + contradiction-flag + rollback: every consolidated summary carries transformation_history + contradiction_flags; a summary conflicting with its source is flagged not silently authoritative; retired schemas leave source episodes intact.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-393": {
+    "status": "candidate",
+    "subject": "memory.retrieval.scope_vs_authority",
+    "title": "Retrieval-scope vs action-authority split: retrieval for reflection is distinct from retrieval that confers action authority; a consolidated abstraction lacking source-episode grounding may inform reflection but not unilaterally drive committed action.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-394": {
+    "status": "candidate",
+    "subject": "drive.multidrive_arbitration",
+    "title": "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-395": {
+    "status": "candidate",
+    "subject": "drive.pre_approach_orienting_mode",
+    "title": "Pre-approach orienting/surveying mode: a cue-triggered, need-gated active-sensing control state entered when a cue/need is present but directional/affordance confidence is too low for reliable approach; it samples gradients (turn/scan, exploratory arcs) until a directional vector stabilises, then exits to approach.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-396": {
+    "status": "candidate",
+    "subject": "perception.cross_modal_negotiation_currency",
+    "title": "Cross-modal negotiation currency: a common precision-weighted representation that makes structurally dissimilar sense-specific geometries (smell gradient, sight manifold, touch boundary/contact, hearing temporal-source, proprioception body-state) mutually negotiable inside one shared world model.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-397": {
+    "status": "candidate",
+    "subject": "developmental.adaptor_maturity_admission_gate",
+    "title": "Adaptor-maturity curriculum gate: each sense is admitted to the shared world model when its modality-specific adaptor is mature, ordered by adaptor depth (low-adaptor gradient senses first, deep-adaptor manifold senses later), specialising the staged developmental curriculum.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-398": {
+    "status": "candidate",
+    "subject": "learning.ach_analog_plasticity_gain_gate",
+    "title": "ACh-analog basal-forebrain plasticity-gain gate: a state-conditional scalar in [0,1] multiplying cortical encoder learning rates and residue write magnitudes, driven by novelty/attention/arousal, distinct from LC-NE/5-HT/orexin content signals.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-399": {
+    "status": "candidate",
+    "subject": "learning.pv_analog_window_closure_clock",
+    "title": "PV-interneuron inhibitory-maturation analog: a time-since-onset accumulator that monotonically lowers the plasticity-gain ceiling, replacing the current binary critical-period phase transition.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-400": {
+    "status": "candidate",
+    "subject": "learning.bdnf_analog_window_duration_knob",
+    "title": "BDNF-analog trophic window-duration scalar: a duration multiplier on top of the plasticity-gain gate and closure clock.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-401": {
+    "status": "candidate",
+    "subject": "memory.consolidation.gated_write_authority",
+    "title": "Consolidation gated-write-authority: over-frequent rewriting of consolidated memory is a failure mode; the consolidation operator's authority to overwrite is gated by schema-stability / schedule-sensitivity, not run after every interaction.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -4154,6 +4308,24 @@
     "status": "candidate",
     "subject": "governance.agent_assisted_development_integrity",
     "title": "Can a REE-style governance loop (manifest -> review -> governance -> claim) measurably reduce evaluation-channel exploitation -- the collapse of an evidence loop into an optimisation loop -- when agentic systems participate in their own development, relative to a direct-score-authority baseline?",
+    "type": "open_question"
+  },
+  "Q-070": {
+    "status": "candidate",
+    "subject": "inference.failure_mode_register",
+    "title": "Inference failure-mode register: do the inference-specific failure modes (failure-to-infer-hidden-danger/safety, overconfident-wrong-hypothesis, premature-collapse, hypothesis-proliferation/apophenia, cue-hijack, rule-overreach, map-over/under-generalisation, epistemic-freezing, anti-epistemic-panic) reduce to the existing state-abstraction failure taxonomy (context loss, uncertainty collapse, valence mis-tagging, overmerge, oversplit, threat-spreading), and what biology grounding (hippocampal-prefrontal replay, cognitive maps, pattern-completion-vs-preplay, POMDP belief states, active inference) anchors the layer?",
+    "type": "open_question"
+  },
+  "Q-071": {
+    "status": "candidate",
+    "subject": "transfer.non_terminal_failure_profile",
+    "title": "Transfer-world launch profile is evaluated on a four-grade non-terminal failure taxonomy (terminal / soft-rescue / developmental / autonomous): minimise terminal failure while preserving developmental failure as a real learning signal.",
+    "type": "design_decision"
+  },
+  "Q-072": {
+    "status": "candidate",
+    "subject": "learning.plasticity_gain_layer_specificity",
+    "title": "Does plasticity-gain modulate identically across encoder / residue / hippocampal / E2-forward layers, or per-substrate (layer-specific gates)?",
     "type": "open_question"
   },
   "RA-001": {
@@ -4586,6 +4758,12 @@
     "status": "candidate",
     "subject": "defensive_action.escape_affordance_bridge",
     "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
+    "type": "design_decision"
+  },
+  "SD-060": {
+    "status": "candidate",
+    "subject": "drive.non_terminal_drive_register",
+    "title": "Non-terminal drive register: needs beyond hunger/thirst (exploration, play, social, learning, grooming, rest) are first-class drive axes, each carried as its own homeostatic-style integrator rather than collapsed into the single SD-012 energy scalar.",
     "type": "design_decision"
   }
 }

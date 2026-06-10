@@ -91,7 +91,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:interrupted_task_resumption_mechanism"]
+      unblocks_claims: ["MECH-389"]
       depends_on: ["goal_deliberation_v4:GDL-1", "goal_deliberation_v4:GDL-4"]
       cross_plan_link: ["goal_pipeline:GAP-2"]
       blocking_on: "Gated on a V3 demonstration that the interrupt->resume span is the actual failure mode: register the resumption mechanism as a candidate MECH only when a V3 autopsy (640+) shows hazard-interrupt WITHOUT resume (per thought_intake_2026-06-05 step 2). Until then it is a prose gap with a placeholder."
@@ -100,7 +100,7 @@ closure_plan:
         - "The event-arc spine (thought_intake_2026-06-05_cross_version_missing_bits): action = initiate -> persist -> INTERRUPT -> reorient -> RESUME -> closure. The interrupt->reorient->resume span is the underdeveloped one; resumption needs a parked goal slot to return to, hence the SD-046 multi-slot dependency (GDL-1) and the arbitrator that re-prioritises it (GDL-4)"
         - "Multi-step hippocampal planning (MECH-163) to reconstruct the parked task context on resume"
       last_updated: 2026-06-10
-      completion_note: "PROSE-ONLY gap today (no claim). MECH-320 in claims.yaml is a tonic-vigor / opportunity-cost mechanism (v3, candidate_substrate_landed) and is NOT the resumption mechanism, despite the memory note's 'candidate MECH-320 sketch' phrasing -- do not reuse that ID. Proposing NEWCLAIM:interrupted_task_resumption_mechanism: a parked-goal persistence + capacity-keyed re-prioritisation hypothesis that closes the event-arc interrupt->resume span."
+      completion_note: "PROSE-ONLY gap today (no claim). MECH-320 in claims.yaml is a tonic-vigor / opportunity-cost mechanism (v3, candidate_substrate_landed) and is NOT the resumption mechanism, despite the memory note's 'candidate MECH-320 sketch' phrasing -- do not reuse that ID. Proposing MECH-389: a parked-goal persistence + capacity-keyed re-prioritisation hypothesis that closes the event-arc interrupt->resume span."
     - id: "goal_deliberation_v4:GDL-6"
       title: "PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD-027/SD-028/MECH-254/MECH-255) feeding deliberation"
       phase: 2
@@ -196,7 +196,7 @@ cross-slot arbitrator (GDL-4) to re-prioritise it when capacity returns. That is
 why GDL-5 is the deliberation layer's load-bearing extension, not a separate
 plan. Per the intake's own gating rule, the resumption MECH is registered only
 when a V3 autopsy (640+) routes there (hazard-interrupt without resume); until
-then it is `NEWCLAIM:interrupted_task_resumption_mechanism`.
+then it is `MECH-389`.
 
 ---
 
@@ -242,6 +242,6 @@ then it is `NEWCLAIM:interrupted_task_resumption_mechanism`.
   single-stream V3 pipeline (goal_pipeline GAP-2) must reliably commit-and-contact
   ONE goal before a multi-slot arbitrator is honest. `generation: v4` set so the
   V3 closure % is unaffected. The interrupt->resume span registered as a
-  prose-only NEWCLAIM placeholder (NEWCLAIM:interrupted_task_resumption_mechanism)
+  prose-only NEWCLAIM placeholder (MECH-389)
   per the event-arc intake's gating rule -- NOT folded onto MECH-320, which is a
   distinct tonic-vigor mechanism. No claims.yaml edits.

@@ -77,7 +77,7 @@ closure_plan:
       status: open
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:imagination_learning_constraint_principle", MECH-365]
+      unblocks_claims: ["ARC-092", MECH-365]
       depends_on: ["autobiographical_memory_v4:ABM-3"]
       cross_plan_link: []
       readiness_gate:

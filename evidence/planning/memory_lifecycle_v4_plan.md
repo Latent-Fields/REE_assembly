@@ -30,7 +30,7 @@ closure_plan:
       status: open
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: [MECH-261, NEWCLAIM:memory_allocation_gate_policy]
+      unblocks_claims: [MECH-261, MECH-391]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
@@ -46,7 +46,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-147, NEWCLAIM:memory_allocation_gate_policy]
+      unblocks_claims: [MECH-147, MECH-391]
       depends_on: ["memory_lifecycle_v4:MEM-1"]
       cross_plan_link:
         - "sleep_substrate"
@@ -63,7 +63,7 @@ closure_plan:
       status: open
       severity: high
       owner_exq: null
-      unblocks_claims: [NEWCLAIM:false_linking_risk_cost]
+      unblocks_claims: [INV-079]
       depends_on: ["memory_lifecycle_v4:MEM-1"]
       cross_plan_link: []
       readiness_gate:
@@ -78,7 +78,7 @@ closure_plan:
       status: open
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: [ARC-007, ARC-020, NEWCLAIM:raw_episode_preservation]
+      unblocks_claims: [ARC-007, ARC-020, INV-080]
       depends_on: []
       cross_plan_link:
         - "sleep_substrate"
@@ -94,7 +94,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-094, MECH-068, MECH-124, NEWCLAIM:consolidation_provenance_required]
+      unblocks_claims: [MECH-094, MECH-068, MECH-124, MECH-392]
       depends_on: ["memory_lifecycle_v4:MEM-4"]
       cross_plan_link:
         - "sleep_substrate"
@@ -113,7 +113,7 @@ closure_plan:
       status: open
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-257, ARC-035, NEWCLAIM:retrieval_scope_vs_action_authority]
+      unblocks_claims: [MECH-257, ARC-035, MECH-393]
       depends_on: ["memory_lifecycle_v4:MEM-4"]
       cross_plan_link:
         - "inference_belief_state_v4"
@@ -129,7 +129,7 @@ closure_plan:
       status: blocked
       severity: medium
       owner_exq: null
-      unblocks_claims: [MECH-261, INV-039, INV-049, NEWCLAIM:consolidation_gated_write_authority]
+      unblocks_claims: [MECH-261, INV-039, INV-049, MECH-401]
       depends_on: ["memory_lifecycle_v4:MEM-4"]
       cross_plan_link:
         - "sleep_substrate"
@@ -146,7 +146,7 @@ closure_plan:
       status: in_progress
       severity: medium
       owner_exq: null
-      unblocks_claims: [NEWCLAIM:memory_allocation_gate_policy, NEWCLAIM:raw_episode_preservation]
+      unblocks_claims: [MECH-391, INV-080]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
