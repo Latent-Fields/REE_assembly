@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-05-05.1 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-06-10.1 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,6 +126,8 @@
     .mode-explore  { background: #78350f; color: #fcd34d; }
     .mode-neutral  { background: #1e3a5f; color: #93c5fd; }
     .mode-shelter  { background: #164e63; color: #67e8f9; }
+    .mode-freeze   { background: #334155; color: #a5f3fc; }
+    .mode-assert   { background: #831843; color: #fb7185; }
 
     /* Bars */
     .barRow { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
@@ -136,6 +138,20 @@
     }
     .barInner { height: 100%; border-radius: 4px; transition: width 0.25s, background-color 0.25s; }
     .barPct { font-size: 10px; color: var(--muted); min-width: 30px; text-align: right; }
+
+    /* Affect channel rows */
+    .afLbl { font-size: 9px; width: 30px; color: var(--muted); flex-shrink: 0; letter-spacing: 0.02em; }
+    .afVal { font-size: 9px; color: var(--muted); min-width: 34px; text-align: right;
+             font-family: 'SF Mono','Fira Code',monospace; }
+    .afSub { font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em;
+             color: #475569; margin: 6px 0 3px; }
+    /* Bipolar excite(+)/dread(-) meter */
+    .biWrap { position: relative; flex: 1; height: 9px; background: #060d1c;
+              border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .biMid  { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+              background: rgba(255,255,255,0.18); }
+    .biPos  { position: absolute; left: 50%; top: 0; bottom: 0; background: #fbbf24; }
+    .biNeg  { position: absolute; right: 50%; top: 0; bottom: 0; background: #8b5cf6; }
 
     /* Metrics */
     .mRow { display: flex; justify-content: space-between; padding: 1px 0; }
@@ -321,18 +337,53 @@
           <span class="barPct" id="energyPct">100%</span>
         </div>
       </div>
+      <div id="affectPanel">
+        <div class="iLabel">Affect</div>
+
+        <div class="afSub" id="subNoci">Nociceptive cascade</div>
+        <div class="barRow" id="rowHs"><span class="afLbl">sens</span>
+          <div class="barOuter"><div class="barInner" id="afHs" style="width:0%;background:#f87171"></div></div>
+          <span class="afVal" id="afHsV">—</span></div>
+        <div class="barRow" id="rowHun"><span class="afLbl">unpl</span>
+          <div class="barOuter"><div class="barInner" id="afHun" style="width:0%;background:#fb923c"></div></div>
+          <span class="afVal" id="afHunV">—</span></div>
+        <div class="barRow" id="rowHa"><span class="afLbl">suffer</span>
+          <div class="barOuter"><div class="barInner" id="afHa" style="width:0%;background:#a855f7"></div></div>
+          <span class="afVal" id="afHaV">—</span></div>
+
+        <div class="afSub" id="subDrive">Drive &amp; arousal</div>
+        <div class="barRow" id="rowDrive"><span class="afLbl">drive</span>
+          <div class="barOuter"><div class="barInner" id="afDrive" style="width:0%;background:#f59e0b"></div></div>
+          <span class="afVal" id="afDriveV">—</span></div>
+        <div class="barRow" id="rowGoal"><span class="afLbl">want</span>
+          <div class="barOuter"><div class="barInner" id="afGoal" style="width:0%;background:#34d399"></div></div>
+          <span class="afVal" id="afGoalV">—</span></div>
+        <div class="barRow" id="rowVigor"><span class="afLbl">vigor</span>
+          <div class="barOuter"><div class="barInner" id="afVigor" style="width:0%;background:#60a5fa"></div></div>
+          <span class="afVal" id="afVigorV">—</span></div>
+        <div class="barRow" id="rowOver"><span class="afLbl">orexin</span>
+          <div class="barOuter"><div class="barInner" id="afOver" style="width:0%;background:#fbbf24"></div></div>
+          <span class="afVal" id="afOverV">—</span></div>
+        <div class="barRow" id="rowBlock"><span class="afLbl">assert</span>
+          <div class="barOuter"><div class="barInner" id="afBlock" style="width:0%;background:#fb7185"></div></div>
+          <span class="afVal" id="afBlockV">—</span></div>
+
+        <div class="afSub" id="subValence">Valence (dread &#8596; excite)</div>
+        <div class="barRow" id="rowVal"><span class="afLbl">val</span>
+          <div class="biWrap"><div class="biMid"></div>
+            <div class="biNeg" id="afDread" style="width:0%"></div>
+            <div class="biPos" id="afExcite" style="width:0%"></div></div>
+          <span class="afVal" id="afValV">—</span></div>
+      </div>
+
       <div>
-        <div class="iLabel">Internal State</div>
-        <div class="mRow"><span class="mKey">z_harm</span>  <span class="mVal" id="vZharm">—</span></div>
+        <div class="iLabel">Cognition</div>
         <div class="mRow"><span class="mKey">z_beta</span>  <span class="mVal" id="vZbeta">—</span></div>
         <div class="mRow"><span class="mKey">novelty</span> <span class="mVal" id="vNov">—</span></div>
         <div class="mRow"><span class="mKey">z_world</span> <span class="mVal" id="vZworld">—</span></div>
-      </div>
-      <div>
-        <div class="iLabel">Episode</div>
-        <div class="mRow"><span class="mKey">step</span>     <span class="mVal" id="vStep">—</span></div>
         <div class="mRow"><span class="mKey">cum harm</span> <span class="mVal harm" id="vCumHarm">—</span></div>
         <div class="mRow"><span class="mKey">signal</span>   <span class="mVal" id="vSignal">—</span></div>
+        <div class="mRow"><span class="mKey">step</span>     <span class="mVal" id="vStep">—</span></div>
         <div class="mRow"><span class="mKey">n_cands</span>  <span class="mVal" id="vCands">—</span></div>
       </div>
     </div>
@@ -375,7 +426,9 @@ const MODE_LABELS = {
   approach: 'FEEDING',
   explore:  'EXPLORING',
   neutral:  'DRIFTING',
-  shelter:  'SHELTERING'
+  shelter:  'SHELTERING',
+  freeze:   'FROZEN',
+  assert:   'ASSERTING'
 };
 
 const EVENT_LABELS = {
@@ -387,7 +440,10 @@ const EVENT_LABELS = {
   sequence_complete:   'path complete!',
   waypoint:            'waypoint reached',
   reef_entry:          'entered reef!',
-  reef_exit:           'left reef'
+  reef_exit:           'left reef',
+  action_blocked:      'movement blocked!',
+  relief:              'relief — threat receding',
+  freeze_onset:        'frozen in place'
 };
 
 // Seaweed specs as fraction of canvas width
@@ -420,6 +476,8 @@ let facingRight   = true;
 let currentMode      = 'neutral';
 let currentHealth    = 1.0;
 let currentEnergy    = 1.0;
+let currentExcite    = 0.0;
+let currentDread     = 0.0;
 let currentHazards   = [];
 let currentResources = [];
 let currentReefCells = [];
@@ -745,13 +803,20 @@ function drawPellet(ctx, rx, ry, pIndex, t) {
 // ══════════════════════════════════════════════════════════════
 //  Drawing: Zebrafish
 // ══════════════════════════════════════════════════════════════
-function drawFish(ctx, cx, cy, faceRight, mode, health, t) {
+function drawFish(ctx, cx, cy, faceRight, mode, health, t, excite, dread) {
   ctx.save();
   ctx.translate(cx, cy);
   if (!faceRight) ctx.scale(-1, 1);
 
-  const waggleSpeed = mode === 'avoid' ? 13 : mode === 'approach' ? 9 : 6;
-  const waggleAmp   = mode === 'avoid' ? 0.38 : 0.22;
+  const waggleSpeed =
+    mode === 'assert'   ? 16  :
+    mode === 'avoid'    ? 13  :
+    mode === 'approach' ? 9   :
+    mode === 'freeze'   ? 0.5 : 6;
+  const waggleAmp =
+    mode === 'freeze' ? 0.02 :
+    mode === 'assert' ? 0.45 :
+    mode === 'avoid'  ? 0.38 : 0.22;
   const waggle = Math.sin(t * waggleSpeed) * waggleAmp;
 
   const modeColor = {
@@ -759,10 +824,25 @@ function drawFish(ctx, cx, cy, faceRight, mode, health, t) {
     approach: '#22c55e',
     explore:  '#f59e0b',
     neutral:  '#60a5fa',
-    shelter:  '#06b6d4'
+    shelter:  '#06b6d4',
+    freeze:   '#a5f3fc',
+    assert:   '#fb7185'
   }[mode] || '#60a5fa';
 
   const faded = health < 0.3;
+
+  // Valence aura (excitement = warm gold, dread = violet) — under the mode aura
+  const valI = Math.min(1, Math.max(excite || 0, dread || 0) * 1.5);
+  if (valI > 0.04) {
+    const valRGB = (excite || 0) >= (dread || 0) ? '255,200,60' : '139,92,246';
+    const vg = ctx.createRadialGradient(0, 0, 8, 0, 0, 34);
+    vg.addColorStop(0, `rgba(${valRGB},${(valI * 0.4).toFixed(2)})`);
+    vg.addColorStop(1, `rgba(${valRGB},0)`);
+    ctx.fillStyle = vg;
+    ctx.beginPath();
+    ctx.arc(0, 0, 34, 0, Math.PI * 2);
+    ctx.fill();
+  }
 
   // Aura glow (mode indicator)
   if (mode !== 'neutral') {
@@ -773,6 +853,24 @@ function drawFish(ctx, cx, cy, faceRight, mode, health, t) {
     ctx.beginPath();
     ctx.arc(0, 0, 27, 0, Math.PI * 2);
     ctx.fill();
+  }
+
+  // Frozen: dashed icy ring; Asserting: pulsing rose ring
+  if (mode === 'freeze') {
+    ctx.beginPath();
+    ctx.arc(0, 0, 22, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(165,243,252,0.6)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([3, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  } else if (mode === 'assert') {
+    const pulse = 21 + Math.sin(t * 10) * 3;
+    ctx.beginPath();
+    ctx.arc(0, 0, pulse, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(251,113,133,0.55)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
   }
 
   ctx.globalAlpha = faded ? 0.5 : 1.0;
@@ -980,11 +1078,13 @@ function renderFrame(now) {
     for (const gx of toroidalPositions(fishGXw, sz)) {
       for (const gy of toroidalPositions(fishGYw, sz)) {
         drawFish(ctx, gx * CELL + CELL / 2, gy * CELL + CELL / 2,
-                 facingRight, currentMode, currentHealth, animT);
+                 facingRight, currentMode, currentHealth, animT,
+                 currentExcite, currentDread);
       }
     }
   } else {
-    drawFish(ctx, fishX, fishY, facingRight, currentMode, currentHealth, animT);
+    drawFish(ctx, fishX, fishY, facingRight, currentMode, currentHealth, animT,
+             currentExcite, currentDread);
   }
   drawGlass(ctx, W, H);
 
@@ -1020,6 +1120,8 @@ function goToStep(n) {
   currentMode      = step.mode || 'neutral';
   currentHealth    = step.health != null ? step.health : 1.0;
   currentEnergy    = step.energy != null ? step.energy : 1.0;
+  currentExcite    = step.excite != null ? step.excite : 0.0;
+  currentDread     = step.dread  != null ? step.dread  : 0.0;
   currentHazards   = step.hazards   || [];
   currentResources = step.resources || [];
   currentReefCells = step.reef_cells || curEp().reef_cells || [];
@@ -1032,6 +1134,78 @@ function goToStep(n) {
 
   updateInfo();
   updatePlayhead();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  Affect register
+// ══════════════════════════════════════════════════════════════
+// Per-channel dynamic scale: max over the current episode's steps
+// with a small floor, so bars stay legible regardless of absolute norm.
+function chMax(steps, keys, floor) {
+  let m = floor;
+  for (const x of steps) {
+    for (const k of keys) {
+      const v = x[k];
+      if (typeof v === 'number' && isFinite(v) && v > m) m = v;
+    }
+  }
+  return m;
+}
+
+function pick(s, keys) {
+  for (const k of keys) {
+    const v = s[k];
+    if (typeof v === 'number' && isFinite(v)) return v;
+  }
+  return null;
+}
+
+function setBar(barId, valId, rowId, val, scaleMax) {
+  const row = document.getElementById(rowId);
+  if (val == null) { if (row) row.style.display = 'none'; return false; }
+  if (row) row.style.display = 'flex';
+  const pct = scaleMax > 0 ? Math.max(0, Math.min(1, val / scaleMax)) * 100 : 0;
+  document.getElementById(barId).style.width = pct.toFixed(0) + '%';
+  document.getElementById(valId).textContent = val.toFixed(3);
+  return true;
+}
+
+function updateAffect(s, steps) {
+  // Nociceptive cascade (sensory -> unpleasant -> suffering)
+  const hsScale  = chMax(steps, ['z_harm_s', 'z_harm_norm'], 0.3);
+  const hunScale = chMax(steps, ['z_harm_un'], 0.3);
+  const haScale  = chMax(steps, ['z_harm_a'], 0.3);
+  const vSens   = setBar('afHs',  'afHsV',  'rowHs',  pick(s, ['z_harm_s', 'z_harm_norm']), hsScale);
+  const vUnpl   = setBar('afHun', 'afHunV', 'rowHun', pick(s, ['z_harm_un']),               hunScale);
+  const vSuffer = setBar('afHa',  'afHaV',  'rowHa',  pick(s, ['z_harm_a']),                haScale);
+  document.getElementById('subNoci').style.display = (vSens || vUnpl || vSuffer) ? 'block' : 'none';
+
+  // Drive & arousal
+  const vDrive = setBar('afDrive', 'afDriveV', 'rowDrive', pick(s, ['drive']),    1.0);
+  const vGoal  = setBar('afGoal',  'afGoalV',  'rowGoal',  pick(s, ['z_goal']),   chMax(steps, ['z_goal'], 0.3));
+  const vVigor = setBar('afVigor', 'afVigorV', 'rowVigor', pick(s, ['vigor']),    chMax(steps, ['vigor'], 0.2));
+  const vOver  = setBar('afOver',  'afOverV',  'rowOver',  pick(s, ['override']), 1.0);
+  const vBlock = setBar('afBlock', 'afBlockV', 'rowBlock', pick(s, ['z_block']),  chMax(steps, ['z_block'], 0.2));
+  document.getElementById('subDrive').style.display =
+    (vDrive || vGoal || vVigor || vOver || vBlock) ? 'block' : 'none';
+
+  // Valence: bipolar dread(-) / excite(+)
+  const ex = pick(s, ['excite']);
+  const dr = pick(s, ['dread']);
+  const rowVal = document.getElementById('rowVal');
+  const subVal = document.getElementById('subValence');
+  if (ex == null && dr == null) {
+    rowVal.style.display = 'none'; subVal.style.display = 'none';
+  } else {
+    rowVal.style.display = 'flex'; subVal.style.display = 'block';
+    const vMax = Math.max(chMax(steps, ['excite'], 1e-6), chMax(steps, ['dread'], 1e-6));
+    document.getElementById('afExcite').style.width =
+      (ex ? Math.min(1, ex / vMax) * 50 : 0).toFixed(0) + '%';
+    document.getElementById('afDread').style.width =
+      (dr ? Math.min(1, dr / vMax) * 50 : 0).toFixed(0) + '%';
+    const net = (ex || 0) - (dr || 0);
+    document.getElementById('afValV').textContent = (net >= 0 ? '+' : '') + net.toFixed(3);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -1073,10 +1247,12 @@ function updateInfo() {
   document.getElementById('energyPct').textContent = Math.round(en * 100) + '%';
 
   const fmt = v => typeof v === 'number' ? v.toFixed(3) : '—';
-  document.getElementById('vZharm').textContent  = fmt(s.z_harm_norm);
   document.getElementById('vZbeta').textContent  = fmt(s.z_beta_val);
   document.getElementById('vNov').textContent    = fmt(s.world_change_norm);
   document.getElementById('vZworld').textContent = fmt(s.z_world_norm);
+
+  // ── Affect register ──
+  updateAffect(s, steps);
 
   document.getElementById('vStep').textContent =
     `${stepIdx + 1} / ${steps.length}`;
@@ -1106,30 +1282,71 @@ function updateInfo() {
 // ══════════════════════════════════════════════════════════════
 //  Timeline
 // ══════════════════════════════════════════════════════════════
+// Candidate timeline tracks (affect-focused). A track renders only when the
+// current episode actually carries finite data for its key (backward-compatible
+// with pre-affect logs, which fall back to the harm_signal / health / z_beta set).
+const TL_CANDIDATES = [
+  { keys: ['z_harm_a'],             color: '#a855f7', label: 'suffering' },
+  { keys: ['drive'],                color: '#f59e0b', label: 'drive' },
+  { keys: ['vigor'],                color: '#60a5fa', label: 'vigor' },
+  { keys: ['z_block'],              color: '#fb7185', label: 'assert' },
+  { keys: ['override'],             color: '#fbbf24', label: 'orexin' },
+  { keys: ['health'],               color: '#22c55e', label: 'health' },
+  { keys: ['harm_signal'],          color: '#ef4444', label: 'harm signal' },
+  { keys: ['z_beta_val'],           color: '#93c5fd', label: 'z_beta' },
+];
+
+function activeTimelineSeries(steps) {
+  const present = c => steps.some(s => c.keys.some(k =>
+    typeof s[k] === 'number' && isFinite(s[k])));
+  let active = TL_CANDIDATES.filter(present);
+  // If no affect channels are present, fall back to the legacy trio.
+  const affectKeys = ['z_harm_a', 'drive', 'vigor', 'z_block', 'override'];
+  const hasAffect = active.some(c => affectKeys.includes(c.keys[0]));
+  if (!hasAffect) {
+    active = TL_CANDIDATES.filter(c =>
+      ['harm_signal', 'health', 'z_beta_val'].includes(c.keys[0]) && present(c));
+  } else {
+    // cap to a readable number of tracks
+    active = active.filter(c => c.keys[0] !== 'z_beta_val' && c.keys[0] !== 'harm_signal');
+  }
+  return active;
+}
+
 function buildTimeline() {
-  const steps = curSteps();
-  const svg   = document.getElementById('timelineSvg');
-  const W     = svg.parentElement.clientWidth - 28;
+  const steps  = curSteps();
+  const svg    = document.getElementById('timelineSvg');
+  const wrap   = document.getElementById('timelineWrap');
+  const legend = document.getElementById('tlLegend');
+  const W      = svg.parentElement.clientWidth - 28;
   if (W <= 0) return;
   svg.setAttribute('width', W);
 
-  const H     = 36;
-  const ROW_H = 10;
-  const ns    = 'http://www.w3.org/2000/svg';
+  const series = activeTimelineSeries(steps);
+  const ROW_H  = 9, GAP = 2;
+  const H      = series.length * (ROW_H + GAP) + 2;
+  const ns     = 'http://www.w3.org/2000/svg';
   svg.innerHTML = '';
+  svg.setAttribute('height', H);
+  wrap.style.height = (H + 20) + 'px';
 
-  const series = [
-    { key: 'harm_signal', color: '#ef4444', row: 0 },
-    { key: 'health',      color: '#22c55e', row: 1 },
-    { key: 'z_beta_val',  color: '#60a5fa', row: 2 },
-  ];
+  // Dynamic legend
+  legend.innerHTML = series.map(c =>
+    `<span><span class="tlDot" style="background:${c.color}"></span>${c.label}</span>`
+  ).join('');
 
-  for (const { key, color, row } of series) {
-    const vals  = steps.map(s => (s[key] != null ? s[key] : 0));
+  series.forEach((c, row) => {
+    const vals  = steps.map(s => {
+      for (const k of c.keys) {
+        const v = s[k];
+        if (typeof v === 'number' && isFinite(v)) return v;
+      }
+      return 0;
+    });
     const minV  = Math.min(...vals);
     const maxV  = Math.max(...vals);
     const range = (maxV - minV) || 1;
-    const yOff  = row * (ROW_H + 2) + 1;
+    const yOff  = row * (ROW_H + GAP) + 1;
     const n     = vals.length;
 
     const bg = document.createElementNS(ns, 'rect');
@@ -1138,7 +1355,7 @@ function buildTimeline() {
     bg.setAttribute('fill', 'rgba(255,255,255,0.025)');
     svg.appendChild(bg);
 
-    if (n < 2) continue;
+    if (n < 2) return;
     const pts = vals.map((v, i) => {
       const x = (i / (n - 1)) * W;
       const y = yOff + ROW_H - ((v - minV) / range) * (ROW_H - 2) - 1;
@@ -1148,11 +1365,11 @@ function buildTimeline() {
     const poly = document.createElementNS(ns, 'polyline');
     poly.setAttribute('points', pts.join(' '));
     poly.setAttribute('fill', 'none');
-    poly.setAttribute('stroke', color);
+    poly.setAttribute('stroke', c.color);
     poly.setAttribute('stroke-width', '1.2');
     poly.setAttribute('opacity', '0.85');
     svg.appendChild(poly);
-  }
+  });
 
   const ph = document.createElementNS(ns, 'line');
   ph.setAttribute('id', 'playhead');
@@ -1205,6 +1422,8 @@ function fullRefresh() {
   currentMode      = step.mode || 'neutral';
   currentHealth    = step.health != null ? step.health : 1.0;
   currentEnergy    = step.energy != null ? step.energy : 1.0;
+  currentExcite    = step.excite != null ? step.excite : 0.0;
+  currentDread     = step.dread  != null ? step.dread  : 0.0;
   currentHazards   = step.hazards   || [];
   currentResources = step.resources || [];
   currentReefCells = step.reef_cells || curEp().reef_cells || [];
