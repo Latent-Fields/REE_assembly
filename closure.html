@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-10.2 -->
+<!-- CLOSURE_VERSION: 2026-06-10.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -301,7 +301,7 @@
     stroke-width: 1; pointer-events: none;
   }
 
-  .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; transition: opacity 0.15s ease; }
+  .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; pointer-events: stroke; transition: opacity 0.15s ease; }
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
   .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; stroke-width: 1.7; }
   .edge.cross-plan:hover { stroke: rgba(163,113,247,1.0); stroke-width: 3; stroke-dasharray: 4 3; }
@@ -361,6 +361,9 @@
   #tip h4 { margin: 0 0 4px 0; font-size: 11px; color: var(--accent); }
   #tip dl { margin: 0; display: grid; grid-template-columns: 70px 1fr; gap: 2px 6px; }
   #tip dt { color: var(--muted); }
+  /* text-only tip body (pills / badges / edges); pre-line keeps the multi-line
+     edge descriptions readable. */
+  #tip .tip-text { white-space: pre-line; line-height: 1.4; }
 
   /* ============ EASTER EGG LAYER ============ */
   #egg-layer {
@@ -1067,9 +1070,10 @@ function renderGraph() {
     pill.setAttribute('height', 14);
     pill.setAttribute('rx', 7);
     pill.setAttribute('fill', color);
-    const pillTitle = el('title');
-    pillTitle.textContent = STATUS_DESC[n.status] || ('status: ' + n.status);
-    pill.appendChild(pillTitle);
+    // Explanation shown via the custom #tip (delegated on the node group's
+    // mouseover below) rather than a native SVG <title>, which was unreliable
+    // while the node's own #tip was tracking the cursor over the card.
+    pill.__desc = STATUS_DESC[n.status] || ('status: ' + n.status);
     g.appendChild(pill);
 
     const pillText = el('text');
@@ -1106,8 +1110,8 @@ function renderGraph() {
     g.appendChild(meta);
 
     // Badges sit on their own row along the bottom edge of the card, so they
-    // never overlap the ID / title / meta text. Each carries a <title> with a
-    // plain-language explanation of the coloured lozenge.
+    // never overlap the ID / title / meta text. Each carries a __desc read by
+    // the node group's mouseover handler to show a focused #tip.
     const badges = n.badges || [];
     let bx = 10;
     const badgeY = pos.h - 16;
@@ -1122,9 +1126,7 @@ function renderGraph() {
       bg.setAttribute('rx', 4);
       const col = b === 'RETEST' ? '#a371f7' : (b === 'CEIL' ? '#f85149' : '#58a6ff');
       bg.setAttribute('fill', col);
-      const bTitle = el('title');
-      bTitle.textContent = BADGE_DESC[b] || b;
-      bg.appendChild(bTitle);
+      bg.__desc = BADGE_DESC[b] || b;
       g.appendChild(bg);
       const bt = el('text');
       bt.setAttribute('class', 'node-badge');
@@ -1136,7 +1138,15 @@ function renderGraph() {
       bx += bw + 4;
     }
 
-    g.addEventListener('mouseenter', (ev) => { showTip(ev, n); highlightCrossEdges(n.id, true); });
+    // mouseover (unlike mouseenter) fires when crossing into child elements, so
+    // we can show a focused explanation for the pill / a badge and fall back to
+    // the full node tooltip over the card body -- all through the custom #tip.
+    g.addEventListener('mouseover', (ev) => {
+      const t = ev.target;
+      if (t && t.__desc) showTextTip(ev, t.__desc);
+      else showTip(ev, n);
+      highlightCrossEdges(n.id, true);
+    });
     g.addEventListener('mousemove', (ev) => moveTip(ev));
     g.addEventListener('mouseleave', () => { hideTip(); highlightCrossEdges(n.id, false); });
     // #3 click toggles selection; click the same node again clears
@@ -1328,8 +1338,8 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
   if (fromNode) path.setAttribute('data-from', fromNode.id);
   if (toNode) path.setAttribute('data-to', toNode.id);
 
-  // prose tooltip via native SVG <title> child
-  // direction convention:
+  // prose tooltip via the custom #tip (native SVG <title> was unreliable on the
+  // thin dotted edges). direction convention:
   //   solid  (depends_on): from = predecessor, to = dependent  -> "A blocks B" / "B depends on A"
   //   dashed (cross_plan_link): from = link-owner, to = linked -> "owner cross-links to linked"
   if (fromNode && toNode) {
@@ -1337,9 +1347,9 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
     const toTitle = toNode.title || toNode.id;
     const fromStatus = fromNode.status ? ' [' + fromNode.status + ']' : '';
     const toStatus = toNode.status ? ' [' + toNode.status + ']' : '';
-    const titleEl = el('title');
+    let tipText;
     if (isCross) {
-      titleEl.textContent =
+      tipText =
         'cross-plan link\n' +
         fromNode.id + fromStatus + '\n  "' + fromTitle + '"\n' +
         '  -> ' + toNode.id + toStatus + '\n' +
@@ -1351,20 +1361,23 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
       const blockerHint = (toNode.status === 'blocked')
         ? '\n(active blocker for ' + toNode.id + ' is recorded in resume_condition, not this edge)'
         : '';
-      titleEl.textContent =
+      tipText =
         'lineage (' + fromNode.id + ' precedes ' + toNode.id + ')\n' +
         toNode.id + toStatus + '\n  "' + toTitle + '"\n' +
         '  follows ' + fromNode.id + fromStatus + '\n' +
         '          "' + fromTitle + '"' +
         blockerHint;
     } else {
-      titleEl.textContent =
+      tipText =
         'depends-on (' + fromNode.id + ' blocks ' + toNode.id + ')\n' +
         toNode.id + toStatus + '\n  "' + toTitle + '"\n' +
         '  blocked by ' + fromNode.id + fromStatus + '\n' +
         '              "' + fromTitle + '"';
     }
-    path.appendChild(titleEl);
+    path.__desc = tipText;
+    path.addEventListener('mouseenter', (ev) => showTextTip(ev, path.__desc));
+    path.addEventListener('mousemove', (ev) => moveTip(ev));
+    path.addEventListener('mouseleave', () => hideTip());
   }
 
   svg.appendChild(path);
@@ -1418,6 +1431,14 @@ function showTip(ev, n) {
   if (n.last_updated) html += '<dt>updated</dt><dd>' + escapeHtml(String(n.last_updated)) + '</dd>';
   html += '</dl>';
   tip.innerHTML = html;
+  tip.style.opacity = '1';
+  moveTip(ev);
+}
+// Lightweight text-only variant of the tooltip, used for pills / badges / edges
+// where we just want a one-line plain-language explanation (no <dl> grid).
+function showTextTip(ev, text) {
+  const tip = document.getElementById('tip');
+  tip.innerHTML = '<div class="tip-text">' + escapeHtml(text) + '</div>';
   tip.style.opacity = '1';
   moveTip(ev);
 }
