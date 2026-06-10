@@ -1641,6 +1641,12 @@ CLOSURE_KNOWN_PLANS = [
     "relational_harm_moral_semantics_v5_plan.md",
     "ethics_as_coherence_v5_plan.md",
     "loveability_ethical_agency_v5_plan.md",
+    # V6 (linguistic-mind) tier
+    "language_emergence_bootstrap_v6_plan.md",
+    "grammar_primitive_mining_v6_plan.md",
+    "language_affect_adaptor_v6_plan.md",
+    "abstract_relational_reasoning_v6_plan.md",
+    "language_trust_deception_institutions_v6_plan.md",
 ]
 
 CLOSURE_STATUS_WEIGHTS = {

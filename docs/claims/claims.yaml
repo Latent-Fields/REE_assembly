@@ -38566,8 +38566,15 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
-  implementation_phase: v5
+  implementation_phase: v6
   version_relevance: v4_v5
+  governance_2026_06_10: >
+    Reassigned implementation_phase v5 -> v6 during the V6 (linguistic-tier) merge:
+    MECH-373 is an INPUT adaptor on the LANGUAGE channel (parses affect from text), so it
+    presupposes the V6 linguistic substrate and belongs in the linguistic tier; the V5 social/
+    empathy layer is its consumer, not its home tier. Now owns the V6 children INV-085 (parsed
+    affect is an uncertain hypothesis, not ground truth) and MECH-418 (adaptor output feeds the
+    empathy stream-binding layer).
   depends_on:
     - ARC-009
     - ARC-010
@@ -40720,3 +40727,403 @@
     artefacts faking kindness), so it carries no emergent_from. epistemic_category
     substrate_conditional only because the capacities it audits are not yet built.
     DO NOT build in V3.
+- id: ARC-099
+  title: "Language-bootstrap enabling-condition contract: language only bootstraps when a specific pre-linguistic inventory is jointly satisfied -- shared world model, object tokens, action affordances, self-attribution, other-attribution, joint attention, partial observability, coordination pressure, episodic memory, rule apprehension, a low-cost signalling channel, partner variation, and repair. Sharpens MECH-010's abstract five-step sequence into a machine-checkable V6-entry precondition contract over landed V4/V5 nodes."
+  claim_type: architectural_commitment
+  subject: language.bootstrap_enabling_conditions
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-009    # language as the symbolic mediation/coordination layer this contract gates entry to
+    - INV-003    # language emerges (not bolt-on); the contract is what 'emerges-when' makes precise
+    - MECH-010   # the abstract emergence sequence this contract sharpens into a precondition list
+    - ARC-059    # the self->objects->others->language developmental spine the contract sequences
+  location: evidence/planning/language_emergence_bootstrap_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:language_bootstrap_enabling_conditions (plan node LANG-2; also LANG-4 /
+    LANG-8). Architectural_commitment because it asserts a precondition CONTRACT, not a mechanism:
+    language only bootstraps when the enumerated pre-linguistic capacities are jointly satisfied by
+    landed V4/V5 nodes. Directly from the 2026-06-05 grammar/LLM bootstrap addendum
+    enabling-conditions table. epistemic_category substrate_conditional: every enabling condition is
+    an upstream V4/V5 substrate not yet built, so any V3 probe is vacuous. DO NOT build in V3.
+- id: ARC-100
+  title: "Grammar/LLM primitive-mining (not import) commitment: grammatical structure and LLMs are MINED for candidate pre-linguistic primitive cuts, never imported as architecture. A mined cut is grounded only if it changes perception, attention, action, memory, rule-availability, or coordination in the substrate. No imported transformer block; no LLM as authority."
+  claim_type: architectural_commitment
+  subject: language.primitive_mining_not_import
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-009    # language as a mediation LAYER over grounded substrate (what a mined cut must touch)
+    - INV-003    # language emerges, not bolt-on -- the deep reason imports are forbidden
+    - INV-007    # language cannot override embodied harm -- LLM-as-authority is the prohibited case
+  location: evidence/planning/grammar_primitive_mining_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:grammar_mining_method (plan nodes GRAM-1/GRAM-2/GRAM-7). The load-bearing
+    NEGATIVE architectural_commitment of the 2026-06-05 grammar/LLM intake, parallel to ARC-012 and
+    fast_empathy_v5:EMP-1: grammar and LLMs are a MINE for candidate primitive cuts, never an
+    imported architecture, and a cut counts as grounded only if it changes a substrate computation
+    (perception/attention/action/memory/rule-availability/coordination). Constrains every other V6
+    node. epistemic_category substrate_conditional. DO NOT build in V3.
+- id: ARC-101
+  title: "Language bootstraps from a grounded social ecology, not from grammar: given shared attention, partial observability, coordination pressure, a low-cost channel, and repair, proto-language partially bootstraps from grounded proto-communication. The grammar/LLM scaffold is a turbocharger, never the engine -- the engine is the V5 social ecology."
+  claim_type: architectural_commitment
+  subject: language.bootstrap_from_social_ecology
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-009    # language as a coordination layer
+    - INV-003    # language emerges functionally from the ecology
+    - ARC-059    # self->objects->others->language spine: ecology precedes language
+    - ARC-010    # mirror modelling / social coupling -- the ecology this bootstraps from
+  location: evidence/planning/grammar_primitive_mining_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:language_bootstrap_from_ecology (plan node GRAM-6, the intake's strongest
+    forward prediction). The bootstrap ENGINE is the V5 social ecology; grammar/LLM is a turbocharger.
+    Most heavily gated node -- consumes ALL the V5 social plans + V4 individual substrate + MECH-163.
+    Distinct from ARC-099 (the enabling-condition CONTRACT) and MECH-010 (the abstract sequence):
+    this is the directional architectural bet about WHERE the bootstrap force comes from. Per
+    feedback_biology_before_formal_definitions, needs the GRAM-7 lit-pull before promotion beyond
+    candidate. epistemic_category substrate_conditional. DO NOT build in V3.
+- id: ARC-102
+  title: "Two distinct abstraction levels, not to be conflated: REE has SUBSTRATE-level abstraction (V4 theta-packaged units / cognitive-map traversal / type-encoder -- computed-over, sub-symbolic) and SYMBOLIC-scale abstraction (V6 recombination over named, grounded primitives). The symbolic level is the consequent reasoning capacity of the language layer and is categorically distinct from the V4 object-reasoning substrate."
+  claim_type: design_decision
+  subject: reasoning.symbolic_vs_substrate_abstraction_distinction
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-009    # symbolic mediation: the layer the symbolic level lives in
+    - MECH-299   # theta abstraction -- a SUBSTRATE-level abstraction primitive (the other side of the fork)
+    - MECH-300   # cognitive-map traversal at active abstraction level -- substrate-level
+    - SD-040     # type-encoder -- substrate-level type abstraction
+  location: evidence/planning/abstract_relational_reasoning_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:symbolic_vs_substrate_abstraction_distinction (plan node ARR-1, the
+    load-bearing scoping spine of the abstract-relational-reasoning plan). Names the consequent
+    reasoning capacity of ARC-009 (symbolic mediation) as a level DISTINCT from the V4
+    object_reasoning_abstraction substrate (MECH-299/300/SD-040). Analogue of ARC-080's type-vs-token
+    fork; the scoping decision every node below it inherits. epistemic_category substrate_conditional
+    (depends on the V4 substrate + the V6 symbol layer). DO NOT build in V3.
+- id: ARC-103
+  title: "Symbolic inference is subordinate to embodied harm sensing (the V6 inference-level instance of INV-007): symbolic, compositional, and analogical INFERENCE cannot override embodied harm sensing or the ethics-coherence authority. Recombination and structure-mapping are exactly the machinery that produces persuasive harmful rationalisations, so they remain subordinate to the harm/ethics authority by construction."
+  claim_type: architectural_commitment
+  subject: reasoning.symbolic_inference_subordinate_to_harm_sensing
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-007    # language cannot override embodied harm sensing -- lifted to the inference level here
+    - MECH-011   # language as multiplier-not-substitute / rationalisation-loop risk
+    - ARC-009    # symbolic mediation layer that this guards
+  possible_overlap_with:
+    - ARC-104    # language-input-level harm-override guard; ARC-103 is the INFERENCE-level instance, ARC-104 the language-INPUT instance, both operationalising INV-007 at different layers
+  location: evidence/planning/abstract_relational_reasoning_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:symbolic_reasoning_subordinate_to_harm_sensing (plan node ARR-6, the safety
+    claim of the linguistic tier). Negative architectural_commitment (like fast_empathy_v5's
+    no-scalar prohibition and ARC-012). Lifts ACTIVE INV-007 (language cannot override harm) and
+    MECH-011 (rationalisation-loop risk) to the symbolic-INFERENCE level. Deliberately kept distinct
+    from ARC-104 (the language-INPUT-level guard): ARR-6 guards the inference engine's outputs,
+    ARC-104 guards the language-input update path; both are instances of the same INV-007 authority
+    at different layers (see possible_overlap_with). ethics_as_coherence_v5 owns the coherence
+    authority it must not override. epistemic_category substrate_conditional. DO NOT build in V3.
+- id: ARC-104
+  title: "Language-cannot-override-harm guard (language-input level): symbolic/linguistic input may CONDITION priors, but the harm/ethics substrate retains veto authority over any language-mediated update. There must be NO path by which symbolic/linguistic content overwrites or suppresses a harm signal. Operationalises the universal invariant INV-007 as an explicit guard a design can violate."
+  claim_type: architectural_commitment
+  subject: language.harm_override_guard
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-007    # the universal invariant this guard operationalises
+    - ARC-009    # the language layer whose updates are guarded
+    - SD-011     # the dual-nociceptive harm substrate that retains veto
+  possible_overlap_with:
+    - ARC-103    # the inference-level instance of the same INV-007 authority; ARC-104 is the language-INPUT instance
+  location: evidence/planning/language_trust_deception_institutions_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:language_harm_override_guard (plan node LTI-1). Operationalises the ACTIVE
+    universal invariant INV-007 as an explicit guard MECHANISM-COMMITMENT (currently asserted but not
+    realised as something a design can violate). Modelled on ARC-012 as a negative architectural
+    commitment: no path by which symbolic/linguistic content overwrites or suppresses a harm signal.
+    Source: trust_and_deception.md ('informative but not authoritative'). Kept distinct from ARC-103
+    (the symbolic-INFERENCE-level instance): this guards the language-INPUT update path, ARC-103
+    guards inference outputs; both instances of INV-007 at different layers (see possible_overlap_with).
+    epistemic_category substrate_conditional. DO NOT build in V3.
+- id: MECH-415
+  title: "Predicate-argument-event rule bridge: a V6 grammar-facing layer renders ARC-063 CandidateRule structures as 'if context, then action-object, causing outcome, unless exception' -- naming, querying, and recombining pre-linguistic rules without making language the rule substrate. Predicate-argument-event structure is the same context->action-object->outcome shape ARC-063 already mints; the 'unless/except/but' exception grammar is a shadow of ARC-063 tolerance-gated availability."
+  claim_type: mechanism_hypothesis
+  subject: language.predicate_argument_event_rule_bridge
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-063    # CandidateRuleField: the rule shape this layer renders grammatically
+    - ARC-062    # weak-reading rule apprehension -- the upstream rule-state validation prerequisite
+    - MECH-278   # object causal coherence -- the argument-slot grounding (object tokens / affordances)
+  location: evidence/planning/grammar_primitive_mining_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:predarg_event_rule_bridge (plan node GRAM-3, the tightest hook in the 2026-06-05
+    grammar/LLM intake, Line C / Section 6). A V6 grammar-FACING readout over ARC-063, not a new rule
+    substrate -- the predicate-argument-event shape is what ARC-063 already mints, and 'unless/except'
+    grammar shadows ARC-063 tolerance-gating. Distinct from a facet-of-ARC-063 mapping (cf.
+    signal_to_rule_minting which WAS folded into ARC-063) because this is a separate grammar-rendering
+    LAYER on top, not the minting mechanism itself. Blocked on ARC-063 behavioural validation + V4
+    argument-slot grounding. epistemic_category substrate_conditional. DO NOT build in V3.
+- id: MECH-416
+  title: "REE frame inventory: a small extensible V5/V6 inventory of scene-frames (feeding, hazard, contact, interruption, help-harm, give-receive, request-response, belief-report, error-correction) where each frame binds to REE substrates, not to words. Frame semantics (Fillmore): a word evokes a whole scene; in REE each frame is a scene-schema over rule structures, the second mining artifact after the grammar->substrate table."
+  claim_type: mechanism_hypothesis
+  subject: language.frame_inventory_substrate_bound
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-009    # the mediation layer the frames live in
+    - ARC-063    # frames as scene-schemas over CandidateRule structures
+  location: evidence/planning/grammar_primitive_mining_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:ree_frame_inventory (plan node GRAM-4, the intake's Line E). Frame semantics
+    (Fillmore): words evoke whole scenes. Each frame binds to REE substrates, not words. Social frames
+    (help-harm, give-receive, request-response, belief-report) blocked on the V5 social plans;
+    non-social frames (feeding, hazard, contact, interruption, error-correction) seedable from V3/V4
+    substrate. epistemic_category substrate_conditional. DO NOT build in V3.
+- id: MECH-417
+  title: "Grammatical aspect is a map of REE's event arc and post-commit closure: starting/ongoing/repeated/interrupted/resumed/completed/failed/abandoned aspect is a grammatical naming of the pre-linguistic ActionEventArc and closure machinery, not a replacement for it. Event Segmentation Theory: experience segments around prediction error and event boundaries, overlapping REE's contact/interruption/closure/transition needs."
+  claim_type: mechanism_hypothesis
+  subject: language.aspect_event_arc_closure_map
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-063    # action-arc rules: the arc that aspect names
+    - MECH-278   # object causal coherence -- completion/interruption conditions live over object events
+  location: evidence/planning/grammar_primitive_mining_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:aspect_closure_map (plan node GRAM-5, the intake's Line F). Grammatical aspect
+    is a MAP of the event arc + post-commit closure, naming it without replacing the closure
+    machinery. Shares the event-arc spine with the twin 2026-06-05 cross-version intake and with
+    MECH-422 (event_arc_grammatical_realisation) -- this node is the ASPECT/closure facet, MECH-422
+    the tense/connective facet. Blocked on grounded affordances with interruption/completion
+    conditions + the interrupted-task resumption substrate. epistemic_category substrate_conditional.
+    DO NOT build in V3.
+- id: MECH-418
+  title: "Language-parsed other-affect feeds the empathy stream-binding layer as ONE evidence source: the affect prior recovered from language by the LanguageAffectAdaptor (MECH-373) is fused with non-linguistic evidence (behaviour, expression, context) by the existing V5 empathy stream-binding layer, NOT as a parallel or dominant affect-attribution path. The wiring/fusion commitment between the adaptor output and the empathy layer."
+  claim_type: mechanism_hypothesis
+  subject: language.affect_prior_feeds_empathy_binding
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-373   # the LanguageAffectAdaptor whose output this wires into the empathy layer
+    - MECH-031   # derived social tags / empathy coupling -- the binding layer the prior fuses into
+  location: evidence/planning/language_affect_adaptor_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:language_affect_feeds_empathy_binding (plan node LAA-4). Ensures the language
+    tier plugs INTO the V5 social machinery (fast_empathy_v5:EMP-3 stream-binding; MECH-031 derived
+    social tags) rather than duplicating it -- consistent with the language/ToM dissociation intake
+    and the grammar/LLM 'turbocharger not engine' discipline. Distinct from MECH-373 (the adaptor
+    itself): this is the wiring/FUSION commitment between the adaptor output and the empathy layer.
+    epistemic_category substrate_conditional. DO NOT build in V3.
+- id: MECH-419
+  title: "Compositional generalisation over named symbols: the agent systematically recombines grounded, named primitives (object/action/property/relation symbols) into novel combinations never directly experienced, via the symbol/grammar layer rather than the substrate. Compositionality is mined from grounded substrate, not imported as transformer attention."
+  claim_type: mechanism_hypothesis
+  subject: reasoning.compositional_generalisation_over_named_symbols
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-009    # the symbol/grammar mediation layer the recombination operator lives in
+    - INV-003    # language emerges -- compositionality is mined, not bolted on
+    - SD-040     # type-encoder -- the named primitives recombined
+    - MECH-299   # theta abstraction substrate over which symbols ground
+    - MECH-300   # cognitive-map traversal substrate
+  location: evidence/planning/abstract_relational_reasoning_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:compositional_generalisation_over_symbols (plan node ARR-2, the core
+    symbolic-scale capacity). Recombination operator is the symbol layer (language_emergence_bootstrap_v6
+    / grammar_primitive_mining_v6) over the V4 type-encoder/cognitive-map substrate. Per the
+    anti-import discipline (ARC-100), compositionality is mined from grounded substrate not imported.
+    epistemic_category substrate_conditional. DO NOT build in V3.
+- id: MECH-420
+  title: "Relational/propositional inference over named relations: transitive inference, role-binding (giver vs receiver), and proposition chaining are realised as theta-sequence traversal (MECH-300) of a SYMBOLIC/type-graph cognitive map whose nodes are named symbols. The V6 realisation of MECH-300's cognitive-map-traversal primitive over a named symbolic map."
+  claim_type: mechanism_hypothesis
+  subject: reasoning.relational_propositional_inference_over_symbols
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-300   # cognitive-map traversal at active abstraction level -- the substrate primitive realised here
+    - ARC-063    # CandidateRule rule shape (context->action-object->outcome) the relations chain over
+    - ARC-009    # the symbolic mediation layer over which the named map is built
+  location: evidence/planning/abstract_relational_reasoning_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:relational_propositional_inference (plan node ARR-3). The V6 realisation of
+    MECH-300's cognitive-map-traversal-at-active-abstraction-level primitive, now over a NAMED
+    symbolic map. Grounds in ARC-063 rule shape per the grammar_llms_v5 ARC-063 bridge; social-argument
+    relations additionally need the V5 other-model (mirror_modelling_other_self_v5).
+    epistemic_category substrate_conditional. DO NOT build in V3.
+- id: MECH-421
+  title: "Analogy as relational structure-mapping across grounded domains (Gentner): map relational structure from source to target regardless of surface features (spatial containment <-> social inclusion; physical support <-> commitment). The capstone symbolic capacity; first tested as emergent from the compositional + relational stack before any dedicated analogy module is built."
+  claim_type: mechanism_hypothesis
+  subject: reasoning.analogy_structure_mapping_across_domains
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-300   # cognitive-map traversal -- the candidate substrate analogy may emerge from
+    - ARC-009    # the symbolic mediation layer
+  possible_overlap_with:
+    - Q-074      # the open question of whether analogy is a separate operator OR emerges from MECH-300 traversal; MECH-421 is the mechanism, Q-074 the unresolved build decision
+  location: evidence/planning/abstract_relational_reasoning_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:analogy_structure_mapping (plan node ARR-4, the capstone symbolic capacity,
+    highest-risk / most prose-heavy). Resist an analogy module: first test whether it emerges from the
+    MECH-419/MECH-420 stack (no-module discipline, mirroring fast_empathy_v5). The build-vs-emerge
+    decision is carried as the open question Q-074 (see possible_overlap_with). Needs the
+    relational-reasoning lit-pull (ARR-7) before promotion. epistemic_category substrate_conditional.
+    DO NOT build in V3.
+- id: MECH-422
+  title: "Event-arc grammatical realisation: grammatical tense/aspect/connectives (because, but, unless, done, again, stop, resume) are the symbolic rendering of the pre-linguistic ActionEventArc (initiate/persist/interrupt/reorient/resume/close). 'unless' = ARC-063 exception gate; 'because' = causal link; 'again/done' = aspect over closure. The action arc must EXIST (V3..V5) before grammar can name it."
+  claim_type: mechanism_hypothesis
+  subject: language.event_arc_grammatical_realisation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-009    # the symbolic mediation layer the connectives live in
+    - ARC-063    # 'unless' = the exception gate; the action-arc rules the grammar names
+  possible_overlap_with:
+    - MECH-417   # aspect_closure_map shares the event-arc spine; MECH-422 is the tense/connective facet, MECH-417 the aspect/closure facet
+  location: evidence/planning/abstract_relational_reasoning_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:event_arc_grammatical_realisation (plan node ARR-5). Tightest grounding in the
+    cross-version + grammar_llms 2026-06-05 intakes: the action arc must EXIST before grammar can name
+    it. Connectives are relations between propositions (needs MECH-419/MECH-420); the grammatical cuts
+    themselves are owned by grammar_primitive_mining_v6. Shares the event-arc spine with MECH-417
+    (the aspect/closure facet) -- this is the tense/connective facet (see possible_overlap_with). Ties
+    the ActionEventArc to project_interrupted_task_resumption_gap (the interrupt->resume span).
+    epistemic_category substrate_conditional. DO NOT build in V3.
+- id: INV-085
+  title: "Uncertainty-propagation invariant: affect recovered from language MUST enter agent-state modelling as a probability distribution (an uncertain other-agent prior), NEVER as a categorical emotion truth, and must remain overridable by the agent's own grounded harm/threat streams. Any path that lets a confident text label override grounded harm sensing violates this invariant."
+  claim_type: invariant
+  invariant_type: universal
+  subject: language.parsed_affect_is_uncertain_hypothesis
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-373   # the LanguageAffectAdaptor whose output this constrains
+    - INV-007    # language cannot override embodied harm -- the parent invariant this extends to affect parsing
+    - Q-007      # affect as uncertain dimensional state, not categorical (the constructionist reframe)
+    - ARC-009    # the language layer the parsed affect enters through
+  location: evidence/planning/language_affect_adaptor_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:parsed_affect_is_hypothesis_not_truth (plan node LAA-2; LAA-5 arm B is its
+    falsifiable test). The genuine gap the 2026-06-07 seed thought only implied: MECH-373 names the
+    adaptor and commits to 'treat emotion labels as uncertain latent-state hypotheses', but the
+    uncertainty-as-architecture commitment deserves its own NEGATIVE epistemic invariant, testable as
+    such (any path that lets a confident text label override grounded harm sensing violates it).
+    invariant_type UNIVERSAL: it is a safety/epistemic PROHIBITION on how parsed affect may be
+    treated -- it holds regardless of substrate (it is precisely a guard against a language label
+    masquerading as ground truth), so it carries NO emergent_from. It is the affect-parsing
+    specialisation of INV-007 and grounds in the Q-007 constructionist reframe (Barrett: emotions are
+    constructed categories, not natural kinds). epistemic_category substrate_conditional only because
+    the language interface it audits is not yet built. DO NOT build in V3.
+- id: Q-074
+  title: "Is analogy a SEPARATE V6 alignment operator, or does it fall out of MECH-300 cognitive-map traversal over a shared symbolic map (same map, different entry points)? Decides whether the analogy mechanism (MECH-421) is built as a distinct operator or expected to emerge from the relational-inference stack."
+  claim_type: open_question
+  subject: reasoning.analogy_operator_vs_emergent_traversal
+  polarity: asks
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-300   # the cognitive-map traversal primitive analogy might fall out of
+  possible_overlap_with:
+    - MECH-421   # the analogy mechanism whose build-vs-emerge status this question decides
+  location: evidence/planning/abstract_relational_reasoning_v6_plan.md
+  notes: >
+    Replaces NEWCLAIM:relational_abstraction_open_question (plan node ARR-4 carried open question).
+    Decides whether the analogy mechanism (MECH-421) is built as a distinct operator or expected to
+    emerge from the relational-inference stack (MECH-419/MECH-420). Cannot be resolved until the
+    symbolic stack exists to observe; epistemic_category substrate_conditional. DO NOT build in V3.

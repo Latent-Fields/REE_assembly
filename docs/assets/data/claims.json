@@ -587,6 +587,42 @@
     "title": "Dangerous self-state detection may suspend autonomy, but must preserve evidence, seek correction, and avoid global self-condemnation.",
     "type": "architectural_commitment"
   },
+  "ARC-099": {
+    "status": "candidate",
+    "subject": "language.bootstrap_enabling_conditions",
+    "title": "Language-bootstrap enabling-condition contract: language only bootstraps when a specific pre-linguistic inventory is jointly satisfied -- shared world model, object tokens, action affordances, self-attribution, other-attribution, joint attention, partial observability, coordination pressure, episodic memory, rule apprehension, a low-cost signalling channel, partner variation, and repair. Sharpens MECH-010's abstract five-step sequence into a machine-checkable V6-entry precondition contract over landed V4/V5 nodes.",
+    "type": "architectural_commitment"
+  },
+  "ARC-100": {
+    "status": "candidate",
+    "subject": "language.primitive_mining_not_import",
+    "title": "Grammar/LLM primitive-mining (not import) commitment: grammatical structure and LLMs are MINED for candidate pre-linguistic primitive cuts, never imported as architecture. A mined cut is grounded only if it changes perception, attention, action, memory, rule-availability, or coordination in the substrate. No imported transformer block; no LLM as authority.",
+    "type": "architectural_commitment"
+  },
+  "ARC-101": {
+    "status": "candidate",
+    "subject": "language.bootstrap_from_social_ecology",
+    "title": "Language bootstraps from a grounded social ecology, not from grammar: given shared attention, partial observability, coordination pressure, a low-cost channel, and repair, proto-language partially bootstraps from grounded proto-communication. The grammar/LLM scaffold is a turbocharger, never the engine -- the engine is the V5 social ecology.",
+    "type": "architectural_commitment"
+  },
+  "ARC-102": {
+    "status": "candidate",
+    "subject": "reasoning.symbolic_vs_substrate_abstraction_distinction",
+    "title": "Two distinct abstraction levels, not to be conflated: REE has SUBSTRATE-level abstraction (V4 theta-packaged units / cognitive-map traversal / type-encoder -- computed-over, sub-symbolic) and SYMBOLIC-scale abstraction (V6 recombination over named, grounded primitives). The symbolic level is the consequent reasoning capacity of the language layer and is categorically distinct from the V4 object-reasoning substrate.",
+    "type": "design_decision"
+  },
+  "ARC-103": {
+    "status": "candidate",
+    "subject": "reasoning.symbolic_inference_subordinate_to_harm_sensing",
+    "title": "Symbolic inference is subordinate to embodied harm sensing (the V6 inference-level instance of INV-007): symbolic, compositional, and analogical INFERENCE cannot override embodied harm sensing or the ethics-coherence authority. Recombination and structure-mapping are exactly the machinery that produces persuasive harmful rationalisations, so they remain subordinate to the harm/ethics authority by construction.",
+    "type": "architectural_commitment"
+  },
+  "ARC-104": {
+    "status": "candidate",
+    "subject": "language.harm_override_guard",
+    "title": "Language-cannot-override-harm guard (language-input level): symbolic/linguistic input may CONDITION priors, but the harm/ethics substrate retains veto authority over any language-mediated update. There must be NO path by which symbolic/linguistic content overwrites or suppresses a harm signal. Operationalises the universal invariant INV-007 as an explicit guard a design can violate.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -1522,6 +1558,13 @@
     "status": "candidate",
     "subject": "ethics.kindness_not_constraint_compliance",
     "title": "Kindness is not constraint compliance: later REE kindness must NOT be inferred from rule-adherence, harm-avoidance, or prosocial output alone; it requires integrated care, otherness, inhibition, repair, and self-stable loveability UNDER live alternatives.",
+    "type": "invariant"
+  },
+  "INV-085": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "language.parsed_affect_is_uncertain_hypothesis",
+    "title": "Uncertainty-propagation invariant: affect recovered from language MUST enter agent-state modelling as a probability distribution (an uncertain other-agent prior), NEVER as a categorical emotion truth, and must remain overridable by the agent's own grounded harm/threat streams. Any path that lets a confident text label override grounded harm sensing violates this invariant.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -4050,6 +4093,54 @@
     "title": "Love-mediated repair after harm: repair must be mediated by harm-recognition AND preserved loveability so it is relationship-restoration plus responsibility-integration, not punishment-avoidance, appeasement, self-erasure, control, or metric-optimisation.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-415": {
+    "status": "candidate",
+    "subject": "language.predicate_argument_event_rule_bridge",
+    "title": "Predicate-argument-event rule bridge: a V6 grammar-facing layer renders ARC-063 CandidateRule structures as 'if context, then action-object, causing outcome, unless exception' -- naming, querying, and recombining pre-linguistic rules without making language the rule substrate. Predicate-argument-event structure is the same context->action-object->outcome shape ARC-063 already mints; the 'unless/except/but' exception grammar is a shadow of ARC-063 tolerance-gated availability.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-416": {
+    "status": "candidate",
+    "subject": "language.frame_inventory_substrate_bound",
+    "title": "REE frame inventory: a small extensible V5/V6 inventory of scene-frames (feeding, hazard, contact, interruption, help-harm, give-receive, request-response, belief-report, error-correction) where each frame binds to REE substrates, not to words. Frame semantics (Fillmore): a word evokes a whole scene; in REE each frame is a scene-schema over rule structures, the second mining artifact after the grammar->substrate table.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-417": {
+    "status": "candidate",
+    "subject": "language.aspect_event_arc_closure_map",
+    "title": "Grammatical aspect is a map of REE's event arc and post-commit closure: starting/ongoing/repeated/interrupted/resumed/completed/failed/abandoned aspect is a grammatical naming of the pre-linguistic ActionEventArc and closure machinery, not a replacement for it. Event Segmentation Theory: experience segments around prediction error and event boundaries, overlapping REE's contact/interruption/closure/transition needs.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-418": {
+    "status": "candidate",
+    "subject": "language.affect_prior_feeds_empathy_binding",
+    "title": "Language-parsed other-affect feeds the empathy stream-binding layer as ONE evidence source: the affect prior recovered from language by the LanguageAffectAdaptor (MECH-373) is fused with non-linguistic evidence (behaviour, expression, context) by the existing V5 empathy stream-binding layer, NOT as a parallel or dominant affect-attribution path. The wiring/fusion commitment between the adaptor output and the empathy layer.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-419": {
+    "status": "candidate",
+    "subject": "reasoning.compositional_generalisation_over_named_symbols",
+    "title": "Compositional generalisation over named symbols: the agent systematically recombines grounded, named primitives (object/action/property/relation symbols) into novel combinations never directly experienced, via the symbol/grammar layer rather than the substrate. Compositionality is mined from grounded substrate, not imported as transformer attention.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-420": {
+    "status": "candidate",
+    "subject": "reasoning.relational_propositional_inference_over_symbols",
+    "title": "Relational/propositional inference over named relations: transitive inference, role-binding (giver vs receiver), and proposition chaining are realised as theta-sequence traversal (MECH-300) of a SYMBOLIC/type-graph cognitive map whose nodes are named symbols. The V6 realisation of MECH-300's cognitive-map-traversal primitive over a named symbolic map.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-421": {
+    "status": "candidate",
+    "subject": "reasoning.analogy_structure_mapping_across_domains",
+    "title": "Analogy as relational structure-mapping across grounded domains (Gentner): map relational structure from source to target regardless of surface features (spatial containment <-> social inclusion; physical support <-> commitment). The capstone symbolic capacity; first tested as emergent from the compositional + relational stack before any dedicated analogy module is built.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-422": {
+    "status": "candidate",
+    "subject": "language.event_arc_grammatical_realisation",
+    "title": "Event-arc grammatical realisation: grammatical tense/aspect/connectives (because, but, unless, done, again, stop, resume) are the symbolic rendering of the pre-linguistic ActionEventArc (initiate/persist/interrupt/reorient/resume/close). 'unless' = ARC-063 exception gate; 'because' = causal link; 'again/done' = aspect over closure. The action arc must EXIST (V3..V5) before grammar can name it.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -4474,6 +4565,12 @@
     "status": "candidate",
     "subject": "social.delay_positive_other_reward",
     "title": "Why might other-bound suffering/threat need to come online before other-bound liking/wanting? Is it protection-first (register harm to others before benefit) versus exploitation-vulnerability (early positive other-reward is gameable), and how should the ordering be enforced?",
+    "type": "open_question"
+  },
+  "Q-074": {
+    "status": "candidate",
+    "subject": "reasoning.analogy_operator_vs_emergent_traversal",
+    "title": "Is analogy a SEPARATE V6 alignment operator, or does it fall out of MECH-300 cognitive-map traversal over a shared symbolic map (same map, different entry points)? Decides whether the analogy mechanism (MECH-421) is built as a distinct operator or expected to emerge from the relational-inference stack.",
     "type": "open_question"
   },
   "RA-001": {
