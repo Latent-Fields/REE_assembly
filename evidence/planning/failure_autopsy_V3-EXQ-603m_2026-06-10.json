@@ -1,0 +1,60 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-10T15:36:05Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3",
+      "queue_id": "V3-EXQ-603m",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "G0 stage0 positive control (nursery forced-feed z_goal_norm_peak > 0.4) held 1/3 (0.477 / 0.389 / 0.371); the three load-bearing legs G1 survival 3/3, G2 contact 3/3, G3 ecological z_goal 2/3 all passed.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A (intact) -- claim_ids=[]; the substrate-readiness gate is adjudicated, no claim is tested",
+        "biological_reference": "clear -- z_goal/incentive-salience magnitude scales with substrate maturity; infant goal reps strengthen with experience; ecological P2 z_goal exceeds nursery Stage-0 z_goal for EVERY seed, matching the developmental-maturation signature (measure the positive control too early)",
+        "prerequisites": "present -- harm pathway trained (G_H 3/3, harm_eval range 0.0747), survival cleared, reached-P2-alive 3/3",
+        "implementation": "complete -- full curriculum runs end-to-end; every stage fires",
+        "environment": "adequate -- P2 contact 3/3, foraging contact achievable",
+        "measurement": "misleading (DOMINANT) -- G0 applies the mature-substrate ecological magnitude (0.4, identical to G3) to the least-mature developmental stage; the positive control under-reads because encoder/GoalState are un-warmed at Stage-0",
+        "integration": "coupled but stable -- the whole chain works; ecological z_goal forms",
+        "scale": "likely insufficient for G0 only -- Stage-0 budget 20 ep + immature encoder caps nursery z_goal below 0.4 on 2/3 seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "developmental maturation of goal/incentive-salience representation (z_resource encoder + GoalState seeding magnitude rising with experience)",
+        "dependencies": ["z_resource encoder warm-up (SD-015/SD-049)", "GoalState seeding (SD-012/MECH-306)", "Stage-0b protected consolidation"],
+        "is_formal_import": false,
+        "divergence": "none -- the brain is an existence proof for the class (goal formation); the ecological legs (G2/G3) demonstrate the class works in-substrate. The G0 miss is an instrumentation-timing artifact, not a mechanism divergence.",
+        "lit_status": "present (not load-bearing here; no lit-pull commission)"
+      },
+      "recommended_epistemic_category": "n/a (claim-free substrate-readiness diagnostic; substrate-queue note records a test-design/measurement gap, NOT substrate_ceiling -- the discrimination legs pass, the inverse of the ceiling fingerprint)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-603m (full scaffolded-curriculum readiness, claim_ids=[]) FAILed the pre-registered gate at G0 only (Stage-0 nursery z_goal>0.4 held 1/3: 0.477 / 0.389 / 0.371), while the three load-bearing legs passed (P1 survival 3/3, P2 contact 3/3, P2 ecological consumption-gated z_goal 2/3) and non-vacuity held (harm_eval range 0.075, reached-P2-alive 3/3, criteria non-degenerate). The survival leg (historic GAP-2 blocker) is confirmed cleared. The G0 miss is a measurement/developmental-sequencing artifact, not a foraging or goal-formation failure: ecological P2 z_goal exceeds nursery z_goal for every seed, so the >0.4 threshold (the mature ecological magnitude, identical to G3) is mis-applied to the pre-warmup Stage-0 substrate. Route: re-queue a 603n successor with G0 measured post-Stage-0b-consolidation OR a positive-control floor (>0.3) while G3 stays the load-bearing 0.4 ecological gate; on PASS flip ready=true. Do NOT loosen the ecological gate; do NOT read as substrate ceiling.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "title": "Corrected-G0 re-validation of the full scaffolded-curriculum readiness gate (603n)",
+        "implementation_hint": "603m cleared the survival + both P2 legs; the only residual is the Stage-0 nursery positive control G0 (z_goal>0.4 held 1/3, missing by 0.011/0.029). G0 applies the mature ecological 0.4 threshold to the pre-warmup Stage-0 substrate; ecological P2 z_goal exceeds nursery z_goal for every seed. Re-validate via /queue-experiment with G0 measured post-Stage-0b-consolidation OR a positive-control floor (>0.3), G3 unchanged at 0.4 as the load-bearing ecological gate. On PASS flip ready=true.",
+        "unblocks_claims": ["ARC-030", "MECH-117", "MECH-230", "MECH-260", "MECH-295", "MECH-307", "MECH-313", "Q-040", "Q-045", "SD-049 Phase 2 behavioural", "MECH-090", "MECH-261", "MECH-266", "MECH-268", "SD-032a", "SD-033a", "SD-034"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3",
+          "experiment_type": "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness",
+          "metric": "G0 stage0 positive-control z_goal_norm_peak held 1/3 (0.477 / 0.389 / 0.371); G1 survival 3/3, G2 contact 3/3, G3 ecological z_goal 2/3 -- only the Stage-0 nursery positive control fails, by 0.011/0.029",
+          "target": "G0 (corrected: post-consolidation OR positive-control floor >0.3) >= 2/3 with G1/G2/G3 held; G3 stays the load-bearing ecological 0.4 gate"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 603 P1-survival blocker is closed and confirmed twice (603k probe + 603m full run): survival 3/3 with the harm pathway trained.",
+        "The P2 ecological legs both clear on the full curriculum (contact 3/3, consumption-gated z_goal 2/3) -- the foraging + ecological-seeding chain works when the agent reaches P2 alive.",
+        "The readiness gate conflates two developmental moments (Stage-0 nursery, pre-warmup; P2 ecological, post-curriculum) at one z_goal>0.4 threshold; z_goal magnitude scales with substrate maturity, so the nursery positive control is held to a magnitude only reachable on the matured substrate. Fix retimes/recalibrates G0, not the load-bearing G3.",
+        "Not a foraging-competence or substrate-falsification verdict: G2/G3 prove the ecological pipeline; G0 is a developmental instrumentation check. The inverse of the substrate-ceiling fingerprint (discrimination legs pass, positive control fails)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
