@@ -1,7 +1,11 @@
 # MECH-219 Affective-Harm Hysteretic Integrator — Design Memo (SD-019b unblock)
 
-**Status:** DESIGN-FIRST (pre-implementation). Not built. This memo is the plan-of-record
-that a future `/implement-substrate` session consumes.
+**Status:** IMPLEMENTED 2026-06-10 (substrate; SD-019b stays `v3_pending` until the
+validation EXQ PASSes). Built by the `/implement-substrate` session
+`mech219-implement-hysteretic-integrator-20260610T0720Z`. As-built record +
+architecture doc: `docs/architecture/mech_219_hysteretic_integrator.md`. This memo
+remains the authoritative design-rationale plan-of-record. (Was: DESIGN-FIRST,
+pre-implementation.)
 **Authored:** 2026-06-10 (session `mech219-hysteretic-integrator-design-memo-20260610T0713Z`).
 **Scope:** design only — no `claims.yaml` edits, no `ree-v3` code in this pass.
 

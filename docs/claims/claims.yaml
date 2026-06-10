@@ -15160,6 +15160,17 @@
     - SD-019          # nonredundancy constraint (applies to z_harm_a output)
     - MECH-219        # the hysteretic integration mechanism
     - Q-036           # open question on controllability/escapability gating
+    - SD-058          # soft edge: avoidance_efficacy escapability source (2026-06-10)
+  implementation_note: >
+    MECH-219 substrate IMPLEMENTED 2026-06-10
+    (ree_core/affect/harm_suffering_accumulator.py + LatentState.z_harm_suffering +
+    per-consumer z_harm_a redirect flags). SD-019b STAYS v3_pending / candidate: the
+    controllability dissociation that the SD asserts (escapable vs inescapable matched
+    nociception -> divergent suffering) is unproven until the validation EXQ runs (memo
+    Section 7), and Q-036 stays open. The avoidance_efficacy escapability mode adds a soft
+    dependency on SD-058 (itself v3_pending); the default constant mode is dependency-free
+    and bit-identical. No flag/confidence change this pass (design + substrate only).
+    Plan-of-record: evidence/planning/mech_219_hysteretic_integrator_design.md.
   functional_restatement: >
     z_harm_a is harm_suffering: the output of MECH-219 operating on harm_unpleasantness
     with controllability gating. This refines the current specification of z_harm_a from
@@ -15236,7 +15247,28 @@
     (4) `z_harm_a` drives mode-switch (MECH-259) while `z_harm_un` drives immediate
         avoidance -- the two channels have separable behavioral signatures.
   registered: "2026-04-08"
-  depends_on: [SD-019, SD-019a, SD-019b, SD-011, ARC-016]
+  depends_on: [SD-019, SD-019a, SD-019b, SD-011, ARC-016, SD-058]  # SD-058 soft edge: avoidance_efficacy escapability source (2026-06-10)
+  implementation_note: >
+    IMPLEMENTED 2026-06-10 (substrate; status stays candidate / no confidence change --
+    governance follows the validation EXQ). Pure-arithmetic hysteretic-integrator regulator
+    ree_core/affect/harm_suffering_accumulator.py: drive u_t=||z_harm_un|| (+ optional
+    body_damage_weight*||z_harm_a|| fold-in); controllability gate g_t=1-escapability;
+    asymmetric accumulation alpha_rise>>alpha_fall; optional Schmitt latch + optional SD-020
+    pe_gain. Output LatentState.z_harm_suffering (same dim as z_harm_un, magnitude=s_t).
+    Escapability source pluggable (REEConfig.harm_suffering_escapability_mode): default
+    constant=1.0 -> g=0 -> inert/bit-identical; avoidance_efficacy reads SD-058
+    InstrumentalAvoidanceGate.effective_efficacy() (the soft depends_on above; never
+    MECH-353 capacity_belief, to avoid the z_harm_a->capacity_belief->z_harm_a loop);
+    external for a scripted validation schedule. Master flag use_harm_suffering_accumulator
+    + per-consumer redirect flags (all default OFF, bit-identical): v1 wires the
+    urgency/PAG/MECH-091-interrupt consumers (magnitude-based); dACC/pACC redirect flags
+    defined-but-unwired (their E2_harm_a forward models are keyed on the z_harm_a dim ->
+    migrate last, kept on legacy z_harm_a in v1). MECH-094: no-op under simulation_mode.
+    Requires use_harm_un=True (loud precondition). 11/11 contracts
+    (ree-v3/tests/contracts/test_mech_219_harm_suffering_accumulator.py). Validation EXQ
+    (controllability dissociation) is a separate /queue-experiment session (memo Section 7).
+    Plan-of-record: evidence/planning/mech_219_hysteretic_integrator_design.md; as-built:
+    docs/architecture/mech_219_hysteretic_integrator.md.
   location: docs/architecture/affect_primitives.md
 
 - id: Q-036
