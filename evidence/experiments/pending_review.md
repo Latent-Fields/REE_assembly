@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-10T16:20:09Z`  
-Last review: `2026-06-10T16:19:44Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-10T16:46:53Z`  
+Last review: `2026-06-10T16:45:46Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_603l_escape_affordance_bridge_behavioural_retest_20260610T134941Z_v3` | 2026-06-10T13:49 | MECH-358, SD-059 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 
