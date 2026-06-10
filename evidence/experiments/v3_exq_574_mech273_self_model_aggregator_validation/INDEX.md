@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_574_mech273_self_model_aggregator_validation
 
-Generated: `2026-06-10T06:07:09.207833Z`
+Generated: `2026-06-10T12:53:45.305762Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

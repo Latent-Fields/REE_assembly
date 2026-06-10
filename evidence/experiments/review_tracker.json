@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-10T06:07:34Z",
+  "last_review_utc": "2026-06-10T13:27:16Z",
   "discussed_experiment_dirs": [
     "v3_exq_603i_escape_affordance_bridge_validation",
     "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic",
@@ -612,7 +612,9 @@
     "v3_exq_661_mech294_compose_coherence_behavioural_readiness_20260610T002349Z_v3",
     "v3_exq_485d_sd033b_ofc_trainable_head_readiness_20260610T003756Z_v3",
     "v3_exq_661_mech294_compose_coherence_behavioural_readiness",
-    "v3_exq_485d_sd033b_ofc_trainable_head_readiness"
+    "v3_exq_485d_sd033b_ofc_trainable_head_readiness",
+    "v3_exq_662_modulatory_channel_routing_substrate_readiness",
+    "v3_exq_664_affective_fishtank_showcase"
   ],
   "reviewed_run_ids": [
     "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
@@ -2909,7 +2911,9 @@
     "v3_exq_588c_mech189_super_ordinal_seeding_20260610T004619Z_v3",
     "v3_exq_660_mech341_within_class_representative_diversity_20260610T044109Z_v3",
     "v3_exq_661_mech294_compose_coherence_behavioural_readiness_20260610T002349Z_v3",
-    "v3_exq_485d_sd033b_ofc_trainable_head_readiness_20260610T003756Z_v3"
+    "v3_exq_485d_sd033b_ofc_trainable_head_readiness_20260610T003756Z_v3",
+    "v3_exq_662_modulatory_channel_routing_substrate_readiness_20260610T104730Z_v3",
+    "v3_exq_664_affective_fishtank_showcase_20260610T112808Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4071,6 +4075,15 @@
         "v3_exq_657_mech294_multi_content_theta_packet_readiness_20260609T190708Z_v3"
       ],
       "note": "658 (MECH-045 object-file persistence, PASS supports): first genuine exp support -- INTACT reid_frac=1.0 vs OFF=0.0/SHUFFLE=0.3 3/3 seeds, d_cos_min=0.919; exp_conf 0.775 confirmed_established; STAYS provisional (needs >=0.80 + >=4 entries). 659 (MECH-074a BLA encoding-gain replay bias, PASS supports): first genuine exp support -- AOR contrast PRIMARY-ABLATION 0.135/0.033/0.213 3/3, ablation flat; exp_conf 0.775; STAYS provisional. 657a (MECH-294 multi-content theta-packet readiness CORRECTED, PASS, claim-free non_contributory, supersedes 657): all gates pass, forced-low-V_s probe fires (2 vintages), structural separability C1/C2 + covariation corroborate; verified self-route. Substrate-readiness gate that found MECH-294 blocked_substrate is CLEARED -> queue behavioural-evidence successor (compose ON). MECH-294 stays candidate/v3_pending (exp_conf still 0; diagnostic adds no evidence). 657 (FAIL, claim-free) marked evidence_direction=superseded by 657a (G1 vintage stat inert in joint mode + non-conjunctive readout; zero claim weight). 0 promotion/demotion this cycle; 7 pending_user holds acknowledged-as-held (unrelated to today). Index + claims.json rebuilt."
+    },
+    {
+      "utc": "2026-06-10T13:27:16Z",
+      "session": "governance-cycle-20260610T1253Z",
+      "runs": [
+        "v3_exq_662_modulatory_channel_routing_substrate_readiness_20260610T104730Z_v3",
+        "v3_exq_664_affective_fishtank_showcase_20260610T112808Z_v3"
+      ],
+      "note": "662 (v3_exq_662_modulatory_channel_routing_substrate_readiness; route-range AMEND substrate-readiness, claim_ids=[] diagnostic, PASS route_range_substrate_ready, NON-vacuous): ARM_1 route_range 0.445 (>>floor 0.01) 3/3 seeds + bounded; C1 routed-range-reaches-accumulator ARM_1 active 3/3 vs ARM_0 0.0 inactive 3/3; C2 committed-class TV {42:0.089,43:0.361,44:0.175} all>floor 3/3 (routed channel range MOVES committed action -- the 569f bit-identical washout broken). Confirms the modulatory-bias-selection-authority route-range readiness gate -> per-claim behavioural retests of ARC-065/MECH-294/ARC-062/MECH-309/MECH-341 now UNBLOCKED (separate /queue-experiment sessions). This run executed under the original V3-EXQ-662 id before the 663 rename propagated; the renamed V3-EXQ-663 duplicate stays queued (user: leave to run as a second confirmation). claim_ids=[] -> no claim weighting. 664 (v3_exq_664_affective_fishtank_showcase; whimsy/viz showcase, claim_ids=[] diagnostic, PASS but adjudication=vacuous_pass: channel_z_goal/vigor/z_block degenerate): viz showcase owned by the fishtank session; drives NO governance action; label not trusted for any gate per the vacuous_pass flag (manifest interpretation remains source of truth). NOT reviewed this cycle: v3_exq_591b_isef005_curriculum_phase_advance_readiness (FAIL, claim_ids=[], InfantCurriculumScheduler Phase 0->1 gate fires 4/5 seeds -> self-route phase01_gate_unreliable_needs_strengthening) -- user flagged for /failure-autopsy; stays PENDING. 0 promotion/demotion (all reviewed evidence claimless); 8 pending_user holds + ARC-046 conflict-hold kept unchanged."
     }
   ]
 }

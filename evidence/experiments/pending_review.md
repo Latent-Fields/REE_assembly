@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-10T06:09:32Z`  
-Last review: `2026-06-10T06:07:34Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-10T13:27:17Z`  
+Last review: `2026-06-10T13:27:16Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_591b_isef005_curriculum_phase_advance_readiness_20260610T090813Z_v3` | 2026-06-10T09:08 | (no claim tags) | — |
 
 ---
 
