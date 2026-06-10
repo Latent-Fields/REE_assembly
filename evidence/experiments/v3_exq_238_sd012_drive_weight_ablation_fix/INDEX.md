@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_238_sd012_drive_weight_ablation_fix
 
-Generated: `2026-06-10T16:18:45.205267Z`
+Generated: `2026-06-10T17:19:22.681960Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

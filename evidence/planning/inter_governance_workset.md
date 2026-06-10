@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-10T16:51:54Z`
+Generated: `2026-06-10T17:19:25Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,13 +9,13 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **53** (ready 6, in_flight 0, blocked 33)
+- Items: **53** (ready 6, in_flight 0, blocked 32)
 - Pending review: **0**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **2**
 
-- Live EXQs: V3-EXQ-591c, V3-EXQ-603n, V3-EXQ-654b, V3-EXQ-655
+- Live EXQs: V3-EXQ-591c, V3-EXQ-603n, V3-EXQ-603o, V3-EXQ-654b, V3-EXQ-655
 
-- Auto-absorbed retests (queued, suppressed from workset): ARC-062 -> V3-EXQ-654b, INV-074 -> V3-EXQ-655
+- Auto-absorbed retests (queued, suppressed from workset): ARC-062 -> V3-EXQ-654b, INV-074 -> V3-EXQ-655, MECH-341 -> V3-EXQ-660a, SD-059 -> V3-EXQ-603o
 
 ## Work packages
 
@@ -649,6 +649,33 @@ Instructions:
 
 </details>
 
+### IGW-20260610-013 -- Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 consumer-readout wiring audit
+
+- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked_pending_substrate | **Priority:** 30
+- **Gap(s):** goal_pipeline:GAP-7
+- **Blocked by:** goal_pipeline:GAP-2 [blocked_pending_substrate]
+- **Why now:** STATUS 2026-06-05: the L2-L3-L4 object-binding + incentive-token substrate AND the L6-L7 cue-recall + dACC-readout layer ARE BUILT AND REGISTERED -- see l2l3_l6_l7_landed_2026_06_04 below. The earlier draft of this field (now superseded) in
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260610-013
+Title: Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 consumer-readout wiring audit
+Lane: plan | Skill: (plan reconcile)
+Status: blocked_pending_substrate
+Gap(s): goal_pipeline:GAP-7
+Claims: MECH-229, MECH-230, MECH-117, ARC-030
+Blocked by: goal_pipeline:GAP-2 [blocked_pending_substrate]
+Why now: STATUS 2026-06-05: the L2-L3-L4 object-binding + incentive-token substrate AND the L6-L7 cue-recall + dACC-readout layer ARE BUILT AND REGISTERED -- see l2l3_l6_l7_landed_2026_06_04 below. The earlier draft of this field (now superseded) in
+
+Instructions:
+- Update plan-of-record doc and closure frontmatter when complete.
+- Plan doc: REE_assembly/evidence/planning/goal_pipeline_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260610-016 -- Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under SD-029 scheduled-external-hazard curric
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked_pending_substrate | **Priority:** 30
@@ -676,7 +703,7 @@ Instructions:
 
 </details>
 
-### IGW-20260610-025 -- Queue depth low (1 pending)
+### IGW-20260610-025 -- Queue depth low (2 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -685,7 +712,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260610-025
-Title: Queue depth low (1 pending)
+Title: Queue depth low (2 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -697,39 +724,12 @@ Instructions:
 
 </details>
 
-### IGW-20260610-013 -- Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 consumer-readout wiring audit
-
-- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38
-- **Gap(s):** goal_pipeline:GAP-7
-- **Blocked by:** goal_pipeline:GAP-2 [blocked_pending_substrate]
-- **Why now:** STATUS 2026-06-05: the L2-L3-L4 object-binding + incentive-token substrate AND the L6-L7 cue-recall + dACC-readout layer ARE BUILT AND REGISTERED -- see l2l3_l6_l7_landed_2026_06_04 below. The earlier draft of this field (now superseded) in
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260610-013
-Title: Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 consumer-readout wiring audit
-Lane: plan | Skill: (plan reconcile)
-Status: blocked
-Gap(s): goal_pipeline:GAP-7
-Claims: MECH-229, MECH-230, MECH-117, ARC-030
-Blocked by: goal_pipeline:GAP-2 [blocked_pending_substrate]
-Why now: STATUS 2026-06-05: the L2-L3-L4 object-binding + incentive-token substrate AND the L6-L7 cue-recall + dACC-readout layer ARE BUILT AND REGISTERED -- see l2l3_l6_l7_landed_2026_06_04 below. The earlier draft of this field (now superseded) in
-
-Instructions:
-- Update plan-of-record doc and closure frontmatter when complete.
-- Plan doc: REE_assembly/evidence/planning/goal_pipeline_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
 ### IGW-20260610-010 -- OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** commitment_closure:GAP-4
-- **Owner EXQ:** V3-EXQ-460b..468b (Phase 4/5 *b cohort; MECH-342 ecological = V3-EXQ-629)
-- **Why now:** MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes (2026-05-28 within-tick score_margin axis + 2026-05-29 across-tick CommitReadiness EMA / nav_competence axis; 523/523 contracts PASS masters OFF). V3-EXQ-592d (4
+- **Owner EXQ:** V3-EXQ-460b/461b/463b/464b/466b/467b/468b (Phase 4/5 *b cohort -- 7 members, NOT the 9-member range '460b..468b' implies; 462b/465b were NEVER scoped (MECH-267 rule-binding + MECH-094 intrusive-sim behavioural arms deferred per sd033_governance Phase 4/5 deliverables -- do not hunt for them as missing); MECH-342 ecological = V3-EXQ-629)
+- **Why now:** LIVE BLOCKER (2026-06-10): GAP-4 is gated on the scaffolded_sd054_onboarding goal-achievement/foraging-competence ceiling delivering RUNTIME GOAL COMPLETIONS -- still FALSE today (V3-EXQ-603m FAIL 2026-06-10T13:38Z; 603n full-curriculum-rea
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -739,9 +739,9 @@ Title: OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjun
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
 Gap(s): commitment_closure:GAP-4
-Owner EXQ: V3-EXQ-460b..468b (Phase 4/5 *b cohort; MECH-342 ecological = V3-EXQ-629)
+Owner EXQ: V3-EXQ-460b/461b/463b/464b/466b/467b/468b (Phase 4/5 *b cohort -- 7 members, NOT the 9-member range '460b..468b' implies; 462b/465b were NEVER scoped (MECH-267 rule-binding + MECH-094 intrusive-sim behavioural arms deferred per sd033_governance Phase 4/5 deliverables -- do not hunt for them as missing); MECH-342 ecological = V3-EXQ-629)
 Claims: SD-034, MECH-266, MECH-267, MECH-268, MECH-090, MECH-342
-Why now: MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes (2026-05-28 within-tick score_margin axis + 2026-05-29 across-tick CommitReadiness EMA / nav_competence axis; 523/523 contracts PASS masters OFF). V3-EXQ-592d (4
+Why now: LIVE BLOCKER (2026-06-10): GAP-4 is gated on the scaffolded_sd054_onboarding goal-achievement/foraging-competence ceiling delivering RUNTIME GOAL COMPLETIONS -- still FALSE today (V3-EXQ-603m FAIL 2026-06-10T13:38Z; 603n full-curriculum-rea
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
