@@ -1,0 +1,105 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603l_escape_affordance_bridge_behavioural_retest",
+  "run_id": "v3_exq_603l_escape_affordance_bridge_behavioural_retest_20260610T134941Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-10T13:49:41Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-059",
+    "MECH-358"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-059": "weakens",
+    "MECH-358": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "bridge_insufficient_env_survivable",
+    "readiness_route": "bridge_insufficient_env_survivable",
+    "preconditions": [
+      {
+        "name": "pag_freeze_and_ilpfc_gate_engage_on_base",
+        "kind": "readiness",
+        "description": "The defensive chain must be present on ARM_BASE_IA_ONLY: PAG freezes (pag_n_commits>0 on >=2/3 seeds) AND the ilPFC gate engages (n_credit+n_decay>0 on >=2/3). Below-floor => the gate/freeze substrate the bridge extends is itself inert => substrate_not_ready_requeue, NOT a bridge verdict.",
+        "control": "ARM_BASE_IA_ONLY: PAG + ilPFC gate + driver + fed harm stream + harm-pathway training (603k) + trained safety predictors (603j).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "each_enabled_bridge_half_fires_nonvacuously",
+        "kind": "readiness",
+        "description": "Each ENABLED bridge half must increment its credit on >=2/3 seeds (ARM_RELIEF_BRIDGE: mech358_n_relief_credit>0; ARM_SAFETY_BRIDGE: mech358_n_safety_credit>0; ARM_RELIEF_SAFETY_BRIDGE: both). This is the SAME mechanism the PRIMARY G_H lift routes on. The safety half credits via the trained MECH-303/304 threat-absence signal (603j); below-floor => the predictor did not populate ecologically in time => substrate_not_ready_requeue (NOT a false weakens).",
+        "control": "ARM_RELIEF/SAFETY/RELIEF_SAFETY: bridge ON, SD-056 e2 warmup in P0, fed harm stream, escape_use_trained_safety_signal + MECH-303 terrain + MECH-304 store + MECH-302 comparator populating during Stage-H.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "stage0_forced_feed_lights_zgoal_on_base",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 base seeds -- the goal-FORMATION positive control. Confirms the curriculum is intact.",
+        "control": "run_stage0_nursery forced-feed.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "arms_reached_hazard_stage": true,
+      "bridge_credit_nonzero": true,
+      "nav_control_evaluated": true
+    },
+    "criteria": [
+      {
+        "name": "best_bridge_G_H_clears_2of3",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "best_bridge_G_H_beats_BASE",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "grid": {
+      "relief_only_pass": "missing phasic negative-reinforcement (relief) credit",
+      "safety_only_pass": "missing learned threat-absence (safety) predictor",
+      "both_required_pass": "avoidance needs complementary relief + safety bridge",
+      "neither_and_nav_control_passes": "bridge insufficient (env survivable) -> weakens SD-059/MECH-358",
+      "neither_and_nav_control_fails": "navigation/survival-competence ceiling -> nav substrate, NOT the bridge"
+    }
+  }
+}
