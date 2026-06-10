@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-10.3 -->
+<!-- CLOSURE_VERSION: 2026-06-10.4 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -571,7 +571,7 @@ const STATUS_DESC = {
 // Plain-language meaning of each badge (the small coloured lozenges), shown as
 // a native hover tooltip on the badge (SVG <title>).
 const BADGE_DESC = {
-  EXQ: 'EXQ (blue) -- this node has an owner experiment in the queue/evidence. [LIVE] in the node tooltip means it is currently running.',
+  EXQ: 'EXQ (blue) -- this node HAS an owner experiment; it does NOT mean one is running. Most are already complete (the card status -- done/blocked/etc -- is the real state). A node is actually running only when its border glows green and the node tooltip shows [LIVE]; that live flag is gated on a fresh runner heartbeat, so a crashed/stale runner no longer shows as running.',
   RETEST: 'RETEST (purple) -- unblocks a claim flagged pending_retest_after_substrate: that claim must be re-tested once this substrate work lands.',
   CEIL: 'CEIL (red) -- unblocks a substrate_ceiling claim: the current substrate is too coarse to decide it, so the fix is substrate enrichment, not more experiments.',
 };

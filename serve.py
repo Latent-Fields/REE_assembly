@@ -2109,7 +2109,10 @@ def _enrich_closure_v2(data: dict) -> dict:
 
     machines_view = read_machines()
     running_rows: list[dict] = []
+    fresh_machines: set[str] = set()
     for m in machines_view.get("machines") or []:
+        if m.get("fresh") and m.get("machine"):
+            fresh_machines.add(str(m.get("machine")))
         exq = m.get("current_exq")
         if exq and m.get("fresh"):
             live_exq_ids.add(str(exq))
@@ -2120,10 +2123,17 @@ def _enrich_closure_v2(data: dict) -> dict:
                 "state": m.get("state"),
             })
 
+    # A queue claim only counts as "live" when the claiming machine still has a
+    # fresh heartbeat. Without this gate an orphaned claim -- runner crashed or
+    # was shut down mid-run without releasing it, or a stale >6h claim the
+    # coordinator never reaped -- keeps marking its node [LIVE] long after the
+    # experiment has actually finished. That is the staleness the operator hit
+    # (e.g. cloud-4 / V3-EXQ-591b: heartbeat dead, claim still on the queue item).
     queue_claimed = _closure_queue_claimed()
     for row in queue_claimed:
         qid = row.get("queue_id")
-        if qid:
+        mach = row.get("machine")
+        if qid and mach and str(mach) in fresh_machines:
             live_exq_ids.add(str(qid))
 
     retest_ids = _closure_claim_ids_by_flag("pending_retest_after_substrate")
