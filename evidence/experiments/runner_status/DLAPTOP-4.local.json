@@ -2,28 +2,28 @@
   "schema_version": "v1",
   "runner_pid": 83116,
   "runner_started_at": "2026-06-10T07:08:04.116272+00:00",
-  "last_updated": "2026-06-10T13:48:25.729200+00:00",
+  "last_updated": "2026-06-10T23:30:56.860715+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-603m",
+      "queue_id": "V3-EXQ-603o",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "scaffolded_sd054 FULL three-leg readiness (harm-pathway ON): Stage-0 zgoal + P1 survival + P2 contact + P2 zgoal, the residual-leg gate after 603k",
+      "claim_id": "SD-059",
+      "title": "SD-059/MECH-358 escape-affordance bridge behavioural retest REDESIGN (headroom + continuous survival metric); successor to 603l",
       "description": "",
-      "estimated_minutes": 94.0,
-      "status": "pending",
+      "estimated_minutes": 470.0,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-603l",
+      "queue_id": "V3-EXQ-660a",
       "backlog_id": "",
-      "claim_id": "SD-059",
-      "title": "SD-059/MECH-358 escape-affordance bridge BEHAVIOURAL re-test (scored evidence; successor to V3-EXQ-603i, the pending_retest_after_substrate). Full 4-arm + nav-control discriminative Stage-H run on the 603k+603j-fixed substrate: ARM_BASE_IA_ONLY (bridge OFF) / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE (bridge halves) / ARM_NAV_CONTROL (bridge OFF, spawn-in-reef nav-competence control). ALL arms turn ON the two now-validated substrate fixes: scaffold_train_harm_pathway=True (603k PASS -> clears the 603i PRIMARY nav/survival-competence ceiling; ARM_HARM_ON_NAV G_H 2/3 vs OFF 0/3, harm_eval range 0.133) and escape_use_trained_safety_signal=True + MECH-303 terrain + MECH-304 store + MECH-302 comparator (603j PASS -> the SAFETY half credits non-vacuously via the trained threat-absence signal, mean 0.89 >= 0.5 floor). PRIMARY DV best_bridge_G_H >= 2/3 AND > G_H_BASE. Per-half non-vacuity readiness preconditions retained as a SAFETY NET (each enabled bridge half credits >=2/3 before G_H scored; else self-route substrate_not_ready_requeue, NOT a false weakens).",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 within-class-representative diversity GRADED confirmation (CEM pool-size dose-response; V3-EXQ-660 successor)",
       "description": "",
-      "estimated_minutes": 470.0,
+      "estimated_minutes": 288.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -35,28 +35,6 @@
       "title": "INV-074 crystallization-necessity: task-distribution-shift phase-3 redesign (supersedes 610f)",
       "description": "",
       "estimated_minutes": 5000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-654b",
-      "backlog_id": "",
-      "claim_id": "ARC-062",
-      "title": "ARC-062 GAP-B rule-apprehension behavioural falsifier -- longer CRF maturation re-run of 654a",
-      "description": "",
-      "estimated_minutes": 240.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-591b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "InfantCurriculumScheduler Phase 0->1 gate reachability (GAP-14 prereq c readiness)",
-      "description": "",
-      "estimated_minutes": 106.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -8358,6 +8336,34 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 24021.4
+    },
+    {
+      "queue_id": "V3-EXQ-591c",
+      "backlog_id": null,
+      "claim_id": null,
+      "title": "InfantCurriculum Phase 0->1 reachability with exploration-diversity stack armed (591b seed-46 collapse re-test)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | verdict: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-591c -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-591c.json",
+      "started_at": "2026-06-10T15:10:20.652957+00:00",
+      "completed_at": "2026-06-10T22:55:17.501510+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_591c_isef005_curriculum_phase_advance_readiness_diversity/v3_exq_591c_isef005_curriculum_phase_advance_readiness_diversity_20260610T225515Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 27896.7
+    },
+    {
+      "queue_id": "V3-EXQ-665",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Curriculum-trained affective fishtank showcase (scaffolded curriculum + harm-pathway; counterpart to V3-EXQ-664)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "Status: PASS | final_outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-665 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-665.json",
+      "started_at": "2026-06-10T22:56:29.518570+00:00",
+      "completed_at": "2026-06-10T23:30:56.846187+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_665_curriculum_affective_fishtank_showcase/v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 2067.4
     }
   ]
 }

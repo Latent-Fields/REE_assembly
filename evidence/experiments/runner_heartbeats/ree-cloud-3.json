@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-10T23:17:01Z",
+  "last_tick_utc": "2026-06-10T23:47:10Z",
   "state": "running",
   "current_exq": "V3-EXQ-603o",
   "current_exq_started_utc": "2026-06-10T16:59:04.319747+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / ARM_RELIEF_BRIDGE",
     "runs_done": 3,
     "runs_total": 15,
-    "episodes_done": 20,
+    "episodes_done": 130,
     "episodes_total": 235,
-    "overall_pct": 20.6
+    "overall_pct": 23.7
   },
-  "seconds_elapsed": 22676,
-  "seconds_remaining": 84186,
+  "seconds_elapsed": 24485,
+  "seconds_remaining": 80878,
   "recent_lines": [
     "[v3_exq_603o_escape_affordance_bridge_behavioural_redesign] starting (dry_run=False)",
     "Seed 42 Condition ARM_BASE_IA_ONLY",
@@ -42,7 +42,8 @@
     "[train] p2 ARM_BASE_IA_ONLY seed=44 ep 235/235 contact_rate=0.3237",
     "verdict: FAIL seed=44 arm=ARM_BASE_IA_ONLY mean_surv=33.1 g_h=False g0=False g1=True g2=True harm_range=0.0000 n_relief=0 n_safety=0",
     "Seed 42 Condition ARM_RELIEF_BRIDGE",
-    "[train] stage0 ARM_RELIEF_BRIDGE seed=42 ep 20/235 z_goal_peak=0.4908"
+    "[train] stage0 ARM_RELIEF_BRIDGE seed=42 ep 20/235 z_goal_peak=0.4908",
+    "[train] p0 ARM_RELIEF_BRIDGE seed=42 ep 130/235 mean_len=198.3 rv=0.00001"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
