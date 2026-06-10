@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_329",
+  "entry_id": "2026-06-10_mech_329_infant_goal_directed_understanding_behne2005",
+  "timestamp_utc": "2026-06-10T05:46:13Z",
+  "claim_ids_tested": ["MECH-329"],
+  "source": {
+    "title": "Unwilling versus unable: infants' understanding of intentional action",
+    "authors": ["Tanya Behne", "Malinda Carpenter", "Josep Call", "Michael Tomasello"],
+    "year": 2005,
+    "venue": "Developmental Psychology",
+    "doi": "10.1037/0012-1649.41.2.328",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15769189/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the canonical, verifiable replacement for the unverifiable 'Keren-Portnoy & Tomasello 2021' anchor MECH-329 originally cited. Behne, Carpenter, Call & Tomasello tested infants at 6, 9, 12 and 18 months and found that from 9 months onward infants reacted with differential impatience (reaching, looking away) when an adult was UNWILLING versus merely UNABLE to give a toy -- 6-month-olds showed no such differentiation. The authors conclude infants 'first begin to understand goal-directed action at around 9 months of age.' This grounds the developmental-ordering half of MECH-329 indirectly but solidly: a proto-intentional, goal/desire-attributing capacity is operational in the first year, well before the slow, repeated-exposure calibration of a mature hedonic preference function. Confidence 0.6, not higher, because the paper concerns infants' reading of OTHERS' intentional action (third-person goal attribution), not first-person approach-drive seeding of the infant's own goals, and it says nothing directly about wanting-vs-liking neural ordering. It establishes that goal-directed/intentional structure is early, which is the temporal premise MECH-329 needs; it does not by itself establish the mesolimbic-wanting-first mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper measures third-person goal attribution (how infants interpret an adult's intentional action), not the first-person approach-drive that MECH-329 says seeds z_goal anchors. Using it as the ordering anchor imports a mapping step: early goal-directed COMPETENCE is taken as a proxy for early approach-MOTIVATION operability. If the two dissociate developmentally, this anchor would be weaker than it looks.",
+    "Goal-directed action understanding emerging 'around 9 months' is a first-year milestone but is not the perinatal/Phase-0 window MECH-329's 'earliest accidental benefit contacts' language implies. If MECH-329's seeding is meant to begin at birth, this anchor places the verifiable onset later than the claim's strongest wording."
+  ],
+  "tags": ["mech_329", "infant_intentionality", "goal_directed_action", "developmental_ordering", "proto_intentional", "tomasello", "wanting_before_liking"],
+  "mapping": {
+    "source_claim_statement": "Infants from 9 months of age differentiate an adult's unwillingness from inability to complete an action, indicating they first begin to understand goal-directed (intentional) action at around 9 months.",
+    "ree_translation": "MECH-329 needs a verifiable developmental fact that goal-directed / desire-like structure is operational early in infancy, before a calibrated hedonic preference function exists. The emergence of goal-directed action understanding at ~9 months supplies that temporal anchor and replaces the unverifiable Keren-Portnoy & Tomasello 2021 citation with a peer-reviewed, canonical source from the same research lineage (Behne/Carpenter/Call/Tomasello).",
+    "mapping_caveat": "The study indexes infants' attribution of goals to OTHERS, not the infant's own approach-drive writing goal anchors. It supports 'goal-directed structure is early' but not, on its own, 'mesolimbic wanting comes online before liking'. It is the ordering anchor's lower bound, not a mechanistic confirmation.",
+    "source_context": "Human infants (6, 9, 12, 18 months); behavioural looking-time / impatience paradigm with an adult handing toys."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "High source quality (canonical, well-replicated developmental study in a top journal). Mapping fidelity moderate: third-person goal attribution proxies, but does not equal, first-person approach-drive operability. Transfer risk moderate (competence-vs-motivation and timing-window gaps)."
+  }
+}

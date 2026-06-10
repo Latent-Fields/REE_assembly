@@ -34613,11 +34613,21 @@
     accidental outcomes rather than by any calibrated preference function.
     Biological grounding: Berridge & Robinson 1998 (wanting/liking dissociation --
     mesolimbic dopamine mediates incentive salience / approach motivation independently
-    of hedonic pleasure; lesioned rats approach without liking); Keren-Portnoy &
-    Tomasello 2021 (infant proto-intentional reach precedes preference discrimination
-    -- desire-like states appear before calibrated hedonic evaluation in human
-    development). In animals and human infants, approach toward novel stimuli is
-    driven by dopaminergic wanting before opioid-mediated liking is established.
+    of hedonic pleasure; lesioned rats approach without liking). Developmental ordering
+    [anchor corrected 2026-06-10; original "Keren-Portnoy & Tomasello 2021" could not be
+    verified -- see evidence/literature/targeted_review_mech_329/SYNTHESIS.md]: Behne,
+    Carpenter, Call & Tomasello 2005 (infant goal-directed-action understanding emerges
+    ~9 months -- proto-intentional/desire-like structure is operational before a mature
+    hedonic preference function is calibrated) and Corbetta 2021 (infant goal-directed
+    reaching originates ~3-5 months from ACCIDENTAL hand-target contact that intrinsically
+    motivates reproduction -- accidental-contact-plus-approach-drive seeding before
+    calibrated preference). Caveat (Opendak, Meyer, Callaghan et al. 2025): mesolimbic
+    dopamine matures late and is likely not functional perinatally (earliest reward
+    learning is locus-coeruleus norepinephrine), so the developmental ORDERING is
+    grounded but the specifically-MESOLIMBIC attribution for the earliest seeding window
+    is held loosely (read as "an early approach/incentive drive"). In animals and human
+    infants, approach toward novel stimuli is driven by wanting before calibrated,
+    opioid-mediated liking is established.
     Implementation consequence: z_goal ContextMemory writes during Phase 0 and early
     Phase 1 (infant) are triggered by approach-drive proximity to benefit patches, not
     by repeated preference evaluation. MECH-329 predicts that removing Phase 0 (ARC-074
@@ -34629,8 +34639,14 @@
   location: docs/architecture/developmental_curriculum.md
   notes: >
     Registered 2026-05-16 as a child mechanism of MECH-189. Grounded in wanting/liking
-    dissociation literature (Berridge 1998) and infant intentionality sequencing (Keren-Portnoy
-    2021). Proposed experimental test: EXQ-ISEF-002 (transient benefit patches in infant
+    dissociation literature (Berridge & Robinson 1998; Smith, Berridge & Aldridge 2011)
+    and infant developmental-ordering literature (Behne, Carpenter, Call & Tomasello 2005;
+    Corbetta 2021) -- anchor corrected 2026-06-10: the originally-cited "Keren-Portnoy &
+    Tomasello 2021" could not be independently verified and was replaced; mesolimbic-DA
+    specificity tempered per Opendak et al. 2025 (see lit-pull
+    targeted_review_mech_329/SYNTHESIS.md; literature_confidence updated as a parallel
+    signal only -- experimental_confidence/status unchanged). Proposed experimental test:
+    EXQ-ISEF-002 (transient benefit patches in infant
     substrate) -- compare z_goal ContextMemory write rate and anchor diversity with and without
     benefit patches in Phase 0/Phase 1. Ranked experiment 2 in developmental_experiment_priorities.md.
   suggested_experiment_type: multi_agent_behavioral

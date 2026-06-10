@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_329",
+  "entry_id": "2026-06-10_mech_329_accidental_contact_reaching_corbetta2021",
+  "timestamp_utc": "2026-06-10T05:46:13Z",
+  "claim_ids_tested": ["MECH-329"],
+  "source": {
+    "title": "Perception, Action, and Intrinsic Motivation in Infants' Motor-Skill Development",
+    "authors": ["Daniela Corbetta"],
+    "year": 2021,
+    "venue": "Current Directions in Psychological Science",
+    "doi": "10.1177/09637214211031939",
+    "url": "https://journals.sagepub.com/doi/10.1177/09637214211031939"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Corbetta's account of infant reaching is the closest verifiable analogue to MECH-329's mechanism. She describes goal-directed reaching as originating, around 3-5 months, from a CASUAL CONTINGENT EVENT -- 'when the hand happens to contact a target' -- which 'provides new behavioral value', 'reinforces the motor action, and intrinsically motivates infants to attempt to reproduce the behavior.' This is structurally MECH-329's seeding story: an ACCIDENTAL contact, not a calibrated preference, is the originating event, and an intrinsic approach/motivation signal -- not a mature hedonic evaluation -- is what latches onto it and drives repetition. It places the seeding earlier than the 9-month third-person milestone in Behne 2005 and grounds the 'accidental benefit contact under approach drive' language directly. Confidence 0.58: it is a conceptual/review synthesis of the motor-development literature rather than a single decisive experiment, and 'intrinsic motivation' is not identical to mesolimbic incentive salience -- so it supports the accidental-contact-plus-approach-drive structure strongly while leaving the specific neuromodulatory identity open.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Corbetta's 'intrinsic motivation' is a behavioural/motor-development construct, not specifically mesolimbic-dopamine incentive salience. Reading it as MECH-329's 'wanting' imports a neuromodulatory identification the paper does not make. If the infant motor-exploration drive is not dopaminergic incentive salience (cf. Opendak et al. 2025, who argue mesolimbic DA is not yet functional perinatally), MECH-329's specifically-mesolimbic framing is over-committed even though the accidental-contact-plus-approach-drive STRUCTURE survives.",
+    "The paper is a review/conceptual synthesis, not a controlled test of ordering. It does not directly measure that motivated reaching precedes calibrated preference; it asserts a developmental sequence consistent with that ordering. Treated as decisive evidence rather than as a well-grounded framework, it would overstate the case."
+  ],
+  "tags": ["mech_329", "infant_reaching", "accidental_contact", "intrinsic_motivation", "goal_directed_action", "approach_drive", "developmental_ordering", "wanting_before_liking"],
+  "mapping": {
+    "source_claim_statement": "Infant goal-directed reaching emerges around 3-5 months from a casual contingent event -- the hand accidentally contacting a target -- which provides behavioural value, reinforces the action, and intrinsically motivates the infant to reproduce it; repeated perception-action cycles then refine the skill.",
+    "ree_translation": "This is MECH-329's seeding mechanism in the human motor-development literature: an ACCIDENTAL benefit contact (hand-on-target), not a calibrated preference, is the originating event; an intrinsic approach/motivation signal latches onto it and drives repetition, structuring early goal-directed behaviour before any mature hedonic preference function is in place. It grounds the 'accidental benefit contacts under approach drive seed the first goals' clause directly and earlier than the 9-month attribution milestone.",
+    "mapping_caveat": "Corbetta's 'intrinsic motivation' is not explicitly mesolimbic incentive salience; the entry supports the accidental-contact + approach-drive STRUCTURE of MECH-329, not the specific claim that the seeding signal is mesolimbic dopamine. Pair with Opendak et al. 2025 for the neuromodulatory-identity caveat.",
+    "source_context": "Human infants, first year; review of perception-action and motor-skill (reaching) development."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Good source quality (peer-reviewed review by a leading infant motor-development researcher in a respected venue). Mapping fidelity moderate-to-good: the accidental-contact-plus-intrinsic-motivation structure maps tightly, but the neuromodulatory identity (mesolimbic DA vs generic intrinsic motivation) is not pinned. Transfer risk moderate: review-level synthesis, not a single ordering experiment."
+  }
+}

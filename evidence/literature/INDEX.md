@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-09T22:26:14.098810Z`
+Generated: `2026-06-10T05:49:03.909976Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -200,6 +200,7 @@ Generated: `2026-06-09T22:26:14.098810Z`
 | `targeted_review_mech_316_cross_episode_regularity` | [`2026-05-11_mech_316_discovery_structural_form_kemp_tenenbaum_2008`](targeted_review_mech_316_cross_episode_regularity/entries/2026-05-11_mech_316_discovery_structural_form_kemp_tenenbaum_2008/record.json) | 5 | [`summary`](targeted_review_mech_316_cross_episode_regularity/entries/2026-05-11_mech_316_discovery_structural_form_kemp_tenenbaum_2008/summary.md) |
 | `targeted_review_mech_317_behavioural_pattern_compression` | [`2026-05-11_mech_317_diayn_diversity_skill_discovery_eysenbach_2018`](targeted_review_mech_317_behavioural_pattern_compression/entries/2026-05-11_mech_317_diayn_diversity_skill_discovery_eysenbach_2018/record.json) | 5 | [`summary`](targeted_review_mech_317_behavioural_pattern_compression/entries/2026-05-11_mech_317_diayn_diversity_skill_discovery_eysenbach_2018/summary.md) |
 | `targeted_review_mech_318_rule_state_abstraction` | [`2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019`](targeted_review_mech_318_rule_state_abstraction/entries/2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019/record.json) | 4 | [`summary`](targeted_review_mech_318_rule_state_abstraction/entries/2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019/summary.md) |
+| `targeted_review_mech_329` | [`2026-06-10_mech_329_reward_circuit_ontogeny_opendak2025`](targeted_review_mech_329/entries/2026-06-10_mech_329_reward_circuit_ontogeny_opendak2025/record.json) | 3 | [`summary`](targeted_review_mech_329/entries/2026-06-10_mech_329_reward_circuit_ontogeny_opendak2025/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_medications_sleep_dementia` | [`2026-04-05_mech176_suvorexant_alzheimer_herring2020`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/record.json) | 10 | [`summary`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/summary.md) |
 | `targeted_review_object_files_feature_binding` | [`2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013`](targeted_review_object_files_feature_binding/entries/2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013/record.json) | 11 | [`summary`](targeted_review_object_files_feature_binding/entries/2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013/summary.md) |

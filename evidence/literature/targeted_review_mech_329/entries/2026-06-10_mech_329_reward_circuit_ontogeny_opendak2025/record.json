@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_329",
+  "entry_id": "2026-06-10_mech_329_reward_circuit_ontogeny_opendak2025",
+  "timestamp_utc": "2026-06-10T05:46:13Z",
+  "claim_ids_tested": ["MECH-329"],
+  "source": {
+    "title": "Understanding the development of a functional brain circuit: reward processing as an illustration",
+    "authors": ["Maya Opendak", "Heidi Meyer", "Bridget L. Callaghan", "Lior Abramson", "Shanah Rachel John", "Kevin Bath", "Francis Lee", "Nim Tottenham", "Regina Sullivan"],
+    "year": 2025,
+    "venue": "Translational Psychiatry",
+    "doi": "10.1038/s41398-025-03280-z",
+    "url": "https://www.nature.com/articles/s41398-025-03280-z"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "This developmental reward-circuit review both supports and stresses MECH-329. SUPPORTS: it argues the reward system must be understood through developmental TRANSITIONS, with age-specific circuitry that supports reward learning early -- i.e. functional reward/approach behaviour is operational in infancy before the mature adult circuit is in place, consistent with MECH-329's 'wanting operational early, calibrated evaluation lags' framing. STRESSES (the important half): it directly complicates MECH-329's specifically-MESOLIMBIC-DOPAMINE framing for early infancy. The authors note dopaminergic projections 'exhibit late functional maturation' and are 'likely not functional in supporting learning in the perinatal infant', when reward learning instead relies on locus-coeruleus NOREPINEPHRINE flooding the olfactory bulb. They warn that 'behavioral similarity does not imply circuit continuity' across development. So the ORDERING half of MECH-329 (approach/reward before calibrated hedonic evaluation) is supported, but the MECHANISTIC attribution to mesolimbic dopamine in the earliest window is weakened -- the earliest 'wanting' may be NE-driven, with mesolimbic DA arriving later. Confidence 0.55: high-quality multi-author review, high mapping relevance, but mixed direction and a rodent-perinatal-to-REE transfer step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Mesolimbic dopaminergic projections 'exhibit late functional maturation' and are 'likely not functional in supporting learning in the perinatal infant' -- early reward learning relies on locus-coeruleus norepinephrine, not mesolimbic dopamine. MECH-329's literal mechanism ('mesolimbic dopamine wanting seeds the FIRST anchors') is therefore over-specified for the earliest window: the first approach/seeding signal may be a different neuromodulator, with mesolimbic DA coming online later.",
+    "'Behavioral similarity does not imply circuit continuity' -- infant approach/appetitive behaviour can look adult-like while being driven by different circuitry. Inferring an adult-style mesolimbic-wanting mechanism from early goal-directed BEHAVIOUR (as the Behne and Corbetta entries do) is exactly the inference this review cautions against.",
+    "The strongest mechanistic ontogeny data here are rodent (olfactory-bulb NE, perinatal odor conditioning). Mapping the rodent perinatal reward-learning circuit onto the human-infant 'wanting' MECH-329 invokes both a species and a developmental-window transfer."
+  ],
+  "tags": ["mech_329", "reward_circuit_ontogeny", "mesolimbic_dopamine", "norepinephrine", "developmental_transitions", "circuit_continuity", "wanting_before_liking", "caveat"],
+  "mapping": {
+    "source_claim_statement": "Reward processing must be understood through developmental transitions with age-specific circuitry; in the perinatal/early-infant period mesolimbic dopamine is not yet functional in supporting reward learning, which instead relies on locus-coeruleus norepinephrine, and behavioural similarity across ages does not imply circuit continuity.",
+    "ree_translation": "Supports MECH-329's TEMPORAL ordering (functional reward/approach precedes the mature, calibrated adult circuit) but weakens its MECHANISTIC attribution: MECH-329 names mesolimbic dopamine as the early seeding signal, whereas this review says mesolimbic DA matures late and the earliest approach/reward learning is norepinephrine-driven. The REE consequence is that MECH-329's ordering survives but its 'mesolimbic dopamine' label should be held loosely (or generalised to 'an early approach/incentive neuromodulator') for the earliest seeding window.",
+    "mapping_caveat": "Direction is mixed: the review supports early-reward-before-calibration but contradicts the mesolimbic-dopamine-specific framing for the perinatal window, and its mechanistic ontogeny evidence is largely rodent. It should temper, not confirm, MECH-329's neuromodulatory specificity.",
+    "source_context": "Cross-species developmental review (rodent perinatal reward-learning circuitry plus human developmental reward neuroimaging); Translational Psychiatry."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (nine-author developmental-neuroscience review including Sullivan, Tottenham, Callaghan). High mapping relevance -- it is squarely about the ontogeny of the reward circuit MECH-329 invokes. Confidence held at 0.55 by the mixed direction and the rodent-perinatal-to-human/REE transfer in its strongest mechanistic claims."
+  }
+}
