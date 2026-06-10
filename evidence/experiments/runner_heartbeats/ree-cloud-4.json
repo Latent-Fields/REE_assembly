@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-10T07:29:51Z",
+  "last_tick_utc": "2026-06-10T07:59:59Z",
   "state": "running",
   "current_exq": "V3-EXQ-591b",
   "current_exq_started_utc": "2026-06-10T06:16:18.630751+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / curriculum",
     "runs_done": 2,
     "runs_total": 5,
-    "episodes_done": 0,
+    "episodes_done": 100,
     "episodes_total": 160,
-    "overall_pct": 40.0
+    "overall_pct": 52.5
   },
-  "seconds_elapsed": 4412,
-  "seconds_remaining": 7253,
+  "seconds_elapsed": 6220,
+  "seconds_remaining": 5742,
   "recent_lines": [
     "V3-EXQ-591b readiness: seeds=[42, 43, 44, 45, 46] n_episodes=160 steps=200 threshold=0.9940",
     "Seed 42 Condition curriculum",
@@ -32,7 +32,9 @@
     "[train] curriculum seed=43 ep 150/160 phase=1 h_pos=0.000 z_goal=0.0000",
     "[train] curriculum seed=43 ep 160/160 phase=1 h_pos=1.063 z_goal=0.0000",
     "verdict: PASS",
-    "Seed 44 Condition curriculum"
+    "Seed 44 Condition curriculum",
+    "[train] curriculum seed=44 ep 50/160 phase=0 h_pos=0.056 z_goal=0.0000",
+    "[train] curriculum seed=44 ep 100/160 phase=0 h_pos=0.630 z_goal=0.0000"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
