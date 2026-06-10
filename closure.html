@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-10.5 -->
+<!-- CLOSURE_VERSION: 2026-06-10.6 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1115,7 +1115,7 @@ function renderGraph() {
     id.setAttribute('class', 'node-label');
     id.setAttribute('x', 10);
     id.setAttribute('y', 18);
-    id.textContent = n.id.split(':').pop();
+    id.textContent = n.id;   // trimmed to fit by fitNodeLabel post-pass below
     g.appendChild(id);
 
     const titleText = el('text');
@@ -1185,6 +1185,16 @@ function renderGraph() {
     g.style.cursor = 'pointer';
     svg.appendChild(g);
   }
+
+  // Fit each node id label ("<pipeline>:GAP-N") to the space left of the status
+  // pill now that the <g> elements are mounted (getComputedTextLength needs a
+  // live layout). Pill x = colW - 78 = 172; leave a margin so the abbreviated
+  // label never touches the pill or the drift marker (at colW - 90).
+  const LABEL_MAX_PX = colW - 100;
+  svg.querySelectorAll('.node-label').forEach(lbl => {
+    const nid = lbl.parentNode && lbl.parentNode.getAttribute('data-node-id');
+    if (nid) fitNodeLabel(lbl, nid, LABEL_MAX_PX);
+  });
 
   // #3 clicking the SVG background clears selection
   svg.addEventListener('click', () => {
@@ -1421,6 +1431,28 @@ function highlightCrossEdges(nodeId, on) {
 }
 
 function el(tag) { return document.createElementNS('http://www.w3.org/2000/svg', tag); }
+
+// Node id label = "<pipeline>:GAP-N" so every gap names BOTH the pipeline it
+// belongs to and which gap within that pipeline it is. GAP numbers collide
+// across plans (each plan has a GAP-2, etc.), so the bare suffix is ambiguous.
+// The full id can be wider than the card's top row (left of the status pill),
+// so when it overflows we abbreviate ONLY the pipeline portion with an ellipsis
+// and always keep the ":GAP-x" token intact. Width is measured with the live
+// font metrics via getComputedTextLength (works only once the <g> is mounted in
+// the SVG -- hence this runs as a post-pass after the node loop). The complete
+// id is always available in the node tooltip + the sticky column header.
+function fitNodeLabel(textEl, fullId, maxPx) {
+  textEl.textContent = fullId;
+  if (textEl.getComputedTextLength() <= maxPx) return;
+  const ci = fullId.lastIndexOf(':');
+  const suffix = ci >= 0 ? fullId.slice(ci) : '';   // ":GAP-x"
+  const pipe = ci >= 0 ? fullId.slice(0, ci) : fullId;
+  for (let k = pipe.length - 1; k >= 0; k--) {
+    textEl.textContent = pipe.slice(0, k) + '…' + suffix;
+    if (textEl.getComputedTextLength() <= maxPx) return;
+  }
+  // pathologically long suffix: leave "…:<suffix>" (best effort, never clips the token)
+}
 
 function showTip(ev, n) {
   const tip = document.getElementById('tip');
