@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-06-10.1 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-06-10.2 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -340,7 +340,7 @@
       <div id="affectPanel">
         <div class="iLabel">Affect</div>
 
-        <div class="afSub" id="subNoci">Nociceptive cascade</div>
+        <div class="afSub" id="subNoci">Nociceptive cascade &middot; bars = episode range</div>
         <div class="barRow" id="rowHs"><span class="afLbl">sens</span>
           <div class="barOuter"><div class="barInner" id="afHs" style="width:0%;background:#f87171"></div></div>
           <span class="afVal" id="afHsV">—</span></div>
@@ -1160,6 +1160,17 @@ function pick(s, keys) {
   return null;
 }
 
+function chMin(steps, keys) {
+  let m = Infinity;
+  for (const x of steps) {
+    for (const k of keys) {
+      const v = x[k];
+      if (typeof v === 'number' && isFinite(v) && v < m) m = v;
+    }
+  }
+  return isFinite(m) ? m : 0;
+}
+
 function setBar(barId, valId, rowId, val, scaleMax) {
   const row = document.getElementById(rowId);
   if (val == null) { if (row) row.style.display = 'none'; return false; }
@@ -1170,14 +1181,36 @@ function setBar(barId, valId, rowId, val, scaleMax) {
   return true;
 }
 
+// Min-max (within-episode) bar fill — reveals dynamics of a channel that sits at a
+// high, near-flat baseline (e.g. the suffering accumulator z_harm_a, whose norm is
+// magnitude-dominated). The numeric value still shows the absolute level. Falls back
+// to absolute scaling when the channel is truly flat within the episode.
+function setBarRel(barId, valId, rowId, val, lo, hi) {
+  const row = document.getElementById(rowId);
+  if (val == null) { if (row) row.style.display = 'none'; return false; }
+  if (row) row.style.display = 'flex';
+  const range = hi - lo;
+  let frac;
+  if (range > 1e-4) frac = (val - lo) / range;          // within-episode dynamics
+  else frac = hi > 0 ? Math.min(1, val / hi) : 0;        // flat -> absolute fallback
+  document.getElementById(barId).style.width =
+    (Math.max(0, Math.min(1, frac)) * 100).toFixed(0) + '%';
+  document.getElementById(valId).textContent = val.toFixed(3);
+  return true;
+}
+
 function updateAffect(s, steps) {
-  // Nociceptive cascade (sensory -> unpleasant -> suffering)
-  const hsScale  = chMax(steps, ['z_harm_s', 'z_harm_norm'], 0.3);
-  const hunScale = chMax(steps, ['z_harm_un'], 0.3);
-  const haScale  = chMax(steps, ['z_harm_a'], 0.3);
-  const vSens   = setBar('afHs',  'afHsV',  'rowHs',  pick(s, ['z_harm_s', 'z_harm_norm']), hsScale);
-  const vUnpl   = setBar('afHun', 'afHunV', 'rowHun', pick(s, ['z_harm_un']),               hunScale);
-  const vSuffer = setBar('afHa',  'afHaV',  'rowHa',  pick(s, ['z_harm_a']),                haScale);
+  // Nociceptive cascade (sensory -> unpleasant -> suffering). Bars are min-max
+  // scaled WITHIN the episode so the dynamics show even when a channel (notably the
+  // suffering accumulator z_harm_a) sits at a high, near-flat saturated baseline.
+  // The numeric value is the absolute level.
+  const hsK = ['z_harm_s', 'z_harm_norm'];
+  const vSens   = setBarRel('afHs',  'afHsV',  'rowHs',  pick(s, hsK),
+                            chMin(steps, hsK), chMax(steps, hsK, 0));
+  const vUnpl   = setBarRel('afHun', 'afHunV', 'rowHun', pick(s, ['z_harm_un']),
+                            chMin(steps, ['z_harm_un']), chMax(steps, ['z_harm_un'], 0));
+  const vSuffer = setBarRel('afHa',  'afHaV',  'rowHa',  pick(s, ['z_harm_a']),
+                            chMin(steps, ['z_harm_a']), chMax(steps, ['z_harm_a'], 0));
   document.getElementById('subNoci').style.display = (vSens || vUnpl || vSuffer) ? 'block' : 'none';
 
   // Drive & arousal
