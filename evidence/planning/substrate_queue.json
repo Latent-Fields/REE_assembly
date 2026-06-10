@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "governance-cycle-20260610T1253Z",
-  "last_updated_utc": "2026-06-10T16:22:53Z",
+  "last_updated_utc": "2026-06-10T21:08:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4072,12 +4072,18 @@
           "experiment_type": "v3_exq_654a_arc062_gapb_rule_apprehension_behavioural_falsifier",
           "metric": "crf_frac_active 0.137 < 0.3 maturation floor (rules minted 268/549/220); within-arm rule_state counterfactual 0/3 seeds; committed-class entropy lift OFF 0.9375 -> ON 0.9377 (~0)",
           "target": "matured CRF (frac_active >= 0.3) AND committed-class entropy lift ARM_ON > ARM_OFF on >=2/3 seeds AND non-zero within-arm rule_state counterfactual"
+        },
+        {
+          "run_id": "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T200549Z_v3",
+          "experiment_type": "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "C1c arm_on_rule_field matured crf_frac_active=0.130 < 0.30 floor even at 240ep (P0+P1) maturation window; longer-window confirmation that the CandidateRuleField still does not mature under the matched 649/643a/SD-056/SP-CEM/MECH-341 stack. C2 entropy-lift moot (C1 gates it). substrate_not_ready_requeue.",
+          "target": "crf_frac_active >= 0.30 on a majority of ARM_ON seeds so the GAP-B falsifier can score (committed-class entropy lift, >=2/3 seeds)"
         }
       ],
       "implementation_hint": "Modulatory/secondary score-bias channels (MECH-314 curiosity bonus, MECH-320 vigor no-op penalty) are added to candidate scores at e3.select but are dominated by the primary harm/goal score term, so they never change argmax (604a bias=0.0 even ON, 624a v_t=0.05 both ON==OFF). Give modulatory biases competitive selection authority -- score normalization before bias addition, relative scaling of the bias to the candidate score gap, or a separate arbitration/gating channel -- so an enabled modulatory mechanism can change selection. Mirrors the z_goal-vs-harm salience gap (603e/626a/622) and the monostrategy 'diversity must act at/after E3 scoring' finding. [2026-06-03 update] V3-EXQ-614d adds a THIRD convergent instance: MECH-341's within-class sampling temperature also fires but leaves committed-class entropy invariant. The redesign should UNIFY the committed-action authority fix across all three scoring-layer levers (MECH-314 curiosity, MECH-320 vigor, MECH-341 within-class temperature/stratified-select) -- they share one bottleneck: scoring-layer signals do not reach the committed argmax. Build the arbitration/authority channel once, exercise it with all three. [2026-06-10 AMEND per failure_autopsy_569f-661-654a: a THIRD cluster -- 569f (ARC-065 world-summary spread 0.196), 661 (MECH-294 coherence 1.0/0.25/0.0), 654a (ARC-062/MECH-309 minted rule_state) -- shows upstream-channel cross-candidate RANGE is PRESENT but committed action does not move (selected-action entropy / committed-dist TV / within-arm counterfactual all ~0). Necessary-but-not-sufficient extends one link beyond V3-EXQ-643: range must be ROUTED into the per-candidate modulatory bias the authority rescales, not merely exist in the representation. ADD a P0 readiness gate asserting the modulatory bias itself carries cross-candidate range derived from the channel under test BEFORE scoring any behavioural falsifier. 654a additionally needs re-queue at a longer CRF maturation budget (frac_active 0.137<0.3). xref MECH-341.]",
       "priority": 1,
       "added_session": "governance-cycle-20260603T063324Z",
-      "last_seen_session": "governance-cycle-20260610T1253Z",
+      "last_seen_session": "governance-cycle-20260610-2104",
       "depends_on_resolved_note": "ARC-065 (same E3.select arbitration layer) coordination gate CLEARED 2026-06-03: the MECH-341 E3-diversity validation the gate was waiting on landed (V3-EXQ-614d, diagnostic) and confirms MECH-341's within-class-temperature lever shares this exact committed-action-authority gap -- so they are addressed together, not serialized. MECH-341 substrate already implemented 2026-05-27; SD-056 landed + falsifiers passed (569d/617).",
       "implementation_log": [
         {
