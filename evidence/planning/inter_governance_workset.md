@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-10T06:52:32Z`
+Generated: `2026-06-10T06:56:39Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -849,7 +849,7 @@ Instructions:
 
 </details>
 
-### IGW-20260610-057 -- Proposal EXP-0120 (MECH-316)
+### IGW-20260610-057 -- Proposal EXP-0128 (MECH-172)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -858,10 +858,10 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260610-057
-Title: Proposal EXP-0120 (MECH-316)
+Title: Proposal EXP-0128 (MECH-172)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-316
+Claims: MECH-172
 Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
@@ -871,7 +871,7 @@ Instructions:
 
 </details>
 
-### IGW-20260610-058 -- Proposal EXP-0121 (MECH-317)
+### IGW-20260610-058 -- Proposal EXP-0130 (MECH-275)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -880,10 +880,10 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260610-058
-Title: Proposal EXP-0121 (MECH-317)
+Title: Proposal EXP-0130 (MECH-275)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-317
+Claims: MECH-275
 Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
@@ -893,20 +893,20 @@ Instructions:
 
 </details>
 
-### IGW-20260610-059 -- Proposal EXP-0126 (MECH-CBBL-PROPOSED)
+### IGW-20260610-059 -- Proposal EXP-0133 (INV-055)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
-- **Why now:** lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+- **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260610-059
-Title: Proposal EXP-0126 (MECH-CBBL-PROPOSED)
+Title: Proposal EXP-0133 (INV-055)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-CBBL-PROPOSED
-Why now: lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
+Claims: INV-055
+Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -915,7 +915,7 @@ Instructions:
 
 </details>
 
-### IGW-20260610-060 -- Proposal EXP-0128 (MECH-172)
+### IGW-20260610-060 -- Proposal EXP-0135 (MECH-121)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -924,10 +924,10 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260610-060
-Title: Proposal EXP-0128 (MECH-172)
+Title: Proposal EXP-0135 (MECH-121)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: MECH-172
+Claims: MECH-121
 Why now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
 
 Instructions:

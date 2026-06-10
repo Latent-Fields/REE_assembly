@@ -656,6 +656,20 @@ def _proposed_experiments(
         substrate_conditional (e.g. MECH-362 / Q-057 happen to be both).
       * the claim already shows genuine experimental evidence in
         claim_evidence.v1.json (proposal effectively executed but not marked).
+      * the claim_id is NOT registered in claims.yaml at all (a placeholder /
+        proposed-but-unregistered id like MECH-CBBL-PROPOSED). You cannot queue
+        a /queue-experiment run tagging a claim that does not exist; surfacing it
+        as a ready experiment item is a pure false-positive. (FM5, 2026-06-10.)
+      * the claim is substrate-blocked: some unresolved substrate_queue entry
+        lists it in unblocks_claims (same _retest_blockers walk the retest lane
+        uses). The retest lane already respects this; the proposal lane silently
+        did not, so v3_pending claims whose substrate is built=false (e.g.
+        MECH-316 / MECH-317, gated by ARC-064 ready=false + their own ready=false
+        entries) surfaced as ready and self-routed to a blocked_substrate STOP on
+        queue. This is the substrate-readiness gate, NOT a blanket v3_pending
+        filter -- a v3_pending claim whose substrate_queue entry is ready=true
+        (e.g. MECH-333 via test_bed_enrichment_crystallization_necessity) is
+        correctly KEPT. (FM6, 2026-06-10.)
 
     Also deduplicates by proposal_id (the proposals file carries duplicate IDs --
     two EXP-0085, two EXP-0087, etc.), keeping the first occurrence.
@@ -668,6 +682,7 @@ def _proposed_experiments(
         return []
     claims_meta = claims_meta if claims_meta is not None else _load_claims_meta()
     exp_evidence = exp_evidence if exp_evidence is not None else _claims_with_experimental_evidence()
+    substrate_by_id = _substrate_by_id()
     out: list[dict] = []
     seen_ids: set[str] = set()
     for p in data.get("items") or []:
@@ -679,6 +694,8 @@ def _proposed_experiments(
         if pid:
             seen_ids.add(pid)
         cid = str(p.get("claim_id") or "")
+        if cid not in claims_meta:  # FM5: unregistered / placeholder claim id
+            continue
         meta = claims_meta.get(cid) or {}
         if (meta.get("status") or "").strip().lower() in _CLAIM_DEAD_STATUSES:
             continue
@@ -687,6 +704,8 @@ def _proposed_experiments(
         if _is_deferred_beyond_v3(meta):
             continue
         if cid in exp_evidence:
+            continue
+        if _retest_blockers(cid, substrate_by_id)[0]:  # FM6: substrate-blocked
             continue
         out.append(p)
     return out[:15]
