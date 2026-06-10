@@ -3895,11 +3895,11 @@
     - docs/architecture/valenced_hippocampal_map.md
 - id: MECH-073
   evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-375 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (line 240 + line 300 for grad-enabled compute_event_contrastive_loss); training-time substrate-tick rate was 2x; eval (P2) was clean. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation."
-  title: "Valence is intrinsic to hippocampal map geometry, not applied downstream — conflict with ARC-007, pending adjudication."
+  title: "Valence is intrinsic to hippocampal map geometry, not applied downstream (ARC-007 reconciled via Q-020 Resolution A; provisional 2026-06-10)."
   claim_type: mechanism_hypothesis
   subject: hippocampal.intrinsic_map_valence
   polarity: asserts
-  status: candidate
+  status: provisional
   evidence_quality_note: >
     Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.689,
     conflict_ratio=1, 0 exp entries, 5 lit entries. Literature-only conflict: 2 supports,
@@ -3909,12 +3909,30 @@
     evidence: VALENCE_GEOM AUROC=0.982/0.923 in 2/3 seeds, VALENCE_ABLATED all at chance
     (0.5). Consistent with Resolution A (MECH-073 co-true with ARC-007). Full EXQ-375
     run is high priority for definitive discrimination.
+    Governance 2026-06-10: PROMOTED candidate -> provisional. EXQ-375 ran to completion 3/3 PASS
+    (the "definitive discrimination" the 2026-04-13 note flagged as high priority): VALENCE_GEOM
+    probe-AUROC discriminates harm/safety from hippocampal map geometry, VALENCE_ABLATED at chance;
+    genuine_exp_direction_counts = 3 supports / 0 weakens / 0 mixed; experimental_confidence 0.757 >
+    0.62 candidate->provisional bar. The prior hold_candidate_resolve_conflict was driven by a
+    LITERATURE-ONLY direction conflict (2 weakens / 1 mixed: Knudsen 2021, Gauthier 2018, Bittner 2017)
+    classified pre-Q-020. Q-020 Resolution A (2026-03-16) reconciled MECH-073 with ARC-007 (co-true;
+    MECH-073 reframed as a consequence of ARC-013 applied to z_world), and under Phase-3 lit/exp
+    decoupling the literature signal is a parallel signal that does not gate promotion (experimental_confidence
+    does). So the experimental gate is met and the residual conflict is non-blocking. NOT promoted to
+    stable: needs exp_conf >= 0.80; the multi_sense_audit 2x substrate-tick caveat + a StepHarness
+    re-run remain the path to stable. Optional follow-up: re-adjudicate the 3 pre-Q-020 literature
+    entries (weakens/mixed -> supports under Resolution A), which would raise lit_conf but does not
+    affect this promotion.
   conflict_with:
     - ARC-007
   conflict_note: |
     ARC-007 design constraint: "No value computation. Its function is orthogonal to valuation
     and control." MECH-073 asserts valence is intrinsic to hippocampal map geometry and that
-    rollouts are inherently valenced simulations. Direct contradiction. Pending Q-020.
+    rollouts are inherently valenced simulations. RESOLVED by Q-020 Resolution A (2026-03-16):
+    co-true -- MECH-073 reframed as a consequence of ARC-013 applied to z_world (valence shapes the
+    geometry that the value-flat hippocampal proposer navigates), ARC-007 STRICT preserved (no
+    hippocampal value computation). No longer a blocking conflict; ARC-007 retained in depends_on as
+    the reconciled cross-reference.
   depends_on:
     - ARC-007
     - ARC-013
