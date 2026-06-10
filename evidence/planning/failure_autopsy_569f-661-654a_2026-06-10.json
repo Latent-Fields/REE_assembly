@@ -1,0 +1,172 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-10T05:35:39Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier_20260610T001255Z_v3",
+      "queue_id": "V3-EXQ-569f",
+      "experiment_purpose": "evidence",
+      "claim_ids": ["ARC-065"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "Readiness ALL MET (arm1 consumed-summary spread=0.196 > floor 0.05; e2.world_forward prediction spread met; bounded). C1 (arm1 e2_world_forward divergent) PASS. C_R1B (selected-action entropy strictly above BOTH matched-noise control and proposer baseline) FAIL: selected_action_entropy bit-identical 0.549141 across ARM_0_PROPOSER / ARM_1_E2WF / ARM_2_MATCHED_NOISE; trajectory_class_count bit-identical 2.966969. r1b_arm1_seeds_strict_above_both=0/3.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- ARC-065's diversity pathway (SP-CEM, landed as main-path default) demonstrably produces upstream per-candidate range (spread 0.196, C1 PASS). The FAIL does not test ARC-065's existence claim; it tests whether that diversity reaches committed action, and the readout washes it out.",
+        "biological_reference": "clear -- BG-like / cortico-striatal selection gate applies DA-modulated gain/contrast to convert representational differences into discrete choice; the failure matches a selection gate with insufficient gain/routing, a known biological dependency, not a missing diversity source.",
+        "prerequisites": "present upstream (diversity generated) but the routing from consumed cand_world_summaries into the E3 selection authority is the unmet dependency.",
+        "implementation": "partial -- consumed summaries are computed but the consumption SOURCE does not change committed action at all (bit-identical to proposer baseline): the channel is decorative at the commit layer.",
+        "environment": "adequate -- matched-entropy noise control and proposer baseline are present; this is not an env-sparsity artefact.",
+        "measurement": "adequate -- the matched-entropy falsifier is a well-designed discrimination test; the bit-identity is a clean negative result.",
+        "integration": "isolated -- the upstream diversity channel is not coupled to the committed-action readout.",
+        "scale": "not the dominant factor -- bit-identity (not near-miss) argues against pure budget/scale insufficiency."
+      },
+      "biological_reference": {
+        "closest_mechanism": "cortico-basal-ganglia-thalamic action selection with DA-modulated striatal gain/contrast",
+        "dependencies": ["per-candidate representational range", "selection-authority gain coupling that routes that range into choice"],
+        "is_formal_import": false,
+        "divergence": "REE has the diversity source but the gain/routing that converts range into committed action is under-expressed; biology supports the mechanism class.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-569f reclassified weakens -> non_contributory (substrate-ceiling at the E3 committed-action readout). Readiness fully met (consumed world-summary spread=0.196 > floor) and C1 (e2.world_forward divergent) PASSED, so the upstream per-candidate diversity ARC-065 asserts is demonstrably present. The discrimination criterion C_R1B failed because selected-action entropy is bit-identical (0.549141) across the e2wf, proposer, and matched-noise arms -- a readout washout, not a fair falsification of ARC-065. The diversity does not reach committed action because the E3 selection-authority coupling does not route the consumed-summary range into choice. Pending retest after the modulatory-bias-selection-authority substrate amend (route upstream-channel range into the modulatory bias). Member of the 569f/661/654a E3-commit-readout cluster.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "sd_id_suggested": "modulatory-bias-selection-authority",
+        "title": "Route upstream-channel cross-candidate range into the E3 modulatory bias the selection authority rescales",
+        "implementation_hint": "V3-EXQ-643 established the authority cannot act without cross-candidate range (range < 1e-6 -> scale_factor 0). 569f/661/654a now show that range PRESENT in upstream representational channels (world-summary spread 0.196; coherence 1.0/0.25/0.0; minted rule_state) still does not move committed action: the channel range is not routed into the modulatory bias term the authority rescales. Necessary-but-not-sufficient extends one link: upstream-channel range must be ROUTED into the per-candidate modulatory bias, not merely exist in the representation. Add a P0 readiness gate asserting the modulatory bias itself carries cross-candidate range derived from the channel under test before scoring any behavioural falsifier.",
+        "unblocks_claims": ["ARC-065", "MECH-294", "ARC-062", "MECH-309"],
+        "depends_on_unresolved": ["modulatory-bias-selection-authority (implemented but coupling under-expressed)", "MECH-341 (E3 score diversity preservation retune)", "per-candidate modulatory differentiation (643 successor)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier_20260610T001255Z_v3",
+          "experiment_type": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier",
+          "metric": "selected-action entropy bit-identical 0.549141 across e2wf / proposer / matched-noise arms despite consumed-summary spread 0.196 (readiness met, C1 PASS)",
+          "target": "ARM_1 (e2wf) selected-action entropy strictly above BOTH matched-noise and proposer baselines on >=2/3 seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "ARC-065's diversity pathway produces real upstream per-candidate range (spread 0.196, C1 PASS) -- this is positive evidence the diversity source exists, even though the FAIL is on whether it reaches behaviour.",
+        "Bit-identity of the behavioural readout across the manipulated source AND the proposer baseline is the signature of a decorative channel (computed but not coupled to commit), distinct from a weak-but-present coupling."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_661_mech294_compose_coherence_behavioural_readiness_20260610T002349Z_v3",
+      "queue_id": "V3-EXQ-661",
+      "experiment_purpose": "diagnostic",
+      "claim_ids": ["MECH-294"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "Readiness ALL MET (R0 joint CEM first-action diversity >=2; R1 compose fired 7-9 calls; R2 coherence mode distinct joint 1.0 vs shuffled 0.0). criteria_non_degenerate C1/C2/C3 all true. C1 (joint vs alternation committed dist), C2 (joint vs shuffled), C3 (coherence gating load-bearing: alt gate-ON vs gate-OFF) all FAIL: committed-dist TV by seed = {0.0, 0.009721, 0.0} for all three criteria. coherence_by_arm cleanly distinct (JOINT 1.0 / ALT 0.25 / SHUF 0.0 / ALT_COH_OFF 0.25) but does not translate to committed action.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-294 theta-gamma co-binding coherence is demonstrably mode-distinct upstream (coherence cleanly separates joint/alt/shuffled); the FAIL is that the co-binding does not reach the committed-action readout, not that coherence is absent.",
+        "biological_reference": "clear -- theta-gamma multiplexing routing content streams; the failure matches a binding signal that is computed but whose downstream read-into-action gate is under-coupled.",
+        "prerequisites": "present (coherence computed mode-dependently); the missing dependency is the coupling of the coherence gate into committed selection.",
+        "implementation": "partial -- C3 shows alternation with the coherence gate ON behaves identically to gate-OFF, so any mode discrimination is carried by mere packet presence / the action-only path, not the co-binding coherence gating.",
+        "environment": "adequate.",
+        "measurement": "adequate -- committed-distribution TV with a gate-ON/gate-OFF corroboration arm is a clean discrimination design.",
+        "integration": "isolated -- coherence gating not coupled to commit.",
+        "scale": "near-zero TV (one seed 0.0097) leaves a vanishing residual; not the dominant factor."
+      },
+      "biological_reference": {
+        "closest_mechanism": "theta-gamma multiplexing / co-temporal binding read into action selection",
+        "dependencies": ["mode-distinct coherence (present)", "a gate that reads co-binding into committed selection"],
+        "is_formal_import": false,
+        "divergence": "coherence binding exists; the read-into-action coupling is under-expressed.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-661 (diagnostic, non_contributory). Readiness fully met (R0/R1/R2; coherence cleanly mode-distinct: JOINT 1.0 / ALT 0.25 / SHUF 0.0) and criteria non-degenerate, but committed-distribution TV is ~0 across C1/C2/C3 (max 0.0097). C3 specifically shows the coherence gate ON behaves like gate-OFF, so co-binding coherence is not load-bearing at the committed-action readout. Do NOT queue the MECH-294 behavioural-evidence successor on the joint-specificity reading. Member of the 569f/661/654a E3-commit-readout cluster: the binding signal is present upstream but the E3 selection-authority coupling does not route it into choice. Pending retest after the modulatory-bias-selection-authority substrate amend.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "sd_id_suggested": "modulatory-bias-selection-authority",
+        "title": "(see 569f entry) -- shared cluster amend",
+        "implementation_hint": "Coherence channel instance of the cluster: mode-distinct coherence (1.0/0.25/0.0) present but not routed into the modulatory bias the authority rescales.",
+        "unblocks_claims": ["MECH-294"],
+        "depends_on_unresolved": ["modulatory-bias-selection-authority", "MECH-341"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_661_mech294_compose_coherence_behavioural_readiness_20260610T002349Z_v3",
+          "experiment_type": "v3_exq_661_mech294_compose_coherence_behavioural_readiness",
+          "metric": "committed-distribution TV ~0 (max 0.0097) across C1/C2/C3 despite coherence mode-distinct JOINT 1.0 / ALT 0.25 / SHUF 0.0; C3 gate-ON == gate-OFF",
+          "target": "committed-distribution TV above threshold for joint vs alternation AND joint vs shuffled AND coherence gate-ON vs gate-OFF on >=2/3 seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Theta-gamma co-binding coherence is cleanly mode-distinct upstream (positive evidence the binding substrate works) but does not reach committed action -- same E3-readout washout as the diversity channel.",
+        "C3 (gate-ON vs gate-OFF identical) isolates the coherence GATE specifically as the non-load-bearing element at the commit layer."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_654a_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T004025Z_v3",
+      "queue_id": "V3-EXQ-654a",
+      "experiment_purpose": "evidence",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Self-routed substrate_not_ready_requeue. C1 (substrate exercisable + manipulation live) FAIL via C1c (arm_on_rule_field_differentiated_and_matured): crf_frac_active=0.137 < 0.3 floor (0/3 ON seeds matured) even though rules WERE minted (crf_n_minted_total 268/549/220). C1d propagation non-vacuity 'met' between-arm (bias diff 0.037 > 0.001) BUT the cleaner within-arm counterfactual C1d_n_on_within_arm_counterfactual_nonzero=0 (zeroing rule_state changed bias on 0 seeds). C2 (primary committed-class entropy lift ARM_ON > ARM_OFF) FAIL: OFF mean 0.937516 vs ON mean 0.937663 (~0 lift), seeds split. evidence_direction non_contributory for both claims.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- ARC-062/MECH-309 already carry epistemic_category=substrate_ceiling; the FAIL does not demote. Self-route substrate_not_ready_requeue is honest about the proximate blocker.",
+        "biological_reference": "clear -- rule-apprehension layer; rules are minted but rarely fire (frac_active 0.137) and when present do not change the bias, matching an under-matured / under-coupled selection gate.",
+        "prerequisites": "missing/immature -- CandidateRuleField did not mature to the 0.3 firing floor under this budget; AND, at the deeper layer, even minted rule_state shows zero within-arm counterfactual on committed action.",
+        "implementation": "partial -- rule minting works (268-549 rules) but firing rate and read-into-bias coupling are under-expressed.",
+        "environment": "adequate.",
+        "measurement": "adequate -- the C1c maturation precondition and the within-arm counterfactual are well-designed gates that correctly prevented scoring the falsifier on an unready substrate.",
+        "integration": "isolated -- rule_state -> bias -> committed action coupling washed out (within-arm counterfactual 0).",
+        "scale": "likely insufficient maturation budget for CRF firing; re-queue at longer maturation is the proximate route."
+      },
+      "biological_reference": {
+        "closest_mechanism": "PFC top-down rule representation read into cortico-striatal action selection",
+        "dependencies": ["matured/persistent rule field that fires (present-but-below-floor)", "rule_state -> selection coupling (washed out)"],
+        "is_formal_import": false,
+        "divergence": "rule field exists and mints; biology supports the mechanism; gap is maturation budget + the same read-into-action coupling as the cluster.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654a (evidence, non_contributory for ARC-062 + MECH-309; both already epistemic_category=substrate_ceiling so no demotion). Self-routes substrate_not_ready_requeue: C1c CandidateRuleField maturation precondition unmet (crf_frac_active=0.137 < 0.3 floor; 0/3 ON seeds matured) even though rules were minted (268/549/220). Proximate route: re-queue at a longer CRF maturation budget. Deeper-layer corroboration of the 569f/661/654a E3-commit-readout cluster: the within-arm rule_state counterfactual = 0 on every seed and committed-class entropy lift ~0 (OFF 0.9375 -> ON 0.9377), so even the minted rule_state does not reach committed action. If a matured-and-firing field STILL shows within-arm counterfactual 0 on re-queue, that promotes 654a to a full cluster member and confirms the selection-authority coupling, not maturation, is the ceiling.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "sd_id_suggested": "modulatory-bias-selection-authority",
+        "title": "(see 569f entry) -- shared cluster amend; ALSO re-queue 654a at longer CRF maturation budget",
+        "implementation_hint": "Rule-field channel instance: rules minted (268-549) but fire on only 13.7% of ticks (below 0.3) and within-arm counterfactual=0. Two-part: (1) re-queue 654a (new letter) at a longer CRF maturation budget so frac_active clears 0.3 before scoring; (2) the within-arm counterfactual=0 corroborates the cluster's read-into-action coupling gap.",
+        "unblocks_claims": ["ARC-062", "MECH-309"],
+        "depends_on_unresolved": ["CandidateRuleField maturation budget", "modulatory-bias-selection-authority", "MECH-341"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_654a_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T004025Z_v3",
+          "experiment_type": "v3_exq_654a_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "crf_frac_active 0.137 < 0.3 maturation floor (rules minted 268/549/220); within-arm rule_state counterfactual 0/3 seeds; committed-class entropy lift OFF 0.9375 -> ON 0.9377 (~0)",
+          "target": "matured CRF (frac_active >= 0.3) AND committed-class entropy lift ARM_ON > ARM_OFF on >=2/3 seeds AND non-zero within-arm rule_state counterfactual"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Rule minting (268-549 rules) is NOT the blocker; rule FIRING (frac_active 0.137 < 0.3) and rule-read-into-bias coupling (within-arm counterfactual 0) are.",
+        "A C1c maturation precondition correctly prevented a substrate_not_ready FAIL from scoring as a falsifier against ARC-062/MECH-309 -- the precondition-gate pattern working as designed (contrast with V3-EXQ-642).",
+        "654a sits at the intersection of two valid routes: its own substrate_not_ready_requeue (maturation) AND cluster membership (read-into-action coupling); the re-queue should instrument the within-arm counterfactual to disambiguate."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Across three structurally-independent upstream channels (world-summary diversity ARC-065; theta co-binding coherence MECH-294; candidate rule-field ARC-062/MECH-309), a real and measured cross-candidate distinction does NOT reach the committed-action distribution. The behavioural readout is invariant (bit-identical entropy / TV~0 / within-arm counterfactual 0) to the manipulated channel.",
+    "is_independent_bugs": false,
+    "structural_property": "The V3 E3 committed-action / selection-authority coupling is invariant to per-candidate upstream substrate distinctions. Range present in the representational channel is necessary-but-not-sufficient (extends the V3-EXQ-643 'no range -> no authority' result one link): the channel range must be ROUTED into the modulatory bias the selection authority rescales, not merely exist in the representation.",
+    "readings": ["substrate_enrichment", "test_design_ceiling"],
+    "reading_adjudication": "substrate_enrichment favoured: bit-identity (569f) and within-arm counterfactual 0 (654a) are too clean for a weak-but-present coupling that more budget would surface. Test-design/budget reading retained only for 654a's proximate CRF-maturation route (re-queue at longer maturation).",
+    "predecessor": "V3-EXQ-643 (failure_autopsy_V3-EXQ-643_2026-06-06): authority never fired because cross-candidate range absent. This cluster: range present, still no behavioural conversion.",
+    "precedent": "evidence/planning/2026-05-03_substrate_ceiling_cross_claim_pattern.md (same shape: negative-control/readiness passes, every discrimination criterion fails; two readings enrichment vs test-design).",
+    "recommended_cluster_routing": "Amend modulatory-bias-selection-authority substrate_queue entry with all three failure records; extend its necessary-but-not-sufficient note (route upstream-channel range into the modulatory bias). Cross-reference MECH-341 (E3 score diversity preservation). No claim demotions. Reclassify only 569f weakens -> non_contributory (the one demotion risk; ARC-062/MECH-309/MECH-294 already protected). All three pending_retest_after_substrate."
+  }
+}
