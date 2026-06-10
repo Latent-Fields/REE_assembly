@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-06-10T17:19:25Z
+Generated: 2026-06-10T18:44:27Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -26,13 +26,9 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | partial | V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e). Governance folded into claims.yaml 2026-06-10 (MECH-341 supports, v3_pending HELD). Predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS | case_3_self_tag |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | in-progress | V3-EXQ-603k (Stage-H harm-pathway training; queued 2026-06-09; owns the PRIMARY nav/survival-competence leg this node waits on). Predecessors absorbed: V3-EXQ-603i TERMINAL FAIL 2026-06-08 (non_contributory substrate_ceiling, autopsied + applied /governance 2026-06-09T04:30Z) surfaced two co-equal substrate gaps -- PRIMARY nav/survival-competence ceiling (-> 603k) + SECONDARY safety-half starvation, the latter now closed at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (safety-half trained-signal; safety_signal 0.89; claim_ids=[]). Prior 603a/b/c/f/g/h lineage non_contributory substrate-ceiling | manifest_evidence_direction=non_contributory |
 
-## Stale since last update -- review (1)
+## Stale since last update -- review (0)
 
-Non-terminal nodes (including ones Suppressed above) where newer evidence landed that the node frontmatter may not have absorbed: a later-lettered owner_exq sibling reached terminal state (lineage advanced), and / or a confirmed failure_autopsy touching the node's `unblocks_claims` is dated after the node's `last_updated`. Review each: update owner_exq / status / resume_condition and bump `last_updated`, or (if the new evidence genuinely does not change the node) bump `last_updated` to acknowledge it. Not counted as drift.
-
-| plan | node | status | owner_exq | node last_updated | why |
-|------|------|--------|-----------|-------------------|-----|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | in-progress | V3-EXQ-603k (Stage-H harm-pathway training; queued 2026-0... | 2026-06-10 | owner_exq pins V3-EXQ-603k but later sibling V3-EXQ-603m has terminal evidence (manifest `v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3.json`) |
+_None._
 
 ## Plans missing `closure_plan.last_updated` (0)
 

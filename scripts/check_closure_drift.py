@@ -221,6 +221,74 @@ CONFIRMED_AUTOPSY_STATUSES = {"confirmed", "complete", "completed"}
 _AUTOPSY_NAME_RE = re.compile(r"failure_autopsy_V3-EXQ-(\d+)([a-z]?)_(\d{4}-\d{2}-\d{2})", re.IGNORECASE)
 _MANIFEST_NAME_RE = re.compile(r"v3_exq_(\d+)([a-z]?)_", re.IGNORECASE)
 
+# A run_id / manifest / dir name is `v3_exq_<num><letter>_<descriptive...>` with an
+# optional trailing `_<YYYYMMDDTHHMMSSZ>_v3`. The *lineage stem* is the first
+# underscore-delimited token of the descriptive part -- the claim/SD/script family
+# the experiment belongs to (e.g. `sd049`, `stageh`, `escape`, `scaffolded`). This
+# is the signal that distinguishes genuine same-lineage successors (which share a
+# stem) from unrelated experiments that merely share an EXQ *number* stem with
+# letter suffixes. See `lineage_advanced` for why a number stem alone is unsafe.
+_EXQ_PREFIX_RE = re.compile(r"^v3_exq_\d+[a-z]?_", re.IGNORECASE)
+_RUNID_TS_SUFFIX_RE = re.compile(r"_\d{8}T\d{6}Z(?:_v3)?$", re.IGNORECASE)
+_RUNID_EXQ_RE = re.compile(r"^v3_exq_(\d+)([a-z]?)_", re.IGNORECASE)
+
+
+def _descriptive_root(name: str) -> str | None:
+    """Strip the `v3_exq_<num><letter>_` prefix, file extension, and trailing
+    `_<timestamp>_v3` from a manifest filename / dir name / run_id, leaving the
+    descriptive body. None if `name` doesn't look like a V3 experiment name."""
+    if not isinstance(name, str):
+        return None
+    s = re.sub(r"\.(json|md)$", "", name, flags=re.IGNORECASE)
+    s = _RUNID_TS_SUFFIX_RE.sub("", s)
+    s = re.sub(r"_v3$", "", s, flags=re.IGNORECASE)
+    m = _EXQ_PREFIX_RE.match(s)
+    if not m:
+        return None
+    body = s[m.end():]
+    return body or None
+
+
+def _lineage_stem(name: str) -> str | None:
+    """Leading claim/SD/script token of a V3 experiment name's descriptive root.
+
+    `v3_exq_514l_sd049_phase3_..._v3` -> `sd049`;
+    `v3_exq_603k_stageh_harm_pathway_readiness` -> `stageh`. None when no root.
+    """
+    root = _descriptive_root(name)
+    if not root:
+        return None
+    return root.split("_", 1)[0].lower()
+
+
+def _autopsy_lineage_stem(path: Path, num: int, letter: str) -> str | None:
+    """Lineage stem for an autopsy artifact. The autopsy *filename* carries no
+    descriptive root, so read `targets[].run_id` -- prefer the target whose
+    embedded EXQ number+letter matches this autopsy, else fall back to the first
+    target with a parseable run_id. None if unreadable / no usable run_id."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    targets = data.get("targets") if isinstance(data, dict) else None
+    if not isinstance(targets, list):
+        return None
+    fallback: str | None = None
+    for t in targets:
+        if not isinstance(t, dict):
+            continue
+        rid = t.get("run_id")
+        if not isinstance(rid, str):
+            continue
+        mm = _RUNID_EXQ_RE.match(rid)
+        if not mm:
+            continue
+        if fallback is None:
+            fallback = _lineage_stem(rid)
+        if int(mm.group(1)) == num and mm.group(2).lower() == letter:
+            return _lineage_stem(rid)
+    return fallback
+
 
 def _to_date(value):
     """Coerce a YAML date/datetime or ISO/YYYY-MM-DD string to a date. None on failure."""
@@ -248,33 +316,41 @@ def _exq_num_letter(exq_id: str):
     return int(mm.group(1)), mm.group(2)
 
 
-def collect_terminal_lineage() -> dict[int, list[tuple[str, str]]]:
-    """Map EXQ number -> [(letter, signal_str)] for every terminal manifest / autopsy.
+def collect_terminal_lineage() -> dict[int, list[tuple[str, str | None, str]]]:
+    """Map EXQ number -> [(letter, lineage_stem, signal_str)] for every terminal
+    manifest / autopsy.
 
     Used to detect when a node's owner_exq pins an earlier lineage letter than
-    the latest letter that has actually produced terminal evidence.
+    the latest letter that has actually produced terminal evidence. The
+    `lineage_stem` (claim/SD/script family token, None when underivable) lets
+    `lineage_advanced` reject later letters that merely share the EXQ *number*
+    stem but belong to a different experiment family.
     """
-    fam: dict[int, list[tuple[str, str]]] = {}
+    fam: dict[int, list[tuple[str, str | None, str]]] = {}
 
-    def add(num: int, letter: str, signal: str) -> None:
-        fam.setdefault(num, []).append((letter, signal))
+    def add(num: int, letter: str, stem: str | None, signal: str) -> None:
+        fam.setdefault(num, []).append((letter, stem, signal))
 
     if EXPERIMENTS_DIR.exists():
         for p in EXPERIMENTS_DIR.glob("v3_exq_*_v3.json"):
             mm = _MANIFEST_NAME_RE.match(p.name)
             if mm:
-                add(int(mm.group(1)), mm.group(2).lower(), f"manifest `{p.name}`")
+                add(int(mm.group(1)), mm.group(2).lower(), _lineage_stem(p.name),
+                    f"manifest `{p.name}`")
         # run-pack dirs (manifest may be runs/<id>/manifest.json, not *_v3.json)
         for d in EXPERIMENTS_DIR.glob("v3_exq_*"):
             if d.is_dir():
                 mm = _MANIFEST_NAME_RE.match(d.name)
                 if mm:
-                    add(int(mm.group(1)), mm.group(2).lower(), f"manifest dir `{d.name}`")
+                    add(int(mm.group(1)), mm.group(2).lower(), _lineage_stem(d.name),
+                        f"manifest dir `{d.name}`")
     if PLANNING_DIR.exists():
         for p in PLANNING_DIR.glob("failure_autopsy_V3-EXQ-*_*.json"):
             mm = _AUTOPSY_NAME_RE.match(p.name)
             if mm:
-                add(int(mm.group(1)), mm.group(2).lower(), f"autopsy `{p.name}`")
+                num, letter = int(mm.group(1)), mm.group(2).lower()
+                add(num, letter, _autopsy_lineage_stem(p, num, letter),
+                    f"autopsy `{p.name}`")
     return fam
 
 
@@ -305,19 +381,65 @@ def collect_confirmed_autopsies() -> list[dict]:
     return out
 
 
-def lineage_advanced(owner_exq: str, fam: dict[int, list[tuple[str, str]]]) -> str | None:
-    """If a later-lettered sibling of owner_exq has terminal evidence, describe it."""
+def lineage_advanced(
+    owner_exq: str, fam: dict[int, list[tuple[str, str | None, str]]]
+) -> str | None:
+    """If a later-lettered sibling *of the same experiment lineage* as owner_exq
+    has terminal evidence, describe it.
+
+    A later EXQ *letter* under the same *number* is NOT sufficient: distinct,
+    unrelated experiment families routinely share a number stem with letter
+    suffixes (confirmed case: V3-EXQ-603k is the behavioral_diversity:GAP-C
+    harm-pathway leg `stageh_harm_pathway_readiness`, while V3-EXQ-603m is the
+    goal_pipeline:GAP-2 `scaffolded_sd054_full_curriculum_readiness` experiment
+    -- they only both start with "603"). Keying on the number alone re-flagged
+    GAP-C as lineage-advanced every governance cycle, desensitising the operator
+    to the very "Stale since last update" signal that exists to catch the real
+    goal_pipeline:GAP-2 miss (2026-06-03).
+
+    Fix: a successor counts only if its lineage stem (the claim/SD/script family
+    token) matches owner_exq's own lineage stem. We derive owner_exq's stem from
+    its OWN terminal evidence. When owner_exq has no terminal evidence to derive
+    a stem from (e.g. interrupted / never landed -- exactly the 514g profile of
+    the 2026-06-03 goal_pipeline miss, where owner_exq pinned a stalled letter
+    while later same-lineage letters landed), we cannot disambiguate, so we fall
+    back to the prior number-only behaviour and keep all later-lettered siblings
+    as candidates. That conservative fallback preserves the true-positive signal;
+    the stem check only ever *removes* the false positives where owner_exq's own
+    family is known and differs.
+    """
     nl = _exq_num_letter(owner_exq)
     if nl is None:
         return None
     num, letter = nl
-    successors = [(lt, sig) for (lt, sig) in fam.get(num, []) if lt > letter]
+    entries = fam.get(num, [])
+
+    # owner_exq's own lineage stem, from its own terminal evidence (if any).
+    owner_stem: str | None = None
+    for (lt, stem, _sig) in entries:
+        if lt == letter and stem:
+            owner_stem = stem
+            break
+
+    successors = [(lt, stem, sig) for (lt, stem, sig) in entries if lt > letter]
     if not successors:
         return None
-    best_letter, best_sig = max(successors, key=lambda t: t[0])
+
+    if owner_stem is not None:
+        genuine = [(lt, stem, sig) for (lt, stem, sig) in successors if stem == owner_stem]
+        lineage_note = ""
+    else:
+        # Cannot confirm lineage from owner_exq's own evidence -- be conservative.
+        genuine = successors
+        lineage_note = " (lineage unconfirmed -- owner_exq has no terminal evidence)"
+    if not genuine:
+        return None
+
+    best_letter, _best_stem, best_sig = max(genuine, key=lambda t: t[0])
     return (
-        f"owner_exq pins V3-EXQ-{num}{letter or '(base)'} but later sibling "
-        f"V3-EXQ-{num}{best_letter} has terminal evidence ({best_sig})"
+        f"owner_exq pins V3-EXQ-{num}{letter or '(base)'} but later same-lineage "
+        f"sibling V3-EXQ-{num}{best_letter} has terminal evidence ({best_sig})"
+        f"{lineage_note}"
     )
 
 
@@ -625,5 +747,122 @@ def main() -> int:
     return 0
 
 
+def _self_test() -> int:
+    """Regression fixtures for the lineage-advanced stem check. Run with
+    `--self-test`; exits non-zero on any failure.
+
+    Anchors:
+      * NEGATIVE (the bug, 2026-06-10): V3-EXQ-603k (stageh_harm_pathway) must
+        NOT be flagged lineage-advanced by V3-EXQ-603m (scaffolded_sd054) or
+        603l (escape_affordance) -- distinct families that merely share "603".
+      * POSITIVE (the signal to preserve, 2026-06-03): goal_pipeline:GAP-2 owner
+        V3-EXQ-514g (sd049 family) MUST still flag when later sd049 letters
+        (514l) landed terminal evidence -- both when 514g has its own evidence
+        (stem match) and when it has none (conservative fallback, the real
+        interrupted-514g profile).
+    """
+    failures: list[str] = []
+
+    def check(name: str, cond: bool) -> None:
+        if cond:
+            print(f"  ok   {name}")
+        else:
+            failures.append(name)
+            print(f"  FAIL {name}")
+
+    # --- name/stem parsing on the real artifact names -------------------------
+    check(
+        "stem(603k manifest)==stageh",
+        _lineage_stem("v3_exq_603k_stageh_harm_pathway_readiness_20260609T181419Z_v3.json")
+        == "stageh",
+    )
+    check(
+        "stem(603m manifest)==scaffolded",
+        _lineage_stem(
+            "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3.json"
+        )
+        == "scaffolded",
+    )
+    check(
+        "stem(603m run-pack dir)==scaffolded",
+        _lineage_stem("v3_exq_603m_scaffolded_sd054_full_curriculum_readiness")
+        == "scaffolded",
+    )
+    check(
+        "stem(514g manifest)==sd049",
+        _lineage_stem("v3_exq_514g_sd049_bg_gating_wider_seeds_stepharness") == "sd049",
+    )
+    check(
+        "stem(514l run_id)==sd049",
+        _lineage_stem(
+            "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity_20260602T170106Z_v3"
+        )
+        == "sd049",
+    )
+    check("stem(non-exq name) is None", _lineage_stem("failure_autopsy_V3-EXQ-603l_2026-06-10") is None)
+
+    # --- lineage_advanced fixtures -------------------------------------------
+    # NEGATIVE: 603k owns a stageh manifest; 603l (escape) + 603m (scaffolded)
+    # are later letters but different families -> must NOT flag.
+    fam_603 = {
+        603: [
+            ("k", "stageh", "manifest `v3_exq_603k_stageh_harm_pathway_readiness_..._v3.json`"),
+            ("l", "escape", "autopsy `failure_autopsy_V3-EXQ-603l_2026-06-10.json`"),
+            ("m", "scaffolded", "manifest `v3_exq_603m_scaffolded_sd054_..._v3.json`"),
+        ]
+    }
+    check(
+        "603k NOT flagged by 603m/603l (stem mismatch)",
+        lineage_advanced("V3-EXQ-603k", fam_603) is None,
+    )
+
+    # POSITIVE-A: 514g owns an sd049 manifest; 514l (sd049) is a later same-family
+    # letter -> must flag and cite 514l.
+    fam_514_with_owner = {
+        514: [
+            ("g", "sd049", "manifest `v3_exq_514g_sd049_bg_gating_wider_seeds_stepharness_..._v3.json`"),
+            ("l", "sd049", "autopsy `failure_autopsy_V3-EXQ-514l_2026-06-03.json`"),
+        ]
+    }
+    res_a = lineage_advanced("V3-EXQ-514g", fam_514_with_owner)
+    check("514g flagged by 514l (stem match)", res_a is not None and "514l" in res_a)
+
+    # POSITIVE-B: the real 2026-06-03 profile -- 514g was interrupted and has NO
+    # terminal evidence of its own; only later sd049 letters landed. Owner stem
+    # is underivable -> conservative fallback must still flag.
+    fam_514_no_owner = {
+        514: [
+            ("l", "sd049", "autopsy `failure_autopsy_V3-EXQ-514l_2026-06-03.json`"),
+        ]
+    }
+    res_b = lineage_advanced("V3-EXQ-514g", fam_514_no_owner)
+    check(
+        "514g flagged by 514l when owner has no own evidence (conservative fallback)",
+        res_b is not None and "514l" in res_b,
+    )
+
+    # GUARD: a cross-family later letter must NOT flag when owner's stem is known,
+    # even if no same-family successor exists (the precise 603 false-positive shape).
+    fam_mixed = {
+        603: [
+            ("k", "stageh", "manifest stageh"),
+            ("m", "scaffolded", "manifest scaffolded"),
+        ]
+    }
+    check(
+        "known-owner-stem + only cross-family successor -> no flag",
+        lineage_advanced("V3-EXQ-603k", fam_mixed) is None,
+    )
+
+    print()
+    if failures:
+        print(f"SELF-TEST FAILED: {len(failures)} failure(s): {', '.join(failures)}")
+        return 1
+    print("SELF-TEST PASSED")
+    return 0
+
+
 if __name__ == "__main__":
+    if "--self-test" in sys.argv[1:]:
+        sys.exit(_self_test())
     sys.exit(main())
