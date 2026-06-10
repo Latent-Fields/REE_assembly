@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-10T16:49:56Z
+Generated: 2026-06-10T17:04:10Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -40,7 +40,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-09 |
 | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-auto` | First AUTOMATED index-HIT in the wild -- next genuinely-needed iteration (610g / | blocked | 1 | low | V3-EXQ-610g (or 643c) -- pending; 610g gated on  | No standalone work warranted -- the automated index-HIT rides on the next genuinely-needed | 2026-06-10 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654a QUEUED 2026-06-09 (priority 250, mac | BOTH routed steps are now DONE (see governance_2026_06_09_amend_and_requeue): the crf_pers | 2026-06-09 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460b..468b (Phase 4/5 *b cohort; MECH-342 | MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes (2026-05-28 | 2026-06-04 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460b/461b/463b/464b/466b/467b/468b (Phase | LIVE BLOCKER (2026-06-10): GAP-4 is gated on the scaffolded_sd054_onboarding goal-achievem | 2026-06-10 |
 | goal_pipeline_plan.md | `goal_pipeline:GAP-2` | SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor) | blocked_pending_substrate | 2 | high | V3-EXQ-514l | RESUME once the scaffolded_sd054_onboarding substrate-readiness gates pass (substrate_queu | 2026-06-10 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-06-09 |
