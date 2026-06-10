@@ -1,14 +1,16 @@
 # Pending Experiment Review
 
-Generated: `2026-06-10T13:27:17Z`  
-Last review: `2026-06-10T13:27:16Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-10T14:44:13Z`  
+Last review: `2026-06-10T14:44:12Z`  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
+## Unclaimed manifests (PASS/FAIL with no claim tags)
 
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_591b_isef005_curriculum_phase_advance_readiness_20260610T090813Z_v3` | 2026-06-10T09:08 | (no claim tags) | — |
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
+
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| FAIL | `v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3` | v3_exq_603m_scaffolded_sd054_full_curriculum_readiness | V3-EXQ-603m | non_contributory |
 
 ---
 

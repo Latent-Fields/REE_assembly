@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-10T13:27:16Z",
+  "last_review_utc": "2026-06-10T14:44:12Z",
   "discussed_experiment_dirs": [
     "v3_exq_603i_escape_affordance_bridge_validation",
     "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic",
@@ -614,7 +614,10 @@
     "v3_exq_661_mech294_compose_coherence_behavioural_readiness",
     "v3_exq_485d_sd033b_ofc_trainable_head_readiness",
     "v3_exq_662_modulatory_channel_routing_substrate_readiness",
-    "v3_exq_664_affective_fishtank_showcase"
+    "v3_exq_664_affective_fishtank_showcase",
+    "v3_exq_591b_isef005_curriculum_phase_advance_readiness",
+    "v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3",
+    "v3_exq_663_modulatory_channel_routing_substrate_readiness"
   ],
   "reviewed_run_ids": [
     "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
@@ -2913,7 +2916,9 @@
     "v3_exq_661_mech294_compose_coherence_behavioural_readiness_20260610T002349Z_v3",
     "v3_exq_485d_sd033b_ofc_trainable_head_readiness_20260610T003756Z_v3",
     "v3_exq_662_modulatory_channel_routing_substrate_readiness_20260610T104730Z_v3",
-    "v3_exq_664_affective_fishtank_showcase_20260610T112808Z_v3"
+    "v3_exq_664_affective_fishtank_showcase_20260610T112808Z_v3",
+    "v3_exq_591b_isef005_curriculum_phase_advance_readiness_20260610T090813Z_v3",
+    "v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4084,6 +4089,22 @@
         "v3_exq_664_affective_fishtank_showcase_20260610T112808Z_v3"
       ],
       "note": "662 (v3_exq_662_modulatory_channel_routing_substrate_readiness; route-range AMEND substrate-readiness, claim_ids=[] diagnostic, PASS route_range_substrate_ready, NON-vacuous): ARM_1 route_range 0.445 (>>floor 0.01) 3/3 seeds + bounded; C1 routed-range-reaches-accumulator ARM_1 active 3/3 vs ARM_0 0.0 inactive 3/3; C2 committed-class TV {42:0.089,43:0.361,44:0.175} all>floor 3/3 (routed channel range MOVES committed action -- the 569f bit-identical washout broken). Confirms the modulatory-bias-selection-authority route-range readiness gate -> per-claim behavioural retests of ARC-065/MECH-294/ARC-062/MECH-309/MECH-341 now UNBLOCKED (separate /queue-experiment sessions). This run executed under the original V3-EXQ-662 id before the 663 rename propagated; the renamed V3-EXQ-663 duplicate stays queued (user: leave to run as a second confirmation). claim_ids=[] -> no claim weighting. 664 (v3_exq_664_affective_fishtank_showcase; whimsy/viz showcase, claim_ids=[] diagnostic, PASS but adjudication=vacuous_pass: channel_z_goal/vigor/z_block degenerate): viz showcase owned by the fishtank session; drives NO governance action; label not trusted for any gate per the vacuous_pass flag (manifest interpretation remains source of truth). NOT reviewed this cycle: v3_exq_591b_isef005_curriculum_phase_advance_readiness (FAIL, claim_ids=[], InfantCurriculumScheduler Phase 0->1 gate fires 4/5 seeds -> self-route phase01_gate_unreliable_needs_strengthening) -- user flagged for /failure-autopsy; stays PENDING. 0 promotion/demotion (all reviewed evidence claimless); 8 pending_user holds + ARC-046 conflict-hold kept unchanged."
+    },
+    {
+      "utc": "2026-06-10T14:42:41Z",
+      "session": "failure-autopsy-591b-20260610T1341Z",
+      "runs": [
+        "v3_exq_591b_isef005_curriculum_phase_advance_readiness_20260610T090813Z_v3"
+      ],
+      "note": "591b curriculum Phase 0->1 reachability FAIL (claim_ids=[], does_not_support) ADJUDICATED via failure_autopsy_V3-EXQ-591b_2026-06-10 (confirmed, user-adjudicated). C1 4/5 seeds reach Phase 1; seed 46 stuck at Phase 0 (h_pos_max 0.690 over full 160-ep budget, never cleared the 0.994 gate; near-stationary mean 0.0375). User adjudication: the self-route phase01_gate_unreliable_needs_strengthening is a REAL gate-calibration finding (single-episode 0.994 crossing brittle for the low-exploration seed tail) but routes NO gate change this cycle; the residual 1/5 is a genuine early monostrategy/exploration collapse tracked UPSTREAM by behavioral_diversity_isolation/ARC-065 (SP-CEM main-path + the 2026-06-10 route-range amend). The 2026-05-31 H_POS recalib (0.70->0.20) substantially fixed the gate (4/5 vs unreachable-for-all); prereq-(c) reachability established for typical seeds. NO claims.yaml action (claim-free diagnostic); no substrate_queue entry. Gate-strengthening (rolling-window/adaptive criterion / active Phase-0 exploration shaping) is an OPEN DEFERRED enhancement."
+    },
+    {
+      "utc": "2026-06-10T14:44:12Z",
+      "session": "failure-autopsy-591b-20260610T1341Z",
+      "runs": [
+        "v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3"
+      ],
+      "note": "V3-EXQ-663 (renamed route-range validation duplicate of the already-reviewed V3-EXQ-662; ran as the user-directed 2nd confirmation) PASS route_range_substrate_ready, claim_ids=[] non_contributory, clean (no adjudication flag) -- re-confirms the modulatory-bias-selection-authority route-range readiness gate. Marked reviewed. 603m (scaffolded_sd054 full-curriculum readiness FAIL, non_contributory) landed mid-session, is another effort's run, LEFT PENDING for its owner / the next /governance cycle -- not in this autopsy's scope."
     }
   ]
 }
