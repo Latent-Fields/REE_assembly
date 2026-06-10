@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-10.4 -->
+<!-- CLOSURE_VERSION: 2026-06-10.5 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -169,6 +169,8 @@
      <title> tooltips, so they must receive pointer events (the text on top
      stays pointer-events:none so the hover falls through to the rect). */
   .node-badge-bg, .node-pill { cursor: help; }
+  .node-drift { cursor: help; }
+  .node-drift-mark { font-size: 9px; font-weight: 800; fill: #0d1117; pointer-events: none; }
 
   .plans-row {
     display: flex; gap: 10px;
@@ -1083,6 +1085,31 @@ function renderGraph() {
     pillText.setAttribute('text-anchor', 'middle');
     pillText.textContent = n.status;
     g.appendChild(pillText);
+
+    // Drift marker: the closure-drift checker thinks this node's status pill is
+    // stale relative to the owner experiment's actual terminal state. Sits just
+    // left of the pill; __desc drives the focused #tip via the group's mouseover.
+    if (n.drift) {
+      const dCol = n.drift.kind === 'drifted' ? '#f85149' : '#d29922';
+      const warn = el('circle');
+      warn.setAttribute('class', 'node-drift');
+      warn.setAttribute('cx', pos.w - 90);
+      warn.setAttribute('cy', 13);
+      warn.setAttribute('r', 6.5);
+      warn.setAttribute('fill', dCol);
+      warn.setAttribute('stroke', '#0d1117');
+      warn.setAttribute('stroke-width', '1');
+      warn.__desc = (n.drift.kind === 'drifted' ? 'STALE STATUS -- ' : 'POSSIBLY STALE -- ')
+        + (n.drift.detail || '');
+      g.appendChild(warn);
+      const warnT = el('text');
+      warnT.setAttribute('class', 'node-drift-mark');
+      warnT.setAttribute('x', pos.w - 90);
+      warnT.setAttribute('y', 16.5);
+      warnT.setAttribute('text-anchor', 'middle');
+      warnT.textContent = '!';
+      g.appendChild(warnT);
+    }
 
     const id = el('text');
     id.setAttribute('class', 'node-label');

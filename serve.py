@@ -1636,6 +1636,7 @@ CLOSURE_STATUS_WEIGHTS = {
 PENDING_REVIEW_FILE = SERVE_DIR / "evidence" / "experiments" / "pending_review.md"
 REE_V3_QUEUE_FILE = SERVE_DIR.parent / "ree-v3" / "experiment_queue.json"
 SUBSTRATE_QUEUE_FILE = PLANNING_DIR / "substrate_queue.json"
+CLOSURE_DRIFT_JSON = PLANNING_DIR / "closure_drift.json"
 _EXQ_ID_RE = re.compile(r"V3-EXQ-\d+[a-z]?", re.IGNORECASE)
 
 
@@ -2015,6 +2016,52 @@ def _closure_queue_claimed() -> list[dict]:
     return out
 
 
+def _closure_drift_map() -> dict[str, dict]:
+    """Read the closure_drift.json sidecar (written by check_closure_drift.py).
+
+    Returns node_id -> {kind, owner_exq, detail} so the map can mark a status
+    pill whose recorded status the drift checker considers stale relative to the
+    owner experiment's actual terminal state. 'drifted' = status non-terminal
+    but owner_exq terminal (manifest/autopsy landed); 'stale_since' = a later
+    owner_exq sibling reached terminal state, or a confirmed autopsy touching
+    this node's claims post-dates its last_updated. Suppressed nodes are
+    intentionally absent (legitimately non-terminal)."""
+    out: dict[str, dict] = {}
+    try:
+        doc = json.loads(CLOSURE_DRIFT_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        return out
+    for f in doc.get("drifted") or []:
+        nid = f.get("node_id")
+        if not nid:
+            continue
+        sig = f.get("manifest") or f.get("autopsy") or "terminal evidence"
+        out[nid] = {
+            "kind": "drifted",
+            "owner_exq": f.get("owner_exq"),
+            "detail": (
+                "Status is '" + str(f.get("node_status")) + "' but owner "
+                + str(f.get("owner_exq")) + " has finished (" + str(sig)
+                + "). The plan-doc status may be out of date."
+            ),
+        }
+    for s in doc.get("stale_since") or []:
+        nid = s.get("node_id")
+        if not nid or nid in out:
+            continue
+        reasons = "; ".join(s.get("reasons") or []) or "newer evidence landed"
+        out[nid] = {
+            "kind": "stale_since",
+            "owner_exq": s.get("owner_exq"),
+            "detail": (
+                "Status '" + str(s.get("node_status")) + "' may be stale: "
+                + reasons + ". Last updated " + str(s.get("node_last_updated"))
+                + "."
+            ),
+        }
+    return out
+
+
 def _closure_claim_ids_by_flag(flag_substr: str) -> set[str]:
     """Scan claims.yaml list items for a boolean flag or note substring."""
     try:
@@ -2138,6 +2185,7 @@ def _enrich_closure_v2(data: dict) -> dict:
 
     retest_ids = _closure_claim_ids_by_flag("pending_retest_after_substrate")
     ceil_ids = _closure_claim_ids_by_flag("epistemic_category: substrate_ceiling")
+    drift_map = _closure_drift_map()
 
     cusp_items: list[dict] = []
     for n in nodes:
@@ -2194,6 +2242,7 @@ def _enrich_closure_v2(data: dict) -> dict:
                     badges.append("CEIL")
         n["claim_flags"] = flags
         n["badges"] = badges
+        n["drift"] = drift_map.get(n.get("id"))
         n["active_blocker_short"] = _closure_active_blocker_short(
             n, nodes_by_id)
 

@@ -77,6 +77,9 @@ PLANNING_DIR = REPO_ROOT / "evidence" / "planning"
 EXPERIMENTS_DIR = REPO_ROOT / "evidence" / "experiments"
 QUEUE_FILE = REPO_ROOT.parent / "ree-v3" / "experiment_queue.json"
 DRIFT_REPORT = PLANNING_DIR / "closure_drift.md"
+# Machine-readable sidecar consumed by serve.py to flag drifted / stale-since
+# nodes directly on the closure map (the markdown report is human-facing only).
+DRIFT_JSON = PLANNING_DIR / "closure_drift.json"
 
 KNOWN_PLANS = [
     "arc_062_rule_apprehension_plan.md",
@@ -572,6 +575,43 @@ def main() -> int:
         lines.append("")
 
     DRIFT_REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    # JSON sidecar for the closure map. `drifted` and `stale_since` are the two
+    # non-overlapping buckets the map marks (stale_review already excludes nodes
+    # already counted as drifted). Suppressed nodes are intentionally NOT marked
+    # -- they are legitimately non-terminal.
+    drift_payload = {
+        "generated_at": now_iso,
+        "counts": {
+            "drifted": len(findings),
+            "stale_since": len(stale_review),
+            "suppressed": len(suppressed),
+        },
+        "drifted": [
+            {
+                "node_id": f["node_id"],
+                "plan": f["plan"],
+                "node_status": f["node_status"],
+                "owner_exq": f["owner_exq"],
+                "manifest": f["manifest"],
+                "autopsy": f["autopsy"],
+            }
+            for f in findings
+        ],
+        "stale_since": [
+            {
+                "node_id": s["node_id"],
+                "plan": s["plan"],
+                "node_status": s["node_status"],
+                "owner_exq": s["owner_exq"],
+                "node_last_updated": s["node_last_updated"],
+                "reasons": s["reasons"],
+            }
+            for s in stale_review
+        ],
+    }
+    DRIFT_JSON.write_text(
+        json.dumps(drift_payload, indent=2) + "\n", encoding="utf-8")
 
     print(f"Closure drift report written: {DRIFT_REPORT.relative_to(REPO_ROOT)}")
     print(
