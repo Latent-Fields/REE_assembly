@@ -1,0 +1,78 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_664_affective_fishtank_showcase",
+  "run_id": "v3_exq_664_affective_fishtank_showcase_20260610T112808Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-10T11:28:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "affective_showcase_channels_live",
+    "criteria_non_degenerate": {
+      "channel_z_harm_s": true,
+      "channel_z_harm_un": true,
+      "channel_z_harm_a": true,
+      "channel_drive": true,
+      "channel_z_goal": false,
+      "channel_vigor": false,
+      "channel_override": true,
+      "channel_z_block": false,
+      "channel_excite": true,
+      "channel_dread": true,
+      "freeze_fires_present": true,
+      "block_steps_present": true,
+      "freeze_not_permanently_locked": true
+    },
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "blocked_agency_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "note": "Telemetry showcase. PASS = the core affect channels (z_harm_a, z_harm_un, drive, vigor, z_block) vary across eval, the blocked-agency pole engages, and PAG freeze (if it fires) does not permanently lock the agent. No claim_ids; does not weight governance. excite/dread and override are reported but not load-bearing (they can be sparse on a short warmup)."
+  }
+}
