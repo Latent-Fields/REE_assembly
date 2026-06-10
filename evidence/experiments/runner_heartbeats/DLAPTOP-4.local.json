@@ -1,33 +1,48 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-10T06:34:27Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-654b",
-  "current_exq_started_utc": "2026-06-10T06:29:43.903346+00:00",
-  "current_title": "ARC-062 GAP-B rule-apprehension behavioural falsifier -- longer CRF maturation re-run of 654a",
-  "current_claim_id": "ARC-062",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 42 / rule_creator_absent_legacy_collapsed_rule_state",
-    "runs_done": 0,
-    "runs_total": 6,
-    "episodes_done": 10,
-    "episodes_total": 300,
-    "overall_pct": 0.6
-  },
-  "seconds_elapsed": 283,
-  "seconds_remaining": 32561,
-  "recent_lines": [
-    "Arm ARM_OFF (rule_creator_absent_legacy_collapsed_rule_state) (P0=150 ep e2-train, P1=90 ep bias-train, P2=60 ep measure, steps_per_episode=200, dry_run=False)",
-    "Seed 42 Condition rule_creator_absent_legacy_collapsed_rule_state",
-    "[train] arm=ARM_OFF seed=42 phase=P0 ep 10/300"
+  "last_tick_utc": "2026-06-10T06:49:06Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 5,
+  "queue_id_at_head": "V3-EXQ-662",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-592f",
+      "result": "FAIL",
+      "completed_at": "2026-06-01T19:43:26.170478+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603e",
+      "result": "FAIL",
+      "completed_at": "2026-06-03T04:03:13.135462+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-614d",
+      "result": "PASS",
+      "completed_at": "2026-06-03T12:01:24.020537+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-643a",
+      "result": "PASS",
+      "completed_at": "2026-06-06T22:29:32.484692+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-660",
+      "result": "PASS",
+      "completed_at": "2026-06-10T04:41:11.359851+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
-  "runner_pid": 67176,
-  "runner_version": "r2972 50d1d03 2026-06-10 (running r2968 c3ce53c)",
+  "runner_pid": 77256,
+  "runner_version": "r2973 d523df9 2026-06-10",
   "gpu": {
     "available": false
   },

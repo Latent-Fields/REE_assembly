@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-10T06:34:30Z",
+  "last_tick_utc": "2026-06-10T06:49:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-603l",
   "current_exq_started_utc": "2026-06-09T18:45:41.523060+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-059",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_RELIEF_SAFETY_BRIDGE",
-    "runs_done": 9,
+    "run_label": "Seed 43 / ARM_RELIEF_SAFETY_BRIDGE",
+    "runs_done": 10,
     "runs_total": 15,
-    "episodes_done": 170,
+    "episodes_done": 20,
     "episodes_total": 235,
-    "overall_pct": 64.8
+    "overall_pct": 67.2
   },
-  "seconds_elapsed": 42529,
-  "seconds_remaining": 19116,
+  "seconds_elapsed": 43435,
+  "seconds_remaining": 18161,
   "recent_lines": [
     "[v3_exq_603l_escape_affordance_bridge_behavioural_retest] starting (dry_run=False)",
     "Seed 42 Condition ARM_BASE_IA_ONLY",
@@ -89,7 +89,12 @@
     "Seed 42 Condition ARM_RELIEF_SAFETY_BRIDGE",
     "[train] stage0 ARM_RELIEF_SAFETY_BRIDGE seed=42 ep 20/235 z_goal_peak=0.4857",
     "[train] p0 ARM_RELIEF_SAFETY_BRIDGE seed=42 ep 130/235 mean_len=196.4 rv=0.02246",
-    "[train] hazard_avoidance ARM_RELIEF_SAFETY_BRIDGE seed=42 ep 170/235 median_last=200.0 survival_gate=pass pag_commits=172 n_relief=351 n_safety=2286 n_safety_trained=2286 n_approach=5052"
+    "[train] hazard_avoidance ARM_RELIEF_SAFETY_BRIDGE seed=42 ep 170/235 median_last=200.0 survival_gate=pass pag_commits=172 n_relief=351 n_safety=2286 n_safety_trained=2286 n_approach=5052",
+    "[train] p1 ARM_RELIEF_SAFETY_BRIDGE seed=42 ep 220/235 median_last=200.0 survival_gate=pass",
+    "[train] p2 ARM_RELIEF_SAFETY_BRIDGE seed=42 ep 235/235 contact_rate=0.1474",
+    "verdict: PASS seed=42 arm=ARM_RELIEF_SAFETY_BRIDGE g_h=True g0=True g1=True g2=True n_relief=351 n_safety=2286",
+    "Seed 43 Condition ARM_RELIEF_SAFETY_BRIDGE",
+    "[train] stage0 ARM_RELIEF_SAFETY_BRIDGE seed=43 ep 20/235 z_goal_peak=0.4288"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
