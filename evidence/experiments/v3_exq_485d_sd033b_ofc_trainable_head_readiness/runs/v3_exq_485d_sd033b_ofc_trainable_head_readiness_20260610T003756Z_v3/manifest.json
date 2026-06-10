@@ -1,0 +1,76 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_485d_sd033b_ofc_trainable_head_readiness",
+  "run_id": "v3_exq_485d_sd033b_ofc_trainable_head_readiness_20260610T003756Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-10T00:37:56.555857Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "ofc_trainable_head_substrate_ready",
+    "preconditions": [
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "description": "ARM_1 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the gradient reached and moved the head (positive control: trainable head trained via E3 REINFORCE in P1)",
+        "measured": 0.2313496619462967,
+        "threshold": 0.001,
+        "control": "trainable-arm head trained on frozen-encoder state_code in P1",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true
+    },
+    "criteria": [
+      {
+        "name": "C1_frozen_silent",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_head_trains",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_bias_nonzero_informational",
+        "load_bearing": false,
+        "passed": true
+      }
+    ]
+  }
+}
