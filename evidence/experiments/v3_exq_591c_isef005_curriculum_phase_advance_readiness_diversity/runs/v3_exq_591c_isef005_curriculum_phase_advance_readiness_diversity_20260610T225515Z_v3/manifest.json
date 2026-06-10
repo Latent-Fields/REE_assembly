@@ -1,0 +1,71 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_591c_isef005_curriculum_phase_advance_readiness_diversity",
+  "run_id": "v3_exq_591c_isef005_curriculum_phase_advance_readiness_diversity_20260610T225515Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-10T22:55:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "phase01_collapse_persists_under_diversity_needs_gate_change",
+    "preconditions": [
+      {
+        "name": "early_policy_produces_nontrivial_h_pos",
+        "description": "Early-policy agent must actually explore (max per-episode H_pos clears a movement floor) for the C1 gate result to be a real verdict rather than a degenerate non-moving artifact. SAME statistic the C1 gate routes on (per-episode pos_entropy).",
+        "measured": 2.4849,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "max per-episode H_pos across all seeds (the agent-moves positive control)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_all_reach_phase1": true
+    },
+    "criteria": [
+      {
+        "name": "C1_all_reach_phase1",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C_all_advanced_genuinely_explored",
+        "load_bearing": false,
+        "passed": false
+      }
+    ]
+  }
+}
