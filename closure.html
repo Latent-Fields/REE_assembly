@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-07.1 -->
+<!-- CLOSURE_VERSION: 2026-06-10.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -165,6 +165,10 @@
     font-size: 8px; font-weight: 700; fill: #0d1117;
     pointer-events: none;
   }
+  /* badge background + status pill are hover targets for their explanatory
+     <title> tooltips, so they must receive pointer events (the text on top
+     stays pointer-events:none so the hover falls through to the rect). */
+  .node-badge-bg, .node-pill { cursor: help; }
 
   .plans-row {
     display: flex; gap: 10px;
@@ -213,6 +217,10 @@
   }
   .legend .lg { display: inline-flex; align-items: center; gap: 5px; }
   .legend .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .legend .bdg {
+    font-size: 9px; font-weight: 700; color: #0d1117;
+    padding: 1px 5px; border-radius: 4px; cursor: help;
+  }
 
   #graph-wrap {
     position: relative;
@@ -464,6 +472,12 @@
   <span class="lg"><span class="dot" style="background:var(--st-tracked)"></span>tracked</span>
   <span class="lg"><span class="dot" style="background:var(--st-open)"></span>open</span>
   <span class="lg"><span class="dot" style="background:var(--st-deferred)"></span>deferred (excluded from %)</span>
+  <span class="lg" style="border-left:1px solid var(--border); padding-left:14px;">
+    <span class="bdg" style="background:#58a6ff" title="EXQ -- this node has an owner experiment in the queue/evidence (hover the badge on a node for detail).">EXQ</span>
+    <span class="bdg" style="background:#a371f7" title="RETEST -- unblocks a claim flagged pending_retest_after_substrate.">RETEST</span>
+    <span class="bdg" style="background:#f85149" title="CEIL -- unblocks a substrate_ceiling claim (needs substrate enrichment, not more experiments).">CEIL</span>
+    <span style="color:var(--muted)">hover a node badge for detail</span>
+  </span>
   <span class="lg" style="margin-left:auto">
     <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing, high, or medium severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
     solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan
@@ -492,6 +506,29 @@ const STATUS_COLOR = {
   open: 'var(--st-open)',
   deferred: 'var(--st-deferred)',
   deferred_v4: 'var(--st-deferred)',
+};
+
+// Plain-language meaning of each status pill colour, shown as a native hover
+// tooltip on the pill (SVG <title>).
+const STATUS_DESC = {
+  done: 'done -- implemented and verified; counts toward closure %.',
+  partial: 'partial -- some sub-parts complete, others still outstanding.',
+  in_progress: 'in_progress -- actively being worked right now.',
+  blocked: 'blocked -- cannot proceed; the live blocker is in "blocked on" / "resume when" in the node tooltip.',
+  'upstream-blocked': 'upstream-blocked -- a dependency upstream is blocking this node.',
+  upstream_blocked: 'upstream-blocked -- a dependency upstream is blocking this node.',
+  tracked: 'tracked -- registered and monitored, not yet started.',
+  open: 'open -- not started; ready to pick up once dependencies clear.',
+  deferred: 'deferred -- intentionally out of scope for now; excluded from closure %.',
+  deferred_v4: 'deferred to V4 -- out of V3 scope; excluded from closure %.',
+};
+
+// Plain-language meaning of each badge (the small coloured lozenges), shown as
+// a native hover tooltip on the badge (SVG <title>).
+const BADGE_DESC = {
+  EXQ: 'EXQ (blue) -- this node has an owner experiment in the queue/evidence. [LIVE] in the node tooltip means it is currently running.',
+  RETEST: 'RETEST (purple) -- unblocks a claim flagged pending_retest_after_substrate: that claim must be re-tested once this substrate work lands.',
+  CEIL: 'CEIL (red) -- unblocks a substrate_ceiling claim: the current substrate is too coarse to decide it, so the fix is substrate enrichment, not more experiments.',
 };
 
 let CLOSURE = null;
@@ -869,7 +906,9 @@ function renderGraph() {
   const colW = 250;
   const colGap = 60;
   const yStart = 60;
-  const nodeH = 56;
+  // nodeH bumped 56 -> 70 to give the badge lozenges their own row along the
+  // bottom edge; previously they sat at y=4 and overlapped the node ID text.
+  const nodeH = 70;
   const nodeGap = 8;
   // colH must fit the tallest plan's node stack. A fixed cap clipped the tail
   // of large plans (infant_substrate = 15 nodes) with no way to scroll to it.
@@ -970,12 +1009,16 @@ function renderGraph() {
 
     // status pill on the right
     const pill = el('rect');
+    pill.setAttribute('class', 'node-pill');
     pill.setAttribute('x', pos.w - 78);
     pill.setAttribute('y', 6);
     pill.setAttribute('width', 72);
     pill.setAttribute('height', 14);
     pill.setAttribute('rx', 7);
     pill.setAttribute('fill', color);
+    const pillTitle = el('title');
+    pillTitle.textContent = STATUS_DESC[n.status] || ('status: ' + n.status);
+    pill.appendChild(pillTitle);
     g.appendChild(pill);
 
     const pillText = el('text');
@@ -1011,23 +1054,31 @@ function renderGraph() {
     meta.textContent = metaLine.length > 42 ? metaLine.slice(0, 40) + '..' : metaLine;
     g.appendChild(meta);
 
+    // Badges sit on their own row along the bottom edge of the card, so they
+    // never overlap the ID / title / meta text. Each carries a <title> with a
+    // plain-language explanation of the coloured lozenge.
     const badges = n.badges || [];
-    let bx = 8;
+    let bx = 10;
+    const badgeY = pos.h - 16;
     for (const b of badges) {
       const bw = b.length * 5 + 10;
       const bg = el('rect');
+      bg.setAttribute('class', 'node-badge-bg');
       bg.setAttribute('x', bx);
-      bg.setAttribute('y', 4);
+      bg.setAttribute('y', badgeY);
       bg.setAttribute('width', bw);
       bg.setAttribute('height', 12);
       bg.setAttribute('rx', 4);
       const col = b === 'RETEST' ? '#a371f7' : (b === 'CEIL' ? '#f85149' : '#58a6ff');
       bg.setAttribute('fill', col);
+      const bTitle = el('title');
+      bTitle.textContent = BADGE_DESC[b] || b;
+      bg.appendChild(bTitle);
       g.appendChild(bg);
       const bt = el('text');
       bt.setAttribute('class', 'node-badge');
       bt.setAttribute('x', bx + bw / 2);
-      bt.setAttribute('y', 13);
+      bt.setAttribute('y', badgeY + 9);
       bt.setAttribute('text-anchor', 'middle');
       bt.textContent = b;
       g.appendChild(bt);
