@@ -63,7 +63,7 @@ TRACEABILITY_EXEMPT = {
     "MECH-191": "stereotyped behavioral-signal externalization; 'play-bow' is one cited example, claim is not developmental",
 }
 
-_CLAIM_ID_RE = re.compile(r"\b(INV|ARC|MECH|SD|Q|IMPL)-\d+[a-z]?\b")
+_CLAIM_ID_RE = re.compile(r"\b(INV|ARC|MECH|SD|Q|IMPL|RA)-\d+[a-z]?\b")
 
 
 def load_claims_yaml(path: Path) -> list:
