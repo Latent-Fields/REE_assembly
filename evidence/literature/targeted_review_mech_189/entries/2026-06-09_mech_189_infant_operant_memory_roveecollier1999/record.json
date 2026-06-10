@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_189",
+  "entry_id": "2026-06-09_mech_189_infant_operant_memory_roveecollier1999",
+  "timestamp_utc": "2026-06-09T22:20:57Z",
+  "claim_ids_tested": ["MECH-189"],
+  "source": {
+    "title": "The development of infant memory",
+    "authors": ["Carolyn Rovee-Collier"],
+    "year": 1999,
+    "venue": "Current Directions in Psychological Science",
+    "doi": "10.1111/1467-8721.00019",
+    "url": "https://journals.sagepub.com/doi/10.1111/1467-8721.00019"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Rovee-Collier's mobile-conjugate-reinforcement programme is the canonical demonstration that pre-verbal infants (2-3 months) form durable operant goal biases from accidental contingency contacts -- the closest human-developmental analogue to MECH-189's 'high-salience benefit contact written as a goal anchor in childhood'. It supports two of MECH-189's pillars strongly: (i) infants encode action-outcome contingencies into memory that persists for days-to-weeks, and (ii) retrieval is sharply context-/cue-dependent, which is the empirical signature of a cue-indexed store. But the same body of work is the strongest single SOURCE OF TENSION for the claim: infant operant memories are highly context-specific and forgetting is typically complete within ~1-2 weeks unless periodically reactivated. That directly stresses MECH-189's assertion that childhood anchors 'bias adult z_goal seeding across NOVEL episodes'. Because the paper both supports the formation mechanism and weakens the across-novel-context persistence claim, direction is 'mixed' and confidence is held at 0.6.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Infant operant memories are forgotten within ~1-2 weeks without a reactivation/reminder cue; persistence is not automatic. MECH-189's READ path retrieves an anchor only on cue-match, which is consistent -- but the claim that childhood anchors persist to bias ADULT seeding requires either (a) repeated reactivation across development or (b) a consolidation step that converts the labile infant trace into a stable one. The substrate currently models neither decay nor reactivation, so it over-states durability relative to this evidence.",
+    "Retrieval is so context-specific that changing the training context (mobile, crib liner, room) abolishes the response. If the super-ordinal store's READ match threshold is too sharp, childhood anchors will fail to generalise to genuinely NOVEL adult contexts -- the very transfer MECH-189 asserts. The novelty-vs-anchors complexity mode must be tuned so anchors are neither so specific they never fire in novel contexts nor so broad they fire everywhere."
+  ],
+  "tags": ["mech_189", "infant_memory", "operant_conditioning", "mobile_conjugate_reinforcement", "contingency_learning", "context_dependent_retrieval", "cue_indexed", "reactivation", "development"],
+  "mapping": {
+    "source_claim_statement": "Infants as young as 2-3 months learn operant action-outcome contingencies (footkick moves an overhead mobile) and retain them for days to weeks. Retention is strongly context-dependent -- the same proximal/distal cues present at encoding must be present at retrieval, or the infant does not respond. Forgetting is typically complete after ~8 days but can be fully reinstated by a brief reactivation (reminder) exposure 24 h before test, which restores retention for weeks.",
+    "ree_translation": "MECH-189 asserts that high-salience benefit contacts in the child phase are written to a cue-indexed persistent store and later bias goal seeding. Rovee-Collier's infants are the human developmental existence-proof for the WRITE half: accidental, salient action-outcome contacts in early life are encoded into a memory whose retrieval is gated by context cues -- exactly the (key = context, value = learned bias) structure of SuperOrdinalGoalMemory. The reactivation finding maps onto the substrate's reinforce-on-match write (an existing anchor is EMA-blended and strengthened when re-encountered), which is how a labile early trace could be kept alive into 'adulthood'.",
+    "mapping_caveat": "The transfer is from human infant operant retention (limb-movement contingencies, days-to-weeks horizon, heavy context-specificity, decay without reminders) to a parameter-free cosine store with no decay and no reactivation schedule. The paper actively WEAKENS the unqualified 'persists across adult episodes' reading: in the data, persistence requires reactivation and retrieval is narrowly context-bound. The substrate's claim is defensible only if the validation EXQ either (a) includes repeated child-phase re-encounters (reinforcement) or (b) is read as modelling the consolidated end-state of that reactivation process, not the labile infant trace itself.",
+    "source_context": "Human infants 2-6 months, mobile conjugate reinforcement (and train-test/operant-train paradigms in older infants). Review synthesising ~two decades of the author's longitudinal infant-memory programme. Species: human. Modality: behavioural operant retention."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (canonical, extensively replicated human infant programme). Mapping fidelity moderate: it is the best human-developmental analogue for the WRITE/cue-index half but exposes a genuine durability gap on the persistence half. Transfer risk moderate-high precisely because the paper's own findings (decay, reactivation-dependence, sharp context-specificity) cut against the unqualified persistence claim."
+  }
+}

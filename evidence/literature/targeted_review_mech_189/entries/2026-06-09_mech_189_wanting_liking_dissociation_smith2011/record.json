@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_189",
+  "entry_id": "2026-06-09_mech_189_wanting_liking_dissociation_smith2011",
+  "timestamp_utc": "2026-06-09T22:20:57Z",
+  "claim_ids_tested": ["MECH-329"],
+  "source": {
+    "title": "Disentangling pleasure from incentive salience and learning signals in brain reward circuitry",
+    "authors": ["Kyle S. Smith", "Kent C. Berridge", "J. Wayne Aldridge"],
+    "year": 2011,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1101920108",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.1101920108"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Smith, Berridge & Aldridge provide the neural-recording confirmation that hedonic 'liking', incentive-salience 'wanting', and learned-prediction signals are separately tracked and independently modulable in ventral pallidum / nucleus-accumbens circuitry: an intra-accumbens opioid microinjection simultaneously raised liking reactions, raised firing to a reward-PROXIMAL incentive cue, but did NOT alter firing to a reward-DISTAL learned-prediction cue. This is the dissociation MECH-329 requires as a PREMISE -- that wanting (incentive salience) is a distinct, separately-controllable signal that can in principle operate ahead of, or independently of, calibrated liking. It tests MECH-329 (the wanting-before-liking child mechanism) and is tagged ONLY to MECH-329, not MECH-189 directly, because it speaks to the wanting/liking architecture, not to goal-anchor writes. Confidence 0.55: strong electrophysiology, but it is adult rat and -- critically -- it demonstrates SEPARABILITY, not DEVELOPMENTAL ORDERING, which is what MECH-329 actually asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper shows wanting and liking are SEPARABLE in the adult brain; it does NOT show wanting comes ONLINE first developmentally. MECH-329's specific claim -- that the wanting system seeds the first goal anchors before liking is calibrated -- is a developmental-ordering claim this adult electrophysiology cannot establish. The ordering premise is grounded only at the separability level here; the temporal-developmental half remains under-evidenced (and the registered anchor 'Keren-Portnoy & Tomasello 2021' could not be verified in this pass).",
+    "If incentive-salience firing required an intact learned-prediction signal (i.e. wanting could not be modulated without learning), then MECH-329's approach-drive-before-calibration ordering would be incoherent. The paper rules this out -- opioid modulation moved wanting and liking without moving the learned-prediction signal -- but a substrate that ties its salience write-gate to a learned value estimate would reintroduce exactly that unwanted coupling."
+  ],
+  "tags": ["mech_329", "incentive_salience", "wanting_liking", "ventral_pallidum", "nucleus_accumbens", "single_unit", "opioid_hotspot", "reward_circuitry", "separability"],
+  "mapping": {
+    "source_claim_statement": "Single-unit recordings in ventral pallidum (with nucleus accumbens manipulations) show that hedonic impact ('liking'), incentive salience ('wanting'), and learned predictive value are carried by separable, independently modulable signals. An intra-accumbens opioid (DAMGO) microinjection increased behavioural liking reactions to sucrose and increased firing to a reward-proximal incentive cue, while leaving firing to a reward-distal learned-prediction cue unchanged -- dissociating the three reward components within the same circuit.",
+    "ree_translation": "MECH-329 asserts that the wanting system seeds z_goal anchors (via MECH-189) before the liking system is calibrated, so the first layer of the goal hierarchy is shaped by approach drive rather than mature preference. The necessary PREMISE is that wanting is a distinct signal that can operate independently of calibrated liking. Smith et al. confirm that premise at the neural level: wanting and liking are separately tracked and independently modulable, and neither requires the learned-prediction signal. This licenses MECH-329's architecture in which the WRITE gate keys on a salience/drive signal rather than on a learned value estimate.",
+    "mapping_caveat": "This is adult-rat electrophysiology demonstrating SEPARABILITY of the three reward signals; it does NOT demonstrate the DEVELOPMENTAL ORDERING (wanting matures/operates before liking) that is MECH-329's actual content. It grounds the premise (the systems are distinct and independently controllable) but not the conclusion (wanting comes first in development). The developmental-ordering evidence remains thin; tagged to MECH-329 only, with that gap stated explicitly.",
+    "source_context": "Adult rat; single-unit electrophysiology in ventral pallidum with intra-accumbens DAMGO (mu-opioid agonist) and taste-reactivity readouts. Species: rat. Modality: in-vivo single-unit recording + pharmacology."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high (PNAS, in-vivo single-unit dissociation, definitive within-circuit design). Mapping fidelity moderate-low: it nails the SEPARABILITY premise MECH-329 needs but is silent on the developmental ORDERING that is the claim's actual assertion. Transfer risk moderate-high: adult-rat-to-developmental and electrophysiology-to-goal-architecture jumps, plus the separability-vs-ordering gap."
+  }
+}
