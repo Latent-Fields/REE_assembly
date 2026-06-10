@@ -1,48 +1,33 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-10T06:59:38Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 5,
-  "queue_id_at_head": "V3-EXQ-663",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-592f",
-      "result": "FAIL",
-      "completed_at": "2026-06-01T19:43:26.170478+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603e",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T04:03:13.135462+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614d",
-      "result": "PASS",
-      "completed_at": "2026-06-03T12:01:24.020537+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-643a",
-      "result": "PASS",
-      "completed_at": "2026-06-06T22:29:32.484692+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-660",
-      "result": "PASS",
-      "completed_at": "2026-06-10T04:41:11.359851+00:00"
-    }
+  "last_tick_utc": "2026-06-10T07:29:49Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-663",
+  "current_exq_started_utc": "2026-06-10T07:08:04.290654+00:00",
+  "current_title": "modulatory-bias-selection-authority route-range AMEND substrate-readiness (P0 routed-range gate; 569f/661/654a)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_NO_ROUTE",
+    "runs_done": 0,
+    "runs_total": 6,
+    "episodes_done": 20,
+    "episodes_total": 80,
+    "overall_pct": 4.2
+  },
+  "seconds_elapsed": 1305,
+  "seconds_remaining": 16595,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_NO_ROUTE",
+    "[train] arm=ARM_0_NO_ROUTE seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=42 phase=P0 ep 20/80"
   ],
-  "runner_pid": 77256,
-  "runner_version": "r2976 f037b22 2026-06-10 (running r2973 d523df9)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 83116,
+  "runner_version": "r2980 7e70df8 2026-06-10",
   "gpu": {
     "available": false
   },
