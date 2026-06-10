@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-10T17:00:15Z",
+  "last_tick_utc": "2026-06-10T17:30:23Z",
   "state": "running",
   "current_exq": "V3-EXQ-603n",
   "current_exq_started_utc": "2026-06-10T16:05:45.743906+00:00",
@@ -12,18 +12,19 @@
     "run_label": "Seed 42 / ALL_LEVERS_ON_PLUS_HARM_PATHWAY_TRAINED",
     "runs_done": 0,
     "runs_total": 3,
-    "episodes_done": 130,
+    "episodes_done": 170,
     "episodes_total": 235,
-    "overall_pct": 18.4
+    "overall_pct": 24.1
   },
-  "seconds_elapsed": 3269,
-  "seconds_remaining": 13942,
+  "seconds_elapsed": 5077,
+  "seconds_remaining": 15989,
   "recent_lines": [
     "[v3_exq_603n_scaffolded_sd054_full_curriculum_readiness] starting (dry_run=False)",
     "Seed 42 Condition ALL_LEVERS_ON_PLUS_HARM_PATHWAY_TRAINED",
     "[train] stage0_nursery seed=42 ep 20/235 z_goal_peak=0.4821 formed=True token_bank_size_end=3",
     "[train] stage0b_consolidate seed=42 ep 30/235 retention=0.974 gate=pass",
-    "[train] p0_guided seed=42 ep 130/235 mean_len=198.3 rv=0.03749"
+    "[train] p0_guided seed=42 ep 130/235 mean_len=198.3 rv=0.03749",
+    "[train] hazard_avoidance seed=42 ep 170/235 mean_len=165.8 median_last=200.0 survival_gate=pass harm_eval_range=0.0000 harm_train_steps=6630"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
