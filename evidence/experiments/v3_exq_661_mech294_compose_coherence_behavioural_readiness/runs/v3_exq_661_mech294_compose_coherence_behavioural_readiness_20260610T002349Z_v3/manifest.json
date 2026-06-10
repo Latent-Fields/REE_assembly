@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_661_mech294_compose_coherence_behavioural_readiness",
+  "run_id": "v3_exq_661_mech294_compose_coherence_behavioural_readiness_20260610T002349Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-10T00:23:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "coherence_gating_not_load_bearing",
+    "reading": "C3 FAIL -- ALTERNATION with the coherence gate ON behaves the same as with it OFF (full bias), so the mode-discrimination (if any in C1/C2) is carried by mere packet presence / the action-only path, NOT the co-binding coherence gating. The wiring does not establish that joint binding (as co-binding) reaches behaviour. Route to /failure-autopsy; do NOT queue the behavioural successor on the joint-specificity reading.",
+    "preconditions": [
+      {
+        "name": "joint_cem_first_action_diversity",
+        "description": "Mean distinct CEM first-action classes per E3 tick on the JOINT arm. The compose bias is action-alignment GATED by coherence; if the proposer offers < 2 first-action classes the gate cannot change selection, so the committed-action-distribution TV criteria (C1/C2/C3) are starved, not falsified. SAME multiplicity axis the TV criteria route on.",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "JOINT-arm CEM candidate pool (SP-CEM main-path proposer)",
+        "met": true
+      },
+      {
+        "name": "joint_compose_fired",
+        "description": "compose_e3_bias was invoked on the JOINT arm (packet sealed and the compose hook ran). If zero, the packet never reached E3 and no readout is meaningful.",
+        "measured": 7.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "theta_packet_compose_into_e3_bias=True on JOINT",
+        "met": true
+      },
+      {
+        "name": "coherence_gate_mode_distinct",
+        "description": "JOINT currency_coherence minus SHUFFLED currency_coherence -- the gate must be read mode-dependently (joint co-temporal ~1.0 vs shuffled all-stale 0.0) for the binding mode to reach behaviour.",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "joint vs shuffled sealed-packet vintage currency",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_joint_vs_alternation_committed_dist",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_joint_vs_shuffled_committed_dist",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_coherence_gating_load_bearing",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "grid": {
+      "wiring_validated_binding_reaches_behaviour": "R0/R1/R2 met AND C1 AND C2 AND C3 -> the binding mode reaches E3 behaviour and the coherence gating is the mechanism. Queue the MECH-294 behavioural-evidence successor (claim_ids=[\"MECH-294\"]). Does NOT weight MECH-294 here.",
+      "wiring_fires_but_committed_distribution_unchanged": "Readiness met but C1/C2 sub-threshold -> bias present but too weak at this budget; re-tune (longer run / larger bias_scale) before the successor; not a falsification.",
+      "coherence_gating_not_load_bearing": "C3 FAIL -> alt-coh-ON == alt-coh-OFF; any C1/C2 difference is packet-presence / action-only, not co-binding coherence. /failure-autopsy; do NOT queue the joint-specificity successor.",
+      "substrate_not_ready_requeue": "R0/R1/R2 unmet -> candidate pool collapsed / compose inert / gate not mode-distinct. Re-queue with a diversity-restoring regime; NOT a MECH-294 result."
+    }
+  }
+}
