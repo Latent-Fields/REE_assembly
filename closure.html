@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-10.1 -->
+<!-- CLOSURE_VERSION: 2026-06-10.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -262,6 +262,45 @@
     fill: var(--muted); font-size: 10px;
   }
 
+  /* B: sticky plan-column header bar. Lives just above the graph; pins below
+     the page header on vertical scroll and is translated horizontally in JS to
+     stay aligned with the columns as the graph scrolls sideways. */
+  #col-sticky {
+    position: sticky; z-index: 40;
+    height: 46px; overflow: hidden;
+    padding: 0 18px;
+    background: var(--bg-1);
+    border-bottom: 1px solid var(--border);
+  }
+  #col-sticky-inner { position: relative; height: 100%; will-change: transform; }
+  .col-sticky-cell {
+    position: absolute; top: 0; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    overflow: hidden; text-align: center;
+  }
+  .col-sticky-cell .t { font-size: 12px; font-weight: 700; color: var(--text); white-space: nowrap; }
+  .col-sticky-cell .s { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  /* B: compact minimap overview, fixed bottom-right; click to jump. */
+  #minimap {
+    position: fixed; right: 14px; bottom: 14px; z-index: 60;
+    display: none;
+    background: rgba(13,17,23,0.92);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 5px; box-shadow: 0 4px 16px rgba(0,0,0,0.55);
+    cursor: pointer;
+  }
+  #minimap svg { display: block; }
+  #minimap .mm-cap {
+    font-size: 9px; color: var(--muted); text-align: center;
+    margin-bottom: 3px; letter-spacing: 0.03em; text-transform: uppercase;
+  }
+  .mm-view {
+    fill: rgba(88,166,255,0.16); stroke: var(--accent);
+    stroke-width: 1; pointer-events: none;
+  }
+
   .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; transition: opacity 0.15s ease; }
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
   .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; stroke-width: 1.7; }
@@ -484,9 +523,12 @@
   </span>
 </div>
 
+<div id="col-sticky"><div id="col-sticky-inner"></div></div>
 <div id="graph-wrap">
   <svg class="graph" id="graph" width="1200" height="700"></svg>
 </div>
+
+<div id="minimap"><div class="mm-cap">map &middot; click to jump</div></div>
 
 <div id="tip"></div>
 <div id="egg-layer"></div>
@@ -530,6 +572,17 @@ const BADGE_DESC = {
   RETEST: 'RETEST (purple) -- unblocks a claim flagged pending_retest_after_substrate: that claim must be re-tested once this substrate work lands.',
   CEIL: 'CEIL (red) -- unblocks a substrate_ceiling claim: the current substrate is too coarse to decide it, so the fix is substrate enrichment, not more experiments.',
 };
+
+// Raw hex per status (matches the --st-* CSS vars) for the status-tint wash on
+// cards (A) and the minimap node dots (B), where a translucent rgba is needed.
+const STATUS_HEX = {
+  done: '#2ea043', partial: '#d29922', in_progress: '#58a6ff',
+  blocked: '#f85149', 'upstream-blocked': '#f85149', upstream_blocked: '#f85149',
+  tracked: '#a371f7', open: '#6e7681', deferred: '#484f58', deferred_v4: '#484f58',
+};
+
+// Minimap render state, set by buildMinimap, read by updateMinimapView.
+let MINIMAP = null;
 
 let CLOSURE = null;
 let TITLE_CLICKS = 0;
@@ -905,7 +958,9 @@ function renderGraph() {
   for (const p of CLOSURE.plans) planByIdLocal[p.id] = p;
   const colW = 250;
   const colGap = 60;
-  const yStart = 60;
+  // headers now live in the sticky HTML bar (#col-sticky), not in the SVG, so
+  // nodes can start near the top of the SVG.
+  const yStart = 14;
   // nodeH bumped 56 -> 70 to give the badge lozenges their own row along the
   // bottom edge; previously they sat at y=4 and overlapped the node ID text.
   const nodeH = 70;
@@ -935,25 +990,8 @@ function renderGraph() {
     '</marker>';
   svg.appendChild(defs);
 
-  // plan columns headers
-  for (let i = 0; i < planOrder.length; i++) {
-    const p = planByIdLocal[planOrder[i]];
-    if (!p) continue;
-    const t = el('text');
-    t.setAttribute('x', xOf(i) + colW / 2);
-    t.setAttribute('y', 22);
-    t.setAttribute('text-anchor', 'middle');
-    t.setAttribute('class', 'col-header');
-    t.textContent = p.title;
-    svg.appendChild(t);
-    const s = el('text');
-    s.setAttribute('x', xOf(i) + colW / 2);
-    s.setAttribute('y', 38);
-    s.setAttribute('text-anchor', 'middle');
-    s.setAttribute('class', 'col-sub');
-    s.textContent = p.frontmatter_pending ? '(frontmatter pending)' : (p.node_count + ' nodes');
-    svg.appendChild(s);
-  }
+  // plan column headers are rendered into the sticky HTML bar (see
+  // buildColSticky below), not into the SVG.
 
   // build node lookup for edge tooltips
   const nodesById = {};
@@ -1006,6 +1044,19 @@ function renderGraph() {
     rect.setAttribute('stroke', color);
     rect.setAttribute('stroke-width', n.severity === 'load-bearing' ? 2.5 : 1.5);
     g.appendChild(rect);
+
+    // A: faint status-coloured wash so the card's status is readable at a
+    // glance / when zoomed out, not only from the small pill. Sits above the
+    // base fill but below the text (which is appended later), pointer-events
+    // off so it never intercepts clicks/hover on the node.
+    const tint = el('rect');
+    tint.setAttribute('width', pos.w);
+    tint.setAttribute('height', pos.h);
+    tint.setAttribute('rx', 6);
+    tint.setAttribute('fill', STATUS_HEX[n.status] || '#6e7681');
+    tint.setAttribute('fill-opacity', '0.13');
+    tint.setAttribute('pointer-events', 'none');
+    g.appendChild(tint);
 
     // status pill on the right
     const pill = el('rect');
@@ -1102,6 +1153,124 @@ function renderGraph() {
   svg.addEventListener('click', () => {
     if (SELECTED_NODE_ID) { SELECTED_NODE_ID = null; applySelectionStyling(); }
   });
+
+  // B: sticky column headers + minimap
+  buildColSticky(planOrder, planByIdLocal, xOf, colW);
+  buildMinimap(CLOSURE.nodes, nodePos, totalW, colH + 40);
+  const hb = document.querySelector('header.bar');
+  document.getElementById('col-sticky').style.top = (hb ? hb.offsetHeight : 40) + 'px';
+  const gw = document.getElementById('graph-wrap');
+  if (gw && !gw.dataset.syncWired) {
+    gw.addEventListener('scroll', () => { syncColSticky(); updateMinimapView(); });
+    window.addEventListener('scroll', updateMinimapView, { passive: true });
+    window.addEventListener('resize', () => { syncColSticky(); updateMinimapView(); });
+    gw.dataset.syncWired = '1';
+  }
+  syncColSticky();
+}
+
+// B: populate the sticky header bar with one cell per plan column, positioned
+// to line up with the SVG columns. Horizontal alignment is kept in sync with
+// the graph's sideways scroll by syncColSticky (translateX).
+function buildColSticky(planOrder, planByIdLocal, xOf, colW) {
+  const inner = document.getElementById('col-sticky-inner');
+  if (!inner) return;
+  inner.innerHTML = '';
+  for (let i = 0; i < planOrder.length; i++) {
+    const p = planByIdLocal[planOrder[i]];
+    if (!p) continue;
+    const cell = document.createElement('div');
+    cell.className = 'col-sticky-cell';
+    cell.style.left = xOf(i) + 'px';
+    cell.style.width = colW + 'px';
+    cell.title = p.title;
+    const t = document.createElement('div');
+    t.className = 't';
+    t.textContent = p.title;
+    const s = document.createElement('div');
+    s.className = 's';
+    s.textContent = p.frontmatter_pending ? '(frontmatter pending)' : (p.node_count + ' nodes');
+    cell.appendChild(t);
+    cell.appendChild(s);
+    inner.appendChild(cell);
+  }
+}
+
+function syncColSticky() {
+  const gw = document.getElementById('graph-wrap');
+  const inner = document.getElementById('col-sticky-inner');
+  if (gw && inner) inner.style.transform = 'translateX(' + (-gw.scrollLeft) + 'px)';
+}
+
+// B: build the minimap (one tiny status-coloured rect per node) plus the
+// draggable-look viewport rectangle. Uniform scale on the total graph width.
+const MM_W = 196;
+function buildMinimap(nodes, nodePos, totalW, totalH) {
+  const wrap = document.getElementById('minimap');
+  if (!wrap || !totalW) return;
+  const old = wrap.querySelector('svg');
+  if (old) old.remove();
+  const scale = MM_W / totalW;
+  const mmH = Math.max(40, Math.round(totalH * scale));
+  const s = el('svg');
+  s.setAttribute('id', 'minimap-svg');
+  s.setAttribute('width', MM_W);
+  s.setAttribute('height', mmH);
+  for (const n of nodes) {
+    const p = nodePos[n.id];
+    if (!p) continue;
+    const r = el('rect');
+    r.setAttribute('x', (p.x * scale).toFixed(1));
+    r.setAttribute('y', (p.y * scale).toFixed(1));
+    r.setAttribute('width', Math.max(2, p.w * scale).toFixed(1));
+    r.setAttribute('height', Math.max(1.5, p.h * scale).toFixed(1));
+    r.setAttribute('rx', '1');
+    r.setAttribute('fill', STATUS_HEX[n.status] || '#6e7681');
+    s.appendChild(r);
+  }
+  const view = el('rect');
+  view.setAttribute('class', 'mm-view');
+  view.setAttribute('id', 'mm-view');
+  s.appendChild(view);
+  s.addEventListener('click', onMinimapClick);
+  wrap.appendChild(s);
+  wrap.style.display = 'block';
+  MINIMAP = { scale: scale, totalW: totalW, totalH: totalH };
+  updateMinimapView();
+}
+
+function updateMinimapView() {
+  if (!MINIMAP) return;
+  const view = document.getElementById('mm-view');
+  const gw = document.getElementById('graph-wrap');
+  const svg = document.getElementById('graph');
+  if (!view || !gw || !svg) return;
+  const scale = MINIMAP.scale;
+  const svgRect = svg.getBoundingClientRect();
+  const visX = gw.scrollLeft;
+  const visW = Math.min(gw.clientWidth, MINIMAP.totalW - visX);
+  const visYtop = Math.max(0, -svgRect.top);
+  const visYbot = Math.min(MINIMAP.totalH, window.innerHeight - svgRect.top);
+  const visH = Math.max(0, visYbot - visYtop);
+  view.setAttribute('x', (visX * scale).toFixed(1));
+  view.setAttribute('y', (visYtop * scale).toFixed(1));
+  view.setAttribute('width', (Math.max(0, visW) * scale).toFixed(1));
+  view.setAttribute('height', (visH * scale).toFixed(1));
+}
+
+function onMinimapClick(ev) {
+  if (!MINIMAP) return;
+  const s = document.getElementById('minimap-svg');
+  const gw = document.getElementById('graph-wrap');
+  const svg = document.getElementById('graph');
+  if (!s || !gw || !svg) return;
+  const r = s.getBoundingClientRect();
+  const tx = (ev.clientX - r.left) / MINIMAP.scale;
+  const ty = (ev.clientY - r.top) / MINIMAP.scale;
+  gw.scrollLeft = tx - gw.clientWidth / 2;
+  const svgRect = svg.getBoundingClientRect();
+  const graphTopDoc = window.scrollY + svgRect.top;
+  window.scrollTo({ top: Math.max(0, graphTopDoc + ty - window.innerHeight / 2), behavior: 'smooth' });
 }
 
 function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
