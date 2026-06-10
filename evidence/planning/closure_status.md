@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-09T21:46:13Z
+Generated: 2026-06-10T04:19:37Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,11 +8,11 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **73.2%** across 68 non-deferred nodes in 10 plan(s) with closure frontmatter.
+- Weighted progress: **73.7%** across 68 non-deferred nodes in 10 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **23** nodes.
 - Deferred (not required for v3 closure): 14 nodes.
 - Done: 45 nodes.
-- Status tally: blocked=7  blocked_pending_substrate=6  deferred=14  done=45  in_progress=6  open=1  partial=2  upstream_blocked=1
+- Status tally: blocked=7  blocked_pending_substrate=5  deferred=14  done=45  in_progress=7  open=1  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -23,7 +23,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 8 | 57% | deferred:4 done:1 in_progress:2 partial:1 | 2026-06-08 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 12 | 61% | blocked:1 blocked_pending_substrate:1 deferred:3 done:4 in_progress:2 partial:1 | 2026-06-09 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 68% | blocked_pending_substrate:1 deferred:1 done:4 open:1 | 2026-06-04 |
-| `infant_substrate_plan.md` | Infant Substrate Expansion | 15 | 82% | blocked_pending_substrate:3 done:12 | 2026-05-30 |
+| `infant_substrate_plan.md` | Infant Substrate Expansion | 15 | 84% | blocked_pending_substrate:2 done:12 in_progress:1 | 2026-05-30 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 11 | 87% | deferred:2 done:7 in_progress:2 | 2026-06-04 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 8 | 87% | deferred:1 done:6 upstream_blocked:1 | 2026-05-31 |
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
@@ -46,11 +46,11 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P3` | Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lif | blocked | 3 | high |  | depends_on: sd_037_axis_b:P2 | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-3` | MECH-257 dual-function 3-arm ablation re-queue | blocked | 3 | medium | TBD | depends_on: self_attribution:GAP-1, self_attribution:GAP-2 | 2026-06-04 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on th | blocked | 4 | high | V3-EXQ-483f | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
-| infant_substrate_plan.md | `infant_substrate:GAP-11` | EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison | blocked_pending_substrate | 4 | medium | V3-EXQ-588b | V3-EXQ-588 FAIL reviewed 2026-05-20 (failure_autopsy_V3-EXQ-588_2026-05-19 confirmed): non | 2026-05-30 |
-| infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | blocked_pending_substrate | 4 | medium | V3-EXQ-590 | V3-EXQ-590 ran 20260525T084057Z procedural PASS but evidence_direction=pending_retest_afte | 2026-05-30 |
+| infant_substrate_plan.md | `infant_substrate:GAP-11` | EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison | in_progress | 4 | medium | V3-EXQ-588c | ContextMemory writes substrate IMPLEMENTED 2026-06-09 (/implement-substrate): the MECH-189 | 2026-06-09 |
+| infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | blocked_pending_substrate | 4 | medium | V3-EXQ-590 | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-06-09 |
 | infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate | 4 | medium | V3-EXQ-591 | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-05-30 |
 | goal_pipeline_plan.md | `goal_pipeline:GAP-7` | Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 | open | 7 | load-bearing |  | STATUS 2026-06-05: the L2-L3-L4 object-binding + incentive-token substrate AND the L6-L7 c | 2026-06-05 |
-| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discrimination) | in_progress | 7 | medium | V3-EXQ-485c + V3-EXQ-485b (co-equal sibling diag | depends_on: commitment_closure:GAP-3 | 2026-06-04 |
+| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discrimination) | in_progress | 7 | medium | V3-EXQ-485d (trained-OFC-head substrate-readines | Trained-OFC-head SUBSTRATE landed 2026-06-09 (ree-v3 382db2c): OFCConfig.train_state_bias_ | 2026-06-09 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial | GAP-A ready -> MECH-341 committed-class diversity retest owed | load-bearing | V3-EXQ-614e autopsy applied 2026-06-07 (non_cont | PARTIAL 2026-06-09. The MECH-341 within-class-representative-diversity retest is now QUEUE | 2026-06-09 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial | 2-3 | medium | V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MEC | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-06-08 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate | 2-3 | medium | V3-EXQ-606b | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-03 |
