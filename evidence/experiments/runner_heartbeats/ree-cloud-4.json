@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-10T13:06:28Z",
+  "last_tick_utc": "2026-06-10T13:36:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-603m",
   "current_exq_started_utc": "2026-06-10T09:09:19.543166+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / ALL_LEVERS_ON_PLUS_HARM_PATHWAY_TRAINED",
     "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 130,
+    "episodes_done": 220,
     "episodes_total": 235,
-    "overall_pct": 85.1
+    "overall_pct": 97.9
   },
-  "seconds_elapsed": 14229,
-  "seconds_remaining": 2495,
+  "seconds_elapsed": 16037,
+  "seconds_remaining": 356,
   "recent_lines": [
     "[v3_exq_603m_scaffolded_sd054_full_curriculum_readiness] starting (dry_run=False)",
     "Seed 42 Condition ALL_LEVERS_ON_PLUS_HARM_PATHWAY_TRAINED",
@@ -39,7 +39,9 @@
     "Seed 44 Condition ALL_LEVERS_ON_PLUS_HARM_PATHWAY_TRAINED",
     "[train] stage0_nursery seed=44 ep 20/235 z_goal_peak=0.3706 formed=False token_bank_size_end=3",
     "[train] stage0b_consolidate seed=44 ep 30/235 retention=0.927 gate=pass",
-    "[train] p0_guided seed=44 ep 130/235 mean_len=200.0 rv=0.54440"
+    "[train] p0_guided seed=44 ep 130/235 mean_len=200.0 rv=0.54440",
+    "[train] hazard_avoidance seed=44 ep 170/235 mean_len=103.0 median_last=200.0 survival_gate=pass harm_eval_range=0.0000 harm_train_steps=4122",
+    "[train] p1_foraging seed=44 ep 220/235 median_last=200.0 survival_gate=pass reef_spawn_eps=20 refresh=513 decay_only=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
