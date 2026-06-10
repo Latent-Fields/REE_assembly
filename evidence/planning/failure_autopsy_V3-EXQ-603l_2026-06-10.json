@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-10T16:21:34Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_603l_escape_affordance_bridge_behavioural_retest_20260610T134941Z_v3",
+      "queue_id": "V3-EXQ-603l",
+      "claim_ids": ["SD-059", "MECH-358"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (NOT weakened) -- the test could not let the claim express itself: base arm at binary survival ceiling, binary metric saturated",
+        "biological_reference": "clear -- Moscarello & LeDoux 2013 active-avoidance relief/safety action-credit; faithful biological translation, not a formal import; class supported",
+        "prerequisites": "present (over-shot) -- all depends_on green; the 603k readiness fix over-corrected, removing the bridge's headroom",
+        "implementation": "complete -- relief + safety credit + threat-gated approach bonus all fire non-vacuously; readiness met; gate engages; PAG freezes",
+        "environment": "wrong pressures / too easy -- survivable by ARM_BASE_IA_ONLY alone on the 603k+603j substrate (DOMINANT gap)",
+        "measurement": "under-instrumented / misleading -- binary G_H (median>=75) saturates; continuous metric shows the both-arm ~35% mean-episode-length lift (CO-DOMINANT gap)",
+        "integration": "coupled but stable -- bridge integrates with E3 / MECH-357 gate and fires correctly",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Moscarello & LeDoux 2013 active avoidance: LA/BA->NAcc relief/safety action-credit half positively reinforcing a specific avoidance response (complements CeA/PAG reaction-suppression); Debiec & Sullivan 2017 gradual acquisition",
+        "dependencies": ["SD-058/MECH-357 ilPFC freeze-suppression gate", "MECH-302 relief comparator", "MECH-303/304 trained threat-absence signal", "MECH-279 PAG freeze", "E3 harm gradient (ARC-007-strict escape direction)"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful translation; failure matches a removed-deficit + saturated-metric signature, not a biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-603l (first scored evidence) self-routed weakens (bridge_insufficient_env_survivable) but is reclassified non_contributory by failure_autopsy_V3-EXQ-603l_2026-06-10: the discrimination criterion best_bridge_G_H > G_H_BASE was structurally unsatisfiable because the readiness-enabling 603k harm-pathway-training fix raised ARM_BASE_IA_ONLY to the binary survival ceiling (3/3), removing the bridge's headroom, and the binary G_H gate saturated. The bridge fired non-vacuously (relief/safety credit + approach bonus) and ARM_RELIEF_SAFETY_BRIDGE showed ~35 percent longer mean hazard-stage episode length than base -- a graded benefit invisible to the binary gate. Biology (Moscarello & LeDoux 2013 active-avoidance relief/safety action-credit) supports the mechanism class; demotion threshold not reached. NOT promotable; retest pending a REDESIGN EXQ (headroom-restoring hazard regime + continuous survival metric), not new substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No substrate gap: SD-059/MECH-358 substrate is built and fires non-vacuously. The gap is test design (env too easy + binary metric saturates). Route to /queue-experiment redesign, not substrate_queue.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "A readiness-enabling substrate fix (603k harm-pathway training) can silently remove the deficit under test: it trains E3.harm_eval, which per ARC-007-strict IS the directed-escape pathway the bridge augments, saturating base survival and erasing the bridge's headroom.",
+        "A binary survival gate (median episode length >= 75) saturates exactly where a graded add-on benefit lives; sustained-survival mechanisms need a continuous metric (mean/median hazard-stage episode length, time-to-first-death, AUC-survival).",
+        "ARM_RELIEF_SAFETY_BRIDGE's longer mean episode length (~132 vs base ~98) + lower contact rate is positive (seed-thin) evidence the bridge works as designed and must not be discarded as a weakens; more approach fires correlated with MORE caution, not reckless approach."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "redesign_spec": {
+    "successor_letter_note": "603m and 603n already taken (corrected-G0 readiness lineage); use 603o or let /queue-experiment assign the next free letter.",
+    "fixes": [
+      "headroom: harder / intermediate hazard regime (or partial harm-pathway training) so ARM_BASE_IA_ONLY sits at G_H ~0.33-0.67 with measurable headroom",
+      "continuous metric: mean/median hazard-stage episode length (and/or time-to-first-death) as the PRIMARY discrimination metric, supplementing binary G_H"
+    ],
+    "user_choice": "Both (headroom + continuous metric)"
+  }
+}
