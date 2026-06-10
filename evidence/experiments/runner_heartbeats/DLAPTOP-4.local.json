@@ -1,48 +1,32 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-10T15:07:07Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-06-10T15:12:15Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-591c",
+  "current_exq_started_utc": "2026-06-10T15:10:20.652957+00:00",
+  "current_title": "InfantCurriculum Phase 0->1 reachability with exploration-diversity stack armed (591b seed-46 collapse re-test)",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-655",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-603e",
-      "result": "FAIL",
-      "completed_at": "2026-06-03T04:03:13.135462+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-614d",
-      "result": "PASS",
-      "completed_at": "2026-06-03T12:01:24.020537+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-643a",
-      "result": "PASS",
-      "completed_at": "2026-06-06T22:29:32.484692+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-660",
-      "result": "PASS",
-      "completed_at": "2026-06-10T04:41:11.359851+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-663",
-      "result": "PASS",
-      "completed_at": "2026-06-10T13:48:25.707682+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / curriculum",
+    "runs_done": 0,
+    "runs_total": 5,
+    "episodes_done": 0,
+    "episodes_total": 160,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 115,
+  "seconds_remaining": 19200,
+  "recent_lines": [
+    "V3-EXQ-591c diversity-armed readiness: seeds=[42, 43, 44, 45, 46] n_episodes=160 steps=200 threshold=0.9940 [use_noise_floor=True use_structured_curiosity=True SP-CEM=default-on]",
+    "Seed 42 Condition curriculum-diversity"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 83116,
-  "runner_version": "r2993 a593a1c 2026-06-10 (running r2980 7e70df8)",
+  "runner_version": "r2994 ec19dfa 2026-06-10 (running r2980 7e70df8)",
   "gpu": {
     "available": false
   },
