@@ -1619,6 +1619,9 @@ CLOSURE_KNOWN_PLANS = [
     "sleep_substrate_plan.md",
     "sd_037_axis_a_consumer_input_recalibration_plan.md",
     "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+    # --- V4/V5 forward-roadmap plans (generation: v4|v5; segmented out of the
+    # V3 closure % by read_closure). See evidence/planning/*_v4_plan.md ---
+    "object_representation_v4_plan.md",
 ]
 
 CLOSURE_STATUS_WEIGHTS = {
@@ -1631,7 +1634,14 @@ CLOSURE_STATUS_WEIGHTS = {
     "open": 0.0,
     "deferred": None,   # excluded from progress denominator
     "deferred V4": None,
+    "deferred_v4": None,
+    "deferred_v5": None,
 }
+
+# Default generation for a plan/node that does not declare one. The V3 closure
+# map predates the `generation` field, so any plan without it is V3 by
+# definition -- this keeps the V3 closure % bit-identical after V4/V5 plans land.
+CLOSURE_DEFAULT_GENERATION = "v3"
 
 PENDING_REVIEW_FILE = SERVE_DIR / "evidence" / "experiments" / "pending_review.md"
 REE_V3_QUEUE_FILE = SERVE_DIR.parent / "ree-v3" / "experiment_queue.json"
@@ -2189,6 +2199,10 @@ def _enrich_closure_v2(data: dict) -> dict:
 
     cusp_items: list[dict] = []
     for n in nodes:
+        # Cusp rail is a V3-closure surface; do not surface V4/V5 roadmap nodes
+        # as "ready gaps" on it (they would otherwise pollute the V3 view).
+        if (n.get("generation") or CLOSURE_DEFAULT_GENERATION) != CLOSURE_DEFAULT_GENERATION:
+            continue
         if _closure_is_ready_gap(n, nodes_by_id):
             cusp_items.append({
                 "kind": "ready_gap",
@@ -2283,7 +2297,12 @@ def _enrich_closure_v2(data: dict) -> dict:
         "runner_summary": runner_summary,
         "any_runner_active": bool(running_rows),
     }
-    data["progress"] = _closure_dual_progress(nodes)
+    # Dual-progress (implementation vs evidence) is a V3-closure orientation bar;
+    # compute it over V3 nodes only so V4/V5 roadmap nodes do not skew it.
+    data["progress"] = _closure_dual_progress(
+        [n for n in nodes
+         if (n.get("generation") or CLOSURE_DEFAULT_GENERATION) == CLOSURE_DEFAULT_GENERATION]
+    )
     data["exq_live"] = {
         "running": running_rows,
         "queue_claimed": queue_claimed,
@@ -2328,6 +2347,7 @@ def read_closure() -> dict:
             continue
 
         plan_id = str(plan.get("id") or fname.replace("_plan.md", ""))
+        generation = str(plan.get("generation") or CLOSURE_DEFAULT_GENERATION).strip().lower()
         plan_nodes = plan.get("nodes") or []
         weighted_done = 0.0
         weighted_total = 0.0
@@ -2349,6 +2369,7 @@ def read_closure() -> dict:
             node_record = {
                 "id": nid,
                 "plan_id": plan_id,
+                "generation": generation,
                 "title": n.get("title") or nid,
                 "phase": n.get("phase"),
                 "status": status,
@@ -2358,6 +2379,10 @@ def read_closure() -> dict:
                 "depends_on": list(n.get("depends_on") or []),
                 "cross_plan_link": list(n.get("cross_plan_link") or []),
                 "blocking_external": list(n.get("blocking_external") or []),
+                # readiness_gate: forward-roadmap (V4/V5) field listing the V3-era
+                # prerequisites (claims/tracks) that gate this node. V3 closure
+                # nodes leave it empty; passed through for the roadmap view.
+                "readiness_gate": list(n.get("readiness_gate") or []),
                 "last_updated": n.get("last_updated"),
                 # resume_condition / blocking_on: free-text + structured fields
                 # for distinguishing a node's CURRENT active blocker from its
@@ -2382,6 +2407,7 @@ def read_closure() -> dict:
 
         plans.append({
             "id": plan_id,
+            "generation": generation,
             "title": plan.get("title") or plan_id,
             "file": fname,
             "registered": str(plan.get("registered") or ""),
@@ -2394,15 +2420,40 @@ def read_closure() -> dict:
             "frontmatter_pending": False,
         })
 
-    # Overall progress: weighted across all non-deferred nodes, all plans.
-    overall_done = 0.0
-    overall_total = 0.0
+    # Per-generation weighted progress across non-deferred nodes. The top-level
+    # overall_* fields report the V3 (CLOSURE_DEFAULT_GENERATION) generation ONLY,
+    # so that V4/V5 forward-roadmap plans never dilute the V3 closure %. The
+    # `generations` dict carries every generation's rollup for the segmented view.
+    gen_acc: dict[str, dict] = {}
     for n in nodes_by_id.values():
+        gen = n.get("generation") or CLOSURE_DEFAULT_GENERATION
+        acc = gen_acc.setdefault(gen, {"done": 0.0, "total": 0.0, "plan_ids": set()})
+        acc["plan_ids"].add(n.get("plan_id"))
         w = CLOSURE_STATUS_WEIGHTS.get(n["status"], 0.0)
         if w is not None:
-            overall_total += 1.0
-            overall_done += w
-    overall_progress = (overall_done / overall_total) if overall_total > 0 else 0.0
+            acc["total"] += 1.0
+            acc["done"] += w
+    # Ensure plans with zero non-deferred nodes (or zero nodes) still register
+    # their generation bucket so the UI can offer an (empty) view.
+    for p in plans:
+        gen_acc.setdefault(
+            p.get("generation") or CLOSURE_DEFAULT_GENERATION,
+            {"done": 0.0, "total": 0.0, "plan_ids": set()},
+        )["plan_ids"].add(p.get("id"))
+
+    generations = {}
+    for gen, acc in gen_acc.items():
+        total = acc["total"]
+        generations[gen] = {
+            "progress": round((acc["done"] / total) if total > 0 else 0.0, 4),
+            "node_done_weighted": round(acc["done"], 4),
+            "node_total": int(total),
+            "plan_count": len([pid for pid in acc["plan_ids"] if pid]),
+        }
+
+    v3 = generations.get(CLOSURE_DEFAULT_GENERATION, {
+        "progress": 0.0, "node_done_weighted": 0.0, "node_total": 0,
+    })
 
     return _enrich_closure_v2({
         "schema_version": "closure/v1",
@@ -2411,9 +2462,12 @@ def read_closure() -> dict:
         "nodes": list(nodes_by_id.values()),
         "edges": edges,
         "cross_links": cross_links,
-        "overall_progress": round(overall_progress, 4),
-        "node_total": int(overall_total),
-        "node_done_weighted": round(overall_done, 4),
+        # V3-only (preserves the historical closure % semantics)
+        "overall_progress": v3["progress"],
+        "node_total": v3["node_total"],
+        "node_done_weighted": v3["node_done_weighted"],
+        # per-generation rollups for the segmented roadmap view
+        "generations": generations,
     })
 
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-10.6 -->
+<!-- CLOSURE_VERSION: 2026-06-10.7 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -24,6 +24,11 @@
     --st-deferred: #484f58;
   }
   * { box-sizing: border-box; }
+  /* Ensure the `hidden` attribute always wins over class display rules
+     (.cusp-rail/.progress-dual/.orientation set display, which otherwise
+     overrides [hidden] at equal specificity). Needed so V4/V5 views can
+     blank the V3-only cusp rail + dual-progress sections. */
+  [hidden] { display: none !important; }
   html, body {
     margin: 0; padding: 0;
     background: var(--bg-0);
@@ -46,6 +51,14 @@
     user-select: none;
   }
   header.bar .gen { color: var(--muted); font-size: 11px; }
+  header.bar .gen-switch { display: flex; gap: 4px; margin-left: 8px; }
+  header.bar .gen-switch button {
+    background: var(--bg-2); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 2px 9px; font-size: 11px; cursor: pointer; font-weight: 600;
+  }
+  header.bar .gen-switch button:hover { color: var(--text); border-color: var(--accent); }
+  header.bar .gen-switch button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
   header.bar .links { margin-left: auto; display: flex; gap: 8px; }
   header.bar .links a {
     color: var(--muted); text-decoration: none;
@@ -461,6 +474,11 @@
 <body>
 <header class="bar">
   <h1 id="page-title" title="Click 5 times for a re-run of the celebrations">REE V3 Closure Map</h1>
+  <span class="gen-switch" id="gen-switch" title="Switch generation. V3 = closure map (what closes v3). V4/V5 = forward roadmaps (excluded from the v3 closure %).">
+    <button type="button" data-gen="v3" class="active">V3</button>
+    <button type="button" data-gen="v4">V4</button>
+    <button type="button" data-gen="v5">V5</button>
+  </span>
   <span class="gen" id="gen"></span>
   <span class="links">
     <a href="/explorer.html">&larr; Explorer</a>
@@ -589,7 +607,9 @@ const STATUS_HEX = {
 // Minimap render state, set by buildMinimap, read by updateMinimapView.
 let MINIMAP = null;
 
-let CLOSURE = null;
+let CLOSURE = null;        // generation-filtered VIEW the renderers read
+let CLOSURE_FULL = null;   // full /api/closure payload (all generations)
+let GEN_VIEW = 'v3';       // which generation the page is currently showing
 let TITLE_CLICKS = 0;
 
 // #3 click-to-highlight-graph state
@@ -607,11 +627,60 @@ let PLANS_ORDERED = [];     // array of plan objects in the same order
 
 async function load() {
   const r = await fetch('/api/closure');
-  CLOSURE = await r.json();
+  CLOSURE_FULL = await r.json();
+  applyGenView();            // builds CLOSURE as the GEN_VIEW slice of CLOSURE_FULL
+  renderAll();
+  wireReadyToggle();
+  wireStatusFilter();
+  wireGenSwitch();
+  applyHighlightFromUrl();
+  scheduleEasterEggs();
+}
+
+// Build CLOSURE (the view the renderers read) as the slice of CLOSURE_FULL for
+// the current GEN_VIEW. V4/V5 are forward roadmaps: their per-generation rollup
+// comes from CLOSURE_FULL.generations[gen]; V3-only enrichments (cusp rail,
+// dual-progress) are blanked outside V3 so they never mislead.
+function applyGenView() {
+  const f = CLOSURE_FULL || {};
+  const isV3 = (GEN_VIEW === 'v3');
+  const gen = (n) => (n && n.generation) ? n.generation : 'v3';
+  const plans = (f.plans || []).filter(p => gen(p) === GEN_VIEW);
+  const nodes = (f.nodes || []).filter(n => gen(n) === GEN_VIEW);
+  const nodeIds = new Set(nodes.map(n => n.id));
+  const edges = (f.edges || []).filter(e => nodeIds.has(e.to) || nodeIds.has(e.from));
+  const cross = (f.cross_links || []).filter(e => nodeIds.has(e.from) || nodeIds.has(e.to));
+  const g = (f.generations || {})[GEN_VIEW] || { progress: 0, node_done_weighted: 0, node_total: 0 };
+  CLOSURE = Object.assign({}, f, {
+    plans, nodes, edges, cross_links: cross,
+    overall_progress: g.progress || 0,
+    node_done_weighted: g.node_done_weighted || 0,
+    node_total: g.node_total || 0,
+    cusp_items: isV3 ? f.cusp_items : [],
+    progress: isV3 ? f.progress : null,
+  });
+}
+
+// Run the full render pipeline against the current CLOSURE view. Safe to call
+// repeatedly (every render fn clears + rebuilds its container); event-listener
+// wiring lives in load() so it is attached once.
+function renderAll() {
+  const titleEl = document.getElementById('page-title');
+  if (titleEl) {
+    titleEl.textContent = isV3View()
+      ? 'REE V3 Closure Map'
+      : 'REE ' + GEN_VIEW.toUpperCase() + ' Roadmap';
+  }
+  const ovTitle = document.querySelector('.overall .title');
+  if (ovTitle) {
+    ovTitle.textContent = isV3View()
+      ? 'Overall ree-v3 closure'
+      : GEN_VIEW.toUpperCase() + ' roadmap progress (excluded from v3 %)';
+  }
   document.getElementById('gen').textContent =
-    (CLOSURE.schema_version || 'closure/v1') + ' ; generated ' +
-    (CLOSURE.generated_at || '?') +
-    ' ; ' + CLOSURE.nodes.length + ' nodes across ' + CLOSURE.plans.length + ' plans';
+    (CLOSURE.schema_version || 'closure/v1') + ' ; view ' + GEN_VIEW.toUpperCase() +
+    ' ; generated ' + (CLOSURE.generated_at || '?') +
+    ' ; ' + CLOSURE.nodes.length + ' nodes across ' + CLOSURE.plans.length + ' plan(s)';
   computeDerivedSets();
   computePlanOrder();
   renderOrientation();
@@ -620,10 +689,26 @@ async function load() {
   renderOverall();
   renderPlans();
   renderGraph();
-  wireReadyToggle();
-  wireStatusFilter();
-  applyHighlightFromUrl();
-  scheduleEasterEggs();
+  applyStatusFilter();   // re-apply the active status filter to the new nodes
+}
+
+function isV3View() { return GEN_VIEW === 'v3'; }
+
+function wireGenSwitch() {
+  const bar = document.getElementById('gen-switch');
+  if (!bar) return;
+  bar.querySelectorAll('button[data-gen]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.getAttribute('data-gen') || 'v3';
+      if (g === GEN_VIEW) return;
+      GEN_VIEW = g;
+      bar.querySelectorAll('button[data-gen]').forEach(b =>
+        b.classList.toggle('active', b === btn));
+      SELECTED_NODE_ID = null;   // clear any cross-generation node selection
+      applyGenView();
+      renderAll();
+    });
+  });
 }
 
 function renderOrientation() {

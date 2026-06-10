@@ -135,6 +135,9 @@ def main() -> int:
             no_frontmatter.append(path.name)
             continue
 
+        # generation: v3 (default) | v4 | v5. V4/V5 forward-roadmap plans are
+        # segmented out of the V3 closure % below; a plan with no field is V3.
+        gen = str(plan.get("generation") or "v3").strip().lower()
         nodes = [n for n in (plan.get("nodes") or []) if isinstance(n, dict) and n.get("id")]
         counts: dict[str, int] = {}
         w_done = w_total = 0.0
@@ -147,6 +150,7 @@ def main() -> int:
                 w_done += w
             rec = dict(n)
             rec["_status"] = st
+            rec["_generation"] = gen
             rec["_plan_id"] = str(plan.get("id") or path.stem)
             rec["_plan_file"] = path.name
             all_nodes.append(rec)
@@ -155,13 +159,24 @@ def main() -> int:
             "id": str(plan.get("id") or path.stem),
             "title": plan.get("title") or path.stem,
             "file": path.name,
+            "generation": gen,
             "last_updated": plan.get("last_updated"),
             "node_count": len(nodes),
             "counts": counts,
             "progress": (w_done / w_total) if w_total else 0.0,
         })
 
-    # Overall weighted progress across all non-deferred nodes, all plans.
+    # Segment by generation. The V3 sections below (overall %, remaining,
+    # deferred, done, plans table) are computed over V3 nodes ONLY so V4/V5
+    # roadmap plans never dilute the V3 closure %. Roadmap nodes get their own
+    # section at the foot of the snapshot.
+    DEFAULT_GEN = "v3"
+    roadmap_nodes = [n for n in all_nodes if n.get("_generation", DEFAULT_GEN) != DEFAULT_GEN]
+    roadmap_plans = [p for p in plans if p.get("generation", DEFAULT_GEN) != DEFAULT_GEN]
+    all_nodes = [n for n in all_nodes if n.get("_generation", DEFAULT_GEN) == DEFAULT_GEN]
+    plans = [p for p in plans if p.get("generation", DEFAULT_GEN) == DEFAULT_GEN]
+
+    # Overall weighted progress across all non-deferred V3 nodes, all V3 plans.
     o_done = o_total = 0.0
     tally: dict[str, int] = {}
     for n in all_nodes:
@@ -308,6 +323,57 @@ def main() -> int:
             L.append(f"- `evidence/planning/{name}`")
     L.append("")
 
+    # --- V4/V5 forward roadmap (segmented out of the V3 closure % above) ---
+    L.append("## V4 / V5 forward roadmap (excluded from v3 closure %)")
+    L.append("")
+    L.append(
+        "Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure "
+        "maps -- V4/V5 have no experiments yet, so their nodes carry no "
+        "`owner_exq` and do not count toward the V3 closure percentage. Each "
+        "node's gate is the V3-era prerequisite that must land first."
+    )
+    L.append("")
+    if not roadmap_plans:
+        L.append("_None registered yet._")
+    else:
+        # per-generation rollup line
+        gens = sorted({p.get("generation", "?") for p in roadmap_plans})
+        for g in gens:
+            g_nodes = [n for n in roadmap_nodes if n.get("_generation") == g]
+            gd = gt = 0.0
+            for n in g_nodes:
+                w = STATUS_WEIGHTS.get(n["_status"], 0.0)
+                if w is not None:
+                    gt += 1.0
+                    gd += w
+            g_plans = [p for p in roadmap_plans if p.get("generation") == g]
+            L.append(
+                f"- **{g.upper()}**: {(gd / gt * 100) if gt else 0.0:.1f}% across "
+                f"{int(gt)} non-deferred nodes in {len(g_plans)} plan(s)."
+            )
+        L.append("")
+        L.append("| gen | plan | node | title | status | sev | gate (readiness) | last_updated |")
+        L.append("|-----|------|------|-------|--------|-----|------------------|--------------|")
+        for n in sorted(roadmap_nodes, key=_phase_key):
+            gate = n.get("readiness_gate")
+            if isinstance(gate, list) and gate:
+                gate_s = str(gate[0])
+            else:
+                gate_s = _blocker(n)
+            L.append(
+                "| {g} | {pl} | `{nid}` | {title} | {st} | {sev} | {gate} | {lu} |".format(
+                    g=n.get("_generation", ""),
+                    pl=n["_plan_file"],
+                    nid=_cell(n.get("id")),
+                    title=_cell(n.get("title"))[:70],
+                    st=n["_status"],
+                    sev=_cell(n.get("severity") or "medium"),
+                    gate=_cell(gate_s)[:90],
+                    lu=_cell(n.get("last_updated")),
+                )
+            )
+    L.append("")
+
     SNAPSHOT.write_text("\n".join(L) + "\n", encoding="utf-8")
 
     print(f"Closure snapshot written: {SNAPSHOT.relative_to(REPO_ROOT)}")
@@ -315,7 +381,8 @@ def main() -> int:
         f"  plans_mapped={len(plans)}  remaining={len(remaining)}  "
         f"deferred={len(deferred)}  done={len(done)}  "
         f"plans_without_frontmatter={len(no_frontmatter)}  "
-        f"overall_progress={overall * 100:.1f}%"
+        f"overall_progress={overall * 100:.1f}%  "
+        f"roadmap_plans={len(roadmap_plans)}  roadmap_nodes={len(roadmap_nodes)}"
     )
     return 0
 

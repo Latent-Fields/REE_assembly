@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-10T17:19:26Z
+Generated: 2026-06-10T19:18:18Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -139,4 +139,19 @@ Ordered by phase, then severity. This is the answer to "what is left."
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
 _None -- every plan doc is mapped._
+
+## V4 / V5 forward roadmap (excluded from v3 closure %)
+
+Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V4/V5 have no experiments yet, so their nodes carry no `owner_exq` and do not count toward the V3 closure percentage. Each node's gate is the V3-era prerequisite that must land first.
+
+- **V4**: 10.0% across 6 non-deferred nodes in 1 plan(s).
+
+| gen | plan | node | title | status | sev | gate (readiness) | last_updated |
+|-----|------|------|-------|--------|-----|------------------|--------------|
+| v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-1` | Type-vs-token-vs-anchor representational fork (the first design decisi | open | load-bearing | V3 LIVE object work is TYPE-level: SD-049 per-type tag + classifier head; SD-015 location- | 2026-06-10 |
+| v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-2` | PILLAR 1 -- token-instance object-file substrate (permanence through o | open | load-bearing | Reactivate ARC-006 / MECH-044 / MECH-045 (object-file + relational binding + object-file p | 2026-06-10 |
+| v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-6` | Biology grounding completion (object-files / permanence / affordances  | in_progress | medium | L1 object-files & feature-binding (Kahneman/Treisman/Gibbs 1992; Treisman & Gelade 1980 FI | 2026-06-10 |
+| v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-3` | PILLAR 2 -- self-as-object cutover (ARC-081): z_self -> privileged obj | open | high | V3 BEGINNING present (no gate): SD-005 z_self split, SD-003 self-attribution, MECH-277 + A | 2026-06-10 |
+| v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-4` | PILLAR 3 -- tools/affordances object->action binding (ARC-082) | blocked | high | V3 grounding track (straddles V3, owned separately): EXP-0155 instrumentation of SD-016 cu | 2026-06-10 |
+| v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-5` | PILLAR 4 -- others-as-object (ARC-083): per-agent token-keyed object-f | blocked | high | MECH-163 multi-step hippocampal planning (V4 social-entry gate) | 2026-06-10 |
 

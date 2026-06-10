@@ -491,6 +491,12 @@ def main() -> int:
         if not isinstance(plan, dict):
             continue
 
+        # Drift checking is V3-only. V4/V5 forward-roadmap plans have no
+        # experiments yet (no owner_exq), so terminal-state drift is undefined
+        # for them; skip so they can never be false-flagged.
+        if str(plan.get("generation") or "v3").strip().lower() != "v3":
+            continue
+
         if not plan.get("last_updated"):
             missing_plan_last_updated.append(plan_name)
 
