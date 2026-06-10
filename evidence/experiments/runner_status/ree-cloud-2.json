@@ -1,16 +1,27 @@
 {
   "schema_version": "v1",
-  "runner_pid": 667,
-  "runner_started_at": "2026-06-07T13:45:38.393659+00:00",
-  "last_updated": "2026-06-07T19:30:29.566513+00:00",
+  "runner_pid": 668,
+  "runner_started_at": "2026-06-10T16:05:45.734722+00:00",
+  "last_updated": "2026-06-10T20:14:27.777687+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-610f",
+      "queue_id": "V3-EXQ-591c",
+      "backlog_id": null,
+      "claim_id": null,
+      "title": "InfantCurriculum Phase 0->1 reachability with exploration-diversity stack armed (591b seed-46 collapse re-test)",
+      "description": "",
+      "estimated_minutes": 106.7,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-655",
       "backlog_id": "EVB-0270",
       "claim_id": "INV-074",
-      "title": "INV-074/MECH-334/MECH-333 crystallization-necessity TRUE-NEGATIVE-CONTROL retest (+MECH-341/313 floor contrast): strip the always-on diversity floor (noise_floor/E3-diversity/dACC-suppression off; structured curiosity decoupled from crystallize) so crystallization is the SOLE phase-3 diversity route in ARM_1; phase-dependent entropy bonus (0.02 generator in phases 0-2, swept {0,0.005,0.02} in phase 3) maps the collapse threshold; ARM_4 floor-on (MECH-341/313). 5 conditions x 3 seeds, IGW-023 Phase-3 pressure. Supersedes 610e (confounded control).",
+      "title": "INV-074 crystallization-necessity: task-distribution-shift phase-3 redesign (supersedes 610f)",
       "description": "",
       "estimated_minutes": 5000.0,
       "status": "claimed",
@@ -18,35 +29,24 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-603f",
+      "queue_id": "V3-EXQ-654b",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 GAP-B rule-apprehension behavioural falsifier -- longer CRF maturation re-run of 654a",
+      "description": "",
+      "estimated_minutes": 240.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-665",
       "backlog_id": "",
       "claim_id": "",
-      "title": "scaffolded_sd054_onboarding FULL-SCALE substrate-readiness run (foraging-competence amend validation): single-arm all-levers-ON at restored budget P0=100/P1=50 (Stage0=20/Stage0b=10/P2=15, 200 steps/ep), z_goal_enabled=True + drive_weight=2.0. Cue-recall bridge + reef-spawn weaning 0.4 + auto-reconcile gating-to-seeding + 634c seeding calibration (gain1.5/thr0.02/drivefloor0.9) + developmental window. Gate G0 Stage-0 z_goal>0.4 + G1 P1 survival + G2 P2 contact>0, each >=2/3 seeds. Lynchpin blocking commitment_closure:GAP-4 / goal_pipeline:GAP-4 / infant 603-chain.",
+      "title": "Curriculum-trained affective fishtank showcase (scaffolded curriculum + harm-pathway; counterpart to V3-EXQ-664)",
       "description": "",
-      "estimated_minutes": 78.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-640b",
-      "backlog_id": "",
-      "claim_id": "SD-057",
-      "title": "SD-057/MECH-346/MECH-347 cue-authority lineage CLEAN EVIDENCE retest: re-run the 640a scaffold cue-recall gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds) now that modulatory-bias-selection-authority is VALIDATED (V3-EXQ-643a PASS). use_modulatory_selection_authority=True+gain=0.5 on every arm so the cue->z_goal->MECH-295 approach bias has bounded authority over the E3.select argmin in the contact-making scaffold P2 env. Promotes 640a (diagnostic, flat lift, authority OFF) to EVIDENCE.",
-      "description": "",
-      "estimated_minutes": 658.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-624c",
-      "backlog_id": "EVB-0237",
-      "claim_id": "MECH-320",
-      "title": "ARC-068/MECH-320 Niv-Salamone opportunity-cost dissociation -- no-op-rich re-spec (5 seeds + non-vacuous majority gate)",
-      "description": "",
-      "estimated_minutes": 346.7,
-      "status": "claimed",
+      "estimated_minutes": 29.3,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2677,6 +2677,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 15531.8
+    },
+    {
+      "queue_id": "V3-EXQ-603n",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "scaffolded_sd054 FULL curriculum readiness, CORRECTED G0: developmental positive-control floor (>0.3) for Stage-0 z_goal; G3 ecological gate kept strict at 0.4 (successor to 603m)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_603n_scaffolded_sd054_full_curriculum_readiness] preconditions harm_discriminative=True (range_max=0.0113) reached_p2_alive=True -> readiness_route=substrate_ready_flip_scaffolded_sd054_onboarding | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-603n -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-603n.json",
+      "started_at": "2026-06-10T16:05:45.743906+00:00",
+      "completed_at": "2026-06-10T20:14:27.777091+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_603n_scaffolded_sd054_full_curriculum_readiness/v3_exq_603n_scaffolded_sd054_full_curriculum_readiness_20260610T201427Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 14921.5
     }
   ]
 }
