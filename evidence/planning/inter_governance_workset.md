@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-10T06:40:41Z`
+Generated: `2026-06-10T06:52:32Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,9 +11,9 @@ UI: http://localhost:8000/workset
 
 - Items: **60** (ready 7, in_flight 0, blocked 39)
 - Pending review: **0**
-- Queue pending (unclaimed): **0**
+- Queue pending (unclaimed): **1**
 
-- Live EXQs: V3-EXQ-591b, V3-EXQ-603l, V3-EXQ-654b, V3-EXQ-655
+- Live EXQs: V3-EXQ-591b, V3-EXQ-603l, V3-EXQ-655
 
 - Auto-absorbed retests (queued, suppressed from workset): ARC-062 -> V3-EXQ-654b, INV-074 -> V3-EXQ-655, SD-059 -> V3-EXQ-603l
 
@@ -648,8 +648,8 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 30
 - **Gap(s):** behavioral_diversity_isolation:GAP-B
-- **Owner EXQ:** V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS; MECH-341 GAP-A-ready retest QUEUED as V3-EXQ-660 2026-06-09 (within-class-representative-diversity readout)
-- **Why now:** PARTIAL 2026-06-09. The MECH-341 within-class-representative-diversity retest is now QUEUED as V3-EXQ-660 (queued 2026-06-09 on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV; supersedes the 614e committed-c
+- **Owner EXQ:** V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e). Governance folded into claims.yaml 2026-06-10 (MECH-341 supports, v3_pending HELD). Predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS
+- **Why now:** PARTIAL 2026-06-10. V3-EXQ-660 has LANDED PASS/supports (2026-06-10T04:41Z) -- do NOT re-queue it; its C1+C2 branch fired and governance is folded into claims.yaml. The within-class-representative sub-axis is now load-bearing-CONFIRMED but 
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -659,9 +659,9 @@ Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-
 Lane: experiment | Skill: /queue-experiment
 Status: partial
 Gap(s): behavioral_diversity_isolation:GAP-B
-Owner EXQ: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS; MECH-341 GAP-A-ready retest QUEUED as V3-EXQ-660 2026-06-09 (within-class-representative-diversity readout)
+Owner EXQ: V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e). Governance folded into claims.yaml 2026-06-10 (MECH-341 supports, v3_pending HELD). Predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS
 Claims: MECH-341, ARC-062, ARC-065
-Why now: PARTIAL 2026-06-09. The MECH-341 within-class-representative-diversity retest is now QUEUED as V3-EXQ-660 (queued 2026-06-09 on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV; supersedes the 614e committed-c
+Why now: PARTIAL 2026-06-10. V3-EXQ-660 has LANDED PASS/supports (2026-06-10T04:41Z) -- do NOT re-queue it; its C1+C2 branch fired and governance is folded into claims.yaml. The within-class-representative sub-axis is now load-bearing-CONFIRMED but 
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -698,7 +698,7 @@ Instructions:
 
 </details>
 
-### IGW-20260610-032 -- Queue depth low (0 pending)
+### IGW-20260610-032 -- Queue depth low (1 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -707,7 +707,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260610-032
-Title: Queue depth low (0 pending)
+Title: Queue depth low (1 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
