@@ -1,11 +1,22 @@
 {
   "schema_version": "v1",
-  "runner_pid": 15397,
-  "runner_started_at": "2026-06-09T21:38:32.770414+00:00",
-  "last_updated": "2026-06-10T04:41:11.384523+00:00",
+  "runner_pid": 83116,
+  "runner_started_at": "2026-06-10T07:08:04.116272+00:00",
+  "last_updated": "2026-06-10T13:48:25.729200+00:00",
   "idle": false,
   "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-603m",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "scaffolded_sd054 FULL three-leg readiness (harm-pathway ON): Stage-0 zgoal + P1 survival + P2 contact + P2 zgoal, the residual-leg gate after 603k",
+      "description": "",
+      "estimated_minutes": 94.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-603l",
       "backlog_id": "",
@@ -18,34 +29,34 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-569f",
-      "backlog_id": "",
-      "claim_id": "ARC-065",
-      "title": "ARC-065 GAP-A R1.b FP-2 matched-entropy action-contrastive behavioural falsifier on the V3-EXQ-649-validated shared-channel stack (REEConfig.candidate_summary_source). Successor to the 569 matched-entropy FP-2 lineage (frontier 569e); supersedes V3-EXQ-569d (pre-649, collapsed-proposer consumption). 3-arm single-variable design, 3 seeds: ARM_0_PROPOSER (candidate_summary_source=proposer, temperature=1.0; pre-649 baseline) / ARM_1_E2WF (candidate_summary_source=e2_world_forward, temperature=1.0; the 649 GAP-A fix, under test) / ARM_2_MATCHED_NOISE (proposer, temperature=2.5; FP-2 matched-entropy noise control). SP-CEM + shared E3-side bias channels (lateral_pfc + mech295) ON; SD-056 online contrastive trained on every arm with the 643a rollout-norm clamp ON. PRIMARY DV = selected_action_class_entropy: R1.b PASS = ARM_1 strictly above BOTH ARM_2_MATCHED_NOISE and ARM_0_PROPOSER per matched seed on >=2/3 seeds, with the ARM_1 consumed-summary spread readiness floor (the 649 statistic, 0.05) and the C1 e2.world_forward prediction-spread floor (0.03) both met.",
-      "description": "",
-      "estimated_minutes": 96.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-654a",
-      "backlog_id": "",
-      "claim_id": "MECH-309",
-      "title": "ARC-062 GAP-B behavioural falsifier (MECH-309/ARC-062) GATED RE-RUN of V3-EXQ-654 on the crf_persist-matured CandidateRuleField substrate (amend ree-v3 9797e84). Single-variable ARM_OFF (use_candidate_rule_field=False, legacy collapsed rule_state) vs ARM_ON (use_candidate_rule_field=True + crf_persist_rules_across_episode_reset=True, MATURED differentiated crf_source) on the matched 649 GAP-A / 643a authority / SD-056 / SP-CEM / MECH-341 stack. THREE fixes vs 654: (1) crf_persist=True so the rule pool matures across episodes and crf_frac_active clears the 0.30 C1c floor (654 cold-started 0.12); (2) a frozen-encoder P1 phase that TRAINS the SD-033a rule_bias_head via outcome-coupled REINFORCE (GAP-D; mirrors v3_exq_598b) so propagation is not vacuous; (3) a propagation non-vacuity precondition (ARM_ON lateral_pfc bias differs from ARM_OFF, else substrate_not_ready_requeue). PRIMARY DV = committed-class entropy; within-class-representative entropy = secondary negative control.",
-      "description": "",
-      "estimated_minutes": 128.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-655",
       "backlog_id": "EVB-0270",
       "claim_id": "INV-074",
       "title": "INV-074 crystallization-necessity: task-distribution-shift phase-3 redesign (supersedes 610f)",
       "description": "",
       "estimated_minutes": 5000.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-654b",
+      "backlog_id": "",
+      "claim_id": "ARC-062",
+      "title": "ARC-062 GAP-B rule-apprehension behavioural falsifier -- longer CRF maturation re-run of 654a",
+      "description": "",
+      "estimated_minutes": 240.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-591b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "InfantCurriculumScheduler Phase 0->1 gate reachability (GAP-14 prereq c readiness)",
+      "description": "",
+      "estimated_minutes": 106.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -8333,6 +8344,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_660_mech341_within_class_representative_diversity_20260610T044109Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 25357.7
+    },
+    {
+      "queue_id": "V3-EXQ-663",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "modulatory-bias-selection-authority route-range AMEND substrate-readiness (P0 routed-range gate; 569f/661/654a)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS (label=route_range_substrate_ready) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-663 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-663.json",
+      "started_at": "2026-06-10T07:08:04.290654+00:00",
+      "completed_at": "2026-06-10T13:48:25.707682+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 24021.4
     }
   ]
 }
