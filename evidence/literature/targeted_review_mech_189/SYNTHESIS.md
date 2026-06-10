@@ -4,6 +4,7 @@
 **Subject:** development.super_ordinal_goal_formation
 **Status at pull:** candidate / v3_pending / confidence 0.0 (experimental); substrate IMPLEMENTED 2026-06-09 (`SuperOrdinalGoalMemory`), validation EXQ pending (infant_substrate:GAP-11).
 **Pull date:** 2026-06-09. **Entries:** 5. **Scope:** the four pillars the substrate rests on, treated as a *mechanism class*, not as the V3 implementation.
+**Companion review:** [`targeted_review_connectome_mech_189`](../targeted_review_connectome_mech_189/SYNTHESIS.md) (DEV-NEED-024 write-gate threshold angle). **Combined governance view:** [`mech_189_evidence_overview.md`](../mech_189_evidence_overview.md).
 
 This pull exists because the MECH-189 substrate was implemented (separate session) without the biology-before-formal-definitions evidence pass that the project's own methodology rule requires for any mechanism instantiating a formal construct. There was no `evidence/literature/` directory for it; the substrate leaned on two in-claim anchors (Rovee-Collier; Berridge & Robinson). This pass grounds — or stresses — each pillar against the canonical literature.
 

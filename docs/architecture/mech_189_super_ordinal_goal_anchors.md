@@ -74,6 +74,25 @@ conjunction holds**:
   The mode/threshold is the **DEV-NEED-024 adjudication target** — to be settled
   by the validation EXQ and a follow-on lit-pull, not hard-coded here.
 
+  > **Literature verdict (DEV-NEED-024, 2026-06-10 — directional, not a settle).**
+  > The follow-on lit-pull
+  > ([`targeted_review_connectome_mech_189`](../../evidence/literature/targeted_review_connectome_mech_189/SYNTHESIS.md);
+  > combined view
+  > [`mech_189_evidence_overview.md`](../../evidence/literature/mech_189_evidence_overview.md))
+  > finds the gate biologically justified but the default `'novelty'` *form*
+  > questionable on two counts: (1) **reference set** — biological novelty is
+  > comparator-mismatch against the *whole world model* (Lisman & Grace 2005),
+  > not `1 − cosine` to the goal-anchor keys; (2) **functional form** — the signal
+  > should be **prediction-error magnitude** (Aberg 2017) and likely
+  > **signed/nonmonotonic** (Quent 2022 U-shape: schema-congruent *and*
+  > schema-incongruent both encode), not a monotonic dissimilarity. **Recommendation:**
+  > prefer `super_ordinal_complexity_mode='external'` fed by an E1/E2
+  > prediction-error / surprise signal; if `'novelty'` is retained, reference the
+  > world model rather than anchor keys and consider a signed form. **Transfer
+  > caveat:** the cited PEs are value/RL prediction errors, whereas REE's E1/E2 PE
+  > is a forward-model error — the validation EXQ should not assume they are
+  > interchangeable. Lit signal only; does not change MECH-189 status/confidence.
+
 Writes are permitted only while `write_enabled` (the **child phase**). The
 curriculum freezes writes at the child→adult transition via
 `REEAgent.set_super_ordinal_write_enabled(False)` (the MECH-334 `on_phase3_entry`
