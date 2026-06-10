@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_054_mech072_world_delta_gating
 
-Generated: `2026-06-09T21:08:07.674423Z`
+Generated: `2026-06-10T06:07:09.207833Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

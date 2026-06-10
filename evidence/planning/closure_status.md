@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-10T04:19:37Z
+Generated: 2026-06-10T05:53:53Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -48,7 +48,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on th | blocked | 4 | high | V3-EXQ-483f | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
 | infant_substrate_plan.md | `infant_substrate:GAP-11` | EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison | in_progress | 4 | medium | V3-EXQ-588c | ContextMemory writes substrate IMPLEMENTED 2026-06-09 (/implement-substrate): the MECH-189 | 2026-06-09 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | blocked_pending_substrate | 4 | medium | V3-EXQ-590 | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-06-09 |
-| infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate | 4 | medium | V3-EXQ-591 | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-05-30 |
+| infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate | 4 | medium | V3-EXQ-591 | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-06-10 |
 | goal_pipeline_plan.md | `goal_pipeline:GAP-7` | Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 | open | 7 | load-bearing |  | STATUS 2026-06-05: the L2-L3-L4 object-binding + incentive-token substrate AND the L6-L7 c | 2026-06-05 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discrimination) | in_progress | 7 | medium | V3-EXQ-485d (trained-OFC-head substrate-readines | Trained-OFC-head SUBSTRATE landed 2026-06-09 (ree-v3 382db2c): OFCConfig.train_state_bias_ | 2026-06-09 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial | GAP-A ready -> MECH-341 committed-class diversity retest owed | load-bearing | V3-EXQ-614e autopsy applied 2026-06-07 (non_cont | PARTIAL 2026-06-09. The MECH-341 within-class-representative-diversity retest is now QUEUE | 2026-06-09 |

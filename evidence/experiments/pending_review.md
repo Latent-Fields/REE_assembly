@@ -1,23 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-10T04:19:35Z`  
-Last review: `2026-06-09T21:00:13Z`  
-Pending: **5** item(s) -- 2 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-10T06:09:32Z`  
+Last review: `2026-06-10T06:07:34Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_569f_gapa_e2wf_matched_entropy_falsifier_20260610T001255Z_v3` | 2026-06-10T00:12 | ARC-065 | — |
-| `v3_exq_661_mech294_compose_coherence_behavioural_readiness_20260610T002349Z_v3` | 2026-06-10T00:23 | (no claim tags) | — |
-| `v3_exq_654a_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T004025Z_v3` | 2026-06-10T00:40 | ARC-062, MECH-309 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_485d_sd033b_ofc_trainable_head_readiness_20260610T003756Z_v3` | 2026-06-10T00:37 | (no claim tags) |
-| `v3_exq_588c_mech189_super_ordinal_seeding_20260610T004619Z_v3` | 2026-06-10T00:46 | MECH-189 |
+All experiments reviewed. Nothing pending.
 
 ---
 

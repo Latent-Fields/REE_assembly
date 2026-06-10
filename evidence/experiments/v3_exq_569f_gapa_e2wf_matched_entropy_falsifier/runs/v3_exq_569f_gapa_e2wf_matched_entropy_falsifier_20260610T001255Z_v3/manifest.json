@@ -23,9 +23,9 @@
     "ARC-065"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-065": "weakens"
+    "ARC-065": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -96,5 +96,6 @@
       "substrate_not_ready_requeue": "re-queue as V3-EXQ-569g at higher P0 budget (or fix SD-056 wiring); do NOT weaken",
       "r1a_entropy_only_artefact": "FAIL -> R1.a: theory-1 not load-bearing alone; /failure-autopsy + substrate revisit"
     }
-  }
+  },
+  "evidence_direction_note": "Reclassified weakens -> non_contributory by /governance 2026-06-10 per confirmed failure_autopsy_569f-661-654a_2026-06-10. Readiness met (world-summary spread 0.196>floor), C1 (e2.world_forward divergent) PASSED; the per-candidate diversity ARC-065 asserts is present. Discrimination failed only because selected-action entropy is bit-identical (0.549141) across e2wf/proposer/matched-noise -- an E3-commit-readout washout, not a fair falsification. substrate_ceiling cluster member (569f/661/654a); pending retest after the modulatory-bias-selection-authority substrate amend."
 }

@@ -4396,16 +4396,16 @@
       }
     },
     "ARC-065": {
-      "confidence_rationale": "exp=6 entry(s), lit=46 entry(s), exp_conf=0.899, lit_conf=0.866",
+      "confidence_rationale": "exp=5 entry(s), lit=46 entry(s), exp_conf=0.953, lit_conf=0.866",
       "direction_counts": {
         "mixed": 5,
         "supports": 46,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "entries_total": 52,
+      "entries_total": 51,
       "evidence_class_counts": {
-        "exp:simulation": 6,
+        "exp:simulation": 5,
         "lit:behavioral_animal": 4,
         "lit:behavioral_human": 4,
         "lit:computational_model": 22,
@@ -4415,26 +4415,42 @@
         "lit:theoretical_review": 10
       },
       "evidence_level_counts": {
-        "C": 6
+        "C": 5
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.899,
-      "experimental_confidence_decoupled": 0.899,
-      "fail_runs": 1,
-      "genuine_exp_count": 6,
+      "experimental_confidence": 0.953,
+      "experimental_confidence_decoupled": 0.953,
+      "fail_runs": 0,
+      "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 5,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 0
       },
-      "latest_run_id": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier_20260610T001255Z_v3",
-      "latest_timestamp_utc": "2026-06-10T00:12:55Z",
+      "latest_run_id": "v3_exq_615_arc065_rung1_matched_entropy_20260531T093116Z_v3",
+      "latest_timestamp_utc": "2026-05-31T09:31:16Z",
       "literature_confidence": 0.866,
       "literature_confidence_parallel": 0.866,
-      "overall_confidence": 0.882,
+      "overall_confidence": 0.909,
       "pass_runs": 5,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-065",
+          "confidence": 0.6,
+          "confidence_rationale": "Most recent of the three ML entries -- February 2026 preprint, not yet peer-reviewed. The Variational Information Maximisation objective (maximise conditional mutual information between predicted next-state and latent actions given prior states) is structurally the contrapositive of PLSM's objective and addresses the same family of failure. Useful as the third independent ML lever for option (ii). Confidence kept modest because it is a preprint and because the latent-action framing is one degree removed from REE's setting (REE has explicit, observable actions; SWIRL treats them as inferred).",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_e2_forward_model_action_divergence",
+          "failure_signatures": [
+            "World models without explicit action-conditional information-maximisation can produce next-state predictions that are insensitive to which action was taken; identifiability-via-MI is the cure."
+          ],
+          "run_id": "2026-05-28_e2_action_divergence_swirl_qiu2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-05-28T17:17:26Z"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-065",
@@ -4499,27 +4515,11 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-05-31T09:31:16Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-065",
-          "confidence": 0.75,
-          "confidence_rationale": "FAIL with weakening direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "weakens",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier",
-          "failure_signatures": [],
-          "run_id": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier_20260610T001255Z_v3",
-          "source_type": "experimental",
-          "status": "FAIL",
-          "timestamp_utc": "2026-06-10T00:12:55Z"
         }
       ],
-      "runs_total": 52,
+      "runs_total": 51,
       "source_counts": {
-        "experimental": 6,
+        "experimental": 5,
         "literature": 46
       }
     },
@@ -15822,7 +15822,7 @@
       }
     },
     "MECH-118": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.162, lit_conf=0.802",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.161, lit_conf=0.802",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -15840,8 +15840,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.162,
-      "experimental_confidence_decoupled": 0.162,
+      "experimental_confidence": 0.161,
+      "experimental_confidence_decoupled": 0.161,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -31127,7 +31127,7 @@
       }
     },
     "Q-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.317, lit_conf=0.745",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.316, lit_conf=0.745",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -31144,8 +31144,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.317,
-      "experimental_confidence_decoupled": 0.317,
+      "experimental_confidence": 0.316,
+      "experimental_confidence_decoupled": 0.316,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -109177,15 +109177,16 @@
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "ARC-065",
-      "confidence": 0.75,
-      "confidence_rationale": "FAIL with weakening direction",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
       "evidence_class": "exp:simulation",
-      "evidence_direction": "weakens",
+      "evidence_direction": "non_contributory",
       "evidence_level": "C",
       "experiment_purpose": "evidence",
       "experiment_type": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier",
       "failure_signatures": [],
       "run_id": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier_20260610T001255Z_v3",
+      "scoring_excluded": "non_contributory",
       "source_type": "experimental",
       "status": "FAIL",
       "timestamp_utc": "2026-06-10T00:12:55Z"
@@ -109350,7 +109351,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-10T05:49:03.909976Z",
+  "generated_at_utc": "2026-06-10T06:07:09.207833Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

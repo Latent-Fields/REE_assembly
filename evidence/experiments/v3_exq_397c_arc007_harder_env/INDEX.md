@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_397c_arc007_harder_env
 
-Generated: `2026-06-09T21:08:07.674423Z`
+Generated: `2026-06-10T06:07:09.207833Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

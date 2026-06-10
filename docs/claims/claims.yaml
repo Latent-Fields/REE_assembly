@@ -13674,6 +13674,21 @@
     with EXQ-582 substrate-ceiling and EXQ-582a drive_floor=0.9. hold_candidate_resolve_conflict
     retained; conflict_ratio from does_not_support was illusory. pending_retest_after_substrate;
     follow-up V3-EXQ-588b goal-seeding pipeline diagnostic queued. lit/exp not blended.
+
+    [2026-06-10 governance: V3-EXQ-588c supports, stays candidate]: V3-EXQ-588c
+    (super-ordinal seeding readiness/discrimination diagnostic, supersedes 588) PASS /
+    supports. The load-bearing C1 -- ARM_ON adult z_goal seeding DISCRIMINATES over
+    ARM_OFF -- passed on all 3 seeds (ON mean adult z_goal.norm 0.394 vs OFF 0.0);
+    child-phase anchors formed (n_occupied=1) and the adult READ seeding path fired
+    (206 seeds), confirming the new SuperOrdinalGoalMemory substrate is wired end to
+    end. The DEV-NEED-006 absolute 0.4 crossing is ADVISORY and a near-miss
+    (0.394; 2/3 seeds cross): per the substrate plan the matured-anchor norm ceilings
+    ~0.37 on the untrained-encoder readiness harness, so the absolute gate routes to a
+    TRAINED-ENCODER evidence successor, not a failure. This run validates substrate
+    readiness + discrimination (experiment_purpose=diagnostic); recorded as supporting
+    evidence but MECH-189 stays candidate / confidence 0.0 -- full behavioural validation
+    (trained encoder, absolute 0.4) is the separate successor. Drives the
+    infant_substrate:GAP-11 closure-node reconciliation. No promotion this cycle.
   implementation_note: |
     2026-06-09 (/implement-substrate, infant_substrate:GAP-11): the "ContextMemory writes
     substrate" the 588 retest was deferred to is now IMPLEMENTED in ree-v3 -- a new
@@ -24672,6 +24687,8 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   claim_level: mechanistic
   registered_utc: 2026-04-26
   implementation_note: >
@@ -24806,6 +24823,22 @@
     against multi-stream within-cycle binding. Until then the joint
     hypothesis is held as a candidate mechanism, not a stated load-bearing
     invariant.
+
+    [2026-06-10 governance / confirmed failure_autopsy_569f-661-654a_2026-06-10]:
+    V3-EXQ-661 (compose-coherence behavioural-readiness diagnostic, no claim
+    tags, non_contributory) confirmed the substrate is wired -- currency_coherence
+    is cleanly mode-distinct (JOINT 1.0 / ALT 0.25 / SHUF 0.0) and criteria
+    non-degenerate -- but the committed-action distribution TV is ~0 (max 0.0097)
+    across joint-vs-alternation, joint-vs-shuffled, AND coherence-gate-ON-vs-OFF.
+    The C3 gate-ON==gate-OFF result shows co-binding coherence is not load-bearing
+    at the E3 committed-action readout: the binding signal is present upstream but
+    is not routed into choice. Do NOT queue the MECH-294 behavioural-evidence
+    successor on the joint-specificity reading until the modulatory-bias-selection-
+    authority substrate amend routes upstream-channel range into the modulatory
+    bias the selection authority rescales. Member of the 569f/661/654a E3-commit-
+    readout substrate_ceiling cluster (shared with ARC-065, ARC-062, MECH-309).
+    epistemic_category set substrate_ceiling + pending_retest_after_substrate=true.
+    No promotion / no weakening; the 2026-04-26 hold stands.
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-269b
@@ -28001,6 +28034,18 @@
     corroboration with GAP-C/D routing consumer landed. narrow_supports_flag
     retained (counterpart asymmetry on ARC-062 side). epistemic_category
     substrate_ceiling (unchanged).
+
+    [2026-06-10 governance / confirmed failure_autopsy_569f-661-654a_2026-06-10]:
+    V3-EXQ-654a non_contributory for MECH-309 (already substrate_ceiling, no
+    demotion). Self-routed substrate_not_ready_requeue (CRF maturation unmet:
+    crf_frac_active 0.137 < 0.3). The within-arm rule_state counterfactual = 0/3
+    seeds (committed-class entropy lift OFF 0.9375 -> ON 0.9377) corroborates the
+    569f/661/654a E3-commit-readout substrate ceiling: minted rule_state does not
+    reach committed action -- the selection-authority coupling does not route
+    upstream-channel range into the modulatory bias. Re-queue 654a at a longer CRF
+    maturation budget (new letter); on a matured-and-firing field a persistent
+    within-arm counterfactual of 0 would confirm authority-coupling, not
+    maturation, is the ceiling.
   notes: >
     Diagnostic claim, not a substrate or implementation claim. MECH-309
     explains why SD-054 (and any substrate alone) is insufficient to
@@ -28199,6 +28244,21 @@
     through V3-EXQ-598b. Do NOT demote. epistemic_category=substrate_ceiling
     (unchanged). Further floor/aux ablations (notional V3-EXQ-543m)
     deferred until V3-EXQ-598b lands.
+
+    [2026-06-10 governance / confirmed failure_autopsy_569f-661-654a_2026-06-10]:
+    V3-EXQ-654a (rule-apprehension behavioural falsifier) non_contributory --
+    self-routed substrate_not_ready_requeue (CandidateRuleField maturation
+    unmet: crf_frac_active 0.137 < 0.3 floor, 0/3 ON seeds matured, despite
+    rules minted 268/549/220). No demotion (already substrate_ceiling). Two-part
+    routing: (1) RE-QUEUE 654a at a longer CRF maturation budget (new letter) so
+    frac_active clears 0.3 before scoring; (2) the within-arm rule_state
+    counterfactual = 0/3 seeds + committed-class entropy lift ~0 (OFF 0.9375 ->
+    ON 0.9377) corroborates the 569f/661/654a E3-commit-readout substrate ceiling:
+    even minted rule_state does not reach committed action because the selection-
+    authority coupling does not route upstream-channel range into the modulatory
+    bias. If a matured-and-firing field STILL shows within-arm counterfactual 0 on
+    re-queue, that promotes 654a to a full cluster member and confirms the
+    selection-authority coupling -- not maturation -- is the ceiling.
   implementation_note: >
     2026-05-21 IGW-024 substrate-ready reconcile: Phase 1 (GAP-A) IMPLEMENTED
     2026-05-09 -- ree_core/policy/gated_policy.py (two heads + 3-stream
@@ -29257,6 +29317,7 @@
   status: provisional
   implementation_phase: v3
   v3_pending: false
+  epistemic_category: substrate_ceiling
   claim_level: architectural
   registered_utc: "2026-05-10"
   depends_on: []
@@ -29324,7 +29385,7 @@
     relative-weight-calibration question (Q-043) and the substrate-
     collapse question (Q-044, Q-045) are open and falsifiable in V3-
     EXQ-543b/c.
-  pending_retest_after_substrate: false
+  pending_retest_after_substrate: true
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 lit-pull SYNTHESIS verdict 3
     (PROMOTE-TO-CLUSTER, conf 0.82) and Pull 4 R4 HYBRID-naming
@@ -29348,6 +29409,8 @@
     [2026-05-29 autopsy V3-EXQ-605 + V3-EXQ-604 cluster]: foundational architectural slot; neither child substrate (MECH-313 noise / MECH-314 curiosity) can be load-bearing-tested while V3 substrate produces candidate-degenerate scoring AND seeds 42/44 die on the target env at random-init. ARC-065 stays candidate pending the two-substrate-prereq close (SD-056 via V3-EXQ-569a + SD-XXX-scaffolded-sd054-onboarding via implement-substrate session). Priority-1 calibration debt per project_calibration_debt.md.
 
     [2026-05-30 governance / autopsy V3-EXQ-569c applied]: V3-EXQ-569c (2026-05-30) tested SD-056 against ARC-065 GAP-A R1.b as a matched-entropy FP-2 falsifier. Headline result: ON arms (sd056_weight 0.01/0.05/0.20) produce selected_action_entropy 0.875/0.833/0.951 vs matched-noise control (ARM_4 T=2.5) at 0.414 -- ~2.4x above the FP-2 control on the C3 acceptance axis. Pre-registered C1 floor (cand_world_pairwise_dist > 0.05) was not cleared by 2/3-seed majority (ON-arm means 0.045/0.042/0.046; per-seed seeds-above-floor 1/0/1). The C1 floor was calibrated against V3-EXQ-613 standalone-task magnitude (0.286) rather than behavioural-runtime magnitude (~0.045); ON arms cluster at 3x bit-identical noise (0.0148), confirming the substrate is operative. Per /failure-autopsy V3-EXQ-569c 2026-05-30: routed to /queue-experiment for V3-EXQ-569d (recalibrated C1 floor + e3_top2_class_gap NaN fix) and V3-EXQ-569e (mechanism probe dissociating per-candidate-variance propagation vs E2-rollout-dynamics shift as source of the C3 lift). Evidence direction for ARC-065 upgraded supports per the matched-noise control clearance on C3; MECH-341 supports preserved. ARC-065 stays candidate / v3_pending=true / pending_retest_after_substrate=true pending V3-EXQ-569d+569e returns.
+
+    [2026-06-10 governance / confirmed failure_autopsy_569f-661-654a_2026-06-10 applied]: V3-EXQ-569f (the matched-entropy FP-2 falsifier) reclassified weakens -> non_contributory on the manifest. Readiness fully met (consumed world-summary spread 0.196 > floor) and C1 (e2.world_forward divergent) PASSED -- the per-candidate diversity ARC-065 asserts is demonstrably present in the upstream representation. The discrimination criterion failed only because selected-action entropy is bit-identical (0.549141) across the e2wf, proposer, AND matched-noise arms -- a readout washout at the E3 committed-action layer, not a fair falsification of ARC-065. This is the E3-commit-readout substrate ceiling shared with V3-EXQ-661 (MECH-294) and V3-EXQ-654a (ARC-062/MECH-309): upstream-channel cross-candidate RANGE is present but is not ROUTED into the per-candidate modulatory bias the selection authority rescales (extends V3-EXQ-643 one link: range present now, still not routed). epistemic_category set substrate_ceiling + pending_retest_after_substrate=true. Pending retest after the modulatory-bias-selection-authority substrate_queue amend (route upstream-channel range into the modulatory bias). NO demotion (the bit-identity is a readout washout, not a genuine negative).
 
     Pull 4 R4 verdict assigned ARC-065 to HYBRID-naming convention
     because the REE-internal name (behavioral_diversity_generation_pathway)
@@ -37022,6 +37085,29 @@
     [2026-06-03 substrate landing] modulatory-bias-selection-authority IMPLEMENTED (ree-v3 e3_selector.select gap-relative rescale of the combined modulatory contribution to modulatory_authority_gain*raw_score_range + e3_score_diversity.stratified_select across-class unit-range normalization; config use_modulatory_selection_authority default OFF/bit-identical). Gives this claim's score-bias lever genuine BOUNDED authority at E3 committed selection (the 604a/624a/614d cluster showed the lever fired but never changed the committed argmin). 614d within-class temperature fired 3/3 seeds but committed-class entropy was byte-identical across T=0.5/1.0/2.0 (C2 FAIL) -- the across-class stratified softmax unit-range normalization is the direct fix. Claim STAYS candidate/v3_pending -- substrate-readiness validation EXQ pending (claim_ids=[]); a per-claim EVIDENCE retest on the authority-ON substrate is the governance-weighting signal. Design doc docs/architecture/modulatory_bias_selection_authority.md; substrate_queue modulatory-bias-selection-authority status implemented_pending_validation.
 
     [2026-06-07 autopsy V3-EXQ-614e applied (failure_autopsy_V3-EXQ-614e_2026-06-07, confirmed)]: V3-EXQ-614e (within-class temperature {None,0.5,1.0,2.0} CLEAN RETEST with the V3-EXQ-643a-validated modulatory-bias-selection-authority substrate ON, supersedes 614d) FAILed C2 (committed_class_entropy byte-identical 1.033608 across T=0.5/1.0/2.0, 0/3 paired-lift seeds) with C1 substrate-operative=True and C3 readiness=True. Adjudicated non_contributory (NOT weakens) for MECH-341: this is a substrate_ceiling, not a falsifier of the within-class sub-axis. (1) The lever IS operative -- committed entropy shifted off legacy (1.035689 -> 1.033608), so the within-class representative reaches committed selection; but it is byte-identical across a 4x temperature range, i.e. the committed-CLASS distribution is insensitive to which within-class representative wins. (2) MECH-341 preserves trajectory-CLASS diversity (the across-class axis); within-class temperature is a within-class sub-axis tested against an across-class readout under a monostrategic candidate pool, so a committed-class lift is structurally impossible here. (3) This is the 4th convergent committed-action no-lift instance on behavioral_diversity_isolation:GAP-B (604a curiosity, 624a vigor, 614d within-class temp, 614e), but the first with authority PROVEN operative -- so the bottleneck has moved upstream to GAP-A candidate-pool class collapse (cand_world_pairwise_dist=0.0000). The ARC-065 GAP-A E2-world-forward per-candidate signal preservation substrate (shared cand_world_summaries e2.world_forward source) was IMPLEMENTED 2026-06-07 in response (ree-v3 candidate_summary_source flag; substrate-readiness validation V3-EXQ-649 queued). MECH-341 stays candidate / v3_pending=true; pending_retest_after_substrate gated on ARC-065/GAP-A candidate-pool class diversity. The MECH-341 committed-class diversity re-test must use a within-class-REPRESENTATIVE-diversity readout (NOT committed-class entropy -- autopsy Learning #2). No confidence move; MECH-341 not weakened. 614e manifest evidence_direction already set non_contributory + index rebuilt at /governance 2026-06-07 (MECH-341 = 2 supports:0 weakens, exp_conf 0.809).
+
+    [2026-06-10 governance: V3-EXQ-660 supports, v3_pending HELD]: V3-EXQ-660
+    (within-class-REPRESENTATIVE-diversity retest, supersedes V3-EXQ-614e) is the
+    corrected-readout retest the 614e autopsy Learning #2 required -- it scores
+    H(rep_signature | committed_class) [which within-class representative is
+    selected inside the committed class] instead of committed-class entropy, run
+    on the GAP-A (candidate_summary_source=e2_world_forward) + modulatory-
+    selection-authority (gain 0.5) substrate. Outcome PASS / supports: C1
+    substrate-operative + within-class branch active + multi-rep available
+    (majority); C2 within-class-representative-diversity lift PASS (swept 4.862
+    vs legacy 4.781 nats). The committed-CLASS (across-class) entropy stays flat
+    -- the EXPECTED negative control (the within-class lever does not act on the
+    across-class axis; secondary, not a gate). GOVERNANCE CAVEATS (why v3_pending
+    is HELD not cleared this cycle): (1) the lift margin is THIN (~0.08 nats vs
+    0.05 threshold); (2) the three temperature arms T=0.5/1.0/2.0 produce
+    BYTE-IDENTICAL within-class entropy (4.861916) -- the lever fires (196/1105/255
+    samples) but is INSENSITIVE to temperature magnitude; only legacy-vs-any-sweep
+    differs. So 660 confirms the within-class sub-axis is load-bearing (representative
+    selection reaches committed action) but does not yet show a graded, ratifiable
+    response. Per the manifest interpretation grid: record supports; do NOT auto-flip
+    the within-class default; v3_pending gate retained pending governance ratification
+    + a temperature-graded confirmation. No status change (stays candidate); no
+    promotion. 660 supersedes 614e (which was already non_contributory).
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is
