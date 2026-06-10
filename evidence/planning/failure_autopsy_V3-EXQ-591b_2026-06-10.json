@@ -1,0 +1,47 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-10T14:40:35Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_591b_isef005_curriculum_phase_advance_readiness_20260610T090813Z_v3",
+      "queue_id": "V3-EXQ-591b",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A -- claim_ids=[]; 591b is a GAP-14 prereq-(c) reachability probe and tests no claim. No claim weakened.",
+        "biological_reference": "clear -- staged-curriculum competency gate (ARC-019); faithfully withholds advancement from a non-explorer (seed 46 collapsed). Not a formal-definition import.",
+        "prerequisites": "present -- InfantCurriculumScheduler + the 2026-05-31 H_POS_FRAC_OF_MAX 0.70->0.20 recalibration are landed.",
+        "implementation": "partial (gate-calibration brittle) -- the single-episode 0.994 crossing advances 4/5 typical seeds but is brittle for the low-exploration seed tail (seed 46 never cleared; seed 45 cleared on only 2/60 episodes). Recorded as a REAL calibration finding per user adjudication; NOT fully exonerated as working-as-designed. Fix DEFERRED.",
+        "environment": "adequate -- no env defect; agent-moves precondition met (max h_pos 2.485 > 0.2 floor).",
+        "measurement": "adequate -- h_pos is the correct axis; per-seed reachability measured cleanly.",
+        "integration": "N/A -- single-module scheduler gate.",
+        "scale": "adequate for 4/5 -- seed 46 had the full 160-episode budget and never cleared; an exploration collapse, not a budget shortfall."
+      },
+      "biological_reference": {
+        "closest_mechanism": "staged developmental-curriculum competency gate (ARC-019): stage transition licensed only on acquired prior-stage competency",
+        "dependencies": ["upstream exploration drive that pulls a collapsed policy out of stationarity (behavioral_diversity / ARC-065 lineage)"],
+        "is_formal_import": false,
+        "divergence": "none at the gate -- the gate correctly withholds a non-explorer; the missing-dependency signature is UPSTREAM of the gate (exploration diversity), not in it.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "not_applicable_claim_free_diagnostic",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-591b claim-free Phase 0->1 reachability diagnostic (claim_ids=[]; does NOT weight any claim). C1 FAIL 4/5 seeds reach Phase 1; seed 46 stuck at Phase 0 (h_pos_max 0.690 over the full 160-ep budget, never cleared the 0.994 gate; near-stationary policy mean 0.0375). ADJUDICATED (user 2026-06-10): the self-route phase01_gate_unreliable_needs_strengthening is accepted as a REAL gate-calibration finding (the single-episode 0.994 crossing is brittle for the low-exploration seed tail) BUT routes NO gate change this cycle. The residual 1/5 miss is a genuine early monostrategy/exploration collapse -- the SAME failure mode the behavioral_diversity_isolation/ARC-065 programme targets -- and is tracked UPSTREAM there, not as a gate defect. The 2026-05-31 H_POS recalibration (0.70->0.20) substantially fixed the gate (4/5 vs previously-unreachable-for-all); prereq-(c) reachability is established for typical seeds. No claims.yaml action.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 2026-05-31 H_POS recalibration (0.70->0.20) substantially fixed the Phase 0->1 gate (advances 4/5 typical seeds vs structurally-unreachable-for-all pre-recalib); prereq-(c) reachability established for typical seeds.",
+        "The residual 1/5 miss (seed 46) is a genuine early monostrategy/exploration collapse (h_pos mean 0.0375, max 0.690 -- near-stationary), an UPSTREAM exploration-diversity gap (behavioral_diversity_isolation / ARC-065 lineage), surfaced by the gate -- not primarily a gate defect.",
+        "The gate ALSO carries a real (user-adjudicated) calibration brittleness for the low-exploration tail (single-episode 0.994 crossing is seed-variance-sensitive; seed 45 cleared on 2/60); a rolling-window/adaptive criterion or an active Phase-0 exploration-shaping stage is a legitimate but DEFERRED enhancement.",
+        "Adjudication value: prevents the naive loosen-the-gate reading -- loosening the threshold to admit seed-46-class policies would advance an agent past a Phase-0 competency it never acquired."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}
