@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-10T08:30:09Z",
+  "last_tick_utc": "2026-06-10T09:00:14Z",
   "state": "running",
   "current_exq": "V3-EXQ-662",
   "current_exq_started_utc": "2026-06-10T06:55:42.353148+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_0_NO_ROUTE",
-    "runs_done": 2,
+    "run_label": "Seed 42 / ARM_1_ROUTE_ON",
+    "runs_done": 3,
     "runs_total": 6,
-    "episodes_done": 10,
+    "episodes_done": 0,
     "episodes_total": 80,
-    "overall_pct": 35.4
+    "overall_pct": 50.0
   },
-  "seconds_elapsed": 5666,
-  "seconds_remaining": 10172,
+  "seconds_elapsed": 7471,
+  "seconds_remaining": 7460,
   "recent_lines": [
     "Seed 42 Condition ARM_0_NO_ROUTE",
     "[train] arm=ARM_0_NO_ROUTE seed=42 phase=P0 ep 10/80",
@@ -40,7 +40,16 @@
     "[train] arm=ARM_0_NO_ROUTE seed=43 phase=P1 ep 80/80",
     "verdict: PASS",
     "Seed 44 Condition ARM_0_NO_ROUTE",
-    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P0 ep 10/80"
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P0 ep 10/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P0 ep 20/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P0 ep 30/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P0 ep 40/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P0 ep 50/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P0 ep 60/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P1 ep 70/80",
+    "[train] arm=ARM_0_NO_ROUTE seed=44 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_1_ROUTE_ON"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
