@@ -1,0 +1,96 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness",
+  "run_id": "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-10T13:38:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_engaged",
+    "readiness_route": "residual_leg_open:stage0_zgoal",
+    "preconditions": [
+      {
+        "name": "harm_pathway_discriminative",
+        "kind": "readiness",
+        "description": "The harm pathway must have trained (>=1 optimizer step) AND harm_eval(z_world) range must lift above the flat ~0.002 603i baseline. Positive control that the survival/P2 legs run on a TRAINED harm landscape, not noise. Below-floor => harm-landscape-noise (603i regression) => substrate_not_ready_requeue, NOT a foraging verdict.",
+        "control": "scaffold_train_harm_pathway=True co-trains harm_eval/z_harm/z_harm_a/E2_harm_s in P0+Stage-H; harm_discriminativeness probe measures the post-training harm_eval range over states.",
+        "measured": 0.07467830181121826,
+        "threshold": 0.005,
+        "met": true
+      },
+      {
+        "name": "reached_p2_alive",
+        "kind": "readiness",
+        "description": "P1 survival must clear >=2/3 seeds so the agent reaches P2 ALIVE; otherwise a P2-contact-zero / P2-z_goal-zero read is 'died before contact' not 'foraging incompetence'. Below-floor => the survival leg is still de-risking => substrate_not_ready_requeue, NOT a P2 verdict. (Same statistic as the load-bearing G1 gate leg.)",
+        "control": "P1 survival gate = median episode length over the last 10 P1 episodes >= 75, entered by a Stage-H-survival-competent policy.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "G0_stage0": true,
+      "G1_survival": true,
+      "G2_contact": true,
+      "G3_zgoal": true,
+      "G_H_hazard_stage": true,
+      "p1_reached": true
+    },
+    "criteria": [
+      {
+        "name": "G0_stage0_positive_control",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "G1_p1_survival",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G2_p2_contact",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G3_p2_zgoal_consumption",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
