@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "outcome": "PASS",
+  "metrics": {
+    "n_seeds": 1.0,
+    "total_harm_pathway_train_steps": 2438.0,
+    "total_block_steps": 4.0,
+    "total_freeze_fires": 0.0,
+    "total_eval_steps": 84.0,
+    "z_goal_activated_at_eval": 1.0,
+    "seed0_stage0_z_goal_peak": 0.40022748708724976,
+    "seed0_hazard_survival_gate": 0.0,
+    "seed0_hazard_harm_eval_range": 0.1384565234184265,
+    "seed0_z_goal_eval_mean": 0.32594179078227,
+    "chan_max_std_z_harm_s": 0.29299735505594887,
+    "chan_mean_z_harm_s": 1.1648940976176942,
+    "chan_max_std_z_harm_un": 0.28977504668033266,
+    "chan_mean_z_harm_un": 1.1599140103374208,
+    "chan_max_std_z_harm_a": 0.009424645270389184,
+    "chan_mean_z_harm_a": 4.0458655300594515,
+    "chan_max_std_drive": 0.026895079038833897,
+    "chan_mean_drive": 0.029946424421809968,
+    "chan_max_std_z_goal": 0.03955624361146689,
+    "chan_mean_z_goal": 0.32594179078227,
+    "chan_max_std_vigor": 0.0,
+    "chan_mean_vigor": 0.0,
+    "chan_max_std_override": 0.20069352255898626,
+    "chan_mean_override": 0.3289196797584973,
+    "chan_max_std_z_block": 0.0,
+    "chan_mean_z_block": 0.0,
+    "chan_max_std_excite": 0.0,
+    "chan_mean_excite": 0.0,
+    "chan_max_std_dread": 0.0,
+    "chan_mean_dread": 0.0
+  },
+  "summary_markdown": "# V3-EXQ-665 -- Curriculum-trained Affective Fishtank Showcase\n\n**Status:** PASS (diagnostic telemetry showcase -- not scored against any claim)\n**Purpose:** Developmentally-scaffolded counterpart to V3-EXQ-664. Feeds\nfishtank_viz.html with an affective episode_log from an agent trained through the\nScaffoldedSD054OnboardingScheduler curriculum + harm-pathway training.\n\n- harm-pathway train steps (total): 2438  (harm streams TRAINED, unlike 664)\n- z_goal activated at eval: True  (Stage-0 peaks per seed in metrics)\n- freeze fires / blocked steps (eval): 0 / 4\n\n## Eval channel mean / max-std (vs 664 for comparison)\n- z_harm_s: mean=1.1649 max_std=0.29300 (varies)\n- z_harm_un: mean=1.1599 max_std=0.28978 (varies)\n- z_harm_a: mean=4.0459 max_std=0.00942 (varies)\n- drive: mean=0.0299 max_std=0.02690 (varies)\n- z_goal: mean=0.3259 max_std=0.03956 (varies)\n- vigor: mean=0.0000 max_std=0.00000 (FLAT)\n- override: mean=0.3289 max_std=0.20069 (varies)\n- z_block: mean=0.0000 max_std=0.00000 (FLAT)\n- excite: mean=0.0000 max_std=0.00000 (FLAT)\n- dread: mean=0.0000 max_std=0.00000 (FLAT)\n\nThe `_episode_log.json` companion feeds fishtank_viz.html (FISHTANK_VIZ_VERSION\n2026-06-10.2) via /api/fishtank/logs -- compare the suffering / wanting channels\nagainst the raw-warmup V3-EXQ-664 run.\n",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "evidence_direction": "non_contributory",
+  "experiment_type": "v3_exq_665_curriculum_affective_fishtank_showcase",
+  "interpretation": {
+    "label": "curriculum_affective_showcase_live",
+    "preconditions": [
+      {
+        "name": "harm_pathway_trained",
+        "description": "harm-pathway co-training ran >=1 optimizer step",
+        "measured": 2438.0,
+        "threshold": 1.0,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "channel_z_harm_s": true,
+      "channel_z_harm_un": true,
+      "channel_z_harm_a": true,
+      "channel_drive": true,
+      "channel_z_goal": true,
+      "channel_vigor": false,
+      "channel_override": true,
+      "channel_z_block": false,
+      "channel_excite": false,
+      "channel_dread": false,
+      "harm_pathway_trained": true,
+      "freeze_not_permanently_locked": true
+    },
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "harm_pathway_trained",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "note": "Curriculum-trained telemetry showcase. PASS = harm-pathway training ran AND the core affect channels vary AND freeze did not permanently lock. z_goal activation at eval is REPORTED (z_goal_activated_at_eval), NOT gated -- whether autonomous wanting persists is the open goal_pipeline:GAP-2 question. claim_ids=[]; does not weight governance."
+  },
+  "run_timestamp": "20260610T155123Z",
+  "timestamp_utc": "20260610T155123Z",
+  "run_id": "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T155123Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1"
+}

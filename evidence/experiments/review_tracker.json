@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-10T14:44:12Z",
+  "last_review_utc": "2026-06-10T16:19:44Z",
   "discussed_experiment_dirs": [
     "v3_exq_603i_escape_affordance_bridge_validation",
     "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic",
@@ -617,7 +617,9 @@
     "v3_exq_664_affective_fishtank_showcase",
     "v3_exq_591b_isef005_curriculum_phase_advance_readiness",
     "v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3",
-    "v3_exq_663_modulatory_channel_routing_substrate_readiness"
+    "v3_exq_663_modulatory_channel_routing_substrate_readiness",
+    "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness",
+    "v3_exq_665_curriculum_affective_fishtank_showcase"
   ],
   "reviewed_run_ids": [
     "v3_exq_603i_escape_affordance_bridge_validation_20260608T201133Z_v3",
@@ -2918,7 +2920,9 @@
     "v3_exq_662_modulatory_channel_routing_substrate_readiness_20260610T104730Z_v3",
     "v3_exq_664_affective_fishtank_showcase_20260610T112808Z_v3",
     "v3_exq_591b_isef005_curriculum_phase_advance_readiness_20260610T090813Z_v3",
-    "v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3"
+    "v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3",
+    "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3",
+    "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T155123Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4105,6 +4109,15 @@
         "v3_exq_663_modulatory_channel_routing_substrate_readiness_20260610T134823Z_v3"
       ],
       "note": "V3-EXQ-663 (renamed route-range validation duplicate of the already-reviewed V3-EXQ-662; ran as the user-directed 2nd confirmation) PASS route_range_substrate_ready, claim_ids=[] non_contributory, clean (no adjudication flag) -- re-confirms the modulatory-bias-selection-authority route-range readiness gate. Marked reviewed. 603m (scaffolded_sd054 full-curriculum readiness FAIL, non_contributory) landed mid-session, is another effort's run, LEFT PENDING for its owner / the next /governance cycle -- not in this autopsy's scope."
+    },
+    {
+      "utc": "2026-06-10T16:19:44Z",
+      "session": "governance-20260610T1600Z",
+      "runs": [
+        "v3_exq_603m_scaffolded_sd054_full_curriculum_readiness_20260610T133806Z_v3",
+        "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T155123Z_v3"
+      ],
+      "note": "Governance cycle 2026-06-10. (1) V3-EXQ-603m scaffolded_sd054 full-curriculum readiness FAIL (claim_ids=[], non_contributory, diagnostic): G0-only miss (Stage-0 nursery z_goal>0.4 held 1/3: 0.477/0.389/0.371); load-bearing legs G1 survival 3/3, G2 contact 3/3, G3 ecological z_goal 2/3 all PASS; non-vacuity MET (harm_eval range 0.075, reached-P2-alive 3/3). CONFIRMED autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to un-warmed Stage-0); survival leg (historic GAP-2 blocker) confirmed cleared; routing queue-experiment -> 603n corrected-G0 re-queue (active); substrate_queue AMEND on scaffolded_sd054_onboarding; pending_retest_after_substrate. No claim weighting (claim-free). Marked reviewed. (2) V3-EXQ-665 curriculum-trained affective fishtank showcase PASS (claim_ids=[], non_contributory, diagnostic; flagged vacuous_pass): flag fired on non-load-bearing degenerate reported channels (vigor/z_block/excite/dread ~0); load-bearing criteria core_channels_non_degenerate + harm_pathway_trained (2438 steps) both PASS non-vacuously. Delivered telemetry showcase, drives no governance action (no claims/gate/substrate-mint), adjudication flag moot. Marked reviewed. (3) V3-EXQ-603l escape-affordance bridge behavioural retest FAIL (SD-059/MECH-358, weakens) LEFT PENDING -- user flagged for /failure-autopsy: weakens rests on a survivability ceiling (BASE G_H already 1.0, bridge has no headroom to beat it though it credits + clears G_H 2/3 non-vacuously; preconditions all MET). Possible discrimination-ceiling artifact (env too survivable) vs genuine weakens -- adjudicate before any evidence_direction change. NOT marked reviewed."
     }
   ]
 }

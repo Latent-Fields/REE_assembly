@@ -611,7 +611,7 @@ def main() -> int:
         ],
     }
     DRIFT_JSON.write_text(
-        json.dumps(drift_payload, indent=2) + "\n", encoding="utf-8")
+        json.dumps(drift_payload, indent=2, default=str) + "\n", encoding="utf-8")
 
     print(f"Closure drift report written: {DRIFT_REPORT.relative_to(REPO_ROOT)}")
     print(
