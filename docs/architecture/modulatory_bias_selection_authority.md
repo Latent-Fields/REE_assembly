@@ -136,11 +136,79 @@ the SD-056 rollout-norm clamp (`e2_rollout_output_norm_clamp_enabled`) and add a
 `raw_score_range` non-vacuity precondition (below-bound → `substrate_not_ready_requeue`, not
 an authority verdict). The 604a curiosity non-degeneracy guard is retained.
 
+## Route-range amend: route upstream-channel range into the bias the authority rescales (569f/661/654a, 2026-06-10)
+
+The 2026-06-03 / 643a authority rescales `_modulatory_accum` (the composed `score_bias`
+chain + MECH-341 bonus). The **569f / 661 / 654a** cluster (failure_autopsy_569f-661-654a_2026-06-10,
+user-adjudicated) exposed the next link: a channel whose **representation** carries
+genuine cross-candidate range still does **not** move committed action.
+
+| Run | Channel | Range present in representation | Committed-action readout |
+|-----|---------|--------------------------------|--------------------------|
+| 569f (ARC-065) | world-summary | consumed spread **0.196** (> floor); C1 e2.world_forward divergent PASS | selected-action entropy **bit-identical 0.549141** across e2wf / proposer / matched-noise |
+| 661 (MECH-294) | theta co-binding coherence | coherence **JOINT 1.0 / ALT 0.25 / SHUF 0.0** (mode-distinct) | committed-dist TV **~0** (max 0.0097); C3 gate-ON == gate-OFF |
+| 654a (ARC-062/MECH-309) | candidate rule field | rules minted **268/549/220** | within-arm rule_state counterfactual **0/3**; committed-class entropy lift OFF 0.9375 -> ON 0.9377 |
+
+**One structural property, not three bugs:** the range exists in the representation but
+is **flattened by the consuming bias head** before it reaches `_modulatory_accum`, so the
+authority has nothing to amplify. V3-EXQ-643 established *no range -> no authority*; this
+cluster extends it one link: **the channel range must be ROUTED into the per-candidate
+modulatory bias the authority rescales, not merely exist in the representation.**
+
+### The fix (parameter-free, no-op default, bit-identical OFF)
+
+1. **`project_channel_range(features)`** (`e3_selector.py`): a deterministic,
+   range-preserving projection of a channel's per-candidate representation into a
+   per-candidate scalar bias `[K]`. `[K, D]` (e.g. `cand_world_summaries`): center across
+   the K candidates, project onto the leading right-singular vector of the centered
+   matrix (SVD on a detached copy; numerical fallback to the mean-deviation axis). `[K]`:
+   identity. K<2 / flat input: zeroed (below-floor). The singular-vector sign is
+   arbitrary -- routing makes the channel range **reach and move** the committed argmax
+   (the readiness property), **not** necessarily move it *beneficially* (that is the
+   channel's own trained head, the separate per-claim evidence retest).
+2. **`E3TrajectorySelector.select(channel_route_bias=...)`**: when
+   `use_modulatory_channel_routing` is on, the `[K]` routed bias is normalised to unit
+   zero-mean range (bounded even with the authority OFF; the authority re-normalises the
+   combined accumulator to `gain * raw_score_range` regardless), scaled by
+   `modulatory_channel_route_weight`, and folded into **both** `scores` and
+   `_modulatory_accum` **before** the authority's range computation. New P0 diagnostics:
+   `modulatory_channel_route_range` (the **raw** cross-candidate range, pre-normalise /
+   pre-rescale -- the gate signal) + `modulatory_channel_route_active`.
+3. **`REEAgent.select_action`** builds `channel_route_bias` from the channel-under-test's
+   per-candidate representation and passes it. `modulatory_channel_route_source`:
+   `cand_world_summary` (the [K, world_dim] world-summary channel -- 569f cluster lead,
+   the genuine projection case) / `curiosity` / `gated_policy` / `mech295` / `coherence`
+   (each an already-computed `[K]` bias, identity-routed). Default `none` -> bit-identical.
+
+**P0 readiness gate (the autopsy's explicit requirement):**
+`modulatory_channel_route_range` lets a retest assert the modulatory bias **itself**
+carries cross-candidate range derived from the channel under test **before** any
+behavioural falsifier is scored -- so an unrouted channel cannot self-route a false
+negative.
+
+**Config** (E3Config + REEConfig mirror + `from_dims`; all no-op default):
+`use_modulatory_channel_routing` (False), `modulatory_channel_route_min_range_floor`
+(1e-6), `modulatory_channel_route_weight` (1.0), `modulatory_channel_route_source`
+("none").
+
+**Honest scope.** For **coherence** (661): `currency_coherence` is a *scalar* (uniform
+across candidates) -- a scalar gate is **rescale-invisible** by construction. Routing the
+compose `[K]` bias gives it the cosine's range, but joint-vs-alternation
+**mode-discrimination** (a different per-candidate *pattern*, not just magnitude) is a
+MECH-294-side concern, out of scope here. The P0 gate correctly flags a channel carrying
+no cross-candidate range as `substrate_not_ready`.
+
+**Validation:** V3-EXQ-662 substrate-readiness diagnostic (`claim_ids=[]`; ARM_0 routing
+OFF vs ARM_1 routing ON, both authority ON + e2_world_forward + SD-056 online). PASS
+(`route_range_substrate_ready`) confirms the P0 gate and unblocks the **separate**
+per-claim behavioural retests of ARC-065 / MECH-294 / ARC-062 / MECH-309 / MECH-341.
+Those claims stay candidate / v3_pending / pending_retest_after_substrate; not weakened.
+
 ## See also
 
 - `ree-v3/ree_core/predictors/e3_selector.py` (additive authority + V3-EXQ-643a explicit
-  accumulator), `e3_score_diversity.py` (stratified normalization), `ree_core/utils/config.py`
-  (flags).
+  accumulator + route-range `project_channel_range`), `e3_score_diversity.py` (stratified
+  normalization), `ree_core/utils/config.py` (flags).
 - Cluster autopsy: `evidence/planning/failure_autopsy_604a-624a-630_2026-06-03.{md,json}`.
 - 643 autopsy (root cause corrected by the 643a fix above):
   `evidence/planning/failure_autopsy_V3-EXQ-643_2026-06-06.{md,json}`.
