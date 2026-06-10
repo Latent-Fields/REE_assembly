@@ -92,6 +92,7 @@ KNOWN_PLANS = [
     "behavioral_diversity_isolation_plan.md",
     "sd_037_axis_a_consumer_input_recalibration_plan.md",
     "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+    "arm_reuse_fingerprint_plan.md",
 ]
 
 NON_TERMINAL_STATUSES = {

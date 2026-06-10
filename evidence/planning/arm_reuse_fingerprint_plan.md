@@ -1,3 +1,75 @@
+---
+closure_plan:
+  id: arm_reuse_fingerprint
+  title: "Arm-Reuse Fingerprint (baseline-arm reuse via substrate fingerprint)"
+  registered: 2026-06-10
+  last_updated: 2026-06-10
+  # Infrastructure / tooling plan -- owns no scientific claims directly. It only
+  # touches the INV-074 (610 crystallization) and modulatory-authority (643)
+  # OFF-baseline lineages via the canonical baseline modules it mints from.
+  scope_claims: []
+  sibling_plans: []
+  nodes:
+    - id: "arm_reuse_fingerprint:P0"
+      title: "Phase 0 -- instrument only: arm_fingerprint lib (substrate content-hash + per-cell fingerprint), complete per-cell RNG reset, would-be-savings report. Zero validity risk."
+      phase: 0
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-06-06
+      completion_note: "experiments/_lib/arm_fingerprint.py (substrate_hash over ree_core/** + env + _harness + _lib/** + OFF-path source; config_slice; seed; regime), reset_all_rng helper + template/queue-experiment smoke step, and scripts/arm_reuse_report.py (group-by-fingerprint would-be-hits) all landed. Phase-0 emits fields + a report only; nothing can invalidate an experiment."
+    - id: "arm_reuse_fingerprint:MINT"
+      title: "Baseline pre-minting -- canonical baseline modules + low-priority cloud mint experiments for the 610 (INV-074) and 643 (modulatory-authority) OFF baselines."
+      phase: 0
+      status: done
+      severity: low
+      owner_exq: "V3-EXQ-644 / V3-EXQ-645 (610, cloud-2/3); V3-EXQ-646 (643, cloud-4)"
+      last_updated: 2026-06-07
+      completion_note: "Canonical modules exq610_inv074_crystallization_baseline.py + exq643_modulatory_authority_baseline.py (byte-for-byte fidelity to the source OFF arms, auto-bound into substrate_hash via the _lib/** glob). Mint scripts landed + queued low-priority (10) on the cloud machine-class; all three mints PASSed Phase-0 emit-only with reuse_eligible=true."
+    - id: "arm_reuse_fingerprint:GATE"
+      title: "Section 9.0 hard prerequisite -- cross-instance determinism gate (610 OFF baseline minted on cloud-2 AND cloud-3; agree within pre-registered tolerance)."
+      phase: 0
+      status: done
+      severity: high
+      owner_exq: "V3-EXQ-644 (cloud-2) + V3-EXQ-645 (cloud-3)"
+      last_updated: 2026-06-07
+      completion_note: "PASSED -- user-ratified 2026-06-07T13:30Z. Fingerprint-scoped comparison of the two cloud mints: seeds 42/43 agree to <= 1.56e-2, well within the pre-registered 0.05 TIER-2 tolerance; zero false collisions (Phase-0 exit criterion met). Seed 44 correctly excluded (cloud-3 source drifted mid-run -> different substrate_hash -> the fingerprint refused, not a false hit). Regime A (distributional reuse) confirmed + SANCTIONED on the linux-x86_64-py3.10 cloud machine-class. Reproduce via scripts/arm_reuse_determinism_check.py."
+    - id: "arm_reuse_fingerprint:P1-build"
+      title: "Phase 1 consumer machinery -- arm_fingerprint_index.json writer, try_reuse_cell refuse-by-default helper, provenance/supersession reverse-index, /queue-experiment opt-in step."
+      phase: 1
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-06-09
+      completion_note: "_write_arm_fingerprint_index in build_experiment_indexes.py (runs in governance.sh; indexes only reuse_eligible + non-ERROR + non-superseded cells; reverse_index + pending_reuse_revalidation). experiments/_lib/arm_reuse.py::try_reuse_cell over every section-9.2 refuse rule with provenance stamping. tests/contracts/test_arm_reuse.py 24/24 green. queue-experiment opt-in step mirrored to both skill dirs; arm_reuse_report.py extended with a consumed-vs-fresh + refused-with-reason audit."
+    - id: "arm_reuse_fingerprint:P1-fix"
+      title: "Driver-script_path coupling fix -- include_driver_script_in_hash so a consumer with its own driver can match a mint's fingerprint (the automated index-HIT enabler)."
+      phase: 1
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-06-09
+      completion_note: "Phase-0 mint folded its own script_path into substrate_hash, so a consumer's distinct driver got a different hash -> no index entry -> the automated path could never HIT. Fixed 2026-06-09 via include_driver_script_in_hash (default True = legacy coupling, existing 644/645/646 fingerprints unchanged). With BOTH mint and consumer passing False, the OFF cell anchors on the canonical baseline module (already in the substrate glob) + config_slice + seed + machine_class; a discriminator keeps the two modes isolated. Regression test_arm_reuse.py 24/24 (+3: cross-driver HIT, default-mode refuse, mode-isolation)."
+    - id: "arm_reuse_fingerprint:P1-cite"
+      title: "First live use -- explicit-cite consumer (V3-EXQ-647) reuses all three 646 OFF-baseline cells with full provenance, runs treatment arms fresh."
+      phase: 1
+      status: done
+      severity: low
+      owner_exq: "V3-EXQ-647"
+      last_updated: 2026-06-09
+      completion_note: "v3_exq_647_modulatory_authority_reuse_split (cloud-4, 2026-06-06, user-supervised) reused ARM_A seeds 42/43/44 from the V3-EXQ-646 mint with section-9.3 provenance stamps (reused_from_run_id / reused_fingerprint / reused_at_utc + full arm_fp/v1 block) and ran ARM_B/ARM_C fresh -- section-9.5 step-6 core acceptance met. Note: in 647 the AUTOMATED try_reuse_cell still refused (fingerprint_not_in_index, the driver-coupling bug since fixed in P1-fix); the explicit-cite copy carried the reuse."
+    - id: "arm_reuse_fingerprint:P1-auto"
+      title: "First AUTOMATED index-HIT in the wild -- next genuinely-needed iteration (610g / 643c) re-mints its OFF baseline AND consumes it via try_reuse_cell(include_driver_script_in_hash=False); confirm reused_from_run_id in-manifest + that flipping one config byte flips back to a fresh run."
+      phase: 1
+      status: blocked
+      severity: low
+      owner_exq: "V3-EXQ-610g (or 643c) -- pending; 610g gated on V3-EXQ-656"
+      depends_on: []
+      last_updated: 2026-06-10
+      blocking_on: "No standalone work warranted -- the automated index-HIT rides on the next genuinely-needed iteration. 610g is gated on the 610f-autopsy redesign successor V3-EXQ-656 (supersedes 610f, already queued); 643c is not yet needed. Machinery is fully built + unit-tested (P1-build / P1-fix) and the determinism gate has passed (GATE); only a real consumer is missing."
+      governance_2026_06_10: "Closure-map onboarding. Case 3 in closure-drift terms: legitimately non-terminal -- the Phase-1 consumer is built, tested, and sanctioned; the single remaining item is a demonstration that can only happen when a real successor experiment (610g via V3-EXQ-656, or 643c) is independently needed. Arm-reuse is a compute optimisation, not a v3-closure blocker."
+---
+
 # Arm-Reuse Fingerprint -- Design Plan
 
 **Status:** IMPLEMENTED through Phase 1. Phase 0 instrument + Phase 1 consumer machinery landed and unit-tested; §9.0 determinism gate PASSED + user-ratified 2026-06-07; Regime-A reuse SANCTIONED on the cloud machine-class; explicit-cite live use exercised (V3-EXQ-647). Driver-`script_path` coupling fixed 2026-06-09 (§9.7) so the automated index-HIT path can fire. Remaining: first *automated* index-HIT in the wild (next genuinely-needed 610g/643c iteration; 610g gated on the 610f redesign successor V3-EXQ-656). Original decisions resolved in §7.

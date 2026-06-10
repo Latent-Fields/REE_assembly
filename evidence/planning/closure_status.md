@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-10T16:06:00Z
+Generated: 2026-06-10T16:49:56Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,11 +8,11 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **74.6%** across 68 non-deferred nodes in 10 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **22** nodes.
+- Weighted progress: **75.7%** across 75 non-deferred nodes in 11 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **23** nodes.
 - Deferred (not required for v3 closure): 14 nodes.
-- Done: 46 nodes.
-- Status tally: blocked=7  blocked_pending_substrate=5  deferred=14  done=46  in_progress=6  open=1  partial=2  upstream_blocked=1
+- Done: 52 nodes.
+- Status tally: blocked=8  blocked_pending_substrate=5  deferred=14  done=52  in_progress=6  open=1  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -24,12 +24,13 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 12 | 61% | blocked:1 blocked_pending_substrate:1 deferred:3 done:4 in_progress:2 partial:1 | 2026-06-09 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 68% | blocked_pending_substrate:1 deferred:1 done:4 open:1 | 2026-06-04 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 11 | 87% | deferred:2 done:7 in_progress:2 | 2026-06-04 |
+| `arm_reuse_fingerprint_plan.md` | Arm-Reuse Fingerprint (baseline-arm reuse via substrate fingerprint) | 7 | 87% | blocked:1 done:6 | 2026-06-10 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 8 | 87% | deferred:1 done:6 upstream_blocked:1 | 2026-05-31 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 15 | 88% | blocked_pending_substrate:2 done:13 | 2026-05-30 |
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-05 |
 
-## Remaining work to close v3 (22)
+## Remaining work to close v3 (23)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
@@ -37,6 +38,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under | blocked_pending_substrate | 1 | load-bearing | V3-EXQ-625c | RESUME the Phase 1b gate (or its successor) once the behavioural-diversity substrate amend | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-09 |
+| arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-auto` | First AUTOMATED index-HIT in the wild -- next genuinely-needed iteration (610g / | blocked | 1 | low | V3-EXQ-610g (or 643c) -- pending; 610g gated on  | No standalone work warranted -- the automated index-HIT rides on the next genuinely-needed | 2026-06-10 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654a QUEUED 2026-06-09 (priority 250, mac | BOTH routed steps are now DONE (see governance_2026_06_09_amend_and_requeue): the crf_pers | 2026-06-09 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460b..468b (Phase 4/5 *b cohort; MECH-342 | MECH-090 R-c commit-entry readiness conjunction substrate LANDED in two passes (2026-05-28 | 2026-06-04 |
 | goal_pipeline_plan.md | `goal_pipeline:GAP-2` | SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor) | blocked_pending_substrate | 2 | high | V3-EXQ-514l | RESUME once the scaffolded_sd054_onboarding substrate-readiness gates pass (substrate_queu | 2026-06-10 |
@@ -77,12 +79,18 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | self_attribution_plan.md | `self_attribution:GAP-5` | SD-030/SD-031 z_self / z_world materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (46)
+## Done (52)
 
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-A` -- ARC-062 substrate implemented and readiness-validated (gated-policy heads + learned contex
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-C` -- ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-D` -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-L` -- Biology lit-pull prerequisite for the socially-scaffolded rule-population sub-cluster (ARC
+- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:GATE` -- Section 9.0 hard prerequisite -- cross-instance determinism gate (610 OFF baseline minted 
+- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:MINT` -- Baseline pre-minting -- canonical baseline modules + low-priority cloud mint experiments f
+- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P0` -- Phase 0 -- instrument only: arm_fingerprint lib (substrate content-hash + per-cell fingerp
+- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-build` -- Phase 1 consumer machinery -- arm_fingerprint_index.json writer, try_reuse_cell refuse-by-
+- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-cite` -- First live use -- explicit-cite consumer (V3-EXQ-647) reuses all three 646 OFF-baseline ce
+- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-fix` -- Driver-script_path coupling fix -- include_driver_script_in_hash so a consumer with its ow
 - `behavioral_diversity_isolation_plan.md` `behavioral_diversity_isolation:GAP-D` -- Theory 4 / Layer D: V_s regional verisimilitude staleness (MECH-269 / MECH-269b)
 - `commitment_closure_plan.md` `commitment_closure:GAP-1` -- SD-033a bias head untrained (Go-side mechanically silent)
 - `commitment_closure_plan.md` `commitment_closure:GAP-10` -- StepHarness audit of governance write paths
@@ -126,9 +134,9 @@ Ordered by phase, then severity. This is the answer to "what is left."
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 
-## Plans WITHOUT closure_plan frontmatter (1)
+## Plans WITHOUT closure_plan frontmatter (0)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
-- `evidence/planning/arm_reuse_fingerprint_plan.md`
+_None -- every plan doc is mapped._
 
