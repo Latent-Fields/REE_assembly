@@ -1,0 +1,256 @@
+---
+closure_plan:
+  id: autobiographical_memory_v4
+  generation: v4
+  title: "Autobiographical Memory (V4 forward roadmap): unified event store, provenance, write-authority, imagination-learning constraints"
+  registered: 2026-06-10
+  last_updated: 2026-06-10
+  scope_claims: [ARC-085, MECH-365, MECH-366, MECH-368, MECH-361, MECH-252, MECH-253, MECH-261, Q-060, Q-062]
+  sibling_plans: [object_representation_v4, goal_pipeline]
+  roadmap_note: >
+    FORWARD ROADMAP, not a closure map. V4 has no experiments yet, so nodes
+    carry no owner_exq and the drift checker stays dormant against them. Each
+    node's readiness_gate lists the V3-era prerequisites (claims/tracks) that
+    must land before the V4 substrate step is honest to build. generation: v4
+    keeps these nodes OUT of the V3 closure percentage (serve.py read_closure,
+    generate_closure_snapshot.py, and check_closure_drift.py are all
+    generation-aware). A node graduates from roadmap to closure-tracked by
+    gaining an owner_exq once its first V4 experiment is queued. The whole
+    cluster is substrate_conditional on the ARC-085 self-tagged event-token
+    store, which does not exist in V3 -- REE owns the two halves SEPARATELY
+    (ARC-007 hippocampal replay; ARC-018 prospective rollouts) and the new
+    claim is that they are ONE substrate.
+  nodes:
+    - id: "autobiographical_memory_v4:ABM-1"
+      title: "Memory-type taxonomy decision (Q-060): distinct autobiographical-event type, or a tag on episodic content?"
+      phase: 1
+      status: open
+      severity: load-bearing
+      owner_exq: null
+      unblocks_claims: [Q-060, ARC-085]
+      depends_on: []
+      cross_plan_link: []
+      readiness_gate:
+        - "V3 owns only the episodic<->semantic axis (MECH-121 NREM SWR episodic->semantic transfer) plus the orthogonal stored-vs-active distinction (INV-037/INV-038); there is NO memory-type taxonomy claim"
+        - "DECISION the fork forces: is autobiographical-event memory a first-class type separate from semantic (facts/relations) and task/procedural (policies/schemas), or a self/affect tag on episodic content? Hyperthymesia intake motivates a four-way split (semantic / task / autobiographical-event / prospective-autobiographical-simulation)"
+        - "This decision sets the shape of the ARC-085 store before any substrate is built; it is a taxonomy answer, not an experiment to narrow on the V3 substrate (Q-060 is substrate_conditional, narrow_open_question suppressed)"
+      last_updated: 2026-06-10
+      completion_note: "Q-060 is the gating design decision for the whole cluster. Per its notes: does a distinct autobiographical layer earn its keep, or is it a tag? The answer determines whether ARC-085 is a new store or an indexing convention over the existing hippocampal store. Decide before building."
+    - id: "autobiographical_memory_v4:ABM-2"
+      title: "Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulation"
+      phase: 2
+      status: blocked
+      severity: load-bearing
+      owner_exq: null
+      unblocks_claims: [ARC-085]
+      depends_on: ["autobiographical_memory_v4:ABM-1"]
+      cross_plan_link: []
+      blocking_on: "ARC-007 (hippocampal replay store) and ARC-018 (prospective rollouts + post-commitment viability map) are implemented SEPARATELY in V3; the unification is the V4 work. Cannot build until ABM-1 fixes the store's type/tag shape."
+      readiness_gate:
+        - "ARC-007 retrospective replay (paths through residue-field terrain) -- present in V3, design-level"
+        - "ARC-018 prospective simulation (explicit rollouts + viability map) -- present in V3, design-level"
+        - "FALSIFIER that licenses the single-store claim: corrupting the shared store must degrade past-recall AND future-simulation fidelity TOGETHER, vs independent degradation under a two-store model"
+        - "Guardrail (intake): do NOT treat as precognition / perfect memory; vivid != accurate; simulation != prediction"
+      last_updated: 2026-06-10
+      completion_note: "ARC-085: autobiographical memory is an identity-indexed event field (events bound to perspective, emotion, residue, self-state), not neutral storage; future-trajectory generation is forward re-composition of the SAME event tokens that replay reinstates backward. The architectural-commitment spine that the rest of this plan specialises."
+    - id: "autobiographical_memory_v4:ABM-3"
+      title: "Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)"
+      phase: 3
+      status: blocked
+      severity: load-bearing
+      owner_exq: null
+      unblocks_claims: [MECH-365]
+      depends_on: ["autobiographical_memory_v4:ABM-2"]
+      cross_plan_link: []
+      blocking_on: "Needs the ARC-085 event-token store (ABM-2) to carry the schema. The safety PROPERTY already exists in V3 pieces; the missing thing is the load-bearing DATA STRUCTURE on the unified store."
+      readiness_gate:
+        - "MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation) -- the property is owned, V3"
+        - "MECH-037 (Papez-like provenance gating / reality filtering) -- owned, V3"
+        - "INV-011 (imagination must be possible without belief update) -- owned, V3"
+        - "SD-026 (prospective precision-template write channel) -- nearest existing write-side mechanism, V3"
+        - "NEW work: assemble these into one concrete token schema event_token = {time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined} and make committed_vs_imagined a first-class field with a ONE-WAY gate (no simulated token may accrue committed-history weight -- any such path is a confabulation bug)"
+      last_updated: 2026-06-10
+      completion_note: "MECH-365 does NOT re-assert the safety property (owned by MECH-094/MECH-037/INV-011); it specifies the data structure that carries it on the ARC-085 substrate. The one-way committed-status gate is the autobiographical-memory phrasing of INV-011 + MECH-094 and is the natural home for the imagination-learning constraints folded in at ABM-4."
+    - id: "autobiographical_memory_v4:ABM-4"
+      title: "Imagination-learning licit/forbidden principle (ARC-level, folded into the provenance gate)"
+      phase: 3
+      status: open
+      severity: high
+      owner_exq: null
+      unblocks_claims: ["NEWCLAIM:imagination_learning_constraint_principle", MECH-365]
+      depends_on: ["autobiographical_memory_v4:ABM-3"]
+      cross_plan_link: []
+      readiness_gate:
+        - "REE owns substrate components implicitly enforcing what learning is licit from imagination (MECH-094 provenance, MECH-272/MECH-273 sleep self-model aggregation) but NO explicit ARC-level claim articulating the principle"
+        - "LICIT from imagination: consistency checking, plan optimisation, schema integration"
+        - "FORBIDDEN from imagination: durable world-model updates, prediction validation, novel-fact generation"
+        - "Lit anchors to pull before registering (project rule: biology before formal definitions): Stickgold 2013, Cai 2009, Schapiro 2017 (CLS), confabulation literature, FEP epistemic value"
+      last_updated: 2026-06-10
+      completion_note: "Prose-only today (memory project_imagination_learning_constraints). The MECH-365 one-way committed-vs-imagined gate is its mechanism home; this node proposes the missing ARC-level PRINCIPLE that the gate implements. Registered as NEWCLAIM stub, not invented in claims.yaml. Couples directly to ABM-5 write-authority -- the FORBIDDEN list is exactly the durable-model-update path MECH-368 gates."
+    - id: "autobiographical_memory_v4:ABM-5"
+      title: "Event-level write-authority gate over the durable model-update path (MECH-368) + its falsifier (Q-062)"
+      phase: 4
+      status: blocked
+      severity: high
+      owner_exq: null
+      unblocks_claims: [MECH-368, Q-062]
+      depends_on: ["autobiographical_memory_v4:ABM-3", "autobiographical_memory_v4:ABM-4"]
+      cross_plan_link: []
+      blocking_on: "Requires an online world-model/policy WRITE channel to gate; the goal_relevance input depends on a competitive z_goal (goal_pipeline GAP-4), which is the main reason MECH-368 is V4-scoped. The episodic write path is already substantially covered; the under-covered path is the online E1/E2/policy weight-update one."
+      readiness_gate:
+        - "MECH-261 (mode-conditioned write CHANNEL gating via SD-032a) -- gates the channel per operating-mode, NOT per-event; V3-design"
+        - "MECH-094 (provenance gate) and MECH-285 (consolidation-priority by V_s residual) -- the two existing alternatives MECH-368 must beat"
+        - "INV-074 (plasticity crystallization necessity) + MECH-334 (critical-period closure / EWC write-protect) -- the CLOSURE/protection side REE already built; MECH-368 is the ADMISSION side"
+        - "SD-032a salience-network operating-mode variable -- V3-design"
+        - "Q-062 FALSIFIER: if channel-gating (MECH-261) + provenance (MECH-094) + offline consolidation-priority (MECH-285) already prevent catastrophic interference on the online path, MECH-368 earns no keep"
+      last_updated: 2026-06-10
+      completion_note: "MECH-368 is the per-event admission gate on durable model-update: f(prediction_error, salience, pathway_state, residue_status, goal_relevance, plasticity_eligibility). Downstream of MECH-261 (channel grain) and distinct from MECH-094 (provenance). Q-062 is the companion falsifier registered alongside it. A goal-free REDUCED form (drop goal_relevance) could be pulled earlier if a specific failure motivates it."
+    - id: "autobiographical_memory_v4:ABM-6"
+      title: "Candidate-gradient episode content schema (MECH-361): affect gradient as write-weight + retrieval-query"
+      phase: 4
+      status: blocked
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [MECH-361]
+      depends_on: ["autobiographical_memory_v4:ABM-2"]
+      cross_plan_link: []
+      blocking_on: "substrate_conditional on the MECH-359 per-candidate affect substrate (off this plan) -- the per-candidate affective gradient must exist before it can be the write-weight."
+      readiness_gate:
+        - "MECH-261 (mode-conditioned write gating) -- MECH-361 amends its CONTENT schema (WHAT is written), not the gate (WHETHER a substrate may write)"
+        - "MECH-074 (BLA arousal-modulated hippocampal write depth) -- MECH-361 sharpens write-weight from generic arousal to per-candidate affective GRADIENT"
+        - "MECH-359 per-candidate affect substrate (off-plan dependency) must land first"
+        - "MECH-094 provenance still applies: simulated candidates must not be indexed as real experience"
+      last_updated: 2026-06-10
+      completion_note: "Enriches the event trace from state->action->outcome to state->candidates-considered->affective-gradients->selected-action->outcome->residue, and uses the gradient as memory write-weight and retrieval-query. The CONTENT-side specialisation of the ARC-085 token, sitting on the MECH-365 provenance schema."
+    - id: "autobiographical_memory_v4:ABM-7"
+      title: "Switchable episodic perspective tag (MECH-366): participant/observer viewpoint as a represented, switchable property"
+      phase: 5
+      status: blocked
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [MECH-366]
+      depends_on: ["autobiographical_memory_v4:ABM-2"]
+      cross_plan_link: []
+      blocking_on: "Requires the ARC-085 event-token store (ABM-2) to carry the viewpoint label. SD-005 represents self-vs-world content, NOT a switchable viewpoint ON an episode -- that construct is absent from claims.yaml."
+      readiness_gate:
+        - "SD-005 (z_self/z_world split) -- nearest existing substrate, but represents self-vs-world content not a perspective tag; V3"
+        - "Empirical anchor: the verified Neurocase case (ARC-085) reports fluent participant<->observer switching on recalled AND imagined events"
+        - "Interacts with agency attribution and first-vs-third-person framing of both replay (ARC-007) and prospective simulation (ARC-018)"
+      last_updated: 2026-06-10
+      completion_note: "MECH-366: event tokens carry a viewpoint label (participant/first-person vs observer/third-person) re-experienceable from either viewpoint at retrieval, independent of encoding viewpoint. A property of the ARC-085 token; design-only today."
+    - id: "autobiographical_memory_v4:ABM-8"
+      title: "Consolidation write-paths the store must respect (MECH-252 / MECH-253 / MECH-261)"
+      phase: 5
+      status: deferred
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [MECH-252, MECH-253, MECH-261]
+      depends_on: ["autobiographical_memory_v4:ABM-2", "autobiographical_memory_v4:ABM-3"]
+      cross_plan_link: []
+      readiness_gate:
+        - "MECH-252 (SWS consolidates goal-value PE into stored goal-representation CONTENT, not attentional-template params) -- V3-design"
+        - "MECH-253 (REM consolidates template-performance PE into z_goal->attentional-template projection WEIGHTS, not stored content) -- V3-design"
+        - "MECH-261 (mode-conditioned write gating; soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}) -- the channel-grain gate the store reads at write time"
+        - "These are the EXISTING offline write-path claims; the V4 work is making the ARC-085 store honour the SWS/REM content-vs-weights split and the mode-conditioned channel, NOT re-asserting them"
+      last_updated: 2026-06-10
+      completion_note: "Deferred (not blocked): these consolidation claims are already specified and partly substrate-present in V3; the node tracks the integration obligation -- the unified store and its provenance/write-authority gates must compose cleanly with the SWS/REM content-vs-weights split (MECH-252/253) and the MECH-261 channel grain, rather than introduce a parallel write path."
+---
+# Autobiographical Memory -- V4 Forward Roadmap
+
+**Registered:** 2026-06-10
+**Generation:** v4 (forward roadmap; excluded from the V3 closure %)
+**Status:** roadmap
+**Scope:** sequence the unified autobiographical event-token store (ARC-085) and
+its specialisations -- memory-type taxonomy (Q-060), provenance + committed-vs-
+imagined gate (MECH-365), the imagination-learning licit/forbidden principle
+(prose-only, folded into the provenance gate), event-level write-authority over
+the durable model-update path (MECH-368 / Q-062), candidate-gradient episode
+content (MECH-361), switchable perspective (MECH-366), and the consolidation
+write-paths the store must respect (MECH-252/253/261) -- so V4 substrate work
+slots in against a registered spine instead of growing a second, parallel
+memory machinery.
+
+This is a *forward roadmap*, not a closure map: V4 has no experiments yet, so
+nodes carry no `owner_exq` and the drift checker stays dormant against them. The
+value here is the **readiness gates** -- for each step, exactly which V3-era
+prerequisites (claims/tracks) must land before the V4 substrate step is honest
+to build. The entire cluster is `substrate_conditional` on the ARC-085 store,
+which V3 does not have.
+
+---
+
+## One-line framing
+
+> Memory-ness already exists in REE, but split across two machineries with no
+> shared spine: retrospective replay (ARC-007, hippocampal store of paths
+> through residue terrain) and prospective simulation (ARC-018, explicit
+> rollouts + viability map). ARC-085 names the single primitive -- one
+> self-tagged event-token store that replay reinstates backward and simulation
+> re-composes forward. This plan sequences the store and its specialisations,
+> and pins their V3 readiness gates. The load-bearing safety invariant
+> (imagined tokens must never accrue committed weight) is already owned by
+> MECH-094/MECH-037/INV-011; the new work is the DATA STRUCTURE (MECH-365) that
+> carries it and the explicit PRINCIPLE (proposed NEWCLAIM) it implements.
+
+---
+
+## The roadmap (specialisations of one substrate)
+
+| Step | Node | Claim | Phase leaning | The V3 readiness gate |
+|---|---|---|---|---|
+| taxonomy fork | ABM-1 | Q-060 | V4 (first decision) | MECH-121 episodic<->semantic only; no taxonomy claim; decide distinct-type vs tag |
+| unified store | ABM-2 | ARC-085 | V4 | ARC-007 + ARC-018 present but separate; falsifier = joint degradation |
+| provenance token | ABM-3 | MECH-365 | V4 | MECH-094 + MECH-037 + INV-011 + SD-026; one-way committed gate |
+| imagination principle | ABM-4 | NEWCLAIM | V4 | folds into MECH-365; lit-pull Stickgold/Cai/Schapiro first |
+| write-authority gate | ABM-5 | MECH-368 / Q-062 | V4 | MECH-261 channel grain; beat MECH-094 + MECH-285; INV-074/MECH-334 closure side |
+| episode content | ABM-6 | MECH-361 | V4 | amends MECH-261 content; needs MECH-359 affect substrate (off-plan) |
+| perspective tag | ABM-7 | MECH-366 | V4 | SD-005 is self/world not viewpoint; Neurocase switching anchor |
+| consolidation paths | ABM-8 | MECH-252/253/261 | V4 (integration) | SWS content vs REM weights; honour not re-assert |
+
+---
+
+## What this plan deliberately does NOT pull into V3
+
+- **No parallel autobiographical event substrate in V3.** ARC-085 explicitly
+  warns: do not build a parallel autobiographical event substrate in V3 until
+  routed by an explicit version decision. V3 keeps ARC-007 and ARC-018 as the
+  two separate halves they already are.
+- **The safety invariant is NOT re-opened.** MECH-094 (no simulated content in
+  the viability map), MECH-037 (provenance gating), and INV-011 (imagination
+  without belief update) stay exactly as they are in V3. MECH-365 and the
+  imagination-learning NEWCLAIM specify the data structure and the principle
+  that carry that invariant; they do not weaken or duplicate it.
+- **No new claim is registered by this plan.** The imagination-learning
+  principle (ABM-4) is returned as a `NEWCLAIM` stub for the orchestrator to
+  assign, not written into claims.yaml here.
+- **MECH-368's online write channel is V4 by construction.** Its `goal_relevance`
+  input depends on a competitive z_goal (`goal_pipeline` GAP-4). A goal-free
+  reduced form could be pulled earlier only if a specific V3 failure motivates
+  it -- not on this roadmap's critical path.
+- **MECH-359 per-candidate affect substrate (ABM-6 dependency) is off-plan.**
+  MECH-361's affect-gradient-as-write-weight cannot be built until that
+  substrate lands; this plan only records the dependency.
+
+---
+
+## Source artefacts
+
+| Artefact | Role |
+|---|---|
+| [docs/architecture/autobiographical_temporality_and_future_simulation.md](../../docs/architecture/autobiographical_temporality_and_future_simulation.md) | ARC-085 / MECH-365 / MECH-366 / Q-060 home doc |
+| [docs/architecture/plasticity_write_authority_gating.md](../../docs/architecture/plasticity_write_authority_gating.md) | MECH-368 / Q-062 home doc (write-authority admission side) |
+| [docs/architecture/candidate_differentiated_affective_gradients.md](../../docs/architecture/candidate_differentiated_affective_gradients.md) | MECH-361 candidate-gradient episode schema |
+| claims.yaml ARC-085 / MECH-365 / MECH-366 / MECH-368 / MECH-361 / Q-060 / Q-062 | the cluster (all `implementation_phase: v4`, `substrate_conditional`) |
+| memory project_imagination_learning_constraints | prose-only LICIT/FORBIDDEN principle -> proposed NEWCLAIM at ABM-4 |
+| sibling plan object_representation_v4 | shares the V4 forward-roadmap format and the token-instance / self-as-object spine |
+
+---
+
+## Decision log
+
+- **2026-06-10** -- Plan registered as a V4 forward-roadmap. Nodes seeded from
+  ARC-085 / MECH-365 / MECH-366 / MECH-368 / MECH-361 / MECH-252 / MECH-253 /
+  MECH-261 / Q-060 / Q-062. Readiness gates pinned per step. The prose-only
+  imagination-learning LICIT/FORBIDDEN principle is folded into the MECH-365
+  provenance gate (ABM-4) and returned as a NEWCLAIM stub, not registered here.
+  `generation: v4` set so the V3 closure % is unaffected. No claims.yaml edits.

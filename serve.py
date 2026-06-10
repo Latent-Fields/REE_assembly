@@ -1622,6 +1622,18 @@ CLOSURE_KNOWN_PLANS = [
     # --- V4/V5 forward-roadmap plans (generation: v4|v5; segmented out of the
     # V3 closure % by read_closure). See evidence/planning/*_v4_plan.md ---
     "object_representation_v4_plan.md",
+    "self_model_v4_plan.md",
+    "inference_belief_state_v4_plan.md",
+    "object_reasoning_abstraction_v4_plan.md",
+    "goal_deliberation_v4_plan.md",
+    "hippocampal_planning_v4_plan.md",
+    "affect_expression_v4_plan.md",
+    "autobiographical_memory_v4_plan.md",
+    "memory_lifecycle_v4_plan.md",
+    "developmental_dmn_v4_plan.md",
+    "drives_motivation_v4_plan.md",
+    "perceptual_adaptors_v4_plan.md",
+    "plasticity_neuromodulation_v4_plan.md",
 ]
 
 CLOSURE_STATUS_WEIGHTS = {
