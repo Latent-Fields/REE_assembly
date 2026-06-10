@@ -198,7 +198,7 @@ compose `[K]` bias gives it the cosine's range, but joint-vs-alternation
 MECH-294-side concern, out of scope here. The P0 gate correctly flags a channel carrying
 no cross-candidate range as `substrate_not_ready`.
 
-**Validation:** V3-EXQ-662 substrate-readiness diagnostic (`claim_ids=[]`; ARM_0 routing
+**Validation:** V3-EXQ-663 substrate-readiness diagnostic (`claim_ids=[]`; ARM_0 routing
 OFF vs ARM_1 routing ON, both authority ON + e2_world_forward + SD-056 online). PASS
 (`route_range_substrate_ready`) confirms the P0 gate and unblocks the **separate**
 per-claim behavioural retests of ARC-065 / MECH-294 / ARC-062 / MECH-309 / MECH-341.
