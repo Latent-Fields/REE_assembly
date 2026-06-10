@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-10T14:06:55Z",
+  "last_tick_utc": "2026-06-10T14:37:02Z",
   "state": "running",
   "current_exq": "V3-EXQ-655",
   "current_exq_started_utc": "2026-06-09T05:22:15.673943+00:00",
@@ -9,21 +9,21 @@
   "current_claim_id": "INV-074",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_1_stripped_crystallize",
-    "runs_done": 4,
+    "run_label": "Seed 44 / ARM_1_stripped_crystallize",
+    "runs_done": 5,
     "runs_total": 15,
-    "episodes_done": 2300,
+    "episodes_done": 101,
     "episodes_total": 2500,
-    "overall_pct": 32.8
+    "overall_pct": 33.6
   },
-  "seconds_elapsed": 117880,
-  "seconds_remaining": 265856,
+  "seconds_elapsed": 119687,
+  "seconds_remaining": 236274,
   "recent_lines": [
-    "[train] ARM_1_stripped_crystallize ep 2001/2500 phase=3 ep_eb=0.0200 ep_reward=-1.0492 rv=0.0154 pol_steps=2001 exp_steps=0 ewc_terms=0",
-    "[INV-074] policy_optimizer rebuilt for expansion_parameters (4 expansion + 2 residue params)",
-    "[train] ARM_1_stripped_crystallize ep 2100/2500 phase=3 ep_eb=0.0000 ep_reward=-1.2079 rv=0.0132 pol_steps=2100 exp_steps=99 ewc_terms=99",
-    "[train] ARM_1_stripped_crystallize ep 2200/2500 phase=3 ep_eb=0.0000 ep_reward=-1.2000 rv=0.0107 pol_steps=2200 exp_steps=199 ewc_terms=199",
-    "[train] ARM_1_stripped_crystallize ep 2300/2500 phase=3 ep_eb=0.0000 ep_reward=-1.0564 rv=0.0114 pol_steps=2300 exp_steps=299 ewc_terms=299"
+    "verdict: PASS",
+    "Seed 44 Condition ARM_1_stripped_crystallize",
+    "[V3-EXQ-655] Starting ARM_1_stripped_crystallize seed=44 crystallize=True p3_eb=0.0 noise_floor=False e3_div=False",
+    "[train] ARM_1_stripped_crystallize ep 100/2500 phase=0 ep_eb=0.0200 ep_reward=-1.1066 rv=0.0047 pol_steps=100 exp_steps=0 ewc_terms=0",
+    "[train] ARM_1_stripped_crystallize ep 101/2500 phase=1 ep_eb=0.0200 ep_reward=-0.7692 rv=0.0047 pol_steps=101 exp_steps=0 ewc_terms=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
