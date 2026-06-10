@@ -1,16 +1,49 @@
 {
   "schema_version": "v1",
-  "runner_pid": 95278,
-  "runner_started_at": "2026-06-06T13:17:15.991881+00:00",
-  "last_updated": "2026-06-06T22:29:32.509039+00:00",
+  "runner_pid": 15397,
+  "runner_started_at": "2026-06-09T21:38:32.770414+00:00",
+  "last_updated": "2026-06-10T04:41:11.384523+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-610f",
+      "queue_id": "V3-EXQ-603l",
+      "backlog_id": "",
+      "claim_id": "SD-059",
+      "title": "SD-059/MECH-358 escape-affordance bridge BEHAVIOURAL re-test (scored evidence; successor to V3-EXQ-603i, the pending_retest_after_substrate). Full 4-arm + nav-control discriminative Stage-H run on the 603k+603j-fixed substrate: ARM_BASE_IA_ONLY (bridge OFF) / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE (bridge halves) / ARM_NAV_CONTROL (bridge OFF, spawn-in-reef nav-competence control). ALL arms turn ON the two now-validated substrate fixes: scaffold_train_harm_pathway=True (603k PASS -> clears the 603i PRIMARY nav/survival-competence ceiling; ARM_HARM_ON_NAV G_H 2/3 vs OFF 0/3, harm_eval range 0.133) and escape_use_trained_safety_signal=True + MECH-303 terrain + MECH-304 store + MECH-302 comparator (603j PASS -> the SAFETY half credits non-vacuously via the trained threat-absence signal, mean 0.89 >= 0.5 floor). PRIMARY DV best_bridge_G_H >= 2/3 AND > G_H_BASE. Per-half non-vacuity readiness preconditions retained as a SAFETY NET (each enabled bridge half credits >=2/3 before G_H scored; else self-route substrate_not_ready_requeue, NOT a false weakens).",
+      "description": "",
+      "estimated_minutes": 470.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-569f",
+      "backlog_id": "",
+      "claim_id": "ARC-065",
+      "title": "ARC-065 GAP-A R1.b FP-2 matched-entropy action-contrastive behavioural falsifier on the V3-EXQ-649-validated shared-channel stack (REEConfig.candidate_summary_source). Successor to the 569 matched-entropy FP-2 lineage (frontier 569e); supersedes V3-EXQ-569d (pre-649, collapsed-proposer consumption). 3-arm single-variable design, 3 seeds: ARM_0_PROPOSER (candidate_summary_source=proposer, temperature=1.0; pre-649 baseline) / ARM_1_E2WF (candidate_summary_source=e2_world_forward, temperature=1.0; the 649 GAP-A fix, under test) / ARM_2_MATCHED_NOISE (proposer, temperature=2.5; FP-2 matched-entropy noise control). SP-CEM + shared E3-side bias channels (lateral_pfc + mech295) ON; SD-056 online contrastive trained on every arm with the 643a rollout-norm clamp ON. PRIMARY DV = selected_action_class_entropy: R1.b PASS = ARM_1 strictly above BOTH ARM_2_MATCHED_NOISE and ARM_0_PROPOSER per matched seed on >=2/3 seeds, with the ARM_1 consumed-summary spread readiness floor (the 649 statistic, 0.05) and the C1 e2.world_forward prediction-spread floor (0.03) both met.",
+      "description": "",
+      "estimated_minutes": 96.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-654a",
+      "backlog_id": "",
+      "claim_id": "MECH-309",
+      "title": "ARC-062 GAP-B behavioural falsifier (MECH-309/ARC-062) GATED RE-RUN of V3-EXQ-654 on the crf_persist-matured CandidateRuleField substrate (amend ree-v3 9797e84). Single-variable ARM_OFF (use_candidate_rule_field=False, legacy collapsed rule_state) vs ARM_ON (use_candidate_rule_field=True + crf_persist_rules_across_episode_reset=True, MATURED differentiated crf_source) on the matched 649 GAP-A / 643a authority / SD-056 / SP-CEM / MECH-341 stack. THREE fixes vs 654: (1) crf_persist=True so the rule pool matures across episodes and crf_frac_active clears the 0.30 C1c floor (654 cold-started 0.12); (2) a frozen-encoder P1 phase that TRAINS the SD-033a rule_bias_head via outcome-coupled REINFORCE (GAP-D; mirrors v3_exq_598b) so propagation is not vacuous; (3) a propagation non-vacuity precondition (ARM_ON lateral_pfc bias differs from ARM_OFF, else substrate_not_ready_requeue). PRIMARY DV = committed-class entropy; within-class-representative entropy = secondary negative control.",
+      "description": "",
+      "estimated_minutes": 128.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-655",
       "backlog_id": "EVB-0270",
       "claim_id": "INV-074",
-      "title": "INV-074/MECH-334/MECH-333 crystallization-necessity TRUE-NEGATIVE-CONTROL retest (+MECH-341/313 floor contrast): strip the always-on diversity floor (noise_floor/E3-diversity/dACC-suppression off; structured curiosity decoupled from crystallize) so crystallization is the SOLE phase-3 diversity route in ARM_1; phase-dependent entropy bonus (0.02 generator in phases 0-2, swept {0,0.005,0.02} in phase 3) maps the collapse threshold; ARM_4 floor-on (MECH-341/313). 5 conditions x 3 seeds, IGW-023 Phase-3 pressure. Supersedes 610e (confounded control).",
+      "title": "INV-074 crystallization-necessity: task-distribution-shift phase-3 redesign (supersedes 610f)",
       "description": "",
       "estimated_minutes": 5000.0,
       "status": "claimed",
@@ -8286,6 +8319,20 @@
       "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_643a_modulatory_authority_validation_20260606T222930Z_v3.json",
       "completed_by": "DLAPTOP-4.local",
       "actual_secs": 33015.8
+    },
+    {
+      "queue_id": "V3-EXQ-660",
+      "backlog_id": "",
+      "claim_id": "MECH-341",
+      "title": "MECH-341 committed-class diversity RETEST on the GAP-A-ready/authority-ready stack using a WITHIN-CLASS-REPRESENTATIVE-DIVERSITY readout (behavioral_diversity_isolation:GAP-B owed action). Supersedes the 614-lineage committed-class-entropy readout (V3-EXQ-614e autopsied non_contributory/substrate_ceiling: committed-class entropy is the WRONG matched axis for a within-class lever; bottleneck relocated to GAP-A candidate pool). All 4 arms arm GAP-A (candidate_summary_source=e2_world_forward; V3-EXQ-649 PASS) + authority (use_modulatory_selection_authority=True gain=0.5; V3-EXQ-643a) + SP-CEM + MECH-341 + SD-056. Sweeps ONLY e3_diversity_stratified_within_class_temperature {None=legacy argmin, 0.5, 1.0, 2.0}. PRIMARY DV (C2) = within_class_rep_cond_entropy = H(rep_signature | committed_class), read off agent.e3._last_selected_trajectory post-first-action signature, expected to RISE with within-class temperature (per-seed paired lift vs ARM_0_LEGACY). Committed-class (across-class) entropy is a SECONDARY negative-control (expected flat; NOT a gate).",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS completed=12/12 C1=True C2=True C3=True label=PASS_C1_C2_within_class_temperature_lifts_within_class_representative_diversity | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-660 -> /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-660.json",
+      "started_at": "2026-06-09T21:38:33.483819+00:00",
+      "completed_at": "2026-06-10T04:41:11.359851+00:00",
+      "output_file": "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/v3_exq_660_mech341_within_class_representative_diversity_20260610T044109Z_v3.json",
+      "completed_by": "DLAPTOP-4.local",
+      "actual_secs": 25357.7
     }
   ]
 }
