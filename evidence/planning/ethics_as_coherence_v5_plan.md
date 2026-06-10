@@ -50,7 +50,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:attribution_typed_causal_ontology"]
+      unblocks_claims: ["ARC-096"]
       depends_on: ["ethics_as_coherence_v5:ETH-1"]
       cross_plan_link: ["self_model_v4", "relational_harm_moral_semantics_v5"]
       blocking_on: "The OTHER / shared ownership classes require a represented other (ETH-1 / ARC-083); the self / commitment classes require the V4 self-model (self_model_v4). The typed ontology is the precondition for guilt-repair (ETH-3): repair requires causal ownership tags, not merely harm detection."
@@ -67,7 +67,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:ethics_guilt_like_repair_routing", "NEWCLAIM:e3_repair_trajectory_generation", "NEWCLAIM:residue_repair_completion_release"]
+      unblocks_claims: ["ARC-097", "MECH-411", "MECH-412"]
       depends_on: ["ethics_as_coherence_v5:ETH-2"]
       cross_plan_link: ["relational_harm_moral_semantics_v5"]
       blocking_on: "Guilt routed to repair requires (a) a typed ownership tag (ETH-2) to know harm is self-attributed, and (b) a represented other to repair toward (ETH-1). E3 repair-trajectory generation extends the V3 E3 trajectory-scoring machinery but needs the attribution tag to seed the repair target."
@@ -84,7 +84,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:self_model_no_global_self_badness_write", "NEWCLAIM:safety_autonomy_suspension_without_shame"]
+      unblocks_claims: ["INV-081", "ARC-098"]
       depends_on: ["ethics_as_coherence_v5:ETH-2"]
       cross_plan_link: ["self_model_v4"]
       blocking_on: "The no-global-self-badness invariant constrains WRITES to the self-model, so it needs the self_model_v4 stateful self-model to constrain; it is meaningless against a V3 EMA body-state latent. Containment-not-shame needs a self-state-detection + autonomy-suspension surface that presupposes the same self-model."
@@ -150,7 +150,7 @@ closure_plan:
       status: open
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:ethics_guilt_like_repair_routing", "NEWCLAIM:self_model_no_global_self_badness_write", MECH-371]
+      unblocks_claims: ["ARC-097", "INV-081", MECH-371]
       depends_on: []
       cross_plan_link: []
       readiness_gate:

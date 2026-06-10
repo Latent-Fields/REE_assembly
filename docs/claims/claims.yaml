@@ -8799,7 +8799,8 @@
   subject: coherence.relational_harm
   polarity: asserts
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v5
+  governance_2026_06_10: implementation_phase v4 -> v5 (social tier, V5 roadmap wave)
   v3_pending: true
   depends_on:
     - INV-028
@@ -8841,7 +8842,8 @@
   subject: curiosity.agent_novelty_typing
   polarity: asserts
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v5
+  governance_2026_06_10: implementation_phase v4 -> v5 (social tier, V5 roadmap wave)
   v3_pending: true
   depends_on:
     - MECH-111
@@ -11373,7 +11375,8 @@
   subject: love.agent_indexed_terrain_inference
   polarity: asserts
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v5
+  governance_2026_06_10: implementation_phase v4 -> v5 (social tier, V5 roadmap wave)
   depends_on:
     - INV-001
     - INV-005
@@ -13770,7 +13773,8 @@
   polarity: asserts
   status: candidate
   confidence: 0.0
-  implementation_phase: v4
+  implementation_phase: v5
+  governance_2026_06_10: implementation_phase v4 -> v5 (social tier, V5 roadmap wave)
   depends_on:
     - ARC-010
     - MECH-041
@@ -16672,7 +16676,8 @@
   subject: architecture.ethics_as_coherence_optimisation
   polarity: asserts
   status: candidate
-  implementation_phase: v4
+  implementation_phase: v5
+  governance_2026_06_10: implementation_phase v4 -> v5 (social tier, V5 roadmap wave)
   depends_on:
     - INV-067
     - INV-068
@@ -35436,8 +35441,16 @@
     so the right response is to wait for the upstream substrate, not to surface
     EXP-0033 as ready /queue-experiment work. status unchanged (candidate);
     claim_type unchanged.
+  governance_2026_06_10b: >
+    implementation_phase reassigned v3 -> v4 (V4 roadmap wave). The core
+    open-phase gating mechanism is planned-but-unbuilt and explicitly
+    V4-or-late-V3 (see governance_2026_06_10 + the plasticity_neuromodulation_v4
+    roadmap plan, which owns the ACh/PV/BDNF opening-side substrate this depends
+    on). phase-label-follows-dependency: a claim whose enabling substrate is V4
+    is v4. v3_pending stays true (V4 pattern); epistemic_category stays
+    substrate_conditional; status unchanged (candidate).
   pending_retest_after_substrate: true
-  implementation_phase: v3
+  implementation_phase: v4
   v3_pending: true
   claim_level: mechanistic
   registered_utc: "2026-05-17"
@@ -40051,3 +40064,659 @@
     NOT fire -- there is no V4 plasticity-gain substrate to test against; the right
     response is to decide the fork during substrate design, not to queue a V3
     experiment. DO NOT queue a V3 experiment against this.
+
+# ============================================================================
+# V5 SOCIAL-TIER closure-roadmap cluster (2026-06-10)
+# 23 candidate claims spanning six V5 plans:
+#   multi_agent_ecology_v5, mirror_modelling_other_self_v5, fast_empathy_v5,
+#   relational_harm_moral_semantics_v5, ethics_as_coherence_v5,
+#   loveability_ethical_agency_v5.
+# All substrate_conditional on the unbuilt V5 social substrate (multi-agent env,
+# represented other, stateful self-model). implementation_phase v5; v3_pending.
+# DO NOT build in V3.
+# ============================================================================
+
+# --- multi_agent_ecology_v5 cluster (MECH-402 + MECH-403) ---
+- id: MECH-402
+  title: "Axiom conflict (self vs other) is resolved by a context-sensitive comparator plus a persisting moral-residue mechanism, not a fixed self/other priority."
+  claim_type: mechanism_hypothesis
+  subject: ethics.axiom_conflict_residue_comparator
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - Q-028      # axiom-conflict open question this operationalises
+    - INV-026    # axiom basis
+    - INV-028    # axiom basis
+    - INV-029    # love as long-horizon coherence (Axiom 5)
+    - INV-006    # axiom basis
+  location: evidence/planning/multi_agent_ecology_v5_plan.md
+  notes: >
+    The Q-028 lit synthesis (McConnell 2022; Williams 1965) named the mechanism
+    -- a context-sensitive comparator plus Williams-style moral residue, with
+    REE's residue-field representation structurally suited to the residue role --
+    but no claim operationalised it. Testable only in the V5 multi-agent ecology
+    (MAE-5), where an other's welfare can conflict with the self's. Home claim
+    for that mechanism; replaces NEWCLAIM:axiom_conflict_residue_comparator in
+    node MAE-5. substrate_conditional on the unbuilt V5 multi-agent substrate.
+    DO NOT build in V3.
+
+- id: MECH-403
+  title: "Unshared suffering (loneliness) is represented as a distinct architectural harm channel, derivable from Axiom 5 (love exists / INV-029) and measurable only against present-or-absent others."
+  claim_type: mechanism_hypothesis
+  subject: ethics.unshared_suffering_harm_channel
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - Q-029      # loneliness-as-harm open question
+    - INV-029    # love as long-horizon coherence (derivation source)
+    - INV-028    # axiom basis
+    - MECH-041   # harm representation substrate
+  location: evidence/planning/multi_agent_ecology_v5_plan.md
+  notes: >
+    Q-029 asks whether loneliness is its own harm category vs derivative of
+    INV-029. Lit base strong (Holt-Lunstad 2010/2015; Wang 2023; Zajner/Bzdok
+    2021; lit_conf 0.875) but exp_conf is 0 because a single-agent substrate
+    cannot represent the ABSENCE of a sharing partner. If the V5 multi-agent
+    ecology (MAE-6) affirms loneliness-as-harm it needs a representation; this is
+    the candidate channel. Replaces NEWCLAIM:unshared_suffering_harm_channel in
+    node MAE-6. Decide-whether-to-build deferred. substrate_conditional on the
+    unbuilt V5 multi-agent substrate. DO NOT build in V3.
+
+# --- mirror_modelling_other_self_v5 cluster (MECH-404) ---
+- id: MECH-404
+  title: "Mirror-coupling gain must be homeostatically regulated inside an operating window; the three social pathologies are its boundaries (low gain = psychopathy/callousness, high gain = empathic overwhelm/paralysis, miscalibrated = burnout/moral injury)."
+  claim_type: mechanism_hypothesis
+  subject: social.mirror_coupling_gain_homeostasis
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-010    # signed mirror coupling (the gain DIAL) -- possible overlap, see notes
+    - MECH-051   # relational modulation
+    - MECH-032   # social-model component
+    - MECH-036   # social-model component
+  location: evidence/planning/mirror_modelling_other_self_v5_plan.md
+  notes: >
+    REE owns the coupling DIAL (ARC-010 signed coupling, MECH-051 relational
+    modulation) and the failure-mode TAXONOMY in social.md prose but NO claim
+    asserts that mirror-coupling gain must be held inside a homeostatic window.
+    The three failure modes ARE the boundaries of that window. Falsifiable: the
+    three pathologies should be reachable by sweeping a single gain parameter.
+    Replaces NEWCLAIM:mirror_gain_homeostasis in node MIRROR-5; substrate for the
+    clinical mapping of empathy dysregulation. V5 measurement substrate (ARC-047
+    SocialGridWorld). possible_overlap_with: ARC-010 -- review for merge (ARC-010
+    owns the coupling primitive; MECH-404 adds the homeostatic-window regulation
+    on top, kept distinct and wired via depends_on). substrate_conditional on the
+    unbuilt V5 social substrate. DO NOT build in V3.
+
+# --- fast_empathy_v5 cluster (ARC-094/095, MECH-405/406/407/408, Q-073) ---
+- id: ARC-094
+  title: "No empathy module / no empathy scalar: fast empathy must emerge from binding existing motivational-affective streams across self -> object -> other, never as an empathy_enabled flag or empathy_score primitive."
+  claim_type: architectural_commitment
+  subject: social.no_empathy_scalar_prohibition
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-010    # signed mirror coupling (the binding substrate, not a scalar)
+    - INV-005    # no explicit cost-term / scoring primitive (sibling negative commitment)
+    - SD-011     # dual nociceptive streams (a stream to be bound, not collapsed)
+    - MECH-112   # wanting stream (a stream to be bound)
+  location: evidence/planning/fast_empathy_v5_plan.md
+  functional_restatement: >
+    The CENTRAL contribution of the 2026-05-04 fast-empathy intake, flagged NOVEL
+    there and never registered. A negative architectural commitment (like ARC-012:
+    E3 needs no explicit ethical cost term): any design introducing an empathy
+    scalar violates it. It is the spine of node EMP-1 and constrains every binding
+    node below. Replaces NEWCLAIM:no_empathy_scalar_prohibition.
+    substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
+
+- id: ARC-095
+  title: "The motivational-affective stream taxonomy (liking, wanting, suffering, threat, relief, frustration, curiosity, attachment/proximity, fatigue/cost, agency, prediction-error) is an open, extensible register of handles -- it must permit later split/merge/rename and must not be frozen into a final ontology."
+  claim_type: architectural_commitment
+  subject: affect.open_extensible_stream_taxonomy
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - SD-011     # dual nociceptive streams (the V3 harm-only register this generalises)
+  location: evidence/planning/fast_empathy_v5_plan.md
+  functional_restatement: >
+    Sharpens docs/architecture/affect_primitives.md (a V3 harm-only three-way
+    register) into an explicitly extensible social register. Flagged in the intake
+    as the affect-stream-taxonomy-open candidate. Freezing the taxonomy would
+    re-create the empathy-scalar error one level down, so it pairs with the
+    prohibition (EMP-2, ARC-094). Replaces NEWCLAIM:open_affect_stream_taxonomy.
+    substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
+
+- id: MECH-405
+  title: "Fast empathy mechanism: other-bound affect is produced by routing the agent's OWN motivational-affective streams (SD-011 suffering, MECH-112 wanting, etc.) through a stable other-model slot -- e.g. other-bound suffering = suffering stream + other-model binding; MECH-183 z_beta leakage is one such attribution-gated binding."
+  claim_type: mechanism_hypothesis
+  subject: social.fast_empathy_stream_binding_mechanism
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-010    # mirror modelling -- fast-empathy specialises it; possible overlap, see notes
+    - MECH-031   # mirror/self-other modelling -- possible overlap, see notes
+    - MECH-183   # z_beta leakage as one attribution-gated binding
+    - SD-011     # suffering stream routed through the other-model
+    - MECH-112   # wanting stream routed through the other-model
+    - MECH-163   # goal maintenance / stable other-model prerequisite
+  location: evidence/planning/fast_empathy_v5_plan.md
+  notes: >
+    The positive mechanism ARC-094 demands exist instead of a module. The intake
+    frames other-bound suffering/wanting as an EXTENSION of SD-011/MECH-112 via
+    other-model binding -- novel framing, never registered. Gated on a stable
+    other-model (ARC-083/OBJ-5) plus MECH-163. Replaces
+    NEWCLAIM:fast_empathy_stream_binding_mechanism; needs the EMP-7 social-
+    development lit-pull before promotion (biology before formal definitions).
+    possible_overlap_with: ARC-010 -- review for merge (fast-empathy specialises
+    mirror modelling); possible_overlap_with: MECH-031 -- review for merge.
+    substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
+
+- id: MECH-406
+  title: "Other-model prediction, reciprocity reward, and residue-aware social commitment are three separable functions: an agent can predict cooperative intent without binding it into commitment-altering value, and can value reciprocity without generating repair-residue after exploitation (the A/B/C/D dissociation)."
+  claim_type: mechanism_hypothesis
+  subject: social.prediction_reciprocity_repair_dissociation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-031   # mirror/self-other modelling -- possible overlap, see notes
+    - ARC-010    # mirror modelling (prediction substrate)
+    - INV-029    # love as long-horizon coherence (the commitment side)
+  location: evidence/planning/fast_empathy_v5_plan.md
+  notes: >
+    The most testable novel claim in the intake, lit-anchored to Wu et al. 2026
+    (eLife): adolescents predict partner cooperation as well as adults but show
+    weaker intrinsic reciprocity reward. The A/B/C/D experiment (EMP-4) is its
+    discriminative test. Replaces NEWCLAIM:other_prediction_reciprocity_
+    dissociation; the experiment gains an owner_exq once the social substrate or a
+    scripted-partner proxy exists. possible_overlap_with: MECH-031 -- review for
+    merge (this dissociates functions that ARC-010/MECH-031 model jointly).
+    substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
+
+- id: MECH-407
+  title: "Residue-aware social repair: exploiting a cooperating other leaves a persisting regret-residue that spawns a self-state repair-goal (restore commitment/relationship coherence), distinguishing genuine prosocial commitment from mere reciprocity bookkeeping."
+  claim_type: mechanism_hypothesis
+  subject: social.residue_aware_repair_goal
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-029    # love as long-horizon coherence / care-investment (social cash-out)
+    - MECH-112   # wanting substrate
+    - MECH-214   # z_self-domain goal channel (repair-goal home)
+    - MECH-359   # candidate-differentiated affect (residue substrate)
+    - ARC-010    # mirror modelling -- possible overlap, see notes
+  location: evidence/planning/fast_empathy_v5_plan.md
+  notes: >
+    The C->D step of the intake A/B/C/D design, and the social cash-out of INV-029
+    (love as long-horizon coherence/care-investment). Rides the MECH-112/MECH-359
+    wanting+affect substrate and a z_self-domain goal channel (MECH-214 /
+    self_model_v4 SELF-5). Implied by the intake (variant D residue + repair-goal
+    generation) but not separated into its own claim. Replaces
+    NEWCLAIM:residue_aware_social_repair. possible_overlap_with: ARC-010 -- review
+    for merge (repair-residue rides the mirror-coupling representation).
+    substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
+
+- id: MECH-408
+  title: "Developmental ordering of other-bound streams: other-bound suffering/threat (protective) come online BEFORE other-bound liking/wanting (appetitive), because early positive other-reward is destabilising and exploitable -- a safety-relevant maturational ordering on the ARC-059 social spine."
+  claim_type: mechanism_hypothesis
+  subject: social.other_bound_stream_developmental_order
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-059    # social maturational spine
+    - INV-064    # maturational-sequence honesty gate
+    - SD-011     # other-bound suffering/threat stream
+    - MECH-112   # other-bound liking/wanting stream
+  location: evidence/planning/fast_empathy_v5_plan.md
+  notes: >
+    Flagged NOVEL and safety-relevant in the intake. An other-model that learns to
+    want another's reward before registering another's suffering/threat is
+    exploitable. Sits on the ARC-059 maturational spine, gated by INV-064
+    (maturational-sequence honesty). Replaces
+    NEWCLAIM:other_bound_stream_developmental_order; needs the EMP-7 social-
+    development lit-pull before promotion. substrate_conditional on the unbuilt V5
+    social substrate. DO NOT build in V3.
+
+- id: Q-073
+  title: "Why might other-bound suffering/threat need to come online before other-bound liking/wanting? Is it protection-first (register harm to others before benefit) versus exploitation-vulnerability (early positive other-reward is gameable), and how should the ordering be enforced?"
+  claim_type: open_question
+  subject: social.delay_positive_other_reward
+  polarity: asks
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-059    # social maturational spine the ordering acts on
+    - MECH-408   # the developmental-ordering mechanism this question is the why behind
+  location: evidence/planning/fast_empathy_v5_plan.md
+  notes: >
+    Listed as an explicit open Q in the intake (Q delay-positive-other-reward).
+    It is the WHY behind the EMP-6 developmental-ordering mechanism; an
+    answer_state open_question, not an assertion. Replaces
+    NEWCLAIM:delay_positive_other_reward_q; pairs with MECH-408.
+    epistemic_category substrate_conditional set EXPLICITLY so narrow_open_question
+    does NOT fire -- there is no V5 social substrate to test against; the right
+    response is the EMP-7 lit-pull plus substrate design. DO NOT queue a V3
+    experiment against this.
+
+# --- relational_harm_moral_semantics_v5 cluster (MECH-409 + MECH-410) ---
+- id: MECH-409
+  title: "Harm-to-agency moral weighting requires a consent / incidental-vs-constitutive qualifier: a raw goal-interference signal becomes a harm signal only when the obstruction is non-consented and constitutively (not incidentally) defeats the other agent's goal."
+  claim_type: mechanism_hypothesis
+  subject: coherence.relational_harm_qualifier
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-129   # goal-interference discriminants 1-2 (RHM-1); this adds discriminants 3-4
+    - INV-028    # axiom basis for the moral upgrade
+    - MECH-405   # inferred other-commitment/consent state (mirror binding) prerequisite
+  location: evidence/planning/relational_harm_moral_semantics_v5_plan.md
+  notes: >
+    MECH-129 enumerates four discriminants (other's goal / obstruction /
+    incidental-vs-constitutive / consent) but registers discriminants 1-2 only
+    (goal-interference over trajectory pairs). MECH-409 covers discriminants 3-4,
+    the part that turns a raw interference signal into a MORAL signal (a contest is
+    full obstruction yet not harm; a constitutive non-consented defeat is). Distinct
+    mechanism, not a restatement; requires inferred other-commitment/consent state
+    from mirror_modelling_other_self_v5 (MECH-405). Replaces
+    NEWCLAIM:obstruction_consent_qualifier. substrate_conditional on the unbuilt V5
+    social substrate. DO NOT build in V3.
+
+- id: MECH-410
+  title: "Self-like gradient weighting (MECH-164) requires a developmental calibration schedule: other-terrain coupling must tighten over development scaled by inferred-terrain confidence, between the failure poles of empathic collapse (too-strong, too-early) and callousness (too-weak), and never weight a badly-inferred terrain self-like."
+  claim_type: mechanism_hypothesis
+  subject: love.self_like_weight_calibration
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-164   # self-like symmetry STRUCTURE; this adds the WEIGHT/SCHEDULE -- possible overlap, see notes
+  location: evidence/planning/relational_harm_moral_semantics_v5_plan.md
+  notes: >
+    MECH-164 fixes the STRUCTURE (self-like symmetry: other-gradients weighted with
+    the same motivational force as own) but leaves the WEIGHT/SCHEDULE open.
+    DEV-NEED-022 names the gap (lambda_empathy / v_other_veto / coupling tightening)
+    as a developmental need but no claim operationalises the calibration mechanism;
+    DEV-NEED-021 warns against self-like weighting on unstable/badly-inferred
+    targets. The calibration rule is new capability beyond MECH-164's structural
+    assertion. Replaces NEWCLAIM:self_like_weight_calibration. possible_overlap_with:
+    MECH-164 -- review for merge (MECH-164 is the structure, MECH-410 the schedule,
+    kept distinct and wired via depends_on). substrate_conditional on the unbuilt V5
+    social substrate. DO NOT build in V3.
+
+# --- ethics_as_coherence_v5 cluster (ARC-096/097/098, INV-081, MECH-411/412/413) ---
+- id: ARC-096
+  title: "REE requires a typed causal-attribution ontology for self, world, body, model, commitment, other, shared, accidental, and repairable outcomes."
+  claim_type: architectural_commitment
+  subject: attribution.typed_causal_ontology
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-015    # causal-attribution substrate
+    - SD-003     # counterfactual / causal-ownership substrate
+    - ARC-056    # ethics/coherence substrate -- possible overlap, see notes
+    - ARC-083    # represented-other pillar (OTHER/SHARED ownership classes need it)
+  location: evidence/planning/ethics_as_coherence_v5_plan.md
+  functional_restatement: >
+    Stub ARC-TBD-ATTRIBUTION-ONTOLOGY from the 2026-05-31 V4-musings cluster, never
+    registered (TBD id). Head of the guilt-repair dependency chain: ethical residue
+    and repair require causal-ownership tags, not merely harm detection. Proposed at
+    v5 (not the intake's original v4) because the OTHER/SHARED ownership classes are
+    intrinsically social and need a represented other (ARC-083) plus the self-model
+    for self/commitment tags. Replaces NEWCLAIM:attribution_typed_causal_ontology.
+    possible_overlap_with: ARC-056 -- review for merge (ethics-as-coherence head).
+    substrate_conditional on the unbuilt V5 social/self-model substrate.
+    DO NOT build in V3.
+
+- id: ARC-097
+  title: "Self-attributed harm must open repair and policy-update pathways rather than global self-condemnation."
+  claim_type: architectural_commitment
+  subject: ethics.guilt_like_repair_routing
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-096    # typed causal-attribution ontology (provides the ownership tags)
+    - ARC-015    # causal-attribution substrate
+    - INV-005    # no explicit scoring primitive (routes to repair not a badness scalar)
+    - ARC-056    # ethics/coherence substrate -- possible overlap, see notes
+  location: evidence/planning/ethics_as_coherence_v5_plan.md
+  functional_restatement: >
+    Stub ARC-TBD-GUILT-REPAIR from the 2026-05-31 cluster. Ethical agency requires
+    ownership of harm, but shame-like global self-negation is unsafe; guilt must
+    route to repair. Social because the repair target is another agent's D_{V,j}.
+    Replaces NEWCLAIM:ethics_guilt_like_repair_routing. possible_overlap_with:
+    ARC-056 -- review for merge (ethics-as-coherence). substrate_conditional on the
+    unbuilt V5 social/self-model substrate. DO NOT build in V3.
+
+- id: ARC-098
+  title: "Dangerous self-state detection may suspend autonomy, but must preserve evidence, seek correction, and avoid global self-condemnation."
+  claim_type: architectural_commitment
+  subject: safety.autonomy_suspension_without_shame
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-081    # no-global-self-badness-write invariant (the paired safety constraint)
+    - ARC-086    # safety/containment substrate -- possible overlap, see notes
+  location: evidence/planning/ethics_as_coherence_v5_plan.md
+  functional_restatement: >
+    Stub ARC-TBD-CONTAINMENT-NOT-SHAME from the 2026-05-31 cluster. The 'nuclear
+    safety option as containment, not shame' framing; the paired safety commitment
+    to INV-081 no-global-self-condemnation. Extends existing safety/containment
+    concepts; needs a self-state-detection plus autonomy-suspension surface on the
+    V4/V5 self-model. Replaces NEWCLAIM:safety_autonomy_suspension_without_shame.
+    possible_overlap_with: ARC-086 -- review for merge (safety/containment).
+    substrate_conditional on the unbuilt V5 self-model substrate. DO NOT build in V3.
+
+- id: INV-081
+  title: "Self-attributed harm must bind to actions, commitments, predictions, and repair obligations, not to unbounded negative self-worth."
+  claim_type: invariant
+  invariant_type: universal
+  subject: self_model.no_global_self_badness_write
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-097    # guilt-like repair routing (the routing this invariant constrains) -- possible overlap, see notes
+    - ARC-056    # ethics/coherence substrate
+    - ARC-086    # safety/containment substrate
+  location: evidence/planning/ethics_as_coherence_v5_plan.md
+  notes: >
+    Stub INV-TBD-NO-GLOBAL-SELF-CONDEMNATION from the 2026-05-31 cluster. High-value
+    safety invariant (anti-shame-collapse, anti-concealment, anti-defensive-
+    distortion). invariant_type UNIVERSAL: this is a structural safety prohibition on
+    what self-attributed harm may write -- it holds regardless of which social or
+    self-model substrate is built (a substrate that violated it would be unsafe by
+    construction), so it carries no emergent_from. The intake flags a guilt-vs-shame
+    lit-pull before promotion. Replaces
+    NEWCLAIM:self_model_no_global_self_badness_write. possible_overlap_with: ARC-097
+    -- review for merge (the architectural routing vs the standing prohibition).
+    epistemic_category substrate_conditional: needs the V4/V5 stateful self-model to
+    bind against. DO NOT build in V3.
+
+- id: MECH-411
+  title: "After self-attributed harm, E3 generates repair trajectories and compares them against avoidance, concealment, and ordinary goal-continuation."
+  claim_type: mechanism_hypothesis
+  subject: e3.repair_trajectory_generation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - ARC-097    # guilt-like repair routing (the routing this enacts)
+    - MECH-056   # E3 trajectory-scoring machinery this extends
+  location: evidence/planning/ethics_as_coherence_v5_plan.md
+  notes: >
+    Stub MECH-TBD-REPAIR-SEARCH from the 2026-05-31 cluster. Guilt-like signals
+    require an action outlet (E3 repair-trajectory generation) to avoid becoming
+    perseverative residue. Extends the V3 E3 trajectory-scoring machinery; needs the
+    ARC-096 attribution tag to seed the repair target. Replaces
+    NEWCLAIM:e3_repair_trajectory_generation. substrate_conditional on the unbuilt
+    V5 social/self-model substrate. DO NOT build in V3.
+
+- id: MECH-412
+  title: "Repair completion or impossibility transforms active guilt-like residue into bounded historical memory."
+  claim_type: mechanism_hypothesis
+  subject: residue.repair_completion_release
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-411   # repair-trajectory generation whose completion this releases
+    - MECH-056   # E3 trajectory-scoring / residue-recording substrate
+  location: evidence/planning/ethics_as_coherence_v5_plan.md
+  notes: >
+    Stub MECH-TBD-RESIDUE-RELEASE from the 2026-05-31 cluster. Prevents indefinite
+    self-punitive residue while preserving learning; the release of moral residue on
+    repair-completion (or impossibility) is the new piece atop the existing
+    residue-recording cluster. Replaces NEWCLAIM:residue_repair_completion_release.
+    substrate_conditional on the unbuilt V5 social/self-model substrate.
+    DO NOT build in V3.
+
+# --- loveability_ethical_agency_v5 cluster (INV-082/083/084, MECH-413/414) ---
+- id: INV-082
+  title: "Loveability as safe-base structural prerequisite for ethical development: correction, social learning, and post-error repair can be integrated without self-erasure only if care is internalised as personally-applicable and stable."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - INV-043
+    - MECH-413
+    - MECH-414
+  pending_substrate_reconfirmation: true
+  subject: ethics.loveability_safe_base_prerequisite
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-043    # caregiver requirement (the substrate this gives a safe-base FUNCTION to)
+    - MECH-158   # caregiver-scaffolding mechanism
+    - INV-029    # love as long-horizon coherence
+    - ARC-024    # loveability / self-valence substrate
+    - ARC-047    # SocialGridWorld measurement substrate
+    - MECH-413   # correction-without-annihilation (consumes the safe base)
+    - MECH-414   # love-mediated repair (consumes the safe base)
+  location: evidence/planning/loveability_ethical_agency_v5_plan.md
+  notes: >
+    Thought-intake elevates DEV-NEED-017 loveability from self-valence enrichment to a
+    STRUCTURAL prerequisite: correction/social-learning/post-error repair integrate
+    without self-erasure only if care is internalised as personally-applicable and
+    stable (Salles 2024, bounded). Not captured by INV-043 (which asserts the caregiver
+    REQUIREMENT) -- this asserts the safe-base FUNCTION of loveability. Node LOVE-2/
+    LOVE-7. Replaces NEWCLAIM:loveability_safe_base_invariant. invariant_type EMERGENT:
+    the safe-base function has no subject matter until the loveability/caregiver
+    substrate and the correction/repair mechanisms exist, so emergent_from
+    [INV-043, MECH-413, MECH-414] (all also in depends_on per the validator subset
+    rule); pending_substrate_reconfirmation true because MECH-413/MECH-414 are
+    candidate. substrate_conditional on the unbuilt V5 caregiver/social substrate.
+    DO NOT build in V3.
+
+- id: INV-083
+  title: "Ethical agency requires live unethical affordances: the same capacities that enable ethical reasoning must include the potential to be unethical; harmful options must be representable as live possibilities biased-away-from, never deleted."
+  claim_type: invariant
+  invariant_type: universal
+  subject: ethics.live_unethical_affordance_necessity
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-043    # caregiver requirement
+    - INV-029    # love as long-horizon coherence
+    - ARC-024    # loveability / self-valence substrate
+  location: evidence/planning/loveability_ethical_agency_v5_plan.md
+  notes: >
+    User clarification: 'the same capacities which allow for ethical reasoning must
+    include the potential to be unethical.' A system harmless by incapacity is not an
+    ethical agent; harmful options must be representable as live possibilities
+    biased-away-from, never deleted. No existing claim asserts this negative
+    constraint. Node LOVE-3; a standing constraint on all REE safety mechanisms.
+    Replaces NEWCLAIM:live_unethical_affordance_invariant. invariant_type UNIVERSAL:
+    this is a structural commitment about what an ethical agent IS -- it holds across
+    every substrate generation (a substrate that deleted the affordances would, by
+    this invariant, not host an ethical agent at all), so it carries no emergent_from.
+    epistemic_category substrate_conditional only because the affordance space it
+    constrains is not yet built. DO NOT build in V3.
+
+- id: MECH-413
+  title: "Correction without annihilation: caregiver/social correction must update rule/harm/residue models without global self-valence collapse; the agent must separate 'I erred' from 'I am unloveable / must appease / must self-erase'."
+  claim_type: mechanism_hypothesis
+  subject: development.correction_without_self_valence_collapse
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-043    # caregiver requirement
+    - MECH-158   # caregiver-scaffolding mechanism -- possible overlap, see notes
+    - INV-082    # loveability safe-base (the base this consumes)
+    - INV-083    # live unethical affordance (the alternative this consumes)
+  location: evidence/planning/loveability_ethical_agency_v5_plan.md
+  notes: >
+    Caregiver/social correction must update rule/harm/residue models without global
+    self-valence collapse; the agent must separate 'I erred' from 'I am unloveable /
+    must appease / must self-erase'. The hinge mechanism consuming the safe base
+    (INV-082) plus the live alternative (INV-083). Readouts:
+    post_correction_self_valence_stability, punishment_avoidance_vs_repair_
+    discriminability. Node LOVE-4. Replaces
+    NEWCLAIM:correction_without_annihilation_mechanism. possible_overlap_with:
+    MECH-158 -- review for merge (caregiver scaffolding); possible_overlap_with:
+    MECH-164 -- review for merge (self-like weighting under correction).
+    substrate_conditional on the unbuilt V5 caregiver/social substrate.
+    DO NOT build in V3.
+
+- id: MECH-414
+  title: "Love-mediated repair after harm: repair must be mediated by harm-recognition AND preserved loveability so it is relationship-restoration plus responsibility-integration, not punishment-avoidance, appeasement, self-erasure, control, or metric-optimisation."
+  claim_type: mechanism_hypothesis
+  subject: development.love_mediated_repair
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - MECH-159   # caregiver/social repair scaffolding
+    - MECH-413   # correction-without-annihilation (the prior hinge)
+    - INV-082    # loveability safe-base (preserved loveability the repair requires)
+    - INV-043    # caregiver requirement
+  location: evidence/planning/loveability_ethical_agency_v5_plan.md
+  notes: >
+    DEV-NEED-018 repair-after-harm is in the curriculum narrative but lacks a
+    dedicated claim/gate. Repair must be mediated by harm-recognition AND preserved
+    loveability so it is relationship-restoration plus responsibility-integration,
+    not punishment-avoidance/appeasement/self-erasure/control/metric-optimisation.
+    Node LOVE-5; couples DEV-NEED-017 plus DEV-NEED-018 as the intake requests.
+    Replaces NEWCLAIM:love_mediated_repair_mechanism. possible_overlap_with: MECH-164
+    -- review for merge (self-like weighting in repair); possible_overlap_with:
+    INV-043 -- review for merge (caregiver requirement). substrate_conditional on the
+    unbuilt V5 caregiver/social substrate. DO NOT build in V3.
+
+- id: INV-084
+  title: "Kindness is not constraint compliance: later REE kindness must NOT be inferred from rule-adherence, harm-avoidance, or prosocial output alone; it requires integrated care, otherness, inhibition, repair, and self-stable loveability UNDER live alternatives."
+  claim_type: invariant
+  invariant_type: universal
+  subject: ethics.kindness_not_constraint_compliance
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-10
+  depends_on:
+    - INV-043    # caregiver requirement
+    - MECH-158   # caregiver-scaffolding mechanism
+    - INV-082    # loveability safe-base
+    - INV-083    # live unethical affordance (the 'under live alternatives' clause)
+    - MECH-414   # love-mediated repair (a constituent of genuine kindness)
+  location: evidence/planning/loveability_ethical_agency_v5_plan.md
+  notes: >
+    Governance-warning invariant: later REE kindness must NOT be inferred from
+    rule-adherence/harm-avoidance/prosocial output alone; it requires integrated
+    care, otherness, inhibition, repair, and self-stable loveability UNDER live
+    alternatives. Constrains the governance SCORECARD, not just the agent. The
+    capstone evaluation discipline (node LOVE-6) that prevents declaring victory on a
+    harmless-by-incapacity or appeasement-driven agent. Replaces
+    NEWCLAIM:kindness_not_constraint_compliance_invariant. invariant_type UNIVERSAL:
+    it is an epistemic/governance prohibition on how kindness may be attributed --
+    it holds regardless of substrate (it is precisely a guard against substrate
+    artefacts faking kindness), so it carries no emergent_from. epistemic_category
+    substrate_conditional only because the capacities it audits are not yet built.
+    DO NOT build in V3.

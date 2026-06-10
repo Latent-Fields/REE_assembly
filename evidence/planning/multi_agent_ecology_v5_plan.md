@@ -97,7 +97,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: [Q-028, NEWCLAIM:axiom_conflict_residue_comparator]
+      unblocks_claims: [Q-028, MECH-402]
       depends_on: ["multi_agent_ecology_v5:MAE-3", "multi_agent_ecology_v5:MAE-4"]
       cross_plan_link: ["commitment_closure"]
       blocking_on: "MAE-3 (agency/other detection) + MAE-4 (coping channels). Q-028 (preserving self INV-026 vs preserving others INV-028) cannot be posed until an OTHER whose welfare conflicts with the self's exists in the same consequence space."
@@ -106,14 +106,14 @@ closure_plan:
         - "REE's residue-field representation is structurally suited to the Williams-1965 moral-residue role -- this needs a multi-agent conflict to exercise; the residue persists post-commitment (cross-link commitment_closure: traces cannot be erased, only integrated, per INV-006)"
         - "DEPENDS on a stable self (self_model_v4): self-preservation as a pole of the conflict requires a scorable z_self viability term (self_model_v4:SELF-3 / DR-10)"
       last_updated: 2026-06-10
-      completion_note: "Q-028 is intrinsically ethical/social and flagged for v4->v5 reassignment. The lit verdict already names the mechanism (context-sensitive comparator + residue), which has no home claim yet -- proposed as NEWCLAIM:axiom_conflict_residue_comparator (suggested_generation v5). Design-only; gated behind the whole social substrate."
+      completion_note: "Q-028 is intrinsically ethical/social and flagged for v4->v5 reassignment. The lit verdict already names the mechanism (context-sensitive comparator + residue), which has no home claim yet -- proposed as MECH-402 (suggested_generation v5). Design-only; gated behind the whole social substrate."
     - id: "multi_agent_ecology_v5:MAE-6"
       title: "Loneliness as architectural harm (Q-029): unshared suffering measurable only against present-or-absent others"
       phase: 4
       status: blocked
       severity: medium
       owner_exq: null
-      unblocks_claims: [Q-029, NEWCLAIM:unshared_suffering_harm_channel]
+      unblocks_claims: [Q-029, MECH-403]
       depends_on: ["multi_agent_ecology_v5:MAE-2"]
       cross_plan_link: ["affect_expression_v4"]
       blocking_on: "MAE-2 substrate. Q-029 (loneliness as harm derivable from Axiom 5 / INV-029) depends on the ABSENCE of an available other to share with -- which is only representable once others CAN be present. A single-agent substrate cannot represent the absence of a sharing partner."
@@ -122,7 +122,7 @@ closure_plan:
         - "Loneliness = unshared suffering: needs a mechanism for sharing affect with others (cross-link affect_expression_v4 -- MECH-041 affective expression broadcasts control-plane regime), and needs the OTHER to be perceivable (MAE-2) so its presence/absence is a state variable"
         - "Grounds INV-029 (love exists; sharing joys and sorrows is its mechanism) -- enforced isolation as architectural harm only has truth-conditions in a substrate where sharing is otherwise possible"
       last_updated: 2026-06-10
-      completion_note: "Q-029 is intrinsically relational and flagged for v4->v5 reassignment. Whether loneliness is its own harm category (vs derivative of INV-029) is the open question; if affirmed it needs a representation, proposed as NEWCLAIM:unshared_suffering_harm_channel (suggested_generation v5). Off-path; gated on multi-agent perception."
+      completion_note: "Q-029 is intrinsically relational and flagged for v4->v5 reassignment. Whether loneliness is its own harm category (vs derivative of INV-029) is the open question; if affirmed it needs a representation, proposed as MECH-403 (suggested_generation v5). Off-path; gated on multi-agent perception."
     - id: "multi_agent_ecology_v5:MAE-7"
       title: "ARC-010 mirror-modelling cutover: other-agent state re-represented through the self's own predictive machinery"
       phase: 5

@@ -557,6 +557,36 @@
     "title": "State-conditional plasticity gain: cortical encoder learning rates and residue-field write rates are multiplicatively gated by a state-conditional plasticity scalar, separately from the content signals carried by LC-NE / 5-HT / orexin.",
     "type": "architectural_commitment"
   },
+  "ARC-094": {
+    "status": "candidate",
+    "subject": "social.no_empathy_scalar_prohibition",
+    "title": "No empathy module / no empathy scalar: fast empathy must emerge from binding existing motivational-affective streams across self -> object -> other, never as an empathy_enabled flag or empathy_score primitive.",
+    "type": "architectural_commitment"
+  },
+  "ARC-095": {
+    "status": "candidate",
+    "subject": "affect.open_extensible_stream_taxonomy",
+    "title": "The motivational-affective stream taxonomy (liking, wanting, suffering, threat, relief, frustration, curiosity, attachment/proximity, fatigue/cost, agency, prediction-error) is an open, extensible register of handles -- it must permit later split/merge/rename and must not be frozen into a final ontology.",
+    "type": "architectural_commitment"
+  },
+  "ARC-096": {
+    "status": "candidate",
+    "subject": "attribution.typed_causal_ontology",
+    "title": "REE requires a typed causal-attribution ontology for self, world, body, model, commitment, other, shared, accidental, and repairable outcomes.",
+    "type": "architectural_commitment"
+  },
+  "ARC-097": {
+    "status": "candidate",
+    "subject": "ethics.guilt_like_repair_routing",
+    "title": "Self-attributed harm must open repair and policy-update pathways rather than global self-condemnation.",
+    "type": "architectural_commitment"
+  },
+  "ARC-098": {
+    "status": "candidate",
+    "subject": "safety.autonomy_suspension_without_shame",
+    "title": "Dangerous self-state detection may suspend autonomy, but must preserve evidence, seek correction, and avoid global self-condemnation.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "status": "candidate",
     "subject": "llm.sycophancy",
@@ -1458,6 +1488,40 @@
     "status": "candidate",
     "subject": "memory.consolidation.raw_episode_preservation",
     "title": "Raw-episode preservation: consolidation_output MUST NOT replace source_episode_evidence -- a consolidated abstraction must retain a pointer to, and must not delete, the episodes it abstracts.",
+    "type": "invariant"
+  },
+  "INV-081": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "self_model.no_global_self_badness_write",
+    "title": "Self-attributed harm must bind to actions, commitments, predictions, and repair obligations, not to unbounded negative self-worth.",
+    "type": "invariant"
+  },
+  "INV-082": {
+    "emergent_from": [
+      "INV-043",
+      "MECH-413",
+      "MECH-414"
+    ],
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "ethics.loveability_safe_base_prerequisite",
+    "title": "Loveability as safe-base structural prerequisite for ethical development: correction, social learning, and post-error repair can be integrated without self-erasure only if care is internalised as personally-applicable and stable.",
+    "type": "invariant"
+  },
+  "INV-083": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "ethics.live_unethical_affordance_necessity",
+    "title": "Ethical agency requires live unethical affordances: the same capacities that enable ethical reasoning must include the potential to be unethical; harmful options must be representable as live possibilities biased-away-from, never deleted.",
+    "type": "invariant"
+  },
+  "INV-084": {
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "ethics.kindness_not_constraint_compliance",
+    "title": "Kindness is not constraint compliance: later REE kindness must NOT be inferred from rule-adherence, harm-avoidance, or prosocial output alone; it requires integrated care, otherness, inhibition, repair, and self-stable loveability UNDER live alternatives.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -3908,6 +3972,84 @@
     "title": "Consolidation gated-write-authority: over-frequent rewriting of consolidated memory is a failure mode; the consolidation operator's authority to overwrite is gated by schema-stability / schedule-sensitivity, not run after every interaction.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-402": {
+    "status": "candidate",
+    "subject": "ethics.axiom_conflict_residue_comparator",
+    "title": "Axiom conflict (self vs other) is resolved by a context-sensitive comparator plus a persisting moral-residue mechanism, not a fixed self/other priority.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-403": {
+    "status": "candidate",
+    "subject": "ethics.unshared_suffering_harm_channel",
+    "title": "Unshared suffering (loneliness) is represented as a distinct architectural harm channel, derivable from Axiom 5 (love exists / INV-029) and measurable only against present-or-absent others.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-404": {
+    "status": "candidate",
+    "subject": "social.mirror_coupling_gain_homeostasis",
+    "title": "Mirror-coupling gain must be homeostatically regulated inside an operating window; the three social pathologies are its boundaries (low gain = psychopathy/callousness, high gain = empathic overwhelm/paralysis, miscalibrated = burnout/moral injury).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-405": {
+    "status": "candidate",
+    "subject": "social.fast_empathy_stream_binding_mechanism",
+    "title": "Fast empathy mechanism: other-bound affect is produced by routing the agent's OWN motivational-affective streams (SD-011 suffering, MECH-112 wanting, etc.) through a stable other-model slot -- e.g. other-bound suffering = suffering stream + other-model binding; MECH-183 z_beta leakage is one such attribution-gated binding.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-406": {
+    "status": "candidate",
+    "subject": "social.prediction_reciprocity_repair_dissociation",
+    "title": "Other-model prediction, reciprocity reward, and residue-aware social commitment are three separable functions: an agent can predict cooperative intent without binding it into commitment-altering value, and can value reciprocity without generating repair-residue after exploitation (the A/B/C/D dissociation).",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-407": {
+    "status": "candidate",
+    "subject": "social.residue_aware_repair_goal",
+    "title": "Residue-aware social repair: exploiting a cooperating other leaves a persisting regret-residue that spawns a self-state repair-goal (restore commitment/relationship coherence), distinguishing genuine prosocial commitment from mere reciprocity bookkeeping.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-408": {
+    "status": "candidate",
+    "subject": "social.other_bound_stream_developmental_order",
+    "title": "Developmental ordering of other-bound streams: other-bound suffering/threat (protective) come online BEFORE other-bound liking/wanting (appetitive), because early positive other-reward is destabilising and exploitable -- a safety-relevant maturational ordering on the ARC-059 social spine.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-409": {
+    "status": "candidate",
+    "subject": "coherence.relational_harm_qualifier",
+    "title": "Harm-to-agency moral weighting requires a consent / incidental-vs-constitutive qualifier: a raw goal-interference signal becomes a harm signal only when the obstruction is non-consented and constitutively (not incidentally) defeats the other agent's goal.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-410": {
+    "status": "candidate",
+    "subject": "love.self_like_weight_calibration",
+    "title": "Self-like gradient weighting (MECH-164) requires a developmental calibration schedule: other-terrain coupling must tighten over development scaled by inferred-terrain confidence, between the failure poles of empathic collapse (too-strong, too-early) and callousness (too-weak), and never weight a badly-inferred terrain self-like.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-411": {
+    "status": "candidate",
+    "subject": "e3.repair_trajectory_generation",
+    "title": "After self-attributed harm, E3 generates repair trajectories and compares them against avoidance, concealment, and ordinary goal-continuation.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-412": {
+    "status": "candidate",
+    "subject": "residue.repair_completion_release",
+    "title": "Repair completion or impossibility transforms active guilt-like residue into bounded historical memory.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-413": {
+    "status": "candidate",
+    "subject": "development.correction_without_self_valence_collapse",
+    "title": "Correction without annihilation: caregiver/social correction must update rule/harm/residue models without global self-valence collapse; the agent must separate 'I erred' from 'I am unloveable / must appease / must self-erase'.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-414": {
+    "status": "candidate",
+    "subject": "development.love_mediated_repair",
+    "title": "Love-mediated repair after harm: repair must be mediated by harm-recognition AND preserved loveability so it is relationship-restoration plus responsibility-integration, not punishment-avoidance, appeasement, self-erasure, control, or metric-optimisation.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "status": "active",
     "subject": "entities.emergence_mechanism",
@@ -4326,6 +4468,12 @@
     "status": "candidate",
     "subject": "learning.plasticity_gain_layer_specificity",
     "title": "Does plasticity-gain modulate identically across encoder / residue / hippocampal / E2-forward layers, or per-substrate (layer-specific gates)?",
+    "type": "open_question"
+  },
+  "Q-073": {
+    "status": "candidate",
+    "subject": "social.delay_positive_other_reward",
+    "title": "Why might other-bound suffering/threat need to come online before other-bound liking/wanting? Is it protection-first (register harm to others before benefit) versus exploitation-vulnerability (early positive other-reward is gameable), and how should the ordering be enforced?",
     "type": "open_question"
   },
   "RA-001": {

@@ -70,7 +70,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:obstruction_consent_qualifier"]
+      unblocks_claims: ["MECH-409"]
       depends_on: ["relational_harm_moral_semantics_v5:RHM-1"]
       cross_plan_link: ["mirror_modelling_other_self_v5"]
       blocking_on: "RHM-1 must materialise a goal-interference signal first; the qualifier discriminates WHICH interferences are morally weighted. Requires the other's commitment/consent state to be inferrable (mirror_modelling_other_self_v5)."
@@ -105,7 +105,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:self_like_weight_calibration"]
+      unblocks_claims: ["MECH-410"]
       depends_on: ["relational_harm_moral_semantics_v5:RHM-4"]
       cross_plan_link: ["mirror_modelling_other_self_v5"]
       blocking_on: "RHM-4 must land the structural mechanism (other-terrain enters E3) before its weighting can be calibrated. DEV-NEED-022 (empathy coupling calibration) names the same gap from the developmental side."

@@ -98,7 +98,7 @@ closure_plan:
       status: open
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-032, MECH-036, "NEWCLAIM:mirror_gain_homeostasis"]
+      unblocks_claims: [MECH-032, MECH-036, "MECH-404"]
       depends_on: ["mirror_modelling_other_self_v5:MIRROR-3", "mirror_modelling_other_self_v5:MIRROR-4"]
       cross_plan_link: []
       readiness_gate:
@@ -269,7 +269,7 @@ One genuine capability gap surfaced, motivating a single new claim:
   the substrate for the clinical mapping. Wired under MIRROR-5; depends on
   MECH-032/036 and the coupling apparatus (ARC-010/MECH-051). Returned in
   `proposed_claims[]` as a prose-only stub; the orchestrator assigns the real ID
-  and replaces the `NEWCLAIM:mirror_gain_homeostasis` placeholder in MIRROR-5
+  and replaces the `MECH-404` placeholder in MIRROR-5
   `unblocks_claims`.
 
 ---

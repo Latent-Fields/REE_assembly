@@ -32,7 +32,7 @@ closure_plan:
       status: open
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:no_empathy_scalar_prohibition"]
+      unblocks_claims: ["ARC-094"]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
@@ -47,7 +47,7 @@ closure_plan:
       status: open
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:open_affect_stream_taxonomy"]
+      unblocks_claims: ["ARC-095"]
       depends_on: ["fast_empathy_v5:EMP-1"]
       cross_plan_link: []
       readiness_gate:
@@ -62,7 +62,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:fast_empathy_stream_binding_mechanism"]
+      unblocks_claims: ["MECH-405"]
       depends_on: ["fast_empathy_v5:EMP-1", "fast_empathy_v5:EMP-2"]
       cross_plan_link: ["mirror_modelling_other_self_v5", "object_representation_v4:OBJ-5"]
       blocking_on: "Requires a stable other-model (ARC-010 mirror modelling materialised as a per-agent object-file slot, object_representation_v4:OBJ-5 / ARC-083), which is gated on MECH-163 multi-step hippocampal planning (V4 social-entry gate) AND DEV-NEED-021 prerequisites (object-permanence + a stable self, both V4)."
@@ -79,7 +79,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:other_prediction_reciprocity_dissociation"]
+      unblocks_claims: ["MECH-406"]
       depends_on: ["fast_empathy_v5:EMP-3"]
       cross_plan_link: ["mirror_modelling_other_self_v5"]
       blocking_on: "The A/B/C/D repeated-cooperation experiment needs a stable other-model substrate (EMP-3) or at minimum a scripted-partner V3/V5 proxy; do NOT queue until that substrate exists (per the 2026-05-04 intake gating note)."
@@ -96,7 +96,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:residue_aware_social_repair"]
+      unblocks_claims: ["MECH-407"]
       depends_on: ["fast_empathy_v5:EMP-3", "fast_empathy_v5:EMP-4"]
       cross_plan_link: ["self_model_v4"]
       blocking_on: "Repair-goal generation rides the MECH-112/MECH-359 wanting+per-candidate-affect substrate AND a self-state goal channel (self_model_v4 SELF-5 / MECH-214, z_self-domain goals); both are V4. A repair goal is a self-state goal (restore commitment coherence) directed at an other-slot."
@@ -112,7 +112,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:other_bound_stream_developmental_order", "NEWCLAIM:delay_positive_other_reward_q"]
+      unblocks_claims: ["MECH-408", "Q-073"]
       depends_on: ["fast_empathy_v5:EMP-3"]
       cross_plan_link: ["object_representation_v4:OBJ-5"]
       blocking_on: "Sequencing claim over the EMP-3 binding layer; cannot be demonstrated until multiple streams are other-bindable (EMP-3) so their ordering can be manipulated. Sits on the ARC-059 maturational spine (self -> objects -> others)."
@@ -128,7 +128,7 @@ closure_plan:
       status: deferred
       severity: medium
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:fast_empathy_stream_binding_mechanism", "NEWCLAIM:other_bound_stream_developmental_order"]
+      unblocks_claims: ["MECH-405", "MECH-408"]
       depends_on: []
       cross_plan_link: []
       readiness_gate:

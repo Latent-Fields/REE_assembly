@@ -1634,6 +1634,13 @@ CLOSURE_KNOWN_PLANS = [
     "drives_motivation_v4_plan.md",
     "perceptual_adaptors_v4_plan.md",
     "plasticity_neuromodulation_v4_plan.md",
+    # V5 (social-mind) tier
+    "multi_agent_ecology_v5_plan.md",
+    "mirror_modelling_other_self_v5_plan.md",
+    "fast_empathy_v5_plan.md",
+    "relational_harm_moral_semantics_v5_plan.md",
+    "ethics_as_coherence_v5_plan.md",
+    "loveability_ethical_agency_v5_plan.md",
 ]
 
 CLOSURE_STATUS_WEIGHTS = {

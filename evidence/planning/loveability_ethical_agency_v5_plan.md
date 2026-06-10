@@ -48,7 +48,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: [INV-043, MECH-158, "NEWCLAIM:loveability_safe_base_invariant"]
+      unblocks_claims: [INV-043, MECH-158, "INV-082"]
       depends_on: ["loveability_ethical_agency_v5:LOVE-1"]
       cross_plan_link: ["self_model_v4:SELF-3"]
       blocking_on: "LOVE-1 caregiver substrate; and a SCORABLE z_self that can carry a self-valence term (self_model_v4:SELF-3 brings z_self into E3 viability scoring). Loveability is a property OF the self-valence model; without z_self in scoring there is no self-valence channel for care to attach to."
@@ -65,7 +65,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:live_unethical_affordance_invariant"]
+      unblocks_claims: ["INV-083"]
       depends_on: ["loveability_ethical_agency_v5:LOVE-1"]
       cross_plan_link: []
       blocking_on: "LOVE-1 caregiver/other substrate -- 'unethical' requires an OTHER who can be harmed by a chosen action. In single-agent V3 the only harm is to the self/environment; inter-agent harm affordances do not exist until LOVE-1."
@@ -81,7 +81,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: ["NEWCLAIM:correction_without_annihilation_mechanism"]
+      unblocks_claims: ["MECH-413"]
       depends_on:
         - "loveability_ethical_agency_v5:LOVE-2"
         - "loveability_ethical_agency_v5:LOVE-3"
@@ -99,7 +99,7 @@ closure_plan:
       status: blocked
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-159, "NEWCLAIM:love_mediated_repair_mechanism"]
+      unblocks_claims: [MECH-159, "MECH-414"]
       depends_on: ["loveability_ethical_agency_v5:LOVE-4"]
       cross_plan_link: ["ethics_as_coherence_v5"]
       blocking_on: "LOVE-4 (correction must be survivable before repair can be a constructive response rather than appeasement). DEV-NEED-018 repair-after-harm is present in the curriculum narrative but lacks a dedicated repair claim/gate; this node carries that work into the loveability cluster."
@@ -116,7 +116,7 @@ closure_plan:
       status: blocked
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: [INV-043, MECH-158, "NEWCLAIM:kindness_not_constraint_compliance_invariant"]
+      unblocks_claims: [INV-043, MECH-158, "INV-084"]
       depends_on:
         - "loveability_ethical_agency_v5:LOVE-2"
         - "loveability_ethical_agency_v5:LOVE-3"
@@ -137,7 +137,7 @@ closure_plan:
       status: open
       severity: medium
       owner_exq: null
-      unblocks_claims: [INV-043, "NEWCLAIM:loveability_safe_base_invariant"]
+      unblocks_claims: [INV-043, "INV-082"]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
@@ -245,8 +245,8 @@ before the V5 step is honest to build.
 ## Proposed new claims (V5; register via the orchestrator)
 
 These are prose-only capabilities today; they are returned in `proposed_claims[]`
-with `suggested_generation: v5` and wired via `NEWCLAIM:<stub_key>` placeholders
-in the nodes above. The orchestrator assigns real IDs.
+with `suggested_generation: v5` and were wired via stub-key placeholders
+in the nodes above. The orchestrator assigned real IDs (resolved 2026-06-10).
 
 | stub_key | family | what it asserts |
 |---|---|---|
