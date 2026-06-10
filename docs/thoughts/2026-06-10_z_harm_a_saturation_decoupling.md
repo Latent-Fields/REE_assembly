@@ -36,6 +36,25 @@ The net: as currently encoded + read, z_harm_a is a poor "suffering" scalar. It 
 - **Dynamic-range / safety-coupling.** The inversion vs safety (highest in shelter, lower on harm) suggests z_harm_a is not coupled to the safety-prediction substrate (MECH-303/304 / SD-051/052) or to descending modulation (SD-021, which only gates z_harm_s, not z_harm_a). Should the affective stream be modulated by conditioned/contextual safety so it can relax when safe?
 - **Env confound to rule out.** Re-check on a gentler env (lower hazard density / `hazard_food_attraction`) to separate "faithful chronic suffering in a brutal env" from "saturated regardless of env". If z_harm_a still pegs high in a benign env, it is calibration, not ecology.
 
+## Scope caveat (material)
+
+This finding is from a **non-curriculum** agent. V3-EXQ-664 trains only a ~50-episode
+524-style warmup (E1 prediction + E2.world_forward MSE + E3.harm_eval_head + encoder aux
+losses: SD-018 resource-proximity, SD-011 harm-accum). It does **not** run the
+`scaffolded_sd054_onboarding` curriculum, and crucially does **not** enable
+`scaffold_train_harm_pathway` (the 603i/603k harm-pathway co-training that trains the
+z_harm_a affective encoder + E3 harm-eval + z_world on the hazard-proximity / accumulated-harm
+labels). So:
+
+- The flat z_goal / wanting channel is **expected** here — the scaffolded onboarding is what
+  seeds and matures z_goal; this agent never received it (goal-pipeline gap, not a viz issue).
+- The z_harm_a saturation / safety-decoupling reported above is a property of the **raw-warmup**
+  encoder. Under harm-pathway training the z_harm_a affective stream is co-trained on
+  accumulated-harm with the encoder, which could change the saturation magnitude and the
+  safety-coupling. **Re-check under the curriculum + harm-pathway training before treating the
+  saturation/inversion as a substrate property of the developmentally-trained agent.** A
+  curriculum-trained affective showcase variant is the right vehicle for that comparison.
+
 ## Cross-references (depends_on candidates for intake)
 
 - SD-011 (dual nociceptive streams; z_harm_a is the affective/accumulator stream) — the substrate under examination.
