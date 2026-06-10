@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_286",
+  "entry_id": "2026-06-10_mech_286_flipflop_switch_saper2005",
+  "timestamp_utc": "2026-06-10T09:04:21Z",
+  "claim_ids_tested": ["MECH-286"],
+  "source": {
+    "title": "Homeostatic, circadian, and emotional regulation of sleep.",
+    "authors": ["Clifford B. Saper", "Georgina Cano", "Thomas E. Scammell"],
+    "year": 2005,
+    "venue": "Journal of Comparative Neurology",
+    "doi": "10.1002/cne.20770",
+    "url": "https://doi.org/10.1002/cne.20770"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "This is the canonical statement of the sleep-wake flip-flop switch (VLPO mutually inhibitory with ascending arousal nuclei) and of orexin as the stabilizer that biases the switch toward wakefulness and prevents unwanted transitions, with homeostatic, circadian, AND emotional inputs explicitly named as drivers. It is the direct biological referent MECH-286 invokes by name (Saper/Scammell flip-flop). Confidence high for grounding the architecture but capped because it is a conceptual review and does not test REE's specific override_signal formulation or the V_s-residual-staleness recruitment logic.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The flip-flop switch stabilized by orexin is a wake-stability mechanism; MECH-286 additionally asserts that the SAME override_signal gates sleep ONSET and recruits a replay-priority readout -- the recruitment/replay-consumption half is not addressed by this review.",
+    "Emotional and homeostatic inputs are named as bias signals but not formalized as a single scalar override of the kind SD-037 supplies; the mapping from REE's override_signal to these distributed biological inputs is an abstraction."
+  ],
+  "tags": ["mech_286", "orexin", "hypocretin", "flip_flop_switch", "sleep_onset", "wake_stability", "vlpo"],
+  "mapping": {
+    "source_claim_statement": "Wake and sleep emerge from a mutually inhibitory 'flip-flop switch' between arousal nuclei and the ventrolateral preoptic nucleus (VLPO); this switch produces sharp state transitions but is not inherently stable, and orexin neurons stabilize it by exciting arousal regions during wakefulness, preventing unwanted transitions; homeostatic, circadian, and emotional inputs modulate the switch, and loss of orexin (narcolepsy) produces numerous unintended state transitions.",
+    "ree_translation": "Directly underwrites MECH-286's account of orexin as the wake-stability gate for offline-mode entry/exit: a high override (sustained drive + threat) biasing the switch toward wakefulness and suppressing sleep onset corresponds to orexin excitation of arousal regions; permissive low-override conditions plus accumulated homeostatic pressure correspond to the switch being allowed to flip toward VLPO-driven sleep.",
+    "mapping_caveat": "The review establishes the wake-stabilizing gate and names emotional/homeostatic/circadian bias inputs, but it does not formalize a single override scalar, nor does it address the downstream recruitment of a sleep-replay priority readout (MECH-285) that MECH-286 claims to switch on. REE's override_signal is an architectural compression of what the biology treats as several distributed modulatory inputs.",
+    "source_context": "Conceptual/mechanistic review integrating rodent circuit anatomy, narcolepsy phenotypes, and homeostatic/circadian/emotional sleep regulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.28,
+    "notes": "Canonical, highly cited review by the originators of the flip-flop model. Mapping fidelity strong for the wake-stability-gate half of MECH-286; the recruitment/replay-consumption half is unaddressed. Transfer risk relatively low because MECH-286 explicitly models itself on this exact account."
+  }
+}

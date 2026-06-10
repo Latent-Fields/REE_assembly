@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_282",
+  "entry_id": "2026-06-10_mech_282_central_alarm_gate_kang2022",
+  "timestamp_utc": "2026-06-10T09:04:21Z",
+  "claim_ids_tested": ["MECH-282"],
+  "source": {
+    "title": "A central alarm system that gates multi-sensory innate threat cues to the amygdala.",
+    "authors": ["Sukjae J. Kang", "Shijia Liu", "Mao Ye", "Dong-Il Kim", "Gerald M. Pao", "Bryan A. Copits", "Benjamin Z. Roberts", "Kuo-Fen Lee", "Michael R. Bruchas", "Sung Han"],
+    "year": 2022,
+    "venue": "Cell Reports",
+    "doi": "10.1016/j.celrep.2022.111222",
+    "url": "https://doi.org/10.1016/j.celrep.2022.111222"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct circuit-level (optogenetic + behavioral) demonstration in mice that CGRP neurons in the external lateral parabrachial nucleus relay multi-sensory negative-valence threat signals to the central amygdala, and that this projection is required for innate threat perception and aversive memory. Maps tightly onto the upstream-broadcast-arm framing of MECH-282 (PBN-CGRP -> CeA). Confidence held below 0.9 because the paper does not isolate the specifically interoceptive (visceral malaise / hypoxia / hypoglycemia) sub-channel that MECH-282 foregrounds, and species is rodent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper frames CGRP threat relay as multi-sensory and innate; it does not separately validate a purely interoceptive (visceral/metabolic) input arm, so MECH-282's claim of a dissociable interoceptive channel distinct from external-threat z_harm is only partially supported here.",
+    "All causal manipulations are in mice; the broadcast-arbitration mapping onto a downstream PAG arbiter reweighted by an SD-037 override_signal is a REE-side architectural extrapolation not tested in this study."
+  ],
+  "tags": ["mech_282", "parabrachial", "cgrp", "central_amygdala", "innate_threat", "harm_arbitration"],
+  "mapping": {
+    "source_claim_statement": "CGRP-expressing neurons in the external lateral parabrachial nucleus (and parvocellular subparafascicular thalamus) respond to threat cues across multiple sensory modalities and relay negative valence to the central (and lateral) amygdala; both the CGRP populations and their amygdala projections are required for multi-sensory threat perception and aversive memory formation.",
+    "ree_translation": "This is the empirical anchor for MECH-282's claim that a lateral-parabrachial-nucleus analog (LPB) is the upstream broadcast arm of the threat-side architecture, routing distress into harm-arbitration via PBN-CGRP -> CeA. The 'central alarm system that gates threat cues' is exactly the broadcast-into-arbitration function MECH-282 posits, parallel to the predator-side VMHdm arm.",
+    "mapping_caveat": "The paper establishes a multi-sensory innate-threat relay, not specifically the interoceptive (visceral malaise, taste aversion, hypoxia, hypoglycemia) channel MECH-282 names as separable from external-threat z_harm. It also does not address the downstream CeA -> PAG arbiter or any override/reweighting signal; those remain REE architectural commitments, not findings transferred from this work.",
+    "source_context": "Optogenetic activation/inhibition and behavioral assays (threat perception, aversive memory) in mice; cell-type-specific CGRP circuit dissection."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.32,
+    "notes": "High-quality cell-type-specific causal circuit study in a strong venue. Mapping fidelity strong for the broadcast-arm architecture but partial for the interoceptive-specific channel. Transfer risk moderate (rodent innate-threat circuit -> REE harm-arbitration substrate)."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_282",
+  "entry_id": "2026-06-10_mech_282_cgrp_taste_aversion_chen2018",
+  "timestamp_utc": "2026-06-10T09:04:21Z",
+  "claim_ids_tested": ["MECH-282"],
+  "source": {
+    "title": "Parabrachial CGRP Neurons Establish and Sustain Aversive Taste Memories.",
+    "authors": ["Jane Y. Chen", "Carlos A. Campos", "Brooke C. Jarvie", "Richard D. Palmiter"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.09.032",
+    "url": "https://doi.org/10.1016/j.neuron.2018.09.032"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Direct evidence that parabrachial CGRP neurons are necessary and sufficient for conditioned taste aversion -- the canonical interoceptive-malaise learning paradigm -- and that photoactivating CGRP -> CeA (or CGRP -> BNST) projections drives the aversion. This is the closest empirical anchor for MECH-282's specifically interoceptive (visceral malaise, taste-aversion) input arm into CeA. Held below 0.9 because the visceral-malaise pathway here overlaps the same CGRP -> CeA channel used for exteroceptive threat, which complicates MECH-282's separability commitment rather than cleanly confirming it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CGRP -> CeA is shown to carry interoceptive (taste-aversion/malaise) signals AND, in the companion literature, exteroceptive innate threat -- so a single shared CGRP channel may argue against a fully dissociable interoceptive z_harm input, weakening the separability half of MECH-282.",
+    "Demonstrated for taste-aversion / visceral malaise; hypoxia and hypoglycemia (also named in MECH-282) are not directly tested in this study."
+  ],
+  "tags": ["mech_282", "parabrachial", "cgrp", "conditioned_taste_aversion", "interoceptive_malaise", "central_amygdala"],
+  "mapping": {
+    "source_claim_statement": "CGRP neurons in the parabrachial nucleus are necessary and sufficient to establish a conditioned taste aversion; photoactivating their projections to the central amygdala or BNST induces robust aversion, the neurons undergo plasticity after conditioning, and their reactivation by the conditioned food drives expression of the aversive memory.",
+    "ree_translation": "Supports MECH-282's claim that interoceptive distress -- here visceral malaise / taste-aversion -- is routed into the harm-arbitration network through PBN-CGRP -> CeA. This is the interoceptive instance of the broadcast arm, distinct in modality from external predator threat but sharing the CGRP -> CeA conduit.",
+    "mapping_caveat": "The same CGRP -> CeA projection carries this interoceptive malaise signal and (per Kang et al. 2022) exteroceptive innate threat. That shared conduit supports the routing-into-arbitration claim but cuts against MECH-282's stronger commitment that interoceptive harm has a *separable* input channel dissociable from external-threat z_harm -- separability may live upstream of CGRP (input-specific PBN subpopulations) rather than in the CGRP -> CeA arm itself. Hypoxia/hypoglycemia not tested.",
+    "source_context": "Optogenetic gain/loss of function, calcium imaging, and genetic memory-consolidation manipulations (Arc, Grin1) in mice; conditioned taste aversion paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.33,
+    "notes": "Landmark Palmiter-lab study, very high source quality. Mapping fidelity strong for the interoceptive-routing claim but tensioned by the shared-conduit problem for the separability claim. Transfer risk moderate (rodent CTA -> REE interoceptive harm channel)."
+  }
+}

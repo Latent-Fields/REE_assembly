@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_286",
+  "entry_id": "2026-06-10_mech_286_orexin_feeding_integration_saper2006",
+  "timestamp_utc": "2026-06-10T09:04:21Z",
+  "claim_ids_tested": ["MECH-286"],
+  "source": {
+    "title": "Staying awake for dinner: hypothalamic integration of sleep, feeding, and circadian rhythms.",
+    "authors": ["Clifford B. Saper"],
+    "year": 2006,
+    "venue": "Progress in Brain Research",
+    "doi": "10.1016/S0079-6123(06)53014-6",
+    "url": "https://doi.org/10.1016/S0079-6123(06)53014-6"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly supports the metabolic-demand arm of MECH-286: orexin neurons stabilize the sleep-wake switch WHILE driving both wakefulness and foraging for food, integrating sleep with feeding and energy state. This is the biological basis for MECH-286's claim that override (sustained drive under metabolic demand) suppresses sleep onset. Confidence moderate because it is a short conceptual review and the feeding/metabolic coupling is framed as wake-promotion for foraging rather than as a formal gate on offline-mode entry with replay recruitment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Orexin's metabolic coupling here promotes wakefulness/foraging under negative energy balance; MECH-286 instead emphasizes high metabolic *demand* (with drive+threat) suppressing sleep onset -- compatible in direction but the review's emphasis is foraging-drive wake-promotion, not threat-gated onset suppression.",
+    "As a brief review it provides no causal dissociation isolating a metabolic-demand override on sleep onset from the general orexin wake-drive."
+  ],
+  "tags": ["mech_286", "orexin", "hypocretin", "feeding", "metabolic_demand", "sleep_onset", "drive_coupling"],
+  "mapping": {
+    "source_claim_statement": "Sleep-wake regulation is inextricably linked to feeding and energy metabolism; the orexin/hypocretin neurons stabilize the flip-flop switch while simultaneously driving wakefulness and foraging for food, with the subparaventricular and dorsomedial hypothalamic nuclei integrating circadian timing into both feeding and wake-sleep patterns.",
+    "ree_translation": "Supports MECH-286's metabolic-demand component: that the override authority gating sleep onset is sensitive to metabolic/drive state, not only to threat. Orexin's dual role -- stabilizing wakefulness AND driving foraging under energy demand -- is the biological instantiation of a drive-plus-metabolic signal biasing the switch away from sleep onset.",
+    "mapping_caveat": "The review frames metabolic coupling as orexin promoting wakefulness and foraging under negative energy balance, whereas MECH-286 frames metabolic demand (with drive and threat) as suppressing sleep-mode onset. These are the same switch biased the same direction, but the claim's specific 'override suppresses onset and gates replay recruitment' formulation is not what the review tests; the metabolic input is real, the override-and-recruitment packaging is REE's.",
+    "source_context": "Conceptual review of hypothalamic integration of sleep, feeding, and circadian rhythms in mammals (rodent-anchored)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.32,
+    "notes": "Authoritative review by the flip-flop model's originator, focused on the feeding/metabolic-state arm. Mapping fidelity good for the metabolic-demand component of MECH-286; lowered because the framing is foraging-wake-promotion rather than threat-gated onset suppression. Transfer risk moderate."
+  }
+}

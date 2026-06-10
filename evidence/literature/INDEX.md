@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-10T06:07:09.207833Z`
+Generated: `2026-06-10T09:08:58.673618Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -115,6 +115,8 @@ Generated: `2026-06-10T06:07:09.207833Z`
 | `targeted_review_connectome_mech_273` | [`2026-04-24_mech_273_systems_consolidation_klinzing2019`](targeted_review_connectome_mech_273/entries/2026-04-24_mech_273_systems_consolidation_klinzing2019/record.json) | 1 | [`summary`](targeted_review_connectome_mech_273/entries/2026-04-24_mech_273_systems_consolidation_klinzing2019/summary.md) |
 | `targeted_review_connectome_mech_275` | [`2026-04-24_mech_275_statistical_learning_durrant2011`](targeted_review_connectome_mech_275/entries/2026-04-24_mech_275_statistical_learning_durrant2011/record.json) | 4 | [`summary`](targeted_review_connectome_mech_275/entries/2026-04-24_mech_275_statistical_learning_durrant2011/summary.md) |
 | `targeted_review_connectome_mech_281` | [`2026-04-27_mech_281_serotonin_amygdala_anticataplectic_hasegawa2017`](targeted_review_connectome_mech_281/entries/2026-04-27_mech_281_serotonin_amygdala_anticataplectic_hasegawa2017/record.json) | 4 | [`summary`](targeted_review_connectome_mech_281/entries/2026-04-27_mech_281_serotonin_amygdala_anticataplectic_hasegawa2017/summary.md) |
+| `targeted_review_connectome_mech_282` | [`2026-06-10_mech_282_pbn_extended_amygdala_jaramillo2021`](targeted_review_connectome_mech_282/entries/2026-06-10_mech_282_pbn_extended_amygdala_jaramillo2021/record.json) | 3 | [`summary`](targeted_review_connectome_mech_282/entries/2026-06-10_mech_282_pbn_extended_amygdala_jaramillo2021/summary.md) |
+| `targeted_review_connectome_mech_286` | [`2026-06-10_mech_286_orexin_feeding_integration_saper2006`](targeted_review_connectome_mech_286/entries/2026-06-10_mech_286_orexin_feeding_integration_saper2006/record.json) | 3 | [`summary`](targeted_review_connectome_mech_286/entries/2026-06-10_mech_286_orexin_feeding_integration_saper2006/summary.md) |
 | `targeted_review_connectome_mech_303` | [`2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023`](targeted_review_connectome_mech_303/entries/2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023/record.json) | 4 | [`summary`](targeted_review_connectome_mech_303/entries/2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023/summary.md) |
 | `targeted_review_connectome_mech_320` | [`2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/record.json) | 3 | [`summary`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/summary.md) |
 | `targeted_review_connectome_mech_333` | [`2026-06-07_mech_333_vgat_necessary_plasticity_priya2019`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/record.json) | 3 | [`summary`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/summary.md) |

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_286",
+  "entry_id": "2026-06-10_mech_286_narcolepsy_transitions_sorensen2013",
+  "timestamp_utc": "2026-06-10T09:04:21Z",
+  "claim_ids_tested": ["MECH-286"],
+  "source": {
+    "title": "Sleep transitions in hypocretin-deficient narcolepsy.",
+    "authors": ["Gertrud Laura Sorensen", "Stine Knudsen", "Poul Jennum"],
+    "year": 2013,
+    "venue": "Sleep",
+    "doi": "10.5665/sleep.2880",
+    "url": "https://doi.org/10.5665/sleep.2880"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Human polysomnography evidence (n=63) that hypocretin deficiency predicts a significantly higher frequency of sleep-wake transitions and of transitions to/from REM, with the authors explicitly positioning narcolepsy as a human model of the sleep-wake and REM flip-flop switches. This is the strongest non-rodent, quantitative confirmation that the orexin gate MECH-286 invokes actually controls state-transition stability in humans. Confidence moderate because it demonstrates loss-of-gate destabilization, not the positive override-gates-onset-and-recruits-replay mechanism MECH-286 asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Demonstrates that removing orexin destabilizes transitions (loss-of-function); it does not show that an override signal positively gates onset timing or recruits a replay-priority readout -- the constructive half of MECH-286 is inferred, not measured.",
+    "Cataplexy and hypocretin deficiency dissociate (cataplexy predicts wake transitions; deficiency predicts REM transitions), suggesting the 'gate' is at least two-dimensional rather than the single override scalar MECH-286 models."
+  ],
+  "tags": ["mech_286", "orexin", "hypocretin", "narcolepsy", "sleep_transitions", "flip_flop_switch", "human"],
+  "mapping": {
+    "source_claim_statement": "In 63 narcolepsy patients, hypocretin-1 deficiency was associated with significantly more frequent sleep-wake transitions and transitions to/from REM sleep; multivariate analysis showed REM transitions were predicted mainly by hypocretin deficiency and sleep-wake transitions mainly by cataplexy, supporting narcolepsy as a human model of the sleep-wake and REM flip-flop switches.",
+    "ree_translation": "Supports MECH-286 by showing that the orexin gate it posits is causally load-bearing for state-transition stability in humans: when the gate (hypocretin) is absent, the sleep-wake switch flips far more often and uncontrollably. This is the human-data complement to the rodent/conceptual flip-flop account, raising the source quality of the MECH-286 evidence set.",
+    "mapping_caveat": "This is a loss-of-function correlation: it shows that absent orexin destabilizes transitions, which confirms the gate is real and necessary, but it does not demonstrate the positive direction MECH-286 needs -- that an override signal gates sleep ONSET timing and recruits a replay-priority readout. The dissociation between cataplexy- and deficiency-predicted transitions also implies the gate is multi-dimensional, tensioning REE's single override_signal abstraction.",
+    "source_context": "Retrospective sleep-laboratory polysomnography study, 63 human narcolepsy patients stratified by cataplexy and CSF hypocretin-1 status (2001-2011)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.2,
+    "notes": "Human quantitative PSG data, modest but adequate n, clear statistics. Low transfer risk (human data directly on the construct). Mapping fidelity held in low-0.7s because it is loss-of-function/correlational and the cataplexy-vs-deficiency dissociation argues against a single-scalar gate."
+  }
+}

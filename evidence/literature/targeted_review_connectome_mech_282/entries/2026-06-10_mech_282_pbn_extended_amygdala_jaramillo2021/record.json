@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_282",
+  "entry_id": "2026-06-10_mech_282_pbn_extended_amygdala_jaramillo2021",
+  "timestamp_utc": "2026-06-10T09:04:21Z",
+  "claim_ids_tested": ["MECH-282"],
+  "source": {
+    "title": "Danger and distress: Parabrachial-extended amygdala circuits.",
+    "authors": ["A. A. Jaramillo", "J. A. Brown", "D. G. Winder"],
+    "year": 2021,
+    "venue": "Neuropharmacology",
+    "doi": "10.1016/j.neuropharm.2021.108757",
+    "url": "https://doi.org/10.1016/j.neuropharm.2021.108757"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "A cell-type-aware review that explicitly deconstructs parabrachial-to-extended-amygdala signalling into interoceptive and exteroceptive components, arguing PBN -> CeA modulates innate response to physical stimuli while PBN -> BNST modulates unpredictable distress. This is the most direct literature support for MECH-282's architectural framing of the PBN as a relay that segregates alarming interoceptive vs exteroceptive stimuli before handing them to the extended amygdala. Confidence moderate because it is a synthesis/hypothesis review, not primary data, and its interoceptive/exteroceptive split is drawn along a CeA-vs-BNST axis rather than the within-z_harm separability axis MECH-282 specifies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's interoceptive/exteroceptive dissociation is mapped onto PBN -> CeA (physical/innate) vs PBN -> BNST (unpredictable distress), and it notes the two circuits are partly intertwined and reciprocal -- so the segregation MECH-282 wants is real but leakier and routed differently than the claim's CeA-centric statement implies.",
+    "As a review it inherits the rodent-dominant primary literature and provides no new causal test of an interoceptive z_harm channel separable from external-threat z_harm."
+  ],
+  "tags": ["mech_282", "parabrachial", "extended_amygdala", "interoceptive", "exteroceptive", "harm_arbitration", "review"],
+  "mapping": {
+    "source_claim_statement": "The parabrachial nucleus provides a pathway for alarming interoceptive and exteroceptive stimuli to be processed and relayed to the extended amygdala; PBN -> CeA modulates innate responses to physical stimuli and fear conditioning, while PBN -> BNST modulates distress in unpredictable contexts, with the two circuits partly redundant, intertwined, and reciprocal.",
+    "ree_translation": "Supports MECH-282's core architecture: the LPB analog is an upstream relay that broadcasts distress into the harm-arbitration network, and it carries a dissociable interoceptive component alongside the exteroceptive one. The review's explicit interoceptive-vs-exteroceptive deconstruction is the conceptual scaffold MECH-282 instantiates.",
+    "mapping_caveat": "The review locates the interoceptive/exteroceptive dissociation primarily along a target axis (CeA vs BNST) and stresses that the circuits are intertwined and reciprocal, whereas MECH-282 asserts a separable interoceptive *input* channel feeding the same CeA-centred arbitration. The biological dissociation is therefore supported in spirit but is leakier and topographically different from the clean separable-channel commitment in the claim.",
+    "source_context": "Narrative/mechanistic review of cell-type-specific PBN -> CeA and PBN -> BNST circuits in rodent affect and stress paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.34,
+    "notes": "Strong, well-cited review but secondary evidence. Mapping fidelity good for the interoceptive/exteroceptive segregation concept; lowered by the CeA-vs-BNST framing diverging from MECH-282's within-CeA separability statement. Transfer risk moderate (rodent circuit synthesis -> REE harm-arbitration substrate)."
+  }
+}
