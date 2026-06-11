@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-06-11T16:47:06Z",
+  "generated_at": "2026-06-11T16:47:10Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -2278,6 +2278,28 @@
         "priority": 40,
         "claim_ids": [
           "MECH-057b"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260611T164701Z-1787885f-claude_local",
+      "stable_hash": "1787885fcbcc",
+      "igw_id_at_assign": "IGW-20260611-203",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-11T16:47:01Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=c5bff10b-12ae-473a-b851-000c76261c9c branch=claude/igw-203-proposal-exp-0153-mech-168",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0153 (MECH-168)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-168"
         ]
       }
     }
