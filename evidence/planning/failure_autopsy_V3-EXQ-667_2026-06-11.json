@@ -1,0 +1,87 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-11T22:55:42Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_667_q043_exploration_magnitude_sweep_20260611T182534Z_v3",
+      "queue_id": "V3-EXQ-667",
+      "machine": "ree-cloud-2",
+      "claim_ids": ["Q-043"],
+      "experiment_purpose": "diagnostic",
+      "manifest_outcome": "FAIL",
+      "manifest_evidence_direction": "non_contributory",
+      "manifest_self_route_label": "substrate_not_ready_requeue",
+      "adjudication_flag": "precondition_unmet",
+      "failed_criterion": "negative_control",
+      "self_route_adjudication": "correct -- the precondition branch assumption (swept knobs inert on the healthy-seed positive control) is confirmed: 4/5 seeds (43,44,45,46) are byte-identical across the full 1x->8x joint scaling of noise_floor_alpha + curiosity_weight; only seed 42 moves (+9% at 8x). readiness_range 0.0172 < 0.05 floor measures the same per-episode pos_entropy statistic the rescue criterion routes on. The run genuinely cannot adjudicate the 591c (a) config-rescue vs (b) active-Phase-0-shaping fork; it is NOT evidence for option (b).",
+      "key_metrics": {
+        "healthy_seeds": [42, 43, 44],
+        "collapse_seeds_default": [45, 46],
+        "rescue_scale_by_seed": {"45": null, "46": null},
+        "all_collapse_rescued": false,
+        "readiness_range": 0.0172,
+        "readiness_floor": 0.05,
+        "readiness_ok": false,
+        "per_arm_healthy_mean": {"mag_1x": 0.5757, "mag_2x": 0.5795, "mag_4x": 0.5795, "mag_8x": 0.5929},
+        "criteria_non_degenerate_C_collapse_seed_rescued": false,
+        "per_seed_h_pos_mean_across_arms": {
+          "42": [0.5621, 0.5735, 0.5735, 0.6136],
+          "43": [0.3226, 0.3226, 0.3226, 0.3226],
+          "44": [0.8424, 0.8424, 0.8424, 0.8424],
+          "45": [0.1404, 0.1404, 0.1404, 0.1404],
+          "46": [0.0375, 0.0375, 0.0375, 0.0375]
+        },
+        "n_seeds_byte_identical_across_8x_scaling": 4
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (not testable) -- Q-043 is an open calibration question; the run could not let it express itself; not weakened",
+        "biological_reference": "clear -- LC-NE tonic adaptive gain (Aston-Jones & Cohen 2005, MECH-313) + frontopolar/striatal curiosity/novelty (Wittmann 2008 / Daw 2006 / Schmidhuber 1991, MECH-314); inertness matches a missing dependency (the selection-authority gain pathway), not a wrong mechanism",
+        "prerequisites": "missing/immature -- the swept knobs reach E3 only through the modulatory-bias channel, which has zero authority over the committed argmin (modulatory-bias-selection-authority, in validation V3-EXQ-663/643a) and reads a collapsed candidate pool (ARC-065 GAP-A, V3-EXQ-649; SD-056)",
+        "implementation": "partial -- MECH-313 NoiseFloor (E3 temperature) + MECH-314 StructuredCuriosity (E3 score-bias) wired and contract-passing but composed at the drowned/inert seam",
+        "environment": "adequate -- InfantCurriculumScheduler Phase-0 probe is the right bed; 591c reproduced as the 1x anchor",
+        "measurement": "adequate (working as designed) -- the same-statistic readiness gate correctly caught the vacuity and self-routed substrate_not_ready_requeue instead of a false substrate verdict",
+        "integration": "isolated -- substrate is the failure site: knobs work in isolation (unit contracts) but do not reach behaviour in the full E3 loop; the 4/5-byte-identical-across-8x pattern is the direct readout",
+        "scale": "n/a -- magnitude is not the limiting axis; the knobs are disconnected from behaviour, not too weak"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic adaptive gain (MECH-313) + frontopolar/striatal curiosity-novelty drive (MECH-314)",
+        "dependencies": ["a gain pathway with genuine re-weighting authority over competing options at action selection", "a non-collapsed candidate pool for the bias to discriminate"],
+        "is_formal_import": false,
+        "divergence": "not a formal-definition divergence; the mechanisms are biologically grounded and contract-passing. The failure is a missing-dependency translation gap: the modulatory channel cannot re-weight the committed argmin (selection-authority gap)",
+        "lit_status": "present (ARC-065 Pull 1 SYNTHESIS; MECH-313/MECH-314 lit-pulls)"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-11 autopsy V3-EXQ-667] Magnitude-scale sweep (MECH-313 noise_floor_alpha + MECH-314 curiosity_weight jointly 1x/2x/4x/8x) on the 591c InfantCurriculumScheduler Phase-0 probe self-routed substrate_not_ready_requeue: healthy-seed h_pos range across arms 0.0172 < 0.05 floor; 4/5 seeds (43/44/45/46) byte-identical across the full 8x scaling -- the swept knobs have zero authority over E3 selection. Reproduces the V3-EXQ-605 inert-knobs finding on the 591c lineage. NOT evidence for 'magnitude insufficient -> active Phase-0 shaping required' (the rescue fork was unadjudicable). Blocked on modulatory-bias-selection-authority (V3-EXQ-663/643a) + ARC-065 GAP-A (V3-EXQ-649). Retest V3-EXQ-667a after those clear. pending_retest_after_substrate stays.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "title": "gap-relative E3.select authority over modulatory/diversity score-bias channels",
+        "implementation_hint": "Append V3-EXQ-667 as a blocked-retest failure record to the EXISTING modulatory-bias-selection-authority substrate_queue entry (alongside 604a/624a/614d/569f/661/654a). 667 is one more confirmation that the ARC-065 swept knobs (MECH-313 temperature + MECH-314 score-bias) have zero authority over the committed E3 argmin -- 4/5 seeds byte-identical across an 8x joint scaling. ready stays false; gated on V3-EXQ-663 (route-range amend) + V3-EXQ-649 (ARC-065 GAP-A) PASS. Do NOT create a new entry.",
+        "unblocks_claims": ["Q-043"],
+        "depends_on_unresolved": ["modulatory-bias-selection-authority (V3-EXQ-663 / 643a)", "ARC-065 GAP-A (V3-EXQ-649)", "SD-056 e2 action-conditional divergence"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_667_q043_exploration_magnitude_sweep_20260611T182534Z_v3",
+          "experiment_type": "v3_exq_667_q043_exploration_magnitude_sweep",
+          "metric": "healthy-seed h_pos range across magnitude arms 0.0172 (4/5 seeds byte-identical across 1x->8x joint scaling of noise_floor_alpha + curiosity_weight)",
+          "target": "readiness_range >= 0.05 on the healthy-seed positive control before the magnitude rescue fork is adjudicable"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "One more confirmation of a known structural property, not a new bug: the swept ARC-065 modulatory knobs (MECH-313 temperature + MECH-314 score-bias) have zero authority over the committed E3 argmin on the InfantCurriculumScheduler Phase-0 probe.",
+        "The 4/5-seed byte-identical-across-8x result is the cleanest single readout of the selection-authority bottleneck to date: complete behavioural invariance to an 8x joint scaling, not measurement noise.",
+        "The same-statistic readiness gate did its job: it converted a potential false option-(b) substrate verdict into a correctly-routed substrate_not_ready_requeue.",
+        "Not granularity debt -> NO /claim-synthesis. Q-043 is a clean calibration question with a single well-understood blocker; the 591/591b/591c->667 lineage is convergent iterative substrate engineering on one known selection-authority gap (same conclusion as the sibling 666a autopsy)."
+      ],
+      "routing": "implement-substrate (amend modulatory-bias-selection-authority) + queue-experiment (re-issue V3-EXQ-667a gated on V3-EXQ-663/643a + V3-EXQ-649 PASS)",
+      "no_claim_synthesis_reason": "Q-043 is an open calibration question with a single, well-understood substrate blocker; the recurrence lives in the substrate stream (modulatory-bias-selection-authority cluster), not in a coarse claim fracturing into finer testable children. The lineage is convergent substrate engineering, not multiple distinct failure signatures circling one claim.",
+      "no_demotion_reason": "Q-043 is an open_question (epistemic_category answer_state) -- exempt from exp_conf gating; and the run is non_contributory (the claim could not express itself). No demotion threshold reached."
+    }
+  ],
+  "cluster_pattern": null
+}
