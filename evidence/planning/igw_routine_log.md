@@ -84,3 +84,4 @@ One line per hourly tick. ASCII only.
 2026-06-11T08:34:58Z SMOKE ledger-durability fix landed (commit-on-write); verifying commit path
 2026-06-11T08:40:37Z SPAWN IGW-20260611-200 skill=/queue-experiment prio=40 uuid=87d993e0-b0e9-44f8-9786-6bab922601ba pid=74820 worktree=igw-200-proposal-exp-0138-mech-329
 2026-06-11T09:41:52Z auto-defer IGW-20260611-200 hash=498d77aa7f55 for 48h (reaped -> completed_resumable)
+2026-06-11T09:41:48Z SPAWN IGW-20260611-201 skill=/queue-experiment prio=40 uuid=0a5d1400-1dab-44b0-a596-37d7f35f3972 pid=83305 worktree=igw-201-proposal-exp-0145-inv-048
