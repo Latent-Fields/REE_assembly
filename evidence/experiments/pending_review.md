@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-11T07:09:40Z`  
+Generated: `2026-06-11T07:15:05Z`  
 Last review: `2026-06-11T07:05:00Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3` | 2026-06-11T06:38 | (no claim tags) | — |
+All experiments reviewed. Nothing pending.
 
 ---
 

@@ -28868,6 +28868,18 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  pending_retest_after_substrate: true
+  governance_2026_06_11: >
+    pending_retest_after_substrate set true (governance cycle 2026-06-11 #2),
+    per failure_autopsy_V3-EXQ-666_2026-06-11 (confirmed). V3-EXQ-666 showed the
+    2026-06-11 ARC-063 mature-pool amend achieves rule DIFFERENTIATION only via
+    crf_context_from_e2_world_forward (ARM_2 dist 1.71) but WORSENS PERSISTENCE
+    (frac_active 0.016, below the 0.30 readiness floor): narrowly-tuned rules
+    match sparsely so availability never accumulates between matches. New
+    substrate_queue entry crf-availability-maintenance (priority 1, gated on the
+    targeted_review_arc_063_crf_rule_cell_persistence lit-pull) owns the fix.
+    epistemic_category left to inference (substrate_coherence for an
+    architectural_commitment); status unchanged (candidate).
   claim_level: architectural
   registered_utc: "2026-05-08"
   brought_forward_utc: "2026-05-18"

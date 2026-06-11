@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "substrate-reconcile-603n-readiness-flip-20260611T0135Z",
-  "last_updated_utc": "2026-06-11T05:52:03Z",
+  "last_updated_utc": "2026-06-11T07:12:39Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4274,6 +4274,47 @@
         }
       ],
       "notes": "Resolves the ARC-080 type-vs-token-vs-anchor fork: token is the spine, the two live stores wire to consume it. v1 lands standalone (no wiring required) and is validatable in isolation. EVB-0293 flipped blocked_substrate->executed once V3-EXQ-658 queued. OFF the GAP-7 V3-closure path."
+    },
+    {
+      "sd_id": "crf-availability-maintenance",
+      "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (PFC sustained-activity analog) so a differentiated pool also persists",
+      "status": "pending_implementation",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "targeted_review_arc_063_crf_rule_cell_persistence (lit-pull, blocking)",
+        "ARC-062 differentiation/gating (e2_world_forward context routing)"
+      ],
+      "unblocks_claims": [
+        "MECH-309",
+        "ARC-062",
+        "ARC-063"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
+          "experiment_type": "v3_exq_666_arc063_crf_mature_pool_readiness",
+          "metric": "ARM_1_MATURE (raw z_world ctx) frac_active 0.066 / dist 0.0 (mint-block collapses pool to 2 rules -- no differentiation); ARM_2_MATURE_E2CTX dist 1.71 / 10-16 distinct rules BUT frac_active 0.016 (differentiation achieved, persistence collapses -- worst of 3 arms); ARM_0_OFF frac_active 0.125 / dist 0.0 (654b churn reproduced). 0/3 cells clear the gate in every arm. Non-vacuity met (all cells minted >=2).",
+          "target": "a working CRF must hold >=2 differentiated rules (crf_max_pairwise_rule_dist > 0.1) AND keep them active (crf_frac_active >= 0.30) on >=2/3 seeds SIMULTANEOUSLY, so the 654c GAP-B committed-class entropy falsifier can score"
+        }
+      ],
+      "implementation_hint": "GATED ON the targeted_review_arc_063_crf_rule_cell_persistence lit verdict (persistent-firing vs activity-silent). V3-EXQ-666 showed the 2026-06-11 ARC-063 amend solves differentiation only via crf_context_from_e2_world_forward (ARM_2 dist 1.71, 10-16 distinct rules) but worsens persistence (frac_active 0.016, below the 0.30 floor and worse than legacy 0.125), because narrowly-tuned rules match sparsely and availability never accumulates above theta=0.40 between matches (mature_availability_decay 0.001 erodes it over the gaps). The conflict-gate theta retune (654b fix) addressed the wrong constraint for the differentiated regime. New entry (kept distinct from ARC-062's differentiation/gating work, per user): (a) adopt crf_context_from_e2_world_forward as the mature-regime differentiation DEFAULT; (b) add an availability-MAINTENANCE mechanism so a differentiated rule's availability persists across context-absent ticks (sustained-activity term, OR -- if the lit says activity-silent -- redefine the 'active' readout to count silently-maintained-and-reactivatable rules), targeting frac_active >= 0.30 without collapsing dist; (c) re-validate with a 666-successor CRF-readiness diagnostic (same 3-arm gate) before the 654c GAP-B behavioural re-run.",
+      "priority": 1,
+      "priority_note": "Autopsy priority_suggested=1; strict 6a-ii.6 agrees (>=1 fresh failure record V3-EXQ-666 + unblocks 3 candidate claims MECH-309/ARC-062/ARC-063). No override.",
+      "added_session": "governance-cycle-20260611T0701Z",
+      "last_seen_session": "governance-cycle-20260611T0701Z",
+      "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-666_2026-06-11.json",
+      "pending_retest_after_substrate": true,
+      "ready_blocked_by": "PRIMARY blocking dep: targeted_review_arc_063_crf_rule_cell_persistence lit-pull (persistent-firing vs activity-silent fork) -- if activity-silent, crf_frac_active is itself the wrong readout and must be redefined to count silently-maintained-and-reactivatable rules. ready stays False until (a) the lit verdict resolves the readout question AND (b) the availability-maintenance mechanism is built and a 666-successor CRF-readiness diagnostic clears crf_max_pairwise_rule_dist>0.1 AND crf_frac_active>=0.30 on >=2/3 seeds SIMULTANEOUSLY.",
+      "validation_log": [
+        {
+          "run_id": "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
+          "outcome": "FAIL",
+          "evidence_direction": "non_contributory",
+          "claim_ids": [],
+          "note": "ARC-063 mature-pool amend (654b fix) achieves differentiation only via crf_context_from_e2_world_forward (ARM_2 dist 1.71, 10-16 distinct rules) but WORSENS persistence (frac_active 0.016 < 0.30 floor, worse than legacy 0.125): narrowly-tuned rules match sparsely so availability never accumulates above theta=0.40 between matches. The 654b conflict-gate theta retune addressed the wrong constraint for the differentiated regime. Reviewed/explained by failure_autopsy_V3-EXQ-666_2026-06-11 (confirmed)."
+        }
+      ]
     }
   ],
   "schema_version": "substrate_queue/v2"
