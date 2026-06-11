@@ -1,1 +1,266 @@
-{"schema_version": "v1", "run_id": "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3", "experiment_type": "v3_exq_485e_sd033b_trained_ofc_head_behavioural", "queue_id": "V3-EXQ-485e", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-11T13:52:23.158115Z", "executing_hostname": "DLAPTOP-4.local", "experiment_purpose": "evidence", "claim_ids": ["SD-033b", "MECH-263"], "result": "FAIL", "outcome": "FAIL", "evidence_direction": "non_contributory", "evidence_direction_per_claim": {"SD-033b": "non_contributory", "MECH-263": "non_contributory"}, "dry_run": false, "elapsed_sec": 2401.237027645111, "acceptance": {"C1_devaluation_behavioural_shift": false, "C2_discrimination_behavioural_separation": true, "C3_frozen_head_silent": true, "n_c1_seeds": 0, "n_c2_seeds": 2, "n_c3_seeds": 3, "pass": false}, "interpretation": {"label": "substrate_not_ready_requeue", "preconditions": [{"name": "ofc_trained_head_bias_cross_candidate_range_supra_floor", "description": "ARM_1 trained-head OFC bias cross-candidate RANGE (max-min over the real candidate bank) at the high-threat positive-control state clears BIAS_RANGE_FLOOR -- the selection-distribution DVs (devaluation shift, task-role separation) can be non-zero only if the bias carries cross-candidate range. RANGE not magnitude (a clamp-saturated head has large |bias| but ~0 range).", "measured": 0.003497295081615448, "threshold": 0.001, "control": "trained-arm bias over a real candidate bank at the high-threat state", "met": true}, {"name": "ofc_head_weight_delta_supra_floor", "description": "ARM_1 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the head genuinely trained (485d C2 statistic).", "measured": 0.25365981459617615, "threshold": 0.001, "control": "trainable-arm head trained on frozen-encoder state_code in P1", "met": true}], "criteria_non_degenerate": {"C1": false, "C2": false, "C3": true}, "criteria": [{"name": "C1_devaluation_behavioural_shift", "load_bearing": true, "passed": false}, {"name": "C2_discrimination_behavioural_separation", "load_bearing": true, "passed": true}, {"name": "C3_frozen_head_silent", "load_bearing": true, "passed": true}]}, "readiness_met": false, "ready_seeds": 1, "n_seeds": 3, "max_trained_head_delta": 0.25365981459617615, "max_trained_bias_range": 0.003497295081615448, "arm_results": [{"arm": "ARM_0_frozen_head", "seed": 0, "ofc_train_state_bias_head": false, "head_weight_delta_norm": 0.0, "n_grad_nonzero_updates": 0, "p1_mean_abs_ofc_bias": 0.0, "devaluation_selection_shift": 0.0, "bias_range_high_threat": 0.0, "between_context_selection_tv": 0.0, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 0.0, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "f608d4bdf7819980e7fa6e87c1df72d23db631592124372579b59c423e5768e6", "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f", "substrate_n_files": 98, "machine_class": "darwin-arm64-py3.13", "regime": "A", "seed": 0, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"}}, {"arm": "ARM_0_frozen_head", "seed": 1, "ofc_train_state_bias_head": false, "head_weight_delta_norm": 0.0, "n_grad_nonzero_updates": 0, "p1_mean_abs_ofc_bias": 0.0, "devaluation_selection_shift": 0.0, "bias_range_high_threat": 0.0, "between_context_selection_tv": 0.0, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 0.0, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "6d57175e19e844d4e752be27b1bacca55cade4ad5b0eb25fdd4ff9ce0726b27e", "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f", "substrate_n_files": 98, "machine_class": "darwin-arm64-py3.13", "regime": "A", "seed": 1, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"}}, {"arm": "ARM_0_frozen_head", "seed": 2, "ofc_train_state_bias_head": false, "head_weight_delta_norm": 0.0, "n_grad_nonzero_updates": 0, "p1_mean_abs_ofc_bias": 0.0, "devaluation_selection_shift": 0.0, "bias_range_high_threat": 0.0, "between_context_selection_tv": 0.0, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 0.0, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "3541b86e529941524615eaeade5a87c45fc912afc3abad9c882a16b9df141eff", "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f", "substrate_n_files": 98, "machine_class": "darwin-arm64-py3.13", "regime": "A", "seed": 2, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"}}, {"arm": "ARM_1_trainable_head", "seed": 0, "ofc_train_state_bias_head": true, "head_weight_delta_norm": 0.25365981459617615, "n_grad_nonzero_updates": 60, "p1_mean_abs_ofc_bias": 0.005522664901991366, "devaluation_selection_shift": 8.06078314781189e-05, "bias_range_high_threat": 0.003497295081615448, "between_context_selection_tv": 0.00032228976488113403, "within_context_selection_jitter": 4.842877388000488e-08, "discrimination_separation_ratio": 322.28976488113403, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a402a6f3016fb3c5e8d89c4013376f54055be5835c77402d8743722d25b90fa9", "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f", "substrate_n_files": 98, "machine_class": "darwin-arm64-py3.13", "regime": "A", "seed": 0, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"}}, {"arm": "ARM_1_trainable_head", "seed": 1, "ofc_train_state_bias_head": true, "head_weight_delta_norm": 0.07528568804264069, "n_grad_nonzero_updates": 1, "p1_mean_abs_ofc_bias": 0.09981256345078834, "devaluation_selection_shift": 1.4342367649078369e-05, "bias_range_high_threat": 0.000490918755531311, "between_context_selection_tv": 0.0002685263752937317, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 268.5263752937317, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "d6e08ac90e57152e2020ebbae316405581f44a899736fc74229ff04f372167e2", "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f", "substrate_n_files": 98, "machine_class": "darwin-arm64-py3.13", "regime": "A", "seed": 1, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"}}, {"arm": "ARM_1_trainable_head", "seed": 2, "ofc_train_state_bias_head": true, "head_weight_delta_norm": 0.13408337533473969, "n_grad_nonzero_updates": 60, "p1_mean_abs_ofc_bias": 0.09508215390952973, "devaluation_selection_shift": 5.008280277252197e-05, "bias_range_high_threat": 0.0006854608654975891, "between_context_selection_tv": 0.0, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 0.0, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "bc9232573c35f580f91eaebea7489a80b21814981a0c071412c1859dab45efed", "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f", "substrate_n_files": 98, "machine_class": "darwin-arm64-py3.13", "regime": "A", "seed": 2, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"}}], "substrate_under_test": "SD-033b train_state_bias_head (ree-v3 main 382db2c)", "unblocks": "commitment_closure:GAP-8 (SD-033b candidate -> provisional behavioural evidence)", "predecessors": ["V3-EXQ-485b (devaluation, representation-level)", "V3-EXQ-485c (task-role discrimination, representation-level)", "V3-EXQ-485d (trained-OFC-head substrate readiness)"], "notes": "Evidence-grade trained-OFC-head BEHAVIOURAL validation of MECH-263 signatures a (devaluation sensitivity) + b (task-role discrimination). Behaviour = OFC-bias-driven candidate-selection distribution (softmax over -compute_bias) in isolation (OFC is the sole bias channel; modulatory-bias-selection-authority deliberately OFF to avoid confounding the MECH-263 signal with the separate drowning question). Frozen-zeroed head (bias==0 -> uniform selection) is the GAP-1-analogue silence control. Same-statistic non-vacuity gate: trained-head bias cross-candidate RANGE on a positive control -> substrate_not_ready_requeue if below floor (clamp-saturation / untrained), never a false SD-033b weakens.", "machine": "DLAPTOP-4.local"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3",
+  "experiment_type": "v3_exq_485e_sd033b_trained_ofc_head_behavioural",
+  "queue_id": "V3-EXQ-485e",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-11T13:52:23.158115Z",
+  "executing_hostname": "DLAPTOP-4.local",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "result": "FAIL",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-033b": "non_contributory",
+    "MECH-263": "non_contributory"
+  },
+  "dry_run": false,
+  "elapsed_sec": 2401.237027645111,
+  "acceptance": {
+    "C1_devaluation_behavioural_shift": false,
+    "C2_discrimination_behavioural_separation": true,
+    "C3_frozen_head_silent": true,
+    "n_c1_seeds": 0,
+    "n_c2_seeds": 2,
+    "n_c3_seeds": 3,
+    "pass": false
+  },
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_floor",
+        "description": "ARM_1 trained-head OFC bias cross-candidate RANGE (max-min over the real candidate bank) at the high-threat positive-control state clears BIAS_RANGE_FLOOR -- the selection-distribution DVs (devaluation shift, task-role separation) can be non-zero only if the bias carries cross-candidate range. RANGE not magnitude (a clamp-saturated head has large |bias| but ~0 range).",
+        "measured": 0.003497295081615448,
+        "threshold": 0.001,
+        "control": "trained-arm bias over a real candidate bank at the high-threat state",
+        "met": true
+      },
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "description": "ARM_1 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the head genuinely trained (485d C2 statistic).",
+        "measured": 0.25365981459617615,
+        "threshold": 0.001,
+        "control": "trainable-arm head trained on frozen-encoder state_code in P1",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_frozen_head_silent",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  },
+  "readiness_met": false,
+  "ready_seeds": 1,
+  "n_seeds": 3,
+  "max_trained_head_delta": 0.25365981459617615,
+  "max_trained_bias_range": 0.003497295081615448,
+  "arm_results": [
+    {
+      "arm": "ARM_0_frozen_head",
+      "seed": 0,
+      "ofc_train_state_bias_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "f608d4bdf7819980e7fa6e87c1df72d23db631592124372579b59c423e5768e6",
+        "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f",
+        "substrate_n_files": 98,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"
+      }
+    },
+    {
+      "arm": "ARM_0_frozen_head",
+      "seed": 1,
+      "ofc_train_state_bias_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "6d57175e19e844d4e752be27b1bacca55cade4ad5b0eb25fdd4ff9ce0726b27e",
+        "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f",
+        "substrate_n_files": 98,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 1,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"
+      }
+    },
+    {
+      "arm": "ARM_0_frozen_head",
+      "seed": 2,
+      "ofc_train_state_bias_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "3541b86e529941524615eaeade5a87c45fc912afc3abad9c882a16b9df141eff",
+        "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f",
+        "substrate_n_files": 98,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 2,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"
+      }
+    },
+    {
+      "arm": "ARM_1_trainable_head",
+      "seed": 0,
+      "ofc_train_state_bias_head": true,
+      "head_weight_delta_norm": 0.25365981459617615,
+      "n_grad_nonzero_updates": 60,
+      "p1_mean_abs_ofc_bias": 0.005522664901991366,
+      "devaluation_selection_shift": 8.06078314781189e-05,
+      "bias_range_high_threat": 0.003497295081615448,
+      "between_context_selection_tv": 0.00032228976488113403,
+      "within_context_selection_jitter": 4.842877388000488e-08,
+      "discrimination_separation_ratio": 322.28976488113403,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a402a6f3016fb3c5e8d89c4013376f54055be5835c77402d8743722d25b90fa9",
+        "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f",
+        "substrate_n_files": 98,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"
+      }
+    },
+    {
+      "arm": "ARM_1_trainable_head",
+      "seed": 1,
+      "ofc_train_state_bias_head": true,
+      "head_weight_delta_norm": 0.07528568804264069,
+      "n_grad_nonzero_updates": 1,
+      "p1_mean_abs_ofc_bias": 0.09981256345078834,
+      "devaluation_selection_shift": 1.4342367649078369e-05,
+      "bias_range_high_threat": 0.000490918755531311,
+      "between_context_selection_tv": 0.0002685263752937317,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 268.5263752937317,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "d6e08ac90e57152e2020ebbae316405581f44a899736fc74229ff04f372167e2",
+        "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f",
+        "substrate_n_files": 98,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 1,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"
+      }
+    },
+    {
+      "arm": "ARM_1_trainable_head",
+      "seed": 2,
+      "ofc_train_state_bias_head": true,
+      "head_weight_delta_norm": 0.13408337533473969,
+      "n_grad_nonzero_updates": 60,
+      "p1_mean_abs_ofc_bias": 0.09508215390952973,
+      "devaluation_selection_shift": 5.008280277252197e-05,
+      "bias_range_high_threat": 0.0006854608654975891,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "bc9232573c35f580f91eaebea7489a80b21814981a0c071412c1859dab45efed",
+        "substrate_hash": "35d6c3ea9574fa904c32c8afd175af2a8352b1154e2669a0ffeb1f39cb8a164f",
+        "substrate_n_files": 98,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 2,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "6f9130108e8f34ac355a49b800411198f384b0bfee9368c9fc3b30dc8a6cee73"
+      }
+    }
+  ],
+  "substrate_under_test": "SD-033b train_state_bias_head (ree-v3 main 382db2c)",
+  "unblocks": "commitment_closure:GAP-8 (SD-033b candidate -> provisional behavioural evidence)",
+  "predecessors": [
+    "V3-EXQ-485b (devaluation, representation-level)",
+    "V3-EXQ-485c (task-role discrimination, representation-level)",
+    "V3-EXQ-485d (trained-OFC-head substrate readiness)"
+  ],
+  "notes": "Evidence-grade trained-OFC-head BEHAVIOURAL validation of MECH-263 signatures a (devaluation sensitivity) + b (task-role discrimination). Behaviour = OFC-bias-driven candidate-selection distribution (softmax over -compute_bias) in isolation (OFC is the sole bias channel; modulatory-bias-selection-authority deliberately OFF to avoid confounding the MECH-263 signal with the separate drowning question). Frozen-zeroed head (bias==0 -> uniform selection) is the GAP-1-analogue silence control. Same-statistic non-vacuity gate: trained-head bias cross-candidate RANGE on a positive control -> substrate_not_ready_requeue if below floor (clamp-saturation / untrained), never a false SD-033b weakens.",
+  "machine": "DLAPTOP-4.local",
+  "epistemic_category_per_claim": {
+    "SD-033b": "substrate_ceiling",
+    "MECH-263": "substrate_ceiling"
+  },
+  "evidence_direction_note": "2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-485e CONFIRMED): self-route substrate_not_ready_requeue adjudicated CONFIRMED -> non_contributory for BOTH SD-033b and MECH-263 (NOT a weakens; both stay candidate/v3_pending). The trained OFC head trained on all 3 seeds but cross-candidate bias RANGE cleared the floor on only 1/3 seeds. Two gaps starve the range: (1) OFC compute_bias clamp-saturation on 2/3 seeds (the GAP-8 landing's pre-registered risk); (2) candidate-bank z_world collapse (reconstruction-trained e2.world_forward world_states[1]; ARC-065 GAP-A / SD-056) so even the one unsaturated+READY seed gave a vacuous deval_shift (8e-05 vs 0.05 margin) + a degenerate C2 ratio (criteria_non_degenerate.C2=false). OFC-head instance of the candidate-differentiated-affective-gradients pattern (569f/661/654a/643/614e). Requeue = V3-EXQ-485f (raise ofc_bias_scale / pre-clamp signal + enable SD-056 e2_action_contrastive in P0 + absolute floor on between_context_tv).",
+  "pending_retest_after_substrate": true,
+  "failure_autopsy_ref": "failure_autopsy_V3-EXQ-485e_2026-06-11"
+}

@@ -1,15 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-11T14:06:25Z`  
-Last review: `2026-06-11T14:05:00Z`  
-Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-11T15:17:22Z`  
+Last review: `2026-06-11T15:10:00Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_514m_sd049_phase2_behavioural_curriculum_built_20260611T131105Z_v3` | 2026-06-11T13:11 | MECH-229, MECH-230 | — |
-| `v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3` | 2026-06-11T13:52 | MECH-263, SD-033b | — |
+| `v3_exq_660b_mech341_within_class_pool_size_graded_windowed_readout_20260611T134330Z_v3` | 2026-06-11T13:43 | MECH-341 | — |
 
 ---
 

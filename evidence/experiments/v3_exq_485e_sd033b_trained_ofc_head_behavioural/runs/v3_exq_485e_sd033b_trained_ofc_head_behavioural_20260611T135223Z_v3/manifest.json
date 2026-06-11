@@ -87,5 +87,12 @@
         "passed": true
       }
     ]
-  }
+  },
+  "epistemic_category_per_claim": {
+    "SD-033b": "substrate_ceiling",
+    "MECH-263": "substrate_ceiling"
+  },
+  "evidence_direction_note": "2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-485e CONFIRMED): self-route substrate_not_ready_requeue adjudicated CONFIRMED -> non_contributory for BOTH SD-033b and MECH-263 (NOT a weakens; both stay candidate/v3_pending). The trained OFC head trained on all 3 seeds but cross-candidate bias RANGE cleared the floor on only 1/3 seeds. Two gaps starve the range: (1) OFC compute_bias clamp-saturation on 2/3 seeds (the GAP-8 landing's pre-registered risk); (2) candidate-bank z_world collapse (reconstruction-trained e2.world_forward world_states[1]; ARC-065 GAP-A / SD-056) so even the one unsaturated+READY seed gave a vacuous deval_shift (8e-05 vs 0.05 margin) + a degenerate C2 ratio (criteria_non_degenerate.C2=false). OFC-head instance of the candidate-differentiated-affective-gradients pattern (569f/661/654a/643/614e). Requeue = V3-EXQ-485f (raise ofc_bias_scale / pre-clamp signal + enable SD-056 e2_action_contrastive in P0 + absolute floor on between_context_tv).",
+  "pending_retest_after_substrate": true,
+  "failure_autopsy_ref": "failure_autopsy_V3-EXQ-485e_2026-06-11"
 }

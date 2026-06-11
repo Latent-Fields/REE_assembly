@@ -26,7 +26,7 @@
   "evidence_class": "simulation",
   "evidence_direction": "mixed",
   "evidence_direction_per_claim": {
-    "MECH-229": "weakens",
+    "MECH-229": "non_contributory",
     "MECH-230": "supports"
   },
   "experiment_purpose": "evidence",
@@ -57,5 +57,10 @@
   "pending_retest_after_substrate_per_claim": [
     "MECH-229"
   ],
-  "evidence_direction_note": "2026-06-11 (governance cycle #3): MECH-229 per-claim weakens FLAGGED for /failure-autopsy and EXCLUDED from scoring (pending_retest_after_substrate_per_claim=[MECH-229]). 514m C_WL dissoc=0.0 on all 3 seeds despite C_ID/C_ANOVA PASS; consequential weakens on a no-other-support provisional claim -> deep diagnosis before weighting. MECH-230 SUPPORTS retained."
+  "evidence_direction_note": "2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-514m CONFIRMED): MECH-229 per-claim weakens reclassified -> non_contributory (measurement_test_design_defect) and remains scoring-excluded. C_WL wanting!=liking dissoc=0.0 on all 3 seeds (zero variance) is a VACUOUS FAIL: the DV reads SD-014 residue VALENCE_WANTING/VALENCE_LIKING channels but the config omits valence_liking_enabled/tonic_5ht_enabled/schema_wanting_enabled and the eval loop never writes them, so |w-l|>0.1 can never fire independent of behaviour. The contact guard verifies foraging but not channel-write -> the self-routed weakens rests on an unmet non-degeneracy assumption (642/660a vacuous-criterion pattern). MECH-230=supports stands (C_ID 0.926/n=3455 + C_ANOVA F~1019, contact-guarded). No demotion; substrate_queue action=none (SD-057 landed). Retest = V3-EXQ-514n (SD-057 object-bound wanting-target!=liking-target with a same-statistic WL non-vacuity gate).",
+  "epistemic_category_per_claim": {
+    "MECH-229": "measurement_test_design_defect"
+  },
+  "narrow_supports_flag": true,
+  "failure_autopsy_ref": "failure_autopsy_V3-EXQ-514m_2026-06-11"
 }
