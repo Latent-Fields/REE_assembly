@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-11T16:22:04Z",
+  "last_tick_utc": "2026-06-11T16:52:17Z",
   "state": "running",
   "current_exq": "V3-EXQ-667",
   "current_exq_started_utc": "2026-06-11T06:40:52.142049+00:00",
@@ -9,21 +9,16 @@
   "current_claim_id": "Q-043",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / mag_8x",
-    "runs_done": 16,
+    "run_label": "Seed 44 / mag_8x",
+    "runs_done": 17,
     "runs_total": 20,
     "episodes_done": 50,
     "episodes_total": 160,
-    "overall_pct": 81.6
+    "overall_pct": 86.6
   },
-  "seconds_elapsed": 34873,
-  "seconds_remaining": 7315,
+  "seconds_elapsed": 36685,
+  "seconds_remaining": 5331,
   "recent_lines": [
-    "V3-EXQ-667 Q-043 magnitude sweep: seeds=[42, 43, 44, 45, 46] scales=[1.0, 2.0, 4.0, 8.0] n_episodes=160 steps=200 threshold=0.9940 (default alpha=0.1 cw=0.05)",
-    "Seed 42 Condition mag_1x",
-    "[train] sweep seed=42 mag_1x ep 50/160 phase=0 h_pos=0.098 z_goal=0.0000",
-    "[train] sweep seed=42 mag_1x ep 100/160 phase=0 h_pos=0.156 z_goal=0.0141",
-    "[train] sweep seed=42 mag_1x ep 150/160 phase=1 h_pos=1.100 z_goal=0.0000",
     "[train] sweep seed=42 mag_1x ep 160/160 phase=1 h_pos=0.098 z_goal=0.0000",
     "verdict: PASS",
     "Seed 43 Condition mag_1x",
@@ -117,7 +112,13 @@
     "[train] sweep seed=42 mag_8x ep 160/160 phase=1 h_pos=0.000 z_goal=0.0000",
     "verdict: PASS",
     "Seed 43 Condition mag_8x",
-    "[train] sweep seed=43 mag_8x ep 50/160 phase=0 h_pos=0.641 z_goal=0.0000"
+    "[train] sweep seed=43 mag_8x ep 50/160 phase=0 h_pos=0.641 z_goal=0.0000",
+    "[train] sweep seed=43 mag_8x ep 100/160 phase=0 h_pos=0.593 z_goal=0.0000",
+    "[train] sweep seed=43 mag_8x ep 150/160 phase=1 h_pos=0.000 z_goal=0.0000",
+    "[train] sweep seed=43 mag_8x ep 160/160 phase=1 h_pos=1.063 z_goal=0.0000",
+    "verdict: PASS",
+    "Seed 44 Condition mag_8x",
+    "[train] sweep seed=44 mag_8x ep 50/160 phase=0 h_pos=0.056 z_goal=0.0000"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
