@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-11T00:14:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T200549Z_v3",
+      "queue_id": "V3-EXQ-654b",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "implementation_under_test": "ARC-063 CandidateRuleField",
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C1 prevented scoring; claims never tested under expressible conditions",
+        "biological_reference": "clear -- BG/PFC task-set rule learning (Collins & Frank 2014, Frank 2006, Mansouri); biology maintains a differentiated persistent rule set; not a formal import",
+        "prerequisites": "present -- crf_persist (ARC-063 amend), trained bias head (GAP-D), route-range (662 validated 13:27) all in place",
+        "implementation": "partial (DOMINANT) -- CandidateRuleField has the symbol of differentiation (pinned distinct directions) but its GATE/CREDIT/RETIRE dynamics never let a >=2-rule differentiated pool persist",
+        "environment": "adequate -- bipartite reef substrate present",
+        "measurement": "adequate -- crf_max_pairwise_rule_dist / crf_frac_active cleanly expose pool emptiness; C1c gate worked as designed",
+        "integration": "not dominant -- the 654 leg never produced a differentiated rule_state for the routing layer to carry",
+        "scale": "likely-insufficient REJECTED -- three escalating budgets leave crf_frac_active flat (0.137 -> 0.130); reading B exhausted"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG/PFC task-set rule learning -- differentiated, persistent rule set maintained across experiences",
+        "dependencies": ["conflict-graded availability gate (Frank 2006 / Cavanagh 2011)", "cross-experience persistence (Collins & Frank 2014)", "eligibility-trace credit (Brzosko 2015 / Kovach 2012)"],
+        "is_formal_import": false,
+        "divergence": "translation parameter gap: retire-churn + context-match mint-block + unreachable conflict-gate theta prevent a differentiated persistent pool; biology maintains one",
+        "lit_status": "present (rule-apprehension lit-pull SYNTHESIS already grounds ARC-062/ARC-063)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654b (arc_062 GAP-B behavioural falsifier, MECH-309/ARC-062; implementation under test = ARC-063 CandidateRuleField) FAILed C1c arm_on_rule_field_differentiated_and_matured (crf_frac_active 0.130 < 0.30) for the third consecutive iteration. crf_frac_active is flat at ~0.13 across 654 (per-episode wipe) / 654a (crf_persist) / 654b (crf_persist + 240 ep) and crf_max_pairwise_rule_dist is 0.0 every cell -- the CandidateRuleField never holds >=2 rules present, so the maturation-budget reading is exhausted. Diagnosis (failure_autopsy_V3-EXQ-654b_2026-06-11): CRF retire-churn + context-match mint-block under collapsed z_world spread + an unreachable conflict-gate theta prevent a differentiated persistent pool. non_contributory (C1 gated scoring; no claim weight). Route: amend ARC-063 CandidateRuleField gate/credit/retire dynamics + a CRF-readiness gate (crf_max_pairwise_rule_dist>floor AND frac_active>=0.30) before re-scoring GAP-B (654c successor). pending_retest_after_substrate. NO demotion -- the claims were never tested.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-062",
+        "amend_target_impl": "ARC-063 CandidateRuleField (ree-v3/ree_core/policy/candidate_rule_field.py)",
+        "title": "Recalibrate ARC-063 CandidateRuleField gate/credit/retire so a differentiated persistent >=2-rule pool forms; add CRF-readiness gate before GAP-B scoring",
+        "implementation_hint": "Three escalating maturation regimes (654/654a/654b) leave crf_frac_active flat at ~0.13 and crf_max_pairwise_rule_dist at 0.0 (<=1 rule present). Reconsider availability_decay (0.005), _retire_floor (0.5*tolerance_floor=0.15), the negative-outcome credit rate, context_match_threshold (0.5), and tolerance_conflict_gain (1.0)/tolerance_floor (0.3) so theta is reachable for >=2 matched rules. Consider routing per-candidate e2_world_forward context into the CRF mint/match keys (mirror ARC-065 GAP-A) so the mint-block does not collapse under low raw-z_world spread. Add a V3-EXQ-639-style CRF-readiness gate (crf_max_pairwise_rule_dist>floor AND crf_frac_active>=0.30) gating any GAP-B behavioural falsifier.",
+        "unblocks_claims": ["MECH-309", "ARC-062", "ARC-063"],
+        "depends_on_unresolved": ["ARC-065 GAP-A (low z_world spread; CRF reads raw z_world context)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T200549Z_v3",
+          "experiment_type": "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "crf_frac_active 0.130 < 0.30 floor (flat across 654 0.12 / 654a 0.137 / 654b 0.130); crf_max_pairwise_rule_dist 0.0 all ARM_ON cells (<=1 rule present) despite n_minted 452/1014/419; C2 committed-class lift negative 0/3 (moot, C1-gated)",
+          "target": "a working CandidateRuleField must hold >=2 differentiated rules present (crf_max_pairwise_rule_dist>floor) AND fire crf_frac_active>=0.30 on a majority of ARM_ON seeds so the GAP-B committed-class entropy falsifier can score"
+        },
+        "governance_note": "654a/654b failure records currently sit on modulatory-bias-selection-authority (placed by the 569f/661/654a cluster autopsy). 654b separates the 654 leg: the CRF never produced a differentiated rule_state to route, so the 662 route-range fix is irrelevant to this leg. Re-home the 654a record (and file 654b here) on the ARC-062 entry."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "CRF maturation is not budget-bound: crf_frac_active invariant 0.137->0.130 across a 2.4x longer window + cross-episode persistence; retire-churn empties the pool faster than differentiated rules accumulate.",
+        "crf_max_pairwise_rule_dist=0.0 = the field never holds >=2 rules present; differentiation (distinct pinned directions) has no opportunity to express -- symbol of the mechanism without its functional role.",
+        "The 662 route-range fix cannot help the 654 leg until the CRF first produces a differentiated rule_state to route; the two substrate threads are now cleanly separated.",
+        "The CRF reads raw z_world context for mint/match; under monostrategy-collapsed z_world spread one rule covers everything -- the GAP-A collapse reaching a channel the GAP-A fix did not."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Same C1c readiness failure (crf_frac_active < 0.30 floor; crf_max_pairwise_rule_dist 0.0) across 654 / 654a / 654b under three escalating maturation regimes.",
+    "is_independent_bugs": false,
+    "structural_property": "The ARC-063 CandidateRuleField GATE/CREDIT/RETIRE dynamics never let a differentiated, persistently-active pool of >=2 rules form under the matched stack; budget/persistence do not move it.",
+    "readings": ["substrate_enrichment", "test_design_ceiling"],
+    "reading_resolution": "test_design_ceiling (budget) REJECTED by the flat 654/654a/654b lineage; substrate_enrichment (CRF gate/credit recalibration) is the confirmed route."
+  }
+}
