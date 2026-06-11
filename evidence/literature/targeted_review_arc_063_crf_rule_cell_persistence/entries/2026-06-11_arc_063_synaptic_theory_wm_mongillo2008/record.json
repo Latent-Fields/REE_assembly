@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+  "entry_id": "2026-06-11_arc_063_synaptic_theory_wm_mongillo2008",
+  "timestamp_utc": "2026-06-11T07:21:11Z",
+  "claim_ids_tested": ["ARC-063"],
+  "source": {
+    "title": "Synaptic theory of working memory",
+    "authors": ["Gianluigi Mongillo", "Omri Barak", "Misha Tsodyks"],
+    "year": 2008,
+    "venue": "Science",
+    "doi": "10.1126/science.1150769",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18339943/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The decisive mechanistic model for fork B and the most directly IMPLEMENTABLE answer for the CRF. Working memory is maintained by calcium-mediated short-term synaptic FACILITATION on recurrent connections: a memory leaves a synaptic trace that persists for ~1 s WITHOUT any spiking, can be refreshed by sparse activity at a low rate, and is read out when input arrives. Gives the CRF a concrete maintenance primitive: a non-firing, slowly-decaying, sparsely-refreshable availability trace decoupled from per-tick activity. Supports ARC-063's maintenance need and supplies the exact mechanism. Slightly below ceiling because it is a model, and the biological time constant (~1 s) is far shorter than the CRF's thousands-of-ticks horizon -- the principle transfers, the constant does not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Facilitation-based maintenance has a finite decay time constant (calcium kinetics, ~1 s); a trace not refreshed within that window is lost. A pure synaptic-trace CRF availability with too-fast decay reproduces the 666 collapse; the maintenance horizon must be set deliberately, not inherited from the biological constant.",
+    "The synaptic trace is capacity- and interference-limited: many overlapping memories compete for the same synaptic resources. A differentiated CRF pool is the favourable case (distinct, pinned directions -> low interference), but the model warns that maintenance is not free and unbounded."
+  ],
+  "tags": ["arc_063", "synaptic_facilitation", "short_term_plasticity", "activity_silent", "calcium_kinetics", "working_memory", "implementable_mechanism", "fork_B_activity_silent"],
+  "mapping": {
+    "source_claim_statement": "Working memory can be maintained without persistent spiking by short-term synaptic facilitation: presynaptic residual calcium elevates release probability on recently-active recurrent synapses, leaving a memory trace in the synaptic weights that persists for ~1 s, is metabolically cheap, is refreshed by occasional (sparse, low-rate) spikes, and is read out when the network is probed. The model exhibits both activity-silent maintenance and, with stronger facilitation, spontaneous reactivation bursts.",
+    "ree_translation": "This is the concrete maintenance primitive the CRF lacks. Replace (or floor) the activity-dependent per-tick availability EMA with a synaptic-trace-like availability that (i) persists across context-absent ticks without the rule firing, (ii) decays on a long, deliberately-set horizon rather than per-tick, and (iii) is refreshed by sparse matches rather than requiring continuous activity. Mongillo's 'occasional refresh at a low rate' maps directly onto the CRF's sparse-match regime: a differentiated rule that matches rarely is exactly the case facilitation is built to handle.",
+    "mapping_caveat": "The biological time constant (~1 s, set by calcium kinetics) is far shorter than the CRF's maintenance horizon (a rule must stay available across ~2000-3900 ticks). The transferable content is the MECHANISM CLASS -- silent, slowly-decaying, sparsely-refreshable, activity-decoupled maintenance -- not the numeric constant. The CRF's decay horizon is a free design parameter to be set so a differentiated rule survives the typical inter-match gap, informed by but not equal to the biology.",
+    "source_context": "Spiking recurrent-network model of neocortex with short-term synaptic plasticity (Tsodyks-Markram facilitation/depression); working-memory delay task."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.32,
+    "notes": "High-impact, foundational model (Science) -- strong source_quality. mapping_fidelity high because the mechanism (sparse-refresh, activity-decoupled synaptic trace) is a near-exact fit to the CRF's needed availability-maintenance primitive. transfer_risk low-moderate: the principle transfers cleanly; the only real risk is naively importing the ~1 s time constant, which is explicitly flagged in the caveat."
+  }
+}

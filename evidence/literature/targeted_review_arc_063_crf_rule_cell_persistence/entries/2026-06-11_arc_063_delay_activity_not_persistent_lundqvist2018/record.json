@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+  "entry_id": "2026-06-11_arc_063_delay_activity_not_persistent_lundqvist2018",
+  "timestamp_utc": "2026-06-11T07:21:11Z",
+  "claim_ids_tested": ["ARC-063"],
+  "source": {
+    "title": "Working Memory: Delay Activity, Yes! Persistent Activity? Maybe Not",
+    "authors": ["Mikael Lundqvist", "Pawel Herman", "Earl K. Miller"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2485-17.2018",
+    "url": "https://www.jneurosci.org/content/38/32/7013"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "The explicit adjudication of the fork. Lundqvist, Herman & Miller argue the standard 'persistent spiking' picture is largely an artifact of averaging spikes across time and trials; single-trial activity occurs in sparse transient gamma bursts, and information is carried BETWEEN spikes by short-term synaptic plasticity ('impressions left in the network'). Delay activity is a WM mechanism, but it is sparse, not persistent. Resolves the autopsy's A-vs-B fork toward B (with sparse bursty reactivation), and underwrites both CRF prescriptions: activity-decoupled maintenance + a non-per-tick-firing readout.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Trial-and-time-averaged firing creates an ILLUSION of continuous persistent activity that disappears on single trials (sparse bursts). A maintenance readout built on smoothed/aggregate activity (or on per-tick active fraction) inherits this artifact and misreads sparse-but-maintained as either continuous or absent.",
+    "If information is carried between spikes by synaptic 'impressions', then any activity-based availability accounting necessarily under-counts maintained-but-silent rules -- exactly the crf_frac_active 0.016 collapse in the differentiated regime."
+  ],
+  "tags": ["arc_063", "gamma_bursts", "sparse_activity", "activity_silent", "short_term_plasticity", "working_memory", "fork_adjudication", "fork_B_activity_silent"],
+  "mapping": {
+    "source_claim_statement": "Delay activity is a working-memory mechanism, but the evidence for CONTINUOUS persistent spiking is largely an artifact of averaging across time and trials. On single trials, delay activity occurs in sparse, transient (gamma) bursts; between bursts, information is retained by short-term synaptic plasticity -- 'spikes leave an impression in the networks that maintains WM information between spiking.' Memory is held by temporary changes in synaptic weights during the quiescent periods.",
+    "ree_translation": "This is the head-on answer to the V3-EXQ-666 fork. The biologically-correct picture is NOT 'keep every available rule firing' (naive fork A) and NOT a binary fork B either -- it is sparse, bursty reactivation riding on a silent synaptic store. For the CRF: maintain a differentiated rule's availability as a persistent synaptic-trace ('impression') that survives silence; let it be refreshed/reactivated by occasional matches (the bursts); and DO NOT measure maintenance by per-tick firing. crf_frac_active is precisely the averaged-activity artifact this paper warns against: a sparsely-maintained rule reads as ~0 active fraction yet is fully available.",
+    "mapping_caveat": "A perspective/review article (argument from re-interpreting existing data), not a new experiment; the burst-coding account, while well-supported by the authors' LFP/spiking work, remains debated against strong-persistent-activity proponents (e.g. Constantinidis et al. 2018, the paired commentary). The CRF should adopt the activity-silent-plus-sparse-reactivation FORM without asserting the burst-vs-persistent debate is fully closed in biology.",
+    "source_context": "Perspective/review, macaque PFC working memory; integrates the authors' gamma/beta-burst LFP findings (Lundqvist et al. 2016, Neuron) with the synaptic-trace WM literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.32,
+    "notes": "High mapping_fidelity: the paper's central warning (averaged activity hides sparse-but-maintained coding) is a direct diagnosis of the crf_frac_active readout failure. source_quality strong-for-a-perspective but it is argument-from-reinterpretation, and the burst account is contested -> not at ceiling. transfer_risk low-moderate."
+  }
+}

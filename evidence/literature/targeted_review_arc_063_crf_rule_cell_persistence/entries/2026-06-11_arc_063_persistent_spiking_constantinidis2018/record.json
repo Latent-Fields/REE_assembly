@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+  "entry_id": "2026-06-11_arc_063_persistent_spiking_constantinidis2018",
+  "timestamp_utc": "2026-06-11T07:26:35Z",
+  "claim_ids_tested": ["ARC-063"],
+  "source": {
+    "title": "Persistent Spiking Activity Underlies Working Memory",
+    "authors": ["Christos Constantinidis", "Shintaro Funahashi", "Daeyeol Lee", "John D. Murray", "Xue-Lian Qi", "Min Wang", "Amy F. T. Arnsten"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience 38(32):7020-7028",
+    "doi": "10.1523/JNEUROSCI.2486-17.2018",
+    "url": "https://doi.org/10.1523/JNEUROSCI.2486-17.2018"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Authoritative primate-electrophysiology defence of the persistent-firing (pole A) account, co-authored by the Goldman-Rakic/Arnsten lineage. High source quality. It SUPPORTS the existence of a maintained prefrontal rule/cue representation across the delay (the ARC-063 rule-cell class is real) but it argues AGAINST the activity-silent / synaptic-only reading that the V3-EXQ-666 autopsy leans toward -- hence 'mixed' relative to the substrate fork. Mapping fidelity is moderate: their object is delay-period spike rate to a remembered cue, not availability of a sparsely-matched differentiated rule, which is the regime where even they concede single cells are not continuously active.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the CRF abandons any sustained-availability term and relies purely on a fast synaptic trace, this camp's data (selective delay-period elevation of firing in PFC rule/cue cells) is the evidence it would be ignoring -- a pure activity-silent fix risks under-modelling the genuine sustained component.",
+    "Their critique that synaptic-plasticity-only and rhythmic-only models are 'inconsistent with the neurophysiological data' is a caution against a CRF fix that maintains rules ONLY between matches with no above-threshold readout ever -- the truth is a hybrid, not either pole exclusively."
+  ],
+  "tags": ["arc-063", "arc-062", "mech-309", "prefrontal_cortex", "persistent_activity", "working_memory", "rule_cell", "crf_persistence_fork"],
+  "mapping": {
+    "source_claim_statement": "Persistent spiking activity generated in PFC during the delay period represents the information held in working memory and predicts behavioural performance; alternative accounts based purely on rhythmicity of discharges or exclusively on short-term synaptic plasticity are inconsistent with the neurophysiological data.",
+    "ree_translation": "Maps to the (a) persistent-firing pole of the CRF availability-maintenance fork: a selected CandidateRuleField rule is held by a sustained above-threshold availability across the gap between task-relevant events (an attractor/sustained-activity analog), which would justify a maintenance term that holds availability high rather than redefining 'active'.",
+    "mapping_caveat": "Their evidence is for the dense, well-cued spatial/feature working-memory regime where the maintained item is repeatedly task-relevant. The CRF's failing regime is a NARROWLY-tuned rule that matches sparsely -- exactly where even this camp accepts single cells fall silent and only trial/time-AVERAGED rate stays elevated. So the paper supports a sustained COMPONENT, not continuous instantaneous activity, and does not by itself license keeping crf_frac_active (an instantaneous fraction) as the readout.",
+    "source_context": "Macaque PFC single-unit recordings during oculomotor / feature delayed-response working-memory tasks; review/position piece (point of a 2018 J Neurosci point-counterpoint with Lundqvist, Herman & Miller)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Top-tier authors and data, but the mapping from primate spike rate to a coarse availability EMA in an abstract rule field is loose, and the transfer from a densely-cued WM item to a sparsely-matched differentiated rule is precisely the risk the autopsy identified."
+  }
+}

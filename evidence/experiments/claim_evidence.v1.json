@@ -52,7 +52,7 @@
       }
     },
     "ARC-003": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.795",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.794",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -78,9 +78,9 @@
       },
       "latest_run_id": "2026-02-26_cowley_2023_compact_v4",
       "latest_timestamp_utc": "2026-02-26T00:00:00Z",
-      "literature_confidence": 0.795,
-      "literature_confidence_parallel": 0.795,
-      "overall_confidence": 0.795,
+      "literature_confidence": 0.794,
+      "literature_confidence_parallel": 0.794,
+      "overall_confidence": 0.794,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -130,7 +130,7 @@
       }
     },
     "ARC-005": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.795",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.794",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -156,9 +156,9 @@
       },
       "latest_run_id": "2026-02-26_cowley_2023_compact_v4",
       "latest_timestamp_utc": "2026-02-26T00:00:00Z",
-      "literature_confidence": 0.795,
-      "literature_confidence_parallel": 0.795,
-      "overall_confidence": 0.795,
+      "literature_confidence": 0.794,
+      "literature_confidence_parallel": 0.794,
+      "overall_confidence": 0.794,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -2635,7 +2635,7 @@
       }
     },
     "ARC-036": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.411, lit_conf=0.896",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.41, lit_conf=0.896",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -2653,8 +2653,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.411,
-      "experimental_confidence_decoupled": 0.411,
+      "experimental_confidence": 0.41,
+      "experimental_confidence_decoupled": 0.41,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -4140,22 +4140,22 @@
       }
     },
     "ARC-063": {
-      "confidence_rationale": "exp=0 entry(s), lit=23 entry(s), exp_conf=0, lit_conf=0.862",
+      "confidence_rationale": "exp=0 entry(s), lit=29 entry(s), exp_conf=0, lit_conf=0.864",
       "direction_counts": {
-        "mixed": 5,
-        "supports": 18,
+        "mixed": 7,
+        "supports": 22,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 23,
+      "entries_total": 29,
       "evidence_class_counts": {
         "lit:behavioral_animal": 5,
-        "lit:computational_model": 4,
+        "lit:computational_model": 6,
         "lit:electrophysiology_lfp": 1,
-        "lit:electrophysiology_single_unit": 5,
+        "lit:electrophysiology_single_unit": 7,
         "lit:fmri_connectivity": 2,
         "lit:fmri_lesion": 2,
-        "lit:theoretical_review": 4
+        "lit:theoretical_review": 6
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -4169,103 +4169,103 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-06-04_arc_063_subspace_partitioning_weber2023",
-      "latest_timestamp_utc": "2026-06-04T15:00:09Z",
-      "literature_confidence": 0.862,
-      "literature_confidence_parallel": 0.862,
-      "overall_confidence": 0.862,
+      "latest_run_id": "2026-06-11_arc_063_persistent_spiking_constantinidis2018",
+      "latest_timestamp_utc": "2026-06-11T07:26:35Z",
+      "literature_confidence": 0.864,
+      "literature_confidence_parallel": 0.864,
+      "overall_confidence": 0.864,
       "pass_runs": 0,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-063",
-          "confidence": 0.7,
-          "confidence_rationale": "Canonical experimental demonstration of a synaptic eligibility trace: a delayed dopamine signal retroactively converts STDP depression to potentiation, solving the distal-reward credit problem. Directly grounds the biological mechanism for ARC-063 element (iv) per-action evidence-trace credit. Held below top band because it credits a SYNAPSE, not a labelled rule.",
-          "evidence_class": "lit:computational_model",
+          "confidence": 0.75,
+          "confidence_rationale": "The explicit adjudication of the fork. Lundqvist, Herman & Miller argue the standard 'persistent spiking' picture is largely an artifact of averaging spikes across time and trials; single-trial activity occurs in sparse transient gamma bursts, and information is carried BETWEEN spikes by short-term synaptic plasticity ('impressions left in the network'). Delay activity is a WM mechanism, but it is sparse, not persistent. Resolves the autopsy's A-vs-B fork toward B (with sparse bursty reactivation), and underwrites both CRF prescriptions: activity-decoupled maintenance + a non-per-tick-firing readout.",
+          "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_rule_level_credit_assignment",
+          "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
           "failure_signatures": [
-            "The credited unit is a synapse with a ~1s eligibility window, not an abstract rule; ARC-063's rule-level evidence-trace credit is an extension of this synaptic mechanism, not a demonstrated rule-level instance.",
-            "Hippocampal slice + NMDA/PKA-dependent; whether the same retroactive-credit mechanism operates on cortical/PFC rule_state representations is untested here."
+            "Trial-and-time-averaged firing creates an ILLUSION of continuous persistent activity that disappears on single trials (sparse bursts). A maintenance readout built on smoothed/aggregate activity (or on per-tick active fraction) inherits this artifact and misreads sparse-but-maintained as either continuous or absent.",
+            "If information is carried between spikes by synaptic 'impressions', then any activity-based availability accounting necessarily under-counts maintained-but-silent rules -- exactly the crf_frac_active 0.016 collapse in the differentiated regime."
           ],
-          "run_id": "2026-06-04_arc_063_eligibility_trace_dopamine_brzosko2015",
+          "run_id": "2026-06-11_arc_063_delay_activity_not_persistent_lundqvist2018",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T14:58:04Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-063",
-          "confidence": 0.55,
-          "confidence_rationale": "Lesion evidence that frontopolar cortex selectively supports crediting RECENT outcome trends to update the active contingency model (vs cumulative history) -- grounds the frontal contribution to crediting the currently-active rule/model for recent outcomes. Mixed/mid: it is contingency-model updating, not credit to a distinct rule object, and is correlational at the rule level.",
-          "evidence_class": "lit:fmri_lesion",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_rule_level_credit_assignment",
-          "failure_signatures": [
-            "Frontopolar lesion abolished recent-trend extrapolation but left cumulative reward learning intact -- so a REE rule-field that credited only cumulative history (no recent-trend channel) would reproduce the lesion deficit, i.e. ARC-063 needs a recent-trend credit pathway distinct from cumulative accumulation.",
-            "The credited entity is a reward-contingency model, not an explicit rule; mapping to per-rule credit is an extension."
-          ],
-          "run_id": "2026-06-04_arc_063_frontopolar_reward_trend_kovach2012",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T14:58:04Z"
+          "timestamp_utc": "2026-06-11T07:21:11Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-063",
           "confidence": 0.74,
-          "confidence_rationale": "Canonical demonstration that PFC single neurons explicitly encode abstract rules that generalise to novel stimuli -- direct evidence that a rule is a represented quantity with a neural substrate, grounding the existence of an ARC-063 CandidateRule representation. Held below top band: it shows rule CODING, not a FIELD of competing candidate rules with tolerance/eligibility attributes.",
+          "confidence_rationale": "Canonical, replicated single-unit demonstration that dorsolateral PFC neurons hold a selective representation across an input-absent delay by sustained firing -- the existence proof for the rule/task-set-cell maintenance class ARC-063 instantiates. High source quality. Marked supports (not fork-deciding) because it establishes that maintenance of the CURRENTLY-RELEVANT item is carried by persistent delay activity; it does NOT speak to holding several differentiated, currently-unselected rules at once, which is the CRF's actual bottleneck. mapping_fidelity is moderate: the CRF needs a maintained POOL, this paper shows one engaged memorandum.",
           "evidence_class": "lit:electrophysiology_single_unit",
           "evidence_direction": "supports",
-          "experiment_type": "targeted_review_candidate_rule_field_representation",
+          "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
           "failure_signatures": [
-            "Demonstrates that rules ARE encoded, but with only two rules in effect -- it does not show a population holding MANY candidate rules simultaneously, nor the per-rule attributes (tolerance, context-tags, evidence) ARC-063 requires.",
-            "Rule coding is reported at the single-neuron level; whether a distributed FIELD with graded availability exists is not addressed here (Weber 2023 subspace entry covers the population geometry)."
+            "Persistent delay-period firing is demonstrated for the single item currently held in memory (one cued location per trial); the paradigm does not require, and does not show, simultaneous sustained maintenance of multiple distinct task rules. Read literally it licenses sustained activity only for the engaged/selected rule, not for an available-but-unmatched pool.",
+            "Memory fields are spatially tuned and the delay activity is for an item that was just cued and will imminently be acted on -- i.e. the attended/selected item -- so it cannot be cited as evidence that an UNSELECTED rule must keep firing across long context-absent gaps."
           ],
-          "run_id": "2026-06-04_arc_063_abstract_rule_coding_wallis2001",
+          "run_id": "2026-06-11_arc_063_delay_period_persistent_activity_funahashi1989",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T15:00:09Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "ARC-063",
-          "confidence": 0.52,
-          "confidence_rationale": "Review arguing the subiculum transforms granular hippocampal codes into memory SCHEMAS encoding environmental + task-imposed behavioural regularities, with subicular->mPFC outputs facilitating rule-guided action. Grounds a schema-cell substrate for the field's bottom-up 'in' face + the rule_state->mPFC output path. Held mid: review (not primary), spatial/behavioural schemas, mapping to a CandidateRule field is interpretive.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_candidate_rule_field_representation",
-          "failure_signatures": [
-            "Schemas here are spatial/behavioural-pattern regularities (boundaries, axes, pre/post-choice zones), not the affect-weighted, tolerance-gated CandidateRules ARC-063 specifies; the schema-to-rule mapping is interpretive.",
-            "It is a review synthesising existing findings, not a primary demonstration of a rule field; weight is conceptual."
-          ],
-          "run_id": "2026-06-04_arc_063_subiculum_schema_lee2026",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T15:00:09Z"
+          "timestamp_utc": "2026-06-11T07:21:11Z"
         },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "ARC-063",
           "confidence": 0.7,
-          "confidence_rationale": "Human intracranial evidence that mixed-selective PFC populations hold multiple task variables in DISTINCT low-dimensional subspaces, partitioning to minimise interference -- the representational geometry that lets multiple candidate rules coexist in one field without collapse. Mid-high: task variables (past/present states), not labelled rules; geometry transfers by analogy.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_candidate_rule_field_representation",
+          "confidence_rationale": "The canonical recurrent-attractor ('bump attractor') mechanistic model of how persistent delay activity is sustained: strong recurrent excitation (NMDA-dominated) balanced by inhibition holds a self-sustaining activity bump with no external input. Strongly supports fork A as a MECHANISM for maintaining the engaged item. Marked mixed for ARC-063 because the same model exposes fork A's ceiling for the CRF's problem: an attractor network holds ONE bump (a few items at most), is metabolically expensive (tonic high-rate firing), and is prone to drift/interference -- it does not scale to silently holding a differentiated POOL of 10-16 sparsely-matching rules, which is exactly the CRF regime in V3-EXQ-666 ARM_2.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
           "failure_signatures": [
-            "The coexisting representations are past vs present task states, not multiple candidate RULES; ARC-063 assumes the same subspace-partitioning geometry scales to a field of rules, which is an extrapolation.",
-            "Interference between coexisting codes incurs a behavioural switch cost even when resolved -- so a CandidateRule field holding many rules should predict residual switch/interference costs, a falsifiable consequence."
+            "A continuous-attractor (bump) network sustains a single localized activity packet; capacity is small and adding more simultaneously-active memoranda causes bumps to merge or compete. It cannot maintain a large pool of distinct currently-unselected rules by persistent firing.",
+            "Persistent-firing maintenance is metabolically costly (all maintained items fire tonically at elevated rates for the whole delay) and the bump drifts over time and is disrupted by distractors -- arguing against per-tick sustained firing as the maintenance substrate for an availability POOL that must persist across thousands of ticks."
           ],
-          "run_id": "2026-06-04_arc_063_subspace_partitioning_weber2023",
+          "run_id": "2026-06-11_arc_063_recurrent_attractor_wm_model_compte2000",
           "source_type": "literature",
           "status": "SOURCE",
-          "timestamp_utc": "2026-06-04T15:00:09Z"
+          "timestamp_utc": "2026-06-11T07:21:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-063",
+          "confidence": 0.78,
+          "confidence_rationale": "The decisive mechanistic model for fork B and the most directly IMPLEMENTABLE answer for the CRF. Working memory is maintained by calcium-mediated short-term synaptic FACILITATION on recurrent connections: a memory leaves a synaptic trace that persists for ~1 s WITHOUT any spiking, can be refreshed by sparse activity at a low rate, and is read out when input arrives. Gives the CRF a concrete maintenance primitive: a non-firing, slowly-decaying, sparsely-refreshable availability trace decoupled from per-tick activity. Supports ARC-063's maintenance need and supplies the exact mechanism. Slightly below ceiling because it is a model, and the biological time constant (~1 s) is far shorter than the CRF's thousands-of-ticks horizon -- the principle transfers, the constant does not.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+          "failure_signatures": [
+            "Facilitation-based maintenance has a finite decay time constant (calcium kinetics, ~1 s); a trace not refreshed within that window is lost. A pure synaptic-trace CRF availability with too-fast decay reproduces the 666 collapse; the maintenance horizon must be set deliberately, not inherited from the biological constant.",
+            "The synaptic trace is capacity- and interference-limited: many overlapping memories compete for the same synaptic resources. A differentiated CRF pool is the favourable case (distinct, pinned directions -> low interference), but the model warns that maintenance is not free and unbounded."
+          ],
+          "run_id": "2026-06-11_arc_063_synaptic_theory_wm_mongillo2008",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-11T07:21:11Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-063",
+          "confidence": 0.62,
+          "confidence_rationale": "Authoritative primate-electrophysiology defence of the persistent-firing (pole A) account, co-authored by the Goldman-Rakic/Arnsten lineage. High source quality. It SUPPORTS the existence of a maintained prefrontal rule/cue representation across the delay (the ARC-063 rule-cell class is real) but it argues AGAINST the activity-silent / synaptic-only reading that the V3-EXQ-666 autopsy leans toward -- hence 'mixed' relative to the substrate fork. Mapping fidelity is moderate: their object is delay-period spike rate to a remembered cue, not availability of a sparsely-matched differentiated rule, which is the regime where even they concede single cells are not continuously active.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+          "failure_signatures": [
+            "If the CRF abandons any sustained-availability term and relies purely on a fast synaptic trace, this camp's data (selective delay-period elevation of firing in PFC rule/cue cells) is the evidence it would be ignoring -- a pure activity-silent fix risks under-modelling the genuine sustained component.",
+            "Their critique that synaptic-plasticity-only and rhythmic-only models are 'inconsistent with the neurophysiological data' is a caution against a CRF fix that maintains rules ONLY between matches with no above-threshold readout ever -- the truth is a hybrid, not either pole exclusively."
+          ],
+          "run_id": "2026-06-11_arc_063_persistent_spiking_constantinidis2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-11T07:26:35Z"
         }
       ],
-      "runs_total": 23,
+      "runs_total": 29,
       "source_counts": {
         "experimental": 0,
-        "literature": 23
+        "literature": 29
       }
     },
     "ARC-064": {
@@ -12078,7 +12078,7 @@
       }
     },
     "MECH-071": {
-      "confidence_rationale": "exp=38 entry(s), lit=4 entry(s), exp_conf=0.669, lit_conf=0.869",
+      "confidence_rationale": "exp=38 entry(s), lit=4 entry(s), exp_conf=0.668, lit_conf=0.869",
       "direction_counts": {
         "mixed": 10,
         "supports": 21,
@@ -12095,8 +12095,8 @@
         "C": 38
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.669,
-      "experimental_confidence_decoupled": 0.669,
+      "experimental_confidence": 0.668,
+      "experimental_confidence_decoupled": 0.668,
       "fail_runs": 28,
       "genuine_exp_count": 38,
       "genuine_exp_direction_counts": {
@@ -12884,7 +12884,7 @@
       }
     },
     "MECH-075": {
-      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.392, lit_conf=0.87",
+      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.391, lit_conf=0.87",
       "direction_counts": {
         "mixed": 4,
         "supports": 4,
@@ -12903,8 +12903,8 @@
         "C": 5
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.392,
-      "experimental_confidence_decoupled": 0.392,
+      "experimental_confidence": 0.391,
+      "experimental_confidence_decoupled": 0.391,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -12917,7 +12917,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.846307Z",
       "literature_confidence": 0.87,
       "literature_confidence_parallel": 0.87,
-      "overall_confidence": 0.631,
+      "overall_confidence": 0.63,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -13165,7 +13165,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=10 entry(s), exp_conf=0.604, lit_conf=0.868",
+      "confidence_rationale": "exp=12 entry(s), lit=10 entry(s), exp_conf=0.603, lit_conf=0.868",
       "direction_counts": {
         "mixed": 4,
         "supports": 14,
@@ -13187,8 +13187,8 @@
         "C": 12
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.604,
-      "experimental_confidence_decoupled": 0.604,
+      "experimental_confidence": 0.603,
+      "experimental_confidence_decoupled": 0.603,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -14348,7 +14348,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.349, lit_conf=0.891",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.348, lit_conf=0.891",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -14367,8 +14367,8 @@
         "C": 6
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.349,
-      "experimental_confidence_decoupled": 0.349,
+      "experimental_confidence": 0.348,
+      "experimental_confidence_decoupled": 0.348,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -17436,7 +17436,7 @@
       }
     },
     "MECH-156": {
-      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.411, lit_conf=0.771",
+      "confidence_rationale": "exp=2 entry(s), lit=1 entry(s), exp_conf=0.41, lit_conf=0.771",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -17452,8 +17452,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.411,
-      "experimental_confidence_decoupled": 0.411,
+      "experimental_confidence": 0.41,
+      "experimental_confidence_decoupled": 0.41,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -17466,7 +17466,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.847800Z",
       "literature_confidence": 0.771,
       "literature_confidence_parallel": 0.771,
-      "overall_confidence": 0.531,
+      "overall_confidence": 0.53,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -21812,7 +21812,7 @@
       }
     },
     "MECH-231": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.706, lit_conf=0.782",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.705, lit_conf=0.782",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -21828,8 +21828,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.706,
-      "experimental_confidence_decoupled": 0.706,
+      "experimental_confidence": 0.705,
+      "experimental_confidence_decoupled": 0.705,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -21842,7 +21842,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:11.244930Z",
       "literature_confidence": 0.782,
       "literature_confidence_parallel": 0.782,
-      "overall_confidence": 0.752,
+      "overall_confidence": 0.751,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -22278,7 +22278,7 @@
       }
     },
     "MECH-258": {
-      "confidence_rationale": "exp=11 entry(s), lit=9 entry(s), exp_conf=0.909, lit_conf=0.872",
+      "confidence_rationale": "exp=11 entry(s), lit=9 entry(s), exp_conf=0.908, lit_conf=0.872",
       "direction_counts": {
         "mixed": 2,
         "supports": 18,
@@ -22297,8 +22297,8 @@
         "C": 11
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.909,
-      "experimental_confidence_decoupled": 0.909,
+      "experimental_confidence": 0.908,
+      "experimental_confidence_decoupled": 0.908,
       "fail_runs": 11,
       "genuine_exp_count": 11,
       "genuine_exp_direction_counts": {
@@ -29609,7 +29609,7 @@
       }
     },
     "Q-004": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.361, lit_conf=0.794",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.36, lit_conf=0.794",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -29627,8 +29627,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.361,
-      "experimental_confidence_decoupled": 0.361,
+      "experimental_confidence": 0.36,
+      "experimental_confidence_decoupled": 0.36,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -29641,7 +29641,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.754308Z",
       "literature_confidence": 0.794,
       "literature_confidence_parallel": 0.794,
-      "overall_confidence": 0.686,
+      "overall_confidence": 0.685,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -29819,7 +29819,7 @@
       }
     },
     "Q-006": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.361, lit_conf=0.726",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.36, lit_conf=0.726",
       "direction_counts": {
         "mixed": 2,
         "supports": 1,
@@ -29837,8 +29837,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.361,
-      "experimental_confidence_decoupled": 0.361,
+      "experimental_confidence": 0.36,
+      "experimental_confidence_decoupled": 0.36,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -29851,7 +29851,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.756852Z",
       "literature_confidence": 0.726,
       "literature_confidence_parallel": 0.726,
-      "overall_confidence": 0.635,
+      "overall_confidence": 0.634,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -30901,7 +30901,7 @@
       }
     },
     "Q-018": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.656, lit_conf=0.785",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.655, lit_conf=0.785",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -30918,8 +30918,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.656,
-      "experimental_confidence_decoupled": 0.656,
+      "experimental_confidence": 0.655,
+      "experimental_confidence_decoupled": 0.655,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -30932,7 +30932,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.768083Z",
       "literature_confidence": 0.785,
       "literature_confidence_parallel": 0.785,
-      "overall_confidence": 0.753,
+      "overall_confidence": 0.752,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -35323,7 +35323,7 @@
       }
     },
     "SD-012": {
-      "confidence_rationale": "exp=5 entry(s), lit=25 entry(s), exp_conf=0.626, lit_conf=0.862",
+      "confidence_rationale": "exp=5 entry(s), lit=25 entry(s), exp_conf=0.625, lit_conf=0.862",
       "direction_counts": {
         "mixed": 2,
         "supports": 25,
@@ -35346,8 +35346,8 @@
         "C": 5
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.626,
-      "experimental_confidence_decoupled": 0.626,
+      "experimental_confidence": 0.625,
+      "experimental_confidence_decoupled": 0.625,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -36555,7 +36555,7 @@
       }
     },
     "SD-022": {
-      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.702, lit_conf=0.762",
+      "confidence_rationale": "exp=2 entry(s), lit=2 entry(s), exp_conf=0.701, lit_conf=0.762",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -36571,8 +36571,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.702,
-      "experimental_confidence_decoupled": 0.702,
+      "experimental_confidence": 0.701,
+      "experimental_confidence_decoupled": 0.701,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -36663,7 +36663,7 @@
       }
     },
     "SD-023": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.206, lit_conf=0.861",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.205, lit_conf=0.861",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -36679,8 +36679,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.206,
-      "experimental_confidence_decoupled": 0.206,
+      "experimental_confidence": 0.205,
+      "experimental_confidence_decoupled": 0.205,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -109789,6 +109789,108 @@
       "timestamp_utc": "2026-06-11T03:26:53Z"
     },
     {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-063",
+      "confidence": 0.76,
+      "confidence_rationale": "Directly addresses the CRF's open lit question: persistent delay firing waxes and wanes with current task relevance and is often absent while the memory is demonstrably retained, so working memory must be held in a latent ('activity-silent') substrate -- short-term changes in synaptic connectivity -- and read out by probing input. This is the strongest single source for the autopsy's fork B and for the claim that crf_frac_active ('active fraction every tick') is the wrong persistence readout. Supports ARC-063's maintenance requirement while redefining how maintenance should be measured. Review (not primary data) -> source_quality capped below the empirical anchors.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+      "failure_signatures": [
+        "If a memory can be retained while its neurons are silent (no persistent firing), then a readiness metric that counts only ticks on which a rule is actively firing (crf_frac_active) will report a maintained rule as absent. The metric conflates 'currently being read out' with 'currently maintained'.",
+        "Activity-silent maintenance is read out by probing (the context recurs and reactivates the latent trace); a rule that is silently maintained but whose context has not recurred is invisible to any activity-based readout even though it is fully available."
+      ],
+      "run_id": "2026-06-11_arc_063_activity_silent_dynamic_coding_stokes2015",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-11T07:21:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-063",
+      "confidence": 0.75,
+      "confidence_rationale": "The explicit adjudication of the fork. Lundqvist, Herman & Miller argue the standard 'persistent spiking' picture is largely an artifact of averaging spikes across time and trials; single-trial activity occurs in sparse transient gamma bursts, and information is carried BETWEEN spikes by short-term synaptic plasticity ('impressions left in the network'). Delay activity is a WM mechanism, but it is sparse, not persistent. Resolves the autopsy's A-vs-B fork toward B (with sparse bursty reactivation), and underwrites both CRF prescriptions: activity-decoupled maintenance + a non-per-tick-firing readout.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+      "failure_signatures": [
+        "Trial-and-time-averaged firing creates an ILLUSION of continuous persistent activity that disappears on single trials (sparse bursts). A maintenance readout built on smoothed/aggregate activity (or on per-tick active fraction) inherits this artifact and misreads sparse-but-maintained as either continuous or absent.",
+        "If information is carried between spikes by synaptic 'impressions', then any activity-based availability accounting necessarily under-counts maintained-but-silent rules -- exactly the crf_frac_active 0.016 collapse in the differentiated regime."
+      ],
+      "run_id": "2026-06-11_arc_063_delay_activity_not_persistent_lundqvist2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-11T07:21:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-063",
+      "confidence": 0.74,
+      "confidence_rationale": "Canonical, replicated single-unit demonstration that dorsolateral PFC neurons hold a selective representation across an input-absent delay by sustained firing -- the existence proof for the rule/task-set-cell maintenance class ARC-063 instantiates. High source quality. Marked supports (not fork-deciding) because it establishes that maintenance of the CURRENTLY-RELEVANT item is carried by persistent delay activity; it does NOT speak to holding several differentiated, currently-unselected rules at once, which is the CRF's actual bottleneck. mapping_fidelity is moderate: the CRF needs a maintained POOL, this paper shows one engaged memorandum.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+      "failure_signatures": [
+        "Persistent delay-period firing is demonstrated for the single item currently held in memory (one cued location per trial); the paradigm does not require, and does not show, simultaneous sustained maintenance of multiple distinct task rules. Read literally it licenses sustained activity only for the engaged/selected rule, not for an available-but-unmatched pool.",
+        "Memory fields are spatially tuned and the delay activity is for an item that was just cued and will imminently be acted on -- i.e. the attended/selected item -- so it cannot be cited as evidence that an UNSELECTED rule must keep firing across long context-absent gaps."
+      ],
+      "run_id": "2026-06-11_arc_063_delay_period_persistent_activity_funahashi1989",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-11T07:21:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-063",
+      "confidence": 0.7,
+      "confidence_rationale": "The canonical recurrent-attractor ('bump attractor') mechanistic model of how persistent delay activity is sustained: strong recurrent excitation (NMDA-dominated) balanced by inhibition holds a self-sustaining activity bump with no external input. Strongly supports fork A as a MECHANISM for maintaining the engaged item. Marked mixed for ARC-063 because the same model exposes fork A's ceiling for the CRF's problem: an attractor network holds ONE bump (a few items at most), is metabolically expensive (tonic high-rate firing), and is prone to drift/interference -- it does not scale to silently holding a differentiated POOL of 10-16 sparsely-matching rules, which is exactly the CRF regime in V3-EXQ-666 ARM_2.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+      "failure_signatures": [
+        "A continuous-attractor (bump) network sustains a single localized activity packet; capacity is small and adding more simultaneously-active memoranda causes bumps to merge or compete. It cannot maintain a large pool of distinct currently-unselected rules by persistent firing.",
+        "Persistent-firing maintenance is metabolically costly (all maintained items fire tonically at elevated rates for the whole delay) and the bump drifts over time and is disrupted by distractors -- arguing against per-tick sustained firing as the maintenance substrate for an availability POOL that must persist across thousands of ticks."
+      ],
+      "run_id": "2026-06-11_arc_063_recurrent_attractor_wm_model_compte2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-11T07:21:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-063",
+      "confidence": 0.78,
+      "confidence_rationale": "The decisive mechanistic model for fork B and the most directly IMPLEMENTABLE answer for the CRF. Working memory is maintained by calcium-mediated short-term synaptic FACILITATION on recurrent connections: a memory leaves a synaptic trace that persists for ~1 s WITHOUT any spiking, can be refreshed by sparse activity at a low rate, and is read out when input arrives. Gives the CRF a concrete maintenance primitive: a non-firing, slowly-decaying, sparsely-refreshable availability trace decoupled from per-tick activity. Supports ARC-063's maintenance need and supplies the exact mechanism. Slightly below ceiling because it is a model, and the biological time constant (~1 s) is far shorter than the CRF's thousands-of-ticks horizon -- the principle transfers, the constant does not.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+      "failure_signatures": [
+        "Facilitation-based maintenance has a finite decay time constant (calcium kinetics, ~1 s); a trace not refreshed within that window is lost. A pure synaptic-trace CRF availability with too-fast decay reproduces the 666 collapse; the maintenance horizon must be set deliberately, not inherited from the biological constant.",
+        "The synaptic trace is capacity- and interference-limited: many overlapping memories compete for the same synaptic resources. A differentiated CRF pool is the favourable case (distinct, pinned directions -> low interference), but the model warns that maintenance is not free and unbounded."
+      ],
+      "run_id": "2026-06-11_arc_063_synaptic_theory_wm_mongillo2008",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-11T07:21:11Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-063",
+      "confidence": 0.62,
+      "confidence_rationale": "Authoritative primate-electrophysiology defence of the persistent-firing (pole A) account, co-authored by the Goldman-Rakic/Arnsten lineage. High source quality. It SUPPORTS the existence of a maintained prefrontal rule/cue representation across the delay (the ARC-063 rule-cell class is real) but it argues AGAINST the activity-silent / synaptic-only reading that the V3-EXQ-666 autopsy leans toward -- hence 'mixed' relative to the substrate fork. Mapping fidelity is moderate: their object is delay-period spike rate to a remembered cue, not availability of a sparsely-matched differentiated rule, which is the regime where even they concede single cells are not continuously active.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+      "failure_signatures": [
+        "If the CRF abandons any sustained-availability term and relies purely on a fast synaptic trace, this camp's data (selective delay-period elevation of firing in PFC rule/cue cells) is the evidence it would be ignoring -- a pure activity-silent fix risks under-modelling the genuine sustained component.",
+        "Their critique that synaptic-plasticity-only and rhythmic-only models are 'inconsistent with the neurophysiological data' is a caution against a CRF fix that maintains rules ONLY between matches with no above-threshold readout ever -- the truth is a hybrid, not either pole exclusively."
+      ],
+      "run_id": "2026-06-11_arc_063_persistent_spiking_constantinidis2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-11T07:26:35Z"
+    },
+    {
       "adjudication": "unverified",
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
@@ -109827,7 +109929,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-11T07:08:09.480272Z",
+  "generated_at_utc": "2026-06-11T07:32:13.538223Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

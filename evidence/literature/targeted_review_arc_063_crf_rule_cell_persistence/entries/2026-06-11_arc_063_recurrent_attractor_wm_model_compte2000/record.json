@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+  "entry_id": "2026-06-11_arc_063_recurrent_attractor_wm_model_compte2000",
+  "timestamp_utc": "2026-06-11T07:21:11Z",
+  "claim_ids_tested": ["ARC-063"],
+  "source": {
+    "title": "Synaptic mechanisms and network dynamics underlying spatial working memory in a cortical network model",
+    "authors": ["Albert Compte", "Nicolas Brunel", "Patricia S. Goldman-Rakic", "Xiao-Jing Wang"],
+    "year": 2000,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/10.9.910",
+    "url": "https://academic.oup.com/cercor/article-abstract/10/9/910/289091"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "The canonical recurrent-attractor ('bump attractor') mechanistic model of how persistent delay activity is sustained: strong recurrent excitation (NMDA-dominated) balanced by inhibition holds a self-sustaining activity bump with no external input. Strongly supports fork A as a MECHANISM for maintaining the engaged item. Marked mixed for ARC-063 because the same model exposes fork A's ceiling for the CRF's problem: an attractor network holds ONE bump (a few items at most), is metabolically expensive (tonic high-rate firing), and is prone to drift/interference -- it does not scale to silently holding a differentiated POOL of 10-16 sparsely-matching rules, which is exactly the CRF regime in V3-EXQ-666 ARM_2.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A continuous-attractor (bump) network sustains a single localized activity packet; capacity is small and adding more simultaneously-active memoranda causes bumps to merge or compete. It cannot maintain a large pool of distinct currently-unselected rules by persistent firing.",
+    "Persistent-firing maintenance is metabolically costly (all maintained items fire tonically at elevated rates for the whole delay) and the bump drifts over time and is disrupted by distractors -- arguing against per-tick sustained firing as the maintenance substrate for an availability POOL that must persist across thousands of ticks."
+  ],
+  "tags": ["arc_063", "recurrent_attractor", "bump_attractor", "persistent_firing", "NMDA_reverberation", "working_memory", "fork_A_persistent_firing"],
+  "mapping": {
+    "source_claim_statement": "Selective persistent activity underlying spatial working memory can be generated and sustained by a cortical network with structured recurrent excitation (slow NMDA-receptor-mediated) and feedback inhibition: the network settles into a self-sustaining localized activity bump that survives the removal of the external cue, reproducing Funahashi-type delay activity.",
+    "ree_translation": "This is the mechanistic 'how' for fork A. If the CRF were to maintain a rule by sustained activity, this is the circuit motif it would implement: a recurrent term that keeps a matched rule's availability self-reinforcing after the context disappears. It is directly relevant to a possible CRF fix (a sustained-activity term on the selected rule).",
+    "mapping_caveat": "The attractor mechanism is single-bump and capacity-limited by construction -- it is a good model for holding ONE engaged rule but a poor model for the CRF's actual need (a differentiated pool of many rules that each match sparsely and are mostly unselected). Tonic-firing maintenance also costs energy proportional to the number of maintained items and drifts/decays under interference; the CRF must hold its pool across ~2000-3900 ticks. So this paper supplies fork A's mechanism but simultaneously bounds its applicability away from the CRF's pool-maintenance problem.",
+    "source_context": "Spiking cortical network simulation (integrate-and-fire neurons, NMDA/AMPA/GABA synapses) tuned to the macaque dlPFC oculomotor delayed-response setting."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Landmark, widely-reproduced computational model -- high source_quality. mapping_fidelity moderate: it is the right mechanism for fork A but the wrong scale for the CRF pool. transfer_risk elevated because a continuous spatial attractor maps only loosely onto a discrete slot-based rule field; the transferable idea is 'recurrent self-sustaining maintenance of the engaged item', not the bump geometry."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+  "entry_id": "2026-06-11_arc_063_delay_period_persistent_activity_funahashi1989",
+  "timestamp_utc": "2026-06-11T07:21:11Z",
+  "claim_ids_tested": ["ARC-063"],
+  "source": {
+    "title": "Mnemonic coding of visual space in the monkey's dorsolateral prefrontal cortex",
+    "authors": ["Shintaro Funahashi", "Charles J. Bruce", "Patricia S. Goldman-Rakic"],
+    "year": 1989,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.1989.61.2.331",
+    "url": "https://journals.physiology.org/doi/abs/10.1152/jn.1989.61.2.331"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, replicated single-unit demonstration that dorsolateral PFC neurons hold a selective representation across an input-absent delay by sustained firing -- the existence proof for the rule/task-set-cell maintenance class ARC-063 instantiates. High source quality. Marked supports (not fork-deciding) because it establishes that maintenance of the CURRENTLY-RELEVANT item is carried by persistent delay activity; it does NOT speak to holding several differentiated, currently-unselected rules at once, which is the CRF's actual bottleneck. mapping_fidelity is moderate: the CRF needs a maintained POOL, this paper shows one engaged memorandum.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Persistent delay-period firing is demonstrated for the single item currently held in memory (one cued location per trial); the paradigm does not require, and does not show, simultaneous sustained maintenance of multiple distinct task rules. Read literally it licenses sustained activity only for the engaged/selected rule, not for an available-but-unmatched pool.",
+    "Memory fields are spatially tuned and the delay activity is for an item that was just cued and will imminently be acted on -- i.e. the attended/selected item -- so it cannot be cited as evidence that an UNSELECTED rule must keep firing across long context-absent gaps."
+  ],
+  "tags": ["arc_063", "prefrontal_cortex", "delay_period_activity", "persistent_firing", "working_memory", "fork_A_persistent_firing"],
+  "mapping": {
+    "source_claim_statement": "Individual dorsolateral prefrontal neurons fire tonically and selectively during the delay period of an oculomotor delayed-response task, encoding the remembered location of a no-longer-present visual cue; the activity persists across the input-absent delay and predicts the upcoming response.",
+    "ree_translation": "This is the existence proof for ARC-063's rule/task-set-cell class: PFC maintains a behaviourally-relevant latent representation across an epoch in which its driving input is absent. It maps to the CRF's requirement that a minted rule remain 'available' between the moments its context recurs. For the CRF's CURRENTLY-MATCHED-AND-SELECTED rule, Funahashi licenses a sustained-activity (recurrent) maintenance term -- fork A.",
+    "mapping_caveat": "The paradigm maintains ONE engaged item per trial. The CRF's failure (V3-EXQ-666) is not maintaining the engaged rule but holding a POOL of >=2 differentiated rules that each match only a sparse slice of contexts and are mostly unselected at any tick. Funahashi does not show that an unselected, sparsely-matching rule keeps firing across the long gaps between its matches -- so it supports fork A for the engaged rule only, not as the mechanism for pool availability.",
+    "source_context": "Awake behaving macaque; single-unit recording in dorsolateral PFC (principal sulcus); oculomotor delayed-response task with 1-6 s delays."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Foundational primate electrophysiology, extensively replicated -- source_quality near ceiling. mapping_fidelity discounted because the single-engaged-item paradigm is a partial match to the CRF's multi-rule-pool maintenance problem. transfer_risk moderate: macaque PFC -> a discrete software rule-field is a mechanism-class transfer, not a parameter transfer."
+  }
+}

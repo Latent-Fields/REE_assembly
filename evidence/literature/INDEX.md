@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-11T07:08:09.480272Z`
+Generated: `2026-06-11T07:32:13.538223Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -26,6 +26,7 @@ Generated: `2026-06-11T07:08:09.480272Z`
 | `targeted_review_arc_058` | [`2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/record.json) | 7 | [`summary`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/summary.md) |
 | `targeted_review_arc_062_refuge_forage_ecology` | [`2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/record.json) | 6 | [`summary`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/summary.md) |
 | `targeted_review_arc_062_rule_apprehension` | [`2026-05-09_arc_062_pfc_rule_cells_bongard2010`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/record.json) | 8 | [`summary`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/summary.md) |
+| `targeted_review_arc_063_crf_rule_cell_persistence` | [`2026-06-11_arc_063_persistent_spiking_constantinidis2018`](targeted_review_arc_063_crf_rule_cell_persistence/entries/2026-06-11_arc_063_persistent_spiking_constantinidis2018/record.json) | 6 | [`summary`](targeted_review_arc_063_crf_rule_cell_persistence/entries/2026-06-11_arc_063_persistent_spiking_constantinidis2018/summary.md) |
 | `targeted_review_arc_064_bottom_up_rule_discovery` | [`2026-05-10_arc_064_uncertainty_arbitration_daw_2005`](targeted_review_arc_064_bottom_up_rule_discovery/entries/2026-05-10_arc_064_uncertainty_arbitration_daw_2005/record.json) | 13 | [`summary`](targeted_review_arc_064_bottom_up_rule_discovery/entries/2026-05-10_arc_064_uncertainty_arbitration_daw_2005/summary.md) |
 | `targeted_review_arc_065_behavioral_diversity_generation` | [`2026-05-10_arc_065_striatal_novelty_wittmann_2008`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/record.json) | 9 | [`summary`](targeted_review_arc_065_behavioral_diversity_generation/entries/2026-05-10_arc_065_striatal_novelty_wittmann_2008/summary.md) |
 | `targeted_review_arc_066_tonic_vigor` | [`2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007`](targeted_review_arc_066_tonic_vigor/entries/2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007/record.json) | 7 | [`summary`](targeted_review_arc_066_tonic_vigor/entries/2026-05-10_arc_066_tonic_dopamine_vigor_niv_2007/summary.md) |

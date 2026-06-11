@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_063_crf_rule_cell_persistence",
+  "entry_id": "2026-06-11_arc_063_activity_silent_dynamic_coding_stokes2015",
+  "timestamp_utc": "2026-06-11T07:21:11Z",
+  "claim_ids_tested": ["ARC-063"],
+  "source": {
+    "title": "'Activity-silent' working memory in prefrontal cortex: a dynamic coding framework",
+    "authors": ["Mark G. Stokes"],
+    "year": 2015,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2015.05.004",
+    "url": "https://www.cell.com/trends/cognitive-sciences/fulltext/S1364-6613(15)00102-3"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Directly addresses the CRF's open lit question: persistent delay firing waxes and wanes with current task relevance and is often absent while the memory is demonstrably retained, so working memory must be held in a latent ('activity-silent') substrate -- short-term changes in synaptic connectivity -- and read out by probing input. This is the strongest single source for the autopsy's fork B and for the claim that crf_frac_active ('active fraction every tick') is the wrong persistence readout. Supports ARC-063's maintenance requirement while redefining how maintenance should be measured. Review (not primary data) -> source_quality capped below the empirical anchors.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a memory can be retained while its neurons are silent (no persistent firing), then a readiness metric that counts only ticks on which a rule is actively firing (crf_frac_active) will report a maintained rule as absent. The metric conflates 'currently being read out' with 'currently maintained'.",
+    "Activity-silent maintenance is read out by probing (the context recurs and reactivates the latent trace); a rule that is silently maintained but whose context has not recurred is invisible to any activity-based readout even though it is fully available."
+  ],
+  "tags": ["arc_063", "activity_silent", "dynamic_coding", "synaptic_maintenance", "prefrontal_cortex", "working_memory", "readout_redefinition", "fork_B_activity_silent"],
+  "mapping": {
+    "source_claim_statement": "Persistent elevated firing does not reliably accompany working-memory maintenance; delay activity waxes and wanes with the momentary task-relevance of the memorandum, and memories are retained across silent periods. Stokes proposes that working memory is held in 'activity-silent' form as rapid short-term changes in effective synaptic connectivity (a hidden state), which transforms the network's response to subsequent input; the latent is recovered by probing rather than by reading ongoing spikes.",
+    "ree_translation": "This is the conceptual core of the CRF fix. A minted, differentiated rule should be maintained as a latent property (its availability = a synaptic-trace-like hidden state) that persists across context-absent ticks WITHOUT requiring the rule to keep firing. The rule is reactivated when its context recurs (the CRF's match event = Stokes's 'probe'). Two consequences for the substrate: (a) availability must NOT decay merely because the rule is unselected/silent -- decay should be interference/capacity-driven, not per-tick; (b) the readiness readout crf_frac_active is measuring the wrong thing -- the right readout is the fraction of differentiated rules whose maintained availability would clear threshold IF their context recurred (a 'maintained/available pool' readout), independent of whether the context is present this tick.",
+    "mapping_caveat": "Stokes is a synthesis/framework review of human EEG/MVPA + monkey data, not a single decisive experiment; the 'activity-silent' substrate is inferred from the dissociation between decodable memory and absent persistent firing, not directly imaged as synaptic weights. The translation to a discrete rule-field availability scalar is a mechanism-class analogy, not a literal synaptic-weight mapping.",
+    "source_context": "Review/theory spanning human EEG/MEG multivariate pattern analysis, TMS-probe reactivation studies, and macaque PFC electrophysiology; prefrontal/frontoparietal working memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.3,
+    "notes": "High mapping_fidelity: the paper's central dissociation (memory retained without persistent firing) is exactly the CRF's situation (a differentiated rule maintained while unselected). source_quality strong-for-a-review but below primary electrophysiology. transfer_risk low-moderate: the activity-silent principle is broadly supported across species and modalities."
+  }
+}
