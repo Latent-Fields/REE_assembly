@@ -63,16 +63,17 @@ closure_plan:
       phase: 1
       status: blocked
       severity: low
-      owner_exq: "V3-EXQ-610g (or 643c) -- pending; 610g gated on V3-EXQ-656"
+      owner_exq: "V3-EXQ-610g (or 643c) -- pending; 610g gated on the 610f redesign successor, the IN-FLIGHT V3-EXQ-655 (NOT 656 -- see correction below)"
       depends_on: []
-      last_updated: 2026-06-10
-      blocking_on: "No standalone work warranted -- the automated index-HIT rides on the next genuinely-needed iteration. 610g is gated on the 610f-autopsy redesign successor V3-EXQ-656 (supersedes 610f, already queued); 643c is not yet needed. Machinery is fully built + unit-tested (P1-build / P1-fix) and the determinism gate has passed (GATE); only a real consumer is missing."
-      governance_2026_06_10: "Closure-map onboarding. Case 3 in closure-drift terms: legitimately non-terminal -- the Phase-1 consumer is built, tested, and sanctioned; the single remaining item is a demonstration that can only happen when a real successor experiment (610g via V3-EXQ-656, or 643c) is independently needed. Arm-reuse is a compute optimisation, not a v3-closure blocker."
+      last_updated: 2026-06-11
+      blocking_on: "No standalone work warranted -- the automated index-HIT rides on the next genuinely-needed iteration. 610g is gated on the 610f-autopsy redesign successor, which is the IN-FLIGHT V3-EXQ-655 (supersedes 610f; claimed by ree-cloud-1, ~46% done as of 2026-06-11, ETA ~2026-06-13). V3-EXQ-656 is an UNQUEUED backup variant of 655 (axis-flip twin, committed d6477b9) -- NOT the queued successor. 643c is not yet needed. Machinery is fully built + unit-tested (P1-build / P1-fix) and the determinism gate has passed (GATE); only a real consumer is missing."
+      governance_2026_06_10: "Closure-map onboarding. Case 3 in closure-drift terms: legitimately non-terminal -- the Phase-1 consumer is built, tested, and sanctioned; the single remaining item is a demonstration that can only happen when a real successor experiment (610g via the 610f redesign successor, or 643c) is independently needed. Arm-reuse is a compute optimisation, not a v3-closure blocker."
+      governance_2026_06_11: "WATCH MARKER: re-evaluate P1-auto when governance runs on V3-EXQ-655 results. 655 is the decisive INV-074 crystallization-necessity redesign (true task-distribution shift, supersedes 610f). FORK: (a) if the task-shift collapses the stripped control -> necessity premise instantiated -> 610g warranted -> 610g's run is the first automated arm-reuse consumer (closes P1-auto). (b) if it ALSO fails to collapse -> accept INV-074 substrate_ceiling, STOP the 610 cascade with evidence -> 610g likely never runs -> P1-auto stays Case-3 blocked (or repoints to 643c). Also corrected the owner ref: the live successor is the in-flight 655, not 656 (656 is its unqueued backup)."
 ---
 
 # Arm-Reuse Fingerprint -- Design Plan
 
-**Status:** IMPLEMENTED through Phase 1. Phase 0 instrument + Phase 1 consumer machinery landed and unit-tested; §9.0 determinism gate PASSED + user-ratified 2026-06-07; Regime-A reuse SANCTIONED on the cloud machine-class; explicit-cite live use exercised (V3-EXQ-647). Driver-`script_path` coupling fixed 2026-06-09 (§9.7) so the automated index-HIT path can fire. Remaining: first *automated* index-HIT in the wild (next genuinely-needed 610g/643c iteration; 610g gated on the 610f redesign successor V3-EXQ-656). Original decisions resolved in §7.
+**Status:** IMPLEMENTED through Phase 1. Phase 0 instrument + Phase 1 consumer machinery landed and unit-tested; §9.0 determinism gate PASSED + user-ratified 2026-06-07; Regime-A reuse SANCTIONED on the cloud machine-class; explicit-cite live use exercised (V3-EXQ-647). Driver-`script_path` coupling fixed 2026-06-09 (§9.7) so the automated index-HIT path can fire. Remaining: first *automated* index-HIT in the wild (next genuinely-needed 610g/643c iteration; 610g gated on the 610f redesign successor, the in-flight **V3-EXQ-655** -- NOT 656, which is 655's unqueued backup). Re-evaluate this item when governance runs on V3-EXQ-655 results. Original decisions resolved in §7.
 **Created:** 2026-06-06T14:56Z
 **Author session:** arm-reuse-fingerprint-design-20260606T1456Z
 **Motivation chip:** user observation 2026-06-06 -- "some testing is repetitive with possible bit-identical arms for parts of the repeat experiments; could data be recorded so certain arms would not need re-running?"
@@ -768,5 +769,9 @@ observability only). Regression: `tests/contracts/test_arm_reuse.py` 24/24
 the next genuinely-needed iteration (610g / 643c) re-minting its OFF baseline AND
 consuming it with `include_driver_script_in_hash=False`, confirming in its manifest
 that the OFF cell shows `reused_from_run_id` and that flipping one config byte flips
-it back to a fresh run. (610g is gated on the 610f autopsy's redesign successor
-`V3-EXQ-656`, which supersedes 610f and is already queued.)
+it back to a fresh run. (610g is gated on the 610f autopsy's redesign successor,
+the **in-flight `V3-EXQ-655`** -- which supersedes 610f and is currently running on
+ree-cloud-1. `V3-EXQ-656` is an unqueued backup variant of 655, not the queued
+successor. **Re-evaluate this item when governance runs on the 655 results** -- a
+collapse outcome warrants 610g, a no-collapse outcome accepts INV-074
+substrate_ceiling and 610g likely never runs.)
