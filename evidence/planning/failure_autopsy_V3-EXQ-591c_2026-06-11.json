@@ -1,0 +1,60 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-11T00:23:46Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_591c_isef005_curriculum_phase_advance_readiness_diversity_20260610T225515Z_v3",
+      "queue_id": "V3-EXQ-591c",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not_applicable_claim_free_diagnostic -- no claim_ids tagged; this is a substrate-readiness diagnostic for the InfantCurriculumScheduler Phase 0->1 gate under the armed exploration-diversity stack. It cannot weaken or strengthen any claim directly; it diagnoses substrate strength.",
+        "biological_reference": "partial -- early-development exploration is ACTIVELY driven (motor babbling, dopaminergic novelty signalling, LC-NE tonic arousal). MECH-313 (passive noise-floor / SAC-max-entropy analog) + MECH-314 (small curiosity bonus / EFE analog) at landed default magnitudes are a partial translation: they carry the symbol of intrinsic exploration but not enough functional force to pull the worst-case seed off a degenerate near-stationary attractor. The persistent seed-46 collapse matches a weak-intrinsic-drive dependency signature, not claim falsification.",
+        "prerequisites": "present-but-underpowered -- the diversity stack IS implemented and main-path (MECH-313 + MECH-314 landed; SP-CEM default-on since 2026-05-17). The gap is magnitude/strength of the landed defaults (noise_floor_alpha=0.1, curiosity_weight=0.05), not a missing module.",
+        "implementation": "partial -- symbol-of-mechanism present (noise + curiosity), functional-role (guarantee Phase-0 escape for the collapse-prone seed tail) not achieved at default strength.",
+        "environment": "adequate -- 12x12 CausalGridWorldV2 nursery, the standard Phase-0 substrate; not the limiting factor (seeds 42/43/44 explore freely here).",
+        "measurement": "under-instrumented -- the single-episode-crossing Phase 0->1 gate criterion is too permissive: seed 45 advanced to Phase 1 with a near-stationary policy (h_pos_mean 0.140 < 0.2) that fluked the threshold on only 2 eligible episodes. A K-of-N / EMA crossing criterion would reject it. This is an ARC-046 gate-robustness follow-on, independent of the seed-46 exploration-strength gap.",
+        "integration": "not_applicable",
+        "scale": "adequate -- 160 ep is short for Phase 1->2 (not in scope here) but ample for Phase 0->1; seed 46 stays at h_pos_mean 0.0375 across the full budget, a genuine collapse not an under-training artifact."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Early developmental motor exploration / infant motor babbling driven by intrinsic motivation systems (dopaminergic novelty, LC-NE tonic arousal, frontopolar exploration).",
+        "dependencies": ["intrinsic exploratory drive of sufficient magnitude", "active (not purely passive/noise-driven) Phase-0 exploration shaping", "escape from degenerate stationary attractors during the earliest competency stage"],
+        "is_formal_import": true,
+        "divergence": "MECH-314 curiosity is partly an expected-free-energy / information-gain formal import (frontopolar/EFE analog); MECH-313 is an LC-NE/SAC-max-entropy analog. Both are biologically motivated but the as-landed default MAGNITUDES are too weak to reproduce the active, strong intrinsic drive of real early development for the collapse-prone seed. The divergence here is one of strength/structure (passive default-magnitude vs active strong drive), not a wrong comparator.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "not_applicable_claim_free_diagnostic",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "V3-EXQ-591c (claim-free curriculum Phase 0->1 reachability diagnostic; diversity stack ARMED -- MECH-313 noise-floor + MECH-314 curiosity at landed defaults, SP-CEM main-path). FAIL: C1 (all 5 seeds reach Phase 1) 4/5 -- seed 46 never escaped Phase 0 (h_pos_mean 0.0375, IDENTICAL to 591b stack-OFF), so arming the diversity stack at landed-default magnitudes does NOT rescue the worst-case early-collapse seed. The collapse is reproducible and magnitude-robust across the arming toggle -> ARC-065's exploration-diversity substrate is load-bearing but under-powered at default magnitudes for the collapse-prone seed tail (converges with + strengthens failure_autopsy_V3-EXQ-591b_2026-06-10). Second, independent signal: seed 45 advanced to Phase 1 WITHOUT genuine exploration (h_pos_mean 0.140 < 0.2, 2 crossings) -> the single-episode-crossing Phase 0->1 gate (ARC-046) is too permissive (K-of-N / EMA gate-robustness follow-on). NOT a claim falsification (claim-free) and NOT a gate-threshold defect; lowering the threshold is explicitly NOT the route. Pre-registered next lever is the Q-043 magnitude sweep (scale noise_floor_alpha + curiosity_weight above defaults) BEFORE any active-exploration substrate work.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-065",
+        "sd_id_suggested": "",
+        "title": "Behavioral-diversity-generation architectural slot -- default-magnitude exploration insufficient for worst-case Phase-0 escape",
+        "implementation_hint": "ARC-065's landed children (MECH-313 noise-floor alpha=0.1, MECH-314 curiosity_weight=0.05) at default magnitudes do not pull the collapse-prone seed (seed 46) off a near-stationary attractor in the InfantCurriculumScheduler Phase-0 nursery. Resolution FORKS on the Q-043 magnitude sweep: if stronger default magnitudes rescue seed 46, the fix is config-only; if not, an ACTIVE Phase-0 exploration-shaping substrate is required (passive noise+curiosity insufficient). Seed-45 gate-permissiveness is a separate ARC-046 (K-of-N / EMA crossing) follow-on.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_591c_isef005_curriculum_phase_advance_readiness_diversity_20260610T225515Z_v3",
+          "experiment_type": "v3_exq_591c_isef005_curriculum_phase_advance_readiness_diversity",
+          "metric": "Phase-0 escape under armed diversity stack: 4/5 seeds reach Phase 1; seed 46 stuck at Phase 0 (h_pos_mean 0.0375, identical to 591b stack-off) -- default-magnitude MECH-313+MECH-314 do not rescue the collapse seed. Plus seed 45 advanced without genuine exploration (h_pos_mean 0.140 < 0.2).",
+          "target": "All 5 seeds reach Phase 1 AND all advancing seeds show genuine exploration (h_pos_mean >= 0.2 on >= 2 eligible episodes), with no threshold reduction."
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Arming the exploration-diversity stack (MECH-313 noise-floor + MECH-314 curiosity) at LANDED DEFAULT magnitudes does NOT rescue the worst-case early-collapse seed (seed 46: h_pos_mean 0.0375 in BOTH 591b stack-off and 591c stack-on). The collapse is reproducible and magnitude-robust across the arming toggle -- the default-magnitude ARC-065 substrate is insufficient for the collapse-prone seed tail. This is positive evidence that ARC-065's exploration substrate is load-bearing for curriculum Phase-0 escape.",
+        "NEW second signal vs 591b: seed 45 reached Phase 1 without genuine exploration (h_pos_mean 0.140 < 0.2, only 2 eligible crossings). The single-episode-crossing Phase 0->1 gate criterion is too permissive -- it admits a near-stationary policy that flukes the threshold. Gate-robustness (K-of-N / EMA crossing) is an independent ARC-046 follow-on, distinct from the seed-46 exploration-strength gap.",
+        "Converges with and strengthens failure_autopsy_V3-EXQ-591b_2026-06-10: the residual collapse is an UPSTREAM exploration-diversity STRENGTH gap (ARC-065 / behavioral_diversity_isolation lineage), surfaced by the curriculum gate, NOT a gate-threshold defect. Lowering the H_POS_FRAC_OF_MAX threshold is explicitly NOT the route.",
+        "Routing forks cheaply: the Q-043 magnitude sweep (scale noise_floor_alpha + curiosity_weight above landed defaults) discriminates 'substrate needs stronger default config' from 'substrate needs an active Phase-0 exploration-shaping mechanism' before any expensive new substrate work is committed."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
