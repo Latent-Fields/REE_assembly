@@ -1,0 +1,52 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_summary": {
+      "ARM_0_OFF": {
+        "n_seeds": 3,
+        "n_gate_cleared": 0,
+        "n_differentiated": 0,
+        "n_minted_ge2": 3,
+        "min_n_minted": 117,
+        "mean_n_maintained": 0.0,
+        "mean_maintained_pairwise_dist": 0.0,
+        "mean_frac_active": 0.12473248401966075,
+        "mean_max_pairwise_rule_dist": 0.0
+      },
+      "ARM_1_MATURE_E2CTX": {
+        "n_seeds": 3,
+        "n_gate_cleared": 3,
+        "n_differentiated": 3,
+        "n_minted_ge2": 3,
+        "min_n_minted": 10,
+        "mean_n_maintained": 4.0,
+        "mean_maintained_pairwise_dist": 1.4004406929016113,
+        "mean_frac_active": 0.016007657011776307,
+        "mean_max_pairwise_rule_dist": 1.7080096006393433
+      },
+      "ARM_2_MATURE_E2CTX_MAINTENANCE": {
+        "n_seeds": 3,
+        "n_gate_cleared": 3,
+        "n_differentiated": 3,
+        "n_minted_ge2": 3,
+        "min_n_minted": 10,
+        "mean_n_maintained": 13.666666666666666,
+        "mean_maintained_pairwise_dist": 1.7080096006393433,
+        "mean_frac_active": 0.027997439109281912,
+        "mean_max_pairwise_rule_dist": 1.7080096006393433
+      }
+    },
+    "readiness_met_arm2_maintenance": true,
+    "discrimination_met_arm1_no_maintenance_does_not_hold": false,
+    "non_vacuity_met": true,
+    "minted_met_all_cells_ge2": true,
+    "differentiation_met_e2ctx_arms": true,
+    "min_n_minted_all_cells": 10,
+    "min_max_pairwise_dist_e2ctx_arms": 1.7010613679885864,
+    "maint_dist_floor": 0.1,
+    "maint_n_floor": 2,
+    "diff_floor": 0.1,
+    "min_minted_floor": 2,
+    "seed_majority": 2
+  }
+}

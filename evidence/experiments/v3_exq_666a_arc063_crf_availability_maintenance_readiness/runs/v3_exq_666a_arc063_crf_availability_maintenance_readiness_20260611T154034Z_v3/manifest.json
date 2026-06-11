@@ -1,0 +1,85 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_666a_arc063_crf_availability_maintenance_readiness",
+  "run_id": "v3_exq_666a_arc063_crf_availability_maintenance_readiness_20260611T154034Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T15:40:34.033747Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "e2ctx_differentiation_alone_maintains_arm1_also_cleared",
+    "route": "/failure-autopsy (ARM_1 without maintenance ALSO cleared the maintained-pool gate -> the readiness PASS cannot be attributed to the activity-silent maintenance; e2ctx differentiation alone persisted)",
+    "preconditions": [
+      {
+        "name": "field_minted_ge2_all_cells",
+        "kind": "readiness",
+        "description": "every cell must mint >=2 rules so a below-gate reading is maintenance-insufficiency, not field-not-engaged. Below floor -> substrate_not_ready_requeue.",
+        "control": "all (arm x seed) cells driven over the 654b hazard env",
+        "measured": 10,
+        "threshold": 2,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "e2ctx_pool_differentiated_supra_floor",
+        "kind": "readiness",
+        "description": "the maintenance gate routes on crf_maintained_pairwise_dist (a pairwise rule distance over the MAINTAINED subset). Its precondition asserts the SAME statistic on the FULL pool (crf_max_pairwise_rule_dist > floor) on the e2ctx arms -- the differentiated pool the maintenance is supposed to HOLD must first exist. Below floor (e2ctx did not differentiate) -> substrate_not_ready_requeue, NOT a maintenance verdict (same-statistic V3-EXQ-643 lesson).",
+        "control": "min crf_max_pairwise_rule_dist over ARM_1+ARM_2 cells (e2ctx differentiation source ON, SD-056-trained e2)",
+        "measured": 1.7010613679885864,
+        "threshold": 0.1,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "maintained_pool_gate_discriminates_vs_arm1_no_maintenance": false,
+      "e2ctx_pool_differentiated": true,
+      "field_minted_ge2_all_cells": true
+    },
+    "criteria": [
+      {
+        "name": "ARM_2_MAINTENANCE_clears_maintained_pool_gate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "ARM_1_NO_MAINTENANCE_does_not_hold_maintained_pool",
+        "load_bearing": false,
+        "passed": false
+      }
+    ]
+  }
+}
