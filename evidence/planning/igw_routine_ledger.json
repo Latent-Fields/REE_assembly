@@ -515,6 +515,27 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-200-proposal-exp-0138-mech-329 && claude --resume 87d993e0-b0e9-44f8-9786-6bab922601ba",
       "task_claim_session_id": "igw-auto-igw-200-proposal-exp-0138-mech-329-20260611T084043Z",
       "assigned_at": "2026-06-11T08:40:37Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-06-11T09:41:52Z"
+    },
+    {
+      "igw_id": "IGW-20260611-201",
+      "stable_hash": "62970b54bfc1",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "INV-048"
+      ],
+      "owner_exq": null,
+      "title": "Proposal EXP-0145 (INV-048)",
+      "worktree": ".claude/worktrees/igw-201-proposal-exp-0145-inv-048",
+      "branch": "claude/igw-201-proposal-exp-0145-inv-048",
+      "session_uuid": "0a5d1400-1dab-44b0-a596-37d7f35f3972",
+      "pid": 83305,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-201-proposal-exp-0145-inv-048 && claude --resume 0a5d1400-1dab-44b0-a596-37d7f35f3972",
+      "task_claim_session_id": "igw-auto-igw-201-proposal-exp-0145-inv-048-20260611T094153Z",
+      "assigned_at": "2026-06-11T09:41:48Z",
       "status": "spawned"
     }
   ],
@@ -580,6 +601,20 @@
       "decision": "RESOLVE",
       "note": "2 indexed pending in pending_review.md are intentionally held for /failure-autopsy per governance-skill rule (a FAIL flagged for autopsy but not yet autopsied receives no evidence_direction this cycle -- leave pending). v3_exq_543l (ARC-062/INV-074/MECH-309/MECH-334; third FAIL in 543h/i/k/l chain; structural head_0==head_1 collapse across escalation attempts) and v3_exq_591 (ARC-046; substrate-uniform 1/7 failure pattern across all arms; not a curriculum-vs-flat falsification signal) both need deep autopsy-level diagnosis before any evidence_direction can be applied. governance-20260526T230808Z (REE_assembly 4341f267d2) completed correctly: 6 -> 2 pending, the 2 remaining are held-for-autopsy by design. NEXT: separate /failure-autopsy sessions on 543l and 591; next /governance cycle applies their findings and drains the count to 0. Detector blind-spot noted: workset generator does not distinguish 'awaiting governance review' from 'held for autopsy follow-on'.",
       "noted_at": "2026-05-27T06:11:46Z"
+    },
+    {
+      "stable_hash": "498d77aa7f55",
+      "igw_id_at_disposition": "IGW-20260611-200",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-329"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal EXP-0138 (MECH-329)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-06-11T09:41:52Z",
+      "re_eligible_after": "2026-06-13T09:41:52Z"
     }
   ]
 }
