@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-11.1 -->
+<!-- CLOSURE_VERSION: 2026-06-11.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -236,6 +236,14 @@
     font-size: 9px; font-weight: 700; color: #0d1117;
     padding: 1px 5px; border-radius: 4px; cursor: help;
   }
+  .legend .lg-count {
+    font-variant-numeric: tabular-nums; font-weight: 700;
+    color: var(--text); background: var(--bg-3);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 0 6px; min-width: 18px; text-align: center;
+    font-size: 10px; line-height: 16px;
+  }
+  .legend .lg-count:empty { display: none; }
 
   #graph-wrap {
     position: relative;
@@ -529,13 +537,13 @@
 </div>
 
 <div class="legend">
-  <span class="lg"><span class="dot" style="background:var(--st-done)"></span>done</span>
-  <span class="lg"><span class="dot" style="background:var(--st-partial)"></span>partial</span>
-  <span class="lg"><span class="dot" style="background:var(--st-progress)"></span>in_progress</span>
-  <span class="lg"><span class="dot" style="background:var(--st-blocked)"></span>blocked</span>
-  <span class="lg"><span class="dot" style="background:var(--st-tracked)"></span>tracked</span>
-  <span class="lg"><span class="dot" style="background:var(--st-open)"></span>open</span>
-  <span class="lg"><span class="dot" style="background:var(--st-deferred)"></span>deferred (excluded from %)</span>
+  <span class="lg" data-status="done"><span class="dot" style="background:var(--st-done)"></span>done<span class="lg-count" data-count-for="done"></span></span>
+  <span class="lg" data-status="partial"><span class="dot" style="background:var(--st-partial)"></span>partial<span class="lg-count" data-count-for="partial"></span></span>
+  <span class="lg" data-status="in_progress"><span class="dot" style="background:var(--st-progress)"></span>in_progress<span class="lg-count" data-count-for="in_progress"></span></span>
+  <span class="lg" data-status="blocked"><span class="dot" style="background:var(--st-blocked)"></span>blocked<span class="lg-count" data-count-for="blocked"></span></span>
+  <span class="lg" data-status="tracked"><span class="dot" style="background:var(--st-tracked)"></span>tracked<span class="lg-count" data-count-for="tracked"></span></span>
+  <span class="lg" data-status="open"><span class="dot" style="background:var(--st-open)"></span>open<span class="lg-count" data-count-for="open"></span></span>
+  <span class="lg" data-status="deferred"><span class="dot" style="background:var(--st-deferred)"></span>deferred (excluded from %)<span class="lg-count" data-count-for="deferred"></span></span>
   <span class="lg" style="border-left:1px solid var(--border); padding-left:14px;">
     <span class="bdg" style="background:#58a6ff" title="EXQ -- this node has an owner experiment in the queue/evidence (hover the badge on a node for detail).">EXQ</span>
     <span class="bdg" style="background:#a371f7" title="RETEST -- unblocks a claim flagged pending_retest_after_substrate.">RETEST</span>
@@ -687,6 +695,7 @@ function renderAll() {
     ' ; ' + CLOSURE.nodes.length + ' nodes across ' + CLOSURE.plans.length + ' plan(s)';
   computeDerivedSets();
   computePlanOrder();
+  renderLegendCounts();
   renderOrientation();
   renderDualProgress();
   renderCuspRail();
@@ -712,6 +721,32 @@ function wireGenSwitch() {
       applyGenView();
       renderAll();
     });
+  });
+}
+
+// Fill each legend swatch with a live count of nodes in that status for the
+// current GEN_VIEW. Nodes are bucketed by the colour they actually render with
+// (STATUS_COLOR), so the counts always agree with the dots on screen: the
+// upstream-blocked variants share the blocked colour; deferred_v4 shares
+// deferred; any status not in STATUS_COLOR falls back to the open swatch,
+// exactly as the node renderer does (STATUS_COLOR[n.status] || STATUS_COLOR.open).
+const LEGEND_BUCKETS = ['done', 'partial', 'in_progress', 'blocked', 'tracked', 'open', 'deferred'];
+function legendBucketFor(status) {
+  const color = STATUS_COLOR[status] || STATUS_COLOR.open;
+  for (const key of LEGEND_BUCKETS) {
+    if (STATUS_COLOR[key] === color) return key;
+  }
+  return 'open';
+}
+function renderLegendCounts() {
+  const counts = {};
+  for (const n of (CLOSURE.nodes || [])) {
+    const b = legendBucketFor(n.status);
+    counts[b] = (counts[b] || 0) + 1;
+  }
+  document.querySelectorAll('.legend .lg-count[data-count-for]').forEach(el => {
+    const key = el.getAttribute('data-count-for');
+    el.textContent = String(counts[key] || 0);
   });
 }
 
