@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_537_sd029_single_pass_residual
 
-Generated: `2026-06-11T09:11:41.182701Z`
+Generated: `2026-06-11T14:00:29.916728Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

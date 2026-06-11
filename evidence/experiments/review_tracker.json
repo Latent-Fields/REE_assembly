@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-11T07:05:00Z",
+  "last_review_utc": "2026-06-11T14:05:00Z",
   "discussed_experiment_dirs": [
     "v3_exq_666_arc063_crf_mature_pool_readiness",
     "v3_exq_660a_mech341_within_class_pool_size_graded_confirmation",
@@ -626,7 +626,8 @@
     "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier",
     "v3_exq_603n_scaffolded_sd054_full_curriculum_readiness",
     "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T200549Z_v3",
-    "v3_exq_603n_scaffolded_sd054_full_curriculum_readiness_20260610T201427Z_v3"
+    "v3_exq_603n_scaffolded_sd054_full_curriculum_readiness_20260610T201427Z_v3",
+    "v3_exq_668_mech319_accumulated_ghost_write_arbitration_drift_evidence_v3_20260611T135309Z"
   ],
   "reviewed_run_ids": [
     "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
@@ -2936,7 +2937,8 @@
     "v3_exq_603l_escape_affordance_bridge_behavioural_retest_20260610T134941Z_v3",
     "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T200549Z_v3",
     "v3_exq_603n_scaffolded_sd054_full_curriculum_readiness_20260610T201427Z_v3",
-    "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z_v3"
+    "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z_v3",
+    "v3_exq_668_mech319_accumulated_ghost_write_arbitration_drift_evidence_v3_20260611T135309Z"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4164,6 +4166,14 @@
         "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3"
       ],
       "note": "666 follow-on (same governance cycle): a CONCURRENT /failure-autopsy session (failure-autopsy-666-20260611T0701Z) CONFIRMED failure_autopsy_V3-EXQ-666_2026-06-11 at 07:09Z -- user-adjudicated Step-8 -- while this governance cycle was mid-walk, and explicitly handed the substrate_queue write to governance. So 666 is now EXPLAINED, not merely flagged. Applied Step 6a-iv CREATE: new substrate_queue entry crf-availability-maintenance (priority 1, status pending_implementation, ready=false; unblocks MECH-309/ARC-062/ARC-063; depends_on_unresolved = targeted_review_arc_063_crf_rule_cell_persistence lit-pull [BLOCKING] + ARC-062 differentiation/gating; source_autopsy logged; failure_record from 666). LOAD-BEARING FINDING (autopsy): the ARC-063 mature-pool amend solves DIFFERENTIATION only via crf_context_from_e2_world_forward (ARM_2 dist 1.71, 10-16 distinct rules; CONFIRMS+STRENGTHENS the 654b ARC-065 GAP-A raw-z_world-too-self-similar dependency) but WORSENS PERSISTENCE (ARM_2 frac_active 0.016 < 0.30 floor, worse than legacy 0.125): narrowly-tuned rules match sparsely so availability never accumulates above theta=0.40 between matches. The 654b conflict-gate theta retune addressed the wrong constraint for the differentiated regime; the binding constraint once differentiated is availability MAINTENANCE (PFC sustained-activity / activity-silent analog). Set pending_retest_after_substrate: true on ARC-063 (autopsy target requested it; ARC-062/MECH-309 already carried it); epistemic_category left to inference (substrate_coherence for an architectural_commitment -- NOT the autopsy's loose substrate_ceiling shorthand). 666 MARKED REVIEWED (claim-free -> discussed_experiment_dirs; weights nothing, no demotion -- biology supports the mechanism class). 654c GAP-B behavioural re-run STAYS gated on a 666-successor CRF-readiness PASS. Autopsy PRIMARY routing /lit-pull (targeted_review_arc_063_crf_rule_cell_persistence) + downstream /implement-substrate crf-availability-maintenance are SEPARATE follow-on sessions, not run inline."
+    },
+    {
+      "utc": "2026-06-11T14:05:00Z",
+      "session": "governance-cycle-20260611T1323Z",
+      "runs": [
+        "v3_exq_668_mech319_accumulated_ghost_write_arbitration_drift_evidence_v3_20260611T135309Z"
+      ],
+      "note": "Governance cycle 2026-06-11T13:23Z #3. Pipeline regen clean (798 claims, validate_claims OK 81 inv, traceability OK, drift 0/0). Walked the start-of-cycle pending FAIL (514m) + two results that LANDED MID-CYCLE (485e 13:52Z, 668 13:53Z; synced via sync_v3_results.py + reindex). DECISIONS: (a) V3-EXQ-514m (SD-049 Phase-2 behavioural curriculum, supersedes 514l) FAIL/mixed -- SPLIT. C_ID identity-recovery PASS (0.926) + C_ANOVA per-axis drive PASS (F_max 1096) but C_WL wanting!=liking dissoc = 0.0 on ALL 3 seeds. MECH-230 SUPPORTS recorded (clean structured-z_goal on its awaited onboarding substrate); claims.yaml pending_retest_after_substrate CLEARED + supporting note. MECH-229 weakens FLAGGED for /failure-autopsy + SCORING-EXCLUDED (pending_retest_after_substrate_per_claim=[MECH-229] on flat+nested+runs manifests -> genuine weakens 1->0); consequential weakens on a no-other-support provisional + 660a-style readout-defect candidate (consumption probe n=5/6/8, dissoc exactly 0.0). 514m LEFT PENDING (MECH-229 autopsy owed; NOT marked reviewed). 514l marked superseded-note (stays non_contributory). goal_pipeline:GAP-2 owner repointed 514l->514m, Case-3, stays open. (b) V3-EXQ-668 (MECH-319 accumulated ghost-write arbitration-drift, 2nd distinct contributory entry after 628, NOT supersede) PASS/supports 3/3 seeds all-criteria-green. PROMOTED MECH-319 candidate_substrate_landed -> provisional (min_experimental_entries=2 met; v3_pending false -- belt-and-braces release condition met). MARKED REVIEWED. (c) V3-EXQ-485e (SD-033b/MECH-263 evidence-grade trained-OFC-head behavioural) FAIL/non_contributory self-route substrate_not_ready_requeue (trained-head bias cross-candidate RANGE below floor -> devaluation DV 0 seeds; C2 discrim 2/3, C3 frozen-silence 3/3) -- never weakens. USER FLAGGED for /failure-autopsy (diagnose why head training did not produce sufficient bias range). LEFT PENDING (no review entry, no stamp). commitment_closure:GAP-8 owner repointed 485d->485e, Case-3, stays in-progress. PROMOTION/DEMOTION agenda: 0 pending_user rows (all 119 recs applied holds). Pending after cycle = 2 (514m + 485e, both autopsy-flagged, expected)."
     }
   ]
 }

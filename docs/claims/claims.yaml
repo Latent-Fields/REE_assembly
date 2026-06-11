@@ -16954,7 +16954,7 @@
   polarity: asserts
   status: provisional
   epistemic_category: substrate_ceiling
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: false
   implementation_phase: v3
   split_from: MECH-112
   registered: "2026-04-13"
@@ -16990,6 +16990,7 @@
     object-bound. Status/flags unchanged (governance follow-on gated on the
     SD-057 forced-contact validation). See SD-057, MECH-346.
   evidence_quality_note: |
+    2026-06-11 (governance cycle #3): pending_retest_after_substrate CLEARED. V3-EXQ-514m (the SD-049 Phase-2 behavioural curriculum successor on the scaffolded_sd054_onboarding substrate that lifted the foraging-competence/benefit-contact ceiling -- the substrate this retest awaited) SUPPORTS MECH-230 on its proper non-degenerate test: C_ID identity-recovery PASS (probe acc 0.926, n=3455), C_ANOVA per-axis drive PASS (F_max 1096 >> F_crit 4.605), mean goal_resource_r=0.953, z_goal forms ecologically via the curriculum (2/3 seeds pass the P2 contact + z_goal_norm>0.4 guard). This is the first genuine non-degenerate support for the structured-z_goal-attractor assertion; the substrate_ceiling basis (substrate too coarse to populate z_goal) is now lifted by the onboarding substrate. Promotion still suppressed by the implementation_phase=v3 gate (hold_pending_v3_substrate); epistemic_category review deferred to a future cycle. Note: 514m's overall outcome is FAIL driven by the MECH-229 wanting!=liking arm (flagged for /failure-autopsy, scoring-excluded); the MECH-230 arm is a clean, independently-counted supports entry.
     2026-06-03 (governance, failure_autopsy_V3-EXQ-632 + V3-EXQ-514l): both FAILs re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate (foraging-competence/benefit-contact ceiling). 632 is load-bearing: negative control C3 (ablated absent) PASS 3/3 and the one foraging seed (42, 6 contacts) is a CLEAN positive -- z_goal_norm=3.0115 at contact, persists byte-identically to t50, absent under ablation (0.0) = a structured z_goal attractor distinct from harm avoidance exactly as MECH-230 asserts; aggregate FAIL driven entirely by 2/3 seeds (7,13) making zero resource contact. CORRECTS the prior recorded gap: the blocker is foraging-competence upstream, NOT the E1-frontal->hippocampal goal-projection wiring. narrow_supports_flag=true (1 PASS remains; non_contributory does not resolve). Substrate routing: amend scaffolded_sd054_onboarding (MECH-230 added to unblocks_claims + 632 failure_record).
     EXQ-328a dry run (2026-04-12): z_goal_norm=0.0 in all conditions (non_contributory --
     dry run too short for resource contacts; 3 episodes x 120 steps insufficient).
@@ -31312,9 +31313,9 @@
   claim_type: mechanism_hypothesis
   subject: policy.arbitration.simulation_mode_write_gating_substrate_ree_novel_function
   polarity: asserts
-  status: candidate_substrate_landed
+  status: provisional
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -31486,6 +31487,36 @@
     its runs/ pack never synced, so build_experiment_indexes.py
     -- which scans **/runs/**/manifest.json -- never scored it;
     that is why this PASS sat un-folded since 2026-06-02).
+
+    SECOND CONTRIBUTORY EVIDENCE + PROMOTION 2026-06-11 (governance
+    cycle #3, user-approved). The second distinct contributory V3
+    entry landed: V3-EXQ-668 (run_id v3_exq_668_mech319_accumulated_
+    ghost_write_arbitration_drift_evidence_v3_20260611T135309Z; ree
+    fleet 2026-06-11T13:53Z; experiment_purpose=evidence; claim_ids=
+    [MECH-319]; evidence_direction=supports; 3/3 seeds PASS, 3/3
+    non-vacuous, required 2; predecessor V3-EXQ-628, NOT a
+    supersession). 668 tests the claim's OTHER pre-registered V3
+    falsification path -- accumulated ghost-write arbitration DRIFT /
+    overcommitment over a SUSTAINED replay regime (vs 628's single-
+    step rule_state divergence): every criterion green on all seeds
+    (C0 path-exercised-no-vacuity, C4 waking bit-identical falsifier,
+    C_admit_live readiness, C1 BLOCK->no drift, C2 ADMIT->accumulates
+    beyond a single step, C3 drift reaches the compute_bias
+    arbitration output, bias_readout_non_degenerate). MECH-319 now
+    has 2 contributory supporting V3 entries (628 + 668),
+    genuine_exp_count=2, exp_conf=0.825, conflict_ratio=0,
+    evidence_quadrant=novel_discovery.
+
+    PROMOTED candidate_substrate_landed -> provisional. Both gates
+    that previously held the claim are now satisfied: (1)
+    min_experimental_entries=2 is met (628 + 668); (2) the
+    v3_pending belt-and-braces hold's release condition ("until that
+    second entry lands and is reviewed") is met -- 668 landed and was
+    reviewed this cycle -- so v3_pending set false. The cellular-level
+    falsification remains V4-bound and pharmacology-dependent (does
+    not block a V3 provisional). Full stable promotion would require
+    the standard provisional->active evidence depth; this is a
+    provisional on two clean novel-discovery-quadrant V3 supports.
   notes: >
     Pull 4 R3 KEEP-AS-IS verdict: MECH-094 stays as-is (the
     architectural principle); MECH-319 is registered as the

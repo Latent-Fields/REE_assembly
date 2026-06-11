@@ -1,10 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-06-11T07:15:05Z`  
-Last review: `2026-06-11T07:05:00Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-11T14:06:25Z`  
+Last review: `2026-06-11T14:05:00Z`  
+Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_514m_sd049_phase2_behavioural_curriculum_built_20260611T131105Z_v3` | 2026-06-11T13:11 | MECH-229, MECH-230 | — |
+| `v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3` | 2026-06-11T13:52 | MECH-263, SD-033b | — |
 
 ---
 

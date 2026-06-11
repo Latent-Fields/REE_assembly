@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_592e_mech090_readiness_conjunction_validation
 
-Generated: `2026-06-11T09:11:41.182701Z`
+Generated: `2026-06-11T14:00:29.916728Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

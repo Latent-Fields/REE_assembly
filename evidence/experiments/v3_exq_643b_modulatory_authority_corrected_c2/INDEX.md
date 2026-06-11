@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_643b_modulatory_authority_corrected_c2
 
-Generated: `2026-06-11T09:11:41.182701Z`
+Generated: `2026-06-11T14:00:29.916728Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,1 +1,198 @@
-{"run_id": "v3_exq_514m_sd049_phase2_behavioural_curriculum_built_20260611T131105Z_v3", "experiment_type": "v3_exq_514m_sd049_phase2_behavioural_curriculum_built", "queue_id": "V3-EXQ-514m", "claim_ids": ["MECH-229", "MECH-230"], "experiment_purpose": "evidence", "supersedes": "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260611T131105Z", "outcome": "FAIL", "evidence_direction": "mixed", "evidence_direction_per_claim": {"MECH-229": "weakens", "MECH-230": "supports"}, "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)", "substrate": "scaffolded_sd054_onboarding (full curriculum: Stage-0 -> Stage-0b -> P0 -> Stage-H -> P1 -> P2; harm-pathway training ON, 2026-06-09 amend; 603n config) + SD-049 Phase-2 hybrid encoder (SD-015 z_resource); behavioural DV measurement.", "condition": "CURRICULUM_BUILT_SD049_PHASE2_BEHAVIOURAL", "closes": "goal_pipeline:GAP-2 (on PASS); unblocks SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 (governance applies promotions later).", "method_note": "z_goal forms ECOLOGICALLY via the onboarding curriculum (the substrate the 603n readiness run validated), then the SD-049 Phase-2 behavioural DVs are measured frozen-policy on the SD-049-enabled P2 env. Each DV is gated behind a per-seed foraging-contact non-vacuity guard so a contact-zero seed reads non_contributory / the run self-routes substrate_not_ready_requeue, NEVER a false weakens (the 514/632/634 confound). V3-EXQ-632 seed-42 (z_goal_norm 3.0115 at contact) is the clean MECH-230 sanity anchor; the guard floor 0.4 is far below it.", "identity_probe_scope_note": "The scaffolded curriculum does NOT train an explicit SD-049 identity-classifier head; the identity-recovery probe reads z_resource shaped by ecological foraging (SD-015 proximity supervision + SD-049 per-type substrate). A weak C_ID with C_WL PASS maps to the SD-049 verdict.md 'trunk learned similarity but classifier head not supervised' row -- an interpretable MECH-230 sub-result, NOT a vacuous null (the contact guard guarantees the seed foraged).", "anova_note": "scipy unavailable on runners; DV3 gates on a pre-registered F-critical for a one-way ANOVA across the n_resource_types per-axis drives (df1 = n_axes-1 = 2, df2 ~ inf over pooled per-step samples; F(0.01,2,inf) = 4.605). F + dfs reported.", "pre_registered_thresholds": {"p2_zgoal_gate": 0.4, "contact_gate": 0.0, "min_fraction": 0.6666666666666666, "id_probe_floor": 0.6, "n_id_samples_floor": 30, "wl_delta": 0.1, "wl_fraction": 0.6, "anova_f_crit_p01": 4.605, "anova_df1": 2}, "scaffold_curriculum": {"stage0_budget": 20, "stage0b_budget": 10, "p0_budget": 100, "hazard_stage_budget": 40, "p1_budget": 50, "p2_budget": 15, "behav_eval_episodes": 15, "train_steps": 200, "n_resource_types": 3, "scaffold_train_harm_pathway": true, "scaffold_feed_harm_stream": true, "cue_recall_bridge_enabled": true, "z_goal_enabled": true, "drive_weight": 2.0, "config_basis": "V3-EXQ-603n (substrate-readiness run that flipped scaffolded_sd054_onboarding ready=true)"}, "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "predecessor": "V3-EXQ-514l (SD-049 Phase-3 MECH-229 wanting/liking; FAIL/non_contributory -- the foraging-competence ceiling now lifted by the onboarding curriculum).", "acceptance": {"non_vacuity_met": true, "guard_fraction": 0.6666666666666666, "n_guard_passing_seeds": 2, "C_ID_identity_recovery": true, "C_WL_wanting_neq_liking": false, "C_ANOVA_per_axis_drive": true, "mean_probe_acc_neighborhood": 0.9259866702491305, "n_identity_samples_neighborhood_total": 3455, "mean_wanting_liking_dissoc_fraction": 0.0, "mean_goal_resource_r": 0.953141827386242, "per_axis_drive_anova_f_max": 1096.0424180364919, "per_axis_drive_anova_f_mean": 1019.2794229021788, "overall_pass": false, "per_seed_guard_pass": [true, true, false]}, "interpretation": {"readiness_route": "residual_dv_open", "contact_guard": {"definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3 ecological legs). A seed failing the guard is excluded from DV aggregation; < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens.", "min_fraction": 0.6666666666666666, "p2_zgoal_gate": 0.4, "contact_gate": 0.0}}, "per_seed": [{"seed": 42, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.4745079576969147, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.2929460580912863, "p2_z_goal_norm_at_contact_peak": 0.5215529799461365, "p2_num_contact_events": 146, "probe_acc_neighborhood": 0.8793456032719836, "n_identity_samples_neighborhood": 1629, "probe_acc_consumption": 0.0, "n_identity_samples_consumption": 5, "wanting_liking_dissoc_fraction": 0.0, "n_valence_steps": 1629, "goal_resource_r": 0.9600035283666509, "n_cosine_samples": 1629, "per_axis_drive_anova_f": 942.5164277678656, "per_axis_drive_anova_df1": 2, "per_axis_drive_anova_df2": 4884, "n_per_axis_drive_samples": 1629, "behav_contact_rate": 0.020871700429711478}, {"seed": 43, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.3827546238899231, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.36909871244635195, "p2_z_goal_norm_at_contact_peak": 0.41404643654823303, "p2_num_contact_events": 120, "probe_acc_neighborhood": 0.9726277372262774, "n_identity_samples_neighborhood": 1826, "probe_acc_consumption": 0.0, "n_identity_samples_consumption": 6, "wanting_liking_dissoc_fraction": 0.0, "n_valence_steps": 1826, "goal_resource_r": 0.9462801264058329, "n_cosine_samples": 1826, "per_axis_drive_anova_f": 1096.0424180364919, "per_axis_drive_anova_df1": 2, "per_axis_drive_anova_df2": 5475, "n_per_axis_drive_samples": 1826, "behav_contact_rate": 0.02135815991237678}, {"seed": 44, "aborted_at": null, "abort_reason": "", "guard_pass": false, "stage0_z_goal_norm_peak": 0.3756444454193115, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.149009900990099, "p2_z_goal_norm_at_contact_peak": 0.39544084668159485, "p2_num_contact_events": 60, "probe_acc_neighborhood": 0.643609022556391, "n_identity_samples_neighborhood": 2214, "probe_acc_consumption": 0.0, "n_identity_samples_consumption": 8, "wanting_liking_dissoc_fraction": 0.0, "n_valence_steps": 2214, "goal_resource_r": 0.9550027264973658, "n_cosine_samples": 2214, "per_axis_drive_anova_f": 1350.2919886106201, "per_axis_drive_anova_df1": 2, "per_axis_drive_anova_df2": 6639, "n_per_axis_drive_samples": 2214, "behav_contact_rate": 0.022583559168925023}], "machine": "DLAPTOP-4.local"}
+{
+  "run_id": "v3_exq_514m_sd049_phase2_behavioural_curriculum_built_20260611T131105Z_v3",
+  "experiment_type": "v3_exq_514m_sd049_phase2_behavioural_curriculum_built",
+  "queue_id": "V3-EXQ-514m",
+  "claim_ids": [
+    "MECH-229",
+    "MECH-230"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260611T131105Z",
+  "outcome": "FAIL",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-229": "weakens",
+    "MECH-230": "supports"
+  },
+  "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)",
+  "substrate": "scaffolded_sd054_onboarding (full curriculum: Stage-0 -> Stage-0b -> P0 -> Stage-H -> P1 -> P2; harm-pathway training ON, 2026-06-09 amend; 603n config) + SD-049 Phase-2 hybrid encoder (SD-015 z_resource); behavioural DV measurement.",
+  "condition": "CURRICULUM_BUILT_SD049_PHASE2_BEHAVIOURAL",
+  "closes": "goal_pipeline:GAP-2 (on PASS); unblocks SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 (governance applies promotions later).",
+  "method_note": "z_goal forms ECOLOGICALLY via the onboarding curriculum (the substrate the 603n readiness run validated), then the SD-049 Phase-2 behavioural DVs are measured frozen-policy on the SD-049-enabled P2 env. Each DV is gated behind a per-seed foraging-contact non-vacuity guard so a contact-zero seed reads non_contributory / the run self-routes substrate_not_ready_requeue, NEVER a false weakens (the 514/632/634 confound). V3-EXQ-632 seed-42 (z_goal_norm 3.0115 at contact) is the clean MECH-230 sanity anchor; the guard floor 0.4 is far below it.",
+  "identity_probe_scope_note": "The scaffolded curriculum does NOT train an explicit SD-049 identity-classifier head; the identity-recovery probe reads z_resource shaped by ecological foraging (SD-015 proximity supervision + SD-049 per-type substrate). A weak C_ID with C_WL PASS maps to the SD-049 verdict.md 'trunk learned similarity but classifier head not supervised' row -- an interpretable MECH-230 sub-result, NOT a vacuous null (the contact guard guarantees the seed foraged).",
+  "anova_note": "scipy unavailable on runners; DV3 gates on a pre-registered F-critical for a one-way ANOVA across the n_resource_types per-axis drives (df1 = n_axes-1 = 2, df2 ~ inf over pooled per-step samples; F(0.01,2,inf) = 4.605). F + dfs reported.",
+  "pre_registered_thresholds": {
+    "p2_zgoal_gate": 0.4,
+    "contact_gate": 0.0,
+    "min_fraction": 0.6666666666666666,
+    "id_probe_floor": 0.6,
+    "n_id_samples_floor": 30,
+    "wl_delta": 0.1,
+    "wl_fraction": 0.6,
+    "anova_f_crit_p01": 4.605,
+    "anova_df1": 2
+  },
+  "scaffold_curriculum": {
+    "stage0_budget": 20,
+    "stage0b_budget": 10,
+    "p0_budget": 100,
+    "hazard_stage_budget": 40,
+    "p1_budget": 50,
+    "p2_budget": 15,
+    "behav_eval_episodes": 15,
+    "train_steps": 200,
+    "n_resource_types": 3,
+    "scaffold_train_harm_pathway": true,
+    "scaffold_feed_harm_stream": true,
+    "cue_recall_bridge_enabled": true,
+    "z_goal_enabled": true,
+    "drive_weight": 2.0,
+    "config_basis": "V3-EXQ-603n (substrate-readiness run that flipped scaffolded_sd054_onboarding ready=true)"
+  },
+  "stage_plan": [
+    {
+      "stage": "0",
+      "name": "nursery_forced_feed",
+      "method": "run_stage0_nursery",
+      "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"
+    },
+    {
+      "stage": "1",
+      "name": "guided_low_conflict",
+      "method": "run_p0",
+      "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"
+    },
+    {
+      "stage": "2",
+      "name": "easy_foraging",
+      "method": "run_p1 (early anneal)",
+      "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"
+    },
+    {
+      "stage": "3",
+      "name": "guarded_hazard",
+      "method": "run_p1 (late anneal)",
+      "desc": "hazard_food_attraction + proximity_harm ramp toward target"
+    },
+    {
+      "stage": "4",
+      "name": "mature_test",
+      "method": "run_p2",
+      "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"
+    }
+  ],
+  "predecessor": "V3-EXQ-514l (SD-049 Phase-3 MECH-229 wanting/liking; FAIL/non_contributory -- the foraging-competence ceiling now lifted by the onboarding curriculum).",
+  "acceptance": {
+    "non_vacuity_met": true,
+    "guard_fraction": 0.6666666666666666,
+    "n_guard_passing_seeds": 2,
+    "C_ID_identity_recovery": true,
+    "C_WL_wanting_neq_liking": false,
+    "C_ANOVA_per_axis_drive": true,
+    "mean_probe_acc_neighborhood": 0.9259866702491305,
+    "n_identity_samples_neighborhood_total": 3455,
+    "mean_wanting_liking_dissoc_fraction": 0.0,
+    "mean_goal_resource_r": 0.953141827386242,
+    "per_axis_drive_anova_f_max": 1096.0424180364919,
+    "per_axis_drive_anova_f_mean": 1019.2794229021788,
+    "overall_pass": false,
+    "per_seed_guard_pass": [
+      true,
+      true,
+      false
+    ]
+  },
+  "interpretation": {
+    "readiness_route": "residual_dv_open",
+    "contact_guard": {
+      "definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3 ecological legs). A seed failing the guard is excluded from DV aggregation; < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.4745079576969147,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.2929460580912863,
+      "p2_z_goal_norm_at_contact_peak": 0.5215529799461365,
+      "p2_num_contact_events": 146,
+      "probe_acc_neighborhood": 0.8793456032719836,
+      "n_identity_samples_neighborhood": 1629,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 5,
+      "wanting_liking_dissoc_fraction": 0.0,
+      "n_valence_steps": 1629,
+      "goal_resource_r": 0.9600035283666509,
+      "n_cosine_samples": 1629,
+      "per_axis_drive_anova_f": 942.5164277678656,
+      "per_axis_drive_anova_df1": 2,
+      "per_axis_drive_anova_df2": 4884,
+      "n_per_axis_drive_samples": 1629,
+      "behav_contact_rate": 0.020871700429711478
+    },
+    {
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.3827546238899231,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.36909871244635195,
+      "p2_z_goal_norm_at_contact_peak": 0.41404643654823303,
+      "p2_num_contact_events": 120,
+      "probe_acc_neighborhood": 0.9726277372262774,
+      "n_identity_samples_neighborhood": 1826,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 6,
+      "wanting_liking_dissoc_fraction": 0.0,
+      "n_valence_steps": 1826,
+      "goal_resource_r": 0.9462801264058329,
+      "n_cosine_samples": 1826,
+      "per_axis_drive_anova_f": 1096.0424180364919,
+      "per_axis_drive_anova_df1": 2,
+      "per_axis_drive_anova_df2": 5475,
+      "n_per_axis_drive_samples": 1826,
+      "behav_contact_rate": 0.02135815991237678
+    },
+    {
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": false,
+      "stage0_z_goal_norm_peak": 0.3756444454193115,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.149009900990099,
+      "p2_z_goal_norm_at_contact_peak": 0.39544084668159485,
+      "p2_num_contact_events": 60,
+      "probe_acc_neighborhood": 0.643609022556391,
+      "n_identity_samples_neighborhood": 2214,
+      "probe_acc_consumption": 0.0,
+      "n_identity_samples_consumption": 8,
+      "wanting_liking_dissoc_fraction": 0.0,
+      "n_valence_steps": 2214,
+      "goal_resource_r": 0.9550027264973658,
+      "n_cosine_samples": 2214,
+      "per_axis_drive_anova_f": 1350.2919886106201,
+      "per_axis_drive_anova_df1": 2,
+      "per_axis_drive_anova_df2": 6639,
+      "n_per_axis_drive_samples": 2214,
+      "behav_contact_rate": 0.022583559168925023
+    }
+  ],
+  "machine": "DLAPTOP-4.local",
+  "pending_retest_after_substrate_per_claim": [
+    "MECH-229"
+  ],
+  "evidence_direction_note": "2026-06-11 (governance cycle #3): MECH-229 per-claim weakens FLAGGED for /failure-autopsy and EXCLUDED from scoring this cycle (pending_retest_after_substrate_per_claim=[MECH-229] -> scoring_excluded). 514m is the pre-registered SD-049 multi-resource fair test for MECH-229; C_WL wanting!=liking dissociation = 0.0 on ALL 3 seeds DESPITE C_ID identity-recovery PASS and C_ANOVA per-axis drive PASS -- pre-registered failure_signature (absent similarity structure) + 660a-style readout-defect candidate (consumption-phase identity probe n=5/6/8). Consequential weakens on a provisional claim with no other genuine multi-resource support -> deep diagnosis before evidence weighting. MECH-230 per-claim SUPPORTS retained and active."
+}
