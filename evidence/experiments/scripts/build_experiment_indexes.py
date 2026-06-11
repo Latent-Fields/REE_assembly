@@ -115,6 +115,28 @@ class RunRecord:
     #   superseded_by_substrate_per_claim: {"SD-049": "SD-049@2026-05-31"}
     pending_retest_after_substrate_per_claim: list[str] = field(default_factory=list)
     superseded_by_substrate_per_claim: dict[str, str] = field(default_factory=dict)
+    # Non-degeneracy gate (2026-06-11): an explicitly-set manifest flag marking a
+    # run's result as structurally DEGENERATE -- a discriminative metric pinned at
+    # a constant (zero cross-arm/cross-seed variance, or floor-pinned on every
+    # step) so its criterion cannot fire regardless of behaviour. Examples:
+    # V3-EXQ-514m (C_WL=0.0 on a valence channel that was never written),
+    # V3-EXQ-642 (z_block identically 0 on an untrained encoder). A degenerate run
+    # is excluded from confidence/conflict scoring (scoring_excluded="degenerate")
+    # while staying in the full entry log -- exactly parallel to "superseded"
+    # (corrected iteration) and "stale_substrate" (mechanistically outdated), but
+    # for the vacuous-criterion failure mode that previously had to be caught by a
+    # manual /failure-autopsy and hand-reclassified non_contributory. The ree-v3
+    # runtime helper (experiments/_experiment_lib.check_degeneracy) sets these at
+    # measurement time; a failure-autopsy may also set them by hand. The
+    # whole-run form excludes every tagged claim; the per-claim form de-weights
+    # ONLY the named claim(s). Default-absent (None) => no-op, bit-identical to
+    # pre-gate behaviour.
+    #   non_degenerate: false                            (whole run vacuous)
+    #   non_degenerate_per_claim: {"MECH-229": false}    (vacuous for one claim)
+    #   degeneracy_reason: "C_WL pinned at 0.0; valence channel never written"
+    non_degenerate: bool | None = None
+    non_degenerate_per_claim: dict[str, bool] = field(default_factory=dict)
+    degeneracy_reason: str = ""
 
 
 def _is_number(value: Any) -> bool:
@@ -621,6 +643,18 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         superseded_by_substrate_per_claim = (
             {str(k): str(v).strip() for k, v in raw_sb_pc.items() if str(v).strip()}
             if isinstance(raw_sb_pc, dict) else {})
+        # Non-degeneracy gate: only an EXPLICIT False excludes; absent/None is a
+        # no-op (we must not treat the silent majority of legacy manifests, which
+        # carry no flag, as degenerate). `non_degenerate_per_claim` keeps only the
+        # entries explicitly set to False.
+        raw_nd = manifest.get("non_degenerate", None)
+        non_degenerate = _coerce_bool(raw_nd) if raw_nd is not None else None
+        raw_nd_pc = manifest.get("non_degenerate_per_claim") or {}
+        non_degenerate_per_claim = (
+            {str(k): _coerce_bool(v) for k, v in raw_nd_pc.items()
+             if _coerce_bool(v) is False}
+            if isinstance(raw_nd_pc, dict) else {})
+        degeneracy_reason = str(manifest.get("degeneracy_reason", "") or "").strip()
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -649,6 +683,9 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 superseded_by_substrate=superseded_by_substrate,
                 pending_retest_after_substrate_per_claim=pending_retest_after_substrate_per_claim,
                 superseded_by_substrate_per_claim=superseded_by_substrate_per_claim,
+                non_degenerate=non_degenerate,
+                non_degenerate_per_claim=non_degenerate_per_claim,
+                degeneracy_reason=degeneracy_reason,
             )
         )
 
@@ -1597,6 +1634,21 @@ def _write_claim_evidence_matrix(
                 continue
             if inferred_direction == "superseded":
                 entry["scoring_excluded"] = "superseded"
+                continue
+            # Non-degeneracy gate (2026-06-11): an explicitly-set manifest flag
+            # marks this run's result as structurally degenerate for this claim --
+            # a discriminative metric pinned at a constant so its criterion could
+            # never fire regardless of behaviour (vacuous PASS or FAIL). The entry
+            # stays in the full log (with the reason for audit) but stops weighting
+            # confidence/conflict, exactly like superseded/stale_substrate. The
+            # run-level flag applies to every tagged claim; the per-claim form
+            # de-weights ONLY this claim_id. Only an explicit False excludes --
+            # absent flags are a no-op against the legacy record.
+            if (run.non_degenerate is False
+                    or run.non_degenerate_per_claim.get(claim_id) is False):
+                entry["scoring_excluded"] = "degenerate"
+                if run.degeneracy_reason:
+                    entry["degeneracy_reason"] = run.degeneracy_reason
                 continue
             # Substrate-staleness gate (2026-06-02): a manually-set manifest
             # flag marks this run's evidence as mechanistically stale because a
