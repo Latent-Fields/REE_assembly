@@ -1,0 +1,91 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_485e_sd033b_trained_ofc_head_behavioural",
+  "run_id": "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T13:52:23.158115Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-033b": "non_contributory",
+    "MECH-263": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_floor",
+        "description": "ARM_1 trained-head OFC bias cross-candidate RANGE (max-min over the real candidate bank) at the high-threat positive-control state clears BIAS_RANGE_FLOOR -- the selection-distribution DVs (devaluation shift, task-role separation) can be non-zero only if the bias carries cross-candidate range. RANGE not magnitude (a clamp-saturated head has large |bias| but ~0 range).",
+        "measured": 0.003497295081615448,
+        "threshold": 0.001,
+        "control": "trained-arm bias over a real candidate bank at the high-threat state",
+        "met": true
+      },
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "description": "ARM_1 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the head genuinely trained (485d C2 statistic).",
+        "measured": 0.25365981459617615,
+        "threshold": 0.001,
+        "control": "trainable-arm head trained on frozen-encoder state_code in P1",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_frozen_head_silent",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
