@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-11T05:50:52Z`
+Generated: `2026-06-11T07:02:12Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -13,9 +13,9 @@ UI: http://localhost:8000/workset
 - Pending review: **2**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-514m, V3-EXQ-603o, V3-EXQ-655, V3-EXQ-666
+- Live EXQs: V3-EXQ-514m, V3-EXQ-603o, V3-EXQ-655, V3-EXQ-660b, V3-EXQ-666
 
-- Auto-absorbed retests (queued, suppressed from workset): INV-074 -> V3-EXQ-655, MECH-229 -> V3-EXQ-514m, SD-059 -> V3-EXQ-603o
+- Auto-absorbed retests (queued, suppressed from workset): INV-074 -> V3-EXQ-655, MECH-229 -> V3-EXQ-514m, MECH-341 -> V3-EXQ-660b, Q-043 -> V3-EXQ-667, SD-059 -> V3-EXQ-603o
 
 ## Work packages
 
@@ -1021,7 +1021,7 @@ Instructions:
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30
 - **Gap(s):** arc_062_rule_apprehension:GAP-B
 - **Owner EXQ:** V3-EXQ-654b TERMINAL FAIL 2026-06-10T20:05Z (non_contributory, substrate_not_ready_requeue; reviewed /governance 2026-06-10) -- the longer-maturation (P0+P1 100->240 ep) re-run of 654a still did NOT clear the C1c crf_frac_active>=0.30 floor (measured 0.130), so the committed-class falsifier DV never scored; supersedes V3-EXQ-654a. PREDECESSOR V3-EXQ-654a QUEUED 2026-06-09 (priority 250, machine any; supersedes V3-EXQ-654) -- the gated re-run on the landed cross-episode rule-persistence amend (ree-v3 main 9797e84). Single-variable ARM_OFF vs ARM_ON with crf_persist_rules_across_episode_reset=True (matured pool clears the C1c 0.30 floor), a frozen-encoder P1 trained-bias-head REINFORCE phase (GAP-D), and a propagation non-vacuity precondition (ARM_ON bias != ARM_OFF, else substrate_not_ready_requeue); committed-class entropy PRIMARY DV. PREDECESSOR V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification.
-- **Why now:** BOTH routed steps are now DONE (see governance_2026_06_09_amend_and_requeue): the crf_persist amend LANDED (ree-v3 9797e84) and V3-EXQ-654a is QUEUED (priority 250, machine any). RESUME when V3-EXQ-654a RUNS + lands a manifest + is reviewed
+- **Why now:** GATED ON V3-EXQ-666 (CRF-readiness diagnostic) PASS. The 654b autopsy-routed substrate enrichment LANDED 2026-06-11 (ARC-063 CandidateRuleField mature-pool amend, ree-v3 7e2e0ef; see governance_2026_06_11) -- the two opt-in flags crf_mature
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -1033,7 +1033,7 @@ Status: in_progress
 Gap(s): arc_062_rule_apprehension:GAP-B
 Owner EXQ: V3-EXQ-654b TERMINAL FAIL 2026-06-10T20:05Z (non_contributory, substrate_not_ready_requeue; reviewed /governance 2026-06-10) -- the longer-maturation (P0+P1 100->240 ep) re-run of 654a still did NOT clear the C1c crf_frac_active>=0.30 floor (measured 0.130), so the committed-class falsifier DV never scored; supersedes V3-EXQ-654a. PREDECESSOR V3-EXQ-654a QUEUED 2026-06-09 (priority 250, machine any; supersedes V3-EXQ-654) -- the gated re-run on the landed cross-episode rule-persistence amend (ree-v3 main 9797e84). Single-variable ARM_OFF vs ARM_ON with crf_persist_rules_across_episode_reset=True (matured pool clears the C1c 0.30 floor), a frozen-encoder P1 trained-bias-head REINFORCE phase (GAP-D), and a propagation non-vacuity precondition (ARM_ON bias != ARM_OFF, else substrate_not_ready_requeue); committed-class entropy PRIMARY DV. PREDECESSOR V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification.
 Claims: MECH-309, ARC-062
-Why now: BOTH routed steps are now DONE (see governance_2026_06_09_amend_and_requeue): the crf_persist amend LANDED (ree-v3 9797e84) and V3-EXQ-654a is QUEUED (priority 250, machine any). RESUME when V3-EXQ-654a RUNS + lands a manifest + is reviewed
+Why now: GATED ON V3-EXQ-666 (CRF-readiness diagnostic) PASS. The 654b autopsy-routed substrate enrichment LANDED 2026-06-11 (ARC-063 CandidateRuleField mature-pool amend, ree-v3 7e2e0ef; see governance_2026_06_11) -- the two opt-in flags crf_mature
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -1047,7 +1047,7 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 30
 - **Gap(s):** behavioral_diversity_isolation:GAP-B
-- **Owner EXQ:** V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e). Governance folded into claims.yaml 2026-06-10 (MECH-341 supports, v3_pending HELD). Predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS
+- **Owner EXQ:** V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS
 - **Why now:** PARTIAL 2026-06-10. V3-EXQ-660 has LANDED PASS/supports (2026-06-10T04:41Z) -- do NOT re-queue it; its C1+C2 branch fired and governance is folded into claims.yaml. The within-class-representative sub-axis is now load-bearing-CONFIRMED but 
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -1058,7 +1058,7 @@ Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-
 Lane: experiment | Skill: /queue-experiment
 Status: partial
 Gap(s): behavioral_diversity_isolation:GAP-B
-Owner EXQ: V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e). Governance folded into claims.yaml 2026-06-10 (MECH-341 supports, v3_pending HELD). Predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling; GAP-A blocker moved upstream); V3-EXQ-649 GAP-A readiness PASS
+Owner EXQ: V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS
 Claims: MECH-341, ARC-062, ARC-065
 Why now: PARTIAL 2026-06-10. V3-EXQ-660 has LANDED PASS/supports (2026-06-10T04:41Z) -- do NOT re-queue it; its C1+C2 branch fired and governance is folded into claims.yaml. The within-class-representative sub-axis is now load-bearing-CONFIRMED but 
 
@@ -4874,7 +4874,7 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 58
 - **Gap(s):** arm_reuse_fingerprint:P1-auto
-- **Owner EXQ:** V3-EXQ-610g (or 643c) -- pending; 610g gated on V3-EXQ-656
+- **Owner EXQ:** V3-EXQ-610g (or 643c) -- pending; 610g gated on the 610f redesign successor, the IN-FLIGHT V3-EXQ-655 (NOT 656 -- see correction below)
 - **Why now:** Plan gap blocked on arm_reuse_fingerprint.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -4885,7 +4885,7 @@ Title: First AUTOMATED index-HIT in the wild -- next genuinely-needed iteration 
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Gap(s): arm_reuse_fingerprint:P1-auto
-Owner EXQ: V3-EXQ-610g (or 643c) -- pending; 610g gated on V3-EXQ-656
+Owner EXQ: V3-EXQ-610g (or 643c) -- pending; 610g gated on the 610f redesign successor, the IN-FLIGHT V3-EXQ-655 (NOT 656 -- see correction below)
 Why now: Plan gap blocked on arm_reuse_fingerprint.
 
 Instructions:

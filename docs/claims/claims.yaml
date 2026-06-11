@@ -35449,8 +35449,22 @@
     on). phase-label-follows-dependency: a claim whose enabling substrate is V4
     is v4. v3_pending stays true (V4 pattern); epistemic_category stays
     substrate_conditional; status unchanged (candidate).
+  governance_2026_06_11: >
+    implementation_phase reassigned v4 -> v3 (user decision, governance cycle
+    2026-06-11 #2), reversing governance_2026_06_10b. Rationale: MECH-333's
+    enabling substrate is now treated as V3-tractable via its active V3
+    dependencies -- ARC-065 (diversity stack, 569/591/660 lineage) and ARC-074
+    (Phase-0 reward-free babbling epoch, the InfantCurriculumScheduler Phase
+    0->1 curriculum line being worked under 591c/667). The open-phase
+    critical-period gating can ride on the V3 curriculum/diversity substrate
+    rather than waiting for the full V4 ACh/PV/BDNF neuromodulator substrate.
+    v3_pending stays true and epistemic_category stays substrate_conditional
+    (open-phase F-gradient-attenuation gating still planned-but-unbuilt, so the
+    claim remains held + IGW-suppressed until that substrate lands); status
+    unchanged (candidate). Recommendation reverts held_v4_by_architectural_
+    commitment -> hold_pending_v3_substrate.
   pending_retest_after_substrate: true
-  implementation_phase: v4
+  implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
   registered_utc: "2026-05-17"

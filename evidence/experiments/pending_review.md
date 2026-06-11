@@ -1,14 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-11T05:55:44Z`  
-Last review: `2026-06-11T05:52:03Z`  
+Generated: `2026-06-11T07:09:40Z`  
+Last review: `2026-06-11T07:05:00Z`  
 Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_660a_mech341_within_class_pool_size_graded_confirmation_20260611T032653Z_v3` | 2026-06-11T03:26 | MECH-341 | — |
+| `v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3` | 2026-06-11T06:38 | (no claim tags) | — |
 
 ---
 

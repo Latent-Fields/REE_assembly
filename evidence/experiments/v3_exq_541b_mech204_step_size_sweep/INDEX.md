@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_541b_mech204_step_size_sweep
 
-Generated: `2026-06-11T05:50:47.923498Z`
+Generated: `2026-06-11T07:08:09.480272Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
