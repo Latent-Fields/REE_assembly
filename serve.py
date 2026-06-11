@@ -1647,6 +1647,9 @@ CLOSURE_KNOWN_PLANS = [
     "language_affect_adaptor_v6_plan.md",
     "abstract_relational_reasoning_v6_plan.md",
     "language_trust_deception_institutions_v6_plan.md",
+    # Deferred-by-commitment parking lot (generation: deferred; excluded from
+    # every generation %; nodes carry reversal triggers)
+    "deferred_by_commitment_plan.md",
 ]
 
 CLOSURE_STATUS_WEIGHTS = {

@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-11T00:04:03Z
+Generated: 2026-06-11T00:18:43Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -144,6 +144,7 @@ _None -- every plan doc is mapped._
 
 Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V4/V5 have no experiments yet, so their nodes carry no `owner_exq` and do not count toward the V3 closure percentage. Each node's gate is the V3-era prerequisite that must land first.
 
+- **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **V4**: 8.0% across 85 non-deferred nodes in 13 plan(s).
 - **V5**: 8.5% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 7.6% across 29 non-deferred nodes in 5 plan(s).
@@ -178,6 +179,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-1` | Harm-to-agency signal: goal-interference over trajectory pairs (MECH-1 | blocked | load-bearing | MECH-163 multi-step hippocampal planning PASS (the V4/social entry gate; stays v3 -- it is | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-1` | z_self promoted from body-state latent to a stateful self-model (DR-13 | open | load-bearing | V3 BEGINNING present (no gate): SD-005 z_self/z_world split is implemented -- z_self exist | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-2` | Anti-collapse MAP consolidation (ARC-088) -- audit distinctness across | in_progress | high | ARC-088 is implementation_phase v3 (a unifying MAP over already-owned V3 affect machinery: | 2026-06-10 |
+| deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-1` | Temporal Coherence Loop substrate (ARC-053/054/055 phase-coherent V(t) | deferred | high | REVERSAL TRIGGER 1: a V3 working-model failure mode the synaptic forms demonstrably cannot | 2026-06-11 |
+| deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-2` | Oscillatory multiplexing + ephaptic coherence mechanisms (MECH-225/226 | deferred | high | REVERSAL TRIGGER (concrete, from the boundary doc): if the MECH-271 routing audit cannot d | 2026-06-11 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-2` | Explicit active-separation operation (separate != failed-integration)  | blocked | high | MECH-147 DG pattern separation must land (V4): non-redundant sparse encoding of similar z_ | 2026-06-10 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-2` | Agent-policy novelty typing (MECH-130): world-state novelty != agent-p | blocked | high | MECH-111 curiosity/novelty signal is the V3 mechanism being TYPED -- it currently rewards  | 2026-06-10 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-1` | V3 reduced form -- MECH-384 self-narration trace surface (the seed the | open | medium | MECH-384 is the ONLY V3-compatible instantiation: implementation_phase v3, epistemic_categ | 2026-06-10 |
@@ -219,6 +222,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-7` | Layer-specificity adjudication (one global scalar vs per-substrate gat | open | high | Open question: does plasticity-gain modulate identically across encoder / residue / hippoc | 2026-06-10 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-3` | Consent / incidental-vs-constitutive qualifier on harm-to-agency (the  | blocked | high | RHM-1 goal-interference signal exists (the thing being qualified) | 2026-06-10 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-7` | Biology grounding for relational/compositional reasoning + analogy (li | deferred | medium | Per project rule feedback_biology_before_formal_definitions: compositional generalisation, | 2026-06-10 |
+| deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-3` | Explicit signed competitive multi-field coupling (ARC-084) | deferred | medium | REVERSAL TRIGGER: a V4 multi-field signed-edge layer exists, making the cooperative-only v | 2026-06-11 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-8` | Biology grounding completion (Vygotsky private speech, DMN, label-as-c | deferred | medium | Current state: architectural-analogy anchors only (Vygotsky private speech; Lupyan/Swingle | 2026-06-10 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-3` | Drive-arbitration biology grounding (multidrive competition / drive hi | open | medium | Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEF | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-8` | Biology grounding: guilt-as-reparative-motivation vs shame-as-withdraw | open | medium | L1 guilt-vs-shame (guilt-as-reparative-motivation vs shame-as-withdrawal/concealment) -- t | 2026-06-10 |
@@ -287,6 +291,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-6` | ACh permissive write-gate on the surprise buffer (MECH-207) | blocked | medium | MECH-205 surprise buffer + MECH-206 CA1 PE comparator present (sleep_substrate stack) | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-5` | PILLAR C -- PV-interneuron inhibitory-maturation window-closure clock | deferred | medium | Biology-faithful refinement of MECH-333 closure / MECH-334: a time-since-onset accumulator | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-4` | E2 prediction error modulates E3 confidence (DR-12): PE-magnitude sign | open | medium | V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-w | 2026-06-10 |
+| deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-4` | Attention = distributed precision-selection (a MAP, not a substrate -- | deferred | low | REVERSAL TRIGGER: a SPECIFIC attention-bottleneck failure that the existing distributed pr | 2026-06-11 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-6` | PILLAR D -- BDNF-analog trophic window-duration knob (lowest priority) | deferred | low | The duration knob sits ON TOP of the gain knob (PLW-3) and the closure clock (PLW-5); both | 2026-06-10 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-6` | Symbolic reasoning cannot override embodied harm sensing (the V6 insta | blocked | load-bearing | ARR-2 + ARR-4 in place (a reasoning capacity powerful enough to need this guard -- composi | 2026-06-10 |
 | v5 | loveability_ethical_agency_v5_plan.md | `loveability_ethical_agency_v5:LOVE-6` | Ethical agency as care-biased choice among live alternatives (kindness | blocked | load-bearing | LOVE-2 + LOVE-3 + LOVE-4 + LOVE-5 all demonstrably stable | 2026-06-10 |

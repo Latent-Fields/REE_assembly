@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-10.7 -->
+<!-- CLOSURE_VERSION: 2026-06-11.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -478,6 +478,8 @@
     <button type="button" data-gen="v3" class="active">V3</button>
     <button type="button" data-gen="v4">V4</button>
     <button type="button" data-gen="v5">V5</button>
+    <button type="button" data-gen="v6">V6</button>
+    <button type="button" data-gen="deferred" title="Deferred-by-commitment parking lot: substrate deliberately not built, each with its reversal trigger.">deferred</button>
   </span>
   <span class="gen" id="gen"></span>
   <span class="links">
@@ -667,14 +669,16 @@ function applyGenView() {
 function renderAll() {
   const titleEl = document.getElementById('page-title');
   if (titleEl) {
-    titleEl.textContent = isV3View()
-      ? 'REE V3 Closure Map'
+    titleEl.textContent =
+      isV3View() ? 'REE V3 Closure Map'
+      : GEN_VIEW === 'deferred' ? 'REE Deferred-by-Commitment (parked)'
       : 'REE ' + GEN_VIEW.toUpperCase() + ' Roadmap';
   }
   const ovTitle = document.querySelector('.overall .title');
   if (ovTitle) {
-    ovTitle.textContent = isV3View()
-      ? 'Overall ree-v3 closure'
+    ovTitle.textContent =
+      isV3View() ? 'Overall ree-v3 closure'
+      : GEN_VIEW === 'deferred' ? 'Deferred-by-commitment (parking lot; excluded from every %)'
       : GEN_VIEW.toUpperCase() + ' roadmap progress (excluded from v3 %)';
   }
   document.getElementById('gen').textContent =
