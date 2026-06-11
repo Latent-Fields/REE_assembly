@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-11T08:14:45Z",
+  "last_tick_utc": "2026-06-11T08:24:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-660b",
   "current_exq_started_utc": "2026-06-11T06:30:34.962450+00:00",
@@ -12,15 +12,13 @@
     "run_label": "Seed 43 / legacy_argmin_pool64",
     "runs_done": 13,
     "runs_total": 24,
-    "episodes_done": 10,
+    "episodes_done": 30,
     "episodes_total": 90,
-    "overall_pct": 54.6
+    "overall_pct": 55.6
   },
-  "seconds_elapsed": 6249,
-  "seconds_remaining": 2916,
+  "seconds_elapsed": 6855,
+  "seconds_remaining": 2857,
   "recent_lines": [
-    "[train] arm=ARM_SAMPLED_K16 seed=44 phase=P0 ep 10/90",
-    "[train] arm=ARM_SAMPLED_K16 seed=44 phase=P0 ep 20/90",
     "[train] arm=ARM_SAMPLED_K16 seed=44 phase=P0 ep 30/90",
     "[train] arm=ARM_SAMPLED_K16 seed=44 phase=P1 ep 40/90",
     "[train] arm=ARM_SAMPLED_K16 seed=44 phase=P1 ep 50/90",
@@ -118,7 +116,9 @@
     "arm=ARM_LEGACY_K64 seed=42 K=64 realized_pool_mean=64.0 mean_distinct_reps=14.144437 n_windows=28 windowed_rep_cond_entropy=0.867861 windowed_efficiency=0.142457 phase_aggregate_entropy=3.848872",
     "verdict: PASS",
     "Seed 43 Condition legacy_argmin_pool64",
-    "[train] arm=ARM_LEGACY_K64 seed=43 phase=P0 ep 10/90"
+    "[train] arm=ARM_LEGACY_K64 seed=43 phase=P0 ep 10/90",
+    "[train] arm=ARM_LEGACY_K64 seed=43 phase=P0 ep 20/90",
+    "[train] arm=ARM_LEGACY_K64 seed=43 phase=P0 ep 30/90"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
