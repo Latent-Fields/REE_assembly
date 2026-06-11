@@ -4863,9 +4863,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "deferred_substrate_not_ready",
       "suggested_experiment_type": "claim_probe_mech_183",
       "target_repo": "ree-v3",
+      "blocking_on": "V5 social substrate: other-agent model (ARC-010, MECH-031, MECH-032), multi-agent environment, attribution stream infrastructure",
+      "earliest_feasible_generation": "v5",
+      "deferral_date": "2026-06-11",
+      "deferral_reason": "MECH-183 z_beta leakage mechanism requires other-agent model and attribution stream not present in V3. No V3-compatible proxy can meaningfully test the core claim without risking misleading evidence.",
+      "assessment_doc": "evidence/planning/exp_0137_mech_183_feasibility_assessment.md",
       "why_now": [
         "insufficient_experimental_replication",
         "lit_only_above_cap",
