@@ -23,9 +23,9 @@
     "MECH-341"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-341": "weakens"
+    "MECH-341": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,9 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-06-11 failure autopsy (failure_autopsy_V3-EXQ-660b_2026-06-11): V3-EXQ-660b (within-class-representative-diversity GRADED confirmation; windowed-readout redesign of 660a, supersedes 660a) FAILed the load-bearing C_GRADED 0/3 seeds (per-seed sampled-legacy windowed deltas noise around zero, non-monotone, mostly negative) and self-routed weakens, but is reclassified non_contributory (measurement_test_design_defect). Two compounding reasons the weakens does not hold: (1) the readout-sensitivity readiness gate cleared only MARGINALLY (sampled windowed-H range across K = 0.0568 vs 0.05 floor) and NON-MONOTONICALLY (windowed-H by K = 0.987/1.044/1.020/1.037 -- the positive control does NOT cleanly track K; the range is one K=32 excursion), so 'readout demonstrably sensitive to K' is overstated and a flat sampled-legacy lift is not a clean negative (V3-EXQ-642 / 660a self-route-is-a-hypothesis pattern, one layer deeper); (2) graded-in-pool-size over-specifies MECH-341, which asserts diversity PRESERVATION (a binary / preserve-or-collapse property), not a marginal lift that scales monotonically with candidate-pool size K. The windowed readout DID fix the 660a phase-aggregate saturation (carried phase-aggregate contrast still flat ~4.6-4.9), so 660b is contributory as instrumentation/lever-character learning -- it shows the within-class benefit does NOT scale with K (3rd convergent iteration: 660 inert temperature -> 660a saturated -> 660b marginal) -- but it adds nothing to MECH-341's preservation claim in either direction. ROUTING: RETIRE the graded-in-pool-size falsifier for MECH-341 (no 660c); the within-class lever is recorded as a BINARY load-bearing preserver, with V3-EXQ-660 (PASS/supports, within-class lift 4.862 vs legacy 4.781) the claim-faithful established result. MECH-341 NOT weakened. Its in-stack preserver role (614a PASS_C2_C3_only, 569d, 660) stands; the within-class GRADED sub-axis is UNESTABLISHED and removed as a gate -- narrow_supports_flag set. V3-EXQ-660 stays standing (660b supersedes 660a, not 660). behavioral_diversity_isolation:GAP-B owner_exq re-points 660b -> 660; graded ratification removed-as-gate. No substrate_queue entry (availability rose correctly; not a substrate gap). MECH-341 stays candidate / v3_pending / pending_retest_after_substrate.",
+  "epistemic_category": "measurement_test_design_defect",
+  "narrow_supports_flag": true,
+  "pending_retest_after_substrate": true
 }

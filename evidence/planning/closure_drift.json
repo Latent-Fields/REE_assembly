@@ -1,10 +1,21 @@
 {
-  "generated_at": "2026-06-11T15:20:09Z",
+  "generated_at": "2026-06-11T20:31:51Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 0,
+    "stale_since": 1,
     "suppressed": 10
   },
   "drifted": [],
-  "stale_since": []
+  "stale_since": [
+    {
+      "node_id": "behavioral_diversity_isolation:GAP-B",
+      "plan": "behavioral_diversity_isolation_plan.md",
+      "node_status": "partial",
+      "owner_exq": "V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z -- THE STANDING GAP-B RESULT for MECH-341 (within-class-representative-diversity lift 4.862 vs legacy 4.781 nats; the binary within-class preserver is established). Owner re-pointed 660b -> 660 at governance cycle #5 2026-06-11 per confirmed failure_autopsy_V3-EXQ-660b: the graded-in-pool-size ratification the 660a/660b lineage was chasing is REMOVED AS A GATE (graded-in-K over-specifies a PRESERVATION claim), not outstanding -- no 660c. RETIRED graded-falsifier lineage: V3-EXQ-660b TERMINAL FAIL/weakens 2026-06-11T13:43Z (windowed-readout redesign of 660a, supersedes 660a; both readiness gates passed yet C_GRADED 0/3 seeds, sensitivity gate cleared only marginally 0.0568 + non-monotonically) was reclassified non_contributory (measurement_test_design_defect) at cycle #5, NOT a weakens; V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS",
+      "node_last_updated": "2026-06-11",
+      "reasons": [
+        "owner_exq pins V3-EXQ-660(base) but later same-lineage sibling V3-EXQ-660b has terminal evidence (manifest `v3_exq_660b_mech341_within_class_pool_size_graded_windowed_readout_20260611T134330Z_v3.json`)"
+      ]
+    }
+  ]
 }

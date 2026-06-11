@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_030b_sd003_full_attribution_v2
 
-Generated: `2026-06-11T15:16:33.124892Z`
+Generated: `2026-06-11T20:29:42.067963Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

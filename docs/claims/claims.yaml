@@ -37408,6 +37408,33 @@
     the within-class default; v3_pending gate retained pending governance ratification
     + a temperature-graded confirmation. No status change (stays candidate); no
     promotion. 660 supersedes 614e (which was already non_contributory).
+    [2026-06-11 governance cycle #5: V3-EXQ-660b non_contributory, graded-in-K
+    falsifier RETIRED, NOT weakened]: Applied confirmed failure_autopsy_V3-EXQ-660b_2026-06-11.
+    V3-EXQ-660b (windowed-readout redesign of 660a, supersedes 660a) FAILed the load-bearing
+    C_GRADED 0/3 seeds and self-routed weakens, but is reclassified non_contributory
+    (measurement_test_design_defect) on both the flat and nested run-pack manifests
+    + narrow_supports_flag + scoring-excluded. Two compounding reasons the weakens does not
+    hold: (1) the readout-sensitivity readiness gate cleared only MARGINALLY (sampled
+    windowed-H range across K = 0.0568 vs 0.05 floor) and NON-MONOTONICALLY (windowed-H by K
+    = 0.987/1.044/1.020/1.037 -- the positive control does not cleanly track K), so a flat
+    sampled-legacy lift is not a clean negative; (2) graded-in-pool-size OVER-SPECIFIES
+    MECH-341, which asserts diversity PRESERVATION (binary preserve-or-collapse), not a
+    K-graded dose-response. Three convergent iterations (660 inert temperature -> 660a
+    saturated -> 660b marginal/non-monotone) RETIRE the graded-in-K falsifier: no 660c.
+    The within-class lever is recorded as a BINARY load-bearing preserver, with V3-EXQ-660
+    (PASS/supports, within-class lift 4.862 vs legacy 4.781) the claim-faithful established
+    result that stands. No substrate_queue entry (input availability rose correctly,
+    4.99->33.84 across K; not a substrate gap). No demotion; MECH-341 stays candidate /
+    v3_pending / pending_retest_after_substrate. ALSO CORRECTED a latent scoring bug: the
+    NESTED run-pack manifest for V3-EXQ-660a still read weakens (an earlier cycle applied
+    the 660a non_contributory reclassification to the flat manifest only; the indexer scores
+    from the nested runs/**/manifest.json), so 660a was still counted as a genuine weakens.
+    Mirrored the already-decided 660a reclassification onto its nested manifest. Net: MECH-341
+    genuine_exp weakens 2 -> 0, supports 3 (569d/614a/660). behavioral_diversity_isolation:GAP-B
+    owner_exq re-pointed 660b -> 660 (the standing PASS); graded ratification removed as a gate,
+    not outstanding. narrow_supports_flag: MECH-341's supports remain stack-only / single-pathway
+    -- the within-class GRADED sub-axis is unestablished and retired; non_contributory is NOT
+    graded-axis clearance.
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-11T15:10:00Z",
+  "last_review_utc": "2026-06-11T20:16:35Z",
   "discussed_experiment_dirs": [
     "v3_exq_666_arc063_crf_mature_pool_readiness",
     "v3_exq_660a_mech341_within_class_pool_size_graded_confirmation",
@@ -629,7 +629,8 @@
     "v3_exq_603n_scaffolded_sd054_full_curriculum_readiness_20260610T201427Z_v3",
     "v3_exq_668_mech319_accumulated_ghost_write_arbitration_drift_evidence_v3_20260611T135309Z",
     "v3_exq_514m_sd049_phase2_behavioural_curriculum_built",
-    "v3_exq_485e_sd033b_trained_ofc_head_behavioural"
+    "v3_exq_485e_sd033b_trained_ofc_head_behavioural",
+    "v3_exq_660b_mech341_within_class_pool_size_graded_windowed_readout"
   ],
   "reviewed_run_ids": [
     "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
@@ -2942,7 +2943,8 @@
     "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z_v3",
     "v3_exq_668_mech319_accumulated_ghost_write_arbitration_drift_evidence_v3_20260611T135309Z",
     "v3_exq_514m_sd049_phase2_behavioural_curriculum_built_20260611T131105Z_v3",
-    "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3"
+    "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3",
+    "v3_exq_660b_mech341_within_class_pool_size_graded_windowed_readout_20260611T134330Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4187,6 +4189,10 @@
         "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3"
       ],
       "note": "Governance cycle 2026-06-11T15:04Z #4. Consumed two confirmed failure-autopsy artifacts (514m, 485e) produced earlier today, and flagged a third FAIL (660b) for autopsy. (a) V3-EXQ-514m MECH-229 arm: failure_autopsy_V3-EXQ-514m_2026-06-11 CONFIRMED -> applied. MECH-229 per-claim weakens reclassified non_contributory (measurement_test_design_defect) on flat+nested manifests, stays scoring-excluded (pending_retest_after_substrate_per_claim=[MECH-229]); narrow_supports_flag + failure_autopsy_ref added; C_WL dissoc=0.0 on all 3 seeds is a VACUOUS FAIL (DV reads SD-014 valence channels never written -- config omits valence_liking/tonic_5ht/schema_wanting writers; contact guard does not gate channel-write). claims.yaml MECH-229 quality note prepended + narrow_supports_flag=true; no demotion; substrate_queue action=none. MECH-230 supports unaffected (recorded cycle #3). Retest=V3-EXQ-514n. 514m MARKED REVIEWED. (b) V3-EXQ-485e (SD-033b, MECH-263): failure_autopsy_V3-EXQ-485e_2026-06-11 CONFIRMED -> applied. self-route substrate_not_ready_requeue confirmed -> non_contributory for BOTH claims (NOT weakens), epistemic_category=substrate_ceiling (manifest per-claim), pending_retest_after_substrate=true on both claims.yaml entries + quality notes prepended + failure_autopsy_ref on manifests. Cross-candidate bias RANGE cleared floor on only 1/3 seeds (clamp-saturation 2/3 + candidate-bank z_world collapse ARC-065 GAP-A/SD-056). substrate_queue amend modulatory-bias-selection-authority with 485e failure record (priority 2). Retest=V3-EXQ-485f. 485e MARKED REVIEWED. (c) V3-EXQ-660b (MECH-341 windowed-readout redesign, supersedes 660a) FAIL/weakens: BOTH readiness gates PASSED (availability rises 4.99->33.84; windowed-H range 0.0568>=0.05) and criteria_non_degenerate.C_GRADED=true, so by its pre-registration this is a genuine result, but it is the 3rd readout iteration on the same graded sub-axis and the sensitivity gate cleared only marginally + non-monotonically. USER FLAGGED for /failure-autopsy (adjudicate genuine falsification vs below-resolution/binary-not-graded). LEFT PENDING -- no evidence_direction this cycle, NOT marked reviewed. Promotion/demotion agenda: 0 pending_user. Pending after cycle = 1 (660b, autopsy-owed)."
+    },
+    {
+      "utc": "2026-06-11T20:16:35Z",
+      "note": "Governance cycle 2026-06-11T20:16Z #5. Two pending FAILs walked. (a) V3-EXQ-660b (MECH-341 within-class graded-in-pool-size, windowed-readout redesign, supersedes 660a): applied CONFIRMED failure_autopsy_V3-EXQ-660b_2026-06-11. weakens -> non_contributory (measurement_test_design_defect) on flat+nested manifests + narrow_supports_flag + pending_retest; the readout-sensitivity gate cleared only marginally (windowed-H range 0.0568 vs 0.05) and non-monotonically (positive control does not track K), and graded-in-K over-specifies a PRESERVATION claim. RETIRED the graded-in-K falsifier (no 660c; 3rd convergent iteration 660 inert -> 660a saturated -> 660b marginal). No demotion, substrate action=none. ALSO fixed a latent scoring bug: the NESTED 660a run-pack manifest still read weakens (an earlier cycle reclassified only the FLAT 660a manifest; the indexer scores from nested runs/**/manifest.json), so 660a was still counted as a genuine weakens -- mirrored the already-decided non_contributory onto the nested manifest. Net MECH-341 genuine_exp weakens 2 -> 0, supports 3; exp_conf 0.794 -> 0.871 (still v3_pending -> promotion HELD). behavioral_diversity_isolation:GAP-B owner_exq re-pointed 660b -> 660. 660b MARKED REVIEWED. (b) V3-EXQ-666a (ARC-063 CRF-availability-maintenance readiness diagnostic, claim_ids=[], already non_contributory): self-routes /failure-autopsy because ARM_1 without maintenance ALSO cleared the maintained-pool gate (criteria_non_degenerate.maintained_pool_gate_discriminates_vs_arm1_no_maintenance=false) -> the readiness PASS is unattributable to the activity-silent maintenance. USER FLAGGED for /failure-autopsy, LEFT PENDING, NOT marked discussed, ARC-063 gate NOT cleared on its basis. Promotion/demotion agenda: 0 actionable pending_user (all recs applied). Closure drift: 0 drifted / 0 stale. Pending after cycle = 1 (666a, autopsy-owed)."
     }
   ]
 }

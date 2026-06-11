@@ -23,9 +23,9 @@
     "MECH-341"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-341": "weakens"
+    "MECH-341": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,9 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "2026-06-11 failure autopsy (failure_autopsy_V3-EXQ-660a_2026-06-11): V3-EXQ-660a (within-class-representative-diversity GRADED confirmation; CEM pool-size sweep K=16->128) FAILed C_GRADED (1/3 seeds graded) and self-routed weakens, but is reclassified non_contributory (measurement_test_design_defect). Root cause: the primary readout within_class_rep_cond_entropy = H(rep_signature | committed_class) is a PHASE-AGGREGATE over every P1 tick that SATURATES (absolute sampled entropy flat ~4.6-4.9 nats while per-tick within-class availability rose 5->34; C_ABS failed) and is CONFOUNDED BY TICK COUNT (seed 43 ~10k ticks -> ~6.3 nats in BOTH legacy and sampled arms vs seeds 42/44 ~1-2k ticks -> ~3.7-4.6). The graded axis (pool size) provably moves the INPUT (non-vacuity met) but the readout cannot register a per-decision diversity benefit, so the run cannot adjudicate the graded sub-claim. MECH-341 NOT weakened. Its in-stack preserver role (614a PASS_C2_C3_only, 569d) stands; the within-class GRADED sub-axis remains UNESTABLISHED (660 readout-degenerate, 660a non-contributory) -- narrow_supports_flag set. V3-EXQ-660 stays standing (660a does not supersede it). Route: /queue-experiment redesign with a per-decision/windowed within-class diversity readout with headroom (windowed H(rep|class), or selected-vs-available efficiency in [0,1]) plus a readout-sensitivity gate; same-question readout fix = alphabetic successor (660b). MECH-341 stays candidate / v3_pending / pending_retest_after_substrate.",
+  "epistemic_category": "measurement_test_design_defect",
+  "narrow_supports_flag": true,
+  "pending_retest_after_substrate": true
 }

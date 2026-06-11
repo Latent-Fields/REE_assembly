@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_543d_arc062_mech260_factorial_falsifier
 
-Generated: `2026-06-11T15:16:33.124892Z`
+Generated: `2026-06-11T20:29:42.067963Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

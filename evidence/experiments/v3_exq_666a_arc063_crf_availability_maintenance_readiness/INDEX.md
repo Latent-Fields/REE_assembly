@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_666a_arc063_crf_availability_maintenance_readiness
 
-Generated: `2026-06-11T16:54:56.317392Z`
+Generated: `2026-06-11T20:29:42.067963Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
