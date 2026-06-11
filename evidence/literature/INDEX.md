@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-11T07:32:13.538223Z`
+Generated: `2026-06-11T09:11:41.182701Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -119,6 +119,8 @@ Generated: `2026-06-11T07:32:13.538223Z`
 | `targeted_review_connectome_mech_282` | [`2026-06-10_mech_282_pbn_extended_amygdala_jaramillo2021`](targeted_review_connectome_mech_282/entries/2026-06-10_mech_282_pbn_extended_amygdala_jaramillo2021/record.json) | 3 | [`summary`](targeted_review_connectome_mech_282/entries/2026-06-10_mech_282_pbn_extended_amygdala_jaramillo2021/summary.md) |
 | `targeted_review_connectome_mech_286` | [`2026-06-10_mech_286_orexin_feeding_integration_saper2006`](targeted_review_connectome_mech_286/entries/2026-06-10_mech_286_orexin_feeding_integration_saper2006/record.json) | 3 | [`summary`](targeted_review_connectome_mech_286/entries/2026-06-10_mech_286_orexin_feeding_integration_saper2006/summary.md) |
 | `targeted_review_connectome_mech_303` | [`2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023`](targeted_review_connectome_mech_303/entries/2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023/record.json) | 4 | [`summary`](targeted_review_connectome_mech_303/entries/2026-05-04_mech_303_inhibitory_learning_substrates_cassaday2023/summary.md) |
+| `targeted_review_connectome_mech_306` | [`2026-06-11_mech_306_sustained_hunger_signal_chen2016`](targeted_review_connectome_mech_306/entries/2026-06-11_mech_306_sustained_hunger_signal_chen2016/record.json) | 4 | [`summary`](targeted_review_connectome_mech_306/entries/2026-06-11_mech_306_sustained_hunger_signal_chen2016/summary.md) |
+| `targeted_review_connectome_mech_319` | [`2026-06-11_mech_319_swr_hpc_pfc_signature_tang2018`](targeted_review_connectome_mech_319/entries/2026-06-11_mech_319_swr_hpc_pfc_signature_tang2018/record.json) | 4 | [`summary`](targeted_review_connectome_mech_319/entries/2026-06-11_mech_319_swr_hpc_pfc_signature_tang2018/summary.md) |
 | `targeted_review_connectome_mech_320` | [`2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/record.json) | 3 | [`summary`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/summary.md) |
 | `targeted_review_connectome_mech_333` | [`2026-06-07_mech_333_vgat_necessary_plasticity_priya2019`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/record.json) | 3 | [`summary`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/summary.md) |
 | `targeted_review_connectome_mech_341` | [`2026-06-07_mech_341_lman_variability_injection_olveczky2011`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/record.json) | 3 | [`summary`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/summary.md) |

@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_306",
+  "entry_id": "2026-06-11_mech_306_fast_slow_agrp_components_su2017",
+  "timestamp_utc": "2026-06-11T09:05:39Z",
+  "claim_ids_tested": [
+    "MECH-306"
+  ],
+  "source": {
+    "title": "Nutritive, Post-ingestive Signals Are the Primary Regulators of AgRP Neuron Activity.",
+    "authors": [
+      "Zhenwei Su",
+      "Amber L Alhadeff",
+      "J Nicholas Betley"
+    ],
+    "year": 2017,
+    "venue": "Cell Reports 21(10):2724-2736",
+    "doi": "10.1016/j.celrep.2017.11.036",
+    "url": "https://doi.org/10.1016/j.celrep.2017.11.036"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Directly establishes the two-timescale decomposition MECH-306 leans on: a rapid, transient sensory-driven inhibition of AgRP at food cues PLUS a slower, sustained, calorie-proportional inhibition driven by post-ingestive nutrients. The existence of a separable slow/sustained component is exactly the biological substrate that makes 'slow-trace the drive' a principled choice rather than an arbitrary fix. High-quality photometry + gut-signal manipulations; discounted because the paper frames these as inhibitory components of satiation, so the mapping to a positive sustained DRIVE requires sign-inversion reasoning.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The sustained component the paper identifies is a calorie-dependent INHIBITION (satiation), the mirror image of sustained hunger drive; reading it as evidence for a sustained drive trace requires assuming the hunger axis is the negative of the satiation axis on the same slow timescale, which the paper does not test.",
+    "The rapid sensory inhibition is shown to be trainable in a single trial by nutritive value -- meaning the fast component is itself plastic; a REE drive model with a fixed fast-collapse term would mis-model the learned anticipatory inhibition."
+  ],
+  "tags": [
+    "mech-306",
+    "agrp",
+    "two_timescale",
+    "slow_sustained_signal",
+    "satiation",
+    "post_ingestive",
+    "calcium_imaging"
+  ],
+  "mapping": {
+    "source_claim_statement": "AgRP neuron activity is regulated by two distinct components: a rapid but transient sensory-driven signal at food cues, and a slower, sustained, calorie-proportional signal driven by post-ingestive nutrients; nutrients are necessary and sufficient for the sustained reductions, and the nutritive value of food trains the sensory system in a single trial to drive anticipatory inhibition.",
+    "ree_translation": "MECH-306 requires that the drive signal feeding effective_benefit be carried on a SLOW timescale, because the fast component collapses at contact. Su et al. demonstrate that the hunger circuit genuinely operates on two separable timescales -- a fast transient and a slow sustained one -- which licenses REE's separation of an instantaneous drive_level from a slow-traced (EMA / floored) drive used for seeding.",
+    "mapping_caveat": "The slow component characterised here is satiation (sustained inhibition), not sustained hunger. The transfer assumes the drive axis carries an analogous slow component of opposite sign. The paper measures activity dynamics, not a downstream seeding/goal-selection variable, so the link to z_goal seeding is inferential.",
+    "source_context": "Mice; in vivo fiber-photometry calcium imaging of arcuate AgRP neurons with gut-derived satiation-signal administration and feeding manipulations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Cell Reports, Betley lab, rigorous photometry + causal gut-signal work. Mapping fidelity moderate-high for the two-timescale architecture but trimmed by the satiation-vs-drive sign issue. Transfer risk standard rodent->REE plus the inferential step to a seeding variable."
+  }
+}

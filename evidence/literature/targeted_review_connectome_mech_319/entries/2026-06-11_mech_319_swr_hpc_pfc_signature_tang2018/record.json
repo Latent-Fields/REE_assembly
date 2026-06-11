@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_319",
+  "entry_id": "2026-06-11_mech_319_swr_hpc_pfc_signature_tang2018",
+  "timestamp_utc": "2026-06-11T09:05:39Z",
+  "claim_ids_tested": [
+    "MECH-319"
+  ],
+  "source": {
+    "title": "Sharp-wave ripples as a signature of hippocampal-prefrontal reactivation for memory during sleep and waking states.",
+    "authors": [
+      "Wenbo Tang",
+      "Shantanu P Jadhav"
+    ],
+    "year": 2018,
+    "venue": "Neurobiol Learn Mem 160:11-20",
+    "doi": "10.1016/j.nlm.2018.01.002",
+    "url": "https://doi.org/10.1016/j.nlm.2018.01.002"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "A current review establishing SWRs as a common neurophysiological signature of hippocampal-prefrontal reactivation across BOTH sleep and waking, and explicitly raising the open question of whether sleep vs awake reactivation serve similar or different mnemonic functions. This is the cleanest available substrate-machinery anchor for MECH-319 (replacing the Joo & Frank review named in the claim notes) AND it frames the very distinction MECH-319 operationalises: that different reactivation contexts may warrant different write policies. Review-level, so confidence is for the substrate/framing, not a specific gate measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review documents that SWR reactivation drives memory consolidation and prefrontal communication -- i.e. SWRs are write-ENABLING for consolidation; MECH-319's claim that a simulation-mode tag should SUPPRESS arbitration updates is the inverse-context case (non-realized data) and is not evidenced here.",
+    "Whether sleep and awake reactivation have different functional consequences is posed as an open question, not resolved -- so the review supports the plausibility of context-dependent write policies without confirming the categorical simulation-tag gate."
+  ],
+  "tags": [
+    "mech-319",
+    "sharp_wave_ripple",
+    "hippocampal_prefrontal",
+    "reactivation",
+    "substrate_machinery",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal sharp-wave ripples emerge as a common neurophysiological pattern across both waking and sleep states, facilitating hippocampal-prefrontal communication via coordinated reactivation of stored memory; whether sleep and awake reactivation mediate similar memory processes or have different mnemonic functions remains an open and actively investigated question.",
+    "ree_translation": "MECH-319 lives at the arbitration layer but inherits MECH-094's principle that write policy should depend on the CONTEXT of a reactivation (realized vs simulated). Tang & Jadhav establish the SWR machinery as the substrate carrying context-tagged reactivation and explicitly frame the sleep-vs-awake (analogously: simulated-vs-realized) functional-distinction question -- the conceptual scaffold MECH-319's caller-tag gate sits on.",
+    "mapping_caveat": "The review concerns consolidation/communication (write-enabling) and the sleep-vs-awake axis, not a write-SUPPRESSION gate keyed to a simulation tag at a rule-arbitration layer. It supports the substrate-availability and context-matters premises but leaves MECH-319's specific function unverified.",
+    "source_context": "Review of rodent (and some human) hippocampal-prefrontal electrophysiology across sleep and waking; species-general synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Solid current review (Neurobiol Learn Mem, Jadhav lab) -- high for a review. Mapping fidelity moderate: anchors the SWR substrate and the context-dependent-function framing but not the write-gate. Transfer risk standard rodent-hippocampus -> REE-arbitration plus review-level generality."
+  }
+}

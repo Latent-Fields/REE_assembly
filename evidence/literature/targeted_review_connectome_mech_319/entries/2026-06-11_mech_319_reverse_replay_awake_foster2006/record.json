@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_319",
+  "entry_id": "2026-06-11_mech_319_reverse_replay_awake_foster2006",
+  "timestamp_utc": "2026-06-11T09:05:39Z",
+  "claim_ids_tested": [
+    "MECH-319"
+  ],
+  "source": {
+    "title": "Reverse replay of behavioural sequences in hippocampal place cells during the awake state.",
+    "authors": [
+      "David J Foster",
+      "Matthew A Wilson"
+    ],
+    "year": 2006,
+    "venue": "Nature 440(7084):680-3",
+    "doi": "10.1038/nature04587",
+    "url": "https://doi.org/10.1038/nature04587"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The named substrate anchor for MECH-319. Foster & Wilson establish that hippocampal place-cell sequences replay during awake immobility in a temporally REVERSED order immediately after experience -- demonstrating that the brain has a discriminable, internally-generated replay signature distinct from real behaviour. This grounds the SUBSTRATE-AVAILABILITY premise of MECH-319 (a categorical, tag-able simulation/replay event exists). It does NOT test the REE-novel write-gating function, so confidence is set for the substrate premise only, not the gate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper demonstrates that replay EXISTS and is discriminable, but it explicitly proposes replay as a mechanism FOR learning (reinforcement-style evaluation of event sequences) -- i.e. replay drives plasticity. MECH-319's gate must therefore SUPPRESS updates only for non-realized (ghost/DMN) passes while permitting real-experience replay to teach; a blanket simulation-mode write-block that caught all replay would contradict the learning role shown here.",
+    "Nothing in the recording addresses whether arbitration-weight (or any synaptic) updates are categorically gated by a simulation tag; the write-gate is entirely unobserved here."
+  ],
+  "tags": [
+    "mech-319",
+    "reverse_replay",
+    "sharp_wave_ripple",
+    "awake_replay",
+    "substrate_availability",
+    "place_cells"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal place cells replay recent spatial experience during awake rest immediately after the experience, in a temporally REVERSED order; this awake reverse replay is suggestive of a role in the evaluation of event sequences in the manner of reinforcement-learning models and may be a general mechanism of learning and memory.",
+    "ree_translation": "MECH-319 presumes the substrate hosts discriminable simulation/replay passes that a categorical write-gate could key on. Foster & Wilson supply the foundational evidence that internally-generated, temporally-structured replay events exist and are distinguishable from on-line behaviour -- the existence-of-a-tag-able-replay-mode premise on which MECH-319's gate (and MECH-094's hypothesis-tag principle) depends.",
+    "mapping_caveat": "This establishes ONLY that replay exists and is discriminable; it provides no evidence for a write-suppression gate keyed to a simulation tag, and it actually frames replay as a vehicle FOR learning -- so it supports the substrate premise while being neutral-to-tension on the gating function itself.",
+    "source_context": "Rats; tetrode ensemble recording of CA1 place cells on a linear track, replay measured during awake immobility after running."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.3,
+    "notes": "Foundational Nature paper, gold-standard ensemble electrophysiology -- top source quality. Mapping fidelity moderate because it supports only the substrate-availability half of MECH-319 (replay exists / is discriminable), not the write-gate. Transfer risk standard rodent-hippocampus -> REE-arbitration-layer."
+  }
+}

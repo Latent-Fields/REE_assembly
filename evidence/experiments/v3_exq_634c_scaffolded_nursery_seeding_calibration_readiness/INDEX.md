@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_634c_scaffolded_nursery_seeding_calibration_readiness
 
-Generated: `2026-06-11T07:08:09.480272Z`
+Generated: `2026-06-11T09:11:41.182701Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

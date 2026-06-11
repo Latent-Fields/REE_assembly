@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_306",
+  "entry_id": "2026-06-11_mech_306_sustained_hunger_signal_chen2016",
+  "timestamp_utc": "2026-06-11T09:05:39Z",
+  "claim_ids_tested": [
+    "MECH-306"
+  ],
+  "source": {
+    "title": "Hunger neurons drive feeding through a sustained, positive reinforcement signal.",
+    "authors": [
+      "Yiming Chen",
+      "Yen-Chu Lin",
+      "Christopher A Zimmerman",
+      "Rachel A Essner",
+      "Zachary A Knight"
+    ],
+    "year": 2016,
+    "venue": "eLife 5:e18640",
+    "doi": "10.7554/eLife.18640",
+    "url": "https://doi.org/10.7554/eLife.18640"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "This is the single most direct biological anchor for MECH-306's central paradox. Chen et al. show that AgRP hunger neurons are inhibited within seconds of food detection (the 'instantaneous drive collapses at contact' problem) yet drive feeding because a brief pre-meal burst produces sustained appetitive and consummatory behaviour persisting for tens of minutes WITHOUT continued neuron activity, mediated by a long-lasting potentiation of food's rewarding value. That is precisely the sustained-drive-trace mechanism MECH-306 posits. Gold-standard optogenetics + behaviour, top venue; small discount for the mouse->REE-scalar transfer and for the fact that the persistence here is a reward-potentiation memory rather than a literally floored drive variable.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The persistence mechanism is a long-lasting potentiation of FOOD REWARD VALUE triggered by a transient drive burst, not a continuously elevated drive_level signal -- so MECH-306's 'floor or slow-trace the drive' framing is one of at least two viable implementations; the biology realises the trace on the benefit/reward side, not necessarily on the drive variable itself.",
+    "AgRP inhibition at food contact is near-complete and rapid; if REE's drive_level mirrors AgRP activity faithfully, then any seeding that depends on drive being HIGH at the moment of contact will fail unless the trace is explicitly engineered -- the paper confirms the failure mode EXQ-536a observed (threshold never crossed under instantaneous drive)."
+  ],
+  "tags": [
+    "mech-306",
+    "agrp",
+    "sustained_drive",
+    "anticipatory_wanting",
+    "reward_potentiation",
+    "hunger",
+    "optogenetics"
+  ],
+  "mapping": {
+    "source_claim_statement": "AgRP hunger neurons are inhibited within seconds by the sensory detection of food, yet a brief burst of AgRP activity BEFORE food is available promotes intense appetitive and consummatory behaviour that persists for tens of minutes in the absence of continued activation; this is mediated by a long-lasting potentiation of the rewarding properties of food, and AgRP activity is itself positively reinforcing.",
+    "ree_translation": "MECH-306 claims z_goal seeding cannot rely on instantaneous homeostatic drive because, when well-fed, drive_level collapses at consumption and anti-correlates with benefit_exposure, so effective_benefit (drive x benefit_exposure) never crosses the seeding threshold. Chen et al. supply the biological proof of exactly this collapse-at-contact dynamic AND its resolution: the hunger signal must be carried forward in time (as a sustained behavioural/reward-potentiation state) rather than read instantaneously. This grounds the 'flooring or slow-tracing the drive' design choice for the SD-012 drive-multiplier site.",
+    "mapping_caveat": "The biological persistence lives in a potentiation of food's reward value, not in a sustained drive scalar. REE's choice to slow-trace drive_level (EMA / floor) is functionally analogous but architecturally distinct -- the paper supports the NECESSITY of a sustained signal at contact without endorsing WHERE REE places the trace. It also does not test the seeding threshold concept directly.",
+    "source_context": "Mice; optogenetic stimulation/inhibition of arcuate AgRP neurons with calcium imaging and quantified appetitive/consummatory feeding behaviour."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.3,
+    "notes": "eLife, Knight lab, causal optogenetics with clean behavioural quantification -- very high source quality. Mapping fidelity high because the collapse-at-contact + sustained-trace dynamic is the exact phenomenon MECH-306 was registered to handle (EXQ-536a anchor). Transfer risk the standard rodent-circuit -> REE-scalar gap, plus the trace-site mismatch."
+  }
+}

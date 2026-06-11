@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_319",
+  "entry_id": "2026-06-11_mech_319_reverse_replay_reward_modulation_ambrose2016",
+  "timestamp_utc": "2026-06-11T09:05:39Z",
+  "claim_ids_tested": [
+    "MECH-319"
+  ],
+  "source": {
+    "title": "Reverse Replay of Hippocampal Place Cells Is Uniquely Modulated by Changing Reward.",
+    "authors": [
+      "R Ellen Ambrose",
+      "Brad E Pfeiffer",
+      "David J Foster"
+    ],
+    "year": 2016,
+    "venue": "Neuron 91(5):1124-1136",
+    "doi": "10.1016/j.neuron.2016.07.047",
+    "url": "https://doi.org/10.1016/j.neuron.2016.07.047"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Two-edged for MECH-319. On the supporting side: forward and reverse replay are categorically distinguishable and functionally dissociable event-types, which is consistent with replay carrying a discrete tag that a categorical gate could read. On the tension side: reverse replay scales its rate with reward magnitude (more replay at increased reward, less at decreased), i.e. replay of real experience is recruited FOR reward learning -- so MECH-319's write-suppression must be confined to non-realized simulation passes and cannot be a blanket replay block. Strong methods; confidence moderated by the mixed direction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reverse replay rate increases with increased reward and decreases with decreased reward, demonstrating that this replay class is actively used for reward-based learning -- direct tension with any gate that would suppress arbitration-weight updates during replay indiscriminately.",
+    "The forward/reverse distinction is correlated with function but the paper does not show a categorical write-admit/block signal; the binary admit/block character MECH-319 posits is inferred from the dissociation, not measured."
+  ],
+  "tags": [
+    "mech-319",
+    "reverse_replay",
+    "forward_replay",
+    "reward_modulation",
+    "replay_type_dissociation",
+    "categorical_tag"
+  ],
+  "mapping": {
+    "source_claim_statement": "Forward and reverse hippocampal replays diverge in their response to changing reward: only reverse replays increase their rate at increased reward and decrease at decreased reward, while forward replays are unchanged -- demonstrating a functional distinction between replay directions and a unique relationship between reverse replay and reward processing.",
+    "ree_translation": "MECH-319 posits a CATEGORICAL write-gate keyed to the simulation tag of the caller. Ambrose et al. show that replay events are not a homogeneous stream but come in functionally distinct, separable classes -- evidence that the substrate carries discrete replay categories that differ in their relationship to learning, consistent with a tag the arbitration-layer gate could condition on (admit real-experience reward replay, block ghost/DMN passes).",
+    "mapping_caveat": "The categories distinguished here are forward vs reverse REAL-experience replay, not realized vs simulated/ghost passes; MECH-319's specific tag (simulation-mode of the caller) is a different cut than the one measured. And the reward-scaling of reverse replay shows replay IS used for learning, so the mapping must own that the gate cannot be a blanket replay block -- it must be selective to non-realized data.",
+    "source_context": "Rats; CA1 ensemble recording during a spatial task with experimentally varied reward, comparing forward vs reverse replay rates at reward locations."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.32,
+    "notes": "Neuron, Foster lab, rigorous ensemble electrophysiology with a clean reward manipulation. Mapping fidelity moderate: supports the discriminable-replay-class premise but the measured cut differs from MECH-319's simulation tag, and the reward-scaling result is in partial tension with a write-suppression gate. Hence mixed direction."
+  }
+}

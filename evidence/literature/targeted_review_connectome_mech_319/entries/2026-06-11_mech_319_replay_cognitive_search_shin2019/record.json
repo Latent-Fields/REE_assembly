@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_319",
+  "entry_id": "2026-06-11_mech_319_replay_cognitive_search_shin2019",
+  "timestamp_utc": "2026-06-11T09:05:39Z",
+  "claim_ids_tested": [
+    "MECH-319"
+  ],
+  "source": {
+    "title": "Dynamics of Awake Hippocampal-Prefrontal Replay for Spatial Learning and Memory-Guided Decision Making.",
+    "authors": [
+      "Justin D Shin",
+      "Wenbo Tang",
+      "Shantanu P Jadhav"
+    ],
+    "year": 2019,
+    "venue": "Neuron 104(6):1110-1125",
+    "doi": "10.1016/j.neuron.2019.09.012",
+    "url": "https://doi.org/10.1016/j.neuron.2019.09.012"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Supports MECH-319's functional intuition that replay can EXERCISE candidate trajectories (an internal cognitive search of past and future possibilities) as a process distinct from committing to behaviour -- the conceptual basis for 'exercise rule-arbitration without overwriting active weights from non-realized data'. Shows forward replay supports prospective planning and reverse replay retrospective evaluation, with a learning shift between them. Strong methods; confidence held lower because the paper shows replay DOES drive learning gradients (it writes), so it supports the exercise-without-commitment framing only by analogy, not by demonstrating a write-block.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay here exhibits LEARNING gradients (it shapes prediction of past and future paths over training) -- it is write-active, not write-gated; this supports the 'simulate to plan' role but is evidence AGAINST a literal suppression of all updates during internal-search replay.",
+    "The 'internal cognitive search of possibilities' is a forward/reverse real-trajectory phenomenon; MECH-319's ghost/DMN non-realized passes are not directly recorded, so the exercise-without-commitment mapping is analogical."
+  ],
+  "tags": [
+    "mech-319",
+    "awake_replay",
+    "prospective_planning",
+    "cognitive_search",
+    "hippocampal_prefrontal",
+    "decision_making"
+  ],
+  "mapping": {
+    "source_claim_statement": "During pauses between behavioural trajectories, reverse and forward hippocampal-prefrontal replay support an internal cognitive search of past and future possibilities, with reverse replay biased to retrospective evaluation and forward replay to prospective planning; the system shifts from reverse-replay-based retrospective evaluation to forward-replay-based prospective planning over learning, with prefrontal readout guiding decisions.",
+    "ree_translation": "MECH-319's purpose is to let rule-arbitration be EXERCISED during simulation/ghost/replay passes without overwriting the active rule weights from non-realized data. Shin et al. show the brain runs internally-generated replay as a search over past/future possibilities that informs decisions -- the biological instance of 'run the arbitration machinery on imagined/replayed content'. This grounds the existence of a simulate-and-evaluate mode at the hippocampal-prefrontal interface that REE places at its arbitration layer.",
+    "mapping_caveat": "Crucially, this replay is shown to drive learning gradients (it writes), so it evidences the exercise/search FUNCTION of simulation but not the write-SUPPRESSION half of MECH-319; the gate that blocks updates from non-realized data remains unverified. The non-realized ghost/DMN pass MECH-319 targets is not the real-trajectory replay measured here.",
+    "source_context": "Rats; simultaneous hippocampal-prefrontal ensemble recording across learning of a spatial alternation task, tracking forward/reverse replay during inter-trial pauses."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Neuron, Jadhav lab, high-quality dual-region electrophysiology across learning. Mapping fidelity moderate-low: supports the simulate-and-evaluate function but is in tension with the write-suppression claim and the ghost/DMN pass is not recorded. Hence the lowest confidence in this cluster."
+  }
+}

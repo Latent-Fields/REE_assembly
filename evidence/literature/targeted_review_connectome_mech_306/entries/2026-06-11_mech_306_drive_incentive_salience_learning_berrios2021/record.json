@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_306",
+  "entry_id": "2026-06-11_mech_306_drive_incentive_salience_learning_berrios2021",
+  "timestamp_utc": "2026-06-11T09:05:39Z",
+  "claim_ids_tested": [
+    "MECH-306"
+  ],
+  "source": {
+    "title": "Food cue regulation of AGRP hunger neurons guides learning.",
+    "authors": [
+      "Janet Berrios",
+      "Chia Li",
+      "Joseph C Madara",
+      "Alastair S Garfield",
+      "Jennifer S Steger",
+      "Michael J Krashes",
+      "Bradford B Lowell"
+    ],
+    "year": 2021,
+    "venue": "Nature 595(7869):695-700",
+    "doi": "10.1038/s41586-021-03729-3",
+    "url": "https://doi.org/10.1038/s41586-021-03729-3"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The most direct bridge from the hunger-drive circuit to the SEEDING-of-learning function MECH-306 is about. Berrios et al. confirm three AgRP regulation timescales (rapid cue, slow nutrient, slowest energy-balance) and show that disrupting the rapid cue-driven inhibition specifically impairs LEARNING of a food-acquisition task (but not a water task), proposing the cue-driven drive reduction increases incentive salience of food cues and thereby facilitates learning. This is the closest biological analogue to 'drive state at contact seeds goal-relevant learning'. Nature, causal circuit dissection; discounted because the operative variable is the rapid (not sustained) component, sitting in mild tension with MECH-306's emphasis on the sustained trace.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The learning deficit is produced by disrupting the RAPID cue-driven inhibition, not by removing a sustained drive trace -- which suggests the fast component, far from being merely a collapse to be worked around, may itself be the teaching signal that seeds goal learning. This complicates MECH-306's framing that the instantaneous signal is the problem and the sustained trace is the solution.",
+    "The incentive-salience interpretation is proposed, not directly measured; the paper shows a learning deficit and infers the salience mechanism."
+  ],
+  "tags": [
+    "mech-306",
+    "agrp",
+    "incentive_salience",
+    "food_cue_learning",
+    "three_timescales",
+    "goal_seeding",
+    "circuit_dissection"
+  ],
+  "mapping": {
+    "source_claim_statement": "AgRP neuron activity returns toward baseline on three timescales (rapid/transient at food cues, slow with gut nutrients, slowest with restored energy balance); a lateral-hypothalamic glutamatergic -> dorsomedial-hypothalamic GABAergic -> AgRP circuit mediates the rapid cue inhibition, and interfering with it greatly impairs learning of a sensory-cue-initiated food-acquisition task (but not a water task), consistent with cue-driven drive reduction increasing the incentive salience of food cues to facilitate learning.",
+    "ree_translation": "MECH-306 is fundamentally about how the homeostatic drive state at the moment of benefit contact determines whether a goal/benefit gets seeded into the downstream pipeline. Berrios et al. provide causal evidence that the hunger-drive circuit's regulation at food cues is necessary for food-specific goal learning -- i.e. drive-state-at-contact gates whether the food cue acquires goal/incentive value. This supports the broad premise that effective_benefit seeding is drive-gated.",
+    "mapping_caveat": "The causal variable is the FAST cue-driven component, whereas MECH-306 prescribes a SUSTAINED trace. The two are reconcilable (the fast signal could initiate, the slow trace could sustain) but the paper does not adjudicate which carries the seeding role. Incentive salience is an interpretive layer, and the species/task gap to REE remains.",
+    "source_context": "Mice; optogenetic/chemogenetic dissection of a defined LH->DMH->AgRP circuit with sensory-cue-initiated food- vs water-acquisition learning tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.34,
+    "notes": "Nature, Lowell lab, definitive circuit-level causal manipulation. Mapping fidelity moderate-high for the drive-gates-goal-learning premise but reduced by the fast-vs-sustained-component tension. Transfer risk standard rodent->REE plus the inferential incentive-salience step."
+  }
+}
