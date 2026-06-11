@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-11T02:02:46Z",
+  "last_tick_utc": "2026-06-11T02:17:52Z",
   "state": "running",
   "current_exq": "V3-EXQ-660a",
   "current_exq_started_utc": "2026-06-10T20:07:51.739378+00:00",
@@ -12,15 +12,13 @@
     "run_label": "Seed 43 / within_class_sampled_pool128",
     "runs_done": 22,
     "runs_total": 24,
-    "episodes_done": 20,
+    "episodes_done": 40,
     "episodes_total": 90,
-    "overall_pct": 92.6
+    "overall_pct": 93.5
   },
-  "seconds_elapsed": 21295,
-  "seconds_remaining": 1473,
+  "seconds_elapsed": 22201,
+  "seconds_remaining": 1289,
   "recent_lines": [
-    "[train] arm=ARM_LEGACY_K64 seed=44 phase=P0 ep 20/90",
-    "[train] arm=ARM_LEGACY_K64 seed=44 phase=P0 ep 30/90",
     "[train] arm=ARM_LEGACY_K64 seed=44 phase=P1 ep 40/90",
     "[train] arm=ARM_LEGACY_K64 seed=44 phase=P1 ep 50/90",
     "[train] arm=ARM_LEGACY_K64 seed=44 phase=P1 ep 60/90",
@@ -118,7 +116,9 @@
     "verdict: PASS",
     "Seed 43 Condition within_class_sampled_pool128",
     "[train] arm=ARM_SAMPLED_K128 seed=43 phase=P0 ep 10/90",
-    "[train] arm=ARM_SAMPLED_K128 seed=43 phase=P0 ep 20/90"
+    "[train] arm=ARM_SAMPLED_K128 seed=43 phase=P0 ep 20/90",
+    "[train] arm=ARM_SAMPLED_K128 seed=43 phase=P0 ep 30/90",
+    "[train] arm=ARM_SAMPLED_K128 seed=43 phase=P1 ep 40/90"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
