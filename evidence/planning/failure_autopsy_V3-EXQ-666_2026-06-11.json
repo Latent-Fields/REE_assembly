@@ -1,0 +1,70 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-11T07:06:49Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
+      "queue_id": "V3-EXQ-666",
+      "claim_ids": [],
+      "informs_claims": ["MECH-309", "ARC-062", "ARC-063"],
+      "failed_criterion": "discrimination",
+      "self_route_trustworthy": true,
+      "self_route_note": "Non-vacuity MET (all cells minted >=2 rules) and discrimination MET (ARM_0_OFF reproduces the 654b churn signature), so the self-route mature_dynamics_insufficient_at_behavioural_runtime is a genuine substrate-insufficiency FAIL routed to autopsy, NOT a substrate_not_ready_requeue or vacuous_pass.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim-free diagnostic (non_contributory). Informs MECH-309/ARC-062/ARC-063 readiness only; all stay candidate/substrate_ceiling/v3_pending/pending_retest_after_substrate. Substrate still not ready.",
+        "biological_reference": "clear -- PFC rule/task-set cells (Wallis & Miller; Mante 2013; Frank 2006, cited in CRF source). Mechanism translation, not formal import. The differentiation<->persistence tension maps to a real design constraint: selective rule cells fire rarely and need sustained-activity / activity-silent maintenance, which the CRF lacks (availability accrues only on match, decays otherwise).",
+        "prerequisites": "dependency strengthened -- e2_world_forward context CONFIRMED necessary for differentiation (raw z_world too self-similar; ARC-065 GAP-A).",
+        "implementation": "partial -- differentiation works (ARM_2 dist 1.71, 10-16 distinct rules) but persistence/maintenance does not (frac_active collapses to 0.016). The match-triggered-EMA availability scheme lacks a maintenance term.",
+        "environment": "adequate -- 654b hazard env discriminates (ARM_0 reproduces churn; criteria_non_degenerate true).",
+        "measurement": "adequate -- the gate decomposed the failure into differentiation vs persistence. Open lit question: whether crf_frac_active 'active fraction' is the right persistence readout if maintenance is activity-silent. The unit smoke (forced 2-regime harness) was a poor runtime proxy; 666 is the right instrument.",
+        "integration": "partially coupled -- e2_world_forward context integration works for minting; availability-accounting interacts badly with retire/decay once rules are differentiated.",
+        "scale": "adequate -- ~2000-3900 contrastive steps; minting clearly happens; budget is not the limiter."
+      },
+      "biological_reference": {
+        "closest_mechanism": "PFC rule / task-set cell representations with delay-period maintenance",
+        "dependencies": ["sustained-activity / recurrent-attractor maintenance (Goldman-Rakic, Wang)", "OR activity-silent / synaptic maintenance (Stokes 2013; Lundqvist 2016)", "e2_world_forward context (ARC-065 GAP-A) for differentiation"],
+        "is_formal_import": false,
+        "divergence": "CRF has the symbol of a rule cell (match-triggered availability) but not the maintenance functional role; selective rules match sparsely so availability never accumulates above theta. Not a formal-import divergence -- a missing biological maintenance mechanism.",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-666 (claim-free CRF mature-pool readiness diagnostic, non_contributory) decomposed the 654b non-maturation: the e2_world_forward context delivers differentiation (ARM_2 crf_max_pairwise_rule_dist 1.71, 10-16 distinct rules) but per-rule availability does not accumulate under sparse matching, so crf_frac_active collapses (ARM_2 0.016, worse than legacy 0.125). The CRF lacks a maintenance mechanism analogous to PFC sustained-activity; the conflict-gate theta retune addressed the wrong constraint for the differentiated regime. Substrate STILL not ready. Routed: lit-pull on PFC rule-cell persistence (persistent-firing vs activity-silent) -> new substrate_queue entry (CRF availability maintenance) -> 666-successor re-validation before the 654c GAP-B behavioural falsifier (which stays gated). MECH-309 / ARC-062 / ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate (unchanged by this non_contributory diagnostic).",
+      "recommended_lit_pull": {
+        "review_slug": "targeted_review_arc_063_crf_rule_cell_persistence",
+        "question": "How are differentiated PFC rule / task-set cell representations maintained across input-absent epochs? Is rule maintenance persistent-firing (sustained delay-period activity / recurrent attractor) or activity-silent / synaptic (Stokes 2013, Lundqvist 2016 gamma-burst reactivation)? How do selective (sparsely-matching) rule cells sustain availability between matches?",
+        "anchors": ["Wallis Anderson Miller 2001", "Mante et al 2013", "Frank 2006", "Goldman-Rakic delay-period persistent activity", "Wang recurrent-attractor working memory", "Stokes 2013 activity-silent working memory", "Lundqvist 2016 gamma bursts", "Frank & Badre 2012 hierarchical PFC-BG gating"],
+        "blocks_implementation": true,
+        "fork_to_resolve": "persistent-firing -> add a sustained-activity term holding availability across context-absent ticks; activity-silent -> the crf_frac_active 'active fraction' readout is itself biologically questionable (rules silently maintained + reactivated), changing the readiness readout, not just the credit dynamics."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "crf-availability-maintenance",
+        "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (PFC sustained-activity analog) so a differentiated pool also persists",
+        "implementation_hint": "GATED ON the targeted_review_arc_063_crf_rule_cell_persistence lit verdict (persistent-firing vs activity-silent). V3-EXQ-666 showed the 2026-06-11 ARC-063 amend solves differentiation only via crf_context_from_e2_world_forward (ARM_2 dist 1.71, 10-16 distinct rules) but worsens persistence (frac_active 0.016, below the 0.30 floor and worse than legacy 0.125), because narrowly-tuned rules match sparsely and availability never accumulates above theta=0.40 between matches (mature_availability_decay 0.001 erodes it over the gaps). The conflict-gate theta retune (654b fix) addressed the wrong constraint for the differentiated regime. New entry (kept distinct from ARC-062's differentiation/gating work, per user): (a) adopt crf_context_from_e2_world_forward as the mature-regime differentiation DEFAULT; (b) add an availability-MAINTENANCE mechanism so a differentiated rule's availability persists across context-absent ticks (sustained-activity term, OR -- if the lit says activity-silent -- redefine the 'active' readout to count silently-maintained-and-reactivatable rules), targeting frac_active >= 0.30 without collapsing dist; (c) re-validate with a 666-successor CRF-readiness diagnostic (same 3-arm gate) before the 654c GAP-B behavioural re-run.",
+        "unblocks_claims": ["MECH-309", "ARC-062", "ARC-063"],
+        "depends_on_unresolved": ["targeted_review_arc_063_crf_rule_cell_persistence (lit-pull, blocking)", "ARC-062 differentiation/gating (e2_world_forward context routing)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
+          "experiment_type": "v3_exq_666_arc063_crf_mature_pool_readiness",
+          "metric": "ARM_1_MATURE (raw z_world ctx) frac_active 0.066 / dist 0.0 (mint-block collapses pool to 2 rules -- no differentiation); ARM_2_MATURE_E2CTX dist 1.71 / 10-16 distinct rules BUT frac_active 0.016 (differentiation achieved, persistence collapses -- worst of 3 arms); ARM_0_OFF frac_active 0.125 / dist 0.0 (654b churn reproduced). 0/3 cells clear the gate in every arm. Non-vacuity met (all cells minted >=2).",
+          "target": "a working CRF must hold >=2 differentiated rules (crf_max_pairwise_rule_dist > 0.1) AND keep them active (crf_frac_active >= 0.30) on >=2/3 seeds SIMULTANEOUSLY, so the 654c GAP-B committed-class entropy falsifier can score"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "e2_world_forward context is a confirmed prerequisite for CRF differentiation -- raw z_world is too self-similar (mint-block collapses the pool to ~2 rules).",
+        "Differentiation and persistence are in tension under the match-triggered-EMA availability scheme: solving differentiation (via e2ctx) worsens activity because narrowly-tuned rules match sparsely.",
+        "The next binding constraint is availability MAINTENANCE under sparse matching (a PFC sustained-activity / activity-silent analog), not the conflict-gate theta; the 654b theta retune addressed the wrong constraint for the differentiated regime.",
+        "Ground the maintenance mechanism in biology first -- the persistent-firing vs activity-silent fork determines whether the fix is a sustained-activity term or a redefinition of the 'active fraction' readout."
+      ],
+      "routing": "lit-pull"
+    }
+  ],
+  "cluster_pattern": null
+}
