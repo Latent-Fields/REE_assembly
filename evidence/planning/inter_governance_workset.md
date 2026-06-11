@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-11T20:17:21Z`
+Generated: `2026-06-11T21:18:23Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,9 +11,9 @@ UI: http://localhost:8000/workset
 
 - Items: **203** (ready 27, in_flight 0, blocked 157)
 - Pending review: **2**
-- Queue pending (unclaimed): **5**
+- Queue pending (unclaimed): **6**
 
-- Live EXQs: V3-EXQ-569g, V3-EXQ-590b, V3-EXQ-603o, V3-EXQ-655, V3-EXQ-667
+- Live EXQs: V3-EXQ-514n, V3-EXQ-569g, V3-EXQ-590b, V3-EXQ-603o, V3-EXQ-655
 
 - Auto-absorbed retests (queued, suppressed from workset): ARC-065 -> V3-EXQ-569g, INV-074 -> V3-EXQ-655, MECH-229 -> V3-EXQ-514n, MECH-263 -> V3-EXQ-485f, SD-033b -> V3-EXQ-485f, SD-059 -> V3-EXQ-603o
 
@@ -951,7 +951,7 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** partial | **Priority:** 30
 - **Gap(s):** behavioral_diversity_isolation:GAP-B
-- **Owner EXQ:** V3-EXQ-660b TERMINAL FAIL/weakens 2026-06-11T13:43Z (windowed-readout redesign of 660a, supersedes 660a; BOTH readiness gates PASSED -- availability rises 4.99->33.84 across K AND windowed-H range 0.0568>=0.05 floor -- and criteria_non_degenerate.C_GRADED=true, yet C_GRADED still scored 0/3 seeds (per-seed deltas noise around zero, non-monotone, mostly negative). FLAGGED for /failure-autopsy at governance cycle #4 2026-06-11, LEFT PENDING, no evidence stamp; the 3rd readout iteration on the graded sub-axis, sensitivity gate clearing only marginally + non-monotonically). PRIOR OWNER V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS
+- **Owner EXQ:** V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z -- THE STANDING GAP-B RESULT for MECH-341 (within-class-representative-diversity lift 4.862 vs legacy 4.781 nats; the binary within-class preserver is established). Owner re-pointed 660b -> 660 at governance cycle #5 2026-06-11 per confirmed failure_autopsy_V3-EXQ-660b: the graded-in-pool-size ratification the 660a/660b lineage was chasing is REMOVED AS A GATE (graded-in-K over-specifies a PRESERVATION claim), not outstanding -- no 660c. RETIRED graded-falsifier lineage: V3-EXQ-660b TERMINAL FAIL/weakens 2026-06-11T13:43Z (windowed-readout redesign of 660a, supersedes 660a; both readiness gates passed yet C_GRADED 0/3 seeds, sensitivity gate cleared only marginally 0.0568 + non-monotonically) was reclassified non_contributory (measurement_test_design_defect) at cycle #5, NOT a weakens; V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS
 - **Why now:** PARTIAL 2026-06-10. V3-EXQ-660 has LANDED PASS/supports (2026-06-10T04:41Z) -- do NOT re-queue it; its C1+C2 branch fired and governance is folded into claims.yaml. The within-class-representative sub-axis is now load-bearing-CONFIRMED but 
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -962,7 +962,7 @@ Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-
 Lane: experiment | Skill: /queue-experiment
 Status: partial
 Gap(s): behavioral_diversity_isolation:GAP-B
-Owner EXQ: V3-EXQ-660b TERMINAL FAIL/weakens 2026-06-11T13:43Z (windowed-readout redesign of 660a, supersedes 660a; BOTH readiness gates PASSED -- availability rises 4.99->33.84 across K AND windowed-H range 0.0568>=0.05 floor -- and criteria_non_degenerate.C_GRADED=true, yet C_GRADED still scored 0/3 seeds (per-seed deltas noise around zero, non-monotone, mostly negative). FLAGGED for /failure-autopsy at governance cycle #4 2026-06-11, LEFT PENDING, no evidence stamp; the 3rd readout iteration on the graded sub-axis, sensitivity gate clearing only marginally + non-monotonically). PRIOR OWNER V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS
+Owner EXQ: V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z -- THE STANDING GAP-B RESULT for MECH-341 (within-class-representative-diversity lift 4.862 vs legacy 4.781 nats; the binary within-class preserver is established). Owner re-pointed 660b -> 660 at governance cycle #5 2026-06-11 per confirmed failure_autopsy_V3-EXQ-660b: the graded-in-pool-size ratification the 660a/660b lineage was chasing is REMOVED AS A GATE (graded-in-K over-specifies a PRESERVATION claim), not outstanding -- no 660c. RETIRED graded-falsifier lineage: V3-EXQ-660b TERMINAL FAIL/weakens 2026-06-11T13:43Z (windowed-readout redesign of 660a, supersedes 660a; both readiness gates passed yet C_GRADED 0/3 seeds, sensitivity gate cleared only marginally 0.0568 + non-monotonically) was reclassified non_contributory (measurement_test_design_defect) at cycle #5, NOT a weakens; V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS
 Claims: MECH-341, ARC-062, ARC-065
 Why now: PARTIAL 2026-06-10. V3-EXQ-660 has LANDED PASS/supports (2026-06-10T04:41Z) -- do NOT re-queue it; its C1+C2 branch fired and governance is folded into claims.yaml. The within-class-representative sub-axis is now load-bearing-CONFIRMED but 
 
@@ -2468,7 +2468,7 @@ Instructions:
 
 </details>
 
-### IGW-20260611-199 -- Proposal EXP-0138 (MECH-329)
+### IGW-20260611-199 -- Proposal EXP-0137 (MECH-329)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2477,7 +2477,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260611-199
-Title: Proposal EXP-0138 (MECH-329)
+Title: Proposal EXP-0137 (MECH-329)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-329
@@ -2490,7 +2490,7 @@ Instructions:
 
 </details>
 
-### IGW-20260611-200 -- Proposal EXP-0150 (MECH-025b)
+### IGW-20260611-200 -- Proposal EXP-0145 (MECH-025b)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2499,7 +2499,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260611-200
-Title: Proposal EXP-0150 (MECH-025b)
+Title: Proposal EXP-0145 (MECH-025b)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-025b
@@ -2512,7 +2512,7 @@ Instructions:
 
 </details>
 
-### IGW-20260611-201 -- Proposal EXP-0151 (MECH-044)
+### IGW-20260611-201 -- Proposal EXP-0150 (MECH-044)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2521,7 +2521,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260611-201
-Title: Proposal EXP-0151 (MECH-044)
+Title: Proposal EXP-0150 (MECH-044)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-044
@@ -2534,7 +2534,7 @@ Instructions:
 
 </details>
 
-### IGW-20260611-202 -- Proposal EXP-0152 (MECH-057b)
+### IGW-20260611-202 -- Proposal EXP-0151 (MECH-057b)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2543,7 +2543,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260611-202
-Title: Proposal EXP-0152 (MECH-057b)
+Title: Proposal EXP-0151 (MECH-057b)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-057b
@@ -2556,7 +2556,7 @@ Instructions:
 
 </details>
 
-### IGW-20260611-203 -- Proposal EXP-0154 (MECH-171)
+### IGW-20260611-203 -- Proposal EXP-0153 (MECH-171)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2565,7 +2565,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260611-203
-Title: Proposal EXP-0154 (MECH-171)
+Title: Proposal EXP-0153 (MECH-171)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-171

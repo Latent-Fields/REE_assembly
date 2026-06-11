@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_476a_mech269_vs_validation_probe
 
-Generated: `2026-06-11T20:29:42.067963Z`
+Generated: `2026-06-11T21:23:56.441414Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

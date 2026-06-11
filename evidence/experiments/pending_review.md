@@ -1,14 +1,22 @@
 # Pending Experiment Review
 
-Generated: `2026-06-11T20:30:43Z`  
-Last review: `2026-06-11T20:16:35Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-11T21:23:58Z`  
+Last review: `2026-06-11T21:23:47Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 1 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_666a_arc063_crf_availability_maintenance_readiness_20260611T154034Z_v3` | 2026-06-11T15:40 | (no claim tags) | — |
+| `v3_exq_667_q043_exploration_magnitude_sweep_20260611T182534Z_v3` | 2026-06-11T18:25 | Q-043 | — |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_667_q043_exploration_magnitude_sweep_20260611T182534Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 
 ---
 

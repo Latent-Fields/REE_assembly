@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
-  "last_updated_utc": "2026-06-11T15:20:00Z",
+  "last_updated_utc": "2026-06-11T21:06:51Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4288,7 +4288,7 @@
     },
     {
       "sd_id": "crf-availability-maintenance",
-      "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (activity-silent synaptic trace) + redefine the readiness readout to the maintained pool so a differentiated pool also persists",
+      "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (activity-silent synaptic trace) + redefine the readiness readout to the maintained pool so a differentiated pool also persists [666a amend: maintenance confirmed functional, ready-gate re-stated on crf_frac_maintained -> V3-EXQ-666b]",
       "status": "implemented_pending_validation",
       "ready": false,
       "design_doc": "REE_assembly/docs/architecture/arc_063_candidate_rule_field.md (availability-maintenance amend section, 2026-06-11)",
@@ -4308,13 +4308,19 @@
           "experiment_type": "v3_exq_666_arc063_crf_mature_pool_readiness",
           "metric": "ARM_1_MATURE (raw z_world ctx) frac_active 0.066 / dist 0.0 (mint-block collapses pool to 2 rules -- no differentiation); ARM_2_MATURE_E2CTX dist 1.71 / 10-16 distinct rules BUT frac_active 0.016 (differentiation achieved, persistence collapses -- worst of 3 arms); ARM_0_OFF frac_active 0.125 / dist 0.0 (654b churn reproduced). 0/3 cells clear the gate in every arm. Non-vacuity met (all cells minted >=2).",
           "target": "a working CRF must hold >=2 differentiated rules (crf_max_pairwise_rule_dist > 0.1) AND keep them active (crf_frac_active >= 0.30) on >=2/3 seeds SIMULTANEOUSLY, so the 654c GAP-B committed-class entropy falsifier can score"
+        },
+        {
+          "run_id": "v3_exq_666a_arc063_crf_availability_maintenance_readiness_20260611T154034Z_v3",
+          "experiment_type": "v3_exq_666a_arc063_crf_availability_maintenance_readiness",
+          "metric": "Maintenance mechanism WORKS but the count-floor gate did not isolate it: crf_n_maintained_reactivatable ARM_2 16/10/15 vs ARM_1 3/2/7 vs ARM_0 0/0/0 -- both e2ctx arms clear the n>=2 floor (discrimination fails). The isolating statistic crf_frac_maintained cleanly separates: ARM_2 1.0/0.625/0.938 vs ARM_1 0.188/0.125/0.438 vs ARM_0 0.0. crf_frac_active ~0.016-0.031 in both e2ctx arms (confirms it is the wrong readout, lit-prescribed readout redefinition validated).",
+          "target": "a working readiness gate must ISOLATE the maintenance contribution -- re-state on crf_frac_maintained (e.g. ARM_1 < ~0.5 fails, ARM_2 >= 0.625 clears) and/or a context-absent gap long enough that differentiation-alone erodes below the floor, on >=2/3 seeds, so the substrate 'ready' flag rests on a discriminating test before the 654c GAP-B falsifier scores"
         }
       ],
-      "implementation_hint": "GATED ON the targeted_review_arc_063_crf_rule_cell_persistence lit verdict (persistent-firing vs activity-silent). V3-EXQ-666 showed the 2026-06-11 ARC-063 amend solves differentiation only via crf_context_from_e2_world_forward (ARM_2 dist 1.71, 10-16 distinct rules) but worsens persistence (frac_active 0.016, below the 0.30 floor and worse than legacy 0.125), because narrowly-tuned rules match sparsely and availability never accumulates above theta=0.40 between matches (mature_availability_decay 0.001 erodes it over the gaps). The conflict-gate theta retune (654b fix) addressed the wrong constraint for the differentiated regime. New entry (kept distinct from ARC-062's differentiation/gating work, per user): (a) adopt crf_context_from_e2_world_forward as the mature-regime differentiation DEFAULT; (b) add an availability-MAINTENANCE mechanism so a differentiated rule's availability persists across context-absent ticks (sustained-activity term, OR -- if the lit says activity-silent -- redefine the 'active' readout to count silently-maintained-and-reactivatable rules), targeting frac_active >= 0.30 without collapsing dist; (c) re-validate with a 666-successor CRF-readiness diagnostic (same 3-arm gate) before the 654c GAP-B behavioural re-run.",
+      "implementation_hint": "Mechanism CONFIRMED FUNCTIONAL by V3-EXQ-666a: read on crf_frac_maintained, maintenance (ARM_2) holds 62.5-100% of the differentiated pool vs differentiation-alone (ARM_1) 12.5-43.75%, clean monotone 3/3-seed separation; the lit-prescribed maintained-pool readout (replacing crf_frac_active) is validated. ready stays FALSE only because the pre-registered readiness gate used the count-floor crf_n_maintained_reactivatable>=2 (which differentiation-alone clears at the shorter behavioural-runtime context-absent gaps) instead of the isolating crf_frac_maintained. NEXT: V3-EXQ-666b pre-registers the gate on crf_frac_maintained (ARM_1 fails, ARM_2 clears) and/or a longer-gap regime; on its PASS, adopt maintenance-ON as the mature-regime default + flip ready=true + unblock the 654c GAP-B behavioural re-run.",
       "priority": 1,
       "priority_note": "Autopsy priority_suggested=1; strict 6a-ii.6 agrees (>=1 fresh failure record V3-EXQ-666 + unblocks 3 candidate claims MECH-309/ARC-062/ARC-063). No override.",
       "added_session": "governance-cycle-20260611T0701Z",
-      "last_seen_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
+      "last_seen_session": "governance-cycle-666a-amend-20260611T2106Z",
       "implemented_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
       "implemented_utc": "2026-06-11T08:02:54Z",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-666_2026-06-11.json",
@@ -4327,7 +4333,7 @@
           "validation_experiment": "V3-EXQ-666a (CRF-readiness diagnostic, supersedes V3-EXQ-666; gates on the MAINTAINED-POOL metric not crf_frac_active). ready stays FALSE until it clears."
         }
       ],
-      "ready_blocked_by": "Lit-pull DONE + maintenance mechanism BUILT (2026-06-11). ready stays False until the 666-successor CRF-readiness diagnostic V3-EXQ-666a clears the MAINTAINED-POOL gate -- crf_maintained_pairwise_dist > 0.1 AND crf_n_maintained_reactivatable >= 2 on >=2/3 seeds (the crf_frac_active >= 0.30 target is RETIRED per the B-leaning lit verdict: for a sparsely-matched differentiated pool, crf_frac_active is the averaged-activity artefact -- maintained-and-reactivatable is the correct persistence readout). PASS unblocks the 654c GAP-B behavioural re-run (a separate later /queue-experiment session).",
+      "ready_blocked_by": "Maintenance mechanism CONFIRMED FUNCTIONAL by V3-EXQ-666a (crf_frac_maintained ARM_2 0.625-1.0 vs ARM_1 0.125-0.438 vs ARM_0 0.0, monotone 3/3 seeds; readout redefinition validated). ready stays False ONLY because the 666a readiness gate used the count-floor crf_n_maintained_reactivatable>=2, which differentiation-alone (ARM_1) clears at the shorter behavioural-runtime context-absent gaps -- it did not isolate the maintenance contribution. ready unblocks on V3-EXQ-666b PASS on the re-gated crf_frac_maintained readiness diagnostic (ARM_1 < ~0.5 fails, ARM_2 >= 0.625 clears) and/or a longer context-absent gap regime, on >=2/3 seeds. On that PASS: adopt maintenance-ON as the mature-regime default + flip ready=true + unblock the 654c GAP-B behavioural re-run (a separate later /queue-experiment session).",
       "validation_log": [
         {
           "run_id": "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
@@ -4335,8 +4341,16 @@
           "evidence_direction": "non_contributory",
           "claim_ids": [],
           "note": "ARC-063 mature-pool amend (654b fix) achieves differentiation only via crf_context_from_e2_world_forward (ARM_2 dist 1.71, 10-16 distinct rules) but WORSENS persistence (frac_active 0.016 < 0.30 floor, worse than legacy 0.125): narrowly-tuned rules match sparsely so availability never accumulates above theta=0.40 between matches. The 654b conflict-gate theta retune addressed the wrong constraint for the differentiated regime. Reviewed/explained by failure_autopsy_V3-EXQ-666_2026-06-11 (confirmed)."
+        },
+        {
+          "run_id": "v3_exq_666a_arc063_crf_availability_maintenance_readiness_20260611T154034Z_v3",
+          "outcome": "FAIL",
+          "evidence_direction": "non_contributory",
+          "claim_ids": [],
+          "note": "CRF availability-maintenance readiness diagnostic (supersedes V3-EXQ-666). Self-routed FAIL on its discrimination criterion -- but a measurement_test_design_defect, NOT a substrate failure. The maintenance mechanism WORKS and strictly dominates on the isolating statistic crf_frac_maintained (ARM_2 1.0/0.625/0.938 vs ARM_1 0.188/0.125/0.438 vs ARM_0 0.0, clean monotone 3/3 seeds); the lit-prescribed maintained-pool readout redefinition is validated (crf_frac_active ~0.016-0.031 in both e2ctx arms = the averaged-activity artefact). The pre-registered gate used the COUNT floor crf_n_maintained_reactivatable>=2, which differentiation-alone clears at behavioural-runtime gap density (ARM_1 holds 2/3/7 reactivatable), so it did not isolate maintenance -- the isolating FRACTION statistic was collected but not gated on. Reviewed/explained by failure_autopsy_V3-EXQ-666a_2026-06-11 (confirmed). Re-gated on crf_frac_maintained -> V3-EXQ-666b. ready stays False pending 666b PASS."
         }
-      ]
+      ],
+      "source_autopsy_666a": "evidence/planning/failure_autopsy_V3-EXQ-666a_2026-06-11.json"
     }
   ],
   "schema_version": "substrate_queue/v2"

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_502_mech062_tri_loop_gate_coordination
 
-Generated: `2026-06-11T20:29:42.067963Z`
+Generated: `2026-06-11T21:23:56.441414Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
