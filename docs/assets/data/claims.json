@@ -4841,7 +4841,8 @@
     "status": "active",
     "subject": "emotion.affect_dimension_channel_mapping",
     "title": "Do affect dimensions (not necessarily universal expressions) map to stable control-channel regimes in z_beta?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Cluster the z_beta (control/modulatory latent) trajectory across episodes\nlabelled by affect-relevant context (harm-proximal / goal-proximal /\nresource-depleted). ANSWER \"yes -- affect dims map to stable control-channel\nregimes\" if a small number (2-4) of affect contexts occupy separable,\ntemporally-stable regions of z_beta: between-context separation /\nwithin-context dispersion > floor AND the regime persists across the episode\n(low within-episode drift). ANSWER \"no\" if z_beta does not differentiate affect\ncontexts. HARD PRECONDITION: z_beta must carry cross-context variance --\nV3-EXQ-643's autopsy found the modulatory signal had magnitude but ZERO\ncross-candidate range, so on the current substrate this precondition is unmet\nand the cluster test is vacuous. Substrate-blocked on the candidate-differentiated\nmodulatory-variance substrate (per-candidate modulatory variance + range-not-\nmagnitude readiness gate seeded by the 643 autopsy); test becomes live once that\nsubstrate gives z_beta a real cross-context gradient.\n(Routed substrate_conditional per /thought-digestion 2026-06-11.)\n"
   },
   "Q-008": {
     "epistemic_stance": "asked",
@@ -4897,7 +4898,8 @@
     "status": "active",
     "subject": "commitment.boundary_token_minimal_contract",
     "title": "What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "PARTIALLY answered already (EXQ-003 / MECH-061, ree-v1-minimal): the minimal\ncontract requires at least that pre-commit and post-commit signals stay\nuncorrelated (|corr| < 0.7) and that routing them separately beats blending.\nThe OPEN part -- the smallest token granularity that still works -- needs a\nsubstrate that does not yet exist: a tunable commit-boundary granularity knob.\nFalsifier (once that knob exists): sweep commit-boundary granularity coarse\n(whole-trajectory) -> fine (per-step), task fixed; reliability = rank-corr\nbetween credit assigned to a commit-token and that token's ground-truth outcome\ncontribution, at >=2 timescales (within-commit, across-commit). The answer is the\nSMALLEST granularity at which reliability stays above floor (rank-corr > 0.5) at\nboth timescales; below it attribution degrades to chance. Non-degeneracy\nprecondition: the coarsest arm must itself attribute reliably. Substrate-blocked:\nV3 hard-codes the commit-token unit; no commit-boundary-granularity knob is in\nsubstrate_queue yet. (Routed substrate_conditional per /thought-digestion 2026-06-11.)\n"
   },
   "Q-016": {
     "epistemic_stance": "asked",
@@ -4925,7 +4927,8 @@
     "status": "open",
     "subject": "basal_ganglia.three_gate_vs_single_gate_architecture",
     "title": "Three-gate vs single-gate BG architecture: are the three cortico-striatal loops anatomically distinct or convergent?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Reframed to the REE-relevant decision (the anatomical title-leg -- distinct vs\nconvergent biological cortico-striatal loops -- is out_of_domain, resolved by\nneuroanatomy literature, not the V3 substrate). The substrate question: does\ncommit-gating need three separable gating loops (sensorium/attention,\nthought/trajectory, motor-commitment) or does a single gate evaluating three\ncriteria suffice? Testable in V3: single-gate arm (one BetaGate scoring\nsensorium+trajectory+motor readiness jointly) vs three-gate arm (three gates on\ndistinct axes). ANSWER \"three-gate\" if lesioning one gate degrades ONLY its\nbehavioural axis (attention selectivity / trajectory coherence / commitment\ntiming) while the others survive -- a dissociable lesion signature -- AND the\nthree-gate arm beats single-gate on a task needing independent axis control.\nANSWER \"single-gate\" if the gates show no dissociable lesion signature (collapse\nto one effective gate) and single-gate matches three-gate behaviour. Non-degeneracy\nprecondition: each gate must be live (non-zero gating variance on its own axis)\nbefore its lesion can be read. (Reframed testable per /thought-digestion 2026-06-11;\nproposal EXP-0177.)\n"
   },
   "Q-020": {
     "epistemic_stance": "asked",
@@ -4939,7 +4942,8 @@
     "status": "open",
     "subject": "drive.behavioral_flatness_under_pure_avoidance",
     "title": "Does training with harm-avoidance signals only, without explicit approach drives, produce behavioral flatness (quiescent degenerate policy)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Scoped to Pathway A (drive absence, the ARC-030 route) only; Pathway B\n(self-incoherence-gated commit suppression via MECH-113/114) is a separate,\ndissociable falsifier and is NOT answered by this condition.\nTwo-arm ablation on the V3 forage/harm stack, trained identically except for\nthe Go drive: approach arm (z_goal attractor + novelty/self-maintenance ON) vs\navoidance-only arm (harm gradient only, Go drive ablated). ANSWER \"yes -- flatness\"\nif over training the avoidance-only arm collapses to a quiescent floor\n(resource_visit_rate < 0.2x the approach arm AND policy_entropy within epsilon of\nthe no-op floor) on >=2/3 seeds. MANDATORY non-degeneracy precondition: the\napproach arm must itself be non-flat (non-zero resource_visit_rate and policy\nentropy) -- the v3_exq_072b prior run read 0 on every arm and so tested nothing;\na run failing this precondition self-routes substrate_not_ready, not a \"yes\".\nANSWER \"no\" if the avoidance-only arm sustains action-rate/entropy comparable to\nthe approach arm. (Pathway A scope per /thought-digestion 2026-06-11.)\n"
   },
   "Q-022": {
     "epistemic_stance": "asked",
@@ -4953,7 +4957,8 @@
     "status": "open",
     "subject": "ethics.formal_convergence_characterization",
     "title": "Can a multiagent REE system with other-cost-aversion primitives be formally shown to converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic stability methods?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by proof, not experiment. AFFIRMATIVE if one constructs an ordinal\npotential (or pseudo-potential / interdependent-types extension) P for the REE\nsocial game -- e.g. P(a) = -sum_i harm_i(a) + alpha*sum_i goal_i(a) +\ncoupling_terms -- and proves the Finite Improvement Property -> convergence to a\nNash / ethical attractor, with the extension explicitly covering MECH-127's\ncounterfactual-model-dependent utility and MECH-036's veto-threshold\nnon-smoothness. NEGATIVE via counterexample: a cyclic best-response orbit with no\npotential decrease and no Lyapunov function, exhibiting non-convergence. The\ndiscriminating sub-result is whether MECH-127 admits a potential extension or\ngenuinely breaks convergence. Next step is a derivation artifact (the paper's\npotential-game section), NOT a V3 experiment.\n(Routed derivational per /thought-digestion 2026-06-11.)\n"
   },
   "Q-024": {
     "epistemic_stance": "asked",
