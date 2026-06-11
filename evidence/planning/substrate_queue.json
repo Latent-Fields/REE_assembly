@@ -3101,15 +3101,16 @@
       "last_seen_session": "mech314a-e2wf-novelty-amend-then-648a-20260607T0545Z",
       "priority": 2,
       "ready": false,
-      "ready_blocked_by": "Amend implemented 2026-06-07 (e2.world_forward novelty source); validation pending V3-EXQ-648a substrate-readiness PASS (curiosity_candidate_source='e2_world_forward' + readiness precondition re-targeted to the consumed representation). PASS gates V3-EXQ-590b + section-8 MECH-314a/MECH-314/ARC-065 updates.",
+      "ready_blocked_by": "RESOLVED 2026-06-11 (bookkeeping advance): the e2.world_forward novelty amend + precondition correction were VALIDATED by V3-EXQ-648a load-bearing C2 PASS (ran 2026-06-07T10:54Z, supersedes 648; consumed candidate z_world spread 0.149 >= 0.05, consumed curiosity bias range 0.0206 >= 1e-4, visitation source -> per-candidate-varying curiosity bias). 648a overall outcome reads FAIL/non_contributory only because of the non-load-bearing C1/C3 legs; the load-bearing C2 PASSED and was user-adjudicated in failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07 ('the curiosity channel is now load-bearing-ready (C2 PASS)'). This status was left stale on 2026-06-07; advanced 2026-06-11 by session advance-mech314a-phase2-impl-bookkeeping-20260611T0725Z. Downstream already acted: MECH-314 family v3_pending lifted 2026-06-08 after V3-EXQ-604c PASS on the validated GAP-A substrate (commit 07c0b39fa3). RESIDUAL (not part of this advance): V3-EXQ-590b MECH-314a per-candidate RBF-novelty Goldilocks calibration is now UNBLOCKED and queueable; section-8 MECH-314a/MECH-314/ARC-065 governance touch deferred to /governance.",
       "ready_gates_cleared": [
         "User assent on Candidate 5A GRANTED 2026-06-05",
         "SD-056 contrastive next-state landed 2026-05-29 (V3-EXQ-613 PASS)",
         "SD-056 multistep-stability amend landed 2026-05-31T11:25Z (V3-EXQ-617 PASS 11:31Z)",
-        "MECH-094 simulation-gate substrate (waking-only writes) already implemented per StructuredCuriosity Phase 1"
+        "MECH-094 simulation-gate substrate (waking-only writes) already implemented per StructuredCuriosity Phase 1",
+        "Amend validation: V3-EXQ-648a load-bearing C2 PASS 2026-06-07 (e2.world_forward novelty source + precondition re-targeted to the consumed representation); user-adjudicated failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07"
       ],
       "sd_id": "MECH-314a-Phase-2-impl",
-      "status": "amend_implemented_pending_validation",
+      "status": "amend_validated_v3_exq_648a_c2_loadbearing_pass",
       "title": "MECH-314a Phase-2 implementation: rolling z_world visitation buffer (primary) + first-action one-hot augmentation (substrate-robustness bypass). Architecture-doc Candidate 5A. Bit-identical-OFF default; experiments opt in via config. LANDED 2026-06-05; validation = V3-EXQ substrate-readiness diagnostic (3 arms x 3 seeds x 30 ep) then V3-EXQ-590b Goldilocks retest on PASS.",
       "unblocks_claims": [
         "MECH-314a",
