@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-11T13:51:18Z",
+  "last_tick_utc": "2026-06-11T14:21:30Z",
   "state": "running",
   "current_exq": "V3-EXQ-666a",
   "current_exq_started_utc": "2026-06-11T13:45:32.674708+00:00",
@@ -9,19 +9,33 @@
   "current_claim_id": null,
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_OFF",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_2_MATURE_E2CTX_MAINTENANCE",
+    "runs_done": 2,
     "runs_total": 9,
     "episodes_done": 40,
     "episodes_total": 100,
-    "overall_pct": 4.4
+    "overall_pct": 26.7
   },
-  "seconds_elapsed": 346,
-  "seconds_remaining": 29462,
+  "seconds_elapsed": 2158,
+  "seconds_remaining": 5751,
   "recent_lines": [
     "Seed 42 Condition ARM_0_OFF",
     "[train] cell ARM_0_OFF seed=42 ep 20/100",
-    "[train] cell ARM_0_OFF seed=42 ep 40/100"
+    "[train] cell ARM_0_OFF seed=42 ep 40/100",
+    "[train] cell ARM_0_OFF seed=42 ep 60/100",
+    "[train] cell ARM_0_OFF seed=42 ep 80/100",
+    "[train] cell ARM_0_OFF seed=42 ep 100/100",
+    "verdict: FAIL",
+    "Seed 42 Condition ARM_1_MATURE_E2CTX",
+    "[train] cell ARM_1_MATURE_E2CTX seed=42 ep 20/100",
+    "[train] cell ARM_1_MATURE_E2CTX seed=42 ep 40/100",
+    "[train] cell ARM_1_MATURE_E2CTX seed=42 ep 60/100",
+    "[train] cell ARM_1_MATURE_E2CTX seed=42 ep 80/100",
+    "[train] cell ARM_1_MATURE_E2CTX seed=42 ep 100/100",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_2_MATURE_E2CTX_MAINTENANCE",
+    "[train] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=42 ep 20/100",
+    "[train] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=42 ep 40/100"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
