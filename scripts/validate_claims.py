@@ -201,6 +201,38 @@ def main():
                 "to inference for invalid values)"
             ))
 
+    # Epistemic-stance split (warn-only). An explicit `epistemic_stance` must be
+    # one of shown|believed|asked (else build_claims_json falls back to the
+    # derivation). And an ASKED-bucket claim -- an open-question/derivational/
+    # out-of-domain claim, the question-not-assertion bucket -- should carry a
+    # `what_would_answer` line: the falsification condition that distinguishes
+    # genuinely-new epistemic ground from the merely not-yet-operationalised.
+    # Warn-only; the most ambitious ungrounded claims are exactly the ones this
+    # keeps honest. (Independent of exp_conf -- exp_conf separates shown from
+    # believed, never asked, so the structural signals below define the bucket.)
+    _STANCE_VALUES = {"shown", "believed", "asked"}
+    _ASKED_CATEGORIES = {"answer_state", "derivational", "out_of_domain"}
+    _ASKED_CLAIM_TYPES = {"open_question", "question"}
+    for c in claims:
+        cid = c.get("id", "<unknown>")
+        stance = str(c.get("epistemic_stance", "") or "").strip().lower()
+        if stance and stance not in _STANCE_VALUES:
+            all_issues.append((
+                "WARN",
+                f"{cid}: epistemic_stance='{c.get('epistemic_stance')}' invalid; "
+                f"must be one of {sorted(_STANCE_VALUES)} (build_claims_json will "
+                "fall back to the derivation)"))
+        ct = str(c.get("claim_type", "") or "").strip()
+        cat = str(c.get("epistemic_category", "") or "").strip().lower()
+        is_asked = (stance == "asked" or cat in _ASKED_CATEGORIES
+                    or ct in _ASKED_CLAIM_TYPES)
+        if is_asked and not str(c.get("what_would_answer", "") or "").strip():
+            all_issues.append((
+                "WARN",
+                f"{cid}: asked-bucket claim (claim_type={ct or 'n/a'}, "
+                f"epistemic_category={cat or 'n/a'}) has no `what_would_answer` "
+                "-- state the observation that would answer/falsify it"))
+
     errors = [msg for lvl, msg in all_issues if lvl == "ERROR"]
     warnings = [msg for lvl, msg in all_issues if lvl == "WARN"]
 

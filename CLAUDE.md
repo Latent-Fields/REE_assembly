@@ -167,6 +167,38 @@ See `docs/architecture/substrate_roadmap.md` for the V3 enrichment work
 that would unblock `substrate_ceiling` claims, and `docs/architecture/
 v4_spec.md` for the V4 substrate that addresses the V4-bound sub-cohort.
 
+## Epistemic stance: shown / believed / asked (derived view, 2026-06-11)
+
+Beyond `status`, `claim_type`, and `epistemic_category`, every claim carries a
+derived **`epistemic_stance`** in {`shown`, `believed`, `asked`} -- the
+author-facing reading of where the claim sits. It is a VIEW computed by
+`scripts/build_claims_json.py` over existing fields, NOT a hand-labelled axis:
+
+| stance | derivation | meaning |
+|---|---|---|
+| `shown` | `experimental_confidence >= 0.62` (the candidate->provisional gate) | experimentally confirmed |
+| `asked` | `epistemic_category in {answer_state, derivational, out_of_domain}` OR `claim_type in {open_question, question}` | a question, not an assertion |
+| `believed` | the remainder (an assertion not yet experimentally shown) | committed-to but untested; the ideas-first tail |
+
+`exp_conf` comes from `evidence/experiments/claim_evidence.v1.json` (run the
+indexer first for an up-to-date split; an absent matrix just yields
+`exp_conf=0` -> `believed` for untested assertions, the correct default).
+`build_claims_json.py` prints the `shown=/believed=/asked=` tally and emits
+`epistemic_stance` (+ `what_would_answer` when present) into `claims.json` for
+the explorer.
+
+**Optional override:** set `epistemic_stance: shown|believed|asked` on a claim
+to override the derivation (same pattern as `epistemic_category`).
+`scripts/validate_claims.py` warns on an invalid explicit value.
+
+**`what_would_answer` (asked bucket):** an `asked` claim should carry a
+`what_would_answer:` line -- the observation that would answer or falsify it.
+This is the discipline that separates genuinely-new epistemic ground (you can
+state the falsification condition even if you can't yet run it) from the merely
+not-yet-operationalised. `validate_claims.py` emits a warn-only flag for any
+asked-bucket claim missing it. Warn-only by design; it does not block the
+strict governance gate.
+
 ## Invariant Types
 
 See `docs/architecture/invariant_types.md` for the full schema and governance rule.
