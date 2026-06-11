@@ -1,0 +1,92 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_590b_mech314a_novelty_goldilocks",
+  "run_id": "v3_exq_590b_mech314a_novelty_goldilocks_20260611T211806Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T21:18:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-314a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech314a_no_exploratory_benefit",
+    "preconditions": [
+      {
+        "name": "curiosity_bias_range_supra_floor",
+        "kind": "readiness",
+        "description": "At the highest-gain arm the per-candidate curiosity_bias_range (pre-rescale cross-candidate RANGE) clears the floor -- the MECH-314a channel carries a real per-candidate pattern for the authority to amplify (the 643a 'scaling zero is still zero' guard).",
+        "control": "highest modulatory_authority_gain arm, curiosity_candidate_source=e2_world_forward",
+        "measured": 0.01229558,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "h_pos_range_across_gain_arms_supra_floor",
+        "kind": "readiness",
+        "description": "SAME-statistic gate (V3-EXQ-643 lesson): the RANGE across the swept authority-gain arms of the healthy-seed-mean H_pos -- the EXACT statistic the Goldilocks decision routes on -- clears a floor. If H_pos is flat across every gain the authority knob produces no behavioural gradient to calibrate -> substrate_not_ready_requeue, not a verdict.",
+        "control": "RANGE of per-arm mean H_pos across gain {0,0.25,0.5,1.0,2.0}",
+        "measured": 0.28321,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.584272,
+        "threshold": 1000000.0,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "mech314a_goldilocks_lift_over_control",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech314a_goldilocks_lift_over_control": true
+    },
+    "routing": {
+      "substrate_not_ready_requeue": "re-queue as V3-EXQ-590c at higher P0 budget / check e2+authority wiring; do NOT weaken MECH-314a",
+      "mech314a_goldilocks_identified": "PASS (supports MECH-314a); adopt best gain for the curiosity channel",
+      "mech314a_no_exploratory_benefit": "FAIL (does_not_support MECH-314a behavioural reading); /failure-autopsy"
+    }
+  }
+}
