@@ -1,0 +1,72 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-11T14:19:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3",
+      "queue_id": "V3-EXQ-485e",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "CONFIRMED. readiness_met=false (ready_seeds 1/3) correctly self-routes to requeue, not a weakens. The two manifest preconditions report met:true only because they are max-over-seeds (max bias_range 0.0035 > floor 0.001; max head_delta 0.25 > 1e-3); the load-bearing readiness gate is a per-seed count requiring >=2 of 3 seeds above the bias-range floor, and only seed 0 clears it. The head trained on all 3 seeds; the FAIL is a cross-candidate-RANGE collapse, not a training failure.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the experiment never let SD-033b/MECH-263 express. The trained-OFC-head bias carried near-zero cross-candidate range, so the selection-distribution DVs (devaluation shift, task-role separation) are vacuously ~0. non_contributory is correct; a weakens would be a false demotion.",
+        "biological_reference": "clear -- OFC outcome-value coding (Rudebeck & Murray 2018, Stalnaker 2021, Wilson-Niv 2014 cognitive map). The mechanism requires candidate-DIFFERENTIATED value signals. Biology is an existence proof for the class; the failure is a translation/calibration gap, not a falsification.",
+        "prerequisites": "missing/immature -- the candidate-bank cross-candidate z_world spread (ARC-065 GAP-A / SD-056 e2.world_forward action-conditional divergence) is the upstream prerequisite. Reconstruction-shaped P0 training of e2.world_forward fits the action contribution toward zero, so the proposer's world_states[1] bank (the input to compute_bias) is near-uniform across candidates.",
+        "implementation": "partial -- the trained-OFC-head substrate is wired (485d confirmed Delta 0.231) but the behavioural readout starves the range on two axes: (1) the OFC compute_bias clamp (+/-ofc_bias_scale=0.1) saturates on 2/3 seeds; (2) the candidate bank carries no usable cross-candidate spread.",
+        "environment": "adequate -- the SD-054 bipartite reef/forage env supplies the candidate-selection pressure; the env is not the limiter.",
+        "measurement": "under-instrumented -- the C2 discrimination_separation_ratio is degenerate: between_context_tv ~3e-4 divided by within_context_jitter ~5e-8 yields 322 (or 0 when the denominator is exactly 0). C2 'passed' (n_c2_seeds=2) but criteria_non_degenerate.C2=false flags it as a near-zero-denominator artifact, not real discrimination. The ratio needs an absolute floor on between_context_tv before it can count.",
+        "integration": "isolated -- OFC is deliberately the sole bias channel (gated_policy/dACC/lateral_pfc OFF, modulatory-bias-selection-authority OFF) to avoid confounding the MECH-263 signal. Correct design; not the limiter.",
+        "scale": "adequate -- P1 budget 60 ep trained the head fine (head_delta 0.075-0.25, grad-nonzero 60/1/60). Budget is not the primary cause; the range collapse is structural (clamp + bank), not under-training."
+      },
+      "per_seed_evidence": {
+        "seed_0": {"head_delta": 0.2537, "n_grad_nonzero": 60, "p1_mean_abs_bias": 0.00552, "saturated": false, "bias_range": 0.003497, "ready": true, "deval_shift": 8.06e-05, "between_tv": 3.22e-04, "within_jitter": 4.84e-08, "sep_ratio": 322.3, "note": "unsaturated + READY, yet behavioural DVs still vacuous (deval_shift 3 orders below the 0.05 margin; sep_ratio is a near-zero-denominator artifact) -> proves the candidate-bank collapse, not just the clamp"},
+        "seed_1": {"head_delta": 0.0753, "n_grad_nonzero": 1, "p1_mean_abs_bias": 0.09981, "saturated": true, "bias_range": 0.000491, "ready": false, "note": "clamp-saturated at the +/-0.1 rail -> range collapses below the 0.001 floor"},
+        "seed_2": {"head_delta": 0.1341, "n_grad_nonzero": 60, "p1_mean_abs_bias": 0.09508, "saturated": true, "bias_range": 0.000685, "ready": false, "note": "clamp-saturated at the +/-0.1 rail -> range collapses below the 0.001 floor"}
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC outcome-value / state-value coding driving candidate-differentiated action bias (devaluation sensitivity + perceptually-matched task-role discrimination).",
+        "dependencies": ["candidate-differentiated value inputs (cross-candidate z_world spread)", "a value-bias output range competitive with the selection softmax", "SD-049/SD-011 outcome features into the OFC state_code"],
+        "is_formal_import": false,
+        "divergence": "none -- this is not a formal-definition-import failure (SD-003 class). It is a faithful OFC translation whose behavioural readout is starved by two calibration/substrate gaps.",
+        "lit_status": "present (targeted_review_pfc_subdivision_architecture; SD-033b lit_conf 0.863)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-485e (trained-OFC-head behavioural, SD-033b/MECH-263) FAILed non_contributory via the same-statistic non-vacuity gate: readiness_met=false (1/3 seeds clear the cross-candidate bias-RANGE floor). Autopsy (failure_autopsy_V3-EXQ-485e_2026-06-11) confirms the self-route substrate_not_ready_requeue: the head trained on all 3 seeds but two gaps starve the cross-candidate range that every MECH-263 behavioural DV requires. (1) OFC compute_bias clamp-saturation on 2/3 seeds (p1_mean_abs_bias ~0.095-0.10 at the +/-ofc_bias_scale=0.1 rail) -- the calibration risk the GAP-8 landing pre-registered. (2) Candidate-bank z_world collapse: the bank is the proposer's reconstruction-trained e2.world_forward world_states[1], which fits the action contribution toward zero (V3-EXQ-571 / ARC-065 GAP-A / SD-056), so even the one unsaturated+READY seed produced a vacuous deval_shift (8e-05 vs 0.05 margin) and a degenerate C2 separation ratio (criteria_non_degenerate.C2=false). NOT a weakens against SD-033b or MECH-263 -- both stay candidate / v3_pending. Requeue as V3-EXQ-485f on BOTH axes (raise ofc_bias_scale and/or add a pre-clamp training signal / 598b REINFORCE-over-candidates seeding; AND enable SD-056 e2_action_contrastive in P0 so the candidate bank carries action-divergent range). Also add an absolute floor on between_context_tv so the C2 separation ratio cannot pass vacuously.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "title": "ARC-065 GAP-A candidate-bank collapse starves the SD-033b trained-OFC-head behavioural readout (corroborating failure record)",
+        "implementation_hint": "485e is a fresh instance of the cross-claim ARC-065 GAP-A pattern (569f/661/654a): a per-candidate bias channel reads the proposer's reconstruction-trained e2.world_forward summaries, which collapse action divergence, so the channel cannot carry cross-candidate range. No NEW substrate is needed -- candidate_summary_source=e2_world_forward + SD-056 e2_action_contrastive already exist (validation V3-EXQ-649 pending). The OFC clamp-saturation axis is experiment-side (ofc_bias_scale / pre-clamp signal), NOT a substrate gap. Record 485e as corroborating evidence on the GAP-A entry; the actual fix lands in V3-EXQ-485f via /queue-experiment.",
+        "unblocks_claims": ["SD-033b", "MECH-263"],
+        "depends_on_unresolved": ["ARC-065 GAP-A candidate-summary e2_world_forward source (V3-EXQ-649 validation pending)", "SD-056 e2_action_contrastive (landed; not enabled in the 485e config)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_485e_sd033b_trained_ofc_head_behavioural_20260611T135223Z_v3",
+          "experiment_type": "v3_exq_485e_sd033b_trained_ofc_head_behavioural",
+          "metric": "trained-OFC-head cross-candidate bias RANGE 1/3 seeds above the 0.001 floor (0.0035/0.0005/0.0007); even the READY seed's deval_shift was 8e-05 (margin 0.05) -- candidate-bank z_world spread too small for the OFC head to differentiate",
+          "target": "bias range > 0.001 on >=2/3 seeds AND a non-degenerate behavioural DV (deval_shift > 0.05 with between_context_tv above an absolute floor) on the requeued V3-EXQ-485f"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The GAP-8 landing's pre-registered clamp-saturation risk materialised: at random init the OFC state_bias_head's own Linear bias terms push compute_bias past the +/-ofc_bias_scale rail for ~all candidates on 2/3 seeds, collapsing cross-candidate range to ~0.0005.",
+        "Clamp-saturation is necessary but NOT sufficient to explain the FAIL: the one unsaturated+READY seed still produced a vacuous behavioural DV, proving the candidate bank (reconstruction-trained e2.world_forward world_states[1]) carries near-zero cross-candidate z_world spread -- the ARC-065 GAP-A / SD-056 collapse reaches this OFC channel too.",
+        "485e is the OFC-head instance of the standing candidate-differentiated-affective-gradients pattern (V3-EXQ-643 / candidate_differentiated_affective_gradients memory): a modulatory channel with magnitude but ~zero cross-candidate range gives E3 no gradient to carve behaviour.",
+        "The C2 discrimination_separation_ratio metric is degenerate (between_context_tv / within_context_jitter with ~0 denominators -> 322 or 0); it 'passed' but criteria_non_degenerate.C2=false caught it. A future version needs an absolute floor on between_context_tv before the ratio can count as a PASS.",
+        "The same-statistic non-vacuity readiness gate worked exactly as designed: it converted what would have been a false SD-033b/MECH-263 weakens into a correct substrate_not_ready_requeue."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "modulatory/bias channel carries magnitude but near-zero cross-candidate RANGE; the channel's per-candidate inputs come from a reconstruction-trained e2.world_forward that collapses action divergence, so no downstream selection DV can be non-zero",
+    "is_independent_bugs": false,
+    "structural_property": "candidate-pool z_world collapse (ARC-065 GAP-A / SD-056) starves every per-candidate bias channel that reads it; 485e (OFC head) joins 569f/661/654a/643/614e as instances of the same structural property, compounded here by an OFC-specific compute_bias clamp-saturation",
+    "readings": ["candidate_bank_enrichment (ARC-065 GAP-A / SD-056 e2_action_contrastive)", "ofc_clamp_calibration (experiment-side ofc_bias_scale / pre-clamp signal)"]
+  }
+}
