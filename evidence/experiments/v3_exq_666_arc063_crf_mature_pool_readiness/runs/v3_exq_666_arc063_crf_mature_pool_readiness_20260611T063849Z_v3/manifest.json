@@ -1,0 +1,79 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_666_arc063_crf_mature_pool_readiness",
+  "run_id": "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T06:38:49.577839Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mature_dynamics_insufficient_at_behavioural_runtime",
+    "route": "/failure-autopsy (mature dynamics did not mature the pool)",
+    "preconditions": [
+      {
+        "name": "field_minted_all_cells",
+        "kind": "readiness",
+        "description": "every gate-relevant cell must mint >=1 rule so a below-gate reading is fix-insufficiency, not field-not-engaged. Below floor -> substrate_not_ready_requeue.",
+        "control": "all (arm x seed) cells driven over the 654b hazard env",
+        "measured": 2,
+        "threshold": 1,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "readiness_gate_discriminates_vs_arm0_off": true,
+      "field_engaged_all_cells": true
+    },
+    "criteria": [
+      {
+        "name": "ARM_1_MATURE_clears_readiness_gate",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "ARM_0_OFF_reproduces_654b_signature",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "ARM_2_MATURE_E2CTX_clears_gate",
+        "load_bearing": false,
+        "passed": false
+      }
+    ]
+  }
+}

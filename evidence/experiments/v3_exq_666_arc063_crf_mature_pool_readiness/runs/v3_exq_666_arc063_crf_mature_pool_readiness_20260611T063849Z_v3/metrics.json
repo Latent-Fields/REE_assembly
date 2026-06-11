@@ -1,0 +1,39 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_summary": {
+      "ARM_0_OFF": {
+        "n_seeds": 3,
+        "n_gate_cleared": 0,
+        "n_minted": 3,
+        "min_n_minted": 117,
+        "mean_frac_active": 0.12473248401966075,
+        "mean_max_pairwise_rule_dist": 0.0
+      },
+      "ARM_1_MATURE": {
+        "n_seeds": 3,
+        "n_gate_cleared": 0,
+        "n_minted": 3,
+        "min_n_minted": 2,
+        "mean_frac_active": 0.06611965709288153,
+        "mean_max_pairwise_rule_dist": 0.0
+      },
+      "ARM_2_MATURE_E2CTX": {
+        "n_seeds": 3,
+        "n_gate_cleared": 0,
+        "n_minted": 3,
+        "min_n_minted": 10,
+        "mean_frac_active": 0.016007657011776307,
+        "mean_max_pairwise_rule_dist": 1.7080096006393433
+      }
+    },
+    "readiness_met_arm1_mature": false,
+    "discrimination_met_arm0_off_does_not_mature": true,
+    "e2ctx_met_arm2": false,
+    "non_vacuity_met_all_cells_minted": true,
+    "min_n_minted_all_cells": 2,
+    "dist_floor": 0.1,
+    "frac_floor": 0.3,
+    "seed_majority": 2
+  }
+}
