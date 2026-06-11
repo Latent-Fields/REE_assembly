@@ -1,0 +1,51 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-11T14:19:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_514m_sd049_phase2_behavioural_curriculum_built_20260611T131105Z_v3",
+      "queue_id": "V3-EXQ-514m",
+      "claim_ids": ["MECH-229"],
+      "failed_criterion": "discrimination",
+      "criterion_vacuous": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the test could not let MECH-229 express; the wanting channel was never written",
+        "biological_reference": "clear -- Berridge & Robinson 2003 wanting!=liking; working existence proof for the class",
+        "prerequisites": "present -- the scaffolded_sd054_onboarding curriculum delivered foraging competence (514l contact ceiling lifted; 2/3 seeds clear the contact guard)",
+        "implementation": "partial (load-bearing) -- config omits valence_liking_enabled/tonic_5ht_enabled/schema_wanting_enabled and the custom _run_behavioural_eval loop calls no valence-writer method",
+        "environment": "adequate -- SD-049 Phase-2 multi-resource env present; identity + per-axis drive genuinely measured",
+        "measurement": "misleading (load-bearing) -- DV reads VALENCE_WANTING/VALENCE_LIKING channels with no active write path; 0.0 is an instrument artifact, not behaviour",
+        "integration": "n/a",
+        "scale": "adequate -- n=3455 identity samples; contact achieved on 2/3 seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Berridge incentive-salience (wanting, mesolimbic DA, cue/drive-triggered) vs hedonic impact (liking, opioid hotspots, consummatory)",
+        "dependencies": ["SD-057 object-bound incentive salience (MECH-344/345/346)", "SD-014 valence vector channels", "SD-049 per-axis drive"],
+        "is_formal_import": false,
+        "divergence": "none -- the wanting!=liking dissociation has a working biological existence proof; the FAIL is instrumentation, not biology",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-11 (failure_autopsy_V3-EXQ-514m): the MECH-229 per-claim weakens is reclassified non_contributory (measurement_test_design_defect) and remains scoring-excluded. V3-EXQ-514m C_WL wanting!=liking dissoc = 0.0 on all 3 seeds (zero variance) is a VACUOUS FAIL: the DV compares the SD-014 residue VALENCE_WANTING (idx 0) and VALENCE_LIKING (idx 1) channels, but the run's config omits valence_liking_enabled/tonic_5ht_enabled/schema_wanting_enabled and the custom eval loop calls no valence-writer method, so both channels are identically zero at every node and |w-l|>0.1 can never fire -- independent of behaviour. The contact guard (the run's only non-vacuity gate) verifies foraging but not that the wanting/liking channels were written, so the self-routed weakens rests on an unmet non-degeneracy assumption (vacuous-criterion pattern; cf. V3-EXQ-642/660a). C_ID (0.926, n=3455) and C_ANOVA (F~1019) are genuine and contact-guarded -> MECH-230=supports stands. MECH-229 stays provisional, pending_retest_after_substrate=[MECH-229], narrow_supports_flag=true; the prior 074f/234/354 supports are degenerate single-resource. Retest = V3-EXQ-514n: measure the SD-057 object-bound wanting-target != liking-target dissociation (use_incentive_token_bank already on) with a same-statistic WL non-vacuity readiness gate. No demotion; no substrate_queue create/amend (instrumentation defect, not a substrate ceiling; SD-057 substrate already landed 2026-06-04).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "The 514-lineage wanting!=liking DV depends on SD-014 residue VALENCE_WANTING/VALENCE_LIKING write paths, but 514m disables every one of them; a contact-guarded run can still produce a vacuous C_WL=0.0.",
+        "The contact guard is necessary but insufficient for the WL DV -- a same-statistic WL-channel non-vacuity gate is required (assert wanting/liking targets defined before scoring C_WL, else substrate_not_ready_requeue, never a false weakens).",
+        "The substrate-faithful, forward-compatible MECH-229 test is the SD-057 object-bound wanting-target != liking-target dissociation (MECH-346 most-wanted z_goal pointer; use_incentive_token_bank already on), NOT the legacy residue-valence magnitude read the SD-049 verdict flagged as substrate-degenerate."
+      ],
+      "routing": "queue-experiment",
+      "retest_exq_suggested": "V3-EXQ-514n"
+    }
+  ],
+  "secondary_notes": {
+    "MECH-230": "supports -- unaffected and sound (C_ID neighborhood probe 0.926/n=3455 + C_ANOVA F~1019, both contact-guarded). Recorded by governance cycle #3. Minor: consumption-phase identity probe 0.0 at n=5/6/8 is the n<10 floor of _identity_recovery_probe, distinct from the neighborhood probe driving C_ID, not load-bearing; 514n should instrument more consumption-phase samples."
+  },
+  "cluster_pattern": null
+}
