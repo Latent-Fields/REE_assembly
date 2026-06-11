@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-11T22:54:12Z",
+  "last_tick_utc": "2026-06-11T23:24:21Z",
   "state": "running",
   "current_exq": "V3-EXQ-666b",
   "current_exq_started_utc": "2026-06-11T21:38:13.752842+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_0_OFF",
-    "runs_done": 3,
+    "run_label": "Seed 43 / ARM_1_MATURE_E2CTX",
+    "runs_done": 4,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 40,
     "episodes_total": 100,
-    "overall_pct": 33.3
+    "overall_pct": 48.9
   },
-  "seconds_elapsed": 4558,
-  "seconds_remaining": 8797,
+  "seconds_elapsed": 6368,
+  "seconds_remaining": 6744,
   "recent_lines": [
     "Seed 42 Condition ARM_0_OFF",
     "[train] cell ARM_0_OFF seed=42 ep 20/100",
@@ -43,7 +43,17 @@
     "[train] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=42 ep 100/100",
     "[gap] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=42 silence_ticks=2000 n_maintained 16->16",
     "verdict: PASS",
-    "Seed 43 Condition ARM_0_OFF"
+    "Seed 43 Condition ARM_0_OFF",
+    "[train] cell ARM_0_OFF seed=43 ep 20/100",
+    "[train] cell ARM_0_OFF seed=43 ep 40/100",
+    "[train] cell ARM_0_OFF seed=43 ep 60/100",
+    "[train] cell ARM_0_OFF seed=43 ep 80/100",
+    "[train] cell ARM_0_OFF seed=43 ep 100/100",
+    "[gap] cell ARM_0_OFF seed=43 silence_ticks=2000 n_maintained 0->0",
+    "verdict: FAIL",
+    "Seed 43 Condition ARM_1_MATURE_E2CTX",
+    "[train] cell ARM_1_MATURE_E2CTX seed=43 ep 20/100",
+    "[train] cell ARM_1_MATURE_E2CTX seed=43 ep 40/100"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
