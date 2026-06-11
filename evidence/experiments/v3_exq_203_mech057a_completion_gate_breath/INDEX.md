@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_203_mech057a_completion_gate_breath
 
-Generated: `2026-06-11T00:03:58.612621Z`
+Generated: `2026-06-11T05:50:47.923498Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

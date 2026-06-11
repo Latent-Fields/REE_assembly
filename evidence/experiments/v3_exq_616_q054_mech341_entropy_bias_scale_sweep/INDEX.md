@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_616_q054_mech341_entropy_bias_scale_sweep
 
-Generated: `2026-06-11T00:03:58.612621Z`
+Generated: `2026-06-11T05:50:47.923498Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
