@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_603h_instrumental_avoidance_stageh_validation
 
-Generated: `2026-06-10T21:15:20.702221Z`
+Generated: `2026-06-11T00:03:58.612621Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

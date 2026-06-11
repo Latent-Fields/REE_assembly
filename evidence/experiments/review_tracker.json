@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-10T21:08:30Z",
+  "last_review_utc": "2026-06-11T00:10:30Z",
   "discussed_experiment_dirs": [
     "v3_exq_603i_escape_affordance_bridge_validation",
     "v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic",
@@ -2929,7 +2929,8 @@
     "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T155123Z_v3",
     "v3_exq_603l_escape_affordance_bridge_behavioural_retest_20260610T134941Z_v3",
     "v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier_20260610T200549Z_v3",
-    "v3_exq_603n_scaffolded_sd054_full_curriculum_readiness_20260610T201427Z_v3"
+    "v3_exq_603n_scaffolded_sd054_full_curriculum_readiness_20260610T201427Z_v3",
+    "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4125,6 +4126,14 @@
         "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T155123Z_v3"
       ],
       "note": "Governance cycle 2026-06-10. (1) V3-EXQ-603m scaffolded_sd054 full-curriculum readiness FAIL (claim_ids=[], non_contributory, diagnostic): G0-only miss (Stage-0 nursery z_goal>0.4 held 1/3: 0.477/0.389/0.371); load-bearing legs G1 survival 3/3, G2 contact 3/3, G3 ecological z_goal 2/3 all PASS; non-vacuity MET (harm_eval range 0.075, reached-P2-alive 3/3). CONFIRMED autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to un-warmed Stage-0); survival leg (historic GAP-2 blocker) confirmed cleared; routing queue-experiment -> 603n corrected-G0 re-queue (active); substrate_queue AMEND on scaffolded_sd054_onboarding; pending_retest_after_substrate. No claim weighting (claim-free). Marked reviewed. (2) V3-EXQ-665 curriculum-trained affective fishtank showcase PASS (claim_ids=[], non_contributory, diagnostic; flagged vacuous_pass): flag fired on non-load-bearing degenerate reported channels (vigor/z_block/excite/dread ~0); load-bearing criteria core_channels_non_degenerate + harm_pathway_trained (2438 steps) both PASS non-vacuously. Delivered telemetry showcase, drives no governance action (no claims/gate/substrate-mint), adjudication flag moot. Marked reviewed. (3) V3-EXQ-603l escape-affordance bridge behavioural retest FAIL (SD-059/MECH-358, weakens) LEFT PENDING -- user flagged for /failure-autopsy: weakens rests on a survivability ceiling (BASE G_H already 1.0, bridge has no headroom to beat it though it credits + clears G_H 2/3 non-vacuously; preconditions all MET). Possible discrimination-ceiling artifact (env too survivable) vs genuine weakens -- adjudicate before any evidence_direction change. NOT marked reviewed."
+    },
+    {
+      "utc": "2026-06-11T00:10:30Z",
+      "session": "governance-cycle-20260611T0003Z",
+      "runs": [
+        "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z_v3"
+      ],
+      "note": "Governance cycle 2026-06-11 (pipeline regen after V5/V6 wave reaping; 798 claims indexed, validate OK, traceability OK; ~39 new V5/V6 candidate claims produced 0 new actionable recs -- all substrate_conditional/v3_pending, promote/demote suppressed). Two pending diagnostics walked, both claim-free. (a) V3-EXQ-665 curriculum affective fishtank showcase RE-RUN (23:30Z, successor of the 15:51Z run reviewed 2026-06-10T16:19Z) PASS (claim_ids=[], non_contributory, flagged vacuous_pass): same handling -- vacuous flag fired on non-load-bearing degenerate channels (z_block/excite/dread ~0); load-bearing core_channels_non_degenerate + harm_pathway_trained (2043 steps) both PASS non-vacuously; delivered the fishtank_viz episode_log (its purpose), drives NO governance action, adjudication flag moot. Marked reviewed (dir already in discussed_experiment_dirs). (b) V3-EXQ-591c curriculum phase-advance readiness diversity FAIL (claim_ids=[], does_not_support, diagnostic; self-route phase01_collapse_persists_under_diversity_needs_gate_change, precondition MET max_h_pos=2.485>0.2 so verdict trustworthy; C1 4/5 reach Phase1, 3/5 genuine exploration) LEFT PENDING -- USER FLAGGED for /failure-autopsy. NOT marked reviewed; no evidence stamp (claim-free anyway). PROMOTION/DEMOTION: MECH-333 lone pending_user (held_v4_by_architectural_commitment after V5-wave v3->v4 phase flip) -- user chose LEAVE pending_user, no claims.yaml change. No claim status changes this cycle."
     }
   ]
 }
