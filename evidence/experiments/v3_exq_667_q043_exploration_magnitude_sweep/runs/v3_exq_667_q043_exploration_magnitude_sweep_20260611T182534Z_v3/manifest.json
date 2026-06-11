@@ -1,0 +1,73 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_667_q043_exploration_magnitude_sweep",
+  "run_id": "v3_exq_667_q043_exploration_magnitude_sweep_20260611T182534Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T18:25:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-043"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "healthy_seed_h_pos_range_across_arms_clears_floor",
+        "description": "Non-vacuity / same-statistic gate. On the healthy-seed positive control, the swept knobs must actually move exploration (h_pos). The measured quantity is the RANGE (max minus min) across the swept-scale arms of the healthy-seed-averaged h_pos_mean -- the SAME range statistic the rescue/collapse criterion routes on (per-episode pos_entropy), NOT a mean-abs/norm proxy. If even the healthy seeds' h_pos range across arms stays below the floor as alpha/curiosity scale 1x->8x, the knobs are inert and the collapse-persists verdict cannot be trusted.",
+        "measured": 0.0172,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "healthy seeds (genuine-exploration in the default 1x arm) -- the positive control where stronger noise/curiosity should change position entropy",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_collapse_seed_rescued": false
+    },
+    "criteria": [
+      {
+        "name": "C_collapse_seed_rescued",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C_no_healthy_regression",
+        "load_bearing": false,
+        "passed": true
+      }
+    ]
+  }
+}
