@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-11T14:51:37Z",
+  "last_tick_utc": "2026-06-11T15:21:44Z",
   "state": "running",
   "current_exq": "V3-EXQ-667",
   "current_exq_started_utc": "2026-06-11T06:40:52.142049+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "Q-043",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 45 / mag_4x",
-    "runs_done": 13,
+    "run_label": "Seed 46 / mag_4x",
+    "runs_done": 14,
     "runs_total": 20,
     "episodes_done": 100,
     "episodes_total": 160,
-    "overall_pct": 68.1
+    "overall_pct": 73.1
   },
-  "seconds_elapsed": 29445,
-  "seconds_remaining": 12801,
+  "seconds_elapsed": 31253,
+  "seconds_remaining": 10662,
   "recent_lines": [
     "V3-EXQ-667 Q-043 magnitude sweep: seeds=[42, 43, 44, 45, 46] scales=[1.0, 2.0, 4.0, 8.0] n_episodes=160 steps=200 threshold=0.9940 (default alpha=0.1 cw=0.05)",
     "Seed 42 Condition mag_1x",
@@ -100,7 +100,13 @@
     "verdict: PASS",
     "Seed 45 Condition mag_4x",
     "[train] sweep seed=45 mag_4x ep 50/160 phase=0 h_pos=0.618 z_goal=0.0000",
-    "[train] sweep seed=45 mag_4x ep 100/160 phase=0 h_pos=0.000 z_goal=0.0000"
+    "[train] sweep seed=45 mag_4x ep 100/160 phase=0 h_pos=0.000 z_goal=0.0000",
+    "[train] sweep seed=45 mag_4x ep 150/160 phase=1 h_pos=0.365 z_goal=0.0000",
+    "[train] sweep seed=45 mag_4x ep 160/160 phase=1 h_pos=0.000 z_goal=0.0000",
+    "verdict: FAIL",
+    "Seed 46 Condition mag_4x",
+    "[train] sweep seed=46 mag_4x ep 50/160 phase=0 h_pos=0.000 z_goal=0.0000",
+    "[train] sweep seed=46 mag_4x ep 100/160 phase=0 h_pos=0.467 z_goal=0.2098"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
