@@ -1,0 +1,109 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_569g_gapa_routerange_matched_entropy_falsifier",
+  "run_id": "v3_exq_569g_gapa_routerange_matched_entropy_falsifier_20260611T224954Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T22:49:54Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-065"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-065": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "r1a_entropy_only_artefact",
+    "preconditions": [
+      {
+        "name": "arm1_modulatory_channel_route_range_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 (e2_world_forward source) RAW cross-candidate RANGE of the modulatory bias ROUTED into the E3 selection-authority accumulator (modulatory_channel_route_range, the V3-EXQ-662 statistic) clears the floor -- the autopsy's load-bearing requirement that the channel range REACHES the bias the authority rescales, not merely exists in the representation. SAME statistic the route-range substrate gates on (range, NOT magnitude). Below floor => routing not wired / e2 under-trained => substrate_not_ready_requeue, never a weakens.",
+        "control": "ARM_1: use_modulatory_channel_routing + source=cand_world_summary + authority gain 0.5; candidate_summary_source=e2_world_forward (genuinely action-divergent routed channel)",
+        "measured": 0.179852,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "arm1_consumed_summary_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 per-candidate SPREAD of the CONSUMED cand_world_summaries (the 649/569f readiness statistic) clears the floor -- a cross-candidate RANGE statistic, NOT a magnitude. Below floor => under-trained e2 / amend not wired => substrate_not_ready_requeue, never a weakens.",
+        "control": "ARM_1: SD-056 contrastive trained online; SP-CEM multi-class candidates; candidate_summary_source=e2_world_forward",
+        "measured": 0.057448,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "arm1_e2_world_forward_prediction_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 e2.world_forward(z0, a_i) per-candidate prediction spread (cand_world_pairwise_dist) clears the floor -- confirms SD-056 trained the action-conditional divergence the routed channel re-sources. Below floor => SD-056 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_1: agent.e2.cand_world_pairwise_dist on SP-CEM candidates",
+        "measured": 0.057448,
+        "threshold": 0.03,
+        "met": true
+      },
+      {
+        "name": "consumed_spread_bounded",
+        "kind": "readiness",
+        "description": "Consumed-summary spread stayed finite and below the 643a explosion ceiling (SD-056 online numerical stability; rollout-norm clamp ON). Upper-bound check: measured << threshold means PASS.",
+        "control": "max consumed_summary_pairwise_dist across all arms",
+        "measured": 0.104076,
+        "threshold": 1000000.0,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_arm1_e2_world_forward_divergent",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_R1B_selected_entropy_strict_above_matched_noise_and_proposer",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C_R1B": true
+    },
+    "routing": {
+      "r1b_diversity_above_matched_noise": "PASS -> R1.b cleared; GAP-A theory-1 (ARC-065) confirmed as a real diversity contributor reaching committed action on the routed substrate",
+      "substrate_not_ready_requeue": "re-queue as V3-EXQ-569h at higher P0 budget (or check route-range wiring / SD-056 training); do NOT weaken",
+      "r1a_entropy_only_artefact": "FAIL -> R1.a: theory-1 not load-bearing alone EVEN on the validated route-range substrate; /failure-autopsy + substrate revisit"
+    }
+  }
+}
