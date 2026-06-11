@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-11T13:21:05Z",
+  "last_tick_utc": "2026-06-11T13:51:19Z",
   "state": "running",
   "current_exq": "V3-EXQ-603o",
   "current_exq_started_utc": "2026-06-10T16:59:04.319747+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-059",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_RELIEF_SAFETY_BRIDGE",
-    "runs_done": 10,
+    "run_label": "Seed 44 / ARM_RELIEF_SAFETY_BRIDGE",
+    "runs_done": 11,
     "runs_total": 15,
-    "episodes_done": 170,
+    "episodes_done": 20,
     "episodes_total": 235,
-    "overall_pct": 71.5
+    "overall_pct": 73.9
   },
-  "seconds_elapsed": 73321,
-  "seconds_remaining": 30569,
+  "seconds_elapsed": 75135,
+  "seconds_remaining": 24652,
   "recent_lines": [
     "[v3_exq_603o_escape_affordance_bridge_behavioural_redesign] starting (dry_run=False)",
     "Seed 42 Condition ARM_BASE_IA_ONLY",
@@ -93,7 +93,12 @@
     "Seed 43 Condition ARM_RELIEF_SAFETY_BRIDGE",
     "[train] stage0 ARM_RELIEF_SAFETY_BRIDGE seed=43 ep 20/235 z_goal_peak=0.4405",
     "[train] p0 ARM_RELIEF_SAFETY_BRIDGE seed=43 ep 130/235 mean_len=196.2 rv=0.02933",
-    "[train] hazard_avoidance ARM_RELIEF_SAFETY_BRIDGE seed=43 ep 170/235 mean_len=45.2 median_last=5.0 auc=0.226 survival_gate=FAIL harm_range=0.0638 pag_commits=155 n_relief=253 n_safety=993 n_safety_trained=993 n_approach=323"
+    "[train] hazard_avoidance ARM_RELIEF_SAFETY_BRIDGE seed=43 ep 170/235 mean_len=45.2 median_last=5.0 auc=0.226 survival_gate=FAIL harm_range=0.0638 pag_commits=155 n_relief=253 n_safety=993 n_safety_trained=993 n_approach=323",
+    "[train] p1 ARM_RELIEF_SAFETY_BRIDGE seed=43 ep 220/235 median_last=6.0 survival_gate=FAIL",
+    "[train] p2 ARM_RELIEF_SAFETY_BRIDGE seed=43 ep 235/235 contact_rate=0.1537",
+    "verdict: FAIL seed=43 arm=ARM_RELIEF_SAFETY_BRIDGE mean_surv=45.2 g_h=False g0=True g1=False g2=True harm_range=0.0638 n_relief=253 n_safety=993",
+    "Seed 44 Condition ARM_RELIEF_SAFETY_BRIDGE",
+    "[train] stage0 ARM_RELIEF_SAFETY_BRIDGE seed=44 ep 20/235 z_goal_peak=0.3709"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
