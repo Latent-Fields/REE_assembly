@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "substrate-reconcile-603n-readiness-flip-20260611T0135Z",
-  "last_updated_utc": "2026-06-11T07:12:39Z",
+  "last_seen_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
+  "last_updated_utc": "2026-06-11T08:02:54Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4278,13 +4278,14 @@
     },
     {
       "sd_id": "crf-availability-maintenance",
-      "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (PFC sustained-activity analog) so a differentiated pool also persists",
-      "status": "pending_implementation",
+      "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (activity-silent synaptic trace) + redefine the readiness readout to the maintained pool so a differentiated pool also persists",
+      "status": "implemented_pending_validation",
       "ready": false,
-      "design_doc": null,
-      "depends_on_unresolved": [
-        "targeted_review_arc_063_crf_rule_cell_persistence (lit-pull, blocking)",
-        "ARC-062 differentiation/gating (e2_world_forward context routing)"
+      "design_doc": "REE_assembly/docs/architecture/arc_063_candidate_rule_field.md (availability-maintenance amend section, 2026-06-11)",
+      "depends_on_unresolved": [],
+      "depends_on_resolved": [
+        "targeted_review_arc_063_crf_rule_cell_persistence (lit-pull DONE 2026-06-11; verdict B-leaning hybrid: hold the unselected pool activity-silently + crf_frac_active is the wrong readout)",
+        "ARC-062 differentiation/gating: crf_context_from_e2_world_forward landed in the 654b mature-pool amend (the differentiation source the maintenance pairs with)"
       ],
       "unblocks_claims": [
         "MECH-309",
@@ -4303,10 +4304,20 @@
       "priority": 1,
       "priority_note": "Autopsy priority_suggested=1; strict 6a-ii.6 agrees (>=1 fresh failure record V3-EXQ-666 + unblocks 3 candidate claims MECH-309/ARC-062/ARC-063). No override.",
       "added_session": "governance-cycle-20260611T0701Z",
-      "last_seen_session": "governance-cycle-20260611T0701Z",
+      "last_seen_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
+      "implemented_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
+      "implemented_utc": "2026-06-11T08:02:54Z",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-666_2026-06-11.json",
       "pending_retest_after_substrate": true,
-      "ready_blocked_by": "PRIMARY blocking dep: targeted_review_arc_063_crf_rule_cell_persistence lit-pull (persistent-firing vs activity-silent fork) -- if activity-silent, crf_frac_active is itself the wrong readout and must be redefined to count silently-maintained-and-reactivatable rules. ready stays False until (a) the lit verdict resolves the readout question AND (b) the availability-maintenance mechanism is built and a 666-successor CRF-readiness diagnostic clears crf_max_pairwise_rule_dist>0.1 AND crf_frac_active>=0.30 on >=2/3 seeds SIMULTANEOUSLY.",
+      "implementation_log": [
+        {
+          "date_utc": "2026-06-11T08:02:54Z",
+          "session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
+          "scope": "Activity-silent maintenance trace + maintained-pool readout per the B-leaning lit verdict. ree-v3 candidate_rule_field.py: new master flag availability_maintenance (default False, bit-identical OFF) + maintenance_floor (0.45, applied at MINT) + maintenance_decay (0.0 optional long-horizon leak) + engaged_sustain (optional fork-A reverberation, default OFF) + maintained_reactivation_threshold (0.0 = derive from gate floor). Under the flag: credit() REMOVES the per-tick silence decay (a minted differentiated rule HOLDS availability across context-absent ticks; only eligibility-gated negative-outcome credit + retirement erode it -- the exception/interference path is untouched). get_state() gains crf_n_maintained_reactivatable + crf_maintained_pairwise_dist + crf_frac_maintained + crf_maintained_reactivation_threshold; the readiness gate is RE-STATED on the maintained pool (crf_maintained_pairwise_dist > 0.1 AND crf_n_maintained_reactivatable >= 2), RETIRING the crf_frac_active >= 0.30 target (kept as secondary efficiency readout). REEConfig + from_dims + agent.py build-site wiring (getattr fallback). Designed to run WITH crf_mature_pool_dynamics + crf_context_from_e2_world_forward (the differentiation source); independent flags. 19/19 CRF contracts (C17/C18/C19 new) + 7/7 preflight + full suite 1008 pass 0 fail. Activation smoke (mint 2 distinct rules then 3000 context-absent ticks): legacy mature -> both RETIRED (n_maintained=0, READY=False, the 666 churn) vs maintenance -> pool HELD (n_maintained=2, maintained_pairwise_dist=1.49, READY=True); crf_frac_active~0.001 in BOTH (confirms frac_active is the wrong readout). Substrate-only: claims.yaml/governance untouched (implementation_note is a /governance follow-on); MECH-309/ARC-062/ARC-063 unweakened. ree-v3 main commit pending.",
+          "validation_experiment": "V3-EXQ-666a (CRF-readiness diagnostic, supersedes V3-EXQ-666; gates on the MAINTAINED-POOL metric not crf_frac_active). ready stays FALSE until it clears."
+        }
+      ],
+      "ready_blocked_by": "Lit-pull DONE + maintenance mechanism BUILT (2026-06-11). ready stays False until the 666-successor CRF-readiness diagnostic V3-EXQ-666a clears the MAINTAINED-POOL gate -- crf_maintained_pairwise_dist > 0.1 AND crf_n_maintained_reactivatable >= 2 on >=2/3 seeds (the crf_frac_active >= 0.30 target is RETIRED per the B-leaning lit verdict: for a sparsely-matched differentiated pool, crf_frac_active is the averaged-activity artefact -- maintained-and-reactivatable is the correct persistence readout). PASS unblocks the 654c GAP-B behavioural re-run (a separate later /queue-experiment session).",
       "validation_log": [
         {
           "run_id": "v3_exq_666_arc063_crf_mature_pool_readiness_20260611T063849Z_v3",
