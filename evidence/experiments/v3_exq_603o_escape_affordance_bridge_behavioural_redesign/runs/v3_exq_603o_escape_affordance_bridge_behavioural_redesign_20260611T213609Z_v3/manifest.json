@@ -1,0 +1,121 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603o_escape_affordance_bridge_behavioural_redesign",
+  "run_id": "v3_exq_603o_escape_affordance_bridge_behavioural_redesign_20260611T213609Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T21:36:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-059",
+    "MECH-358"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-059": "non_contributory",
+    "MECH-358": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "pag_freeze_and_ilpfc_gate_engage_on_base",
+        "kind": "readiness",
+        "description": "The defensive chain must be present on ARM_BASE_IA_ONLY: PAG freezes (pag_n_commits>0 on >=2/3 seeds) AND the ilPFC gate engages (n_credit+n_decay>0 on >=2/3). Below-floor => the gate/freeze substrate the bridge extends is itself inert => substrate_not_ready_requeue, NOT a bridge verdict.",
+        "control": "ARM_BASE_IA_ONLY: PAG + ilPFC gate + driver + fed harm stream + harm-pathway training (603k) + trained safety predictors (603j).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "each_enabled_bridge_half_fires_nonvacuously",
+        "kind": "readiness",
+        "description": "Each ENABLED bridge half must increment its credit on >=2/3 seeds (ARM_RELIEF_BRIDGE: mech358_n_relief_credit>0; ARM_SAFETY_BRIDGE: mech358_n_safety_credit>0; ARM_RELIEF_SAFETY_BRIDGE: both). The safety half credits via the trained MECH-303/304 threat-absence signal (603j); below-floor => the predictor did not populate ecologically => substrate_not_ready_requeue (NOT a false weakens).",
+        "control": "ARM_RELIEF/SAFETY/RELIEF_SAFETY: bridge ON, SD-056 e2 warmup in P0, fed harm stream, escape_use_trained_safety_signal + MECH-303/304/302 populating during Stage-H.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "harm_landscape_discriminative_on_base",
+        "kind": "readiness",
+        "description": "On ARM_BASE_IA_ONLY the 603k harm-pathway training must have made the harm landscape DISCRIMINATIVE (harm_eval_range >= 0.02 on >=2/3 seeds; 603i flat defect ~0.002, 603k trained ~0.133). Protects against the harder 603o env accidentally producing a flat harm landscape -> below-floor is substrate_not_ready_requeue (a nav/training ceiling), NOT a bridge verdict. SAME statistic the survival leg depends on (a trained harm gradient is the substrate the bridge sits on top of).",
+        "control": "ARM_BASE_IA_ONLY harm-pathway training discriminativeness probe.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "stage0_forced_feed_lights_zgoal_on_base",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 base seeds -- the goal-FORMATION positive control.",
+        "control": "run_stage0_nursery forced-feed.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "arms_reached_hazard_stage": true,
+      "bridge_credit_nonzero": true,
+      "nav_control_evaluated": true,
+      "base_survival_below_ceiling": true,
+      "harm_landscape_discriminative_base": false
+    },
+    "criteria": [
+      {
+        "name": "both_bridge_mean_survival_lift_ge_10pct",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "best_bridge_mean_survival_lift_ge_10pct",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "both_bridge_G_H_clears_2of3_supplementary",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "grid": {
+      "relief_only_lift": "relief (phasic negative-reinforcement) credit carries the survival lift",
+      "safety_only_lift": "safety (learned threat-absence) credit carries the survival lift",
+      "both_required_lift": "directed escape needs complementary relief + safety bridge",
+      "no_lift_and_nav_control_competent": "bridge insufficient (env survivable) -> weakens SD-059/MECH-358",
+      "no_lift_and_nav_control_incompetent": "navigation/survival-competence ceiling on the harder env -> nav substrate, NOT the bridge"
+    }
+  }
+}
