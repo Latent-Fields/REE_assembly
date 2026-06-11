@@ -1,0 +1,53 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-11T06:02:46Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_660a_mech341_within_class_pool_size_graded_confirmation_20260611T032653Z_v3",
+      "queue_id": "V3-EXQ-660a",
+      "claim_ids": ["MECH-341"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (NOT weakened) -- the graded within-class sub-claim could not express itself under this readout; cannot dissociate 'lever ignores larger pool' from 'metric is blind to it'",
+        "biological_reference": "partial -- within-class action/motor variability (LMAN->RA songbird, Dhawale 2017); mechanism class has an existence proof; not a formal-definition import",
+        "prerequisites": "present -- SP-CEM + MECH-341 stratified-select operative; within_class_branch_active=true; 151-1104 within-class samples/arm",
+        "implementation": "complete -- lever fires; pool size honored 16->128; availability provably rose 5->34",
+        "environment": "adequate -- SD-054 bipartite-reef supplies first-action classes",
+        "measurement": "misleading / under-instrumented (DOMINANT) -- within_class_rep_cond_entropy = H(rep|class) is a PHASE-AGGREGATE over all P1 ticks that SATURATES (absolute sampled entropy flat ~4.6-4.9 across K vs availability 5->34; C_ABS failed) and is CONFOUNDED BY TICK COUNT (seed 43 ~10k ticks ~6.3 nats both arms vs seeds 42/44 ~1-2k ticks ~3.7-4.6); the lift is a difference of two saturating tick-count-confounded aggregates -> no dose-response possible in principle",
+        "integration": "adequate",
+        "scale": "adequate -- 3 seeds x 8 arms, thousands of ticks"
+      },
+      "biological_reference": {
+        "closest_mechanism": "trial-to-trial action/motor variability within a chosen action category (songbird LMAN->RA variability injection; striatal exploration; Dhawale 2017 motor variability)",
+        "dependencies": ["ARC-065 distributed diversity-generation pathway", "SP-CEM candidate-pool diversity", "first-action-class partition (SD-054 bipartite layout)"],
+        "is_formal_import": false,
+        "divergence": "n/a -- MECH-341 is a diversity-preservation heuristic (Mnih 2016 entropy / Padoa-Schioppa & Conen 2017 categorical preservation), not a formal-definition import; the SD-003 load-bearing-divergence trap does not apply",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-11 failure autopsy (failure_autopsy_V3-EXQ-660a_2026-06-11): V3-EXQ-660a (within-class-representative-diversity GRADED confirmation; CEM pool-size sweep K=16->128) FAILed C_GRADED (1/3 seeds graded) and self-routed weakens, but is reclassified non_contributory (measurement_test_design_defect). Root cause: the primary readout within_class_rep_cond_entropy = H(rep_signature | committed_class) is a PHASE-AGGREGATE over every P1 tick that SATURATES (absolute sampled entropy flat ~4.6-4.9 nats while per-tick within-class availability rose 5->34; C_ABS failed) and is CONFOUNDED BY TICK COUNT (seed 43 ~10k ticks -> ~6.3 nats in BOTH legacy and sampled arms vs seeds 42/44 ~1-2k ticks -> ~3.7-4.6). The graded axis (pool size) provably moves the INPUT (non-vacuity met) but the readout cannot register a per-decision diversity benefit, so the run cannot adjudicate the graded sub-claim. MECH-341 NOT weakened. Its in-stack preserver role (614a PASS_C2_C3_only, 569d) stands; the within-class GRADED sub-axis remains UNESTABLISHED (660 readout-degenerate, 660a non-contributory) -- narrow_supports_flag set. V3-EXQ-660 stays standing (660a does not supersede it). Route: /queue-experiment redesign with a per-decision/windowed within-class diversity readout with headroom (windowed H(rep|class), or selected-vs-available efficiency in [0,1]) plus a readout-sensitivity gate; same-question readout fix = alphabetic successor (660b). MECH-341 stays candidate / v3_pending / pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "Measurement gap, not falsification: the phase-aggregate H(rep|class) readout cannot dissociate a flat lever from a blind metric.",
+        "The non-vacuity guard was necessary but not sufficient: it guarded the INPUT availability but the OUTPUT readout saturates; C_ABS's failure is direct evidence of output insensitivity to the guarded input.",
+        "MECH-341's surviving supports are stack-only / single-pathway (614a PASS_C2_C3_only; in-isolation unreachable); the within-class GRADED sub-axis is unestablished, so this non_contributory must NOT read as conflict-resolved.",
+        "V3-EXQ-660 stays standing; 660a does not supersede it.",
+        "Redesign spec: replace phase-aggregate H(rep|class) with a per-decision/windowed readout with headroom (windowed H(rep|class) averaged over fixed-length windows, or selected-vs-available within-class efficiency in [0,1]); add a readout-sensitivity gate so the new readout must move with K in the sampled arm before C_GRADED is scored; same-question fix = 660b."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "MECH-341 within-class lineage: the chosen diversity readout repeatedly cannot register the lever's swept input axis (660 temperature byte-identical -> readout couldn't see T; 660a pool-size flat + C_ABS failed -> phase-aggregate readout saturates + tick-count-confounded, couldn't see K)",
+    "is_independent_bugs": false,
+    "structural_property": "MECH-341's within-class contribution keeps being measured with a phase-aggregate conditional-entropy readout that saturates over the episode horizon, so the graded sub-question is unanswerable with the current instrument; the fix is a per-decision/windowed readout with headroom, not more sweeps on the existing metric. (616's bit-identical-across-scale FAIL is a DISTINCT single-class-proposer root cause and is NOT folded in.)",
+    "readings": ["measurement_test_design_ceiling"]
+  }
+}
