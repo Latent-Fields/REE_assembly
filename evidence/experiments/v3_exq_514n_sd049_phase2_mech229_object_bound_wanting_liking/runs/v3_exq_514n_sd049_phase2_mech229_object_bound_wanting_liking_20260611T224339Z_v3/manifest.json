@@ -1,0 +1,89 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_514n_sd049_phase2_mech229_object_bound_wanting_liking",
+  "run_id": "v3_exq_514n_sd049_phase2_mech229_object_bound_wanting_liking_20260611T224339Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-11T22:43:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-229"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "wl_instrument_positive_control_separates",
+        "description": "leg 1: a constructed 2-token IncentiveTokenBank (this run's GoalConfig) yields a drive-favored most-wanted that DIFFERS from a designated last-consumed type -- the SAME cross-target inequality statistic C_WL routes on, on a positive control.",
+        "control": "2 deterministic probes: drive-favored most-wanted vs designated last-consumed (instrument-can-fire).",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "run_bank_populated_two_tokens_differing_drive",
+        "description": "leg 2: per guard-passing seed the behavioural run's bank reached >= 2 distinct object tokens AND scored >= MIN_SCORED_STEPS consumption events with both targets defined AND per-axis-drive spread > floor (channels-written-this-run -- the exact 514m gap).",
+        "control": "fraction of guard-passing seeds with a populated, drive-differentiated bank at consumption events.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_WL_object_bound_wanting_neq_liking",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_WL": false
+    },
+    "contact_guard": {
+      "definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3). A seed failing the guard is excluded from DV aggregation; < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    },
+    "wl_readiness_gate": {
+      "definition": "SAME-STATISTIC non-vacuity for the WL DV (the 514m gap fix): leg 1 positive-control cross-target separation >= 1.0 AND leg 2 in-run bank populated >= 2 distinct tokens at differing per-axis drives on >= 2/3 guard-passing seeds. Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false MECH-229 weakens.",
+      "pc_separation_floor": 1.0,
+      "min_scored_steps": 5,
+      "drive_spread_floor": 0.001,
+      "min_fraction": 0.6666666666666666
+    }
+  }
+}
