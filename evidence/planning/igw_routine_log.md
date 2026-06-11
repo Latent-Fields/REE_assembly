@@ -90,3 +90,6 @@ One line per hourly tick. ASCII only.
 2026-06-11T10:42:58Z SPAWN IGW-20260611-201 skill=/queue-experiment prio=40 uuid=49d4a1ba-0b82-4b9e-b44b-ea1536368a01 pid=91685 worktree=igw-201-proposal-exp-0150-mech-025b
 2026-06-11T11:44:13Z auto-defer IGW-20260611-201 hash=bc31f0a40c18 for 48h (reaped -> completed_resumable)
 2026-06-11T11:44:08Z SPAWN IGW-20260611-202 skill=/queue-experiment prio=40 uuid=63dc18a7-499a-4e6f-968a-9b237b0332cc pid=99610 worktree=igw-202-proposal-exp-0151-mech-044
+2026-06-11T12:45:26Z auto-defer IGW-20260611-202 hash=f0c3b9b9e6d8 for 48h (reaped -> completed_resumable)
+2026-06-11T12:45:26Z reaped TASK_CLAIMS igw-auto-igw-202-proposal-exp-0151-mech-044-20260611T114414Z (ledger IGW-20260611-202 -> completed_resumable)
+2026-06-11T12:45:21Z skip IGW-20260611-203: no fresh runner heartbeat (experiment-lane item would just sit in queue)
