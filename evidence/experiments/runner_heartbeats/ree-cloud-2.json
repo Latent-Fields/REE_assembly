@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-11T21:23:31Z",
+  "last_tick_utc": "2026-06-11T21:53:43Z",
   "state": "running",
   "current_exq": "V3-EXQ-514n",
   "current_exq_started_utc": "2026-06-11T18:27:36.433744+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-229",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_SD049_PHASE2_OBJECT_BOUND_WL",
-    "runs_done": 1,
+    "run_label": "Seed 44 / CURRICULUM_BUILT_SD049_PHASE2_OBJECT_BOUND_WL",
+    "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 30,
     "episodes_total": 250,
-    "overall_pct": 56.0
+    "overall_pct": 70.7
   },
-  "seconds_elapsed": 10555,
-  "seconds_remaining": 8295,
+  "seconds_elapsed": 12367,
+  "seconds_remaining": 5530,
   "recent_lines": [
     "[v3_exq_514n_sd049_phase2_mech229_object_bound_wanting_liking] starting (dry_run=False)",
     "Seed 42 Condition CURRICULUM_BUILT_SD049_PHASE2_OBJECT_BOUND_WL",
@@ -33,7 +33,14 @@
     "[train] stage0_nursery seed=43 ep 20/250 z_goal_peak=0.3840 formed=False",
     "[train] stage0b_consolidate seed=43 ep 30/250 retention=0.919 gate=pass",
     "[train] p0_guided seed=43 ep 130/250 mean_len=198.3 rv=0.08323",
-    "[train] hazard_avoidance seed=43 ep 170/250 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=43 ep 170/250 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/250 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=43 ep 235/250 contact_rate=0.2533 contact_events=111 z_goal_at_contact=0.3908",
+    "[train] wl_eval seed=43 ep 250/250 wl_frac=0.000 scored=0 distinct_tokens=3 run_populated=False goal_r=0.948",
+    "verdict: FAIL seed=43 guard_pass=False (contact_rate=0.2533 z_goal_at_contact=0.3908)",
+    "Seed 44 Condition CURRICULUM_BUILT_SD049_PHASE2_OBJECT_BOUND_WL",
+    "[train] stage0_nursery seed=44 ep 20/250 z_goal_peak=0.3617 formed=False",
+    "[train] stage0b_consolidate seed=44 ep 30/250 retention=0.953 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

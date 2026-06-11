@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-11T21:23:28Z",
+  "last_tick_utc": "2026-06-11T21:53:41Z",
   "state": "running",
   "current_exq": "V3-EXQ-671",
   "current_exq_started_utc": "2026-06-11T21:18:13.480097+00:00",
@@ -12,15 +12,19 @@
     "run_label": "starting...",
     "runs_done": 0,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 400,
     "episodes_total": 550,
-    "overall_pct": 0.0
+    "overall_pct": 24.2
   },
-  "seconds_elapsed": 315,
-  "seconds_remaining": 900,
+  "seconds_elapsed": 2128,
+  "seconds_remaining": 6665,
   "recent_lines": [
     "[V3-EXQ-671] MECH-025b: Precision-Responsibility Attribution",
-    "warmup=500  eval=50  alpha_world=0.9"
+    "warmup=500  eval=50  alpha_world=0.9",
+    "[train] ep 100/500  harm=1508  e3_ticks=291",
+    "[train] ep 200/500  harm=3031  e3_ticks=604",
+    "[train] ep 300/500  harm=4695  e3_ticks=958",
+    "[train] ep 400/500  harm=6317  e3_ticks=1357"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
