@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_perceptual_manifold_adaptors",
+  "entry_id": "2026-06-12_arc_087_nonriemannian_color_space_bujack2022",
+  "timestamp_utc": "2026-06-12T13:55:27Z",
+  "claim_ids_tested": ["ARC-087", "MECH-372"],
+  "source": {
+    "title": "The non-Riemannian nature of perceptual color space.",
+    "authors": ["Roxana Bujack", "Emily Teti", "Jonah Miller", "Elektra Caffrey", "Terece L. Turton"],
+    "year": 2022,
+    "venue": "Proceedings of the National Academy of Sciences (PNAS)",
+    "doi": "10.1073/pnas.2119753119"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "This is the closest published anchor to the source trigger for the whole cluster (the Schrodinger colour-theory completion result). It shows empirically that perceptual colour space exhibits 'diminishing returns' -- large colour differences are perceived as LESS than the sum of small steps -- which is mathematically impossible in a Riemannian (locally additive) geometry. That is direct, high-quality evidence for ARC-087's specific assertion that the perceptual manifold is 'curved, compressed, asymmetric, non-additive, unlike the raw measurement space', and for MECH-372's placement of sight at the deep-adaptor end (colour geometry must be CONSTRUCTED, not read off). Confidence just below source_quality because it reanalyses/reframes existing colour-difference datasets rather than running a new psychophysical cohort, and the additivity-violation claim has prompted active debate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper overturns the long-assumed Riemannian (Helmholtz/Schrodinger) model of colour space but does NOT supply a replacement metric -- so it establishes that the colour adaptor's output geometry is non-additive without telling the adaptor designer what geometry to target.",
+    "It is a geometric reanalysis of aggregate colour-difference data; an adaptor-internal mechanism (how receptor signals are transformed into this non-Riemannian metric) is out of scope, so it grounds the OUTPUT shape, not the transform."
+  ],
+  "tags": ["arc-087", "mech-372", "colour_geometry", "perceptual_manifold", "non_riemannian", "schrodinger_trigger", "L1"],
+  "mapping": {
+    "source_claim_statement": "Human colour perception obeys diminishing returns -- a large colour difference is perceived as smaller than the sum of the small differences composing it -- which cannot hold in any Riemannian geometry; therefore perceptual colour space is non-Riemannian, overturning the Riemann/Helmholtz/Schrodinger assumption and the colour metrics built on it (valid only for small differences). Hints at a second-order Weber-Fechner law.",
+    "ree_translation": "Even the most 'basic-seeming' visual property (colour) is not a simple physical-to-cognitive mapping: its perceptual space is intrinsically structured and non-additive -- exactly ARC-087's claim that the adaptor builds a perceptual METRIC that is curved/compressed/asymmetric relative to raw measurement space. It places sight at MECH-372's deep-adaptor end: colour geometry is a constructed manifold, not a near-raw gradient, and a flat feature extractor (which would inherit the additive raw space) would get the geometry wrong.",
+    "mapping_caveat": "Evidence is for human COLOUR space specifically; generalising 'perceptual manifolds are non-Riemannian' to all sense-specific adaptors (touch, hearing, proprioception) is an extrapolation the paper does not license. It also bounds Shepard (this directory): the locally additive/Euclidean assumption fails for large differences, so the adaptor's target geometry is more exotic than a simple metric embedding.",
+    "source_context": "Human colour psychophysics; geometric reanalysis of standard colour-difference data (e.g. CIE-style datasets) under a Riemannian vs non-Riemannian test."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "source_quality high (PNAS, rigorous geometric argument) but it reframes existing data and the claim is debated. mapping_fidelity high -- this is the colour-geometry exemplar ARC-087 explicitly cites as its trigger. transfer_risk low for the colour case, higher if over-generalised to other senses (captured in the caveat)."
+  }
+}

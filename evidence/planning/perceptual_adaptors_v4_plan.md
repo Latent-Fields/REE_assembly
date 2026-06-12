@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Sense-specific perceptual-manifold adaptors (V4 modality-heterogeneous perception roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-12
   scope_claims: [ARC-087, MECH-372, Q-065, ARC-017, MECH-103, ARC-004, ARC-005, ARC-019]
   sibling_plans: [object_representation_v4, inference_belief_state_v4]
   roadmap_note: >
@@ -116,18 +116,19 @@ closure_plan:
     - id: "perceptual_adaptors_v4:PA-7"
       title: "Biology grounding completion (perceptual-manifold / colour-geometry / multisensory-binding lit-pulls)"
       phase: 2
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [ARC-087, MECH-372, Q-065]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
-        - "L1 perceptual-manifold / similarity geometry (Schrodinger colour theory completion, the source trigger; Shepard generalisation; colour-opponent geometry) -- NOT yet pulled"
-        - "L2 modality-specific adaptors (olfactory gradient chemotaxis; ventral-stream visual hierarchy; somatosensory cortex topography) -- NOT yet pulled"
-        - "L3 multisensory convergence currency (STS multisensory neurons; MST optic-flow/vestibular/auditory integration; Murray et al. 2004 cross-modal ventral binding -- already cited in MECH-103) -- partial"
-      last_updated: 2026-06-10
-      completion_note: "Project rule feedback_biology_before_formal_definitions: ARC-087 / MECH-372 / Q-065 were reaped from a single ScienceDaily-triggered intake with no dedicated biology lit-pull. This node tracks closing that grounding debt before the deep-adaptor substrate (PA-3) is built. The biology-right / mechanism-wrong failure mode (SD-003, SD-010/011) is the canonical risk."
+        - "L1 perceptual-manifold / similarity geometry -- PULLED 2026-06-12 (IGW-20260612-156): Shepard 1987 universal law of generalization (psychological-space metric; ARC-087+Q-065, supports 0.76) + Bujack et al. 2022 non-Riemannian perceptual colour space (the Schrodinger-completion trigger; ARC-087+MECH-372, supports 0.79)"
+        - "L2 modality-specific adaptors -- PULLED 2026-06-12: DiCarlo/Zoccolan/Rust 2012 ventral-stream manifold untangling (deep visual adaptor; ARC-087+MECH-372, supports 0.83) + Louis et al. 2007 bilateral olfactory gradient chemotaxis (low-adaptor gradient primitive; MECH-372, supports 0.64). Somatosensory cortex topography NOT pulled (deferred -- not load-bearing for the smell-vs-sight fork the cluster turns on)"
+        - "L3 multisensory convergence currency -- PARTIAL->EXTENDED 2026-06-12: Gu/Angelaki/DeAngelis 2008 MSTd near-optimal visual-vestibular cue integration (reliability/precision weighting = candidate negotiation currency; Q-065, mixed 0.60) added alongside the existing STS entries under targeted_review_mech_103_multisensory (Nath&Beauchamp 2011 / Venezia 2017 / Zhang 2025). Murray et al. 2004 already cited in MECH-103"
+      last_updated: 2026-06-12
+      lit_pull_dir: "evidence/literature/targeted_review_perceptual_manifold_adaptors"
+      completion_note: "CLOSED 2026-06-12 (IGW-20260612-156). Project rule feedback_biology_before_formal_definitions: ARC-087 / MECH-372 / Q-065 were reaped from a single ScienceDaily-triggered intake with no dedicated biology lit-pull. /lit-pull filed 5 entries in targeted_review_perceptual_manifold_adaptors spanning L1 (Shepard 1987, Bujack 2022), L2 (DiCarlo 2012, Louis 2007), L3 (Gu 2008) -> literature_confidence now ARC-087 0.847 / MECH-372 0.827 / Q-065 0.74 (exp_conf stays 0.0 -- V4 substrate_conditional, correct; lit grounds the design, does NOT promote). The canonical biology-right/mechanism-wrong risk (SD-003, SD-010/011) is now front-loaded with explicit per-entry mapping_caveats: Bujack bounds Shepard (perceptual space is metric but non-additive, not simply Euclidean); Gu 2008 is the load-bearing caution -- biological optimal integration solves the WEIGHTING problem for shared-estimand cues, NOT Q-065's harder UNIFICATION problem of negotiating structurally dissimilar manifolds (the open PA-5 content); Louis 2007 supports 'orientation is cheap', not 'olfaction is a shallow modality'. Grounding debt for the deep-adaptor substrate (PA-3) is discharged."
 ---
 # Sense-specific Perceptual-Manifold Adaptors -- V4 Modality-Heterogeneous Perception Roadmap
 
@@ -218,3 +219,14 @@ honest to build.
   presupposes but no claim specifies) and `adaptor_maturity_curriculum_gate`
   (PA-6, the concrete admission gate that makes MECH-372's smell-first corollary
   operational inside ARC-019). No claims.yaml edits.
+- **2026-06-12** (IGW-20260612-156) -- PA-7 biology-grounding debt CLOSED via
+  `/lit-pull`. Five entries filed under
+  `evidence/literature/targeted_review_perceptual_manifold_adaptors`:
+  L1 Shepard 1987 (psychological-space metric) + Bujack 2022 (non-Riemannian
+  colour space, the Schrodinger-completion trigger); L2 DiCarlo 2012 (ventral-
+  stream manifold untangling) + Louis 2007 (olfactory gradient chemotaxis); L3
+  Gu 2008 (MSTd reliability-weighted cue integration, extending the existing
+  MECH-103 STS entries). literature_confidence now ARC-087 0.847 / MECH-372
+  0.827 / Q-065 0.74; experimental_confidence stays 0.0 (V4 substrate_conditional
+  -- lit grounds the design, does not promote). PA-7 status open -> done. No
+  claims.yaml edits; no V3 queue / substrate touched.

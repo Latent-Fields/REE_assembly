@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_perceptual_manifold_adaptors",
+  "entry_id": "2026-06-12_arc_087_ventral_stream_manifold_untangling_dicarlo2012",
+  "timestamp_utc": "2026-06-12T13:55:27Z",
+  "claim_ids_tested": ["ARC-087", "MECH-372"],
+  "source": {
+    "title": "How does the brain solve visual object recognition?",
+    "authors": ["James J. DiCarlo", "Davide Zoccolan", "Nicole C. Rust"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.01.010"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "The canonical mechanistic account of the ventral visual stream as a deep, largely feedforward cascade that progressively 'untangles' object identity manifolds -- transforming a representation in which identity is not linearly separable (retinal/V1) into one in which it is (IT). This is the biological instantiation of ARC-087's deep visual adaptor: the adaptor IS a sequence of metric-reshaping transforms that build invariance (to position, scale, pose, lighting) BEFORE downstream read-out, not a flat feature extractor. It also concretely anchors MECH-372's deep end (sight needs a multi-stage adaptor). High source quality + high mapping fidelity; confidence below ceiling only because it is primate/human object-recognition specific and is a review/synthesis rather than a single decisive experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The untangling account is strongest for ventral-stream OBJECT IDENTITY; it does not establish that every visual sub-property ARC-087 lists (colour geometry, gaze salience, affordance) is built by the same cascade, so 'the adaptor' is plausibly several parallel manifold-constructors, not one.",
+    "Emphasis on a largely feedforward cascade understates recurrent/feedback contributions later work foregrounds; if the V4 visual adaptor is built as strictly feedforward on this paper's authority it may under-fit hard cases (heavy occlusion, clutter) the review itself flags as unsolved."
+  ],
+  "tags": ["arc-087", "mech-372", "ventral_stream", "manifold_untangling", "invariance", "visual_adaptor", "L2"],
+  "mapping": {
+    "source_claim_statement": "Core object recognition -- rapid identification despite large appearance variation -- is solved by a cascade of reflexive, largely feedforward canonical computations along the ventral stream (retina -> LGN -> V1 -> V2 -> V4 -> IT) that progressively transform the population representation so that object-identity 'manifolds', hopelessly tangled and non-separable at the retina, become flat and linearly separable in inferior temporal cortex.",
+    "ree_translation": "This is ARC-087's deep visual adaptor in biological form: vision cannot enter the world model as raw signal; an adaptor must run a sequence of transforms that reshape the metric so that behaviourally relevant structure (object identity, invariant to position/scale/pose/lighting) becomes explicit and usable. 'Untangling' is precisely 'the adaptor IS the metric constructor'. It places sight at MECH-372's deep end -- many stages of transformation versus smell's single-step gradient.",
+    "mapping_caveat": "The cascade is demonstrated for object-identity untangling in the primate ventral stream; ARC-087 also asks the adaptor to build colour geometry, figure-ground, motion fields, depth, and gaze/affordance salience, several of which run in dorsal or parallel pathways not covered here. So this grounds the DEPTH and the untangling PRINCIPLE, but not the completeness of one unified visual adaptor.",
+    "source_context": "Primate (macaque) single-unit + population electrophysiology, human psychophysics, and computational models, synthesized into a mechanistic review."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "source_quality very high (Neuron, foundational, thousands of citations, broad evidence base). mapping_fidelity high -- 'untangling object manifolds' is almost a literal restatement of ARC-087's adaptor-as-metric-constructor. transfer_risk low for vision; the caveat fences the scope to identity untangling."
+  }
+}

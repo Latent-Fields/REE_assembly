@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_perceptual_manifold_adaptors",
+  "entry_id": "2026-06-12_arc_087_psychological_space_metric_shepard1987",
+  "timestamp_utc": "2026-06-12T13:55:27Z",
+  "claim_ids_tested": ["ARC-087", "Q-065"],
+  "source": {
+    "title": "Toward a universal law of generalization for psychological science.",
+    "authors": ["Roger N. Shepard"],
+    "year": 1987,
+    "venue": "Science",
+    "doi": "10.1126/science.3629243"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Canonical, heavily replicated foundational result (Science, 1987; re-confirmed for naturalistic stimuli as recently as 2023) that a stimulus set induces a metric PSYCHOLOGICAL space in which generalization decays as an invariant (near-exponential) function of distance. This is direct, high-source-quality evidence for ARC-087's core premise -- perception contributes a structured GEOMETRY of difference, not raw signal -- and for Q-065's learned-metric arm (the metric is recoverable from similarity/generalization statistics). Confidence held below source_quality because the mapping is one level of abstraction removed: Shepard's space is a general psychological-similarity space, not specifically a per-sense perceptual adaptor manifold.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The law is a metric-recovery and generalization result, not a constructive account of HOW a sensory adaptor builds the metric -- it constrains the target geometry but does not specify the transform (so it under-determines ARC-087's adaptor stage).",
+    "Shepard's two admissible metrics (Euclidean for integral dimensions, city-block for separable) assume a locally additive metric structure; later colour-geometry work (Bujack 2022) shows perceptual spaces can violate additivity at large differences, bounding the universality claim."
+  ],
+  "tags": ["arc-087", "q-065", "perceptual_manifold", "similarity_geometry", "metric_origin", "L1"],
+  "mapping": {
+    "source_claim_statement": "For any stimulus set one can construct a metric psychological space such that the probability a learned response generalizes from one stimulus to another is an invariant, monotonically decreasing (approximately exponential) function of their distance in that space; this follows from universal principles of natural kinds and probabilistic geometry plausibly internalized by evolution.",
+    "ree_translation": "A sensory modality does not deliver raw values to the world model; it delivers a SHAPED metric over possible differences (ARC-087's perceptual manifold). Shepard supplies the abstract justification for that metric existing and being recoverable from similarity/generalization structure -- which is exactly Q-065's 'learned from the statistics of perceptual similarity' arm. The exponential generalization gradient is the kind of structured, non-trivial geometry the adaptor must produce.",
+    "mapping_caveat": "Shepard characterizes a general psychological-similarity space, not a sense-specific perceptual adaptor. It tells us the adaptor's OUTPUT is a metric space with lawful generalization, but says nothing about per-sense adaptor DEPTH (MECH-372) and does not settle the learned-vs-defined fork (Q-065 part 1) -- the same exponential law is compatible with both a learned metric and an evolutionarily internalized structural prior.",
+    "source_context": "Human and animal generalization data synthesized into a formal theory; psychophysics + probabilistic-geometry derivation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.28,
+    "notes": "source_quality very high (canonical, replicated, cross-species). mapping_fidelity moderate -- abstract similarity space, not an adaptor mechanism. transfer_risk low because the law is explicitly claimed universal across sentient organisms."
+  }
+}

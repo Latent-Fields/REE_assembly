@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_perceptual_manifold_adaptors",
+  "entry_id": "2026-06-12_q_065_mstd_cue_integration_gu2008",
+  "timestamp_utc": "2026-06-12T13:55:27Z",
+  "claim_ids_tested": ["Q-065"],
+  "source": {
+    "title": "Neural correlates of multisensory cue integration in macaque MSTd.",
+    "authors": ["Yong Gu", "Dora E. Angelaki", "Gregory C. DeAngelis"],
+    "year": 2008,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2191"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Single-unit + behavioural evidence that visual and vestibular cues to heading are combined near-OPTIMALLY (reliability-weighted, subadditive linear combination) in area MSTd, with congruent-tuned neurons carrying the integration and tracking perceptual decisions. This SUPPORTS Q-065's cross-modal negotiability question by exhibiting a concrete, biologically realised common currency -- statistical reliability / precision weighting -- which is exactly what MECH-103's precision-weighted fusion presupposes. But it WEAKENS the assumption that such a currency straightforwardly solves the HARD half of Q-065: the two cues here are redundant estimates of the SAME physical variable (heading), not structurally dissimilar perceptual manifolds (smell-gradient vs colour-geometry vs body-state). Hence 'mixed' and moderate confidence -- it grounds the mechanism while exposing the unsolved part.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optimal integration is demonstrated for two cues to a COMMON physical variable (heading) living in a shared 1-D estimation space; it does NOT show how to negotiate between heterogeneous geometries (a gradient manifold vs a non-Riemannian colour manifold), which is the actual unsolved content of Q-065 part (2).",
+    "Reliability weighting requires the cues to be commensurable enough to be weighted at all -- the paper presupposes a shared estimand and so cannot answer how dissimilar sense-specific manifolds are mapped into a common currency in the first place (the unification problem, not the weighting problem)."
+  ],
+  "tags": ["q-065", "mech-103", "multisensory", "cue_integration", "reliability_weighting", "precision", "negotiation_currency", "L3"],
+  "mapping": {
+    "source_claim_statement": "Trained macaques combine visual (optic-flow) and vestibular cues to heading near-optimally; MSTd neurons combine the two inputs linearly with subadditive weights; congruent-preference cells show cue-combination sensitivity improvements paralleling behaviour and correlate with perceptual choices, whereas opposite-preference cells show degraded combined sensitivity -- identifying a neural population that plausibly implements statistically optimal (reliability-weighted) integration.",
+    "ree_translation": "Q-065 part (2) asks how structurally dissimilar sense-specific geometries are made MUTUALLY NEGOTIABLE inside one world model -- the unification problem behind MECH-103's precision-weighted fusion. Gu et al. exhibit the biological form of the *currency* half of that answer: reliability / precision weighting is a real, neurally implemented mechanism for trading off two sensory channels, and congruent cells are a candidate substrate for ARC-005's precision-routing/negotiation layer.",
+    "mapping_caveat": "Critical boundary: the integrated cues are REDUNDANT estimates of a single shared variable (heading) -- already commensurable -- so the paper solves the WEIGHTING problem, not the UNIFICATION problem Q-065 actually poses (mapping a gradient manifold and a non-Riemannian colour manifold into a common currency BEFORE they can be weighted). It is strong evidence the currency exists for shared-estimand cues, and a caution that REE's harder cross-manifold case is not addressed by optimal-integration results.",
+    "source_context": "Macaca mulatta; single-unit electrophysiology in area MSTd during a visual-vestibular heading-discrimination task, with simultaneous psychophysics and cue-reliability manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.4,
+    "notes": "source_quality very high (Nat Neurosci, single-unit + behaviour + optimal-integration modelling). mapping_fidelity moderate-low (0.58) because the shared-estimand setup is a narrower problem than Q-065's heterogeneous-manifold negotiation. transfer_risk 0.4 (macaque heading task to REE cross-modal currency). Direction set to 'mixed' to record both the currency-exists support and the does-not-reach-heterogeneity limit."
+  }
+}

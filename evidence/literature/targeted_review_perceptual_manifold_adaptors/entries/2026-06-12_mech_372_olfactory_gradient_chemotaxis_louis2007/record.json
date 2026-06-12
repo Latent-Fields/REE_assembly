@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_perceptual_manifold_adaptors",
+  "entry_id": "2026-06-12_mech_372_olfactory_gradient_chemotaxis_louis2007",
+  "timestamp_utc": "2026-06-12T13:55:27Z",
+  "claim_ids_tested": ["MECH-372"],
+  "source": {
+    "title": "Bilateral olfactory sensory input enhances chemotaxis behavior.",
+    "authors": ["Matthieu Louis", "Thomas Huber", "Richard Benton", "Thomas P. Sakmar", "Leslie B. Vosshall"],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn2031"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Direct behavioural demonstration that an olfactory signal functions as a near-raw spatial GRADIENT that can be followed for navigation -- a single functional olfactory neuron suffices for chemotaxis up a measured odour gradient, and bilateral input improves accuracy mainly by raising signal-to-noise. This is strong support for MECH-372's placement of smell at the LOW-adaptor-depth end: orientation behaviour (follow / approach / strengthen / weaken) is recoverable with minimal transformation of the raw chemical signal, in contrast to the multi-stage construction vision needs. Confidence held moderate because the model is Drosophila larva -- the gradient-primitive PRINCIPLE transfers but the specific biology is phylogenetically distant from REE's intended agent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Demonstrated in larval Drosophila with a single odour and an externally imposed monotonic gradient; it shows a near-raw gradient is SUFFICIENT for orientation, not that biological olfaction in general stays low-adaptor (mammalian odour-identity / mixture demixing may require substantial transformation, which would complicate MECH-372's 'smell = low-adaptor' as a blanket claim).",
+    "The bilateral-comparison benefit is largely an SNR effect, not a rich spatial-geometry computation -- so it supports 'gradient primitive' but offers no evidence for any structured olfactory MANIFOLD, leaving the depth of the olfactory adaptor under-specified at its upper bound."
+  ],
+  "tags": ["mech-372", "olfaction", "gradient_primitive", "chemotaxis", "low_adaptor_depth", "developmental_ordering", "L2"],
+  "mapping": {
+    "source_claim_statement": "Drosophila larvae perform chemotaxis up controlled, spectroscopically measured odour gradients; a single functional olfactory sensory neuron (unilateral input) provides sufficient information to navigate the gradient, and bilateral input enhances navigational accuracy chiefly by improving the signal-to-noise ratio of the concentration estimate.",
+    "ree_translation": "Smell behaves as MECH-372 describes the low-adaptor end: a local gradient (stronger/weaker, nearer/farther) that can be followed, escaped, strengthened or weakened with a MINIMAL adaptor -- orientation falls out of the near-raw signal without a deep perceptual-manifold construction stage. This is the biological warrant for admitting a smell-like gradient sense as the earliest, cheapest V4 adaptor (PA-2) and for MECH-372's developmental-ordering corollary that gradient-like senses come first.",
+    "mapping_caveat": "Larval-insect chemotaxis up an imposed gradient is far from REE's intended agent and from mammalian olfaction; it licenses 'a gradient can drive orientation with minimal transformation', not 'all olfaction is low-adaptor'. Odour IDENTITY/mixture perception (not tested here) may itself require a non-trivial adaptor, so the entry supports the gradient-PRIMITIVE reading of MECH-372 but not a strong claim that the whole modality is shallow.",
+    "source_context": "Drosophila melanogaster larvae; high-resolution behavioural tracking in experimentally measured odorant gradients; unilateral vs bilateral olfactory neuron manipulations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "source_quality high (Nat Neurosci, controlled measured gradients, clean genetics). mapping_fidelity good for the gradient-primitive reading. transfer_risk elevated (0.45): insect larva to a general low-adaptor principle is the main exposure, which is why overall confidence sits at 0.64 despite strong source quality."
+  }
+}
