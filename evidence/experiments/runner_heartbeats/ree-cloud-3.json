@@ -1,48 +1,34 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-12T01:54:39Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-655",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603o",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T21:36:10.256540+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-666b",
-      "result": "FAIL",
-      "completed_at": "2026-06-12T00:52:46.033270+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-673",
-      "result": "FAIL",
-      "completed_at": "2026-06-12T00:56:16.048210+00:00"
-    }
+  "last_tick_utc": "2026-06-12T02:25:11Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-468c",
+  "current_exq_started_utc": "2026-06-12T02:06:45.175723+00:00",
+  "current_title": "commitment_closure:GAP-4 SD-034/MECH-268/MECH-090 commitment-vs-contradiction behavioural, REWIRED onto the 603n-validated scaffolded_sd054_onboarding curriculum (supersedes the committed_mode_curriculum harness 468b used); pilot of the *c cohort",
+  "current_claim_id": "SD-034",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / CURRICULUM_BUILT_COMMITMENT_VS_CONTRADICTION",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 30,
+    "episodes_total": 265,
+    "overall_pct": 3.8
+  },
+  "seconds_elapsed": 1107,
+  "seconds_remaining": 36017,
+  "recent_lines": [
+    "[v3_exq_468c_sd034_mech268_commitment_vs_contradiction_behavioural] starting (dry_run=False)",
+    "Seed 42 Condition CURRICULUM_BUILT_COMMITMENT_VS_CONTRADICTION",
+    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4726 formed=True",
+    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.962 gate=pass"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 745,
-  "runner_version": "r3068 f3bb722 2026-06-12 (running r3001 0c5c401)",
+  "runner_version": "r3070 2bf5772 2026-06-12 (running r3001 0c5c401)",
   "gpu": {
     "available": false
   },
