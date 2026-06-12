@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-12T12:28:00Z",
+  "last_tick_utc": "2026-06-12T12:58:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-466c",
   "current_exq_started_utc": "2026-06-12T09:00:23.044931+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_SATISFICING_RESIDUE_DISCHARGE",
     "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 265,
-    "overall_pct": 203.8
+    "overall_pct": 221.4
   },
-  "seconds_elapsed": 12457,
+  "seconds_elapsed": 14265,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_466c_sd034_satisficing_residue_discharge_behavioural] starting (dry_run=False)",
@@ -44,7 +44,9 @@
     "verdict: FAIL seed=43 guard_pass=True complete_nonvacuity=True (contact_rate=0.3538 z_goal_at_contact=0.4226)",
     "Seed 44 Condition CURRICULUM_BUILT_SATISFICING_RESIDUE_DISCHARGE",
     "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4224 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.855 gate=pass"
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.855 gate=pass",
+    "[train] p0_guided seed=44 ep 130/265 mean_len=198.4 rv=0.00003",
+    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
