@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-06-12_mech_129_inverse_planning_goal_inference_baker2009",
+  "timestamp_utc": "2026-06-12T13:57:42Z",
+  "claim_ids_tested": ["MECH-129", "MECH-164"],
+  "source": {
+    "title": "Action understanding as inverse planning",
+    "authors": ["Chris L. Baker", "Rebecca Saxe", "Joshua B. Tenenbaum"],
+    "year": 2009,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2009.07.005"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-129": "supports",
+    "MECH-164": "supports"
+  },
+  "confidence": 0.7,
+  "confidence_rationale": "The highest mapping-fidelity entry in this pull because it is at REE's own level of description: a computational formalism (Bayesian inverse planning) for inferring another agent's goal by inverting a model of rational planning. It supplies MECH-129 the obstruction-detection computation (an inferred goal + a rationality model lets you score whether a trajectory serves or defeats the goal) and MECH-164 component 1 (agent-indexed terrain inference: infer what the other is inferring/pursuing). Held at 0.7 because the validating experiments are simple 2D maze stimuli with human goal-inference as the criterion, so it proves the computation is humanlike in a toy domain, not that it scales to REE's multiagent terrain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Inverse planning recovers goals well only when the observer's generative model of the agent's planning is approximately correct; under model mismatch (the other plans differently than assumed) goal inference degrades -- a REE agent-indexed terrain inference inherits this and can mis-infer the other's goal/harm gradients, which RHM-5 flags as the 'badly-inferred terrain' that must NOT be weighted self-like.",
+    "The framework infers goals from fully-observed action in small discrete state spaces; it does not address the cost of the inference at scale or partial observability of the other's state -- both load-bearing for a deployable MECH-164 substrate."
+  ],
+  "tags": ["mech_129", "mech_164", "theory_of_mind", "inverse_planning", "goal_inference", "agent_indexed_terrain", "rhm_6"],
+  "mapping": {
+    "source_claim_statement": "Human action understanding can be modelled as Bayesian inverse planning: observers infer the goals (and other mental states) behind an agent's behaviour by inverting a model of approximately-rational planning, integrating the likelihood of observed actions with a prior over goals. Three maze experiments show this predicts human goal inferences quantitatively.",
+    "ree_translation": "Both MECH-129 and MECH-164 require inferring another agent's goal structure from their behaviour. Inverse planning is the precise computational instantiation of that inference. For MECH-129 it grounds the goal-interference signal: with an inferred goal and a rational-planning model you can score whether your trajectory raises the cost of the other's plan (obstruction). For MECH-164 it grounds component 1 (agent-indexed terrain instantiation): inferring 'what another agent would be inferring about the terrain (their goal and harm gradients)' IS inverting their planner over the residue field, indexed to them rather than to self.",
+    "mapping_caveat": "Baker et al. validate against human goal inferences in small 2D mazes with fully-observed actions; the model is a normative/descriptive account, not a claim about the brain's implementation, and says nothing about self-like WEIGHTING of the recovered goals into one's own value function (MECH-164 component 2) -- only about recovering them (component 1). The transfer to a multiagent REE terrain with partial observability and the cost of inference at scale is untested here.",
+    "source_context": "Computational cognitive science; human psychophysics with animated agents navigating simple mazes"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.45,
+    "notes": "Foundational, highly-cited computational ToM. Mapping fidelity is the highest in the set because the paper operates at REE's level (a computation over goals), directly instantiating MECH-164 component 1 and MECH-129's goal-inference substrate. Transfer risk moderate: toy maze validation, no scaling/partial-observability story, and it covers goal RECOVERY not self-like weighting."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-06-12_mech_129_goal_object_encoding_woodward1998",
+  "timestamp_utc": "2026-06-12T13:57:42Z",
+  "claim_ids_tested": ["MECH-129"],
+  "source": {
+    "title": "Infants selectively encode the goal object of an actor's reach",
+    "authors": ["Amanda L. Woodward"],
+    "year": 1998,
+    "venue": "Cognition",
+    "doi": "10.1016/S0010-0277(98)00058-4"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Landmark, heavily replicated infant-cognition result (>1600 citations) establishing that the goal of another agent's action is encoded as a primitive distinct from the physical movement that realises it. Directly grounds MECH-129's prerequisite (a) other-agent goal modelling and discriminant (1) what the other's goal is. Mapping is moderate-high: it evidences that goal-representation is separable from sensorimotor/contact representation -- which is exactly the architectural separation MECH-129 asserts -- but it shows goal-OBJECT encoding, not goal-OBSTRUCTION, so it grounds the substrate of harm-to-agency without directly demonstrating the harm signal itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The effect is weaker at 5 months and absent for inanimate agents (an object of the same dimensions touching the toy), so the goal-encoding primitive is not a generic spatial-association mechanism -- it is gated on agency cues, which means a REE harm-to-agency signal computed over trajectory pairs must itself be gated on an agency/OTHER_SELFLIKE detector or it will fire on passive dynamics.",
+    "Goal-object encoding alone does not encode whether one's own action obstructs that goal (discriminant 2) -- Woodward shows the goal is represented, not that interference with it is registered as a cost."
+  ],
+  "tags": ["mech_129", "theory_of_mind", "goal_attribution", "harm_to_agency", "developmental", "rhm_6"],
+  "mapping": {
+    "source_claim_statement": "By 6-9 months, infants encode an actor's reach in terms of the goal object grasped rather than the spatial path travelled; this selectivity is present for human (agentive) reaches but not for inanimate objects of matched dimensions.",
+    "ree_translation": "MECH-129 requires other-agent goal modelling -- the other's goal represented as a primitive in shared state (their z_goal) -- as the substrate for a goal-interference (harm-to-agency) signal. Woodward shows this primitive is real and early-developing in biological agents and, crucially, that it is represented separately from the sensorimotor trajectory. This is the developmental grounding for MECH-129's core architectural claim that harm-to-agency (over represented goals) is a distinct signal type from harm-to-agent (over self sensorimotor signals).",
+    "mapping_caveat": "The paradigm demonstrates goal-OBJECT encoding, not goal-OBSTRUCTION detection: it grounds that goals of others are represented (MECH-129 prerequisite a / discriminant 1) but is silent on whether thwarting that goal is registered as a relational cost (discriminants 2-4, the actual harm-to-agency signal). It is also human-infant looking-time behaviour, not a mechanism for the interference computation over trajectory pairs that MECH-129 specifies.",
+    "source_context": "Human infant visual-habituation studies (5-9 months), object-directed reaching events"
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality very high (canonical, replicated across labs and ages). Mapping fidelity good for the goal-representation substrate, partial for the harm signal. Transfer risk moderate: infant looking-time to REE computational substrate, and goal-object vs goal-obstruction gap."
+  }
+}

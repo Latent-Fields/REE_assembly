@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-06-12_mech_164_empathy_shared_affective_circuit_singer2004",
+  "timestamp_utc": "2026-06-12T13:57:42Z",
+  "claim_ids_tested": ["MECH-164"],
+  "source": {
+    "title": "Empathy for pain involves the affective but not sensory components of pain",
+    "authors": ["Tania Singer", "Ben Seymour", "John O'Doherty", "Holger Kaube", "Raymond J. Dolan", "Chris D. Frith"],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1093535"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Landmark fMRI demonstration that observing a loved one's pain recruits the SAME affective pain representation (anterior insula, rostral ACC) as first-person pain, while sparing the sensory components. This is direct human-neuroscience evidence for MECH-164's central architectural commitment: another agent's harm gradient enters the system through the same valuation substrate as one's own (self-like weighting), not via a separate ethics circuit. Held at 0.74 because it evidences shared AFFECTIVE representation and an empathy-score correlation, but harm-empathy is only one half of MECH-164's terrain (it is silent on the GOAL gradient) and shared activation is not the same as equal motivational weight in action selection.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Only the affective part of the pain matrix (AI, rostral ACC) is shared; sensory pain cortices (SI/SII, posterior insula, caudal ACC) are first-person-specific. So self-like weighting in MECH-164 is licensed for the VALUATION layer, not a wholesale collapse of self and other -- a REE substrate that shadow-copies the full self-stream into the other-index would over-share and lose the self-other distinction RHM-5 needs to avoid empathic collapse.",
+    "Shared neural activation demonstrates a common representation, not that the other's harm signal carries EQUAL motivational force in trajectory selection; the inference from co-activation to self-like weighting in E3 is a mapping assumption, not something the paper measures."
+  ],
+  "tags": ["mech_164", "empathy", "shared_circuit", "self_other", "anterior_insula", "acc", "love_as_care", "rhm_6"],
+  "mapping": {
+    "source_claim_statement": "When subjects received pain and when they saw a signal that a loved one in the same room received pain, a common network -- bilateral anterior insula and rostral anterior cingulate cortex -- was activated; sensory pain regions were active only for first-person pain. AI/ACC activation scaled with individual empathy scores.",
+    "ree_translation": "MECH-164 asserts that another agent's harm gradient is weighted into E3 with the same motivational force as one's own, producing care as a by-product of ordinary trajectory selection -- no separate ethics module (INV-001). Singer et al. are the human-neuroscience grounding for the negative-side half of that terrain: harm to another is represented by re-using the SELF's affective valuation substrate (the shared AI/rostral-ACC code), exactly the structural symmetry MECH-164 (and its precursor INV-005, harm via mirror modelling) require.",
+    "mapping_caveat": "The study grounds shared AFFECTIVE representation of another's HARM, not the GOAL-gradient half of MECH-164's terrain, and not the self-like WEIGHTING in action selection -- co-activation shows a common representation but does not measure equal motivational force on behaviour. It is also a close-other (loved one) paradigm, so it speaks to the high-coupling end of the RHM-5 weighting schedule, not its calibration across strangers.",
+    "source_context": "Human fMRI; 16 couples, partner-directed pain cue paradigm"
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Very high source quality (Science, landmark, widely replicated). Mapping fidelity good for the shared-valuation / self-like substrate but partial (harm only, not goal; representation not weighting). Transfer risk moderate-low: human affective neuroscience to a REE valuation substrate is a closer transfer than animal/behavioural work, but co-activation-to-weighting is an inferential step."
+  }
+}

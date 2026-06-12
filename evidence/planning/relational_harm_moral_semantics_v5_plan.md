@@ -4,7 +4,7 @@ closure_plan:
   generation: v5
   title: "Relational harm and moral semantics (harm-to-agency; love as terrain inference)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-12
   scope_claims: [MECH-129, MECH-130, MECH-164, INV-005, INV-028, MECH-127]
   sibling_plans: [multi_agent_ecology_v5, mirror_modelling_other_self_v5, self_model_v4, object_representation_v4]
   roadmap_note: >
@@ -118,18 +118,45 @@ closure_plan:
     - id: "relational_harm_moral_semantics_v5:RHM-6"
       title: "Biology grounding for relational harm + love-as-care (harm-to-agency, ToM-of-goals, empathy-as-shared-circuit lit-pulls)"
       phase: 2
-      status: open
+      status: closed
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-129, MECH-164]
       depends_on: []
       cross_plan_link: []
+      governance_2026_06_12: >
+        CLOSED by /lit-pull (IGW-20260612-167). Biology-grounding pull filed under
+        evidence/literature/targeted_review_relational_harm_love_as_care/ (5 entries),
+        rebuilt index -> MECH-129 literature_confidence 0.0 -> 0.80, MECH-164
+        literature_confidence 0.0 -> 0.805. Coverage by strand: L2 ToM-of-goals
+        grounded by Woodward 1998 (goal-object encoding, separable from sensorimotor
+        path; MECH-129 prereq a / discriminant 1) + Gergely & Csibra 2003 (teleological
+        stance / principle of rational action; the goal-inference rule, discriminant 2)
+        + Baker, Saxe & Tenenbaum 2009 (inverse planning -- the computational
+        instantiation of goal inference; bridges MECH-129 obstruction-detection AND
+        MECH-164 component-1 agent-indexed terrain inference). L3 empathy-as-shared-circuit
+        grounded by Singer et al. 2004 (empathy for pain re-uses the SELF's affective
+        valuation code in AI/rostral-ACC; the negative-side self-like-weighting substrate)
+        + Preston & de Waal 2002 (Perception-Action Model -- the proximate mechanism of
+        MECH-164's self-like weighting, plus the similarity/familiarity/salience modulators
+        that pre-figure the RHM-5 calibration variable). L1 harm-to-agency-as-distinct-from-
+        physical-harm is grounded INDIRECTLY (the goal-representation + obstruction-detection
+        substrate from L2 is the prerequisite for a goal-interference cost) and cross-checks
+        cleanly against the existing targeted_review_blocked_agency_anger_stream dir, which
+        already holds the frustration / blocked-goal literature from the OBSERVER's own side
+        (CANDIDATE-blocked-agency-stream / SD-029, not MECH-129) -- so this pull extends
+        rather than re-derives. RESIDUAL (does not block close): a dedicated paper treating
+        goal-obstruction as a distinct AVERSIVE/cost signal toward another (vs the agency
+        substrate) would further strengthen L1; surface it during the RHM-1 substrate-build
+        session if the goal-interference signal needs sharper grounding. No claims.yaml
+        edits (V5 candidate claims unchanged; lit and exp are decoupled signals -- this pull
+        moves literature_confidence only, not experimental_confidence or status).
       readiness_gate:
         - "Project rule feedback_biology_before_formal_definitions: MECH-129 (harm-to-agency), MECH-130 (agent-policy novelty), MECH-164 (agent-indexed terrain inference) instantiate formal concepts (goal-interference, information-gain typing, Axiom V) and need a biology lit-pull BEFORE V5 substrate is built"
         - "L1 harm-to-agency / goal-obstruction as distinct from physical harm (developmental-harm + frustration / blocked-goal literature); L2 ToM-of-goals (Woodward goal-attribution, Csibra & Gergely teleological stance) -- shared anchor with the social pillar; L3 empathy as shared-circuit / self-other gradient overlap (Decety, Singer pain-empathy, Preston & de Waal perception-action model) for MECH-164"
         - "Cross-check against existing INV-005 / INV-028 source docs (2026-02-09_empathy.md, otherness_inference.md) so the pull extends rather than re-derives"
-      last_updated: 2026-06-10
-      completion_note: "MECH-129/130/164 carry no dedicated biology lit-pull. This node tracks closing that grounding debt before the V5 moral-semantics substrate is built. Distinct from the social-substrate pull (multi_agent_ecology_v5) and the mirror-inference pull (mirror_modelling_other_self_v5): this one is specifically the harm-SEMANTICS and empathy-circuit literature, not the agency or inference machinery."
+      last_updated: 2026-06-12
+      completion_note: "MECH-129/130/164 carry no dedicated biology lit-pull. This node tracks closing that grounding debt before the V5 moral-semantics substrate is built. Distinct from the social-substrate pull (multi_agent_ecology_v5) and the mirror-inference pull (mirror_modelling_other_self_v5): this one is specifically the harm-SEMANTICS and empathy-circuit literature, not the agency or inference machinery. CLOSED 2026-06-12 -- see governance_2026_06_12 above (5 entries; MECH-129 + MECH-164 grounded across the ToM-of-goals and empathy-as-shared-circuit strands)."
 ---
 # Relational Harm and Moral Semantics -- V5 Forward Roadmap
 
@@ -290,6 +317,22 @@ register (with real IDs replacing the NEWCLAIM placeholders):
   terrain inference, capstone), RHM-5 (self-like weight calibration, NEWCLAIM),
   RHM-6 (biology grounding debt). Readiness gates pinned per node.
   `generation: v5` set so the V3 closure % is unaffected. No claims.yaml edits.
+- **2026-06-12** -- RHM-6 biology-grounding debt CLOSED via /lit-pull
+  (IGW-20260612-167). Filed 5 entries under
+  `evidence/literature/targeted_review_relational_harm_love_as_care/`:
+  ToM-of-goals strand (Woodward 1998 goal-object encoding; Gergely & Csibra 2003
+  teleological stance; Baker, Saxe & Tenenbaum 2009 inverse planning) grounding
+  MECH-129's goal-representation + obstruction-detection substrate and MECH-164's
+  agent-indexed terrain inference (component 1); empathy-as-shared-circuit strand
+  (Singer et al. 2004 shared affective pain code; Preston & de Waal 2002
+  Perception-Action Model) grounding MECH-164's self-like weighting and surfacing
+  the RHM-5 calibration modulators. Index rebuilt: MECH-129 literature_confidence
+  0.0 -> 0.80, MECH-164 0.0 -> 0.805. L1 (harm-to-agency vs physical harm) grounded
+  indirectly via the goal-inference substrate + cross-check against the existing
+  `targeted_review_blocked_agency_anger_stream` dir (observer-side frustration /
+  blocked-goal literature, tagged to CANDIDATE-blocked-agency-stream / SD-029, not
+  MECH-129) -- the pull extends rather than re-derives. No claims.yaml edits (lit/exp
+  decoupled; this moves literature_confidence only). RHM-6 status open -> closed.
 - **2026-06-10** -- Flagged MECH-129 / MECH-130 / MECH-164 for v4 -> v5
   reassignment (intrinsically social/relational/ethical; subject matter does
   not exist until the multi-agent substrate exists). MECH-163 deliberately NOT

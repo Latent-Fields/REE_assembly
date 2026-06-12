@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002",
+  "timestamp_utc": "2026-06-12T13:57:42Z",
+  "claim_ids_tested": ["MECH-164"],
+  "source": {
+    "title": "Empathy: Its ultimate and proximate bases",
+    "authors": ["Stephanie D. Preston", "Frans B. M. de Waal"],
+    "year": 2002,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/S0140525X02000018"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.69,
+  "confidence_rationale": "The canonical theoretical framework -- the Perception-Action Model (PAM) -- for empathy as a shared-representation mechanism: perceiving another's state automatically activates the observer's own corresponding representations, which then drive somatic/autonomic and motivational responses. This is the mechanistic statement of MECH-164's self-like weighting at the proximate level, and it explicitly grounds care/helping as emerging from the shared representation rather than a separate module. Held below 0.7 because it is a theoretical/comparative synthesis (target article with commentary), not a single decisive experiment, and because PAM is about state-matching generally, not specifically the goal-gradient inference MECH-164 adds.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PAM predicts that shared representation is modulated by similarity, familiarity and salience -- so untyped self-like weighting is NOT the biological default; coupling scales with these factors. This directly supports the RHM-5 thesis that MECH-164's weighting needs a calibration schedule rather than uniform full symmetry, and warns that a flat self-like weight is biologically unrealistic.",
+    "The model's automatic state-matching, ungated, predicts personal-distress/emotional-contagion failure modes (the observer overwhelmed by the other's state) -- the empathic-collapse pole RHM-5 must design against; perception-action matching without prefrontal regulation is maladaptive."
+  ],
+  "tags": ["mech_164", "empathy", "perception_action_model", "shared_representation", "love_as_care", "calibration", "rhm_6"],
+  "mapping": {
+    "source_claim_statement": "Empathy's proximate mechanism is perception-action: perceiving an object's (another's) state activates the subject's own corresponding representations, which in turn activate somatic and autonomic responses. This single mechanism, modulated by similarity/familiarity/experience/salience and regulated by prefrontal function, explains emotional contagion, sympathetic concern, and helping across species and development.",
+    "ree_translation": "MECH-164 claims care emerges when another's inferred terrain is weighted self-like in E3, with no separate ethics circuit. PAM is the proximate-level mechanistic statement of exactly this: the other's state is represented on the SELF's representational substrate (shared representation), and motivated responding (helping/care) follows from that shared activation. PAM also supplies what MECH-164's structural claim deliberately leaves open -- the modulators (similarity, familiarity, salience) and the prefrontal regulation that determine HOW MUCH the other's state couples, which is precisely the RHM-5 calibration variable.",
+    "mapping_caveat": "PAM is a domain-general state-matching account (emotions, distress, arousal); it grounds the shared-representation and self-like-weighting backbone of MECH-164 but is not specific to the GOAL-gradient terrain inference MECH-164 adds beyond INV-005. It is a theoretical/comparative target article, so the evidence is the marshalled cross-species literature rather than a single experiment, and its automatic-matching core needs the regulation story to avoid predicting maladaptive contagion.",
+    "source_context": "Comparative/theoretical synthesis across human and non-human animals (target article in Behavioral and Brain Sciences with peer commentary)"
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "High-impact, foundational comparative framework. Mapping fidelity good for the shared-representation/self-like-weighting backbone and for surfacing the calibration modulators RHM-5 needs; partial because PAM is general state-matching, not goal-gradient inference. Transfer risk moderate: cross-species theory to a REE valuation substrate, and target-article status means it is synthesis rather than a single result."
+  }
+}

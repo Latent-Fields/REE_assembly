@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-06-12_mech_129_teleological_stance_gergely_csibra2003",
+  "timestamp_utc": "2026-06-12T13:57:42Z",
+  "claim_ids_tested": ["MECH-129"],
+  "source": {
+    "title": "Teleological reasoning in infancy: the naive theory of rational action",
+    "authors": ["Gyorgy Gergely", "Gergely Csibra"],
+    "year": 2003,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/S1364-6613(03)00128-1"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Authoritative synthesis of the converging one-year-old goal-attribution literature into a single inferential principle (the teleological stance / principle of rational action). It supplies MECH-129 with the inference rule by which a goal is attributed and an action evaluated as serving or not serving it -- the bridge between discriminant (1) what the goal is and discriminant (2) whether an action obstructs it. Confidence held below 0.7 because it is a theoretical review (not a single experiment) and because the teleological stance is explicitly NON-mentalistic, which both helps and limits the mapping to MECH-129's consent/constitutive discriminants.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The teleological stance is explicitly non-mentalistic: it relates action, goal-state, and situational constraints via efficiency, WITHOUT attributing beliefs or commitments. So it grounds MECH-129 discriminants (1)+(2) but NOT (4) consent, which requires the other's commitment/mental state -- exactly the gap the plan assigns to RHM-3 / mirror_modelling_other_self_v5.",
+    "Efficiency-based goal attribution can misfire when an agent's behaviour is inefficient for good reason (constraint the observer cannot see); a REE goal-interference signal built on the rationality principle inherits this misattribution risk."
+  ],
+  "tags": ["mech_129", "theory_of_mind", "teleological_stance", "rational_action", "harm_to_agency", "rhm_6"],
+  "mapping": {
+    "source_claim_statement": "One-year-olds interpret others' goal-directed actions using a non-mentalistic 'teleological stance' -- relating action, goal-state, and situational constraints through a principle of rational action (agents pursue goals by the most efficient means available). This inferential principle is continuous with the later mentalistic rationality principle.",
+    "ree_translation": "MECH-129's goal-interference signal needs not just the other's goal represented (Woodward) but an inference rule that says whether a given trajectory serves or defeats that goal. The principle of rational action is that rule: given an inferred goal and the situational constraints, an efficient path is expected, and a deviation (e.g. one imposed by another agent's interfering trajectory) is detectable as a departure from rational pursuit. This grounds discriminant (2) -- whether your action obstructs the other's goal -- on a biologically-attested computation.",
+    "mapping_caveat": "The teleological stance is non-mentalistic by design: it computes over goals and constraints, not beliefs or consent. It therefore grounds MECH-129's first two discriminants but is silent on (3) constitutive-vs-incidental and (4) consent, which the plan correctly hands to RHM-3 and the mirror-modelling layer. It is also a review/theory paper, so the evidence is the synthesised infant literature rather than a single decisive datum.",
+    "source_context": "Review of human infant (primarily 9-12 month) goal-attribution and rational-action studies"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "High-quality, highly-cited TICS synthesis. Mapping fidelity good for the goal-inference rule (the bridge from goal-representation to obstruction-detection); transfer risk moderate (infant developmental theory to REE computation; non-mentalistic stance caps how far it reaches into the consent discriminant)."
+  }
+}
