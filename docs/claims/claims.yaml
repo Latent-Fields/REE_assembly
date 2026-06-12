@@ -30357,6 +30357,8 @@
     sweep arm class. Not yet run.
 
     [2026-05-29 autopsy V3-EXQ-605 cluster]: calibration grid untestable on V3 default substrate -- curiosity dimension fully degenerate (curiosity_scale {1x, 5x, 10x} produces identical per-cell entropy + reef_fraction); noise dimension delivers sub-threshold signal but N=1 per cell. p1_any_calibration_zone=false stays. Same two-substrate-prereq stack as Q-044 (SD-056 proximal, SD-XXX-scaffolded-sd054-onboarding deep).
+
+    [2026-06-11 autopsy V3-EXQ-667 (confirmed, applied 2026-06-12)]: Magnitude-scale sweep (MECH-313 noise_floor_alpha + MECH-314 curiosity_weight jointly 1x/2x/4x/8x) on the 591c InfantCurriculumScheduler Phase-0 probe self-routed substrate_not_ready_requeue: healthy-seed h_pos range across arms 0.0172 < 0.05 floor; 4/5 seeds (43/44/45/46) byte-identical across the full 8x scaling -- the swept knobs have zero authority over E3 selection. Reproduces the V3-EXQ-605 inert-knobs finding on the 591c lineage. NOT evidence for "magnitude insufficient -> active Phase-0 shaping required" (the rescue fork was unadjudicable). Blocked on modulatory-bias-selection-authority (V3-EXQ-663/643a) + ARC-065 GAP-A (V3-EXQ-649). Retest V3-EXQ-667a after those clear. pending_retest_after_substrate stays. non_contributory; no confidence change (open_question / answer_state -- exempt).
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: Q-044
