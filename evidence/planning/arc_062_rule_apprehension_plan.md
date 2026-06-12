@@ -3,7 +3,7 @@ closure_plan:
   id: arc_062_rule_apprehension
   title: "Rule Apprehension"
   registered: 2026-05-09
-  last_updated: 2026-06-10
+  last_updated: 2026-06-12
   scope_claims: [MECH-309, ARC-062, ARC-063, ARC-064, ARC-065, ARC-077, MECH-337, MECH-338, MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-316, MECH-317, MECH-318, MECH-319, Q-043, Q-044, Q-045, SD-054, SD-029, MECH-269]
   sibling_plans: [commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution]
   nodes:
@@ -100,7 +100,8 @@ closure_plan:
       owner_exq: "V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MECH-314-family GAP-A-ready leg; V3-EXQ-544/545/544a historical diagnostics; Q-045/MECH-313/MECH-260 leg awaits behavioral_diversity_isolation:GAP-C / V3-EXQ-603i; GAP-B successor still owed"
       unblocks_claims: [ARC-065, Q-043, Q-044, Q-045]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
-      last_updated: 2026-06-08
+      last_updated: 2026-06-12
+      governance_2026_06_12: "Closure-drift stale-since-review acknowledgement (governance cycle 2026-06-12). Flagged because failure_autopsy_V3-EXQ-667_2026-06-11 reclassified Q-043 (in this node's unblocks set): the 667 magnitude-sweep self-route was CONFIRMED substrate_not_ready (modulatory-bias-selection-authority bottleneck), Q-043 stays open / pending_retest with an added evidence_quality_note, no demotion. Does NOT change GAP-H: the Q-045/MECH-313/MECH-260 leg still awaits behavioral_diversity_isolation:GAP-C and rule-apprehension closure still depends on the GAP-B successor. Status stays partial; owner_exq unchanged; last_updated bumped to acknowledge."
       governance_2026_06_08: "Case 3 in closure-drift terms. Plan-drift reconcile. V3-EXQ-604c PASS on the V3-EXQ-649 GAP-A-ready stack gives contributory support to the Q-044/MECH-314 family and governance lifted their v3_pending/pending_retest_after_substrate flags. GAP-H remains partial, not done: the Q-045/MECH-313/MECH-260 leg still depends on behavioral_diversity_isolation:GAP-C / V3-EXQ-603i, and rule-apprehension cross-plan closure still depends on the newly unblocked GAP-B behavioural falsifier."
       governance_2026_06_06: "Closure-drift stale-since-review acknowledgement only (no status change). Flagged because failure_autopsy_V3-EXQ-621a_2026-06-06 (confirmed) reclassified Q-045 in this node's unblocks set. 621a is a vacuous-pass correction on the scaffolded SD-054 onboarding substrate-readiness diagnostic (appended an evidence_quality_note correction; moved NO claim confidence -- non_contributory / scoring_excluded) and is unrelated to the absent rule-creator/discriminator substrate this node tracks; GAP-H stays partial, still blocked behind arc_062_rule_apprehension:GAP-B. last_updated bumped to acknowledge."
       governance_2026_06_03: "Closure-drift stale-since-review acknowledgement only (no status change). The drift report flagged this node because confirmed autopsies post-dating last_updated reclassified ARC-065 (failure_autopsy_V3-EXQ-614b_2026-05-31, failure_autopsy_V3-EXQ-569e_2026-05-31) and Q-045 (failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03), which intersect this node's unblocks set. None change GAP-H: the MECH-318 empirical retire-vs-promote gate remains blocked behind arc_062_rule_apprehension:GAP-B (rule-creator/discriminator substrate), and the modulatory-bias-selection-authority gap that the 614/603e cluster surfaced is a DISTINCT scoring-layer-to-argmax blocker (substrate implemented_pending_validation 2026-06-03), not the absent rule-creator GAP-H/GAP-B depend on. Status stays partial; last_updated bumped to acknowledge the new evidence."

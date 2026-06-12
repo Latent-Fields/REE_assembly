@@ -1,10 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-06-12T06:42:51Z`  
+Generated: `2026-06-12T10:41:29Z`  
 Last review: `2026-06-12T06:36:18Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_468c_sd034_mech268_commitment_vs_contradiction_behavioural_20260612T080105Z_v3` | 2026-06-12T08:01 | MECH-090, MECH-268, SD-034 | — |
+| `v3_exq_460c_sd034_verified_but_not_released_behavioural_20260612T090021Z_v3` | 2026-06-12T09:00 | MECH-260, MECH-261, SD-034 | — |
 
 ---
 
