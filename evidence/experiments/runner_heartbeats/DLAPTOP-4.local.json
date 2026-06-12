@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-12T01:23:31Z",
+  "last_tick_utc": "2026-06-12T01:54:03Z",
   "state": "idle",
   "current_exq": null,
   "current_exq_started_utc": null,
@@ -12,9 +12,19 @@
   "seconds_elapsed": null,
   "seconds_remaining": null,
   "recent_lines": null,
-  "queue_depth": 2,
+  "queue_depth": 3,
   "queue_id_at_head": "V3-EXQ-655",
   "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-591c",
+      "result": "FAIL",
+      "completed_at": "2026-06-10T22:55:17.501510+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-665",
+      "result": "PASS",
+      "completed_at": "2026-06-10T23:30:56.846187+00:00"
+    },
     {
       "queue_id": "V3-EXQ-514m",
       "result": "FAIL",
@@ -29,20 +39,10 @@
       "queue_id": "V3-EXQ-668",
       "result": "PASS",
       "completed_at": "2026-06-11T13:53:10.433581+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-569g",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T22:50:31.541670+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-673",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T23:03:04.173103+00:00"
     }
   ],
-  "runner_pid": 83116,
-  "runner_version": "f3bb722 2026-06-12 (running r2980 7e70df8)",
+  "runner_pid": 42644,
+  "runner_version": "r3068 f3bb722 2026-06-12",
   "gpu": {
     "available": false
   },
