@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-12T11:27:40Z",
+  "last_tick_utc": "2026-06-12T11:57:52Z",
   "state": "running",
   "current_exq": "V3-EXQ-466c",
   "current_exq_started_utc": "2026-06-12T09:00:23.044931+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "SD-034",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_SATISFICING_RESIDUE_DISCHARGE",
-    "runs_done": 3,
+    "run_label": "Seed 43 / ARM_CLOSURE_OFF",
+    "runs_done": 5,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 0,
     "episodes_total": 265,
-    "overall_pct": 121.4
+    "overall_pct": 166.7
   },
-  "seconds_elapsed": 8837,
+  "seconds_elapsed": 10650,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_466c_sd034_satisficing_residue_discharge_behavioural] starting (dry_run=False)",
@@ -35,7 +35,11 @@
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4081 formed=True",
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.932 gate=pass",
     "[train] p0_guided seed=43 ep 130/265 mean_len=200.0 rv=0.00114",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/265 median_last=5.0 survival_gate=FAIL",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.3538 contact_events=106 z_goal_at_contact=0.4226",
+    "Seed 43 Condition ARM_CLOSURE_ON",
+    "Seed 43 Condition ARM_CLOSURE_OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
