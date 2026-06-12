@@ -1,9 +1,11 @@
 # Histaminergic gating of moment-to-moment memory accessibility (2026-06-12)
 
-**Status: literature explored, thought-intake PENDING.** This doc stages the idea for a
-later `/thought-digestion` pass (claim registration). No claims registered yet -- Daniel
-asked that the literature be explored first, then an intake created "to ensure the ideas
-are all captured."
+**Status: INTAKE DONE 2026-06-12.** Literature explored; `/thought-digestion` registration
+complete. Registered: **MECH-425** (two-layer retrieval-time accessibility gating -- Line A
+gain + Line B suppression), **Q-076** (the gain x suppression interaction), and a cross-ref
+reap note on **MECH-261** (its read-side sibling). All candidate / `substrate_conditional` /
+`implementation_phase: v4`, OFF the V3 critical path -- promotes nothing. See "Intake outcome"
+at the foot of this doc.
 
 Source thought (Daniel, 2026-06-12), preserved verbatim:
 
@@ -126,3 +128,41 @@ Candidate claims most likely land as `substrate_conditional` / version-scoped an
 amendment to MECH-261 (gating policy) plus possibly a new Q-claim on the gain-x-suppression
 interaction. The intake (`/thought-digestion`) is the step that decides registration vs
 cross-reference-only and writes the `what_would_answer` test designs.
+
+## Intake outcome (registered 2026-06-12)
+
+The three registry questions, resolved:
+
+1. **Line A is genuinely uncovered.** It is an *instance* of `ARC-005` precision-routing at
+   the abstract level, but the existing precision cluster (`MECH-251/254/255/259/347`) acts on
+   *current* perception, candidate-selection, and goal-templates -- `MECH-254` selects among
+   *currently-active* latents entering E3; `MECH-347` is fast, content-specific cue->incentive
+   recall. None is a *global, infraslow, arousal-coupled gain over stored-trace reinstatement*.
+   Registered, with `ARC-005` as an abstract-parent cross-ref (not a duplicate).
+2. **`MECH-261` is the WRITE-side family; this is its READ-side sibling.** Folding an untested
+   V4 retrieval extension into a `stable`, 33-support write-gate claim would muddy it, so the
+   read-side gating is a **new MECH** (`MECH-425`) with `MECH-261` cross-referenced both ways
+   (its `depends_on` + a dated reap note on MECH-261). "Amendment, not a new INV" -- satisfied
+   at the MECH/Q level; no invariant minted.
+3. **Distinct from plasticity-window ACh/BDNF.** That memory gates *learning-rate*; this gates
+   *retrieval*. Adjacent only via H3-ACh cross-talk (Zheng 2023) -- noted in the claim text,
+   no `depends_on`.
+
+Registered claims (all `candidate` / `substrate_conditional` / `implementation_phase: v4` /
+`v3_pending: true`; `exp_conf` stays 0 -- promotes nothing):
+
+- **MECH-425** -- retrieval-time accessibility gating, the two composable read-side policy
+  layers (Line A global arousal-coupled reinstatement gain + Line B content-selective
+  competitive suppression). `depends_on` MECH-261 / MECH-094 / MECH-271 / ARC-005 / ARC-035 /
+  SD-016 / MECH-347. `what_would_answer` = the Line-A vs Line-B double-dissociation
+  (uniform-forgetting vs selective-intrusion) with a co-encoded-competitors non-degeneracy gate.
+- **Q-076** -- the gain x suppression INTERACTION governs the interference-vs-forgetting
+  tradeoff (the headline). `depends_on` MECH-425. `what_would_answer` = a 2x2
+  {gain high/low} x {suppression on/off} interaction-term test.
+- **MECH-261** -- dated cross-ref reap note added pointing to MECH-425/Q-076 as the read-side
+  sibling; no status change.
+
+Owned-by-design / cross-reference-only (NOT registered): the distributed precision story
+(`ARC-005` cluster) for Line A's abstract parent; `MECH-094`/`MECH-271` for the Line-B failure
+mode (confabulation / wrong-trace reinstatement); the sleep/wake axis for the state-gating of
+retrieval gain.

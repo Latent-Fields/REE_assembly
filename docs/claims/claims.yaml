@@ -20519,6 +20519,16 @@
     operating-mode vector, but are functionally distinct from MECH-261
     -- MECH-261 gates writes ACROSS substrates, while MECH-264/265
     are within-substrate computations inside SD-033e.
+
+    2026-06-12 cross-ref (histaminergic-retrieval intake): MECH-261 is
+    the WRITE-side gate family. Its READ-side sibling -- retrieval-time
+    accessibility gating (which stored traces become reinstatable now)
+    -- is registered as MECH-425, with the gain x suppression
+    interaction as Q-076. The gates MECH-261 owns are write-enables;
+    the retrieval-time gating POLICY (Line A arousal-coupled
+    reinstatement gain + Line B competitive suppression) is the
+    separately-registered uncovered piece, V4-leaning. No status change
+    to MECH-261.
   evidence_quality_note: >
     Registered pre-implementation. 5 literature entries support the
     underlying biology of mode-conditioned write gating
@@ -41490,6 +41500,41 @@
     Decides whether the analogy mechanism (MECH-421) is built as a distinct operator or expected to
     emerge from the relational-inference stack (MECH-419/MECH-420). Cannot be resolved until the
     symbolic stack exists to observe; epistemic_category substrate_conditional. DO NOT build in V3.
+- id: Q-076
+  title: "Does the INTERACTION of retrieval-readiness gain (MECH-425 Line A) and content-selective suppression (MECH-425 Line B) govern the interference-vs-forgetting tradeoff? Predicted regimes: high gain WITHOUT selective suppression -> problematic interference (too many traces accessible at once); low gain -> apparent forgetting; competent retrieval = high gain + sharp competitive suppression."
+  claim_type: open_question
+  subject: memory.retrieval_gain_x_suppression_interaction
+  polarity: asks
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  registered_utc: 2026-06-12
+  depends_on:
+    - MECH-425   # the two-layer retrieval-gating mechanism whose INTERACTION this question tests
+  possible_overlap_with:
+    - MECH-094   # the high-interference regime (many wrong traces accessible) is a route INTO the MECH-094 confabulation failure mode -- the interaction is the upstream control variable, cross-ref not duplicate
+  location: docs/thoughts/2026-06-12_histaminergic_retrieval_accessibility_gating.md
+  source:
+    - docs/thoughts/2026-06-12_histaminergic_retrieval_accessibility_gating.md
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL (needs the MECH-425 retrieval substrate -- both knobs). 2x2 design:
+    {gain high, gain low} x {selective suppression ON, OFF}, with >=2 competing co-encoded traces scorable
+    individually. PREDICTED signature: (high gain, suppression OFF) -> highest competitor-intrusion /
+    interference rate; (low gain, *) -> lowest correct-trace reinstatement (apparent forgetting); (high gain,
+    suppression ON) -> highest correct-trace reinstatement with low intrusion (the competent regime).
+    ANSWERED = the interference rate depends on the gain x suppression INTERACTION term (not on either main
+    effect alone) in the predicted direction. NON-ANSWER / self-route substrate_not_ready: if intrusion and
+    correct-recall metrics are floor/ceiling-pinned (no cross-cell variance) the interaction is unmeasurable
+    -- NOT a verdict.
+  notes: >
+    The headline candidate from the 2026-06-12 histaminergic-retrieval intake: the two control layers are
+    not independent -- it is their PRODUCT that sets retrieval competence. Daniel's source intuition
+    ("access to all memories could produce problematic interference; active management of which cues are
+    retrievable would be needed") is exactly the high-gain / no-suppression corner. substrate_conditional:
+    testable only on a substrate exposing BOTH the Line-A gain knob and the Line-B suppression operator
+    (see MECH-425). DO NOT build in V3.
 - id: MECH-423
   title: "Cross-model super-additivity: integrating predictive models over a shared latent yields capability gains that EXCEED the sum of the isolated models, because shared features let each model's prediction-error corrections propagate to the others. Integrated (E1 world-model + E2 affordance-model [+ object spine]) beats a param/compute-matched bag of isolated modules -- the 'cross-pollination turbo-charges development' claim, made falsifiable."
   claim_type: mechanism_hypothesis
@@ -41588,3 +41633,58 @@
     good, NEGATIVE when bad -- the asymmetry MECH-423 alone does not capture). epistemic_category
     substrate_conditional: the mechanism is statable and falsifiable now, but the channel it needs is
     V6. DO NOT build in V3.
+- id: MECH-425
+  title: "Retrieval-time accessibility gating: which stored traces become reinstatable at a given moment is set by two composable READ-side policy layers, not by storage alone. Line A -- a global, slowly-fluctuating, arousal-coupled reinstatement GAIN (content-blind; sets the threshold on whether ANY stored trace crosses into accessibility; stochastic-resonance flavour). Line B -- a content-selective competitive SUPPRESSION that, given what the global gate admits, inhibits specific competitors to keep retrieval clean. The READ-side sibling of MECH-261's mode-conditioned WRITE-gate family: REE owns the gates but not this retrieval-time gating POLICY."
+  claim_type: mechanism_hypothesis
+  subject: memory.retrieval_time_accessibility_gating
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-12
+  depends_on:
+    - MECH-261   # the WRITE-side mode-conditioned gate family; MECH-425 is its READ-side sibling (same gates, retrieval direction)
+    - MECH-094   # sim/real write-distinction; a FAILED Line B (wrong-trace reinstatement) is a confabulation pathway
+    - MECH-271   # replay routing-signature; failed competitive suppression = probe/wrong content reaching destinations it should not -- the auditable signature of a Line-B failure
+    - ARC-005    # control plane routes precision; Line A is a retrieval-side INSTANCE of precision/gain control (abstract parent, not a duplicate)
+    - ARC-035    # vmPFC stored->active conversion: the reinstatement substrate Line A would set the gain over
+    - SD-016     # the z_world ContextMemory query path -- the read path a retrieval-readiness gain modulates
+    - MECH-347   # cue-triggered recall: the nearest EXISTING retrieval mechanism (fast, content-specific) that Line A's slow content-blind gain is distinct from
+  possible_overlap_with:
+    - MECH-261   # MECH-261 = WRITE gating (what may write to memory); MECH-425 = READ gating (which stored traces become accessible). Sibling families, not duplicates.
+    - MECH-254   # MECH-254 top-k precision selection acts over CURRENTLY-ACTIVE latents entering E3; MECH-425 Line A acts over REINSTATEMENT of stored traces -- adjacent precision instances, different operands
+  location: docs/thoughts/2026-06-12_histaminergic_retrieval_accessibility_gating.md
+  source:
+    - docs/thoughts/2026-06-12_histaminergic_retrieval_accessibility_gating.md
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL -- REE-v3 has no explicit retrieval-readiness gain knob and no content-selective
+    retrieval-suppression operator over episodic / ContextMemory read-out (the gates exist for WRITE,
+    MECH-261; the read-time POLICY does not). Once a retrieval substrate exposes (i) a global scalar gain on
+    trace reinstatement and (ii) a competitor-suppression operator: DISSOCIATION test -- lesioning Line A
+    (clamp gain low) reduces reinstatement of ALL traces uniformly (apparent forgetting, content-blind),
+    while lesioning Line B (disable competitive suppression) leaves gain intact but RAISES competitor
+    intrusions / wrong-trace reinstatement (interference, content-selective). PASS = the two lesions produce
+    mechanistically distinct, doubly-dissociable read-out signatures (uniform-suppression vs
+    selective-intrusion); FAIL = a single knob reproduces both, i.e. the two layers are not separable on this
+    substrate. NON-DEGENERACY GATE: the reinstatement-accuracy metric must be live (non-floor, non-ceiling
+    cross-trace variance) and at least two competing traces must be co-encoded and individually scorable in
+    the no-lesion control, else neither 'uniform forgetting' nor 'selective intrusion' is reachable and the
+    run self-routes substrate_not_ready (check_degeneracy non_degenerate=false), NOT a verdict.
+  notes: >
+    Intake of the 2026-06-12 histaminergic-retrieval thought (Morishita et al., "Infraslow histaminergic
+    dynamics govern priming states to gate moment-to-moment memory accessibility," Neuron 2026; literature
+    explored in the source doc). The genuinely-new abstraction: memory retrieval is governed by TWO
+    composable read-side control layers REE does not yet model as explicit retrieval-time policy. Line A =
+    the histamine / TMN infraslow arousal-coupled reinstatement gain (Nomura 2019 stochastic-resonance
+    framing; H1 facilitates / H2 inhibits depending on the cue's reinforcement history -- so the gain itself
+    carries a context-dependent suppress arm). Line B = retrieval-induced-forgetting / PFC inhibitory control
+    (Penolazzi 2014, Khan 2024; deficient in ADHD, Storm & White 2010). DISTINCT FROM the plasticity-window
+    ACh/BDNF memory (project_plasticity_window_neuromodulators): that gates LEARNING-rate; this gates
+    RETRIEVAL -- adjacent only via H3-ACh cross-talk (Zheng 2023), NOT the same axis, no depends_on. Line A
+    is an INSTANCE of ARC-005 precision-routing, but the slow arousal-coupled gain specifically over
+    REINSTATEMENT is uncovered by the existing precision cluster (MECH-251/254/255/259/347 all act on current
+    perception / candidate selection / goal templates, not stored-trace read-out). The gain x suppression
+    INTERACTION is registered separately as Q-076. V4/V5-leaning, OFF the V3 critical path. DO NOT build in V3.
