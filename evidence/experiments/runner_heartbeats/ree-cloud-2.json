@@ -1,58 +1,48 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-12T15:28:46Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-629b",
-  "current_exq_started_utc": "2026-06-12T13:16:26.000924+00:00",
-  "current_title": "commitment_closure:GAP-4 MECH-342 ecological maintenance-release evidence, REWIRED onto the 603n scaffolded_sd054_onboarding curriculum + ecological floor recalibration (successor to V3-EXQ-629 NO_NATURAL_COMMITMENT)",
-  "current_claim_id": "MECH-342",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_MECH342_ECOLOGICAL_MAINTENANCE_RELEASE",
-    "runs_done": 6,
-    "runs_total": 3,
-    "episodes_done": 30,
-    "episodes_total": 235,
-    "overall_pct": 204.3
-  },
-  "seconds_elapsed": 7941,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[v3_exq_629b_mech342_ecological_maintenance_release_evidence] starting (dry_run=False)",
-    "Seed 42 Condition CURRICULUM_BUILT_MECH342_ECOLOGICAL_MAINTENANCE_RELEASE",
-    "[train] stage0_nursery seed=42 ep 20/235 z_goal_peak=0.4737 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/235 retention=0.957",
-    "[train] p0_guided seed=42 ep 130/235 rv=0.00174",
-    "[train] hazard_avoidance seed=42 ep 170/235 survival_gate=FAIL",
-    "[train] p1_foraging seed=42 ep 220/235 survival_gate=FAIL",
-    "[train] p2_guard seed=42 ep 235/235 contact_rate=0.0000 z_goal_at_contact=0.0000",
-    "Seed 42 Condition ARM_0_RELEASE_OFF",
-    "H[occ=1.000 fires=0 decommit=0] D[occ=1.000 fires=0 decommit=0 degr_ticks=0 min_nav=0.713]",
-    "Seed 42 Condition ARM_1_RELEASE_ON",
-    "H[occ=1.000 fires=0 decommit=0] D[occ=1.000 fires=0 decommit=0 degr_ticks=0 min_nav=0.470]",
-    "verdict: FAIL seed=42 guard_pass=False (contact_rate=0.0000 z_goal_at_contact=0.0000)",
-    "Seed 43 Condition CURRICULUM_BUILT_MECH342_ECOLOGICAL_MAINTENANCE_RELEASE",
-    "[train] stage0_nursery seed=43 ep 20/235 z_goal_peak=0.3782 formed=False",
-    "[train] stage0b_consolidate seed=43 ep 30/235 retention=0.994",
-    "[train] p0_guided seed=43 ep 130/235 rv=0.00079",
-    "[train] hazard_avoidance seed=43 ep 170/235 survival_gate=FAIL",
-    "[train] p1_foraging seed=43 ep 220/235 survival_gate=pass",
-    "[train] p2_guard seed=43 ep 235/235 contact_rate=0.3228 z_goal_at_contact=0.4278",
-    "Seed 43 Condition ARM_0_RELEASE_OFF",
-    "H[occ=1.000 fires=0 decommit=0] D[occ=1.000 fires=0 decommit=0 degr_ticks=3042 min_nav=0.000]",
-    "Seed 43 Condition ARM_1_RELEASE_ON",
-    "H[occ=1.000 fires=0 decommit=0] D[occ=0.996 fires=1 decommit=34 degr_ticks=3195 min_nav=0.000]",
-    "verdict: PASS seed=43 guard_pass=True (contact_rate=0.3228 z_goal_at_contact=0.4278)",
-    "Seed 44 Condition CURRICULUM_BUILT_MECH342_ECOLOGICAL_MAINTENANCE_RELEASE",
-    "[train] stage0_nursery seed=44 ep 20/235 z_goal_peak=0.3760 formed=False",
-    "[train] stage0b_consolidate seed=44 ep 30/235 retention=0.905"
+  "last_tick_utc": "2026-06-12T15:58:09Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 4,
+  "queue_id_at_head": "V3-EXQ-655",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-603n",
+      "result": "PASS",
+      "completed_at": "2026-06-10T20:14:27.777091+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-673",
+      "result": "FAIL",
+      "completed_at": "2026-06-12T03:32:46.862872+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-460c",
+      "result": "FAIL",
+      "completed_at": "2026-06-12T09:00:21.608486+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-466c",
+      "result": "FAIL",
+      "completed_at": "2026-06-12T13:14:23.956042+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-629b",
+      "result": "FAIL",
+      "completed_at": "2026-06-12T15:50:04.932128+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 668,
-  "runner_version": "r3089 868e5d2 2026-06-12 (running r3072 32b89fa)",
+  "runner_version": "r3091 cb2ec95 2026-06-12 (running r3072 32b89fa)",
   "gpu": {
     "available": false
   },
