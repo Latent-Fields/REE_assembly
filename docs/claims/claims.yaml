@@ -343,6 +343,17 @@
   source:
     - docs/processed/legacy_tree/docs/architecture/l_space.md
     - docs/processed/legacy_tree/architecture/latent_stack.md
+  implementation_note: >
+    2026-06-12 (MECH-423 readiness substrate): the shared z_beta/z_theta/z_delta
+    stack gained an OPTIONAL iterative-inference settling readout (R2) --
+    LatentStack.encode generalises its fixed single top-down round into a
+    predictive-coding settling loop over the shared latent and exposes a
+    per-inference-step ||delta z_shared|| convergence dict on
+    LatentState.inference_convergence (use_iterative_inference, default OFF,
+    bit-identical). Pure instrumentation over the existing ARC-004 machinery; no
+    status/confidence change. See
+    docs/architecture/mech_423_superadditivity_readiness_substrate.md +
+    ree-v3/CLAUDE.md "MECH-423 readiness substrate".
 - id: ARC-005
   title: "Control plane routes precision and modes."
   claim_type: architectural_commitment
@@ -8175,6 +8186,21 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
+  implementation_note: >
+    2026-06-12 (MECH-423 readiness substrate, R3): the MECH-121 consolidation
+    pipeline gained an OPTIONAL module-tagged INTERLEAVED cross-module
+    consolidation path -- CrossModuleConsolidator
+    (ree_core/sleep/cross_module_consolidation.py), wired into
+    SleepLoopManager._run_cycle behind use_cross_module_consolidation (default OFF,
+    bit-identical). The legacy offline pass trains e2_harm_s ALONE over region-keyed
+    traces with no module identity; the new path runs an interleaved E1<->E2
+    gradient schedule, tags each replayed trace by which modules it updates, and
+    exposes cross_module_replay_share + interleaved + update-count readouts (the
+    blocked schedule is the catastrophic-interference control). MECH-094: the same
+    explicit exception the e2_harm_s writeback uses (local per-module optimisers,
+    no residue/memory writes). Pure instrumentation; no status/confidence change.
+    See docs/architecture/mech_423_superadditivity_readiness_substrate.md +
+    ree-v3/CLAUDE.md "MECH-423 readiness substrate".
   governance_2026_06_10: >
     epistemic_category set substrate_conditional (IGW experiment-surfacing
     suppression, not a promote/demote). Although the replay-derived gradient
