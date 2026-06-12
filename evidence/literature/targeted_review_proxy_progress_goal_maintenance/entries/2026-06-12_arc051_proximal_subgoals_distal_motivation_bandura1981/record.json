@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-06-12_arc051_proximal_subgoals_distal_motivation_bandura1981",
+  "timestamp_utc": "2026-06-12T16:12:47Z",
+  "summary_path": "summary.md",
+  "claim_ids_tested": [
+    "ARC-051",
+    "INV-034"
+  ],
+  "source": {
+    "title": "Cultivating Competence, Self-Efficacy, and Intrinsic Interest Through Proximal Self-Motivation",
+    "authors": [
+      "Albert Bandura",
+      "Dale H. Schunk"
+    ],
+    "year": 1981,
+    "venue": "Journal of Personality and Social Psychology, 41(3):586-598",
+    "doi": "10.1037/0022-3514.41.3.586"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Classic controlled experiment isolating goal GRANULARITY: identical material, only the goal framing varied (proximal subgoals vs single distal goal vs no goals). Proximal subgoals produced the strongest gains on every measure; distal goals 'had no demonstrable effects'. Directly supports Strand G (proximal subgoals sustain distal motivation) and the maintenance thesis (a bare superordinate goal does not by itself drive sustained effort -- it must be decomposed). Confidence 0.60: small-N developmental study (40 children, ~10/cell), single domain, and the mechanism ('self-efficacy') has no clean computational analog.",
+  "failure_signatures": [
+    "Distal goal alone was statistically indistinguishable from no goals -- a cautionary datum for any REE design that expects a bare superordinate goal representation to sustain long-horizon effort without intermediate structure.",
+    "The mechanism is human self-efficacy self-appraisal; the study conflates subgoals-as-frequent-success-signals with subgoals-as-capability-information, which a computational model would need to separate.",
+    "Small N (~10/cell), single domain (arithmetic), four sessions -- noisy effect-size estimates."
+  ],
+  "tags": [
+    "arc-051",
+    "inv-034",
+    "candidate:cross_level_subgoal_credit",
+    "strand-G",
+    "proximal-subgoals",
+    "goal-gradient",
+    "self-efficacy"
+  ],
+  "mapping": {
+    "source_claim_statement": "Decomposing a distal goal into attainable proximal subgoals produced rapid self-directed learning, mastery, persistence, and intrinsic interest; a matched distal goal alone produced no demonstrable effect over no-goal controls.",
+    "ree_translation": "Empirical anchor for cross-level credit: subgoal attainment sustains motivation toward (and commitment to) the superordinate goal, where the bare distal goal does not. Grounds a candidate `cross_level_subgoal_credit` extending MECH-217's along-trajectory propagation to UP-the-hierarchy propagation (subgoal success -> reinforced parent-goal commitment), and supports INV-034's premise that goal maintenance is an achievement requiring structure, not a default.",
+    "mapping_caveat": "Human developmental behaviour mediated by self-efficacy self-appraisal -- no direct computational analog. The result motivates the cross-level-credit mechanism but does not isolate it (between-condition contrasts, not a manipulated internal credit signal). Effect magnitudes are from a small single-domain sample.",
+    "source_context": "Children 7-10y with arithmetic deficits; 4-session self-directed learning, between-subjects goal-framing manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.55,
+    "notes": "Canonical and cleanly designed but small-N developmental; the distal-goal null is the most transferable datum. Goal-gradient anchors (Hull 1932; Kivetz, Urminsky & Zheng 2006, JMR 43(1):39-58, doi 10.1509/jmkr.43.1.39) corroborate the proximity->effort gradient."
+  }
+}

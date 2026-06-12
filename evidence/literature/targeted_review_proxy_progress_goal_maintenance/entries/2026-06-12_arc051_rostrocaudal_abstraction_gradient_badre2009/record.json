@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-06-12_arc051_rostrocaudal_abstraction_gradient_badre2009",
+  "timestamp_utc": "2026-06-12T16:12:47Z",
+  "summary_path": "summary.md",
+  "claim_ids_tested": [
+    "ARC-051"
+  ],
+  "source": {
+    "title": "Is the rostro-caudal axis of the frontal lobe hierarchical?",
+    "authors": [
+      "David Badre",
+      "Mark D'Esposito"
+    ],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience, 10(9):659-669",
+    "doi": "10.1038/nrn2667"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Field-defining review with neuroimaging + anatomical + electrophysiological + developmental convergence for a rostro-caudal abstraction gradient (rostral=abstract/superordinate, caudal=concrete/proximate), including the asymmetric top-down control signature (anterior predicts caudal activation, not vice versa). Supports a granularity-matched goal hierarchy. Capped at 0.62 because 'abstraction' conflates several axes and the 2018 follow-up (Badre & Nee) argues the organization is discrete (3 zones) rather than a continuous unidimensional gradient -- a material qualification for any continuous-granularity model.",
+  "failure_signatures": [
+    "The 2018 synthesis (Badre & Nee, TICS) revises the picture: evidence 'consistently supports three major functional subdivisions' that are 'functionally discontinuous, violating a linear, progressive rostro-caudal gradient' -- a continuous granularity axis is a modeling simplification, not the current consensus.",
+    "'Abstraction has been defined somewhat differently across these experiments' (domain-generality, relational integration, temporal abstraction, policy abstraction are conflated), so the mapping of a single goal-granularity axis onto the anatomical axis is not clean.",
+    "The review itself cautions that the gradient features 'do not, by themselves, require that the organization be hierarchical.'"
+  ],
+  "tags": [
+    "arc-051",
+    "candidate:granularity_matched_goal_hierarchy",
+    "strand-C",
+    "prefrontal",
+    "rostro-caudal",
+    "hierarchy",
+    "v4"
+  ],
+  "mapping": {
+    "source_claim_statement": "Progressively more anterior/rostral lateral-PFC regions support control over progressively more abstract action representations (PMd/BA6 concrete -> BA44/45 -> mid-DLPFC/BA9/46 -> frontopolar/BA10 meta-level goals), with anterior regions exerting asymmetric top-down influence over caudal ones.",
+    "ree_translation": "Grounds the candidate `granularity_matched_goal_hierarchy`: a superordinate goal and its concrete subgoals are represented at DIFFERENT granularity levels, and maintaining the abstract goal while executing concrete subgoals is supported by this cross-level organization. Extends ARC-051 (multi-level wanting hierarchy) with a representational-granularity axis -- the 'granularity systems' Daniel named. V4-scoped (REE has no explicit multi-scale goal-representation substrate yet).",
+    "mapping_caveat": "Rostro-caudal 'abstraction' is not identical to 'goal granularity' and may be discrete (~3 zones) rather than continuous. A REE model with a small number of discrete goal-granularity levels (superordinate / contextual-intermediate / concrete) maps better to current evidence than a continuous granularity scalar.",
+    "source_context": "Human lateral prefrontal cortex; fMRI + anatomy + electrophysiology + development review."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Authoritative review; mapping fidelity limited by the abstraction-conflation problem and the discrete-vs-continuous revision. Cite Badre & Nee 2018 alongside for honest scoping."
+  }
+}

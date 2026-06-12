@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-06-12_inv065_potential_based_shaping_ng1999",
+  "timestamp_utc": "2026-06-12T16:12:47Z",
+  "summary_path": "summary.md",
+  "claim_ids_tested": [
+    "INV-065"
+  ],
+  "source": {
+    "title": "Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping",
+    "authors": [
+      "Andrew Y. Ng",
+      "Daishi Harada",
+      "Stuart J. Russell"
+    ],
+    "year": 1999,
+    "venue": "Proceedings of the 16th International Conference on Machine Learning (ICML 1999), pp. 278-287",
+    "url": "https://people.eecs.berkeley.edu/~russell/papers/icml99-shaping.pdf"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.75,
+  "confidence_rationale": "Foundational theorem with a necessary-and-sufficient, dynamics-independent guarantee -- exceptionally high source quality. It is the formal tethering constraint Strand B needs: it tells you EXACTLY which proxy signals provably do not distort the true goal. Direction is 'mixed' relative to a naive proxy-goal claim: it supports the usefulness of intermediate signals while proving that an arbitrary proxy (non-potential-based) can change the optimal policy. Mapping fidelity capped because REE's proxy is a learned, non-stationary, possibly affective signal, not a stationary state-only potential.",
+  "failure_signatures": [
+    "Invariance holds only for an additive, Markov, state-only potential Phi(s) under fixed discount; action-dependent, history-dependent, or drifting (learned online) potentials break the guarantee unless specially handled.",
+    "Necessity: if a shaping reward is NOT potential-based, there EXIST dynamics and a base reward under which the optimal policy of the shaped problem differs from the true one -- i.e. an untethered proxy can provably divert the agent from the true goal."
+  ],
+  "tags": [
+    "inv-065",
+    "candidate:proxy_tethering_guard",
+    "strand-B",
+    "reward-shaping",
+    "Goodhart",
+    "potential-based"
+  ],
+  "mapping": {
+    "source_claim_statement": "A shaping reward F(s,a,s') added to the environment reward preserves the set of optimal policies IF AND ONLY IF it is potential-based, F(s,a,s') = gamma*Phi(s') - Phi(s); this holds with no assumptions on transition dynamics or base reward.",
+    "ree_translation": "REE's proxy/progress signals (the very thing that maintains a goal) carry a divergence risk: an intermediate signal that is NOT of the potential-difference form can pull behaviour away from the superordinate goal it was meant to serve. This grounds a prospective `proxy_tethering_guard` candidate -- the constraint that REE's maintenance proxy must approximate a potential difference over goal-proximity to stay aligned with INV-065's proxy goals rather than supplant them.",
+    "mapping_caveat": "The theorem assumes a stationary, additive, state-only potential under a fixed objective. REE's maintenance proxy is learned, non-stationary, and affectively modulated, so the guarantee transfers only as a design target / limiting case, not as an off-the-shelf certificate. It also says nothing about WHICH potential to pick or about sample efficiency.",
+    "source_context": "Reinforcement learning theory (MDPs); grid-world and continuous control applications."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "Theorem-grade source. The potential-based form is precisely the tethering constraint; transfer risk from REE's non-stationary learned proxy violating the stationarity assumption."
+  }
+}

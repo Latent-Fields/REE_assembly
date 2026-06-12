@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-06-12_inv065_reward_hacking_characterization_skalse2022",
+  "timestamp_utc": "2026-06-12T16:12:47Z",
+  "summary_path": "summary.md",
+  "claim_ids_tested": [
+    "INV-065"
+  ],
+  "source": {
+    "title": "Defining and Characterizing Reward Hacking",
+    "authors": [
+      "Joar Skalse",
+      "Nikolaus H. R. Howe",
+      "Dmitrii Krasheninnikov",
+      "David Krueger"
+    ],
+    "year": 2022,
+    "venue": "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)",
+    "url": "https://arxiv.org/abs/2209.13085"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Rigorous formal characterization of WHEN a proxy can diverge from a true objective -- the negative counterpart to Ng et al. High source quality (NeurIPS, formal proofs). Mapping fidelity moderate: the headline impossibility is a worst-case result over ALL stochastic policies, but the paper itself shows non-trivial unhackable proxies exist on RESTRICTED policy sets -- exactly the regime a biological/structured agent occupies, so it both warns and partially reassures. Direction 'mixed' (warns against naive proxy reliance; the escape hatch supports REE's structured-policy setting).",
+  "failure_signatures": [
+    "Over the set of ALL stochastic policies, two reward functions can be unhackable only if one is constant -- a guaranteed-never-divergent non-trivial proxy essentially cannot exist in the unrestricted case.",
+    "Assumes a single fixed true reward; for an architecture with multiple homeostatic drives or non-stationary objectives the unhackability comparison must be re-specified per objective."
+  ],
+  "tags": [
+    "inv-065",
+    "candidate:proxy_tethering_guard",
+    "strand-B",
+    "reward-hacking",
+    "Goodhart",
+    "alignment"
+  ],
+  "mapping": {
+    "source_claim_statement": "A proxy reward is 'unhackable' relative to a true reward iff increasing expected proxy return can never decrease expected true return. Over all stochastic policies this is extremely restrictive (only trivial pairs qualify), but non-trivial unhackable pairs DO exist when the policy set is restricted.",
+    "ree_translation": "Quantifies the divergence risk that REE's goal-maintenance proxy must avoid, and -- importantly -- shows the risk is governed by the agent's policy manifold. Because REE agents explore a structured, restricted policy space (homeostatic drives, harm constraints, bounded planning), they sit in the regime where non-trivial aligned proxies are POSSIBLE. This makes `proxy_tethering_guard` tractable rather than impossible, and tells the design where to look (restrict/structure the policy set, not just the reward).",
+    "mapping_caveat": "Occupancy-measure / expected-return theory over a fixed policy set and a single fixed true reward. REE's multi-drive, non-stationary objective does not match the single-reward assumption, so the formal unhackability statement must be re-derived per drive before it can certify anything in-substrate.",
+    "source_context": "RL/AI-safety theory (MDPs, occupancy measures); no empirical agent."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.5,
+    "notes": "Formal and rigorous; mapping capped by single-reward / full-policy-set assumptions vs REE's multi-drive structured-policy setting. The restricted-policy escape hatch is the most REE-relevant result."
+  }
+}

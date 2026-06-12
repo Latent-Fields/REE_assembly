@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-06-12_mech217_td_value_as_progress_proxy_sutton1988",
+  "timestamp_utc": "2026-06-12T16:12:47Z",
+  "summary_path": "summary.md",
+  "claim_ids_tested": [
+    "MECH-217",
+    "INV-065"
+  ],
+  "source": {
+    "title": "Learning to Predict by the Methods of Temporal Differences",
+    "authors": [
+      "Richard S. Sutton"
+    ],
+    "year": 1988,
+    "venue": "Machine Learning, 3(1):9-44",
+    "doi": "10.1007/BF00115009"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational source for the mechanism by which a learned prediction becomes a dense, intermediate stand-in for a distal/sparse outcome: TD bootstrapping uses a later prediction as the learning target for an earlier one. Directly grounds Strand D (on-path progress estimation) and the substrate of MECH-217's value-propagation. High source quality. Capped at 0.72 because the 1988 convergence guarantees are for the prediction (policy-evaluation) problem with largely linear approximation -- not control, off-policy, or deep nonlinear substrates (deadly triad), which is where REE actually operates.",
+  "failure_signatures": [
+    "Convergence/optimality proven for linear TD(0) in the prediction problem with a fixed policy; does not cover control, off-policy learning, or nonlinear approximators where TD can diverge.",
+    "The bootstrap target is only as good as the state representation: a value head over an impoverished or non-Markov latent is a BIASED progress proxy -- the proxy can be confidently wrong."
+  ],
+  "tags": [
+    "mech-217",
+    "inv-065",
+    "candidate:on_path_progress_inference",
+    "strand-D",
+    "temporal-difference",
+    "value-function",
+    "bootstrapping"
+  ],
+  "mapping": {
+    "source_claim_statement": "TD methods assign credit by the difference between temporally SUCCESSIVE predictions (bootstrapping), rather than between a prediction and the eventual actual outcome; linear TD(0) converges to the correct predictions for the data-generating Markov process.",
+    "ree_translation": "Provides the formal mechanism for a learned value/forward-model readout to act as a DENSE progress signal that bridges sparse terminal goal-confirmation -- the 'predicted subgoal / on-path inference' in Daniel's thought. Grounds a candidate `on_path_progress_inference` (the agent infers it is on-trajectory via a bootstrapped value estimate) and is the computational substrate under MECH-217's temporal wanting propagation.",
+    "mapping_caveat": "Sutton 1988's guarantees are for prediction with linear approximation; REE's substrate is deep, control-coupled, and operates on a learned latent that may be non-Markov, so the 'faithful dense proxy' property is a target, not a given. Biologically TD maps onto dopaminergic RPE (Schultz/Montague), but the stationarity/Markov assumptions are violated in-substrate.",
+    "source_context": "Machine learning theory; multi-step prediction problems (random walk, etc.)."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "Foundational; value-as-dense-proxy maps well to a progress signal. Transfer risk from prediction-only/linear guarantees vs REE's deep control substrate, and from state-representation-dependent bias."
+  }
+}

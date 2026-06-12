@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-06-12_inv034_velocity_affect_loop_carver1990",
+  "timestamp_utc": "2026-06-12T16:12:47Z",
+  "summary_path": "summary.md",
+  "claim_ids_tested": [
+    "INV-034",
+    "INV-053"
+  ],
+  "source": {
+    "title": "Origins and Functions of Positive and Negative Affect: A Control-Process View",
+    "authors": [
+      "Charles S. Carver",
+      "Michael F. Scheier"
+    ],
+    "year": 1990,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.97.1.19"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Foundational, widely-replicated control-theory account that directly names a rate-of-progress (velocity) feedback loop as the source of the affect signal that regulates effort -- the exact mechanism Strand A proposes for sustaining goal commitment. Downgraded from higher because the 1990 paper is theoretical synthesis (no controlled test in this article) and specifies the loop only qualitatively (no functional forms for reference-rate, gain, or time constants).",
+  "failure_signatures": [
+    "The 'coasting' prediction inverts a naive reading: above-reference progress produces positive affect that REDUCES effort on the current goal (licensing redeployment), so a model that treats positive progress-affect as reinforcement INCREASING same-goal commitment contradicts the theory.",
+    "Functional forms (reference-rate setting, velocity->affect transform, smoothing/prediction of rate, multi-goal arbitration) are left unspecified and must be chosen by the modeller."
+  ],
+  "tags": [
+    "inv-034",
+    "candidate:progress_velocity_maintenance",
+    "strand-A",
+    "control-theory",
+    "affect",
+    "self-regulation"
+  ],
+  "mapping": {
+    "source_claim_statement": "A second-order feedback loop monitors the RATE at which the first-order loop is reducing the goal-discrepancy and compares it to a reference rate; the error of this second loop is affect (faster-than-reference -> positive, slower -> negative), which then regulates effort.",
+    "ree_translation": "REE's long-horizon goal MAINTENANCE can be stabilized by a rate-of-progress signal: a derivative/velocity readout over goal-proximity that produces a modulatory (affective) signal sustaining commitment between sparse terminal confirmations. Candidate claim distinct from the existing proxy-goal-for-REACHABILITY spine (INV-065/ARC-051) -- this is the persistence/affect-regulation face, wiring to INV-034 (maintenance necessary for ethical agency) and INV-053 (maintenance failure).",
+    "mapping_caveat": "The theory is about how affect is GENERATED from progress velocity and how it regulates effort; it does not by itself assert that this affect is what holds a goal active in memory. The maintenance interpretation is a faithful but non-trivial extension, and the coasting/disengagement direction must be modelled correctly.",
+    "source_context": "Human self-regulation theory (verbal/cybernetic model), no species/task -- a control-process synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Canonical primary peer-reviewed source; the 1998 CUP book restates it. Velocity-loop maps cleanly to a progress-derivative maintenance signal; transfer risk from underspecified dynamics + the counter-intuitive coasting direction."
+  }
+}
